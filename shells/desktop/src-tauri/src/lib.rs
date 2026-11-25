@@ -114,7 +114,7 @@ fn db_all(dbs: State<Mutex<Dbs>>, handle: u32, sql: String, params: Vec<Value>) 
     let d = dbs.lock().map_err(|e| e.to_string())?;
     let c = d.open.get(&handle).ok_or("database not open")?;
     let mut stmt = c.prepare(&sql).map_err(|e| e.to_string())?;
-    let names: Vec<String> = stmt.column_names().iter().map(|s| s.to_string()).collect();
+    let names: Vec<String> = stmt.column_names().map(|s| s.to_string()).collect();
     let p: Vec<SqlValue> = params.iter().map(to_sql).collect::<Result<_, _>>()?;
     let mut rows = stmt.query(params_from_iter(p.iter())).map_err(|e| e.to_string())?;
     let mut out = Vec::new();
