@@ -9,6 +9,7 @@
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "tsx packages/tools/src/cli.ts lint",
+    "new-save": "tsx packages/tools/src/cli.ts new-save",
     "facts": "tsx packages/tools/src/cli.ts facts",
     "headless": "tsx packages/headless/src/cli.ts",
     "gate": "tsx packages/headless/src/cli.ts gate",

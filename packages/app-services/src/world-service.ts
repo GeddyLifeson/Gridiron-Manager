@@ -9,7 +9,7 @@ import { DUMMY_PARAMETER_SET, ENGINE_VERSION } from '@gm/engine-game';
 import {
   SAVE_FORMAT_VERSION, CommandEnvelope, type SaveHeader, type WorldState, type WorldSummaryModel, WorldSummaryModel as WorldSummarySchema,
 } from '@gm/schema';
-import { SaveStore, readHeader, type SqlDriver, type ContentItem } from '@gm/store';
+import { SaveStore, readHeader, verifySaveLog, type SqlDriver, type ContentItem, type ReplayDeps, type ReplayReport } from '@gm/store';
 import type { Platform } from './platform.ts';
 
 export const APP_SERVICES_VERSION = `app 0.0.1 / ${ENGINE_VERSION}`;
@@ -121,35 +121,8 @@ export class WorldService {
   }
 
   /** P1.1.3 acceptance 2 and P5.3.2: replay the log from the creation snapshot and check every hash. */
-  async verify(): Promise<{ ok: boolean; problems: string[]; replayedHash: string }> {
-    const problems: string[] = [];
-    const snaps = await this.store.snapshots();
-    const creation = snaps.find((s) => s.kind === 'creation');
-    if (!creation) return { ok: false, problems: ['no creation snapshot'], replayedHash: '' };
-    let w: WorldState = JSON.parse(creation.json);
-    if (stateHash(w) !== creation.state_hash) problems.push('creation snapshot hash mismatch');
-    let head = CHAIN_GENESIS;
-    const chain = await this.store.chain();
-    let ci = 0;
-    for (const row of await this.store.commandLog()) {
-      const cmd = CommandEnvelope.parse(JSON.parse(row.command));
-      const r = applyCommand(w, cmd);
-      if (!r.ok) { problems.push(`logged command ${row.seq} no longer applies: ${r.reason}`); break; }
-      w = r.world;
-      if (bytesHash(canonicalBytes(r.events)) !== row.events_hash) problems.push(`events of command ${row.seq} differ on replay`);
-      if (row.state_hash) {
-        const h = stateHash(w);
-        if (h !== row.state_hash) problems.push(`state after command ${row.seq} differs on replay`);
-        const link = chain[ci++];
-        const expectHead = chainNext({ prev: head, stateHash: h, logSequence: row.seq, engineVersion: link?.engine_version ?? '', parameterSetVersion: link?.parameter_set_version ?? '' });
-        if (!link || link.head !== expectHead || link.state_hash !== h) problems.push(`hash chain row ${ci} does not match the replay`);
-        head = link?.head ?? head;
-      }
-    }
-    const live = await this.store.world();
-    if (stateHash(live) !== stateHash(w)) problems.push('live world tables differ from the replayed log (edited outside the game?)');
-    if ((await this.store.header()).hashChainHead !== head) problems.push('header chain head differs from the chain');
-    return { ok: problems.length === 0, problems, replayedHash: stateHash(w) };
+  verify(): Promise<ReplayReport> {
+    return verifySaveLog(this.store, replayDeps());
   }
 
   worldSummary(): WorldSummaryModel {
@@ -172,6 +145,17 @@ export class WorldService {
   saveHeader(): SaveHeader { return this.header; }
 
   async close(): Promise<void> { await this.driver.close(); }
+}
+
+/** The core functions a save replay needs (P1.1.3). */
+export function replayDeps(): ReplayDeps {
+  return {
+    apply: (w, cmd) => applyCommand(w, cmd),
+    stateHash,
+    eventsHash: (e) => bytesHash(canonicalBytes(e)),
+    chainNext,
+    genesis: CHAIN_GENESIS,
+  };
 }
 
 export const VERSIONS = { engineCore: ENGINE_CORE_VERSION, engine: ENGINE_VERSION, parameterSet: DUMMY_PARAMETER_SET, saveFormat: SAVE_FORMAT_VERSION };

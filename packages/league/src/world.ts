@@ -6,10 +6,11 @@ import {
   type CommandEnvelope,
 } from '@gm/schema';
 import { RULE_SET_FILES, LEAGUE_RULES_IDS } from '@gm/rules-data';
+import calendar from '../data/calendar.json' with { type: 'json' };
 
 export const WORLD_FORMAT_VERSION = 1;
 /** Day indexes in a calendar year (C4 owns the real calendar; phase 0 needs only a counter). */
-export const DAYS_PER_YEAR = 365;
+export const DAYS_PER_YEAR: number = calendar.daysPerYear;
 
 export interface WorldEvent { readonly type: string; readonly detail: string }
 
@@ -55,7 +56,7 @@ export function applyCommand(world: WorldState, cmd: CommandEnvelope): ApplyResu
         if (!(LEAGUE_RULES_IDS as readonly string[]).includes(c.leagueRulesId)) return reject('legality', `unknown league rules ${c.leagueRulesId}`);
         next.competitions.push({ id: id++, name: c.name, level: c.level, ruleSetId: c.ruleSetId, leagueRulesId: c.leagueRulesId, teamIds: [] });
       }
-      next.nextIds = { competition: id, team: 1, person: 1 };
+      next.nextIds = { ...next.nextIds, competition: id };
       return { ok: true, world: WorldState.parse(next), events: [{ type: 'worldCreated', detail: `${next.competitions.length} competitions` }] };
     }
     case 'AdvanceDay': {

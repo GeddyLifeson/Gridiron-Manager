@@ -1,0 +1,5 @@
+{
+  "$comment": "Design value (leafId C4): the phase 0 calendar counts days in a 365-day year. C4 replaces this with the real league calendar.",
+  "leafId": "C4",
+  "daysPerYear": 365
+}
