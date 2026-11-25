@@ -1,0 +1,126 @@
+{
+ "ruleset_id": "pro_2026",
+ "level": "pro",
+ "season_year": 2026,
+ "source": {
+  "document": "Official Playing Rules of the National Football League, 2026",
+  "date": "2026"
+ },
+ "schema_version": 1,
+ "values": [
+  {
+   "key": "clock.periods",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-rule-0001"
+  },
+  {
+   "key": "clock.period_length_s",
+   "value": 900,
+   "unit": "s",
+   "factId": "F-rule-0003"
+  },
+  {
+   "key": "clock.halftime_min",
+   "value": 13,
+   "unit": "min",
+   "factId": "F-rule-0005"
+  },
+  {
+   "key": "clock.play_clock_s",
+   "value": 40,
+   "unit": "s",
+   "factId": "F-rule-0007"
+  },
+  {
+   "key": "clock.play_clock_after_stoppage_s",
+   "value": 25,
+   "unit": "s",
+   "factId": "F-rule-0009"
+  },
+  {
+   "key": "timeout.per_half",
+   "value": 3,
+   "unit": "count",
+   "factId": "F-rule-0011"
+  },
+  {
+   "key": "series.downs",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-rule-0013"
+  },
+  {
+   "key": "series.yards_to_gain",
+   "value": 10,
+   "unit": "yd",
+   "factId": "F-rule-0015"
+  },
+  {
+   "key": "field.hash_from_sideline_ft",
+   "value": 70.75,
+   "unit": "ft",
+   "factId": "F-rule-0017"
+  },
+  {
+   "key": "field.goal_to_goal_yd",
+   "value": 100,
+   "unit": "yd",
+   "factId": "F-rule-0019"
+  },
+  {
+   "key": "substitution.max_players",
+   "value": 11,
+   "unit": "count",
+   "factId": "F-rule-0021"
+  },
+  {
+   "key": "score.touchdown",
+   "value": 6,
+   "unit": "points",
+   "factId": "F-rule-0023"
+  },
+  {
+   "key": "score.field_goal",
+   "value": 3,
+   "unit": "points",
+   "factId": "F-rule-0025"
+  },
+  {
+   "key": "score.safety",
+   "value": 2,
+   "unit": "points",
+   "factId": "F-rule-0027"
+  },
+  {
+   "key": "try.kick_points",
+   "value": 1,
+   "unit": "points",
+   "factId": "F-rule-0029"
+  },
+  {
+   "key": "try.two_point_points",
+   "value": 2,
+   "unit": "points",
+   "factId": "F-rule-0031"
+  },
+  {
+   "key": "try.kick_snap_yardline",
+   "value": 15,
+   "unit": "yd",
+   "factId": "F-rule-0033"
+  },
+  {
+   "key": "try.two_point_snap_yardline",
+   "value": 2,
+   "unit": "yd",
+   "factId": "F-rule-0035"
+  },
+  {
+   "key": "foul.ineligible_downfield.yards",
+   "value": 1,
+   "unit": "yd",
+   "factId": "F-rule-0037"
+  }
+ ]
+}
