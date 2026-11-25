@@ -1,0 +1,31 @@
+{
+  "name": "gridiron-manager",
+  "private": true,
+  "type": "module",
+  "workspaces": ["packages/*", "shells/browser"],
+  "engines": { "node": ">=22.12" },
+  "scripts": {
+    "check": "tsx scripts/check.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsx packages/tools/src/cli.ts lint",
+    "facts": "tsx packages/tools/src/cli.ts facts",
+    "headless": "tsx packages/headless/src/cli.ts",
+    "gate": "tsx packages/headless/src/cli.ts gate",
+    "gate:browser": "tsx scripts/browser-gate.ts",
+    "dev": "npm run dev -w @gm/shell-browser",
+    "build:browser": "npm run build -w @gm/shell-browser",
+    "desktop:dev": "cd shells/desktop && npx tauri dev",
+    "desktop:build": "cd shells/desktop && npx tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.12.4",
+    "@types/node": "26.6.6",
+    "@types/sql.js": "1.4.11",
+    "fast-check": "4.10.2",
+    "playwright": "1.65.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}

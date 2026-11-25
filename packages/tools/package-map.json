@@ -1,0 +1,23 @@
+{
+  "$comment": "Machine-readable copy of bible P1.2.1 'May import' column. The dependency lint (P1.2.2) reads this file. Change it only together with the bible table.",
+  "packages": {
+    "schema":             { "kind": "core", "mayImport": [], "owns": "Types and validators for all content, state, commands, read models", "bible": "P3, P1.3.1, P1.3.2, Q1.2.1" },
+    "rules-data":         { "kind": "core", "mayImport": ["schema"], "owns": "Rule-set files by level and season, league-rules files", "bible": "B12, B13, T1, P4.7.1, Q6" },
+    "football-content":   { "kind": "core", "mayImport": ["schema"], "owns": "Formations, concepts, protections, coverages, systems, archetypes, coach profiles, text templates", "bible": "F, G, K2, P4" },
+    "football-lang":      { "kind": "core", "mayImport": ["schema"], "owns": "Assignment rule language: evaluation, legality validation, play assembly", "bible": "J4, G1, B4.6.1" },
+    "engine-core":        { "kind": "core", "mayImport": ["schema", "football-lang"], "owns": "Random streams, engine math, kinematics, tick loop, contest models", "bible": "J1, J2, J6, J13" },
+    "officiating":        { "kind": "core", "mayImport": ["schema", "rules-data"], "owns": "Truth to ruling, fouls and enforcement, clock, replay", "bible": "B1 to B11, J10, B11" },
+    "engine-game":        { "kind": "core", "mayImport": ["engine-core", "officiating"], "owns": "Game state machine, between-play systems, substitution, fatigue, injuries", "bible": "J11, I6, D10, D11, R1.2.1 (dummy game)" },
+    "resolver-reference": { "kind": "core", "mayImport": ["schema"], "owns": "The simple outcome model for early phases and cross-checks", "bible": "J14, R1.2.2" },
+    "models":             { "kind": "core", "mayImport": ["schema"], "owns": "Expected points, win probability, decision grading, predictability", "bible": "N2, N3, G8" },
+    "coach-ai":           { "kind": "core", "mayImport": ["engine-game", "models"], "owns": "Preparation, play calling, situational decisions, staff advice, the boss", "bible": "K2 to K6, S4" },
+    "league":             { "kind": "core", "mayImport": ["schema", "rules-data"], "owns": "Schedule, standings, calendar, rosters, transactions, development, aging, recruiting, draft, generators", "bible": "C, D7, D8, D13, T, M" },
+    "career":             { "kind": "core", "mayImport": ["schema", "league"], "owns": "The ladder, jobs, hiring market, reputation, relationships, personal life, finance", "bible": "E, L, S" },
+    "people":             { "kind": "core", "mayImport": ["schema", "league"], "owns": "Person generation, the people-pack importer, attribute estimation from real data, the shuffle", "bible": "D13, U, A6, X" },
+    "store":              { "kind": "app",  "mayImport": ["schema"], "owns": "Save database, command log, snapshots, migrations, exports", "bible": "P5" },
+    "app-services":       { "kind": "app",  "mayImport": ["@core", "store"], "owns": "Command handling, read models, observer filter, worker orchestration", "bible": "P1.3, P2.1, P2.2" },
+    "app-ui":             { "kind": "app",  "mayImport": ["app-services:public"], "owns": "Screens, editors, field view", "bible": "O1 to O7" },
+    "headless":           { "kind": "tool", "mayImport": ["@core", "store"], "owns": "Command-line runner for batches, calibration, exploit search, replay of bug bundles", "bible": "P2.3.4, Q1.3, Q2, Q4" },
+    "tools":              { "kind": "tool", "mayImport": ["@any"], "owns": "Content authoring helpers, data import scripts, baseline scripts, lints", "bible": "P1.2.2, Q1.2.1, Q6" }
+  }
+}
