@@ -2,8 +2,13 @@
   "name": "gridiron-manager",
   "private": true,
   "type": "module",
-  "workspaces": ["packages/*", "shells/browser"],
-  "engines": { "node": ">=22.12" },
+  "workspaces": [
+    "packages/*",
+    "shells/browser"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
     "check": "tsx scripts/check.ts",
     "test": "vitest run",
@@ -16,8 +21,11 @@
     "gate:browser": "tsx scripts/browser-gate.ts",
     "dev": "npm run dev -w @gm/shell-browser",
     "build:browser": "npm run build -w @gm/shell-browser",
-    "desktop:dev": "cd shells/desktop && npx tauri dev",
-    "desktop:build": "cd shells/desktop && npx tauri build"
+    "desktop:dev": "cd shells/desktop && tauri dev",
+    "desktop:build": "npm run build:browser && cd shells/desktop && tauri build --no-bundle",
+    "check:quick": "tsx scripts/check.ts --quick",
+    "desktop:installer": "npm run build:browser && cd shells/desktop && tauri build",
+    "browsers": "playwright install chromium firefox webkit"
   },
   "devDependencies": {
     "@tauri-apps/cli": "2.12.4",

@@ -1,0 +1,25 @@
+[package]
+name = "gridiron-manager"
+version = "0.0.1"
+edition = "2021"
+description = "Gridiron Manager desktop shell (P2.3.1): windows, native SQLite saves, no game logic"
+license = "UNLICENSED"
+publish = false
+
+[lib]
+name = "gridiron_manager_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7", features = [] }
+
+[dependencies]
+tauri = { version = "2.12", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "=0.41.1", features = ["bundled"] }
+
+[profile.release]
+# Floating point in the shell is irrelevant (game math runs in the web view), but keep builds reproducible.
+codegen-units = 1
+lto = true
