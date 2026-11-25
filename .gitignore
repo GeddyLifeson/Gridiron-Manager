@@ -6,3 +6,4 @@ out/
 shells/desktop/src-tauri/target/
 shells/desktop/src-tauri/gen/
 .vite/
+test-results/tmp-saves/

@@ -28,6 +28,8 @@ function desktopBinary(): string | null {
 
 const desktop = desktopBinary();
 const desktopGate = join(OUT, `gate-desktop-${platform()}-${arch()}.json`);
+const desktopSave = join(OUT, 'tmp-saves', 'from-desktop.gmsave');
+mkdirSync(dirname(desktopSave), { recursive: true });
 const steps: Step[] = [
   { name: 'typecheck (TypeScript strict)', cmd: 'npx', args: ['tsc', '-p', 'tsconfig.json', '--noEmit'] },
   { name: 'lints (P1.2.1, P1.2.2, P1.1.1, P1.1.2, Q1.2.1, Q6.2.1)', cmd: 'npx', args: ['tsx', 'packages/tools/src/cli.ts', 'lint'] },
@@ -39,6 +41,16 @@ const steps: Step[] = [
     cmd: desktop ?? '', args: ['--gate', desktopGate],
     skip: quick ? '--quick' : desktop ? undefined : 'no desktop build (run: npm run desktop:build)',
     optional: true,
+  },
+  {
+    name: 'desktop native save copied out (P5.1.1)',
+    cmd: desktop ?? '', args: ['--copy-save', 'gate-desktop', desktopSave],
+    skip: quick ? '--quick' : desktop ? undefined : 'no desktop build',
+  },
+  {
+    name: 'desktop save opens and replays in Node (R1.2.1 item 2)',
+    cmd: 'npx', args: ['tsx', 'packages/headless/src/cli.ts', 'replay', desktopSave],
+    skip: quick ? '--quick' : desktop ? undefined : 'no desktop build',
   },
 ];
 
@@ -54,7 +66,7 @@ for (const s of steps) {
   const text = `${r.stdout ?? ''}${r.stderr ?? ''}`;
   process.stdout.write(text);
   let ok = r.status === 0;
-  if (s.cmd === desktop && existsSync(desktopGate)) ok = JSON.parse(readFileSync(desktopGate, 'utf8')).ok === true;
+  if (s.cmd === desktop && s.args[0] === '--gate' && existsSync(desktopGate)) ok = JSON.parse(readFileSync(desktopGate, 'utf8')).ok === true;
   results.push({ name: s.name, ok, seconds: Math.round((Date.now() - t0) / 100) / 10, tail: text.trim().split('\n').slice(-12).join('\n') });
 }
 
