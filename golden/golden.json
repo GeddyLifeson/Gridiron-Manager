@@ -13,20 +13,20 @@
     "math.logistic": "ffc27f425db1c678",
     "stream.u32": "66fb5f70a18fa55b",
     "stream.uniformNormal": "bdf2e525eb6e9482",
-    "pro_2026.plays": "5e59ac6db4acde33",
-    "pro_2026.games": "81a13b3e1a732b59",
-    "pro_2026.season": "f1eb0adf2dda9cee",
-    "college_2026.plays": "a71214f8ddb283c1",
-    "college_2026.games": "e8e614f12377957d",
-    "college_2026.season": "f4282073d65b3e0f"
+    "pro_2026.plays": "4402f9487b3098f6",
+    "pro_2026.games": "a809bf01a7e270b2",
+    "pro_2026.season": "538da6ad86c79879",
+    "college_2026.plays": "1643c475114f6b89",
+    "college_2026.games": "a6431889cf5be549",
+    "college_2026.season": "1f1feb60e8cd7330"
   },
   "counts": {
     "pro_2026.plays": 200,
-    "pro_2026.gamePlays": 3761,
-    "pro_2026.seasonPlays": 5250,
+    "pro_2026.gamePlays": 3744,
+    "pro_2026.seasonPlays": 5222,
     "college_2026.plays": 200,
-    "college_2026.gamePlays": 3761,
-    "college_2026.seasonPlays": 5252
+    "college_2026.gamePlays": 3744,
+    "college_2026.seasonPlays": 5224
   },
-  "digest": "28fd173e9fbc3c40"
+  "digest": "c937f74b50151fce"
 }

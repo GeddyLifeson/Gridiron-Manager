@@ -3,7 +3,10 @@ import { readFileSync } from 'node:fs';
 import { seedFromNumber, stream } from '@gm/engine-core';
 import { resolveRuleSet } from '@gm/rules-data';
 import { newGame, stepPlay, playGame, dummyTeams, runGolden, compareGolden, seasonResult, seasonFixtures, type GoldenReport } from '../src/index.ts';
-import { goldenInputs } from '../../app-services/src/golden-inputs.ts';
+import { bytesHash, canonicalBytes } from '@gm/engine-core';
+import { RULE_SET_FILES } from '@gm/rules-data';
+
+const goldenInputs = () => ({ resolveRuleSet, ruleSetFilesHash: bytesHash(canonicalBytes(RULE_SET_FILES)) });
 
 const golden = JSON.parse(readFileSync(new URL('../../../golden/golden.json', import.meta.url), 'utf8')) as GoldenReport;
 

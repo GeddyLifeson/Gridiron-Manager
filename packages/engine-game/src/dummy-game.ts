@@ -22,7 +22,7 @@ type Call = PlayRow['call'];
 const r2 = (x: number) => Math.round(x * 100) / 100;
 
 export function newGame(gameId: number, home: DummyTeam, away: DummyTeam, rules: RuleSet, seed: WorldSeed): DummyGameState {
-  const toss = stream(seed, 'coin', [gameId]).int(0, 1);
+  const toss = stream(seed, 'toss', [gameId]).int(0, 1);
   return {
     gameId,
     ruleSetId: rules.id,
