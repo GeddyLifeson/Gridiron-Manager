@@ -18,7 +18,7 @@ export interface LintProblem { rule: string; file: string; line?: number; messag
 const CORE_ALLOWED_EXTERNAL: Record<string, string[]> = { schema: ['zod'] };
 const APP_ALLOWED_EXTERNAL: Record<string, string[]> = {
   store: ['sql.js'],
-  'app-services': ['@tauri-apps/api'],
+  'app-services': [],
   'app-ui': ['react', 'react-dom'],
   headless: ['sql.js', 'node:'],
   tools: ['node:', 'sql.js'],

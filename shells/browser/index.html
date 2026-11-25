@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gridiron Manager</title>
+    <style>
+      :root { --bg: #f6f7f4; --panel: #ffffff; --ink: #1b1f1a; --muted: #5a6157; --line: #d4d8d0; --accent: #2f6b3a; color-scheme: light; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) { --bg: #141713; --panel: #1d211c; --ink: #e6e9e3; --muted: #a2a99e; --line: #343a32; --accent: #7fc28b; color-scheme: dark; }
+      }
+      body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, sans-serif; }
+      button { font: inherit; padding: 4px 10px; }
+      input { font: inherit; padding: 3px 6px; }
+      td, th { padding: 2px 12px 2px 0; }
+      code { font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

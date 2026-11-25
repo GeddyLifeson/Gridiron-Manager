@@ -4,3 +4,4 @@ export * from './world-service.ts';
 export { runGolden, compareGolden, type GoldenReport } from '@gm/engine-game';
 export { goldenInputs } from './golden-inputs.ts';
 export type { WorldSummaryModel, SaveHeader } from '@gm/schema';
+export { SqlJsDriver, readHeader, type SqlDriver, type SqlStatement, type SqlParam } from '@gm/store';

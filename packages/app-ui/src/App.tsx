@@ -1,0 +1,114 @@
+// The phase 0 interface: a load screen filled from save headers, a new-career button that opens an
+// empty world, the world summary read model, and the determinism check. Screens hold no football
+// logic and import only the public interface of app-services (P1.2.2, P1.3.2).
+import { useCallback, useEffect, useState } from 'react';
+import {
+  WorldService, runGolden, compareGolden, goldenInputs, VERSIONS,
+  type Platform, type WorldSummaryModel, type GoldenReport,
+} from '@gm/app-services';
+
+export interface AppProps { platform: Platform; golden: GoldenReport }
+
+type Gate = { state: 'idle' | 'running' } | { state: 'done'; ok: boolean; digest: string; mismatches: string[]; seconds: number };
+
+const box: React.CSSProperties = { border: '1px solid var(--line)', borderRadius: 8, padding: 16, margin: '12px 0', background: 'var(--panel)' };
+
+function randomSeedHex(): string {
+  // The wall clock and platform random are allowed here: world creation is outside the core (J13.4.1).
+  const a = Math.floor(Math.random() * 0xffffffff) >>> 0;
+  const b = (Date.now() >>> 0) ^ Math.floor(Math.random() * 0xffffffff);
+  return a.toString(16).padStart(8, '0') + (b >>> 0).toString(16).padStart(8, '0');
+}
+
+export function App({ platform, golden }: AppProps) {
+  const [saves, setSaves] = useState<{ name: string; sizeBytes: number }[]>([]);
+  const [svc, setSvc] = useState<WorldService | null>(null);
+  const [summary, setSummary] = useState<WorldSummaryModel | null>(null);
+  const [seed, setSeed] = useState(randomSeedHex());
+  const [name, setName] = useState('career-1');
+  const [msg, setMsg] = useState('');
+  const [gate, setGate] = useState<Gate>({ state: 'idle' });
+
+  const refresh = useCallback(async () => setSaves(await platform.listSaves()), [platform]);
+  useEffect(() => { void refresh(); }, [refresh]);
+
+  const open = async (s: WorldService) => { setSvc(s); setSummary(s.worldSummary()); await refresh(); };
+
+  const newCareer = async () => {
+    setMsg('');
+    try { await open(await WorldService.newCareer(platform, { saveName: name, masterSeedHex: seed.padStart(16, '0'), startSeasonYear: 2026 })); }
+    catch (e) { setMsg((e as Error).message); }
+  };
+  const load = async (n: string) => {
+    setMsg('');
+    try { if (svc) await svc.close(); await open(await WorldService.load(platform, n)); }
+    catch (e) { setMsg((e as Error).message); }
+  };
+  const advance = async () => {
+    if (!svc) return;
+    const r = await svc.run('AdvanceDay', { days: 1 });
+    if (!r.ok) setMsg(r.reason);
+    setSummary(svc.worldSummary());
+  };
+  const check = async () => {
+    if (!svc) return;
+    const v = await svc.verify();
+    setMsg(v.ok ? `Save check passed: ${v.commands} commands replayed to state ${v.replayedHash}.` : `Save check failed: ${v.problems.join('; ')}`);
+  };
+  const runGate = () => {
+    setGate({ state: 'running' });
+    setTimeout(() => {
+      const t0 = performance.now();
+      const r = runGolden(goldenInputs());
+      const c = compareGolden(r, golden);
+      setGate({ state: 'done', ok: c.ok, digest: r.digest, mismatches: c.mismatches, seconds: Math.round((performance.now() - t0) / 100) / 10 });
+    }, 30);
+  };
+
+  const s = summary?.data;
+  return (
+    <main style={{ maxWidth: 860, margin: '0 auto', padding: '16px' }}>
+      <h1 style={{ fontSize: 22 }}>Gridiron Manager</h1>
+      <p style={{ color: 'var(--muted)' }}>Phase 0 build: an empty world, saves, and the determinism check. Platform: {platform.kind}. Engine {VERSIONS.engine}, save format {VERSIONS.saveFormat}.</p>
+
+      {!svc && (
+        <section style={box} aria-label="Careers">
+          <h2 style={{ fontSize: 17 }}>New career</h2>
+          <label>Save name <input value={name} onChange={(e) => setName(e.target.value.replace(/[^\w-]/g, ''))} /></label>{' '}
+          <label>World seed <input value={seed} onChange={(e) => setSeed(e.target.value.replace(/[^0-9a-f]/gi, '').slice(0, 16).toLowerCase())} style={{ fontFamily: 'monospace' }} /></label>{' '}
+          <button onClick={newCareer} disabled={!name || !seed}>Start</button>
+          <h2 style={{ fontSize: 17, marginTop: 20 }}>Load</h2>
+          {saves.length === 0 ? <p>No saves yet.</p> : (
+            <ul>{saves.map((x) => <li key={x.name}><button onClick={() => load(x.name)}>{x.name}</button> <small>{Math.round(x.sizeBytes / 1024)} KB</small></li>)}</ul>
+          )}
+        </section>
+      )}
+
+      {svc && s && (
+        <section style={box} aria-label="World">
+          <h2 style={{ fontSize: 17 }}>World: {svc.saveName}</h2>
+          <p>Season {s.calendar.seasonYear}, day {s.calendar.dayIndex}. Seed <code>{s.masterSeedHex}</code>. State hash <code>{s.stateHash}</code>.</p>
+          <table style={{ borderCollapse: 'collapse' }}>
+            <thead><tr><th align="left">Competition</th><th align="left">Level</th><th align="left">Rule set</th><th align="right">Teams</th></tr></thead>
+            <tbody>{s.competitions.map((c) => <tr key={c.id}><td>{c.name}</td><td>{c.level}</td><td><code>{c.ruleSetId}</code></td><td align="right">{c.teamCount}</td></tr>)}</tbody>
+          </table>
+          <p>People: {s.peopleCount}. Teams, people and schedules arrive in later phases.</p>
+          <button onClick={advance}>Advance one day</button>{' '}
+          <button onClick={check}>Check save (replay the log)</button>{' '}
+          <button onClick={async () => { await svc.close(); setSvc(null); setSummary(null); await refresh(); }}>Close</button>
+        </section>
+      )}
+
+      {msg && <p role="status" style={{ ...box, borderColor: 'var(--accent)' }}>{msg}</p>}
+
+      <section style={box} aria-label="Determinism check">
+        <h2 style={{ fontSize: 17 }}>Determinism check</h2>
+        <p style={{ color: 'var(--muted)' }}>Runs the golden-seed set (200 plays, 20 games and a season per rule set, plus the math and stream files) and compares every hash with the committed golden file.</p>
+        <button onClick={runGate} disabled={gate.state === 'running'}>{gate.state === 'running' ? 'Running…' : 'Run determinism check'}</button>
+        {gate.state === 'done' && (
+          <p data-testid="gate-result">{gate.ok ? 'PASS' : 'FAIL'}: digest <code>{gate.digest}</code>, golden <code>{golden.digest}</code>, {gate.seconds}s{gate.mismatches.length ? `. Mismatches: ${gate.mismatches.join('; ')}` : ''}</p>
+        )}
+      </section>
+    </main>
+  );
+}
