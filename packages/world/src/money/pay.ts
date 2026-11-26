@@ -2,8 +2,10 @@
 // median of its E3.2.1 pay band (career `contract.payBand`), once, at the first weekly pass of the year. The
 // club's total goes on its books through `chargeClub`, so cash committed is staff pay plus fines; each
 // person's gross pay is kept as personal income, the prior pay that an E6.1.2 opening sheet reads.
-// Seats with no sourced band are left unpaid and counted, never given a made-up figure (MO-03, MO-09).
+// Seats with no sourced band are left unpaid and counted, never given a made-up figure (MO-03, MO-08, MO-09).
+// The second college level and off-ladder seats read world bands (bands.json, MO-11) where facts exist.
 import { contract } from '@gm/career';
+import bandsJson from './bands.json' with { type: 'json' };
 import type { JobRecord } from '@gm/schema';
 import type { LiveWorld, StepContext, StepDigest, StepHandler } from '../loop/types.ts';
 import { isActive } from '../loop/lifecycle.ts';
@@ -21,31 +23,76 @@ export interface PersonIncome {
   readonly personId: number;
   readonly seasonYear: number;
   readonly teamId: number;
+  /** Seat paid: a job row id, or an off-ladder seat id (founding issues both from one counter). */
   readonly jobId: number;
   readonly cents: number;
 }
 export interface PersonIncomeState { readonly income: readonly PersonIncome[] }
 export interface PayrollState { readonly years: readonly number[] }
 
+/** A band table: the three E3.2.1 tiers, or a world tier of bands.json (MO-11). */
+export type PayTier = contract.ContractTier | 'college_second';
+
 /**
- * Which E3.2.1 band table a club's seats read, or null where no sourced band covers its competition.
+ * Which band table a club's seats read, or null where no sourced band covers its competition.
  * MO-06 (Assumption): the generated world names no "power four"; a top-level college program in the top
  * resource band (X9.1.1) reads the power four bands, other top-level programs the group of six bands. The
- * second college level has no sourced band and is not paid (MO-09).
+ * second college level reads its own bands (MO-11).
  */
-export type PayTierRead = (world: LiveWorld, teamId: number) => contract.ContractTier | null;
+export type PayTierRead = (world: LiveWorld, teamId: number) => PayTier | null;
 
 export const TOP_COLLEGE_COMPETITION = 'college_top';
+export const SECOND_COLLEGE_COMPETITION = 'college_second';
 
 type Band = 'low' | 'middle' | 'top';
 /**
  * MO-06 band table, read by competition name and then by competition level. A table, not a branch, so no
  * code tests a level word (P1.3.3). A competition found under neither key has no band.
  */
-const PAY_TIERS: Readonly<Record<string, Readonly<Record<Band, contract.ContractTier>>>> = {
+const PAY_TIERS: Readonly<Record<string, Readonly<Record<Band, PayTier>>>> = {
   pro: { low: 'pro', middle: 'pro', top: 'pro' },
   [TOP_COLLEGE_COMPETITION]: { low: 'group_of_six', middle: 'group_of_six', top: 'power_four' },
+  [SECOND_COLLEGE_COMPETITION]: { low: 'college_second', middle: 'college_second', top: 'college_second' },
 };
+
+/** One world band row, USD per year (bands.json). Status lives in the cited fact rows. */
+export interface WorldBand { readonly low: number; readonly median: number; readonly high: number; readonly facts: readonly string[]; readonly note?: string }
+interface BandsFile {
+  readonly ladder: Readonly<Record<string, Readonly<Record<string, WorldBand>>>>;
+  readonly offLadder: Readonly<Record<string, Readonly<Record<string, WorldBand>>>>;
+}
+export const WORLD_BANDS = bandsJson as unknown as BandsFile;
+
+/** Every world band row with its path, for the citation test. */
+export function worldBandRows(file: BandsFile = WORLD_BANDS): { path: string; band: WorldBand }[] {
+  const out: { path: string; band: WorldBand }[] = [];
+  for (const [t, rows] of Object.entries(file.ladder)) for (const [r, band] of Object.entries(rows)) out.push({ path: `ladder.${t}.${r}`, band });
+  for (const [pos, rows] of Object.entries(file.offLadder)) for (const [t, band] of Object.entries(rows)) out.push({ path: `offLadder.${pos}.${t}`, band });
+  return out;
+}
+
+const CENTS = 100;
+
+/** Median in cents of a world ladder tier at a rung: the nearest row at or below it, as career `payBand` reads. Null below every row. */
+function worldLadderCents(tier: string, rung: number, file: BandsFile): number | null {
+  const rows = file.ladder[tier];
+  if (!rows) return null;
+  const keys = Object.keys(rows).map(Number).filter((k) => k <= rung).sort((a, b) => b - a);
+  const row = keys.length ? rows[String(keys[0])] : undefined;
+  return row ? row.median * CENTS : null;
+}
+
+/**
+ * MO-11: an off-ladder seat's yearly pay, the median of its world band for the club's tier, in cents. Null
+ * where no row exists: the owner seat (an owner is not on payroll), team and university presidents (no
+ * team-president figure found; university presidents are a proxy only), strength and game-management staff,
+ * and power four athletic directors (the typical-pay row is a Conflict).
+ */
+export function offLadderPay(world: LiveWorld, seat: { readonly teamId: number; readonly positionId: string }, tier: PayTierRead = defaultPayTier, file: BandsFile = WORLD_BANDS): number | null {
+  const t = tier(world, seat.teamId);
+  const row = t === null ? undefined : file.offLadder[seat.positionId]?.[t];
+  return row ? row.median * CENTS : null;
+}
 
 export const defaultPayTier: PayTierRead = (world, teamId) => {
   const t = world.teams.find((x) => x.id === teamId);
@@ -61,11 +108,16 @@ export const defaultPayTier: PayTierRead = (world, teamId) => {
  * The bands are in 2025 dollars and every league year reads them unchanged (MO-02: today's rules throughout).
  * A seat marked unpaid pays nothing. Null where the club's competition has no band.
  */
-export function seatPay(world: LiveWorld, job: JobRecord, tier: PayTierRead = defaultPayTier): number | null {
+export function seatPay(world: LiveWorld, job: JobRecord, tier: PayTierRead = defaultPayTier, file: BandsFile = WORLD_BANDS): number | null {
   const t = tier(world, job.teamId);
   if (t === null) return null;
+  if (t in file.ladder) {
+    const cents = worldLadderCents(t, job.rung, file);
+    if (cents === null) return null;
+    return job.paid === 'none' ? 0 : cents;
+  }
   if (job.paid === 'none') return 0;
-  return contract.payBand(t, job.rung).medianCents;
+  return contract.payBand(t as contract.ContractTier, job.rung).medianCents;
 }
 
 export function personIncomeOf(world: LiveWorld): PersonIncomeState {
@@ -84,7 +136,7 @@ export interface PayrollRun {
   readonly cents: number;
   /** Held seats left unpaid because their competition has no sourced band (MO-09). */
   readonly noBand: number;
-  /** Held off-ladder seats (GM, owner seat, strength staff, AD, president): no band, not paid (MO-08). */
+  /** Held off-ladder seats with no world band (owner seat, presidents, strength staff, power four AD): not paid (MO-08, MO-11). */
   readonly offLadderUnpaid: number;
   /** Already run for this year: nothing charged again. */
   readonly already: boolean;
@@ -99,20 +151,29 @@ export interface PayrollRun {
 export function payStaffYear(world: LiveWorld, seasonYear: number, tier: PayTierRead = defaultPayTier): PayrollRun {
   const done = payrollOf(world);
   if (done.years.includes(seasonYear)) return { seasonYear, paid: 0, cents: 0, noBand: 0, offLadderUnpaid: 0, already: true };
-  const best = new Map<string, { job: JobRecord; cents: number }>();
+  const best = new Map<string, { teamId: number; personId: number; seatId: number; cents: number }>();
+  const offer = (teamId: number, personId: number, seatId: number, cents: number): void => {
+    const key = `${teamId}:${personId}`;
+    const prev = best.get(key);
+    if (!prev || cents > prev.cents) best.set(key, { teamId, personId, seatId, cents });
+  };
   let noBand = 0;
   for (const job of [...world.jobs.values()].sort((a, b) => a.id - b.id)) {
     if (job.holderPersonId === null || job.holding === 'acting' || !isActive(world, job.teamId, seasonYear)) continue;
     const cents = seatPay(world, job, tier);
     if (cents === null) { noBand++; continue; }
-    const key = `${job.teamId}:${job.holderPersonId}`;
-    const prev = best.get(key);
-    if (!prev || cents > prev.cents) best.set(key, { job, cents });
+    offer(job.teamId, job.holderPersonId, job.id, cents);
   }
-  const offLadderUnpaid = [...world.offLadder.values()].filter((s) => s.holderPersonId !== null && isActive(world, s.teamId, seasonYear)).length;
+  let offLadderUnpaid = 0;
+  for (const seat of [...world.offLadder.values()].sort((a, b) => a.seatId - b.seatId)) {
+    if (seat.holderPersonId === null || !isActive(world, seat.teamId, seasonYear)) continue;
+    const cents = offLadderPay(world, seat, tier);
+    if (cents === null) { offLadderUnpaid++; continue; }
+    offer(seat.teamId, seat.holderPersonId, seat.seatId, cents);
+  }
   const rows: PersonIncome[] = [...best.values()]
     .filter((b) => b.cents > 0)
-    .map(({ job, cents }) => ({ personId: job.holderPersonId!, seasonYear, teamId: job.teamId, jobId: job.id, cents }))
+    .map((b) => ({ personId: b.personId, seasonYear, teamId: b.teamId, jobId: b.seatId, cents: b.cents }))
     .sort((a, b) => a.teamId - b.teamId || a.personId - b.personId);
   const byTeam = new Map<number, number>();
   for (const r of rows) byTeam.set(r.teamId, (byTeam.get(r.teamId) ?? 0) + r.cents);

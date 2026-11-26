@@ -6,6 +6,6 @@ export {
 } from './club.ts';
 export { PERSON_MONEY_KEY, personMoneyOf, chargePerson, personalPaid, type PersonPayment, type PersonMoney } from './person.ts';
 export {
-  PERSON_INCOME_KEY, PAYROLL_KEY, STAFF_PAY_REASON, TOP_COLLEGE_COMPETITION, defaultPayTier, seatPay, personIncomeOf, payrollOf, payStaffYear,
-  grossPay, priorPay, staffPayCommitted, payrollStep, type PersonIncome, type PersonIncomeState, type PayrollState, type PayTierRead, type PayrollRun,
+  PERSON_INCOME_KEY, PAYROLL_KEY, STAFF_PAY_REASON, TOP_COLLEGE_COMPETITION, SECOND_COLLEGE_COMPETITION, WORLD_BANDS, worldBandRows, offLadderPay, defaultPayTier, seatPay, personIncomeOf, payrollOf, payStaffYear,
+  grossPay, priorPay, staffPayCommitted, payrollStep, type PersonIncome, type PersonIncomeState, type PayrollState, type PayTierRead, type PayTier, type WorldBand, type PayrollRun,
 } from './pay.ts';

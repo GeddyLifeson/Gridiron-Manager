@@ -43,11 +43,18 @@ so it is folded into `worldHash` and saved with the world.
   lets one person hold two). An acting holder keeps his own seat's pay and is not paid for the seat he
   covers; an interim holder is paid as the holder. A mid-year change is not prorated yet, and a fired coach's
   remaining guarantee (E3.3) is not paid off-screen yet.
-- **MO-08** Off-ladder seats (general manager, owner seat, strength staff, athletic director, president) have
-  no pay band in E3.2.1 or S9, so they are not paid and the payroll counts them (`offLadderUnpaid`). No
-  figure is drawn for them until sourced bands exist.
-- **MO-09** The second college level (`college_second`) has no sourced band: its seats are not paid and are
-  counted (`noBand`), rather than borrowing the group of six bands.
+- **MO-08** Off-ladder seats have no pay band in E3.2.1 or S9. Those with a world band (MO-11) are paid its
+  median; the rest are not paid and the payroll counts them (`offLadderUnpaid`). No figure is drawn for them.
+- **MO-09** The second college level (`college_second`) reads its own world bands (MO-11), never the group of
+  six bands. A rung below every row (quality control, graduate assistant: no FCS figure found) is not paid and
+  is counted (`noBand`).
+- **MO-11** World bands live in `bands.json`, each row citing fact rows in `facts/exec-pay.json` and
+  `facts/college-second-pay.json` (none a Conflict; a test checks the citations and computed statuses). The
+  median paid is the row's own median, explained in its note. Rows: second-level head coach, coordinator and
+  position coach; pro general manager; group of six and second-level athletic director. No row, so unpaid:
+  the owner seat (an owner is not on payroll), team and university presidents (no team-president figure found;
+  university presidents are a proxy only), strength and game-management staff (pro figures not found), power
+  four athletic directors (the typical-pay row is a Conflict).
 - **MO-10** Staff pay counts toward cash committed (C6.2.3 rule 1 is "money actually paid"). Note for the
   bible: the owner budget (95 to 110% of the cap) was sized on player money, and the C6.2.3 rule 2 floor
   counts player cash only. A pro staff at band medians costs about $22M to $24M a year (fixture world, 2026
@@ -63,6 +70,7 @@ so it is folded into `worldHash` and saved with the world.
 | Staff pay bands by tier and rung | career `contract/defaults.json`, E3.2.1 | Per cell basis there: pro rungs 9 and 7 edges 1 of 3, typical Assumption; pro rung 5 Assumption (no source); pro rung 3 anchored on one 2018 estimate (1 of 3); power four rungs 5 and 7 and group of six rung 5 on single primary contracts (Rulebook only), edges Assumption; other cells Assumption |
 | Median as the off-screen offer | E3.2.1 (median times leverage), MO-05 | Bible rule, leverage 1 is a design choice |
 | Power four by resource band | MO-06 | Assumption |
+| Second-level college and off-ladder bands | `bands.json`, MO-11 | Computed from the cited rows: GM 2 of 3; FCS head coach rows mix Verified (high, examples) and 1 of 3 (Big Sky median); FCS coordinator 1 of 3; FCS position coach 2 of 3 and 1 of 3; group of six AD 1 of 3; FCS AD Verified. Medians from midpoints are noted as Assumption in the row |
 
 ## Gaps
 
@@ -75,7 +83,8 @@ so it is folded into `worldHash` and saved with the world.
   a tax profile per place (content `taxProfiles` is empty, so every `PlaceRecord.taxProfileId` is null), a
   cost-of-living index per place (not wired), and K2's money settings for AI people (risk, savings rate,
   lifestyle tier, household). Gross pay (`priorPay`) and fines (`personalPaid`) are ready for them.
-- Off-ladder pay and second-level college pay need sourced bands (MO-08, MO-09).
+- Unpaid seats waiting on figures: NFL team president, pro strength and game-management staff, power four AD
+  (Conflict), FCS quality control and graduate assistants (MO-11).
 
 ## For the integrators
 

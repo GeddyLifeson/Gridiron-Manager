@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { contract } from '@gm/career';
+import { FactFile, computeStatus } from '@gm/schema';
 import { COLLEGE_LOOKUP, NAMES, PRO_LOOKUP, loop, setup, testGamePort, testSchedule, trimmed } from '../fixtures.ts';
 import * as turnover from '../../src/turnover/index.ts';
 import * as money from '../../src/money/index.ts';
@@ -23,6 +26,10 @@ describe('world staff pay (E3.2.1, MO-05 to MO-09)', () => {
     let expected = 0;
     const perPerson = new Map<number, number>();
     for (const j of held) perPerson.set(j.holderPersonId!, Math.max(perPerson.get(j.holderPersonId!) ?? 0, contract.payBand('pro', j.rung).medianCents));
+    for (const s of w.offLadder.values()) if (s.teamId === teamId && s.holderPersonId !== null) {
+      const c = money.offLadderPay(w, s);
+      if (c !== null) perPerson.set(s.holderPersonId, Math.max(perPerson.get(s.holderPersonId) ?? 0, c));
+    }
     for (const c of perPerson.values()) expected += c;
     expect(money.staffPayCommitted(w, teamId, year)).toBe(expected);
     expect(money.cashCommitted(w, teamId, year)).toBe(expected);
@@ -41,17 +48,49 @@ describe('world staff pay (E3.2.1, MO-05 to MO-09)', () => {
     expect(money.clubMoneyOf(w).payments.filter((p) => p.reason === money.STAFF_PAY_REASON).length).toBe(new Set(money.personIncomeOf(w).income.map((r) => r.teamId)).size);
   });
 
-  it('pays no one in the second college level and no off-ladder seat, and counts both (no sourced band)', () => {
+  it('pays a general manager his world band median and leaves seats with no band unpaid and counted (MO-11)', () => {
     const w = world();
     const year = w.date.seasonYear;
     const run = money.payStaffYear(w, year);
-    const second = w.teams.filter((t) => w.competitions.find((c) => c.id === t.competitionId)!.name !== money.TOP_COLLEGE_COMPETITION && turnover.levelOfTeam(w, t.id) === 'college').map((t) => t.id);
-    for (const teamId of second) expect(money.staffPayCommitted(w, teamId, year)).toBe(0);
-    if (second.length > 0) expect(run.noBand).toBeGreaterThan(0);
-    const offIds = new Set([...w.offLadder.values()].filter((s) => s.holderPersonId !== null).map((s) => s.holderPersonId!));
-    expect(run.offLadderUnpaid).toBe([...w.offLadder.values()].filter((s) => s.holderPersonId !== null).length);
+    const held = [...w.offLadder.values()].filter((s) => s.holderPersonId !== null);
+    const unpaid = held.filter((s) => money.offLadderPay(w, s) === null);
+    expect(run.offLadderUnpaid).toBe(unpaid.length);
+    for (const s of held.filter((x) => x.positionId === 'pos:general_manager')) {
+      expect(money.offLadderPay(w, s)).toBe(money.WORLD_BANDS.offLadder['pos:general_manager']!.pro!.median * 100);
+      expect(money.grossPay(w, s.holderPersonId!, year)).toBe(money.offLadderPay(w, s));
+    }
+    for (const s of held.filter((x) => x.positionId === 'pos:owner' || x.positionId === 'pos:president')) expect(money.offLadderPay(w, s)).toBeNull();
     const ladderIds = new Set([...w.jobs.values()].map((j) => j.holderPersonId));
-    for (const id of offIds) if (!ladderIds.has(id)) expect(money.grossPay(w, id)).toBe(0);
+    for (const s of unpaid) if (!ladderIds.has(s.holderPersonId)) expect(money.grossPay(w, s.holderPersonId!)).toBe(0);
+  });
+
+  it('reads the second college level from its own bands, nearest rung below, and pays no rung below every row', () => {
+    const w = world();
+    const second: money.PayTierRead = () => 'college_second';
+    const job = [...w.jobs.values()].find((j) => j.holderPersonId !== null && j.paid !== 'none')!;
+    const rows = money.WORLD_BANDS.ladder.college_second!;
+    expect(money.seatPay(w, { ...job, rung: 9 }, second)).toBe(rows['9']!.median * 100);
+    expect(money.seatPay(w, { ...job, rung: 8 }, second)).toBe(rows['7']!.median * 100);
+    expect(money.seatPay(w, { ...job, rung: 6 }, second)).toBe(rows['5']!.median * 100);
+    expect(money.seatPay(w, { ...job, rung: 3 }, second)).toBeNull();
+    expect(money.seatPay(w, { ...job, rung: 9, paid: 'none' }, second)).toBe(0);
+  });
+
+  it('cites a fact row for every world band, none of them a Conflict, each with its computed status (Q6)', () => {
+    const root = join(import.meta.dirname, '..', '..', '..', '..');
+    const facts = new Map(['facts/exec-pay.json', 'facts/college-second-pay.json']
+      .flatMap((f) => FactFile.parse(JSON.parse(readFileSync(join(root, f), 'utf8'))).rows).map((r) => [r.id, r]));
+    for (const { path, band } of money.worldBandRows()) {
+      expect(band.facts.length, path).toBeGreaterThan(0);
+      expect(band.low, path).toBeLessThanOrEqual(band.median);
+      expect(band.median, path).toBeLessThanOrEqual(band.high);
+      for (const id of band.facts) {
+        const row = facts.get(id);
+        expect(row, `${path} -> ${id}`).toBeDefined();
+        expect(row!.status, id).toBe(computeStatus(row!));
+        expect(row!.status, `${path} -> ${id}`).not.toBe('Conflict');
+      }
+    }
   });
 
   it('reads power four bands for top-band programs of the top college level and group of six bands for the rest', () => {
@@ -60,7 +99,7 @@ describe('world staff pay (E3.2.1, MO-05 to MO-09)', () => {
       const comp = w.competitions.find((c) => c.id === t.competitionId)!;
       const tier = money.defaultPayTier(w, t.id);
       if (comp.level === 'pro') expect(tier).toBe('pro');
-      else if (comp.name !== money.TOP_COLLEGE_COMPETITION) expect(tier).toBeNull();
+      else if (comp.name === money.SECOND_COLLEGE_COMPETITION) expect(tier).toBe('college_second');
       else expect(tier).toBe(t.resourceBand === 'top' ? 'power_four' : 'group_of_six');
     }
   });
