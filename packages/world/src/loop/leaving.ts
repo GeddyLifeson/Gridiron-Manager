@@ -123,11 +123,13 @@ export function leavingStep(ports: LeavingPorts = {}): StepHandler {
     }
     const archiveUnnamed = ports.archiveUnnamed ?? true;
     for (const id of [...world.outOfFootballSince.keys()].sort((a, b) => a - b)) {
-      const p = world.people.get(id);
+      // Status first: the dead are kept cold (people-table.ts) and need not be read.
       const status = world.status.get(id);
-      if (!p || status === 'deceased' || employed.has(id)) continue;
+      if (status === 'deceased' || employed.has(id)) continue;
+      const p = world.people.get(id);
+      if (!p) continue;
       // Nobody's history names him: he played no part in this world's football. Keep a compact row only.
-      if (archiveUnnamed && p.origin === 'generated' && id !== world.userPersonId && world.log.forPerson(id).length === 0) {
+      if (archiveUnnamed && p.origin === 'generated' && id !== world.userPersonId && world.log.countForPerson(id) === 0) {
         archivePerson(world, p, world.outOfFootballSince.get(id)!);
         archived++;
         continue;

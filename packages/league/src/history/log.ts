@@ -230,6 +230,9 @@ export class EventLog {
   /** Rows that land on a person (actor or person subject), in order. */
   forPerson(personId: number): WorldEvent[] { return (this.#byPerson.get(personId) ?? []).map((i) => this.#at(i)); }
 
+  /** How many rows land on a person, without reading them. */
+  countForPerson(personId: number): number { return this.#byPerson.get(personId)?.length ?? 0; }
+
   ofType(type: string): WorldEvent[] { return (this.#byType.get(type) ?? []).map((i) => this.#at(i)); }
 
   /** Ids reversed by a later reversal row (X2.1.3 rule 2: readers apply reversals at read time). */
