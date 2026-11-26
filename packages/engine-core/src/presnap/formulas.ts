@@ -84,14 +84,16 @@ export function relayGarbleChance(noise: number, callWords: number, p: PresnapPa
 
 /**
  * Seconds of play clock gone when the huddle has the call (I2.1.1 stages 1 to 3). `uLate` draws how late the call
- * was made (an exponential tail on the decision); a garbled call is sent again, and the second can be garbled too
- * (J12.6.1: noise lengthens the visiting offense's relay, which is where its delay-of-game excess comes from).
+ * was made (an exponential tail on the decision); noise slows the relay and the huddle, and a garbled call is sent
+ * again, where the second can be garbled too (J12.6.1: noise lengthens the visiting offense's relay, which is
+ * where its delay-of-game excess comes from).
  */
-export function relayTimeS(r: RelayInput, garble: number, uLate: number, uGarble1: number, uGarble2: number, math: DeterministicMath, p: PresnapParams): { totalS: number; repeats: number } {
+export function relayTimeS(r: RelayInput, noise: number, garble: number, uLate: number, uGarble1: number, uGarble2: number, math: DeterministicMath, p: PresnapParams): { totalS: number; repeats: number } {
   const u = uLate < 1 ? uLate : 1 - 1e-12;
   const lateS = -p['relay.decisionTailS']! * math.log(1 - u);
   const repeats = uGarble1 < garble ? (uGarble2 < garble ? 2 : 1) : 0;
-  return { totalS: r.spottingS + r.decisionS + lateS + (r.methodS + r.spokenS) * (1 + repeats), repeats };
+  const slowS = p['relay.noiseSlowS']! * clip(noise, 0, 1);
+  return { totalS: r.spottingS + r.decisionS + lateS + slowS + (r.methodS + r.spokenS) * (1 + repeats), repeats };
 }
 
 /** J5.1.3 huddle delivery: near 1, less for the last-named players of a long call and for a quarterback with poor clock command (D4.5.1). */

@@ -260,7 +260,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const setPeriod = rules.num('formation.shift_set_seconds');
   // I2.1.1 stages 1 to 3: the call's way in runs on the play clock before the huddle; noise garbles it (I2.4.1).
   const relay = input.relay
-    ? relayTimeS(input.relay, relayGarbleChance(O.noise, input.callWords, p), dO.get('relay', 0, 0), dO.get('relay', 0, 1), dO.get('relay', 0, 2), math, p)
+    ? relayTimeS(input.relay, O.noise, relayGarbleChance(O.noise, input.callWords, p), dO.get('relay', 0, 0), dO.get('relay', 0, 1), dO.get('relay', 0, 2), math, p)
     : { totalS: 0, repeats: 0 };
   const clockStartTenths = Math.max(0, input.playClockStartTenths - Math.round(relay.totalS * TICKS_PER_SECOND));
   const clockStartS = clockStartTenths / TICKS_PER_SECOND;

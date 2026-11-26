@@ -58,9 +58,12 @@ const ROWS: readonly ParamRow[] = [
   ['relay.radioS', 2, 1, 4, 's', 'bible', 'I2.4.1', DOG],
   ['relay.signalS', 3, 1, 6, 's', 'bible', 'I2.4.1', DOG],
   ['relay.perWordS', 0.4, 0.2, 0.8, 's', 'assumption', 'I2.4.1', DOG],
-  ['relay.decisionTailS', 2.8, 0.5, 6, 's', 'assumption', 'I2.1.1', DOG],
+  ['relay.decisionTailS', 3.5, 0.5, 6, 's', 'assumption', 'I2.1.1', DOG],
+  // J12.6.1 "noise lengthens the visiting offense's call relay and huddle-to-snap time": seconds added per unit of
+  // noise the offense hears (the call is said twice, the huddle leans in). Assumption, fitted with the tail above.
+  ['relay.noiseSlowS', 1.3, 0, 5, 's', 'assumption', 'J12.6.1', DOG],
   ['relay.garbleBase', 0.005, 0, 0.05, 'probability', 'bible', 'I2.4.1', DOG],
-  ['relay.garblePerNoise', 0.15, 0, 0.5, 'probability', 'assumption', 'I2.4.1', DOG],
+  ['relay.garblePerNoise', 0.05, 0, 0.5, 'probability', 'assumption', 'I2.4.1', DOG],
   ['relay.garblePerWord', 0.002, 0, 0.02, 'probability', 'assumption', 'I2.4.1', DOG],
   ['huddle.breakS', 3, 1, 6, 's', 'assumption', 'J5.1.3', SCHED],
   // J5.2 alignment.
@@ -152,7 +155,10 @@ const ROWS: readonly ParamRow[] = [
   ['foul.discIntercept', 2, 1.5, 2.5, 'ratio', 'bible', 'J5.7.1', FS],
   ['foul.discDivisor', 50, 40, 60, 'iss', 'bible', 'J5.7.1', FS],
   ['foul.discFloor', 0.25, 0.1, 0.5, 'ratio', 'bible', 'J5.7.1', FS],
-  ['foul.gNoise', 0.7, 0, 1.5, 'per unit', 'bible', 'J5.7.1', FS],
+  // J5.7.1 starts g_noise at 0.7 "to be fitted"; J12.6.1 (measured later) gives the direct false-start term "little
+  // or no noise weight, because measured road false starts show no excess" (1.63 road, 1.68 home per 100 snaps), and
+  // its acceptance 2 wants home and road within 8%. At 0.7 the road rate was 1.4 to 1.5 times the home rate.
+  ['foul.gNoise', 0.05, 0, 1.5, 'per unit', 'bible', 'J12.6.1', 'J12.6.1 acceptance 2 (false starts within 8% home and road)'],
   ['foul.gHard', 0.4, 0, 1, 'ratio', 'bible', 'J5.7.1', FS],
   ['foul.gStem', 0.3, 0, 1, 'ratio', 'bible', 'J5.7.1', FS],
   ['foul.gRush', 0.3, 0, 1, 'ratio', 'bible', 'J5.7.1', FS],
@@ -165,8 +171,12 @@ const ROWS: readonly ParamRow[] = [
   ['foul.formNeutralZone', 0.33, 0, 1, 'weight', 'assumption', 'J5.7.1', DO],
   ['foul.formEncroachment', 0.12, 0, 1, 'weight', 'assumption', 'J5.7.1', DO],
   ['foul.closeProximityYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J5.7.1', DO],
-  ['foul.venueRoadOffense', 1.025, 1, 1.1, 'ratio', 'bible', 'J5.7.1', VEN],
-  ['foul.venueHomeOffense', 0.975, 0.9, 1, 'ratio', 'bible', 'J5.7.1', VEN],
+  // J5.7.1: "calibration fits the noise weights first, then sets this term to close the remaining gap". The measured
+  // offensive split (2.194 road, 2.087 home per 100 snaps, all pre-snap fouls) is 0.107, and the delay-of-game split
+  // that the relay now produces from the clock is 0.13 (0.47 against 0.34): nothing is left for the venue term on
+  // offense. The defensive pair keeps the J5.7.1 starting values.
+  ['foul.venueRoadOffense', 1, 1, 1.1, 'ratio', 'bible', 'J5.7.1', VEN],
+  ['foul.venueHomeOffense', 1, 0.9, 1, 'ratio', 'bible', 'J5.7.1', VEN],
   ['foul.venueRoadDefense', 1.066, 1, 1.2, 'ratio', 'bible', 'J5.7.1', VEN],
   ['foul.venueHomeDefense', 0.934, 0.8, 1, 'ratio', 'bible', 'J5.7.1', VEN],
   ['foul.teamStandards', 1, 0.85, 1.15, 'ratio', 'bible', 'J5.7.1', FS],
