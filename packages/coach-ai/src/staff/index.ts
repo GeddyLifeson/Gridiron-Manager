@@ -12,3 +12,4 @@ export * from './work.ts';
 export * from './candor.ts';
 export * from './simulate.ts';
 export * from './violations.ts';
+export * from './preferences.ts';

@@ -268,14 +268,22 @@ export const CONDITIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => C
     return (c) => { const e = qb(c); return e === null ? U : tri(Math.abs(e.py) > c.k.pocketHalfWidth); };
   },
   ballOut: () => (c) => { const kind = c.view.ballKind(); return kind === 'unknown' ? U : tri(kind === 'loose'); },
-  ballCarrierDeclared: () => (c) => {
-    const s = c.view.believedCarrierSlot();
-    if (s === -1 || c.view.ballKind() !== 'held') return F;
-    // The ball is in his hands, so where the ball is seen is where he is: a defender tracking the ball but
-    // not the carrier himself still knows the run has declared (J3.5.3).
-    const e = seenCarrier(c);
-    if (e === null) return U;
-    return tri(c.view.playRead().read === 'run' || e.px > 0);
+  ballCarrierDeclared: (_a, env) => {
+    const qb = env.sel('qb');
+    return (c) => {
+      const s = c.view.believedCarrierSlot();
+      if (s === -1 || c.view.ballKind() !== 'held') return F;
+      // The ball is in his hands, so where the ball is seen is where he is: a defender tracking the ball but
+      // not the carrier himself still knows the run has declared (J3.5.3).
+      const e = seenCarrier(c);
+      if (e === null) return U;
+      if (e.px > 0) return T;
+      if (c.view.playRead().read !== 'run') return F;
+      // A quarterback behind the line with the ball who is not coming downhill is not running with it: he is at
+      // the mesh, faking, dropping or rolling out, and a run read alone does not send the defense at him (J3.3.1).
+      const q = qb(c);
+      return tri(!(q !== null && q.slot === s && e.velPx <= c.k.scrambleSpeed));
+    };
   },
   timeGt: (a) => { const s = num(a, 's'); return (c) => tri(c.view.tSinceSnapS > s); },
   stemComplete: () => (c) => tri(c.stemDone),

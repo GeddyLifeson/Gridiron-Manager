@@ -34,13 +34,16 @@ const ROWS: readonly ParamRow[] = [
   ['interact.breakGapYd', 1.5, 0.5, 3, 'yd', A, 'J6.1.2', 'a block ends when the bodies are this far apart'],
   ['interact.wonRecoveryS', 1.5, 0.5, 4, 's', A, 'J6.1.2', 'defender out of the play after A = +1 (pancake or locked out)'],
   ['interact.shedFreeS', 0.6, 0.1, 2, 's', A, 'J6.1.2', 'no blocker can pick him up again this soon after a shed'],
+  ['interact.helpClearYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'a pass protector with a free rusher of his own this near does not join a double team'],
   ['interact.interiorHalfWidthYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'rushers inside this lateral distance use the interior row'],
   // J2.1.3 planted cuts on drawn paths (route-cuts.ts).
   ['route.cutMatchYd', 4, 0.5, 8, 'yd', A, 'J2.1.3', 'a break point moved by a K1 depth or width error is still his break when his aim is this close to the drawn one'],
   // J7.3.1 inputs: whom the quarterback watches while he is on a read (plugs.ts). The count is spent
   // from his J3.1.2 attention capacity (3 at grade 50), after the receiver himself.
-  ['qb.watchDefenders', 2, 0, 4, 'count', A, 'J7.3.1', 'J15.4.1 interception rate by depth'],
-  ['qb.watchAheadYd', 12, 4, 25, 'yd', A, 'J7.3.1', 'J15.4.1 interception rate by depth'],
+  // Tuned from 2 and 12 (Assumption): a deep throw comes down 15 to 25 yd past where the receiver is at the release, and
+  // with two defenders watched over the next 12 yd he never saw the safety he threw it to.
+  ['qb.watchDefenders', 3, 0, 4, 'count', A, 'J7.3.1', 'J15.4.1 interception rate by depth'],
+  ['qb.watchAheadYd', 22, 4, 25, 'yd', A, 'J7.3.1', 'J15.4.1 interception rate by depth'],
   // The catch point as bodies (J6.5.1). The chances themselves are the contest file's rows.
   ['catch.reachPerHeight', 1.3, 1.1, 1.5, 'ratio', A, 'J6.5.1', 'standing reach as a share of height; a ball above it cannot be played'],
   ['catch.leapPerZYd', 0.1, 0, 0.3, 'yd/z', A, 'J6.5.1', 'reach height gained per z of explosiveness'],
