@@ -69,13 +69,19 @@ interface TeamState {
   readonly profile: gm.GmProfile;
   readonly ctx: gm.ValueContext;
   needs: { size: number; needs: gm.Need[] } | null;
+  /** The free agent value context (replacement = the free alternative), made once per cycle. */
+  fa: gm.ValueContext | null;
 }
 
 interface CycleState {
   readonly teams: Map<number, TeamState>;
-  readonly draws: Map<string, number>;
+  readonly draws: Map<string, Map<number, Map<number, number>>>;
   readonly baseline: Map<Level, Record<string, number>>;
+  readonly views: Map<number, Map<number, View>>;
 }
+
+const PROSPECTS = new WeakMap<View, gm.Prospect>();
+const FREE_AGENTS = new WeakMap<View, gm.FreeAgent>();
 
 /** The front office AI bound as the `RosterPolicy` for pro clubs (TO-06). College clubs keep the default board. */
 export function gmPolicy(): RosterPolicy {
@@ -84,14 +90,34 @@ export function gmPolicy(): RosterPolicy {
 
   const cycleOf = (pc: PolicyContext): CycleState => {
     let c = cycles.get(pc);
-    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map() }; cycles.set(pc, c); }
+    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map(), views: new Map() }; cycles.set(pc, c); }
     return c;
   };
 
+  // One view per team and player per cycle: its inputs (the cached look, the position, the age) do not move
+  // inside a cycle, and the same object lets the value context remember his wins by season.
   const view = (pc: PolicyContext, teamId: number, id: number): View => {
+    const cyc = cycleOf(pc);
+    let byPerson = cyc.views.get(teamId);
+    if (!byPerson) { byPerson = new Map(); cyc.views.set(teamId, byPerson); }
+    const hit = byPerson.get(id);
+    if (hit) return hit;
     const p = pc.world.people.get(id)!;
     const g = pc.grades.belief(teamId, id);
-    return { personId: id, position: p.playing!.position, age: ageIn(p, pc.season), grade: { mean: g.mean, variance: g.variance }, projected: null, fit: 1, flags: 0, costCentsByYear: [] };
+    const v: View = { personId: id, position: p.playing!.position, age: ageIn(p, pc.season), grade: { mean: g.mean, variance: g.variance }, projected: null, fit: 1, flags: 0, costCentsByYear: [] };
+    byPerson.set(id, v);
+    return v;
+  };
+  const prospectOf = (v: View): gm.Prospect => {
+    let x = PROSPECTS.get(v);
+    if (!x) { x = { ...v, coachRank: null, consensusRank: 0 }; PROSPECTS.set(v, x); }
+    return x;
+  };
+  // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
+  const freeAgentOf = (v: View): gm.FreeAgent => {
+    let x = FREE_AGENTS.get(v);
+    if (!x) { x = { ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }; FREE_AGENTS.set(v, x); }
+    return x;
   };
 
   // K7.1.1: the club's general manager person (founding fills the seat); -teamId only for a club with the seat vacant.
@@ -135,14 +161,18 @@ export function gmPolicy(): RosterPolicy {
       },
     };
     const draw: gm.PersistentDraw = (kind, gmPerson, key) => {
-      const k = `${kind}:${gmPerson}:${key}`;
-      let v = cyc.draws.get(k);
-      if (v === undefined) { v = stream(pc.world.seed, STREAM_DRAW, [kind, gmPerson, key]).normal(); cyc.draws.set(k, v); }
+      let byGm = cyc.draws.get(kind);
+      if (!byGm) { byGm = new Map(); cyc.draws.set(kind, byGm); }
+      let byKey = byGm.get(gmPerson);
+      if (!byKey) { byKey = new Map(); byGm.set(gmPerson, byKey); }
+      let v = byKey.get(key);
+      if (v === undefined) { v = stream(pc.world.seed, STREAM_DRAW, [kind, gmPerson, key]).normal(); byKey.set(key, v); }
       return v;
     };
     // Costs are empty until contracts are in the world, so the going rate never enters a decision (TO-07).
-    const ctx: gm.ValueContext = { table, curve, centsPerWin: 1, draw, pressure: 0 };
-    const t: TeamState = { profile, ctx, needs: null };
+    // The table, curve and draw above are fixed for the cycle, so the context may remember values (memo).
+    const ctx: gm.ValueContext = { table, curve, centsPerWin: 1, draw, pressure: 0, memo: true };
+    const t: TeamState = { profile, ctx, needs: null, fa: null };
     cyc.teams.set(teamId, t);
     return t;
   };
@@ -233,10 +263,12 @@ export function gmPolicy(): RosterPolicy {
   const faBoard = (pc: PolicyContext, teamId: number, pool: readonly View[], needs: readonly gm.Need[], t: TeamState) => {
     // K7.2.2 replacement before the draft is the player he can have for nothing after it: the prospect at
     // each position just past the league's expected picks there, as his own staff grades the entry pool.
-    const free = freeAlternative(pc, teamId);
-    const ctx: gm.ValueContext = { ...t.ctx, table: { ...t.ctx.table, replacementIss: (pos) => free.get(pos) ?? t.ctx.table.replacementIss(pos) } };
-    // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
-    const fas = pool.map((v) => ({ ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }));
+    if (!t.fa) {
+      const free = freeAlternative(pc, teamId);
+      t.fa = { ...t.ctx, table: { ...t.ctx.table, replacementIss: (pos) => free.get(pos) ?? t.ctx.table.replacementIss(pos) } };
+    }
+    const ctx = t.fa;
+    const fas = pool.map(freeAgentOf);
     return { ctx, byId: new Map(fas.map((v) => [v.personId, v])), ranked: gm.targets(t.profile, fas, needs, ctx) };
   };
 
@@ -262,7 +294,7 @@ export function gmPolicy(): RosterPolicy {
       const pool = candidates.map((id) => view(pc, teamId, id));
       const level = levelOfTeam(pc.world, teamId);
       if (phase.kind === 'draft') {
-        const prospects = pool.map((v) => ({ ...v, coachRank: null, consensusRank: 0 }));
+        const prospects = pool.map(prospectOf);
         return gm.buildBoard(t.profile, prospects, needs, t.ctx, phase.round ?? 1, phase.rounds ?? 1, rookieYears(pc, level, phase.round ?? 1))[0]?.personId ?? null;
       }
       if (phase.kind === 'undrafted') return gm.undraftedBoard(t.profile, pool, needs, t.ctx)[0] ?? null;

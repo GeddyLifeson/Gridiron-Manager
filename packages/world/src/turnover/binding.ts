@@ -115,8 +115,13 @@ export function positionTargets(spec: LevelSpec): Readonly<Record<string, number
 const mean = (xs: readonly number[]): number => (xs.length === 0 ? 0 : xs.reduce((a, x) => a + x, 0) / xs.length);
 
 /** The whole-player value the evaluator looks at: the mean of the true attributes, read only inside `observe`. */
-function lookValue(p: PersonRecord): number {
-  return mean(Object.values(p.playing?.attributes ?? {}));
+function lookValue(p: PersonRecord, memo?: WeakMap<object, number>): number {
+  const attrs = p.playing?.attributes;
+  if (!attrs || !memo) return mean(Object.values(attrs ?? {}));
+  // Within one grade context no attribute map changes in place, so the mean is kept per map.
+  let v = memo.get(attrs);
+  if (v === undefined) { v = mean(Object.values(attrs)); memo.set(attrs, v); }
+  return v;
 }
 
 /**
@@ -127,6 +132,7 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
   const cache = new Map<number, Map<number, { mean: number; variance: number }>>();
   const pub = new Map<number, number>();
   const leniency = new Map<number, number>();
+  const looks = new WeakMap<object, number>();
   const season = world.date.seasonYear;
   // Jobs do not change while a grade context lives (it is made inside one development or roster pass, after
   // the coach moves), so each team's evaluator is found once.
@@ -150,7 +156,7 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
     let len = leniency.get(teamId);
     if (len === undefined) { len = scouting.drawLeniency(stream(world.seed, 'world.turnover.lean', [teamId, season])); leniency.set(teamId, len); }
     const rostered = rosteredIds.has(personId);
-    const item = scouting.observe(lookValue(p), {
+    const item = scouting.observe(lookValue(p, looks), {
       attribute: 'overall', source: rostered ? 'season_stats' : 'workout',
       units: rostered ? param('grade.rosteredUnits') : param('grade.workoutUnits'), date: world.date,
       evaluator: { id: evaluatorOf(teamId), line: `team:${teamId}` }, skill: param('grade.aiSkill'),
@@ -169,7 +175,7 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
       if (hit !== undefined) return hit;
       const p = world.people.get(personId);
       if (!p?.playing) return 0;
-      const item = scouting.observe(lookValue(p), {
+      const item = scouting.observe(lookValue(p, looks), {
         attribute: 'overall', source: rosteredIds.has(personId) ? 'season_stats' : 'workout',
         units: param('grade.rosteredUnits'), date: world.date, evaluator: { id: 0, line: 'public' }, skill: param('grade.aiSkill'),
         estimateMean: 0, opponent: null,
