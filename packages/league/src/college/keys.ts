@@ -60,7 +60,7 @@ export const RULE_KEYS: RuleKeyManifest = [
   k('pay.revenue_share_cap_2026_27', 'number', 'USD', 'Revenue-sharing cap per school, 2026-27 (T7.1.1).', 'T7.1.1'),
   k('pay.revenue_share_growth_pct', 'number', 'percent', 'Yearly cap growth used to project years with no published cap (T7.1.1).', 'T7.1.1'),
   k('pay.scholarship_credit_2025_26', 'number', 'USD', 'Added scholarship cost counted toward the cap, 2025-26 (NEW: T7.1.1, 2,500,000, 1 of 3).', 'T7.1.1'),
-  k('pay.scholarship_credit_2026_27', 'number', 'USD', 'Added scholarship cost counted toward the cap, 2026-27 (NEW: T7.1.1, 0, 1 of 3).', 'T7.1.1'),
+  k('pay.scholarship_credit_2026_27', 'number', 'USD', 'Added scholarship cost counted toward the cap, 2026-27 (NEW: T7.1.1, 2,500,000 per CSC primary, Rulebook only, open conflict).', 'T7.1.1'),
   k('pay.nil_report_threshold_usd', 'number', 'USD', 'Outside deals at or above this amount must be reported (T7.2.1).', 'T7.2.1'),
   k('pay.agreement_max_years', 'number', 'years', 'Longest player agreement (NEW: T7.3.2 rule 1, 3, 2 of 3).', 'T7.3.2'),
   k('pay.multi_year', 'boolean', undefined, 'Multi-year agreements allowed (NEW: T7.3.2 rule 1, true).', 'T7.3.2'),
