@@ -6,19 +6,20 @@
 // route names from the F6 route tree (football-content full.ROUTE_TREE), personnel choices the designer can seat.
 //
 // Not bound yet, and shown as empty rather than made up:
-// - looks for the Against tab: the content has offensive looks only (for the defensive designer);
+// Looks for the Against tab: each of the defensive designer's calls (football-content DESIGNER_CALLS) lined up
+// against the drawn formation by the defensive designer's own resolver, grey markers only (O3.1.1).
 // - the test bench: no `runBench` port (the screen says the bench is not available);
 // - missing positions: the season's rosters are placeholders (G-17), so the roster check finds none;
 // - the formation/motion/protection/concept/tag part lists: the content parts are not in designer form.
 // Hours: the E7 ledger does not feed the strip yet. PLACEHOLDER: hours left are the coach's awake hours of the
 // week less the design hours charged here.
-import { full } from '@gm/football-content';
+import { defenseDesigner as dd, full } from '@gm/football-content';
 import { designer, legality } from '@gm/football-lang';
 import { resolveRuleSet } from '@gm/rules-data';
 import type { ParamTable, RuleSet } from '@gm/schema';
 import { openSession, playOf, send, type DesignerCommand, type DesignerState } from '../play-designer/session.ts';
 import { designerView, type DesignerView } from '../play-designer/view.ts';
-import type { CoreEdit, DesignerPorts, FieldLines, HashSpot, HoursStrip, MessageLike, PartKind, PartOption, PlayLike, PointLike, Yd2 } from '../play-designer/types.ts';
+import type { CoreEdit, DesignerPorts, FieldLines, HashSpot, HoursStrip, LookOption, MessageLike, PartKind, PartOption, PlayLike, PointLike, Yd2 } from '../play-designer/types.ts';
 import { awakeWeekHours } from './team-delegation.ts';
 
 type Draft = designer.PlayDraft;
@@ -53,6 +54,7 @@ export class PlayDesignerDesk {
   private state: DesignerState<P>;
   private seq = 0;
   private usedH = 0;
+  private lookCache: { readonly key: string; readonly looks: LookOption[] } | null = null;
   /** Bumped on every command, so the screen redraws. */
   version = 0;
   readonly published: PublishedPlay[] = [];
@@ -86,7 +88,9 @@ export class PlayDesignerDesk {
         numbers: n === null ? null : [s.left + n, s.right - n],
       };
     };
+    const desk = this;
     return {
+      get looks() { return desk.looksFor(playOf(desk.state)); },
       reduce: (play, edit) => designer.applyEdit(play, edit as Edit) as P,
       validate: (play) => designer.validateDraft(play, { rules, params }) as readonly MessageLike[],
       publish: (play, messages, opts) => {
@@ -102,12 +106,31 @@ export class PlayDesignerDesk {
       partOptions: (kind: PartKind): readonly PartOption<Edit>[] => (kind === 'personnel'
         ? PERSONNEL.filter((c) => designer.slotsForPersonnel(c) !== null).map((c) => ({ id: c, label: c, edit: { type: 'set_personnel', personnel: c } }))
         : []),
-      looks: [],
       missingPositions: () => [],
       hours: (): HoursStrip => ({ usedThisWeekH: this.usedH, leftThisWeekH: Math.max(0, awakeWeekHours() - this.usedH), owner: { kind: 'coach' }, assistants: [] }),
       calendarLabel: () => this.o.calendarLabel(),
       inGame: () => this.o.inGame?.() ?? false,
     };
+  }
+
+  /** The defensive calls aligned against this formation (the call designer's resolver); a call it cannot read is left out. */
+  private looksFor(play: Draft): LookOption[] {
+    const key = JSON.stringify(play.slots.map((x) => [x.role, x.at, x.onLine]));
+    if (this.lookCache?.key === key) return this.lookCache.looks;
+    const look: dd.OffLook = {
+      id: 'drawn', name: 'Drawn formation', personnel: play.personnel, motion: null,
+      players: play.slots.map((x) => ({ role: x.role, px: x.at[0], py: x.at[1], onLine: x.onLine, eligible: !designer.isLineSlot(x.role) && x.role !== 'Q' && !x.extraTackle })),
+    };
+    const field = dd.fieldGeometry(this.rules);
+    const looks: LookOption[] = [];
+    for (const call of dd.DESIGNER_CALLS) {
+      try {
+        const r = dd.resolve(call, look, { ballYd: 0, qbArm: 'right' }, field);
+        looks.push({ id: call.id, label: call.name, markers: r.defenders.map((d) => ({ label: d.label ?? d.slot.pos, at: [d.px, d.py] as Yd2 })) });
+      } catch { /* the resolver could not read this formation for that call: no look offered */ }
+    }
+    this.lookCache = { key, looks };
+    return looks;
   }
 
   view(): DesignerView { return designerView(this.state, this.ports); }

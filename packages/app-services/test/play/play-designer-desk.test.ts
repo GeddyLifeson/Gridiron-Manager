@@ -31,6 +31,18 @@ describe('play designer desk', () => {
     expect(d.play.personnel).toBe('12');
   });
 
+  it('the Against tab lines the defensive calls up against the drawn formation', () => {
+    const d = desk();
+    const looks = d.view().looks;
+    expect(looks.length).toBeGreaterThan(0);
+    d.send({ type: 'look', id: looks[0]!.id });
+    const shown = d.view().canvas.look!;
+    expect(shown.id).toBe(looks[0]!.id);
+    expect(shown.markers.length).toBe(11);
+    // Defenders stand on their side of the ball.
+    expect(shown.markers.every((m) => m.at[0] >= 0)).toBe(true);
+  });
+
   it('a published play goes into the playbook, and publishing it again replaces it', () => {
     const book = new FootballDesk({ teamId: 4, ruleSetId: 'pro_2026', level: 'pro' });
     const before = book.playbookView('offense', {}).rows.length;
