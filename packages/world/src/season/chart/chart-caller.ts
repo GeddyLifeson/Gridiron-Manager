@@ -15,7 +15,7 @@ import type {
   Decider, DecisionView, Decision, DecisionRequest, FieldGeometry, FieldedPlayer, GameSituation, Side,
   OffenseCall, DefenseCall, KickCall, ReturnCall, SnappingCall, OpposingCall,
 } from '@gm/schema';
-import { chartParams } from './params.ts';
+import { chartParams, PASS_PHASE_NAMES, PASS_MARGIN_NAMES, PASS_MARGIN_UPPER, PASS_DOWN_NAMES, PASS_TOGO_NAMES, PASS_TOGO_UPPER, FOURTH_TOGO_NAMES, FOURTH_TOGO_UPPER, FOURTH_ZONE_NAMES, FOURTH_ZONE_UPPER } from './params.ts';
 
 export type CallUnit = 'offense' | 'defense' | 'kick' | 'return';
 
@@ -64,7 +64,7 @@ function pick<T>(r: number, items: readonly (readonly [T, number])[]): T {
   return items[items.length - 1]![0];
 }
 
-const SALT = { kind: 1, family: 2, personnel: 3, dir: 4, shotgun: 5, tempo: 6, fourth: 7, cover: 8, rush: 9, two: 10, box: 11, hurry: 12, timeout: 13 } as const;
+const SALT = { kind: 1, family: 2, personnel: 3, dir: 4, shotgun: 5, tempo: 6, fourth: 7, cover: 8, rush: 9, two: 10, box: 11, hurry: 12, timeout: 13, motion: 14, fourthKick: 15, fourthLate: 16 } as const;
 
 export function createChartCaller(opts: ChartCallerOptions): Decider {
   const P = chartParams(opts.overrides);
@@ -77,25 +77,45 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
   const ytg = (s: GameSituation): number => (s.distanceYd === null ? 10 : s.distanceYd);
   const r = (s: GameSituation, req: DecisionRequest, salt: number): number => u01(s.gameId, s.playNumber, req.requestId, side, salt);
 
-  /** Fourth-down chart for the team with the ball (also used by the defense to predict it). */
-  function fourthDownChoice(s: GameSituation, rr: number): 'punt' | 'fieldGoal' | 'go' {
-    const togo = ytg(s), toGoal = yardsToGoal(s), kickYd = toGoal + P('chart.fourth.kickDistanceAddYd');
+  /**
+   * Fourth-down chart for the team with the ball (also used by the defense to predict it). The draws leave the side and
+   * the request out of the hash, so both teams read the same choice: the defense sees which unit runs on.
+   */
+  function fourthDownChoice(s: GameSituation): 'punt' | 'fieldGoal' | 'go' {
+    const toGoal = yardsToGoal(s), kickYd = toGoal + P('chart.fourth.kickDistanceAddYd');
+    const draw = (salt: number): number => u01(s.gameId, s.playNumber, salt);
     const trailingLate = margin(s, s.offense) < 0 && lastPeriodLate(s, P('chart.fourth.trailingLateTenths'));
-    if (trailingLate) return 'go';
-    const fgRange = kickYd <= P('chart.fourth.fieldGoalMaxKickYd');
-    if (togo <= P('chart.fourth.goMaxYardsToGo') && toGoal <= P('chart.fourth.goMaxYardsToGoal') && rr < P('chart.fourth.goShortShare')) return 'go';
-    if (fgRange) return 'fieldGoal';
+    if (trailingLate && draw(SALT.fourthLate) < P('chart.fourth.trailingLateGoShare')) return 'go';
+    const togo = togoInt(s);
+    const line = Math.max(1, Math.round(toGoal));
+    let z = 0; while (z < FOURTH_ZONE_UPPER.length && line > FOURTH_ZONE_UPPER[z]!) z++;
+    let t = 0; while (t < FOURTH_TOGO_UPPER.length && togo > FOURTH_TOGO_UPPER[t]!) t++;
+    if (draw(SALT.fourth) < P(`chart.fourth.go.${FOURTH_ZONE_NAMES[z]!}.${FOURTH_TOGO_NAMES[t]!}`) * P('chart.fourth.goScale')) return 'go';
+    const sure = P('chart.fourth.fieldGoalSureKickYd'), max = P('chart.fourth.fieldGoalMaxKickYd');
+    if (kickYd <= sure) return 'fieldGoal';
+    if (kickYd < max && draw(SALT.fourthKick) < (max - kickYd) / (max - sure)) return 'fieldGoal';
     return toGoal <= P('chart.fourth.puntMinYardsToGoal') ? 'go' : 'punt';
   }
 
+  /** Whole yards to go, the public convention: the nearest yard, and inches count as 1. */
+  const togoInt = (s: GameSituation): number => Math.max(1, Math.round(ytg(s)));
+
   function passShare(s: GameSituation): number {
-    const short = ytg(s) <= P('chart.shortYardsToGo');
-    switch (s.down) {
-      case 1: return P('chart.passShare.down1');
-      case 2: return P(short ? 'chart.passShare.down2Short' : 'chart.passShare.down2Long');
-      case 3: return P(short ? 'chart.passShare.down3Short' : 'chart.passShare.down3Long');
-      default: return P(short ? 'chart.passShare.down4Short' : 'chart.passShare.down4Long');
+    if (s.playKind === 'scrimmage') {
+      const line = Math.max(1, Math.round(yardsToGoal(s)));
+      if (line <= 1) return P('chart.passShare.goalLine1');
+      if (line <= 2) return P('chart.passShare.goalLine2');
     }
+    const togo = togoInt(s);
+    let t = 0; while (t < PASS_TOGO_UPPER.length && togo > PASS_TOGO_UPPER[t]!) t++;
+    const d = Math.min(Math.max(s.down ?? 1, 1), PASS_DOWN_NAMES.length) - 1;
+    // Score and quarter: the first and third quarters, the second, and the last period (and overtime).
+    const half = opts.regulationPeriods / 2;
+    const phase = s.overtime || s.period >= opts.regulationPeriods ? 2 : s.period === half ? 1 : 0;
+    const m = margin(s, s.offense);
+    let mi = 0; while (mi < PASS_MARGIN_UPPER.length && m > PASS_MARGIN_UPPER[mi]!) mi++;
+    const game = P(`chart.passShare.game.${PASS_PHASE_NAMES[phase]!}.${PASS_MARGIN_NAMES[mi]!}`);
+    return Math.min(1, P(`chart.passShare.${PASS_DOWN_NAMES[d]!}.${PASS_TOGO_NAMES[t]!}`) * game * P('chart.passShare.scale'));
   }
 
   /** The last period of a half in regulation, with no more than `tenths` on the clock. */
@@ -138,10 +158,20 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
     const isRun = kind === 'run' || kind === 'kneel';
     const dir = kind === 'run' ? pick(r(s, req, SALT.dir), [['left', P('chart.run.leftShare')], ['middle', P('chart.run.middleShare')], ['right', Math.max(0, 1 - P('chart.run.leftShare') - P('chart.run.middleShare'))]] as const) : null;
     return {
-      unit: 'offense', playContentId: null, contentHash: null, kind, personnelCode: personnel, formationId: null, strength: null, motionId: null,
+      unit: 'offense', playContentId: null, contentHash: null, kind, personnelCode: personnel, formationId: null, strength: null,
+      motionId: kind !== 'kneel' && r(s, req, SALT.motion) < P(isRun ? 'chart.motion.runShare' : 'chart.motion.passShare') ? 'chart_motion' : null,
       protectionId: null, tags: [], runDirection: dir, shotgun: kind === 'kneel' ? false : (!isRun || kind === 'run') && r(s, req, SALT.shotgun) < P('chart.shotgunShare'),
       tempo: kind === 'kneel' ? 'huddle' : tempoOf(s, req), players: opts.roster('offense', personnel),
     };
+  }
+
+  /**
+   * Go for two when it is the planned share, or when down by 2 late (a two-point try ties). The draw leaves the request
+   * out of the hash, so the try choice (which moves the ball to the two-point spot) and the call that follows agree.
+   */
+  function goesForTwo(s: GameSituation): boolean {
+    const late = lastPeriodLate(s, P('chart.fourth.trailingLateTenths'));
+    return (late && margin(s, side) === -2) || u01(s.gameId, s.playNumber, side, SALT.two) < P('chart.try.twoPointShare');
   }
 
   function kickCall(kickKind: KickCall['kickKind']): KickCall {
@@ -154,14 +184,11 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
       case 'safety_kick': return kickCall('safety_kick');
       case 'fair_catch_kick': return kickCall('fair_catch_kick');
       case 'try': {
-        // Go for two when it is the planned share, or when down by 2 late (a two-point try ties).
-        const late = lastPeriodLate(s, P('chart.fourth.trailingLateTenths'));
-        const goTwo = (late && margin(s, side) === -2) || r(s, req, SALT.two) < P('chart.try.twoPointShare');
-        return goTwo ? offenseCall(s, req) : kickCall('try_kick');
+        return goesForTwo(s) ? offenseCall(s, req) : kickCall('try_kick');
       }
       case 'scrimmage': {
         if (s.down === 4) {
-          const c = fourthDownChoice(s, r(s, req, SALT.fourth));
+          const c = fourthDownChoice(s);
           if (c === 'punt') return kickCall('punt');
           if (c === 'fieldGoal') return kickCall('field_goal');
         }
@@ -195,7 +222,7 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
       case 'scrimmage': {
         if (s.down === 4) {
           // Predict the other team's unit with the same chart, from its side of the situation.
-          const c = fourthDownChoice(s, r(s, req, SALT.fourth));
+          const c = fourthDownChoice(s);
           if (c === 'punt') return returnCall('punt_return');
           if (c === 'fieldGoal') return returnCall('field_goal_block');
         }
@@ -225,7 +252,13 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
           if (take && wantsTimeout(s, req)) return answer(req, { optionId: take.optionId });
           return req.defaultOptionId === null ? null : answer(req, { optionId: req.defaultOptionId });
         }
-        // Every other prompt (toss, penalty, challenge, runoff, overtime, try choice) takes the
+        case 'try_choice': {
+          // The option that is not the default is the try by run or pass, snapped from its own spot (B7.3.1).
+          const two = req.options.find((o) => o.optionId !== req.defaultOptionId);
+          if (two && goesForTwo(s)) return answer(req, { optionId: two.optionId });
+          return req.defaultOptionId === null ? null : answer(req, { optionId: req.defaultOptionId });
+        }
+        // Every other prompt (toss, penalty, challenge, runoff, overtime) takes the
         // rule set's default option: the chart has no opinion, and the option ids belong to the rule set.
         default: return req.defaultOptionId === null ? null : answer(req, { optionId: req.defaultOptionId });
       }
