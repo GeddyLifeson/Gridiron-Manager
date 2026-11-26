@@ -3,6 +3,7 @@
 //   npm run playtest -- --careers 50 --seed 00000000c0ffee00 --jobs 8 --out playtest-results
 //   flags: --careers N (20)  --seed <16 hex> (base seed)  --jobs N (CPU count, max 16)  --seasons N (30)
 //          --games N game days per season (2)  --head-seasons N seasons as pro head coach (3)
+//          --world-seasons N seasons and offseasons on one live world through the save (2)
 //          --script rung0_to_pro_head | average_work | fired_and_rehired | mixed (rung0_to_pro_head)
 //          --out DIR (playtest-results)  --fail-on kinds (crash,stuck,invalid,rule)
 // Writes DIR/careers.jsonl (one CareerReport per line), DIR/findings.json (groups) and DIR/summary.md.
@@ -40,7 +41,7 @@ async function worker(): Promise<void> {
   for (let i = idx; i < careers; i += of) {
     const r = await runPlaytestCareer(careerSeed(base, i), {
       ...DEFAULT_OPTIONS, saveDir, seasons: int('seasons', DEFAULT_OPTIONS.seasons), gamesPerSeason: int('games', DEFAULT_OPTIONS.gamesPerSeason),
-      headSeasons: int('head-seasons', DEFAULT_OPTIONS.headSeasons), script: scriptOf(flag('script', DEFAULT_OPTIONS.script), i),
+      headSeasons: int('head-seasons', DEFAULT_OPTIONS.headSeasons), worldSeasons: int('world-seasons', DEFAULT_OPTIONS.worldSeasons), script: scriptOf(flag('script', DEFAULT_OPTIONS.script), i),
     });
     appendFileSync(out, JSON.stringify(r) + '\n');
     process.stdout.write(`career ${i} ${r.seedHex} ${r.script}: ${r.seasons} seasons, ${r.games} games, ${r.findings.length} findings, ${(r.ms / 1000).toFixed(1)} s\n`);

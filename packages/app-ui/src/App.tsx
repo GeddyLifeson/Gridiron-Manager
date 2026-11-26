@@ -107,7 +107,7 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
     try {
       careerSave.current = save;
-      setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId }, ...(restore ? { restore } : {}) },
+      setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId }, live: { world, userPersonId: start.coach.personId }, ...(restore ? { restore } : {}) },
         { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings), ...(save ? { onSeasonChange: (sv: play.SeasonPlaySave) => saveSeason(save, sv) } : {}) }));
     } catch (e) { setMsg((e as Error).message); }
   };

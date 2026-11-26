@@ -870,16 +870,31 @@
      "primary": false,
      "quote": "June 15 before junior year:",
      "value": 6
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Bylaw 13.4.1, text as of 2026-07-01 (https://web3.ncaa.org/lsdbi/bylaw?ruleId=695&refDate=20260701)",
+     "locator": "Bylaw text, last revised 11/17/21",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "13.4.1 Recruiting Materials and Electronic Correspondence -- General Rule. An institution shall not provide recruiting materials, including general correspondence related to athletics, or send electronic correspondence to an individual (or the individual's family members) until June 15 at the conclusion of the individual's sophomore year in high school.",
+     "value": 6
     }
    ],
    "usedBy": [],
-   "notes": "DISPUTED between rule years, so only the newest page is a source: NCSA (updated 2026-09-23) states June 15; the 2022-23 NCAA guide (Junior column, Recruiting Materials and Electronic Transmissions: September 1) and an undated ASU compliance PDF state September 1 of the junior year. The current NCAA text was not found; an NCAA primary is owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "DISPUTED between rule years, so only the newest page is a source: NCSA (updated 2026-09-23) states June 15; the 2022-23 NCAA guide (Junior column, Recruiting Materials and Electronic Transmissions: September 1) and an undated ASU compliance PDF state September 1 of the junior year. The current NCAA text was not found; an NCAA primary is owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it). Read 2026-11-26: current LSDBi text of Bylaw 13.4.1 is June 15 at the conclusion of the sophomore year, last revised 2021-11-17. The 2022-23 guide and the undated compliance PDF that say September 1 of the junior year are older.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -901,16 +916,31 @@
      "primary": false,
      "quote": "June 15 before junior year:",
      "value": 15
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Bylaw 13.4.1, text as of 2026-07-01 (https://web3.ncaa.org/lsdbi/bylaw?ruleId=695&refDate=20260701)",
+     "locator": "Bylaw text, last revised 11/17/21",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "13.4.1 Recruiting Materials and Electronic Correspondence -- General Rule. An institution shall not provide recruiting materials, including general correspondence related to athletics, or send electronic correspondence to an individual (or the individual's family members) until June 15 at the conclusion of the individual's sophomore year in high school.",
+     "value": 15
     }
    ],
    "usedBy": [],
    "notes": "DISPUTED between rule years, so only the newest page is a source: NCSA (updated 2026-09-23) states June 15; the 2022-23 NCAA guide (Junior column, Recruiting Materials and Electronic Transmissions: September 1) and an undated ASU compliance PDF state September 1 of the junior year. The current NCAA text was not found; an NCAA primary is owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -932,16 +962,30 @@
      "primary": false,
      "quote": "June 15 before junior year:",
      "value": 2
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Bylaw 13.4.1, text as of 2026-07-01 (https://web3.ncaa.org/lsdbi/bylaw?ruleId=695&refDate=20260701)",
+     "locator": "Bylaw text, last revised 11/17/21",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "13.4.1 Recruiting Materials and Electronic Correspondence -- General Rule. An institution shall not provide recruiting materials, including general correspondence related to athletics, or send electronic correspondence to an individual (or the individual's family members) until June 15 at the conclusion of the individual's sophomore year in high school."
     }
    ],
    "usedBy": [],
    "notes": "Both readings (June 15 after the sophomore year; September 1 of the junior year) fall two years before the class year. One source row; the 2022-23 guide agrees on the year count. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1013,16 +1057,31 @@
      "primary": false,
      "quote": "players can take a second official visit to a program if a head coaching change occurs after their previous official.",
      "value": true
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Proposal 2022-32, Recruiting -- Official Visits (Adopted Final, effective July 1, 2023, https://web3.ncaa.org/lsdbi/search/proposalView?id=106508)",
+     "locator": "Bylaw 13.6.2.3.2.1 as amended",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Exception -- Additional Visit After Departure of Head Coach. After a new head coach is hired, an institution may finance one additional visit for a prospective student-athlete who previously received an official visit to the institution.",
+     "value": true
     }
    ],
    "usedBy": [],
-   "notes": "One verbatim source (the CBS Sports article of 2023-04-14 reportedly says the same; its text was only read as a summary). Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "One verbatim source (the CBS Sports article of 2023-04-14 reportedly says the same; its text was only read as a summary). Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it). Read 2026-11-26: primary text is the adopted 2022-32 amendment (effective 2023-07-01) in LSDBi; no later LSDBi page for Bylaw 13.6.2.3.2.1 was found. The same proposal still caps official visits per recruit (five before and five after October 15 after high school, sports other than basketball) and institutional visits at one before and one after October 15; later changes to those caps are reported by On3 and were not re-read in primary text.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1054,16 +1113,31 @@
      "primary": false,
      "quote": "Official visits may last no longer than a two-night stay",
      "value": 48
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Proposal 2022-32, Recruiting -- Official Visits (Adopted Final, effective July 1, 2023, https://web3.ncaa.org/lsdbi/search/proposalView?id=106508)",
+     "locator": "Bylaw 13.6.4 as printed in the proposal",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Length of Official Visit. An official visit to an institution shall not exceed 48 hours. An institution shall not provide more than two consecutive nights of lodging to a prospective student-athlete in conjunction with an official visit.",
+     "value": 48
     }
    ],
    "usedBy": [],
    "notes": "The On3 line says a two-night stay, read as the same 48 hours; the NCAA bylaw text was not read. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1085,16 +1159,31 @@
      "primary": false,
      "quote": "for up to two family members accompanying a prospect on that visit.",
      "value": 2
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Proposal 2022-32, Recruiting -- Official Visits (Adopted Final, effective July 1, 2023, https://web3.ncaa.org/lsdbi/search/proposalView?id=106508)",
+     "locator": "Bylaw 13.5.2.6 as amended",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "an institution may provide the actual round-trip cost for up to two family members to accompany a prospective student-athlete on an official visit.",
+     "value": 2
     }
    ],
    "usedBy": [],
    "notes": "One source. The October 2026 proposal to raise it to four is a separate row (not adopted). Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1197,16 +1286,31 @@
      "primary": false,
      "quote": "for a two-year period before and after the student's anticipated and actual enrollment",
      "value": 2
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Bylaw 11.4.4, text as of 2026-07-01 (https://web3.ncaa.org/lsdbi/bylaw?bylawId=102578&refDate=20260701)",
+     "locator": "Bylaw text (adopted 4/26/17, no later revision shown)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "11.4.4 Individual Associated with a Prospective Student-Athlete -- Bowl Subdivision Football. [FBS] In bowl subdivision football, during a two-year period before a prospective student-athlete's anticipated enrollment and a two-year period after the prospective student-athlete's actual enrollment, an institution shall not employ (either on a salaried or volunteer basis) or enter into a contract for future employment with an individual associated with the prospective student-athlete in any athletics department noncoaching staff position or in a strength and conditioning staff position.",
+     "value": 2
     }
    ],
    "usedBy": [],
-   "notes": "One source (the legislation is from 2017). The July 2026 FBSOC report says it did not recommend changes to the IAWP legislation but states no number. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "One source (the legislation is from 2017). The July 2026 FBSOC report says it did not recommend changes to the IAWP legislation but states no number. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it). Read 2026-11-26: the bylaw covers noncoaching staff and strength and conditioning positions only. A FootballScoop headline of 2025-03-03 says the NCAA was loosening IAWP restrictions; that article could not be opened, and the LSDBi text as of 2026-07-01 still shows the two-year period with no later revision.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1227,16 +1331,31 @@
      "independenceGroup": "footballscoop",
      "primary": false,
      "quote": "FBS schools are limited to signing 25 prospective and current student-athletes"
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Proposal 2023-32, Football -- Initial Counter and Annual Signing Limits (Adopted Final, effective immediately, https://web3.ncaa.org/lsdbi/search/proposalView?id=107322)",
+     "locator": "Intent and Bylaw 13.9.3.3 (text being amended)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "In bowl subdivision football, there shall be an annual limit of 25 on the number of prospective student-athletes who may sign a National Letter of Intent or an institutional offer of financial aid and student-athletes who may sign a financial aid agreement for the first time. [Intent of the adopted proposal: to eliminate that annual limit of 25.]",
+     "value": 25
     }
    ],
    "usedBy": [],
-   "notes": "Not a 2026 rule-set value: recruiting.signee_cap stays absent. That absence rests on the bible (no cap from 2025-26), NOT on a source read in this pass; owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Not a 2026 rule-set value: recruiting.signee_cap stays absent. That absence rests on the bible (no cap from 2025-26), NOT on a source read in this pass; owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it). Removal confirmed 2026-11-26: Division I Proposal 2023-32 (Adopted Final, immediate effect) eliminated the annual limit of 25 FBS signees and the annual initial-counter limit; the Council vote was reported on 2023-10-04 (ESPN, NYT, FootballScoop). The value 25 is therefore historical (2017-18 to 2023-24) and recruiting.signee_cap correctly stays absent for 2026. Since 2025-26 the roster limit of 105 (House settlement) is the cap on players, not a signing limit.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1521,6 +1640,260 @@
      "date": "2026-11-26",
      "status": "Verified",
      "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0038",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college nonqualifier had to complete three full-time semesters (four quarters) before transferring.",
+   "value": 3,
+   "unit": "terms",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must spend at least three full-time semesters at the two-year college.",
+     "value": 3
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete at least three semesters or four quarters as a full-time student? Summer school does not count.",
+     "value": 3
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "must have attended a minimum of 3 semesters/4 quarters, graduate from the two-year college with 48 semester hours",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.nonqualifier_full_time_terms. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0039",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college nonqualifier had to complete 48 semester (72 quarter) hours of transferable credit.",
+   "value": 48,
+   "unit": "semester hours",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must satisfactorily complete 48 semester hours of transferable credit.",
+     "value": 48
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete 48 transferable credit hours if your school uses semesters or 72 transferable credit hours if your school uses quarters?",
+     "value": 48
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "graduate from the two-year college with 48 semester hours",
+     "value": 48
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.nonqualifier_hours. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0040",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college nonqualifier had to graduate from the two-year college.",
+   "value": true,
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must graduate from the two-year college.",
+     "value": true
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Graduate from your two-year school? You must have earned 25% of your credit hours at the two-year school awarding your degree.",
+     "value": true
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "graduate from the two-year college with 48 semester hours",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.nonqualifier_must_graduate. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0041",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college qualifier had to complete at least one full-time semester or quarter.",
+   "value": 1,
+   "unit": "terms",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must spend at least one full-time semester at the two-year college.",
+     "value": 1
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete at least one semester or quarter as a full-time student? Summer school does not count.",
+     "value": 1
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "Has spent at least one full-time semester or one full-time quarter of residence at the two-year college",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.qualifier_full_time_terms. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0042",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college qualifier had to average 12 transferable hours for each full-time term attended.",
+   "value": 12,
+   "unit": "hours per term",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must satisfactorily complete an average of 12 semester hours of transferable credit for each full-time semester at the two-year college.",
+     "value": 12
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete an average of 12 transferable credit hours in each term you attended full time?",
+     "value": 12
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "average of at least 12-semester or quarter hours of transferable-degree credit",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.qualifier_hours_per_term. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
     }
    ]
   }

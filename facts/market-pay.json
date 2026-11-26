@@ -1,0 +1,605 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-market-pay-0001",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at C: the five best-paid active contracts average 0.0674 of the salary cap (APY over the cap of the signing year); median 0.004; 81 active contracts.",
+   "value": 0.0674,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['C'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0674
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0002",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at CB: the five best-paid active contracts average 0.108 of the salary cap (APY over the cap of the signing year); median 0.004; 274 active contracts.",
+   "value": 0.108,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['CB'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.108
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0003",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at DE: the five best-paid active contracts average 0.1584 of the salary cap (APY over the cap of the signing year); median 0.005; 264 active contracts. World DE reads OverTheCap ED (mapping is an Assumption of this build).",
+   "value": 0.1584,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['ED'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.1584
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0004",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at DT: the five best-paid active contracts average 0.1168 of the salary cap (APY over the cap of the signing year); median 0.005; 246 active contracts. World DT reads OverTheCap IDL (mapping is an Assumption of this build).",
+   "value": 0.1168,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['IDL'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.1168
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0005",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at FB: the five best-paid active contracts average 0.0114 of the salary cap (APY over the cap of the signing year); median 0.007; 10 active contracts.",
+   "value": 0.0114,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['FB'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0114
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0006",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at FS: the five best-paid active contracts average 0.0806 of the salary cap (APY over the cap of the signing year); median 0.005; 195 active contracts. World FS reads OverTheCap S (mapping is an Assumption of this build).",
+   "value": 0.0806,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['S'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0806
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0007",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at G: the five best-paid active contracts average 0.088 of the salary cap (APY over the cap of the signing year); median 0.005; 152 active contracts. World G reads OverTheCap LG+RG (mapping is an Assumption of this build).",
+   "value": 0.088,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['LG', 'RG'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.088
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0008",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at ILB: the five best-paid active contracts average 0.0704 of the salary cap (APY over the cap of the signing year); median 0.004; 226 active contracts. World ILB reads OverTheCap LB (mapping is an Assumption of this build).",
+   "value": 0.0704,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['LB'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0704
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0009",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at K: the five best-paid active contracts average 0.0232 of the salary cap (APY over the cap of the signing year); median 0.004; 37 active contracts.",
+   "value": 0.0232,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['K'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0232
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0010",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at LS: the five best-paid active contracts average 0.0066 of the salary cap (APY over the cap of the signing year); median 0.005; 33 active contracts.",
+   "value": 0.0066,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['LS'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0066
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0011",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at MLB: the five best-paid active contracts average 0.0704 of the salary cap (APY over the cap of the signing year); median 0.004; 226 active contracts. World MLB reads OverTheCap LB (mapping is an Assumption of this build).",
+   "value": 0.0704,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['LB'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0704
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0012",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at NT: the five best-paid active contracts average 0.1168 of the salary cap (APY over the cap of the signing year); median 0.005; 246 active contracts. World NT reads OverTheCap IDL (mapping is an Assumption of this build).",
+   "value": 0.1168,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['IDL'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.1168
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0013",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at OLB: the five best-paid active contracts average 0.0704 of the salary cap (APY over the cap of the signing year); median 0.004; 226 active contracts. World OLB reads OverTheCap LB (mapping is an Assumption of this build).",
+   "value": 0.0704,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['LB'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0704
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0014",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at P: the five best-paid active contracts average 0.0148 of the salary cap (APY over the cap of the signing year); median 0.006; 36 active contracts.",
+   "value": 0.0148,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['P'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0148
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0015",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at QB: the five best-paid active contracts average 0.2344 of the salary cap (APY over the cap of the signing year); median 0.007; 111 active contracts.",
+   "value": 0.2344,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['QB'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.2344
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0016",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at RB: the five best-paid active contracts average 0.074 of the salary cap (APY over the cap of the signing year); median 0.004; 173 active contracts.",
+   "value": 0.074,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['RB'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.074
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0017",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at SS: the five best-paid active contracts average 0.0806 of the salary cap (APY over the cap of the signing year); median 0.005; 195 active contracts. World SS reads OverTheCap S (mapping is an Assumption of this build).",
+   "value": 0.0806,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['S'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0806
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0018",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at T: the five best-paid active contracts average 0.1058 of the salary cap (APY over the cap of the signing year); median 0.005; 211 active contracts. World T reads OverTheCap LT+RT (mapping is an Assumption of this build).",
+   "value": 0.1058,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['LT', 'RT'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.1058
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0019",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at TE: the five best-paid active contracts average 0.0626 of the salary cap (APY over the cap of the signing year); median 0.005; 185 active contracts.",
+   "value": 0.0626,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['TE'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.0626
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  },
+  {
+   "id": "F-market-pay-0020",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pro pay at WR: the five best-paid active contracts average 0.1358 of the salary cap (APY over the cap of the signing year); median 0.004; 312 active contracts.",
+   "value": 0.1358,
+   "unit": "share of cap",
+   "validFor": "active contracts at 2026-11-25",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "is_active rows, position in ['WR'], apy_cap_pct; facts/market-pay-build/build.py",
+     "dateRead": "2026-11-25",
+     "value": 0.1358
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset so far. Cross-checks owed: a second publisher (Spotrac positional pages) and the league's franchise tag figures (CBA Art. 10 s.2, average of the five largest prior-year salaries, F-league-0013). The cloud cannot reach either site.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "1 of 3",
+     "reason": "First load from the nflverse OverTheCap file (Last-Modified 2026-11-25)."
+    }
+   ]
+  }
+ ]
+}

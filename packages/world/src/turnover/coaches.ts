@@ -9,7 +9,7 @@
 // or from the pool by the head coach's own search (X8.4.2, K7.6.1). Nobody reads a hidden coach value:
 // candidates are seen through their public record, rung and shared seasons only.
 import { DMATH, stream } from '@gm/engine-core';
-import { market, positions, staff as staffSearch } from '@gm/career';
+import { interviews, market, positions, staff as staffSearch } from '@gm/career';
 import { stakeholders } from '@gm/front-office';
 import { strength } from '@gm/models';
 import { possible, type EventTypeDef, type JobRecord, type PersonRecord, type WorldTier } from '@gm/schema';
@@ -26,6 +26,8 @@ import * as pipeline from './pipeline.ts';
 
 export const COACH_STATE = 'world.turnover.coaches';
 export const STREAM_COACHES = 'world.turnover.coaches';
+/** Interview draws: each person's stances (keyed by person only, so a person believes the same things every year). */
+export const STREAM_INTERVIEWS = 'world.turnover.interviews';
 /** The pool cohort entrants wait in (X11 `coach_staff_entry`), read beside the coach pool. */
 export const ENTRY_POOL = 'coach_staff_entry';
 const HEAD = 'pos:head_coach';
@@ -448,6 +450,7 @@ function fireHead(c: Cycle, teamId: number, midSeason: boolean): void {
   vacatePerson(c, id);
   toPool(c, id);
   open(c, teamId, job.rung, 'fired');
+  firedThisCycle(c).set(teamId, id);
   record(c, market.EVENT.fired, teamId, id, { seatId: job.id, forCause: false, midSeason }, { kind: 'person', id });
   bump(c, midSeason ? 'fired_in_season' : 'fired');
 }
@@ -588,6 +591,75 @@ function renewals(c: Cycle): void {
   }
 }
 
+// ---------- fit-based interviews (career/interviews; Marlon 2026-11-26 14:26, 14:27) ----------
+// Every hire runs referrals, an interview with no right answers and offers. The people hiring are the
+// seat's boss up the reporting line (the head coach sits in on senior seats only), or the appointer and
+// general manager for a head coach. They hire whoever's views fit their own. The user is never a panel
+// member or applicant here: his interviews run on his screens with his own answers.
+
+const BELIEFS = new WeakMap<Cycle, Map<number, interviews.Beliefs>>();
+/** A person's coaching views, drawn once from his trait block on a stream keyed by him alone. Null for the user. */
+function beliefsOf(c: Cycle, id: number): interviews.Beliefs | null {
+  if (id === c.world.userPersonId) return null;
+  let m = BELIEFS.get(c);
+  if (!m) { m = new Map(); BELIEFS.set(c, m); }
+  const hit = m.get(id);
+  if (hit) return hit;
+  const b = coachViews(c.world, id)!;
+  m.set(id, b);
+  return b;
+}
+
+/** A person's coaching views (truth, never shown): what he answers in an interview and wants when he hires. Null for the user. */
+export function coachViews(world: LiveWorld, id: number): interviews.Beliefs | null {
+  if (id === world.userPersonId) return null;
+  return interviews.drawBeliefs(world.people.get(id)?.traitBlock ?? null, stream(world.seed, STREAM_INTERVIEWS, ['beliefs', id]));
+}
+
+/** A person's hidden craft z (truth): how well he does the graded interview work (practical.ts). Null for the user. */
+export function coachCraft(world: LiveWorld, id: number): number | null {
+  if (id === world.userPersonId) return null;
+  return interviews.drawCraft(stream(world.seed, STREAM_INTERVIEWS, ['craft', id]));
+}
+
+const FIRED = new WeakMap<Cycle, Map<number, number>>();
+/** Head coaches fired in this cycle by team: the appointer looks for the other end of what they believed (E2.3.2). */
+function firedThisCycle(c: Cycle): Map<number, number> {
+  let m = FIRED.get(c);
+  if (!m) { m = new Map(); FIRED.set(c, m); }
+  return m;
+}
+
+function openingOf(s: positions.Staff, seat: positions.Seat): interviews.Opening {
+  const rung = seat.rung ?? 0;
+  const side = seat.side === 'offense' || seat.side === 'defense' || seat.side === 'special_teams' ? seat.side : 'any';
+  return { seatId: seat.seatId, positionId: seat.positionId, rung, group: interviews.roleGroupOf(seat.positionId, rung), side, level: s.level };
+}
+
+function panelOf(c: Cycle, s: positions.Staff, seatId: number): interviews.PanelMember[] {
+  const ids = interviews.panelFor(s.seats, seatId, appointerOf(c.world, s.teamId));
+  const fired = positions.seat(s, seatId).positionId === HEAD ? firedThisCycle(c).get(s.teamId) : undefined;
+  const firedViews = fired === undefined ? null : beliefsOf(c, fired);
+  const out: interviews.PanelMember[] = [];
+  for (const id of ids) {
+    const own = beliefsOf(c, id);
+    if (own === null) continue;
+    out.push({ personId: id, wants: firedViews === null ? own : interviews.wantsAfterFiring(own, firedViews), lead: out.length === 0 });
+  }
+  return out;
+}
+
+/** S6.2.1: coaches who worked with him vouch for him; the hirer listens by his own tie to each. A former player's coach (`via`) vouches first. */
+function referralsOf(v: Views, id: number, leadId: number, via: number | null): interviews.Referral[] {
+  const max = interviews.param('referral.maxReferees');
+  const refs: number[] = via === null ? [] : [via];
+  for (const r of v.colleagues(id)) {
+    if (refs.length >= max) break;
+    if (r !== leadId && !refs.includes(r)) refs.push(r);
+  }
+  return refs.map((r) => ({ refereeId: r, regard: r === via ? 1 : v.tie(r, id) / 100, tieToHirer: v.tie(r, leadId) }));
+}
+
 // ---------- searches ----------
 
 function offerTo(c: Cycle, job: JobRecord, personId: number, prospects: number): { offer: staffSearch.Offer; view: staffSearch.CandidateView } {
@@ -703,12 +775,31 @@ function headSearch(c: Cycle, teamId: number, v: Views): number[] {
   });
   const prospects = prospectsOf(c, teamId);
   const s = stream(c.world.seed, STREAM_COACHES, ['head_search', teamId, c.season]);
+  // K8.4.2 interview list, then the fit-based interview: the appointer (and GM) score each answer by their own views.
+  const staff = staffOf(c, teamId);
+  const panel = panelOf(c, staff, job.id);
+  const opening = openingOf(staff, positions.seat(staff, job.id));
+  const qs = interviews.slate(opening, panel);
+  const listed = new Set(stakeholders.interviewList(prefs, cands));
+  if (interim !== null) listed.add(interim);
+  const reads = new Map<number, number>();
+  const interviewed = cands.filter((x) => listed.has(x.personId)).map((x) => {
+    const b = beliefsOf(c, x.personId);
+    if (b === null) return x;
+    reads.set(x.personId, interviews.candidateRead(opening, panel, b));
+    // Graded work (board work, game management) and fit with the panel's views, blended by the hire weights.
+    const work = interviews.practicalScore(opening.group, undefined, coachCraft(c.world, x.personId), s).score;
+    const fit = interviews.fitScaled(interviews.scoreInterview(qs, interviews.answerAll(qs, b), panel).fit);
+    const wp = interviews.param('hire.practicalWeight'); const wf = interviews.param('hire.fitWeight');
+    return { ...x, interview: (wp * work + wf * fit) / (wp + wf) };
+  });
+  bump(c, 'head_interviews', interviewed.length);
   let years = 1;
-  const out = stakeholders.runSearch(prefs, cands, (id) => {
+  const out = stakeholders.runSearch(prefs, interviewed, (id) => {
     if (id === interim) { years = s.int(1, genParam('contract.staffMaxYears')); return true; }
     const o = offerTo(c, job, id, prospects);
     years = o.offer.years;
-    return staffSearch.decideOffer(o.offer, o.view, s);
+    return s.chance(possible(interviews.acceptWithFit(staffSearch.acceptChance(o.offer, o.view), reads.get(id) ?? interviews.param('accept.fitNeutral'))));
   });
   let chosen = out.hired;
   if (chosen === null) {
@@ -800,6 +891,7 @@ function fillStaff(c: Cycle, teamId: number, v: Views): void {
   for (const seat0 of openSeats) {
     const external = new Map<number, number>();
     const routes = new Map<number, pipeline.Route>();
+    const vias = new Map<number, number | null>();
     const decide = (s: positions.Staff, seatId: number): positions.VacancyDecision => {
       const seat = positions.seat(s, seatId);
       const rung = seat.rung ?? 0;
@@ -815,20 +907,40 @@ function fillStaff(c: Cycle, teamId: number, v: Views): void {
         const r = pipeline.routeTo(c.world, seatId, c.season, id, playedUnderOf(c).get(id), hiringIds, headId, v.tie);
         if (r === null) continue;
         routes.set(id, r.route);
+        vias.set(id, r.via);
         fresh.push(id);
       }
       const outside = [...poolIds(c).filter((id) => rung <= 2 || (c.st.careers.get(id)?.lastRung ?? 0) >= rung - param('coach.stepsBelow')), ...fresh].filter((id) => !taken.has(id));
       const ids = [...new Set([...inside, ...outside])].sort((a, b) => a - b);
       if (ids.length === 0) return { kind: 'post' };
-      const ranked = staffSearch.rankCandidates(ids.map((id) => {
-        const r = v.record(id);
-        return { personId: id, input: { sameFamily: false, termOverlap: 0, viewOfQuality: r === null ? 0.5 : r, tie: Math.max(v.tie(headId, id), inside.includes(id) ? param('coach.tiePerSeason') : 0, routes.has(id) ? formerPlayerTie(c, headId, staffIdsOf, id) : 0), askCents: 0, budgetLeftCents: 1 } };
+      // Referrals, shortlist, interview with the seat's own panel, offers (career/interviews).
+      const panel = panelOf(c, s, seatId);
+      const leadId = panel[0]?.personId ?? headId;
+      const pool: interviews.Applicant[] = ids.map((id) => ({
+        personId: id, beliefs: null, record: v.record(id) ?? 0.5,
+        tie: Math.max(v.tie(leadId, id), inside.includes(id) ? param('coach.tiePerSeason') : 0, routes.has(id) ? formerPlayerTie(c, headId, staffIdsOf, id) : 0),
+        referrals: referralsOf(v, id, leadId, vias.get(id) ?? null),
       }));
+      const opening = openingOf(s, seat);
+      const listed = interviews.shortlist(opening, pool).map((a) => ({ ...a, beliefs: beliefsOf(c, a.personId), craft: coachCraft(c.world, a.personId) }));
       const sr = stream(c.world.seed, STREAM_COACHES, ['staff_search', seatId, c.season]);
-      const res = staffSearch.runSearch(ranked, (id) => offerTo(c, job, id, prospects), sr);
-      const who = res.hiredPersonId ?? ranked[0] ?? null;
+      const res = interviews.runSearch({
+        opening, panel, pool: listed, stream: sr,
+        offer: (id, read) => { const o = offerTo(c, job, id, prospects); return sr.chance(possible(interviews.acceptWithFit(staffSearch.acceptChance(o.offer, o.view), read))); },
+      });
+      bump(c, 'staff_interviews', res.interviewed.length);
+      // Craft and fit of the hire against the mean of those interviewed, in thousandths (read by the turnover test).
+      const crafts = listed.map((x) => x.craft ?? 0);
+      if (res.hired !== null && crafts.length > 1) {
+        bump(c, 'interview_searches');
+        const fits = res.interviewed.map((x) => x.result.fit);
+        bump(c, 'interview_fit_edge_milli', Math.round(1000 * ((res.interviewed.find((x) => x.personId === res.hired)?.result.fit ?? 0) - fits.reduce((x, y) => x + y, 0) / fits.length)));
+        bump(c, 'interview_craft_edge_milli', Math.round(1000 * ((coachCraft(c.world, res.hired) ?? 0) - crafts.reduce((x, y) => x + y, 0) / crafts.length)));
+      }
+      const best = [...res.interviewed].sort((a, b) => b.score - a.score || a.personId - b.personId)[0]?.personId ?? null;
+      const who = res.hired ?? best;
       if (who === null) return { kind: 'post' };
-      if (res.hiredPersonId === null) bump(c, 'filled_from_who_is_left');
+      if (res.hired === null) bump(c, 'filled_from_who_is_left');
       if (inside.includes(who)) return { kind: 'promote', personId: who };
       external.set(seatId, who);
       taken.add(who);
