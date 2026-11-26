@@ -1,7 +1,7 @@
 // Kinematics tuning constants (J2). Every value here is a starting value from the bible leaf named,
 // or an Assumption the bible leaves open. None is a measured football fact; J2.7 fits them.
 import type { ParamFile, ParamTable } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const FIT = 'J2.7.1 drill reproduction', GAME = 'J2.7.2 game-speed comparison', NONE = 'none yet: flagged for J6.8.1 review';
 
@@ -82,9 +82,15 @@ export const PARAMS: ParamFile = defineParams('kinematics', '0.1.0', ROWS);
 
 export type KinParams = Readonly<Record<string, number>>;
 
+const RESOLVED = new WeakMap<ParamTable, KinParams>();
 /** Resolve once per play, never inside the tick. Property names are the row names above. */
 export function kinParams(t: ParamTable): KinParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`kinematics.${row[0]}`);
-  return out;
+  const fast = fastParams(out);
+  RESOLVED.set(t, fast);
+  return fast;
 }

@@ -13,7 +13,7 @@
 // this module could not read as numbers, so no row claims a sourced Cd: each k is fitted to a J9 check
 // value instead, and the fit is a test (test/ball/ball.test.ts).
 import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 /**
  * Standard gravity, 9.80665 m/s^2 exactly (3rd CGPM, 1901), divided by 0.9144 m per yard exactly
@@ -165,11 +165,17 @@ export const PARAMS: ParamFile = defineParams('ball', '0.1.0', ROWS);
 /** Ball parameters resolved once, by short name (the row name without the `ball.` prefix). */
 export type BallParams = Readonly<Record<string, number>>;
 
+const RESOLVED = new WeakMap<ParamTable, BallParams>();
 /** Resolve once per game or play, never inside the tick. Throws on a missing row. */
 export function ballParams(t: ParamTable): BallParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`ball.${row[0]}`);
-  return out;
+  const fast = fastParams(out);
+  RESOLVED.set(t, fast);
+  return fast;
 }
 
 /**

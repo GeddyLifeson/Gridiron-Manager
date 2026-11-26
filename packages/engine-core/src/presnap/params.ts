@@ -3,7 +3,7 @@
 // rates are fitted against J15 rows later (J6.8.1). Rule values (set period, motion rule, radio cut,
 // substitution matching, foul catalogue) are read from the rule set by key, never written here.
 import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const NONE = 'none yet: flagged for J6.8.1 review';
 const FS = 'J15.7 false start 2.30 per game (1 of 3)';
@@ -167,8 +167,9 @@ export function presnapParams(t: ParamTable): PresnapParams {
   if (memoTable === t && memo !== null) return memo;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`presnap.${row[0]}`);
-  memoTable = t; memo = out;
-  return out;
+  const fast = fastParams(out);
+  memoTable = t; memo = fast;
+  return fast;
 }
 let memoTable: ParamTable | null = null, memo: PresnapParams | null = null;
 

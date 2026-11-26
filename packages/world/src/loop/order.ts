@@ -9,7 +9,7 @@ import { isActive } from './lifecycle.ts';
 import { param } from './params.ts';
 import {
   SEASON_POINT_ORDER, WEEKLY_ORDER,
-  type GamePort, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
+  type GameBatchPort, type GamePort, type GameRequest, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
 } from './types.ts';
 
 const FAR_TIER: WorldTier = 3;
@@ -141,17 +141,38 @@ export function runSeason(world: LiveWorld, systems: WorldSystems, schedule: Sch
  * order, with its own derived seed. The port is the real engine; this file has no other way to make a score.
  */
 export function gamesStep(schedule: SchedulePort, play: GamePort): StepHandler {
+  return gamesStepBatch(schedule, batchOf(play));
+}
+
+/** A batch port that plays the games one after another through a one-game port. */
+export function batchOf(play: GamePort): GameBatchPort {
+  return (reqs) => reqs.map((r) => play(r));
+}
+
+/**
+ * Step 1 with a batch port (G-97): the week's requests are built first, in game id order, then handed
+ * over together, so the port may play them on several threads. Nothing about the result depends on how
+ * the port spreads the work: each game has its own seed, a game reads nothing another game of the same
+ * week writes, and the rows are stored in request order. The world is not changed until every game is back.
+ */
+export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): StepHandler {
   return (ctx) => {
     const { world } = ctx;
     const games = [...schedule.gamesOn(world, world.week)].sort((a, b) => a.gameId - b.gameId);
-    let points = 0;
+    const reqs: GameRequest[] = [];
     for (const game of games) {
       const comp = world.competitions.find((c) => c.id === game.competitionId);
       if (!comp) throw new Error(`game ${game.gameId}: no competition ${game.competitionId}`);
       for (const id of [game.homeTeamId, game.awayTeamId]) if (!isActive(world, id)) throw new Error(`game ${game.gameId}: team ${id} does not exist in ${world.date.seasonYear}`);
       const tier = Math.min(ctx.tierOfTeam(game.homeTeamId), ctx.tierOfTeam(game.awayTeamId)) as WorldTier;
       const seedHex = seedToHex(deriveSeed(world.seed, 'game', [world.date.seasonYear, game.gameId]));
-      const r = play({ game, seasonYear: world.date.seasonYear, week: world.week, seedHex, ruleSetId: comp.ruleSetId, tier, world });
+      reqs.push({ game, seasonYear: world.date.seasonYear, week: world.week, seedHex, ruleSetId: comp.ruleSetId, tier, world });
+    }
+    const played = reqs.length === 0 ? [] : playAll(reqs);
+    if (played.length !== reqs.length) throw new Error(`games step: ${reqs.length} games asked, ${played.length} answered`);
+    let points = 0;
+    reqs.forEach((req, i) => {
+      const game = req.game, r = played[i]!;
       const row: GameResult = {
         gameId: game.gameId, competitionId: game.competitionId, seasonYear: world.date.seasonYear, week: world.week,
         homeTeamId: game.homeTeamId, awayTeamId: game.awayTeamId, homePoints: r.homePoints, awayPoints: r.awayPoints,
@@ -159,7 +180,7 @@ export function gamesStep(schedule: SchedulePort, play: GamePort): StepHandler {
       };
       world.results.push(row);
       points += r.homePoints + r.awayPoints;
-    }
+    });
     return { games: games.length, points };
   };
 }
