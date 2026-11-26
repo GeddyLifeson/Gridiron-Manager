@@ -6,6 +6,7 @@ import { violationClass, type ViolationClass } from './catalogue.ts';
 import { K, P } from './params.ts';
 import { addWeeks, weeksPerYear, yearsBetween } from './dates.ts';
 import { EVENT, draft } from './events.ts';
+import { windowYearsOf } from './log.ts';
 import { possible, type WorldDate, type WorldTier } from '@gm/schema';
 import type { CaseResponse, CaseRow, ComplianceContext, ComplianceState, EventSink, ViolationLogRow } from './types.ts';
 
@@ -13,7 +14,7 @@ export interface SourceChance { readonly source: string; readonly p: number }
 
 /** Years a violation stays detectable: the rule set's key, else the L8.2.5 starting value. */
 export function detectWindowYears(ctx: ComplianceContext): number {
-  return ctx.rules.keys().includes(K.detectWindowYears) ? ctx.rules.num(K.detectWindowYears) : P('detect_window_years_default');
+  return windowYearsOf(ctx.rules);
 }
 
 function inspectionP(row: ViolationLogRow, c: ViolationClass): number {

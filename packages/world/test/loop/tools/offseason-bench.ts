@@ -89,6 +89,12 @@ function recruitingCounts(): Record<string, number> {
   return Object.fromEntries(Object.entries(st).map(([k, v]) => [k, Array.isArray(v) ? v.length : v !== null && typeof v === 'object' ? Object.keys(v).length : 1]));
 }
 
+/** Live and archived rows of the compliance violation log (the pipeline's state in systemState). */
+function complianceSize(): { live: number; archived: number } {
+  const c = w.systemState.get('compliance') as { log: readonly unknown[]; archive?: readonly (readonly unknown[])[] } | undefined;
+  return { live: c?.log.length ?? 0, archived: (c?.archive ?? []).reduce((a, x) => a + x.length, 0) };
+}
+
 let last = performance.now();
 loop.runHistory(w, systems, {
   seasons: SEASONS, schedule: testSchedule,
@@ -96,7 +102,7 @@ loop.runHistory(w, systems, {
     const now = performance.now();
     console.log(JSON.stringify({
       season: summary.seasonYear, done, ms: Math.round(now - last), steps: Object.fromEntries(Object.entries(timing).map(([k, v]) => [k, Math.round(v)])),
-      people: w.people.size, hash: HASH ? safeHash() : 'off', ...(SIZES ? { recruitingCounts: recruitingCounts() } : {}),
+      people: w.people.size, complianceLog: complianceSize(), hash: HASH ? safeHash() : 'off', ...(SIZES ? { recruitingCounts: recruitingCounts() } : {}),
     }));
     for (const k of Object.keys(timing)) timing[k] = 0;
     last = performance.now();
