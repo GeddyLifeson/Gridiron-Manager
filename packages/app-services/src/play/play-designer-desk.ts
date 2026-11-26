@@ -39,9 +39,11 @@ export interface PlayDesignerDeskOptions {
   readonly calendarLabel: () => string;
   /** True during a game (O3.1.4: the bench is off). */
   readonly inGame?: () => boolean;
+  /** A published version goes to the playbook (FootballDesk.addDesigned). */
+  readonly onPublish?: (play: designer.PlayDraft, version: number) => void;
 }
 
-/** One published version, kept for the playbook (the converter into the book's play form is a separate job). */
+/** One published version; the host's `onPublish` puts it in the playbook. */
 export interface PublishedPlay { readonly play: Draft; readonly version: number; readonly label: string }
 
 export class PlayDesignerDesk {
@@ -118,7 +120,7 @@ export class PlayDesignerDesk {
     this.state = step.state;
     for (const e of step.effects) {
       if (e.kind === 'charge_hours') this.usedH += e.hours;
-      else if (e.kind === 'published') this.published.push({ play: e.play, version: e.version, label: e.label });
+      else if (e.kind === 'published') { this.published.push({ play: e.play, version: e.version, label: e.label }); this.o.onPublish?.(e.play, e.version); }
     }
     this.version++;
   }
