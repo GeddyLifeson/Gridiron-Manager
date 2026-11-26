@@ -23,6 +23,7 @@ import type { Carrier } from '../carrier/stage.ts';
 import { foulsInjuriesPlug } from '../fouls-injuries/index.ts';
 import { createQuarterback, type QbPlay, type QbRead, type QbTarget, type Quarterback } from '../qb/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
+import type { PresnapPlan } from '../presnap/index.ts';
 import { declareDead } from './finish.ts';
 import { tickResolverParams } from './params.ts';
 import type { PlayServices, PlugStages, StagePlug } from './ports.ts';
@@ -178,12 +179,32 @@ export function quarterbackPlug(): QuarterbackPlug {
           if (keyedSlot >= 0 && services.setup().perception[keyedSlot]?.keys === undefined) services.perception.configure(keyedSlot, { keys: [] });
           keyedSlot = -1; ownKeys = false; nowWorld = null;
           if (play !== null && services.setup().perception[play.qbSlot]?.keys === undefined) { ownKeys = true; keyedSlot = play.qbSlot; }
-          q.setPlay(play === null ? null : withReceiverLegs(play, w, services.setup().presnap.offense.assignments));
+          q.setPlay(play === null ? null : withPreSnapRead(withReceiverLegs(play, w, services.setup().presnap.offense.assignments), services.plan()));
         },
         explain: () => (q === null || !active ? [] : [{ record: q.record(), notes: q.notes().slice() }]),
       };
     },
   };
+}
+
+/**
+ * J7.2.1 steps 1 and 5 and J7.3.3 from the pre-snap phase's read (J5.4.1, `qbPreSnap`). A wrong read of the
+ * shell or of man against zone starts him on the wrong side: the reads on the other side of the field from the
+ * play's first read come first (with none there, the order turns by one), and the play's own order becomes the
+ * one he restarts on, a read time late, when the true coverage shows. A hot rule expects pressure when his read
+ * said pressure. A play that already carries a corrected order, or has fewer than two reads, keeps its reads.
+ * No plan (a free kick) or no read made (no time at the line): the play as the content gave it.
+ */
+export function withPreSnapRead(play: QbPlay, plan: PresnapPlan | null): QbPlay {
+  if (plan === null || !plan.qb.made) return play;
+  const hot = play.hot === null ? null : { ...play.hot, expectedPreSnap: plan.qb.pressure };
+  const wrong = !plan.qb.shellCorrect || !plan.qb.manCorrect;
+  if (!wrong || play.correctedReads !== null || play.reads.length < 2) return hot === play.hot ? play : { ...play, hot };
+  const sideOf = (r: QbRead): number => { const at = r.target.route[0]; return at === undefined ? 0 : Math.sign(at.py); };
+  const first = sideOf(play.reads[0]!);
+  const away = first === 0 ? [] : play.reads.filter((r) => sideOf(r) === -first);
+  const believed = away.length > 0 ? [...away, ...play.reads.filter((r) => !away.includes(r))] : [...play.reads.slice(1), play.reads[0]!];
+  return { ...play, hot, reads: believed, correctedReads: play.reads };
 }
 
 /**
