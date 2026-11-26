@@ -159,3 +159,23 @@ describe('season session', () => {
     expect(() => SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: 'no-such-team' })).toThrow(/not in the competition/);
   });
 });
+
+describe('league picture from the season session (C3, T3.3 to T3.6)', () => {
+  it('pro: a tiebroken table and seeds for every conference, clinch flags for every club', () => {
+    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: seasons.buildSeason(CONTENT, 'pro_2026', { season: 2026, seedHex: SEED, seatTeamKey: null }).keyOf.get(1)! });
+    const pic = play.standingsPicture({ clinchNodeBudget: 1 });
+    expect(pic.pro!.table.conferences.length).toBeGreaterThan(0);
+    expect(pic.pro!.clinch).toHaveLength(play.built.spec.teams.length);
+    expect(pic.college).toBeUndefined();
+  });
+  it('college: polls before the first game, deterministic for the seed', () => {
+    const built = seasons.buildSeason(CONTENT, 'college_2026', { season: 2026, seedHex: SEED, seatTeamKey: null });
+    const key = built.keyOf.get(built.spec.teams[0]!.id)!;
+    const a = SeasonPlay.start(CONTENT, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: key }).standingsPicture();
+    const b = SeasonPlay.start(CONTENT, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: key }).standingsPicture();
+    expect(a.college!.poll.order.length).toBeGreaterThanOrEqual(25);
+    expect(a.college!.coachesPoll.order).toEqual(b.college!.coachesPoll.order);
+    expect(a.college!.ranking).toBeNull();
+    expect(a.college!.conferences.length).toBeGreaterThan(0);
+  });
+});

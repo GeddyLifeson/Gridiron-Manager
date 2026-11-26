@@ -12,9 +12,16 @@
 // input that does not follow from the seed. `replay` rebuilds the season from the seed and those outcomes and
 // must reach the same hash chain (Q1.3.1 season replay).
 //
+// League picture: `standingsPicture()` computes the week's tiebroken order, seeds, clinch, odds, college
+// polls, committee ranking, projected field and bowls with @gm/league `livePicture`, on the season's own
+// streams (tieDraw, uniformFor), and hands them to the league page read models as their standings source.
+// Poll ballots carry from week to week; they follow from the seed and the results, so the save does not
+// keep them: a restored season recomputes them.
+//
 // Not here yet: the seat's week (H1 calendar, `seatWeek`), AI preparation (K3), the user's own call sheet
 // (G-68 bridge) and generated rosters. The teams are the real game's neutral placeholder rosters.
 import { season as seasons } from '@gm/world';
+import { postseason, standings } from '@gm/league';
 import type { DriveRecord, GameInput, PlayRecord } from '@gm/schema';
 import { GameCallingSession, type GameSessionOptions } from '../commands/game-calling/index.ts';
 
@@ -146,6 +153,9 @@ export class SeasonPlay {
   private open: OpenGame | null = null;
   private dry: { state: SeasonState; game: SeatGame | null } | null = null;
   private readonly names: Map<string, string>;
+  /** Poll states by poll week, recomputed on demand (a pure function of seed and results). */
+  private readonly pollCache = new Map<number, { media: postseason.PollState; coach: postseason.PollState; resultsCounted: number }>();
+  private panels: { media: postseason.Voter[]; coach: postseason.Voter[] } | null = null;
 
   private constructor(content: seasons.LeagueContent, options: SeasonPlayOptions, state?: SeasonState) {
     this.options = options;
@@ -328,6 +338,69 @@ export class SeasonPlay {
       weeksToGame, seasonOver: this.state.stage === 'final',
       champion: champ === null ? null : { teamId: champ, key: this.keyOf(champ), name: this.nameOf(champ) },
     };
+  }
+
+  /**
+   * The week's league picture (C3.1 to C3.3, T3.3 to T3.6), for the league pages' standings source. Pro:
+   * tiebroken order and seeds, clinch and elimination, odds when `winModel` is given. College: conference
+   * standings, the media and coaches' polls, the committee ranking from its first week, the projected field
+   * and, once the regular season is over, the bowls. `seatBallot` is the head coach's own coaches' ballot.
+   */
+  standingsPicture(o: { winModel?: standings.WinModel; seatBallot?: readonly number[]; clinchNodeBudget?: number } = {}): postseason.LivePicture {
+    const spec = this.built.spec;
+    const rules = spec.leagueRules;
+    const draw = seasons.tieDraw(spec.seedHex, spec.season);
+    const uniform = seasons.uniformFor(spec.seedHex, spec.season);
+    const played = new Set(this.state.games.map((g) => g.fixture.gameId));
+    const remaining = spec.fixtures.filter((f) => f.phase === 'regular' && !played.has(f.gameId))
+      .map((f) => ({ gameId: f.gameId, week: f.week, teams: [f.home, f.away] as const, neutralSite: f.neutralSite }));
+    const results = this.state.results;
+    const sel = this.built.selection;
+    if (!sel) {
+      const places = spec.teams.map((t) => ({ id: t.id, conferenceId: t.conferenceId, divisionId: t.divisionId }));
+      return postseason.livePicture({
+        rules, results, remaining, draw, uniform,
+        pro: { places, allowTies: true, ...(o.winModel ? { winModel: o.winModel } : {}), ...(o.clinchNodeBudget !== undefined ? { clinchNodeBudget: o.clinchNodeBudget } : {}) },
+      });
+    }
+    const firstWeek = spec.fixtures.reduce((m, f) => Math.min(m, f.week), Infinity);
+    const pollWeek = Math.max(0, (this.state.stage === 'regular' ? this.state.week : this.state.lastRegularWeek + 1) - firstWeek);
+    const teamIds = spec.teams.map((t) => t.id);
+    const conferences = sel.conferences.map((c) => ({ conferenceId: c.conferenceId, power: c.power, teamIds: c.teamIds, titleMethod: c.titleMethod, ...(c.chain ? { chain: c.chain } : {}) }));
+    const panels = this.pollPanels(sel.conferences.map((c) => c.conferenceId), uniform);
+    const prestige = this.built.prestige;
+    const regularBefore = (w: number) => results.filter((r) => r.phase === 'regular' && r.week - firstWeek < w);
+    const pictureAt = (w: number, prev: { media: postseason.PollState | null; coach: postseason.PollState | null }, last: boolean) => postseason.livePicture({
+      rules, results: last ? results : regularBefore(w), remaining: last ? remaining : [], draw, uniform,
+      college: {
+        teamIds, conferences, independents: sel.independents, week: w, preseason: prestige, prestige, panels, pollState: prev,
+        ...(last && o.seatBallot ? { seatBallot: { voterId: panels.coach[0]!.voterId, ballot: o.seatBallot } } : {}),
+        ...(last ? { bowls: sel.bowls, academicScore: sel.academicScore } : {}),
+      },
+    });
+    // Earlier weeks' ballots, from the preseason poll on (cached; each week's poll needs the week before).
+    let prev: { media: postseason.PollState | null; coach: postseason.PollState | null } = { media: null, coach: null };
+    for (let w = 0; w < pollWeek; w++) {
+      const counted = regularBefore(w).length;
+      let hit = this.pollCache.get(w);
+      if (!hit || hit.resultsCounted !== counted) {
+        const pic = pictureAt(w, prev, false);
+        hit = { media: pic.pollState!.media, coach: pic.pollState!.coach, resultsCounted: counted };
+        this.pollCache.set(w, hit);
+      }
+      prev = { media: hit.media, coach: hit.coach };
+    }
+    return pictureAt(pollWeek, prev, true);
+  }
+
+  /** The media and coaches' panels, drawn once from the season's streams (T3.4.1 rule 2). */
+  private pollPanels(conferenceIds: readonly number[], uniform: (label: string) => standings.Uniform): { media: postseason.Voter[]; coach: postseason.Voter[] } {
+    if (this.panels) return this.panels;
+    const media = postseason.createPanel({ kind: 'media', size: postseason.PARAMS.params.find((p) => p.name === 'postseason.poll.mediaVoters')!.value, homeConferences: conferenceIds, firstId: 1 }, uniform('poll.panel.media'));
+    const coachSize = postseason.PARAMS.params.find((p) => p.name === 'postseason.poll.coachVoters')!.value;
+    const coach = postseason.createPanel({ kind: 'coach', size: coachSize, homeConferences: conferenceIds, firstId: media.length + 1 }, uniform('poll.panel.coach'));
+    this.panels = { media, coach };
+    return this.panels;
   }
 
   /** Won-lost lines and season totals so far (regular season). */

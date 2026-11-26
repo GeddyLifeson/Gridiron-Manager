@@ -78,7 +78,7 @@ export interface PanelPollInput {
   readonly teamIds: readonly TeamId[];
   readonly results: readonly GameResult[];
   readonly champions: readonly TeamId[];
-  /** Week of the season, 0 for the preseason poll. */
+  /** Poll week, 0 for the preseason poll (counted from the season's first week, whatever the schedule numbers it). */
   readonly week: number;
   /** Preseason view per team, higher is better (program standing and returning talent; caller's model). */
   readonly preseason: ReadonlyMap<TeamId, number>;
@@ -119,9 +119,10 @@ function marginShare(ids: readonly TeamId[], results: readonly GameResult[]): Ma
   return new Map([...sum].map(([t, s]) => [t, s.n ? s.m / s.n : 0]));
 }
 
-/** Teams whose most recent game, played in `week`, was a loss. */
-function freshLosers(results: readonly GameResult[], week: number): Set<TeamId> {
+/** Teams that lost in the latest week of results (the week the voters just watched). */
+function freshLosers(results: readonly GameResult[]): Set<TeamId> {
   const out = new Set<TeamId>();
+  const week = results.reduce((m, g) => Math.max(m, g.week), -Infinity);
   for (const g of results) {
     if (g.week !== week) continue;
     if (g.points[0] < g.points[1]) out.add(g.teams[0]);
@@ -140,7 +141,7 @@ export function panelPoll(input: PanelPollInput, rules: RuleValues, rng: Uniform
   const nPre = normaliser(ids, (t) => input.preseason.get(t) ?? 0);
   const nBrand = normaliser(ids, (t) => input.prestige.get(t) ?? 0);
   const margin = marginShare(ids, games);
-  const losers = freshLosers(games, input.week);
+  const losers = freshLosers(games);
   const played = new Set(games.flatMap((g) => [...g.teams]));
 
   const points = new Map<TeamId, number>(ids.map((t) => [t, 0]));
