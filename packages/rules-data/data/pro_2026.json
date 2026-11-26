@@ -4943,6 +4943,11 @@
    "key": "foul.block_after_fair_catch_signal.dq",
    "value": "none",
    "factId": "F-rule-1903"
+  },
+  {
+   "key": "foul.intentional_grounding.enforcement",
+   "value": "previous_or_spot_worse",
+   "factId": "F-rule-1905"
   }
  ]
 }

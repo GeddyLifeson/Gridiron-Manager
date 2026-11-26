@@ -65515,6 +65515,80 @@
      "reason": "First load from the 2026 rule book text (WP-01)."
     }
    ]
+  },
+  {
+   "id": "F-rule-1905",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Intentional grounding: enforcement procedure of B8.5: previous_or_spot_worse (pro, 2026 rules).",
+   "value": "previous_or_spot_worse",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 2, Article 1, Penalty (a) (text copy rulebook_2026.txt, line 2253)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Loss of down and 10 yards from the previous spot; or",
+     "value": "previous_or_spot_worse"
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 2, Article 1, Penalty (b) (text copy rulebook_2026.txt, line 2254)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Loss of down at the spot of the pass if the spot is more than 10 yards from the previous spot or more than half the",
+     "value": "previous_or_spot_worse"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:foul.intentional_grounding.enforcement"
+   ],
+   "notes": "Ten yards from the previous spot, or the spot of the pass when that is worse for the passer; the profile is not limited by half the distance. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1906",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Intentional grounding: enforcement procedure of B8.5: standard (college, 2026 rules).",
+   "value": "standard",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 2, Penalty [f-h] (text copy ncaa-rulebook-2026.txt, line 3673)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Loss of down at the spot of the foul",
+     "value": "standard"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:foul.intentional_grounding.enforcement"
+   ],
+   "notes": "No yardage: loss of down at the spot of the foul. This fits the standard procedure with the foul row spot_foul true and yards 0 (foul.intentional_grounding.spot_foul and .yards), so no new profile is needed. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
   }
  ]
 }
