@@ -117,12 +117,9 @@ describe('crowd ducking under alerts (MB-10)', () => {
     expect(Math.abs(rmsDb(m.buses.crowd, end + 2, end + 4) - before), 'recovered').toBeLessThan(0.5);
   });
 
-  // KNOWN FINDING (PV-17, 2026-11-26). MB-10 says the crowd dips "for up to 2.5 s". The engine caps one
-  // window at 2.5 s, but a chain of alerts each starting just after the last one ended opens a fresh window
-  // every time, so the crowd stays down for the whole chain (about 3 s here, and as long as the chain goes).
-  // `it.fails` passes while the finding is open and fails the day the engine is fixed, which is the cue to
-  // turn it into a plain `it`. Owner: PV-06 (audio engine).
-  it.fails('back-to-back alerts never hold the crowd down for more than 2.5 s in total (MB-10)', () => {
+  // PV-17 found that a chain of alerts re-opened the dip each time and held the crowd down for the whole chain.
+  // Fixed 2026-11-26 (PV-06 Ducker): one episode is capped at 2.5 s and a new one starts only at full level.
+  it('back-to-back alerts never hold the crowd down for more than 2.5 s in total (MB-10)', () => {
     const g = rig();
     ['officials.micTone', 'ui.alert.injury', 'ui.alert.twoMinute', 'ui.alert.timeout', 'ui.alert.challengeWindow', 'officials.micTone']
       .forEach((id, i) => g.engine.play(id, { when: 10 + i * 0.45 }));
@@ -162,15 +159,8 @@ describe('overlap: one voice per lane (MB-7, MB-9, MB-12)', () => {
   // scheduler believes the lane is free while the sound is still going, and two stingers overlap for real.
   // These recipes do that today (found by this suite on 2026-11-26). The list is exact: a new mismatch fails
   // the test, and fixing one forces its name off the list. Owners: PV-02 (cue table), PV-07 (recipes).
-  const KNOWN_LONGER_THAN_ROW: Readonly<Record<string, string>> = {
-    'crowd.react.touchdown': 'recipe 4020 ms, row 2500 ms',
-    'crowd.react.turnover': 'recipe 3040 ms, row 2500 ms',
-    'crowd.react.flagAgainstHome': 'recipe 3000 ms, row 2500 ms',
-    'officials.whistle.stoppage': 'recipe 952 ms, row 700 ms',
-    'officials.micTone': 'recipe 770 ms, row 400 ms',
-    'cadence.relay.clean': 'recipe 285 ms, row 250 ms',
-    'ui.callConfirm': 'recipe 264 ms, row 200 ms',
-  };
+  // Empty since 2026-11-26: the cue-table rows were raised to the recipe lengths. A new mismatch fails.
+  const KNOWN_LONGER_THAN_ROW: Readonly<Record<string, string>> = {};
   const lengthMs = (id: string) => Math.round(recipeSeconds({ layers: RECIPES.find((r) => r.id === id)!.recipe.layers }) * 1000);
 
   it('recipes that outlast their cue-table row are exactly the known list', () => {
@@ -191,13 +181,14 @@ describe('overlap: one voice per lane (MB-7, MB-9, MB-12)', () => {
     expect(overlaps(planned.map((p) => ({ id: p.soundId, startsAt: p.startMs, endsAt: p.endMs })))).toEqual([]);
   });
 
-  it('played through the engine, planned stingers overlap only where a recipe outlasts its row', () => {
+  it('played through the engine with the plan\'s cut-ins, planned stingers never overlap', () => {
     const recipeFor = (cueId: string) => Object.entries(RECIPE_CUE_SOUND).filter(([, v]) => v === cueId).map(([k]) => k);
     const ids = ['whistle', 'referee_mic_tone', 'cadence_tone', 'relay_tone', 'call_confirm', 'alert_injury', 'alert_timeout_called'];
     const requests = Array.from({ length: 40 }, (_, i) => ({ soundId: ids[(i * 5) % ids.length]!, tickMs: i * 330 }));
     const planned = scheduleLane('stinger', requests);
     const g = rig();
-    for (const p of planned) g.engine.play(recipeFor(p.soundId)[0]!, { when: p.startMs / 1000, variantDraw: 0 });
+    // The plan's cut-ins are passed on as stopAt, so a better-ranked stinger really ends the one it cuts.
+    for (const p of planned) g.engine.play(recipeFor(p.soundId)[0]!, { when: p.startMs / 1000, stopAt: p.endMs / 1000, variantDraw: 0 });
     const real = g.played.filter((p) => cueSound(RECIPE_CUE_SOUND[p.id]!)!.lane === 'stinger');
     const bad = overlaps(real).filter(([a, b]) => !(a in KNOWN_LONGER_THAN_ROW) && !(b in KNOWN_LONGER_THAN_ROW));
     expect(bad).toEqual([]);

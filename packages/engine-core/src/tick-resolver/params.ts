@@ -18,6 +18,12 @@ const ROWS: readonly ParamRow[] = [
   ['interact.wonRecoveryS', 1.5, 0.5, 4, 's', A, 'J6.1.2', 'defender out of the play after A = +1 (pancake or locked out)'],
   ['interact.shedFreeS', 0.6, 0.1, 2, 's', A, 'J6.1.2', 'no blocker can pick him up again this soon after a shed'],
   ['interact.interiorHalfWidthYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'rushers inside this lateral distance use the interior row'],
+  // J2.1.3 planted cuts on drawn paths (route-cuts.ts).
+  ['route.cutMatchYd', 4, 0.5, 8, 'yd', A, 'J2.1.3', 'a break point moved by a K1 depth or width error is still his break when his aim is this close to the drawn one'],
+  // J7.3.1 inputs: whom the quarterback watches while he is on a read (plugs.ts). The count is spent
+  // from his J3.1.2 attention capacity (3 at grade 50), after the receiver himself.
+  ['qb.watchDefenders', 2, 0, 4, 'count', A, 'J7.3.1', 'J15.4.1 interception rate by depth'],
+  ['qb.watchAheadYd', 12, 4, 25, 'yd', A, 'J7.3.1', 'J15.4.1 interception rate by depth'],
   // The catch point as bodies (J6.5.1). The chances themselves are the contest file's rows.
   ['catch.reachPerHeight', 1.3, 1.1, 1.5, 'ratio', A, 'J6.5.1', 'standing reach as a share of height; a ball above it cannot be played'],
   ['catch.leapPerZYd', 0.1, 0, 0.3, 'yd/z', A, 'J6.5.1', 'reach height gained per z of explosiveness'],
@@ -33,6 +39,11 @@ const ROWS: readonly ParamRow[] = [
   // A play from a kicking look (F12.7.1): the long snap flies at the speed the punt operation gives it,
   // `this depth / (ball.block.puntSnapS - ball.block.puntPerZS * z_longSnap)`, to whoever takes it.
   ['kickLook.puntSnapDepthYd', 14.5, 13, 16, 'yd', 'bible', 'J9.4.3', 'J9.4.3: a long snap of 0.75 s to a punter at 14 to 15 yd'],
+  // I4.6.1 the trigger read of a fake: the designated player reads the look right with this chance at grade 50
+  // (the bible's starting values, status Assumption), moved on the logit scale by his play_recognition z.
+  ['kickLook.check.reppedChance', 0.85, 0.5, 0.99, 'ratio', A, 'I4.6.1', 'I4.6.1 starting value: a fake repped in practice this week'],
+  ['kickLook.check.installedChance', 0.6, 0.3, 0.95, 'ratio', A, 'I4.6.1', 'I4.6.1 starting value: a fake installed but not repped'],
+  ['kickLook.check.perZ', 0.4, 0, 1.5, 'logit/z', A, 'I4.6.1', 'design value: a reader 2 z sharp reads a repped look about 93% of the time'],
   // Stand-ins. Not football: they only let a play end while the real modules are missing.
   ['standIn.qbHoldS', 6, 2, 20, 's', A, 'J7', 'stand-in only'],
   ['standIn.touchGapYd', 0.1, 0, 1, 'yd', A, 'J8', 'stand-in only'],

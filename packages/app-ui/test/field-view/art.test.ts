@@ -312,3 +312,17 @@ describe('frame budget with the art on (P6.2, CPU side only)', () => {
     expect(ms).toBeLessThan(16.7 / 4);
   });
 });
+
+describe('Classic theme turf by venue surface (PV-18 field-surfaces.json, plan 2.1)', () => {
+  it('Classic paints the period artificial turf or grass by surface; plain themes ignore the surface', async () => {
+    const { fieldPalette, fieldSurfaceFor } = await import('../../src/field-view/index.ts');
+    const { SURFACE_COLOURS } = await import('../../src/presentation/era/index.ts');
+    const art = fieldPalette('classic', 'none', 'artificial'), grass = fieldPalette('classic', 'none', 'grass');
+    expect([art.turf, art.endZone, art.surround]).toEqual([SURFACE_COLOURS.artificial.turf, SURFACE_COLOURS.artificial.endZone, SURFACE_COLOURS.artificial.surround]);
+    expect(grass.turf).toBe(SURFACE_COLOURS.grass.turf);
+    expect(fieldPalette('dark', 'none', 'artificial').turf).toBe(fieldPalette('dark', 'none', 'grass').turf);
+    expect(fieldSurfaceFor('artificial')).toBe('artificial');
+    expect(fieldSurfaceFor('natural')).toBe('grass');
+    expect(fieldSurfaceFor(undefined)).toBe('grass');
+  });
+});

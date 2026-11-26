@@ -221,6 +221,11 @@ const ROWS = [
   ['adjustMinDepthYd', 8, 3, 15, 'yd', 'assumption', 'K1.3.2', SCR],
   ['holeRadiusYd', 5, 2, 10, 'yd', 'assumption', 'K1.3.2', SCR],
   ['patienceShiftMax', 0.15, 0, 0.4, 'ratio', 'assumption', 'K1.3.2', 'J8 patience parameter bounds'],
+
+  // J3.5.1 playing a ball in the air: a man who has located a pass goes to where he judges it will come down.
+  ['ballReachYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J3.5.1', 'J15.4.1 completion by depth (K1 ball pursuit)'],
+  ['ballStrideShare', 0.75, 0.4, 1, 'ratio', 'assumption', 'J3.5.1', 'J15.4.1 completion by depth (K1 ball pursuit)'],
+  ['ballSettleYd', 0.5, 0.2, 1.5, 'yd', 'assumption', 'J3.5.1', 'J15.4.1 completion by depth (K1 ball pursuit)'],
 ] as const satisfies readonly ParamRow[];
 
 export type PlayerAiParamName = (typeof ROWS)[number][0];
