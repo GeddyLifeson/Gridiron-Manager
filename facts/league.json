@@ -8159,16 +8159,31 @@
      "primary": false,
      "quote": "are no longer in effect",
      "value": 0
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 33 Section 2(a) (text copy cba_2020.txt, line 9462)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "shall be completely free to negotiate and sign a Player Contract with any Club at any time during the League Year",
+     "value": 0
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). CONFLICT WITH F-league-0078 (value 4): ESPN (2025-08-26) says \"Every Tuesday, teams can designate four players as protected\", with no citation; the 2020 CBA text has no protection clause; no NFL page lists protections. Two of three sources say ended, so the 2026 value is most likely 0, but no league document was found either way. The key owner should decide; F-league-0078 was left unchanged.",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). CONFLICT WITH F-league-0078 (value 4): ESPN (2025-08-26) says \"Every Tuesday, teams can designate four players as protected\", with no citation; the 2020 CBA text has no protection clause; no NFL page lists protections. Two of three sources say ended, so the 2026 value is most likely 0, but no league document was found either way. The key owner should decide; F-league-0078 was left unchanged. CBA CHECK (2026-11-26, local text copy): Article 33 Section 2(a) says a practice squad player is \"completely free\" to sign with any club at any time \"without penalty or restriction\", and Article 33 has no protection clause (searched \"protect\" in the article). That is the text of record and implies no protection, but it is an inference from absence: the 2020 protections were a pandemic-era change that Wikipedia and Fantasy Nerds say ended after 2021. The only source for four a week in 2025 is one uncited ESPN line (2025-08-26). Marlon/key owner still decides; F-league-0078 is unchanged.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "CBA Article 33 Section 2(a) added."
     }
    ]
   },
