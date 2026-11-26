@@ -147,6 +147,37 @@ export function interestTable(state: RecruitingState, ctx: RecruitingContext, pr
   return out.sort((a, b) => b.interest - a.interest || a.teamId - b.teamId);
 }
 
+/** The first two rows of `interestTable` and one school's row, without building and sorting the whole table. */
+interface TableTop { readonly first: InterestRow | null; readonly second: InterestRow | null; readonly ours: InterestRow | null; readonly oursFirst: boolean }
+
+/** True when row a sorts before row b in `interestTable` (interest high first, then team id low first). */
+const before = (a: InterestRow, b: InterestRow): boolean => a.interest > b.interest || (a.interest === b.interest && a.teamId < b.teamId);
+
+function topOfTable(state: RecruitingState, ctx: RecruitingContext, prospectId: number, teamId: number): TableTop {
+  const p = state.prospects[prospectId];
+  let first: InterestRow | null = null, second: InterestRow | null = null, ours: InterestRow | null = null;
+  for (const t of tiesOfProspect(state, prospectId)) {
+    const row = { teamId: t.teamId, interest: p ? interestOf(state, ctx, p, t.teamId, t) : 0 };
+    if (ours === null && row.teamId === teamId) ours = row;
+    if (first === null || before(row, first)) { second = first; first = row; }
+    else if (second === null || before(row, second)) second = row;
+  }
+  return { first, second, ours, oursFirst: ours !== null && ours === first };
+}
+
+/** `trueStanding` from the top of the table: the same words by the same gaps. */
+function standingFromTop(top: TableTop): StandingWord {
+  if (top.ours === null) return 'no_real_chance';
+  const lead = top.first!.interest;
+  const ours = top.ours.interest;
+  if (top.oursFirst) {
+    const second = top.second?.interest ?? 0;
+    return ours - second >= P('word.leadGap') ? 'we_lead' : 'top_group';
+  }
+  const gap = lead - ours;
+  return gap <= P('word.topGap') ? 'top_group' : gap <= P('word.mixGap') ? 'in_the_mix' : gap <= P('word.trailGap') ? 'trailing' : 'no_real_chance';
+}
+
 /** Where a school truly stands, in the staff's words (T4.4.1). Used to draw evidence, never shown. */
 export function trueStanding(state: RecruitingState, ctx: RecruitingContext, prospectId: number, teamId: number, table: readonly InterestRow[] = interestTable(state, ctx, prospectId)): StandingWord {
   const i = table.findIndex((r) => r.teamId === teamId);
@@ -203,9 +234,9 @@ export function addEvidence(state: RecruitingState, teamId: number, prospectId: 
 export function statement(state: RecruitingState, ctx: RecruitingContext, prospectId: number, teamId: number, listenerId: number, speakerId: number, kind: EvidenceKind, day: number, aiJudgementError: number): Evidence {
   const p = state.prospects[prospectId]!;
   const r = ctx.rng(['read', prospectId, teamId, listenerId, day, speakerId]);
-  // Nothing between here and the rival below changes interest, so one table serves both.
-  const table = interestTable(state, ctx, prospectId);
-  const truth = trueStanding(state, ctx, prospectId, teamId, table);
+  // Nothing between here and the rival below changes interest, so one look serves both.
+  const top = topOfTable(state, ctx, prospectId, teamId);
+  const truth = standingFromTop(top);
   const familiarity = edgeOf(state, listenerId, speakerId) / SCALE;
   const openness = speakerId === prospectId ? p.openness : P('read.circleOpenness');
   const honest = r.chance(clamp(openness * (P('read.opennessFloor') + (1 - P('read.opennessFloor')) * familiarity), 0, 1));
@@ -221,7 +252,7 @@ export function statement(state: RecruitingState, ctx: RecruitingContext, prospe
     reason = { key: top, positive: preferenceScore(state, ctx, p, teamId, member, top) >= P('half') };
   }
   if (r.chance(openness * P('read.rivalShare'))) {
-    const leader = table.find((x) => x.teamId !== teamId);
+    const leader = top.first !== null && top.first.teamId !== teamId ? top.first : top.second;
     if (leader) rival = leader.teamId;
   }
   return { kind, day, byStaffId: listenerId, signal: word, rivalTeamId: rival, reason };
