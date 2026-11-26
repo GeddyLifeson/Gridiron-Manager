@@ -7,7 +7,7 @@ export { buildMarkings, markingStatus, PRO_MARKINGS, type FieldMarkings, type Ma
 export { markerFor, positionLetter, DEFAULT_MARKERS, type MarkerStyle, type MarkerTable, type MarkerShape } from './markers.ts';
 export { resolveTeamColours, fieldPalette, inkOn, contrastRatio, relativeLuminance, type ResolvedColours, type FieldPalette } from './colours.ts';
 export { buildCues, activeCues, cueDisplaySeconds, CUE_FOR, type Cue, type CueShape } from './cues.ts';
-export { Playback, ReplayAllowance, SPEEDS, stills, PlaybackRuleError, type PlaybackStill } from './playback.ts';
+export { Playback, ReplayAllowance, SPEEDS, FILM_STUDY_SPEEDS, stills, PlaybackRuleError, type PlaybackStill } from './playback.ts';
 export { FieldRenderer, OverlaySourceError, type Canvas2DLike, type RenderOptions } from './renderer.ts';
 export { PARAMS, param } from './params.ts';
 export { FieldView, type FieldViewProps } from './FieldView.tsx';

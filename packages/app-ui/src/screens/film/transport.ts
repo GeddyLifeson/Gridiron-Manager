@@ -1,10 +1,11 @@
 // Film transport (N1.1.1, O2.6.1): the clicker. Speeds a quarter to double real time (keys 1 to 4),
 // one-tick steps both ways, jumps between event markers, loop from snap to whistle, rewind to the snap,
 // and moving through the plays of a cut-up. It moves a cursor over stored ticks; it never simulates.
-import { FILM_MOVE_MODES, type FilmFrames } from '../../field-view/index.ts';
+import { FILM_MOVE_MODES, FILM_STUDY_SPEEDS, type FilmFrames } from '../../field-view/index.ts';
 import type { FilmEventLike } from './types.ts';
 
-export const FILM_SPEEDS = [0.25, 0.5, 1, 2] as const;
+/** One speed table with the G-03 playback (PV-12): the film transport reads `SPEEDS.film`'s source. */
+export const FILM_SPEEDS = FILM_STUDY_SPEEDS;
 export type FilmSpeed = (typeof FILM_SPEEDS)[number];
 
 export type MarkerKind = 'snap' | 'contact' | 'throw' | 'catch' | 'whistle';
