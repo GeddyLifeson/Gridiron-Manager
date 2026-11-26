@@ -138,10 +138,10 @@ function rowStates(row: CatalogueRow, grid: readonly SituationState[]): Situatio
 }
 
 /**
- * G7.2.2 status of every row. A row is covered when the sheet's situation boxes together match at least the
- * cover share (80%) of the row's grid states (G7.2.2 "a box"; read here as the boxes together, so a third and
- * long split into two boxes counts), partly covered below that, missing at none. Category rows need a box of
- * that category; `present` names categories met elsewhere on the sheet (the script meets "script").
+ * G7.2.2 status of every row. A box covers a row when its rule matches at least the cover share (80%) of
+ * the row's grid states; the best box below that makes the row partly covered; no matching box, missing.
+ * Category rows need a box of that category; `present` names categories met elsewhere (the script meets
+ * "script").
  */
 export function checkCatalogue(boxes: readonly CatalogueBox[], situations: ReadonlyMap<string, SituationRule>, grid: readonly SituationState[], table: ReferenceTable | null, present: ReadonlySet<Category> = new Set()): RowCheck[] {
   const rules = boxes.map((b) => (b.situationId === null ? undefined : situations.get(b.situationId))).filter((r): r is SituationRule => r !== undefined);
@@ -153,8 +153,10 @@ export function checkCatalogue(boxes: readonly CatalogueBox[], situations: Reado
     else if (row.category !== null) status = boxes.some((b) => b.category === row.category) || present.has(row.category) ? 'has_box' : 'missing';
     else {
       const states = rowStates(row, grid);
-      const hit = states.filter((s) => rules.some((r) => situationMatches(r, s))).length;
-      share = states.length === 0 ? 0 : hit / states.length;
+      for (const r of rules) {
+        const hit = states.filter((s) => situationMatches(r, s)).length;
+        share = Math.max(share, states.length === 0 ? 0 : hit / states.length);
+      }
       status = share >= param('catalogue.coverShare') ? 'covered' : share > 0 ? 'partly' : 'missing';
     }
     if (status === 'has_box' && row.category !== null) share = 1;
