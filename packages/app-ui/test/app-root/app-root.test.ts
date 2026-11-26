@@ -65,7 +65,7 @@ describe('season session adapter', () => {
     it(`${level}: advance to game day, the staff coaches it, the result reaches the record and the table`, () => {
       const teams = level === 'pro' ? CONTENT.proLeague.league.clubs : CONTENT.college.schools;
       const seatTeamKey: string = key ?? teams[0].id;
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '0f1e2d3c4b5a6978', seatTeamKey });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '0f1e2d3c4b5a6978', seatTeamKey, resolver: 'reference' });
       const port = careerPortFromSeason(sp, { level, seasonYear: 2026, resolve, consoleConfig: () => { throw new Error('no console in this test'); } });
       const t0 = port.today();
       expect(t0.record).toEqual({ w: 0, l: 0, t: 0 });
@@ -118,7 +118,7 @@ describe('a game on the staff sheets through the career port', () => {
   for (const [level, ruleSetId] of [['pro', 'pro_2026'], ['college', 'college_2026']] as const) {
     it(`${level}: game day opens the console, keys play it to the final, the score lands in the record`, () => {
       const teams = level === 'pro' ? CONTENT.proLeague.league.clubs : CONTENT.college.schools;
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[1].id });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[1].id, resolver: 'reference' });
       const port = careerPortFromSeason(sp, { level, seasonYear: 2026, resolve, consoleConfig: (gameId) => gameCalling.staffConsoleConfig(ruleSetId, gameId, DEFAULT_KEYMAP.bindings) });
       port.advanceToGameDay();
       const session = port.startGame();

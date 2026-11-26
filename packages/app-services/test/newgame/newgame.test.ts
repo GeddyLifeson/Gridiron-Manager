@@ -3,7 +3,7 @@
 // The world is a trimmed cut of the real content (4 clubs, 4 schools) so the real engine runs in seconds.
 import { describe, expect, it } from 'vitest';
 import * as career from '@gm/career';
-import { generation, loop } from '@gm/world';
+import { generation, loop, season } from '@gm/world';
 import { newgame } from '../../src/index.ts';
 
 function trimmed(clubs: number, schools: number): newgame.AppWorldContent {
@@ -47,7 +47,7 @@ describe('history length choices', () => {
 });
 
 describe('a draft of the past, rerun, and the start', { timeout: 300_000 }, () => {
-  const client = newgame.inlineClient({ binding: { content: CONTENT } });
+  const client = newgame.inlineClient({ binding: { content: CONTENT, games: season.historyGamePort({ resolver: 'reference' }) } });
   it('plays every season with the real game, reports progress, reruns with a fresh seed, never touches baked data, and starts the career', async () => {
     const bakedBefore = newgame.bakedFingerprint(newgame.FALLBACK_BAKED);
     const progress: newgame.Progress[] = [];
@@ -106,8 +106,8 @@ describe('a draft of the past, rerun, and the start', { timeout: 300_000 }, () =
   });
 
   it('the same choice and rerun give the same world (the history is a pure function of its seed)', () => {
-    const one = newgame.runDraft(CHOICE, 0, { binding: { content: CONTENT } });
-    const two = newgame.runDraft(CHOICE, 0, { binding: { content: CONTENT } });
+    const one = newgame.runDraft(CHOICE, 0, { binding: { content: CONTENT, games: season.historyGamePort({ resolver: 'reference' }) } });
+    const two = newgame.runDraft(CHOICE, 0, { binding: { content: CONTENT, games: season.historyGamePort({ resolver: 'reference' }) } });
     expect(loop.worldHash(two.built.world)).toBe(loop.worldHash(one.built.world));
   });
 });
@@ -123,7 +123,7 @@ describe('the worker protocol', { timeout: 300_000 }, () => {
         terminate: () => { inside.onmessage = null; },
       };
       inside.postMessage = (m) => queueMicrotask(() => outside.onmessage?.({ data: structuredClone(m) }));
-      newgame.serveWorker(inside, { binding: { content: CONTENT } });
+      newgame.serveWorker(inside, { binding: { content: CONTENT, games: season.historyGamePort({ resolver: 'reference' }) } });
       return outside;
     };
     const client = newgame.workerClient(spawn);

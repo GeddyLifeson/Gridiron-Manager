@@ -37,14 +37,14 @@ describe('career year', () => {
   it('plays a season into the world, runs the offseason, and saves to the same world hash', () => {
     const world = freshWorld();
     const seat = proTeam(world);
-    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames });
+    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames, resolver: 'reference' });
     expect(y.level).toBe('pro');
     const year = world.date.seasonYear;
 
     // A few weeks, then save and restore mid-season: the same world hash, and both continue alike.
     for (let i = 0; i < 3; i++) y.delegateWeek();
     const saved = JSON.parse(JSON.stringify(y.save()));
-    const back = CareerYear.restore({ content: CONTENT, games: doubleGames }, saved);
+    const back = CareerYear.restore({ content: CONTENT, games: doubleGames, resolver: 'reference' }, saved);
     expect(back.view().worldHash).toBe(y.view().worldHash);
     y.delegateWeek(); back.delegateWeek();
     expect(back.view().worldHash).toBe(y.view().worldHash);

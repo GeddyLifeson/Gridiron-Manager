@@ -35,6 +35,8 @@ export interface CareerYearOptions {
   readonly games?: loop.GamePort;
   /** World content binding (tests pass a trimmed one). Default: the app's content. */
   readonly worldContent?: AppWorldContent;
+  /** Play resolver of the seat's season games. Default: the season session's (the tick engine); tests pass `reference`. */
+  readonly resolver?: seasons.RealResolver;
 }
 
 export interface CareerYearSave {
@@ -79,6 +81,7 @@ export class CareerYear {
   readonly seatCompetitionId: number;
   season: SeasonPlay;
   private readonly content: seasons.LeagueContent;
+  private readonly resolver: seasons.RealResolver | undefined;
   private readonly bound: BoundSystems;
   private readonly injected = new Set<number>();
   /** Season-session team id to world team id, for the seat's competition. Rebuilt with each season. */
@@ -95,6 +98,7 @@ export class CareerYear {
   private constructor(o: CareerYearOptions, season: SeasonPlay | null) {
     this.world = o.world;
     this.content = o.content;
+    this.resolver = o.resolver;
     this.seatTeamId = o.seatTeamId;
     const comp = o.world.competitions.find((c) => c.teamIds.includes(o.seatTeamId));
     if (!comp) throw new Error(`career year: team ${o.seatTeamId} is in no competition`);
@@ -148,7 +152,7 @@ export class CareerYear {
 
   private newSeason(): SeasonPlay {
     const year = this.world.date.seasonYear;
-    return SeasonPlay.fromWorld(this.content, this.world, { ruleSetId: this.ruleSetId, seasonYear: year, seedHex: seasonSeedHex(this.world, year), seatTeamId: this.seatTeamId });
+    return SeasonPlay.fromWorld(this.content, this.world, { ruleSetId: this.ruleSetId, seasonYear: year, seedHex: seasonSeedHex(this.world, year), seatTeamId: this.seatTeamId, ...(this.resolver ? { resolver: this.resolver } : {}) });
   }
 
   private mapTeams(): void {
