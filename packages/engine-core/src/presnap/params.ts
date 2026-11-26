@@ -24,6 +24,13 @@ const ROWS: readonly ParamRow[] = [
   ['sub.readinessDivisor', 50, 25, 100, 'iss', 'assumption', 'J5.1.1', SUB],
   ['sub.readinessFloor', 0.25, 0.1, 1, 'ratio', 'assumption', 'J5.1.1', SUB],
   ['sub.extraShare', 0.5, 0, 1, 'probability', 'assumption', 'J5.1.1', SUB],
+  // I4.1.1 a kicking unit coming on for a fourth down: dead ball to set, by unit; more when the unit
+  // was not alerted on third down; the full run-off and run-on when the coach changed his mind after a
+  // unit had started on. The same four starting values as the calling console's marker (console.*Unit*).
+  ['unit.puntSetS', 8, 5, 12, 's', 'bible', 'I4.1.1', 'I4.1.1: set with 10 s left in 95% of trials when alerted'],
+  ['unit.fieldGoalSetS', 9, 5, 13, 's', 'bible', 'I4.1.1', 'I4.1.1: set with 10 s left in 95% of trials when alerted'],
+  ['unit.notAlertedS', 5, 0, 10, 's', 'bible', 'I4.1.1', 'I4.1.1'],
+  ['unit.reversalS', 10, 5, 15, 's', 'bible', 'I4.1.1', 'I4.1.1: a reversal leaves under 8 s in a share of trials'],
   // J5.1.2 substitution hold.
   ['hold.capS', 8, 3, 15, 's', 'bible', 'J5.1.2', 'J5.1.2 acceptance'],
   // J5.1.3 huddle delivery.
