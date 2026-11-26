@@ -1857,6 +1857,199 @@
    ]
   },
   {
+   "key": "league_rules.draft.revoke_window_hours",
+   "type": "number",
+   "meaning": "Hours after the declaration deadline in which an underclassman may revoke",
+   "ownerLeaf": "C7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "hours"
+  },
+  {
+   "key": "club_discipline.club_suspension_roster_status",
+   "type": "option",
+   "meaning": "Roster treatment of a club-suspended player",
+   "ownerLeaf": "L3.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "counts_inactive",
+    "reserve_suspended"
+   ]
+  },
+  {
+   "key": "compliance.feigned_injury.club_fine_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: fine head coach first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_assistant_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: fine assistant first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_player_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: fine player first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.injury_report_shading.club_fine_first_cents",
+   "type": "number",
+   "meaning": "Injury-report penalty: club fine first cents",
+   "ownerLeaf": "C11.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.injury_report_shading.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "Injury-report penalty: fine head coach first cents",
+   "ownerLeaf": "C11.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.signal_recording.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "Signal-recording penalty: fine head coach first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.signal_recording.club_fine_first_cents",
+   "type": "number",
+   "meaning": "Signal-recording penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.crowd_noise.club_fine_first_cents",
+   "type": "number",
+   "meaning": "crowd noise penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.crowd_noise.pick_round_first",
+   "type": "number",
+   "meaning": "crowd noise penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
+   "key": "compliance.ball_tampering.club_fine_first_cents",
+   "type": "number",
+   "meaning": "ball tampering penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.ball_tampering.pick_round_first",
+   "type": "number",
+   "meaning": "ball tampering penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
+   "key": "compliance.ball_tampering.suspension_games_first",
+   "type": "number",
+   "meaning": "ball tampering penalty: suspension games first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "compliance.sideline_interference.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "sideline interference penalty: fine head coach first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.concussion_protocol.club_fine_first_cents",
+   "type": "number",
+   "meaning": "concussion protocol penalty: club fine first cents",
+   "ownerLeaf": "D11.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.tampering_players.fine_executive_first_cents",
+   "type": "number",
+   "meaning": "tampering players penalty: fine executive first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.tampering_players.pick_round_first",
+   "type": "number",
+   "meaning": "tampering players penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "type": "number",
    "meaning": "Minimum cash spending as percent of cap",
@@ -2501,6 +2694,36 @@
    "type": "number",
    "meaning": "Signing bonus of the 2026 first overall pick",
    "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2023_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2023",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2025_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2025",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2026_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2026",
+   "ownerLeaf": "C7.4.1",
    "readBy": [
     "league (G-10 data)"
    ],
