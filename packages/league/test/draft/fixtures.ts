@@ -18,7 +18,7 @@ export const FILE_VALUES: readonly { key: string; value: number; factId: string 
   { key: "league_rules.draft.day2_first_round", value: 2, factId: "F-league-0115" },
   { key: "league_rules.draft.day3_first_round", value: 4, factId: "F-league-0116" },
   { key: "league_rules.draft.comp_first_round", value: 3, factId: "F-league-0117" },
-  { key: "league_rules.draft.revoke_window_hours", value: 72, factId: "F-league-0168" },
+  { key: "league_rules.draft.revoke_window_hours", value: 72, factId: "F-league-0195" },
   { key: "league_rules.draft.comp_cfa_top_pct", value: 35, factId: "F-league-0118" },
   { key: "league_rules.draft.comp_bracket_top_pct_r3", value: 5, factId: "F-league-0119" },
   { key: "league_rules.draft.comp_bracket_top_pct_r4", value: 10, factId: "F-league-0120" },
