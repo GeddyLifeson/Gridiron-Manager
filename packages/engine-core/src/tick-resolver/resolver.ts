@@ -24,6 +24,7 @@ import { createPresnapStages, planPresnap, presnapParams, snapperOf, startingAdv
 import { createTickLoop, createTickWorld, createTrajectoryRecorder, type PlayStage, type TrajectoryRecorder } from '../tick/index.ts';
 import { createCatchPointStage } from './catch-point.ts';
 import { createFinish } from './finish.ts';
+import { createRouteCuts } from './route-cuts.ts';
 import { createInteract } from './interact.ts';
 import { createKickOp, isFreeKick } from './kick-op.ts';
 import { tickResolverParams } from './params.ts';
@@ -83,6 +84,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   const playerAi = createPlayerAi({
     view: perception.view,
     gaze: { atBall: (slot) => perception.gazeAtBall(slot) },
+    landing: (world, slot, out) => perception.landingEstimate(world, slot, out),
     call: (world, sender, listeners, call) => { perception.deliverCall(world, sender, listeners, call, callNoise[sender < SLOTS_PER_TEAM ? 0 : 1]!, callCohesion[sender]!); },
   });
   const ball = createBallStages();
@@ -91,6 +93,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   const kickOp = createKickOp(perception);
   const catchPoint = createCatchPointStage(perception);
   const finish = createFinish();
+  const routeCuts = createRouteCuts(movement);
   const callNoise: [number, number] = [0, 0];
   const callCohesion = new Float64Array(SLOT_COUNT);
 
@@ -141,7 +144,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   };
   // MODULE_ORDER, spelled out. The loop groups by stage name and keeps this order inside each name.
   const fixedStages: readonly PlayStage[] = [
-    gate(perception.stage, () => perceptionFrom), gate(playerAi.stage, () => 0), movement.stage, heldBall,
+    gate(perception.stage, () => perceptionFrom), gate(playerAi.stage, () => 0), routeCuts.stage, movement.stage, heldBall,
     ball.move, ball.detect, boundary.moveStage, boundary.detectStage, interact.stage, kickOp.stage, catchPoint.stage,
     ...built[0]!.stages, ...built[1]!.stages, ...built[2]!.stages, finish, ledger,
   ];
@@ -268,6 +271,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     const snapOf = (): ReturnType<PlayServices['snap']> => (presnap === null ? null : presnap.snap());
     kickOp.setPlay(input, O, s0.context.pressure ?? 0, snapOf, look, kickAs);
     catchPoint.setPlay(contests!);
+    routeCuts.setPlay(world, assignmentOf);
     for (const b of built) b.setPlay?.(world);
 
     const full = input.options.detail === 'full', stopAtTick = input.options.stopAtTick;
