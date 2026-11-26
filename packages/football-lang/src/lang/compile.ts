@@ -15,6 +15,8 @@ import { ACTION_DEFS, BEHAVIOR_DEFS, CONDITION_DEFS, UNIVERSAL_EVENTS, VOCABULAR
 export interface CompileOptions {
   readonly params: ParamTable;
   readonly math?: DeterministicMath | null;
+  /** Extra conditions to evaluate every tick and report in `probeValues`: the designer's and the explain record's "condition values" (J4.6.2). */
+  readonly probes?: readonly Condition[];
 }
 
 /** The compiled form, with the two extras a host and the tests use. */
@@ -23,6 +25,10 @@ export interface Compiled extends CompiledAssignment {
   reset(): void;
   /** `firedRule` values at and above this number are universal events: this number plus the index in `UNIVERSAL_EVENTS`. */
   readonly eventBase: number;
+  /** This tick's value of each rule's trigger, by rule index: 0 false, 1 true, 2 unknown (J4.6.2 "condition values"). */
+  readonly whenValues: Uint8Array;
+  /** This tick's value of each probe in `CompileOptions.probes`. */
+  readonly probeValues: Uint8Array;
 }
 
 /** Fills the vocabulary's defaults into a clause's arguments. Throws when a required one is missing (validation reports it first). */
@@ -81,9 +87,10 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
   const startBehavior = a.behavior.type;
   const k = constsOf(opts.params);
   let cells = 0;
+  const qbParam = a.behavior.params['qb'], qbText = typeof qbParam === 'string' ? qbParam : null;
   const env: CompileEnv = {
     alloc(n) { const at = cells; cells += n; return at; },
-    sel: (text) => compileSelector(text, a.keys),
+    sel: (text) => compileSelector(text, a.keys, qbText),
     a,
     math: opts.math ?? null,
   };
@@ -121,6 +128,8 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
   const clauses: Clause[] = a.rules.map((r) => ({
     when: compileCond(r.when), guard: r.guard === null ? null : compileCond(r.guard), list: compileActs(r.then),
   }));
+  const probes = (opts.probes ?? []).map(compileCond);
+  const whenValues = new Uint8Array(clauses.length), probeValues = new Uint8Array(probes.length);
   const defaults = new Map<string, ActList>(), events = new Map<string, readonly ActList[]>();
   for (const b of VOCABULARY.behaviors) {
     defaults.set(b.name, compileActs([{ name: b.default.action, args: b.default.args, state: b.default.state }]));
@@ -211,6 +220,7 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
     if (!live) { c.startPx = self.px; c.startPy = self.py; c.side = self.py >= 0 ? 1 : -1; }
     let fired = -1;
     ran = false;
+    for (let i = 0; i < probes.length; i++) probeValues[i] = probes[i]!(c);
     const kind = view.ballKind();
 
     // 1. Universal interrupts first (J4.4.1 rule 2): the whistle ends everything.
@@ -224,7 +234,9 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
       // 2. The assignment's `when` clauses in order. Every clause is evaluated so its debounce stays current; the first to fire wins.
       for (let i = 0; i < clauses.length; i++) {
         const cl = clauses[i]!;
-        const raw = cl.when(c) === T ? 1 : 0;
+        const value = cl.when(c);
+        whenValues[i] = value;
+        const raw = value === T ? 1 : 0;
         if (raw === accepted[i]) { differing[i] = 0; continue; }
         differing[i]!++;
         if (flipped[i] === 1 && differing[i]! < k.hysteresisTicks) continue;
@@ -270,5 +282,5 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
     return out;
   };
 
-  return { role: a.role, attention: attentionOf(a), decide, reset, eventBase };
+  return { role: a.role, attention: attentionOf(a), decide, reset, eventBase, whenValues, probeValues };
 }

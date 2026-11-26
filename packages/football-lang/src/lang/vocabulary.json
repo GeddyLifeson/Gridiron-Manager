@@ -1021,7 +1021,7 @@
    "glossary": "Follow a receiver from just behind him.",
    "leaf": "J4.1.3",
    "state": {
-    "manCover": "trail"
+    "manCover": "trailOrInPhase"
    }
   },
   {

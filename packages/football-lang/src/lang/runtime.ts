@@ -151,14 +151,17 @@ export function isSelector(text: string): boolean {
 
 const NONE: Sel = () => null;
 
-/** Compiles a selector to a closure over the view. An unbound `role:` or `qb` resolves to nobody. */
-export function compileSelector(text: string, keys: readonly string[]): Sel {
+/**
+ * Compiles a selector to a closure over the view. An unbound `role:` or `qb` resolves to nobody.
+ * `qb` is the bound quarterback selector (the `qb` behavior parameter that binding writes, J4.3.1).
+ */
+export function compileSelector(text: string, keys: readonly string[], qb: string | null = null): Sel {
   switch (text) {
     case 'self': return (c) => c.self;
     case 'ball': return (c) => c.view.ball();
     case 'carrier': return (c) => { const s = c.view.believedCarrierSlot(); return s === -1 ? null : s === c.slot ? c.self : c.view.entity(s); };
     case 'man': return (c) => (c.man === null ? null : c.man(c));
-    case 'key': { const first = keys[0]; return first === undefined || first === 'key' ? NONE : compileSelector(first, []); }
+    case 'key': { const first = keys[0]; return first === undefined || first === 'key' ? NONE : compileSelector(first, [], qb); }
     case 'nearestThreat': return (c) => nearestOf(c, 0, (e) => c.view.receiverNumber(e.slot) > 0);
     case 'nearestDefender': return (c) => nearestOf(c, c.oppStart);
     case 'nearestRusher': return (c) => nearestOf(c, SLOTS_PER_TEAM, (e) => e.velPx < 0 || e.px < c.k.onLineDepth);
@@ -167,7 +170,7 @@ export function compileSelector(text: string, keys: readonly string[]): Sel {
       eachOf(c, 0, (e) => { if (c.view.receiverNumber(e.slot) > 0 && (best === null || e.px > best.px)) best = e; });
       return best;
     };
-    case 'qb': return NONE;
+    case 'qb': return qb !== null && qb.startsWith('slot:') ? compileSelector(qb, []) : NONE;
     default: break;
   }
   if (text.startsWith('slot:')) { const s = Number(text.slice(5)); return (c) => (s === c.slot ? c.self : c.view.entity(s)); }

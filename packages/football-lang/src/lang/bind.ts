@@ -78,7 +78,14 @@ export function bindAssignments(input: BindInput): BindResult {
     };
     const params: Record<string, Value> = { ...a.behavior.params };
     if (typeof params['man'] === 'string') params['man'] = selector(params['man']);
-    if (mirror) for (const [k, v] of Object.entries(params)) if (typeof v === 'string' && SWAP[v] !== undefined) params[k] = SWAP[v];
+    // Conditions and actions that speak of "the quarterback" read this parameter (qbEyes, rush, spy).
+    if (qbSlot !== null) params['qb'] = `slot:${qbSlot}`;
+    if (mirror) {
+      for (const [k, v] of Object.entries(params)) {
+        if (typeof v === 'string' && SWAP[v] !== undefined) params[k] = SWAP[v];
+        else if (typeof v === 'number' && k.endsWith('Py')) params[k] = flipY(v);
+      }
+    }
     return {
       role: a.role,
       behavior: { type: a.behavior.type, params, path: a.behavior.path.map(point) },

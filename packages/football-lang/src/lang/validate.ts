@@ -102,6 +102,8 @@ export function validateAssignment(input: unknown, opts: ValidateOptions = {}): 
   else if (!BEHAVIOR_DEFS.has(type) || !isBehavior(type)) out.push(make('error', namesTrueState(type) ? 'perception.true_state' : 'vocabulary.unknown_behavior', role));
   const man = a.behavior.params['man'];
   if (man !== undefined) { if (typeof man === 'string') checkSelector(man, role, out); else out.push(make('error', 'vocabulary.arg_type', role)); }
+  const qb = a.behavior.params['qb'];
+  if (qb !== undefined) { if (typeof qb === 'string') checkSelector(qb, role, out); else out.push(make('error', 'vocabulary.arg_type', role)); }
   for (const key of Object.keys(a.behavior.params)) if (namesTrueState(key)) out.push(make('error', 'perception.true_state', role));
 
   const bounds = opts.pathBounds ?? null;
