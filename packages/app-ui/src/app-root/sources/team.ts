@@ -13,11 +13,12 @@ import { people as peopleModels, play, type observer } from '@gm/app-services';
 import type { RouteSources } from '../../routes.ts';
 import type { CapHost } from '../../screens/cap/index.ts';
 import type { CapUi } from '../../screens/cap/view.ts';
-import type { PeopleHost } from '../../screens/people/index.ts';
+import type { PeopleHost, PeopleWorkHost } from '../../screens/people/index.ts';
+import type { UiDelegation } from '../../screens/people/work-view.ts';
 import type { UiCard, UiCoachCard, UiLockerRoom, UiOwner, UiRoster, UiStaff } from '../../screens/people/view.ts';
 import type { CareerPort, SeatWorld } from '../port.ts';
 
-export type TeamSources = Pick<RouteSources, 'people' | 'cap'>;
+export type TeamSources = Pick<RouteSources, 'people' | 'cap' | 'peopleWork'>;
 
 /** The seat's observed world, built once per seat world (the world moves only between seasons). */
 function observedOnce(seat: SeatWorld): () => observer.ObservedWorld {
@@ -60,15 +61,37 @@ export function capHostFor(seat: SeatWorld): CapHost | null {
   };
 }
 
+/**
+ * Delegation over the seat club's staff chart, settings saved in the world's system state. Player meetings
+ * and staff one-on-ones need the promise ledger and agendas the save does not keep yet, so they stay empty.
+ */
+export function peopleWorkHostFor(seat: SeatWorld, onChange?: () => void): PeopleWorkHost {
+  const args = [seat.world, seat.teamId, seat.level, seat.userPersonId] as const;
+  return {
+    delegation: () => play.seatDelegation(...args) as unknown as UiDelegation | null,
+    previewDelegation: (draft) => play.seatDelegation(...args, draft as never) as unknown as UiDelegation | null,
+    meeting: () => null,
+    staffTalk: () => null,
+    staffList: () => (play.seatDelegationInputs(...args)?.staff ?? []).map((s) => ({ personId: s.personId, name: s.name })),
+    text: (key) => peopleModels.jobTitle(key) ?? key,
+    dispatch: (i) => {
+      if (i.kind === 'preset') play.saveSeatDelegation(...args, { preset: i.preset });
+      else if (i.kind === 'saveDelegation') play.saveSeatDelegation(...args, { assignments: i.assignments as never });
+      else return;
+      onChange?.();
+    },
+  };
+}
+
 const made = new WeakMap<CareerPort, TeamSources>();
 
 /** The team hub's route sources for this career (made once per career); none on a quick start, which has no generated world. */
-export function teamSources(port: CareerPort): TeamSources {
+export function teamSources(port: CareerPort, onChange?: () => void): TeamSources {
   let s = made.get(port);
   if (!s) {
     const seat = port.seatWorld?.() ?? null;
     const capHost = seat ? capHostFor(seat) : null;
-    s = seat ? { people: peopleHostFor(seat), ...(capHost ? { cap: capHost } : {}) } : {};
+    s = seat ? { people: peopleHostFor(seat), peopleWork: peopleWorkHostFor(seat, onChange), ...(capHost ? { cap: capHost } : {}) } : {};
     made.set(port, s);
   }
   return s;

@@ -121,3 +121,26 @@ describe('the seat team cap sheet from the world contracts', () => {
     }
   });
 });
+
+describe('the seat team delegation table', () => {
+  it('gives every delegable task a row, staff from the club chart, and saves a preset into the world', () => {
+    const s = started();
+    const w = s.world;
+    const proIds = new Set(w.teams.filter((t) => t.ownerPersonId !== null).map((t) => t.id));
+    const club = [...proIds].sort((a, b) => a - b).find((t) => play.seatDelegationInputs(w, t, 'pro', null) !== null);
+    expect(club).toBeDefined();
+    const i = play.seatDelegationInputs(w, club!, 'pro', null)!;
+    const holders = new Set([...w.jobs.values()].filter((j) => j.teamId === club && j.holderPersonId !== null && j.holderPersonId !== i.headCoachId).map((j) => j.holderPersonId));
+    expect(new Set(i.staff.map((m) => m.personId))).toEqual(holders);
+    expect(i.budgetHours).toBe(168 - 7 * 7.5);
+    const before = play.seatDelegation(w, club!, 'pro', null)!;
+    expect(before.rows.length).toBe(i.tasks.length);
+    try {
+      play.saveSeatDelegation(w, club!, 'pro', null, { preset: 'do_everything' });
+      const after = play.seatDelegation(w, club!, 'pro', null)!;
+      expect(after.rows.every((r) => r.holderId === null)).toBe(true);
+    } finally {
+      w.systemState.delete(play.DELEGATION_KEY);
+    }
+  });
+});
