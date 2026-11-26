@@ -39,3 +39,4 @@ export {
 } from './hall.ts';
 export { STREAM_HISTORY_SCHEDULE, seasonOrder, circleRound, roundsFor, historySchedule, type HistoryScheduleBinding } from './history-schedule.ts';
 export { slimmable, slimRetired, slimStep, withSlimming, ARCHIVE_KEY, archivePerson, archivedCount, archivedPerson, type ArchiveState, type ArchivedPerson } from './archive.ts';
+export { CHECKPOINT_VERSION, checkpointData, restoreCheckpoint, type WorldCheckpoint } from './checkpoint.ts';
