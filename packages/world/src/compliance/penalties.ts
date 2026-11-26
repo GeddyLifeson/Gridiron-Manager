@@ -6,6 +6,8 @@
 import { compliance, draft } from '@gm/league';
 import type { LiveWorld } from '../loop/types.ts';
 import { complianceOf } from './binding.ts';
+import { chargeClub } from '../money/club.ts';
+import { chargePerson } from '../money/person.ts';
 
 /** `LiveWorld.systemState` key of the applied penalties. */
 export const PENALTIES_KEY = 'penalties';
@@ -91,6 +93,7 @@ export function applyPenalties(world: LiveWorld): { readonly applied: number; re
         break;
       case 'fine':
         fines.push({ caseId, party: order.party, cents: order.cents, mayBeRepaidByClub: order.mayBeRepaidByClub, seasonYear: season });
+        payFine(world, caseId, order.party, order.cents, season);
         break;
       case 'suspension':
         if (order.games === null) recorded.push({ caseId, order, seasonYear: season });
@@ -102,6 +105,18 @@ export function applyPenalties(world: LiveWorld): { readonly applied: number; re
   }
   setPenalties(world, { ...before, applied: orders.length, forfeits, fines, suspensions, recorded });
   return { applied: orders.length - before.applied, suspended: suspensions.length, forfeitsPending: forfeits.length };
+}
+
+/**
+ * MO-01: a fine with a published amount is paid in the league year it is ordered: a club's from its owner's
+ * cash (C6.2.3 cash committed), a person's from his own pocket (E6). A person's fine is never moved to his club,
+ * even where the order says it may be repaid, because repaying is the club's choice and no off-screen policy makes it.
+ */
+function payFine(world: LiveWorld, caseId: number, party: compliance.PartyKey, cents: number | null, seasonYear: number): void {
+  if (cents === null || cents <= 0) return;
+  const reason = `fine:case:${caseId}`;
+  if (party.kind === 'team') chargeClub(world, { teamId: party.id, seasonYear, cents, reason });
+  else chargePerson(world, { personId: party.id, seasonYear, cents, reason });
 }
 
 /**
