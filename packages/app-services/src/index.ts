@@ -31,3 +31,5 @@ export * as presentationFeed from './presentation/feed/index.ts';
 export * as cosmetic from './cosmetic/index.ts';
 export * as seats from './read-models/seats/index.ts';
 export * as seatsCommands from './commands/seats/index.ts';
+export * as gameplan from './read-models/gameplan/index.ts';
+export * as gameplanCommands from './commands/gameplan/index.ts';
