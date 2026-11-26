@@ -70,16 +70,30 @@
      "primary": false,
      "quote": "there are no longer limits to the amount of scholarship athletes a school that opts in can have on a team.",
      "value": 105
+    },
+    {
+     "citation": "College Sports Commission, The House Settlement (https://www.collegesportscommission.org/about/the-house-settlement/)",
+     "locator": "House settlement page, benefits list",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "Removal of Scholarship Limits: Removal of previous NCAA scholarship limits allows schools to offer more full and partial athletic scholarships to more student-athletes across sports."
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). A conference may set a lower number (SEC 85 inside the 105 for 2025, bible T5.1.1).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (csc-official)."
     }
    ]
   },
@@ -162,16 +176,41 @@
      "primary": false,
      "quote": "the school will be allowed to share $21.3 million with athletes over 2026-27",
      "value": 21300000
+    },
+    {
+     "citation": "College Sports Commission, The House Settlement (https://www.collegesportscommission.org/about/the-house-settlement/)",
+     "locator": "House settlement page, cap",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "Estimated 2026-27 Cap: Each school can distribute up to approximately $21.3 million to student-athletes for the 2026-27 academic year.",
+     "value": 21300000
+    },
+    {
+     "citation": "College Sports Commission, Revenue Sharing (https://www.collegesportscommission.org/focus-areas/revenue-sharing/)",
+     "locator": "Revenue sharing page",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "The cap for the 2026-27 academic year is estimated to be approximately $21.3 million per school.",
+     "value": 21300000
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (csc-official)."
     }
    ]
   },
@@ -193,16 +232,31 @@
      "primary": false,
      "quote": "a 4% increase in the maximum allowable revenue for disbursement",
      "value": 4
+    },
+    {
+     "citation": "College Sports Commission, The House Settlement (https://www.collegesportscommission.org/about/the-house-settlement/)",
+     "locator": "House settlement page, annual increase",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "With a few potential exceptions, the cap will increase by 4% each year for the first three years",
+     "value": 4
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (csc-official)."
     }
    ]
   },
@@ -234,16 +288,31 @@
      "primary": false,
      "quote": "All deals with third parties worth more than $600 must be reported to the CSC through the online platform NIL Go.",
      "value": 600
+    },
+    {
+     "citation": "College Sports Commission, The House Settlement (https://www.collegesportscommission.org/about/the-house-settlement/)",
+     "locator": "House settlement page, third-party NIL",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "must report any third-party NIL deals with a total value of $600 or more",
+     "value": 600
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The two sources differ on whether exactly $600 is reported (\"or more\" against \"more than\").",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (csc-official)."
     }
    ]
   },
@@ -268,7 +337,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Not confirmed on the College Sports Commission pages read 2026-11-26 (no school count given there).",
    "status": "1 of 3",
    "statusHistory": [
     {

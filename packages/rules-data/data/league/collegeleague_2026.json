@@ -18,8 +18,7 @@
    "key": "league.aid_limit",
    "value": 105,
    "unit": "count",
-   "factId": "F-college-0002",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-college-0002"
   },
   {
    "key": "pay.revenue_share_cap_2025_26",
@@ -31,22 +30,19 @@
    "key": "pay.revenue_share_cap_2026_27",
    "value": 21300000,
    "unit": "USD",
-   "factId": "F-college-0004",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-0004"
   },
   {
    "key": "pay.revenue_share_growth_pct",
    "value": 4,
    "unit": "percent",
-   "factId": "F-college-0005",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-college-0005"
   },
   {
    "key": "pay.nil_report_threshold_usd",
    "value": 600,
    "unit": "USD",
-   "factId": "F-college-0006",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-0006"
   },
   {
    "key": "pay.opted_in_schools",
@@ -172,8 +168,7 @@
    "key": "eligibility.seasons_of_competition",
    "value": 4,
    "unit": "seasons",
-   "factId": "F-college-keys-0005",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0005"
   },
   {
    "key": "eligibility.seasons_clock_years",
@@ -222,8 +217,7 @@
    "key": "academic.first_year_min_hours",
    "value": 24,
    "unit": "credit_hours",
-   "factId": "F-college-keys-0013",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0013"
   },
   {
    "key": "academic.fall_min_hours",
@@ -308,8 +302,7 @@
    "key": "transfer.max_free",
    "value": 0,
    "unit": "count",
-   "factId": "F-college-keys-0027",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0027"
   },
   {
    "key": "transfer.aid_ends_on_entry",
