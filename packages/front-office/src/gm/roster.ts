@@ -57,8 +57,30 @@ export function elevate(gm: GmProfile, squad: readonly PlayerView[], needs: read
 
 /** K7.4.5 rule 1: his ranking of the undrafted pool, K7.2.2 value with a need term. The player chooses (C8.3.2 form, `draft.chooseUdfaClub`). */
 export function undraftedBoard(gm: GmProfile, pool: readonly PlayerView[], needs: readonly Need[], ctx: ValueContext): PersonId[] {
-  return pool.map((v) => ({ id: v.personId, s: playerWorth(gm, v, ctx).value * (1 + P('roster.udfaNeedWeight') * needAt(needs, v.position)) }))
+  const score = udfaScore(gm, needs, ctx);
+  return pool.map((v) => ({ id: v.personId, s: score(v) }))
     .sort((a, b) => b.s - a.s || a.id - b.id).map((x) => x.id);
+}
+
+function udfaScore(gm: GmProfile, needs: readonly Need[], ctx: ValueContext): (v: PlayerView) => number {
+  const weight = P('roster.udfaNeedWeight');
+  const needBy = new Map<string, number>();
+  return (v) => {
+    let n = needBy.get(v.position);
+    if (n === undefined) { n = needAt(needs, v.position); needBy.set(v.position, n); }
+    return playerWorth(gm, v, ctx).value * (1 + weight * n);
+  };
+}
+
+/** The top of `undraftedBoard` without sorting the rest: the highest score, the lower id on a tie. Null for an empty pool. */
+export function undraftedTop(gm: GmProfile, pool: readonly PlayerView[], needs: readonly Need[], ctx: ValueContext): PersonId | null {
+  const score = udfaScore(gm, needs, ctx);
+  let top: PersonId | null = null, topS = -Infinity;
+  for (const v of pool) {
+    const s = score(v);
+    if (top === null || s > topS || (s === topS && v.personId < top)) { top = v.personId; topS = s; }
+  }
+  return top;
 }
 
 export interface CutdownInput {
