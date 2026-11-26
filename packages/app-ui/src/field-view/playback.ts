@@ -6,11 +6,17 @@ import type { FilmFrames } from './format.ts';
 import type { FilmEvent, PlaybackMode } from './types.ts';
 import { param } from './params.ts';
 
-/** Speeds per mode (O2.3.4, O5.4.1): real time and double in games; half speed only in film and practice; the sideline replay at real speed only (I9.3.1). */
+/**
+ * The film room's speeds (N1.1.1: quarter, half, full and double; starting values, Assumption). The one
+ * table both the G-03 playback and the G-63 film transport read (PV-12).
+ */
+export const FILM_STUDY_SPEEDS = [0.25, 0.5, 1, 2] as const;
+
+/** Speeds per mode (O2.3.4, O5.4.1): real time and double in games; slow speeds only in film and practice; the sideline replay at real speed only (I9.3.1). */
 export const SPEEDS: Readonly<Record<PlaybackMode, readonly number[]>> = {
   live: [1, 2],
   replay: [1],
-  film: [0.5, 1, 2],
+  film: FILM_STUDY_SPEEDS,
   practice: [0.5, 1, 2],
 };
 

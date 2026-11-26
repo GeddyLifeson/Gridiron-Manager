@@ -1,0 +1,23 @@
+{
+  "note": "Inputs the college season needs that no shipped data file carries yet. Every row is PROVISIONAL: it is printed in each report, and R1.2.7 gate item 1 cannot pass for the college level while one is in use. Requests to the integrator and the facts threads: CR-G87-2 (league-rule keys), CR-G87-3 (title_method per conference), CR-G87-4 (bowl list and tie-ins).",
+  "leagueRules": [
+    { "key": "standings.tie_win_value", "value": 0.5, "basis": "Fixture value of packages/league/test/standings/fixture.ts (research/audit-r-schedule-tiebreak-playoffs.md 3e item 6, a pro row). The college game has no tied result, so the value is read and never changes an outcome." },
+    { "key": "playoff.reseed", "value": false, "basis": "Fixture value of packages/league/test/postseason/postseason.test.ts for the 2026 college format (bible T3.5.1: a fixed bracket)." },
+    { "key": "cfp.at_large_pool_rank", "value": 0, "basis": "Fixture value of the same test (2026 row: any ranked position)." },
+    { "key": "ranking.lower_division_wins_credited", "value": 0, "basis": "Fixture value of the same test (2026 row: all count)." },
+    { "key": "ranking.schedule_standard_games", "value": 0, "basis": "Fixture value of the same test (2026 row: rule off before 2027, bible T3.1.1 rule 6)." }
+  ],
+  "titleMethod": {
+    "power": "standings",
+    "other": "title_game",
+    "basis": "Bible T3.2 row 'Conference title games': starting value, the power conferences drop the game. Status Conflict (T3.3.1). The world data has no title_method field yet."
+  },
+  "bowls": {
+    "count": 35,
+    "basis": "Bible T3.6.1 rule 2: 35 bowls outside the playoff (Verified count). No bowl list or tie-in data ships yet, so every slot is at-large."
+  },
+  "kickoffMinute": {
+    "value": 720,
+    "basis": "Placeholder for a game whose schedule record sets no kickoff time (college slots, postseason). It moves block times in the seat's week and nothing else. Not a fact."
+  }
+}

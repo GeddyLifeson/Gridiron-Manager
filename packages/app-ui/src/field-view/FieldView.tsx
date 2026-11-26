@@ -3,7 +3,10 @@
 // replay (games), Escape stops the replay, Z changes zoom. In film and practice also Space pauses,
 // the arrow keys step one tick, comma and period change speed, and a slider scrubs.
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { FieldRenderer, type RenderOptions } from './renderer.ts';
+import { FieldRenderer, type RenderOptions, type EndZoneMark } from './renderer.ts';
+import { markingsFor } from './markings.ts';
+import type { FieldNote } from './fieldText.ts';
+import type { CosmeticDraw, FieldWeather } from './weather.ts';
 import { Playback, ReplayAllowance, SPEEDS, stills } from './playback.ts';
 import { resolveTeamColours, fieldPalette } from './colours.ts';
 import type { ThemeId, ColourVisionId } from '../tokens/index.ts';
@@ -25,6 +28,16 @@ export interface FieldViewProps {
   readonly theme?: ThemeId;
   readonly colourVision?: ColourVisionId;
   readonly showPositionLetters?: boolean;
+  /** Level of play: picks the pro or college field markings (Rule 1-2 of each book). Default pro. */
+  readonly level?: 'pro' | 'college';
+  /** Generated team names painted in the end zones, by the side defending each one. */
+  readonly endZones?: { readonly west?: EndZoneMark; readonly east?: EndZoneMark };
+  /** Public field text for the play (result yards, "UNDER REVIEW"); flags add "FLAG" themselves. */
+  readonly notes?: readonly FieldNote[];
+  /** The engine's conditions for the play, from the presentation feed. */
+  readonly weather?: FieldWeather;
+  /** The play's cosmetic display stream: the only source of rain and snow spots. */
+  readonly cosmetic?: CosmeticDraw;
   /** Shared across plays of one game so only the last play can be replayed (I9.3.1). */
   readonly replays?: ReplayAllowance;
   readonly width?: number;
@@ -48,8 +61,16 @@ export function FieldView(props: FieldViewProps) {
   const [, setTick] = useState(0);
   const palette = useMemo(() => fieldPalette(props.theme ?? 'light', props.colourVision ?? 'none'), [props.theme, props.colourVision]);
   const colours = useMemo(() => resolveTeamColours(props.home, props.away, { colourBlindSafe: !!props.colourBlindSafe, palette }), [props.home, props.away, props.colourBlindSafe, palette]);
-  const options: RenderOptions = { mode, orientation, zoom, userSide, colours, palette, showPositionLetters: !!props.showPositionLetters };
-  const renderer = useMemo(() => new FieldRenderer(play, geometry, options), [play, geometry, colours, palette, mode, userSide, props.showPositionLetters]);
+  // Stripes and weather particles are texture: the high-contrast theme drops them (plan 3.1, O5.5.1).
+  const plain = props.theme === 'high-contrast';
+  const options: RenderOptions = {
+    mode, orientation, zoom, userSide, colours, palette, showPositionLetters: !!props.showPositionLetters,
+    markings: markingsFor(props.level ?? 'pro'), stripes: !plain, weatherParticles: !plain,
+    ...(props.endZones ? { endZones: props.endZones } : {}), ...(props.notes ? { notes: props.notes } : {}),
+    ...(props.weather ? { weather: props.weather } : {}), ...(props.cosmetic ? { cosmetic: props.cosmetic } : {}),
+  };
+  const renderer = useMemo(() => new FieldRenderer(play, geometry, options),
+    [play, geometry, colours, palette, mode, userSide, props.showPositionLetters, props.level, props.endZones, props.notes, props.weather, props.cosmetic, plain]);
   const replays = useMemo(() => props.replays ?? new ReplayAllowance(), [props.replays]);
   const pbRef = useRef<Playback | null>(null);
 

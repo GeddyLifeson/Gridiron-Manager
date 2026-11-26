@@ -4,6 +4,7 @@
 // under the letter shown. Pages marked "wp25" were read 2026-11-26 for this work package. Nothing is cited from
 // memory; where a page does not give a number the play or call says so (Assumption).
 import { SOURCES as STARTER_SOURCES, type Source } from '../starter/index.ts';
+import { MORE_SOURCES } from './sources-more.ts';
 
 const RS = (file: string, letter: string): string => `read 2026-11-26 by the scheme-sources research thread (research/scheme-sources/${file}.md, ${letter})`;
 const PC = (l: string): string => RS('pass-concepts-and-reads', l);
@@ -108,6 +109,6 @@ export const FULL_SOURCES: readonly Source[] = [
   s('kirby-tite', 'kirby', `Alex Kirby (clinic by Tyler Manes), tite front, Throw Deep blog, 2021-06-10 (${RN('AL')})`, 'https://throwdeeppublishing.com/blogs/news/the-tite-3-4-defense-what-you-need-to-know', 'primary'),
 ];
 
-export const ALL_SOURCES: readonly Source[] = [...STARTER_SOURCES, ...FULL_SOURCES];
+export const ALL_SOURCES: readonly Source[] = [...STARTER_SOURCES, ...FULL_SOURCES, ...MORE_SOURCES];
 export const SOURCE_BY_ID: ReadonlyMap<string, Source> = new Map(ALL_SOURCES.map((x) => [x.id, x]));
 export type { Source };

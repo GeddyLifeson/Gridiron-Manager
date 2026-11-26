@@ -17,6 +17,7 @@ import { playDesignerRoute, PLAY_DESIGNER_SCREEN_ID } from './screens/play-desig
 import { settingsRoute, SETTINGS_SCREEN_ID } from './screens/settings/index.ts';
 import { playerDesignerRoute, SCREEN_ID as PLAYER_DESIGNER_SCREEN_ID } from './screens/player-designer/index.ts';
 import { editorsRoute, SCREEN_ID as EDITORS_SCREEN_ID } from './screens/editors/index.ts';
+import { gamePlanRoute, callSheetRoute, PLAN_SCREEN_ID, SHEET_SCREEN_ID } from './screens/gameplan/index.ts';
 
 type Args<F extends (...a: never[]) => unknown> = Parameters<F>;
 
@@ -42,6 +43,8 @@ export interface RouteSources {
   readonly playerDesigner?: Args<typeof playerDesignerRoute>[0];
   /** G-96 mods and editors (P7). */
   readonly editors?: Args<typeof editorsRoute>[0];
+  /** G-68 game plan and call sheet (G6, G7); one host serves both screens. */
+  readonly gameplan?: Args<typeof gamePlanRoute>[0];
 }
 
 /** Office screen id that shows the assignment list below head coach (O1.2.1, O7.2.1). */
@@ -72,5 +75,6 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.settings) put(SETTINGS_SCREEN_ID, settingsRoute(s.settings.host, s.settings.extra));
   if (s.playerDesigner) put(PLAYER_DESIGNER_SCREEN_ID, playerDesignerRoute(s.playerDesigner));
   if (s.editors) put(EDITORS_SCREEN_ID, editorsRoute(s.editors));
+  if (s.gameplan) { put(PLAN_SCREEN_ID, gamePlanRoute(s.gameplan)); put(SHEET_SCREEN_ID, callSheetRoute(s.gameplan)); }
   return t;
 }

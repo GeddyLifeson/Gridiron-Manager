@@ -7,7 +7,8 @@ The v1 play and coverage set: the 12 starter plays and 8 starter calls (WP-15) p
 - Dropback and quick passes (`offense-pass.ts`): slant-flat, curl-flat, snag, smash, sail, mesh, shallow cross, dagger, Yankee, post-wheel, Mills.
 - Play action, movement, screens, RPO, quarterback run (`offense-pa.ts`): naked bootleg, leak, pop pass, tunnel screen, bubble screen, glance RPO, power read.
 - Defensive calls (`defense.ts`): Cover 1 robber, Cover 3 flipped safeties, Cover 3 fire zone, Cover 3 fire 3 simulated pressure, Cover 4 palms, nickel Cover 1, nickel Cover 4, dime Cover 2, 3-4 Cover 3.
-- One formation (`formations.ts`): 12 personnel singleback. Everything else uses the starter formations.
+- Formations (`formations.ts`): 12 personnel singleback, flexbone (30), gun trips bunch right, gun empty 3x2 and goal line 23. Everything else uses the starter formations.
+- Deferred items added in the follow-up (`offense-more.ts`, `defense-more.ts`, sources in `sources-more.ts`, research notes in `research/scheme-sources/deferred-plays-and-packages.md`): inside veer (triple option), midline, trap, wham, pin and pull, bunch trail, empty stick, goal-line power, speed option; Cover 3 Sky (safety to the flat), Cover 3 Cloud (corner to the flat), Cover 3 match, goal line 6-5, prevent, short-yardage bear (Cover 0), Cover 4 MEG, Cover 4 Solo (vs trips).
 
 ## Rules it follows
 - Same conventions as the starter set: authored lateral is right-positive and flipped once by `toAssignment`; every play is drawn to the right.
@@ -18,10 +19,13 @@ The v1 play and coverage set: the 12 starter plays and 8 starter calls (WP-15) p
 ## What the sources are and are not
 - Run, pass, play-action, screen and RPO pages were read on 2026-11-26 by the scheme-sources research thread; each source's citation names the research file and letter. The coverage and nickel pages were read for this work package the same day.
 - Primary books and playbooks (Walsh, Coryell, Erhardt-Perkins, Air Raid) and paywalled clinic pages were not reached. Items resting on one group say "1 of 3".
-- Cover 3 Sky and Cloud are named by one source (Ruley) that gives no assignments, so they are not authored as calls. The nickel pages name no yard depths.
+- Cover 3 Sky and Cloud were first named by one source (Ruley) with no assignments; the follow-up found assignments in Bowen, FantasyPoints and X's O's Football, so both are now authored (Sky 2 of 3, Cloud Verified). The nickel pages name no yard depths.
+- The follow-up pages were read through text fetches; several were cut or paywalled (X&O Labs trap and goal-line pages, the FirstDown goal-line teaser, Football Film Room bunch), and those are cited only for what was read.
 
 ## Not in the set yet (deferred)
-Option plays (triple, midline, inside veer), trap and wham, pin-and-pull, bunch and empty formations, Cover 3 match, quarters variants beyond palms, and goal-line, short-yardage and prevent packages. Each needs sources read first.
+- A zone-read triple: no page read gives its assignments.
+- Quarters variants with one source only (Stubbie, Clip, Cone as a full call) and Poach/Special, which no page details player by player.
+- Thin spots in what is authored, each marked in its basis rows: the flexbone alignment of the slotbacks, the back-side split end on the veer, the midline slotbacks, the trap play-side guard, the bunch spacing (Conflict across three sources), the empty two-receiver side, the prevent's depths (one source, which calls it "cover 4" while describing thirds), the bear's per-player rules (one source), and the meaning of "Solo" (Conflict).
 
 ## Owed to the integrator
 Barrel line `export * as full` in `packages/football-content/src/index.ts`, and PARAMS if the integrator wants them. This package owns no schema change.

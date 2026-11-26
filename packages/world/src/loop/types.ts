@@ -62,7 +62,12 @@ export interface SeasonSummary {
   /** Named population pools and their sizes at the season point (X11.2.3). */
   readonly pools: Record<string, number>;
   readonly people: { readonly active: number; readonly inactive: number; readonly deceased: number };
+  /** Regular-season record per team id (C3), read by the next offseason's selection order (C7.2.1). */
+  readonly records: Record<number, TeamRecordLine>;
 }
+
+/** Wins, losses and ties in one season's regular games. */
+export interface TeamRecordLine { readonly wins: number; readonly losses: number; readonly ties: number }
 
 export interface LiveWorld {
   readonly setup: SetupRecord;
@@ -163,3 +168,9 @@ export interface GameRequest {
 }
 export interface GamePlayed { readonly homePoints: number; readonly awayPoints: number; readonly passPlays: number; readonly runPlays: number }
 export type GamePort = (req: GameRequest) => GamePlayed;
+/**
+ * A week's games at once (G-97). One result per request, in request order. The port may play them in any
+ * order and on any number of threads; a result may depend on its own request and on nothing else. A port
+ * must not change the world: the games step stores the rows.
+ */
+export type GameBatchPort = (reqs: readonly GameRequest[]) => readonly GamePlayed[];

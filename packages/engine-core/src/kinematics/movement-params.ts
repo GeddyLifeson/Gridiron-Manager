@@ -44,6 +44,22 @@ export interface SprintFit { readonly vMaxYps: number; readonly tauS: number; re
  * ratio is outside what the model can produce; the nearest end of the bracket is returned.
  */
 export function fitSprint(fortyS: number, tenSplitS: number, p: KinParams, dtS: number = TICK_S / SUBSTEPS): SprintFit {
+  // The fit is a pure function of these five numbers and costs 60 simulated sprints, and the same
+  // players line up play after play, so fits are remembered (G-97). The cache is emptied when full.
+  const key = `${fortyS}|${tenSplitS}|${p.tauMinS!}|${p.tauMaxS!}|${dtS}`;
+  const hit = FITS.get(key);
+  if (hit !== undefined) return hit;
+  const fit = fitSprintUncached(fortyS, tenSplitS, p, dtS);
+  if (FITS.size >= FIT_CACHE_MAX) FITS.clear();
+  FITS.set(key, fit);
+  return fit;
+}
+
+const FIT_CACHE_MAX = 8192;
+const FITS = new Map<string, SprintFit>();
+
+/** The fit itself, with no memory. Kept exported so a test can compare it with the remembered answer. */
+export function fitSprintUncached(fortyS: number, tenSplitS: number, p: KinParams, dtS: number = TICK_S / SUBSTEPS): SprintFit {
   // For a given tau the forty fixes vMax; the split then misses by this much. Falls as tau rises.
   const miss = (tau: number) => (FORTY_YD * unitSprintDistance(tau, dtS, tenSplitS)) / unitSprintDistance(tau, dtS, fortyS) - SPLIT_YD;
   let lo = p.tauMinS!, hi = p.tauMaxS!;
