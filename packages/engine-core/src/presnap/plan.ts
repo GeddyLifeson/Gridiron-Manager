@@ -23,6 +23,8 @@ import {
   type UnitChange,
 } from './formulas.ts';
 import { presnapParams, type PresnapFoulId, type PresnapParams } from './params.ts';
+import { bindProtection, unaccounted, type ProtectionBinding, type ProtectionCall, type Threat } from '../protection/bind.ts';
+export type { ProtectionBinding, ProtectionCall, ProtectionExtra, ProtectionType, SlideRule, ExtraJob } from '../protection/bind.ts';
 
 // ------------------------------------------------------------------------------------------- inputs
 
@@ -89,6 +91,12 @@ export interface PresnapOffense extends PresnapSide {
   readonly canRedirect: boolean;
   /** Opponent preparation item 0 to 1 (D9.6.1). */
   readonly prepared: number;
+  /**
+   * The protection the pass play calls (F5.1.1). With one, the phase binds it against the picture the identifier
+   * believes (J5.4.2 step 3) and the blockers play that binding. Null or absent: no protection is called and every
+   * pass blocker takes the nearest rusher, as before protections existed.
+   */
+  readonly protection?: ProtectionCall | null;
 }
 
 export interface PresnapInput {
@@ -181,6 +189,16 @@ export interface ProtectionResult {
   readonly unblockedLeft: number; readonly unblockedRight: number;
   readonly hot: boolean;
   readonly dropped: boolean;
+  /** The called protection as bound against the believed picture, or null when the play calls none. */
+  readonly binding: ProtectionBinding | null;
+  /** World slots of the true rushers the binding leaves to nobody (the free rushers at the snap). */
+  readonly free: readonly number[];
+  /** Side of the first declared hot rusher of the binding: +1 left, -1 right, 0 none declared. */
+  readonly hotSide: number;
+  /** How many defenders truly rush on this play. */
+  readonly rushers: number;
+  /** The defense's call is a simulated pressure or creeper (a second- or third-level rusher for a dropping lineman). */
+  readonly simulated: boolean;
 }
 
 /** `patched`: defensive team slots that play the check's patch (completed, and the check reached them). */
@@ -500,7 +518,26 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     // Set against the shown picture: blockers slid toward the believed threat, true rushers beyond them are free.
     [uL, uR] = unblockedAfterSet(rL, rR, bL, bR, false, false);
   }
-  const protection: ProtectionResult = { identifierSlot: identifier, recognized, unblockedLeft: uL, unblockedRight: uR, hot: recognized && uL + uR > 0, dropped: protDropped };
+  // F5 and J5.4.2 step 3: a called protection is bound against what the identifier believes. Recognized (and the
+  // protection call not squeezed out by the clock): the true rushers at their true spots. Not: the shown picture,
+  // every defender on the line or walked up to it, and the default Mike.
+  let binding: ProtectionBinding | null = null, free: readonly number[] = [];
+  const call = O.protection ?? null;
+  if (call !== null) {
+    const sees = recognized && !protDropped;
+    const threats: Threat[] = defSlots.map((s) => {
+      const px = sees ? spot[s]!.px : shownDepth(s), py = sees ? spot[s]!.py : shownPy(s);
+      // F5.2.2: a threat on the line is a defender down or walked up within the protection's width (a pressed corner is not one).
+      const line = px <= p['prot.rusherDepthYd']! && Math.abs(py) <= p['prot.threatHalfWidthYd']!;
+      return { slot: s, px, py, line, comes: sees ? rushers.includes(s) : line };
+    });
+    binding = bindProtection(call, [...call.line, ...call.extras.map((e) => e.teamSlot)].map((ts) => ({ teamSlot: ts, px: spot[ts]!.px, py: spot[ts]!.py })), threats,
+      { edgeGapYd: p['prot.edgeGapYd']!, boxHalfWidthYd: p['read.boxWidthYd']!, boxDepthYd: p['read.boxDepthYd']! });
+    free = unaccounted(binding, rushers.map((s) => ({ slot: s, py: spot[s]!.py })));
+    uL = 0; uR = 0;
+    for (const s of free) { if (spot[s]!.py >= 0) uL++; else uR++; }
+  }
+  const protection: ProtectionResult = { identifierSlot: identifier, rushers: rushers.length, simulated: D.simulatedPressure, recognized, unblockedLeft: uL, unblockedRight: uR, hot: recognized && (binding === null ? uL + uR > 0 : binding.hot.length > 0), dropped: protDropped, binding, free, hotSide: binding === null || binding.hot.length === 0 ? 0 : spot[binding.hot[0]!]!.py >= 0 ? 1 : -1 };
 
   // --- Delivery (J5.1.3, J3.6.1) for every slot: huddle call, check, audible.
   const received: [boolean, boolean, boolean][] = [];

@@ -123,6 +123,8 @@ const ROWS: readonly ParamRow[] = [
   ['prot.simulatedK', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.4.2', PROT],
   ['prot.noiseK', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.4.2', PROT],
   ['prot.rusherDepthYd', 2.5, 1, 4, 'yd', 'assumption', 'J5.4.2', PROT],
+  ['prot.threatHalfWidthYd', 7, 4, 10, 'yd', 'assumption', 'F5.2.2', PROT],
+  ['prot.edgeGapYd', 3, 1.5, 5, 'yd', 'assumption', 'F5.4.1', PROT],
   // J5.4.3 checks and audibles.
   ['audible.killS', 2, 1, 3, 's', 'bible', 'J5.4.3', 'J5.4.3 acceptance'],
   ['audible.fullS', 3.5, 3, 4, 's', 'bible', 'J5.4.3', 'J5.4.3 acceptance'],
