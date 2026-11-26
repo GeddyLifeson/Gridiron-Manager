@@ -87,7 +87,6 @@ export interface CoachState {
 }
 
 export function coachState(world: LiveWorld): CoachState {
-  world.systemState ??= new Map();
   let s = world.systemState.get(COACH_STATE) as CoachState | undefined;
   if (!s) {
     s = { heads: new Map(), careers: new Map(), units: new Map(), terms: new Map(), total: new Map(), fit: new Map(), results: null, seen: 0, exits: 0, bottomDemand: 0, openings: new Map() };
