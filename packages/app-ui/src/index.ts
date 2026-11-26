@@ -43,3 +43,4 @@ export * as print from './screens/print/index.ts';
 export * as media from './screens/media/index.ts';
 export * as glossary from './screens/glossary/index.ts';
 export * as decisionLog from './screens/decision-log/index.ts';
+export * as newGame from './screens/new-game/index.ts';
