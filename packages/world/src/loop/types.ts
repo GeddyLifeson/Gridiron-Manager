@@ -163,3 +163,9 @@ export interface GameRequest {
 }
 export interface GamePlayed { readonly homePoints: number; readonly awayPoints: number; readonly passPlays: number; readonly runPlays: number }
 export type GamePort = (req: GameRequest) => GamePlayed;
+/**
+ * A week's games at once (G-97). One result per request, in request order. The port may play them in any
+ * order and on any number of threads; a result may depend on its own request and on nothing else. A port
+ * must not change the world: the games step stores the rows.
+ */
+export type GameBatchPort = (reqs: readonly GameRequest[]) => readonly GamePlayed[];
