@@ -130,6 +130,8 @@ export function seenFrom(
   const deadIndex = deadBallIndex(truth);
   const removed = new Set<number>();
   const replaced = new Map<number, TruthEvent>();
+  /** Events the crew saw that did not happen, put in just before the event at the index. */
+  const inserted = new Map<number, TruthEvent[]>();
   let cut: Cut | null = null;
   let deadSwap: TruthEvent[] | null = null;
   let impetus = truth.endZoneImpetus;
@@ -238,6 +240,11 @@ export function seenFrom(
       }
     } else if (r.aspect === 'spot' && !fixed && e.type === 'dead_ball' && !deadSwap) {
       deadSwap = [{ ...e, spot: { x: Number(r.calledValue), y: e.spot.y } }];
+    } else if (r.aspect === 'touching' && !fixed && e.type === 'possession' && r.trueValue === 'untouched') {
+      // A touch by the receivers that did not happen, seen just before the kickers got the ball. Nothing else changes:
+      // the play runs on as it did, and the kick rules decide what the touch means (B6.3.2 item 4).
+      inserted.set(at, [{ type: 'kick_touch', t: e.t, marginYd: r.marginYd, marginS: r.marginS, visibility: r.visibility,
+        kind: 'touched_by_receivers', playerId: null, side: otherSide(e.side), spot: e.spot }]);
     } else if (r.aspect === 'touching' && !fixed && e.type === 'kick_touch') {
       // A touch of the kick the crew did not see, and the muff that went with it.
       removed.add(at);
@@ -261,6 +268,8 @@ export function seenFrom(
   const out: TruthEvent[] = [];
   const end = cut ? cut.index : ev.length;
   for (let i = 0; i < end; i++) {
+    const before = inserted.get(i);
+    if (before) out.push(...before);
     if (removed.has(i)) continue;
     if (i === deadIndex && deadSwap && !cut) { out.push(...deadSwap); continue; }
     out.push(replaced.get(i) ?? ev[i]!);

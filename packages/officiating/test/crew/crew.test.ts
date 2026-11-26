@@ -1,7 +1,7 @@
 // WP-05 crew model: B11.1 to B11.4. Run on fixtures (see helpers.ts); real rule values come with WP-01.
 import { describe, expect, it } from 'vitest';
 import { seedFromNumber, stream } from '@gm/engine-core';
-import { OfficialPosition, PlayTruth, RuleKeyManifest, playTruthProblems, type Ruling, type RulingContext } from '@gm/schema';
+import { OfficialPosition, PlayTruth, RuleKeyManifest, playTruthProblems, type Ruling, type RulingContext, type TruthEvent } from '@gm/schema';
 import {
   CREW, PARAMS, RULE_KEYS, WATCH, baseParam, crewModel, crewParamNames, detectionClass, drawCrew, foulsAfterReview, neutralCrew, officialSpots,
   phantomCallChance, rulingErrorChance, seenFrom, trueFoulCallChance, viewOf,
@@ -18,6 +18,11 @@ const everyPlay = () => [
 const numbered = (t: PlayTruth, playNumber: number): PlayTruth => ({ ...t, playNumber });
 const rate = (n: number, f: (i: number) => boolean) => { let k = 0; for (let i = 1; i <= n; i++) if (f(i)) k++; return k / n; };
 const wrong = (r: Ruling) => r.calledValue !== r.trueValue;
+/** Punt that lands at x = 80 untouched and is recovered by kicker-side player 47 at x = 84. */
+const puntRecoveredUntouched = (landing: { marginYd?: number | null; visibility?: 'open' | 'crowded' | 'pile' } = {}) => truthOf([
+  ev.snap(), ev.kick(2.0, 'punt', 80), { ...ev.kickTouch(5.8, 'landed', 1, 1, 80, landing), playerId: null, side: null } as TruthEvent,
+  ev.possession(7.0, 0, 47, 84, 'kick_recovery'), ev.dead(7.0, 'kick_recovered_by_kickers', 84, 0, 47),
+]);
 
 describe('parameters and rule keys', () => {
   it('every parameter the module asks for is in params.json, and nothing in the file is unused', () => {
@@ -181,6 +186,35 @@ describe('wrong rulings (B11.3.2 rule 2)', () => {
   });
 });
 
+describe('a kick ruled touched by the receivers when nobody touched it (B11.3.2 rule 2, A3.1 ruling 22: no possible act has zero chance)', () => {
+  const touching = (r: { rulings: readonly Ruling[] }) => r.rulings.filter((x) => x.aspect === 'touching');
+  it('a kickers recovery of an untouched kick can be ruled a receivers touch: the floor chance with no margin, more when close', () => {
+    const c = ctx();
+    expect(rulingErrorChance('touching', { marginYd: null, marginS: null, visibility: 'open' }, c)).toBe(PROB_FLOOR);
+    const close = puntRecoveredUntouched({ marginYd: 0 });
+    const share = rate(4000, (i) => {
+      const r = crewModel.perceive(numbered(close, i), [], ctx());
+      const t = touching(r);
+      if (t.length === 0) return false;
+      expect(t).toEqual([expect.objectContaining({ eventIndex: 3, trueValue: 'untouched', calledValue: 'touched', reviewable: true })]);
+      expect(r.seen.events.some((e) => e.type === 'kick_touch' && e.kind === 'touched_by_receivers')).toBe(true);
+      expect(playTruthProblems(r.seen)).toEqual([]);
+      return true;
+    });
+    expect(share).toBeGreaterThan(0.47); expect(share).toBeLessThan(0.53);
+  });
+  it('with no margin the chance is the floor: never zero, and rare', () => {
+    const truth = puntRecoveredUntouched();
+    expect(rate(3000, (i) => touching(crewModel.perceive(numbered(truth, i), [], ctx())).length > 0)).toBeLessThan(0.002);
+  });
+  it('not ruled when the receivers really touched or held the ball first, or with error rates at zero', () => {
+    for (let i = 1; i <= 300; i++) {
+      expect(touching(crewModel.perceive(numbered(plays.muffedPunt({ marginYd: 5 }), i), [], ctx())).every((x) => x.trueValue === 'touched')).toBe(true);
+      expect(touching(crewModel.perceive(numbered(puntRecoveredUntouched({ marginYd: 0 }), i), [], ctx({ params: NO_ERRORS })))).toEqual([]);
+    }
+  });
+});
+
 describe('what each wrong ruling does to the record (B11.2.1)', () => {
   const c = ctx();
   const ruling = (aspect: Ruling['aspect'], eventIndex: number, trueValue: string, calledValue: string, marginYd: number | null = 0): Ruling =>
@@ -258,6 +292,15 @@ describe('what each wrong ruling does to the record (B11.2.1)', () => {
     const s = seen(plays.muffedPunt(), ruling('touching', 2, 'touched', 'untouched'));
     expect(s.events.some((e) => e.type === 'kick_touch' || e.type === 'fumble')).toBe(false);
     expect(dead(s)).toMatchObject({ reason: 'kick_recovered_by_kickers', side: 0 });
+  });
+  it('a receivers touch that did not happen: put in just before the kickers recovery, and the play runs on as it did', () => {
+    const truth = puntRecoveredUntouched();
+    const s = seen(truth, ruling('touching', 3, 'untouched', 'touched', null));
+    expect(s.events.map((e) => e.type)).toEqual(['snap', 'kick', 'kick_touch', 'kick_touch', 'possession', 'dead_ball']);
+    expect(s.events[3]).toMatchObject({ type: 'kick_touch', kind: 'touched_by_receivers', side: 1, playerId: null, t: 7.0, spot: { x: 84 } });
+    // Nothing that happened is changed or cut.
+    expect(s.events.filter((_, i) => i !== 3)).toEqual(truth.events);
+    expect(s.liveDurationTenths).toBe(truth.liveDurationTenths);
   });
   it('erroneous whistle: the broken tackle is ruled the end of the play', () => {
     const s = seen(plays.brokenTackle(), ruling('down_by_contact', 2, 'live', 'whistle', null));
