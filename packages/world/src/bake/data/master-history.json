@@ -1,75 +1,84 @@
 {
  "formatVersion": 1,
- "masterSize": "full",
+ "masterSize": "small",
  "provisional": true,
  "endYear": 2025,
  "runs": {
-  "full": {
+  "small": {
    "source": {
-    "kind": "x",
-    "seedHex": "0",
-    "size": "full",
-    "firstSeasonYear": 2023,
-    "seasons": 3,
-    "seasonsRun": 3,
+    "kind": "DRY RUN WITH THE TEST DOUBLE GAME PORT: NOT FOR BAKING",
+    "seedHex": "0000000000001869",
+    "size": "small",
+    "firstSeasonYear": 2024,
+    "seasons": 2,
+    "seasonsRun": 2,
     "games": "test",
     "status": "finished",
-    "worldCode": "c",
-    "worldHash": "h",
+    "worldCode": "0486E-WK9CH-MQ4VV-E5NPP-2VK1C-XJQ42-V764R-JWC9D-CWRKG-BHH00-00000-000C6-K5H4G-F7NYY-T78W0-04V",
+    "worldHash": "8eaf99144271811c",
     "validationPass": true,
-    "unbound": [],
-    "inputDigest": "63559c78bc3d984e5308583c69631953984f6cc37a462fd08277c068471b489c"
+    "unbound": [
+     "health",
+     "statistics",
+     "notability",
+     "memory",
+     "edges",
+     "needs",
+     "compliance",
+     "labels",
+     "news",
+     "culture"
+    ],
+    "inputDigest": "abac3ba625674cc6ff56e01612486ffa77d79f3a7708114e644a90ba2e327119"
    },
    "provisional": true,
    "provisionalReasons": [
-    "dry run with the test-double game port (kind \"x\", games=test)",
-    "3 of the 157 seasons from football's first season"
+    "dry run with the test-double game port (kind \"DRY RUN WITH THE TEST DOUBLE GAME PORT: NOT FOR BAKING\", games=test)",
+    "2 of the 157 seasons from football's first season",
+    "steps not bound: health, statistics, notability, memory, edges, needs, compliance, labels, news, culture"
    ],
    "seasons": [
     {
-     "seasonYear": 2023,
-     "ms": 100,
-     "games": 10,
-     "pointsPerTeamGame": 20,
-     "passRate": 0.6,
-     "teamsActive": 5,
-     "people": 50,
-     "hallMembers": 0
-    },
-    {
      "seasonYear": 2024,
-     "ms": 100,
-     "games": 10,
-     "pointsPerTeamGame": 20,
-     "passRate": 0.6,
-     "teamsActive": 5,
-     "people": 50,
+     "ms": 42717,
+     "games": 1117,
+     "pointsPerTeamGame": 20.4628,
+     "passRate": 0.569,
+     "teamsActive": 170,
+     "people": 40673,
      "hallMembers": 0
     },
     {
      "seasonYear": 2025,
-     "ms": 100,
-     "games": 10,
-     "pointsPerTeamGame": 20,
-     "passRate": 0.6,
-     "teamsActive": 5,
-     "people": 50,
+     "ms": 677380,
+     "games": 1117,
+     "pointsPerTeamGame": 20.5013,
+     "passRate": 0.5669,
+     "teamsActive": 170,
+     "people": 50263,
      "hallMembers": 0
     }
    ],
    "timing": {
-    "msPerGame": 10,
+    "msPerGame": 322.3353,
     "seasonMs": 0,
-    "totalSeconds": 0.3
+    "totalSeconds": 720.097
    },
    "parity": {
     "decades": [
      {
       "competitionId": 1,
       "decadeStart": 2020,
-      "seasons": 3,
-      "distinctChampions": 1,
-      "topShare": 1
+      "seasons": 2,
+      "distinctChampions": 2,
+      "topShare": 0.5
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 2020,
+      "seasons": 2,
+      "distinctChampions": 2,
+      "topShare": 0.5
      }
     ],
     "minDistinctChampions": null,
@@ -81,11 +90,20 @@
     "players": 0,
     "coaches": 0,
     "charter": 0,
-    "firstBallotSeason": null,
-    "classSize": null
+    "firstBallotSeason": 2024,
+    "classSize": {
+     "count": 1,
+     "mean": 0,
+     "p10": 0,
+     "p25": 0,
+     "p50": 0,
+     "p75": 0,
+     "p90": 0,
+     "max": 0
+    }
    },
    "teams": {
-    "total": 0,
+    "total": 170,
     "folded": 0,
     "foldedLifespan": null,
     "foundedByDecade": {},
@@ -93,5 +111,5 @@
    }
   }
  },
- "digest": "8e3baf799fcc3a3116bd7c6662c5ff46360a540e5916f2223d5944e381e86590"
+ "digest": "1e5a12587288629db9481989a9f93daf796e5b1296f9edd0df680401b57f39af"
 }
