@@ -33,7 +33,7 @@ const sources: PeopleSources = {
 };
 const registryFor = () => {
   const r = new ReadModelRegistry();
-  for (const s of peopleSpecs(PEOPLE_SCHEMAS, sources)) r.register(s);
+  for (const s of peopleSpecs(PEOPLE_SCHEMAS, sources)) r.register(s as Parameters<ReadModelRegistry["register"]>[0]);
   return r;
 };
 
