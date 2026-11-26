@@ -115,22 +115,37 @@ describe.skipIf(!SEASONS)(`coach firing rates on the full world over ${SEASONS} 
         scale: (x) => ({ topCollegeTeams: col, draftedCount: pro * (PRO_LOOKUP(turnover.RULE_KEY.draftRounds) ?? 0), openEntryChairs: turnover.coachEntrants(x), retiredWouldBeCoaches: 0 }),
         names: NAMES, positionMix: CONTENT.levels.pro.rosterMix, homeRegion: () => 'region',
       }),
-      development: turnover.developmentStep(binding), moves: turnover.movesStep(binding, turnover.rosterMovesStep(binding)),
+      development: turnover.developmentStep(binding), moves: countInSeason(turnover.movesStep(binding, turnover.rosterMovesStep(binding))),
     }, 'test: not bound');
+    // An in-season firing names an interim head coach at once (E4.3.3); a head chair that turns interim
+    // inside a week's moves step is counted as one. Main-review firings name no interim.
+    const inSeasonFired = { pro: 0, college: 0 };
+    const interimHeads = (x: typeof w) => new Set([...x.jobs.values()].filter((j) => j.positionId === 'pos:head_coach' && j.holding === 'interim').map((j) => j.id));
+    function countInSeason(h: loop.StepHandler): loop.StepHandler {
+      return (ctx) => {
+        const before = interimHeads(ctx.world);
+        const out = h(ctx);
+        for (const id of interimHeads(ctx.world)) if (!before.has(id)) inSeasonFired[turnover.levelOfTeam(ctx.world, ctx.world.jobs.get(id)!.teamId)]++;
+        return out;
+      };
+    }
     const perSeason: { pro: number[]; college: number[] } = { pro: [], college: [] };
     for (let i = 0; i < SEASONS; i++) {
       loop.runSeason(w, sys, schedule);
       const fired = (lvl: 'pro' | 'college') => turnover.coachOpenings(w).filter((r) => r.level === lvl && r.reason === 'fired' && r.rung === 9).reduce((a, r) => a + r.count, 0);
-      process.stderr.write(`season ${i + 1} done at ${Math.round((Date.now() - t0) / 1000)} s; head coaches fired so far: pro ${fired('pro')}, college ${fired('college')}\n`);
+      process.stderr.write(`season ${i + 1} done at ${Math.round((Date.now() - t0) / 1000)} s; head coaches fired so far: pro ${fired('pro')} (${inSeasonFired.pro} in season), college ${fired('college')} (${inSeasonFired.college} in season)\n`);
     }
     const rows = turnover.coachOpenings(w);
     const seasons = [...new Set(rows.map((r) => r.season))].sort();
     for (const lvl of ['pro', 'college'] as const) for (const s of seasons) perSeason[lvl].push(rows.filter((r) => r.season === s && r.level === lvl && r.reason === 'fired' && r.rung === 9).reduce((a, r) => a + r.count, 0));
+    const sum = (xs: number[]) => xs.reduce((a, x) => a + x, 0);
     const mean = (xs: number[]) => xs.reduce((a, x) => a + x, 0) / Math.max(1, xs.length);
     const report = {
       seconds: Math.round((Date.now() - t0) / 1000), seasons: SEASONS, proTeams: pro, collegeTeams: col,
       pro_firings_per_season: perSeason.pro, pro_mean: +mean(perSeason.pro).toFixed(2), pro_per_team: +(mean(perSeason.pro) / pro).toFixed(3),
       college_firings_per_season: perSeason.college, college_mean: +mean(perSeason.college).toFixed(2), college_per_team: +(mean(perSeason.college) / col).toFixed(3),
+      pro_in_season_share: +(inSeasonFired.pro / Math.max(1, sum(perSeason.pro))).toFixed(3),
+      college_in_season_share: +(inSeasonFired.college / Math.max(1, sum(perSeason.college))).toFixed(3),
     };
     process.stderr.write(`\ncoach calibration: ${JSON.stringify(report)}\n`);
     expect(report.pro_mean).toBeGreaterThan(0);
