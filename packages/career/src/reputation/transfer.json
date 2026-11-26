@@ -1,0 +1,18 @@
+{
+ "version": "g52.1",
+ "leaf": "E5.7.1 rule 2",
+ "pairs": {
+  "college>pro": {
+   "players": 0.5,
+   "recruits": 0.5,
+   "peers": 0.8,
+   "administrators_and_owners": 0.6
+  },
+  "pro>college": {
+   "players": 1,
+   "recruits": 1,
+   "peers": 0.8,
+   "administrators_and_owners": 0.6
+  }
+ }
+}

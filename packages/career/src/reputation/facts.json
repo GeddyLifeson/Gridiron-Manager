@@ -1,0 +1,203 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-reputation-0001",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Pro football hall: a finalist is elected with at least 80 percent favourable votes of the full selection committee (unchanged by the 2026 overhaul for the 2027 class).",
+   "value": 0.8,
+   "unit": "share",
+   "validFor": "classes 2026 and 2027",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process FAQ",
+     "locator": "https://profootballhof.com/hall-of-famers/selection-process-faq",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "hof",
+     "primary": true,
+     "quote": "Those who receive at least 80% favorable votes will be elected",
+     "value": 0.8
+    },
+    {
+     "citation": "NFL.com, 'Bill Belichick, Robert Kraft finalists, Class of 2026'",
+     "locator": "https://www.nfl.com/news/bill-belichick-robert-kraft-finalists-pro-football-hall-of-fame-class-of-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "To be inducted, a candidate must garner at least 80% of the full Selection Committee votes.",
+     "value": 0.8
+    },
+    {
+     "citation": "Associated Press via theScore, Hall selection overhaul (Sep 2026)",
+     "locator": "https://www.thescore.com/nfl/news/3592280",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "Voters will be able to vote for six people with 80% needed.",
+     "value": 0.8
+    },
+    {
+     "citation": "Associated Press via La Nacion, 2026-09-04",
+     "locator": "https://www.lanacion.com.ar/usa/pro-football-hall-of-fame-cuts-selection-panel-nearly-in-half-in-the-latest-overhaul-of-the-process-nid04092026/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "Voters will be able to vote for six people with 80% needed.",
+     "value": 0.8
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "career.reputation.hall"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Hall FAQ primary text plus NFL.com and AP"
+    }
+   ]
+  },
+  {
+   "id": "F-reputation-0002",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Pro football hall: a coach must be out of the game at least one season before he can be considered (cut from five seasons in August 2024).",
+   "value": 1,
+   "unit": "seasons",
+   "validFor": "from August 2024",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process FAQ",
+     "locator": "https://profootballhof.com/hall-of-famers/selection-process-faq",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "hof",
+     "primary": true,
+     "quote": "Coaches must have been out of the game for at least one season.",
+     "value": 1
+    },
+    {
+     "citation": "ESPN, 2024-08-23",
+     "locator": "https://africa.espn.com/nfl/story/_/id/40965262/pro-football-hof-cuts-waiting-period-coaches-1-year",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "the waiting period for coaches from five seasons to one",
+     "value": 1
+    },
+    {
+     "citation": "Yahoo Sports, Aug 2024",
+     "locator": "https://ca.sports.yahoo.com/news/pro-football-hall-of-fame-announces-changes-to-selection-bylaws-shortens-waiting-time-for-coaches-to-one-year-194221154.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "yahoo",
+     "primary": false,
+     "quote": "Previously, coaches had to wait five seasons after retiring to be considered."
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "career.reputation.hall"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Hall FAQ primary text plus ESPN and Yahoo"
+    }
+   ]
+  },
+  {
+   "id": "F-reputation-0003",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Pro football hall: the selection committee is 28 people from the 2027 class (25 voting, 3 rotating non-voting), down from about 50.",
+   "value": 28,
+   "unit": "count",
+   "validFor": "from the 2027 class",
+   "sources": [
+    {
+     "citation": "Associated Press via La Nacion, 2026-09-04",
+     "locator": "https://www.lanacion.com.ar/usa/pro-football-hall-of-fame-cuts-selection-panel-nearly-in-half-in-the-latest-overhaul-of-the-process-nid04092026/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "The Hall is cutting the size of the selection committee from 50 people to 28",
+     "value": 28
+    },
+    {
+     "citation": "Associated Press via theScore, Sep 2026",
+     "locator": "https://www.thescore.com/nfl/news/3592280",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "there will be 27 at-large members, including some of those Hall of Famers, and one PFWA representative.",
+     "value": 28
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "career.reputation.hall"
+   ],
+   "notes": "Both copies are one AP wire story. Hall FAQ still describes the old panel. Two more independent sources owed.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "AP wire only"
+    }
+   ]
+  },
+  {
+   "id": "F-reputation-0004",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Pro football hall: one coach is named a finalist for each class.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "from August 2024; restated for the 2027 class",
+   "sources": [
+    {
+     "citation": "ESPN, 2024-08-23",
+     "locator": "https://africa.espn.com/nfl/story/_/id/40965262/pro-football-hof-cuts-waiting-period-coaches-1-year",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "one coach will be named a finalist for each Hall of Fame class.",
+     "value": 1
+    },
+    {
+     "citation": "Associated Press via theScore, Sep 2026",
+     "locator": "https://www.thescore.com/nfl/news/3592280",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "There will also be one coaching candidate and one contributor picked as a finalist.",
+     "value": 1
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "career.reputation.hall"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "ESPN and AP"
+    }
+   ]
+  }
+ ]
+}
