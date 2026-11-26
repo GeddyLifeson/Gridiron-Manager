@@ -1,0 +1,822 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-pay-college-second-0001",
+   "level": "college",
+   "domain": "career",
+   "statement": "No national FCS salary database was found. USA Today's coach salary list covers FBS head coaches only. The Knight-Newhouse database holds finances for 230+ public Division I schools (FCS included), but its published findings and coach figures are for FBS. FCS pay below is built from conference-level reporting, state payroll files, contracts and job postings.",
+   "value": "coverage note",
+   "unit": "text",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "FootballScoop: USA Today releases 2025 list of highest-paid college football coaches (https://footballscoop.com/2025/10/08/highest-paid-college-football-coaches-2025; undated (Oct 2025 by URL))",
+     "locator": "https://footballscoop.com/2025/10/08/highest-paid-college-football-coaches-2025",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop-com",
+     "primary": false,
+     "quote": "released their annual list of salaries for FBS head coaching salaries"
+    },
+    {
+     "citation": "Knight Commission on Intercollegiate Athletics: KNAD database information FY2025 (https://www.knightcommission.org/wp-content/uploads/KNAD_database_information_FY2025.pdf; undated (FY2025))",
+     "locator": "https://www.knightcommission.org/wp-content/uploads/KNAD_database_information_FY2025.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "knightcommission-org",
+     "primary": false,
+     "quote": "provides access to athletics revenues, expenses, and debt at more than 230 public NCAA Division I colleges and universities ... FINDINGS FOR 110* NCAA FOOTBALL BOWL SUBDIVISION (FBS) PUBLIC ATHLETICS PROGRAMS FOR FY 2025"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-coverage-note. Use this to explain why the FCS-wide median and lowest head coach pay rows are NOT FOUND. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0002",
+   "level": "college",
+   "domain": "career",
+   "statement": "North Dakota State head coach Tim Polasek's base salary is $565,000 a year. It rises to $1.16 million in July 2027 under his seven-year extension. CAVEAT: NDSU is moving to the FBS Mountain West, reported as from the 2026 season, so this may no longer count as an FCS salary for 2026.",
+   "value": 565000,
+   "unit": "usd per year (base)",
+   "validFor": "2025-26 (to June 2027)",
+   "sources": [
+    {
+     "citation": "Ground News (summarising Inforum): NDSU head football coach to become highest-paid public employee in the state (https://ground.news/article/ndsu-head-football-coach-to-become-highest-paid-public-employee-in-the-state; 2026-05-16)",
+     "locator": "https://ground.news/article/ndsu-head-football-coach-to-become-highest-paid-public-employee-in-the-state",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ground-news",
+     "primary": false,
+     "quote": "Right now, he earns $565,000 annually, a somewhat distant second to a medical school dean. ... while Polasek's salary will climb to $1.16 million in 2027.",
+     "value": 565000
+    },
+    {
+     "citation": "Heavy: Tim Polasek contract (FBS Mountain West) (https://heavy.com/sports/college-football/north-dakota-state-bison/tim-polasek-contract-fbs-mountain-west/; 2026-05-21)",
+     "locator": "https://heavy.com/sports/college-football/north-dakota-state-bison/tim-polasek-contract-fbs-mountain-west/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "heavy-com",
+     "primary": false,
+     "quote": "Rob Port of the Fargo Forum voiced his opinion of Polasek's $1.16 million annual salary on a seven-year contract.",
+     "value": 1160000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-top-ndsu. 1 of 3. There is one origin source (Inforum, Fargo), read only through Ground News's summary. Heavy repeats the $1.16M figure, but it cites the Fargo Forum, so it is not independent. Earlier figures: a $330,000 base when hired in 2024 (Ground News summary of a Feb 2024 story), and a 5-year deal worth $1.6M (Pro Football Network). Sportico (Feb 2026) calls the other Mountain West schools those 'slated to compete in the Mountain West next season', which puts NDSU in FBS from 2026. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0003",
+   "level": "college",
+   "domain": "career",
+   "statement": "Norfolk State (MEAC) head coach Michael Vick has a $400,000 base salary on a four-year contract that ends Dec. 21, 2028. This is the highest reported FCS base found other than NDSU's.",
+   "value": 400000,
+   "unit": "usd per year (base)",
+   "validFor": "2025 (contract 2025-2028)",
+   "sources": [
+    {
+     "citation": "WTKR News 3: A look at Michael Vick's NSU contract, which includes a base salary of $400,000 (https://www.wtkr.com/sports/a-look-at-michael-vicks-nsu-contract-which-includes-a-a-base-salary-of-400-000; 2025-01-15 (metadata))",
+     "locator": "https://www.wtkr.com/sports/a-look-at-michael-vicks-nsu-contract-which-includes-a-a-base-salary-of-400-000",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wtkr-com",
+     "primary": false,
+     "quote": "includes an annual base salary of $400,000",
+     "value": 400000
+    },
+    {
+     "citation": "Sports Illustrated (HBCU Legends): Inside Michael Vick's Compensation Package At Norfolk State (https://www.si.com/college/hbcu/football/inside-michael-vick-s-compensation-package-at-norfolk-state; 2025-01-14)",
+     "locator": "https://www.si.com/college/hbcu/football/inside-michael-vick-s-compensation-package-at-norfolk-state",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-com",
+     "primary": false,
+     "quote": "Norfolk State University offered new head football coach Michael Vick an annual base salary of $400,000",
+     "value": 400000
+    },
+    {
+     "citation": "HBCU Gameday: Michael Vick getting paid handsomely by HBCU FCS standards (https://hbcugameday.com/2025/01/14/michael-vick-getting-paid-handsomely-by-hbcu-fcs-standards; 2025-01-14)",
+     "locator": "https://hbcugameday.com/2025/01/14/michael-vick-getting-paid-handsomely-by-hbcu-fcs-standards",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hbcugameday-com",
+     "primary": false,
+     "quote": "The former no. 1 overall pick in the NFL draft has a base salary of $400k, according to a report by The Virginian-Pilot.",
+     "value": 400000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-top-base-2025. 3 sources fetched, about 2 independent: SI and HBCU Gameday both credit The Virginian-Pilot, while WTKR reported on its own. His predecessor was paid $240,000. This is not a proven FCS-wide maximum, because no full FCS list exists. The Big Sky's highest bases in 2025 were $350,004 (Sacramento State, which moves to FBS in 2026, and Cal Poly). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0004",
+   "level": "college",
+   "domain": "career",
+   "statement": "Montana State head coach Brent Vigen (2025 FCS national champion) has a $295,000 base salary on a contract running Jan. 1, 2025 to March 31, 2029. His total potential pay with bonuses is $897,500.",
+   "value": 295000,
+   "unit": "usd per year (base)",
+   "validFor": "2025-2029",
+   "sources": [
+    {
+     "citation": "KPAX / MTN Sports: By the numbers: look at Brent Vigen's new contract at Montana State (https://www.kpax.com/big-sky-conference/montana-state-bobcats/by-the-numbers-look-at-brent-vigens-new-contract-at-montana-state; 2024-12-30 (metadata))",
+     "locator": "https://www.kpax.com/big-sky-conference/montana-state-bobcats/by-the-numbers-look-at-brent-vigens-new-contract-at-montana-state",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kpax-com",
+     "primary": false,
+     "quote": "will earn a base salary of $295,000 and at least $110,000 in easily attainable incentives",
+     "value": 295000
+    },
+    {
+     "citation": "NBC Montana: MSU's head coach earns at least $180k in bonuses after historic football season (https://nbcmontana.com/sports/bobcats/msus-head-coach-earns-at-least-180k-in-bonuses-after-historic-football-season; 2026-01-09)",
+     "locator": "https://nbcmontana.com/sports/bobcats/msus-head-coach-earns-at-least-180k-in-bonuses-after-historic-football-season",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbcmontana-com",
+     "primary": false,
+     "quote": "Under the contract, which ends in 2029, he makes an annual base salary of $295,000.",
+     "value": 295000
+    },
+    {
+     "citation": "Bozeman Daily Chronicle: Breaking down Big Sky Conference football coach contracts (https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html; 2025-07-17 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Brent Vigen | Montana State | $295,000 | $897,500 (table row as extracted)",
+     "value": 295000
+    },
+    {
+     "citation": "FootballScoop: A look at the contract details for one of the top FCS head coaches (https://www.footballscoop.com/2025/03/03/contract-details-top-fcs-coach-brent-vigen-montana-state; undated)",
+     "locator": "https://www.footballscoop.com/2025/03/03/contract-details-top-fcs-coach-brent-vigen-montana-state",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop-com",
+     "primary": false,
+     "quote": "will pay Vigen a base salary of $295,000 ... All told, Vigen will make $455,000 a year",
+     "value": 295000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-montana-state-vigen. 3 of 3 for the base salary (KPAX, NBC Montana, Bozeman Daily Chronicle; FootballScoop is a fourth). Totals differ by how bonuses are counted. FootballScoop says $455,000 a year all told, KPAX says $295k plus at least $110k in easily reached incentives, and the Bozeman Daily Chronicle says $897,500 maximum. He earned at least $180,000 in bonuses in the 2025 season (NBC Montana). His previous base, set in 2023, was just under $215,000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0005",
+   "level": "college",
+   "domain": "career",
+   "statement": "Big Sky Conference (a leading FCS conference) head coach base salaries in 2025 ranged from $175,000 to $350,004. The median of the 12 bases is $268,679 (computed). Total potential pay ran from $225,000 to $1,099,304.",
+   "value": 268679,
+   "unit": "usd per year (base, median, computed)",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bozeman Daily Chronicle: Breaking down Big Sky Conference football coach contracts (https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html; 2025-07-17 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Barnum's \"top potential compensation of $225,000 is the lowest in the league\"; range \"between just over $200,000 and just under $1.1 million\""
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-big-sky-median-2025. 1 of 3, and the median is computed by us from the Bozeman Daily Chronicle table, not stated in it. Bases: Sacramento State $350,004; Cal Poly $350,004; UC Davis $320,000; Montana State $295,000; Northern Arizona $280,000; Eastern Washington $272,357; Montana $265,000; Idaho State $230,000; Weber State $215,000; Portland State $210,000; Northern Colorado $203,116; Idaho $175,000. The median is the mean of $265,000 and $272,357. This is one conference, not all of FCS. Sacramento State leaves for FBS in 2026. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0007",
+   "level": "college",
+   "domain": "career",
+   "statement": "FCS-wide lowest head coach salary: NOT FOUND. The lowest found in a conference list is a $175,000 base (Idaho's Thomas Ford, Big Sky, 2025), and Montana's new coach Bobby Kennedy also starts at $175,000 (2026).",
+   "value": "NOT FOUND",
+   "unit": "usd per year",
+   "validFor": "2025-2026 (proxy)",
+   "sources": [
+    {
+     "citation": "Bozeman Daily Chronicle: Breaking down Big Sky Conference football coach contracts (https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html; 2025-07-17 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Thomas Ford | Idaho | $175,000 | $428,500 (table row as extracted)"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-lowest. Truly low FCS pay is most likely at non-scholarship (Pioneer League) and small private or HBCU schools, which publish little. No current figure was found for them. A 2007 HBCU table (Diverse Issues) had a low of $65,000 but is far too old. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0008",
+   "level": "college",
+   "domain": "career",
+   "statement": "Montana's new head coach Bobby Kennedy earns a $175,000 base salary in his first year (2026). His four-year deal rises $10,000 a year to $205,000.",
+   "value": 175000,
+   "unit": "usd per year (base)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "KPAX / MTN Sports: Bobby Kennedy's 1-year deal at Montana offers modest base, big bonus potential (https://www.kpax.com/big-sky-conference/montana-grizzlies/bobby-kennedys-1-year-deal-at-montana-offers-modest-base-big-bonus-potential; 2026-03-28)",
+     "locator": "https://www.kpax.com/big-sky-conference/montana-grizzlies/bobby-kennedys-1-year-deal-at-montana-offers-modest-base-big-bonus-potential",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kpax-com",
+     "primary": false,
+     "quote": "The contract for new Montana football coach Bobby Kennedy is a one-year deal paying a $175,000 base salary.",
+     "value": 175000
+    },
+    {
+     "citation": "NBC Montana: Kennedy's off-field start earns new four-year deal at Montana (https://nbcmontana.com/sports/grizzlies/kennedys-off-field-start-earns-new-four-year-deal-at-montana; 2026-07-02)",
+     "locator": "https://nbcmontana.com/sports/grizzlies/kennedys-off-field-start-earns-new-four-year-deal-at-montana",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbcmontana-com",
+     "primary": false,
+     "quote": "Under the contract, Kennedy will make $175,000 in base salary for the first year.",
+     "value": 175000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-montana-kennedy. 2 of 3 (KPAX in March 2026 for the first one-year deal; NBC Montana in July 2026 for the new four-year deal). Maximum stipulated pay under the first deal was close to $390,000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0009",
+   "level": "college",
+   "domain": "career",
+   "statement": "CONFLICT: Montana head coach Bobby Hauck's pay is reported as a $265,000 base in his final contract (press, 2025). The university payroll file lists $282,490 as of July 1, 2025.",
+   "value": "265000 | 282490",
+   "unit": "usd per year",
+   "validFor": "2025 (FY2026 payroll)",
+   "sources": [
+    {
+     "citation": "University of Montana Human Resources: Faculty, Admin, Contract Professionals wages (https://www.umt.edu/human-resources/payroll/faculty-admin-contract-professionals-fy25-wages.pdf; effective 1-Jul-25)",
+     "locator": "https://www.umt.edu/human-resources/payroll/faculty-admin-contract-professionals-fy25-wages.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "umt-edu",
+     "primary": false,
+     "quote": "P/A Hauck, Robert Coach Head Football Athletics-General 282,490.00 1.00 1-Jul-25"
+    },
+    {
+     "citation": "KPAX / MTN Sports: Bobby Kennedy's 1-year deal at Montana offers modest base, big bonus potential (https://www.kpax.com/big-sky-conference/montana-grizzlies/bobby-kennedys-1-year-deal-at-montana-offers-modest-base-big-bonus-potential; 2026-03-28)",
+     "locator": "https://www.kpax.com/big-sky-conference/montana-grizzlies/bobby-kennedys-1-year-deal-at-montana-offers-modest-base-big-bonus-potential",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kpax-com",
+     "primary": false,
+     "quote": "made $265,000 in annual base salary in his final contract with the Griz"
+    },
+    {
+     "citation": "Bozeman Daily Chronicle: Breaking down Big Sky Conference football coach contracts (https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html; 2025-07-17 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/how-do-football-coaching-salaries-compare-across-the-big-sky-conference-in-2025/article_053ccb83-a4e7-5e40-a277-5c943ce83e10.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Bobby Hauck | Montana | $265,000 | $663,000 (table row as extracted)"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-montana-hauck-conflict. The payroll figure is official (primary source) and may include contract adjustments or stipends. Two press sources give $265,000. Hauck retired after the 2025 season. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0010",
+   "level": "college",
+   "domain": "career",
+   "statement": "MEAC (HBCU, FCS) head coach base salaries: Norfolk State $400,000; South Carolina State $300,000; North Carolina Central $289,224; Morgan State $274,000.",
+   "value": "274000-400000",
+   "unit": "usd per year (base)",
+   "validFor": "2023-2025 (mixed; Morgan State figure is 2023)",
+   "sources": [
+    {
+     "citation": "HBCU Gameday: HBCU Money: What MEAC coaches and administrators make (https://hbcugameday.com/2025/02/20/hbcu-money-what-meac-coaches-and-administrators-make; 2025-02-20)",
+     "locator": "https://hbcugameday.com/2025/02/20/hbcu-money-what-meac-coaches-and-administrators-make",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hbcugameday-com",
+     "primary": false,
+     "quote": "Chennis Berry (South Carolina State) — $300,000 ... Trei Oliver (North Carolina Central) — $289,224 ... Damon Wilson (Morgan State) — $274,000"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-head-coach-meac. 1 publisher for the non-Vick figures (two HBCU Gameday articles, which cite Open Payrolls and UNC System payrolls). Prairie View A&M (SWAC) raised coach Tremaine Jackson's pay and its staff pool by about 35% in April 2026, with no dollar figure (Black Enterprise). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0011",
+   "level": "college",
+   "domain": "career",
+   "statement": "Montana State (2025 FCS champion) coordinator salaries for April 2026 to March 2027: offensive coordinator/QB coach $177,904.65 and defensive coordinator $170,654.07, excluding bonuses.",
+   "value": 174280,
+   "unit": "usd per year (mean of the two coordinators)",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "Bozeman Daily Chronicle: Montana State assistant football coaches sign new contracts (https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html; 2026-04-10 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Bobby Daly, defensive coordinator: \"$170,654.07\"; Pete Sterbick, offensive coordinator/quarterbacks coach: \"$177,904.65\"; \"Every assistant's deal started April 1 and will end March 31, 2027.\""
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-coordinator-top-program. 1 of 3 (Bozeman Daily Chronicle; the 406mtsports copy gave no figures when fetched). This is the top end of FCS. For a lower-resourced FCS school, Long Island University (NEC) advertised a co-offensive coordinator job at $85,000-$90,000 in March 2026 (see the next row). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0012",
+   "level": "college",
+   "domain": "career",
+   "statement": "Long Island University (NEC, FCS) advertised a co-offensive coordinator job at $85,000-$90,000 a year.",
+   "value": "85000-90000",
+   "unit": "usd per year (posted range)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Intercollegiate (job board): Co - Offensive Coord-Football, Long Island University (https://intercollegiate.co/job/co-offensive-coord-football-239939; 2026-03-06)",
+     "locator": "https://intercollegiate.co/job/co-offensive-coord-football-239939",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intercollegiate-co",
+     "primary": false,
+     "quote": "$85,000-$90,000/yr"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-coordinator-posting-liu. 1 of 3. A single job posting. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0013",
+   "level": "college",
+   "domain": "career",
+   "statement": "Montana State full-time position coaches earn $83,319 to $128,618 for 2026-27 (cornerbacks and wide receivers $83,319; running backs $90,447; tight ends $93,734; defensive line $105,655; linebackers/associate head coach $115,910; offensive line $128,618).",
+   "value": "83319-128618",
+   "unit": "usd per year",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "Bozeman Daily Chronicle: Montana State assistant football coaches sign new contracts (https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html; 2026-04-10 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Matt Smith, offensive line coach: \"$128,617.93\" ... James Price, wide receivers coach: \"$83,319.29\" ... Nolan Askelson, assistant defensive line coach: \"$18,645\""
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-position-coach-top-program. 1 of 3. Top-end FCS program. Two assistant line coaches (assistant DL and assistant OL) earn $18,645 each, which looks like part-time or quality-control-level pay. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0014",
+   "level": "college",
+   "domain": "career",
+   "statement": "Advertised FCS assistant (position) coach pay at mid-tier public schools runs about $40,000 to $65,000 a year: Eastern Washington $45,000-$65,000 (2026), Northern Colorado $55,068-$58,422 (2026), UC Davis $40,000 (2025).",
+   "value": "40000-65000",
+   "unit": "usd per year (posted ranges)",
+   "validFor": "2025-2026",
+   "sources": [
+    {
+     "citation": "Intercollegiate (job board): Assistant Football Coach, Eastern Washington University (https://intercollegiate.co/job/assistant-football-coach-240366; 2026-03-12)",
+     "locator": "https://intercollegiate.co/job/assistant-football-coach-240366",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intercollegiate-co",
+     "primary": false,
+     "quote": "$45,000-$65,000/yr"
+    },
+    {
+     "citation": "Intercollegiate (job board): Assistant Football Coach, University of Northern Colorado (https://intercollegiate.co/job/assistant-football-coach-239527; 2026-02-28)",
+     "locator": "https://intercollegiate.co/job/assistant-football-coach-239527",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intercollegiate-co",
+     "primary": false,
+     "quote": "COMPENSATION RANGE: 55,068.00 - 58,422.00 USD per year"
+    },
+    {
+     "citation": "Intercollegiate (job board): Assistant Football Coach (COACH AST 3), University of California, Davis (https://intercollegiate.co/job/assistant-football-coach-coach-ast-3-113969; 2025-01-28)",
+     "locator": "https://intercollegiate.co/job/assistant-football-coach-coach-ast-3-113969",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intercollegiate-co",
+     "primary": false,
+     "quote": "$40,000/yr"
+    },
+    {
+     "citation": "Inside Higher Ed Careers: Asst Football Coach - Running Backs, Eastern Washington University (https://careers.insidehighered.com/job/2147825/asst-football-coach-running-backs/; 2021-05-13)",
+     "locator": "https://careers.insidehighered.com/job/2147825/asst-football-coach-running-backs/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "insidehighered-com",
+     "primary": false,
+     "quote": "Salary Information: $55,000"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-position-coach-posted-range. Three schools, but each figure has only one source (job postings). This shows a spread, not a triple-verified single value. EWU posted the same $45k-$65k range twice (Feb and Mar 2026). EWU's 2021 running backs posting was $55,000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0015",
+   "level": "college",
+   "domain": "career",
+   "statement": "FCS football strength coach pay found: Montana State strength and conditioning coach $52,961 (2026-27), and an Eastern Washington associate director of football athletic performance posting at $44,224 (2026).",
+   "value": "44224-52961",
+   "unit": "usd per year",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Bozeman Daily Chronicle: Montana State assistant football coaches sign new contracts (https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html; 2026-04-10 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Strength and conditioning coach: Sean Herrin, \"$52,961.36\""
+    },
+    {
+     "citation": "Intercollegiate (job board): Associate Director of Football Athletic Performance, Eastern Washington University (https://intercollegiate.co/job/associate-director-of-football-athletic-performance-235602; 2026-01-13)",
+     "locator": "https://intercollegiate.co/job/associate-director-of-football-athletic-performance-235602",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intercollegiate-co",
+     "primary": false,
+     "quote": "Salary Expectation $44,224/yr"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-strength-coach. Two schools, one source each. It is not stated whether the Montana State coach is the head football strength coach. No director-of-strength figure for a top FCS program was found. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0016",
+   "level": "college",
+   "domain": "career",
+   "statement": "FCS graduate assistant or quality-control pay: NOT FOUND. Closest FCS figure: Montana State pays two assistant line coaches $18,645 each (2026-27). Non-FCS GA postings for context: Upper Iowa (DII) $10,000 a year, Waldorf (NAIA) $10,350 a year, Wayne State NE (DII) $6,000 a semester, each plus tuition support.",
+   "value": "NOT FOUND",
+   "unit": "usd per year",
+   "validFor": "2026 (proxies)",
+   "sources": [
+    {
+     "citation": "Bozeman Daily Chronicle: Montana State assistant football coaches sign new contracts (https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html; 2026-04-10 (metadata))",
+     "locator": "https://www.bozemandailychronicle.com/townnews/sport/montana-state-bobcats-assistant-football-coaches-agree-to-new-contracts/article_124171a5-fb39-5e47-bcdc-8407e16aa6f2.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bozemandailychronicle-com",
+     "primary": false,
+     "quote": "Nolan Askelson, assistant defensive line coach: \"$18,645\"; Jesse Moser, assistant offensive line coach: \"$18,645\""
+    },
+    {
+     "citation": "Intercollegiate (job board): Graduate Asst, Football, Upper Iowa University (DII, not FCS) (https://intercollegiate.co/job/graduate-asst-football-241940; 2026-04-01)",
+     "locator": "https://intercollegiate.co/job/graduate-asst-football-241940",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intercollegiate-co",
+     "primary": false,
+     "quote": "Salary: $10,000 annually"
+    },
+    {
+     "citation": "Intercollegiate (job board): Graduate Assistant-Football, Waldorf University (NAIA, not FCS) (https://intercollegiate.co/job/graduate-assistant-football-238400; 2026-02-12)",
+     "locator": "https://intercollegiate.co/job/graduate-assistant-football-238400",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intercollegiate-co",
+     "primary": false,
+     "quote": "a monetary stipend of $10,350/yr (9mo/yr)"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-graduate-assistant-qc. UTRGV posted a 'Graduate Assistant - Assistant Coach Football' job with no salary shown. DII and NAIA figures are context only and must not be used as FCS values. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0017",
+   "level": "college",
+   "domain": "career",
+   "statement": "FCS athletic director salaries found range from about $214,000 to $331,000: Montana $255,840 (July 2025), Stephen F. Austin $250,000 base / $253,375 total (FY2026), Morgan State $331,000, Norfolk State $259,772, North Carolina Central $213,977.",
+   "value": "213977-331000",
+   "unit": "usd per year",
+   "validFor": "2025-2026",
+   "sources": [
+    {
+     "citation": "University of Montana Human Resources: Faculty, Admin, Contract Professionals wages (https://www.umt.edu/human-resources/payroll/faculty-admin-contract-professionals-fy25-wages.pdf; effective 1-Jul-25)",
+     "locator": "https://www.umt.edu/human-resources/payroll/faculty-admin-contract-professionals-fy25-wages.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "umt-edu",
+     "primary": false,
+     "quote": "P/A Haslam, Kent Director Athletics-General 255,840.00 1.00 1-Jul-25"
+    },
+    {
+     "citation": "Texas Legislative Budget Board: Administrative Accountability Report 2026, Stephen F. Austin State University (755) (https://lbb.texas.gov/Documents/Publications/Other/Admin_Acc/2026/755_Admin_Acct_2026.pdf; FY2026)",
+     "locator": "https://lbb.texas.gov/Documents/Publications/Other/Admin_Acc/2026/755_Admin_Acct_2026.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "texas-gov",
+     "primary": false,
+     "quote": "McBroom, Michael John Director of Athletics Auxiliary $250,000 0.00% $0 $0 $0 $0 $3,375 $0 $253,375"
+    },
+    {
+     "citation": "HBCU Gameday: HBCU Money: What MEAC coaches and administrators make (https://hbcugameday.com/2025/02/20/hbcu-money-what-meac-coaches-and-administrators-make; 2025-02-20)",
+     "locator": "https://hbcugameday.com/2025/02/20/hbcu-money-what-meac-coaches-and-administrators-make",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hbcugameday-com",
+     "primary": false,
+     "quote": "Dena Freeman-Patton (Morgan State) — $331,000 ... Dr. Melody Webb (Norfolk State) — $259,772 ... Dr. Skip Perkins (North Carolina Central) — $213,977"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-athletic-director. Five schools from three publishers. Montana and SFA come from official primary documents. The MEAC figures (HBCU Gameday) have no year stated and cite Open Payrolls and UNC System payrolls. Each school's figure has one source. A 2012 SEMO AD contract at $135,000 was seen but is too old. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0018",
+   "level": "college",
+   "domain": "career",
+   "statement": "The median FCS athletics department spent $25.48 million in total in FY2024 (2023-24), with a range of $5.8M to $77.1M.",
+   "value": 25480000,
+   "unit": "usd per year (median total athletics expenses)",
+   "validFor": "FY2024 (2023-24)",
+   "sources": [
+    {
+     "citation": "NCAA Research: Division I Athletics Finances: 10-Year Trends from 2015 to 2024 (https://ncaaorg.s3.amazonaws.com/research/Finances/2025D1RES_DI-RevExpReport_Final.pdf; December 2025)",
+     "locator": "https://ncaaorg.s3.amazonaws.com/research/Finances/2025D1RES_DI-RevExpReport_Final.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "amazonaws-com",
+     "primary": false,
+     "quote": "Total Expenses $25.48 million ($5.8M to $77.1M)",
+     "value": 25480000
+    },
+    {
+     "citation": "U.S. Government Accountability Office: College Athletics: Most Programs Spend More Than They Generate in Revenue (GAO-26-108640) (https://www.gao.gov/assets/gao-26-108640.pdf; 2026-07-14)",
+     "locator": "https://www.gao.gov/assets/gao-26-108640.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "gao-gov",
+     "primary": false,
+     "quote": "$49 million, $25 million, and $23 million, respectively.",
+     "value": 25000000
+    },
+    {
+     "citation": "Cory Hogue Sports (Substack): The Real Cost of Competing in the FCS (https://coryhoguesports.substack.com/p/the-real-cost-of-competing-in-the; 2026-07-22)",
+     "locator": "https://coryhoguesports.substack.com/p/the-real-cost-of-competing-in-the",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "substack-com",
+     "primary": false,
+     "quote": "the median FCS athletics department reported $25.48 million in total expenses.",
+     "value": 25480000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-athletics-dept-median-expenses-fy2024. About 2 of 3 independent. The NCAA report is primary. GAO independently reports $25 million (rounded) for the same year, though it likely draws on similar institutional data. Cory Hogue repeats the NCAA figure (not independent). The FCS median generated revenue was $6.08M (Hogue citing the NCAA). The FY2023 median was $23,313,000 (NCAA 2024 report). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0019",
+   "level": "college",
+   "domain": "career",
+   "statement": "FCS athletics departments spend 19% of total expenses on coach compensation (all sports) and 14% on administrative compensation.",
+   "value": 19,
+   "unit": "percent of total athletics expenses",
+   "validFor": "FY2023-FY2024",
+   "sources": [
+    {
+     "citation": "NCAA Research: Division I Athletics Finances: 10-Year Trends from 2015 to 2024 (https://ncaaorg.s3.amazonaws.com/research/Finances/2025D1RES_DI-RevExpReport_Final.pdf; December 2025)",
+     "locator": "https://ncaaorg.s3.amazonaws.com/research/Finances/2025D1RES_DI-RevExpReport_Final.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "amazonaws-com",
+     "primary": false,
+     "quote": "FCS and Basketball Subdivision schools spent 19% of total athletics expenses on coach compensation in 2024,",
+     "value": 19
+    },
+    {
+     "citation": "NCAA Research: NCAA Division I revenues and expenses report (FY2023 data) (https://ncaaorg.s3.amazonaws.com/research/Finances/2024D1RES_DI-RevExpReport.pdf; undated (FY2023 data))",
+     "locator": "https://ncaaorg.s3.amazonaws.com/research/Finances/2024D1RES_DI-RevExpReport.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "amazonaws-com",
+     "primary": false,
+     "quote": "Coach Compensation 19% ... Administrative Compensation 14%",
+     "value": 19
+    },
+    {
+     "citation": "Cory Hogue Sports (Substack): The Real Cost of Competing in the FCS (https://coryhoguesports.substack.com/p/the-real-cost-of-competing-in-the; 2026-07-22)",
+     "locator": "https://coryhoguesports.substack.com/p/the-real-cost-of-competing-in-the",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "substack-com",
+     "primary": false,
+     "quote": "Coaching compensation accounted for 19 percent, while facilities represented 16 percent.",
+     "value": 19
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-coaching-comp-share. The 19% figure appears in the NCAA FY2023 and FY2024 reports (one publisher) and is repeated by Cory Hogue. GAO gives the FCS median coaching compensation as $4.7M in 2023-24 (see the next row); $4.7M / $25M is about 19%, which agrees. The 14% administrative figure is FY2023 only. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0020",
+   "level": "college",
+   "domain": "career",
+   "statement": "The median FCS ('Championship') college spent $4.7 million on coaching compensation (all sports, including bonuses and benefits) and $3.3 million on support staff compensation in 2023-24.",
+   "value": 4700000,
+   "unit": "usd per year (median, all coaches)",
+   "validFor": "2023-24",
+   "sources": [
+    {
+     "citation": "U.S. Government Accountability Office: College Athletics: Most Programs Spend More Than They Generate in Revenue (GAO-26-108640) (https://www.gao.gov/assets/gao-26-108640.pdf; 2026-07-14)",
+     "locator": "https://www.gao.gov/assets/gao-26-108640.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "gao-gov",
+     "primary": false,
+     "quote": "compared to $9.3 million, $4.7 million, and $4.2 million, respectively.",
+     "value": 4700000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-coaching-comp-median-2024. 1 of 3 (GAO). Football is not broken out. FCS athletic scholarships had a median of $6.1M and team and game expenses a median of $2.5M. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-college-second-0021",
+   "level": "college",
+   "domain": "career",
+   "statement": "FCS football budget: an FCS-wide median was NOT FOUND. Top-end example: North Dakota State reported $8.4 million in football operating expenses in FY2025, up from $6.5 million in FY2024.",
+   "value": 8400000,
+   "unit": "usd per year (football operating expenses, one school)",
+   "validFor": "FY2025",
+   "sources": [
+    {
+     "citation": "Sportico (via Yahoo Sports): North Dakota State Must Win or Spend More, Per Mountain West Deal (https://sports.yahoo.com/articles/north-dakota-state-must-win-202219378.html; 2026-02-11)",
+     "locator": "https://sports.yahoo.com/articles/north-dakota-state-must-win-202219378.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "yahoo-com",
+     "primary": false,
+     "quote": "NDSU reported $8.4 million in football operating expenses in fiscal year 2025 ... up from $6.5 million it spent in FY24",
+     "value": 8400000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-football-budget. 1 of 3 (Sportico via Yahoo). For comparison, the other Mountain West (FBS) schools averaged about $15M in FY2024. The NCAA reports give football-specific spending only for FBS. EADA has football expenses school by school, but no FCS aggregate was found. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  }
+ ]
+}
