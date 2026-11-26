@@ -138,7 +138,7 @@ export function fixtureTables(): Record<string, unknown[]> {
       ...AWAY_PLAYERS.map((personId) => ({ teamId: AWAY, personId, list: 'active', jersey: personId % 100, gameDayStatus: 'active', since: d() })),
     ],
     contracts: [playerContract(1, 101, HOME), coachContract(2, USER, HOME, 20, 400000000), coachContract(3, AWAY_COACH, AWAY, 30, 650000000), coachContract(4, ASSISTANT, HOME, 21, 30000000)],
-    knowledge: [...HOME_PLAYERS, ...AWAY_PLAYERS].map((personId) => ({ personId, elementId: 'core:mesh', value: 40.25 + (personId % 17) * 2.5, lastPractised: d() })),
+    knowledge: [...HOME_PLAYERS, ...AWAY_PLAYERS].map((personId) => ({ personId, elementId: 'core:mesh', value: 40.25 + (personId % 17) * 2.5, peak: 52.5 + (personId % 17) * 2.5, lastPractised: d() })),
     injuries: [101, 107].map((personId, i) => ({
       id: i + 1, personId, typeId: 'core:hamstring', bodyRegion: 'leg', occurred: d(), play: null, mechanism: 'non_contact', severity: `grade ${i + 1}`,
       trueDaysToMilestone: { practice: 9 + i, game: 16 + i }, estimatedDays: [7 + i, 21 + i], designation: 'questionable', lastingLoss: { speed: 0.35 + i / 7 }, status: 'active',

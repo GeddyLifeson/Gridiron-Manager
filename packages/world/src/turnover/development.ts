@@ -4,9 +4,9 @@
 // for the season just played (D1.1.2: they never decrease).
 import { DMATH, stream } from '@gm/engine-core';
 import { development } from '@gm/league';
-import type { PersonRecord, PlayingBlock } from '@gm/schema';
+import type { PlayingBlock } from '@gm/schema';
 import type { StepHandler } from '../loop/types.ts';
-import { ageIn, gradeContext, levelOfTeam, positionTargets, rosteredSet, specOf, type RuleRead, type TurnoverBinding } from './binding.ts';
+import { ageIn, gradeContext, levelOfTeam, positionTargets, rosteredSet, specOf, type DevelopmentJob, type RuleRead, type TurnoverBinding } from './binding.ts';
 import { param as genParam } from '../generation/params.ts';
 import { param, RULE_KEY } from './params.ts';
 
@@ -29,6 +29,12 @@ export function advanceCounters(p: PlayingBlock, seasonYear: number, eligibility
 
 export function hasEligibility(rule: RuleRead, level: ReturnType<typeof levelOfTeam>): boolean {
   return rule(level, RULE_KEY.seasonsOfCompetition) !== undefined;
+}
+
+/** One development year from its job: the function a batch port must reproduce exactly (G-20 `developYear`). */
+export function developmentJobResult(n: development.DevNumbers, job: DevelopmentJob): PlayingBlock {
+  const who: development.PersonForDevelopment = { position: job.position, ageYears: job.ageYears, playing: job.playing, facets: job.facets };
+  return development.developYear(n, DMATH, who, development.defaultYearPlan(n, job.role), (k) => stream(job.seed, STREAM_DEVELOPMENT, [job.personId, job.season, k]));
 }
 
 export function developmentStep(b: TurnoverBinding): StepHandler {
@@ -54,20 +60,25 @@ export function developmentStep(b: TurnoverBinding): StepHandler {
         [...list].sort((x, y) => grades.grade(teamId, y) - grades.grade(teamId, x) || x - y).slice(0, keep).forEach((id) => starters.add(id));
       }
     }
-    let developed = 0, counted = 0;
+    let counted = 0;
+    const jobs: DevelopmentJob[] = [];
+    const seed = { hi: world.seed.hi, lo: world.seed.lo };
     for (const id of [...world.people.keys()].sort((x, y) => x - y)) {
       const p = world.people.get(id)!;
       if (!p.playing || world.status.get(id) !== 'active' || world.outOfFootballSince.has(id)) continue;
       let playing = p.playing;
       const teamId = teamOf.get(id);
       if (teamId !== undefined) { playing = advanceCounters(playing, season, hasEligibility(b.rule, levelOfTeam(world, teamId)), p.birthDate.seasonYear, starters.has(id)); counted++; }
-      const who: development.PersonForDevelopment = { position: playing.position, ageYears: ageIn(p, season + 1), playing, facets: p.traitBlock.facets };
-      const plan = development.defaultYearPlan(n, starters.has(id) ? 'starter' : 'backup');
-      playing = development.developYear(n, DMATH, who, plan, (k) => stream(world.seed, STREAM_DEVELOPMENT, [id, season, k]));
-      const next: PersonRecord = { ...p, playing };
-      world.people.set(id, next);
-      developed++;
+      jobs.push({ personId: id, season, seed, position: playing.position, ageYears: ageIn(p, season + 1), playing, facets: p.traitBlock.facets, role: starters.has(id) ? 'starter' : 'backup' });
     }
-    return { developed, counted };
+    // Each year depends only on its own job, so a batch port (worker threads) gives the same blocks; they are
+    // applied in person id order.
+    const blocks = b.developBatch ? b.developBatch(jobs) : jobs.map((j) => developmentJobResult(n, j));
+    if (blocks.length !== jobs.length) throw new Error(`development batch returned ${blocks.length} blocks for ${jobs.length} jobs`);
+    for (let i = 0; i < jobs.length; i++) {
+      const id = jobs[i]!.personId;
+      world.people.set(id, { ...world.people.get(id)!, playing: blocks[i]! });
+    }
+    return { developed: jobs.length, counted };
   };
 }

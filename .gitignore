@@ -11,3 +11,4 @@ test-results/
 
 # Migration fixtures are fixed test inputs (Q1.2.3); they must be committed.
 !packages/store/test/migrations/fixtures/*.gmsave
+playtest-results/
