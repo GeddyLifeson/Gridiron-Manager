@@ -5,3 +5,4 @@ export * as pack from './pack/index.ts';
 export * as scouting from './scouting/index.ts';
 export * as needs from './needs/index.ts';
 export * as memory from './memory/index.ts';
+export * as generator from './generator/index.ts';
