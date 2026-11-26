@@ -1,5 +1,5 @@
 // E3.2.3 payment schedule and E3.6.1 agent fee: salary to cash flow that the wealth module (E6) reads.
-import { roundCents, type Cents } from '../wealth/index.ts';
+import { roundCents, type Cents } from './money.ts';
 import { yearPay } from './draft.ts';
 import { monthIndex, type CoachContract } from './types.ts';
 

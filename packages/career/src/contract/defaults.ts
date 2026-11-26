@@ -1,7 +1,7 @@
 // contract_defaults.<tier>.<seat> and pay_bands.<tier> (E3.1.1, E3.2.1, E3.3, E3.8.1), read from defaults.json.
 // Every cell has a basis; a contract reads the block for its tier, never a hard-coded level value.
 import defaultsJson from './defaults.json' with { type: 'json' };
-import { dollars, type Cents } from '../wealth/index.ts';
+import { dollars, type Cents } from './money.ts';
 import type { BuyoutForm, ContractTier, GuaranteeForm, MarketFloor, ResignationWindow, SeatClass, TriggerId } from './types.ts';
 
 export type Basis = 'fact' | 'bible' | 'assumption';

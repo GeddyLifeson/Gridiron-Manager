@@ -1,5 +1,5 @@
 // E3.7 extensions, rollovers and the final contract year.
-import { roundCents, type Cents } from '../wealth/index.ts';
+import { roundCents, type Cents } from './money.ts';
 import { cparam } from './params.ts';
 import type { CoachContract, RosterAuthority, SalaryYear } from './types.ts';
 
@@ -45,7 +45,8 @@ export function extend(c: CoachContract, x: ExtensionTerms): CoachContract {
 
 export type RolloverEvent = { readonly kind: 'playoff_appearance' } | { readonly kind: 'season_wins'; readonly wins: number };
 
-/** E3.7.1 rollover: one more year on the trigger, no negotiation, authority untouched, up to the unexpired cap. */
+/** E3.7.1 rollover: one more year on the trigger, no negotiation, authority untouched, up to the unexpired cap.
+ *  `leagueYear` is the season just completed; unexpired years are those after it. */
 export function applyRollover(c: CoachContract, leagueYear: number, e: RolloverEvent): CoachContract {
   const r = c.rollover;
   const hit = (r.trigger === 'playoff_appearance' && e.kind === 'playoff_appearance') || (r.trigger === 'win_total' && e.kind === 'season_wins' && r.winTotal !== null && e.wins >= r.winTotal);

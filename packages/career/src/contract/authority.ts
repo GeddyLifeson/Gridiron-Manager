@@ -1,5 +1,5 @@
 // E3.4 control and authority clauses: roster say, staff authority and budget, and the smaller lines.
-import type { Cents } from '../wealth/index.ts';
+import type { Cents } from './money.ts';
 import { cparam } from './params.ts';
 import type { CoachContract, OtherClause, RosterAuthority, StaffTerms } from './types.ts';
 

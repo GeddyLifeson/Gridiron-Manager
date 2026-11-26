@@ -1,6 +1,6 @@
 // Drafting a contract from the defaults block (E3.1.1, E3.2, E3.3, E3.8.1), the record checks, and the
 // mapping to the world contract's CoachContractTerms.
-import { roundCents, type Cents } from '../wealth/index.ts';
+import { roundCents, type Cents } from './money.ts';
 import { defaultsBlock, ladder, type DefaultsBlock } from './defaults.ts';
 import { cparam } from './params.ts';
 import {

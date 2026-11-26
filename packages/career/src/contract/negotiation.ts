@@ -1,6 +1,6 @@
 // E3.5 negotiation: the round loop over a table of terms, the club's hidden offer budget, the agent's noisy read,
 // and leverage. "Offer budget units" are the club's internal budget for one offer, never coach points.
-import { roundCents, type Cents } from '../wealth/index.ts';
+import { roundCents, type Cents } from './money.ts';
 import { cparam } from './params.ts';
 import { ROSTER_AUTHORITY_STEPS, type ContractRandom, type RosterAuthority } from './types.ts';
 

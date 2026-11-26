@@ -1,7 +1,7 @@
 // The coaching contract record (E3.1.1) as the contract module holds it. It is richer than the world
 // contract's CoachContractTerms (schema/src/world/contracts.ts); `toWorldTerms` maps it down and
 // CR-G51-1 asks the integrator for the missing fields. Money is integer cents of the league year signed.
-import type { Cents } from '../wealth/index.ts';
+import type { Cents } from './money.ts';
 
 /** Contract tier: which contract_defaults and pay_bands block a job reads (E3.8.1, E3.2.1). Data, not a level branch. */
 export type ContractTier = 'pro' | 'power_four' | 'group_of_six';

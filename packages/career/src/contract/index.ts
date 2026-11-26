@@ -1,4 +1,5 @@
 // G-51 coach contract and negotiation (bible E3). Entry point of packages/career/src/contract.
+export * from './money.ts';
 export * from './types.ts';
 export * from './facts.ts';
 export * from './params.ts';

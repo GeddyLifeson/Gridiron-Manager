@@ -1,7 +1,7 @@
 // E3.3 guarantees, termination, offset, buyouts and settlements.
-import { roundCents, type Cents } from '../wealth/index.ts';
+import { roundCents, type Cents } from './money.ts';
 import { yearPay } from './draft.ts';
-import { contractYearAt, contractYearStart, splitEven } from './pay.ts';
+import { contractYearAt, contractYearStart } from './pay.ts';
 import { cparam } from './params.ts';
 import { CURABLE_GROUNDS, monthIndex, type CauseGround, type CoachContract, type ContractRandom } from './types.ts';
 
@@ -12,7 +12,12 @@ export function monthlySalary(c: CoachContract, from: number, to: number): Month
   const out: MonthAmount[] = [];
   c.salary.forEach((y, i) => {
     const start = contractYearStart(c, i);
-    splitEven(yearPay(y), 12).forEach((cents, k) => { const m = start + k; if (m >= from && m < to) out.push({ month: m, cents }); });
+    // Cumulative rounding: any run of months to the year end sums to the exact pro-rated remainder.
+    const total = yearPay(y);
+    for (let k = 0; k < 12; k++) {
+      const m = start + k;
+      if (m >= from && m < to) out.push({ month: m, cents: roundCents((total * (k + 1)) / 12) - roundCents((total * k) / 12) });
+    }
   });
   return out;
 }
@@ -25,8 +30,14 @@ function guaranteedEnd(c: CoachContract): number {
   return Math.min(termEnd(c), contractYearStart(c, c.guarantee.guaranteedThroughYear - c.startYear + 1));
 }
 
+/** Scale a schedule by a share so the total is the rounded share of the total (no per-month drift), the
+ *  leftover cents going to the earliest months. */
 function scale(list: readonly MonthAmount[], share: number): MonthAmount[] {
-  return list.map((x) => ({ month: x.month, cents: roundCents(x.cents * share) }));
+  const target = roundCents(list.reduce((x, y) => x + y.cents, 0) * share);
+  const out = list.map((x) => ({ month: x.month, cents: Math.floor(x.cents * share) }));
+  let rest = target - out.reduce((x, y) => x + y.cents, 0);
+  for (let i = 0; rest > 0 && out.length > 0; i = (i + 1) % out.length) { out[i] = { month: out[i]!.month, cents: out[i]!.cents + 1 }; rest--; }
+  return out;
 }
 
 export const sum = (list: readonly MonthAmount[]): Cents => list.reduce((x, y) => x + y.cents, 0);

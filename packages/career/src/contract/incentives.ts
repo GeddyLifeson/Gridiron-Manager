@@ -1,5 +1,5 @@
 // E3.2.2 incentives: a triggered bonus posts once, on the event date, and is paid after the bonus delay.
-import type { Cents } from '../wealth/index.ts';
+import type { Cents } from './money.ts';
 import { agentFee, contractYearAt, type Payment } from './pay.ts';
 import { cparam } from './params.ts';
 import type { CoachContract, TriggerId } from './types.ts';
