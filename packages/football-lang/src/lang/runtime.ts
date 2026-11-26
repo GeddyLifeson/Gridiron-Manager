@@ -149,6 +149,22 @@ export function isSelector(text: string): boolean {
   return parseReceiver(text) !== null;
 }
 
+/**
+ * Where he sees the ball carrier: the carrier himself when tracked this tick, else the held ball when that
+ * is fresher (the ball is in the carrier's hands), else the carrier's last seen spot. Without this, a
+ * defender who tracks the ball but last saw the back before the handoff chases a stale spot (J3.1.1, J3.5.3).
+ */
+export function seenCarrier(c: Ctx): PerceivedEntity | null {
+  const s = c.view.believedCarrierSlot();
+  if (s === -1) return null;
+  if (s === c.slot) return c.self;
+  const e = c.view.entity(s);
+  if (e !== null && e.staleTicks === 0) return e;
+  const b = c.view.ballKind() === 'held' ? c.view.ball() : null;
+  if (b !== null && (e === null || b.staleTicks < e.staleTicks)) return b;
+  return e;
+}
+
 const NONE: Sel = () => null;
 
 /**
@@ -159,7 +175,7 @@ export function compileSelector(text: string, keys: readonly string[], qb: strin
   switch (text) {
     case 'self': return (c) => c.self;
     case 'ball': return (c) => c.view.ball();
-    case 'carrier': return (c) => { const s = c.view.believedCarrierSlot(); return s === -1 ? null : s === c.slot ? c.self : c.view.entity(s); };
+    case 'carrier': return seenCarrier;
     case 'man': return (c) => (c.man === null ? null : c.man(c));
     case 'key': { const first = keys[0]; return first === undefined || first === 'key' ? NONE : compileSelector(first, [], qb); }
     case 'nearestThreat': return (c) => nearestOf(c, 0, (e) => c.view.receiverNumber(e.slot) > 0);
