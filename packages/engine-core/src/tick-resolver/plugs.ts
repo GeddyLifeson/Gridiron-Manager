@@ -5,10 +5,20 @@
 //   qb (WP-20, J7)   `createQuarterback`. The module never ends a play: this adapter reads its record
 //                    after its Interact stage and blows the whistle on a sack (unless the ball came
 //                    out) and on a kneel-down.
-//
-// The carrier (WP-21) and fouls-and-injuries (WP-22) adapters join this file when those modules merge.
-import { TICK_S, roundSimS, roundYd, type Assignment, type TickWorld } from '@gm/schema';
+//   carrier (WP-21, J8, J6.6, J6.7)   `carrierStages`. The module steers and tackles runners but leaves
+//                    alone a man whose assignment makes him a quarterback, kicker, holder or snapper
+//                    until it is told he runs. The quarterback module tells it when he scrambles or
+//                    keeps. This adapter tells it for everyone else who ends up with the ball and has
+//                    no procedure left: a quarterback whose part is over (his own fumble back in his
+//                    hands, a batted pass he caught), a direct-snap man with no quarterback procedure,
+//                    a holder after a bobble, a punter whose operation failed.
+//   foulsInjuries (WP-22, J10)   `foulsInjuriesPlug` as it is: it needs nothing from the assembly but
+//                    the shared services, and it keeps the play's one hit-load ledger (resolver.ts).
+import { BEHAVIORS, SLOT_COUNT, TICK_S, roundSimS, roundYd, type Assignment, type TickWorld } from '@gm/schema';
 import type { Contests } from '../contest/index.ts';
+import { carrierStages, CARRIER_VERSION, type CarrierPlugExtras } from '../carrier/plug.ts';
+import type { Carrier } from '../carrier/stage.ts';
+import { foulsInjuriesPlug } from '../fouls-injuries/index.ts';
 import { createQuarterback, type QbTarget, type Quarterback } from '../qb/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import { declareDead } from './finish.ts';
@@ -28,14 +38,17 @@ export function quarterbackPlug(): QuarterbackPlug {
       // The contest library is built per parameter table, so the module is built on first use and
       // rebuilt only when the table changes (P6.3.1: nothing is built per play).
       let builtFor: Contests | null = null, active = false, ended = false, endedTick = 0;
+      // The carrier module is created after this one, so its hooks are read when the module is built
+      // (first play), never in `create`. With the carrier stand-in there are none and the quarterback
+      // module runs him at the lane itself and rates the lane itself.
       const build = (contests: Contests): Quarterback => createQuarterback({
         view: services.perception.view, contests,
         gaze: { gazeAtSlot: (slot, target) => services.perception.gazeAtSlot(slot, target), gazeAtPoint: (slot, px, py) => services.perception.gazeAtPoint(slot, px, py) },
         ballInAir: (world, passer, x, y, ticks) => services.perception.notifyBallInAir(world, passer, x, y, ticks),
         topSpeed: (world, slot, mode) => services.movement.modeTopSpeed(world, slot, mode),
         stripAttempt: (slot) => services.playerAi.stripAttempt(slot),
-        // No carrier module steers him yet (WP-21): the quarterback module runs him at the lane itself.
-        onRun: () => false,
+        onRun: (world, slot, why) => { const r = services.runner(); return r === null ? false : r.onRun(world, slot, why); },
+        laneQuality: services.runner() === null ? null : (world, slot) => services.runner()!.laneQuality(world, slot),
       });
       services.claimPasser(() => {
         if (!active || q === null) return -1;
@@ -55,9 +68,10 @@ export function quarterbackPlug(): QuarterbackPlug {
           if (w.deadAtTick !== null || q!.phase() !== 'over') return;
           const slot = services.setup().qb!.qbSlot, t = (w.tick + 1) * TICK_S;
           if (ended) {
-            // INTERIM until the carrier module (WP-21) steers every man with the ball: his procedure is
-            // over and the ball is back in his hands (his own fumble, a batted pass). He goes down on it.
-            if (w.tick > endedTick && w.ball.kind === 'held' && w.ball.carrierSlot === slot) {
+            // Only with the carrier stand-in, which steers nobody: his procedure is over and the ball is
+            // back in his hands (his own fumble, a batted pass). He goes down on it. The real carrier
+            // module runs him instead (the carrier adapter below hands him over).
+            if (services.runner() === null && w.tick > endedTick && w.ball.kind === 'held' && w.ball.carrierSlot === slot) {
               w.emit({ type: 'detail', t: roundSimS(t), code: 'tick.qb.down_on_ball', playerIds: [w.slots[slot]!.playerId], spot: { x: roundYd(w.ball.x), y: roundYd(w.ball.y) }, value: null });
               declareDead(w, 'gave_himself_up', t, w.ball.x, w.ball.y, slot);
             }
@@ -89,8 +103,55 @@ export function quarterbackPlug(): QuarterbackPlug {
   };
 }
 
-/** Every real stage module that exists today. The ids missing from it still run on stand-ins. */
-export function availablePlugs(): StagePlug[] { return [quarterbackPlug()]; }
+export const CARRIER_PLUG_VERSION = `carrier-adapter-1+${CARRIER_VERSION}`;
+
+/** The carrier of the resolver a plug was built for, for film and tests. Null before `create`. */
+export interface BallCarrierPlug extends StagePlug { carrier(): Carrier | null }
+
+/**
+ * The real WP-21 ball carrier. `extras` override what the content port does not carry yet (the coach's
+ * carrier instructions, run style, personality); the designed run and the return call come from
+ * `PlaySetup.carrier` unless `extras.play` is given.
+ */
+export function ballCarrierPlug(extras: CarrierPlugExtras = {}): BallCarrierPlug {
+  let carrier: Carrier | null = null;
+  return {
+    id: 'carrier', version: CARRIER_PLUG_VERSION,
+    carrier: () => carrier,
+    create(services: PlayServices): PlugStages {
+      const inner = carrierStages(services, { ...extras, play: extras.play ?? ((sv) => sv.setup().carrier ?? null) });
+      const c = inner.carrier;
+      carrier = c;
+      const handed = new Uint8Array(SLOT_COUNT);
+      services.claimRunner({ onRun: (w, slot, why) => { handed[slot] = 1; return c.onRun(w, slot, why); }, laneQuality: (w, slot) => c.laneQuality(w, slot) });
+      // Registered before the module's own Decide stage, so a man handed over is steered the same tick.
+      const orphan: PlayStage = {
+        name: 'decide',
+        begin(): void { handed.fill(0); },
+        run(w: TickWorld): void {
+          if (w.tick < 0 || w.deadAtTick !== null || w.ball.kind !== 'held') return;
+          const s = w.ball.carrierSlot;
+          if (s < 0 || handed[s] === 1 || !NO_PROCEDURE.has(w.players.behavior[s]!)) return;
+          // Still somebody's: the passer in his procedure (J6.2.5), the punter or holder before the kick.
+          if (s === services.protectedPasser() || s === services.kickOwner()) return;
+          handed[s] = 1;
+          if (!c.onRun(w, s, 'no_procedure')) return;
+          w.emit({ type: 'detail', t: roundSimS(w.tick * TICK_S), code: 'tick.carrier.no_procedure', playerIds: [w.slots[s]!.playerId], spot: { x: roundYd(w.ball.x), y: roundYd(w.ball.y) }, value: null });
+        },
+      };
+      return { stages: [orphan, ...inner.stages], setPlay: inner.setPlay, hitLoad: inner.hitLoad, explain: inner.explain };
+    },
+  };
+}
+/** Behaviors the carrier module does not steer until told (carrier/stage.ts `NOT_RUNNERS`). */
+const NO_PROCEDURE = new Set([BEHAVIORS.indexOf('quarterback'), BEHAVIORS.indexOf('kicker'), BEHAVIORS.indexOf('holder'), BEHAVIORS.indexOf('snapper')]);
+
+/**
+ * Every real stage module: quarterback, ball carrier, fouls and injuries. A resolver built on all
+ * three runs no stand-in. The parameter table of a play must hold the `qb`, `carrier` and
+ * `foulsInjuries` modules' rows, and the rule set the foul keys `foul.<id>.exists`.
+ */
+export function availablePlugs(): StagePlug[] { return [quarterbackPlug(), ballCarrierPlug(), foulsInjuriesPlug()]; }
 
 /**
  * A `QbTarget` from a receiver's own assignment: the route as drawn (alignment first), the first cut
