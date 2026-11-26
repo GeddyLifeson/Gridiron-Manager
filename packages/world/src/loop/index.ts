@@ -11,7 +11,8 @@ export {
   type LiveWorld, type StepContext, type StepDigest, type StepHandler, type WorldSystems, type SchedulePort, type ScheduledGame,
   type GameRequest, type GamePlayed, type GamePort, type GameBatchPort,
 } from './types.ts';
-export { createWorld, steppedSeed, type CreateWorldInput } from './world.ts';
+export { createWorld, steppedSeed, worldLogOptions, type CreateWorldInput } from './world.ts';
+export { packWorld, unpackWorld, type PackedWorld } from './transfer.ts';
 export {
   unbound, unboundSteps, systemsFrom, runWeek, runSeasonPoint, runSeason, summarizeSeason, recordStaffSeason, gamesStep, gamesStepBatch, batchOf, compactionStep, worldHash,
   type PassOptions,

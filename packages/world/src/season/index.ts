@@ -14,3 +14,4 @@ export {
 } from './real-game.ts';
 export { buildProSeason, buildCollegeSeason, buildSeason, LEVEL_BUILDERS, type LeagueContent, type BuiltSeason, type BuildOptions } from './leagues.ts';
 export * as chart from './chart/index.ts';
+export { playHistoryGame, historyGamePort } from './history-game.ts';
