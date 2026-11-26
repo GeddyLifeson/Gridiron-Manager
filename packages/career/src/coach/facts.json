@@ -1,0 +1,53 @@
+{
+  "domain": "career",
+  "rows": [
+    {
+      "id": "F-coach-0001",
+      "level": "college",
+      "domain": "career",
+      "statement": "Job held at hire by power-conference head coach hires (AthleticDirectorU coaching carousel study): head coach at a smaller program, power-conference coordinator, power-conference head coach, internal promotion. Shares of hires.",
+      "value": "smaller_program_head:0.338,p4_coordinator:0.182,p4_head:0.143,internal:0.143",
+      "unit": "seat:share",
+      "validFor": "power-conference hires in the study window",
+      "sources": [
+        {
+          "citation": "AthleticDirectorU, 'Coaching carousel study' (read through research/depth-pass/E1-log.md row 35, bible E1.6.1)",
+          "locator": "https://athleticdirectoru.com/articles/coaching-carousel-study/",
+          "dateRead": "2026-11-26",
+          "howRead": "secondary summary",
+          "independenceGroup": "athleticdirectoru",
+          "primary": false,
+          "value": "smaller_program_head:0.338,p4_coordinator:0.182,p4_head:0.143,internal:0.143"
+        }
+      ],
+      "status": "1 of 3",
+      "usedBy": [],
+      "notes": "Used by career.coach to write the last seat of a college head coach shortcut start (E1.6.1). A second and third independent source are owed (research backlog).",
+      "statusHistory": [{ "date": "2026-11-26", "status": "1 of 3", "reason": "depth pass E1 log, one source" }]
+    },
+    {
+      "id": "F-coach-0002",
+      "level": "pro",
+      "domain": "career",
+      "statement": "Job held at hire by professional head coach hires 2009 to 2019 (Arizona State Global Sport Institute): offensive coordinator about 40% (23 of 56), defensive coordinator 15 of 56, previous professional head coach 14 of 56 (about 29% per the E1 log), college head coach 3 of 56.",
+      "value": "offensive_coordinator:0.411,defensive_coordinator:0.268,prior_pro_head:0.25,college_head:0.054",
+      "unit": "seat:share",
+      "validFor": "professional head coach hires 2009 to 2019",
+      "sources": [
+        {
+          "citation": "Arizona State University Global Sport Institute, 'NFL' coaching hires analysis 2020-09-24 (read through research/depth-pass/E1-log.md row 40, bible E1.3.1)",
+          "locator": "https://live-global-sport-matter.ws.asu.edu/from-our-lab/2020/09/24/nfl",
+          "dateRead": "2026-11-26",
+          "howRead": "secondary summary",
+          "independenceGroup": "asu-global-sport-institute",
+          "primary": false,
+          "value": "offensive_coordinator:0.411,defensive_coordinator:0.268,prior_pro_head:0.25,college_head:0.054"
+        }
+      ],
+      "status": "1 of 3",
+      "usedBy": [],
+      "notes": "Shares are counts over 56 hires as stated in bible E1.3.1 (19+4 offensive coordinators, 15 defensive coordinators, 14 previous head coaches, 3 college head coaches). The E1 log rounds the previous head coach share to 29%; 14 of 56 is 25%, and this row uses the count. Used by career.coach for the last seat of a professional head coach shortcut start (E1.6.1). Two more sources owed.",
+      "statusHistory": [{ "date": "2026-11-26", "status": "1 of 3", "reason": "depth pass E1 log, one source" }]
+    }
+  ]
+}
