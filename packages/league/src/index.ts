@@ -4,3 +4,5 @@ export * as compliance from './compliance/index.ts';
 export * as cap from './cap/index.ts';
 export * as roster from './roster/index.ts';
 export * as calendar from './calendar/index.ts';
+export * as standings from './standings/index.ts';
+export * as postseason from './postseason/index.ts';
