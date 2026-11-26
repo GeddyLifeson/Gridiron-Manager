@@ -258,7 +258,7 @@ describe('specs: schedule and practice route sources', () => {
     const r = new ReadModelRegistry();
     const one = z.object({ weekId: own(z.string()) });
     const real = { schedule: one, practice: one, meetings: one, travel: one, documents: one, press: one } as unknown as WeekSchemas;
-    for (const spec of Object.values(weekSpecs(real, {}))) r.register(spec);
+    for (const spec of Object.values(weekSpecs(real, {}))) r.register(spec as never);
     expect(r.names()).toEqual(["practicePlanner", "pressConference", "weekDocuments", "weekMeetings", "weekSchedule", "weekTravel"]);
   });
   it('the practice spec builds the planner view from the G-65 module', () => {
