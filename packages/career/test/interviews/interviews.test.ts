@@ -4,7 +4,7 @@ import { stream, seedFromNumber } from '@gm/engine-core';
 import type { RandomStream, TraitBlock } from '@gm/schema';
 import {
   QUESTIONS, STANCES, answerAll, beliefsFrom, candidateRead, drawBeliefs, interviewFactStatus, INTERVIEW_FACTS, panelFor, readOf, referralScore,
-  roleGroupOf, runSearch, scoreInterview, slate, wantsAfterFiring, acceptWithFit, PARAMS,
+  roleGroupOf, runSearch, PRACTICAL_TASKS, practicalScore, gradeAi, scoreInterview, slate, wantsAfterFiring, acceptWithFit, PARAMS,
   type Applicant, type Opening, type PanelMember, type PanelSeat,
 } from '../../src/interviews/index.ts';
 
@@ -155,5 +155,37 @@ describe('facts and params', () => {
   });
   it('params stay inside their bounds', () => {
     for (const p of PARAMS.params) { expect(p.value).toBeGreaterThanOrEqual(p.min); expect(p.value).toBeLessThanOrEqual(p.max); }
+  });
+});
+
+describe('graded work (Marlon 14:52: real interviews have graded parts, so the game does too)', () => {
+  it('every role has graded tasks', () => {
+    for (const [g, tasks] of Object.entries(PRACTICAL_TASKS)) expect(tasks.length, g).toBeGreaterThan(0);
+  });
+
+  it('more craft grades better on average, and the user\'s own results are used as given', () => {
+    let hi = 0; let lo = 0;
+    for (let i = 0; i < 300; i++) { hi += gradeAi(1, rng(i, 'g')); lo += gradeAi(-1, rng(i, 'g')); }
+    expect(hi).toBeGreaterThan(lo);
+    expect(practicalScore('head', { board_work: 1, game_management: 0.5 }, null, rng(1)).score).toBeCloseTo(0.75);
+    expect(practicalScore('head', undefined, null, rng(1)).score).toBe(0);
+  });
+
+  it('with views equal, the better graded work wins the job', () => {
+    const pool = [applicant(1, HARD, { craft: -1.5 }), applicant(2, HARD, { craft: 1.5 })];
+    const out = runSearch({ opening: OC, panel: panel(HARD), pool, offer: () => true, stream: rng(9) });
+    expect(out.hired).toBe(2);
+    expect(out.interviewed.find((x) => x.personId === 2)!.practical).toBeGreaterThan(out.interviewed.find((x) => x.personId === 1)!.practical);
+  });
+
+  it('the user with the same answers and the same graded results as an AI candidate scores the same', () => {
+    const qs = slate(OC, panel(HARD));
+    const grades = { game_plan: 0.8, board_what_if: 0.6 };
+    const ai = applicant(1, SOFT, { practical: grades });
+    const user: Applicant = { personId: 2, beliefs: null, answers: answerAll(qs, SOFT), practical: grades, record: 0.5, tie: 0, referrals: [] };
+    const out = runSearch({ opening: OC, panel: panel(HARD), pool: [ai, user], offer: () => false, stream: rng(5) });
+    const [a, b] = [out.interviewed.find((x) => x.personId === 1)!, out.interviewed.find((x) => x.personId === 2)!];
+    expect(a.practical).toBe(b.practical);
+    expect(a.result.fit).toBeCloseTo(b.result.fit, 12);
   });
 });

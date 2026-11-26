@@ -616,6 +616,12 @@ export function coachViews(world: LiveWorld, id: number): interviews.Beliefs | n
   return interviews.drawBeliefs(world.people.get(id)?.traitBlock ?? null, stream(world.seed, STREAM_INTERVIEWS, ['beliefs', id]));
 }
 
+/** A person's hidden craft z (truth): how well he does the graded interview work (practical.ts). Null for the user. */
+export function coachCraft(world: LiveWorld, id: number): number | null {
+  if (id === world.userPersonId) return null;
+  return interviews.drawCraft(stream(world.seed, STREAM_INTERVIEWS, ['craft', id]));
+}
+
 const FIRED = new WeakMap<Cycle, Map<number, number>>();
 /** Head coaches fired in this cycle by team: the appointer looks for the other end of what they believed (E2.3.2). */
 function firedThisCycle(c: Cycle): Map<number, number> {
@@ -781,7 +787,11 @@ function headSearch(c: Cycle, teamId: number, v: Views): number[] {
     const b = beliefsOf(c, x.personId);
     if (b === null) return x;
     reads.set(x.personId, interviews.candidateRead(opening, panel, b));
-    return { ...x, interview: interviews.scoreInterview(qs, interviews.answerAll(qs, b), panel).fit };
+    // Graded work (board work, game management) and fit with the panel's views, blended by the hire weights.
+    const work = interviews.practicalScore(opening.group, undefined, coachCraft(c.world, x.personId), s).score;
+    const fit = interviews.fitScaled(interviews.scoreInterview(qs, interviews.answerAll(qs, b), panel).fit);
+    const wp = interviews.param('hire.practicalWeight'); const wf = interviews.param('hire.fitWeight');
+    return { ...x, interview: (wp * work + wf * fit) / (wp + wf) };
   });
   bump(c, 'head_interviews', interviewed.length);
   let years = 1;
@@ -912,13 +922,21 @@ function fillStaff(c: Cycle, teamId: number, v: Views): void {
         referrals: referralsOf(v, id, leadId, vias.get(id) ?? null),
       }));
       const opening = openingOf(s, seat);
-      const listed = interviews.shortlist(opening, pool).map((a) => ({ ...a, beliefs: beliefsOf(c, a.personId) }));
+      const listed = interviews.shortlist(opening, pool).map((a) => ({ ...a, beliefs: beliefsOf(c, a.personId), craft: coachCraft(c.world, a.personId) }));
       const sr = stream(c.world.seed, STREAM_COACHES, ['staff_search', seatId, c.season]);
       const res = interviews.runSearch({
         opening, panel, pool: listed, stream: sr,
         offer: (id, read) => { const o = offerTo(c, job, id, prospects); return sr.chance(possible(interviews.acceptWithFit(staffSearch.acceptChance(o.offer, o.view), read))); },
       });
       bump(c, 'staff_interviews', res.interviewed.length);
+      // Craft and fit of the hire against the mean of those interviewed, in thousandths (read by the turnover test).
+      const crafts = listed.map((x) => x.craft ?? 0);
+      if (res.hired !== null && crafts.length > 1) {
+        bump(c, 'interview_searches');
+        const fits = res.interviewed.map((x) => x.result.fit);
+        bump(c, 'interview_fit_edge_milli', Math.round(1000 * ((res.interviewed.find((x) => x.personId === res.hired)?.result.fit ?? 0) - fits.reduce((x, y) => x + y, 0) / fits.length)));
+        bump(c, 'interview_craft_edge_milli', Math.round(1000 * ((coachCraft(c.world, res.hired) ?? 0) - crafts.reduce((x, y) => x + y, 0) / crafts.length)));
+      }
       const best = [...res.interviewed].sort((a, b) => b.score - a.score || a.personId - b.personId)[0]?.personId ?? null;
       const who = res.hired ?? best;
       if (who === null) return { kind: 'post' };

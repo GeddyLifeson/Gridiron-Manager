@@ -34,10 +34,20 @@ const ROWS: readonly Row[] = [
   ['shortlist.recordWeight', 0.35, 0, 1, 'ratio', 'E2.3.2'],
   ['shortlist.tieWeight', 0.2, 0, 1, 'ratio', 'L4.2.3'],
   // Hire score after interviews: fit leads (Marlon 14:26), then referral, record and tie.
-  ['hire.fitWeight', 0.55, 0, 1, 'ratio', 'E2.3.2'],
-  ['hire.referralWeight', 0.2, 0, 1, 'ratio', 'S6.2.1'],
-  ['hire.recordWeight', 0.15, 0, 1, 'ratio', 'E2.3.2'],
-  ['hire.tieWeight', 0.1, 0, 1, 'ratio', 'L4.2.3'],
+  // Hire score after interviews (Marlon 14:26 and 14:52): the graded work and the fit with the panel's views lead
+  // equally, then referrals, record and tie. S6.4.1's 0.5/0.3/0.2 blend predates the fit ruling.
+  ['hire.practicalWeight', 0.35, 0, 1, 'ratio', 'S6.4.1'],
+  ['hire.fitWeight', 0.35, 0, 1, 'ratio', 'E2.3.2'],
+  ['hire.referralWeight', 0.15, 0, 1, 'ratio', 'S6.2.1'],
+  ['hire.recordWeight', 0.1, 0, 1, 'ratio', 'E2.3.2'],
+  ['hire.tieWeight', 0.05, 0, 1, 'ratio', 'L4.2.3'],
+  // Fit spreads less than graded work (measured 2026-11-26 over 800 shortlisted candidates: fit mean 0.69 sd 0.08,
+  // practical sd 0.23), so it is stretched around its centre before blending, giving the two equal pull.
+  ['fit.centre', 0.69, 0, 1, 'ratio', 'E2.3.2'],
+  ['fit.stretch', 2.8, 1, 10, 'ratio', 'E2.3.2'],
+  // Graded practical work for AI candidates (S6.4.1 "AI use"): grade = logistic(craft + noise), craft a hidden z per person.
+  ['practical.noiseSd', 0.5, 0, 3, 'z', 'S6.4.1'],
+  ['practical.slope', 1.2, 0.1, 5, 'per z', 'S6.4.1'],
   ['hire.noiseSd', 0.05, 0, 1, 'score units', 'E2.3.2'],
   // Referrals: a reference with no tie to the hirer still counts a little; strength of the word itself.
   ['referral.strangerShare', 0.25, 0, 1, 'ratio', 'S6.2.1'],

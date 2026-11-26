@@ -6,3 +6,4 @@ export * from './facts.ts';
 export * from './beliefs.ts';
 export * from './questions.ts';
 export * from './interview.ts';
+export * from './practical.ts';

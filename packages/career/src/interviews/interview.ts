@@ -6,15 +6,19 @@
 //   2. Shortlist: referrals, record and ties decide who gets an interview (no interview for everyone).
 //   3. Interview: every shortlisted candidate gets the same slate (F-interview-0013). He answers what he
 //      believes. Each panel member scores each answer by how close it is to his own view, weighted by
-//      how much he cares. There is no right answer anywhere.
+//      how much he cares. These view questions have no right answer. The interview also has graded work
+//      with right answers (practical.ts: film, teaching, game plan, board work, game management;
+//      Marlon 14:52), as real interviews do.
 //   4. Reverse questions: the candidate asks the lead interviewer about the job; how well the answers
 //      fit what he believes moves whether he says yes (F-interview-0009).
 //   5. Offers go down the ranking until someone accepts.
-// No term reads a stored quality of anyone: the user and an AI candidate who give the same answers with
-// the same record, ties and referrals get the same score (K7.6.1 rule 4, E2.4.3 acceptance).
+// The user and an AI candidate who give the same answers and the same graded results, with the same
+// record, ties and referrals, get the same score (K7.6.1 rule 4, E2.4.3 acceptance). An AI candidate's
+// graded results come from his hidden craft (S6.4.1 "AI use"); the user's from what he does.
 import type { RandomStream } from '@gm/schema';
 import { STANCES, care, stanceDef, type Beliefs, type StanceId } from './beliefs.ts';
 import { clamp, param } from './params.ts';
+import { practicalScore } from './practical.ts';
 import { QUESTIONS, type Option, type Question, type QuestionSide, type RoleGroup } from './questions.ts';
 
 // ---------- the opening and the panel ----------
@@ -203,9 +207,22 @@ export interface Applicant {
   /** Tie to the lead interviewer 0 to 100. */
   readonly tie: number;
   readonly referrals: readonly Referral[];
+  /** Hidden craft z (AI people, practical.ts drawCraft); null for the user. */
+  readonly craft?: number | null;
+  /** Graded task results 0..1 by task id (the user's, from the job's own tools). */
+  readonly practical?: Readonly<Record<string, number>>;
 }
 
-export interface Interviewed { readonly personId: number; readonly result: InterviewResult; readonly score: number; readonly read: number }
+export interface Interviewed {
+  readonly personId: number;
+  /** The fit questions: views, no right answers. */
+  readonly result: InterviewResult;
+  /** The graded work (S6.4.1, E2.4.3 segments 4 and 5): 0..1 and per task. */
+  readonly practical: number;
+  readonly grades: Readonly<Record<string, number>>;
+  readonly score: number;
+  readonly read: number;
+}
 
 export interface SearchOutcome {
   readonly shortlist: readonly number[];
@@ -233,9 +250,12 @@ export function shortlist(op: Opening, pool: readonly Applicant[]): readonly App
   return [...pool].sort((a, b) => shortlistScore(b) - shortlistScore(a) || a.personId - b.personId).slice(0, shortlistSize(op.group));
 }
 
-/** After the interview: fit leads, then referrals, record and tie, plus a little noise (real searches are noisy). */
-export function hireScore(fit: number, a: Applicant, stream: RandomStream): number {
-  return param('hire.fitWeight') * fit + param('hire.referralWeight') * referralScore(a.referrals) + param('hire.recordWeight') * clamp(a.record, 0, 1)
+/** Fit stretched to spread like graded work (params fit.centre, fit.stretch), 0..1. */
+export const fitScaled = (fit: number): number => clamp(0.5 + (fit - param('fit.centre')) * param('fit.stretch'), 0, 1);
+
+/** After the interview: graded work and fit lead, then referrals, record and tie, plus a little noise (real searches are noisy). */
+export function hireScore(practical: number, fit: number, a: Applicant, stream: RandomStream): number {
+  return param('hire.practicalWeight') * clamp(practical, 0, 1) + param('hire.fitWeight') * fitScaled(fit) + param('hire.referralWeight') * referralScore(a.referrals) + param('hire.recordWeight') * clamp(a.record, 0, 1)
     + param('hire.tieWeight') * clamp(a.tie, 0, 100) / 100 + param('hire.noiseSd') * stream.normal();
 }
 
@@ -260,7 +280,8 @@ export function runSearch(input: SearchInput): SearchOutcome {
     const answers = a.answers ?? (a.beliefs === null ? {} : answerAll(qs, a.beliefs));
     const result = scoreInterview(qs, answers, input.panel);
     const read = a.beliefs === null ? param('accept.fitNeutral') : candidateRead(input.opening, input.panel, a.beliefs);
-    return { personId: a.personId, result, read, score: hireScore(result.fit, a, input.stream) };
+    const work = practicalScore(input.opening.group, a.practical, a.craft ?? null, input.stream);
+    return { personId: a.personId, result, practical: work.score, grades: work.grades, read, score: hireScore(work.score, result.fit, a, input.stream) };
   });
   const ranked = [...interviewed].sort((a, b) => b.score - a.score || a.personId - b.personId);
   const offered: number[] = []; const declined: number[] = [];
