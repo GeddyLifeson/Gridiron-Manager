@@ -5,7 +5,7 @@ import type { gameCallingCommands } from '@gm/app-services';
 
 export type GameSession = gameCallingCommands.GameCallingSession;
 
-export interface StandingRow { readonly teamId: number; readonly name: string; readonly w: number; readonly l: number; readonly t: number; readonly seat: boolean }
+export interface StandingRow { readonly teamId: number; readonly name: string; readonly w: number; readonly l: number; readonly t: number; readonly pf: number; readonly pa: number; readonly seat: boolean }
 
 /** The season as the office shows it today: plain facts, no true ratings (MA-48). */
 export interface SeasonToday {
@@ -24,6 +24,7 @@ export interface SeasonToday {
   /** The seat's league or conference table. */
   readonly standings: readonly StandingRow[];
   readonly seasonOver: boolean;
+  readonly champion: string | null;
 }
 
 export interface CareerPort {
@@ -34,6 +35,8 @@ export interface CareerPort {
   startGame(): GameSession;
   /** Records the finished game in the season and the world. */
   finishGame(session: GameSession): void;
+  /** The staff coaches the seat's game (K6); the season moves on. */
+  delegateGame(): void;
   /** Player and team names for the play log (observed names only). */
   names(session: GameSession): { playerName(id: number): string; teamName(side: 0 | 1): string };
 }
