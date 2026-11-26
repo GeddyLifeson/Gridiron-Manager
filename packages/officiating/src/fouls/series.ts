@@ -2,7 +2,9 @@
 // `SeriesRules.next` (WP-02) owns the series state; this file is the B8.5.4 reading of an outcome that
 // carries an enforcement summary, offered to the series module and used by the foul tests.
 import { otherSide, type FoulRecord, type PlayOutcome, type RulingContext, type Side } from '@gm/schema';
-import { toFieldX, toTeamA } from './facts.ts';
+import { isSeparate } from './catalogue.ts';
+import { limited, walk, type World } from './enforce.ts';
+import { factsFromOutcome, toFieldX, toTeamA } from './facts.ts';
 import { K } from './params.ts';
 
 export interface DownAfterPenalty {
@@ -55,11 +57,20 @@ export function downAfterPenalty(outcome: PlayOutcome, fouls: readonly FoulRecor
     // Rules 6 and 8: the down just played counts, then the yardage is added.
     const before = toTeamA(ctx, e.fromSpot.x);
     if (before >= line) {
-      const between = e.enforced.every((i) => fouls[i]!.timing === 'between_downs');
-      const byOffense = e.enforced.some((i) => fouls[i]!.side === A);
-      // A dead-ball foul after the first down: first and ten after enforcement. A foul between downs by
-      // the offense: the new series has started, so the line to gain stays where the play set it.
-      return between && byOffense ? fresh(A, spot, before, true, false) : fresh(A, spot, spot, true, false);
+      // The play made the first down. Walk the fouls again in order to find where the chain is set:
+      // a dead-ball foul by the offense, or a defensive foul with a first down, sets it after
+      // enforcement; a foul between downs by the offense leaves it where the play set it (first and 25).
+      const w: World = { ctx, rules: ctx.rules, outcome, facts: factsFromOutcome(outcome, ctx), fouls };
+      let cur = before;
+      let chain = before;
+      for (const i of e.enforced) {
+        const r = fouls[i]!;
+        cur = walk(w, cur, r.yards, r.side, limited(w, r)).to;
+        const between = r.timing === 'between_downs' || isSeparate(r.foulId, ctx.rules);
+        if (r.side === A ? !between : r.afd) chain = cur;
+        if (cur >= chain + toGain) chain = cur;
+      }
+      return fresh(A, spot, cur === spot ? chain : spot, true, false);
     }
     if (e.automaticFirstDown || reached) return fresh(A, spot, spot, true, false);
     return counted();

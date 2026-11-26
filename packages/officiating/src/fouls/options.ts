@@ -141,7 +141,7 @@ function choices(w: World, plans: readonly Plan[], prefix: string, calledIdx: re
     // B8.5.8 rule 2: the yardage may be declined while the penalty (a loss of down) is kept.
     if (plan.lod && plan.from !== null && plan.to !== plan.from && plan.safetyFor === null && plan.kind !== 'no_yardage') {
       const kept: Plan = { ...plan, kind: 'no_yardage', to: plan.from, half: false };
-      if (kept.to !== plan.to) out.push({ id: `${id}.no_yardage`, label: 'penalty.option.no_yardage', side, outcome: apply(w, kept, calledIdx, false) });
+      if (kept.to !== plan.to && kept.to > 0 && kept.to < w.facts.length) out.push({ id: `${id}.no_yardage`, label: 'penalty.option.no_yardage', side, outcome: apply(w, kept, calledIdx, false) });
     }
   });
   return out;

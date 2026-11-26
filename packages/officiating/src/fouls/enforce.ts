@@ -77,7 +77,7 @@ function carry(w: World, i: number, to: 'try' | 'kickoff'): Plan {
     possession: w.outcome.possessionAfter, keepResult: true, carriedTo: to };
 }
 
-function limited(w: World, r: FoulRecord): boolean {
+export function limited(w: World, r: FoulRecord): boolean {
   const p = enforcementProfile(r.foulId, w.rules);
   return p === 'standard' || p === 'interference_spot';
 }
@@ -313,8 +313,15 @@ function tryDown(w: World, i: number): Plan[] {
   return [retry, { ...retry, kind: 'no_yardage', to: f.previous, half: false }];
 }
 
+/** A walked-off spot must be in the field of play; a plan that cannot keep it there is not offered. */
+function inField(w: World, plans: Plan[]): Plan[] {
+  return plans.filter((p) => p.safetyFor !== null || p.carriedTo !== null || p.kind === 'try_fails' || (p.to > 0 && p.to < w.facts.length));
+}
+
 /** Every way to enforce live-ball or pre-snap foul `i` on its own. Empty when nothing can be enforced. */
-export function livePlans(w: World, i: number): Plan[] {
+export function livePlans(w: World, i: number): Plan[] { return inField(w, liveAll(w, i)); }
+
+function liveAll(w: World, i: number): Plan[] {
   const f = w.facts;
   const r = w.fouls[i]!;
   const o = w.outcome;
