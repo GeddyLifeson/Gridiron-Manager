@@ -1,0 +1,126 @@
+{
+ "module": "league.roster",
+ "version": "g15.1",
+ "params": [
+  {
+   "name": "league.roster.emergencyQbElevationCountsPerGame",
+   "value": 0,
+   "min": 0,
+   "max": 1,
+   "unit": "count",
+   "belongsTo": "league.roster",
+   "basis": "assumption",
+   "leaf": "C5.2.2",
+   "constrainedBy": "C5.2.2 says whether the emergency quarterback elevation counts against the two per game is Unverified; 0 = it does not. Test \"emergency quarterback elevation\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.markerInjuryReviewDaysBeforeGame",
+   "value": 6,
+   "min": 0,
+   "max": 7,
+   "unit": "days",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 rule 1 (G-6 Monday, starting value). Test \"weekly markers\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.markerTryoutDaysBeforeGame",
+   "value": 5,
+   "min": 0,
+   "max": 7,
+   "unit": "days",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 rule 1 (G-5 Tuesday tryouts, Unverified default). Test \"weekly markers\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.markerProtectionDaysBeforeGame",
+   "value": 5,
+   "min": 0,
+   "max": 7,
+   "unit": "days",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 rule 1 (protections Tuesday 4 p.m., 2 of 3). Test \"weekly markers\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.markerLastTransactionDaysBeforeGame",
+   "value": 1,
+   "min": 0,
+   "max": 7,
+   "unit": "days",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 rule 1 (G-1 Saturday). Test \"weekly markers\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.markerRevertDaysAfterGame",
+   "value": 1,
+   "min": 0,
+   "max": 3,
+   "unit": "days",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 rule 1 (first business day after the game, 2 of 3). Test \"weekly markers\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.markerAmberHours",
+   "value": 24,
+   "min": 0,
+   "max": 72,
+   "unit": "hours",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 user sees: amber 24 game-hours before the deadline. Test \"marker status\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.markerRedHours",
+   "value": 2,
+   "min": 0,
+   "max": 24,
+   "unit": "hours",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 user sees: red at 2 hours. Test \"marker status\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.normalWeekDays",
+   "value": 7,
+   "min": 5,
+   "max": 14,
+   "unit": "days",
+   "belongsTo": "league.roster",
+   "basis": "assumption",
+   "leaf": "H6.1.1",
+   "constrainedBy": "H6.1.1 rule 2: a week shorter than this between games is a short week and drops the tryout marker. Test \"short week\"",
+   "status": "starting"
+  },
+  {
+   "name": "league.roster.designationCountedAtWindowOpen",
+   "value": 1,
+   "min": 0,
+   "max": 1,
+   "unit": "switch",
+   "belongsTo": "league.roster",
+   "basis": "bible",
+   "leaf": "C5.4.2",
+   "constrainedBy": "C5.4.2 edge case: designation used when the window opens (assumption, to check); 0 counts it at activation. Test \"return designation counting\"",
+   "status": "starting"
+  }
+ ]
+}
