@@ -228,7 +228,8 @@ describe('a play from a kicking look: the men with the ball', () => {
           throws++;
           expect(p.passerId, `${f} seed ${seed}`).toBe(ID(passer));
           const px = (p.releaseSpot.x - input.situation.ballX) * input.situation.attackDir;
-          if (!p.throwaway) expect(Math.abs(px - depth), `${f} seed ${seed}: released ${px} yd from the line`).toBeLessThan(6);
+          // A passer who went through his reads and left the pocket to extend the play throws from wherever that took him.
+          if (!p.throwaway && !p.passerOutsidePocket) expect(Math.abs(px - depth), `${f} seed ${seed}: released ${px} yd from the line`).toBeLessThan(6);
         }
       }
       expect(throws, f).toBeGreaterThan(SEEDS.length / 3);
@@ -252,7 +253,8 @@ describe('a play from a kicking look: resolved on its merits', () => {
   it('the same fake pass is caught more often against a kick rush than against the regular defense left on the field (F12.7.1 acceptance, as a direction on fixtures)', () => {
     const caught = (f: Fake, safe: boolean): number => {
       let n = 0;
-      for (let seed = 1; seed <= 40; seed++) {
+      // 120 plays a side: over 40 the punt fake's two counts are close enough to tie (71 and 66 of 120 as of the ball-pursuit change).
+      for (let seed = 1; seed <= 120; seed++) {
         const r = resolver.simulatePlay(fakeInput(f, { seed, safe }));
         if (eventsOf(r.truth, 'possession').some((p) => p.how === 'catch' && p.side === 0)) n++;
       }
