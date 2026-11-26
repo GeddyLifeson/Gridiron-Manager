@@ -1,6 +1,6 @@
 // The starter content port and the real game on the tick resolver (WP-23 owed item: real content port).
 import { describe, expect, it } from 'vitest';
-import { SLOT_COUNT, SLOTS_PER_TEAM, type PlayCalls, type PlayInput } from '@gm/schema';
+import { NEUTRAL_ENVIRONMENT, SLOT_COUNT, SLOTS_PER_TEAM, type Environment, type PlayCalls, type PlayInput } from '@gm/schema';
 import { legality } from '@gm/football-lang';
 import { field } from '@gm/engine-core';
 import { resolveRuleSet } from '@gm/rules-data';
@@ -18,13 +18,30 @@ function offenseCalls(kind: string, runDirection: 'left' | 'right' | 'middle' | 
     opposing: { unit: 'defense', callContentId: null, contentHash: null, packageId: null, frontId: null, coverageId: null, pressureId: null, coverageFamily, rushers: 4, boxCount: 7, players: [] },
   } as unknown as PlayCalls;
 }
-const inputOf = (calls: PlayCalls, rules = pro): PlayInput => ({
-  calls, rules, params, geometry: field.fieldGeometry(rules),
-  situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: 0 },
+const inputOf = (calls: PlayCalls, rules = pro, o: { environment?: Environment; offense?: 0 | 1; down?: number | null } = {}): PlayInput => ({
+  calls, rules, params, geometry: field.fieldGeometry(rules), environment: o.environment ?? NEUTRAL_ENVIRONMENT,
+  situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: o.offense ?? 0, down: o.down === undefined ? 1 : o.down, score: [0, 0] },
 } as unknown as PlayInput);
 
 describe('starter content port', () => {
   const port = createStarterContentPort();
+  it('carries the crowd into the play (J12.6.1): the visiting offense on third down hears it, goes silent, and is on the road', () => {
+    const loud = { ...NEUTRAL_ENVIRONMENT, noiseBase: 0.9 };
+    const road = port.setup(inputOf(offenseCalls('dropback_pass', null), pro, { environment: loud, offense: 1, down: 3 }))!;
+    expect(road.presnap.venue).toBe('road');
+    expect(road.presnap.offense.noise).toBeCloseTo(0.9, 12);
+    expect(road.presnap.defense.noise).toBeLessThan(road.presnap.offense.noise);
+    expect(road.presnap.silentCount).toBe(true);
+    expect(road.context.noise).toEqual([road.presnap.offense.noise, road.presnap.defense.noise]);
+    expect(road.context.familiarityZ![1]).toBeGreaterThan(0);
+    const home = port.setup(inputOf(offenseCalls('dropback_pass', null), pro, { environment: loud, offense: 0, down: 3 }))!;
+    expect(home.presnap.venue).toBe('home');
+    expect(home.presnap.silentCount).toBe(false);
+    const neutral = createStarterContentPort({ site: 'neutral' }).setup(inputOf(offenseCalls('dropback_pass', null), pro, { environment: loud, offense: 1, down: 3 }))!;
+    expect(neutral.presnap.venue).toBe('neutral');
+    const quiet = port.setup(inputOf(offenseCalls('dropback_pass', null), pro, { offense: 1, down: 3 }))!;
+    expect([quiet.presnap.offense.noise, quiet.presnap.defense.noise]).toEqual([0, 0]);
+  });
   it('gives every chart kind a play with eleven a side in the fixed role order', () => {
     for (const kind of ['run', 'dropback_pass', 'quick_pass', 'play_action', 'screen', 'rpo', 'kneel']) {
       const s = port.setup(inputOf(offenseCalls(kind, kind === 'run' ? 'left' : null)))!;
@@ -114,7 +131,7 @@ describe('starter content port', () => {
   });
   it('builds kicking units from the rule set: dynamic kickoff lines for pro, traditional for college', () => {
     const kick = (k: string) => ({ snapping: { unit: 'kick', kickKind: k, callContentId: null, contentHash: null, direction: null, players: [] }, opposing: { unit: 'return', returnKind: 'kick_return', callContentId: null, contentHash: null, players: [] } }) as unknown as PlayCalls;
-    const proKo = port.setup({ ...inputOf(kick('kickoff')), situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: 0 } } as unknown as PlayInput)!;
+    const proKo = port.setup({ ...inputOf(kick('kickoff')), situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: 0, down: null, score: [0, 0] } } as unknown as PlayInput)!;
     const own = 45 - field.fieldGeometry(pro).goalLineWestX;
     expect(proKo.presnap.offense.assignments[0]!.preSnap.align.px).toBeCloseTo(100 - own - pro.num('kickoff.kicking_team_line_yardline'));
     const college = resolveRuleSet('college_2026');
