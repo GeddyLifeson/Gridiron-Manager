@@ -5,7 +5,7 @@ export { sampleFrames, newSample, lastTick, storedAt, type FrameSample } from '.
 export { Camera, type CameraContext, type FieldBox } from './camera.ts';
 export { buildMarkings, markingStatus, PRO_MARKINGS, type FieldMarkings, type MarkingSet } from './markings.ts';
 export { markerFor, positionLetter, DEFAULT_MARKERS, type MarkerStyle, type MarkerTable, type MarkerShape } from './markers.ts';
-export { resolveTeamColours, contrastRatio, relativeLuminance, COLOUR_BLIND_SAFE, FIELD_COLOURS, LINE_COLOURS, type ResolvedColours } from './colours.ts';
+export { resolveTeamColours, fieldPalette, inkOn, contrastRatio, relativeLuminance, type ResolvedColours, type FieldPalette } from './colours.ts';
 export { buildCues, activeCues, cueDisplaySeconds, CUE_FOR, type Cue, type CueShape } from './cues.ts';
 export { Playback, ReplayAllowance, SPEEDS, stills, PlaybackRuleError, type PlaybackStill } from './playback.ts';
 export { FieldRenderer, OverlaySourceError, type Canvas2DLike, type RenderOptions } from './renderer.ts';
