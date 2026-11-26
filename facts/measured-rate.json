@@ -1620,15 +1620,28 @@
      "independenceGroup": "nflverse",
      "primary": false,
      "value": 0.65
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2022 to 2024, 815 games; computed by the project: 0.6522 against the stored 0.65 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "1 of 3",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.6522 against the stored 0.65."
     }
    ]
   },
@@ -1657,15 +1670,28 @@
      "howRead": "secondary summary",
      "independenceGroup": "wisconsin-recap",
      "primary": false
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2022 to 2024, 815 games; computed by the project: 0.5378 against the stored 0.532 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "2 of 3",
+   "status": "Verified",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.5378 against the stored 0.532."
     }
    ]
   },
@@ -1686,15 +1712,28 @@
      "independenceGroup": "nflverse",
      "primary": false,
      "value": 0.508
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2022, 815 games; computed by the project: 0.5172 against the stored 0.508 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "1 of 3",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.5172 against the stored 0.508."
     }
    ]
   },
@@ -1723,15 +1762,28 @@
      "howRead": "secondary summary",
      "independenceGroup": "wisconsin-recap",
      "primary": false
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2023, 815 games; computed by the project: 0.5256 against the stored 0.52 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "2 of 3",
+   "status": "Verified",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.5256 against the stored 0.52."
     }
    ]
   },
@@ -1798,15 +1850,28 @@
      "independenceGroup": "nflverse",
      "primary": false,
      "value": 0.553
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2022 to 2024, 815 games; computed by the project: 0.5499 against the stored 0.553 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "1 of 3",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.5499 against the stored 0.553."
     }
    ]
   },
@@ -1827,15 +1892,28 @@
      "independenceGroup": "nflverse",
      "primary": false,
      "value": 0.253
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2022 to 2024, 815 games; computed by the project: 0.2510 against the stored 0.253 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "1 of 3",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.2510 against the stored 0.253."
     }
    ]
   },
@@ -1856,15 +1934,28 @@
      "independenceGroup": "nflverse",
      "primary": false,
      "value": 0.194
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2022 to 2024, 815 games; computed by the project: 0.1991 against the stored 0.194 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "1 of 3",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.1991 against the stored 0.194."
     }
    ]
   },
@@ -5319,15 +5410,28 @@
      "independenceGroup": "fox-sports",
      "primary": false,
      "value": 7.52
+    },
+    {
+     "citation": "ESPN play-by-play as published by sportsdataverse (github.com/sportsdataverse/sportsdataverse-data, release espn_nfl_pbp), regular seasons 2024, 815 games; computed by the project: 7.5809 against the stored 7.52 (within the 0.01 absolute or 1 percent tolerance, so counted as agreeing)",
+     "locator": "scripts/research/espn-fourth-down.py; output scripts/research/espn-fourth-down.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp-sportsdataverse",
+     "primary": false
     }
    ],
-   "status": "2 of 3",
+   "status": "Verified",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 7.5809 against the stored 7.52."
     }
    ]
   },
