@@ -3,6 +3,7 @@
 // range, or "cannot tell yet". Familiarity is a fact of shared time and is shown as a band without blur.
 // Revealed personality fields carry noise that shrinks with familiarity. Draws come from the caller's
 // seeded stream (P1.1.1, J13).
+import { possible } from '@gm/schema';
 import { clamp } from './math.ts';
 import { pp } from './params.ts';
 import type { RelationshipRecord } from './record.ts';
@@ -20,7 +21,7 @@ function bandOf(value: number): number {
 
 /** Chance the shown band is one off: one band of noise at familiarity 50, none at 100 (L1.1.1). */
 export function offByOneChance(familiarity: number): number {
-  return clamp(pp('read.noiseBandsAtFifty') * (1 - clamp(familiarity, 0, 100) / 100), 0, 1) / 2;
+  return possible(clamp(pp('read.noiseBandsAtFifty') * (1 - clamp(familiarity, 0, 100) / 100), 0, 1) / 2);
 }
 
 /**

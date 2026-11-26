@@ -1,5 +1,5 @@
 // Tells (G8.3.1 structural tells, G8.3.2 player tells).
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { param } from './params.ts';
 import { countsForCalls, isPressure, manZoneOf, runOrPass } from './cuts.ts';
 import { wilson } from './stats.ts';
@@ -122,7 +122,7 @@ function clampSkill(s: number): number { return Math.min(param('habit.skillMax')
 
 /** G8.3.2: weekly chance a position coach finds a given habit: 0.10 x skill factor x film ratio, capped at 0.5. */
 export function habitFindChance(skillFactor: number, filmRatio: number): number {
-  return Math.min(param('habit.findCap'), param('habit.findBase') * clampSkill(skillFactor) * Math.max(0, filmRatio));
+  return possible(Math.min(param('habit.findCap'), param('habit.findBase') * clampSkill(skillFactor) * Math.max(0, filmRatio)));
 }
 
 /** G8.3.2: chance of a false report, 0.05 / skill factor. */

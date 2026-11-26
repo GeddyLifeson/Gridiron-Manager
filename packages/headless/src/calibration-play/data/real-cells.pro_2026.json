@@ -1,0 +1,5579 @@
+{
+ "ruleSetId": "pro_2026",
+ "seasons": "2022-2024",
+ "seasonType": "REG",
+ "sources": [
+  {
+   "citation": "nflverse play-by-play",
+   "locator": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_<year>.csv.gz, 2022, 2023, 2024, season_type REG",
+   "retrieved": "2026-11-26"
+  }
+ ],
+ "games": 815,
+ "rows": 131508,
+ "adapterChecks": [
+  {
+   "season": 2022,
+   "quantity": "rush_att",
+   "fromPlayByPlay": 14767,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 14770
+    },
+    {
+     "source": "nfl.com",
+     "value": 14770
+    }
+   ],
+   "difference": -3
+  },
+  {
+   "season": 2022,
+   "quantity": "rush_yds",
+   "fromPlayByPlay": 65855,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 65894
+    },
+    {
+     "source": "nfl.com",
+     "value": 65894
+    }
+   ],
+   "difference": -39
+  },
+  {
+   "season": 2022,
+   "quantity": "pass_att",
+   "fromPlayByPlay": 18069,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 18069
+    },
+    {
+     "source": "nfl.com",
+     "value": 18069
+    }
+   ],
+   "difference": 0
+  },
+  {
+   "season": 2022,
+   "quantity": "sacks",
+   "fromPlayByPlay": 1297,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 1297
+    },
+    {
+     "source": "nfl.com",
+     "value": 1297
+    }
+   ],
+   "difference": 0
+  },
+  {
+   "season": 2023,
+   "quantity": "rush_att",
+   "fromPlayByPlay": 14606,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 14606
+    },
+    {
+     "source": "nfl.com",
+     "value": 14606
+    }
+   ],
+   "difference": 0
+  },
+  {
+   "season": 2023,
+   "quantity": "rush_yds",
+   "fromPlayByPlay": 61287,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 61287
+    },
+    {
+     "source": "nfl.com",
+     "value": 61287
+    }
+   ],
+   "difference": 0
+  },
+  {
+   "season": 2023,
+   "quantity": "pass_att",
+   "fromPlayByPlay": 18315,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 18315
+    },
+    {
+     "source": "nfl.com",
+     "value": 18315
+    }
+   ],
+   "difference": 0
+  },
+  {
+   "season": 2023,
+   "quantity": "sacks",
+   "fromPlayByPlay": 1410,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 1410
+    },
+    {
+     "source": "nfl.com",
+     "value": 1410
+    }
+   ],
+   "difference": 0
+  },
+  {
+   "season": 2024,
+   "quantity": "rush_att",
+   "fromPlayByPlay": 14686,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 14687
+    },
+    {
+     "source": "nfl.com",
+     "value": 14687
+    }
+   ],
+   "difference": -1
+  },
+  {
+   "season": 2024,
+   "quantity": "rush_yds",
+   "fromPlayByPlay": 65114,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 65174
+    },
+    {
+     "source": "nfl.com",
+     "value": 65174
+    }
+   ],
+   "difference": -60
+  },
+  {
+   "season": 2024,
+   "quantity": "pass_att",
+   "fromPlayByPlay": 17811,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 17811
+    },
+    {
+     "source": "nfl.com",
+     "value": 17811
+    }
+   ],
+   "difference": 0
+  },
+  {
+   "season": 2024,
+   "quantity": "sacks",
+   "fromPlayByPlay": 1314,
+   "others": [
+    {
+     "source": "footballdb",
+     "value": 1314
+    },
+    {
+     "source": "nfl.com",
+     "value": 1314
+    }
+   ],
+   "difference": 0
+  }
+ ],
+ "cells": [
+  {
+   "id": "all[all].play.passPlayShare",
+   "dim": "all",
+   "key": "all",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.575451,
+   "sd": null
+  },
+  {
+   "id": "all[all].play.yards",
+   "dim": "all",
+   "key": "all",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 100820,
+   "value": 5.45077,
+   "sd": 8.56153
+  },
+  {
+   "id": "all[all].play.firstDownRate",
+   "dim": "all",
+   "key": "all",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.293027,
+   "sd": null
+  },
+  {
+   "id": "all[all].play.touchdownRate",
+   "dim": "all",
+   "key": "all",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 100820,
+   "value": 0.0375818,
+   "sd": null
+  },
+  {
+   "id": "all[all].play.turnoverRate",
+   "dim": "all",
+   "key": "all",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 100820,
+   "value": 0.0197282,
+   "sd": null
+  },
+  {
+   "id": "all[all].pass.completionPct",
+   "dim": "all",
+   "key": "all",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53996,
+   "value": 0.648974,
+   "sd": null
+  },
+  {
+   "id": "all[all].pass.yardsPerAttempt",
+   "dim": "all",
+   "key": "all",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 53996,
+   "value": 7.0861,
+   "sd": 9.53841
+  },
+  {
+   "id": "all[all].pass.interceptionRate",
+   "dim": "all",
+   "key": "all",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 53996,
+   "value": 0.0228721,
+   "sd": null
+  },
+  {
+   "id": "all[all].pass.sackRate",
+   "dim": "all",
+   "key": "all",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 58017,
+   "value": 0.0693073,
+   "sd": null
+  },
+  {
+   "id": "all[all].pass.scrambleShare",
+   "dim": "all",
+   "key": "all",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 61019,
+   "value": 0.0491978,
+   "sd": null
+  },
+  {
+   "id": "all[all].pass.completedGain",
+   "dim": "all",
+   "key": "all",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 35042,
+   "value": [
+    2,
+    5,
+    8,
+    14,
+    22,
+    30
+   ],
+   "sd": null
+  },
+  {
+   "id": "all[all].rush.yardsPerCarry",
+   "dim": "all",
+   "key": "all",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 42803,
+   "value": 4.52387,
+   "sd": 6.22091
+  },
+  {
+   "id": "all[all].rush.stuffedShare",
+   "dim": "all",
+   "key": "all",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 42803,
+   "value": 0.172301,
+   "sd": null
+  },
+  {
+   "id": "all[all].rush.gain10Share",
+   "dim": "all",
+   "key": "all",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 42803,
+   "value": 0.117445,
+   "sd": null
+  },
+  {
+   "id": "all[all].rush.gain",
+   "dim": "all",
+   "key": "all",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 42803,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    14
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[1].share",
+   "dim": "down",
+   "key": "1",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.437314,
+   "sd": null
+  },
+  {
+   "id": "down[1].play.passPlayShare",
+   "dim": "down",
+   "key": "1",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 44090,
+   "value": 0.478952,
+   "sd": null
+  },
+  {
+   "id": "down[1].play.yards",
+   "dim": "down",
+   "key": "1",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 44090,
+   "value": 5.57979,
+   "sd": 8.42997
+  },
+  {
+   "id": "down[1].play.firstDownRate",
+   "dim": "down",
+   "key": "1",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 44090,
+   "value": 0.203085,
+   "sd": null
+  },
+  {
+   "id": "down[1].play.touchdownRate",
+   "dim": "down",
+   "key": "1",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 44090,
+   "value": 0.0305058,
+   "sd": null
+  },
+  {
+   "id": "down[1].play.turnoverRate",
+   "dim": "down",
+   "key": "1",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 44090,
+   "value": 0.0163529,
+   "sd": null
+  },
+  {
+   "id": "down[1].pass.completionPct",
+   "dim": "down",
+   "key": "1",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 19998,
+   "value": 0.672917,
+   "sd": null
+  },
+  {
+   "id": "down[1].pass.yardsPerAttempt",
+   "dim": "down",
+   "key": "1",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 19998,
+   "value": 7.44764,
+   "sd": 9.9425
+  },
+  {
+   "id": "down[1].pass.interceptionRate",
+   "dim": "down",
+   "key": "1",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 19998,
+   "value": 0.0206521,
+   "sd": null
+  },
+  {
+   "id": "down[1].pass.sackRate",
+   "dim": "down",
+   "key": "1",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 21117,
+   "value": 0.0529905,
+   "sd": null
+  },
+  {
+   "id": "down[1].pass.scrambleShare",
+   "dim": "down",
+   "key": "1",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 22095,
+   "value": 0.0442634,
+   "sd": null
+  },
+  {
+   "id": "down[1].pass.completedGain",
+   "dim": "down",
+   "key": "1",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 13457,
+   "value": [
+    2,
+    5,
+    8,
+    14,
+    23,
+    30
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[1].rush.yardsPerCarry",
+   "dim": "down",
+   "key": "1",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 22973,
+   "value": 4.52379,
+   "sd": 6.23813
+  },
+  {
+   "id": "down[1].rush.stuffedShare",
+   "dim": "down",
+   "key": "1",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 22973,
+   "value": 0.166805,
+   "sd": null
+  },
+  {
+   "id": "down[1].rush.gain10Share",
+   "dim": "down",
+   "key": "1",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 22973,
+   "value": 0.110478,
+   "sd": null
+  },
+  {
+   "id": "down[1].rush.gain",
+   "dim": "down",
+   "key": "1",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 22973,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    14
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[2].share",
+   "dim": "down",
+   "key": "2",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.332751,
+   "sd": null
+  },
+  {
+   "id": "down[2].play.passPlayShare",
+   "dim": "down",
+   "key": "2",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 33548,
+   "value": 0.588619,
+   "sd": null
+  },
+  {
+   "id": "down[2].play.yards",
+   "dim": "down",
+   "key": "2",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 33548,
+   "value": 5.42223,
+   "sd": 8.14317
+  },
+  {
+   "id": "down[2].play.firstDownRate",
+   "dim": "down",
+   "key": "2",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 33548,
+   "value": 0.328663,
+   "sd": null
+  },
+  {
+   "id": "down[2].play.touchdownRate",
+   "dim": "down",
+   "key": "2",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 33548,
+   "value": 0.0377966,
+   "sd": null
+  },
+  {
+   "id": "down[2].play.turnoverRate",
+   "dim": "down",
+   "key": "2",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 33548,
+   "value": 0.0186598,
+   "sd": null
+  },
+  {
+   "id": "down[2].pass.completionPct",
+   "dim": "down",
+   "key": "2",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 18594,
+   "value": 0.669678,
+   "sd": null
+  },
+  {
+   "id": "down[2].pass.yardsPerAttempt",
+   "dim": "down",
+   "key": "2",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 18594,
+   "value": 6.81118,
+   "sd": 8.95244
+  },
+  {
+   "id": "down[2].pass.interceptionRate",
+   "dim": "down",
+   "key": "2",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 18594,
+   "value": 0.0203829,
+   "sd": null
+  },
+  {
+   "id": "down[2].pass.sackRate",
+   "dim": "down",
+   "key": "2",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 19747,
+   "value": 0.0583886,
+   "sd": null
+  },
+  {
+   "id": "down[2].pass.scrambleShare",
+   "dim": "down",
+   "key": "2",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 20680,
+   "value": 0.0451161,
+   "sd": null
+  },
+  {
+   "id": "down[2].pass.completedGain",
+   "dim": "down",
+   "key": "2",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 12452,
+   "value": [
+    2,
+    5,
+    8,
+    13,
+    21,
+    28
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[2].rush.yardsPerCarry",
+   "dim": "down",
+   "key": "2",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 13801,
+   "value": 4.53887,
+   "sd": 6.08903
+  },
+  {
+   "id": "down[2].rush.stuffedShare",
+   "dim": "down",
+   "key": "2",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 13801,
+   "value": 0.174335,
+   "sd": null
+  },
+  {
+   "id": "down[2].rush.gain10Share",
+   "dim": "down",
+   "key": "2",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 13801,
+   "value": 0.123469,
+   "sd": null
+  },
+  {
+   "id": "down[2].rush.gain",
+   "dim": "down",
+   "key": "2",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 13801,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    14
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[3].share",
+   "dim": "down",
+   "key": "3",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.207231,
+   "sd": null
+  },
+  {
+   "id": "down[3].play.passPlayShare",
+   "dim": "down",
+   "key": "3",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 20893,
+   "value": 0.753937,
+   "sd": null
+  },
+  {
+   "id": "down[3].play.yards",
+   "dim": "down",
+   "key": "3",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 20893,
+   "value": 5.34691,
+   "sd": 9.46027
+  },
+  {
+   "id": "down[3].play.firstDownRate",
+   "dim": "down",
+   "key": "3",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 20893,
+   "value": 0.399416,
+   "sd": null
+  },
+  {
+   "id": "down[3].play.touchdownRate",
+   "dim": "down",
+   "key": "3",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 20893,
+   "value": 0.0475757,
+   "sd": null
+  },
+  {
+   "id": "down[3].play.turnoverRate",
+   "dim": "down",
+   "key": "3",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 20893,
+   "value": 0.0264682,
+   "sd": null
+  },
+  {
+   "id": "down[3].pass.completionPct",
+   "dim": "down",
+   "key": "3",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 14105,
+   "value": 0.598795,
+   "sd": null
+  },
+  {
+   "id": "down[3].pass.yardsPerAttempt",
+   "dim": "down",
+   "key": "3",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 14105,
+   "value": 7.02552,
+   "sd": 9.7135
+  },
+  {
+   "id": "down[3].pass.interceptionRate",
+   "dim": "down",
+   "key": "3",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 14105,
+   "value": 0.0270117,
+   "sd": null
+  },
+  {
+   "id": "down[3].pass.sackRate",
+   "dim": "down",
+   "key": "3",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 15752,
+   "value": 0.104558,
+   "sd": null
+  },
+  {
+   "id": "down[3].pass.scrambleShare",
+   "dim": "down",
+   "key": "3",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 16748,
+   "value": 0.0594698,
+   "sd": null
+  },
+  {
+   "id": "down[3].pass.completedGain",
+   "dim": "down",
+   "key": "3",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 8446,
+   "value": [
+    3,
+    5,
+    9,
+    15,
+    24,
+    31
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[3].rush.yardsPerCarry",
+   "dim": "down",
+   "key": "3",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 5141,
+   "value": 4.72748,
+   "sd": 6.5641
+  },
+  {
+   "id": "down[3].rush.stuffedShare",
+   "dim": "down",
+   "key": "3",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5141,
+   "value": 0.177008,
+   "sd": null
+  },
+  {
+   "id": "down[3].rush.gain10Share",
+   "dim": "down",
+   "key": "3",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5141,
+   "value": 0.138883,
+   "sd": null
+  },
+  {
+   "id": "down[3].rush.gain",
+   "dim": "down",
+   "key": "3",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 5141,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    16
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[4].share",
+   "dim": "down",
+   "key": "4",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0227038,
+   "sd": null
+  },
+  {
+   "id": "down[4].play.passPlayShare",
+   "dim": "down",
+   "key": "4",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2289,
+   "value": 0.612058,
+   "sd": null
+  },
+  {
+   "id": "down[4].play.yards",
+   "dim": "down",
+   "key": "4",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 2289,
+   "value": 4.33202,
+   "sd": 8.32826
+  },
+  {
+   "id": "down[4].play.firstDownRate",
+   "dim": "down",
+   "key": "4",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2289,
+   "value": 0.53211,
+   "sd": null
+  },
+  {
+   "id": "down[4].play.touchdownRate",
+   "dim": "down",
+   "key": "4",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 2289,
+   "value": 0.0795107,
+   "sd": null
+  },
+  {
+   "id": "down[4].play.turnoverRate",
+   "dim": "down",
+   "key": "4",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 2289,
+   "value": 0.0388816,
+   "sd": null
+  },
+  {
+   "id": "down[4].pass.completionPct",
+   "dim": "down",
+   "key": "4",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1299,
+   "value": 0.528868,
+   "sd": null
+  },
+  {
+   "id": "down[4].pass.yardsPerAttempt",
+   "dim": "down",
+   "key": "4",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1299,
+   "value": 6.11316,
+   "sd": 9.18733
+  },
+  {
+   "id": "down[4].pass.interceptionRate",
+   "dim": "down",
+   "key": "4",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1299,
+   "value": 0.047729,
+   "sd": null
+  },
+  {
+   "id": "down[4].pass.sackRate",
+   "dim": "down",
+   "key": "4",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1401,
+   "value": 0.0728051,
+   "sd": null
+  },
+  {
+   "id": "down[4].pass.scrambleShare",
+   "dim": "down",
+   "key": "4",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1496,
+   "value": 0.0635027,
+   "sd": null
+  },
+  {
+   "id": "down[4].pass.completedGain",
+   "dim": "down",
+   "key": "4",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 687,
+   "value": [
+    2,
+    5,
+    9,
+    15,
+    26,
+    33.7
+   ],
+   "sd": null
+  },
+  {
+   "id": "down[4].rush.yardsPerCarry",
+   "dim": "down",
+   "key": "4",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 888,
+   "value": 3.11374,
+   "sd": 5.55626
+  },
+  {
+   "id": "down[4].rush.stuffedShare",
+   "dim": "down",
+   "key": "4",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 888,
+   "value": 0.255631,
+   "sd": null
+  },
+  {
+   "id": "down[4].rush.gain10Share",
+   "dim": "down",
+   "key": "4",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 888,
+   "value": 0.079955,
+   "sd": null
+  },
+  {
+   "id": "down[4].rush.gain",
+   "dim": "down",
+   "key": "4",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 888,
+   "value": [
+    0,
+    0,
+    2,
+    4,
+    8,
+    13
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].share",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.00632811,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 638,
+   "value": 0.253918,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].play.yards",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 638,
+   "value": 0.454545,
+   "sd": 1.33318
+  },
+  {
+   "id": "downDistance[1&1-2].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 638,
+   "value": 0.492163,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 638,
+   "value": 0.487461,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 638,
+   "value": 0.015674,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].pass.completionPct",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 156,
+   "value": 0.474359,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 156,
+   "value": 0.647436,
+   "sd": 0.793559
+  },
+  {
+   "id": "downDistance[1&1-2].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 156,
+   "value": 0.0128205,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].pass.sackRate",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 162,
+   "value": 0.037037,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 166,
+   "value": 0.0240964,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].pass.completedGain",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 74,
+   "value": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 476,
+   "value": 0.481092,
+   "sd": 1.21813
+  },
+  {
+   "id": "downDistance[1&1-2].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 476,
+   "value": 0.380252,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 476,
+   "value": 0,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&1-2].rush.gain",
+   "dim": "downDistance",
+   "key": "1&1-2",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 476,
+   "value": [
+    -1,
+    0,
+    1,
+    1,
+    2,
+    2
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].share",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0102162,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1030,
+   "value": 0.345631,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].play.yards",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1030,
+   "value": 2.53786,
+   "sd": 4.62007
+  },
+  {
+   "id": "downDistance[1&3-5].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1030,
+   "value": 0.328155,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1030,
+   "value": 0.23301,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1030,
+   "value": 0.0184466,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].pass.completionPct",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 340,
+   "value": 0.564706,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 340,
+   "value": 3.40588,
+   "sd": 6.06163
+  },
+  {
+   "id": "downDistance[1&3-5].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 340,
+   "value": 0.0205882,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].pass.sackRate",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 356,
+   "value": 0.0449438,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 374,
+   "value": 0.0481283,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].pass.completedGain",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 192,
+   "value": [
+    1,
+    3,
+    4,
+    5,
+    14,
+    19.45
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 674,
+   "value": 2.26855,
+   "sd": 3.49961
+  },
+  {
+   "id": "downDistance[1&3-5].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 674,
+   "value": 0.252226,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 674,
+   "value": 0.0252226,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&3-5].rush.gain",
+   "dim": "downDistance",
+   "key": "1&3-5",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 674,
+   "value": [
+    -1,
+    0,
+    2,
+    4,
+    5,
+    6
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].share",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0105237,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1061,
+   "value": 0.344015,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].play.yards",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1061,
+   "value": 2.82846,
+   "sd": 3.3935
+  },
+  {
+   "id": "downDistance[1&6-9].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1061,
+   "value": 0.165881,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1061,
+   "value": 0.162111,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1061,
+   "value": 0.00942507,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].pass.completionPct",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 344,
+   "value": 0.575581,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 344,
+   "value": 3.31977,
+   "sd": 3.87367
+  },
+  {
+   "id": "downDistance[1&6-9].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 344,
+   "value": 0.0174419,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].pass.sackRate",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 365,
+   "value": 0.0575342,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 377,
+   "value": 0.0318302,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].pass.completedGain",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 198,
+   "value": [
+    1.7,
+    4,
+    6,
+    8,
+    9,
+    9
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 696,
+   "value": 2.83046,
+   "sd": 2.77398
+  },
+  {
+   "id": "downDistance[1&6-9].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 696,
+   "value": 0.183908,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 696,
+   "value": 0,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&6-9].rush.gain",
+   "dim": "downDistance",
+   "key": "1&6-9",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 696,
+   "value": [
+    -1,
+    1,
+    3,
+    5,
+    7,
+    7
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].share",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.410246,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 41361,
+   "value": 0.489205,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].play.yards",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 41361,
+   "value": 5.80518,
+   "sd": 8.60344
+  },
+  {
+   "id": "downDistance[1&10+].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 41361,
+   "value": 0.196465,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 41361,
+   "value": 0.0150383,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 41361,
+   "value": 0.016489,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].pass.completionPct",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 19158,
+   "value": 0.678202,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 19158,
+   "value": 7.64887,
+   "sd": 10.0623
+  },
+  {
+   "id": "downDistance[1&10+].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 19158,
+   "value": 0.0207746,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].pass.sackRate",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 20234,
+   "value": 0.0531778,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 21178,
+   "value": 0.0445746,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].pass.completedGain",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 12993,
+   "value": [
+    2,
+    5,
+    9,
+    15,
+    23,
+    31
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 21127,
+   "value": 4.7426,
+   "sd": 6.4004
+  },
+  {
+   "id": "downDistance[1&10+].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 21127,
+   "value": 0.158707,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 21127,
+   "value": 0.119326,
+   "sd": null
+  },
+  {
+   "id": "downDistance[1&10+].rush.gain",
+   "dim": "downDistance",
+   "key": "1&10+",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 21127,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    15
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].share",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0347947,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3508,
+   "value": 0.337514,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].play.yards",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3508,
+   "value": 4.32269,
+   "sd": 6.89831
+  },
+  {
+   "id": "downDistance[2&1-2].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3508,
+   "value": 0.663626,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3508,
+   "value": 0.102338,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3508,
+   "value": 0.0114025,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].pass.completionPct",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1120,
+   "value": 0.660714,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1120,
+   "value": 6.22857,
+   "sd": 9.0033
+  },
+  {
+   "id": "downDistance[2&1-2].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1120,
+   "value": 0.0178571,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].pass.sackRate",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1184,
+   "value": 0.0540541,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1226,
+   "value": 0.0342577,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].pass.completedGain",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 740,
+   "value": [
+    1,
+    3,
+    7,
+    13,
+    21,
+    27
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 2324,
+   "value": 3.69191,
+   "sd": 5.22377
+  },
+  {
+   "id": "downDistance[2&1-2].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2324,
+   "value": 0.201377,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2324,
+   "value": 0.0903614,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&1-2].rush.gain",
+   "dim": "downDistance",
+   "key": "2&1-2",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 2324,
+   "value": [
+    0,
+    1,
+    3,
+    5,
+    9,
+    13
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].share",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0690438,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 6961,
+   "value": 0.45956,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].play.yards",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 6961,
+   "value": 5.03419,
+   "sd": 7.72539
+  },
+  {
+   "id": "downDistance[2&3-5].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 6961,
+   "value": 0.449217,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 6961,
+   "value": 0.0518604,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 6961,
+   "value": 0.0117799,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].pass.completionPct",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3039,
+   "value": 0.655479,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3039,
+   "value": 6.5515,
+   "sd": 9.09372
+  },
+  {
+   "id": "downDistance[2&3-5].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3039,
+   "value": 0.0141494,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].pass.sackRate",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3199,
+   "value": 0.0500156,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3355,
+   "value": 0.0464978,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].pass.completedGain",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 1992,
+   "value": [
+    2,
+    4,
+    7,
+    13,
+    20,
+    27
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3762,
+   "value": 4.28761,
+   "sd": 5.94468
+  },
+  {
+   "id": "downDistance[2&3-5].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3762,
+   "value": 0.179692,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3762,
+   "value": 0.110314,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&3-5].rush.gain",
+   "dim": "downDistance",
+   "key": "2&3-5",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 3762,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    10,
+    14
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].share",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.111883,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 11280,
+   "value": 0.622163,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].play.yards",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 11280,
+   "value": 5.48812,
+   "sd": 8.39823
+  },
+  {
+   "id": "downDistance[2&6-9].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 11280,
+   "value": 0.297429,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 11280,
+   "value": 0.0297872,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 11280,
+   "value": 0.0191489,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].pass.completionPct",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 6578,
+   "value": 0.6692,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 6578,
+   "value": 6.77197,
+   "sd": 9.02602
+  },
+  {
+   "id": "downDistance[2&6-9].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 6578,
+   "value": 0.0186987,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].pass.sackRate",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 7018,
+   "value": 0.0626959,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 7354,
+   "value": 0.0456894,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].pass.completedGain",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 4402,
+   "value": [
+    2,
+    5,
+    8,
+    13,
+    21,
+    28
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 4262,
+   "value": 4.73885,
+   "sd": 6.45458
+  },
+  {
+   "id": "downDistance[2&6-9].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4262,
+   "value": 0.170812,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4262,
+   "value": 0.130221,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&6-9].rush.gain",
+   "dim": "downDistance",
+   "key": "2&6-9",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 4262,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    15
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].share",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.11703,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 11799,
+   "value": 0.707348,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].play.yards",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 11799,
+   "value": 5.91508,
+   "sd": 8.43066
+  },
+  {
+   "id": "downDistance[2&10+].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 11799,
+   "value": 0.187813,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 11799,
+   "value": 0.0179676,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 11799,
+   "value": 0.0244088,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].pass.completionPct",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 7857,
+   "value": 0.676849,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 7857,
+   "value": 7.02749,
+   "sd": 8.82217
+  },
+  {
+   "id": "downDistance[2&10+].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 7857,
+   "value": 0.0245641,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].pass.sackRate",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 8346,
+   "value": 0.0585909,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 8745,
+   "value": 0.0456261,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].pass.completedGain",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 5318,
+   "value": [
+    2,
+    5,
+    8,
+    13,
+    21,
+    28
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3453,
+   "value": 5.13582,
+   "sd": 6.24266
+  },
+  {
+   "id": "downDistance[2&10+].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3453,
+   "value": 0.154648,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3453,
+   "value": 0.151752,
+   "sd": null
+  },
+  {
+   "id": "downDistance[2&10+].rush.gain",
+   "dim": "downDistance",
+   "key": "2&10+",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 3453,
+   "value": [
+    0,
+    2,
+    4,
+    7,
+    12,
+    16
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].share",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0427693,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4312,
+   "value": 0.381262,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].play.yards",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 4312,
+   "value": 4.27713,
+   "sd": 8.08703
+  },
+  {
+   "id": "downDistance[3&1-2].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4312,
+   "value": 0.640538,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4312,
+   "value": 0.0700371,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4312,
+   "value": 0.0141466,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].pass.completionPct",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1524,
+   "value": 0.62336,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1524,
+   "value": 6.54396,
+   "sd": 9.86401
+  },
+  {
+   "id": "downDistance[3&1-2].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1524,
+   "value": 0.0183727,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].pass.sackRate",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1644,
+   "value": 0.0729927,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1743,
+   "value": 0.0567986,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].pass.completedGain",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 950,
+   "value": [
+    1,
+    4,
+    8,
+    14,
+    22,
+    29
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 2668,
+   "value": 3.46139,
+   "sd": 6.37925
+  },
+  {
+   "id": "downDistance[3&1-2].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2668,
+   "value": 0.240255,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2668,
+   "value": 0.0813343,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&1-2].rush.gain",
+   "dim": "downDistance",
+   "key": "3&1-2",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 2668,
+   "value": [
+    0,
+    1,
+    2,
+    4,
+    8,
+    13
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].share",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0518052,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5223,
+   "value": 0.809879,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].play.yards",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 5223,
+   "value": 5.25483,
+   "sd": 9.26256
+  },
+  {
+   "id": "downDistance[3&3-5].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5223,
+   "value": 0.467356,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5223,
+   "value": 0.0639479,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5223,
+   "value": 0.0268045,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].pass.completionPct",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3830,
+   "value": 0.586162,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3830,
+   "value": 6.57363,
+   "sd": 9.38466
+  },
+  {
+   "id": "downDistance[3&3-5].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3830,
+   "value": 0.0263708,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].pass.sackRate",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4230,
+   "value": 0.0945626,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4499,
+   "value": 0.0597911,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].pass.completedGain",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 2245,
+   "value": [
+    3,
+    5,
+    8,
+    15,
+    24,
+    30
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 993,
+   "value": 4.93051,
+   "sd": 6.57695
+  },
+  {
+   "id": "downDistance[3&3-5].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 993,
+   "value": 0.145015,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 993,
+   "value": 0.116818,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&3-5].rush.gain",
+   "dim": "downDistance",
+   "key": "3&3-5",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 993,
+   "value": [
+    0,
+    1,
+    4,
+    7,
+    11,
+    15
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].share",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0571315,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5760,
+   "value": 0.877604,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].play.yards",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 5760,
+   "value": 5.62309,
+   "sd": 10.0356
+  },
+  {
+   "id": "downDistance[3&6-9].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5760,
+   "value": 0.361632,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5760,
+   "value": 0.0434028,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5760,
+   "value": 0.0284722,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].pass.completionPct",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4467,
+   "value": 0.572644,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 4467,
+   "value": 7.2073,
+   "sd": 9.86746
+  },
+  {
+   "id": "downDistance[3&6-9].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4467,
+   "value": 0.0270875,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].pass.sackRate",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5055,
+   "value": 0.11632,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5382,
+   "value": 0.0607581,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].pass.completedGain",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 2558,
+   "value": [
+    4,
+    6,
+    10,
+    16,
+    25,
+    32
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 705,
+   "value": 6.35461,
+   "sd": 6.42321
+  },
+  {
+   "id": "downDistance[3&6-9].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 705,
+   "value": 0.106383,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 705,
+   "value": 0.228369,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&6-9].rush.gain",
+   "dim": "downDistance",
+   "key": "3&6-9",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 705,
+   "value": [
+    0,
+    2,
+    5,
+    9,
+    14,
+    17.8
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].share",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0555247,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5598,
+   "value": 0.861558,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].play.yards",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 5598,
+   "value": 5.97267,
+   "sd": 9.93262
+  },
+  {
+   "id": "downDistance[3&10+].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5598,
+   "value": 0.189175,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5598,
+   "value": 0.0192926,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5598,
+   "value": 0.0335834,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].pass.completionPct",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4284,
+   "value": 0.628618,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 4284,
+   "value": 7.4113,
+   "sd": 9.76692
+  },
+  {
+   "id": "downDistance[3&10+].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4284,
+   "value": 0.0305789,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].pass.sackRate",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4823,
+   "value": 0.111756,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5124,
+   "value": 0.0587432,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].pass.completedGain",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 2693,
+   "value": [
+    3,
+    6,
+    10,
+    14,
+    23,
+    30.4
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 775,
+   "value": 7.34581,
+   "sd": 6.17188
+  },
+  {
+   "id": "downDistance[3&10+].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 775,
+   "value": 0.0645161,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 775,
+   "value": 0.283871,
+   "sd": null
+  },
+  {
+   "id": "downDistance[3&10+].rush.gain",
+   "dim": "downDistance",
+   "key": "3&10+",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 775,
+   "value": [
+    1,
+    3,
+    6,
+    10,
+    15,
+    18
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].share",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.012438,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1254,
+   "value": 0.382775,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].play.yards",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1254,
+   "value": 3.64673,
+   "sd": 7.03341
+  },
+  {
+   "id": "downDistance[4&1-2].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 1254,
+   "value": 0.64992,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1254,
+   "value": 0.0933014,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 1254,
+   "value": 0.023126,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].pass.completionPct",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 452,
+   "value": 0.615044,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 452,
+   "value": 5.99779,
+   "sd": 9.05991
+  },
+  {
+   "id": "downDistance[4&1-2].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 452,
+   "value": 0.0353982,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].pass.sackRate",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 480,
+   "value": 0.0583333,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 518,
+   "value": 0.0733591,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].pass.completedGain",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 278,
+   "value": [
+    1,
+    4,
+    7,
+    12,
+    24,
+    31.15
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 774,
+   "value": 2.64987,
+   "sd": 4.83092
+  },
+  {
+   "id": "downDistance[4&1-2].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 774,
+   "value": 0.26615,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 774,
+   "value": 0.0594315,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&1-2].rush.gain",
+   "dim": "downDistance",
+   "key": "4&1-2",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 774,
+   "value": [
+    0,
+    0,
+    2,
+    3,
+    6,
+    10
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].share",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.00530649,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 535,
+   "value": 0.872897,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].play.yards",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 535,
+   "value": 5.73458,
+   "sd": 9.00086
+  },
+  {
+   "id": "downDistance[4&3-5].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 535,
+   "value": 0.506542,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 535,
+   "value": 0.0766355,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 535,
+   "value": 0.035514,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].pass.completionPct",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 441,
+   "value": 0.555556,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 441,
+   "value": 6.32426,
+   "sd": 8.93851
+  },
+  {
+   "id": "downDistance[4&3-5].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 441,
+   "value": 0.0340136,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].pass.sackRate",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 467,
+   "value": 0.0556745,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 501,
+   "value": 0.0678643,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].pass.completedGain",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 245,
+   "value": [
+    3,
+    5,
+    9,
+    14,
+    25,
+    33.8
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 68,
+   "value": 6.82353,
+   "sd": 7.11723
+  },
+  {
+   "id": "downDistance[4&3-5].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 68,
+   "value": 0.117647,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 68,
+   "value": 0.191176,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&3-5].rush.gain",
+   "dim": "downDistance",
+   "key": "4&3-5",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 68,
+   "value": [
+    0,
+    3,
+    5,
+    8.25,
+    15.5,
+    21.65
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].share",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.00232097,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 234,
+   "value": 0.893162,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].play.yards",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 234,
+   "value": 4.82906,
+   "sd": 9.5619
+  },
+  {
+   "id": "downDistance[4&6-9].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 234,
+   "value": 0.337607,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 234,
+   "value": 0.0683761,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 234,
+   "value": 0.0470085,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].pass.completionPct",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 190,
+   "value": 0.478947,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 190,
+   "value": 6.23158,
+   "sd": 9.09498
+  },
+  {
+   "id": "downDistance[4&6-9].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 190,
+   "value": 0.0421053,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].pass.sackRate",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 209,
+   "value": 0.0909091,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 221,
+   "value": 0.0542986,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].pass.completedGain",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 91,
+   "value": [
+    4,
+    7,
+    10,
+    17,
+    25,
+    34
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 25,
+   "value": 4.16,
+   "sd": 8.94744
+  },
+  {
+   "id": "downDistance[4&6-9].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 25,
+   "value": 0.24,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 25,
+   "value": 0.2,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&6-9].rush.gain",
+   "dim": "downDistance",
+   "key": "4&6-9",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 25,
+   "value": [
+    -4,
+    1,
+    5,
+    8,
+    12.2,
+    15.4
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].share",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.00263837,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].play.passPlayShare",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 266,
+   "value": 0.921053,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].play.yards",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 266,
+   "value": 4.30451,
+   "sd": 10.7188
+  },
+  {
+   "id": "downDistance[4&10+].play.firstDownRate",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 266,
+   "value": 0.199248,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].play.touchdownRate",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 266,
+   "value": 0.0300752,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].play.turnoverRate",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 266,
+   "value": 0.112782,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].pass.completionPct",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 216,
+   "value": 0.337963,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].pass.yardsPerAttempt",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 216,
+   "value": 5.81944,
+   "sd": 10.0478
+  },
+  {
+   "id": "downDistance[4&10+].pass.interceptionRate",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 216,
+   "value": 0.106481,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].pass.sackRate",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 245,
+   "value": 0.118367,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].pass.scrambleShare",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 256,
+   "value": 0.0429688,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].pass.completedGain",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 73,
+   "value": [
+    6,
+    10,
+    16,
+    21,
+    31.8,
+    36.8
+   ],
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].rush.yardsPerCarry",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 21,
+   "value": 6.95238,
+   "sd": 11.3775
+  },
+  {
+   "id": "downDistance[4&10+].rush.stuffedShare",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 21,
+   "value": 0.333333,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].rush.gain10Share",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 21,
+   "value": 0.333333,
+   "sd": null
+  },
+  {
+   "id": "downDistance[4&10+].rush.gain",
+   "dim": "downDistance",
+   "key": "4&10+",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 21,
+   "value": [
+    -3,
+    0,
+    5,
+    12,
+    25,
+    29
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].share",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0959234,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].play.passPlayShare",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 9671,
+   "value": 0.573777,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].play.yards",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 9671,
+   "value": 6.07921,
+   "sd": 9.38474
+  },
+  {
+   "id": "zone[own1-20].play.firstDownRate",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 9671,
+   "value": 0.229656,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].play.touchdownRate",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 9671,
+   "value": 0.00217144,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].play.turnoverRate",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 9671,
+   "value": 0.0196464,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].pass.completionPct",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 5240,
+   "value": 0.671565,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].pass.yardsPerAttempt",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 5240,
+   "value": 7.84561,
+   "sd": 10.7702
+  },
+  {
+   "id": "zone[own1-20].pass.interceptionRate",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5240,
+   "value": 0.0236641,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].pass.sackRate",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5549,
+   "value": 0.0556857,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].pass.scrambleShare",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 5815,
+   "value": 0.0457438,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].pass.completedGain",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 3519,
+   "value": [
+    3,
+    5,
+    9,
+    15,
+    24,
+    32
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].rush.yardsPerCarry",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 4122,
+   "value": 4.72926,
+   "sd": 6.47118
+  },
+  {
+   "id": "zone[own1-20].rush.stuffedShare",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4122,
+   "value": 0.155022,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].rush.gain10Share",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4122,
+   "value": 0.118632,
+   "sd": null
+  },
+  {
+   "id": "zone[own1-20].rush.gain",
+   "dim": "zone",
+   "key": "own1-20",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 4122,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    14
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].share",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.462577,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].play.passPlayShare",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 46637,
+   "value": 0.603233,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].play.yards",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 46637,
+   "value": 6.01623,
+   "sd": 9.4206
+  },
+  {
+   "id": "zone[own21-50].play.firstDownRate",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 46637,
+   "value": 0.295988,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].play.touchdownRate",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 46637,
+   "value": 0.00461007,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].play.turnoverRate",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 46637,
+   "value": 0.0203701,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].pass.completionPct",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 25998,
+   "value": 0.666128,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].pass.yardsPerAttempt",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 25998,
+   "value": 7.80668,
+   "sd": 10.3422
+  },
+  {
+   "id": "zone[own21-50].pass.interceptionRate",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 25998,
+   "value": 0.0226941,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].pass.sackRate",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 28133,
+   "value": 0.0758895,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].pass.scrambleShare",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 29554,
+   "value": 0.0480815,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].pass.completedGain",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 17318,
+   "value": [
+    3,
+    5,
+    9,
+    15,
+    24,
+    32
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].rush.yardsPerCarry",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 18504,
+   "value": 4.97455,
+   "sd": 6.89535
+  },
+  {
+   "id": "zone[own21-50].rush.stuffedShare",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 18504,
+   "value": 0.15267,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].rush.gain10Share",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 18504,
+   "value": 0.130783,
+   "sd": null
+  },
+  {
+   "id": "zone[own21-50].rush.gain",
+   "dim": "zone",
+   "key": "own21-50",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 18504,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    16
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].share",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.292769,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].play.passPlayShare",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 29517,
+   "value": 0.56747,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].play.yards",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 29517,
+   "value": 5.59135,
+   "sd": 8.13782
+  },
+  {
+   "id": "zone[opp49-21].play.firstDownRate",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 29517,
+   "value": 0.299319,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].play.touchdownRate",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 29517,
+   "value": 0.0214114,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].play.turnoverRate",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 29517,
+   "value": 0.0197852,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].pass.completionPct",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 15658,
+   "value": 0.651169,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].pass.yardsPerAttempt",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 15658,
+   "value": 7.14395,
+   "sd": 8.94452
+  },
+  {
+   "id": "zone[opp49-21].pass.interceptionRate",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 15658,
+   "value": 0.023183,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].pass.sackRate",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 16750,
+   "value": 0.065194,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].pass.scrambleShare",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 17639,
+   "value": 0.0503997,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].pass.completedGain",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 10196,
+   "value": [
+    2,
+    5,
+    9,
+    15,
+    23,
+    30
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].rush.yardsPerCarry",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 12767,
+   "value": 4.73941,
+   "sd": 6.10151
+  },
+  {
+   "id": "zone[opp49-21].rush.stuffedShare",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 12767,
+   "value": 0.174826,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].rush.gain10Share",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 12767,
+   "value": 0.131668,
+   "sd": null
+  },
+  {
+   "id": "zone[opp49-21].rush.gain",
+   "dim": "zone",
+   "key": "opp49-21",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 12767,
+   "value": [
+    0,
+    1,
+    3,
+    6,
+    11,
+    16
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].share",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0769193,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].play.passPlayShare",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 7755,
+   "value": 0.532946,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].play.yards",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 7755,
+   "value": 4.10729,
+   "sd": 5.59061
+  },
+  {
+   "id": "zone[opp20-11].play.firstDownRate",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 7755,
+   "value": 0.26744,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].play.touchdownRate",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 7755,
+   "value": 0.086009,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].play.turnoverRate",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 7755,
+   "value": 0.0184397,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].pass.completionPct",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3869,
+   "value": 0.605324,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].pass.yardsPerAttempt",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3869,
+   "value": 4.98423,
+   "sd": 5.87037
+  },
+  {
+   "id": "zone[opp20-11].pass.interceptionRate",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3869,
+   "value": 0.022228,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].pass.sackRate",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4133,
+   "value": 0.0638761,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].pass.scrambleShare",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4392,
+   "value": 0.0589709,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].pass.completedGain",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 2342,
+   "value": [
+    2,
+    4,
+    8,
+    12,
+    16,
+    18
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].rush.yardsPerCarry",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3622,
+   "value": 3.95748,
+   "sd": 4.43914
+  },
+  {
+   "id": "zone[opp20-11].rush.stuffedShare",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3622,
+   "value": 0.188294,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].rush.gain10Share",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3622,
+   "value": 0.110988,
+   "sd": null
+  },
+  {
+   "id": "zone[opp20-11].rush.gain",
+   "dim": "zone",
+   "key": "opp20-11",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 3622,
+   "value": [
+    -1,
+    1,
+    3,
+    6,
+    10,
+    13
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].share",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 100820,
+   "value": 0.0718111,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].play.passPlayShare",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "play.passPlayShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 7240,
+   "value": 0.476796,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].play.yards",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "play.yards",
+   "kind": "mean",
+   "cls": "core",
+   "n": 7240,
+   "value": 1.83481,
+   "sd": 3.20809
+  },
+  {
+   "id": "zone[opp10-1].play.firstDownRate",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "play.firstDownRate",
+   "kind": "rate",
+   "cls": "core",
+   "n": 7240,
+   "value": 0.360359,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].play.touchdownRate",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "play.touchdownRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 7240,
+   "value": 0.311326,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].play.turnoverRate",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "play.turnoverRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 7240,
+   "value": 0.0168508,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].pass.completionPct",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3231,
+   "value": 0.515939,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].pass.yardsPerAttempt",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3231,
+   "value": 2.29279,
+   "sd": 3.06407
+  },
+  {
+   "id": "zone[opp10-1].pass.interceptionRate",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3231,
+   "value": 0.0222841,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].pass.sackRate",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "pass.sackRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3452,
+   "value": 0.0640209,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].pass.scrambleShare",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "pass.scrambleShare",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3619,
+   "value": 0.0461453,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].pass.completedGain",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "pass.completedGain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 1667,
+   "value": [
+    1,
+    2,
+    4,
+    7,
+    9,
+    9
+   ],
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].rush.yardsPerCarry",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "rush.yardsPerCarry",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3788,
+   "value": 1.91394,
+   "sd": 2.62073
+  },
+  {
+   "id": "zone[opp10-1].rush.stuffedShare",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "rush.stuffedShare",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3788,
+   "value": 0.2632,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].rush.gain10Share",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "rush.gain10Share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3788,
+   "value": 0.0092397,
+   "sd": null
+  },
+  {
+   "id": "zone[opp10-1].rush.gain",
+   "dim": "zone",
+   "key": "opp10-1",
+   "metric": "rush.gain",
+   "kind": "quantiles",
+   "cls": "shape",
+   "n": 3788,
+   "value": [
+    -1,
+    0,
+    2,
+    3,
+    5,
+    7
+   ],
+   "sd": null
+  },
+  {
+   "id": "depth[behind].share",
+   "dim": "depth",
+   "key": "behind",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.179576,
+   "sd": null
+  },
+  {
+   "id": "depth[behind].pass.completionPct",
+   "dim": "depth",
+   "key": "behind",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 9696,
+   "value": 0.78651,
+   "sd": null
+  },
+  {
+   "id": "depth[behind].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "behind",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 9696,
+   "value": 4.48432,
+   "sd": 6.84857
+  },
+  {
+   "id": "depth[behind].pass.interceptionRate",
+   "dim": "depth",
+   "key": "behind",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 9696,
+   "value": 0.00732261,
+   "sd": null
+  },
+  {
+   "id": "depth[behind].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "behind",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 7626,
+   "value": 9.03724,
+   "sd": 7.35535
+  },
+  {
+   "id": "depth[0].share",
+   "dim": "depth",
+   "key": "0",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.0422825,
+   "sd": null
+  },
+  {
+   "id": "depth[0].pass.completionPct",
+   "dim": "depth",
+   "key": "0",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2283,
+   "value": 0.698642,
+   "sd": null
+  },
+  {
+   "id": "depth[0].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "0",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 2283,
+   "value": 4.65484,
+   "sd": 6.21496
+  },
+  {
+   "id": "depth[0].pass.interceptionRate",
+   "dim": "depth",
+   "key": "0",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 2283,
+   "value": 0.0065703,
+   "sd": null
+  },
+  {
+   "id": "depth[0].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "0",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1595,
+   "value": 6.67712,
+   "sd": 6.43102
+  },
+  {
+   "id": "depth[1-5].share",
+   "dim": "depth",
+   "key": "1-5",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.299774,
+   "sd": null
+  },
+  {
+   "id": "depth[1-5].pass.completionPct",
+   "dim": "depth",
+   "key": "1-5",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 16186,
+   "value": 0.743235,
+   "sd": null
+  },
+  {
+   "id": "depth[1-5].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "1-5",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 16186,
+   "value": 5.56302,
+   "sd": 5.76365
+  },
+  {
+   "id": "depth[1-5].pass.interceptionRate",
+   "dim": "depth",
+   "key": "1-5",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 16186,
+   "value": 0.0106265,
+   "sd": null
+  },
+  {
+   "id": "depth[1-5].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "1-5",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 12030,
+   "value": 4.13799,
+   "sd": 5.47309
+  },
+  {
+   "id": "depth[6-10].share",
+   "dim": "depth",
+   "key": "6-10",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.182854,
+   "sd": null
+  },
+  {
+   "id": "depth[6-10].pass.completionPct",
+   "dim": "depth",
+   "key": "6-10",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 9873,
+   "value": 0.627975,
+   "sd": null
+  },
+  {
+   "id": "depth[6-10].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "6-10",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 9873,
+   "value": 6.73726,
+   "sd": 6.92023
+  },
+  {
+   "id": "depth[6-10].pass.interceptionRate",
+   "dim": "depth",
+   "key": "6-10",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 9873,
+   "value": 0.0211688,
+   "sd": null
+  },
+  {
+   "id": "depth[6-10].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "6-10",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 6200,
+   "value": 3.29323,
+   "sd": 5.56736
+  },
+  {
+   "id": "depth[11-15].share",
+   "dim": "depth",
+   "key": "11-15",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.115865,
+   "sd": null
+  },
+  {
+   "id": "depth[11-15].pass.completionPct",
+   "dim": "depth",
+   "key": "11-15",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 6256,
+   "value": 0.565537,
+   "sd": null
+  },
+  {
+   "id": "depth[11-15].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "11-15",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 6256,
+   "value": 9.24345,
+   "sd": 9.35648
+  },
+  {
+   "id": "depth[11-15].pass.interceptionRate",
+   "dim": "depth",
+   "key": "11-15",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 6256,
+   "value": 0.0342072,
+   "sd": null
+  },
+  {
+   "id": "depth[11-15].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "11-15",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3538,
+   "value": 3.44008,
+   "sd": 6.02468
+  },
+  {
+   "id": "depth[16-20].share",
+   "dim": "depth",
+   "key": "16-20",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.0775642,
+   "sd": null
+  },
+  {
+   "id": "depth[16-20].pass.completionPct",
+   "dim": "depth",
+   "key": "16-20",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 4188,
+   "value": 0.519819,
+   "sd": null
+  },
+  {
+   "id": "depth[16-20].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "16-20",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 4188,
+   "value": 11.5232,
+   "sd": 12.2855
+  },
+  {
+   "id": "depth[16-20].pass.interceptionRate",
+   "dim": "depth",
+   "key": "16-20",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 4188,
+   "value": 0.0436963,
+   "sd": null
+  },
+  {
+   "id": "depth[16-20].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "16-20",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 2177,
+   "value": 4.38907,
+   "sd": 7.23348
+  },
+  {
+   "id": "depth[21-30].share",
+   "dim": "depth",
+   "key": "21-30",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.0623032,
+   "sd": null
+  },
+  {
+   "id": "depth[21-30].pass.completionPct",
+   "dim": "depth",
+   "key": "21-30",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 3364,
+   "value": 0.371879,
+   "sd": null
+  },
+  {
+   "id": "depth[21-30].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "21-30",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 3364,
+   "value": 11.1656,
+   "sd": 15.6592
+  },
+  {
+   "id": "depth[21-30].pass.interceptionRate",
+   "dim": "depth",
+   "key": "21-30",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 3364,
+   "value": 0.058264,
+   "sd": null
+  },
+  {
+   "id": "depth[21-30].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "21-30",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 1251,
+   "value": 5.57874,
+   "sd": 9.172
+  },
+  {
+   "id": "depth[31+].share",
+   "dim": "depth",
+   "key": "31+",
+   "metric": "share",
+   "kind": "rate",
+   "cls": "core",
+   "n": 53994,
+   "value": 0.0397822,
+   "sd": null
+  },
+  {
+   "id": "depth[31+].pass.completionPct",
+   "dim": "depth",
+   "key": "31+",
+   "metric": "pass.completionPct",
+   "kind": "rate",
+   "cls": "core",
+   "n": 2148,
+   "value": 0.290968,
+   "sd": null
+  },
+  {
+   "id": "depth[31+].pass.yardsPerAttempt",
+   "dim": "depth",
+   "key": "31+",
+   "metric": "pass.yardsPerAttempt",
+   "kind": "mean",
+   "cls": "core",
+   "n": 2148,
+   "value": 13.1783,
+   "sd": 21.4713
+  },
+  {
+   "id": "depth[31+].pass.interceptionRate",
+   "dim": "depth",
+   "key": "31+",
+   "metric": "pass.interceptionRate",
+   "kind": "rate",
+   "cls": "rare",
+   "n": 2148,
+   "value": 0.0814711,
+   "sd": null
+  },
+  {
+   "id": "depth[31+].pass.yacPerCompletion",
+   "dim": "depth",
+   "key": "31+",
+   "metric": "pass.yacPerCompletion",
+   "kind": "mean",
+   "cls": "core",
+   "n": 625,
+   "value": 6.6288,
+   "sd": 9.67467
+  }
+ ]
+}

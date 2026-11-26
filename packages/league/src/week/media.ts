@@ -1,6 +1,7 @@
 // Media and obligations (H7): required sessions and their count, skipping, coordinators' days, the
 // stance model, hot topics, leaks, off-message quotes, promises, injury answers, officials, the coach's
 // show, and the college media week. Effects leave as events with signs; receivers own sizes (H7.2.1 rule 2).
+import { possible } from '@gm/schema';
 import STANCES from './data/stances.json' with { type: 'json' };
 import { WEEKDAY, instantValue, weekday, MINUTES_PER_DAY, type Instant } from '../calendar/date.ts';
 import type { RuleLookup } from '../calendar/types.ts';
@@ -155,7 +156,7 @@ export function questions(candidates: readonly { topic: Topic; daysAgo: number; 
 
 /** Daily leak chance for held news (rule 3). */
 export function leakChance(peopleWhoKnow: number, averageTrust: number): number {
-  return clamp01(P('leak_base_daily') * peopleWhoKnow * (1 - clamp01(averageTrust)));
+  return possible(clamp01(P('leak_base_daily') * peopleWhoKnow * (1 - clamp01(averageTrust))));
 }
 
 /** Off-message chance per player session with a hot topic (H7.1.2 rule 3; H7.4.2 rule 1 for the user below head coach). */
@@ -163,7 +164,7 @@ export function offMessageChance(trust: number, mood: number, ego: number, clear
   let p = P('off_message_base') * (1 + P('off_message_trust_weight') * (1 - clamp01(trust)) + P('off_message_mood_weight') * (1 - clamp01(mood)) + P('off_message_ego_weight') * clamp01(ego));
   if (clearGuidance) p *= P('off_message_guidance_cut');
   if (strongCouncil) p *= P('off_message_guidance_cut');
-  return clamp01(p);
+  return possible(clamp01(p));
 }
 
 /** A public statement about someone's future is a promise for a window (H7.1.3 rule 2). Acting against it inside the window is a consistency event. */

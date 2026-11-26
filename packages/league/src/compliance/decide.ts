@@ -2,7 +2,7 @@
 // asked by his boss. The user never passes through here: he chooses, and his act enters `commitAct`
 // exactly as an AI act does (K2.8.2 rule 6). `ruleRespect` is read through the people module's one
 // accessor (K2.8.1) by the caller and passed in as a z value; league may not import people (P1.2.1).
-import type { PersonOrigin, WorldDate } from '@gm/schema';
+import { possible, PROB_FLOOR, type PersonOrigin, type WorldDate } from '@gm/schema';
 import { violationClass } from './catalogue.ts';
 import { P } from './params.ts';
 import { weeksBetween } from './dates.ts';
@@ -56,11 +56,16 @@ export function decideViolation(
 ): { readonly commit: boolean; readonly score: number; readonly reason: DecisionReason } {
   if (d.origin === 'imported') return { commit: false, score: 0, reason: 'protected_person' };
   const score = violationScore(opp, d, extraPressure);
-  if (score <= 0) return { commit: false, score, reason: 'score' };
   const recent = state.log.some((r) => r.actor.personId === d.personId && r.classId === opp.classId
     && weeksBetween(r.date, date) >= 0 && weeksBetween(r.date, date) < P('cooldown_weeks'));
-  if (recent) return { commit: false, score, reason: 'cooldown' };
-  const pass = conduct([date.seasonYear, date.dayIndex, d.personId, opp.classId]).chance(P('conduct_draw_pass'));
+  if (score <= 0 || recent) {
+    // A3.1 ruling 22: a person whose character says no, or who just did it, still might, with the
+    // floor chance. Its own keyed draw, so the other conduct draws are unchanged.
+    const slip = conduct(['slip', date.seasonYear, date.dayIndex, d.personId, opp.classId]).chance(PROB_FLOOR);
+    if (!slip) return { commit: false, score, reason: score <= 0 ? 'score' : 'cooldown' };
+    return { commit: true, score, reason: 'commit' };
+  }
+  const pass = conduct([date.seasonYear, date.dayIndex, d.personId, opp.classId]).chance(possible(P('conduct_draw_pass')));
   return { commit: pass, score, reason: pass ? 'commit' : 'rate_limit' };
 }
 
@@ -77,7 +82,9 @@ export function staffRequest(
   const d = decideViolation(state, opp, staff, date, conduct, P('staff_request_pressure'));
   // Asked directly, the rate limiter does not apply: only character, gain and risk decide.
   if (d.commit || d.reason === 'rate_limit' || d.reason === 'cooldown') return { outcome: 'complied', score: d.score };
-  const mayReport = staff.origin !== 'imported' && staff.candor >= P('report_candor_min') && staff.ruleRespectZ >= P('report_rule_respect_z_min');
-  const reports = mayReport && conduct(['report', date.seasonYear, date.dayIndex, staff.personId, opp.classId]).chance(P('report_chance'));
+  // Anyone who refuses might report; below the candor and respect bars only with the floor chance (A3.1 ruling 22).
+  const likely = staff.candor >= P('report_candor_min') && staff.ruleRespectZ >= P('report_rule_respect_z_min');
+  const reports = staff.origin !== 'imported'
+    && conduct(['report', date.seasonYear, date.dayIndex, staff.personId, opp.classId]).chance(possible(likely ? possible(P('report_chance')) : PROB_FLOOR));
   return { outcome: reports ? 'reported' : 'refused', score: d.score };
 }

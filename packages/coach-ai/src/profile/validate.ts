@@ -1,6 +1,6 @@
 // Profile validator (K2.1.1 acceptance, K2.7.1 forbidden parameters, K2.1.4 rule 1 reader rule).
 // Runs on plain data (a loaded save row or a content file), so it checks shape as well as names.
-import { BEHAVIOR_KEYS, BEHAVIOR_READERS, DEFENSE_RATE_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, SYSTEM_RATE_READERS, TENDENCY_KEYS, TENDENCY_READERS } from './keys.ts';
+import { BEHAVIOR_KEYS, BEHAVIOR_READERS, DEFENSE_RATE_KEYS, EMPHASIS_KEYS, EMPHASIS_READERS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, SYSTEM_RATE_READERS, TENDENCY_KEYS, TENDENCY_READERS } from './keys.ts';
 import { TEMPLATES } from './population.ts';
 
 export interface ProfileProblem { readonly path: string; readonly rule: string; readonly message: string }
@@ -90,7 +90,11 @@ export function validateCoachProfile(p: unknown): ProfileProblem[] {
     if (exactKeys(s.defenseRates, DEFENSE_RATE_KEYS, '$.system.defenseRates', out)) for (const k of DEFENSE_RATE_KEYS) share((s.defenseRates as Record<string, unknown>)[k], `$.system.defenseRates.${k}`, out);
     if (exactKeys(s.sheetSize, SHEET, '$.system.sheetSize', out)) for (const k of SHEET) finite((s.sheetSize as Record<string, unknown>)[k], `$.system.sheetSize.${k}`, out, 1, 1000);
   }
-  if (exactKeys(p.tendencies, TENDENCY_KEYS, '$.tendencies', out)) for (const k of TENDENCY_KEYS) finite((p.tendencies as Record<string, unknown>)[k], `$.tendencies.${k}`, out, -20, 20);
+  if (exactKeys(p.tendencies, [...TENDENCY_KEYS, 'emphasis'], '$.tendencies', out)) {
+    for (const k of TENDENCY_KEYS) finite((p.tendencies as Record<string, unknown>)[k], `$.tendencies.${k}`, out, -20, 20);
+    const e = (p.tendencies as Record<string, unknown>).emphasis;
+    if (exactKeys(e, EMPHASIS_KEYS, '$.tendencies.emphasis', out)) for (const k of EMPHASIS_KEYS) finite((e as Record<string, unknown>)[k], `$.tendencies.emphasis.${k}`, out, -1, 1);
+  }
   if (exactKeys(p.behavior, BEHAVIOR_KEYS, '$.behavior', out)) for (const k of BEHAVIOR_KEYS) finite((p.behavior as Record<string, unknown>)[k], `$.behavior.${k}`, out, -6, 6);
   if (exactKeys(p.memory, MEMORY, '$.memory', out)) {
     const m = p.memory as Record<string, unknown>;
@@ -115,6 +119,7 @@ export function checkReaders(): string[] {
   const missing: string[] = [];
   for (const k of BEHAVIOR_KEYS) if (!BEHAVIOR_READERS[k]?.length) missing.push(`behavior.${k}`);
   for (const k of TENDENCY_KEYS) if (!TENDENCY_READERS[k]?.length) missing.push(`tendencies.${k}`);
+  if (!EMPHASIS_READERS.length) missing.push('tendencies.emphasis');
   if (!SYSTEM_RATE_READERS.length) missing.push('system rates');
   return missing;
 }

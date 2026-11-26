@@ -1129,6 +1129,124 @@
    "factId": "F-league-0194"
   },
   {
+   "key": "league_rules.draft.revoke_window_hours",
+   "value": 72,
+   "unit": "hours",
+   "factId": "F-league-0195",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "club_discipline.club_suspension_roster_status",
+   "value": "reserve_suspended",
+   "factId": "F-league-0196"
+  },
+  {
+   "key": "compliance.feigned_injury.club_fine_first_cents",
+   "value": 35000000,
+   "unit": "cents",
+   "factId": "F-league-0197"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_head_coach_first_cents",
+   "value": 10000000,
+   "unit": "cents",
+   "factId": "F-league-0198"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_assistant_first_cents",
+   "value": 5000000,
+   "unit": "cents",
+   "factId": "F-league-0199"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_player_first_cents",
+   "value": 5000000,
+   "unit": "cents",
+   "factId": "F-league-0200"
+  },
+  {
+   "key": "compliance.injury_report_shading.club_fine_first_cents",
+   "value": 7500000,
+   "unit": "cents",
+   "factId": "F-league-0201"
+  },
+  {
+   "key": "compliance.injury_report_shading.fine_head_coach_first_cents",
+   "value": 2500000,
+   "unit": "cents",
+   "factId": "F-league-0202"
+  },
+  {
+   "key": "compliance.signal_recording.fine_head_coach_first_cents",
+   "value": 50000000,
+   "unit": "cents",
+   "factId": "F-league-0203",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "compliance.signal_recording.club_fine_first_cents",
+   "value": 25000000,
+   "unit": "cents",
+   "factId": "F-league-0204",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "compliance.crowd_noise.club_fine_first_cents",
+   "value": 35000000,
+   "unit": "cents",
+   "factId": "F-league-0205"
+  },
+  {
+   "key": "compliance.crowd_noise.pick_round_first",
+   "value": 5,
+   "unit": "round",
+   "factId": "F-league-0206"
+  },
+  {
+   "key": "compliance.ball_tampering.club_fine_first_cents",
+   "value": 100000000,
+   "unit": "cents",
+   "factId": "F-league-0207"
+  },
+  {
+   "key": "compliance.ball_tampering.pick_round_first",
+   "value": 1,
+   "unit": "round",
+   "factId": "F-league-0208"
+  },
+  {
+   "key": "compliance.ball_tampering.suspension_games_first",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0209"
+  },
+  {
+   "key": "compliance.sideline_interference.fine_head_coach_first_cents",
+   "value": 10000000,
+   "unit": "cents",
+   "factId": "F-league-0210"
+  },
+  {
+   "key": "compliance.concussion_protocol.club_fine_first_cents",
+   "value": 10000000,
+   "unit": "cents",
+   "factId": "F-league-0211"
+  },
+  {
+   "key": "compliance.tampering_players.fine_executive_first_cents",
+   "value": 150000000,
+   "unit": "cents",
+   "factId": "F-league-0212",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "compliance.tampering_players.pick_round_first",
+   "value": 1,
+   "unit": "round",
+   "factId": "F-league-0213",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
@@ -1424,7 +1542,7 @@
   },
   {
    "key": "rookie.undrafted_pool_2024_usd",
-   "value": 172337,
+   "value": 183103,
    "unit": "USD",
    "factId": "F-cap-0049",
    "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
@@ -1525,6 +1643,27 @@
    "value": 38100000,
    "unit": "USD",
    "factId": "F-cap-0065"
+  },
+  {
+   "key": "rookie.undrafted_pool_2023_usd",
+   "value": 172337,
+   "unit": "USD",
+   "factId": "F-cap-0066",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "rookie.undrafted_pool_2025_usd",
+   "value": 206144,
+   "unit": "USD",
+   "factId": "F-cap-0067",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "rookie.undrafted_pool_2026_usd",
+   "value": 229224,
+   "unit": "USD",
+   "factId": "F-cap-0068",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
   }
  ]
 }

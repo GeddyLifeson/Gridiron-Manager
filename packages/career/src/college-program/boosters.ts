@@ -2,7 +2,7 @@
 // A booster's payment to a recruit or player goes through the one rule-breaking pipeline (L8.2.5,
 // G-28 commitAct) as class `pay_rules`, with the booster as actor. The coach is responsible if he knew
 // or should have known (T9.5.1); the pipeline charges him. Nothing here blocks an act.
-import type { RandomStream, RuleSet, WorldDate, WorldTier, PersonOrigin } from '@gm/schema';
+import { possible, type RandomStream, type RuleSet, type WorldDate, type WorldTier, type PersonOrigin } from '@gm/schema';
 import { compliance } from '@gm/league';
 import { P } from './params.ts';
 import type { BoosterGroup, ProgramTier } from './types.ts';
@@ -107,11 +107,11 @@ export function buyoutFunding(groups: readonly BoosterGroup[], firingCostCents: 
 
 /** Chance a group pays outside the rules this season (T9.3.1 rule 4). */
 export function payChance(g: BoosterGroup, tier: ProgramTier, rivalryLosses: number): number {
-  if (g.disassociated) return 0;
+  if (g.disassociated) return possible(0);
   const wealthFactor = g.wealthCents / (P(`booster.wealth_mean_usd.${tier}`) * CENTS);
   const rivalry = 1 + P('booster.pay_per_rivalry_loss') * rivalryLosses;
   const look = g.toldCoachWillLookAway ? P('booster.pay_look_away_multiple') : 1;
-  return Math.min(P('booster.pay_base_per_season') * wealthFactor * rivalry * look, P('booster.pay_max_per_season'));
+  return possible(Math.min(P('booster.pay_base_per_season') * wealthFactor * rivalry * look, P('booster.pay_max_per_season')));
 }
 
 /** Who the booster is and where the act lands. */

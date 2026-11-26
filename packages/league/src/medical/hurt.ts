@@ -1,7 +1,7 @@
 // Playing hurt (D11.6.2, H5.3.1): penalties while a cleared player plays through an injury, toughness,
 // hiding an injury, and pain-relief injections (the physician's call with the player's consent; asking
 // for one is pressure, D11.3.3).
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import table from './data/playthrough.json' with { type: 'json' };
 import { P } from './params.ts';
 
@@ -36,11 +36,11 @@ export function playThroughPenalties(typeId: string, grade: number | null, tough
 
 /** Chance a player keeps a minor injury from the staff (D11.6.2): rises with toughness. */
 export function hideChance(toughness: number): number {
-  return Math.min(1, P('hideBase') + P('hideToughnessWeight') * Math.min(1, Math.max(0, toughness)));
+  return possible(P('hideBase') + P('hideToughnessWeight') * Math.min(1, Math.max(0, toughness)));
 }
 
 /** Daily chance the staff finds a hidden injury; a position coach's report naming him finds it (H5.6.2 rule 2). */
 export function hiddenFound(namedInReport: boolean, s: RandomStream): boolean {
-  const hit = s.chance(P('hiddenDailyDiscovery'));
+  const hit = s.chance(possible(P('hiddenDailyDiscovery')));
   return namedInReport || hit;
 }
