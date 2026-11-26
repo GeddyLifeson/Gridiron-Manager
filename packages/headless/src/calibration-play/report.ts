@@ -10,12 +10,12 @@ import { buildReport, formatReport, fmt, type CalibrationReport, type RunInfo } 
 import type { LoadedTargets } from '../calibration/targets.ts';
 import type { CalibrationSample } from '../calibration/measures.ts';
 import { measureCells } from './cells.ts';
-import { baselineStatus, compareCell, shapeChecks, type CellResult, type RealBaseline, type ShapeResult, type Tolerances } from './baseline.ts';
+import { baselineStatus, cellStatus, compareCell, shapeChecks, type CellResult, type RealBaseline, type ShapeResult, type Tolerances } from './baseline.ts';
 
 export interface PlayReport {
   readonly ruleSetId: string;
   readonly targets: CalibrationReport;
-  readonly baseline: { readonly seasons: string; readonly status: FactStatus; readonly games: number; readonly rows: number; readonly sources: readonly string[] } | null;
+  readonly baseline: { readonly seasons: string; readonly status: FactStatus; readonly games: number; readonly rows: number; readonly sources: readonly string[]; readonly groups: readonly { readonly name: string; readonly collections: readonly string[]; readonly status: FactStatus; readonly note: string }[]; readonly omitted: string | null } | null;
   readonly tolerances: Tolerances;
   readonly cells: readonly CellResult[];
   readonly shapes: readonly ShapeResult[];
@@ -42,7 +42,9 @@ export function buildPlayReport(loaded: LoadedTargets, groups: readonly Calibrat
   const status = baseline === null ? null : baselineStatus(baseline);
   return {
     ruleSetId: loaded.file.ruleSetId, targets, tolerances, cells, shapes,
-    baseline: baseline === null ? null : { seasons: baseline.seasons, status: status!, games: baseline.games, rows: baseline.rows, sources: baseline.sources.map((s) => s.citation) },
+    baseline: baseline === null ? null : { seasons: baseline.seasons, status: status!, games: baseline.games, rows: baseline.rows, sources: baseline.sources.map((s) => s.citation),
+      groups: (baseline.groups ?? []).map((g) => ({ name: g.name, collections: g.collections, status: cellStatus(baseline, { dim: g.dims[0] ?? '', metric: g.metrics[0] ?? '' }), note: g.note })),
+      omitted: baseline.omitted ? `${baseline.omitted.dims.length} splits and ${baseline.omitted.metrics.length} measures have no source at this level (${baseline.omitted.reason})` : null },
     counts: {
       cells: cells.length, measured: n((c) => c.state === 'measured'), passed: n((c) => c.pass === true), failed: n((c) => c.pass === false),
       thin: n((c) => c.state === 'thin'), noEvents: n((c) => c.state === 'no_events'), missingSource: n((c) => c.state === 'missing_source'),
@@ -71,6 +73,10 @@ export function formatPlayReport(rep: PlayReport): string {
   L.push('== Part 2. Cells: play type, depth, down and distance, field zone ==');
   if (rep.baseline === null) L.push('Real baseline: none for this rule set. Every cell prints MISSING SOURCE; no cell is filled from another level (Q2.1.1).');
   else L.push(`Real baseline: ${rep.baseline.seasons}, ${rep.baseline.games} games, ${rep.baseline.rows} rows; collections: ${rep.baseline.sources.join('; ')}; status ${rep.baseline.status}.`);
+  if (rep.baseline) {
+    for (const g of rep.baseline.groups) L.push(`Charted cells, ${g.name}: ${g.collections.join('; ')}; status ${g.status}. ${g.note}`);
+    if (rep.baseline.omitted) L.push(`Left out: ${rep.baseline.omitted}.`);
+  }
   const t = rep.tolerances, c = rep.counts;
   L.push(`Tolerances (${t.status}; ${t.source}): core ${fmt(t.core.rel)} relative, rare ${fmt(t.rare.rel)} relative, or ${fmt(t.standardErrors)} real standard errors if larger; shapes ${fmt(t.shape.absYd)} yd through the ${fmt(t.shape.absThroughPct)}th percentile, ${fmt(t.shape.rel)} relative from the ${fmt(t.shape.relFromPct)}th; real cells under ${fmt(t.minRealEvents)} events are THIN.`);
   L.push(`Cells ${c.cells}: measured ${c.measured} (pass ${c.passed}, fail ${c.failed}), thin ${c.thin}, no events ${c.noEvents}, missing source ${c.missingSource}.${rep.cellsProvisional ? ' Every cell is PROVISIONAL: a pass is not a verified match and no cell certifies.' : ''}`);

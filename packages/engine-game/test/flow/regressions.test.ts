@@ -201,3 +201,63 @@ describe('a team timeout while the play clock runs, after the calls and before t
     expect(stateHash(events)).toBe(stateHash(result.events));
   });
 });
+
+describe('deciders cannot learn the truth of the last play (EX-0001, exploit search PR 135, Q1.4.1)', () => {
+  /**
+   * Officiating whose answers carry different truth: every truth-class field is changed and an uncalled foul is
+   * added, while every called value stays the same. The real officiating is handed back its own objects, so
+   * the game itself cannot change.
+   */
+  const scrambledTruth: FakeGameOptions['officiating'] = (fake) => {
+    const original = new WeakMap<Contract.CalledPlay, Contract.CalledPlay>();
+    const scramble = (c: Contract.CalledPlay): Contract.CalledPlay => {
+      const ghost = c.fouls[0] ? [{ ...c.fouls[0], foulId: 'ghost', called: false, correct: false, eventIndex: 3 }] : [];
+      const out: Contract.CalledPlay = {
+        ...c,
+        trueOutcome: { ...c.trueOutcome, spotX: c.trueOutcome.spotX + 7, yardsGained: c.trueOutcome.yardsGained + 7, touchback: !c.trueOutcome.touchback },
+        rulings: c.rulings.map((r) => ({ ...r, eventIndex: r.eventIndex + 1, trueValue: 'X', marginYd: 9.5, marginS: 1.5, visibility: r.visibility === 'pile' ? 'open' : 'pile' })),
+        fouls: [...c.fouls.map((f) => ({ ...f, correct: !f.correct, eventIndex: f.eventIndex === null ? 0 : f.eventIndex + 1 })), ...ghost],
+      };
+      original.set(out, c);
+      return out;
+    };
+    return {
+      ...fake,
+      rulePlay: (truth, ctx) => scramble(fake.rulePlay(truth, ctx)),
+      review: (called, truth, request, ctx) => {
+        const r = fake.review(original.get(called) ?? called, truth, request, ctx);
+        return { ...r, called: scramble(r.called) };
+      },
+    };
+  };
+  /** Every view handed to either decider, in order, as text. */
+  const views = (opts: Partial<FakeGameOptions>) => {
+    const seen: string[] = [];
+    const game = fakeGame({
+      seed: 5, ...opts,
+      deciders: (env, input) => [0, 1].map((side) => {
+        const inner = chartDecider(side as Contract.Side, env, input);
+        return { side: inner.side, decide(view: Contract.DecisionView) { seen.push(JSON.stringify(view)); return inner.decide(view); } };
+      }) as [Contract.Decider, Contract.Decider],
+    });
+    const r = runChecked(game);
+    return { seen, records: r.result.records };
+  };
+
+  it('two games whose officiating differs only in truth hand the deciders identical views', () => {
+    const plain = views({});
+    const scrambled = views({ officiating: scrambledTruth });
+    expect(plain.seen.length).toBeGreaterThan(100);
+    expect(scrambled.seen).toEqual(plain.seen);
+    // The truth really did differ, and some views carried a ruling, so the check is not vacuous.
+    expect(scrambled.records.some((r, i) => JSON.stringify(r.called.trueOutcome) !== JSON.stringify(plain.records[i]!.called.trueOutcome))).toBe(true);
+    expect(plain.seen.some((v) => v.includes('"calledOutcome"'))).toBe(true);
+  });
+
+  it('the view of the last play holds no truth-class key, by the strict contract schema', () => {
+    for (const v of views({ officiating: scrambledTruth }).seen) {
+      const last = (JSON.parse(v) as Contract.DecisionView).lastCalled;
+      if (last) expect(Contract.ObservedCalledPlay.safeParse(last).success).toBe(true);
+    }
+  });
+});
