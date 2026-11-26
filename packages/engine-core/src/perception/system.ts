@@ -292,6 +292,9 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
         let tx = 0, ty = 0;
         if (gk === G_SLOT && v.valid[gazeSlot[s]!] === 1) { tx = v.entities[gazeSlot[s]!]!.px; ty = v.entities[gazeSlot[s]!]!.py; has = true; }
         else if (gk === G_BALL && v.valid[BALL_ENTITY] === 1) { tx = v.entities[BALL_ENTITY]!.px; ty = v.entities[BALL_ENTITY]!.py; has = true; }
+        // A man told to find the ball who has lost it looks back to where the play started: the ball comes from there.
+        // Without this a receiver with his back to the passer could never turn his eyes to a ball he did not already see.
+        else if (gk === G_BALL) { tx = 0; ty = 0; has = true; }
         else if (gk === G_POINT) { tx = gazePx[s]!; ty = gazePy[s]!; has = true; }
         if (has) {
           if (gk !== G_HEADING) {

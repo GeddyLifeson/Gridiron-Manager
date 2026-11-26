@@ -334,7 +334,10 @@ function qbPlayOf(def: starter.PlayDef, O: readonly Assignment[], defenseSlotOf:
     const ix = keyed.indexOf(x.s), iy = keyed.indexOf(y.s);
     return (ix < 0 ? 99 : ix) - (iy < 0 ? 99 : iy) || depthOf(x.a) - depthOf(y.a) || Math.abs(x.a.preSnap.align.py) - Math.abs(y.a.preSnap.align.py) || x.s - y.s;
   });
-  const reads: QbRead[] = ordered.map((x, i) => ({ kind: 'receiver', target: tickResolver.qbTargetOf(x.s, x.a), priorValue: Math.max(0.1, 0.6 - 0.1 * i) }));
+  // A play whose quarterback reads only the back (the screen) has one read. With the clear-out routes behind it as
+  // later reads he held the ball for a better throw than a screen ever looks like, and took the sack.
+  const only = q.behavior.params['read'] === 'back' ? ordered.filter((x) => x.s === backSlot) : [];
+  const reads: QbRead[] = (only.length > 0 ? only : ordered).map((x, i) => ({ kind: 'receiver', target: tickResolver.qbTargetOf(x.s, x.a), priorValue: Math.max(0.1, 0.6 - 0.1 * i) }));
   const eligible = routes.map((x) => x.s);
   const base = qbModule.basePlay(qbSlot, dropOf(q.behavior.params['drop'], def.shotgun), reads);
   const pocket = { leftPy: O[0]!.preSnap.align.py, rightPy: O[4]!.preSnap.align.py };
@@ -519,11 +522,11 @@ export function createStarterContentPort(): StarterContentPort {
       const qbSlot = qb === null ? -1 : qb.qbSlot;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
       const slots: PlaySetup['slots'] = Array.from({ length: SLOT_COUNT }, (_, w) => ({ conceptId: (w < SLOTS_PER_TEAM ? O[w]! : D[w - SLOTS_PER_TEAM]!).conceptId }));
-      // Eyes (J3.4.1): a zone defender plays with his on the ball, and so does a receiver in his route, who looks
-      // for the ball over his shoulder. Without it a man running downfield never saw the throw and never played it.
+      // Eyes (J3.4.1): a zone defender plays with his on the ball. Receivers turn to look when the ball is thrown
+      // (the quarterback plug does that), not before: looking back all route long costs them speed.
       const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => {
         if (s.unit !== 'offense') return {};
-        if (w < SLOTS_PER_TEAM) return O[w]!.behavior.type === 'route' ? { gaze: 'ball' as const } : {};
+        if (w < SLOTS_PER_TEAM) return {};
         const a = D[w - SLOTS_PER_TEAM]!;
         return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}) };
       });
