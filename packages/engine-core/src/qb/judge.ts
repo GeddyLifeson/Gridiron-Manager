@@ -305,7 +305,12 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     for (let d = first; d < first + SLOTS_PER_TEAM && d < SLOT_COUNT; d++) {
       const e = view.entity(d);
       if (e === null) continue;
-      const react = arrive < p['judge.defenderReactS'] ? arrive : p['judge.defenderReactS'];
+      // A defender breaks on the ball when it leaves the hand, not when the quarterback makes up his mind: until
+      // the release and his own reaction he holds the course he is on. Starting every defender at the decision gave
+      // each one the release time as a head start (about 3.5 yd), so he read nearly every short throw as contested
+      // (0.5 yd of separation, 0.4 to 0.6 to complete) while those same throws were caught 65 to 70% of the time.
+      const hold = releaseInS + p['judge.defenderReactS'];
+      const react = arrive < hold ? arrive : hold;
       const ex = e.px + e.velPx * react, ey = e.py + e.velPy * react;
       const d0 = hyp(ax - e.px, ay - e.py);
       const toward = d0 > 0 ? (e.velPx * (ax - e.px) + e.velPy * (ay - e.py)) / d0 : 0;
@@ -360,7 +365,11 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
       iHat = catchable * probs[2]! + (1 - catchable) * p['judge.missPickContested'];
     } else {
       pHat = catchable * ctx.catchPoint.uncontestedCatchProbability({ zHands: target.zHands ?? 0, placementError: placement, hitAtCatch: false, wet: ctx.wet });
-      iHat = (1 - catchable) * p['judge.missPickOpen'];
+      // A long ball that misses hangs for defenders he never looked at (the deep safety is rarely in his view when he
+      // watches the receiver). With one flat share he rated a 30 yd throw 1.4% to be picked; those throws were picked
+      // 4 to 12% of the time (real 5.8% at 21 to 30 yd, 8.1% beyond), and he threw them at every chance.
+      const far = air - p['acc.midFromYd'];
+      iHat = (1 - catchable) * (p['judge.missPickOpen'] + (far > 0 ? far * p['judge.missPickOpenPerYd'] : 0));
     }
     pHat *= 1 - blocked;
     iHat = iHat * (1 - blocked) + blocked * p['judge.lanePickShare'];

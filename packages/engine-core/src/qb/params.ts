@@ -100,6 +100,8 @@ const ROWS = [
   // more often than one on target, and at 0.10 a covered deep throw still rated above his threshold.
   ['judge.missPickContested', 0.25, 0, 0.3, 'probability', 'assumption', 'J7.3.1', RATES],
   ['judge.missPickOpen', 0.02, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
+  // Added share of off-target balls picked per yard of air beyond the short band, receiver judged open (J15 interceptions by depth).
+  ['judge.missPickOpenPerYd', 0.002, 0, 0.01, 'probability/yd', 'assumption', 'J7.3.1', RATES],
   ['judge.positionTolYd', 0.5, 0.2, 1.5, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.undercutLateralYd', 2, 1, 4, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.yacBaseYd', 2, 0, 5, 'yd', 'assumption', 'J7.3.1', 'J15 yards after catch (N2)'],
@@ -164,6 +166,8 @@ const ROWS = [
   ['resp.throwAwayEp', 0, -0.6, 0.2, 'EP', 'assumption', 'J7.4.2', RATES],
   ['resp.sackEp', -0.45, -1.5, 0, 'EP', 'assumption', 'J7.4.2', RATES],
   ['resp.protectBallEp', 0.15, 0, 0.5, 'EP', 'assumption', 'J7.4.2', RATES],
+  // Seconds after a pocket move before the same rusher, on him again, gets a second answer (throw now, throw away or go down).
+  ['resp.secondAnswerS', 0.3, 0.1, 0.8, 's', 'assumption', 'J7.4.2', RATES],
   ['pocket.stepYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.4.2', SACK],
   ['pocket.minBehindLineYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.4.2', STRUCT],
   ['pocket.defaultHalfWidthYd', 4.5, 3, 6, 'yd', 'assumption', 'J7.5.2', GRD],
