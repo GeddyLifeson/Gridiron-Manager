@@ -471,10 +471,10 @@
   },
   {
    "key": "roster.practice_squad_protections_per_week",
-   "value": 4,
+   "value": 0,
    "unit": "count",
-   "factId": "F-league-0078",
-   "note": "PROVISIONAL: status 2 of 3; CONFLICT with F-league-0221 (0, protections ended after 2021, Verified by inference from CBA Art. 33 silence). Kept at 4 until the Art. 33 section text and one more independent source settle it (Q6.3.1)."
+   "factId": "F-league-0221",
+   "note": "No weekly practice squad protections in 2026: the 2020 CBA Article 33 has no protection clause (a squad player is free to sign with any club), and 2026 sources say the 2020 pandemic-era protections no longer exist (Marlon ruling 2026-11-26). F-league-0078 (4 per week) is the 2020 to 2022 rule."
   },
   {
    "key": "waivers.vested_measure",
