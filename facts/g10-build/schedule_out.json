@@ -1,0 +1,146 @@
+{
+ "2021": {
+  "games": 272,
+  "clubs": 32,
+  "games_per_club": [
+   17
+  ],
+  "weeks": 18,
+  "bye_first": 6,
+  "bye_last": 14,
+  "byes_in_thanksgiving_week": 2,
+  "thanksgiving_week": [
+   "12"
+  ],
+  "last_week_division_games": 16,
+  "last_week_games": 16,
+  "saturday_by_week": {
+   "15": 1,
+   "16": 2,
+   "18": 2
+  },
+  "non_home_location_games": 3,
+  "max_thursday_games_per_club": 3,
+  "max_short_rest_thursday_per_club": 1
+ },
+ "2022": {
+  "games": 271,
+  "clubs": 32,
+  "games_per_club": [
+   16,
+   17
+  ],
+  "weeks": 18,
+  "bye_first": 6,
+  "bye_last": 17,
+  "byes_in_thanksgiving_week": 0,
+  "thanksgiving_week": [
+   "12"
+  ],
+  "last_week_division_games": 16,
+  "last_week_games": 16,
+  "saturday_by_week": {
+   "15": 3,
+   "16": 11,
+   "18": 2
+  },
+  "non_home_location_games": 6,
+  "max_thursday_games_per_club": 3,
+  "max_short_rest_thursday_per_club": 2
+ },
+ "2023": {
+  "games": 272,
+  "clubs": 32,
+  "games_per_club": [
+   17
+  ],
+  "weeks": 18,
+  "bye_first": 5,
+  "bye_last": 14,
+  "byes_in_thanksgiving_week": 0,
+  "thanksgiving_week": [
+   "12"
+  ],
+  "last_week_division_games": 16,
+  "last_week_games": 16,
+  "saturday_by_week": {
+   "15": 3,
+   "16": 2,
+   "17": 1,
+   "18": 2
+  },
+  "non_home_location_games": 5,
+  "max_thursday_games_per_club": 3,
+  "max_short_rest_thursday_per_club": 2
+ },
+ "2024": {
+  "games": 272,
+  "clubs": 32,
+  "games_per_club": [
+   17
+  ],
+  "weeks": 18,
+  "bye_first": 5,
+  "bye_last": 14,
+  "byes_in_thanksgiving_week": 0,
+  "thanksgiving_week": [
+   "13"
+  ],
+  "last_week_division_games": 16,
+  "last_week_games": 16,
+  "saturday_by_week": {
+   "16": 2,
+   "17": 3,
+   "18": 2
+  },
+  "non_home_location_games": 5,
+  "max_thursday_games_per_club": 2,
+  "max_short_rest_thursday_per_club": 2
+ },
+ "2025": {
+  "games": 272,
+  "clubs": 32,
+  "games_per_club": [
+   17
+  ],
+  "weeks": 18,
+  "bye_first": 5,
+  "bye_last": 14,
+  "byes_in_thanksgiving_week": 0,
+  "thanksgiving_week": [
+   "13"
+  ],
+  "last_week_division_games": 16,
+  "last_week_games": 16,
+  "saturday_by_week": {
+   "16": 2,
+   "17": 2,
+   "18": 2
+  },
+  "non_home_location_games": 7,
+  "max_thursday_games_per_club": 4,
+  "max_short_rest_thursday_per_club": 2
+ },
+ "2026": {
+  "games": 272,
+  "clubs": 32,
+  "games_per_club": [
+   17
+  ],
+  "weeks": 18,
+  "bye_first": 5,
+  "bye_last": 14,
+  "byes_in_thanksgiving_week": 0,
+  "thanksgiving_week": [
+   "12"
+  ],
+  "last_week_division_games": 16,
+  "last_week_games": 16,
+  "saturday_by_week": {
+   "15": 2
+  },
+  "non_home_location_games": 9,
+  "max_thursday_games_per_club": 2,
+  "max_short_rest_thursday_per_club": 2
+ }
+}

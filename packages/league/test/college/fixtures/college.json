@@ -1,56 +1,203 @@
 {
-  "$comment": "Test fixture, not game data. Keys with an F-college id are G-10's collegeleague_2026 values; the rest are the bible's stated values for keys requested from G-10 (leaf named), not triple-verified.",
+  "$comment": "Test fixture, not game data. Every key with a value in G-10's collegeleague_2026 carries that value and its fact id; keys absent there (no sourced value yet) keep the bible's stated value with the leaf named.",
   "id": "fixture_college_g37",
   "seasonYear": 2026,
   "values": {
-    "league.roster_limit": [105, "F-college-0001"],
-    "league.aid_limit": [105, "F-college-0002"],
-    "eligibility.model": ["age_based_five_year", "F-college-0012"],
-    "eligibility.window_years": [5, "F-college-0010"],
-    "eligibility.age_trigger": [19, "F-college-0011"],
-    "eligibility.age_cutoff_month": [9, "NEW T5.2.1"],
-    "eligibility.age_cutoff_day": [1, "NEW T5.2.1"],
-    "eligibility.age_model_first_entry_year": [2027, "NEW T5.2.1"],
-    "eligibility.transition_first_season": [2026, "NEW T5.2.1"],
-    "eligibility.seasons_of_competition": [4, "NEW T5.2.1"],
-    "eligibility.seasons_clock_years": [5, "NEW T5.2.1"],
-    "eligibility.redshirt_max_games": [4, "NEW T5.2.1"],
-    "eligibility.postseason_counts": [false, "NEW T5.2.1"],
-    "eligibility.juco_seasons_count": [true, "NEW T6.3.2"],
-    "academic.full_time_hours": [12, "NEW T5.3.1"],
-    "academic.term_min_hours": [6, "NEW T5.3.1"],
-    "academic.year_min_hours": [18, "NEW T5.3.1"],
-    "academic.first_year_min_hours": [24, "NEW T5.3.1"],
-    "academic.fall_min_hours": [9, "NEW T5.3.1"],
-    "academic.fall_rule_games": [4, "NEW T5.3.1"],
-    "academic.progress_pct_year3": [40, "NEW T5.3.1"],
-    "academic.progress_pct_year4": [60, "NEW T5.3.1"],
-    "academic.progress_pct_year5": [80, "NEW T5.3.1"],
-    "academic.gpa_year2": [1.8, "NEW T5.3.1"],
-    "academic.gpa_year3": [1.9, "NEW T5.3.1"],
-    "academic.gpa_year4": [2.0, "NEW T5.3.1"],
-    "academic.team_rate_max": [1000, "NEW T5.3.1"],
-    "academic.team_rate_postseason_min": [930, "NEW T5.3.1"],
-    "transfer.postseason_extra_days": [5, "NEW T6.1.1"],
-    "transfer.coach_change_delay_days": [5, "NEW T6.1.1"],
-    "transfer.coach_change_window_days": [15, "NEW T6.1.1"],
-    "transfer.max_free": [0, "NEW T6.1.1"],
-    "transfer.aid_ends_on_entry": [false, "NEW T6.2.1"],
-    "pay.revenue_share_cap_2025_26": [20500000, "F-college-0003"],
-    "pay.revenue_share_cap_2026_27": [21300000, "F-college-0004"],
-    "pay.revenue_share_growth_pct": [4, "F-college-0005"],
-    "pay.scholarship_credit_2025_26": [2500000, "NEW T7.1.1"],
-    "pay.scholarship_credit_2026_27": [0, "NEW T7.1.1"],
-    "pay.nil_report_threshold_usd": [600, "F-college-0006"],
-    "pay.agreement_max_years": [3, "NEW T7.3.2"],
-    "pay.multi_year": [true, "NEW T7.3.2"],
-    "pay.agent_fee_cap": [false, "NEW T7.3.2"],
-    "pay.agent_fee_cap_pct": [5, "NEW T7.3.2"],
-    "pay.employment_status": ["not_employee", "NEW T7.3.2"],
-    "draft.min_years_from_high_school": [3, "NEW T8.5.1"],
-    "draft.underclass_deadline_month": [1, "NEW T8.5.1"],
-    "draft.underclass_deadline_day": [14, "NEW T8.5.1"],
-    "draft.underclass_deadline_title_game_day": [23, "NEW T8.5.1"],
-    "draft.undrafted_may_return": [false, "NEW T8.5.1"]
+    "league.roster_limit": [
+      105,
+      "F-college-0001"
+    ],
+    "league.aid_limit": [
+      105,
+      "F-college-0002"
+    ],
+    "eligibility.model": [
+      "age_based_five_year",
+      "F-college-0012"
+    ],
+    "eligibility.window_years": [
+      5,
+      "F-college-0010"
+    ],
+    "eligibility.age_trigger": [
+      19,
+      "F-college-0011"
+    ],
+    "eligibility.age_cutoff_month": [
+      9,
+      "F-college-keys-0001"
+    ],
+    "eligibility.age_cutoff_day": [
+      1,
+      "F-college-keys-0002"
+    ],
+    "eligibility.age_model_first_entry_year": [
+      2027,
+      "F-college-keys-0003"
+    ],
+    "eligibility.transition_first_season": [
+      2026,
+      "F-college-keys-0004"
+    ],
+    "eligibility.seasons_of_competition": [
+      4,
+      "F-college-keys-0005"
+    ],
+    "eligibility.seasons_clock_years": [
+      5,
+      "F-college-keys-0006"
+    ],
+    "eligibility.redshirt_max_games": [
+      4,
+      "F-college-keys-0007"
+    ],
+    "eligibility.postseason_counts": [
+      false,
+      "F-college-keys-0008"
+    ],
+    "eligibility.juco_seasons_count": [
+      true,
+      "F-college-keys-0009"
+    ],
+    "academic.full_time_hours": [
+      12,
+      "F-college-keys-0010"
+    ],
+    "academic.term_min_hours": [
+      6,
+      "F-college-keys-0011"
+    ],
+    "academic.year_min_hours": [
+      18,
+      "F-college-keys-0012"
+    ],
+    "academic.first_year_min_hours": [
+      24,
+      "F-college-keys-0013"
+    ],
+    "academic.fall_min_hours": [
+      9,
+      "F-college-keys-0014"
+    ],
+    "academic.fall_rule_games": [
+      4,
+      "F-college-keys-0015"
+    ],
+    "academic.progress_pct_year3": [
+      40,
+      "F-college-keys-0016"
+    ],
+    "academic.progress_pct_year4": [
+      60,
+      "F-college-keys-0017"
+    ],
+    "academic.progress_pct_year5": [
+      80,
+      "F-college-keys-0018"
+    ],
+    "academic.gpa_year2": [
+      1.8,
+      "F-college-keys-0019"
+    ],
+    "academic.gpa_year3": [
+      1.9,
+      "F-college-keys-0020"
+    ],
+    "academic.gpa_year4": [
+      2.0,
+      "F-college-keys-0021"
+    ],
+    "academic.team_rate_max": [
+      1000,
+      "F-college-keys-0022"
+    ],
+    "academic.team_rate_postseason_min": [
+      930,
+      "F-college-keys-0023"
+    ],
+    "transfer.postseason_extra_days": [
+      5,
+      "F-college-keys-0024"
+    ],
+    "transfer.coach_change_delay_days": [
+      5,
+      "F-college-keys-0025"
+    ],
+    "transfer.coach_change_window_days": [
+      15,
+      "F-college-keys-0026"
+    ],
+    "transfer.max_free": [
+      0,
+      "F-college-keys-0027"
+    ],
+    "transfer.aid_ends_on_entry": [
+      false,
+      "F-college-keys-0028"
+    ],
+    "pay.revenue_share_cap_2025_26": [
+      20500000,
+      "F-college-0003"
+    ],
+    "pay.revenue_share_cap_2026_27": [
+      21300000,
+      "F-college-0004"
+    ],
+    "pay.revenue_share_growth_pct": [
+      4,
+      "F-college-0005"
+    ],
+    "pay.scholarship_credit_2025_26": [
+      2500000,
+      "F-college-keys-0029"
+    ],
+    "pay.scholarship_credit_2026_27": [
+      0,
+      "F-college-keys-0030"
+    ],
+    "pay.nil_report_threshold_usd": [
+      600,
+      "F-college-0006"
+    ],
+    "pay.agreement_max_years": [
+      3,
+      "NEW T7.3.2"
+    ],
+    "pay.multi_year": [
+      true,
+      "F-college-keys-0031"
+    ],
+    "pay.agent_fee_cap": [
+      false,
+      "F-college-keys-0032"
+    ],
+    "pay.agent_fee_cap_pct": [
+      5,
+      "F-college-keys-0033"
+    ],
+    "pay.employment_status": [
+      "not_employee",
+      "F-college-keys-0034"
+    ],
+    "draft.min_years_from_high_school": [
+      3,
+      "F-college-keys-0035"
+    ],
+    "draft.underclass_deadline_month": [
+      1,
+      "F-college-keys-0036"
+    ],
+    "draft.underclass_deadline_day": [
+      14,
+      "F-college-keys-0037"
+    ],
+    "draft.underclass_deadline_title_game_day": [
+      23,
+      "F-college-keys-0038"
+    ],
+    "draft.undrafted_may_return": [
+      false,
+      "F-college-keys-0039"
+    ]
   }
 }
