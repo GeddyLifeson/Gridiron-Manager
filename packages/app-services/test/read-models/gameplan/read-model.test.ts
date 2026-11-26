@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { ReadModelRegistry, buildReadModel, crawlReadModels, crawlPassed, observerFor, tablesOf, PUBLIC_OBSERVER } from '../../../src/observer/index.ts';
 import { gameplanSpec, GAMEPLAN_MODEL, type GameplanView } from '../../../src/read-models/gameplan/index.ts';
 import { fixtureTables, HOME, AWAY, USER, ASSISTANT, AWAY_COACH } from '../../observer/fixture-world.ts';
-import { GameplanData } from './data-schema.ts';
+import { GameplanData } from '@gm/schema';
 import { sourceFor, state, TEAM } from './fixture.ts';
 
 const inner = sourceFor(state());

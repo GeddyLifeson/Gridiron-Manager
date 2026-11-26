@@ -12,6 +12,8 @@ export type Unit =
   // Simulation contract units (J1.2.1, J11.1.1): integer tenths of a second for clocks, ticks of 0.1 s,
   // radians, acceleration, the internal skill scale (ISS 0 to 100) and its z form, and J12 weather units.
   | 'tenths_s' | 'tick' | 'rad' | 'yd_per_s2' | 'iss' | 'z' | 'mph' | 'deg_f' | 'deg'
+  // Typographic points for printed and on-screen text sizes (G-68 call sheet print, CR-G68-S1).
+  | 'pt'
   // A bounded design scale from the bible (world contract W-05, CR-G00-1). The `scale` meta key names the leaf and bounds.
   | 'scale';
 
