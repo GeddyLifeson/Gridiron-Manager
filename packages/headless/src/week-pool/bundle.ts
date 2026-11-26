@@ -5,9 +5,12 @@
 // the same code: the bundle is built from the same sources, and no engine code reads a function's name,
 // so results are byte-identical (test/week-pool/bundle.test.ts and measure.ts check the hashes).
 //
-// Tool-side only (headless): writes two files to a fresh temporary folder and removes it on dispose.
-import { build } from 'esbuild';
+// Tool-side only (headless): loads esbuild (a pinned dev dependency, the compiler tsx itself uses) at run
+// time as a build tool, writes two files to a fresh temporary folder and removes it on dispose. The engine
+// packages never see esbuild. It is not on headless's list of runtime imports (lint P1.2.2), so it is
+// loaded through require only when a bundle is asked for.
 import { mkdtempSync, rmSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -25,11 +28,12 @@ export interface PoolBundle {
 const WORKER_SOURCE = fileURLToPath(new URL('./worker.ts', import.meta.url));
 
 /** Builds the pool worker and the job module named by `ref` into plain ES module bundles. */
-export async function bundleForPool(ref: JobModuleRef): Promise<PoolBundle> {
+export function bundleForPool(ref: JobModuleRef): PoolBundle {
   const source = ref.module.startsWith('file:') ? fileURLToPath(ref.module) : ref.module;
   const dir = mkdtempSync(join(tmpdir(), 'gm-pool-'));
   try {
-    await build({
+    const esbuild = createRequire(import.meta.url)('esbuild') as { buildSync(o: Record<string, unknown>): unknown };
+    esbuild.buildSync({
       entryPoints: { worker: WORKER_SOURCE, job: source },
       outdir: dir, outExtension: { '.js': '.mjs' },
       bundle: true, platform: 'node', format: 'esm', target: 'node22',

@@ -26,7 +26,7 @@ export function measureJobs(ruleSetId: string, games: number): WeekGameJob[] {
 
 export async function measureWeek(ruleSetId: string, games: number, workers: number, opts: { readonly bundle?: boolean } = {}): Promise<WeekMeasure> {
   const source = realWeekRef();
-  const bundle = opts.bundle ? await bundleForPool(source) : null;
+  const bundle = opts.bundle ? bundleForPool(source) : null;
   const ref = bundle?.module ?? source;
   const runner = await loadJobRunner<WeekGameJob, WeekGameOutcome>(ref);
   const jobs = measureJobs(ruleSetId, games);

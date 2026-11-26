@@ -14,7 +14,7 @@ afterAll(async () => { await pool?.close(); bundle?.dispose(); });
 describe('pool bundles', () => {
   it('play real games to the same bytes as the sources, with every event hashed', async () => {
     const source = realWeekRef({ eventsHash: true });
-    bundle = await bundleForPool(source);
+    bundle = bundleForPool(source);
     const jobs = [...measureJobs('pro_2026', 3), ...measureJobs('college_2026', 3)];
     const want = hex(jobs.map(await loadJobRunner<WeekGameJob, WeekGameOutcome>(source)));
     expect(hex(jobs.map(await loadJobRunner<WeekGameJob, WeekGameOutcome>(bundle.module)))).toBe(want);
