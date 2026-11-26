@@ -7,7 +7,8 @@ import { LogError, lastLiveRow, logExtent, readUndoWindow, type LogRow } from '.
 import { readChain, verifyChainLinks, type ChainRow } from '../snapshot/chain.ts';
 import { listSnapshots, type LoadedSnapshot, type SnapshotMeta } from '../snapshot/snapshots.ts';
 import { StateEncodingError } from '../snapshot/canonical-json.ts';
-import { StateTablesError, StateTracker, readStateRows } from '../snapshot/state-tables.ts';
+import { StateTablesError, StateTracker, readStateRows, type PackSpec } from '../snapshot/state-tables.ts';
+import { PackedRowsError } from '../snapshot/packed-rows.ts';
 import { SAVE_CORE_FORMAT_VERSION, SaveVersionError, type IntegrityReport, type Problem, type SaveCoreDeps } from './types.ts';
 
 export const SAVE_DDL = `
@@ -78,7 +79,7 @@ export interface CheckedFile<S> {
  * Runs every load check and returns what was read. Throws SaveVersionError for another format; every
  * other fault is listed in the report, so the recovery screen can show all of them at once.
  */
-export async function checkFile<S>(driver: SqlDriver, deps: SaveCoreDeps<S>, databaseCheck = true): Promise<CheckedFile<S>> {
+export async function checkFile<S>(driver: SqlDriver, deps: SaveCoreDeps<S>, databaseCheck = true, packing: readonly PackSpec[] = []): Promise<CheckedFile<S>> {
   const problems: Problem[] = [];
   const add = (code: string, message: string) => { problems.push({ code, message }); };
   const out: CheckedFile<S> = { report: { ok: false, problems, lastSeq: 0 }, header: null, state: null, tracker: null, chain: [], snapshots: [], window: [], windowBase: { seq: 0, digest: '' }, baseDigest: null };
@@ -107,12 +108,12 @@ export async function checkFile<S>(driver: SqlDriver, deps: SaveCoreDeps<S>, dat
   }
 
   try {
-    const { fields, rows } = await readStateRows((sql) => driver.all(sql));
-    const loaded = StateTracker.load(deps.bytesHash, fields, rows);
+    const { fields, rows, packed } = await readStateRows((sql) => driver.all(sql), deps.bytesHash);
+    const loaded = StateTracker.load(deps.bytesHash, fields, rows, packed, packing);
     out.state = loaded.state as S;
     out.tracker = loaded.tracker;
   } catch (e) {
-    if (!(e instanceof StateTablesError) && !(e instanceof StateEncodingError)) add('state_unreadable', `the world tables are not readable: ${msg(e)}`);
+    if (!(e instanceof StateTablesError) && !(e instanceof StateEncodingError) && !(e instanceof PackedRowsError)) add('state_unreadable', `the world tables are not readable: ${msg(e)}`);
     else add('state_unreadable', e.message);
   }
 

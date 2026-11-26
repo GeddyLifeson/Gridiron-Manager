@@ -206,6 +206,17 @@ export function compactionStep(opts: Omit<history.CompactOptions, 'currentYear'>
   };
 }
 
+/** Maps and sets as sorted entry lists, so `chainHash` (canonical JSON) sees their contents. */
+function plain(v: unknown): unknown {
+  const key = (x: unknown) => canonicalOf(x);
+  if (v instanceof Map) return [...v].map(([k, x]) => [plain(k), plain(x)]).sort((a, b) => (key(a[0]) < key(b[0]) ? -1 : key(a[0]) > key(b[0]) ? 1 : 0));
+  if (v instanceof Set) return [...v].map(plain).sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
+  if (Array.isArray(v)) return v.map(plain);
+  if (v !== null && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, plain(x)]));
+  return v;
+}
+const canonicalOf = (x: unknown): string => JSON.stringify(x) ?? 'undefined';
+
 /** A hash of the whole live world, for replay checks (J13). `deep` adds every person and job. */
 export function worldHash(world: LiveWorld, deep = true): string {
   const head = {
@@ -213,7 +224,7 @@ export function worldHash(world: LiveWorld, deep = true): string {
     log: world.log.seasonHashes(), nextIds: world.nextIds, seasons: world.seasons,
     status: [...world.status].sort((a, b) => a[0] - b[0]), tiers: [...world.tiers].sort((a, b) => a[0] - b[0]),
     rosters: [...world.rosters].sort((a, b) => a[0] - b[0]), pools: [...world.pools].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
-    systemState: [...world.systemState].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
+    systemState: plain(world.systemState),
     hall: world.hall.members,
   };
   let h = history.chainHash(history.EMPTY_SEASON_HASH, head);
