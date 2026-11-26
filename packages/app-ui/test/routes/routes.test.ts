@@ -9,7 +9,9 @@ const ALL: Required<RouteSources> = {
   rosterMoves: stub(), gameFrame: stub(), scouting: stub(), analytics: { load: stub() }, week: { getModel: stub() },
   film: stub(), career: stub(), assignments: { load: stub() }, school: { load: stub() }, gameCalling: stub(),
   defenseDesigner: { load: stub() }, playDesigner: stub(),
-  settings: { host: stub() }, playerDesigner: stub(), editors: stub(), gameplan: stub(), practice: { getModel: stub() }, home: stub(), people: stub(), legends: { load: stub() },
+  settings: { host: stub() }, playerDesigner: stub(), editors: stub(), gameplan: stub(), practice: { getModel: stub() }, home: stub(), people: stub(), legends: { load: stub() }, cap: stub(), depthChart: stub(), draftRoom: stub(), freeAgency: stub(),
+  meetings: { getModel: stub() }, travel: { getModel: stub() }, documents: { getModel: stub() }, press: { getModel: stub() },
+  league: stub(), recruiting: stub(), playbook: stub(), install: stub(), print: stub(), peopleWork: stub(), decisionLog: stub(), glossary: stub(), notebook: stub(),
 };
 
 describe('route table', () => {
@@ -25,7 +27,8 @@ describe('route table', () => {
   it('wires the named screens', () => {
     const t = buildRoutes(ALL);
     for (const id of ['team.roster_moves', 'film.statistics', 'week.schedule', 'office.today', 'school.lessons', 'school.drills',
-      'game.console', 'football.defense_designer', 'football.play_designer', 'coach.career', 'film.viewer', 'game.pregame', 'school.settings', 'people.player_designer', 'school.mods', 'football.game_plan', 'football.call_sheet', 'week.practice', 'league.legends', 'office.inbox', 'office.calendar']) {
+      'game.console', 'football.defense_designer', 'football.play_designer', 'coach.career', 'film.viewer', 'game.pregame', 'school.settings', 'people.player_designer', 'school.mods', 'football.game_plan', 'football.call_sheet', 'week.practice', 'league.legends', 'office.inbox', 'office.calendar', 'team.cap', 'team.depth_chart', 'team.draft', 'team.free_agency',
+      'week.meetings', 'week.travel', 'week.documents', 'people.media', 'league.recruiting', 'football.playbook', 'football.install', 'football.print', 'film.decision_log', 'school.glossary', 'coach.notebook']) {
       expect(t[id], id).toBeDefined();
     }
   });

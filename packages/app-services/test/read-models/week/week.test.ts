@@ -1,3 +1,6 @@
+import { z } from 'zod';
+import { own } from '@gm/schema';
+import { ReadModelRegistry } from '../../../src/observer/index.ts';
 // Week screens' read models (item 9): meetings (H4), travel (H8), documents (H9), the press conference
 // (H7.2, O4.5.2) and the schedule and practice sources. Built on real weeks from the G-69 builder and the
 // G-10 league-rules files; nothing hidden (attention, document quality, seeded errors, reporter trust)
@@ -249,7 +252,14 @@ describe('specs: schedule and practice route sources', () => {
     const d = specs.schedule.build(world, { teamId: 1 }).data;
     expect(d?.weekId).toBe('w1');
     expect(specs.meetings.build(world, { teamId: 1 }).data).toBeNull();
-    expect(specs.practice.name).toBe('practice.planner');
+    expect(specs.practice.name).toBe('practicePlanner');
+  });
+  it('every week spec registers with the observer registry (lowerCamelCase names)', () => {
+    const r = new ReadModelRegistry();
+    const one = z.object({ weekId: own(z.string()) });
+    const real = { schedule: one, practice: one, meetings: one, travel: one, documents: one, press: one } as unknown as WeekSchemas;
+    for (const spec of Object.values(weekSpecs(real, {}))) r.register(spec as never);
+    expect(r.names()).toEqual(["practicePlanner", "pressConference", "weekDocuments", "weekMeetings", "weekSchedule", "weekTravel"]);
   });
   it('the practice spec builds the planner view from the G-65 module', () => {
     const input = practiceInput();
