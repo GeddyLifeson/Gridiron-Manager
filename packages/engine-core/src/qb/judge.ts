@@ -31,6 +31,9 @@ export interface JudgeContext {
   /** His own error for a throw of these air yards from his current platform (J7.6.2). He knows his arm. */
   accuracySdYd(airYd: number): number;
   wet: boolean;
+  /** The sidelines in the play frame, when the caller knows them: he does not expect a receiver to run out of bounds. */
+  loPy?: number;
+  hiPy?: number;
   /** A Hail Mary or free play is thrown even past his range. */
   allowOutOfRange: boolean;
   /**
@@ -48,6 +51,8 @@ export interface JudgeContext {
 export interface Estimate {
   /** False when there is nothing to judge: the receiver is unseen with no route to trust, or the throw is out of range. */
   ok: boolean;
+  /** True when the only thing wrong is that the throw is past his arm's reach. */
+  outOfRange: boolean;
   pHat: number;
   iHat: number;
   /** Estimated gain past the line: air yards plus what he expects after the catch. */
@@ -78,7 +83,7 @@ export interface Estimate {
 
 export function newEstimate(): Estimate {
   return {
-    ok: false, pHat: 0, iHat: 0, yards: 0, v: 0, sepYd: 0, laneClearYd: 0, aimPx: 0, aimPy: 0, distYd: 0, airYd: 0, arriveS: 0,
+    ok: false, outOfRange: false, pHat: 0, iHat: 0, yards: 0, v: 0, sepYd: 0, laneClearYd: 0, aimPx: 0, aimPy: 0, distYd: 0, airYd: 0, arriveS: 0,
     trajectory: 'firm', nearestDefender: -1, defenderPosition: 'inPhase', seen: false, broken: true, toBreakS: 0, dirPx: 1, dirPy: 0,
   };
 }
@@ -114,6 +119,8 @@ export function projectAlongRoute(route: readonly PlayPoint[], settles: boolean,
   locate(route, px, py);
   const offX = px - loc.cx, offY = py - loc.cy;
   let left = travelYd, x = loc.cx, y = loc.cy, ux = 1, uy = 0;
+  // Standing on the end of his segment he keeps that leg's heading, not straight upfield.
+  { const a = route[loc.seg]!, b = route[loc.seg + 1]!, len = hyp(b.px - a.px, b.py - a.py); if (len > 0) { ux = (b.px - a.px) / len; uy = (b.py - a.py) / len; } }
   for (let i = loc.seg; i + 1 < route.length; i++) {
     const b = route[i + 1]!;
     const dx = b.px - x, dy = b.py - y, len = hyp(dx, dy);
@@ -176,7 +183,12 @@ export function walkRoute(target: QbTarget, ctx: JudgeContext, px: number, py: n
     return share >= 1 ? Infinity : vTop * share;
   };
   let cap = capAt(seg + 1);
-  { const dx = route[seg + 1]!.px - x, dy = route[seg + 1]!.py - y; if (toEnd > 0) { ux = dx / toEnd; uy = dy / toEnd; } }
+  // A man already at (or past) the end of his segment has no distance to take a heading from: he keeps the leg's own.
+  const segmentHeading = (r: readonly PlayPoint[], i: number): void => {
+    const dx = r[i + 1]!.px - r[i]!.px, dy = r[i + 1]!.py - r[i]!.py, len = hyp(dx, dy);
+    if (len > 0) { ux = dx / len; uy = dy / len; }
+  };
+  { const dx = route[seg + 1]!.px - x, dy = route[seg + 1]!.py - y; if (toEnd > 0) { ux = dx / toEnd; uy = dy / toEnd; } else segmentHeading(route, seg); }
   for (let step = 0; step < WALK_MAX_STEPS && t < timeS; step++) {
     let dt = timeS - t; if (dt > WALK_DT_S) dt = WALK_DT_S;
     // The most he can carry here and still be down to the cut speed at the point (J2.1.3).
@@ -234,7 +246,7 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
   const p = ctx.p, route = target.route;
   const qx = view.self.px, qy = view.self.py;
   const rec = view.entity(target.slot);
-  out.ok = false; out.seen = rec !== null; out.nearestDefender = -1; out.defenderPosition = 'inPhase'; out.trajectory = 'firm';
+  out.ok = false; out.outOfRange = false; out.seen = rec !== null; out.nearestDefender = -1; out.defenderPosition = 'inPhase'; out.trajectory = 'firm';
 
   // Step 1: where the receiver is now, as he sees it, or where the design says he should be.
   let rx: number, ry: number, speed: number, vx = 0, vy = 0;
@@ -270,6 +282,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
       } else {
         ax = rx + vx * arrive; ay = ry + vy * arrive;
         if (speed > 0) { dirX = vx / speed; dirY = vy / speed; }
+      }
+      if (ctx.loPy !== undefined && ctx.hiPy !== undefined) {
+        const lo = ctx.loPy + p['judge.sidelineRoomYd'], hi = ctx.hiPy - p['judge.sidelineRoomYd'];
+        if (lo < hi) ay = ay < lo ? lo : ay > hi ? hi : ay;
       }
       dist = hyp(ax - qx, ay - qy);
       flight = ctx.flightS(dist, trajectory);
@@ -333,7 +349,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     const radius = ctx.catchPoint.catchRadiusYd(0, false) + p['judge.reachAdjustYd'], sd = ctx.accuracySdYd(air);
     const catchable = insideRadiusShare(radius, sd, ctx.math), placement = expectedPlacementError(radius, sd);
     let pHat: number, iHat: number;
-    if (nearest >= 0 && ctx.catchPoint.isContested(sepEst)) {
+    // A defender can play any ball that comes down inside his reach (the catch-point stage gives him the same radius),
+    // so that is the separation at which the throw stops being open. Judging it open down to one yard had him throw
+    // deep balls he read as uncovered into two defenders in five.
+    if (nearest >= 0 && sepEst <= radius) {
       const probs = ctx.catchPoint.contestedProbabilities({
         zContestedCatch: target.zContestedCatch ?? 0, zBallSkills: 0, position, ballLocated: position !== 'trail', placementError: placement, hitAtCatch: false, wet: ctx.wet,
       });
@@ -351,7 +370,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     let yac = p['judge.yacBaseYd'] + p['judge.yacPerSepYd'] * openYd;
     if (yac > p['judge.yacMaxYd']) yac = p['judge.yacMaxYd'];
     s.yards = ax + yac;
-    s.v = pHat * ctx.value.yards(s.yards) - iHat * ctx.value.turnoverCost;
+    // A ball that is neither caught nor intercepted costs the down. Without that cost a covered deep throw (one
+    // chance in four for 25 yards) rated above the threshold, and he threw it.
+    const pInc = 1 - pHat - iHat;
+    s.v = pHat * ctx.value.yards(s.yards) - iHat * ctx.value.turnoverCost - (pInc > 0 ? pInc : 0) * (ctx.value.incompleteCost ?? 0);
     if (alert && nearest >= 0 && ax - nearX >= p['judge.alertLeadYd']) s.v += p['judge.alertBonusEp'];
     s.ax = ax; s.ay = ay; s.dirX = dirX; s.dirY = dirY; s.dist = dist; s.flight = flight; s.arrive = arrive; s.sepEst = sepEst;
     s.minLane = minLane; s.laneAlong = laneAlong; s.blocked = blocked; s.nearest = nearest; s.nearX = nearX; s.nearY = nearY;
@@ -375,6 +397,7 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
   out.distYd = best.dist; out.airYd = best.ax > 0 ? best.ax : 0;
   out.arriveS = best.arrive; out.nearestDefender = best.nearest; out.defenderPosition = best.position; out.dirPx = best.dirX; out.dirPy = best.dirY;
   out.ok = ctx.allowOutOfRange || best.dist <= ctx.maxRangeYd;
+  out.outOfRange = !out.ok;
   return out;
 }
 
@@ -385,5 +408,6 @@ export function standInValue(p: QbParams, down: number | null, toGoYd: number | 
   return {
     yards: (gain) => perYd * gain + (toGoYd !== null && gain >= toGoYd ? bonus : 0),
     turnoverCost: p['value.turnoverCostEp'],
+    incompleteCost: p['value.incompleteCostEp'],
   };
 }

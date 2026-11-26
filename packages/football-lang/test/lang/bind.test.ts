@@ -34,7 +34,7 @@ describe('binding', () => {
 
   it('a bound man is covered: the compiled assignment trails the slot the role was bound to', () => {
     const { bound } = bindAssignments({ assignments: [assignment({ behavior: { type: 'manCover', params: { man: 'role:Y' }, path: [] } })], slotOfRole: { Y: 6 } });
-    const o = compiled(bound[0]!).decide(15, viewOf(world({ self: [5, 4], seen: { 6: [3, 8] } }), 15));
+    const o = compiled(bound[0]!).decide(15, viewOf(world({ self: [3, 4], seen: { 6: [3, 8] } }), 15));
     expect(o.intent.target).toEqual({ px: 3 - K.trailOffset, py: 8 });
   });
 

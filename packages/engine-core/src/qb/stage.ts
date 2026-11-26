@@ -318,7 +318,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     intCeil = freeSeen ? 1 : interceptionCeiling(trailing, oneScore, sit.period, sit.clockTenths * TICK_S, p);
 
     seq = play.reads.slice();
-    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
     deepestRead = -1;
     if (freeSeen) {
       let deep = -Infinity;
@@ -336,6 +336,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     ctx = {
       p, catchPoint, math: w.math, value: play.value ?? standInValue(p, sit.down, sit.distanceYd),
       releaseS, vBallYps: vBall, dragPerYd: k, maxRangeYd: far.arrival.x, wet, allowOutOfRange: play.kind === 'hailMary',
+      loPy: Math.min((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
+      hiPy: Math.max((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
       accuracySdYd: (airYd) => errorSd(airYd, platformNow(false, false)),
       flightS: (distYd, trajectory) => flightFrom(table, distYd, trajectory),
       heightYd: (distYd, alongYd, trajectory) => heightFrom(table, distYd, alongYd, trajectory),
@@ -483,6 +485,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     ran = { tick: w.tick, why };
     carrierOwns = options.onRun ? options.onRun(w, cur!.qbSlot, why) : false;
     detail(w, `qb.${why}`);
+    // The stat line reads the shared code (contract decision D-16): without it no scramble was ever counted.
+    if (why === 'scramble') detail(w, 'scramble');
     note(w, why);
   }
 
@@ -732,7 +736,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   }
 
   function baseOf(i: number): number {
-    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'];
+    // With nobody left to look at, the other choice is throwing it away, and a throwaway is an incompletion.
+    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'] - P!['value.incompleteCostEp'];
   }
 
   function noiseOf(i: number): number { return nBegin[N_SEP + ((passes * seq.length + i) % SEP_LOOKS)]! * separationSdYd(zCov, P!); }
@@ -745,6 +750,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     // J7.1.2: he throws once the receiver has broken, or up to `earlyS` before it if he trusts the timing.
     if (!(out.broken || out.toBreakS <= earlyS)) return NaN;
     if (!out.seen && earlyS <= 0) return NaN;
+    // On a free play an incompletion costs nothing: the penalty is there to take.
+    if (freeSeen) { const inc = 1 - out.pHat - out.iHat; if (inc > 0) out.v += inc * p['value.incompleteCostEp']; }
     if (freeSeen && i === deepestRead) out.v += p['freePlay.deepBonusEp'];
     return throwThresholdEp(baseOf(i), riskOffset, t - tSet, pressureNear, p);
   }
@@ -769,7 +776,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     if (!restarted && play.correctedReads !== null && t >= tSet) {
       restarted = true;
       seq = play.correctedReads.slice();
-      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
       idx = 0; newVisit(w, t); blockUntil = t + tReadS;
       note(w, 'restart');
     }
@@ -777,6 +784,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     lookAtSlot(w, targetOf(w, v, idx).slot);
     if (t < blockUntil - EPS) return;
     const thr = judgeRead(w, v, idx, t, est);
+    // A receiver already past his arm's reach only gets farther away: he comes off him at once and does not wait
+    // out the read. Waiting cost him the next receiver, who had run out of his window by the time he looked.
+    if (thr !== thr && est.outOfRange) { idx++; newVisit(w, t); if (idx < seq.length) note(w, 'read', seq[idx]!.target.slot, idx); return; }
     if (thr === thr) {
       if (!evaluating) { evaluating = true; visitStart = t > blockUntil ? t : blockUntil; }
       if (!options.test?.noThrow && est.v >= thr && est.iHat <= intCeil) { startRelease(w, t, targetOf(w, v, idx), 'pass', idx, false, est, thr); return; }
@@ -1192,7 +1202,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
       if (pl.moveMode[d] === M_DOWN || w.tick < pl.onGroundUntilTick[d]!) continue;
       const c = pl.engagement[d]!;
-      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < 0)) continue;
+      // Free, or winning his block by the margin the quarterback's own read uses (J7.4.1): a man still locked up
+      // a yard from an under-center quarterback at the snap is not pressure.
+      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < p['pressure.feltAdvantage'])) continue;
       const dx = pl.posX[d]! - qx, dy = pl.posY[d]! - qy, dist = hyp(dx, dy), gap = dist - rQ - w.slots[d]!.movement.bodyRadiusYd;
       const closing = dist > 0 ? -((pl.velX[d]! - pl.velX[s]!) * dx + (pl.velY[d]! - pl.velY[s]!) * dy) / dist : 0;
       const ttc = gap <= 0 ? 0 : closing > 0 ? gap / closing : Infinity;
@@ -1202,6 +1214,13 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
         if (pressured[d] === 0) { pressured[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'pressure', rusherId, passerId: qbId, spot }); }
       }
       if (gap > p['arrival.contactGapYd'] || w.tick < rearm[d]!) continue;
+      if (has && play.kind === 'kneel' && kneel === null) {
+        // A kneel-down ends when he is touched: he is going to the ground anyway (J7.8.1), so this is the kneel, not a sack.
+        kneel = { tick: w.tick, x: qx, y: qy };
+        detail(w, 'qb.kneel');
+        phase = OVER;
+        return;
+      }
       if (!has) {
         // Contact just after the release is a hit on the passer and changes nothing about the throw (J6.2.5).
         if (hitDone[d] === 0) { hitDone[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'hit', rusherId, passerId: qbId, spot }); }
@@ -1211,7 +1230,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       for (let o = SLOTS_PER_TEAM; o < SLOT_COUNT; o++) {
         if (o === d || pl.moveMode[o] === M_DOWN) continue;
         const oc = pl.engagement[o]!;
-        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < 0)) continue;
+        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < p['pressure.feltAdvantage'])) continue;
         if (hyp(pl.posX[o]! - qx, pl.posY[o]! - qy) <= p['arrival.secondRusherYd']) second = true;
       }
       const dInfo = w.slots[d]!, da = dInfo.player.attributes;

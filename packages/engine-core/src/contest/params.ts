@@ -52,7 +52,9 @@ export const PARAMS: ParamFile = {
       ['passBlock.interior.lambda', 0.3, 0, 1.5, '1/s', 'a'],
       ['passBlock.interior.sigma', 0.45, 0.1, 1.0, 'A/sqrt(s)', 'a'],
       ['passBlock.gLosing', 1.0, 0.8, 1.0, 'share of free speed', 'b'],
-      ['passBlock.gEven', 0.35, 0.1, 0.7, 'share of free speed', 'b'],
+      // J6.2.1 states 0.35. Tuned to 0.15 against the pro sack rate (48 tick-engine games: 0.35 gave 10.0% sacks,
+      // 0.15 gave 8.4%; real 6.9%), so the row is no longer the bible's number and is marked as this module's.
+      ['passBlock.gEven', 0.15, 0.1, 0.7, 'share of free speed', 'a'],
       ['passBlock.gWinning', 0, 0, 0.2, 'share of free speed', 'b'],
       ['passBlock.counterThreshold', 0.4, 0.2, 0.8, 'A', 'b'],
       ['passBlock.counterHoldS', 0.5, 0.2, 1.0, 's', 'b'],
@@ -107,7 +109,7 @@ export const PARAMS: ParamFile = {
       ['runBlock.lambda', 0.4, 0, 1.5, '1/s', 'b'],
       ['runBlock.sigma', 0.40, 0.1, 1.0, 'A/sqrt(s)', 'b'],
       ['runBlock.displacementYps', 1.5, 0.5, 3.0, 'yd/s', 'b'],
-      ['runBlock.gapControlMaxA', 0.3, 0, 0.6, 'A', 'b'],
+      ['runBlock.gapControlMaxA', 0.45, 0, 0.6, 'A', 'b'], // tuned from 0.3 against J15.4.1 yards per carry after runners stopped circling back to path points
       // J6.3.1 says one-gap technique has higher sigma and two-gap lower, without sizes.
       ['runBlock.sigmaOneGapMult', 1.15, 1.0, 1.5, 'ratio', 'a'],
       ['runBlock.sigmaTwoGapMult', 0.85, 0.5, 1.0, 'ratio', 'a'],
@@ -181,17 +183,17 @@ export const PARAMS: ParamFile = {
     ]),
     // J6.5.1 step 3 names the inputs of the contested softmax and its ordering, not the weights.
     ...group('contested catch softmax', 'J6.5.1', CATCH, [
-      ['contested.catch0', 0.6, -1, 2, 'score', 'a'],
+      ['contested.catch0', 0.4, -1, 2, 'score', 'a'], // tuned from 0.6 against J15.4.1 completion by depth (1 of 3)
       ['contested.catchDz', 0.5, 0.1, 1.2, 'score/z', 'a'],
       ['contested.catchPlacement', -1.0, -3.0, 0, 'score per unit error', 'a'],
       ['contested.catchHit', -0.6, -2.0, 0, 'score', 'a'],
       ['contested.catchWet', -0.3, -1.0, 0, 'score', 'a'],
       ['contested.breakupInPhase', 0.4, -1, 2, 'score', 'a'],
       ['contested.breakupUndercut', 0.2, -1, 2, 'score', 'a'],
-      ['contested.breakupTrail', -0.8, -3, 1, 'score', 'a'],
+      ['contested.breakupTrail', -0.2, -3, 1, 'score', 'a'], // tuned from -0.8 against J15.4.1 completion by depth (1 of 3): a trailing defender in reach still plays the hands
       ['contested.breakupBlind', -0.6, -2, 0, 'score', 'a'],
       ['contested.breakupDz', -0.3, -1.0, 0, 'score/z', 'a'],
-      ['contested.int0', -2.2, -4, 0, 'score', 'a'],
+      ['contested.int0', -2.8, -4, 0, 'score', 'a'], // tuned from -2.2 against J15.4.1 interceptions per attempt (2 of 3)
       ['contested.intBallSkills', 0.4, 0, 1.2, 'score/z', 'a'],
       ['contested.intInPhase', 0.3, -1, 2, 'score', 'a'],
       ['contested.intUndercut', 1.2, 0, 3, 'score', 'a'],
@@ -201,7 +203,7 @@ export const PARAMS: ParamFile = {
       ['contested.tipShare', 0.2, 0, 0.6, 'share of breakups', 'a'],
     ]),
     ...group('defender alone at the ball', 'J6.5.1', CATCH, [
-      ['alone.int0', -0.4, -2, 2, 'logit', 'a'],
+      ['alone.int0', -1.0, -2, 2, 'logit', 'a'], // tuned from -0.4: a ball inside a running defender's reach is not a ball in his hands
       ['alone.intHands', 0.5, 0.1, 1.2, 'logit/z', 'a'],
     ]),
     ...group('feet in bounds and the ground', 'J6.5.1', CATCH, [

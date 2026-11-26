@@ -43,7 +43,8 @@ const LEGALITY_KEYS = ['numbering.eligible_low_max', 'numbering.eligible_high_mi
 
 export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): PresnapStages {
   const targets: { px: number; py: number }[] = [];
-  for (let s = 0; s < SLOT_COUNT; s++) targets.push({ px: 0, py: 0 });
+  const faces: { px: number; py: number }[] = [];
+  for (let s = 0; s < SLOT_COUNT; s++) { targets.push({ px: 0, py: 0 }); faces.push({ px: 0, py: 0 }); }
   let snapResult: SnapResult | null = null;
   const qbTs = snapReceiverOf(input.offense.assignments, input.snap ?? null), centreTs = snapperOf(input.offense.assignments);
 
@@ -75,7 +76,11 @@ export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): Pre
         const isMotion = s === plan.motionSlot && w.tick >= plan.motionStartTick;
         const vmax = w.slots[s]!.movement.vMaxYps;
         it.target = tg as PlayPoint;
-        it.faceTarget = null;
+        // A man at his spot squares up to the line of scrimmage (J5.1): hips follow the feet on the way there, and a
+        // defender who jogged back to his depth would otherwise start the play with his back to the ball.
+        const atSpot = dx * dx + dy * dy < 0.01 && !isMotion;
+        if (atSpot) { const fc = faces[s]!; fc.px = px + (s < SLOTS_PER_TEAM ? 10 : -10); fc.py = py; it.faceTarget = fc as PlayPoint; }
+        else it.faceTarget = null;
         it.effort = isMotion ? 1 : (jog < vmax ? jog / vmax : 1);
         it.arrival = isMotion ? 'through' : 'arrive';
         it.moveMode = dx * dx + dy * dy > 0 || isMotion ? 'run' : 'stance';

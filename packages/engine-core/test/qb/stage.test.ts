@@ -94,14 +94,28 @@ describe('J7.3 judging open and deciding', () => {
   });
   const t1 = target(1, [{ px: 0, py: 10 }, { px: 30, py: 10 }]);
 
+  it('a throw that may fall incomplete is worth less by the lost down, so a covered throw loses more than an open one', () => {
+    const e = (gap: number, cost: number): qb.Estimate => {
+      const v = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0).see(11, 10 - gap, 10.5, 7, 0);
+      return { ...qb.judgeTarget(v, t1, ctx({ value: { ...qb.standInValue(P, 1, 10), incompleteCost: cost } }), 0, false, qb.newEstimate()) };
+    };
+    for (const gap of [0.5, 8]) {
+      const free = e(gap, 0), paid = e(gap, 0.3);
+      expect(paid.pHat).toBe(free.pHat);
+      expect(free.v - paid.v).toBeCloseTo(0.3 * (1 - free.pHat - free.iHat), 9);
+    }
+    expect(e(0.5, 0).v - e(0.5, 0.3).v).toBeGreaterThan(e(8, 0).v - e(8, 0.3).v);
+    expect(qb.standInValue(P, 1, 10).incompleteCost).toBe(P['value.incompleteCostEp']);
+  });
   it('a closer defender lowers the completion estimate and raises the interception estimate', () => {
     const e = (gap: number): qb.Estimate => {
       const v = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0).see(11, 10 - gap, 10.5, 7, 0);
       return { ...qb.judgeTarget(v, t1, ctx(), 0, false, qb.newEstimate()) };
     };
-    expect(e(0.5).pHat).toBeLessThan(e(4).pHat);
-    expect(e(0.5).iHat).toBeGreaterThan(e(4).iHat);
-    expect(e(0.5).v).toBeLessThan(e(4).v);
+    // He rates a defender as fast as his receiver, so a man four yards behind is still in the play: eight is out of it.
+    expect(e(0.5).pHat).toBeLessThan(e(8).pHat);
+    expect(e(0.5).iHat).toBeGreaterThan(e(8).iHat);
+    expect(e(0.5).v).toBeLessThan(e(8).v);
   });
   it('Q1.4.1: a defender he is not watching is not in the estimate (he can be baited)', () => {
     const open = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0);
@@ -155,6 +169,26 @@ describe('J7.3 judging open and deciding', () => {
     const v = new FakeView(QB).at(-7, 0).see(1, 50, 0, 0, 0);
     expect(qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 45 }), 0, false, qb.newEstimate()).ok).toBe(false);
     expect(qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 45, allowOutOfRange: true }), 0, false, qb.newEstimate()).ok).toBe(true);
+    const far = qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 45 }), 0, false, qb.newEstimate());
+    expect(far.outOfRange).toBe(true);
+    const near = qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 60 }), 0, false, qb.newEstimate());
+    expect([near.ok, near.outOfRange]).toEqual([true, false]);
+  });
+  it('he does not expect a receiver to run out of bounds: the aim point stays inside the sideline', () => {
+    const flat = [{ px: 0, py: 10 }, { px: 3, py: 14 }, { px: 3, py: 40 }];
+    const v = new FakeView(QB).at(-5, 0).see(1, 3, 20, 0, 7.5);
+    const open = qb.judgeTarget(v, { slot: 1, route: flat, breakIndex: -1, settles: false }, ctx(), 0, false, qb.newEstimate());
+    expect(open.aimPy).toBeGreaterThan(26);
+    const fenced = qb.judgeTarget(v, { slot: 1, route: flat, breakIndex: -1, settles: false }, ctx({ loPy: -26, hiPy: 26 }), 0, false, qb.newEstimate());
+    expect(fenced.aimPy).toBeCloseTo(26 - P['judge.sidelineRoomYd'], 9);
+  });
+  it('he comes off a receiver who is past his arm at once, and does not wait out the read', () => {
+    const reads = threeReads().map((r) => ({ ...r, target: { ...r.target, breakIndex: -1 } }));
+    const base = runScene({ play: qb.basePlay(QB, 'gun3', reads), noThrow: true, maxTicks: 40, ...covered() });
+    const scripts = { ...covered().scripts, 1: alongRoute([{ px: 75, py: 0 }, { px: 95, py: 0 }], 6, true) };
+    const gone = runScene({ play: qb.basePlay(QB, 'gun3', reads), noThrow: true, maxTicks: 40, scripts });
+    expect(base.record.readTicks[1]! - base.record.readTicks[0]!).toBeGreaterThanOrEqual(4);
+    expect(gone.record.readTicks[1]! - gone.record.readTicks[0]!).toBeLessThanOrEqual(1);
   });
   it('J7.3.1 acceptance: a grade-80 reader estimates completion closer to the truth than a grade-30 reader', () => {
     // Truth is the estimate with no error. Mean absolute error and Brier score against it over 400 looks.
@@ -186,12 +220,15 @@ describe('J7.3 judging open and deciding', () => {
   });
   it('J7.3.2 acceptance: a risk-taking quarterback throws into windows a careful one will not, and accepts more interception risk', () => {
     // A defender sits under the out; a second read worth more is still to come. Decision risk 80 against 20, 200 plays each.
+    // The out starts 8 yd further inside than `OUT`, so a late throw to it is still to a man in bounds.
+    const out = OUT.map((q) => ({ px: q.px, py: q.py - 8 }));
     const scene = (seed: number, g: number) => runScene({
-      seed, attrs: { decision_risk: g }, play: qb.basePlay(QB, 'gun3', [read(target(1, OUT, 1), 0.3), read(target(2, R2, 1, true), 0.6)]), maxTicks: 60,
-      scripts: { 1: alongRoute(OUT, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(10.5, 17) },
+      seed, attrs: { decision_risk: g }, play: qb.basePlay(QB, 'gun3', [read(target(1, out, 1), 0.3), read(target(2, R2, 1, true), 0.6)]), maxTicks: 60,
+      scripts: { 1: alongRoute(out, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(10.5, 9) },
     });
-    const first = (g: number): number => share(N, (seed) => { const th = scene(seed, g).record.throwRecord; return th !== null && th.readIndex === 0; });
-    expect(first(80)).toBeGreaterThan(first(20));
+    // The careful one waits for a clean look or pulls it down; the risk-taker lets it go with a defender in the picture.
+    const covered = (g: number): number => share(N, (seed) => { const th = scene(seed, g).record.throwRecord; return th !== null && th.kind === 'pass' && th.iHat > 0.05; });
+    expect(covered(80)).toBeGreaterThan(covered(20));
     const risk = (g: number): number => mean(N, (seed) => { const th = scene(seed, g).record.throwRecord; return th && th.kind === 'pass' ? th.iHat : 0; });
     expect(risk(80)).toBeGreaterThan(risk(20));
   });
@@ -229,6 +266,18 @@ describe('J7.4 pressure', () => {
     expect(kinds[0]).toBe('pressure');
     expect(r.record.response).not.toBeNull();
   });
+  it('a rusher still locked up at the line is not pressure until he is winning by the felt margin (J6.2.5)', () => {
+    const scene = (advantage: number) => runScene({
+      play: qb.basePlay(QB, 'uc5', threeReads()), noThrow: true, maxTicks: 4, scripts: { 12: still(0.9, 0.5) },
+      setup: (w) => {
+        w.contests.push({ type: 'passBlock', offenseSlot: 9, defenseSlot: 12, advantage, startedTick: 0, helperSlots: [], stream: w.streams('contest', [1, 1, 901, 912, 'passBlock']) });
+        const i = w.contests.length - 1; (w.players.engagement as Int16Array)[12] = i; (w.players.engagement as Int16Array)[9] = i;
+      },
+    });
+    const pressures = (advantage: number): number => scene(advantage).events.filter((e) => e.type === 'pressure').length;
+    expect(pressures(-0.2)).toBe(0);
+    expect(pressures(P['pressure.feltAdvantage'] - 0.1)).toBeGreaterThan(0);
+  });
   it('PR-3: the sack rate falls as the protection holds longer (free rusher at 0.5, 1.5, 2.5 s; a receiver comes open at 2.6 s)', () => {
     const rate = (startS: number): number => share(N, (seed) => {
       // Receiver 3 loses his man at 2.6 s.
@@ -256,7 +305,7 @@ describe('J7.4 pressure', () => {
   });
   it('J7.4.1 acceptance: an unseen blindside rusher forces fumbles on a larger share of his sacks than one in his face', () => {
     let bs = 0, bf = 0, fs = 0, ff = 0;
-    for (let seed = 1; seed <= 3 * N; seed++) {
+    for (let seed = 1; seed <= 4 * N; seed++) {
       const blind = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [-12, 3, 7, 0.8] }, hidden: [14], attrs: { pocket_movement: 20 }, ...covered() });
       if (blind.record.sack) { bs++; if (blind.record.sack.fumble) bf++; }
       const front = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [1, 0.5, 7, 0.8] }, attrs: { pocket_movement: 20 }, ...covered() });
@@ -310,6 +359,8 @@ describe('J7.5 leaving the pocket', () => {
       expect(offered).toBe(1);
       expect(r.record.ran.why).toBe('scramble');
       expect(r.events.filter((e) => e.type === 'detail' && e.code === 'qb.scramble').length).toBe(1);
+      // The shared stat code the box score counts scrambles by (contract D-16).
+      expect(r.events.filter((e) => e.type === 'detail' && e.code === 'scramble').length).toBe(1);
       expect(r.quarterback.phase()).toBe('run');
       return;
     }
@@ -418,7 +469,7 @@ describe('J7.6 the throw', () => {
   });
   it('J7.6.1 acceptance: arm strength 70 completes more 15-yard outs to the far sideline than arm strength 40', () => {
     // The corner breaks on the ball from 5 yards off at the release; a faster ball gives him less time.
-    const far = [{ px: 0, py: 12 }, { px: 15, py: 12 }, { px: 15, py: 30 }];
+    const far = [{ px: 0, py: 12 }, { px: 15, py: 12 }, { px: 15, py: 27 }];
     const comp = (g: number): number => mean(N, (seed) => {
       const r = runScene({ seed, attrs: { arm_strength: g }, qbAt: [-5, -8], play: qb.basePlay(QB, 'gun3', [read(target(1, far, 1))]), scripts: { 1: alongRoute(far, 7.5) }, maxTicks: 80 });
       const th = r.record.throwRecord;
@@ -622,6 +673,15 @@ describe('J7.8 clock plays and free plays', () => {
     expect(Math.abs(px - -2)).toBeLessThan(0.3);
     expect(r.world.deadAtTick).toBe(r.record.kneel!.tick);
     expect(r.record.groundingHazard).toBeNull();
+  });
+  it('kneel: a defender who reaches him first ends it as a kneel-down, never a sack', () => {
+    for (let seed = 1; seed <= 12; seed++) {
+      const r = runScene({ seed, play: { ...qb.basePlay(QB, 'uc3', []), kind: 'kneel', underCenter: true }, chasers: { 13: [1, 0, 8, 0] }, maxTicks: 40 });
+      expect(r.record.sack, `seed ${seed}`).toBeNull();
+      expect(r.record.kneel, `seed ${seed}`).not.toBeNull();
+      expect(r.record.kneel!.tick * TICK_S).toBeLessThan(2.0);
+      expect(r.events.some((e) => e.type === 'pressure' && e.kind === 'sack')).toBe(false);
+    }
   });
   it('spike: legal under centre and never a grounding hazard; from the shotgun under a rule that requires under centre it is a hazard', () => {
     const uc = runScene({ play: { ...qb.basePlay(QB, 'uc3', []), kind: 'spike', underCenter: true }, maxTicks: 30, stopAtThrow: false });
