@@ -72,7 +72,7 @@ export class CapTarget implements BreakTarget {
       case 'restructure':
         if (!h) return undefined;
         if (!money('convert') || (g['convert'] as number) === 0) return 'the converted amount must be whole positive cents';
-        if ((g['year'] as number) < this.year) return 'a past league year cannot be restructured';
+        // restructure() takes the year it acts in as "now"; the rig's out-of-order restructure is the caller's claim, not a module rule.
         return undefined;
       case 'extend':
         if (!h) return undefined;
