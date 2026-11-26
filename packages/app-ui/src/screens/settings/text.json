@@ -188,6 +188,7 @@
     "act.call.route_tag": "Route tag",
     "act.call.take_suggestion": "Take the coordinator's suggestion",
     "act.call.tempo_cycle": "Cycle tempo",
+    "act.call.precommit_cycle": "Cycle the fourth-down decision made ahead of time",
     "act.call.timeout": "Timeout",
     "act.help.keys": "Keys on this screen",
     "act.help.screen": "Help for this screen",
