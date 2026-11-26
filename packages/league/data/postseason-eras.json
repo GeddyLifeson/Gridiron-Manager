@@ -1,0 +1,324 @@
+{
+ "module": "league.postseason.eras",
+ "eras": [
+  {
+   "id": "pro_1990",
+   "level": "pro",
+   "from": 1990,
+   "nameKey": "league.era.pro_1990",
+   "values": [
+    {
+     "key": "playoff.field_size",
+     "value": 6,
+     "unit": "count",
+     "factId": "F-post-0001"
+    },
+    {
+     "key": "playoff.byes",
+     "value": 2,
+     "unit": "count",
+     "factId": "F-post-0002"
+    }
+   ]
+  },
+  {
+   "id": "pro_2020",
+   "level": "pro",
+   "from": 2020,
+   "nameKey": "league.era.pro_2020",
+   "values": [
+    {
+     "key": "playoff.field_size",
+     "value": 7,
+     "unit": "count",
+     "factId": "F-post-0003"
+    },
+    {
+     "key": "playoff.byes",
+     "value": 1,
+     "unit": "count",
+     "factId": "F-post-0004"
+    }
+   ]
+  },
+  {
+   "id": "college_1998",
+   "level": "college",
+   "from": 1998,
+   "nameKey": "league.era.college_1998",
+   "values": [
+    {
+     "key": "playoff.field_size",
+     "value": 2,
+     "unit": "count",
+     "factId": "F-post-0005"
+    },
+    {
+     "key": "playoff.byes",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0006"
+    },
+    {
+     "key": "playoff.campus_rounds",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0008"
+    },
+    {
+     "key": "cfp.power_champions_auto",
+     "value": false,
+     "factId": "F-post-0007"
+    },
+    {
+     "key": "cfp.other_auto_bids",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0007"
+    },
+    {
+     "key": "cfp.independent_auto_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0007"
+    },
+    {
+     "key": "cfp.at_large_pool_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0009"
+    },
+    {
+     "key": "cfp.champion_auto_bids",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0007"
+    },
+    {
+     "key": "cfp.byes_champions_only",
+     "value": false,
+     "factId": "F-post-0007"
+    }
+   ]
+  },
+  {
+   "id": "college_2014",
+   "level": "college",
+   "from": 2014,
+   "nameKey": "league.era.college_2014",
+   "values": [
+    {
+     "key": "playoff.field_size",
+     "value": 4,
+     "unit": "count",
+     "factId": "F-post-0010"
+    },
+    {
+     "key": "playoff.byes",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0011"
+    },
+    {
+     "key": "playoff.campus_rounds",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0013"
+    },
+    {
+     "key": "cfp.power_champions_auto",
+     "value": false,
+     "factId": "F-post-0012"
+    },
+    {
+     "key": "cfp.other_auto_bids",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0012"
+    },
+    {
+     "key": "cfp.independent_auto_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0012"
+    },
+    {
+     "key": "cfp.at_large_pool_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0012"
+    },
+    {
+     "key": "cfp.champion_auto_bids",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0012"
+    },
+    {
+     "key": "cfp.byes_champions_only",
+     "value": false,
+     "factId": "F-post-0012"
+    }
+   ]
+  },
+  {
+   "id": "college_2024",
+   "level": "college",
+   "from": 2024,
+   "nameKey": "league.era.college_2024",
+   "values": [
+    {
+     "key": "playoff.field_size",
+     "value": 12,
+     "unit": "count",
+     "factId": "F-post-0014"
+    },
+    {
+     "key": "playoff.byes",
+     "value": 4,
+     "unit": "count",
+     "factId": "F-post-0017"
+    },
+    {
+     "key": "cfp.champion_auto_bids",
+     "value": 5,
+     "unit": "count",
+     "factId": "F-post-0015"
+    },
+    {
+     "key": "cfp.byes_champions_only",
+     "value": true,
+     "factId": "F-post-0018"
+    },
+    {
+     "key": "cfp.power_champions_auto",
+     "value": false,
+     "factId": "F-post-0016"
+    },
+    {
+     "key": "cfp.other_auto_bids",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0016"
+    },
+    {
+     "key": "cfp.independent_auto_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0016"
+    }
+   ]
+  },
+  {
+   "id": "college_2025",
+   "level": "college",
+   "from": 2025,
+   "nameKey": "league.era.college_2025",
+   "values": [
+    {
+     "key": "playoff.field_size",
+     "value": 12,
+     "unit": "count",
+     "factId": "F-post-0014"
+    },
+    {
+     "key": "playoff.byes",
+     "value": 4,
+     "unit": "count",
+     "factId": "F-post-0017"
+    },
+    {
+     "key": "cfp.champion_auto_bids",
+     "value": 5,
+     "unit": "count",
+     "factId": "F-post-0015"
+    },
+    {
+     "key": "cfp.byes_champions_only",
+     "value": false,
+     "factId": "F-post-0019"
+    },
+    {
+     "key": "cfp.power_champions_auto",
+     "value": false,
+     "factId": "F-post-0016"
+    },
+    {
+     "key": "cfp.other_auto_bids",
+     "value": 0,
+     "unit": "count",
+     "factId": "F-post-0016"
+    },
+    {
+     "key": "cfp.independent_auto_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0016"
+    }
+   ]
+  },
+  {
+   "id": "college_2026",
+   "level": "college",
+   "from": 2026,
+   "nameKey": "league.era.college_2026",
+   "values": []
+  },
+  {
+   "id": "college_2027",
+   "level": "college",
+   "from": 2027,
+   "nameKey": "league.era.college_2027",
+   "values": [
+    {
+     "key": "playoff.field_size",
+     "value": 24,
+     "unit": "count",
+     "factId": "F-college-0024"
+    },
+    {
+     "key": "playoff.byes",
+     "value": 8,
+     "unit": "count",
+     "factId": "F-college-0025"
+    },
+    {
+     "key": "playoff.campus_rounds",
+     "value": 2,
+     "unit": "count",
+     "factId": "F-post-0022"
+    },
+    {
+     "key": "cfp.other_auto_bids",
+     "value": 1,
+     "unit": "count",
+     "factId": "F-post-0020"
+    },
+    {
+     "key": "cfp.independent_auto_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0021"
+    },
+    {
+     "key": "cfp.at_large_pool_rank",
+     "value": 0,
+     "unit": "rank",
+     "factId": "F-post-0023"
+    },
+    {
+     "key": "ranking.lower_division_wins_credited",
+     "value": 1,
+     "unit": "count",
+     "factId": "F-college-0026"
+    },
+    {
+     "key": "ranking.schedule_standard_games",
+     "value": 10,
+     "unit": "games",
+     "factId": "F-college-0027"
+    }
+   ]
+  }
+ ]
+}
