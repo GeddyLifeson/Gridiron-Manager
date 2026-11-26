@@ -12,4 +12,8 @@ export { RecruitingDesk, type QueuedAct, type ActRecord, type RecruitingDeskSave
 export { writeCareerYear, readCareerYear, readLiveWorldMeta, LIVE_WORLD_TABLE, LIVE_WORLD_SAVE_VERSION, type LiveWorldMeta } from './career-save.ts';
 export { seatTeamFromDepth, engineUnits, slotOrder, simPlayerFromPerson, SLOTS, type SeatDepth, type SeatTeam, type EngineUnitMap } from './seat-depth.ts';
 // The generated world as the seat sees it, for the team screens (handoff item 2c).
+export { seatDelegation, seatDelegationInputs, saveSeatDelegation, awakeWeekHours, DELEGATION_KEY } from './team-delegation.ts';
+export { seatCapView, ruleSetOf, provenanceFrom } from './team-cap.ts';
 export { liveWorldTables, seatObserver, seatObservedWorld, teamCircle, rosterLimits, WORLD_ROSTER_LIST } from './team-world.ts';
+export { FootballDesk, bookContent, installUnits, normalPracticeDays, type FootballDeskOptions, type DeskResult, type DeskSide, type InstallMode } from './football-desk.ts';
+export { PlayDesignerDesk, type PlayDesignerDeskOptions, type PublishedPlay } from './play-designer-desk.ts';

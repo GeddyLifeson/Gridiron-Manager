@@ -101,7 +101,7 @@ export const PARAMS: ParamFile = {
     ...group('pressure and sack', 'J6.2.5', RUSH, [
       ['pressure.distYd', 1.2, 1.0, 3.0, 'yd', 'b'], // tuned from 2.0: a rusher two yards off a quarterback who completes 62% was not charted pressure (real pressured completion 48.1%)
       ['pressure.timeS', 0.3, 0.3, 1.0, 's', 'b'], // tuned from 0.6 with pressure.distYd
-      ['sack.beta0', 1.4, 0, 2.5, 'logit', 'b'],
+      ['sack.beta0', 0.5, 0, 2.5, 'logit', 'b'], // tuned from 1.4: with the throwaway answer, sack rate 8.9% against real 6.9% (J15)
       ['sack.beta1', 0.5, 0.1, 1.2, 'logit/z', 'b'],
       ['sack.blindside', 0.6, 0, 1.5, 'logit', 'b'],
       ['sack.movingAway', -0.5, -1.5, 0, 'logit', 'b'],
