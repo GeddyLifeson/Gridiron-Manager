@@ -287,13 +287,16 @@ describe('J7.4 pressure', () => {
     const a = rate(0.5), b = rate(1.5), c = rate(2.5);
     expect(a).toBeGreaterThan(b);
     expect(b).toBeGreaterThan(c);
-    expect(a).toBeGreaterThan(0.1);
+    // With a second answer to the same rusher he gets most of these out (thrown or thrown away): the share was 0.1+
+    // when a pocket move was his only answer.
+    expect(a).toBeGreaterThan(0.02);
   });
   it('pocket movement 70 against 30, same free rusher: when he moves in the pocket he is sacked on a smaller share', () => {
     const tally = (g: number): { sackShare: number } => {
       let moved = 0, sacked = 0;
       for (let seed = 1; seed <= 2 * N; seed++) {
-        const r = rushed(seed, 1.2, { attrs: { pocket_movement: g }, scripts: { 13: (t) => (t < 2.2 ? alongRoute([{ px: 0.5, py: 5 }, { px: 6.5, py: 5 }], 6, true)(t) : [6.5 + (t - 2.2) * 7, 5 - (t - 2.2) * 7]) } });
+        // No throw on offer, so the share measures the movement alone (with one, his second answer gets the ball out).
+        const r = rushed(seed, 1.2, { noThrow: true, attrs: { pocket_movement: g }, scripts: { 13: (t) => (t < 2.2 ? alongRoute([{ px: 0.5, py: 5 }, { px: 6.5, py: 5 }], 6, true)(t) : [6.5 + (t - 2.2) * 7, 5 - (t - 2.2) * 7]) } });
         if (r.record.response !== 'pocketMovement') continue;
         moved++;
         if (r.record.sack) sacked++;
@@ -306,9 +309,9 @@ describe('J7.4 pressure', () => {
   it('J7.4.1 acceptance: an unseen blindside rusher forces fumbles on a larger share of his sacks than one in his face', () => {
     let bs = 0, bf = 0, fs = 0, ff = 0;
     for (let seed = 1; seed <= 4 * N; seed++) {
-      const blind = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [-12, 3, 7, 0.8] }, hidden: [14], attrs: { pocket_movement: 20 }, ...covered() });
+      const blind = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [-12, 3, 7, 0.8] }, hidden: [14], attrs: { pocket_movement: 20 }, noThrow: true, ...covered() });
       if (blind.record.sack) { bs++; if (blind.record.sack.fumble) bf++; }
-      const front = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [1, 0.5, 7, 0.8] }, attrs: { pocket_movement: 20 }, ...covered() });
+      const front = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [1, 0.5, 7, 0.8] }, attrs: { pocket_movement: 20 }, noThrow: true, ...covered() });
       if (front.record.sack) { fs++; if (front.record.sack.fumble) ff++; }
     }
     expect(bs).toBeGreaterThan(50);
@@ -378,10 +381,48 @@ describe('J7.5 leaving the pocket', () => {
     }
     expect(seen).toBeGreaterThan(0);
   });
-  it('J7.5.2: with no eligible receiver in sight, only a quarterback who does not know the rule throws it away, and that is a hazard', () => {
+  it('J7.5.2: from the pocket he fires it into the ground at or around a receiver, inside the vicinity, never at catch height', () => {
+    let seen = 0;
+    for (let seed = 1; seed <= 300 && seen < 20; seed++) {
+      const r = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 90, chasers: { 14: [1, 4, 7, 1.0] }, ...covered() });
+      const th = r.record.throwRecord;
+      if (!th || th.kind !== 'throwaway' || r.record.everOutsidePocket) continue;
+      seen++;
+      expect(th.trajectory).toBe('drive');
+      const w = r.world, d = w.frame.attackDir;
+      const landPx = (th.landingX - w.frame.originX) * d, landPy = (th.landingY - w.frame.originY) * d;
+      let near = Infinity;
+      for (const s of [1, 2, 3]) { const a = r.at(s, th.timeS); near = Math.min(near, Math.hypot(a[0] - landPx, a[1] - landPy)); }
+      expect(near).toBeLessThanOrEqual(P['throwaway.vicinityYd']);
+      // Aimed at the ground: in still air with no aim error it comes down where he aimed.
+      expect(Math.hypot(th.landingX - th.aimX, th.landingY - th.aimY)).toBeLessThan(0.1);
+    }
+    expect(seen).toBeGreaterThan(0);
+  });
+  it('J7.5.2: once outside the pocket he throws it high out of bounds past the line of scrimmage (Rule 8-2-1 Item 1)', () => {
+    let seen = 0;
+    for (let seed = 1; seed <= 300 && seen < 10; seed++) {
+      // A pocket that does not contain his launch point: he is outside it from the first tick.
+      const play = { ...qb.basePlay(QB, 'gun3', threeReads()), pocket: { leftPy: -2, rightPy: -4 } };
+      const r = runScene({ seed, play, maxTicks: 90, chasers: { 14: [1, 4, 7, 1.0] }, ...covered() });
+      const th = r.record.throwRecord;
+      if (!th || th.kind !== 'throwaway') continue;
+      seen++;
+      expect(r.record.everOutsidePocket).toBe(true);
+      expect(th.trajectory).toBe('touch');
+      const w = r.world;
+      expect(th.landingY < 0 || th.landingY > w.geometry.widthYd).toBe(true);
+      expect((th.landingX - w.frame.originX) * w.frame.attackDir).toBeGreaterThanOrEqual(0);
+      expect(r.record.groundingHazard).toBeNull();
+    }
+    expect(seen).toBeGreaterThan(0);
+  });
+  // Receivers he cannot see and cannot place: no drawn route to project them along (J7.3.1 step 1).
+  const unplaced = (): qb.QbRead[] => [read(target(1, []), 0.4), read(target(2, []), 0.3), read(target(3, []), 0.2)];
+  it('J7.5.2: with no eligible receiver he can see or place, only a quarterback who does not know the rule throws it away, and that is a hazard', () => {
     let hazards = 0, legal = 0;
     for (let seed = 1; seed <= 400; seed++) {
-      const play = { ...qb.basePlay(QB, 'gun3', threeReads()), pocket: { leftPy: 30, rightPy: -30 } };
+      const play = { ...qb.basePlay(QB, 'gun3', unplaced()), pocket: { leftPy: 30, rightPy: -30 } };
       const r = runScene({ seed, attrs: { football_intelligence: 5, composure: 5 }, play, maxTicks: 90, chasers: { 14: [1, 4, 7, 1.0] }, hidden: [1, 2, 3], ...covered() });
       const th = r.record.throwRecord;
       if (!th || th.kind !== 'throwaway') continue;
@@ -389,7 +430,7 @@ describe('J7.5 leaving the pocket', () => {
     }
     expect(hazards).toBeGreaterThan(0);
     const smart = share(200, (seed) => {
-      const play = { ...qb.basePlay(QB, 'gun3', threeReads()), pocket: { leftPy: 30, rightPy: -30 } };
+      const play = { ...qb.basePlay(QB, 'gun3', unplaced()), pocket: { leftPy: 30, rightPy: -30 } };
       return runScene({ seed, attrs: { football_intelligence: 99, composure: 99 }, play, maxTicks: 90, chasers: { 14: [1, 4, 7, 1.0] }, hidden: [1, 2, 3], ...covered() }).record.groundingHazard !== null;
     });
     expect(smart).toBeLessThan(hazards / 400);

@@ -51,12 +51,14 @@ export class ConsoleKeyDriver {
 
   /** Lets real time pass with no key (the user reading). Applies deadlines and commits sent calls. */
   wait(ms: number): void {
-    this.nowMs += ms;
+    // Real time never runs backwards and is always a number: a NaN or negative frame time from the host is no time at all.
+    this.nowMs += Number.isFinite(ms) && ms > 0 ? ms : 0;
     this.take(tick(this.state, this.nowMs));
   }
 
   /** Waits until a sent call can no longer be recalled and is committed, or the deadline applies. */
   settle(stepMs = 100): void {
+    if (!(Number.isFinite(stepMs) && stepMs > 0)) stepMs = 100;
     for (let guard = 0; guard < 10_000; guard++) {
       if (!this.state.open || this.state.step === 'idle' || this.state.step === 'prompt') return;
       if (this.state.sent?.committed) return;

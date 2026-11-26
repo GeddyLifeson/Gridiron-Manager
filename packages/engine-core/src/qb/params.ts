@@ -167,7 +167,7 @@ const ROWS = [
   ['resp.sackEp', -0.45, -1.5, 0, 'EP', 'assumption', 'J7.4.2', RATES],
   ['resp.protectBallEp', 0.15, 0, 0.5, 'EP', 'assumption', 'J7.4.2', RATES],
   // Seconds after a pocket move before the same rusher, on him again, gets a second answer (throw now, throw away or go down).
-  ['resp.secondAnswerS', 0.3, 0.1, 0.8, 's', 'assumption', 'J7.4.2', RATES],
+  ['resp.secondAnswerS', 0.5, 0.1, 0.8, 's', 'assumption', 'J7.4.2', RATES],
   ['pocket.stepYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.4.2', SACK],
   ['pocket.minBehindLineYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.4.2', STRUCT],
   ['pocket.defaultHalfWidthYd', 4.5, 3, 6, 'yd', 'assumption', 'J7.5.2', GRD],

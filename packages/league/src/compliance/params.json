@@ -31,6 +31,9 @@
     ["minor_suspension_games", 1, 1, 4, "count", "assumption", "T9.5.3", "the short span of a minor-case suspension"],
     ["repeat_window_years", 1, 1, 5, "count", "bible", "C11.2.4", "a second finding of the same class within a league year escalates"],
     ["case_weeks_major", 52, 4, 104, "count", "bible", "L8.2.5", "cases sent to the committee average 12 months (Primary, 1 of 3)"],
+    ["retire_min_rows", 4096, 1, 1000000, "count", "assumption", "P6", "commitAct sweeps spent acts out of the live log only once it holds at least this many rows"],
+    ["retire_growth_factor", 2, 2, 8, "ratio", "assumption", "P6", "and only once it has grown by this factor since the last sweep, so the sweep costs a constant per act"],
+    ["retire_window_floor_years", 10, 1, 50, "count", "assumption", "P6", "commitAct's sweep keeps acts younger than this (the top of detect_window_years' range), since the weekly step may read a longer window than the act's rule set"],
     ["case_weeks_minor", 4, 1, 26, "count", "assumption", "L8.2.5", "minor and league-office findings close quickly"]
   ]
 }
