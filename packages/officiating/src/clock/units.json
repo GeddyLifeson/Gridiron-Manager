@@ -1,0 +1,4 @@
+{
+  "$comment": "Unit conversion only, not a football number. The P1.1.2 lint bans numeric literals in officiating source so no rule value hides in code; this definition of the minute lives here until the contract exports it next to TICKS_PER_SECOND (change request CR-02-4).",
+  "secondsPerMinute": 60
+}

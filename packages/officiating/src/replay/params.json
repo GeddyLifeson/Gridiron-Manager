@@ -1,0 +1,126 @@
+{
+ "module": "officiating.replay",
+ "version": "0.1.0",
+ "params": [
+  {
+   "name": "officiating.replay.evidenceSightOpen",
+   "value": 0.95,
+   "min": 0,
+   "max": 1,
+   "unit": "ratio",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.2.1",
+   "constrainedBy": "B9.2.1 open question (league reversal rates by type)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.evidenceSightCrowded",
+   "value": 0.75,
+   "min": 0,
+   "max": 1,
+   "unit": "ratio",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.2.1",
+   "constrainedBy": "B9.2.1 open question (league reversal rates by type)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.evidenceSightPile",
+   "value": 0.4,
+   "min": 0,
+   "max": 1,
+   "unit": "ratio",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.2.1",
+   "constrainedBy": "B9.2.1 open question (league reversal rates by type)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.evidenceScaleYd",
+   "value": 0.3,
+   "min": 0.01,
+   "max": 3,
+   "unit": "yd",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.2.1",
+   "constrainedBy": "B9.2.1 open question (league reversal rates by type)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.evidenceScaleS",
+   "value": 0.1,
+   "min": 0.005,
+   "max": 1,
+   "unit": "s",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.2.1",
+   "constrainedBy": "B9.2.1 open question (league reversal rates by type)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.evidenceNoMargin",
+   "value": 0.8,
+   "min": 0,
+   "max": 1,
+   "unit": "ratio",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.2.1",
+   "constrainedBy": "B9.5.1 acceptance (flag picked up at the modeled rate)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.postseasonCameraFactor",
+   "value": 1.1,
+   "min": 1,
+   "max": 1.5,
+   "unit": "ratio",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.2.1",
+   "constrainedBy": "B9.2.1 open question (league reversal rates by type)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.boothStopThreshold",
+   "value": 0.35,
+   "min": 0,
+   "max": 1,
+   "unit": "ratio",
+   "belongsTo": "officiating.replay",
+   "basis": "bible",
+   "leaf": "B9.1.2",
+   "constrainedBy": "B13.9.1 acceptance (booth reviews outnumber coach challenges in college)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.assistFactor",
+   "value": 0.8,
+   "min": 0,
+   "max": 1,
+   "unit": "ratio",
+   "belongsTo": "officiating.replay",
+   "basis": "bible",
+   "leaf": "B9.5.1",
+   "constrainedBy": "B9.5.1 acceptance (flag picked up at the modeled rate)",
+   "status": "starting"
+  },
+  {
+   "name": "officiating.replay.continuingActionS",
+   "value": 3,
+   "min": 0.5,
+   "max": 8,
+   "unit": "s",
+   "belongsTo": "officiating.replay",
+   "basis": "assumption",
+   "leaf": "B9.4.1",
+   "constrainedBy": "B9.4.1 acceptance (clear recovery in the immediate continuing action)",
+   "status": "starting"
+  }
+ ]
+}
