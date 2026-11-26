@@ -2,7 +2,7 @@
 // is ever shown, L4.2.2), references shaded by trust and ties, the scheme compatibility panel, offers and
 // acceptance, the candidate score shared by AI head coaches and the user-as-candidate (K7.6.1 rule 4),
 // and the diverse-interview requirement (E2.3.1, counted on interviews, never outcomes).
-import type { RandomStream, WorldDate } from '@gm/schema';
+import { possible, type RandomStream, type WorldDate } from '@gm/schema';
 import { clamp, param } from './params.ts';
 import type { HiringRules } from './keys.ts';
 import { STAFF_NEEDS, type NeedWeights, type StaffNeed } from './record.ts';
@@ -199,7 +199,7 @@ export function acceptChance(o: Offer, v: CandidateView): number {
   const security = (o.years - 1) * param('accept.securityPerYear') * (0.5 + v.needs.security);
   const p = param('accept.base') + param('accept.perRung') * rungGain + param('accept.payWeight') * pay + calls + promises + security
     + param('accept.prospectsWeight') * clamp(v.prospects, -1, 1) + param('accept.trustWeight') * (clamp(v.trustInHeadCoach, 0, 100) - 50) / 50;
-  return clamp(p, 0, 1);
+  return possible(clamp(p, 0, 1));
 }
 
 export function decideOffer(o: Offer, v: CandidateView, stream: RandomStream): boolean {

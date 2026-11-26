@@ -7,7 +7,7 @@ import { civil, dayNumber } from '../calendar/date.ts';
 import type { CollegeRules } from './keys.ts';
 import { clamp01, param } from './params.ts';
 import { mayCarryPersonalEvent, type Day } from './types.ts';
-import type { PersonOrigin } from '@gm/schema';
+import { possible, type PersonOrigin } from '@gm/schema';
 
 /** One season on a player's college record. `season` is the fall year it was played. */
 export interface SeasonPlayed {
@@ -181,8 +181,10 @@ export interface SatOutInput {
 export function satOutChance(i: SatOutInput, rules: CollegeRules): number {
   if (!mayCarryPersonalEvent(i.origin) || i.governing !== 'seasons' || !i.hasMarket) return 0;
   if (i.regularGamesSoFar < param('satOutFromGame') - 1 || i.regularGamesSoFar > rules.eligibility.redshirtMaxGames) return 0;
-  if (i.satisfaction >= param('satOutSatisfactionBelow')) return 0;
-  return clamp01(param('satOutBase') + param('satOutBrokenPromise') * i.brokenPromises - param('satOutLoyalty') * i.loyalty - param('satOutCoachTie') * i.positionCoachTie);
+  // A3.1 ruling 22: a satisfied player may still sit out, with the floor chance. The structural zeros
+  // above stay: under them sitting out saves no season, and imported people are protected (A6).
+  if (i.satisfaction >= param('satOutSatisfactionBelow')) return possible(0);
+  return possible(param('satOutBase') + param('satOutBrokenPromise') * i.brokenPromises - param('satOutLoyalty') * i.loyalty - param('satOutCoachTie') * i.positionCoachTie);
 }
 
 /** Records a finished season on the record (pure). */

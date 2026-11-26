@@ -6,7 +6,7 @@ import { violationClass, type ViolationClass } from './catalogue.ts';
 import { K, P } from './params.ts';
 import { addWeeks, weeksPerYear, yearsBetween } from './dates.ts';
 import { EVENT, draft } from './events.ts';
-import type { WorldDate, WorldTier } from '@gm/schema';
+import { possible, type WorldDate, type WorldTier } from '@gm/schema';
 import type { CaseResponse, CaseRow, ComplianceContext, ComplianceState, EventSink, ViolationLogRow } from './types.ts';
 
 export interface SourceChance { readonly source: string; readonly p: number }
@@ -84,7 +84,7 @@ export function openCase(
   const sweep = P('inquiry_sweep_p') + (response === 'fight' ? 0 : P('inquiry_sweep_coop_bonus'));
   for (const r of state.log) {
     if (found.has(r.id) || r.caseId !== null || r.actor.teamId !== teamId || yearsBetween(r.date, date) > windowYears) continue;
-    if (ctx.enforcement(['sweep', id, r.id]).chance(sweep)) found.add(r.id);
+    if (ctx.enforcement(['sweep', id, r.id]).chance(possible(sweep))) found.add(r.id);
   }
   const rows = state.log.filter((r) => found.has(r.id));
   const body = rows.length ? violationClass(rows[0]!.classId).body : 'league';
@@ -114,7 +114,7 @@ export function detectionWeek(state: ComplianceState, date: WorldDate, ctx: Comp
     if (r.caseId !== null || yearsBetween(r.date, date) < 0 || yearsBetween(r.date, date) > windowYears) continue;
     const p = detectionChance(r, ctx);
     drawn.add(r.id);
-    if (p > 0 && ctx.enforcement(['detect', r.id, date.seasonYear, date.dayIndex]).chance(p)) hits.push(r);
+    if (p > 0 && ctx.enforcement(['detect', r.id, date.seasonYear, date.dayIndex]).chance(possible(p))) hits.push(r);
   }
   let s: ComplianceState = { ...state, log: state.log.map((r) => (drawn.has(r.id) && !r.actSourcesDrawn ? { ...r, actSourcesDrawn: true } : r)) };
   // One case per team per week: rows found the same week at one program are one inquiry.
@@ -150,7 +150,7 @@ export function reportToLeague(state: ComplianceState, teamId: number, rowId: nu
 export function falseAccusationWeek(state: ComplianceState, teamIds: readonly number[], date: WorldDate, ctx: ComplianceContext, sink: EventSink, meta: Meta): ComplianceState {
   let s = state;
   for (const t of teamIds) {
-    if (ctx.enforcement(['false', t, date.seasonYear, date.dayIndex]).chance(P('false_accusation_weekly'))) s = openCase(s, t, [], date, ctx, sink, meta).state;
+    if (ctx.enforcement(['false', t, date.seasonYear, date.dayIndex]).chance(possible(P('false_accusation_weekly')))) s = openCase(s, t, [], date, ctx, sink, meta).state;
   }
   return s;
 }

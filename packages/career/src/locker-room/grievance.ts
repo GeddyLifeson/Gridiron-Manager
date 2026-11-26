@@ -1,5 +1,6 @@
 // Grievance and appeal (L3.2.5), labour agreement model only. Filing rates, stays and outcomes have no
 // source (Assumption); clocks are rule keys from Art. 43. Remedies come only from the closed list.
+import { possible } from '@gm/schema';
 import type { DisciplineRules } from './keys.ts';
 import { clamp, lp, type Draw } from './params.ts';
 
@@ -29,7 +30,7 @@ export function filingProbability(i: FilingInput): number {
     + lp('grievance.trustSlope') * (mid - clamp(i.trust, 0, lp('scale.max'))) / mid
     + (i.singleActConduct ? lp('grievance.singleAct') : 0)
     + (i.abilityFlag ? lp('grievance.abilityFlag') : 0);
-  return clamp(p, 0, 1);
+  return possible(clamp(p, 0, 1));
 }
 
 /** The closed remedy list (Art. 43). */
