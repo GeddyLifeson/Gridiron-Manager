@@ -24,7 +24,7 @@ Bible: G3 (playbook manager) and G4 (terminology and call grammar). Entry: `src/
 | `starter-book.ts` | The starting book from the WP-15 starter content |
 | `generate.ts` | G3.1.1 generated book size and generator |
 | `params.ts` | Every starting value (basis `bible`, Assumption in the bible) and the G4.2.1 learning profiles |
-| `keys.ts` | `coach_to_player.*` rule keys (requested, not yet in the dictionary) |
+| `keys.ts` | `comm.c2p_*` rule keys (dictionary names; `comm.c2p_equity_on_failure` requested) |
 | `dmath.ts` | Deterministic powers (the engine's dPow is not importable from this package) |
 
 No real-world number is an input here: the sourced G3 and G4 facts (book sizes, call lengths) anchor tuning knobs, which are all in `PARAMS`. Rule values (radio cutoff, speaker count, equity rule) are read by key.

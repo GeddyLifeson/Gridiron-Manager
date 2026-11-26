@@ -1,15 +1,16 @@
 // Rule keys the playbook and terminology module reads (G4 header: coach-to-player radio values are rule-set
-// keys under `coach_to_player`). None is in the dictionary yet: they are requested from the integrator and
-// the rule-values research thread (PR body), each with the bible's value and status. A key absent from a
-// rule set means no radio (signals, boards and wristbands are then the only channels, G4.4).
+// keys). The dictionary already holds them under comm.* (B13.13.1); only the equity rule is new and is
+// requested from the integrator. A rule set without radio (comm.c2p_allowed false or absent) leaves signals,
+// boards and wristbands as the only channels (G4.4).
 import type { RuleKeyManifest, RuleSet } from '@gm/schema';
 
 const READ_BY = ['content.playbook'];
 
 export const RULE_KEYS: RuleKeyManifest = [
-  { key: 'coach_to_player.cutoff_play_clock_s', type: 'number', unit: 's', meaning: 'Play-clock reading at which coach-to-player radio cuts off (NEW: G4.5.1, pro 15 Verified; college FBS 15 from 2024 Verified, area T owns it).', ownerLeaf: 'G4.5.1', readBy: READ_BY },
-  { key: 'coach_to_player.defense_speakers_on_field', type: 'number', unit: 'count', meaning: 'Defensive players who may wear a live speaker helmet at once (NEW: G4.5.1, pro 1 Verified).', ownerLeaf: 'G4.5.1', readBy: READ_BY },
-  { key: 'coach_to_player.equity_on_failure', type: 'boolean', meaning: 'On a total coach-to-player failure the opposing club also loses its equipment until restored (NEW: G4.4.3, pro yes, Rulebook only).', ownerLeaf: 'G4.4.3', readBy: READ_BY },
+  { key: 'comm.c2p_allowed', type: 'boolean', meaning: 'Coach-to-player helmet radio is allowed', ownerLeaf: 'B13.13.1', readBy: READ_BY },
+  { key: 'comm.c2p_cutoff_seconds', type: 'number', unit: 's', meaning: 'Play clock reading at which the helmet radio cuts off', ownerLeaf: 'B13.13.1', readBy: READ_BY },
+  { key: 'comm.c2p_receivers_defense', type: 'number', unit: 'count', meaning: 'Defensive players on the field with a helmet radio on a scrimmage down', ownerLeaf: 'B13.13.1', readBy: READ_BY },
+  { key: 'comm.c2p_equity_on_failure', type: 'boolean', meaning: 'On a total coach-to-player failure the opposing club also loses its equipment until restored (NEW: G4.4.3, pro true, Rulebook only).', ownerLeaf: 'G4.4.3', readBy: READ_BY },
 ];
 
 export interface RadioRules {
@@ -22,9 +23,10 @@ export interface RadioRules {
 /** Read the radio values by key; absent keys mean no radio and no equity rule (no level is tested, P1.1.2). */
 export function radioRules(rules: Pick<RuleSet, 'keys' | 'num' | 'bool'>): RadioRules {
   const present = new Set(rules.keys());
+  const allowed = present.has('comm.c2p_allowed') && rules.bool('comm.c2p_allowed');
   return {
-    cutoffS: present.has('coach_to_player.cutoff_play_clock_s') ? rules.num('coach_to_player.cutoff_play_clock_s') : null,
-    defenseSpeakers: present.has('coach_to_player.defense_speakers_on_field') ? rules.num('coach_to_player.defense_speakers_on_field') : 0,
-    equityOnFailure: present.has('coach_to_player.equity_on_failure') ? rules.bool('coach_to_player.equity_on_failure') : false,
+    cutoffS: allowed && present.has('comm.c2p_cutoff_seconds') ? rules.num('comm.c2p_cutoff_seconds') : null,
+    defenseSpeakers: allowed && present.has('comm.c2p_receivers_defense') ? rules.num('comm.c2p_receivers_defense') : 0,
+    equityOnFailure: present.has('comm.c2p_equity_on_failure') ? rules.bool('comm.c2p_equity_on_failure') : false,
   };
 }
