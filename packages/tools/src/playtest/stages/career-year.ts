@@ -83,7 +83,7 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
     if (y.season.options.seasonYear !== year) rec.add('invalid', 'offseason', 'season.year_mismatch', `The season session plays ${y.season.options.seasonYear} while the world is in ${year}.`, OWNERS.careerYear);
 
     // The first season: a mid-season save, then both copies play a week and must agree (save and restore keep the world).
-    let weeks = 0;
+    let weeks = n === 0 ? 0 : 1; // after the first season, the offseason already played week 0 (the roster cycle)
     if (n === 0) {
       for (let i = 0; i < 3 && y.delegateWeek(); i++) weeks++;
       const before = y.view().worldHash;
@@ -107,9 +107,12 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
     const firstEvent = w.log.nextId;
     const people0 = w.people.size;
     const sum = y.runOffseason();
+    // The roster cycle (K7 moves: retirements, the draft, free agency) runs on the next season's first weekly pass.
+    y.delegateWeek();
     const since = (type: string) => w.log.ofType(type).filter((e) => e.id >= firstEvent).length;
     const drafted = since(turnover.PLAYER_DRAFTED), signed = since(turnover.PLAYER_SIGNED), retired = since(turnover.PLAYER_RETIRED);
     const newPeople = w.people.size - people0;
+    const weekAfter = w.week;
 
     if (sum.seasonYear !== year) rec.add('invalid', 'offseason', 'summary.year', `The season point closed ${sum.seasonYear}, not ${year}.`, OWNERS.worldLoop);
     const line = sum.records[y.seatTeamId];
@@ -117,15 +120,15 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
       rec.add('invalid', 'offseason', 'record.mismatch', `The world records the seat ${line.wins}-${line.losses}-${line.ties}; the season session ${mine.wins}-${mine.losses}-${mine.ties}.`, OWNERS.careerYear, { year });
     }
     if (sum.champions[y.seatCompetitionId] === undefined) rec.add('invalid', 'offseason', 'champion.missing', `The seat's competition has no champion for ${year}.`, OWNERS.careerYear, { year });
-    if (drafted === 0) rec.add('invalid', 'offseason', 'draft.none', `No player was drafted after the ${year} season.`, OWNERS.worldLoop, { year });
-    if (signed === 0) rec.add('invalid', 'offseason', 'free_agency.none', `No player signed after the ${year} season.`, OWNERS.worldLoop, { year });
+    if (drafted === 0) rec.add('invalid', 'offseason', 'draft.none', `No player was drafted between the ${year} season point and the next season's first week.`, OWNERS.worldLoop, { year });
+    if (signed === 0) rec.add('invalid', 'offseason', 'free_agency.none', `No player signed between the ${year} season point and the next season's first week.`, OWNERS.worldLoop, { year });
     if (newPeople <= 0) rec.add('invalid', 'offseason', 'cohort.none', `No new people came into the world after the ${year} season.`, OWNERS.worldLoop, { year });
     const unbound = loop.unboundSteps(y.systems).map((u) => u.step);
     for (const step of ['development', 'moves', 'cohorts', 'leaving'] as const) {
       if (unbound.includes(step)) rec.add('missing', 'offseason', `step.unbound:${step}`, `The career year runs the season point without the ${step} step.`, OWNERS.careerYear);
     }
     for (const p of rosterProblems(w)) rec.add('invalid', 'offseason', 'roster.duplicate', p, OWNERS.worldLoop, { year });
-    if (w.date.seasonYear !== year + 1 || y.season.options.seasonYear !== year + 1 || y.season.stage === 'final') {
+    if (w.date.seasonYear !== year + 1 || weekAfter !== 1 || y.season.options.seasonYear !== year + 1 || y.season.stage === 'final') {
       rec.add('stuck', 'offseason', 'next_season.not_started', `After the ${year} offseason the world is in ${w.date.seasonYear} and the season session in ${y.season.options.seasonYear} (${y.season.stage}).`, OWNERS.careerYear);
     }
 

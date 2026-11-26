@@ -2,8 +2,10 @@
 // keeps is the save's record of commands; the world the career actually plays in is the LiveWorld the
 // new game built and the career year keeps running. This writes that whole career year (the packed world
 // with every system's carried state, the season session, and which of its games are already in the
-// world's results) into the same .gmsave database, in table `live_world`, one row per part, in one
-// transaction. Reading it back restores the career year and refuses the save when the restored world does
+// world's results) into the same .gmsave database, in table `live_world`, in one transaction: rows meta,
+// season and injected; row `world` is a manifest of the world's fields, each stored as `world:<field>:<n>`,
+// big lists and maps in chunks of LIVE_WORLD_CHUNK entries (a whole world is past the engine's string limit
+// after one season). Reading it back restores the career year and refuses the save when the restored world does
 // not hash to the world hash written beside it.
 import type { SqlDriver } from '@gm/store';
 import { CareerYear, type CareerYearOptions, type CareerYearSave } from './career-year.ts';
@@ -26,6 +28,48 @@ export interface LiveWorldMeta {
 
 const PARTS = ['meta', 'world', 'season', 'injected'] as const;
 
+/** Entries per row of a big world field. One JSON string per field overflows the engine's string limit after a season. */
+export const LIVE_WORLD_CHUNK = 2000;
+
+type FieldKind = 'whole' | 'array' | '__map' | '__set';
+interface FieldEntry { readonly key: string; readonly kind: FieldKind; readonly chunks: number }
+
+/** Splits the plain-encoded world (play/plain.ts) into rows: one per small field, chunks of entries for big ones. */
+function worldRows(world: unknown): { manifest: FieldEntry[]; rows: { part: string; json: string }[] } {
+  const manifest: FieldEntry[] = [];
+  const rows: { part: string; json: string }[] = [];
+  for (const [key, v] of Object.entries(world as Record<string, unknown>)) {
+    let kind: FieldKind = 'whole';
+    let items: unknown[] | null = null;
+    if (Array.isArray(v)) { kind = 'array'; items = v; } else if (v !== null && typeof v === 'object') {
+      const o = v as Record<string, unknown>;
+      const ks = Object.keys(o);
+      if (ks.length === 1 && (ks[0] === '__map' || ks[0] === '__set') && Array.isArray(o[ks[0]!])) { kind = ks[0] as FieldKind; items = o[ks[0]!] as unknown[]; }
+    }
+    if (!items) { rows.push({ part: `world:${key}:0`, json: JSON.stringify(v) }); manifest.push({ key, kind, chunks: 1 }); continue; }
+    let n = 0;
+    for (let i = 0; i < items.length || n === 0; i += LIVE_WORLD_CHUNK, n++) rows.push({ part: `world:${key}:${n}`, json: JSON.stringify(items.slice(i, i + LIVE_WORLD_CHUNK)) });
+    manifest.push({ key, kind, chunks: n });
+  }
+  return { manifest, rows };
+}
+
+function worldFromRows(manifest: readonly FieldEntry[], p: Map<string, string>): unknown {
+  const out: Record<string, unknown> = {};
+  for (const f of manifest) {
+    const chunk = (i: number): string => {
+      const j = p.get(`world:${f.key}:${i}`);
+      if (j === undefined) throw new Error(`live world save: world field ${f.key} chunk ${i} is missing`);
+      return j;
+    };
+    if (f.kind === 'whole') { out[f.key] = JSON.parse(chunk(0)); continue; }
+    const items: unknown[] = [];
+    for (let i = 0; i < f.chunks; i++) for (const x of JSON.parse(chunk(i)) as unknown[]) items.push(x);
+    out[f.key] = f.kind === 'array' ? items : { [f.kind]: items };
+  }
+  return out;
+}
+
 /** Writes the career year into the save database, replacing the previous copy. */
 export async function writeCareerYear(driver: SqlDriver, y: CareerYear): Promise<LiveWorldMeta> {
   await driver.exec(DDL);
@@ -34,11 +78,15 @@ export async function writeCareerYear(driver: SqlDriver, y: CareerYear): Promise
   const meta: LiveWorldMeta = {
     version: LIVE_WORLD_SAVE_VERSION, seatTeamId: s.seatTeamId, seasonYear: v.seasonYear, worldWeek: v.worldWeek, seasons: v.seasons, worldHash: v.worldHash,
   };
-  const body: Record<(typeof PARTS)[number], unknown> = { meta, world: s.world, season: s.season, injected: s.injected };
-  await driver.transaction(PARTS.map((part) => ({
-    sql: `INSERT INTO ${LIVE_WORLD_TABLE} (part, json) VALUES (?, ?) ON CONFLICT(part) DO UPDATE SET json = excluded.json`,
-    params: [part, JSON.stringify(body[part])],
-  })));
+  const w = worldRows(s.world);
+  const rows = [
+    { part: 'meta', json: JSON.stringify(meta) }, { part: 'world', json: JSON.stringify(w.manifest) },
+    { part: 'season', json: JSON.stringify(s.season) }, { part: 'injected', json: JSON.stringify(s.injected) }, ...w.rows,
+  ];
+  await driver.transaction([
+    { sql: `DELETE FROM ${LIVE_WORLD_TABLE}` },
+    ...rows.map((r) => ({ sql: `INSERT INTO ${LIVE_WORLD_TABLE} (part, json) VALUES (?, ?)`, params: [r.part, r.json] })),
+  ]);
   return meta;
 }
 
@@ -68,7 +116,7 @@ export async function readCareerYear(driver: SqlDriver, o: Omit<CareerYearOption
   if (meta.version !== LIVE_WORLD_SAVE_VERSION) throw new Error(`live world save: version ${String(meta.version)} is not supported`);
   const save: CareerYearSave = {
     version: 1, seatTeamId: meta.seatTeamId,
-    world: JSON.parse(p.get('world')!), season: JSON.parse(p.get('season')!), injected: JSON.parse(p.get('injected')!) as number[],
+    world: worldFromRows(JSON.parse(p.get('world')!) as FieldEntry[], p), season: JSON.parse(p.get('season')!), injected: JSON.parse(p.get('injected')!) as number[],
   };
   const y = CareerYear.restore(o, save);
   const hash = y.view().worldHash;
