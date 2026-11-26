@@ -39,12 +39,8 @@ export const PARAMS: ParamFile = {
     // O3.1.2 snapping.
     p('designer.snap.lateralYd', 0.5, 0.25, 1, 'yd', 'O3.1.2', 'assumption'),
     p('designer.snap.depthYd', 1, 0.5, 1, 'yd', 'O3.1.2'),
-    p('designer.snap.breakAngleDeg', 45, 15, 90, 'deg', 'O3.1.2', 'assumption'),
-    p('designer.route.matchToleranceYd', 1.5, 0.5, 3, 'yd', 'O3.1.2', 'assumption'),
-    // O3.7.1 and O3.1.4.
+        p('designer.route.matchToleranceYd', 1.5, 0.5, 3, 'yd', 'O3.1.2', 'assumption'),
+    // O3.7.1.
     p('designer.undo.minSteps', 200, 200, 2000, 'count', 'O3.7.1'),
-    p('bench.runs.default', 200, 20, 2000, 'count', 'G1.6.2'),
-    p('bench.hours.perSession', 0.5, 0, 4, 'h', 'G1.6.2'),
-    p('bench.confidence.z', 1.96, 1, 3, 'ratio', 'O3.1.4', 'assumption'),
   ],
 };
