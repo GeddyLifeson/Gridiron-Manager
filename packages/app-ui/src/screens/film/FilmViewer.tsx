@@ -8,6 +8,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { FieldRenderer, fieldPalette, resolveTeamColours, type FieldGeometryLike, type TeamColours } from '../../field-view/index.ts';
 import { resolveColours, v, type ThemeId, type ColourVisionId } from '../../tokens/index.ts';
+import { filmLookCanvas } from '../../presentation/era/index.ts';
 import { FilmTransport, ReelCursor, FILM_SPEEDS } from './transport.ts';
 import { VIEW_FRAMING, ViewMemory, type FilmView } from './views.ts';
 import { buildOverlays, drawOverlays, LEGEND, OVERLAY_KEYS, OVERLAY_LAYERS, type OverlayLayer, type OverlayRole } from './overlays.ts';
@@ -34,7 +35,7 @@ export interface FilmViewerProps {
   readonly reducedMotion?: boolean;
   /** The "plain film" switch: no grain or vignette. */
   readonly plainFilm?: boolean;
-  /** PV-18's film look; without it the viewer draws plain film. */
+  /** The film look. Default: PV-18's era look for the theme (`filmLookCanvas`); a caller may pass its own. */
   readonly look?: FilmLookPort;
   /** PV-01 cosmetic factory, bound to the save; grain draws from `cosmetic.display` only. */
   readonly cosmetic?: (scope: { gameId: number; playNumber: number }) => { readonly display: DisplayDraw };
@@ -66,6 +67,8 @@ export function FilmViewer(props: FilmViewerProps) {
   const play = useMemo(() => toFilmPlay(data.record), [data]);
   const theme = props.theme ?? 'light', vision = props.colourVision ?? 'none';
   const palette = useMemo(() => fieldPalette(theme, vision), [theme, vision]);
+  const defaultLook = useMemo(() => filmLookCanvas(theme, vision), [theme, vision]);
+  const look: FilmLookPort = props.look ?? defaultLook;
   const overlayColours = useMemo(() => resolveColours(theme, vision).overlay as Record<OverlayRole, string>, [theme, vision]);
   const colours = useMemo(() => resolveTeamColours(props.home, props.away, { colourBlindSafe: false, palette }), [props.home, props.away, palette]);
   const userSide = data.record.viewerSide ?? data.record.situation.offenseSide;
@@ -97,7 +100,7 @@ export function FilmViewer(props: FilmViewerProps) {
       card.clip(playId, props.titleCards ?? true);
       if (card.tick(dt)) {
         // The leader card holds the film; the cursor does not move under it.
-        if (props.look && looks) props.look.drawLeader(ctx, width, height, cardNow, stock);
+        if (looks) look.drawLeader(ctx, width, height, cardNow, stock);
         else drawPlainCard(ctx, width, height, cardNow, { panel: surface.panel!, ink: textInk.ink! }, CARD_FONT_PX);
         raf = requestAnimationFrame(loop);
         return;
@@ -114,7 +117,7 @@ export function FilmViewer(props: FilmViewerProps) {
       if (pv) shapes.push({ layer: 'telestration', kind: pv.shape, points: pv.points, dashed: false, role: 'eyeLine' });
       drawOverlays(ctx, renderer.camera, shapes, overlayColours, OVERLAY_FONT_PX);
       if (spotlight && selected !== null) drawSpotlight(ctx, width, height, spotlightCircle(renderer.frames, renderer.camera, selected, transport.tick), { scrim: fieldInk.shadow!, ring: fieldInk.cue! });
-      if (props.look && looks && grain) props.look.drawLook(ctx, width, height, stock, grain);
+      if (looks && grain) look.drawLook(ctx, width, height, stock, grain);
       drawFrameCounter(ctx, width, height, frameCounter(filmFrame(transport.tick, transport.first, play.ticksPerSecond, stock), stock), { panel: fieldInk.inkDark!, ink: fieldInk.inkLight! }, COUNTER_FONT_PX);
       // A reel moves to the next clip without a menu (N1.1.1).
       if (ended && reel.next()) setPlayId(reel.current);
@@ -122,7 +125,7 @@ export function FilmViewer(props: FilmViewerProps) {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [renderer, transport, width, height, layers, selected, data, annotation, overlayColours, spotlight, looks, stock, grain, cardNow, fieldInk, surface, textInk, holds, card, tele, playId, props.look, props.titleCards]);
+  }, [renderer, transport, width, height, layers, selected, data, annotation, overlayColours, spotlight, looks, stock, grain, cardNow, fieldInk, surface, textInk, holds, card, tele, playId, look, props.titleCards]);
 
   const toField = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
