@@ -175,12 +175,14 @@ describe('G-60 full game through the console keys', () => {
     const made = new Map<number, Decision>();
     for (const e of session.events) if (e.type === 'decision_made') made.set(e.decision.requestId, e.decision);
     // With the engine's late timeout (PR 146) the window opens before every snap and T in it is granted.
-    if (lateWindows > 0) {
-      expect(lateTimeoutAt).not.toBeNull();
-      expect(lateTimeoutAt!.granted).toBe(lateTimeoutAt!.at >= (lateTimeoutAt!.deadline ?? 0) && lateTimeoutAt!.at > 0);
-      const late = [...made.values()].find((d) => d.side === 0 && d.type === 'timeout' && d.optionId === 'timeout' && d.acceptedAtPlayClockTenths === lateTimeoutAt!.at);
-      expect(late).toBeDefined();
-    }
+    // Required, not optional: if the session answers the late request itself (as "none"), the user loses the
+    // late timeout (I2.1.3, O2.4.1) and this test must fail rather than skip the check.
+    expect(lateWindows).toBeGreaterThan(0);
+    expect(lateTimeouts).toBe(1);
+    expect(lateTimeoutAt).not.toBeNull();
+    expect(lateTimeoutAt!.granted).toBe(lateTimeoutAt!.at >= (lateTimeoutAt!.deadline ?? 0) && lateTimeoutAt!.at > 0);
+    const lateDecision = [...made.values()].find((d) => d.side === 0 && d.type === 'timeout' && d.optionId === 'timeout' && d.acceptedAtPlayClockTenths === lateTimeoutAt!.at);
+    expect(lateDecision).toBeDefined();
     let checked = 0;
     let late = 0;
     for (const a of session.answers) {
