@@ -1,0 +1,10 @@
+{
+  "sources.league.collegeCompetition": "College top division",
+  "sources.league.collegeGuests": "Other college divisions",
+  "sources.league.independents": "Independents",
+  "sources.league.division": "{conference} {label}",
+  "sources.league.label.east": "East",
+  "sources.league.label.west": "West",
+  "sources.league.label.north": "North",
+  "sources.league.label.south": "South"
+}

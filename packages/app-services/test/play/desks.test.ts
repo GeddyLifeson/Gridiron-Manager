@@ -67,7 +67,7 @@ describe('career desks', () => {
   it('runs the user practice, then the staff week, feeds the staff eye, and saves', () => {
     const world = freshWorld();
     const seat = teamAt(world, 'pro');
-    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames });
+    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames, resolver: 'reference' });
 
     // A broken plan is refused with its problems; a good one is kept and shown.
     const broken: PracticePlan = { ...userPlan(0), practice: { ...userPlan(0).practice, blockMinutes: 30 } };
@@ -106,7 +106,7 @@ describe('career desks', () => {
 
     // The save keeps the desks and the same world.
     const saved = JSON.parse(JSON.stringify(y.save()));
-    const back = CareerYear.restore({ content: CONTENT, games: doubleGames }, saved);
+    const back = CareerYear.restore({ content: CONTENT, games: doubleGames, resolver: 'reference' }, saved);
     expect(back.view().worldHash).toBe(y.view().worldHash);
     expect(back.practice.history).toHaveLength(y.practice.history.length);
     expect(back.scouting.player(anyId)).toEqual(seen);
@@ -124,7 +124,7 @@ describe('career desks', () => {
     while (world.week < pre.schedule.weeksInSeason(world)) loop.runWeek(world, pre.systems);
     loop.runSeasonPoint(world, pre.systems);
     const seat = teamAt(world, 'college');
-    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames, worldContent: app });
+    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames, resolver: 'reference', worldContent: app });
     expect(y.level).toBe('college');
     let r = wrec.recruitingOf(world);
     const openNow = () => Object.values(r.state.prospects).filter((p) => r.classes.includes(p.classYear) && r.state.status[p.personId]?.status === 'open');
@@ -148,7 +148,7 @@ describe('career desks', () => {
     expect(lrec.gradeOf(r.state, seat, target).looks.full_film).toBe(1);
     expect(lrec.activeOffer(r.state, target, seat)).toBeDefined();
 
-    const back = CareerYear.restore({ content: CONTENT, games: doubleGames, worldContent: app }, JSON.parse(JSON.stringify(y.save())));
+    const back = CareerYear.restore({ content: CONTENT, games: doubleGames, resolver: 'reference', worldContent: app }, JSON.parse(JSON.stringify(y.save())));
     expect(back.recruiting.record).toEqual(log);
     expect(back.view().worldHash).toBe(y.view().worldHash);
   }, 600_000);

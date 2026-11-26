@@ -6,3 +6,4 @@ export * from './ConsoleHost.tsx';
 export * from './CareerRoot.tsx';
 export { rt as rootText, rootTextIds } from './text.ts';
 export * from './start.ts';
+export * from './sources/football.ts';

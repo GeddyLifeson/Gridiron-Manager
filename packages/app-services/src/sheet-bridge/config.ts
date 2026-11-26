@@ -7,7 +7,7 @@ import type { ConsoleConfig } from '../commands/game-calling/console.ts';
 import type { ConsoleTempo } from '../commands/game-calling/cycle.ts';
 import { consoleReservedKeys } from '../commands/game-calling/driver.ts';
 import { radioCutoffTenths } from '../commands/game-calling/keys.ts';
-import { assignKeys, type CallSheet, type SheetKeys, type Unit } from '../commands/game-calling/sheet.ts';
+import { assignKeys, type CallSheet, type SheetEntry, type SheetKeys, type Unit } from '../commands/game-calling/sheet.ts';
 import { toConsoleSheet, type ConsoleSheetInputs } from './console.ts';
 import type { Preferences, Suggestion } from './prefs.ts';
 import { consoleSpecialSheet, type SpecialSheetOptions } from './special.ts';
@@ -73,6 +73,14 @@ export function consoleConfigFor(inp: ConsoleConfigInput): ConsoleConfigResult {
   const sheets = { offense: sideSheet('offense'), defense: sideSheet('defense') };
   const off = toConsoleSheet(sheets.offense, inp.inputs);
   const def = toConsoleSheet(sheets.defense, inp.inputs);
+  // The plan's calls that are not on the sheet: the in-game playbook search reaches them (in-game.ts).
+  const poolOf = (unit: DraftUnit, on: CallSheet): SheetEntry[] => {
+    const menu = inp.plan?.[unit] ?? [];
+    if (!menu.length || !sheets[unit].boxes.length) return [];
+    const onSheet = new Set(on.boxes.flatMap((b) => b.entries.map((e) => e.label)));
+    const holder: gp.Sheet = { ...sheets[unit], boxes: [{ ...sheets[unit].boxes[0]!, id: 'pool', entries: menu.map((m) => ({ id: m.id, call: m.call })) }], wristband: [] };
+    return toConsoleSheet(holder, inp.inputs).sheet.boxes.flatMap((b) => b.entries).filter((e) => !onSheet.has(e.label)).map((e) => ({ ...e, id: `pool:${e.id}` }));
+  };
   const consoleSheets: Record<Unit, CallSheet> = { offense: off.sheet, defense: def.sheet, special: consoleSpecialSheet(`special:${inp.gameId}`, inp.rules, inp.special) };
   const reserved = consoleReservedKeys(inp.bindings);
   const keys: Record<Unit, SheetKeys> = { offense: assignKeys(consoleSheets.offense, reserved), defense: assignKeys(consoleSheets.defense, reserved), special: assignKeys(consoleSheets.special, reserved) };
@@ -81,6 +89,7 @@ export function consoleConfigFor(inp: ConsoleConfigInput): ConsoleConfigResult {
     config: {
       sheets: consoleSheets, keys, cadences: inp.cadences ?? [], singlePress: inp.singlePress ?? false, guards: { challenge: true, lateTimeout: true },
       defaultTempo: inp.defaultTempo ?? 'huddle', defaultRelay: relay, radioCutoffTenths: radioCutoffTenths(inp.rules),
+      pool: { offense: poolOf('offense', off.sheet), defense: poolOf('defense', def.sheet) },
     },
     sheets, drafted, suggestions,
     manualOnly: [...off.manualOnly.map((b) => `offense:${b}`), ...def.manualOnly.map((b) => `defense:${b}`)],

@@ -59,7 +59,7 @@ export const PARAMS: ParamFile = {
       ['passBlock.gLosing', 1.0, 0.8, 1.0, 'share of free speed', 'b'],
       // J6.2.1 states 0.35. Tuned to 0.15 against the pro sack rate (48 tick-engine games: 0.35 gave 10.0% sacks,
       // 0.15 gave 8.4%; real 6.9%), so the row is no longer the bible's number and is marked as this module's.
-      ['passBlock.gEven', 0.15, 0.1, 0.7, 'share of free speed', 'a'],
+      ['passBlock.gEven', 0.1, 0.1, 0.7, 'share of free speed', 'a'], // tuned from 0.15 with pressure.*: pressure 51% to 38% of dropbacks (J15.4.2)
       ['passBlock.gWinning', 0, 0, 0.2, 'share of free speed', 'b'],
       ['passBlock.counterThreshold', 0.4, 0.2, 0.8, 'A', 'b'],
       ['passBlock.counterHoldS', 0.5, 0.2, 1.0, 's', 'b'],
@@ -99,9 +99,9 @@ export const PARAMS: ParamFile = {
     ]),
     // J6.2.5 pressure and the sack draw
     ...group('pressure and sack', 'J6.2.5', RUSH, [
-      ['pressure.distYd', 2.0, 1.0, 3.0, 'yd', 'b'],
-      ['pressure.timeS', 0.6, 0.3, 1.0, 's', 'b'],
-      ['sack.beta0', 1.4, 0, 2.5, 'logit', 'b'],
+      ['pressure.distYd', 1.2, 1.0, 3.0, 'yd', 'b'], // tuned from 2.0: a rusher two yards off a quarterback who completes 62% was not charted pressure (real pressured completion 48.1%)
+      ['pressure.timeS', 0.3, 0.3, 1.0, 's', 'b'], // tuned from 0.6 with pressure.distYd
+      ['sack.beta0', 0.5, 0, 2.5, 'logit', 'b'], // tuned from 1.4: with the throwaway answer, sack rate 8.9% against real 6.9% (J15)
       ['sack.beta1', 0.5, 0.1, 1.2, 'logit/z', 'b'],
       ['sack.blindside', 0.6, 0, 1.5, 'logit', 'b'],
       ['sack.movingAway', -0.5, -1.5, 0, 'logit', 'b'],

@@ -182,6 +182,13 @@
     "gp.print.overflow": "{n} boxes need smaller text than 7 pt; enlarge them or cut calls",
     "gp.paper.letter": "Letter",
     "gp.paper.legal": "Legal",
-    "gp.paper.tabloid": "Tabloid"
+    "gp.paper.tabloid": "Tabloid",
+    "gp.box.left": "Move {box} left",
+    "gp.box.right": "Move {box} right",
+    "gp.box.upMove": "Move {box} up",
+    "gp.box.downMove": "Move {box} down",
+    "gp.box.otherSide": "Move {box} to the other side",
+    "gp.drag.hint": "Drag a box by its title to move it. Drag a call to reorder it or move it to another box.",
+    "gp.action.startLastWeek": "Start from last week's sheet"
   }
 }

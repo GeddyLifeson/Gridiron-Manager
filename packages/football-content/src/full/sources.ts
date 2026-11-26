@@ -16,6 +16,7 @@ const s = (id: string, group: string, citation: string, url: string, how: Source
 
 const TD = 'https://throwdeeppublishing.com/blogs/football-glossary/';
 
+import { PRESSURE_SOURCES } from './defense-pressure.ts';
 export const FULL_SOURCES: readonly Source[] = [
   // ---- Pass concepts (research/scheme-sources/pass-concepts-and-reads.md) ----
   s('campbell-smash', 'campbell', `Michael Campbell, "Smash," Throw Deep Publishing glossary, 2022-04-25 (${PC('A')})`, `${TD}smash-concept`),
@@ -110,6 +111,6 @@ export const FULL_SOURCES: readonly Source[] = [
   s('kirby-tite', 'kirby', `Alex Kirby (clinic by Tyler Manes), tite front, Throw Deep blog, 2021-06-10 (${RN('AL')})`, 'https://throwdeeppublishing.com/blogs/news/the-tite-3-4-defense-what-you-need-to-know', 'primary'),
 ];
 
-export const ALL_SOURCES: readonly Source[] = [...STARTER_SOURCES, ...FULL_SOURCES, ...MORE_SOURCES, ...BOOK_SOURCES];
+export const ALL_SOURCES: readonly Source[] = [...STARTER_SOURCES, ...FULL_SOURCES, ...MORE_SOURCES, ...BOOK_SOURCES, ...PRESSURE_SOURCES];
 export const SOURCE_BY_ID: ReadonlyMap<string, Source> = new Map(ALL_SOURCES.map((x) => [x.id, x]));
 export type { Source };

@@ -58,6 +58,12 @@ export interface Ctx {
   atTarget: boolean;
   /** Current man, as a selector. Starts as the behavior's `man` parameter. */
   man: Sel | null;
+  /**
+   * The called protection's answer for this blocker (F5, J5.4.2), set by the engine for the play: the world slot of
+   * the man he has now, -1 when he has nobody and looks for work (the nearest rusher), -2 when he has nobody yet
+   * and waits (a back scanning). Null: no protection is bound and `nearestRusher` is the nearest rusher.
+   */
+  blockTarget: (() => number) | null;
   behavior: Behavior;
   stateIndex: number;
   technique: Record<string, string>;
@@ -213,7 +219,10 @@ export function compileSelector(text: string, keys: readonly string[], qb: strin
     case 'key': { const first = keys[0]; return first === undefined || first === 'key' ? NONE : compileSelector(first, [], qb); }
     case 'nearestThreat': return (c) => nearestOf(c, 0, (e) => c.view.receiverNumber(e.slot) > 0);
     case 'nearestDefender': return (c) => nearestOf(c, c.oppStart);
-    case 'nearestRusher': return rusherFor;
+    case 'nearestRusher': return (c) => {
+      if (c.blockTarget !== null) { const t = c.blockTarget(); if (t >= 0) return c.view.entity(t); if (t === -2) return null; }
+      return rusherFor(c);
+    };
     case 'deepestReceiver': return (c) => {
       let best: PerceivedEntity | null = null;
       eachOf(c, 0, (e) => { if (c.view.receiverNumber(e.slot) > 0 && (best === null || e.px > best.px)) best = e; });
