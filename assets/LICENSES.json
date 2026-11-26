@@ -1,4 +1,69 @@
 {
   "version": 1,
-  "assets": []
+  "assets": [
+    {
+      "path": "assets/music/title.ogg",
+      "sha256": "3674fe5cee999ebab7eba4b5ec73fd1e52c271f9755b4fb229d808539e51a1e8",
+      "source": "Original composition in packages/app-ui/src/audio/music/compositions.ts, score assets/music/scores/title.musicxml, rendered with MuseScore Studio 4.7.5 (build 3654226), sound profile MuseScore Basic",
+      "licence": "Original work for Gridiron Manager; rendered with MS Basic soundfont (MIT, notices in assets/music/NOTICE.md)",
+      "licenceId": "MIT",
+      "author": "Gridiron Manager project",
+      "dateRetrieved": "2026-11-26",
+      "tool": "MuseScore Studio 4.7.5, MS Basic.sf3",
+      "licenceSources": [
+        "C:\\Program Files\\MuseScore 4\\sound\\MS Basic_License.md (installed with MuseScore 4.7.5)",
+        "https://github.com/musescore/MuseScore/blob/2243418b29c1f2073f1bda41b61add0c1c473fc1/share/sound/MS%20Basic_License.md",
+        "https://sources.debian.org/copyright/license/musescore-general-soundfont/0.2-3"
+      ],
+      "licenceStatus": "Verified"
+    },
+    {
+      "path": "assets/music/weekHub.ogg",
+      "sha256": "01b05bd9ad94f63d8e5e85bc549ed7157738c950ac8f5affddf08812b7edcc77",
+      "source": "Original composition in packages/app-ui/src/audio/music/compositions.ts, score assets/music/scores/weekHub.musicxml, rendered with MuseScore Studio 4.7.5 (build 3654226), sound profile MuseScore Basic",
+      "licence": "Original work for Gridiron Manager; rendered with MS Basic soundfont (MIT, notices in assets/music/NOTICE.md)",
+      "licenceId": "MIT",
+      "author": "Gridiron Manager project",
+      "dateRetrieved": "2026-11-26",
+      "tool": "MuseScore Studio 4.7.5, MS Basic.sf3",
+      "licenceSources": [
+        "C:\\Program Files\\MuseScore 4\\sound\\MS Basic_License.md (installed with MuseScore 4.7.5)",
+        "https://github.com/musescore/MuseScore/blob/2243418b29c1f2073f1bda41b61add0c1c473fc1/share/sound/MS%20Basic_License.md",
+        "https://sources.debian.org/copyright/license/musescore-general-soundfont/0.2-3"
+      ],
+      "licenceStatus": "Verified"
+    },
+    {
+      "path": "assets/music/career.ogg",
+      "sha256": "584a3c03fd7521fc5574795d390c8de4e2c9e3b99b65c61138f10b88e6f722a4",
+      "source": "Original composition in packages/app-ui/src/audio/music/compositions.ts, score assets/music/scores/career.musicxml, rendered with MuseScore Studio 4.7.5 (build 3654226), sound profile MuseScore Basic",
+      "licence": "Original work for Gridiron Manager; rendered with MS Basic soundfont (MIT, notices in assets/music/NOTICE.md)",
+      "licenceId": "MIT",
+      "author": "Gridiron Manager project",
+      "dateRetrieved": "2026-11-26",
+      "tool": "MuseScore Studio 4.7.5, MS Basic.sf3",
+      "licenceSources": [
+        "C:\\Program Files\\MuseScore 4\\sound\\MS Basic_License.md (installed with MuseScore 4.7.5)",
+        "https://github.com/musescore/MuseScore/blob/2243418b29c1f2073f1bda41b61add0c1c473fc1/share/sound/MS%20Basic_License.md",
+        "https://sources.debian.org/copyright/license/musescore-general-soundfont/0.2-3"
+      ],
+      "licenceStatus": "Verified"
+    },
+    {
+      "path": "assets/music/offseason.ogg",
+      "sha256": "58194db0dd81dd4610f4c78b418823a1eba5d76ed10838b98a6e37a6f4cc1fc8",
+      "source": "Original composition in packages/app-ui/src/audio/music/compositions.ts, score assets/music/scores/offseason.musicxml, rendered with MuseScore Studio 4.7.5 (build 3654226), sound profile MuseScore Basic",
+      "licence": "Original work for Gridiron Manager; rendered with MS Basic soundfont (MIT, notices in assets/music/NOTICE.md)",
+      "licenceId": "MIT",
+      "author": "Gridiron Manager project",
+      "dateRetrieved": "2026-11-26",
+      "tool": "MuseScore Studio 4.7.5, MS Basic.sf3",
+      "licenceSources": [
+        "C:\\Program Files\\MuseScore 4\\sound\\MS Basic_License.md (installed with MuseScore 4.7.5)",
+        "https://github.com/musescore/MuseScore/blob/2243418b29c1f2073f1bda41b61add0c1c473fc1/share/sound/MS%20Basic_License.md",
+        "https://sources.debian.org/copyright/license/musescore-general-soundfont/0.2-3"
+      ],
+      "licenceStatus": "Verified"
+    }
+  ]
 }
