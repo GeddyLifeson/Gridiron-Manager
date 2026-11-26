@@ -4,7 +4,6 @@
 // (T3.5.1 edge case): at-large teams only fill what the automatic places leave.
 import { flag, num } from '../standings/params.ts';
 import type { RuleValues, TeamId } from '../standings/types.ts';
-import { ERA_KEY, eraFlag, eraNum } from './era-keys.ts';
 import { KEY } from './params.ts';
 
 export interface CollegeConference {
@@ -42,7 +41,7 @@ export function selectCollegeField(input: FieldInput, rules: RuleValues): Colleg
     for (const c of input.conferences) if (c.power && c.champion !== null) reason.set(c.champion, 'power_champion');
   }
   // 2024 and 2025 (T3.5.1 eras): the highest-ranked conference champions, from any conference.
-  const champAuto = eraNum(rules, ERA_KEY.championAutoBids);
+  const champAuto = num(rules, KEY.championAutoBids);
   if (champAuto > 0) {
     const champs = input.conferences.map((c) => c.champion).filter((t): t is TeamId => t !== null && !reason.has(t)).sort((a, b) => rank(a) - rank(b));
     for (const t of champs.slice(0, champAuto)) reason.set(t, 'champion');
@@ -65,7 +64,7 @@ export function selectCollegeField(input: FieldInput, rules: RuleValues): Colleg
   if (automatic.length + atLarge.length < size) throw new Error('not enough eligible teams to fill the field');
   let seeds = [...automatic, ...atLarge].sort((a, b) => rank(a) - rank(b));
   // 2024 (T3.5.1 eras): the bye seeds go to the highest-ranked conference champions; everyone else follows by ranking.
-  if (eraFlag(rules, ERA_KEY.byesChampionsOnly)) {
+  if (flag(rules, KEY.byesChampionsOnly)) {
     const champions = new Set(input.conferences.map((c) => c.champion).filter((t): t is TeamId => t !== null));
     const top = seeds.filter((t) => champions.has(t)).slice(0, num(rules, KEY.byes));
     seeds = [...top, ...seeds.filter((t) => !top.includes(t))];

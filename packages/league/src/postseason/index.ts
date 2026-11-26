@@ -9,5 +9,4 @@ export { selectBowls, countedWins, type BowlDef, type BowlTieIn, type BowlTeam, 
 export { ceremonialDates, type HomeDate, type CeremonialDates } from './ceremonial.ts';
 export { createPanel, panelPoll, type Voter, type VoterKind, type PanelSpec, type PollState, type PanelPollInput, type PanelPoll } from './voters.ts';
 export { POSTSEASON_ERAS, eraFor, eraEnd, rulesForSeason, eraOffered, type PostseasonEra, type EraValue } from './eras.ts';
-export { ERA_KEY, ERA_RULE_KEYS } from './era-keys.ts';
 export { livePicture, type LiveInput, type LivePicture, type LiveProInput, type LiveCollegeInput, type LiveConference, type UniformFor } from './live.ts';

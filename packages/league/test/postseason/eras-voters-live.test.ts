@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import { FactFile, computeStatus, type FactRow } from '@gm/schema';
 import {
   POSTSEASON_ERAS, eraFor, eraEnd, rulesForSeason, eraOffered, formatFromRules, createBracket, selectCollegeField,
-  createPanel, panelPoll, livePicture, ERA_RULE_KEYS, type Voter, type PollState,
+  createPanel, panelPoll, livePicture, RULE_KEYS, type Voter, type PollState,
 } from '../../src/postseason/index.ts';
 import { RuleKeyManifest } from '@gm/schema';
 import type { GameResult, RuleValues, TeamId } from '../../src/standings/index.ts';
@@ -22,8 +22,10 @@ const COLLEGE_2026 = { ...ruleFile('packages/rules-data/data/league/collegeleagu
 const seq = (from: number, n: number) => Array.from({ length: n }, (_, i) => from + i);
 
 describe('era data and fact rows (Q6)', () => {
-  it('the era key manifest is a valid contract shape', () => {
-    expect(RuleKeyManifest.safeParse(ERA_RULE_KEYS).success).toBe(true);
+  it('the 2024/2025 keys are in the postseason manifest and every era key is one the manifest knows', () => {
+    expect(RuleKeyManifest.safeParse(RULE_KEYS).success).toBe(true);
+    const known = new Set([...RULE_KEYS.map((k) => k.key), 'ranking.lower_division_wins_credited', 'ranking.schedule_standard_games']);
+    for (const e of POSTSEASON_ERAS) for (const v of e.values) expect(known.has(v.key), `${e.id} ${v.key}`).toBe(true);
   });
   it('every postseason fact row stores the status its sources compute', () => {
     const own = FactFile.parse(read('facts/postseason-eras.json')).rows;

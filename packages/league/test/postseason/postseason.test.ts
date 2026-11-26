@@ -22,6 +22,7 @@ const PRO_POST = {
   ...PRO_RULES,
   'playoff.grouping': 'conference', 'playoff.byes': 1, 'playoff.reseed': true, 'playoff.campus_rounds': 3,
   'cfp.power_champions_auto': false, 'cfp.other_auto_bids': 0, 'cfp.independent_auto_rank': 0, 'cfp.at_large_pool_rank': 0,
+  'cfp.champion_auto_bids': 0, 'cfp.byes_champions_only': false,
   'ranking.lower_division_wins_credited': 0, 'ranking.schedule_standard_games': 0,
   'bowl.eligibility_wins': 6, 'bowl.lower_division_wins_counted': 1, 'bowl.fill_min_wins': 5, 'ceremony.home_dates': false,
 };
