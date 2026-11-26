@@ -19,7 +19,7 @@ export interface RealGame {
   batch(games: number, seedGroups: number, masterSeedHex: string, onGame?: (i: number) => void): BatchResult;
 }
 
-export function createRealGame(ruleSetId: string, opts: { iss?: number; paramOverrides?: Readonly<Record<string, number>> } = {}): RealGame {
+export function createRealGame(ruleSetId: string, opts: season.RealGameOptions = {}): RealGame {
   const core = season.createRealGameCore(ruleSetId, opts);
   const statsModule = stats.createStatsModule({ geometry: field.fieldGeometry(core.rules), params: core.params });
   return {

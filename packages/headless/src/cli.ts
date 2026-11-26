@@ -12,7 +12,8 @@ import {
   runGolden, compareGolden, seasonFixtures, summariseSeason, playGame, dummyTeams,
   type GoldenReport, type GameRecord,
 } from '@gm/engine-game';
-import { seedFromNumber } from '@gm/engine-core';
+import { seedFromNumber, tickResolver } from '@gm/engine-core';
+import { season } from '@gm/world';
 import { resolveRuleSet } from '@gm/rules-data';
 import { readHeader, SqlJsDriver, SaveStore, verifySaveLog } from '@gm/store';
 import { RULE_SET_FILES, validateRuleSetFile } from '@gm/rules-data';
@@ -141,8 +142,8 @@ async function validate(): Promise<number> {
 }
 
 /**
- * Q2 calibrate: a batch of real games (flow, reference resolver, officiating facade, chart caller) measured against
- * the target file of the rule set. Options: --rules id --games n --groups n --seed 16hex --out file.
+ * Q2 calibrate: a batch of real games (flow, tick resolver by default, officiating facade, chart caller) measured against
+ * the target file of the rule set. Options: --rules id --games n --groups n --seed 16hex --resolver tick|reference --out file.
  * Exit code 0 only when every certify row passes.
  */
 async function calibrate(): Promise<number> {
@@ -150,9 +151,11 @@ async function calibrate(): Promise<number> {
   const games = Number(arg('games', '200')), groups = Number(arg('groups', '10'));
   const seed = arg('seed', '0000000000000001')!;
   const started = Date.now();
-  const batch = createRealGame(rulesId).batch(games, groups, seed, (i) => { if (i > 0 && i % 500 === 0) console.error(`  ${i} of ${games} games`); });
+  const which = arg('resolver', season.DEFAULT_REAL_RESOLVER)!;
+  if (which !== 'tick' && which !== 'reference') { console.error(`--resolver must be tick or reference, not ${which}`); return 2; }
+  const batch = createRealGame(rulesId, { resolver: which }).batch(games, groups, seed, (i) => { if (i > 0 && i % 500 === 0) console.error(`  ${i} of ${games} games`); });
   const report = buildReport(loadTargets(ROOT, rulesId), batch.groups, {
-    build: 'working tree', paramsHash: 'engineParamTable defaults', resolverId: `reference ${resolver.REFERENCE_RESOLVER_VERSION}`, seeds: `master ${seed}`, games, seedGroups: groups,
+    build: 'working tree', paramsHash: 'engineParamTable defaults', resolverId: which === 'tick' ? `tick ${tickResolver.TICK_RESOLVER_VERSION} (all three real modules, starter content port)` : `reference ${resolver.REFERENCE_RESOLVER_VERSION}`, seeds: `master ${seed}`, games, seedGroups: groups,
   });
   const text = formatReport(report) + `\n(${((Date.now() - started) / 1000).toFixed(0)} s)\n`;
   const out = arg('out');
@@ -187,7 +190,7 @@ async function main(): Promise<number> {
     default:
       if (sub && delegated[sub]) return delegate(delegated[sub]);
       if (sub && later[sub]) { console.error(`'${sub}' is built in ${later[sub]}.`); return 2; }
-      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate, calibrate [--rules id --games n --groups n --seed 16hex --out f]');
+      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate, calibrate [--rules id --games n --groups n --seed 16hex --resolver tick|reference --out f]');
       console.error(`also: ${Object.keys(delegated).join(', ')} (each takes --help or see its cli.ts header)`);
       console.error(`later: ${Object.keys(later).join(', ')}`);
       return 2;
