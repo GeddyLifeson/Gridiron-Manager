@@ -24,7 +24,8 @@ describe('I4.1.1 the time a kicking unit takes to come on', () => {
   it('holds the snap until the unit is set, whatever the tempo asks for', () => {
     for (const seed of SEEDS(10)) {
       const base = planPresnap(world({ seed }), input({ tempo: 'hurry_up' }));
-      expect(base.snapS).toBeLessThan(8);
+      // The fixture's own walk from the huddle (J5.8.1 `alignTravelS`) is longer than the alerted punt unit's 8 s, shorter than the rest.
+      expect(base.snapS).toBeLessThan(unitSetS(unit({ unit: 'field_goal' }), P));
       for (const u of [unit(), unit({ unit: 'field_goal' }), unit({ alerted: false }), unit({ reversed: true })]) {
         const plan = planPresnap(world({ seed }), input({ tempo: 'hurry_up', unitChange: u }));
         expect(plan.snapS).toBeGreaterThanOrEqual(unitSetS(u, P) - 0.05);
@@ -35,8 +36,8 @@ describe('I4.1.1 the time a kicking unit takes to come on', () => {
   });
   it('a later unit leaves less play clock: alerted, then not alerted, then a change of mind', () => {
     const left = (u: UnitChange | null): number => planPresnap(world({ seed: 3 }), input({ tempo: 'hurry_up', unitChange: u })).playClockAtSnapTenths;
-    expect(left(unit())).toBeLessThan(left(null));
-    expect(left(unit({ alerted: false }))).toBeLessThan(left(unit()));
+    expect(left(unit({ unit: 'field_goal' }))).toBeLessThan(left(null));
+    expect(left(unit({ alerted: false }))).toBeLessThan(left(unit({ unit: 'field_goal' })));
     expect(left(unit({ reversed: true }))).toBeLessThan(left(unit({ alerted: false })));
     expect(left(unit({ alerted: false, reversed: true }))).toBeLessThan(left(unit({ reversed: true })));
   });

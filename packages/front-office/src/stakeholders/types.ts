@@ -32,6 +32,12 @@ export interface DeciderModel {
    * the level's calibration target (E4.3.1 acceptance 1, E4.7.2 acceptance 2). Not a bible number.
    */
   readonly hazardScale: number;
+  /**
+   * E4.3.3 as amended by MA-77: one multiplier on `in_season_factor` for this level, fitted so the share of
+   * firings made in season meets the level's target (pro 36%, F-stakeholders-0005; college about 56%,
+   * F-stakeholders-0006). Not a bible number.
+   */
+  readonly inSeasonScale: number;
 }
 
 /**

@@ -7,12 +7,16 @@ import {
   SLOTS_PER_TEAM, TICKS_PER_SECOND, issToZ,
   type Assignment, type PlayPoint, type TickWorld, type TruthEventOf,
 } from '@gm/schema';
-import { callDeliveryChance, perceptionParams, type PerceptionParams } from '../perception/index.ts';
+import { callDeliveryChance, perceptionParams, type PerceptionConfig, type PerceptionParams } from '../perception/index.ts';
 type FoulPhase = TruthEventOf<'foul_committed'>['phase'];
 import { drawTeam, type TeamDraws } from './draws.ts';
+
+/** Internal skill scale points per standard deviation (schema `issToZ`). */
+const ISS_PER_Z = 10;
 import {
-  audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
-  disguiseQualityOf, falseStartChance, holdEndS, huddleDeliveryChance, offenseStartS, protectionRecognitionChance,
+  alignTravelS, audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
+  disguiseQualityOf, falseStartChance, holdEndS, huddleDeliveryChance, noHuddleDeliveryChance, offenseStartS, protectionRecognitionChance,
+  relayGarbleChance, relayTimeS, type RelayInput,
   readCorrectChance, runOnS, unitLateS, unitSetS, snapMotionSdS, substitutionErrorChance, targetClockAtSnapS, tightenSplit, unblockedAfterSet,
   type DefensiveForm, type Tempo, type Venue,
   type UnitChange,
@@ -21,11 +25,23 @@ import { presnapParams, type PresnapFoulId, type PresnapParams } from './params.
 
 // ------------------------------------------------------------------------------------------- inputs
 
-export type PictureTrigger = 'empty' | 'bunch' | 'motion' | 'shift' | 'tempo';
+/**
+ * What a check keys on. `formation` is a look the content has already found in the offense's set formation
+ * (trips, a wing, heavy personnel: G2.5.1 looks the engine does not classify itself): it shows when the offense
+ * is aligned.
+ */
+export type PictureTrigger = 'empty' | 'bunch' | 'motion' | 'shift' | 'tempo' | 'formation';
 export type ReadTrigger = 'box_loaded' | 'one_high' | 'two_high' | 'zero' | 'man' | 'zone' | 'pressure';
 
-/** A defensive check rule installed in the week (G2, F11, J5.5.2). Checked in priority order. */
-export interface DefensiveCheck { readonly name: string; readonly trigger: PictureTrigger }
+/**
+ * A defensive check rule installed in the week (G2, F11, J5.5.2). Checked in priority order. `patch` is what the
+ * check changes (G2.5.1): each named defender plays the given assignment instead, walking to its alignment when the
+ * check is made, if the check is completed before the snap and reaches him. Absent: the check changes nothing on
+ * the field (timing and errors only).
+ */
+export interface DefensiveCheck { readonly name: string; readonly trigger: PictureTrigger; readonly patch?: readonly CheckPatch[] }
+/** One defender's part of a check (team slot 0 to 10), with his perception settings for the new job when they differ. */
+export interface CheckPatch { readonly teamSlot: number; readonly assignment: Assignment; readonly perception?: PerceptionConfig }
 /** A packaged call or audible at the line (I2.5.1, J5.4.3). `boxAtLeast` is read by `box_loaded`. */
 export interface Audible { readonly name: string; readonly trigger: ReadTrigger; readonly kind: 'kill' | 'audible'; readonly boxAtLeast?: number }
 /** One disguising defender: where he shows before he stems to his true spot (J5.5.1). */
@@ -44,6 +60,8 @@ export interface PresnapSide {
   readonly signalCaller: number;
   /** Crowd noise this side's players hear, 0 to 1 (J12.6.1). */
   readonly noise: number;
+  /** J12.8.1 residual familiarity: a z bonus to this side's communication at its home venue. Absent: 0. */
+  readonly familiarityZ?: number;
 }
 
 export interface PresnapDefense extends PresnapSide {
@@ -98,6 +116,12 @@ export interface PresnapInput {
    * and the ball is in his hands at tick 0.
    */
   readonly snap?: SnapSpec | null;
+  /**
+   * I2.1.1 stages 1 to 3 (spotting, decision, relay) for a play called from the sideline: they run on the play
+   * clock before the huddle, so `playClockStartTenths` is then the reading when the ball became dead. Null or
+   * absent: the phase starts at `playClockStartTenths` with the call already in.
+   */
+  readonly relay?: RelayInput | null;
   /** Test switch for J5.4.2 acceptance 1 ("errors disabled"): every recognition and delivery succeeds. Draws are still taken. */
   readonly errorsDisabled?: boolean;
 }
@@ -158,7 +182,8 @@ export interface ProtectionResult {
   readonly dropped: boolean;
 }
 
-export interface CheckResult { readonly name: string; readonly fired: boolean; readonly completed: boolean; readonly atS: number }
+/** `patched`: defensive team slots that play the check's patch (completed, and the check reached them). */
+export interface CheckResult { readonly name: string; readonly fired: boolean; readonly completed: boolean; readonly atS: number; readonly patched: readonly number[] }
 
 export interface PresnapPlan {
   /** Tick 0 is the snap (J1.3.2). */
@@ -188,6 +213,11 @@ export interface PresnapPlan {
   /** Mental errors to emit: slot and form (J4.5.3). */
   readonly mentalErrors: readonly { readonly slot: number; readonly cause: 'knowledge' | 'communication'; readonly form: string }[];
   readonly offenseSetS: number;
+  /** Seconds the call took to reach the huddle (I2.1.1 stages 1 to 3) and how many times it was sent again (I2.4.1 garble). 0 without a relay. */
+  readonly relayS: number;
+  readonly relayRepeats: number;
+  /** Seconds left on the play clock when the offense is set (J5.8.1), the K1.5.1 time to fix a teammate. */
+  readonly setClockLeftS: number;
   readonly draws: readonly [TeamDraws, TeamDraws];
 }
 
@@ -241,7 +271,12 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const mentalErrors: { slot: number; cause: 'knowledge' | 'communication'; form: string }[] = [];
   const fouls: PlannedFoul[] = [];
   const setPeriod = rules.num('formation.shift_set_seconds');
-  const clockStartS = input.playClockStartTenths / TICKS_PER_SECOND;
+  // I2.1.1 stages 1 to 3: the call's way in runs on the play clock before the huddle; noise garbles it (I2.4.1).
+  const relay = input.relay
+    ? relayTimeS(input.relay, O.noise, relayGarbleChance(O.noise, input.callWords, p), dO.get('relay', 0, 0), dO.get('relay', 0, 1), dO.get('relay', 0, 2), math, p)
+    : { totalS: 0, repeats: 0 };
+  const clockStartTenths = Math.max(0, input.playClockStartTenths - Math.round(relay.totalS * TICKS_PER_SECOND));
+  const clockStartS = clockStartTenths / TICKS_PER_SECOND;
   const minPy = (0 - w.frame.originY) * w.frame.attackDir, maxPy = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
   const loPy = Math.min(minPy, maxPy), hiPy = Math.max(minPy, maxPy);
 
@@ -249,6 +284,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const missing: number[] = [];
   let offenseExtra = false, defenseExtra = false;
   const subDur = [0, 0];
+  let subTravelS = 0;
   for (const [side, S, dr] of [[0, O, dO], [1, D, dD]] as const) {
     const pErr = substitutionErrorChance(input.tempo, S.callLateS + (side === 0 ? unitLateS(input.unitChange, p) : 0), S.packageReadiness, p);
     for (const ts of S.substituted) {
@@ -256,6 +292,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       const sidelinePy = a.preSnap.align.py >= 0 ? hiPy : loPy;
       const d = Math.abs(sidelinePy - a.preSnap.align.py) + Math.abs(a.preSnap.align.px);
       subDur[side] = Math.max(subDur[side]!, runOnS(d, p));
+      if (side === 0) subTravelS = Math.max(subTravelS, alignTravelS(d, p));
       const u = dr.get('substitution', ts);
       if (!ok && u < pErr) {
         if (u < pErr * p['sub.extraShare']!) { if (side === 0) offenseExtra = true; else defenseExtra = true; }
@@ -289,12 +326,11 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
 
   // --- J5.8.1 offense lane: break, align and set.
   const breakS = input.tempo === 'huddle' ? p['huddle.breakS']! : 0;
-  const jog = p['sub.jogSpeedYps']!;
-  let alignDur = subDur[0]!;
+  let alignDur = Math.max(subDur[0]!, subTravelS);
   for (let s = 0; s < SLOTS_PER_TEAM; s++) {
     const dx = spot[s]!.px - (w.players.posX[s]! - w.frame.originX) * w.frame.attackDir;
     const dy = spot[s]!.py - (w.players.posY[s]! - w.frame.originY) * w.frame.attackDir;
-    alignDur = Math.max(alignDur, math.sqrt(dx * dx + dy * dy) / jog);
+    alignDur = Math.max(alignDur, alignTravelS(math.sqrt(dx * dx + dy * dy), p));
   }
   // I4.1.1 a kicking unit is set no sooner than its dead-ball-to-set time (it is "set" after the set period).
   const unitS = input.unitChange ? unitSetS(input.unitChange, p) : 0;
@@ -314,8 +350,9 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   if (alignEnd > clockStartS) { delay = true; snapS = clockStartS; }
   else snapS = Math.min(Math.max(targetS, readyS, Math.min(holdEnd, clockStartS)), clockStartS - marginS);
   if (!delay && snapS < alignEnd) snapS = alignEnd;
-  // Snap on a whole tick.
-  const N = Math.max(1, Math.round(snapS * TICKS_PER_SECOND));
+  // Snap on a whole tick: the first one at or after the moment chosen, so a snap that waits for the set period
+  // (J5.8.1, B4.3.3) is never rounded to a tick before the offense is set. The clock's own readings are whole ticks.
+  const N = Math.max(1, Math.ceil(snapS * TICKS_PER_SECOND - 1e-9));
   snapS = N / TICKS_PER_SECOND;
   const tickAt = (s: number) => -N + Math.round(s * TICKS_PER_SECOND);
   log.push({ side: 0, action: 'align_and_set', name: 'align_and_set', startS: breakS, endS: readyS, status: delay ? 'unfinished' : readyS <= snapS ? 'done' : 'unfinished' });
@@ -325,7 +362,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const motionSlot = O.motion ? O.motion.teamSlot : -1;
   const motionLead = O.motion ? O.motion.leadS : 0;
   const shiftDur = O.shift ? Math.max(...O.shift.map((m) => {
-    const a = spot[m.teamSlot]!; const dx = m.to.px - a.px, dy = m.to.py - a.py; return math.sqrt(dx * dx + dy * dy) / jog;
+    const a = spot[m.teamSlot]!; const dx = m.to.px - a.px, dy = m.to.py - a.py; return alignTravelS(math.sqrt(dx * dx + dy * dy), p);
   })) + setPeriod : 0;
   const wanted: { action: LaneAction; dur: number; prio: number }[] = [
     { action: 'protection', dur: p['prot.setS']!, prio: 0 },
@@ -448,7 +485,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   let rL = 0, rR = 0, sL = 0, sR = 0;
   for (const s of rushers) { if (spot[s]!.py >= 0) rL++; else rR++; }
   for (const s of defSlots) if (shownDepth(s) <= p['prot.rusherDepthYd']!) { if (shownPy(s) >= 0) sL++; else sR++; }
-  const pRec = protectionRecognitionChance(iss(w, identifier, 'protection_calls'), disguiseQuality, D.simulatedPressure ? 1 : 0, O.noise, math, p);
+  const pRec = protectionRecognitionChance(iss(w, identifier, 'protection_calls') + (O.familiarityZ ?? 0) * ISS_PER_Z, disguiseQuality, D.simulatedPressure ? 1 : 0, O.noise, math, p);
   const recognized = ok || dO.get('protection', identifier) < pRec;
   const protDropped = !kept.has('protection');
   // The spare (centre) goes to the side the identifier believes is heavier.
@@ -468,9 +505,13 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     const side = s < SLOTS_PER_TEAM ? 0 : 1, ts = s % SLOTS_PER_TEAM, S = side === 0 ? O : D, dr = side === 0 ? dO : dD;
     const caller = side * SLOTS_PER_TEAM + S.signalCaller;
     const dist = Math.abs(spot[s]!.py - spot[caller]!.py) + Math.abs(spot[s]!.px - spot[caller]!.px);
-    const live = callDeliveryChance(S.noise, dist, issToZ(iss(w, caller, 'football_intelligence')), issToZ(iss(w, s, 'football_intelligence')), 0, pp);
+    const fam = S.familiarityZ ?? 0;
+    const live = callDeliveryChance(S.noise, dist, issToZ(iss(w, caller, 'football_intelligence')) + fam, issToZ(iss(w, s, 'football_intelligence')) + fam, 0, pp);
+    // J5.1.3: the play call in a huddle is heard near 1 whatever the crowd; without one it comes by signal and the
+    // quarterback's voice at the line, which noise cuts. `live` (J3.6.1) is the chance of a call made at the line.
     const hud = input.tempo === 'huddle'
-      ? huddleDeliveryChance(input.callWords, ts / (SLOTS_PER_TEAM - 1), iss(w, caller, 'clock_and_situation_command'), p) : live;
+      ? huddleDeliveryChance(input.callWords, ts / (SLOTS_PER_TEAM - 1), iss(w, caller, 'clock_and_situation_command'), p)
+      : noHuddleDeliveryChance(S.noise, p);
     // The signal caller hears the sideline on his helmet radio until it cuts off (B2.5.1); after that he reads signals.
     const callerHears = input.tempo === 'huddle' || radioOk || dr.get('callDelivery', ts, 0) < live;
     const r: [boolean, boolean, boolean] = s === caller
@@ -498,6 +539,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     empty: backs.length === 0 ? alignEnd : null,
     bunch: bunch ? alignEnd : null,
     tempo: input.tempo !== 'huddle' ? alignEnd : null,
+    formation: alignEnd,
     shift: startOf.has('shift') ? startOf.get('shift')! : null,
     motion: motionStartS >= 0 ? motionStartS : null,
   };
@@ -506,13 +548,23 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const checks: CheckResult[] = [];
   let anyCheck = false;
   const recognizedCheck = ok || dD.get('defensiveCheck', D.signalCaller) < math.logistic(p['check.recognizeIntercept']! + p['check.recognizePerZ']! * issToZ(ci));
+  // G2.5.1: a completed check moves the defenders it names to their new spots when it is made; one who did not
+  // hear it stays where he was and plays the old call (the missed_check error below).
+  const patchAt = new Map<number, { readonly tick: number; readonly px: number; readonly py: number }>();
   for (const c of D.checks) {
     const seen = picture[c.trigger];
-    if (anyCheck || seen === null || !recognizedCheck) { checks.push({ name: c.name, fired: false, completed: false, atS: -1 }); continue; }
+    if (anyCheck || seen === null || !recognizedCheck) { checks.push({ name: c.name, fired: false, completed: false, atS: -1, patched: [] }); continue; }
     anyCheck = true;
     const st = seen + checkRecognitionS(ci, p), end = st + checkDurationS(ci, p);
     const completed = end <= snapS;
-    checks.push({ name: c.name, fired: true, completed, atS: st });
+    const patched: number[] = [];
+    if (completed) for (const x of c.patch ?? []) {
+      const s = SLOTS_PER_TEAM + x.teamSlot;
+      if (x.teamSlot < 0 || x.teamSlot >= SLOTS_PER_TEAM || !received[s]![1] || missing.includes(s) || patched.includes(x.teamSlot)) continue;
+      patched.push(x.teamSlot);
+      patchAt.set(s, { tick: tickAt(end), px: x.assignment.preSnap.align.px, py: x.assignment.preSnap.align.py });
+    }
+    checks.push({ name: c.name, fired: true, completed, atS: st, patched });
     log.push({ side: 1, action: 'check', name: c.name, startS: st, endS: completed ? end : snapS, status: completed ? 'done' : st < snapS ? 'unfinished' : 'dropped' });
     if (completed) for (const s of defSlots) if (!received[s]![1]) mentalErrors.push({ slot: s, cause: 'communication', form: 'missed_check' });
   }
@@ -546,6 +598,14 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       }
     }
     list.sort((a, b) => a.fromTick - b.fromTick);
+    const moved = patchAt.get(s);
+    if (moved !== undefined) {
+      // Anything planned after the check (a stem to the true spot) now goes to the checked spot instead.
+      for (let k = 0; k < list.length; k++) if (list[k]!.fromTick > moved.tick) list[k] = { fromTick: list[k]!.fromTick, px: moved.px, py: moved.py };
+      let at = list.length;
+      while (at > 0 && list[at - 1]!.fromTick > moved.tick) at--;
+      list.splice(at, 0, { fromTick: moved.tick, px: moved.px, py: moved.py });
+    }
     targets.push(list);
   }
 
@@ -578,7 +638,8 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       const interior = a.preSnap.onLine && spot[s]!.py > lineMinPy && spot[s]!.py < lineMaxPy;
       const base = interior ? p['foul.baseFalseStartLine']! : p['foul.baseFalseStartOther']!;
       const pr = falseStartChance(base, iss(w, s, 'foul_discipline'), input.venue, {
-        noise: O.noise, hardCountOwn: input.hardCount, defensiveMovement: stemming, rushedSnap: input.tempo === 'hurry_up',
+        // I2.5.3: a silent count removes the crowd from the line's false-start risk (they move on the centre, not a voice).
+        noise: input.silentCount ? 0 : O.noise, hardCountOwn: input.hardCount, defensiveMovement: stemming, rushedSnap: input.tempo === 'hurry_up',
         longCount: input.longCount, fatigue: w.players.fatigueNow[s]!,
       }, math, p);
       const u = w.streams('foul', [sit.gameId, sit.playNumber, w.slots[s]!.playerId, 'false_start']).uniform();
@@ -607,10 +668,10 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   }
 
   return {
-    firstTick: startTick, playClockStartTenths: input.playClockStartTenths, playClockAtSnapTenths: input.playClockStartTenths - N,
+    firstTick: startTick, playClockStartTenths: clockStartTenths, playClockAtSnapTenths: clockStartTenths - N,
     snapS, targets, received, log, fouls, qb, protection, checks, audible, disguiseQuality, startS,
     follower, motionSlot, motionStartTick: motionStartS >= 0 ? tickAt(motionStartS) : 1, missing, mentalErrors,
-    offenseSetS: readyS, draws: [dO, dD],
+    offenseSetS: readyS, relayS: relay.totalS, relayRepeats: relay.repeats, setClockLeftS: Math.max(0, clockStartS - readyS), draws: [dO, dD],
   };
 }
 

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { PlayerView } from '../../src/perception/view.ts';
 import { ParamFile, SLOT_COUNT, type TickStage, type TickWorld } from '@gm/schema';
 import {
   createPerception, keyDelayS, attentionCapacity, readThreshold, keyWeight, anticipationChance, coverageRecognitionS, callDeliveryChance,
@@ -136,7 +137,7 @@ describe('J3.1.1 the perceived world', () => {
     expect(JSON.stringify(see.view(VIEWER))).toBe(before);
     // The view's methods are the contract's and no more.
     expect(Object.getOwnPropertyNames(Object.getPrototypeOf(see.view(VIEWER))).sort()).toEqual(
-      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'playRead', 'receiverNumber', 'setSide'].sort());
+      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'landingPoint', 'lockedWith', 'playRead', 'receiverNumber', 'setSide', 'sidelines'].sort());
   });
   it('starts from the pre-snap picture and drops a track not refreshed for 1.5 s (edge cases)', () => {
     const { w, see } = stage();
@@ -293,6 +294,45 @@ describe('J3.4 gaze', () => {
     expect(turned[0]).toBeCloseTo(0.6, 9); expect(turned[1]).toBeCloseTo(1.2, 9);
     expect(turned[2]).toBeCloseTo(Math.PI / 2, 6); expect(turned[4]).toBeCloseTo(Math.PI / 2, 6);
   });
+  it('starts a player configured with his eyes on the ball looking at it, whichever way his hips face', () => {
+    const { w, see } = stage();
+    place(w, 0, 5, -20); w.ball.kind = 'held'; w.ball.carrierSlot = 0; w.ball.x = w.players.posX[0]!; w.ball.y = w.players.posY[0]!;
+    facing(w, VIEWER, 180);
+    see.configure(VIEWER, { gaze: 'ball' });
+    runTicks(w, [see.stage], 8);
+    const g = w.players.gazeRad[VIEWER]! * w.frame.attackDir;
+    expect(Math.abs(Math.abs(g) - Math.PI / 2)).toBeLessThan(0.05);
+    see.configure(VIEWER, { gaze: 'hips' });
+    const loop = createTickLoop([{ name: 'perceive', run: see.stage.run }]);
+    for (let i = 0; i < 8; i++) loop.step(w);
+    expect(w.players.gazeRad[VIEWER]).toBeCloseTo(w.players.headingRad[VIEWER]!, 9);
+  });
+  it('a player configured to watch his key keeps his eyes on that player when his hips turn away', () => {
+    const { w, see } = stage();
+    // His man is 90 degrees to his side. A man defender who turns to run must not lose him.
+    place(w, 0, 5, -20); facing(w, VIEWER, 180);
+    see.configure(VIEWER, { keys: [0], gaze: 'key' });
+    runTicks(w, [see.stage], 8);
+    const want = Math.atan2(w.players.posY[0]! - w.players.posY[VIEWER]!, w.players.posX[0]! - w.players.posX[VIEWER]!);
+    let off = Math.abs(w.players.gazeRad[VIEWER]! - want); if (off > Math.PI) off = 2 * Math.PI - off;
+    expect(off).toBeLessThan(0.05);
+    // With no key to watch, the same setting falls back to the hips.
+    const b = stage();
+    facing(b.w, VIEWER, 180);
+    b.see.configure(VIEWER, { keys: [], gaze: 'key' });
+    runTicks(b.w, [b.see.stage], 8);
+    expect(b.w.players.gazeRad[VIEWER]).toBeCloseTo(b.w.players.headingRad[VIEWER]!, 9);
+  });
+  it('a player told to find a ball he cannot see turns his eyes back to where the play started', () => {
+    const { w, see } = stage();
+    // The ball is in the air directly behind him: outside his field of view, so he has no ball to look at.
+    place(w, VIEWER, 20, 0); facing(w, VIEWER, 0);
+    w.ball.kind = 'passInFlight'; w.ball.carrierSlot = -1; w.ball.x = w.frame.originX; w.ball.y = w.frame.originY;
+    const start = w.players.gazeRad[VIEWER]!;
+    see.gazeAtBall(VIEWER);
+    runTicks(w, [see.stage], 3);
+    expect(w.players.gazeRad[VIEWER]).not.toBeCloseTo(start, 3);
+  });
   it('follows a player as last perceived, and the hips by default', () => {
     const { w, see } = stage();
     place(w, 0, 5, -20);
@@ -309,6 +349,15 @@ describe('J3.4 gaze', () => {
 });
 
 describe('J3.5 the ball', () => {
+  it('sees a held ball moving with the man who holds it', () => {
+    const { w, see } = stage({}, { test: { fixedDelayS: 0, fullAttention: true, noNoise: true } });
+    place(w, 0, -4, 0);
+    w.ball.kind = 'held'; w.ball.carrierSlot = 0; w.ball.x = w.players.posX[0]!; w.ball.y = w.players.posY[0]!;
+    w.players.velX[0] = 3 * w.frame.attackDir; w.players.velY[0] = -5 * w.frame.attackDir;
+    runTicks(w, [see.stage], 3);
+    const b = see.view(VIEWER).ball()!;
+    expect([b.velPx, b.velPy]).toEqual([3, -5]);
+  });
   it('believes the old carrier until the handoff has been seen (J3.5.2)', () => {
     const { w, see } = stage();
     place(w, 0, -4, 0); place(w, 1, -4, 1);
@@ -344,7 +393,19 @@ describe('J3.5 the ball', () => {
       if (x.tick === 5) { x.ball.kind = 'passInFlight'; see.notifyBallInAir(x, 0, landX, landY, 20); }
       err[x.tick] = see.landingEstimate(x, VIEWER, out) ? Math.hypot(out[0]! - 20, out[1]! - 6) : null;
       late[x.tick] = see.landingEstimate(x, 12, out);
+      // What he acts on is the same estimate, in his view, from the tick he has one.
+      const lp = (see.view(VIEWER) as PlayerView).landingPoint();
+      if (x.tick >= 9 && x.tick <= 20) { expect(lp).not.toBeNull(); expect(Math.hypot(lp!.px - out[0]!, lp!.py - out[1]!) >= 0).toBe(true); expect(Math.hypot(lp!.px - 20, lp!.py - 6)).toBeLessThanOrEqual((err[x.tick - 1] ?? Infinity) + 1e-9); }
+      if (x.tick <= 6) expect(lp).toBeNull();
     });
+    // The ball is caught or down: he has no landing point any more.
+    w.ball.kind = 'held'; w.ball.carrierSlot = 0;
+    runTicks(w, [see.stage], 1);
+    expect((see.view(VIEWER) as PlayerView).landingPoint()).toBeNull();
+    // He knows where the sidelines are, in his own frame.
+    const sl = (see.view(VIEWER) as PlayerView).sidelines();
+    expect(sl.hi - sl.lo).toBeCloseTo(w.geometry.widthYd, 9);
+    expect(sl.lo).toBeLessThan(0); expect(sl.hi).toBeGreaterThan(0);
     expect(err[7]).toBeNull(); expect(err[8]).not.toBeNull(); // 0.25 s after release: 3 ticks
     expect(late[9]).toBe(false); expect(late[10]).toBe(true); // 0.2 s more without eyes on the passer
     expect(err[8]!).toBeGreaterThan(0);
@@ -392,6 +453,18 @@ describe('receiver numbers and determinism', () => {
     runTicks(w, [see.stage], 1);
     const v = see.view(VIEWER);
     expect([1, 2, 3, 4, 5, 6].map((s) => v.receiverNumber(s))).toEqual([1, 2, 3, 1, 2, 0]);
+  });
+  it('numbers them again at the snap, from where they lined up and not from the huddle', () => {
+    const { w, see } = stage();
+    for (const s of [1, 2, 3]) { w.players.eligible[s] = 1; place(w, s, -8, 0.5 * s); }
+    w.tick = -30;
+    const loop = createTickLoop([see.stage]);
+    loop.begin(w);
+    loop.step(w);
+    expect([1, 2, 3].map((s) => see.view(VIEWER).receiverNumber(s))).toEqual([3, 2, 1]);
+    place(w, 1, -1, 20); place(w, 2, -1, 12); place(w, 3, -1, -9);
+    while (w.tick < 1) loop.step(w);
+    expect([1, 2, 3].map((s) => see.view(VIEWER).receiverNumber(s))).toEqual([1, 2, 1]);
   });
   function trace(seed: number) {
     const w = fixtureWorld({ seed }), see = createPerception(), move = createMovement(), out: string[] = [];

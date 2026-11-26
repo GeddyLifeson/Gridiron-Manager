@@ -189,4 +189,5 @@ export const samples: Record<string, unknown> = {
   },
   'world:KeyBinding': { actionId: 'advance_day', context: 'office', defaultKey: 'Space', userKey: null },
   'world:TemplateText': { key: 'news.game_result', text: '{home} to {away}', levelVariants: {}, rungVariants: {}, parameters: ['home', 'away'] },
+  'world:SystemStateEntry': { system: 'compliance', state: '{"cases":{"$map":[[7,{"stage":"open","parties":{"$set":[3,9]}}]]},"nextId":8}' },
 };

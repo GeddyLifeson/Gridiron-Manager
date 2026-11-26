@@ -82,3 +82,49 @@ describe('fines are paid (MO-01)', () => {
     expect(money.clubMoneyOf(w).payments.map((p) => p.reason)).toEqual(['fine:case:1']);
   });
 });
+
+describe('generated cap after the rules year (C6.2.1 rule 5, CBA Art. 12 s.6(c))', () => {
+  const w = world();
+  const pro = levelTeams(w, 'pro')[0]!;
+  const rulesCap = PRO_LOOKUP(`cap.amount_${RULES_YEAR}`)! * money.CENTS_PER_DOLLAR;
+  const read = (k: string) => PRO_LOOKUP(k);
+
+  it('keeps the rules cap at and before the rules year (MO-02), and has a cap for every year after it', () => {
+    expect(cap(w, pro, 1950)).toBe(rulesCap);
+    expect(cap(w, pro, RULES_YEAR)).toBe(rulesCap);
+    for (let y = RULES_YEAR + 1; y <= RULES_YEAR + 40; y++) {
+      const c = cap(w, pro, y)!;
+      expect(Number.isInteger(c / money.CENTS_PER_DOLLAR)).toBe(true);
+      expect(c).toBe(money.generatedCapCents(w, read, RULES_YEAR, rulesCap, y));
+    }
+    expect(cap(w, levelTeams(w, 'college')[0]!, 2030)).toBeUndefined();
+  });
+
+  it('moves the cap with projected revenue: each year is last year times one plus that year\'s growth draw', () => {
+    for (let y = RULES_YEAR + 1; y <= RULES_YEAR + 10; y++) {
+      const p = money.capProjection(w, read, RULES_YEAR, rulesCap, y);
+      expect(p.revenueIndex).toBeCloseTo(money.revenueIndex(w, RULES_YEAR, y - 1) * (1 + money.revenueGrowth(w, y)), 12);
+      expect(Math.abs(p.capCents - rulesCap * p.revenueIndex)).toBeLessThanOrEqual(money.CENTS_PER_DOLLAR / 2);
+      expect(p.trueUpCents).toBe(0);
+    }
+  });
+
+  it('draws growth near the bible\'s 7% mean with a 3-point spread, the same for every reader, different by seed', () => {
+    const g = Array.from({ length: 200 }, (_, i) => money.revenueGrowth(w, RULES_YEAR + 1 + i));
+    const mean = g.reduce((a, x) => a + x, 0) / g.length;
+    const sd = Math.sqrt(g.reduce((a, x) => a + (x - mean) ** 2, 0) / (g.length - 1));
+    expect(Math.abs(mean - money.param('revenue.growthMean'))).toBeLessThan(0.01);
+    expect(Math.abs(sd - money.param('revenue.growthSd'))).toBeLessThan(0.01);
+    expect(money.revenueGrowth(w, 2031)).toBe(money.revenueGrowth(world(), 2031));
+    const other = loop.createWorld({ setup: setup({ seedHex: 'ab'.repeat(8) }), content, names: NAMES, eventTypes: turnover.TURNOVER_EVENT_TYPES });
+    expect(money.revenueGrowth(other, 2031)).not.toBe(money.revenueGrowth(w, 2031));
+  });
+
+  it('reads the Player Cost Amount share from the Art. 12 keys: equal buckets fall under the floor, so 48% of AR', () => {
+    expect(money.playerCostShare(read)).toBe(PRO_LOOKUP('cap.player_cost_floor_pct_ar')! / 100);
+    expect(money.playerCostShare(() => undefined)).toBeUndefined();
+    // A mix all in League Media (55%) sits over the ceiling and is held at 48.5%.
+    const high = (k: string) => (k === 'cap.player_cost_ventures_pct' || k === 'cap.player_cost_local_pct' ? 55 : read(k));
+    expect(money.playerCostShare(high)).toBe(PRO_LOOKUP('cap.player_cost_ceiling_pct_ar')! / 100);
+  });
+});

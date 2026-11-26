@@ -17,6 +17,11 @@ export const DRAW_TYPES = [
   { name: 'defensiveCheck', count: 1, normal: false },
   { name: 'disguiseTiming', count: 1, normal: true },
   { name: 'snapMotion', count: 1, normal: true },
+  /**
+   * I2.1.1 and I2.4.1, read at slot 0 only: how late the call was made, and two garble draws (a call sent twice
+   * can be garbled twice). Last in the order, so the draws above are the same as before this type existed.
+   */
+  { name: 'relay', count: 3, normal: false },
 ] as const;
 export type DrawType = (typeof DRAW_TYPES)[number]['name'];
 

@@ -1,7 +1,7 @@
 // What the career root needs from the season (handoff item D). The host (App.tsx) adapts the app-services
 // season session to this port, so the screens never hold football logic (P1.2.2) and tests can drive the
 // root with a scripted season.
-import type { gameCallingCommands, presentationLive } from '@gm/app-services';
+import type { gameCallingCommands, newgame, presentationLive } from '@gm/app-services';
 import type { RouteSources } from '../routes.ts';
 
 export type GameSession = gameCallingCommands.GameCallingSession;
@@ -54,4 +54,19 @@ export interface CareerPort {
   names(session: GameSession): { playerName(id: number): string; teamName(side: 0 | 1): string };
   /** Route sources of the hubs (app-root/sources), fed from the running season; none for a scripted season. */
   sources?(): Partial<RouteSources>;
+  /**
+   * The generated world behind the career and the seat in it, when the career started from the new-game
+   * picker; absent or null for a quick start (no world). The team screens read it through the observer.
+   */
+  seatWorld?(): SeatWorld | null;
+}
+
+/** The world the seat lives in, the seat's world team id, the user's person id, and the league rules file. */
+export interface SeatWorld {
+  readonly world: newgame.StartedWorld;
+  readonly teamId: number;
+  readonly userPersonId: number | null;
+  readonly level: 'pro' | 'college';
+  /** The league rules file the season was built from (roster limits, C5). */
+  readonly leagueRules: { readonly values?: readonly { readonly key: string; readonly value: unknown; readonly factId?: string }[] } | undefined;
 }

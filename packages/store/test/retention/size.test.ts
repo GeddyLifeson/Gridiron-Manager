@@ -85,7 +85,9 @@ describe('30 seasons through the archive step', () => {
 
 describe('measured row sizes from the phase 1 engine game', () => {
   it('measures real play rows and game inputs, stored and compressed, and projects season 30', async () => {
-    const g = realGame.createRealGame('pro_2026');
+    // Reference resolver: the untuned tick engine plays about 155 pro plays a game (real: 124), which would
+    // overstate the rows. Retake this on the tick path once the stat gate passes.
+    const g = realGame.createRealGame('pro_2026', { resolver: 'reference' });
     const games = 3;
     let plays = 0; let rawPlayBytes = 0; let zPlayBytes = 0; let rawInput = 0; let zInput = 0;
     const records: unknown[] = [];

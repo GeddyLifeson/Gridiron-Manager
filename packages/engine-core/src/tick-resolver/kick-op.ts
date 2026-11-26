@@ -141,9 +141,13 @@ export function createKickOp(perception: Perception): KickOp {
     const d = resolvePunt(beginKickFlight(w), {
       zLeg: z(w, kicker, 'leg_strength_punt'), zHang: z(w, kicker, 'hang_time'), zDirectional: z(w, kicker, 'directional_punting'),
       type: aim === 'left' || aim === 'right' ? 'directional' : 'distance', pressure: press,
+      toGoalYd: dir === 1 ? w.geometry.goalLineEastX - w.frame.originX : w.frame.originX - w.geometry.goalLineWestX,
     }, p);
+    // J9.5.1 draws the gross distance, which is counted from the line of scrimmage: the ball also has to cover the
+    // punter's depth behind the line. Launching the drawn distance from his foot made every punt his depth short.
     const behindLine = -(w.ball.x - w.frame.originX) * dir;
-    launch(w, 'punt', puntLaunch(w.ball.x, w.ball.y, dir, d, aimLat(w), p), p['punt.dragPerYd']!, d.spiral, d.bias, false, d.distYd > behindLine);
+    const fromFoot = { ...d, distYd: d.distYd + (behindLine > 0 ? behindLine : 0) };
+    launch(w, 'punt', puntLaunch(w.ball.x, w.ball.y, dir, fromFoot, aimLat(w), p), p['punt.dragPerYd']!, d.spiral, d.bias, false, d.distYd > 0);
     if (d.shank) w.emit({ type: 'detail', t: roundSimS(w.tick * TICK_S), code: 'kickOp.shank', playerIds: [w.slots[kicker]!.playerId], spot: null, value: null });
   };
 
