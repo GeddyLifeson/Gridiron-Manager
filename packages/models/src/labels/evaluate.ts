@@ -13,6 +13,18 @@ import { LABEL_PARAMS as P } from './params.ts';
 /** Season position of a date as a real number (year plus day fraction). */
 export function seasonTime(d: WorldDate): number { return d.seasonYear + d.dayIndex / P.daysPerSeasonYear; }
 
+/** Whole days from the calendar origin; ages are taken in whole days so weights are exact and cacheable. */
+export function absDay(d: WorldDate): number { return d.seasonYear * P.daysPerSeasonYear + d.dayIndex; }
+
+const weightMemo = new Map<string, number>();
+/** N2.8.1 rule 2 weight of evidence `ageDays` old. */
+export function weightForAge(ageDays: number, halfLifeSeasons: number): number {
+  const k = `${ageDays}|${halfLifeSeasons}`;
+  let w = weightMemo.get(k);
+  if (w === undefined) { w = decayWeight(ageDays / P.daysPerSeasonYear, halfLifeSeasons); weightMemo.set(k, w); }
+  return w;
+}
+
 const ALL_LEVELS = '*';
 
 /** Population rates by level and season for one label (X2.2.1 rules 1 and 3). */
@@ -39,8 +51,8 @@ export interface EvalContext {
   /** Level of a competition id; rows with no competition use the all-level baseline. */
   readonly levelOf?: (competitionId: number) => string | undefined;
   readonly baseline: Baseline;
-  /** Original id to the id of the row that reversed it (X2.1.3); applied from the reversal onward. */
-  readonly reversedBy?: ReadonlyMap<number, number>;
+  /** Original id to the row that reversed it (X2.1.3); applied from the reversal onward. */
+  readonly reversedBy?: ReadonlyMap<number, ReversalRef>;
   readonly origin?: PersonOrigin;
   /** Subject is out of football: held labels freeze and their weight keeps falling (X2.2.2 rule 5). */
   readonly outOfFootball?: boolean;
@@ -102,10 +114,27 @@ export function buildBaseline(def: LabelDef, rows: readonly WorldEvent[], levelO
   };
 }
 
+/** The reversing row of an original (`reversalMap`). */
+export interface ReversalRef { readonly id: number; readonly date: WorldDate }
+
+/**
+ * Rows grouped by the subjects they are evidence about for a label, in log order. Pass a subject's list to
+ * `evaluateLabel` instead of the whole log: the result is the same and the cost is the subject's rows.
+ */
+export function rowsBySubject(def: LabelDef, rows: readonly WorldEvent[]): Map<number, WorldEvent[]> {
+  const out = new Map<number, WorldEvent[]>();
+  for (const e of rows) for (const s of subjectsOf(def, e)) {
+    if ((matchCount(def.positive, def.subjectBy, s, e) ?? 1) + (matchCount(def.negative, def.subjectBy, s, e) ?? 1) === 0) continue;
+    const a = out.get(s); if (a) a.push(e); else out.set(s, [e]);
+  }
+  return out;
+}
+
 /** One row's contribution to a label for one subject. */
 export interface EvidenceItem {
   readonly eventId: number;
-  readonly t: number;
+  /** Absolute day of the row (`absDay`). */
+  readonly day: number;
   readonly pos: number;
   readonly tot: number;
   readonly p0: number;
@@ -133,8 +162,8 @@ export interface LabelResult {
   readonly since: WorldDate | null;
   readonly firstEvidence: WorldDate | null;
   readonly lastEvidence: WorldDate | null;
-  /** The time the measure was taken at (the last evidence step). */
-  readonly evaluatedAt: number;
+  /** Absolute day the measure was taken at (the last evidence step). */
+  readonly evaluatedDay: number;
   /** Rows inside the window at the last evaluation: the evidence the label rests on. */
   readonly evidenceIds: readonly number[];
   readonly transitions: readonly LabelTransition[];
@@ -149,11 +178,11 @@ export interface LabelResult {
 }
 
 /** Measure of a set of items taken at time `t` (N2.8.1 rule 2). Exposed so a trace can recompute it. */
-export function measureOf(def: LabelDef, items: readonly EvidenceItem[], t: number): { measure: number; baseline: number; z: number; sample: number; raw: number } {
+export function measureOf(def: LabelDef, items: readonly EvidenceItem[], atDay: number): { measure: number; baseline: number; z: number; sample: number; raw: number } {
   const hl = halfLifeOf(def);
   let sw = 0; let sp = 0; let sb = 0; let raw = 0;
   for (const it of items) {
-    const w = decayWeight(t - it.t, hl);
+    const w = weightForAge(atDay - it.day, hl);
     sw += w * it.tot; sp += w * it.pos; sb += w * it.tot * it.p0; raw += def.measure === 'rate' ? it.tot : it.pos;
   }
   let measure: number; let baseline: number; let z: number; let sample: number;
@@ -166,9 +195,7 @@ export function measureOf(def: LabelDef, items: readonly EvidenceItem[], t: numb
   } else {
     measure = sp; baseline = sb;
     z = zOf(measure - baseline, baseline > 0 ? Math.sqrt(baseline) : 0);
-    let swp = 0;
-    for (const it of items) swp += decayWeight(t - it.t, hl) * it.pos;
-    sample = swp;
+    sample = sp;
   }
   return { measure, baseline, z: def.direction === 'above' ? z : -z, sample, raw };
 }
@@ -196,13 +223,13 @@ export function labelWeight(ageSeasons: number, windowSeasons: number, frozen: b
 }
 
 /** Evidence items of a subject for a label, in log order, as known at `ctx.asOf`. */
-export function evidenceItems(def: LabelDef, subjectId: number, rows: readonly WorldEvent[], ctx: EvalContext): { items: (EvidenceItem & { reversedAt: number | null })[]; missing: boolean } {
-  const asOf = seasonTime(ctx.asOf);
-  const items: (EvidenceItem & { reversedAt: number | null })[] = [];
+export function evidenceItems(def: LabelDef, subjectId: number, rows: readonly WorldEvent[], ctx: EvalContext): { items: (EvidenceItem & { reversedAt: ReversalRef | null })[]; missing: boolean } {
+  const asOf = absDay(ctx.asOf);
+  const items: (EvidenceItem & { reversedAt: ReversalRef | null })[] = [];
   let missing = false;
   for (const e of rows) {
-    const t = seasonTime(e.when.date);
-    if (t > asOf) break;
+    const day = absDay(e.when.date);
+    if (day > asOf) break;
     if (ctx.visible && !ctx.visible(e)) continue;
     const pos = matchCount(def.positive, def.subjectBy, subjectId, e);
     const neg = matchCount(def.negative, def.subjectBy, subjectId, e);
@@ -211,12 +238,16 @@ export function evidenceItems(def: LabelDef, subjectId: number, rows: readonly W
     const tot = p + n;
     if (tot === 0) continue;
     const { p0, thin } = ctx.baseline.rate(levelKey(e, ctx.levelOf), e.when.date.seasonYear);
-    items.push({ eventId: e.id, t, pos: p, tot, p0, thin, compacted: e.type === 'history_summary', reversedAt: ctx.reversedBy?.get(e.id) ?? null });
+    items.push({ eventId: e.id, day, pos: p, tot, p0, thin, compacted: e.type === 'history_summary', reversedAt: ctx.reversedBy?.get(e.id) ?? null });
   }
   return { items, missing };
 }
 
-/** Evaluate one label for one subject (X2.2.2 rules 1 to 5, X2.2.3). */
+/**
+ * Evaluate one label for one subject (X2.2.2 rules 1 to 5, X2.2.3). Evidence is replayed in log order;
+ * state is taken at the end of each day with evidence, with hysteresis between `thresholdOn` and
+ * `thresholdOff`. A label forms only with the minimum weighted sample (N2.8.1 rule 2).
+ */
 export function evaluateLabel(def: LabelDef, subjectId: number, rows: readonly WorldEvent[], ctx: EvalContext): LabelResult {
   const on = thresholdOnOf(def);
   const off = thresholdOffOf(def);
@@ -224,27 +255,37 @@ export function evaluateLabel(def: LabelDef, subjectId: number, rows: readonly W
   const protectedSubject = !!def.personal && ctx.origin === 'imported';
   const { items, missing } = evidenceItems(def, subjectId, rows, ctx);
   const dateOf = new Map<number, WorldDate>();
-  for (const e of rows) dateOf.set(e.id, e.when.date);
+  for (const e of rows) if (absDay(e.when.date) <= absDay(ctx.asOf)) dateOf.set(e.id, e.when.date);
 
   // Evaluation steps: each evidence row, and each reversal of an evidence row (X2.2.2 edge case).
-  const steps: { id: number; t: number }[] = items.map((i) => ({ id: i.eventId, t: i.t }));
-  const asOf = seasonTime(ctx.asOf);
-  for (const i of items) if (i.reversedAt !== null) {
-    const d = dateOf.get(i.reversedAt);
-    if (d && seasonTime(d) <= asOf) steps.push({ id: i.reversedAt, t: seasonTime(d) });
+  const asOf = absDay(ctx.asOf);
+  const steps: { id: number; day: number }[] = items.map((i) => ({ id: i.eventId, day: i.day }));
+  for (const i of items) if (i.reversedAt !== null && absDay(i.reversedAt.date) <= asOf) {
+    steps.push({ id: i.reversedAt.id, day: absDay(i.reversedAt.date) });
+    dateOf.set(i.reversedAt.id, i.reversedAt.date);
   }
   steps.sort((a, b) => a.id - b.id);
 
+  const windowDays = def.windowSeasons * P.daysPerSeasonYear;
   let state: 'held' | 'absent' = 'absent';
   let since: WorldDate | null = null;
   const transitions: LabelTransition[] = [];
   let last = { measure: 0, baseline: 0, z: 0, sample: 0, raw: 0 };
   let lastWindow: EvidenceItem[] = [];
-  let lastT = 0;
-  for (const st of steps) {
-    const win = items.filter((i) => i.eventId <= st.id && st.t - i.t < def.windowSeasons && (i.reversedAt === null || i.reversedAt > st.id));
-    const m = measureOf(def, win, st.t);
-    last = m; lastWindow = win; lastT = st.t;
+  let lastDay = 0;
+  let lo = 0; let hi = 0;
+  for (let si = 0; si < steps.length; si++) {
+    const st = steps[si]!;
+    // State is taken once per simulation day, after the day's last evidence row, so a day's rows count
+    // together whether they are stored one by one or as a game-level summary (X2.4.1 rule 1).
+    const next = steps[si + 1];
+    if (next && next.day === st.day) continue;
+    while (hi < items.length && items[hi]!.eventId <= st.id) hi++;
+    while (lo < hi && st.day - items[lo]!.day >= windowDays) lo++;
+    const win: EvidenceItem[] = [];
+    for (let k = lo; k < hi; k++) { const i = items[k]!; if (i.reversedAt === null || i.reversedAt.id > st.id) win.push(i); }
+    const m = measureOf(def, win, st.day);
+    last = m; lastWindow = win; lastDay = st.day;
     if (protectedSubject) continue;
     if (state === 'absent' && m.sample >= minSample && m.z >= on) {
       state = 'held'; since = dateOf.get(st.id) ?? null;
@@ -254,10 +295,10 @@ export function evaluateLabel(def: LabelDef, subjectId: number, rows: readonly W
       transitions.push({ eventId: st.id, date: dateOf.get(st.id)!, state });
     }
   }
-  const live = items.filter((i) => i.reversedAt === null || seasonTime(dateOf.get(i.reversedAt)!) > asOf);
+  const live = items.filter((i) => i.reversedAt === null || absDay(i.reversedAt.date) > asOf);
   const firstEvidence = live.length ? dateOf.get(live[0]!.eventId)! : null;
   const lastEvidence = live.length ? dateOf.get(live[live.length - 1]!.eventId)! : null;
-  const age = lastEvidence ? asOf - seasonTime(lastEvidence) : 0;
+  const age = lastEvidence ? (asOf - absDay(lastEvidence)) / P.daysPerSeasonYear : 0;
   const stale = lastEvidence !== null && age > def.windowSeasons;
   return {
     labelId: def.id,
@@ -272,7 +313,7 @@ export function evaluateLabel(def: LabelDef, subjectId: number, rows: readonly W
     since,
     firstEvidence,
     lastEvidence,
-    evaluatedAt: lastT,
+    evaluatedDay: lastDay,
     evidenceIds: lastWindow.map((i) => i.eventId),
     transitions,
     thinBaseline: lastWindow.some((i) => i.thin),

@@ -4,7 +4,8 @@
 // give back the measure the result reports.
 import type { WorldEvent } from '@gm/schema';
 import { matchCount, type LabelDef } from './define.ts';
-import { evidenceItems, measureOf, type EvalContext, type LabelResult } from './evaluate.ts';
+import { evidenceItems, measureOf, type EvalContext, type LabelResult, type ReversalRef } from './evaluate.ts';
+import { LABEL_PARAMS } from './params.ts';
 
 export interface TraceResult {
   readonly ok: boolean;
@@ -33,13 +34,13 @@ export function traceLabel(def: LabelDef, result: LabelResult, byId: ReadonlyMap
     const neg = matchCount(def.negative, def.subjectBy, result.subjectId, e) ?? 0;
     if (pos + neg === 0) p(`evidence ${id} (${e.type}) does not match the label's query for this subject`);
     const rev = ctx.reversedBy?.get(id);
-    if (rev !== undefined && rev <= result.evidenceIds[result.evidenceIds.length - 1]!) p(`evidence ${id} was reversed by ${rev}`);
+    if (rev !== undefined && rev.id <= result.evidenceIds[result.evidenceIds.length - 1]!) p(`evidence ${id} was reversed by ${rev.id}`);
     if (ctx.visible && !ctx.visible(e)) p(`evidence ${id} is not visible to this reader`);
   }
   if (rows.length) {
     const { items } = evidenceItems(def, result.subjectId, rows, { ...ctx, reversedBy: undefined });
-    for (const it of items) if (result.evaluatedAt - it.t >= def.windowSeasons) p(`evidence ${it.eventId} is outside the window`);
-    const m = measureOf(def, items, result.evaluatedAt);
+    for (const it of items) if (result.evaluatedDay - it.day >= def.windowSeasons * LABEL_PARAMS.daysPerSeasonYear) p(`evidence ${it.eventId} is outside the window`);
+    const m = measureOf(def, items, result.evaluatedDay);
     if (!close(m.measure, result.measure)) p(`rows give measure ${m.measure}, result says ${result.measure}`);
     if (!close(m.sample, result.sample)) p(`rows give sample ${m.sample}, result says ${result.sample}`);
     if (!close(m.z, result.z)) p(`rows give z ${m.z}, result says ${result.z}`);
@@ -47,9 +48,9 @@ export function traceLabel(def: LabelDef, result: LabelResult, byId: ReadonlyMap
   return { ok: problems.length === 0, rows, problems };
 }
 
-/** Original id to reversing id, for reversal rows of the given types (X2.1.3). */
-export function reversalMap(rows: readonly WorldEvent[], reversalTypes: readonly string[] = ['result_vacated', 'stat_corrected', 'award_rescinded']): Map<number, number> {
-  const out = new Map<number, number>();
-  for (const r of rows) if (r.causeId !== null && reversalTypes.includes(r.type) && !out.has(r.causeId)) out.set(r.causeId, r.id);
+/** Original id to its reversing row, for reversal rows of the given types (X2.1.3). */
+export function reversalMap(rows: readonly WorldEvent[], reversalTypes: readonly string[] = ['result_vacated', 'stat_corrected', 'award_rescinded']): Map<number, ReversalRef> {
+  const out = new Map<number, ReversalRef>();
+  for (const r of rows) if (r.causeId !== null && reversalTypes.includes(r.type) && !out.has(r.causeId)) out.set(r.causeId, { id: r.id, date: r.when.date });
   return out;
 }

@@ -8,8 +8,8 @@ export {
 } from './define.ts';
 export { pow2, decayWeight } from './math.ts';
 export {
-  evaluateLabel, buildBaseline, measureOf, evidenceItems, labelWeight, strengthOf, seasonTime, subjectsOf, levelKey,
-  type Baseline, type EvalContext, type EvidenceItem, type LabelResult, type LabelTransition, type Strength,
+  evaluateLabel, buildBaseline, measureOf, evidenceItems, labelWeight, strengthOf, seasonTime, absDay, weightForAge, subjectsOf, levelKey, rowsBySubject,
+  type Baseline, type EvalContext, type EvidenceItem, type LabelResult, type LabelTransition, type Strength, type ReversalRef,
 } from './evaluate.ts';
 export { traceLabel, reversalMap, type TraceResult } from './trace.ts';
 export { observerView, witnessedBy, isPublicRow, delayedFor, type Observer, type ViewEntry, type ViewContext } from './observer.ts';
