@@ -39,9 +39,9 @@ describe('reference resolver: contract (J1.6.3, J14.1.2)', () => {
     }
   });
 
-  it('declares one rule key per foul type and nothing else', () => {
+  it("declares one rule key per catalogue foul id and nothing else", () => {
     expect(RuleKeyManifest.safeParse(RULE_KEYS).success).toBe(true);
-    expect(RULE_KEYS.map((k) => k.key)).toEqual(FOUL_ROWS.map((f) => `foul.${f.id}.exists`));
+    expect(RULE_KEYS.map((k) => k.key)).toEqual(FOUL_ROWS.flatMap((f) => (f.bySide ? [f.bySide.snapping, f.bySide.opposing] : [f.id])).map((id) => `foul.${id}.exists`));
   });
 
   it('rejects an override of a parameter that does not exist', () => {

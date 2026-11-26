@@ -29,7 +29,7 @@ export function fixtureRuleSet(id: string, level: 'pro' | 'college', values: Rec
 export const PRO_VALUES: Record<string, Value> = {
   // B6.1.1, B6.1.2
   'kickoff.format': 'dynamic',
-  'kickoff.kick_yardline': 35,
+  'kickoff.spot_yardline': 35,
   'kickoff.safety_kick_yardline': 20,
   'kickoff.kicking_team_line_yardline': 40,
   'kickoff.receiving_line_yardline': 35,
@@ -37,12 +37,12 @@ export const PRO_VALUES: Record<string, Value> = {
   'kickoff.landing_zone_yardline': 20,
   // B6.1.4
   'kickoff.touchback_yardline': 35,
-  'kickoff.touchback_landing_zone_yardline': 20,
+  'kickoff.touchback_after_landing_yardline': 20,
   'kickoff.touchback_reduced_kick_yardline': 50,
   'kickoff.touchback_reduced_yardline': 20,
   'kickoff.short_spot_yd_from_kick': 25,
   'kickoff.safety_kick_short_spot_yd_from_kick': 30,
-  'kickoff.out_of_bounds_yd_from_kick': 25,
+  'kickoff.out_of_bounds_spot_yards': 25,
   'kickoff.safety_kick_out_of_bounds_yd_from_kick': 30,
   'kickoff.fair_catch_inside_25_to_25': false, // B13.1.1
   // B6.2.1
@@ -67,10 +67,10 @@ export const PRO_VALUES: Record<string, Value> = {
   'toss.defer_allowed': true,
   'overtime.toss_defer_allowed': true,
   // B8.5.3
-  'enforce.half_distance_divisor': 2,
+  'enforce.half_distance.fraction': 0.5,
   // B10.2.1, B10.3.1, B10.5.1
   'overtime.format': 'timed_period',
-  'overtime.regular.period_length_s': 600, 'overtime.postseason.period_length_s': 900,
+  'overtime.period_length_s': 600, 'overtime.postseason_period_length_s': 900,
   'overtime.regular.max_periods': 1, 'overtime.postseason.max_periods': 0,
   'overtime.regular.timeouts': 2, 'overtime.postseason.timeouts': 3,
   'overtime.regular.periods_per_half': 1, 'overtime.postseason.periods_per_half': 2,
@@ -82,26 +82,26 @@ export const PRO_VALUES: Record<string, Value> = {
   // inert at this level (B13.7.1)
   'overtime.series_start_yardline': 25,
   'overtime.two_point_required_from_period': 0,
-  'overtime.try_only_from_period': 0,
+  'overtime.two_point_plays_from_period': 0,
 };
 
 /** College values, by leaf. */
 export const COLLEGE_VALUES: Record<string, Value> = {
   // B13.6.1
   'kickoff.format': 'traditional',
-  'kickoff.kick_yardline': 35,
+  'kickoff.spot_yardline': 35,
   'kickoff.safety_kick_yardline': 20,
   'kickoff.kicking_team_line_yardline': 0, // inert: the kicking team lines up on its own restraining line
   'kickoff.receiving_line_yardline': 0, // inert: the receiving line is onside.min_distance_yd from the kick
   'kickoff.setup_zone_back_yardline': 0, // inert
   'kickoff.landing_zone_yardline': 0, // inert
   'kickoff.touchback_yardline': 25,
-  'kickoff.touchback_landing_zone_yardline': 25, // inert: equal to the touchback yard line
+  'kickoff.touchback_after_landing_yardline': 25, // inert: equal to the touchback yard line
   'kickoff.touchback_reduced_kick_yardline': 50, // inert
   'kickoff.touchback_reduced_yardline': 25, // inert: equal to the touchback yard line
   'kickoff.short_spot_yd_from_kick': 0, // inert
   'kickoff.safety_kick_short_spot_yd_from_kick': 0, // inert
-  'kickoff.out_of_bounds_yd_from_kick': 30, // B13.13.1: 30 yards beyond the kicking team's restraining line
+  'kickoff.out_of_bounds_spot_yards': 30, // B13.13.1: 30 yards beyond the kicking team's restraining line
   'kickoff.safety_kick_out_of_bounds_yd_from_kick': 30, // fixture only: same rule assumed for a safety kick
   'kickoff.fair_catch_inside_25_to_25': true,
   'onside.min_distance_yd': 10, // B13.6.1 edge case
@@ -121,16 +121,16 @@ export const COLLEGE_VALUES: Record<string, Value> = {
   'clock.play_clock_s': 40, 'clock.play_clock_after_stoppage_s': 25,
   'toss.defer_allowed': true, // fixture only: B13 does not state the opening toss
   'overtime.toss_defer_allowed': false, // B13.7.1: he cannot defer
-  'enforce.half_distance_divisor': 2,
+  'enforce.half_distance.fraction': 0.5,
   // B13.7.1
   'overtime.format': 'alternating_series_25',
   'overtime.series_start_yardline': 25,
   'overtime.two_point_required_from_period': 2,
-  'overtime.try_only_from_period': 3,
+  'overtime.two_point_plays_from_period': 3,
   'overtime.regular.timeouts': 1, 'overtime.postseason.timeouts': 1,
   'overtime.regular.periods_per_half': 1, 'overtime.postseason.periods_per_half': 1,
   // inert at this level (B10)
-  'overtime.regular.period_length_s': 0, 'overtime.postseason.period_length_s': 0,
+  'overtime.period_length_s': 0, 'overtime.postseason_period_length_s': 0,
   'overtime.regular.max_periods': 0, 'overtime.postseason.max_periods': 0,
   'overtime.regular.new_toss_after_periods': 0, 'overtime.postseason.new_toss_after_periods': 0,
   'overtime.regular.loser_chooses_at_period': 0, 'overtime.postseason.loser_chooses_at_period': 0,

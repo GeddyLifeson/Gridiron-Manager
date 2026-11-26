@@ -150,6 +150,8 @@ export type FoulWindow =
   | 'after_play';     // after the ball is dead
 
 export interface FoulRow {
+  /** Set when the catalogue splits this stat type by the side that fouls: the id used for each side. `id` then only names the rate. */
+  readonly bySide?: { readonly snapping: string; readonly opposing: string };
   /** Catalogue id (D-06): the rule key is `foul.<id>.exists`. WP-01 owns the catalogue; rename here if it differs. */
   readonly id: string;
   readonly when: FoulWindow;
@@ -159,26 +161,26 @@ export interface FoulRow {
   readonly perGame: number;
 }
 
-/** The 22 types J15.7.1 lists. Ids follow the bible where it names one (dpi, opi, def_holding, illegal_contact, ineligible_downfield, grounding). */
+/** The 22 types J15.7.1 lists. Ids follow the bible where it names one (dpi, opi, def_holding, illegal_contact, ineligible_downfield_pass, intentional_grounding). */
 export const FOUL_ROWS: readonly FoulRow[] = [
   { id: 'false_start', when: 'pre_snap_dead', by: 'snapping', perGame: 2.30 },
-  { id: 'off_holding', when: 'scrimmage', by: 'snapping', perGame: 2.25 },
+  { id: 'offensive_holding', when: 'scrimmage', by: 'snapping', perGame: 2.25 },
   { id: 'dpi', when: 'pass_attempt', by: 'opposing', perGame: 0.98 },
   { id: 'def_holding', when: 'dropback', by: 'opposing', perGame: 0.69 },
   { id: 'unnecessary_roughness', when: 'after_play', by: 'either', perGame: 0.60 },
   { id: 'delay_of_game', when: 'pre_snap_dead', by: 'snapping', perGame: 0.59 },
-  { id: 'def_offside', when: 'at_snap', by: 'opposing', perGame: 0.54 },
-  { id: 'roughing_the_passer', when: 'pass_attempt', by: 'opposing', perGame: 0.35 },
+  { id: 'offside', when: 'at_snap', by: 'opposing', perGame: 0.54 },
+  { id: 'roughing_passer', when: 'pass_attempt', by: 'opposing', perGame: 0.35 },
   { id: 'neutral_zone_infraction', when: 'pre_snap_dead', by: 'opposing', perGame: 0.33 },
   { id: 'face_mask', when: 'scrimmage', by: 'opposing', perGame: 0.30 },
   { id: 'illegal_formation', when: 'at_snap', by: 'snapping', perGame: 0.29 },
   { id: 'illegal_contact', when: 'dropback', by: 'opposing', perGame: 0.26 },
   { id: 'opi', when: 'pass_attempt', by: 'snapping', perGame: 0.25 },
-  { id: 'ineligible_downfield', when: 'pass_attempt', by: 'snapping', perGame: 0.25 },
-  { id: 'illegal_use_of_hands', when: 'scrimmage', by: 'either', perGame: 0.22 },
-  { id: 'illegal_block_above_waist', when: 'kick_return', by: 'opposing', perGame: 0.19 },
-  { id: 'grounding', when: 'throwaway', by: 'snapping', perGame: 0.16 },
-  { id: 'def_too_many_men', when: 'at_snap', by: 'opposing', perGame: 0.15 },
+  { id: 'ineligible_downfield_pass', when: 'pass_attempt', by: 'snapping', perGame: 0.25 },
+  { id: 'illegal_use_of_hands', when: 'scrimmage', by: 'either', perGame: 0.22, bySide: { snapping: 'illegal_use_of_hands_offense', opposing: 'illegal_use_of_hands_defense' } },
+  { id: 'illegal_block_in_back', when: 'kick_return', by: 'opposing', perGame: 0.19 },
+  { id: 'intentional_grounding', when: 'throwaway', by: 'snapping', perGame: 0.16 },
+  { id: 'too_many_on_field', when: 'at_snap', by: 'opposing', perGame: 0.15 },
   { id: 'illegal_shift', when: 'at_snap', by: 'snapping', perGame: 0.15 },
   { id: 'encroachment', when: 'pre_snap_dead', by: 'opposing', perGame: 0.12 },
   { id: 'unsportsmanlike', when: 'after_play', by: 'either', perGame: 0.11 },
@@ -209,10 +211,11 @@ export const PARAMS: ParamFile = { module: 'resolver.reference', version: REFERE
  * The rule keys this module reads: only whether each foul type exists at the level (D-06). Everything
  * else that depends on the rules (field size, spots, the kind of play) arrives in the play input.
  */
-export const RULE_KEYS: RuleKeyManifest = FOUL_ROWS.map((f) => ({
-  key: `foul.${f.id}.exists`,
+export function foulRowIds(f: FoulRow): readonly string[] { return f.bySide ? [f.bySide.snapping, f.bySide.opposing] : [f.id]; }
+export const RULE_KEYS: RuleKeyManifest = FOUL_ROWS.flatMap(foulRowIds).map((id) => ({
+  key: `foul.${id}.exists`,
   type: 'boolean' as const,
-  meaning: `Whether the foul "${f.id}" exists in this rule set (B8.1.1 catalogue).`,
+  meaning: `Whether the foul "${id}" exists in this rule set (B8.1.1 catalogue).`,
   ownerLeaf: 'B8.1.2',
   readBy: ['resolver-reference/resolver'],
 }));

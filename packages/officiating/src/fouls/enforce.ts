@@ -87,7 +87,7 @@ export function interferenceSpot(w: World, spot: number): number {
   const f = w.facts;
   const r = w.rules;
   let target = spot;
-  if (r.bool(K.interferenceCapped)) target = Math.min(target, f.previous + r.num(K.interferenceMaxYards));
+  if (r.num(K.interferenceMaxYards) > 0) target = Math.min(target, f.previous + r.num(K.interferenceMaxYards));
   const floor = f.length - r.num(K.interferenceFloorYardline);
   const halfLine = f.length - r.num(K.interferenceHalfInside);
   const prevInside = r.bool(K.interferenceHalfInclusive) ? f.previous >= halfLine : f.previous > halfLine;
@@ -138,7 +138,7 @@ function passPlay(w: World, i: number): Plan[] {
   const out: Plan[] = [];
   if (r.side === f.teamA) {
     if (profile === 'previous_or_spot_worse') {
-      // B8.1.2 grounding row: the yardage or the spot of the pass, and a safety from the end zone.
+      // B8.1.2 intentional_grounding row: the yardage or the spot of the pass, and a safety from the end zone.
       if (sp <= 0) return [safety(w, i, f.teamA)];
       const m = walk(w, f.previous, r.yards, f.teamA, false);
       const to = Math.min(m.to, sp);
