@@ -34,11 +34,12 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
   `ageCurve`), from 1 up to the market ceiling (`league.market.maxContractYears`, an Assumption in the market
   module). A founding contract is part way through its term: its remaining years are drawn from 1 to that
   length on stream `world.contracts.founding`, so the founding contracts do not all end in one year.
-- **PC-04** Floor periods are the ones the CBA names: 2021 to 2023, 2024 to 2026 and 2027 to 2030 (Art. 12
-  s.9(b), F-cap-0001, in `floor-periods.json`). Outside them, periods are `floor.periodYears` (4) long, the
-  last CBA period's length (the C6.2.3 edge case keeps it past 2030). Read backward, the same rule lands on
-  the CBA's own 2017 to 2020 period (Art. 12 s.9(a)), a cross-check. The percent is always
-  `cap.min_cash_spend_pct` (90), by MO-02, even though 2017 to 2020 was 89 in the real CBA.
+- **PC-04** Floor periods and their percents are the league-rules keys `cap.min_cash_period_<from>_<to>_pct`:
+  2017 to 2020 at 89, then 2021 to 2023, 2024 to 2026 and 2027 to 2030 at 90 (CBA Art. 12 s.9(a), (b);
+  keys from PR 282). Each named period is checked at its own percent. Outside them, periods are
+  `floor.periodYears` (4) long, the last period's length (the C6.2.3 edge case keeps it past 2030), at
+  `cap.min_cash_spend_pct` (MO-02: today's rules). Read backward from 2017 the same rule gives 2013 to 2016,
+  and so on. A level with no floor key has no floor.
 - **PC-05** Rookies sign the fixed length by rule key (`rookie.length_round_1`, `rookie.length_later_rounds`,
   `rookie.length_undrafted`; F-cap-0006 to F-cap-0008) at the minimum for each year's credited seasons. They
   get no signing bonus. The slot table is unsourced (C6.4.2 open question): only the 2026 first pick and pick
@@ -72,7 +73,7 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 | Rookie lengths 4, 4, 3 | `rookie.length_*`, F-cap-0006 to F-cap-0008 | From the fact register (bible C6.4.2: Verified) |
 | 25 percent rookie increase rule (checked by the test) | `rookie.max_annual_increase_pct`, F-cap-0009 | From the fact register |
 | Floor 90 percent | `cap.min_cash_spend_pct`, F-cap-0001 | From the fact register (bible C6.2.3: Verified) |
-| Floor periods 2021-23, 2024-26, 2027-30, and 2017-20 at 89 | CBA Art. 12 s.9(a), (b), read in the primary text (cba_2020.txt line 5296) | Rulebook only (one primary source) |
+| Floor periods and percents (2017-20 at 89, 2021-23, 2024-26, 2027-30 at 90) | `cap.min_cash_period_*_pct` (PR 282), CBA Art. 12 s.9(a), (b) | From the fact register |
 | Shortfall paid to players rostered in the period, by Sept 15 | CBA Art. 12 s.9(c) | Rulebook only; bible C6.2.3: 1 of 3 |
 | Owner budget 95 to 110 percent of the cap | C6.2.3 rule 3, money module | Assumption (bible) |
 | First-round rookie deals fully guaranteed | C6.4.2 rule 3 | 2 of 3 (bible) |
@@ -107,8 +108,6 @@ shares is open research (C8.3.1 open question, M1.1.1), so PC-02's linear spread
 - Barrel: `export * as contracts from './contracts/index.ts';` in `packages/world/src/index.ts`.
 - PARAMS: `world.contracts` (`floor.periodYears`).
 - P5 save slot for `systemState.player_contracts`.
-- Rule keys: the floor periods (now in `floor-periods.json`, F-cap-0001), for example
-  `cap.floor_period_1_from` and `cap.floor_period_1_to`.
 - Composition root: `moves: contracts.contractsStep(cb, turnover.movesStep(b, turnover.rosterMovesStep(b)))`,
   with `cb = { rule: b.rule, keys: (level) => <the level's league-rules key names>, rulesYear: 2026 }`, the
   same rules year as `money.capFromRules`.
