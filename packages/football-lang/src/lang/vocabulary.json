@@ -1,0 +1,2521 @@
+{
+ "version": "1",
+ "leaf": "J4.1.2, J4.1.3, J4.2.1",
+ "universalEvents": [
+  "ballThrown",
+  "ballCaught",
+  "changeOfPossession",
+  "fumble",
+  "whistle"
+ ],
+ "selectors": {
+  "fixed": [
+   "self",
+   "ball",
+   "carrier",
+   "qb",
+   "man",
+   "key",
+   "nearestThreat",
+   "nearestDefender",
+   "nearestRusher",
+   "deepestReceiver"
+  ],
+  "prefixes": [
+   "slot:",
+   "role:"
+  ],
+  "receiver": {
+   "numbers": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "sides": [
+    "left",
+    "right",
+    "mine",
+    "away"
+   ],
+   "finalPrefix": "final"
+  },
+  "glossary": {
+   "self": "The player himself.",
+   "ball": "The ball as the player sees it.",
+   "carrier": "The player he believes has the ball.",
+   "qb": "The quarterback. Bound to a slot when the call is bound to players.",
+   "man": "The opponent he is assigned to, from the behavior's 'man' parameter.",
+   "key": "The first entry of his key list.",
+   "nearestThreat": "The nearest receiver.",
+   "nearestDefender": "The nearest opponent.",
+   "nearestRusher": "The nearest opponent coming toward the line from the other side.",
+   "deepestReceiver": "The receiver farthest up the field.",
+   "slot:": "A player by his slot in the play (0 to 21).",
+   "role:": "A player by role label. Bound to a slot when the call is bound to players.",
+   "#n": "Receiver number n counted from the sideline in at the snap, on a named side (default: the player's own side). 'final#n' counts again from where receivers are now."
+  }
+ },
+ "gaze": [
+  "key",
+  "quarterback",
+  "man",
+  "ball"
+ ],
+ "techniqueSlots": [
+  "passSet",
+  "release",
+  "coverage",
+  "rushMove",
+  "rushCounter",
+  "runBlock",
+  "blockDefeat",
+  "ballPlay",
+  "conversion"
+ ],
+ "trueStateWords": [
+  "truth",
+  "true",
+  "actual",
+  "world",
+  "sim",
+  "simarrays",
+  "tickworld",
+  "posx",
+  "posy",
+  "velx",
+  "vely",
+  "headingrad",
+  "gazerad",
+  "movemode",
+  "behaviorstate",
+  "engagement",
+  "hasball",
+  "eligible",
+  "wentoob",
+  "ongrounduntiltick",
+  "fatiguenow",
+  "dfatiguez",
+  "dinjuryz",
+  "dknowledgez",
+  "attackdir",
+  "attribute",
+  "attributes",
+  "iss",
+  "zeff",
+  "zattr",
+  "knowledge",
+  "contest",
+  "stream",
+  "random",
+  "playerid"
+ ],
+ "conditions": [
+  {
+   "name": "read",
+   "group": "playRead",
+   "phase": "live",
+   "args": {
+    "kind": {
+     "type": "enum",
+     "options": [
+      "run",
+      "pass",
+      "screen",
+      "draw"
+     ]
+    },
+    "dir": {
+     "type": "enum",
+     "options": [
+      "any",
+      "toMe",
+      "away",
+      "inside",
+      "outside"
+     ],
+     "default": "any"
+    }
+   },
+   "reads": [
+    "playRead",
+    "carrier"
+   ],
+   "glossary": "The player's own run or pass read of the play, with where it is going relative to him.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "release",
+   "group": "receiver",
+   "phase": "live",
+   "args": {
+    "target": {
+     "type": "entity"
+    },
+    "is": {
+     "type": "enum",
+     "options": [
+      "vertical",
+      "in",
+      "out",
+      "flat",
+      "under",
+      "blocks"
+     ]
+    }
+   },
+   "reads": [
+    "arg:target"
+   ],
+   "glossary": "How a numbered receiver came off the line: straight upfield, breaking in or out, to the flat, shallow underneath, or staying in to block.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "leverage",
+   "group": "leverage",
+   "phase": "both",
+   "args": {
+    "target": {
+     "type": "entity"
+    },
+    "is": {
+     "type": "enum",
+     "options": [
+      "inside",
+      "outside",
+      "over",
+      "under"
+     ]
+    }
+   },
+   "reads": [
+    "arg:target"
+   ],
+   "glossary": "Where the player stands relative to a target: nearer the ball (inside), nearer the sideline (outside), deeper (over) or shallower (under).",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "cushion",
+   "group": "leverage",
+   "phase": "both",
+   "args": {
+    "target": {
+     "type": "entity"
+    },
+    "lt": {
+     "type": "number",
+     "min": 0,
+     "max": 40,
+     "unit": "yd"
+    }
+   },
+   "reads": [
+    "arg:target"
+   ],
+   "glossary": "The depth between the player and a target is less than a number of yards.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "crossesFace",
+   "group": "leverage",
+   "phase": "live",
+   "args": {
+    "target": {
+     "type": "entity"
+    }
+   },
+   "reads": [
+    "arg:target"
+   ],
+   "glossary": "The target has moved from one side of the player to the other since the player first saw him.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "inZone",
+   "group": "leverage",
+   "phase": "live",
+   "args": {
+    "target": {
+     "type": "entity"
+    }
+   },
+   "reads": [
+    "arg:target"
+   ],
+   "glossary": "The target is inside the player's zone, the area his behavior parameters describe.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "threatInZone",
+   "group": "leverage",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "receivers"
+   ],
+   "glossary": "Some receiver is inside the player's zone.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "boxCount",
+   "group": "counts",
+   "phase": "both",
+   "args": {
+    "cmp": {
+     "type": "enum",
+     "options": [
+      "lt",
+      "le",
+      "eq",
+      "ge",
+      "gt"
+     ]
+    },
+    "n": {
+     "type": "number",
+     "min": 0,
+     "max": 11,
+     "unit": "count"
+    }
+   },
+   "reads": [
+    "defense"
+   ],
+   "glossary": "The number of defenders the player sees in the box, compared with a number.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "rushersVsBlockers",
+   "group": "counts",
+   "phase": "both",
+   "args": {
+    "side": {
+     "type": "enum",
+     "options": [
+      "left",
+      "right",
+      "mine",
+      "away"
+     ],
+     "default": "mine"
+    }
+   },
+   "reads": [
+    "defense",
+    "offense"
+   ],
+   "glossary": "More defenders near the line than blockers on one side of the ball.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "receiversToSide",
+   "group": "counts",
+   "phase": "both",
+   "args": {
+    "side": {
+     "type": "enum",
+     "options": [
+      "left",
+      "right",
+      "mine",
+      "away"
+     ],
+     "default": "mine"
+    },
+    "cmp": {
+     "type": "enum",
+     "options": [
+      "lt",
+      "le",
+      "eq",
+      "ge",
+      "gt"
+     ]
+    },
+    "n": {
+     "type": "number",
+     "min": 0,
+     "max": 5,
+     "unit": "count"
+    }
+   },
+   "reads": [
+    "receivers"
+   ],
+   "glossary": "The number of receivers lined up on one side of the ball, compared with a number.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "safetiesDeep",
+   "group": "counts",
+   "phase": "both",
+   "args": {
+    "cmp": {
+     "type": "enum",
+     "options": [
+      "lt",
+      "le",
+      "eq",
+      "ge",
+      "gt"
+     ]
+    },
+    "n": {
+     "type": "number",
+     "min": 0,
+     "max": 4,
+     "unit": "count"
+    }
+   },
+   "reads": [
+    "defense"
+   ],
+   "glossary": "The number of defenders at safety depth, compared with a number.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "defenderOn",
+   "group": "front",
+   "phase": "both",
+   "args": {
+    "where": {
+     "type": "enum",
+     "options": [
+      "me",
+      "gapInside",
+      "gapOutside",
+      "shadeInside",
+      "shadeOutside"
+     ]
+    }
+   },
+   "reads": [
+    "defense"
+   ],
+   "glossary": "A defender is lined up on the player: head-up, on an inside or outside shade, or in the gap to either side.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "firstDownLineman",
+   "group": "front",
+   "phase": "both",
+   "args": {
+    "side": {
+     "type": "enum",
+     "options": [
+      "left",
+      "right",
+      "mine",
+      "away"
+     ],
+     "default": "mine"
+    },
+    "where": {
+     "type": "enum",
+     "options": [
+      "on",
+      "inside",
+      "outside"
+     ]
+    }
+   },
+   "reads": [
+    "defense"
+   ],
+   "glossary": "Where the first defender on the line to one side stands relative to the player.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "linebackerWalkedUp",
+   "group": "front",
+   "phase": "both",
+   "args": {},
+   "reads": [
+    "defense"
+   ],
+   "glossary": "A second-level defender has walked up near the line of scrimmage inside the box.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "myManDrops",
+   "group": "front",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "man"
+   ],
+   "glossary": "The defender the player is assigned to is moving away from the line into coverage.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "myManStunts",
+   "group": "front",
+   "phase": "live",
+   "args": {
+    "dir": {
+     "type": "enum",
+     "options": [
+      "in",
+      "out"
+     ]
+    }
+   },
+   "reads": [
+    "man"
+   ],
+   "glossary": "The defender the player is assigned to is looping toward the ball (in) or away from it (out).",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "doubleTeamOnMe",
+   "group": "front",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "offense"
+   ],
+   "glossary": "Two blockers are on the player at once.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "blockTypeOnMe",
+   "group": "front",
+   "phase": "live",
+   "args": {
+    "is": {
+     "type": "enum",
+     "options": [
+      "reach",
+      "down",
+      "base",
+      "pullAway",
+      "passSet"
+     ]
+    }
+   },
+   "reads": [
+    "offense"
+   ],
+   "glossary": "What the nearest blocker is doing to the player: reaching outside, blocking down, coming straight on, pulling away, or setting to pass block.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "ballThrown",
+   "group": "ball",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "ball"
+   ],
+   "glossary": "A pass is in the air.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "ballThrownToMyArea",
+   "group": "ball",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "ball"
+   ],
+   "glossary": "A pass is in the air and its line passes near the player.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "qbEyes",
+   "group": "ball",
+   "phase": "live",
+   "args": {
+    "dir": {
+     "type": "enum",
+     "options": [
+      "toMe",
+      "away"
+     ]
+    }
+   },
+   "reads": [
+    "qb"
+   ],
+   "glossary": "The quarterback is looking toward the player or away from him.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "qbScrambles",
+   "group": "ball",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "qb",
+    "carrier"
+   ],
+   "glossary": "The quarterback is running with the ball instead of setting to throw.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "qbOutOfPocket",
+   "group": "ball",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "qb"
+   ],
+   "glossary": "The quarterback has moved outside the pocket.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "ballOut",
+   "group": "ball",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "ball"
+   ],
+   "glossary": "The ball is loose: a fumble.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "ballCarrierDeclared",
+   "group": "ball",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "carrier"
+   ],
+   "glossary": "The player can see who has the ball and that he is running with it.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "timeGt",
+   "group": "timing",
+   "phase": "both",
+   "args": {
+    "s": {
+     "type": "number",
+     "min": -40,
+     "max": 60,
+     "unit": "s"
+    }
+   },
+   "reads": [],
+   "glossary": "More than a number of seconds have passed since the snap.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "stemComplete",
+   "group": "timing",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "self"
+   ],
+   "glossary": "The player has finished the stem of his path: he has reached its first cut.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "atLandmark",
+   "group": "timing",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "self"
+   ],
+   "glossary": "The player has reached the point he was sent to.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "formationIs",
+   "group": "preSnap",
+   "phase": "preSnap",
+   "args": {
+    "is": {
+     "type": "enum",
+     "options": [
+      "trips",
+      "bunch",
+      "empty",
+      "twoByTwo",
+      "threeByOne"
+     ]
+    }
+   },
+   "reads": [
+    "receivers",
+    "offense"
+   ],
+   "glossary": "The offense's formation family, read from where its receivers and backs line up.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "motion",
+   "group": "preSnap",
+   "phase": "preSnap",
+   "args": {
+    "dir": {
+     "type": "enum",
+     "options": [
+      "across",
+      "toward",
+      "away"
+     ]
+    }
+   },
+   "reads": [
+    "offense"
+   ],
+   "glossary": "An offensive player is in motion before the snap: across the ball, toward the player, or away from him.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "shell",
+   "group": "preSnap",
+   "phase": "preSnap",
+   "args": {
+    "is": {
+     "type": "enum",
+     "options": [
+      "zeroHigh",
+      "oneHigh",
+      "twoHigh"
+     ]
+    }
+   },
+   "reads": [
+    "defense"
+   ],
+   "glossary": "How many safeties the defense shows deep before the snap.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "strengthChanged",
+   "group": "preSnap",
+   "phase": "preSnap",
+   "args": {},
+   "reads": [
+    "receivers"
+   ],
+   "glossary": "The side with more receivers has changed since the player first looked.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "heard",
+   "group": "communication",
+   "phase": "both",
+   "args": {
+    "call": {
+     "type": "name"
+    }
+   },
+   "reads": [
+    "call"
+   ],
+   "glossary": "A teammate's call reached the player.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "ballKicked",
+   "group": "kicking",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "ball"
+   ],
+   "glossary": "The ball has been kicked.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "kickType",
+   "group": "kicking",
+   "phase": "live",
+   "args": {
+    "is": {
+     "type": "enum",
+     "options": [
+      "punt",
+      "fieldGoal",
+      "kickoff",
+      "onside"
+     ]
+    }
+   },
+   "reads": [
+    "ball"
+   ],
+   "glossary": "What kind of kick is in the air.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "landingPointInside",
+   "group": "kicking",
+   "phase": "live",
+   "args": {
+    "yd": {
+     "type": "number",
+     "min": 0,
+     "max": 60,
+     "unit": "yd"
+    }
+   },
+   "reads": [
+    "ball"
+   ],
+   "glossary": "The kick will come down within a number of yards of the player.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "fairCatchSignal",
+   "group": "kicking",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "fact"
+   ],
+   "glossary": "The returner has signalled for a fair catch.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "ballTouchedByReceivers",
+   "group": "kicking",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "fact"
+   ],
+   "glossary": "A player of the receiving team has touched the kick.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "kickState",
+   "group": "kicking",
+   "phase": "live",
+   "args": {
+    "is": {
+     "type": "enum",
+     "options": [
+      "rolling",
+      "deadByRule"
+     ]
+    }
+   },
+   "reads": [
+    "fact"
+   ],
+   "glossary": "The kick is rolling on the ground, or is dead by rule.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "blockPointReached",
+   "group": "kicking",
+   "phase": "live",
+   "args": {},
+   "reads": [
+    "self"
+   ],
+   "glossary": "The player has reached the block point of the kick.",
+   "leaf": "J4.1.2"
+  },
+  {
+   "name": "unknown",
+   "group": "perception",
+   "phase": "both",
+   "args": {
+    "target": {
+     "type": "entity"
+    }
+   },
+   "reads": [
+    "arg:target"
+   ],
+   "glossary": "The player cannot see the target right now.",
+   "leaf": "J4.1.2"
+  }
+ ],
+ "actions": [
+  {
+   "name": "runPath",
+   "group": "movement",
+   "args": {},
+   "glossary": "Run the drawn path.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "continue",
+   "group": "movement",
+   "args": {},
+   "glossary": "Keep doing the behavior's normal job.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "settleInWindow",
+   "group": "movement",
+   "args": {},
+   "glossary": "Stop in the open space and face the quarterback.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "convertRoute",
+   "group": "movement",
+   "args": {
+    "to": {
+     "type": "name"
+    },
+    "px": {
+     "type": "number",
+     "min": -15,
+     "max": 70,
+     "unit": "yd"
+    },
+    "py": {
+     "type": "number",
+     "min": -60,
+     "max": 60,
+     "unit": "yd"
+    },
+    "relative": {
+     "type": "boolean",
+     "default": false
+    },
+    "kind": {
+     "type": "enum",
+     "options": [
+      "through",
+      "cut",
+      "settle"
+     ],
+     "default": "cut"
+    }
+   },
+   "glossary": "Change the route to a named alternative that breaks to a new point.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "scrambleDrill",
+   "group": "movement",
+   "args": {
+    "rule": {
+     "type": "enum",
+     "options": [
+      "mirror",
+      "deep",
+      "comeBack"
+     ],
+     "default": "mirror"
+    }
+   },
+   "glossary": "The quarterback has left the pocket: move with him, go deep, or come back to him.",
+   "leaf": "J4.1.3",
+   "state": {
+    "route": "scrambleDrill"
+   }
+  },
+  {
+   "name": "dropTo",
+   "group": "movement",
+   "args": {
+    "px": {
+     "type": "number",
+     "min": -15,
+     "max": 70,
+     "unit": "yd"
+    },
+    "py": {
+     "type": "number",
+     "min": -60,
+     "max": 60,
+     "unit": "yd"
+    },
+    "landmark": {
+     "type": "name",
+     "default": ""
+    }
+   },
+   "glossary": "Drop to a landmark and settle there with eyes by rule.",
+   "leaf": "J4.1.3",
+   "state": {
+    "zoneDrop": "drop",
+    "deepZone": "backpedal"
+   }
+  },
+  {
+   "name": "widen",
+   "group": "movement",
+   "args": {
+    "yd": {
+     "type": "number",
+     "min": 0,
+     "max": 30,
+     "unit": "yd"
+    }
+   },
+   "glossary": "Move toward the sideline by a number of yards.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "squeeze",
+   "group": "movement",
+   "args": {
+    "yd": {
+     "type": "number",
+     "min": 0,
+     "max": 30,
+     "unit": "yd"
+    }
+   },
+   "glossary": "Move toward the ball by a number of yards.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "sink",
+   "group": "movement",
+   "args": {
+    "yd": {
+     "type": "number",
+     "min": 0,
+     "max": 30,
+     "unit": "yd"
+    }
+   },
+   "glossary": "Gain depth away from the line by a number of yards.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "carry",
+   "group": "movement",
+   "args": {
+    "target": {
+     "type": "entity"
+    },
+    "toDepth": {
+     "type": "number",
+     "min": 0,
+     "max": 60,
+     "unit": "yd"
+    }
+   },
+   "glossary": "Run with a receiver up the field until a depth, then let him go.",
+   "leaf": "J4.1.3",
+   "state": {
+    "zoneDrop": "patternRead"
+   }
+  },
+  {
+   "name": "wall",
+   "group": "movement",
+   "args": {
+    "target": {
+     "type": "entity"
+    }
+   },
+   "glossary": "Get between a receiver and the middle of the field and deny his crossing path.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "trail",
+   "group": "movement",
+   "args": {
+    "target": {
+     "type": "entity"
+    }
+   },
+   "glossary": "Follow a receiver from just behind him.",
+   "leaf": "J4.1.3",
+   "state": {
+    "manCover": "trail"
+   }
+  },
+  {
+   "name": "pursue",
+   "group": "movement",
+   "args": {
+    "angle": {
+     "type": "enum",
+     "options": [
+      "direct",
+      "intercept",
+      "cutback",
+      "insideOut",
+      "contain"
+     ],
+     "default": "intercept"
+    }
+   },
+   "glossary": "Chase the ball carrier on the named angle.",
+   "leaf": "J4.1.3",
+   "state": {
+    "runFit": "pursue",
+    "passRush": "pursue",
+    "zoneDrop": "rally",
+    "pursue": "angle"
+   }
+  },
+  {
+   "name": "fit",
+   "group": "movement",
+   "args": {
+    "gap": {
+     "type": "enum",
+     "options": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "force"
+     ]
+    },
+    "side": {
+     "type": "enum",
+     "options": [
+      "left",
+      "right",
+      "mine",
+      "away"
+     ],
+     "default": "mine"
+    },
+    "shoulder": {
+     "type": "enum",
+     "options": [
+      "inside",
+      "outside"
+     ],
+     "default": "inside"
+    }
+   },
+   "glossary": "Fill a gap in the offensive line, keeping the named shoulder free.",
+   "leaf": "J4.1.3",
+   "state": {
+    "runFit": "fit"
+   }
+  },
+  {
+   "name": "spill",
+   "group": "movement",
+   "args": {},
+   "glossary": "Take on a lead or pulling blocker with the inside shoulder so the run bounces outside.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "box",
+   "group": "movement",
+   "args": {},
+   "glossary": "Take on a lead or pulling blocker with the outside shoulder so the run turns back inside.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "contain",
+   "group": "movement",
+   "args": {},
+   "glossary": "Stay outside the ball so nothing gets around the edge.",
+   "leaf": "J4.1.3",
+   "state": {
+    "passRush": "contain"
+   }
+  },
+  {
+   "name": "rush",
+   "group": "movement",
+   "args": {
+    "track": {
+     "type": "enum",
+     "options": [
+      "inside",
+      "straight",
+      "outside"
+     ],
+     "default": "straight"
+    },
+    "plan": {
+     "type": "name",
+     "default": ""
+    }
+   },
+   "glossary": "Rush the passer on a track with a move plan.",
+   "leaf": "J4.1.3",
+   "state": {
+    "passRush": "getOff",
+    "blitz": "rush"
+   }
+  },
+  {
+   "name": "stuntPath",
+   "group": "movement",
+   "args": {},
+   "glossary": "Run the drawn stunt path, then rush.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "peelToBack",
+   "group": "movement",
+   "args": {},
+   "glossary": "Leave the rush and cover the back who releases.",
+   "leaf": "J4.1.3",
+   "state": {
+    "blitz": "peel"
+   }
+  },
+  {
+   "name": "greenDog",
+   "group": "movement",
+   "args": {},
+   "glossary": "Cover the assigned man, and rush if he stays in to block.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "spy",
+   "group": "movement",
+   "args": {
+    "depth": {
+     "type": "number",
+     "min": 0,
+     "max": 15,
+     "unit": "yd",
+     "default": 0
+    }
+   },
+   "glossary": "Mirror the quarterback from a depth (0 uses the module's default depth).",
+   "leaf": "J4.1.3",
+   "state": {
+    "spy": "mirror"
+   }
+  },
+  {
+   "name": "block",
+   "group": "blocking",
+   "args": {
+    "target": {
+     "type": "entity"
+    },
+    "type": {
+     "type": "enum",
+     "options": [
+      "reach",
+      "down",
+      "base",
+      "combo",
+      "kickOut",
+      "lead",
+      "cutOff"
+     ],
+     "default": "base"
+    }
+   },
+   "glossary": "Block a defender with a named block type.",
+   "leaf": "J4.1.3",
+   "state": {
+    "runBlock": "engaged",
+    "route": "blocking"
+   }
+  },
+  {
+   "name": "comboTo",
+   "group": "blocking",
+   "args": {
+    "target": {
+     "type": "entity"
+    }
+   },
+   "glossary": "Double-team the down lineman, then come off to the linebacker.",
+   "leaf": "J4.1.3",
+   "state": {
+    "runBlock": "combo"
+   }
+  },
+  {
+   "name": "pull",
+   "group": "blocking",
+   "args": {
+    "type": {
+     "type": "enum",
+     "options": [
+      "kick",
+      "wrap",
+      "lead"
+     ]
+    }
+   },
+   "glossary": "Pull along the drawn track and kick out, wrap, or lead on the first defender to show.",
+   "leaf": "J4.1.3",
+   "state": {
+    "pull": "track"
+   }
+  },
+  {
+   "name": "passSet",
+   "group": "blocking",
+   "args": {
+    "type": {
+     "type": "name",
+     "default": ""
+    }
+   },
+   "glossary": "Set to pass block with a named set.",
+   "leaf": "J4.1.3",
+   "state": {
+    "passSet": "set"
+   }
+  },
+  {
+   "name": "slide",
+   "group": "blocking",
+   "args": {
+    "dir": {
+     "type": "enum",
+     "options": [
+      "left",
+      "right"
+     ]
+    }
+   },
+   "glossary": "Slide one gap in a direction and block whoever comes into it.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "chipThenRelease",
+   "group": "blocking",
+   "args": {},
+   "glossary": "Hit the nearest rusher on the way out, then run the path.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "scan",
+   "group": "blocking",
+   "args": {},
+   "glossary": "Look from inside to outside for a rusher nobody has, and block him.",
+   "leaf": "J4.1.3",
+   "state": {
+    "passSet": "scan"
+   }
+  },
+  {
+   "name": "cutOff",
+   "group": "blocking",
+   "args": {
+    "target": {
+     "type": "entity"
+    }
+   },
+   "glossary": "Get to the ball side of a defender and seal him from the play.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "climb",
+   "group": "blocking",
+   "args": {},
+   "glossary": "Release to the second level and block the nearest defender there.",
+   "leaf": "J4.1.3",
+   "state": {
+    "runBlock": "climb"
+   }
+  },
+  {
+   "name": "breakOnBall",
+   "group": "ball",
+   "args": {},
+   "glossary": "Go to where the ball is going.",
+   "leaf": "J4.1.3",
+   "state": {
+    "zoneDrop": "break",
+    "deepZone": "break",
+    "manCover": "break"
+   }
+  },
+  {
+   "name": "playHands",
+   "group": "ball",
+   "args": {},
+   "glossary": "Stay on the receiver and play his hands when the ball arrives.",
+   "leaf": "J4.1.3",
+   "state": {
+    "manCover": "playBall"
+   }
+  },
+  {
+   "name": "strip",
+   "group": "ball",
+   "args": {},
+   "glossary": "Go for the ball in the carrier's hands.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "secure",
+   "group": "ball",
+   "args": {},
+   "glossary": "Cover the ball with both hands and give up speed.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "getDown",
+   "group": "ball",
+   "args": {},
+   "glossary": "Go to the ground to end the play.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "getOutOfBounds",
+   "group": "ball",
+   "args": {},
+   "glossary": "Run for the nearer sideline.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "stayInBounds",
+   "group": "ball",
+   "args": {},
+   "glossary": "Stay in the field of play and keep the clock running.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "signalFairCatch",
+   "group": "ball",
+   "args": {},
+   "glossary": "Signal for a fair catch and settle under the kick.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "fieldTheKick",
+   "group": "ball",
+   "args": {},
+   "glossary": "Get to the kick and catch it.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "letTheKickGo",
+   "group": "ball",
+   "args": {},
+   "glossary": "Stay away from the kick.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "downThePunt",
+   "group": "ball",
+   "args": {},
+   "glossary": "Get to the punt and down it.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "slideDown",
+   "group": "ball",
+   "args": {},
+   "glossary": "A runner gives himself up by sliding feet first.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "call",
+   "group": "communication",
+   "args": {
+    "name": {
+     "type": "name"
+    }
+   },
+   "glossary": "Make a call to teammates.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "switchBehavior",
+   "group": "control",
+   "args": {
+    "to": {
+     "type": "behavior"
+    }
+   },
+   "glossary": "Change to another behavior.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "handOffMan",
+   "group": "control",
+   "args": {
+    "to": {
+     "type": "name"
+    }
+   },
+   "glossary": "Pass the assigned man to a teammate and call it.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "takeMan",
+   "group": "control",
+   "args": {
+    "from": {
+     "type": "name"
+    },
+    "target": {
+     "type": "entity"
+    }
+   },
+   "glossary": "Take over a man a teammate passed off.",
+   "leaf": "J4.1.3"
+  },
+  {
+   "name": "stop",
+   "group": "control",
+   "args": {},
+   "glossary": "Stop where you are.",
+   "leaf": "J4.1.3"
+  }
+ ],
+ "behaviors": [
+  {
+   "name": "none",
+   "states": [
+    "idle"
+   ],
+   "default": {
+    "action": "stop",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "continue",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "No job: the player stands where he is.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "route",
+   "states": [
+    "release",
+    "stem",
+    "break",
+    "postBreak",
+    "scrambleDrill",
+    "blocking"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "block",
+     "args": {
+      "target": "nearestDefender",
+      "type": "base"
+     },
+     "state": "blocking"
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "pursue"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Run the path and look for the ball; block when a teammate catches it.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "passSet",
+   "states": [
+    "set",
+    "engaged",
+    "help",
+    "scan"
+   ],
+   "default": {
+    "action": "passSet",
+    "args": {
+     "type": ""
+    }
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "climb",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "pursue"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Set to the assigned man or zone; if uncovered, look for work.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "runBlock",
+   "states": [
+    "fire",
+    "engaged",
+    "combo",
+    "climb",
+    "sustain"
+   ],
+   "default": {
+    "action": "block",
+    "args": {
+     "target": "man",
+     "type": "base"
+    }
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "climb",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "pursue"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Block the assigned defender or area by scheme rule.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "pull",
+   "states": [
+    "open",
+    "track",
+    "find",
+    "engaged"
+   ],
+   "default": {
+    "action": "pull",
+    "args": {
+     "type": "lead"
+    }
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "climb",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "pursue"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Follow the pull track and block the first defender to show.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "ballCarrier",
+   "states": [
+    "exchange",
+    "track",
+    "read",
+    "openField",
+    "finish"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "pursue"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Carry the ball. The ball carrier model owns the detail.",
+   "leaf": "J4.2.1",
+   "owner": "J8"
+  },
+  {
+   "name": "quarterback",
+   "states": [
+    "underCentreOrGun",
+    "exchange",
+    "drop",
+    "read",
+    "move",
+    "throw",
+    "scramble"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "pursue"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Run the offense from behind the centre. The quarterback model owns the detail.",
+   "leaf": "J4.2.1",
+   "owner": "J7"
+  },
+  {
+   "name": "passRush",
+   "states": [
+    "getOff",
+    "engaged",
+    "counter",
+    "free",
+    "contain",
+    "pursue"
+   ],
+   "default": {
+    "action": "rush",
+    "args": {
+     "track": "straight",
+     "plan": ""
+    }
+   },
+   "events": {
+    "ballThrown": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     },
+     "state": "pursue"
+    },
+    "ballCaught": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "returnBlock"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Rush the track with the move plan.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "runFit",
+   "states": [
+    "read",
+    "engaged",
+    "shed",
+    "fit",
+    "pursue"
+   ],
+   "default": {
+    "action": "continue",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "returnBlock"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Defend the assigned gap, then pursue.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "zoneDrop",
+   "states": [
+    "read",
+    "drop",
+    "patternRead",
+    "break",
+    "rally"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "breakOnBall",
+     "args": {},
+     "state": "break"
+    },
+    "ballCaught": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     },
+     "state": "rally"
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "returnBlock"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Drop to the landmark with eyes by rule.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "manCover",
+   "states": [
+    "pressOrOff",
+    "trailOrInPhase",
+    "break",
+    "playBall"
+   ],
+   "default": {
+    "action": "trail",
+    "args": {
+     "target": "man"
+    }
+   },
+   "events": {
+    "ballThrown": {
+     "action": "playHands",
+     "args": {},
+     "state": "playBall"
+    },
+    "ballCaught": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "returnBlock"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Cover the assigned receiver by technique.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "deepZone",
+   "states": [
+    "read",
+    "backpedal",
+    "range",
+    "break"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "breakOnBall",
+     "args": {},
+     "state": "break"
+    },
+    "ballCaught": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "returnBlock"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Stay deeper than the deepest, by rule.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "blitz",
+   "states": [
+    "time",
+    "rush",
+    "engaged",
+    "free",
+    "peel"
+   ],
+   "default": {
+    "action": "rush",
+    "args": {
+     "track": "straight",
+     "plan": ""
+    },
+    "state": "rush"
+   },
+   "events": {
+    "ballThrown": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    },
+    "ballCaught": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "returnBlock"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Rush from depth on the cadence.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "spy",
+   "states": [
+    "mirror",
+    "trigger"
+   ],
+   "default": {
+    "action": "spy",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    },
+    "changeOfPossession": {
+     "action": "switchBehavior",
+     "args": {
+      "to": "returnBlock"
+     }
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "Mirror the quarterback at depth.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "pursue",
+   "states": [
+    "locate",
+    "angle",
+    "close",
+    "tackle"
+   ],
+   "default": {
+    "action": "pursue",
+    "args": {
+     "angle": "intercept"
+    },
+    "state": "angle"
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "After a change of possession, chase the new carrier.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "returnBlock",
+   "states": [
+    "find",
+    "engage",
+    "sustain"
+   ],
+   "default": {
+    "action": "block",
+    "args": {
+     "target": "nearestDefender",
+     "type": "base"
+    },
+    "state": "engage"
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    }
+   },
+   "glossary": "After a change of possession, block for the new carrier.",
+   "leaf": "J4.2.1"
+  },
+  {
+   "name": "kickCoverage",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    }
+   },
+   "glossary": "Run the coverage lane to the returner.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "kickReturnBlock",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "block",
+     "args": {
+      "target": "nearestDefender",
+      "type": "base"
+     }
+    }
+   },
+   "glossary": "Block for the returner by the return's rule.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "returner",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "fieldTheKick",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "continue",
+     "args": {}
+    }
+   },
+   "glossary": "Field the kick and return it.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "kicker",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "pursue",
+     "args": {
+      "angle": "contain"
+     }
+    }
+   },
+   "glossary": "Kick the ball, then act as the safety.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "holder",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "stop",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    }
+   },
+   "glossary": "Hold for the kick.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "snapper",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    }
+   },
+   "glossary": "Snap, then protect or cover.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "gunner",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    }
+   },
+   "glossary": "Release outside and get to the returner first.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "jammer",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "trail",
+    "args": {
+     "target": "man"
+    }
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "block",
+     "args": {
+      "target": "nearestDefender",
+      "type": "base"
+     }
+    }
+   },
+   "glossary": "Hold up the gunner.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "rushKick",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "runPath",
+    "args": {}
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "block",
+     "args": {
+      "target": "nearestDefender",
+      "type": "base"
+     }
+    }
+   },
+   "glossary": "Rush the kick to the block point.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  },
+  {
+   "name": "protectKick",
+   "states": [
+    "assignment",
+    "afterKick"
+   ],
+   "default": {
+    "action": "passSet",
+    "args": {
+     "type": ""
+    }
+   },
+   "events": {
+    "ballThrown": {
+     "action": "continue",
+     "args": {}
+    },
+    "ballCaught": {
+     "action": "continue",
+     "args": {}
+    },
+    "fumble": {
+     "action": "breakOnBall",
+     "args": {}
+    },
+    "whistle": {
+     "action": "stop",
+     "args": {}
+    },
+    "changeOfPossession": {
+     "action": "pursue",
+     "args": {
+      "angle": "intercept"
+     }
+    }
+   },
+   "glossary": "Protect the kicker, then cover.",
+   "leaf": "J4.2.1",
+   "owner": "F12"
+  }
+ ]
+}
