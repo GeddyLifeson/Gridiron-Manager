@@ -164,7 +164,10 @@ describe('draft room commands', () => {
     for (let guard = 0; guard < 100 && !draft.isComplete(s); guard++) {
       const r = advanceDraft(ctx(s), opts());
       s = r.state;
-      if (r.awaitingUser && s.onClock !== null) s = ok(makePick(ctx(s), s.available[0]!, s.nowSec + 1)).state as draft.DraftState;
+      if (r.awaitingUser && s.onClock !== null) {
+        const f = ok(makePick(ctx(s), s.available[0]!, s.nowSec + 1));
+        if (f.kind === 'filed') s = f.state;
+      }
     }
     expect(draft.isComplete(s)).toBe(true);
     expect(s.log.filter((e) => e.clubId === USER).length).toBe(7);
