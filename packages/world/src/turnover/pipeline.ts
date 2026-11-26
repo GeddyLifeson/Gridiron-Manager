@@ -29,13 +29,19 @@ export function playedGroup(position: string): PlayedGroup | null {
   return GROUP_OF[position.toUpperCase()] ?? null;
 }
 
-/** Highest level a person played at in the world, from his counters (pro seasons, then college seasons). */
+/** Did the person spend a season on a pro roster (his service counter, D1.1.2)? */
+export function playedPro(p: PersonRecord): boolean {
+  return (p.playing?.eligibility.pro.seasonsOnRoster ?? 0) > 0;
+}
+
+/** Did the person use a season of college competition (D1.1.2)? */
+export function playedCollege(p: PersonRecord): boolean {
+  return (p.playing?.eligibility.college.seasonsOfCompetitionUsed ?? 0) > 0;
+}
+
+/** Highest level a person played at in the world, as a label for reports and counters (pro, college, or null). */
 export function levelPlayed(p: PersonRecord): 'pro' | 'college' | null {
-  const e = p.playing?.eligibility;
-  if (!e) return null;
-  if (e.pro.seasonsOnRoster > 0) return 'pro';
-  if (e.college.seasonsOfCompetitionUsed > 0) return 'college';
-  return null;
+  return playedPro(p) ? 'pro' : playedCollege(p) ? 'college' : null;
 }
 
 const logit = (x: number): number => DMATH.log(x / (1 - x));
@@ -47,16 +53,16 @@ const z = (v: number | undefined): number => ((v ?? 50) - 50) / 10;
  * the middle) + the goal + pro seasons past the mean career. A person who never played returns 0.
  */
 export function wantsToCoachChance(p: PersonRecord): number {
-  const level = levelPlayed(p);
-  if (level === null || !p.playing) return 0;
-  const base = param(level === 'pro' ? 'pipeline.proBase' : 'pipeline.collegeBase');
+  const pro = playedPro(p);
+  if (!p.playing || (!pro && !playedCollege(p))) return 0;
+  const base = param(pro ? 'pipeline.proBase' : 'pipeline.collegeBase');
   const g = playedGroup(p.playing.position);
   let x = logit(base) + (g === null ? 0 : DMATH.log(param(`pipeline.pos.${g}`)));
   x += param('pipeline.iqSlope') * z(p.playing.attributes['football_intelligence']);
   x += param('pipeline.leadershipSlope') * z(p.traitBlock.facets['leadership']);
   x += param('pipeline.loveSlope') * z(p.traitBlock.facets['love_of_football']);
   if (p.traitBlock.goals.some((gl) => gl.goalId === 'coach_after_playing' && gl.status === 'active')) x += DMATH.log(param('pipeline.goalOdds'));
-  if (level === 'pro') x += param('pipeline.proSeasonSlope') * (p.playing.eligibility.pro.seasonsOnRoster - param('pipeline.proSeasonsMean'));
+  if (pro) x += param('pipeline.proSeasonSlope') * (p.playing.eligibility.pro.seasonsOnRoster - param('pipeline.proSeasonsMean'));
   return DMATH.logistic(x);
 }
 
@@ -68,8 +74,7 @@ export function wantsToCoach(world: LiveWorld, p: PersonRecord): boolean {
 
 /** Highest rung a former player can start at: graduate assistant for college players, quality control for pro players, assistant position coach after a long pro career. */
 export function entryRungMax(p: PersonRecord): number {
-  const level = levelPlayed(p);
-  if (level !== 'pro') return param('pipeline.collegeEntryRung');
+  if (!playedPro(p)) return param('pipeline.collegeEntryRung');
   return (p.playing?.eligibility.pro.seasonsOnRoster ?? 0) >= param('pipeline.veteranSeasons') ? param('pipeline.veteranEntryRung') : param('pipeline.proEntryRung');
 }
 
@@ -146,7 +151,7 @@ export function formerProShare(world: LiveWorld, levelOf: (teamId: number) => st
     if (id === null || seen.has(id) || j.rung < minRung || j.rung > maxRung || levelOf(j.teamId) !== level) continue;
     seen.add(id);
     const p = world.people.get(id);
-    if (p && levelPlayed(p) === 'pro') formerPro++;
+    if (p && playedPro(p)) formerPro++;
   }
   return { holders: seen.size, formerPro };
 }
