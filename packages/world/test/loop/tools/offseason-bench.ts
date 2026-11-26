@@ -3,6 +3,8 @@
 // port, timing each step per season and printing the deep world hash after each season. The hash is the
 // check that a speed change kept results byte-identical: the same seed must print the same hashes.
 //   npx tsx packages/world/test/loop/tools/offseason-bench.ts [--seasons=3] [--size=small] [--seed=HEX] [--recruiting=1]
+// --workers=N runs the development years on N worker threads plus this one (the headless pool); the hashes
+// must not change.
 // --recruiting=1 adds the off-screen T4 recruiting weeks (and its signed letters) to the moves step.
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort, testSchedule } from '../../fixtures.ts';
 import { calendar } from '@gm/league';
@@ -14,6 +16,19 @@ const SEASONS = Number(arg('seasons', '3'));
 const SIZE = arg('size', 'small') as generation.SizePreset;
 const SEED = arg('seed', '0000000000001869');
 const RECRUITING = arg('recruiting', '0') === '1';
+const WORKERS = Number(arg('workers', '0'));
+
+// The pool lives in @gm/headless, which the world may not import: loaded by path, as master-history.ts does.
+type Pool = { run(jobs: readonly unknown[]): unknown[]; close(): Promise<void> };
+let pool: Pool | null = null;
+let developBatch: turnover.TurnoverBinding['developBatch'];
+if (WORKERS > 0) {
+  const wp = await import(new URL('../../../../headless/src/week-pool/index.ts', import.meta.url).href);
+  const dp = await import(new URL('../../../../headless/src/world-pool/index.ts', import.meta.url).href);
+  const ref = dp.developmentRef();
+  pool = wp.createSyncPool({ module: ref, workers: WORKERS, mainRunner: await wp.loadJobRunner(ref) }) as Pool;
+  developBatch = dp.developmentBatchPort((chunks: readonly unknown[]) => pool!.run(chunks));
+}
 
 const content = CONTENT;
 const rule: turnover.RuleRead = (lvl, k) => (lvl === 'pro' ? PRO_LOOKUP : COLLEGE_LOOKUP)(k);
@@ -22,10 +37,10 @@ const w = loop.createWorld({
   setup: setup({ seedHex: SEED, size: SIZE, firstSeasonYear: 2026 - SEASONS, historySeasons: SEASONS }),
   content, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...turnover.COACH_EVENT_TYPES], foundingCurves: generation.defaultFoundingCurves(),
 });
-console.log(JSON.stringify({ size: SIZE, seed: SEED, recruiting: RECRUITING, teams: w.teams.length, people: w.people.size, buildMs: Math.round(performance.now() - t0) }));
+console.log(JSON.stringify({ size: SIZE, seed: SEED, recruiting: RECRUITING, workers: WORKERS, teams: w.teams.length, people: w.people.size, buildMs: Math.round(performance.now() - t0) }));
 
 const base: turnover.TurnoverBinding = { content, rule };
-const binding: turnover.TurnoverBinding = { content, rule, policy: RECRUITING ? rec.lettersPolicy(turnover.gmPolicy()) : turnover.gmPolicy() };
+const binding: turnover.TurnoverBinding = { content, rule, policy: RECRUITING ? rec.lettersPolicy(turnover.gmPolicy()) : turnover.gmPolicy(), ...(developBatch ? { developBatch } : {}) };
 const recruiting: rec.RecruitingBinding = { turnover: base, calendarFiles: calendar.CALENDAR_FILES, policy: () => rec.gmRecruitingPolicy() };
 const timing: Record<string, number> = {};
 const timed = (name: string, h: loop.StepHandler): loop.StepHandler => (ctx) => {
@@ -63,3 +78,4 @@ loop.runHistory(w, systems, {
     last = performance.now();
   },
 });
+if (pool) await pool.close();
