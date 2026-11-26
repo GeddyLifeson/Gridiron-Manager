@@ -1,0 +1,1201 @@
+{
+ "league": {
+  "id": "league.pro",
+  "name": "Continental Football Association",
+  "abbreviation": "CFA",
+  "level": "pro",
+  "conferences": [
+   {
+    "id": "conf.a",
+    "name": "Harbor Conference",
+    "divisions": [
+     {
+      "id": "div.a.east",
+      "label": "east"
+     },
+     {
+      "id": "div.a.north",
+      "label": "north"
+     },
+     {
+      "id": "div.a.south",
+      "label": "south"
+     },
+     {
+      "id": "div.a.west",
+      "label": "west"
+     }
+    ]
+   },
+   {
+    "id": "conf.b",
+    "name": "Highland Conference",
+    "divisions": [
+     {
+      "id": "div.b.east",
+      "label": "east"
+     },
+     {
+      "id": "div.b.north",
+      "label": "north"
+     },
+     {
+      "id": "div.b.south",
+      "label": "south"
+     },
+     {
+      "id": "div.b.west",
+      "label": "west"
+     }
+    ]
+   }
+  ],
+  "clubs": [
+   {
+    "id": "club.mby",
+    "city": "Marlbury",
+    "nickname": "Lanterns",
+    "abbreviation": "MBY",
+    "primaryColour": "#1F3A5F",
+    "secondaryColour": "#E8B43C",
+    "divisionId": "div.a.east",
+    "stadiumId": "stadium.mby",
+    "marketTier": 5,
+    "foundingYear": 1938,
+    "referenceLocationId": "boston"
+   },
+   {
+    "id": "club.hud",
+    "city": "Hudmere",
+    "nickname": "Sentinels",
+    "abbreviation": "HUD",
+    "primaryColour": "#0E6B5C",
+    "secondaryColour": "#C9D1D3",
+    "divisionId": "div.a.east",
+    "stadiumId": "stadium.hud",
+    "marketTier": 5,
+    "foundingYear": 1946,
+    "referenceLocationId": "newyork"
+   },
+   {
+    "id": "club.bwf",
+    "city": "Brandywell",
+    "nickname": "Founders",
+    "abbreviation": "BWF",
+    "primaryColour": "#6B1E2E",
+    "secondaryColour": "#D9C7A3",
+    "divisionId": "div.a.east",
+    "stadiumId": "stadium.bwf",
+    "marketTier": 4,
+    "foundingYear": 1951,
+    "referenceLocationId": "philadelphia"
+   },
+   {
+    "id": "club.cal",
+    "city": "Calverton",
+    "nickname": "Ironclads",
+    "abbreviation": "CAL",
+    "primaryColour": "#7A2E2E",
+    "secondaryColour": "#2B2B2B",
+    "divisionId": "div.a.east",
+    "stadiumId": "stadium.cal",
+    "marketTier": 5,
+    "foundingYear": 1949,
+    "referenceLocationId": "washington"
+   },
+   {
+    "id": "club.crg",
+    "city": "Cresswick",
+    "nickname": "Gales",
+    "abbreviation": "CRG",
+    "primaryColour": "#2E5E8C",
+    "secondaryColour": "#F1F1F1",
+    "divisionId": "div.a.north",
+    "stadiumId": "stadium.crg",
+    "marketTier": 2,
+    "foundingYear": 1962,
+    "referenceLocationId": "buffalo"
+   },
+   {
+    "id": "club.irv",
+    "city": "Ironvale",
+    "nickname": "Forgemen",
+    "abbreviation": "IRV",
+    "primaryColour": "#C99A1E",
+    "secondaryColour": "#1A1A1A",
+    "divisionId": "div.a.north",
+    "stadiumId": "stadium.irv",
+    "marketTier": 3,
+    "foundingYear": 1933,
+    "referenceLocationId": "pittsburgh"
+   },
+   {
+    "id": "club.erp",
+    "city": "Erieport",
+    "nickname": "Anchors",
+    "abbreviation": "ERP",
+    "primaryColour": "#B5541C",
+    "secondaryColour": "#3B2A20",
+    "divisionId": "div.a.north",
+    "stadiumId": "stadium.erp",
+    "marketTier": 3,
+    "foundingYear": 1946,
+    "referenceLocationId": "cleveland"
+   },
+   {
+    "id": "club.chl",
+    "city": "Chesterly",
+    "nickname": "Clippers",
+    "abbreviation": "CHL",
+    "primaryColour": "#4B2E83",
+    "secondaryColour": "#E0E0E0",
+    "divisionId": "div.a.north",
+    "stadiumId": "stadium.chl",
+    "marketTier": 3,
+    "foundingYear": 1953,
+    "referenceLocationId": "baltimore"
+   },
+   {
+    "id": "club.crw",
+    "city": "Carrowood",
+    "nickname": "Pinecones",
+    "abbreviation": "CRW",
+    "primaryColour": "#1D7A8C",
+    "secondaryColour": "#101820",
+    "divisionId": "div.a.south",
+    "stadiumId": "stadium.crw",
+    "marketTier": 3,
+    "foundingYear": 1995,
+    "referenceLocationId": "charlotte"
+   },
+   {
+    "id": "club.stg",
+    "city": "Stonegate",
+    "nickname": "Heralds",
+    "abbreviation": "STG",
+    "primaryColour": "#A12B2B",
+    "secondaryColour": "#C8C8C8",
+    "divisionId": "div.a.south",
+    "stadiumId": "stadium.stg",
+    "marketTier": 4,
+    "foundingYear": 1966,
+    "referenceLocationId": "atlanta"
+   },
+   {
+    "id": "club.smh",
+    "city": "Saltmarsh",
+    "nickname": "Herons",
+    "abbreviation": "SMH",
+    "primaryColour": "#0F5C4D",
+    "secondaryColour": "#D4AF37",
+    "divisionId": "div.a.south",
+    "stadiumId": "stadium.smh",
+    "marketTier": 2,
+    "foundingYear": 1993,
+    "referenceLocationId": "jacksonville"
+   },
+   {
+    "id": "club.crs",
+    "city": "Coralline",
+    "nickname": "Surge",
+    "abbreviation": "CRS",
+    "primaryColour": "#E2682A",
+    "secondaryColour": "#0B4F6C",
+    "divisionId": "div.a.south",
+    "stadiumId": "stadium.crs",
+    "marketTier": 5,
+    "foundingYear": 1966,
+    "referenceLocationId": "miami"
+   },
+   {
+    "id": "club.bsk",
+    "city": "Bayshore",
+    "nickname": "Skimmers",
+    "abbreviation": "BSK",
+    "primaryColour": "#7C2D12",
+    "secondaryColour": "#F2C94C",
+    "divisionId": "div.a.west",
+    "stadiumId": "stadium.bsk",
+    "marketTier": 3,
+    "foundingYear": 1976,
+    "referenceLocationId": "tampa"
+   },
+   {
+    "id": "club.dlx",
+    "city": "Delacroix",
+    "nickname": "Marauders",
+    "abbreviation": "DLX",
+    "primaryColour": "#5A3E85",
+    "secondaryColour": "#E5C158",
+    "divisionId": "div.a.west",
+    "stadiumId": "stadium.dlx",
+    "marketTier": 2,
+    "foundingYear": 1967,
+    "referenceLocationId": "neworleans"
+   },
+   {
+    "id": "club.brz",
+    "city": "Brazoria",
+    "nickname": "Roughnecks",
+    "abbreviation": "BRZ",
+    "primaryColour": "#14527A",
+    "secondaryColour": "#C23B22",
+    "divisionId": "div.a.west",
+    "stadiumId": "stadium.brz",
+    "marketTier": 5,
+    "foundingYear": 1960,
+    "referenceLocationId": "houston"
+   },
+   {
+    "id": "club.trw",
+    "city": "Trinity",
+    "nickname": "Wranglers",
+    "abbreviation": "TRW",
+    "primaryColour": "#27408B",
+    "secondaryColour": "#9AA5B1",
+    "divisionId": "div.a.west",
+    "stadiumId": "stadium.trw",
+    "marketTier": 5,
+    "foundingYear": 1960,
+    "referenceLocationId": "dallas"
+   },
+   {
+    "id": "club.hlg",
+    "city": "Halstead",
+    "nickname": "Gryphons",
+    "abbreviation": "HLG",
+    "primaryColour": "#0B2545",
+    "secondaryColour": "#D9822B",
+    "divisionId": "div.b.north",
+    "stadiumId": "stadium.hlg",
+    "marketTier": 5,
+    "foundingYear": 1920,
+    "referenceLocationId": "chicago"
+   },
+   {
+    "id": "club.nwl",
+    "city": "Northwood",
+    "nickname": "Loggers",
+    "abbreviation": "NWL",
+    "primaryColour": "#2F5D3A",
+    "secondaryColour": "#F2B632",
+    "divisionId": "div.b.north",
+    "stadiumId": "stadium.nwl",
+    "marketTier": 1,
+    "foundingYear": 1919,
+    "referenceLocationId": "greenbay"
+   },
+   {
+    "id": "club.fmv",
+    "city": "Frostmere",
+    "nickname": "Voyageurs",
+    "abbreviation": "FMV",
+    "primaryColour": "#3D2C8D",
+    "secondaryColour": "#F0C419",
+    "divisionId": "div.b.north",
+    "stadiumId": "stadium.fmv",
+    "marketTier": 4,
+    "foundingYear": 1961,
+    "referenceLocationId": "minneapolis"
+   },
+   {
+    "id": "club.mfa",
+    "city": "Motorford",
+    "nickname": "Assemblers",
+    "abbreviation": "MFA",
+    "primaryColour": "#0076B6",
+    "secondaryColour": "#B0B7BC",
+    "divisionId": "div.b.north",
+    "stadiumId": "stadium.mfa",
+    "marketTier": 4,
+    "foundingYear": 1930,
+    "referenceLocationId": "detroit"
+   },
+   {
+    "id": "club.qfs",
+    "city": "Queensfall",
+    "nickname": "Skyliners",
+    "abbreviation": "QFS",
+    "primaryColour": "#F26B21",
+    "secondaryColour": "#101010",
+    "divisionId": "div.b.east",
+    "stadiumId": "stadium.qfs",
+    "marketTier": 2,
+    "foundingYear": 1968,
+    "referenceLocationId": "cincinnati"
+   },
+   {
+    "id": "club.crx",
+    "city": "Crossroads",
+    "nickname": "Speedsters",
+    "abbreviation": "CRX",
+    "primaryColour": "#00539B",
+    "secondaryColour": "#F5F5F5",
+    "divisionId": "div.b.east",
+    "stadiumId": "stadium.crx",
+    "marketTier": 3,
+    "foundingYear": 1953,
+    "referenceLocationId": "indianapolis"
+   },
+   {
+    "id": "club.cum",
+    "city": "Cumberland",
+    "nickname": "Troubadours",
+    "abbreviation": "CUM",
+    "primaryColour": "#5E8FBF",
+    "secondaryColour": "#C8102E",
+    "divisionId": "div.b.east",
+    "stadiumId": "stadium.cum",
+    "marketTier": 3,
+    "foundingYear": 1960,
+    "referenceLocationId": "nashville"
+   },
+   {
+    "id": "club.gwa",
+    "city": "Gatewood",
+    "nickname": "Arches",
+    "abbreviation": "GWA",
+    "primaryColour": "#8C1D40",
+    "secondaryColour": "#F9A01B",
+    "divisionId": "div.b.east",
+    "stadiumId": "stadium.gwa",
+    "marketTier": 4,
+    "foundingYear": 1936,
+    "referenceLocationId": "stlouis"
+   },
+   {
+    "id": "club.sms",
+    "city": "Sunmesa",
+    "nickname": "Scorpions",
+    "abbreviation": "SMS",
+    "primaryColour": "#B22234",
+    "secondaryColour": "#F8C471",
+    "divisionId": "div.b.south",
+    "stadiumId": "stadium.sms",
+    "marketTier": 4,
+    "foundingYear": 1988,
+    "referenceLocationId": "phoenix"
+   },
+   {
+    "id": "club.hce",
+    "city": "Highcrest",
+    "nickname": "Elk",
+    "abbreviation": "HCE",
+    "primaryColour": "#FF7A00",
+    "secondaryColour": "#0A2240",
+    "divisionId": "div.b.south",
+    "stadiumId": "stadium.hce",
+    "marketTier": 4,
+    "foundingYear": 1960,
+    "referenceLocationId": "denver"
+   },
+   {
+    "id": "club.cwd",
+    "city": "Cottonwood",
+    "nickname": "Drovers",
+    "abbreviation": "CWD",
+    "primaryColour": "#9B1C31",
+    "secondaryColour": "#E3C16F",
+    "divisionId": "div.b.south",
+    "stadiumId": "stadium.cwd",
+    "marketTier": 3,
+    "foundingYear": 1960,
+    "referenceLocationId": "kansascity"
+   },
+   {
+    "id": "club.rpt",
+    "city": "Redplain",
+    "nickname": "Twisters",
+    "abbreviation": "RPT",
+    "primaryColour": "#5B2C6F",
+    "secondaryColour": "#D5D8DC",
+    "divisionId": "div.b.south",
+    "stadiumId": "stadium.rpt",
+    "marketTier": 2,
+    "foundingYear": 1998,
+    "referenceLocationId": "oklahomacity"
+   },
+   {
+    "id": "club.twf",
+    "city": "Tidewater",
+    "nickname": "Foghorns",
+    "abbreviation": "TWF",
+    "primaryColour": "#00A3A1",
+    "secondaryColour": "#2C3E50",
+    "divisionId": "div.b.west",
+    "stadiumId": "stadium.twf",
+    "marketTier": 4,
+    "foundingYear": 1976,
+    "referenceLocationId": "seattle"
+   },
+   {
+    "id": "club.bwa",
+    "city": "Baywind",
+    "nickname": "Argonauts",
+    "abbreviation": "BWA",
+    "primaryColour": "#AA0000",
+    "secondaryColour": "#B3995D",
+    "divisionId": "div.b.west",
+    "stadiumId": "stadium.bwa",
+    "marketTier": 5,
+    "foundingYear": 1946,
+    "referenceLocationId": "sanfrancisco"
+   },
+   {
+    "id": "club.smc",
+    "city": "Santa Marisol",
+    "nickname": "Condors",
+    "abbreviation": "SMC",
+    "primaryColour": "#003594",
+    "secondaryColour": "#FFC72C",
+    "divisionId": "div.b.west",
+    "stadiumId": "stadium.smc",
+    "marketTier": 5,
+    "foundingYear": 1946,
+    "referenceLocationId": "losangeles"
+   },
+   {
+    "id": "club.sfa",
+    "city": "Silverflat",
+    "nickname": "Aces",
+    "abbreviation": "SFA",
+    "primaryColour": "#0B0B0B",
+    "secondaryColour": "#8A8D8F",
+    "divisionId": "div.b.west",
+    "stadiumId": "stadium.sfa",
+    "marketTier": 4,
+    "foundingYear": 2020,
+    "referenceLocationId": "lasvegas"
+   }
+  ]
+ },
+ "stadiums": [
+  {
+   "id": "stadium.mby",
+   "name": "Marlbury Memorial Stadium",
+   "clubId": "club.mby",
+   "latitude": 42.4,
+   "longitude": -71.0,
+   "altitudeM": 10,
+   "roof": "open",
+   "orientationDegFromNorth": 0,
+   "capacity": 77700,
+   "surface": {
+    "type": "hybrid grass"
+   },
+   "noiseFactor": 0.91,
+   "windExposure": 0.7,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "boston",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.hud",
+   "name": "Hudmere Field",
+   "clubId": "club.hud",
+   "latitude": 40.8,
+   "longitude": -73.9,
+   "altitudeM": 10,
+   "roof": "fixed dome",
+   "orientationDegFromNorth": 15,
+   "capacity": 64400,
+   "surface": {
+    "type": "artificial turf"
+   },
+   "noiseFactor": 1.2,
+   "windExposure": 0,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "newyork",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.bwf",
+   "name": "Brandywell Field",
+   "clubId": "club.bwf",
+   "latitude": 39.9,
+   "longitude": -75.2,
+   "altitudeM": 10,
+   "roof": "open",
+   "orientationDegFromNorth": 345,
+   "capacity": 72300,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.04,
+   "windExposure": 0.48,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "philadelphia",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.cal",
+   "name": "Calverton Memorial Stadium",
+   "clubId": "club.cal",
+   "latitude": 38.9,
+   "longitude": -77.0,
+   "altitudeM": 20,
+   "roof": "open",
+   "orientationDegFromNorth": 30,
+   "capacity": 75500,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.95,
+   "windExposure": 0.77,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "washington",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.crg",
+   "name": "Cresswick Field",
+   "clubId": "club.crg",
+   "latitude": 42.9,
+   "longitude": -78.7,
+   "altitudeM": 220,
+   "roof": "open",
+   "orientationDegFromNorth": 330,
+   "capacity": 79900,
+   "surface": {
+    "type": "artificial turf"
+   },
+   "noiseFactor": 1.09,
+   "windExposure": 0.54,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "buffalo",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.irv",
+   "name": "Ironvale Field",
+   "clubId": "club.irv",
+   "latitude": 40.5,
+   "longitude": -80.2,
+   "altitudeM": 360,
+   "roof": "open",
+   "orientationDegFromNorth": 45,
+   "capacity": 73500,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.94,
+   "windExposure": 0.8,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "pittsburgh",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.erp",
+   "name": "Erieport Memorial Stadium",
+   "clubId": "club.erp",
+   "latitude": 41.4,
+   "longitude": -81.8,
+   "altitudeM": 240,
+   "roof": "open",
+   "orientationDegFromNorth": 315,
+   "capacity": 69100,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.98,
+   "windExposure": 0.66,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "cleveland",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.chl",
+   "name": "Chesterly Field",
+   "clubId": "club.chl",
+   "latitude": 39.2,
+   "longitude": -76.7,
+   "altitudeM": 45,
+   "roof": "open",
+   "orientationDegFromNorth": 60,
+   "capacity": 74400,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.02,
+   "windExposure": 0.46,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "baltimore",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.crw",
+   "name": "Carrowood Field",
+   "clubId": "club.crw",
+   "latitude": 35.2,
+   "longitude": -80.9,
+   "altitudeM": 220,
+   "roof": "open",
+   "orientationDegFromNorth": 300,
+   "capacity": 75400,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.91,
+   "windExposure": 0.58,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "charlotte",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.stg",
+   "name": "Stonegate Memorial Stadium",
+   "clubId": "club.stg",
+   "latitude": 33.6,
+   "longitude": -84.4,
+   "altitudeM": 315,
+   "roof": "open",
+   "orientationDegFromNorth": 90,
+   "capacity": 67200,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.93,
+   "windExposure": 0.86,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "atlanta",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.smh",
+   "name": "Saltmarsh Field",
+   "clubId": "club.smh",
+   "latitude": 30.5,
+   "longitude": -81.7,
+   "altitudeM": 10,
+   "roof": "open",
+   "orientationDegFromNorth": 0,
+   "capacity": 72700,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.04,
+   "windExposure": 0.5,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "jacksonville",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.crs",
+   "name": "Coralline Field",
+   "clubId": "club.crs",
+   "latitude": 25.8,
+   "longitude": -80.3,
+   "altitudeM": 3,
+   "roof": "open",
+   "orientationDegFromNorth": 15,
+   "capacity": 76600,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.92,
+   "windExposure": 0.56,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "miami",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.bsk",
+   "name": "Bayshore Memorial Stadium",
+   "clubId": "club.bsk",
+   "latitude": 28.0,
+   "longitude": -82.5,
+   "altitudeM": 5,
+   "roof": "open",
+   "orientationDegFromNorth": 345,
+   "capacity": 78000,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.01,
+   "windExposure": 0.66,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "tampa",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.dlx",
+   "name": "Delacroix Field",
+   "clubId": "club.dlx",
+   "latitude": 30.0,
+   "longitude": -90.3,
+   "altitudeM": 1,
+   "roof": "fixed dome",
+   "orientationDegFromNorth": 30,
+   "capacity": 63800,
+   "surface": {
+    "type": "artificial turf"
+   },
+   "noiseFactor": 1.2,
+   "windExposure": 0,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "neworleans",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.brz",
+   "name": "Brazoria Field",
+   "clubId": "club.brz",
+   "latitude": 29.9,
+   "longitude": -95.4,
+   "altitudeM": 30,
+   "roof": "retractable",
+   "orientationDegFromNorth": 330,
+   "capacity": 68800,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.09,
+   "windExposure": 0.35,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "houston",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.trw",
+   "name": "Trinity Memorial Stadium",
+   "clubId": "club.trw",
+   "latitude": 32.9,
+   "longitude": -97.0,
+   "altitudeM": 180,
+   "roof": "retractable",
+   "orientationDegFromNorth": 45,
+   "capacity": 70900,
+   "surface": {
+    "type": "artificial turf"
+   },
+   "noiseFactor": 1.06,
+   "windExposure": 0.6,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "dallas",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.hlg",
+   "name": "Halstead Field",
+   "clubId": "club.hlg",
+   "latitude": 41.8,
+   "longitude": -87.8,
+   "altitudeM": 190,
+   "roof": "open",
+   "orientationDegFromNorth": 315,
+   "capacity": 77600,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.03,
+   "windExposure": 0.54,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "chicago",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.nwl",
+   "name": "Northwood Field",
+   "clubId": "club.nwl",
+   "latitude": 44.5,
+   "longitude": -88.1,
+   "altitudeM": 210,
+   "roof": "open",
+   "orientationDegFromNorth": 60,
+   "capacity": 65400,
+   "surface": {
+    "type": "hybrid grass"
+   },
+   "noiseFactor": 0.96,
+   "windExposure": 0.41,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "greenbay",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.fmv",
+   "name": "Frostmere Memorial Stadium",
+   "clubId": "club.fmv",
+   "latitude": 44.9,
+   "longitude": -93.2,
+   "altitudeM": 265,
+   "roof": "open",
+   "orientationDegFromNorth": 300,
+   "capacity": 70800,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.03,
+   "windExposure": 0.73,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "minneapolis",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.mfa",
+   "name": "Motorford Field",
+   "clubId": "club.mfa",
+   "latitude": 42.2,
+   "longitude": -83.3,
+   "altitudeM": 190,
+   "roof": "fixed dome",
+   "orientationDegFromNorth": 90,
+   "capacity": 67300,
+   "surface": {
+    "type": "artificial turf"
+   },
+   "noiseFactor": 1.2,
+   "windExposure": 0,
+   "timeZone": "America/Detroit",
+   "referenceLocationId": "detroit",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.qfs",
+   "name": "Queensfall Field",
+   "clubId": "club.qfs",
+   "latitude": 39.1,
+   "longitude": -84.5,
+   "altitudeM": 150,
+   "roof": "open",
+   "orientationDegFromNorth": 0,
+   "capacity": 73300,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.02,
+   "windExposure": 0.61,
+   "timeZone": "America/New_York",
+   "referenceLocationId": "cincinnati",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.crx",
+   "name": "Crossroads Memorial Stadium",
+   "clubId": "club.crx",
+   "latitude": 39.7,
+   "longitude": -86.3,
+   "altitudeM": 240,
+   "roof": "retractable",
+   "orientationDegFromNorth": 15,
+   "capacity": 68600,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.96,
+   "windExposure": 0.57,
+   "timeZone": "America/Indiana/Indianapolis",
+   "referenceLocationId": "indianapolis",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.cum",
+   "name": "Cumberland Field",
+   "clubId": "club.cum",
+   "latitude": 36.1,
+   "longitude": -86.7,
+   "altitudeM": 180,
+   "roof": "open",
+   "orientationDegFromNorth": 345,
+   "capacity": 76500,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.0,
+   "windExposure": 0.76,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "nashville",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.gwa",
+   "name": "Gatewood Field",
+   "clubId": "club.gwa",
+   "latitude": 38.7,
+   "longitude": -90.4,
+   "altitudeM": 160,
+   "roof": "fixed dome",
+   "orientationDegFromNorth": 30,
+   "capacity": 75400,
+   "surface": {
+    "type": "artificial turf"
+   },
+   "noiseFactor": 1.2,
+   "windExposure": 0,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "stlouis",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.sms",
+   "name": "Sunmesa Memorial Stadium",
+   "clubId": "club.sms",
+   "latitude": 33.4,
+   "longitude": -112.0,
+   "altitudeM": 340,
+   "roof": "retractable",
+   "orientationDegFromNorth": 330,
+   "capacity": 65000,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.99,
+   "windExposure": 0.84,
+   "timeZone": "America/Phoenix",
+   "referenceLocationId": "phoenix",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.hce",
+   "name": "Highcrest Field",
+   "clubId": "club.hce",
+   "latitude": 39.8,
+   "longitude": -104.7,
+   "altitudeM": 1655,
+   "roof": "open",
+   "orientationDegFromNorth": 45,
+   "capacity": 63800,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.97,
+   "windExposure": 0.77,
+   "timeZone": "America/Denver",
+   "referenceLocationId": "denver",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.cwd",
+   "name": "Cottonwood Field",
+   "clubId": "club.cwd",
+   "latitude": 39.3,
+   "longitude": -94.7,
+   "altitudeM": 300,
+   "roof": "open",
+   "orientationDegFromNorth": 315,
+   "capacity": 66700,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.95,
+   "windExposure": 0.88,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "kansascity",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.rpt",
+   "name": "Redplain Memorial Stadium",
+   "clubId": "club.rpt",
+   "latitude": 35.4,
+   "longitude": -97.6,
+   "altitudeM": 395,
+   "roof": "open",
+   "orientationDegFromNorth": 60,
+   "capacity": 66400,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.08,
+   "windExposure": 0.32,
+   "timeZone": "America/Chicago",
+   "referenceLocationId": "oklahomacity",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.twf",
+   "name": "Tidewater Field",
+   "clubId": "club.twf",
+   "latitude": 47.5,
+   "longitude": -122.3,
+   "altitudeM": 130,
+   "roof": "open",
+   "orientationDegFromNorth": 300,
+   "capacity": 63900,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.0,
+   "windExposure": 0.88,
+   "timeZone": "America/Los_Angeles",
+   "referenceLocationId": "seattle",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.bwa",
+   "name": "Baywind Field",
+   "clubId": "club.bwa",
+   "latitude": 37.6,
+   "longitude": -122.4,
+   "altitudeM": 3,
+   "roof": "open",
+   "orientationDegFromNorth": 90,
+   "capacity": 62800,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 0.91,
+   "windExposure": 0.78,
+   "timeZone": "America/Los_Angeles",
+   "referenceLocationId": "sanfrancisco",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.smc",
+   "name": "Santa Marisol Memorial Stadium",
+   "clubId": "club.smc",
+   "latitude": 33.9,
+   "longitude": -118.4,
+   "altitudeM": 30,
+   "roof": "open",
+   "orientationDegFromNorth": 0,
+   "capacity": 67800,
+   "surface": {
+    "type": "artificial turf"
+   },
+   "noiseFactor": 0.94,
+   "windExposure": 0.39,
+   "timeZone": "America/Los_Angeles",
+   "referenceLocationId": "losangeles",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  },
+  {
+   "id": "stadium.sfa",
+   "name": "Silverflat Field",
+   "clubId": "club.sfa",
+   "latitude": 36.1,
+   "longitude": -115.2,
+   "altitudeM": 660,
+   "roof": "fixed dome",
+   "orientationDegFromNorth": 15,
+   "capacity": 77700,
+   "surface": {
+    "type": "natural grass"
+   },
+   "noiseFactor": 1.2,
+   "windExposure": 0,
+   "timeZone": "America/Los_Angeles",
+   "referenceLocationId": "lasvegas",
+   "basis": "assumption",
+   "notes": "Latitude, longitude, altitude: rounded from the named real reference location; capacity, orientation, noise, exposure: design draws (assumption)."
+  }
+ ],
+ "rivalries": [
+  {
+   "a": "club.hud",
+   "b": "club.bwf",
+   "strength": 3,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.mby",
+   "b": "club.hud",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.hlg",
+   "b": "club.nwl",
+   "strength": 3,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.hlg",
+   "b": "club.mfa",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.crg",
+   "b": "club.irv",
+   "strength": 1,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.brz",
+   "b": "club.trw",
+   "strength": 3,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.bwa",
+   "b": "club.smc",
+   "strength": 3,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.cwd",
+   "b": "club.gwa",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.mby",
+   "b": "club.cal",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.irv",
+   "b": "club.erp",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.crs",
+   "b": "club.bsk",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.twf",
+   "b": "club.bwa",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.hce",
+   "b": "club.cwd",
+   "strength": 2,
+   "basis": "assumption"
+  },
+  {
+   "a": "club.fmv",
+   "b": "club.nwl",
+   "strength": 2,
+   "basis": "assumption"
+  }
+ ],
+ "rivalryNote": "Every pair of clubs in one division is a rivalry of strength 1 by rule (C1.2.3); the rows here are the listed extras at 2 or 3. Strengths and the extra pairs are assumptions (design data, no real-world number)."
+}

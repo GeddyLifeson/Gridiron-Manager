@@ -1,0 +1,1711 @@
+{
+ "note": "Real-world places whose climate normals and geography the generated places borrow (C1.4.2 rule 3, U4.1.1). The real name stays in this file only to make the numbers checkable; no generated team or school carries it.",
+ "locations": [
+  {
+   "id": "albany",
+   "name": "Albany",
+   "state": "NY",
+   "region": "northeast",
+   "lat": 42.7,
+   "lon": -73.8,
+   "elevationM": 90,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "albany",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "albuquerque",
+   "name": "Albuquerque",
+   "state": "NM",
+   "region": "mountain",
+   "lat": 35.0,
+   "lon": -106.6,
+   "elevationM": 1620,
+   "timeZone": "America/Denver",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "albuquerque",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "atlanta",
+   "name": "Atlanta",
+   "state": "GA",
+   "region": "southeast",
+   "lat": 33.6,
+   "lon": -84.4,
+   "elevationM": 315,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "atlanta",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "baltimore",
+   "name": "Baltimore",
+   "state": "MD",
+   "region": "mid_atlantic",
+   "lat": 39.2,
+   "lon": -76.7,
+   "elevationM": 45,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "baltimore",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "batonrouge",
+   "name": "Baton Rouge",
+   "state": "LA",
+   "region": "deep_south",
+   "lat": 30.5,
+   "lon": -91.2,
+   "elevationM": 20,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "batonrouge",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "billings",
+   "name": "Billings",
+   "state": "MT",
+   "region": "mountain",
+   "lat": 45.8,
+   "lon": -108.5,
+   "elevationM": 1090,
+   "timeZone": "America/Denver",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "billings",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "birmingham",
+   "name": "Birmingham",
+   "state": "AL",
+   "region": "deep_south",
+   "lat": 33.6,
+   "lon": -86.8,
+   "elevationM": 190,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "birmingham",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "boise",
+   "name": "Boise",
+   "state": "ID",
+   "region": "mountain",
+   "lat": 43.6,
+   "lon": -116.2,
+   "elevationM": 870,
+   "timeZone": "America/Boise",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "boise",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "boston",
+   "name": "Boston",
+   "state": "MA",
+   "region": "northeast",
+   "lat": 42.4,
+   "lon": -71.0,
+   "elevationM": 10,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "boston",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "buffalo",
+   "name": "Buffalo",
+   "state": "NY",
+   "region": "northeast",
+   "lat": 42.9,
+   "lon": -78.7,
+   "elevationM": 220,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "buffalo",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "burlington",
+   "name": "Burlington",
+   "state": "VT",
+   "region": "northeast",
+   "lat": 44.5,
+   "lon": -73.2,
+   "elevationM": 100,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "burlington",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "charleston_wv",
+   "name": "Charleston",
+   "state": "WV",
+   "region": "mid_atlantic",
+   "lat": 38.4,
+   "lon": -81.6,
+   "elevationM": 290,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "charleston_wv",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "charlotte",
+   "name": "Charlotte",
+   "state": "NC",
+   "region": "southeast",
+   "lat": 35.2,
+   "lon": -80.9,
+   "elevationM": 220,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "charlotte",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "chicago",
+   "name": "Chicago",
+   "state": "IL",
+   "region": "great_lakes",
+   "lat": 41.8,
+   "lon": -87.8,
+   "elevationM": 190,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "chicago",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "cincinnati",
+   "name": "Cincinnati",
+   "state": "OH",
+   "region": "great_lakes",
+   "lat": 39.1,
+   "lon": -84.5,
+   "elevationM": 150,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "cincinnati",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "cleveland",
+   "name": "Cleveland",
+   "state": "OH",
+   "region": "great_lakes",
+   "lat": 41.4,
+   "lon": -81.8,
+   "elevationM": 240,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "cleveland",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "columbia_sc",
+   "name": "Columbia",
+   "state": "SC",
+   "region": "southeast",
+   "lat": 34.0,
+   "lon": -81.1,
+   "elevationM": 70,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "columbia_sc",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "columbus",
+   "name": "Columbus",
+   "state": "OH",
+   "region": "great_lakes",
+   "lat": 40.0,
+   "lon": -82.9,
+   "elevationM": 240,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "columbus",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "dallas",
+   "name": "Dallas",
+   "state": "TX",
+   "region": "texas",
+   "lat": 32.9,
+   "lon": -97.0,
+   "elevationM": 180,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "dallas",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "denver",
+   "name": "Denver",
+   "state": "CO",
+   "region": "mountain",
+   "lat": 39.8,
+   "lon": -104.7,
+   "elevationM": 1655,
+   "timeZone": "America/Denver",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "denver",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "desmoines",
+   "name": "Des Moines",
+   "state": "IA",
+   "region": "plains",
+   "lat": 41.5,
+   "lon": -93.7,
+   "elevationM": 290,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "desmoines",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "detroit",
+   "name": "Detroit",
+   "state": "MI",
+   "region": "great_lakes",
+   "lat": 42.2,
+   "lon": -83.3,
+   "elevationM": 190,
+   "timeZone": "America/Detroit",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "detroit",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "elpaso",
+   "name": "El Paso",
+   "state": "TX",
+   "region": "texas",
+   "lat": 31.8,
+   "lon": -106.4,
+   "elevationM": 1190,
+   "timeZone": "America/Denver",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "elpaso",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "fargo",
+   "name": "Fargo",
+   "state": "ND",
+   "region": "plains",
+   "lat": 46.9,
+   "lon": -96.8,
+   "elevationM": 270,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "fargo",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "fresno",
+   "name": "Fresno",
+   "state": "CA",
+   "region": "pacific",
+   "lat": 36.8,
+   "lon": -119.7,
+   "elevationM": 100,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "fresno",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "grandrapids",
+   "name": "Grand Rapids",
+   "state": "MI",
+   "region": "great_lakes",
+   "lat": 42.9,
+   "lon": -85.5,
+   "elevationM": 240,
+   "timeZone": "America/Detroit",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "grandrapids",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "greenbay",
+   "name": "Green Bay",
+   "state": "WI",
+   "region": "great_lakes",
+   "lat": 44.5,
+   "lon": -88.1,
+   "elevationM": 210,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "greenbay",
+    "station": {
+     "name": "GREEN BAY, WI US",
+     "id": "USW00014898",
+     "elevationFt": 682
+    },
+    "normals": {
+     "tempF": [
+      18.3,
+      21.1,
+      32.1,
+      44.3,
+      56.5,
+      66.4,
+      70.5,
+      68.6,
+      61.0,
+      48.7,
+      36.2,
+      24.5
+     ],
+     "precipIn": [
+      1.39,
+      1.2,
+      1.96,
+      3.0,
+      3.35,
+      4.1,
+      3.62,
+      3.39,
+      3.2,
+      2.67,
+      1.98,
+      1.75
+     ],
+     "snowIn": [
+      14.3,
+      12.0,
+      8.1,
+      4.7,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.3,
+      3.1,
+      13.1
+     ]
+    },
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true,
+     "dateRead": "2026-11-26",
+     "howRead": "primary text via NCEI summary PDF mirrored at aos.wisc.edu",
+     "url": "https://www.aos.wisc.edu/oldsco/clim-history/sta-data/grb/GRB-Monthly/normals-monthly-1991-2020-3123336-GRB.pdf"
+    },
+    "status": "Primary source read (1 of 3)"
+   }
+  },
+  {
+   "id": "hartford",
+   "name": "Hartford",
+   "state": "CT",
+   "region": "northeast",
+   "lat": 41.9,
+   "lon": -72.7,
+   "elevationM": 5,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "hartford",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "houston",
+   "name": "Houston",
+   "state": "TX",
+   "region": "texas",
+   "lat": 29.9,
+   "lon": -95.4,
+   "elevationM": 30,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "houston",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "indianapolis",
+   "name": "Indianapolis",
+   "state": "IN",
+   "region": "great_lakes",
+   "lat": 39.7,
+   "lon": -86.3,
+   "elevationM": 240,
+   "timeZone": "America/Indiana/Indianapolis",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "indianapolis",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "jackson_ms",
+   "name": "Jackson",
+   "state": "MS",
+   "region": "deep_south",
+   "lat": 32.3,
+   "lon": -90.1,
+   "elevationM": 100,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "jackson_ms",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "jacksonville",
+   "name": "Jacksonville",
+   "state": "FL",
+   "region": "southeast",
+   "lat": 30.5,
+   "lon": -81.7,
+   "elevationM": 10,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "jacksonville",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "kansascity",
+   "name": "Kansas City",
+   "state": "MO",
+   "region": "plains",
+   "lat": 39.3,
+   "lon": -94.7,
+   "elevationM": 300,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "kansascity",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "knoxville",
+   "name": "Knoxville",
+   "state": "TN",
+   "region": "deep_south",
+   "lat": 35.8,
+   "lon": -84.0,
+   "elevationM": 300,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "knoxville",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "lasvegas",
+   "name": "Las Vegas",
+   "state": "NV",
+   "region": "mountain",
+   "lat": 36.1,
+   "lon": -115.2,
+   "elevationM": 660,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "lasvegas",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "lexington",
+   "name": "Lexington",
+   "state": "KY",
+   "region": "deep_south",
+   "lat": 38.0,
+   "lon": -84.6,
+   "elevationM": 300,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "lexington",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "littlerock",
+   "name": "Little Rock",
+   "state": "AR",
+   "region": "deep_south",
+   "lat": 34.7,
+   "lon": -92.2,
+   "elevationM": 80,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "littlerock",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "losangeles",
+   "name": "Los Angeles",
+   "state": "CA",
+   "region": "pacific",
+   "lat": 33.9,
+   "lon": -118.4,
+   "elevationM": 30,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "losangeles",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "louisville",
+   "name": "Louisville",
+   "state": "KY",
+   "region": "deep_south",
+   "lat": 38.2,
+   "lon": -85.7,
+   "elevationM": 150,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "louisville",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "lubbock",
+   "name": "Lubbock",
+   "state": "TX",
+   "region": "texas",
+   "lat": 33.7,
+   "lon": -101.8,
+   "elevationM": 990,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "lubbock",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "madison",
+   "name": "Madison",
+   "state": "WI",
+   "region": "great_lakes",
+   "lat": 43.1,
+   "lon": -89.3,
+   "elevationM": 260,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "madison",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "memphis",
+   "name": "Memphis",
+   "state": "TN",
+   "region": "deep_south",
+   "lat": 35.1,
+   "lon": -90.0,
+   "elevationM": 85,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "memphis",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "miami",
+   "name": "Miami",
+   "state": "FL",
+   "region": "southeast",
+   "lat": 25.8,
+   "lon": -80.3,
+   "elevationM": 3,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "miami",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "minneapolis",
+   "name": "Minneapolis",
+   "state": "MN",
+   "region": "great_lakes",
+   "lat": 44.9,
+   "lon": -93.2,
+   "elevationM": 265,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "minneapolis",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "mobile",
+   "name": "Mobile",
+   "state": "AL",
+   "region": "deep_south",
+   "lat": 30.7,
+   "lon": -88.2,
+   "elevationM": 65,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "mobile",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "nashville",
+   "name": "Nashville",
+   "state": "TN",
+   "region": "deep_south",
+   "lat": 36.1,
+   "lon": -86.7,
+   "elevationM": 180,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "nashville",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "neworleans",
+   "name": "New Orleans",
+   "state": "LA",
+   "region": "deep_south",
+   "lat": 30.0,
+   "lon": -90.3,
+   "elevationM": 1,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "neworleans",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "newyork",
+   "name": "New York City",
+   "state": "NY",
+   "region": "northeast",
+   "lat": 40.8,
+   "lon": -73.9,
+   "elevationM": 10,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "newyork",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "oklahomacity",
+   "name": "Oklahoma City",
+   "state": "OK",
+   "region": "plains",
+   "lat": 35.4,
+   "lon": -97.6,
+   "elevationM": 395,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "oklahomacity",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "omaha",
+   "name": "Omaha",
+   "state": "NE",
+   "region": "plains",
+   "lat": 41.3,
+   "lon": -95.9,
+   "elevationM": 300,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "omaha",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "orlando",
+   "name": "Orlando",
+   "state": "FL",
+   "region": "southeast",
+   "lat": 28.4,
+   "lon": -81.3,
+   "elevationM": 30,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "orlando",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "philadelphia",
+   "name": "Philadelphia",
+   "state": "PA",
+   "region": "mid_atlantic",
+   "lat": 39.9,
+   "lon": -75.2,
+   "elevationM": 10,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "philadelphia",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "phoenix",
+   "name": "Phoenix",
+   "state": "AZ",
+   "region": "mountain",
+   "lat": 33.4,
+   "lon": -112.0,
+   "elevationM": 340,
+   "timeZone": "America/Phoenix",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "phoenix",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "pittsburgh",
+   "name": "Pittsburgh",
+   "state": "PA",
+   "region": "mid_atlantic",
+   "lat": 40.5,
+   "lon": -80.2,
+   "elevationM": 360,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "pittsburgh",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "portland",
+   "name": "Portland",
+   "state": "OR",
+   "region": "pacific",
+   "lat": 45.6,
+   "lon": -122.6,
+   "elevationM": 10,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "portland",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "raleigh",
+   "name": "Raleigh",
+   "state": "NC",
+   "region": "southeast",
+   "lat": 35.9,
+   "lon": -78.8,
+   "elevationM": 120,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "raleigh",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "reno",
+   "name": "Reno",
+   "state": "NV",
+   "region": "mountain",
+   "lat": 39.5,
+   "lon": -119.8,
+   "elevationM": 1340,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "reno",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "richmond",
+   "name": "Richmond",
+   "state": "VA",
+   "region": "mid_atlantic",
+   "lat": 37.5,
+   "lon": -77.3,
+   "elevationM": 50,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "richmond",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "sacramento",
+   "name": "Sacramento",
+   "state": "CA",
+   "region": "pacific",
+   "lat": 38.5,
+   "lon": -121.5,
+   "elevationM": 10,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "sacramento",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "saltlake",
+   "name": "Salt Lake City",
+   "state": "UT",
+   "region": "mountain",
+   "lat": 40.8,
+   "lon": -112.0,
+   "elevationM": 1290,
+   "timeZone": "America/Denver",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "saltlake",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "sanantonio",
+   "name": "San Antonio",
+   "state": "TX",
+   "region": "texas",
+   "lat": 29.5,
+   "lon": -98.5,
+   "elevationM": 230,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "sanantonio",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "sandiego",
+   "name": "San Diego",
+   "state": "CA",
+   "region": "pacific",
+   "lat": 32.7,
+   "lon": -117.2,
+   "elevationM": 5,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "sandiego",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "sanfrancisco",
+   "name": "San Francisco Bay",
+   "state": "CA",
+   "region": "pacific",
+   "lat": 37.6,
+   "lon": -122.4,
+   "elevationM": 3,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "sanfrancisco",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "savannah",
+   "name": "Savannah",
+   "state": "GA",
+   "region": "southeast",
+   "lat": 32.1,
+   "lon": -81.2,
+   "elevationM": 15,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "savannah",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "seattle",
+   "name": "Seattle",
+   "state": "WA",
+   "region": "pacific",
+   "lat": 47.5,
+   "lon": -122.3,
+   "elevationM": 130,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "seattle",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "siouxfalls",
+   "name": "Sioux Falls",
+   "state": "SD",
+   "region": "plains",
+   "lat": 43.6,
+   "lon": -96.7,
+   "elevationM": 435,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "siouxfalls",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "spokane",
+   "name": "Spokane",
+   "state": "WA",
+   "region": "pacific",
+   "lat": 47.6,
+   "lon": -117.5,
+   "elevationM": 720,
+   "timeZone": "America/Los_Angeles",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "spokane",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "stlouis",
+   "name": "St. Louis",
+   "state": "MO",
+   "region": "plains",
+   "lat": 38.7,
+   "lon": -90.4,
+   "elevationM": 160,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "stlouis",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "tallahassee",
+   "name": "Tallahassee",
+   "state": "FL",
+   "region": "southeast",
+   "lat": 30.4,
+   "lon": -84.4,
+   "elevationM": 20,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "tallahassee",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "tampa",
+   "name": "Tampa",
+   "state": "FL",
+   "region": "southeast",
+   "lat": 28.0,
+   "lon": -82.5,
+   "elevationM": 5,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "tampa",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "washington",
+   "name": "Washington DC",
+   "state": "DC",
+   "region": "mid_atlantic",
+   "lat": 38.9,
+   "lon": -77.0,
+   "elevationM": 20,
+   "timeZone": "America/New_York",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "washington",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  },
+  {
+   "id": "wichita",
+   "name": "Wichita",
+   "state": "KS",
+   "region": "plains",
+   "lat": 37.6,
+   "lon": -97.4,
+   "elevationM": 400,
+   "timeZone": "America/Chicago",
+   "geoBasis": "assumption: rounded from the named real location (0.1 degree, 5 m); replace with station metadata when the climate fetch runs",
+   "climate": {
+    "referenceLocationId": "wichita",
+    "station": null,
+    "normals": null,
+    "source": {
+     "citation": "NOAA NCEI 1991-2020 U.S. Climate Normals, Summary of Monthly Normals (mean temperature, total precipitation, snowfall)",
+     "locator": "station for the named reference location (NCEI normals-monthly station file)",
+     "independenceGroup": "noaa-ncei-normals",
+     "primary": true
+    },
+    "status": "PENDING: values not yet read (NCEI bulk file blocked by robots.txt in the build sandbox; read per station and fill)"
+   }
+  }
+ ]
+}
