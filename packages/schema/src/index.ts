@@ -4,6 +4,7 @@ export * from './rules.ts';
 export * from './facts.ts';
 export * from './commands.ts';
 export * from './game-day-commands.ts';
+export * from './gameplan-commands.ts';
 export * from './save.ts';
 export * from './game.ts';
 export * from './forbidden.ts';
