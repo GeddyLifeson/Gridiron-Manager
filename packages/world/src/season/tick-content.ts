@@ -22,6 +22,7 @@ import {
 import { perception as perceptionModule, playerAi as playerAiModule, qb as qbModule, tickResolver } from '@gm/engine-core';
 import { full, starter } from '@gm/football-content';
 import { lang } from '@gm/football-lang';
+import { createPresnapCalls } from './presnap-calls.ts';
 import { environment } from '@gm/engine-game';
 
 type PlaySetup = tickResolver.PlaySetup;
@@ -454,6 +455,12 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
   const defenseByFamily = new Map(starter.DEFENSE.map((d) => [d.coverageFamily as string, d]));
   const defenseById = new Map(full.FULL_DEFENSE.map((d) => [d.id, d]));
   const defenseSlotOf = (role: string): number => SLOTS_PER_TEAM + DEFENSE_ROLES.indexOf(role as (typeof DEFENSE_ROLES)[number]);
+  // J5.5 the defense's checks and disguise, from the designer call of the coverage family (presnap-calls.ts).
+  let keysFor: { O: readonly Assignment[]; qbSlot: number } = { O: [], qbSlot: -1 };
+  const presnapCalls = createPresnapCalls((a) => bound([withDropPath(withRally(a))])[0]!, (a) => ({
+    readsKeys: true, boxDefender: DEFENSE_ROLES.indexOf(a.role as (typeof DEFENSE_ROLES)[number]) < 7, keys: defenderKeys(a, keysFor.O, keysFor.qbSlot),
+    ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}),
+  }));
 
   const playDefOf = (calls: PlayCalls): starter.PlayDef | null => {
     const c = calls.snapping;
@@ -568,6 +575,8 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
         if (o.unit === 'return') carrier = { returnPlan: { side: 'middle', fairCatchAllowed: true } };
       }
       const qbSlot = qb === null ? -1 : qb.qbSlot;
+      keysFor = { O, qbSlot };
+      const defCalls = s.unit === 'offense' && o.unit === 'defense' ? presnapCalls.of(o.callContentId ?? o.coverageFamily, o.coverageFamily, D, O, qbSlot, input.rules) : null;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
       const slots: PlaySetup['slots'] = Array.from({ length: SLOT_COUNT }, (_, w) => ({ conceptId: (w < SLOTS_PER_TEAM ? O[w]! : D[w - SLOTS_PER_TEAM]!).conceptId }));
       // Eyes (J3.4.1): a zone defender plays with his on the ball. Receivers turn to look when the ball is thrown
@@ -600,7 +609,7 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
           tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, relay, callWords: CALL_WORDS, hardCount: false, silentCount: s.unit === 'offense' && crowd.silentCount, longCount: false,
           snapsOnSameCount: 0, shotgun, venue: crowd.venue, snapFoulPhase: phase,
           offense: { assignments: O, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: qbSlot >= 0 ? qbSlot : 0, noise: crowd.unitNoise[0], familiarityZ: crowd.familiarityZ[0], shift: null, motion: null, audibles: [], canRedirect: true, prepared: 0.5 },
-          defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: crowd.unitNoise[1], familiarityZ: crowd.familiarityZ[1], coverage, manMatch, bluff: false, checks: [], disguise: [], simulatedPressure: false, aggressiveGetOff: false },
+          defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: crowd.unitNoise[1], familiarityZ: crowd.familiarityZ[1], coverage, manMatch, bluff: false, checks: defCalls?.checks ?? [], disguise: defCalls?.disguise ?? [], simulatedPressure: false, aggressiveGetOff: false },
         },
         slots,
         context: {
