@@ -12,11 +12,21 @@
 // input that does not follow from the seed. `replay` rebuilds the season from the seed and those outcomes and
 // must reach the same hash chain (Q1.3.1 season replay).
 //
-// Not here yet: the seat's week (H1 calendar, `seatWeek`), AI preparation (K3), the user's own call sheet
-// (G-68 bridge) and generated rosters. The teams are the real game's neutral placeholder rosters.
+// Film: every game is filmed as it is played (week-loop/film.ts), the seat's and every other, so opponent
+// scouting and self-scout read charted rows of any team's games. `rebuildFilm` plays a non-seat game again
+// for its full play records. The save keeps the packed archive (optional: an older save has none).
+//
+// The seat's week (H1): the week loop (week-loop/week-loop.ts) runs the seat's days before the game and hands
+// its record in with `setSeatWeek`; the next step passes it to the runner's `seatWeek` port.
+//
+// Not here yet: AI preparation (K3) and generated rosters. The teams are the real game's neutral placeholder rosters.
 import { season as seasons } from '@gm/world';
+import { field } from '@gm/engine-core';
+import { stats } from '@gm/engine-game';
+import { ep } from '@gm/models';
 import type { DriveRecord, GameDeps, GameInput, PlayRecord } from '@gm/schema';
 import { GameCallingSession, type GameSessionOptions } from '../commands/game-calling/index.ts';
+import { FilmArchive, packFilm, type PackedGame } from '../week-loop/film.ts';
 
 type GameContext = seasons.GameContext;
 type GameOutcome = seasons.GameOutcome;
@@ -55,6 +65,8 @@ export interface SeasonPlaySave {
   readonly state: SeasonState;
   /** The seat's game outcomes by game id: the season's only input that does not come from the seed. */
   readonly seatOutcomes: readonly { readonly gameId: number; readonly outcome: GameOutcome }[];
+  /** The film archive (week-loop/film.ts); missing in saves made before it. */
+  readonly film?: readonly PackedGame[];
 }
 
 /** Stand-in result of a dry run: one point for the home side, so no postseason game is tied. Never kept. */
@@ -150,6 +162,18 @@ export class SeasonPlay {
   private open: OpenGame | null = null;
   private dry: { state: SeasonState; game: SeatGame | null } | null = null;
   private readonly names: Map<string, string>;
+  /** Every game played so far, filmed (H2.6.1 archive). */
+  readonly film = new FilmArchive();
+  private readonly geometry: ReturnType<typeof field.fieldGeometry>;
+  private readonly statsModule: ReturnType<typeof stats.createStatsModule>;
+  /** N2.2.3 coaching success shares (the starting definition; the user's own choice is not in the season yet). */
+  private readonly success = (() => {
+    const d = ep.defaultDefinitions().success;
+    if (d.kind !== 'coaching') throw new Error('season session: the starting success definition is not the coaching one');
+    return { firstDownShare: d.firstDownShare, secondDownShare: d.secondDownShare, lateDownShare: d.lateDownShare };
+  })();
+  /** The seat's finished week for the coming step, from the week loop. */
+  private seatWeek: seasons.SeatWeekRecord | null = null;
 
   private constructor(content: seasons.LeagueContent, options: SeasonPlayOptions, state?: SeasonState) {
     this.options = options;
@@ -158,6 +182,8 @@ export class SeasonPlay {
     if (this.built.spec.seatTeamId === null) throw new Error(`season session: no seat team for ${options.seatTeamKey}`);
     this.seatTeamId = this.built.spec.seatTeamId;
     this.port = seasons.realGamePort({ ruleSetId: options.ruleSetId });
+    this.geometry = field.fieldGeometry(this.port.game.rules);
+    this.statsModule = stats.createStatsModule({ geometry: this.geometry, params: this.port.game.params });
     this.state = state ?? seasons.createSeason(this.built.spec);
   }
 
@@ -180,6 +206,7 @@ export class SeasonPlay {
     if (save.version !== 1) throw new Error(`season session: save version ${String(save.version)} is not supported`);
     const play = new SeasonPlay(content, save.options, save.state);
     for (const s of save.seatOutcomes) play.seatOutcomes.set(s.gameId, s.outcome);
+    for (const g of save.film ?? []) play.film.put(g);
     return play;
   }
 
@@ -194,6 +221,13 @@ export class SeasonPlay {
     const at = (s: SeasonState) => s.stage === save.state.stage && s.week === save.state.week && s.round === save.state.round;
     while (!at(play.state) && play.state.stage !== 'final') play.state = seasons.stepSeason(play.built.spec, play.state, play.ports(true));
     if (play.state.chain !== save.state.chain) throw new Error(`season session: replay reached chain ${play.state.chain}, the save has ${save.state.chain}`);
+    // The replay films every game again except the seat's own (called on the console): those come from the save.
+    // A saved film of a game the replay played must match it.
+    for (const g of save.film ?? []) {
+      const again = play.film.get(g.gameId);
+      if (!again) play.film.put(g);
+      else if (JSON.stringify(again) !== JSON.stringify(g)) throw new Error(`season session: replayed film of game ${g.gameId} differs from the save`);
+    }
     return play;
   }
 
@@ -259,8 +293,9 @@ export class SeasonPlay {
       if (e.type === 'play_resolved') records.push(e.record);
       else if (e.type === 'drive_ended') drives.push(e.drive);
     }
-    const outcome = seasons.outcomeOf(this.port.game, g.context.fixture, g.input, { final: g.session.game, events: g.session.events, records, drives });
+    const outcome = seasons.outcomeOf(this.port.game, g.context.fixture, g.input, { final: g.session.game, events: g.session.events, records, drives }, this.statsModule);
     this.seatOutcomes.set(g.context.fixture.gameId, outcome);
+    this.fileFilm(g.context, records);
     this.open = null;
     this.advance();
     return outcome;
@@ -271,7 +306,7 @@ export class SeasonPlay {
     if (this.open) throw new Error('season session: a game is open on the console');
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
-    const outcome = this.port.playGame(seat.context);
+    const outcome = this.playFilmed(seat.context);
     this.seatOutcomes.set(seat.context.fixture.gameId, outcome);
     this.advance();
     return outcome;
@@ -281,12 +316,63 @@ export class SeasonPlay {
   private ports(replaying = false): seasons.SeasonPorts {
     return {
       playGame: (ctx) => {
-        if (ctx.seatSide === null) return this.port.playGame(ctx);
+        if (ctx.seatSide === null) return this.playFilmed(ctx);
         const o = this.seatOutcomes.get(ctx.fixture.gameId);
         if (!o) throw new Error(replaying ? `season session: the save has no outcome for the seat's game ${ctx.fixture.gameId}` : `season session: play the seat's game ${ctx.fixture.gameId} first`);
         return o;
       },
+      ...(this.seatWeek && !replaying ? { seatWeek: (ctx: seasons.PrepContext) => this.takeSeatWeek(ctx) } : {}),
     };
+  }
+
+  /** Plays a game the seat does not call (the real game, chart caller on both sides) and files its film. */
+  private playFilmed(ctx: GameContext): GameOutcome {
+    const input = this.inputFor(ctx);
+    const res = this.port.game.simulate(input);
+    this.fileFilm(ctx, res.records);
+    return seasons.outcomeOf(this.port.game, ctx.fixture, input, res, this.statsModule);
+  }
+
+  private fileFilm(ctx: GameContext, records: readonly PlayRecord[]): void {
+    const f = ctx.fixture;
+    if (this.film.has(f.gameId)) return;
+    this.film.put(packFilm(records, {
+      gameId: f.gameId, season: ctx.season, week: f.week, phase: f.phase, teams: [f.home, f.away],
+      geometry: this.geometry, success: this.success,
+    }));
+  }
+
+  /**
+   * The full play records of a game the seat did not call, played again from its context. The game is a pure
+   * function of its fixture and seed (J13), so the film is exact; it must reach the archived final state hash.
+   */
+  rebuildFilm(gameId: number): { readonly records: readonly PlayRecord[]; readonly drives: readonly DriveRecord[]; readonly input: GameInput } {
+    const played = this.state.games.find((g) => g.fixture.gameId === gameId);
+    if (!played) throw new Error(`season session: game ${gameId} has not been played`);
+    if (played.fixture.home === this.seatTeamId || played.fixture.away === this.seatTeamId) throw new Error(`season session: game ${gameId} was called by the seat; its film is the film room's`);
+    const input = seasons.fixtureInput(this.port.game, played.fixture, played.seedHex);
+    const res = this.port.game.simulate(input);
+    const hash = res.records.length ? res.records[res.records.length - 1]!.stateHash : '';
+    if (hash !== played.outcome.stateHash) throw new Error(`season session: rebuilt film of game ${gameId} ends at ${hash}, the season has ${played.outcome.stateHash}`);
+    return { records: res.records, drives: res.drives, input };
+  }
+
+  /** The seat's week for the coming step, finished by the week loop: the next `advance` hands it to the runner. */
+  setSeatWeek(rec: seasons.SeatWeekRecord): void {
+    if (this.state.stage === 'final') throw new Error('season session: the season is over');
+    this.seatWeek = rec;
+  }
+
+  /** The step the runner is playing: league week for a regular step, last regular week plus the round after it. */
+  stepWeek(): number {
+    return this.state.stage === 'regular' ? this.state.week : this.state.lastRegularWeek + this.state.round + 1;
+  }
+
+  private takeSeatWeek(ctx: seasons.PrepContext): seasons.SeatWeekRecord {
+    const rec = this.seatWeek!;
+    this.seatWeek = null;
+    if (rec.week !== ctx.week) throw new Error(`season session: the seat's week is for week ${rec.week}, the step is week ${ctx.week}`);
+    return rec;
   }
 
   /**
@@ -350,6 +436,7 @@ export class SeasonPlay {
     return {
       version: 1, options: this.options, state: this.state,
       seatOutcomes: [...this.seatOutcomes].sort((a, b) => a[0] - b[0]).map(([gameId, outcome]) => ({ gameId, outcome })),
+      film: this.film.save(),
     };
   }
 }
