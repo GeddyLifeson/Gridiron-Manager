@@ -31,12 +31,10 @@ export function practiceSquadGroup(p: PlayerFacts, rules: RosterRules): Practice
 }
 
 /**
- * Most group C players a practice squad may hold: the veteran places, and never into the places that must
- * go to players with at most two accrued seasons (G-10 key meaning). C5.3.1's prose says "at most 10 from
- * groups B and C together"; that conflicts with the key meaning and is reported in the PR, not coded.
+ * Group caps (C5.3.1, CBA Article 33 section 4 categories iii and iv with the May 2022 numbers): group A
+ * has no cap of its own, group B at most `groupBMax`, group C at most `veteranSlots`, all inside the size.
  */
-export function practiceSquadVeteranCap(rules: RosterRules): number {
+export function practiceSquadGroupCaps(rules: RosterRules): { B: number; C: number } {
   const ps = rules.practiceSquad;
-  if (!ps) return 0;
-  return Math.min(ps.veteranSlots, ps.size - ps.youngMin);
+  return ps ? { B: ps.groupBMax, C: ps.veteranSlots } : { B: 0, C: 0 };
 }

@@ -4,7 +4,7 @@
 export { RULE_KEYS, rosterRules, type RosterRules } from './keys.ts';
 export { PARAMS } from './params.ts';
 export * from './types.ts';
-export { isVested, subjectToWaivers, practiceSquadGroup, practiceSquadVeteranCap, type PracticeSquadGroup } from './eligibility.ts';
+export { isVested, subjectToWaivers, practiceSquadGroup, practiceSquadGroupCaps, type PracticeSquadGroup } from './eligibility.ts';
 export {
   applyTransaction, applyEvent, emptyLeagueRosters, validateRosters, waiverOrder, clubCounts, rosterLimit,
   allowedDesignations, effectiveDay, claimDeadline, absHour, fromAbsHour, type ClubCounts,

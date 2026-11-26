@@ -31,8 +31,8 @@ export const RULE_KEYS: RuleKeyManifest = [
   // Practice squad (C5.3).
   k('roster.practice_squad_size', 'number', 'count', 'Practice squad places, not counting the international slot.', 'C5.3.1'),
   k('roster.practice_squad_international_slot', 'number', 'count', 'International pathway practice squad places.', 'C5.3.1'),
-  k('roster.practice_squad_young_min', 'number', 'count', 'Places that must go to players with at most two accrued seasons.', 'C5.3.1'),
-  k('roster.practice_squad_veteran_slots', 'number', 'count', 'Practice squad places open to any veteran.', 'C5.3.1'),
+  k('roster.practice_squad_veteran_slots', 'number', 'count', 'Most practice squad players with any number of accrued seasons (group C; CBA Art. 33 sec. 4 category iv, 6 since the May 2022 amendment).', 'C5.3.1'),
+  k('roster.practice_squad_group_b_max', 'number', 'count', 'Most practice squad players with at most two accrued seasons outside group A (group B; CBA Art. 33 sec. 4 category iii, 10 since the May 2022 amendment) (NEW, replaces practice_squad_young_min).', 'C5.3.1'),
   k('roster.practice_squad_group_a_max_accrued', 'number', 'seasons', 'Group A: at most this many accrued seasons (NEW: C5.3.1, 1).', 'C5.3.1'),
   k('roster.practice_squad_group_a_active_games_below', 'number', 'games', 'Group A with one accrued season: fewer than this many games on an active list in it (NEW: C5.3.1, 9).', 'C5.3.1'),
   k('roster.practice_squad_group_b_max_accrued', 'number', 'seasons', 'Group B: at most this many accrued seasons (NEW: C5.3.1, 2).', 'C5.3.1'),
@@ -74,7 +74,7 @@ export interface RosterRules {
     readonly lockMinutes: number; readonly emergencyQbActiveQbs: number; readonly emergencyQbFromPracticeSquad: boolean;
   } | null;
   readonly practiceSquad: {
-    readonly size: number; readonly internationalSlots: number; readonly youngMin: number; readonly veteranSlots: number;
+    readonly size: number; readonly internationalSlots: number; readonly groupBMax: number; readonly veteranSlots: number;
     readonly groupAMaxAccrued: number; readonly groupAActiveGamesBelow: number; readonly groupBMaxAccrued: number;
     readonly elevationsPerGame: number; readonly elevationsPerPlayerSeason: number; readonly postseasonUnlimited: boolean;
     readonly protectionsPerWeek: number; readonly poachPayWeeks: number; readonly nextOpponentDays: number;
@@ -126,7 +126,7 @@ export function rosterRules(rs: RuleSet): RosterRules {
     practiceSquad: has('roster.practice_squad_size') ? {
       size: num('roster.practice_squad_size'),
       internationalSlots: num('roster.practice_squad_international_slot'),
-      youngMin: num('roster.practice_squad_young_min'),
+      groupBMax: num('roster.practice_squad_group_b_max'),
       veteranSlots: num('roster.practice_squad_veteran_slots'),
       groupAMaxAccrued: num('roster.practice_squad_group_a_max_accrued'),
       groupAActiveGamesBelow: num('roster.practice_squad_group_a_active_games_below'),
