@@ -162,6 +162,38 @@ describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
     expect(last.total).toBe(here.sp.state.games.length);
   }, 300_000);
 
+  it('pro: a game finished on the console, then the rest of the week in a pool, lands the same season as in place', async () => {
+    const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+    const key = CONTENT.proLeague.league.clubs[3].id;
+    const make = (pool?: play.WeekPool) => {
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: key });
+      return { sp, port: careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, consoleConfig: (g) => gameCalling.staffConsoleConfig('pro_2026', g, DEFAULT_KEYMAP.bindings), ...(pool ? { pool } : {}) }) };
+    };
+    const here = make();
+    here.port.advanceToGameDay();
+    const s1 = here.port.startGame();
+    playByKeys(s1);
+    expect(here.port.finishGame(s1)).toBeUndefined();
+
+    const pooled = make(play.inlinePool());
+    await pooled.port.advanceToGameDay();
+    const s2 = pooled.port.startGame();
+    playByKeys(s2);
+    expect(s2.situation().score).toEqual(s1.situation().score);
+    const seen: { done: number; total: number }[] = [];
+    const r = pooled.port.finishGame(s2, (p) => seen.push(p));
+    expect(r).toBeInstanceOf(Promise);
+    await r;
+    expect(pooled.sp.state.chain).toBe(here.sp.state.chain);
+    expect(pooled.port.today()).toEqual(here.port.today());
+    expect(JSON.stringify(pooled.sp.film.save())).toBe(JSON.stringify(here.sp.film.save()));
+    // The pool played every game of the week but the seat's own.
+    expect(seen[seen.length - 1]).toEqual({ done: here.sp.state.games.length - 1, total: here.sp.state.games.length - 1 });
+    // The console is closed: game day is over and the next game is a week out.
+    expect(pooled.port.today().nextGame?.daysToGame).toBeGreaterThan(0);
+    expect(pooled.port.liveField(s2)).toBeNull();
+  }, 600_000);
+
   it('the progress line reads games done of the batch', () => {
     const html = renderToStaticMarkup(createElement(WeekProgressLine, { progress: { done: 5, total: 15 } }));
     expect(html).toContain('5 of 15');
