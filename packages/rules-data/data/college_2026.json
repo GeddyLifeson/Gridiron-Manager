@@ -2969,6 +2969,58 @@
    "key": "foul.kick_ineligible_downfield.dq",
    "value": "none",
    "factId": "F-rule-1142"
+  },
+  {
+   "key": "clock.period_break_s",
+   "value": 60,
+   "factId": "F-rule-1144",
+   "unit": "s"
+  },
+  {
+   "key": "clock.play_clock_after_runoff_s",
+   "value": 25,
+   "factId": "F-rule-1146",
+   "unit": "s"
+  },
+  {
+   "key": "clock.play_clock_floor_s",
+   "value": 10,
+   "factId": "F-rule-1148",
+   "unit": "s"
+  },
+  {
+   "key": "clock.foul_restart_on_snap_late",
+   "value": false,
+   "factId": "F-rule-1150"
+  },
+  {
+   "key": "clock.defense_half_end_window_s",
+   "value": 0,
+   "factId": "F-rule-1152",
+   "unit": "s"
+  },
+  {
+   "key": "try.safety_points",
+   "value": 1,
+   "factId": "F-rule-1154",
+   "unit": "points"
+  },
+  {
+   "key": "try.defense_can_score",
+   "value": true,
+   "factId": "F-rule-1156"
+  },
+  {
+   "key": "touchback.momentum_min_yardline",
+   "value": 0,
+   "factId": "F-rule-1158",
+   "unit": "yd"
+  },
+  {
+   "key": "deadball.loose_at_rest_yardline",
+   "value": 0,
+   "factId": "F-rule-1160",
+   "unit": "yd"
   }
  ]
 }

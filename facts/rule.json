@@ -39621,6 +39621,593 @@
      "reason": "First load from the 2026 rule book text (WP-01)."
     }
    ]
+  },
+  {
+   "id": "F-rule-1143",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Break between the two periods of a half: 120 s (pro, 2026 rules).",
+   "value": 120,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 1, Article 2 (text copy rulebook_2026.txt, line 935)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "There will be intervals of at least two minutes between the first and second periods (first half) and between the third and fourth periods (second half).",
+     "value": 120
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.period_break_s"
+   ],
+   "notes": "The rule book states a minimum (\"at least two minutes\"). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1144",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Break between the two periods of a half: 60 s (college, 2026 rules).",
+   "value": 60,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 1 (text copy ncaa-rulebook-2026.txt, line 2201)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "with one-minute intermissions between the first and second periods (first half) and between the third and fourth periods (second half)",
+     "value": 60
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.period_break_s"
+   ],
+   "notes": "May be extended for radio and television timeouts (same article). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1145",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Play clock after a stoppage that brings a 10-second runoff: 30 s (pro, 2026 rules).",
+   "value": 30,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 6, Article 3-c (text copy rulebook_2026.txt, line 1158)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the stoppage results in a 10-second runoff from the game clock, in which case the play clock shall be reset to 30 seconds",
+     "value": 30
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.play_clock_after_runoff_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1146",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Play clock after a stoppage that brings a 10-second runoff: 25 s (college, 2026 rules).",
+   "value": 25,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 4-c (text copy ncaa-rulebook-2026.txt, line 2302)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "the clock should be set at 25 seconds: 1. Penalty administration.",
+     "value": 25
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.play_clock_after_runoff_s"
+   ],
+   "notes": "College has no runoff-specific play clock; a runoff follows penalty administration, which sets the 25-second clock. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1147",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Value an interrupted play clock is raised to when it stopped below it: 10 s (pro, 2026 rules).",
+   "value": 10,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 6, Article 3-d (text copy rulebook_2026.txt, line 1160)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "fewer than 10 seconds remain on the play clock at the time of the stoppage, in which case it shall be reset to 10 seconds",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.play_clock_floor_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1148",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Value an interrupted play clock is raised to when it stopped below it: 10 s (college, 2026 rules).",
+   "value": 10,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 4-c-12 (text copy ncaa-rulebook-2026.txt, line 2323)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If the play clock displays less than 10 seconds when it is frozen, it will be reset to 10 seconds",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.play_clock_floor_s"
+   ],
+   "notes": "Stated for a replay stop after the Two-Minute Timeout only. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1149",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "After a foul late in a half the game clock starts on the snap: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 3, Article 2-e (text copy rulebook_2026.txt, line 1001)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the game clock will start as if the foul had not occurred, except that the clock will start on the snap if: (1) the foul occurs after the two-minute warning of the first half; (2) the foul occurs inside the last five minutes of the second half;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.foul_restart_on_snap_late"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1150",
+   "level": "college",
+   "domain": "rule",
+   "statement": "After a foul late in a half the game clock starts on the snap: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 4, Article 3-b (text copy ncaa-rulebook-2026.txt, line 2682)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If the game clock is stopped to complete a penalty for a foul by the team ahead in the score (or either team if the score is tied) anytime after the Two- Minute Timeout",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.foul_restart_on_snap_late"
+   ],
+   "notes": "College has a narrower rule: the snap start applies only to a foul by the team ahead (or either team when tied), at the offended team's option. The switch is false; that rule needs its own key. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1151",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Window at the end of a half in which a defensive foul that conserves time ends the half: 40 s (pro, 2026 rules).",
+   "value": 40,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 7, Article 3 (text copy rulebook_2026.txt, line 1214)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "In the last 40 seconds of either half, if there is a defensive foul that conserves time or an excess timeout due to injury to a defensive player while time is in, the half will end",
+     "value": 40
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.defense_half_end_window_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1152",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Window at the end of a half in which a defensive foul that conserves time ends the half: 0 s (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Sections 3 and 4. Read for absence: Rule 3 was read for the clock and the runoff; it has no rule ending the half for a defensive foul. 0 means no such window.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.defense_half_end_window_s"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1153",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Points for a play on a try that would ordinarily be a safety: 1 points (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 3, Article 2-c (text copy rulebook_2026.txt, line 2842)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If the Try results in what would ordinarily be a safety against either team, one point is awarded to the opponent.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:try.safety_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "points"
+  },
+  {
+   "id": "F-rule-1154",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Points for a play on a try that would ordinarily be a safety: 1 points (college, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3852)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Field Goal or Safety — 1 Point",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:try.safety_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "points"
+  },
+  {
+   "id": "F-rule-1155",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "The defense may score on a try: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 3, Article 2-b (text copy rulebook_2026.txt, line 2841)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If a Try results in a touchdown by either team, two points are awarded.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:try.defense_can_score"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1156",
+   "level": "college",
+   "domain": "rule",
+   "statement": "The defense may score on a try: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 3, Article 2 (text copy ncaa-rulebook-2026.txt, line 3885)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "A try is an opportunity for either team to score one or two points",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:try.defense_can_score"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1157",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Nearest yard line to its own goal at which the ball is spotted under the momentum exception: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 5, Article 1, Exception 2-d (text copy rulebook_2026.txt, line 2965)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If the spot where possession changed is inside the one-yard line, the ball is to be spotted at the one-yard line.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:touchback.momentum_min_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1158",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Nearest yard line to its own goal at which the ball is spotted under the momentum exception: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 5, Article 1, Exception. Read for absence: The momentum exception gives the ball to the team at the spot where the player gained possession; no yard-line limit is stated. 0 means no such limit.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:touchback.momentum_min_yardline"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1159",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Yard line where a loose ball that came to rest behind a goal line is placed: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 7, Section 2, Article 1-i (text copy rulebook_2026.txt, line 1939)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "When awarded to a team behind a goal line, the ball is placed on the one-yard line;",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:deadball.loose_at_rest_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1160",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Yard line where a loose ball that came to rest behind a goal line is placed: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 4, Section 1, Article 3-f. Read for absence: The ball is dead when a loose ball comes to rest and no player attempts to secure it; the rule book states no placement yard line. 0 means no such number.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:deadball.loose_at_rest_yardline"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
   }
  ]
 }

@@ -5884,6 +5884,95 @@
     "if_flagrant",
     "automatic"
    ]
+  },
+  {
+   "key": "clock.period_break_s",
+   "type": "number",
+   "meaning": "Break between the two periods of a half",
+   "ownerLeaf": "B1.1.1",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "unit": "s"
+  },
+  {
+   "key": "clock.play_clock_after_runoff_s",
+   "type": "number",
+   "meaning": "Play clock after a stoppage that brings a 10-second runoff",
+   "ownerLeaf": "B1.3.2",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "unit": "s"
+  },
+  {
+   "key": "clock.play_clock_floor_s",
+   "type": "number",
+   "meaning": "Value an interrupted play clock is raised to when it stopped below it",
+   "ownerLeaf": "B1.3.2",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "unit": "s"
+  },
+  {
+   "key": "clock.foul_restart_on_snap_late",
+   "type": "boolean",
+   "meaning": "After a foul late in a half the game clock starts on the snap",
+   "ownerLeaf": "B1.2.3",
+   "readBy": [
+    "officiating/clock"
+   ]
+  },
+  {
+   "key": "clock.defense_half_end_window_s",
+   "type": "number",
+   "meaning": "Window at the end of a half in which a defensive foul that conserves time ends the half",
+   "ownerLeaf": "B1.6.3",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "unit": "s"
+  },
+  {
+   "key": "try.safety_points",
+   "type": "number",
+   "meaning": "Points for a play on a try that would ordinarily be a safety",
+   "ownerLeaf": "B7.3.2",
+   "readBy": [
+    "officiating/scrimmage"
+   ],
+   "unit": "points"
+  },
+  {
+   "key": "try.defense_can_score",
+   "type": "boolean",
+   "meaning": "The defense may score on a try",
+   "ownerLeaf": "B7.3.2",
+   "readBy": [
+    "officiating/scrimmage"
+   ]
+  },
+  {
+   "key": "touchback.momentum_min_yardline",
+   "type": "number",
+   "meaning": "Nearest yard line to its own goal at which the ball is spotted under the momentum exception",
+   "ownerLeaf": "B7.5.2",
+   "readBy": [
+    "officiating/scrimmage"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "deadball.loose_at_rest_yardline",
+   "type": "number",
+   "meaning": "Yard line where a loose ball that came to rest behind a goal line is placed",
+   "ownerLeaf": "B3.2.1",
+   "readBy": [
+    "officiating/scrimmage",
+    "officiating/series"
+   ],
+   "unit": "yd"
   }
  ]
 }

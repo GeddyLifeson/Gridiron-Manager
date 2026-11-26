@@ -2133,6 +2133,277 @@
      }
     ]
    }
+  },
+  {
+   "key": "clock.period_break_s",
+   "type": "number",
+   "meaning": "Break between the two periods of a half",
+   "ownerLeaf": "B1.1.1",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": 120,
+    "src": [
+     {
+      "cite": "Rule 4, Section 1, Article 2",
+      "q": "There will be intervals of at least two minutes between the first and second periods (first half) and between the third and fourth periods (second half).",
+      "line": 935
+     }
+    ],
+    "note": "The rule book states a minimum (\"at least two minutes\")."
+   },
+   "college": {
+    "v": 60,
+    "src": [
+     {
+      "cite": "Rule 3, Section 2, Article 1",
+      "q": "with one-minute intermissions between the first and second periods (first half) and between the third and fourth periods (second half)",
+      "line": 2201
+     }
+    ],
+    "note": "May be extended for radio and television timeouts (same article)."
+   },
+   "unit": "s"
+  },
+  {
+   "key": "clock.play_clock_after_runoff_s",
+   "type": "number",
+   "meaning": "Play clock after a stoppage that brings a 10-second runoff",
+   "ownerLeaf": "B1.3.2",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 4, Section 6, Article 3-c",
+      "q": "the stoppage results in a 10-second runoff from the game clock, in which case the play clock shall be reset to 30 seconds",
+      "line": 1158
+     }
+    ]
+   },
+   "college": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 3, Section 2, Article 4-c",
+      "q": "the clock should be set at 25 seconds: 1. Penalty administration.",
+      "line": 2302
+     }
+    ],
+    "note": "College has no runoff-specific play clock; a runoff follows penalty administration, which sets the 25-second clock."
+   },
+   "unit": "s"
+  },
+  {
+   "key": "clock.play_clock_floor_s",
+   "type": "number",
+   "meaning": "Value an interrupted play clock is raised to when it stopped below it",
+   "ownerLeaf": "B1.3.2",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 4, Section 6, Article 3-d",
+      "q": "fewer than 10 seconds remain on the play clock at the time of the stoppage, in which case it shall be reset to 10 seconds",
+      "line": 1160
+     }
+    ]
+   },
+   "college": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 3, Section 2, Article 4-c-12",
+      "q": "If the play clock displays less than 10 seconds when it is frozen, it will be reset to 10 seconds",
+      "line": 2323
+     }
+    ],
+    "note": "Stated for a replay stop after the Two-Minute Timeout only."
+   },
+   "unit": "s"
+  },
+  {
+   "key": "clock.foul_restart_on_snap_late",
+   "type": "boolean",
+   "meaning": "After a foul late in a half the game clock starts on the snap",
+   "ownerLeaf": "B1.2.3",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 4, Section 3, Article 2-e",
+      "q": "the game clock will start as if the foul had not occurred, except that the clock will start on the snap if: (1) the foul occurs after the two-minute warning of the first half; (2) the foul occurs inside the last five minutes of the second half;",
+      "line": 1001
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 3, Section 4, Article 3-b",
+      "q": "If the game clock is stopped to complete a penalty for a foul by the team ahead in the score (or either team if the score is tied) anytime after the Two- Minute Timeout",
+      "line": 2682
+     }
+    ],
+    "note": "College has a narrower rule: the snap start applies only to a foul by the team ahead (or either team when tied), at the offended team's option. The switch is false; that rule needs its own key."
+   }
+  },
+  {
+   "key": "clock.defense_half_end_window_s",
+   "type": "number",
+   "meaning": "Window at the end of a half in which a defensive foul that conserves time ends the half",
+   "ownerLeaf": "B1.6.3",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": 40,
+    "src": [
+     {
+      "cite": "Rule 4, Section 7, Article 3",
+      "q": "In the last 40 seconds of either half, if there is a defensive foul that conserves time or an excess timeout due to injury to a defensive player while time is in, the half will end",
+      "line": 1214
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Sections 3 and 4",
+      "absent": "Rule 3 was read for the clock and the runoff; it has no rule ending the half for a defensive foul. 0 means no such window."
+     }
+    ]
+   },
+   "unit": "s"
+  },
+  {
+   "key": "try.safety_points",
+   "type": "number",
+   "meaning": "Points for a play on a try that would ordinarily be a safety",
+   "ownerLeaf": "B7.3.2",
+   "readBy": [
+    "officiating/scrimmage"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 11, Section 3, Article 2-c",
+      "q": "If the Try results in what would ordinarily be a safety against either team, one point is awarded to the opponent.",
+      "line": 2842
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 8, Section 1, Article 1",
+      "q": "Field Goal or Safety — 1 Point",
+      "line": 3852
+     }
+    ]
+   },
+   "unit": "points"
+  },
+  {
+   "key": "try.defense_can_score",
+   "type": "boolean",
+   "meaning": "The defense may score on a try",
+   "ownerLeaf": "B7.3.2",
+   "readBy": [
+    "officiating/scrimmage"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 11, Section 3, Article 2-b",
+      "q": "If a Try results in a touchdown by either team, two points are awarded.",
+      "line": 2841
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 8, Section 3, Article 2",
+      "q": "A try is an opportunity for either team to score one or two points",
+      "line": 3885
+     }
+    ]
+   }
+  },
+  {
+   "key": "touchback.momentum_min_yardline",
+   "type": "number",
+   "meaning": "Nearest yard line to its own goal at which the ball is spotted under the momentum exception",
+   "ownerLeaf": "B7.5.2",
+   "readBy": [
+    "officiating/scrimmage"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 11, Section 5, Article 1, Exception 2-d",
+      "q": "If the spot where possession changed is inside the one-yard line, the ball is to be spotted at the one-yard line.",
+      "line": 2965
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Article 1, Exception",
+      "absent": "The momentum exception gives the ball to the team at the spot where the player gained possession; no yard-line limit is stated. 0 means no such limit."
+     }
+    ]
+   },
+   "unit": "yd"
+  },
+  {
+   "key": "deadball.loose_at_rest_yardline",
+   "type": "number",
+   "meaning": "Yard line where a loose ball that came to rest behind a goal line is placed",
+   "ownerLeaf": "B3.2.1",
+   "readBy": [
+    "officiating/scrimmage",
+    "officiating/series"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 7, Section 2, Article 1-i",
+      "q": "When awarded to a team behind a goal line, the ball is placed on the one-yard line;",
+      "line": 1939
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 4, Section 1, Article 3-f",
+      "absent": "The ball is dead when a loose ball comes to rest and no player attempts to secure it; the rule book states no placement yard line. 0 means no such number."
+     }
+    ]
+   },
+   "unit": "yd"
   }
  ]
 }
