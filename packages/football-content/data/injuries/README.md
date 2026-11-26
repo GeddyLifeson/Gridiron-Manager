@@ -12,4 +12,4 @@
 - Cramp, heat illness and illness spread are `Assumption` (D11.7.1: no NFL rate found). Re-injury and lasting loss are pointers (`reinjury.value` null) until D11.6 and D8.3.2 are sourced.
 - Not found, left to the all-other row: fractures other than hand, wrist, rib as a diagnosis, hamstring grade 1 and 3 times, concussion median days.
 - The college MCL and hand and wrist studies and the soccer MCL study are other populations; the notes say so.
-- `facts/injury.json` (G-10) holds the same nflverse data as listings (counts differ by method). Integrator: decide which set the game reads; this folder does not edit that file.
+- Integrator ruling (2026-11-26): the game reads THIS set for recovery time (games missed after the first Out is what D11.2.1 asks for). `facts/injury.json` (G-10) measures something else from the same nflverse data, the number of consecutive weekly report listings, and is for the injury report model (H5) only. Neither replaces the other, and a listing count must never be read as games missed. These fact rows move into `facts/` once the register lint can compute `usedBy` for content tables.
