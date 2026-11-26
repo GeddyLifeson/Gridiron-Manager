@@ -8,3 +8,10 @@ export { runSeatWeek, seatPort, comingOffBye, delegatingDriver, type SeatDriver,
 export { aiPreparation, prepStreams, PREP_STREAM_PREFIX, type TeamWeekSource, type PrepStreamsOf } from './prep.ts';
 export { fixturesFromSchedule } from './fixtures.ts';
 export { summariseSeason, leaders, recordsBroken, type SeasonSummary, type TeamSeasonLine, type PlayerSeasonTotal, type RecordMark } from './summary.ts';
+export {
+  ENGINE_PARAM_FILES, engineParamTable, placeholderTeam, createRealGameCore, realGamePort, seasonPlayerId, fixtureInput, outcomeOf,
+  type RealGameCore, type RealGameOptions, type RealPortOptions,
+} from './real-game.ts';
+export { buildProSeason, buildCollegeSeason, buildSeason, LEVEL_BUILDERS, type LeagueContent, type BuiltSeason, type BuildOptions } from './leagues.ts';
+export * as chart from './chart/index.ts';
+export { playHistoryGame, historyGamePort } from './history-game.ts';

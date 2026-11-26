@@ -19,7 +19,7 @@ npx tsx packages/headless/src/season-gate/cli.ts gate    [--rules pro_2026,colle
 
 - Schedules, league structure, calendars and league rules come from the shipped files and generators. Games run on the real game (`real-game/index.ts`).
 - Teams are the real game's placeholder rosters, every attribute at one value: the "league of average teams" of Q1.7.2. Rows that need unequal teams (tier and upset rows) are measured but mean nothing until generated rosters are fed.
-- Inputs no shipped file carries are in `data/college-provisional.json`. Each one in use is printed in every report, and gate item 1 holds while any is in use.
+- Inputs no shipped file carries are in `packages/world/src/season/data/college-provisional.json`. Each one in use is printed in every report, and gate item 1 holds while any is in use.
 - The battery ships with no bindings: every item prints NOT RUN and the battery is INCOMPLETE. `battery/bindings.ts` lists what each leaf waits for.
 
 ## Open requests (integrator and owning threads)
