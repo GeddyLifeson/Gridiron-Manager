@@ -179,6 +179,17 @@ describe('J10.2.3 ineligible downfield: geometry against the rule key', () => {
     expect(run(2, 3)).toHaveLength(0);
   });
   it('a pass that does not cross the line has no limit', () => { expect(run(4, 1, -2)).toHaveLength(0); });
+  it('with no eligibility flags set, only men who blocked at the snap are ineligible; receivers downfield never foul', () => {
+    const sc = scene({ rules: rules({ idfYd: 1 }) });
+    const w = sc.world, pass = BEHAVIORS.indexOf('passSet'), route = BEHAVIORS.indexOf('route');
+    for (let s = 0; s < 11; s++) { w.players.eligible[s] = 0; w.players.behavior[s] = s >= 1 && s <= 5 ? pass : route; place(w, s, s >= 6 ? 8 : -2, s * 2 - 10); }
+    place(w, 2, 2.5, 0);
+    sc.step();
+    release(w, 12);
+    sc.step();
+    const f = ofType(sc.events, 'foul_committed').filter((e) => e.foulId === 'ineligible_downfield_pass' && !e.borderline);
+    expect(f.map((e) => e.playerId)).toEqual([w.slots[2]!.playerId]);
+  });
   it('just inside the limit is a borderline legal act, flagged as such for B11', () => {
     const f = run(0.9, 1);
     expect(f).toHaveLength(1);

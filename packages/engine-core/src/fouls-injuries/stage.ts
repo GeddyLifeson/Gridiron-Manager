@@ -43,6 +43,8 @@ export const FOULS_INJURIES_VERSION = 'fouls-injuries-0.1.0';
 const DOWN = MOVE_MODES.indexOf('down');
 const B = (name: (typeof BEHAVIORS)[number]): number => BEHAVIORS.indexOf(name);
 const BEH_ROUTE = B('route'), BEH_MAN = B('manCover'), BEH_JAM = B('jammer'), BEH_HOLDER = B('holder'), BEH_RETURNER = B('returner');
+const INTERIOR = new Set(['C', 'G', 'T', 'OL', 'OG', 'OT', 'LT', 'LG', 'RG', 'RT']);
+const SNAP_BLOCKERS = new Set([B('snapper'), B('passSet'), B('runBlock'), B('pull')]);
 const FREE_KICKS = new Set(['kickoff', 'onside_kick', 'safety_kick', 'fair_catch_kick']);
 const PLACE_OR_PUNT = new Set(['punt', 'field_goal', 'try_kick']);
 const SCORE_REASONS = new Set(['ball_across_goal_line_in_possession', 'kick_through_uprights']);
@@ -129,6 +131,8 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   const firstNear = new Int32Array(SLOT_COUNT), inSprint = new Uint8Array(SLOT_COUNT), cutReady = new Int32Array(SLOT_COUNT);
   const prevVx = new Float64Array(SLOT_COUNT), prevVy = new Float64Array(SLOT_COUNT), oobTick = new Int32Array(SLOT_COUNT);
   const victim = new Uint8Array(SLOT_COUNT), conductDone = new Uint8Array(SLOT_COUNT), catchTick = new Int32Array(SLOT_COUNT);
+  const blockedAtSnap = new Uint8Array(SLOT_COUNT);
+  let eligibleFilled = false;
   const load = new Float64Array(SLOT_COUNT), soreness = new Float64Array(SLOT_COUNT * N_MECH);
   const contestSeen: boolean[] = [];
   const evaluations: ConcussionEvaluation[] = [], missed: MissedConcussion[] = [], explainRows: ExplainRow[] = [];
@@ -280,6 +284,15 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   };
 
   // --- event handlers -------------------------------------------------------------------------------
+  /**
+   * Ineligible receivers (B5.3.2). `players.eligible` is the contract's flag; while no module fills it
+   * (all zero for the offense), fall back to who blocked at the snap: a snapper or a man who set to
+   * pass-block, run-block or pull, or a listed interior position.
+   */
+  const ineligible = (w: TickWorld, s: number): boolean => {
+    if (eligibleFilled) return w.players.eligible[s] !== 1;
+    return INTERIOR.has(w.slots[s]!.player.position) || blockedAtSnap[s] === 1;
+  };
   const onPassRelease = (w: TickWorld, e: TruthEventOf<'pass_release'>): void => {
     releaseTick = w.tick; passer = idSlot(w, e.passerId); target = idSlot(w, e.targetId); forward = e.forward;
     firstNear.fill(NEVER);
@@ -289,7 +302,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     const q = p!, line = 0; // the line of scrimmage is px = 0 (J1.1.2)
     const off = w.slots[passer]?.side ?? w.situation.offense;
     for (let s = 0; s < SLOT_COUNT; s++) {
-      if (s === passer || w.slots[s]!.side !== off || w.players.eligible[s] === 1) continue;
+      if (s === passer || w.slots[s]!.side !== off || !ineligible(w, s)) continue;
       const beyond = px(w, s) - line - lim;
       if (beyond > 0) commit(w, 'ineligible_downfield_pass', s, e.t, severityOf(beyond / lim, foulStream(w, s, 'ineligible_downfield_pass').uniform(), q), 'live');
       else if (beyond > -q.borderlineYd) commit(w, 'ineligible_downfield_pass', s, e.t, 0, 'live', true);
@@ -623,7 +636,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
       holdUntil.fill(0); holdDef.fill(-1); holdDone.fill(0); faceDone.fill(0); faceDoneDef.fill(0); covDone.fill(0);
       passerHit.fill(0); lateHit.fill(0); kickHit.fill(0); kciDone.fill(0); intentDone.fill(0); injured.fill(0); evaluated.fill(0);
       firstNear.fill(NEVER); inSprint.fill(0); cutReady.fill(0); oobTick.fill(NEVER); victim.fill(0); conductDone.fill(0); catchTick.fill(-1);
-      load.fill(0); soreness.fill(0); contestSeen.length = 0;
+      load.fill(0); soreness.fill(0); contestSeen.length = 0; blockedAtSnap.fill(0); eligibleFilled = false;
       for (let s = 0; s < SLOT_COUNT; s++) { prevVx[s] = w.players.velX[s]!; prevVy[s] = w.players.velY[s]!; }
       evaluations.length = 0; missed.length = 0; explainRows.length = 0;
       cursor = w.events.length; releaseTick = -1; passer = -1; target = -1; forward = false;
@@ -635,6 +648,13 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
       const q = p, t = tNow(w);
       if (w.deadAtTick === null) {
         if (w.tick === 0) for (let s = 0; s < SLOT_COUNT; s++) if (w.slots[s]!.player.gameDay.playingHurt.length > 0) exposure(w, s, MECH_OVERUSE, 1, t, 1);
+        if (w.tick === 0) {
+          eligibleFilled = false;
+          for (let s = 0; s < SLOT_COUNT; s++) {
+            if (w.slots[s]!.side === w.situation.offense && w.players.eligible[s] === 1) eligibleFilled = true;
+            blockedAtSnap[s] = SNAP_BLOCKERS.has(w.players.behavior[s]!) ? 1 : 0;
+          }
+        }
         scanEvents(w);
         blocking(w, q, t);
         coverage(w, q, t);
