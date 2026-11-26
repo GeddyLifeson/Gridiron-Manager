@@ -45,7 +45,7 @@ export interface FlowResume {
   readonly base: GameState;
   readonly answers: readonly Answer[];
   readonly returned: number;
-  readonly lastCalled: Contract.CalledPlay | null;
+  readonly lastCalled: Contract.ObservedCalledPlay | null;
 }
 
 export interface AdvanceResult { state: GameState; events: GameEvent[]; resume: FlowResume | null }
@@ -87,7 +87,7 @@ class Run {
   constructor(
     readonly deps: GameDeps, readonly input: GameInput, base: GameState, private readonly recorded: readonly Answer[],
     private readonly mode: 'stop' | 'default', private readonly quiet: number, readonly options: FlowOptions,
-    public lastCalled: Contract.CalledPlay | null,
+    public lastCalled: Contract.ObservedCalledPlay | null,
   ) { this.state = base; }
 
   /** True for events a re-run repeats: the sinks have seen them already. */
@@ -503,7 +503,7 @@ export function advance(state: GameState, input: GameInput, deps: GameDeps, opti
 export function simulateGame(input: GameInput, deps: GameDeps, options: FlowOptions = {}): Contract.GameResult {
   let state = newGame(input, deps);
   const events: GameEvent[] = [];
-  let lastCalled: Contract.CalledPlay | null = null;
+  let lastCalled: Contract.ObservedCalledPlay | null = null;
   while (state.phase !== 'final') {
     checkPlayGuard(deps, state);
     const run = new Run(deps, input, state, [], 'default', 0, options, lastCalled);

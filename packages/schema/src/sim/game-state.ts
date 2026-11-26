@@ -8,7 +8,7 @@ import { ClockStatus, PlayKind, GameSituation, PlayCalls, SnappingCall, Opposing
 import { GameDayState } from './player.ts';
 import { Environment } from './environment.ts';
 import { PlayTruth, PlayerDelta } from './truth.ts';
-import { CalledPlay, PlayOutcome, SeriesState, ClockResult, OvertimeState, OfficialsCrew, ReviewRequest, ScoreEvent } from './officiating.ts';
+import { CalledPlay, ObservedCalledPlay, PlayOutcome, SeriesState, ClockResult, OvertimeState, OfficialsCrew, ReviewRequest, ScoreEvent } from './officiating.ts';
 
 /** Phases of the game state machine (J11.2.1). The legal (phase, event) pairs are a data table owned by WP-06. */
 export const GameFlowPhase = z.enum([
@@ -186,7 +186,7 @@ export type GameEvent = z.infer<typeof GameEvent>;
 /** What a decider may see: the public situation and the last play as called. No truth (Q1.4.1). */
 export interface DecisionView {
   readonly situation: GameSituation;
-  readonly lastCalled: CalledPlay | null;
+  readonly lastCalled: ObservedCalledPlay | null;
   readonly request: DecisionRequest;
 }
 

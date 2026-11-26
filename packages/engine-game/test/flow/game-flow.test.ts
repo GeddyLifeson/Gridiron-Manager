@@ -107,7 +107,7 @@ describe('game flow: whole games against fake officiating and a fake resolver (W
   });
 
   it('deciders see called values only: no truth field of the last play reaches them (Q1.4.1)', () => {
-    const seen: Contract.CalledPlay[] = [];
+    const seen: Contract.ObservedCalledPlay[] = [];
     const game = fakeGame({
       seed: 5,
       deciders: (env, input) => [0, 1].map((side) => {
@@ -117,9 +117,11 @@ describe('game flow: whole games against fake officiating and a fake resolver (W
     });
     const run = runChecked(game);
     expect(seen.length).toBeGreaterThan(100);
+    const truthKeys = ['trueOutcome', 'trueValue', 'marginYd', 'marginS', 'visibility', 'eventIndex', 'correct'];
     for (const c of seen) {
-      expect(c.trueOutcome).toEqual(c.calledOutcome);
-      expect(c.rulings.every((r) => r.trueValue === r.calledValue && r.marginYd === null)).toBe(true);
+      // The strict contract schema refuses any key it does not list, so a truth key cannot ride along (EX-0001).
+      expect(Contract.ObservedCalledPlay.safeParse(c).success).toBe(true);
+      expect(truthKeys.filter((k) => JSON.stringify(c).includes(`"${k}"`))).toEqual([]);
       expect(c.fouls.every((f) => f.called)).toBe(true);
     }
     // The fake crew did err in this game, so the check above is not vacuous.
