@@ -1,0 +1,69 @@
+{
+ "$comment": "Free agency and trade rule values with no league-rules key yet (requested from G-10 via 'Research missing league rule values' and the integrator). Each was read directly in the CBA text at /mnt/project-files/nfl-rules/cba_2020.txt. marketRules() reads the league-rules file first and falls back to these rows; a test fails if both define a key with different values. Status is what the bible leaf gives, else 1 of 3 (the CBA text alone).",
+ "keys": [
+  {
+   "key": "fa.rfa_prior_salary_pct",
+   "value": 110,
+   "unit": "percent",
+   "status": "Verified",
+   "leaf": "C8.1.1",
+   "source": "CBA 2020 Art. 9 s.2(b)(i)(2)-(4): \"110% of the player's prior year's Paragraph 5 Salary, whichever is greater\"; bible C8.1.1 rule 2 (audit 3b, Verified)"
+  },
+  {
+   "key": "fa.ufa_tender_prior_salary_pct",
+   "value": 110,
+   "unit": "percent",
+   "status": "2 of 3",
+   "leaf": "C8.2.1",
+   "source": "CBA 2020 Art. 9 s.1(b)(i): \"a one year Player Contract of at least 110% of either (a) his Prior Year Salary ... or (b) his Paragraph 5 Salary\"; bible C8.2.1 rule 5 (audit 3d, 2 of 3)"
+  },
+  {
+   "key": "fa.offer_sheet_match_days",
+   "value": 5,
+   "unit": "days",
+   "status": "Verified",
+   "leaf": "C8.1.1",
+   "source": "CBA 2020 Art. 9 s.3(a): \"within five days from the date it receives the Offer Sheet\"; bible C8.1.1 rule 4 (audit 3c, Verified)"
+  },
+  {
+   "key": "fa.match_cutoff_days_before_draft",
+   "value": 1,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "C8.1.1",
+   "source": "CBA 2020 Art. 9 s.3(b): \"but not later than one day before the Draft (unless the parties agree otherwise)\""
+  },
+  {
+   "key": "fa.comp_next_draft_within_days",
+   "value": 2,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "C8.1.1",
+   "source": "CBA 2020 Art. 9 s.2(j): compensation is due in the following year's draft if \"the Offer Sheet is received by the Prior Club later than two days before that League Year's Draft\""
+  },
+  {
+   "key": "fa.unsigned_rights_end_after_week",
+   "value": 10,
+   "unit": "weeks",
+   "status": "2 of 3",
+   "leaf": "C8.2.1",
+   "source": "CBA 2020 Art. 9 s.1(b)(i)-(ii) and s.2(f)(ii): \"the Tuesday following the tenth week of the regular season, at 4:00pm New York time\"; bible C8.2.1 rule 5 (2 of 3)"
+  },
+  {
+   "key": "fa.offer_sheet_ltbe_max_pct",
+   "value": 15,
+   "unit": "percent",
+   "status": "1 of 3",
+   "leaf": "C8.1.1",
+   "source": "CBA 2020 Art. 9 s.3(e)(i): club-performance incentives likely to be earned \"may not exceed 15% of the Salary in the Offer Sheet\""
+  },
+  {
+   "key": "fa.matched_trade_back_block_years",
+   "value": 1,
+   "unit": "years",
+   "status": "1 of 3",
+   "leaf": "C8.4.1",
+   "source": "CBA 2020 Art. 9 s.3(h): a club that matches \"may not trade that player to the Club that submitted the Offer Sheet for at least one calendar year, unless the player consents\""
+  }
+ ]
+}

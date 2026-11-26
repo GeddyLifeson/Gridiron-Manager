@@ -1,0 +1,14 @@
+{
+ "$comment": "Draft choice compensation by restricted tender level and the upgraded-tender rules (CBA 2020 Art. 9 s.2(b)(i), s.2(c), s.2(k), read directly; bible C8.1.1 rule 2, Verified for the four levels). Round numbers are data because league source holds no number but 0 and 1 (P1.1.2).",
+ "levels": {
+  "rofr": { "compensationRound": null, "matchRight": true, "priorSalaryFloor": false, "waivesTagLimits": false },
+  "original_round": { "compensationRound": "draft_round", "matchRight": true, "priorSalaryFloor": true, "waivesTagLimits": false },
+  "second_round": { "compensationRound": 2, "matchRight": true, "priorSalaryFloor": true, "waivesTagLimits": false },
+  "first_round": { "compensationRound": 1, "matchRight": true, "priorSalaryFloor": true, "waivesTagLimits": false },
+  "first_round_waived": { "compensationRound": 1, "matchRight": true, "priorSalaryFloor": true, "waivesTagLimits": true }
+ },
+ "upgrades": [
+  { "source": "CBA Art. 9 s.2(c)(i)", "upgradedLevel": "first_round", "drawnBelowRound": 1, "protectedDraftRound": 1, "fallbackRound": 2 },
+  { "source": "CBA Art. 9 s.2(c)(ii)", "upgradedLevel": "second_round", "drawnBelowRound": 2, "protectedDraftRound": 2, "fallbackRound": 3 }
+ ]
+}
