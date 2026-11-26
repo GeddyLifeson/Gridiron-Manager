@@ -2,3 +2,4 @@
 // Modules are re-exported under a namespace (see @gm/officiating). Integrator-owned.
 export * as templates from './templates/index.ts';
 export * as starter from './starter/index.ts';
+export * as playbook from './playbook/index.ts';
