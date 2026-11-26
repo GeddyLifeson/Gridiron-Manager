@@ -48,14 +48,11 @@ export function conferenceStandings(conf: ConferenceInput, results: readonly Gam
 
   const groups = new Map<number, TeamId[]>();
   for (const id of conf.teamIds) { const p = confLedger.pct(id); groups.set(p, [...(groups.get(p) ?? []), id]); }
-  // Resolve from the bottom up, so "next highest team down the standings" is already placed.
-  const keys = [...groups.keys()].sort((a, b) => a - b);
-  let below: TeamId[] = [];
-  for (const k of keys) {
-    const ordered = orderGroup(groups.get(k)!, below);
-    below = [...ordered, ...below];
-  }
-  const order = below;
+  // The ladder the "next highest" step walks: every member by conference win share, then overall win
+  // share, then id. It starts from the top of the standings (the usual conference reading, assumption:
+  // real chains are Unverified) and skips the tied teams themselves.
+  const ladder = [...conf.teamIds].sort((a, b) => confLedger.pct(b) - confLedger.pct(a) || overall.pct(b) - overall.pct(a) || a - b);
+  const order = [...groups.keys()].sort((a, b) => b - a).flatMap((k) => orderGroup(groups.get(k)!, ladder));
 
   function evaluate(step: CollegeStepId, clubs: readonly TeamId[], under: readonly TeamId[]): Map<TeamId, number> | null {
     const m = (f: (id: TeamId) => number) => new Map(clubs.map((id) => [id, f(id)]));
@@ -75,6 +72,7 @@ export function conferenceStandings(conf: ConferenceInput, results: readonly Gam
       }
       case 'next_highest': {
         for (const x of under) {
+          if (clubs.includes(x)) continue;
           if (!clubs.every((c) => confLedger.gamesOf(c).some((g) => g.opp === x))) continue;
           const v = m((id) => confLedger.pctWhere(id, (g) => g.opp === x));
           if (new Set(v.values()).size > 1) return v;

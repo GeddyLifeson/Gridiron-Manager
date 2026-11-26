@@ -70,9 +70,16 @@ export function clinchStatus(
   };
   visit(0);
   const method = remaining.length === 0 ? 'complete' : 'enumerated';
+  // Both methods are sound, so a flag either one proves stands. The bound helps where an enumerated
+  // scenario fell back to "either way" because made-up scores reached a points step.
+  const bound = new Map(boundedStatus(places, results, remaining, rules).map((b) => [b.teamId, b]));
   return places.map((p) => {
     const t = tally.get(p.id)!;
-    return { teamId: p.id, clinchedPlayoffs: t.seededAlways, clinchedDivision: t.divisionAlways, clinchedTopSeed: t.topAlways, eliminated: !t.seededEver, method };
+    const b = bound.get(p.id)!;
+    return {
+      teamId: p.id, clinchedPlayoffs: t.seededAlways || b.clinchedPlayoffs, clinchedDivision: t.divisionAlways || b.clinchedDivision,
+      clinchedTopSeed: t.topAlways || b.clinchedTopSeed, eliminated: !t.seededEver || b.eliminated, method,
+    };
   });
 }
 
