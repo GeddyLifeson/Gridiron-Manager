@@ -183,6 +183,7 @@
     "act.call.flip": "Flip",
     "act.call.motion_tag": "Motion tag",
     "act.call.personnel": "Change personnel",
+    "act.call.precommit_cycle": "Cycle fourth-down pre-commit",
     "act.call.protection_tag": "Protection tag",
     "act.call.relay_cycle": "Cycle relay method",
     "act.call.route_tag": "Route tag",
