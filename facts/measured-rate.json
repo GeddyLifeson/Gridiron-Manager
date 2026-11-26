@@ -1994,9 +1994,17 @@
      "howRead": "dataset computed",
      "independenceGroup": "espn-pbp-sportsdataverse",
      "primary": false
+    },
+    {
+     "citation": "TeamRankings.com team tables, fourth downs per game (go), punt attempts per game and field goal attempts per game, regular seasons 2022 to 2024, summed over 32 teams (about 2,300 go plays against 6,500 punts and 3,200 field goals): go share 0.1909 against the stored 0.194, within the 0.01 tolerance so counted as agreeing",
+     "locator": "research/sources/teamrankings-raw-2022-2024.json and teamrankings-raw-mix-2022-2024.json; scripts/research/apply-teamrankings-go.py",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "teamrankings",
+     "primary": false
     }
    ],
-   "status": "2 of 3",
+   "status": "Verified",
    "usedBy": [],
    "statusHistory": [
     {
@@ -2008,8 +2016,14 @@
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.1991 against the stored 0.194."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Source added: TeamRankings go share 0.1909 (per-game tables, one decimal, summed)."
     }
-   ]
+   ],
+   "notes": " TeamRankings has no punt or field goal share on the same basis (its field goal attempts include other downs), so rows 0056 and 0057 stay at 2 of 3."
   },
   {
    "id": "F-measured-rate-0059",
