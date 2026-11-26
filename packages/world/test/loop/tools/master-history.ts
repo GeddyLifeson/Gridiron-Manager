@@ -4,11 +4,14 @@
 //
 // Run on a many-core PC (Node 22+, from the repo root):
 //   npx tsx packages/world/test/loop/tools/master-history.ts --out=master-run [--seed=HEX] [--workers=N]
-//       [--seasons=157] [--size=full] [--games=real|test] [--lost=1] [--checkpoint-every=N] [--resume] [--today=YEAR] [--bundle]
+//       [--seasons=157] [--size=full] [--games=real|test] [--lost=1] [--code=bundle|source] [--checkpoint-every=N] [--resume] [--today=YEAR]
 //
 // --workers defaults to the core count minus one; the calling thread plays games too. --games=test swaps
 // in the TEST DOUBLE game port for a quick dry run of the whole pipeline; every output then says so, and
 // such a run must never be baked. --seasons shortens the span (it always ends the season before today).
+// --code=bundle (the default) plays every game from plain JavaScript bundles of the week pool's worker and
+// job (headless week-pool/bundle.ts: no TypeScript loader, about 9% faster); --code=source plays them from
+// the TypeScript sources through tsx. Both give the same world hash.
 //
 // Output folder (one file per kind, all rewritten after every season, so a stopped run keeps what it reached):
 //   progress.jsonl  one line per season: summary, step times, heap, people, active teams, hall members
@@ -36,6 +39,8 @@ const SEASONS = Number(arg('seasons', String(generation.fullHistorySeasons(new D
 const SIZE = arg('size', 'full') as generation.SizePreset;
 const GAMES = arg('games', 'real');
 const LOST = Number(arg('lost', '1'));
+const CODE = arg('code', 'bundle');
+if (CODE !== 'bundle' && CODE !== 'source') throw new Error(`--code must be bundle or source, not ${CODE}`);
 const WORKERS = Number(arg('workers', String(Math.max(0, availableParallelism() - 1))));
 const TODAY = Number(arg('today', String(new Date().getUTCFullYear())));
 // Checkpoints (for machines that can be reclaimed): the whole world after every N seasons, written to
@@ -43,7 +48,7 @@ const TODAY = Number(arg('today', String(new Date().getUTCFullYear())));
 // world hash, and the run ends on the same hash as an unbroken one (test/loop/checkpoint.test.ts).
 const CHECKPOINT_EVERY = Number(arg('checkpoint-every', '0'));
 const RESUME = process.argv.includes('--resume');
-const BUNDLE = process.argv.includes('--bundle');
+// --bundle (main's flag) is the default now (--code=bundle); still accepted so older command lines work.
 const CHECKPOINT = join(OUT, 'checkpoint.v8');
 
 mkdirSync(OUT, { recursive: true });
@@ -69,13 +74,18 @@ if (GAMES === 'real') {
   // The week pool lives in @gm/headless, whose entry point does not export it yet; loaded by path, as the
   // fixture loads the names helpers.
   const wp = await import(new URL('../../../../headless/src/week-pool/index.ts', import.meta.url).href);
-  // --bundle (G-97 part 3, PR 260): play from plain JavaScript bundles of the worker and the job module in
-  // every thread, skipping tsx's per-closure renaming. Same bytes as the sources (bundle.test.ts).
   const source = wp.realWeekRef();
-  const bundle = BUNDLE ? (await import(new URL('../../../../headless/src/week-pool/bundle.ts', import.meta.url).href)).bundleForPool(source) : null;
+  let bundle: { module: unknown; workerPath: string; dispose(): void } | null = null;
+  if (CODE === 'bundle') {
+    const b = await import(new URL('../../../../headless/src/week-pool/bundle.ts', import.meta.url).href);
+    bundle = b.bundleForPool(source);
+    process.on('exit', () => bundle?.dispose());
+  }
   const ref = bundle?.module ?? source;
   const main = await wp.loadJobRunner(ref);
-  pool = wp.createSyncPool({ module: ref, workers: WORKERS, mainRunner: main, ...(bundle ? { workerPath: bundle.workerPath, execArgv: [] } : {}) }) as Pool;
+  pool = wp.createSyncPool({
+    module: ref, workers: WORKERS, mainRunner: main, ...(bundle ? { workerPath: bundle.workerPath, execArgv: [] } : {}),
+  }) as Pool;
   gamePort = wp.realWeekPort((jobs: readonly unknown[]) => pool!.run(jobs)) as loop.GameBatchPort;
 } else if (GAMES === 'test') {
   gamePort = loop.batchOf(testGamePort());
@@ -127,7 +137,7 @@ const head = {
   // Output format of this folder. The bake refuses a format it does not know: bump on any field change.
   formatVersion: 1,
   kind: GAMES === 'real' ? 'MASTER DATA RUN' : 'DRY RUN WITH THE TEST DOUBLE GAME PORT: NOT FOR BAKING',
-  seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, workers: GAMES === 'real' ? WORKERS : 0, bundled: GAMES === 'real' && BUNDLE,
+  seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, code: GAMES === 'real' ? CODE : null, bundled: GAMES === 'real' && CODE === 'bundle', workers: GAMES === 'real' ? WORKERS : 0,
   lostClubsFraction: LOST, worldCode: generation.worldCode(s, 'gridiron-manager', content.contentVersion), teams: w.teams.length, proClubsWithLost: proClubs,
   peopleAtFounding: w.people.size, buildMs: Math.round(buildMs), unbound,
   medicalRuleFallbacks: { pro: medicalRules.pro.fallbackKeys, college: medicalRules.college.fallbackKeys },
