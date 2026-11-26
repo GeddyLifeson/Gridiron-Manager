@@ -35,6 +35,18 @@ const ROWS: readonly Row[] = [
   ['exhaustedFixedNeedsHours', 2.5, 0, 6, 'h/day', 'bible', 'E7.4.2'],
   // E7.3.2 checking delegated work
   ['replaceShareThreshold', 0.3, 0, 1, 'ratio/season', 'bible', 'E7.3.2'],
+  // The week as a bill (plans/head-coach-nuance.md item 4, proposed MA-85): uninvited asks and skipped work. Every
+  // size here is chosen; the plan's research top-up is owed before any of them is sourced.
+  ['ask.yesStanding', 1, 0, 10, 'points', 'assumption', 'item 4 (a yes earns a little standing with the asker); size chosen here'],
+  ['ask.noShare', 1, 0, 1, 'ratio', 'assumption', 'item 4 (a no costs the standing at stake); whole share chosen here'],
+  ['ask.delegateShare', 0.4, 0, 1, 'ratio', 'assumption', 'item 4 (sending someone in his place costs part of it); size chosen here'],
+  ['ask.ownerScale', 2, 1, 5, 'ratio', 'assumption', 'item 4 (the owner remembers a no longest, S4); size chosen here'],
+  ['debt.lagWeeks.room', 3, 1, 12, 'weeks', 'assumption', 'item 4 ("a room he never met slips" weeks later); lag chosen here'],
+  ['debt.lagWeeks.plan', 1, 0, 4, 'weeks', 'assumption', 'item 4 (a game plan he did not review has a hole on game day); lag chosen here'],
+  ['debt.lagWeeks.people', 4, 1, 12, 'weeks', 'assumption', 'item 4 (a one-on-one skipped shows up as a problem he hears late); lag chosen here'],
+  ['debt.perHour', 1, 0, 5, 'points/h', 'assumption', 'item 4: size of a debt per skipped hour; chosen here'],
+  ['bill.overloadPerHour', 0.01, 0, 0.05, 'ratio/h', 'assumption', 'item 4 with E7.4.2 (overwork costs): quality lost per weekly work hour over the heavy band; size chosen here'],
+  ['bill.reviewShare', 0.15, 0, 1, 'ratio', 'assumption', 'item 4 with E7.3.2: hours a head coach spends checking a delegated block, as a share of doing it; chosen here'],
   // E8.1.1 sustained load
   ['loadWindowWeeks', 12, 1, 52, 'weeks', 'bible', 'E8.1.1'],
   ['heavyWindowWeeks', 52, 1, 104, 'weeks', 'bible', 'E8.1.1'],

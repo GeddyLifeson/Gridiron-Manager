@@ -7,6 +7,7 @@ export * from './sleep.ts';
 export * from './week.ts';
 export * from './ledger.ts';
 export * from './delegation.ts';
+export * from './bill.ts';
 export * from './load.ts';
 export * from './health.ts';
 export * from './household.ts';
