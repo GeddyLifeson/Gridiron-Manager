@@ -4,11 +4,14 @@
 // reference resolver does) the screens stay placeholders.
 import type { weekLoop } from '@gm/app-services';
 import type { RouteSources } from '../../routes.ts';
-import type { FilmRouteContext, FilmScreenSource } from '../../screens/film/index.ts';
+
+// The film route context through the route table's own type: only the film screens import the film package.
+type FilmRouteContext = NonNullable<RouteSources['film']>;
+type FilmScreenSource = FilmRouteContext['source'];
 
 export function filmSources(room: weekLoop.SeatFilmRoom, view: Omit<FilmRouteContext, 'source'> | null): Pick<RouteSources, 'film'> {
   if (!view || room.plays === 0) return {};
-  // The read-model data fits the film screens' structural copies (screens/film/types.ts, CR-G63-2).
+  // The read-model data fits the film screens' structural copies (the film package's types, CR-G63-2).
   const source: FilmScreenSource = {
     play: (id) => room.play(id), list: (f) => room.list(f), sheet: (g, p, s) => room.sheet(g, p, s),
     corrections: (g) => room.corrections(g), cutups: () => room.cutups(), send: (t, p) => room.send(t, p),
