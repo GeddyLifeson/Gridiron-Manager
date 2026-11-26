@@ -20,11 +20,13 @@
 // Field names are a contract with the bake (run.json formatVersion); change them only with a version bump.
 // The run is deterministic: the same seed, size and seasons give the same world hash on any machine and
 // any worker count (G-97: results are placed by game index).
-import { mkdirSync, writeFileSync, appendFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, appendFileSync, readFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
+import * as health from '../../../src/health/index.ts';
+import { medical } from '@gm/league';
 
 const arg = (k: string, d: string): string => process.argv.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3) ?? d;
 const OUT = arg('out', 'master-run');
@@ -47,7 +49,7 @@ const levelLookup = (level: string): generation.RuleLookup => (level === 'pro' ?
 const s = setup({ seedHex: SEED, size: SIZE, firstSeasonYear: TODAY - SEASONS, historySeasons: SEASONS });
 const tBuild = performance.now();
 const w = loop.createWorld({
-  setup: s, content, names: NAMES, eventTypes: turnover.TURNOVER_EVENT_TYPES,
+  setup: s, content, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...health.HEALTH_EVENT_TYPES],
   foundingCurves: generation.defaultFoundingCurves(), lostClubs: LOST > 0 ? { fraction: LOST } : undefined,
 });
 const buildMs = performance.now() - tBuild;
@@ -80,9 +82,17 @@ const timing: Record<string, number> = {};
 const timed = (name: string, h: loop.StepHandler): loop.StepHandler => (ctx) => {
   const t = performance.now(); const r = h(ctx); timing[name] = (timing[name] ?? 0) + performance.now() - t; return r;
 };
+// D11: the medical rules come from the league rules where the medical.* keys exist (G-10 owes them); the
+// fallback keys used are written into run.json so the bake can see them.
+const medicalRules = { pro: health.medicalRulesFrom('pro', PRO_LOOKUP), college: health.medicalRulesFrom('college', COLLEGE_LOOKUP) };
+const healthBinding: health.HealthBinding = {
+  catalogue: medical.catalogueFrom(JSON.parse(readFileSync(new URL('../../../../football-content/data/injuries/catalogue.json', import.meta.url), 'utf8')).rows),
+  rules: (lvl) => medicalRules[lvl].rules, levelOfTeam: (world, id) => turnover.levelOfTeam(world, id),
+};
 const systems = loop.systemsFrom({
   lifecycle: timed('lifecycle', loop.lifecycleStep({ content, names: NAMES, built: w })),
   games: timed('games', loop.gamesStepBatch(schedule, gamePort)),
+  health: timed('health', health.healthStep(healthBinding)),
   leaving: timed('leaving', loop.leavingStep()),
   // Log compaction has no counter list yet (X2.4.1 owner); the slot drops dead playing blocks (archive.ts).
   compaction: timed('compaction', loop.slimStep()),
@@ -108,6 +118,15 @@ const head = {
   seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, workers: GAMES === 'real' ? WORKERS : 0,
   lostClubsFraction: LOST, worldCode: generation.worldCode(s, 'gridiron-manager', content.contentVersion), teams: w.teams.length, proClubsWithLost: proClubs,
   peopleAtFounding: w.people.size, buildMs: Math.round(buildMs), unbound,
+  medicalRuleFallbacks: { pro: medicalRules.pro.fallbackKeys, college: medicalRules.college.fallbackKeys },
+};
+// A bound step whose input never arrives is not done: while games report no injuries (placeholder rosters,
+// reference resolver), health stays in the unbound list with its reason, so the bake stays provisional.
+const unboundNow = (): typeof unbound => {
+  const h = health.healthOf(w);
+  return h.unreportedGames > 0
+    ? [...unbound, { step: 'health', reason: `bound, but ${h.unreportedGames} of ${h.unreportedGames + h.reportedGames} games reported no injuries (game rosters are not world people yet)` }]
+    : unbound;
 };
 write('run.json', { ...head, status: 'running' });
 console.log(JSON.stringify(head));
@@ -129,6 +148,7 @@ function snapshot(status: 'running' | 'stopped' | 'finished', seasonsRun: number
   const worldHash = loop.worldHash(w);
   write('run.json', {
     ...head, status, seasonsRun, totalSeconds: Math.round((performance.now() - t0) / 1000),
+    unbound: unboundNow(), injuriesOpened: health.healthOf(w).opened,
     validation, worldHash, peopleAtEnd: w.people.size, hallMembers: w.hall.members.length,
   });
   return { worldHash, failures: validation.failures };
