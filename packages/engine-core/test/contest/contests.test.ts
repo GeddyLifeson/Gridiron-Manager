@@ -131,7 +131,7 @@ describe('pass rush (J6.2)', () => {
   const homeBy = (dz: number, seconds: number, help: 'none' | 'double' = 'none') => share(5000, (i) => timeHome(dz, i, help) <= seconds);
 
   it('even a stalemated rusher collapses the pocket, and cumulative pressure rises with time held', () => {
-    expect(passRush.rushSpeedFactor(0)).toBe(0.15);
+    expect(passRush.rushSpeedFactor(0)).toBe(0.1);
     expect(passRush.rushSpeedFactor(-1)).toBe(1);
     expect(passRush.rushSpeedFactor(1)).toBe(0);
     const curve = [1.5, 2.0, 2.5, 3.0, 3.5, 4.0].map((t) => homeBy(0, t));
@@ -210,9 +210,10 @@ describe('pass rush (J6.2)', () => {
   });
 
   it('pressure, and the arrival draw (J6.2.5)', () => {
-    expect(passRush.isPressure(1.9, 5, true)).toBe(true);
-    expect(passRush.isPressure(4, 0.5, true)).toBe(true);
-    expect(passRush.isPressure(4, 0.7, true)).toBe(false);
+    // Tuned from J6.2.5's 2 yd and 0.6 s to 1.2 yd and 0.3 s (charted pressure rate and pressured completion, J15.4.2).
+    expect(passRush.isPressure(1.1, 5, true)).toBe(true);
+    expect(passRush.isPressure(4, 0.25, true)).toBe(true);
+    expect(passRush.isPressure(4, 0.35, true)).toBe(false);
     expect(passRush.isPressure(1, 0.1, false)).toBe(false);
     const p0 = passRush.sackProbability(arrival);
     expect(passRush.sackProbability({ ...arrival, blindside: true })).toBeGreaterThan(p0);
