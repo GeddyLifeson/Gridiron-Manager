@@ -90,6 +90,22 @@ const ROWS: readonly Row[] = [
   ['youngPlayerMinSnapShare', 0.1, 0, 1, 'ratio', 'assumption', 'E10.4.1'],
   ['penaltyGameMaxYards', 60, 0, 200, 'yards/game', 'assumption', 'E10.4.1'],
   ['lateGameRunShareMin', 0.5, 0, 1, 'ratio', 'assumption', 'E10.4.1'],
+  // Decisions are messages (plans/head-coach-nuance.md item 3, proposed MA-86; E10.4.1, L2.4.2, H4.2.3). Every
+  // size here is chosen; L1 marks all relationship effect sizes Assumption. readTrust: trust moved in an audience a
+  // message speaks to; otherUnitShare: the other unit reads a fourth-down choice at half; kickShare: a kick is read
+  // more quietly than a go; contradictionTrust and publicPrivateScale: trust lost by those who heard both sides,
+  // more when one was said inside and the other outside; windowWeeks: how far apart two lines are read together;
+  // timing.*: H4.2.3 tone fit generalised (the Monday after a loss is not Saturday night).
+  ['message.readTrust', 2, 0, 10, 'points', 'assumption', 'E10.4.1'],
+  ['message.otherUnitShare', 0.5, 0, 1, 'ratio', 'assumption', 'E10.4.1'],
+  ['message.kickShare', 0.25, 0, 1, 'ratio', 'assumption', 'E10.4.1'],
+  ['message.contradictionTrust', 4, 0, 20, 'points', 'assumption', 'E10.4.1'],
+  ['message.publicPrivateScale', 1.5, 1, 3, 'ratio', 'assumption', 'E10.4.1'],
+  ['message.windowWeeks', 4, 1, 52, 'weeks', 'assumption', 'E10.4.1'],
+  ['message.timing.mondayAfterLoss.demanding', 1.2, 0, 2, 'ratio', 'assumption', 'H4.2.3'],
+  ['message.timing.mondayAfterLoss.supportive', 0.8, 0, 2, 'ratio', 'assumption', 'H4.2.3'],
+  ['message.timing.gameEve.demanding', 0.7, 0, 2, 'ratio', 'assumption', 'H4.2.3'],
+  ['message.timing.gameEve.supportive', 1.1, 0, 2, 'ratio', 'assumption', 'H4.2.3'],
   // E11.1.1 and E11.3.1 notebook
   ['noteMaxChars', 4000, 100, 100000, 'characters', 'bible', 'E11.1.1'],
   ['resurfaceShown', 5, 1, 20, 'count', 'bible', 'E11.3.1'],

@@ -7,5 +7,6 @@ export * from './creation.ts';
 export * from './presets.ts';
 export * from './philosophy.ts';
 export * from './ledger.ts';
+export * from './messages.ts';
 export * from './notebook.ts';
 export * from './resurface.ts';
