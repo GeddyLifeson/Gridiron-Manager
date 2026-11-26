@@ -4,7 +4,7 @@ import { stream } from '@gm/engine-core';
 import type { PersonRecord } from '@gm/schema';
 import type { LevelSpec, WorldContent } from '../generation/content.ts';
 import { scaleMix } from '../generation/founding.ts';
-import type { LiveWorld } from '../loop/types.ts';
+import type { LiveWorld, StepContext } from '../loop/types.ts';
 import { param } from './params.ts';
 
 export type Level = keyof WorldContent['levels'];
@@ -24,6 +24,12 @@ export interface RosterPolicy {
   readonly cutdown?: (ctx: PolicyContext, teamId: number, roster: readonly number[], limit: number, minByPosition: Readonly<Record<string, number>>) => readonly number[] | null;
   /** K7.5.1: a college program's offers to ready recruits, best first, for `openPlaces` places; null for the default signing order. */
   readonly recruitOffers?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], openPlaces: number) => readonly number[] | null;
+  /**
+   * K7.7.1 `early_contact_player` (C8, C11.6.2): before free agency opens, the free agent this team reaches ahead
+   * of the order, or null. `slot` is the team's place in the signing order (0 picks first). The policy raises
+   * the act itself through the L8.2.5 pipeline; a returned id is the illegal effect: the team signs him first.
+   */
+  readonly earlyContact?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], slot: number) => number | null;
 }
 
 /** Which choice a pick is (C7, C8, X11.1.1, T4). */
@@ -35,6 +41,8 @@ export interface Phase {
 
 /** What a policy may read during one offseason cycle. One object per cycle: a policy may cache by it. */
 export interface PolicyContext {
+  /** The step this cycle runs in: its streams, its tier reader and the history log. */
+  readonly ctx: StepContext;
   readonly world: LiveWorld;
   readonly b: TurnoverBinding;
   readonly season: number;
