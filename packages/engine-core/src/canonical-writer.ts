@@ -181,29 +181,23 @@ function write(v: unknown): void {
         const k = order[i]!;
         const x = rec[k];
         if (x === undefined) continue;
-        if (shape === null) {
-          const kb = keyBytesOf(k);
-          if (len + kb.length > buf.length) grow(len + kb.length);
-          buf.set(kb, len);
-          len += kb.length;
-        } else {
-          const from = i === 0 ? 0 : shape.ends[i - 1]!;
-          const to = shape.ends[i]!;
-          const m = to - from;
-          if (len + m > buf.length) grow(len + m);
-          const kb = shape.keyBytes;
-          for (let j = from; j < to; j++) buf[len++] = kb[j]!;
-        }
-        // Numbers and booleans inline (most fields); everything else through write.
+        // Key bytes, then numbers and booleans inline (most fields); everything else through write.
+        // Room for the key and a number is made once; the position is kept in a local while writing.
+        let kb: Uint8Array, from: number, to: number;
+        if (shape === null) { kb = keyBytesOf(k); from = 0; to = kb.length; }
+        else { kb = shape.keyBytes; from = i === 0 ? 0 : shape.ends[i - 1]!; to = shape.ends[i]!; }
+        if (len + (to - from) + 9 > buf.length) grow(len + (to - from) + 9);
+        const b = buf;
+        let at = len;
+        for (let j = from; j < to; j++) b[at++] = kb[j]!;
         if (typeof x === 'number' && x - x === 0) {
-          if (len + 9 > buf.length) grow(len + 9);
-          buf[len] = T_NUM;
-          dv.setFloat64(len + 1, x === 0 ? 0 : x, true);
-          len += 9;
+          b[at] = T_NUM;
+          dv.setFloat64(at + 1, x === 0 ? 0 : x, true);
+          len = at + 9;
         } else if (x === true || x === false) {
-          if (len + 1 > buf.length) grow(len + 1);
-          buf[len++] = x ? T_TRUE : T_FALSE;
-        } else write(x);
+          b[at] = x ? T_TRUE : T_FALSE;
+          len = at + 1;
+        } else { len = at; write(x); }
         written++;
       }
       u32At(countAt, written);
