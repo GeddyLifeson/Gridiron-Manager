@@ -178,6 +178,15 @@ const ROWS: readonly Row[] = [
   ['ladder.public.below', -65, -100, 0, 'index', 'bible', 'D12.5.2'],
   ['ladder.public.weeks', 4, 1, 10, 'week', 'bible', 'D12.5.2'],
   ['ladder.exit.below', -75, -100, 0, 'index', 'bible', 'D12.5.2'],
+  // L1.1.1 respect from judgment the witness saw (plans/head-coach-nuance.md item 5, proposed MA-82). Every size
+  // here is chosen: L1 has no measured source for any relationship effect size.
+  ['judgment.readStrength', 3, 0, 10, 'strength', 'assumption', 'L1.1.1 respect ("game management he can see"); size chosen here'],
+  ['judgment.resultStrength', 1, 0, 10, 'strength', 'assumption', 'L1.1.1 respect ("plans that work"); size chosen here, below the read so luck counts less than judgment'],
+  ['judgment.edgeScaleWp', 3, 0.5, 20, 'wp_points', 'assumption', 'L1.1.1; a 3 WP point edge reads as a full right or wrong call'],
+  ['judgment.readSpreadWp', 8, 0, 30, 'wp_points', 'assumption', 'L1.1.1; half-width of a witness read error with no football knowledge (I5.1.2 skill-based error)'],
+  ['judgment.readFloorWp', 1, 0, 10, 'wp_points', 'assumption', 'L1.1.1; half-width of the read error of the most knowing witness'],
+  ['judgment.resultWeightLow', 0.6, 0, 1, 'ratio', 'assumption', 'L1.1.1; share of the result term for a witness with no football knowledge'],
+  ['judgment.resultWeightHigh', 0.2, 0, 1, 'ratio', 'assumption', 'L1.1.1; share of the result term for the most knowing witness'],
   // D12.6.1 real people
   ['real.egoFixed', 50, 50, 50, 'index', 'bible', 'D12.6.1'],
 ];

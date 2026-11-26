@@ -27,6 +27,7 @@
     "talk_neutral":            { "base": 0,   "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.25, "roleBelief": 0.25 }, "facet": null, "invert": false, "leaf": "L1.2.1" },
     "talk_bad":                { "base": 0,   "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.25, "roleBelief": 0.25 }, "facet": null, "invert": false, "leaf": "L1.2.1" },
     "praise":                  { "base": 0,   "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.5 },    "facet": null,           "invert": false, "leaf": "L1.2.4" },
-    "correction":              { "base": 0,   "halfLife": "routine",     "weights": { "respect": 1 },                  "facet": "coachability", "invert": true,  "leaf": "L1.2.4" }
+    "correction":              { "base": 0,   "halfLife": "routine",     "weights": { "respect": 1 },                  "facet": "coachability", "invert": true,  "leaf": "L1.2.4" },
+    "judgment_seen":           { "base": 0,   "halfLife": "routine",     "weights": { "respect": 1 },                  "facet": null,           "invert": false, "leaf": "L1.1.1 respect (game management he can see, plans that work); plans/head-coach-nuance.md item 5" }
   }
 }

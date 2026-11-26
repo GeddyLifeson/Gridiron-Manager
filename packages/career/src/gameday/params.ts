@@ -134,6 +134,7 @@ const ROWS: readonly Row[] = [
   ['uptake.crowdNoise', -0.1, -1, 0, 'z', 'bible', 'I8.1.4'],
   ['uptake.solidWithin', -0.2, -1, 0, 'z', 'bible', 'I8.1.4'],
   ['uptake.shakyWithin', -0.6, -2, 0, 'z', 'bible', 'I8.1.4'],
+  ['uptake.respectSpan', 0.15, 0, 1, 'z', 'assumption', 'I8.1.4 with L1.1.1 respect (plans/head-coach-nuance.md item 5: a change from a coach the player thinks knows football is carried out more cleanly); size chosen here, half the teacher span'],
   // I8.3.1 adjustment record
   ['adjust.executedCut', 0.8, 0, 1, 'ratio', 'bible', 'I8.3.1'],
   ['adjust.minPlaysForRates', 5, 1, 20, 'play', 'bible', 'I8.3.1'],

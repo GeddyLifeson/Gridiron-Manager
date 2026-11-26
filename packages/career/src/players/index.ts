@@ -11,4 +11,5 @@ export * from './promises.ts';
 export * from './honesty.ts';
 export * from './special.ts';
 export * from './effects.ts';
+export * from './judgment.ts';
 export * from './ladder.ts';

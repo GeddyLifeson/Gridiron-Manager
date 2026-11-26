@@ -57,6 +57,7 @@ const ROWS: readonly Row[] = [
   // L4.3.3 disagreement.
   ['object.baseThreshold', 0.3, 0, 1, 'ratio', 'assumption', 'L4.3.3'],
   ['object.trustSlope', 0.15, 0, 1, 'ratio', 'assumption', 'L4.3.3'],
+  ['object.respectSlope', 0.1, 0, 1, 'ratio', 'assumption', 'L4.3.3 with L1.1.1 respect (plans/head-coach-nuance.md item 5: a new head coach gets more push-back until his calls prove out); size chosen here'],
   ['object.dismissedRaise', 0.15, 0, 1, 'ratio', 'assumption', 'L4.3.3'],
   ['object.dismissedRun', 3, 1, 10, 'count', 'bible', 'L4.3.3'],
   ['object.overruleNoReasonTrust', -1, -10, 0, 'points', 'bible', 'L4.3.3'],

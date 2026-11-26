@@ -194,6 +194,11 @@ export interface UptakeInput {
   readonly roadCrowdNoise: boolean;
   /** False when the player was not at the meeting (with the trainer, or a substitute who came in later). */
   readonly heardIt: boolean;
+  /**
+   * The player's respect for the head coach's football knowledge, 0 to 100 (L1.1.1), when the change is the head
+   * coach's. Omitted: no term (a coordinator's own change, or a caller that does not track relationships).
+   */
+  readonly respect?: number;
 }
 
 /** Zero uptake: the item never reached the player. */
@@ -213,6 +218,7 @@ export function uptake(i: UptakeInput): number {
     if (i.teacher.namesTrueCause) v += gp('uptake.trueCause');
   }
   if (i.sawPictures) v += gp('uptake.pictures');
+  if (i.respect !== undefined) v += gp('uptake.respectSpan') * (clamp(i.respect, 0, 100) - 50) / 50;
   const over = i.structuralInMeeting - i.structuralLimit;
   if (over > 0) v += over * gp('uptake.extraStructural');
   if (i.cut === 'after') v += gp('uptake.cutAfter');

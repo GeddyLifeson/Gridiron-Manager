@@ -62,15 +62,21 @@ export interface ObjectionHistory {
   readonly weeksSinceAnyObjection: number;
 }
 
-/** Gap (0 to 1) between his evaluation and the plan above which he speaks up. Falls with trust, rises after three dismissals. */
-export function objectionThreshold(trust: number, h: ObjectionHistory): number {
+/**
+ * Gap (0 to 1) between his evaluation and the plan above which he speaks up. Falls with trust, rises after three
+ * dismissals. With `respect` (his respect for the head coach's football knowledge, L1.1.1) it also rises as the
+ * head coach's calls prove out: a coordinator gives a proven head coach the benefit of the doubt on close calls,
+ * and pushes back sooner on one he does not yet believe in (plans/head-coach-nuance.md item 5).
+ */
+export function objectionThreshold(trust: number, h: ObjectionHistory, respect?: number): number {
   const run = param('object.dismissedRun');
   const last = h.outcomes.slice(-run);
   const dismissed = last.length === run && last.every((o) => o === 'overruled_no_reason');
-  return clamp(param('object.baseThreshold') - param('object.trustSlope') * (clamp(trust, 0, 100) - 50) / 50 + (dismissed ? param('object.dismissedRaise') : 0), 0, 1);
+  const proven = respect === undefined ? 0 : param('object.respectSlope') * (clamp(respect, 0, 100) - 50) / 50;
+  return clamp(param('object.baseThreshold') - param('object.trustSlope') * (clamp(trust, 0, 100) - 50) / 50 + proven + (dismissed ? param('object.dismissedRaise') : 0), 0, 1);
 }
 
-export const raisesObjection = (gap: number, trust: number, h: ObjectionHistory): boolean => gap > objectionThreshold(trust, h);
+export const raisesObjection = (gap: number, trust: number, h: ObjectionHistory, respect?: number): boolean => gap > objectionThreshold(trust, h, respect);
 
 export type ObjectionAnswer = 'accept' | 'overrule_reason' | 'overrule_no_reason' | 'more_asked';
 
