@@ -7,7 +7,7 @@ import { resolveRuleSet } from '@gm/rules-data';
 import {
   DEFENSE_ROLES, OFFENSE_ROLES, UNIT_JERSEYS, createRealGameCore, createStarterContentPort, tickParamTable,
 } from '../../src/season/index.ts';
-import { BOOT_DEPTH_YD, BOOT_WIDTH, POP_FAKE_S, READ_STEP_S } from '../../src/season/tick-content.ts';
+import { BOOT_DEPTH_YD, BOOT_WIDTH, POP_FAKE_S, READ_STEP_S, meshPoint } from '../../src/season/tick-content.ts';
 
 const params = tickParamTable();
 const pro = resolveRuleSet('pro_2026');
@@ -63,6 +63,20 @@ describe('starter content port', () => {
     const s = port.setup(inputOf(offenseCalls('dropback_pass', null)))!;
     s.presnap.offense.assignments.forEach((a, i) => expect(s.perception[i]!.gaze, a.role).toBeUndefined());
     s.presnap.defense.assignments.forEach((a, i) => expect(s.perception[SLOTS_PER_TEAM + i]!.gaze, a.role).toBe(a.behavior.type === 'zoneDrop' || a.behavior.type === 'deepZone' ? 'ball' : a.behavior.type === 'manCover' ? 'key' : undefined));
+  });
+  it('F4 the handoff happens at the first spot on the back\'s path the quarterback can reach before the back does', () => {
+    const qb = { px: -1, py: 0 }, deep = { px: -7, py: 0 };
+    // A back a yard behind his first drawn point: the quarterback cannot be six yards deep in time, so the mesh is further along.
+    const power = meshPoint(qb, deep, [{ px: -6, py: 1.5 }, { px: -1, py: 3 }, { px: 6, py: 4 }])!;
+    expect(power.px).toBeGreaterThan(-6); expect(power.px).toBeLessThan(0);
+    expect(Math.hypot(power.px - qb.px, power.py - qb.py)).toBeLessThanOrEqual(0.8 * (Math.hypot(1, 1.5) + Math.hypot(power.px + 6, power.py - 1.5)) + 1e-9);
+    // A downhill path that passes the quarterback: he meets the back as soon as the back is behind the line and in his reach.
+    const duo = meshPoint(qb, deep, [{ px: -2, py: 1 }, { px: 1, py: 2 }])!;
+    expect(duo.px).toBeLessThanOrEqual(-2);
+    // A path that never goes behind the line has no mesh point; one he can never beat the back to ends at the last spot behind the line.
+    expect(meshPoint(qb, { px: 1, py: 0 }, [{ px: 3, py: 0 }])).toBeNull();
+    const wide = meshPoint({ px: -1, py: -20 }, deep, [{ px: -6, py: 1 }, { px: 2, py: 2 }])!;
+    expect(wide.px).toBeLessThan(0); expect(wide.px).toBeGreaterThan(-1);
   });
   it('starts man defenders with their eyes on their man, so turning to run with him does not lose him', () => {
     const s = port.setup(inputOf(offenseCalls('dropback_pass', null, 'cover1')))!;
