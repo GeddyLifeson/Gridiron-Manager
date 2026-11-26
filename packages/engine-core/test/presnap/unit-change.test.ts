@@ -74,3 +74,14 @@ describe('I4.1.1 a change of mind raises the 12-men and substitution hazard', ()
     expect(changed).toBeGreaterThan(calm * 2);
   });
 });
+
+describe('B4.2.1 eligible receivers are marked at the snap', () => {
+  it('marks the ends and the backs with eligible numbers, and no interior lineman', () => {
+    const r = run(input());
+    expect(ofType(r.w, 'snap')).toHaveLength(1);
+    const marked = Array.from(r.w.players.eligible.slice(0, 11));
+    // Fixture offense: slots 0 to 4 are the interior line.
+    expect(marked.slice(0, 5)).toEqual([0, 0, 0, 0, 0]);
+    expect(marked.reduce((a, b) => a + b, 0)).toBeGreaterThanOrEqual(5);
+  });
+});
