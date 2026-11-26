@@ -8,7 +8,7 @@
 // (--report-only always exits 0 after writing the report). No GitHub Actions: run it on the test machines.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { headCommit, sourceDirty, trackedFiles } from './lib/git.ts';
 import { findBibleDir, readBible, readPhaseGates, type BibleLeaf, type GateItem } from './lib/bible.ts';
 import { loadPlans } from './lib/plans.ts';
@@ -55,6 +55,13 @@ function bibleInputs(notes: string[]): { leaves: BibleLeaf[]; gates: GateItem[];
   return { leaves: [], gates: [], source: 'none' };
 }
 
+async function licenceCheck(root: string): Promise<ScanResults['licences']> {
+  const f = join(root, 'scripts/assets/check-licences.mjs');
+  if (!existsSync(f)) return null;
+  const mod = (await import(pathToFileURL(f).href)) as { checkLicences: (root: string) => { ok: boolean; errors: string[]; rows: number; files: number } };
+  return mod.checkLicences(root);
+}
+
 function scan(ctx: GateContext, notes: string[]): ScanResults {
   const tree = shippedTree(ctx.root);
   const textFiles = tree.files.filter((f) => TEXT_EXT.test(f) && !SCAN_REFERENCE_FILES.has(f));
@@ -94,14 +101,16 @@ function scan(ctx: GateContext, notes: string[]): ScanResults {
     names: { source: names, hits: failNames, permitted: permitted.names },
     research: { pathHits: researchPathHits(tree.files), tokenHits, copyHits: copies.hits, researchFiles: copies.researchFiles, dirs: copies.dirs },
     provisional,
+    licences: null,
   };
 }
 
-function main(): number {
+async function main(): Promise<number> {
   const ctx: GateContext = { root: ROOT, commit: headCommit(ROOT), dirty: sourceDirty(ROOT) };
   const notes: string[] = [];
   const bible = bibleInputs(notes);
   const scans = scan(ctx, notes);
+  scans.licences = await licenceCheck(ctx.root);
   const all = runChecks({ ctx, leaves: bible.leaves, gates: bible.gates, wps: loadPlans(ROOT), evidence: loadEvidence(join(ROOT, EVIDENCE_FILE)), suites: collectSuiteRecords(ROOT), scans });
   const v = verdict(all, ctx);
   mkdirSync(OUT, { recursive: true });
@@ -110,7 +119,7 @@ function main(): number {
   writeFileSync(join(OUT, 'BIBLE-CHECKLIST.md'), bibleMarkdown(all, meta));
   writeFileSync(join(OUT, 'PROVISIONAL.md'), provisionalMarkdown(scans.provisional, ctx.commit));
   writeFileSync(join(OUT, 'results.json'), JSON.stringify({ commit: ctx.commit, dirty: ctx.dirty, pass: v.pass, reasons: v.reasons, generatedAt: meta.generatedAt, bible: bible.source, notes, counts: counts(all),
-    scans: { shippedFiles: scans.shippedFiles, buildArtifact: scans.buildArtifact, markHits: scans.marks?.hits ?? null, nameSource: { kind: scans.names.source.kind, path: scans.names.source.path, people: scans.names.source.people }, nameHits: scans.names.hits, research: scans.research },
+    scans: { shippedFiles: scans.shippedFiles, buildArtifact: scans.buildArtifact, markHits: scans.marks?.hits ?? null, nameSource: { kind: scans.names.source.kind, path: scans.names.source.path, people: scans.names.source.people }, nameHits: scans.names.hits, licences: scans.licences, research: scans.research },
     checks: all }, null, 1) + '\n');
   const c = counts(all);
   console.log(`release gate: ${v.pass ? 'PASS' : 'HOLD'} at ${ctx.commit.slice(0, 12)}${ctx.dirty ? ' (dirty)' : ''}`);
@@ -121,4 +130,4 @@ function main(): number {
   return args.includes('--report-only') ? 0 : v.pass ? 0 : 1;
 }
 
-process.exit(main());
+main().then((c) => process.exit(c));

@@ -15,6 +15,7 @@ export interface ScanResults {
   buildArtifact: string | null;
   marks: { listPath: string; listStatus: string; hits: MarkHit[]; permitted?: Record<string, number> } | null;
   names: { source: NameSource; hits: NameHit[]; permitted?: Record<string, number> };
+  licences: { ok: boolean; errors: string[]; rows: number; files: number } | null;
   research: { pathHits: ResearchHit[]; tokenHits: ResearchHit[]; copyHits: ResearchHit[]; researchFiles: number; dirs: string[] };
   provisional: ProvisionalReport;
 }
@@ -125,6 +126,12 @@ export function releaseGateChecks(inp: Inputs, suites: readonly CheckResult[]): 
     r.tokenHits.length || r.copyHits.length ? fmtHits([...r.copyHits, ...r.tokenHits], 8)
       : r.dirs.length ? `0 source-record ids or urls; 0 byte-identical copies of ${r.researchFiles} research files (${r.dirs.join(', ')})`
       : '0 source-record ids or urls; research folders not on this machine, so the copy check did not run (set GM_RESEARCH_DIR)'));
+  const lic = scans.licences;
+  out.push(res(mk('release:6f-asset-licences', 'automated', 'Every shipped asset has a licence row and the register passes the checker (PV-15)', 'R1.2.10 item 6, A6.2.2', 'assets/LICENSES.json lists every asset, each with an allowed licence and its sources.', 'PV-15'),
+    !lic ? 'MISSING' : lic.ok ? 'PASS' : 'FAIL',
+    !lic ? 'scripts/assets/check-licences.mjs not found at this commit'
+      : lic.ok ? `${lic.rows} register rows cover ${lic.files} asset files; 0 findings`
+      : `${lic.errors.length} findings: ${lic.errors.slice(0, 5).join('; ')}${lic.errors.length > 5 ? `; and ${lic.errors.length - 5} more` : ''}`));
   out.push(tracked(mk('release:6e-similarity', 'tracked', 'No shipped file exceeds the similarity threshold against the people data (A6.4.1 item 4)', 'R1.2.10 item 6, A6.4.1', 'No shipped file exceeds a similarity threshold against the people data.'), inp,
     () => ({ status: 'PENDING', detail: 'name, id and byte-copy checks run above; a per-record numeric similarity measure and its threshold are not defined in the bible yet (A6.4.1 gives no number)' })));
   return out;

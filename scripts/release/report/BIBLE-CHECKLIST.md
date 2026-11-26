@@ -1,6 +1,6 @@
 # Bible acceptance checklist (G-100)
 
-Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619bb052b9, 2514 leaves. One line per leaf: status, owner, criterion (cut at 160 characters; full text in results.json).
+Commit `301f83eaab96`. Bible: live from /mnt/project-files/bible, hash 2ff8f895556e8d69, 2514 leaves. One line per leaf: status, owner, criterion (cut at 160 characters; full text in results.json).
 
 
 ## A
@@ -942,46 +942,46 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | Leaf | Status | Owner | Criterion |
 | --- | --- | --- | --- |
 | G1.1.1 Play object schema | PENDING | WP-15 | 1. Every starting-system play loads and saves without loss. 2. A play object with any outcome field fails schema validation. 3. Mirroring a play twice returns … |
-| G1.1.2 Role slots and position letters | MISSING | G-90 | For each personnel group in F1 the designer offers exactly the slots that group defines. A play cannot be saved with a missing or duplicate slot. |
-| G1.1.3 The play page view | MISSING | G-90 | The page renders in under 50 ms. Every assignment in the object appears in both the diagram and the text list. |
-| G1.2.1 Design flow | MISSING | G-90 | A user can build a valid shotgun 11-personnel dropback play from installed parts in under 60 s. The guided steps list only parts that are legal for the choices… |
-| G1.2.2 Formation editing | MISSING | G-90 | No formation that fails G1.5.1 can reach status valid. A landmark split resolves to the right yard value on left hash, middle, and right hash. |
-| G1.2.3 Shifts and motion | MISSING | G-90 | A play with two players moving at the snap cannot be saved as valid. Displayed pre-snap duration equals the sum used by I2.1.1 for the same play. |
-| G1.3.1 Route editor | MISSING | G-90 | Every route saved compiles to J4 rules without error. The time-to-break shown is within 0.1 s of the engine's result for a test receiver with no defender. With… |
-| G1.3.2 Blocking assignment editor | MISSING | G-90 | For each library scheme and each front in the preview set, every lineman resolves to exactly one assignment. Protection count plus releasing receivers equals t… |
-| G1.3.3 Ball carrier and mesh | MISSING | G-90 | A play-action pass cannot reach status valid without a partner run or an explicit "no partner" confirmation. Match score is 1.0 when the pass copies the run's … |
-| G1.3.4 Quarterback read editor | MISSING | G-90 | Every pass play has exactly one read type, at least one progression target, and an escape rule. Hot rules reference only releasing receivers. |
-| G1.3.5 RPO and option assignment | MISSING | G-90 | An RPO whose throw is later than the computed limit shows the ineligible-downfield warning with the timing gap in seconds and the lineman who will be past the … |
-| G1.4.1 Tag definition | MISSING | G-90 | Every play plus every allowed tag, alone and in every non-exclusive pair, passes G1.5.1 and G1.5.2. |
-| G1.4.2 Mirror, strength, field and boundary | MISSING | G-90 | A field-side play called from the left hash aligns its strength to the right, and from the right hash to the left, in 100% of trials. |
-| G1.4.3 Packaged play definitions | MISSING | G-90 | A package cannot be saved if the two plays use different personnel groups. Its trigger evaluates to true or false for every look in the preview set. |
+| G1.1.2 Role slots and position letters | PENDING | G-90 | For each personnel group in F1 the designer offers exactly the slots that group defines. A play cannot be saved with a missing or duplicate slot. |
+| G1.1.3 The play page view | PENDING | G-90 | The page renders in under 50 ms. Every assignment in the object appears in both the diagram and the text list. |
+| G1.2.1 Design flow | PENDING | G-90 | A user can build a valid shotgun 11-personnel dropback play from installed parts in under 60 s. The guided steps list only parts that are legal for the choices… |
+| G1.2.2 Formation editing | PENDING | G-90 | No formation that fails G1.5.1 can reach status valid. A landmark split resolves to the right yard value on left hash, middle, and right hash. |
+| G1.2.3 Shifts and motion | PENDING | G-90 | A play with two players moving at the snap cannot be saved as valid. Displayed pre-snap duration equals the sum used by I2.1.1 for the same play. |
+| G1.3.1 Route editor | PENDING | G-90 | Every route saved compiles to J4 rules without error. The time-to-break shown is within 0.1 s of the engine's result for a test receiver with no defender. With… |
+| G1.3.2 Blocking assignment editor | PENDING | G-90 | For each library scheme and each front in the preview set, every lineman resolves to exactly one assignment. Protection count plus releasing receivers equals t… |
+| G1.3.3 Ball carrier and mesh | PENDING | G-90 | A play-action pass cannot reach status valid without a partner run or an explicit "no partner" confirmation. Match score is 1.0 when the pass copies the run's … |
+| G1.3.4 Quarterback read editor | PENDING | G-90 | Every pass play has exactly one read type, at least one progression target, and an escape rule. Hot rules reference only releasing receivers. |
+| G1.3.5 RPO and option assignment | PENDING | G-90 | An RPO whose throw is later than the computed limit shows the ineligible-downfield warning with the timing gap in seconds and the lineman who will be past the … |
+| G1.4.1 Tag definition | PENDING | G-90 | Every play plus every allowed tag, alone and in every non-exclusive pair, passes G1.5.1 and G1.5.2. |
+| G1.4.2 Mirror, strength, field and boundary | PENDING | G-90 | A field-side play called from the left hash aligns its strength to the right, and from the right hash to the left, in 100% of trials. |
+| G1.4.3 Packaged play definitions | PENDING | G-90 | A package cannot be saved if the two plays use different personnel groups. Its trigger evaluates to true or false for every look in the preview set. |
 | G1.5.1 Formation and motion legality | PENDING | WP-10 | A test set of 40 formations (20 legal, 20 illegal with known reasons) is classified correctly with the right reason for each. Each of the 20 illegal ones can b… |
-| G1.5.2 Eligibility and numbering | MISSING | G-90 | A route assigned to a covered end or an interior lineman is an error unless the play is a screen behind the line where rules allow, which is checked against B5… |
-| G1.5.3 Soundness warnings | MISSING | G-90 | Each warning type fires on a hand-built bad example and stays silent on a library play that is known sound. |
-| G1.6.1 Board walk-through | MISSING | G-90 | The same play and look always produce the same walk-through. Every assignment shown matches the engine's resolved assignment for the same inputs. |
-| G1.6.2 Practice-field trial | MISSING | G-90 | The staff estimate's interval contains the true engine mean for the same matchup in at least 80% of cases with an average staff, and is wider with a weak staff… |
-| G1.7.1 Teaching load of a play | MISSING | G-90 | A duplicate of an installed play with one new tag shows a load equal to the tag's cost only. |
-| G1.7.2 Staff drafting and review | MISSING | G-90 | A coach with maximum design skill finds every warning the validator finds. A coach with minimum skill finds under half on a 50-play test set. |
-| G1.8.1 Special teams play design | MISSING | G-90 | No kickoff or return design that breaks a B6 alignment rule can be saved as valid. |
-| G1.8.2 Trick plays | MISSING | G-90 | A design with two forward passes cannot be saved as valid. Extra exchanges raise the fumble rate in a 10,000-snap test. |
-| G1.9.1 Cadence design | MISSING | G-90 | A team with three installed counts draws a lower defensive get-off advantage than a team with one, in a 10,000-snap test. A freeze call with no paired play can… |
-| G1.9.2 Short yardage, goal line, and the quarterback sneak | MISSING | G-90 | Under a rule set that makes pushing the runner a foul, a play with a pusher assignment is marked "illegal as drawn", can still be saved and called, and draws t… |
+| G1.5.2 Eligibility and numbering | PENDING | G-90 | A route assigned to a covered end or an interior lineman is an error unless the play is a screen behind the line where rules allow, which is checked against B5… |
+| G1.5.3 Soundness warnings | PENDING | G-90 | Each warning type fires on a hand-built bad example and stays silent on a library play that is known sound. |
+| G1.6.1 Board walk-through | PENDING | G-90 | The same play and look always produce the same walk-through. Every assignment shown matches the engine's resolved assignment for the same inputs. |
+| G1.6.2 Practice-field trial | PENDING | G-90 | The staff estimate's interval contains the true engine mean for the same matchup in at least 80% of cases with an average staff, and is wider with a weak staff… |
+| G1.7.1 Teaching load of a play | PENDING | G-90 | A duplicate of an installed play with one new tag shows a load equal to the tag's cost only. |
+| G1.7.2 Staff drafting and review | PENDING | G-90 | A coach with maximum design skill finds every warning the validator finds. A coach with minimum skill finds under half on a 50-play test set. |
+| G1.8.1 Special teams play design | PENDING | G-90 | No kickoff or return design that breaks a B6 alignment rule can be saved as valid. |
+| G1.8.2 Trick plays | PENDING | G-90 | A design with two forward passes cannot be saved as valid. Extra exchanges raise the fumble rate in a 10,000-snap test. |
+| G1.9.1 Cadence design | PENDING | G-90 | A team with three installed counts draws a lower defensive get-off advantage than a team with one, in a 10,000-snap test. A freeze call with no paired play can… |
+| G1.9.2 Short yardage, goal line, and the quarterback sneak | PENDING | G-90 | Under a rule set that makes pushing the runner a foul, a play with a pusher assignment is marked "illegal as drawn", can still be saved and called, and draws t… |
 | G2.1.1 Call object schema | PENDING | WP-15 | Every starting-system defensive call loads and saves without loss. A call resolves to exactly eleven aligned defenders with one job each against every offensiv… |
-| G2.1.2 Role slots and declarations | MISSING | G-91 | For every formation in F2 the declaration rules produce exactly one run strength and one passing strength. With the ball on the left hash, a player tagged "fie… |
-| G2.2.1 Package builder | MISSING | G-91 | Every offensive personnel group in F1 maps to a package. A package with twelve players cannot be saved, because a call has eleven slots (too many men on the fi… |
-| G2.2.2 Front editor | MISSING | G-91 | For every front in the library and every formation in F2, every gap has an owner. Editing a technique updates the diagram and the gap table together. |
-| G2.2.3 Run fit editor | MISSING | G-91 | For each call and run family, the walk-through shows no unfilled gap when every defender does his job in chalk mode, or the designer has listed the gap as an e… |
-| G2.3.1 Stunt editor | MISSING | G-91 | Every saved stunt leaves each rusher with exactly one final gap. Raising the looper delay raises his computed arrival time by the same amount. In a calibration… |
-| G2.3.2 Pressure editor | MISSING | G-91 | No saved pressure leaves an eligible receiver unassigned against any formation in F2 after checks are applied. Rushers plus droppers equals eleven in every res… |
-| G2.4.1 Coverage editor | MISSING | G-91 | Against every formation in F2, a man coverage assigns each eligible receiver exactly one defender, and a zone coverage assigns every pass defender exactly one … |
-| G2.4.2 Match rules | MISSING | G-91 | The consistency check finds a planted conflict in a hand-built broken rule set and passes the library sets against the F6 concept list. With the ball moved fro… |
-| G2.4.3 Matchup and help rules | MISSING | G-91 | With a travel rule on, the named corner aligns over the named receiver in 100% of man-coverage snaps in a test game, wherever the receiver lines up. |
-| G2.5.1 Formation checks | MISSING | G-91 | For each call, the validator lists every formation in F2 for which neither the base call nor a check gives every receiver a defender and every gap an owner. |
-| G2.5.2 Motion and shift rules | MISSING | G-91 | With the lock rule, the man defender follows the motion in every chalk-mode trial. With bump, defender-to-receiver assignments shift by one in the right direct… |
-| G2.5.3 Tempo and no-huddle calls | MISSING | G-91 | A hurry-up snap with no call relayed runs the default tempo call in 100% of trials when one is set. With check-with-me on, an offense that snaps 2 s after sett… |
-| G2.6.1 Pre-snap picture and rotation | MISSING | G-91 | A disguise needing a 15-yard rotation in under 1 s is flagged. In an engine test, disguised calls lower a test quarterback's correct pre-snap coverage identifi… |
-| G2.7.1 Legality and soundness | MISSING | G-91 | A test set of 30 calls with planted faults reports each fault with the right reason. Each planted rule failure can be saved after one confirmation and draws th… |
-| G2.7.2 Board and practice testing | MISSING | G-91 | Same as G1.6.1 and G1.6.2 for defensive calls. The auto test set for a call contains every formation in the opponent's scouted top list. Changing the scout car… |
+| G2.1.2 Role slots and declarations | PENDING | G-91 | For every formation in F2 the declaration rules produce exactly one run strength and one passing strength. With the ball on the left hash, a player tagged "fie… |
+| G2.2.1 Package builder | PENDING | G-91 | Every offensive personnel group in F1 maps to a package. A package with twelve players cannot be saved, because a call has eleven slots (too many men on the fi… |
+| G2.2.2 Front editor | PENDING | G-91 | For every front in the library and every formation in F2, every gap has an owner. Editing a technique updates the diagram and the gap table together. |
+| G2.2.3 Run fit editor | PENDING | G-91 | For each call and run family, the walk-through shows no unfilled gap when every defender does his job in chalk mode, or the designer has listed the gap as an e… |
+| G2.3.1 Stunt editor | PENDING | G-91 | Every saved stunt leaves each rusher with exactly one final gap. Raising the looper delay raises his computed arrival time by the same amount. In a calibration… |
+| G2.3.2 Pressure editor | PENDING | G-91 | No saved pressure leaves an eligible receiver unassigned against any formation in F2 after checks are applied. Rushers plus droppers equals eleven in every res… |
+| G2.4.1 Coverage editor | PENDING | G-91 | Against every formation in F2, a man coverage assigns each eligible receiver exactly one defender, and a zone coverage assigns every pass defender exactly one … |
+| G2.4.2 Match rules | PENDING | G-91 | The consistency check finds a planted conflict in a hand-built broken rule set and passes the library sets against the F6 concept list. With the ball moved fro… |
+| G2.4.3 Matchup and help rules | PENDING | G-91 | With a travel rule on, the named corner aligns over the named receiver in 100% of man-coverage snaps in a test game, wherever the receiver lines up. |
+| G2.5.1 Formation checks | PENDING | G-91 | For each call, the validator lists every formation in F2 for which neither the base call nor a check gives every receiver a defender and every gap an owner. |
+| G2.5.2 Motion and shift rules | PENDING | G-91 | With the lock rule, the man defender follows the motion in every chalk-mode trial. With bump, defender-to-receiver assignments shift by one in the right direct… |
+| G2.5.3 Tempo and no-huddle calls | PENDING | G-91 | A hurry-up snap with no call relayed runs the default tempo call in 100% of trials when one is set. With check-with-me on, an offense that snaps 2 s after sett… |
+| G2.6.1 Pre-snap picture and rotation | PENDING | G-91 | A disguise needing a 15-yard rotation in under 1 s is flagged. In an engine test, disguised calls lower a test quarterback's correct pre-snap coverage identifi… |
+| G2.7.1 Legality and soundness | PENDING | G-91 | A test set of 30 calls with planted faults reports each fault with the right reason. Each planted rule failure can be saved after one confirmation and draws th… |
+| G2.7.2 Board and practice testing | PENDING | G-91 | Same as G1.6.1 and G1.6.2 for defensive calls. The auto test set for a call contains every formation in the opponent's scouted top list. Changing the scout car… |
 | G3.1.1 Playbook object and sections | PENDING | G-67 | A 1,500-play book opens in under 1 s. Editing a shared formation updates every dependent play and re-runs validation on each. Every generated pro offensive boo… |
 | G3.1.2 Families and variants | PENDING | G-67 | Every play belongs to exactly one family. Filling a grid cell yields a play that passes G1.5.1 or reports why it cannot. Filling a cell under the concept profi… |
 | G3.2.1 Base, complement, constraint | PENDING | G-67 | The review lists every base play that has no linked complement. A highlighted answer appears only after the booth reports the linked reaction. A reaction seen … |
@@ -1016,38 +1016,38 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | G5.4.1 Readiness views | MISSING | G-64 | Replacing one starter with a player of zero knowledge lowers the play's readiness by more than one eleventh of the mean. Shown readiness converges on true know… |
 | G5.5.1 New players and backups | MISSING | G-64 | A catch-up plan raises the player's knowledge of the reduced package faster than no plan, at a measurable cost in the position coach's hours. With the default … |
 | G5.5.2 Cadence, operation, and communication install | MISSING | G-64 | In a 10,000-snap noise test, a team with the silent count installed commits fewer false starts than one without. |
-| G6.1.1 Looks board | MISSING | G-68 | Every number on the board equals the scouting database value for the window. No rate is displayed without its sample size. |
-| G6.1.2 Themes of the week | MISSING | G-68 | Each theme links to at least one evidence row and one call, or is flagged. |
-| G6.2.1 Menu selection | MISSING | G-68 | Balance counts equal a hand count on a sample menu. Every scouted look above a rate threshold with no answering call is listed. |
-| G6.2.2 New for this week | MISSING | G-68 | The meter's total equals the sum of G1.7.1 units for uninstalled items on the menu. A new third-down play added after the second full practice day shows a lowe… |
-| G6.2.3 Sequences and set-ups | MISSING | G-68 | A linked later call shows its reminder on the sheet after the earlier one has been called. |
-| G6.3.1 Matchup hunting | MISSING | G-68 | With perfect scouting in a test, the predicted defender matches the engine's alignment in every case. |
-| G6.3.2 Protection plan | MISSING | G-68 | Every menu pass shows, for each listed threat, either an answer or a flag. |
-| G6.4.1 Defensive menu and rules of the week | MISSING | G-68 | Every offensive personnel group the opponent has used this season maps to a package and at least one call. |
-| G6.4.2 Emphasis settings | MISSING | G-68 | With takeaway emphasis high, both forced fumbles and missed tackles rise in a 10,000-play test. |
-| G6.5.1 Special teams and possession plan | MISSING | G-68 | Projected possessions fall as chosen pace slows. |
-| G6.5.2 Contingency plans | MISSING | G-68 | Each contingency resolves to a valid sheet version. Adding a contingency lowers the main plan's reps per call by the reps its unique calls use, and removing it… |
-| G6.6.1 Plan size and review | MISSING | G-68 | Every warning on the screen traces to a rule in G5 or G6 and clears when its cause is fixed. |
-| G7.1.1 Sheet object | MISSING | G-68 | A filled sheet round-trips through save and load unchanged. The game-day console renders the same boxes in the same positions as the designer. |
-| G7.1.2 Layout editor | MISSING | G-68 | No two boxes overlap. Every box and entry has a unique key path of at most 3 presses. |
-| G7.2.1 Situation rule editor | MISSING | G-68 | For any rule set the editor lists every unmatched state in a 5,000-state grid. The focus result for 50 sample states matches I2.2.2's result exactly. |
-| G7.2.2 Standard situation catalogue | MISSING | G-68 | A template sheet with every catalogue box shows zero missing. Deleting a box moves its situation to missing or covered correctly. The missing list is ordered b… |
-| G7.2.3 Expected snaps by situation | MISSING | G-68 | For the pro reference table, expected third-down snaps per team game equals 12.6 within 0.1, and the four third-down buckets sum to the third-down total within… |
-| G7.3.1 Adding and ranking calls | MISSING | G-68 | Every entry resolves to a valid play or package. Readiness shown equals the staff's current estimate (G5.4.1) for the unit at the time of viewing, never D9's t… |
-| G7.3.2 Sheet size and the reduction | MISSING | G-68 | The counter equals the number of distinct play-plus-tag entries. The warning fires exactly when the ratio is exceeded. |
-| G7.4.1 Script builder | MISSING | G-68 | Script order on the console equals designer order. Variety counts match a hand count on a sample script. |
-| G7.4.2 Second-half openers | MISSING | G-68 | The second script becomes active only after halftime. Each candidate offered at halftime traces to a first-half mark, result, or link. |
-| G7.5.1 Must-calls and touch targets | MISSING | G-68 | An outstanding must-call is visible on the console until called. Counts match the call log. |
-| G7.5.2 Reminders and tendency notes | MISSING | G-68 | A pinned tendency's numbers equal the scouting database values. |
-| G7.5.3 The head coach card | MISSING | G-68 | Each chart cell traces to a model output and input set. An edited cell is flagged as edited. |
-| G7.6.1 Wristband builder | MISSING | G-68 | Every band number maps to exactly one call. The console sends a band call with the number shown on the proof. |
-| G7.6.2 Audible list and quarterback freedom | MISSING | G-68 | The quarterback never audibles to a play outside the list in 1,000 test snaps at full freedom. |
-| G7.7.1 Defensive call sheet | MISSING | G-68 | For 50 sample states with offensive personnel, the focused box matches the expected box. The stress highlight appears on the first dead ball after the offense'… |
-| G7.7.2 Special teams sheet | MISSING | G-68 | Every kicking situation I4 can raise has a focused box or shows as missing in review. |
-| G7.8.1 Backup quarterback, injury, and weather versions | MISSING | G-68 | Switching versions changes entries and leaves every box position and key unchanged. |
-| G7.9.1 Pre-lock review | MISSING | G-68 | Each planted fault in a test sheet appears in the report. |
-| G7.9.2 Printing and export | MISSING | G-68 | The PDF matches the console layout box for box. |
-| G7.9.3 Marking the sheet during the game | MISSING | G-68 | Tally on each entry equals the count in the call log at every dead ball. |
+| G6.1.1 Looks board | PENDING | G-68 | Every number on the board equals the scouting database value for the window. No rate is displayed without its sample size. |
+| G6.1.2 Themes of the week | PENDING | G-68 | Each theme links to at least one evidence row and one call, or is flagged. |
+| G6.2.1 Menu selection | PENDING | G-68 | Balance counts equal a hand count on a sample menu. Every scouted look above a rate threshold with no answering call is listed. |
+| G6.2.2 New for this week | PENDING | G-68 | The meter's total equals the sum of G1.7.1 units for uninstalled items on the menu. A new third-down play added after the second full practice day shows a lowe… |
+| G6.2.3 Sequences and set-ups | PENDING | G-68 | A linked later call shows its reminder on the sheet after the earlier one has been called. |
+| G6.3.1 Matchup hunting | PENDING | G-68 | With perfect scouting in a test, the predicted defender matches the engine's alignment in every case. |
+| G6.3.2 Protection plan | PENDING | G-68 | Every menu pass shows, for each listed threat, either an answer or a flag. |
+| G6.4.1 Defensive menu and rules of the week | PENDING | G-68 | Every offensive personnel group the opponent has used this season maps to a package and at least one call. |
+| G6.4.2 Emphasis settings | PENDING | G-68 | With takeaway emphasis high, both forced fumbles and missed tackles rise in a 10,000-play test. |
+| G6.5.1 Special teams and possession plan | PENDING | G-68 | Projected possessions fall as chosen pace slows. |
+| G6.5.2 Contingency plans | PENDING | G-68 | Each contingency resolves to a valid sheet version. Adding a contingency lowers the main plan's reps per call by the reps its unique calls use, and removing it… |
+| G6.6.1 Plan size and review | PENDING | G-68 | Every warning on the screen traces to a rule in G5 or G6 and clears when its cause is fixed. |
+| G7.1.1 Sheet object | PENDING | G-68 | A filled sheet round-trips through save and load unchanged. The game-day console renders the same boxes in the same positions as the designer. |
+| G7.1.2 Layout editor | PENDING | G-68 | No two boxes overlap. Every box and entry has a unique key path of at most 3 presses. |
+| G7.2.1 Situation rule editor | PENDING | G-68 | For any rule set the editor lists every unmatched state in a 5,000-state grid. The focus result for 50 sample states matches I2.2.2's result exactly. |
+| G7.2.2 Standard situation catalogue | PENDING | G-68 | A template sheet with every catalogue box shows zero missing. Deleting a box moves its situation to missing or covered correctly. The missing list is ordered b… |
+| G7.2.3 Expected snaps by situation | PENDING | G-68 | For the pro reference table, expected third-down snaps per team game equals 12.6 within 0.1, and the four third-down buckets sum to the third-down total within… |
+| G7.3.1 Adding and ranking calls | PENDING | G-68 | Every entry resolves to a valid play or package. Readiness shown equals the staff's current estimate (G5.4.1) for the unit at the time of viewing, never D9's t… |
+| G7.3.2 Sheet size and the reduction | PENDING | G-68 | The counter equals the number of distinct play-plus-tag entries. The warning fires exactly when the ratio is exceeded. |
+| G7.4.1 Script builder | PENDING | G-68 | Script order on the console equals designer order. Variety counts match a hand count on a sample script. |
+| G7.4.2 Second-half openers | PENDING | G-68 | The second script becomes active only after halftime. Each candidate offered at halftime traces to a first-half mark, result, or link. |
+| G7.5.1 Must-calls and touch targets | PENDING | G-68 | An outstanding must-call is visible on the console until called. Counts match the call log. |
+| G7.5.2 Reminders and tendency notes | PENDING | G-68 | A pinned tendency's numbers equal the scouting database values. |
+| G7.5.3 The head coach card | PENDING | G-68 | Each chart cell traces to a model output and input set. An edited cell is flagged as edited. |
+| G7.6.1 Wristband builder | PENDING | G-68 | Every band number maps to exactly one call. The console sends a band call with the number shown on the proof. |
+| G7.6.2 Audible list and quarterback freedom | PENDING | G-68 | The quarterback never audibles to a play outside the list in 1,000 test snaps at full freedom. |
+| G7.7.1 Defensive call sheet | PENDING | G-68 | For 50 sample states with offensive personnel, the focused box matches the expected box. The stress highlight appears on the first dead ball after the offense'… |
+| G7.7.2 Special teams sheet | PENDING | G-68 | Every kicking situation I4 can raise has a focused box or shows as missing in review. |
+| G7.8.1 Backup quarterback, injury, and weather versions | PENDING | G-68 | Switching versions changes entries and leaves every box position and key unchanged. |
+| G7.9.1 Pre-lock review | PENDING | G-68 | Each planted fault in a test sheet appears in the report. |
+| G7.9.2 Printing and export | PENDING | G-68 | The PDF matches the console layout box for box. |
+| G7.9.3 Marking the sheet during the game | PENDING | G-68 | Tally on each entry equals the count in the call log at every dead ball. |
 | G8.1.1 Own-call tendency tables | PENDING | G-66 | Every cell equals a direct count from the call log. No rate appears without its count. A planted 18-of-20 run tendency from one formation over three games show… |
 | G8.1.2 What the opponent probably knows | PENDING | G-66 | The ranked list changes when the breakdown window changes. Nothing on the screen reads K3's hidden state. A tendency shown only in games outside the assumed wi… |
 | G8.2.1 Predictability index | PENDING | G-07 | A caller who always runs on first down scores worse than one who mixes at league rates. A random caller scores near zero gain. In a simulated league season, th… |
@@ -1244,67 +1244,67 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | I11.6.1 Headset failure on the coaches' channels | MISSING | G-61 | While the channel is down no booth note is delivered. With a fallback plan the first call after the failure is made by the named field coach. |
 | I11.7.1 Operation record | MISSING | G-61 | Every too-many-men foul and every timeout spent on a personnel problem appears with an owner. |
 | I11.8.1 Game-day rule-breaking acts | PENDING | G-28 | Every act in the table can be taken from its screen. Each off-field act writes exactly one violation row. Over 1,000 simulated seasons, AI acts fall as `rule_r… |
-| I2.1.1 Call cycle timeline | MISSING | G-60 | 1. With a default huddle call confirmed at 25 s on the play clock, the offense is set with 8 to 14 s left in at least 95% of trials. 2. The latest-call marker … |
-| I2.1.2 The decision window is real time | MISSING | G-60 | 1. No game setting changes the rate at which the play clock runs while the user decides. 2. For any call, play clock used in stage 2 equals wall-clock time bet… |
-| I2.1.3 Late calls and their cost | MISSING | G-60 | A call confirmed at 2 s on the play clock from a huddle always produces a timeout or a delay foul. The standing instruction "never burn a timeout to save 5 yar… |
-| I2.2.1 The situation strip | MISSING | G-60 | Every field updates within one frame of the dead-ball record. A coach reading it aloud would say the situation correctly. |
-| I2.2.2 Automatic jump to the situation box | MISSING | G-60 | For a table of 50 game states and a sample sheet, the focused box matches the expected box in every case. |
-| I2.2.3 What is known about the defense before the call | MISSING | G-60 | No screen available before the snap exposes the defensive call. The tendency line's numbers equal the scouting database values for the bucket. |
-| I2.3.1 Calling from the sheet | MISSING | G-60 | A sheet call can be selected and confirmed in under 2 s by keyboard. The call object validates against the schema in P3. |
-| I2.3.2 Tags and changes at the line of the call | MISSING | G-60 | Every tag offered produces a play that passes the formation and eligibility checks in B4. |
-| I2.3.3 Personnel and substitution with the call | MISSING | G-60 | A call whose personnel differs from the field produces the right substitutes, and the defense's matching window opens. |
-| I2.3.4 The opening script | MISSING | G-60 | The script advances only when a scripted play is called. Leaving and returning keeps the position. |
-| I2.3.5 Calling a play that is not on the sheet | MISSING | G-60 | Search returns results within 100 ms for a 500-play book. |
-| I2.3.6 The next-call queue | MISSING | G-60 | With entries queued for three second-down boxes, the entry for the box that occurs is preselected within one frame of the dead-ball record, and the other two a… |
-| I2.3.7 Setting up third down | MISSING | G-60 | The three shares for any call equal the stored results table for that play. The strip shows no value derived from the opponent's actual call on this snap. |
-| I2.4.1 Relay methods | MISSING | G-60 | A radio call confirmed after the cutoff time does not arrive by radio. A wristband call takes the same time regardless of call length. |
-| I2.4.2 Call length | MISSING | G-60 | The displayed length equals the sum of token costs for every play on a sample sheet. Calling the same play by wristband number shortens the relay by the differ… |
-| I2.4.3 Tempo | MISSING | G-60 | Average seconds of game clock used per play differs by tempo in the expected order: hurry-up, no-huddle, huddle, slow. |
-| I2.4.4 Radio failure and loss of the radio player | MISSING | G-60 | While either team's total failure is active, no call by either team uses radio. A team with installed signals has a smaller added delay than a team without. Ev… |
-| I2.4.5 Signal security | MISSING | G-60 | Against a test opponent with reading skill and no signal changes, the defense's anticipation of signalled calls rises over a game. With a dummy signaller it ri… |
-| I2.5.1 Packaged calls: kill, alert, can | MISSING | G-60 | With a perfect-reading test quarterback and no disguise, the correct play runs every time the trigger is unambiguous. |
-| I2.5.2 Quarterback freedom | MISSING | G-60 | With freedom at none, the quarterback never changes the play or protection in 1,000 test snaps. |
-| I2.5.3 Snap count and cadence instruction | MISSING | G-60 | Hard counts raise both defensive offside and own false start rates above their base rates in a 10,000-snap test. |
-| I2.5.4 Pairs judged from the sideline (check with me) | MISSING | G-60 | 1. An `SL` pair with no key press runs play A and logs "no choice". 2. With a test defense that never disguises, the look shown equals the alignment at the sna… |
-| I2.6.1 Coordinator and booth suggestions | MISSING | G-60 | The suggestion is always a legal call from the sheet or the playbook. |
-| I2.6.2 Delegating the play calling | MISSING | G-60 | A full game can be played with zero user play calls, and every call in the log is attributed to the coordinator. |
-| I2.6.3 Keyboard layout and speed training | MISSING | G-60 | Any play on the sheet can be called in at most 3 key presses. The drill reports median time to call by situation. |
-| I2.6.4 The head coach who does not call: channels and overrides | MISSING | G-60 | With the user off the offense channel, no coordinator call text is displayed before the snap. An override confirmed with less time left than its cost produces … |
-| I2.7.1 Call record | MISSING | G-60 | Replaying a game from its event log reproduces identical call records. |
-| I3.1.1 Defensive call timeline | MISSING | G-60 | 1. Against a huddle offense, a call confirmed 12 s after the dead ball reaches all defenders before the snap in at least 95% of trials. 2. A call confirmed aft… |
-| I3.1.2 Matching personnel | MISSING | G-60 | 1. For a table of 30 offensive group and situation pairs, the highlighted defensive group equals the matching table row. 2. With the offense substituting, no s… |
-| I3.1.3 Late and missing calls | MISSING | G-60 | With no call and no timeout, all eleven play the group's default call. In a forced partial-call test, mixed assignments appear in the play record. |
-| I3.2.1 What the defensive caller knows | MISSING | G-60 | No screen before the snap exposes the offensive call. Tendency numbers equal the scouting database values. |
-| I3.2.2 Automatic jump on the defensive sheet | MISSING | G-60 | For 50 test states the focused box equals the expected box. |
-| I3.3.1 The defensive call object | MISSING | G-60 | Every call on a sample sheet validates against the P3 schema and passes the eleven-man and coverage-completeness checks. A sheet call takes under 2 s by keyboa… |
-| I3.3.2 Pressure timing and sequencing | MISSING | G-60 | In a test where the user blitzes on 100% of third and long, the AI offense's screen and quick-game rate in that bucket rises over the game compared with a 30% … |
-| I3.3.3 Matchup rules | MISSING | G-60 | With a travel rule on, corner A aligns on receiver X on every man-call snap where both are on the field. With a bracket on, the vacated zone named in the panel… |
-| I3.3.4 Disguise instruction | MISSING | G-60 | Over 5,000 snaps, quarterback pre-snap identification accuracy is lower with default shell than with show it, and average defender distance from assignment at … |
-| I3.4.1 The check package | MISSING | G-60 | With a perfect-recognition test unit, every check fires when its condition is met. With low-recognition players, missed checks appear at a rate that falls as k… |
-| I3.4.2 Defending tempo | MISSING | G-60 | Against hurry-up, a tempo-menu call reaches all eleven defenders before the snap in at least 95% of trials. A full-length call does not. |
-| I3.4.3 Freedom of the signal caller | MISSING | G-60 | At the lowest level the signal caller never changes a call in 1,000 test snaps beyond its listed checks. |
-| I3.5.1 Defensive relay | MISSING | G-60 | With both radio players out, no defensive call uses radio. A signal call's arrival time does not depend on call length. |
-| I3.5.2 Radio failure and both radio players out | MISSING | G-60 | With both designated defenders out of the game, no defensive call uses radio for the remainder, and no third player is ever given the speaker. During an outage… |
-| I3.6.1 Situational defensive menus | MISSING | G-60 | Every listed situation has a box rule in the default sheet template. An empty box produces a warning in the week and on game day. |
-| I3.7.1 Coordinator suggestions and delegating the defense | MISSING | G-60 | A full game can be played with zero user defensive calls and every call attributed to the coordinator. |
-| I3.8.1 Defensive call record | MISSING | G-60 | Replaying a game from its event log reproduces identical defensive call records. Every defensive snap has all eight time fields or a null with a reason (for ex… |
-| I4.1.1 Kicking-unit alert and fourth-down handoff | MISSING | G-60 | With a pre-commit, the kicking unit is set with at least 10 s on a 40 s clock in 95% of trials. A reversal after the unit starts leaves under 8 s or produces a… |
-| I4.2.1 Field goal range in today's conditions | MISSING | G-60 | Over 10,000 simulated kicks, realised make rate inside each displayed band is within the band's stated range for a perfect-skill coordinator. |
-| I4.2.2 Field goal operation and the rushed kick | MISSING | G-60 | With 14 s left, a running clock, and a practised unit, the kick gets off in a minority of trials. With 20 s it gets off in at least 90%. |
-| I4.2.3 Field goal defense: block or safe | MISSING | G-60 | Block rate and kicker-foul rate are both higher under block than under safe in a 10,000-kick test. |
-| I4.3.1 Punt type and direction | MISSING | G-60 | In simulation, average hang time, gross distance, return rate, and touchback rate differ by type in the expected directions. |
-| I4.3.2 Punt protection and the gunners | MISSING | G-60 | Block rate falls and average return yards rise under protect first. |
-| I4.4.1 Returner rules | MISSING | G-60 | A perfect-judgment returner never fields a punt inside the user's "let it go" line. After first touching by the kicking team, a receiving-team recovery and fum… |
-| I4.4.2 Rush, return, or punt safe | MISSING | G-60 | Fake success rate against punt safe is lower than against return or rush in a 5,000-trial test. |
-| I4.5.1 Kickoff type under the dynamic format | MISSING | G-60 | Each row of the result table is reproduced by the rule engine in a scripted test. Aiming deeper raises the touchback share and aiming shorter raises the short-… |
-| I4.5.2 Onside kick | MISSING | G-60 | The onside option is available at every free kick. The receiving team always gets the declaration before aligning. |
-| I4.5.3 Kickoff return rules | MISSING | G-60 | A perfect-judgment returner downs a bounced ball in the end zone whenever the model's expected return is short of the 20. |
-| I4.5.4 Hands team | MISSING | G-60 | Recovery rate for the receiving team is higher with the hands team than with the regular unit. |
-| I4.5.5 Safety kick | MISSING | G-60 | The rule engine offers all three kick types and applies the 20-yard kick line. |
-| I4.5.6 Fair catch kick | MISSING | G-60 | The option appears after every fair catch within range and never otherwise. Kick distance excludes snap depth. |
-| I4.6.1 Calling a fake | MISSING | G-60 | A fake called against punt safe succeeds less often than the same fake against a return call. |
-| I4.7.1 The special teams sheet and coordinator rules | MISSING | G-60 | A full game can be played with every kicking call delegated and each head coach decision still presented to the user. |
-| I4.8.1 Kicking-play record | MISSING | G-60 | Replaying the event log reproduces identical records. |
+| I2.1.1 Call cycle timeline | PENDING | G-60 | 1. With a default huddle call confirmed at 25 s on the play clock, the offense is set with 8 to 14 s left in at least 95% of trials. 2. The latest-call marker … |
+| I2.1.2 The decision window is real time | PENDING | G-60 | 1. No game setting changes the rate at which the play clock runs while the user decides. 2. For any call, play clock used in stage 2 equals wall-clock time bet… |
+| I2.1.3 Late calls and their cost | PENDING | G-60 | A call confirmed at 2 s on the play clock from a huddle always produces a timeout or a delay foul. The standing instruction "never burn a timeout to save 5 yar… |
+| I2.2.1 The situation strip | PENDING | G-60 | Every field updates within one frame of the dead-ball record. A coach reading it aloud would say the situation correctly. |
+| I2.2.2 Automatic jump to the situation box | PENDING | G-60 | For a table of 50 game states and a sample sheet, the focused box matches the expected box in every case. |
+| I2.2.3 What is known about the defense before the call | PENDING | G-60 | No screen available before the snap exposes the defensive call. The tendency line's numbers equal the scouting database values for the bucket. |
+| I2.3.1 Calling from the sheet | PENDING | G-60 | A sheet call can be selected and confirmed in under 2 s by keyboard. The call object validates against the schema in P3. |
+| I2.3.2 Tags and changes at the line of the call | PENDING | G-60 | Every tag offered produces a play that passes the formation and eligibility checks in B4. |
+| I2.3.3 Personnel and substitution with the call | PENDING | G-60 | A call whose personnel differs from the field produces the right substitutes, and the defense's matching window opens. |
+| I2.3.4 The opening script | PENDING | G-60 | The script advances only when a scripted play is called. Leaving and returning keeps the position. |
+| I2.3.5 Calling a play that is not on the sheet | PENDING | G-60 | Search returns results within 100 ms for a 500-play book. |
+| I2.3.6 The next-call queue | PENDING | G-60 | With entries queued for three second-down boxes, the entry for the box that occurs is preselected within one frame of the dead-ball record, and the other two a… |
+| I2.3.7 Setting up third down | PENDING | G-60 | The three shares for any call equal the stored results table for that play. The strip shows no value derived from the opponent's actual call on this snap. |
+| I2.4.1 Relay methods | PENDING | G-60 | A radio call confirmed after the cutoff time does not arrive by radio. A wristband call takes the same time regardless of call length. |
+| I2.4.2 Call length | PENDING | G-60 | The displayed length equals the sum of token costs for every play on a sample sheet. Calling the same play by wristband number shortens the relay by the differ… |
+| I2.4.3 Tempo | PENDING | G-60 | Average seconds of game clock used per play differs by tempo in the expected order: hurry-up, no-huddle, huddle, slow. |
+| I2.4.4 Radio failure and loss of the radio player | PENDING | G-60 | While either team's total failure is active, no call by either team uses radio. A team with installed signals has a smaller added delay than a team without. Ev… |
+| I2.4.5 Signal security | PENDING | G-60 | Against a test opponent with reading skill and no signal changes, the defense's anticipation of signalled calls rises over a game. With a dummy signaller it ri… |
+| I2.5.1 Packaged calls: kill, alert, can | PENDING | G-60 | With a perfect-reading test quarterback and no disguise, the correct play runs every time the trigger is unambiguous. |
+| I2.5.2 Quarterback freedom | PENDING | G-60 | With freedom at none, the quarterback never changes the play or protection in 1,000 test snaps. |
+| I2.5.3 Snap count and cadence instruction | PENDING | G-60 | Hard counts raise both defensive offside and own false start rates above their base rates in a 10,000-snap test. |
+| I2.5.4 Pairs judged from the sideline (check with me) | PENDING | G-60 | 1. An `SL` pair with no key press runs play A and logs "no choice". 2. With a test defense that never disguises, the look shown equals the alignment at the sna… |
+| I2.6.1 Coordinator and booth suggestions | PENDING | G-60 | The suggestion is always a legal call from the sheet or the playbook. |
+| I2.6.2 Delegating the play calling | PENDING | G-60 | A full game can be played with zero user play calls, and every call in the log is attributed to the coordinator. |
+| I2.6.3 Keyboard layout and speed training | PENDING | G-60 | Any play on the sheet can be called in at most 3 key presses. The drill reports median time to call by situation. |
+| I2.6.4 The head coach who does not call: channels and overrides | PENDING | G-60 | With the user off the offense channel, no coordinator call text is displayed before the snap. An override confirmed with less time left than its cost produces … |
+| I2.7.1 Call record | PENDING | G-60 | Replaying a game from its event log reproduces identical call records. |
+| I3.1.1 Defensive call timeline | PENDING | G-60 | 1. Against a huddle offense, a call confirmed 12 s after the dead ball reaches all defenders before the snap in at least 95% of trials. 2. A call confirmed aft… |
+| I3.1.2 Matching personnel | PENDING | G-60 | 1. For a table of 30 offensive group and situation pairs, the highlighted defensive group equals the matching table row. 2. With the offense substituting, no s… |
+| I3.1.3 Late and missing calls | PENDING | G-60 | With no call and no timeout, all eleven play the group's default call. In a forced partial-call test, mixed assignments appear in the play record. |
+| I3.2.1 What the defensive caller knows | PENDING | G-60 | No screen before the snap exposes the offensive call. Tendency numbers equal the scouting database values. |
+| I3.2.2 Automatic jump on the defensive sheet | PENDING | G-60 | For 50 test states the focused box equals the expected box. |
+| I3.3.1 The defensive call object | PENDING | G-60 | Every call on a sample sheet validates against the P3 schema and passes the eleven-man and coverage-completeness checks. A sheet call takes under 2 s by keyboa… |
+| I3.3.2 Pressure timing and sequencing | PENDING | G-60 | In a test where the user blitzes on 100% of third and long, the AI offense's screen and quick-game rate in that bucket rises over the game compared with a 30% … |
+| I3.3.3 Matchup rules | PENDING | G-60 | With a travel rule on, corner A aligns on receiver X on every man-call snap where both are on the field. With a bracket on, the vacated zone named in the panel… |
+| I3.3.4 Disguise instruction | PENDING | G-60 | Over 5,000 snaps, quarterback pre-snap identification accuracy is lower with default shell than with show it, and average defender distance from assignment at … |
+| I3.4.1 The check package | PENDING | G-60 | With a perfect-recognition test unit, every check fires when its condition is met. With low-recognition players, missed checks appear at a rate that falls as k… |
+| I3.4.2 Defending tempo | PENDING | G-60 | Against hurry-up, a tempo-menu call reaches all eleven defenders before the snap in at least 95% of trials. A full-length call does not. |
+| I3.4.3 Freedom of the signal caller | PENDING | G-60 | At the lowest level the signal caller never changes a call in 1,000 test snaps beyond its listed checks. |
+| I3.5.1 Defensive relay | PENDING | G-60 | With both radio players out, no defensive call uses radio. A signal call's arrival time does not depend on call length. |
+| I3.5.2 Radio failure and both radio players out | PENDING | G-60 | With both designated defenders out of the game, no defensive call uses radio for the remainder, and no third player is ever given the speaker. During an outage… |
+| I3.6.1 Situational defensive menus | PENDING | G-60 | Every listed situation has a box rule in the default sheet template. An empty box produces a warning in the week and on game day. |
+| I3.7.1 Coordinator suggestions and delegating the defense | PENDING | G-60 | A full game can be played with zero user defensive calls and every call attributed to the coordinator. |
+| I3.8.1 Defensive call record | PENDING | G-60 | Replaying a game from its event log reproduces identical defensive call records. Every defensive snap has all eight time fields or a null with a reason (for ex… |
+| I4.1.1 Kicking-unit alert and fourth-down handoff | PENDING | G-60 | With a pre-commit, the kicking unit is set with at least 10 s on a 40 s clock in 95% of trials. A reversal after the unit starts leaves under 8 s or produces a… |
+| I4.2.1 Field goal range in today's conditions | PENDING | G-60 | Over 10,000 simulated kicks, realised make rate inside each displayed band is within the band's stated range for a perfect-skill coordinator. |
+| I4.2.2 Field goal operation and the rushed kick | PENDING | G-60 | With 14 s left, a running clock, and a practised unit, the kick gets off in a minority of trials. With 20 s it gets off in at least 90%. |
+| I4.2.3 Field goal defense: block or safe | PENDING | G-60 | Block rate and kicker-foul rate are both higher under block than under safe in a 10,000-kick test. |
+| I4.3.1 Punt type and direction | PENDING | G-60 | In simulation, average hang time, gross distance, return rate, and touchback rate differ by type in the expected directions. |
+| I4.3.2 Punt protection and the gunners | PENDING | G-60 | Block rate falls and average return yards rise under protect first. |
+| I4.4.1 Returner rules | PENDING | G-60 | A perfect-judgment returner never fields a punt inside the user's "let it go" line. After first touching by the kicking team, a receiving-team recovery and fum… |
+| I4.4.2 Rush, return, or punt safe | PENDING | G-60 | Fake success rate against punt safe is lower than against return or rush in a 5,000-trial test. |
+| I4.5.1 Kickoff type under the dynamic format | PENDING | G-60 | Each row of the result table is reproduced by the rule engine in a scripted test. Aiming deeper raises the touchback share and aiming shorter raises the short-… |
+| I4.5.2 Onside kick | PENDING | G-60 | The onside option is available at every free kick. The receiving team always gets the declaration before aligning. |
+| I4.5.3 Kickoff return rules | PENDING | G-60 | A perfect-judgment returner downs a bounced ball in the end zone whenever the model's expected return is short of the 20. |
+| I4.5.4 Hands team | PENDING | G-60 | Recovery rate for the receiving team is higher with the hands team than with the regular unit. |
+| I4.5.5 Safety kick | PENDING | G-60 | The rule engine offers all three kick types and applies the 20-yard kick line. |
+| I4.5.6 Fair catch kick | PENDING | G-60 | The option appears after every fair catch within range and never otherwise. Kick distance excludes snap depth. |
+| I4.6.1 Calling a fake | PENDING | G-60 | A fake called against punt safe succeeds less often than the same fake against a return call. |
+| I4.7.1 The special teams sheet and coordinator rules | PENDING | G-60 | A full game can be played with every kicking call delegated and each head coach decision still presented to the user. |
+| I4.8.1 Kicking-play record | PENDING | G-60 | Replaying the event log reproduces identical records. |
 | I5.1.1 Decision prompts and their clock | MISSING | G-61 | Every decision type listed in this file produces a prompt in a scripted game. Timer expiry applies the standing instruction, else the default, and logs which. |
 | I5.1.2 The advisor line | MISSING | G-61 | With a perfect-skill analyst the recommended option equals the model's best option in every non-close state of a 500-state test set. |
 | I5.2.1 Go, kick, or punt | MISSING | G-61 | League-wide AI go rate by distance band over 10 simulated seasons is within 3 percentage points of the measured rates. Each option leads to the correct next sc… |
@@ -1381,7 +1381,7 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | J1.1.3 Field landmarks as data | PENDING | WP-09 | Every landmark name used in any shipped play resolves to a point inside the field. A lint step fails the content build otherwise. |
 | J1.2.1 Units | PENDING | WP-09 | Type names or field suffixes carry the unit (`speedYps`, `distYd`, `tSec`). A lint rule rejects a kinematic field without a unit suffix. |
 | J1.2.2 Number representation | PENDING | WP-09 | A 1,000-play golden file produces identical record hashes on the desktop build and the browser build. |
-| J1.3.1 Ticks and sub-steps | MISSING | WP-23 | 1. Halving the tick to 0.05 s in a test build, with movement parameters refitted by J2.2.1 for the new sub-step, changes league-level calibration outputs (J15)… |
+| J1.3.1 Ticks and sub-steps | PENDING | WP-23 | 1. Halving the tick to 0.05 s in a test build, with movement parameters refitted by J2.2.1 for the new sub-step, changes league-level calibration outputs (J15)… |
 | J1.3.2 Sim time, play clock, and game clock | PENDING | WP-09 | The play simulation's code has no write access to the game clock type. A unit test confirms a play that starts with 0:01 left runs to its natural end. |
 | J1.4.1 Player body state | PENDING | WP-09 | The state validates against the P3 schema on every tick in debug builds. Trajectory size for a 6 s play is under 40 kB uncompressed. |
 | J1.4.2 Ball state | PENDING | WP-09 | A property test over 100,000 random plays finds no tick with the ball in zero or two states, and no `held` state without exactly one player with `hasBall`. |
@@ -1621,33 +1621,33 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | K2.7.1 Forbidden parameters | PENDING | G-26 | A profile file with a `teamDiscipline` or `penaltyModifier` field fails the build. (The X1 person facet named `discipline`, read by K2.8.1, sits on the person … |
 | K2.8.1 The rule-respect disposition | PENDING | G-28 | Exactly one function returns the value, and every violation leaf's code imports it (static check). No interface module imports it. With imported people in a wo… |
 | K2.8.2 The violation decision | PENDING | G-28 | Across a 50-season world, violation counts fall with `ruleRespect` and rise with pressure, each at 95% confidence. Every `violation_committed` event names a co… |
-| K3.1.1 The AI scouting report | MISSING | G-74 | With charter error at zero and maximum `preparation`, the AI report's counts equal the G8.1.2 view of the same team. A new play the user installs but has never… |
-| K3.2.1 The AI staff's player grades | MISSING | G-74 | Estimated grades differ from true grades with an error whose SD falls as `evaluation` rises. A test that changes a player's true attribute without changing any… |
-| K3.3.1 Three sources: concept priors, matchup adjustment, planning reps | MISSING | G-74 | With perfect grades, zero noise, and many reps, `A` converges to the engine's true expected points within 0.03 per cell. Planning reps never read true attribut… |
-| K3.3.2 The matrix per situation bucket | MISSING | G-74 | Every non-empty box on every AI sheet has a matrix and a stored mix at lock. |
-| K3.4.1 Building the plan | MISSING | G-74 | Every AI plan validates against the G6 schema the user's plans use. Plans of high-`preparation` staffs contain more opponent-specific calls than low ones. |
-| K3.4.2 Building the sheet | MISSING | G-74 | Every AI sheet validates against the G7 schema. Catalogue coverage rises with `preparation` across the league. |
-| K3.5.1 Allocating practice | MISSING | G-74 | For identical rosters, plans, and staff parameters, an AI team and a user team that enter the same practice plan get identical readiness. No AI practice week e… |
-| K3.6.1 Order, timing, and fidelity | MISSING | G-74 | Running a week's preparation with 1 and 16 workers gives identical sheets. A team's sheet is unchanged when another team's profile is edited in a test. |
-| K3.7.1 Installing a system and planning a season | MISSING | G-74 | Teams with a new system show lower early-season readiness than the same teams in a control run with the old system kept, and the gap closes over the season. |
-| K4.1.1 Situation bucket and candidate list | MISSING | G-58 | For 10,000 random legal game states every AI sheet returns a bucket and at least 2 candidates. No candidate is illegal or uninstalled. |
-| K4.1.2 Thinking time and the play clock | MISSING | G-58 | In league-mode simulation the share of AI offensive snaps taken with 5 s or less on the play clock, and the delay-of-game rate, fall inside their J15 target ro… |
-| K4.2.1 Starting belief | MISSING | G-58 | With the opponent's charted share at 80% over 40 plays, the starting belief is between 70% and 80%. Changing the opponent's plan for this week without changing… |
-| K4.2.2 Updating belief during the game | MISSING | G-58 | A scripted opponent who shows one look every play shifts a z = +3 caller's belief past the half-way point by the 3rd repeat and a z = -3 caller's by the 12th, … |
-| K4.3.1 The matrix game and stored mixes | MISSING | G-58 | For 1,000 random matrices the stored mix's worst-case payoff equals the game value within 0.001. Total live call computation for a game stays under 5 ms on the… |
-| K4.3.2 Tilt toward the read, and call fit | MISSING | G-58 | Against a scripted opponent who always shows one look, the caller's share of the best counter rises with plays observed and is higher for higher `callFit`. Aga… |
-| K4.3.3 Self-scout penalty | MISSING | G-58 | Over a simulated season, the count of "strong" tendency rows (N2.3.1 rule 3) per AI caller falls as `selfScout` rises, with rank correlation below -0.5 across … |
-| K4.3.4 Sequencing: base, complement, constraint | MISSING | G-58 | In scripted tests where the defense shows the trigger reaction, the constraint's call share in the next 3 matching snaps is at least 1.3 times its share withou… |
-| K4.3.5 Readiness check | MISSING | G-58 | Calls with estimated readiness under 0.4 make up less than 1% of AI calls in league simulation. |
-| K4.3.6 The draw and the call record | MISSING | G-58 | Replaying a full game from its event log reproduces every AI call. Changing only the user's call on a snap leaves the opposing AI call on that snap identical. |
-| K4.3.7 System habits and game-state lean | MISSING | G-58 | With population means set by K2.3.1, simulated neutral pass rate, play action share, and 11 personnel share fall inside their J15 tolerances. Two callers ident… |
-| K4.4.1 The defensive call and when it is committed | MISSING | G-58 | A static test confirms the defensive call function's inputs contain no field of the offensive call object. Changing the offensive formation while holding perso… |
-| K4.5.1 The opening script | MISSING | G-58 | On opening drives, at least 80% of first-and-10 and second-and-medium calls come from the script. |
-| K4.5.2 Tempo choice | MISSING | G-58 | League no-huddle share inside the J15 tolerance. |
-| K4.5.3 Series-break and halftime adjustments | MISSING | G-58 | In league simulation, high-`adjustment` staffs' second-half expected points against first-half looks they were losing to improve more than low-`adjustment` sta… |
-| K4.6.1 Kicking-game calls | MISSING | G-58 | League fake rate and onside rate inside J15 tolerance where rows exist. |
-| K4.7.1 The exploit boundary | MISSING | G-58 | Q4.1.1 finds no dominant call against any shipped profile. A scripted "scout and attack" caller beats low-`selfScout` profiles by more than high-`selfScout` pr… |
-| K4.8.1 Fouls on purpose, feigned injuries, and the edges of the rules | MISSING | G-58 | In scripted end-of-half states where a delay of game gives a better punt result, AI coaches at `clockManagement` z of 0 or more take it in at least 80% of case… |
+| K3.1.1 The AI scouting report | PENDING | G-74 | With charter error at zero and maximum `preparation`, the AI report's counts equal the G8.1.2 view of the same team. A new play the user installs but has never… |
+| K3.2.1 The AI staff's player grades | PENDING | G-74 | Estimated grades differ from true grades with an error whose SD falls as `evaluation` rises. A test that changes a player's true attribute without changing any… |
+| K3.3.1 Three sources: concept priors, matchup adjustment, planning reps | PENDING | G-74 | With perfect grades, zero noise, and many reps, `A` converges to the engine's true expected points within 0.03 per cell. Planning reps never read true attribut… |
+| K3.3.2 The matrix per situation bucket | PENDING | G-74 | Every non-empty box on every AI sheet has a matrix and a stored mix at lock. |
+| K3.4.1 Building the plan | PENDING | G-74 | Every AI plan validates against the G6 schema the user's plans use. Plans of high-`preparation` staffs contain more opponent-specific calls than low ones. |
+| K3.4.2 Building the sheet | PENDING | G-74 | Every AI sheet validates against the G7 schema. Catalogue coverage rises with `preparation` across the league. |
+| K3.5.1 Allocating practice | PENDING | G-74 | For identical rosters, plans, and staff parameters, an AI team and a user team that enter the same practice plan get identical readiness. No AI practice week e… |
+| K3.6.1 Order, timing, and fidelity | PENDING | G-74 | Running a week's preparation with 1 and 16 workers gives identical sheets. A team's sheet is unchanged when another team's profile is edited in a test. |
+| K3.7.1 Installing a system and planning a season | PENDING | G-74 | Teams with a new system show lower early-season readiness than the same teams in a control run with the old system kept, and the gap closes over the season. |
+| K4.1.1 Situation bucket and candidate list | PENDING | G-58 | For 10,000 random legal game states every AI sheet returns a bucket and at least 2 candidates. No candidate is illegal or uninstalled. |
+| K4.1.2 Thinking time and the play clock | PENDING | G-58 | In league-mode simulation the share of AI offensive snaps taken with 5 s or less on the play clock, and the delay-of-game rate, fall inside their J15 target ro… |
+| K4.2.1 Starting belief | PENDING | G-58 | With the opponent's charted share at 80% over 40 plays, the starting belief is between 70% and 80%. Changing the opponent's plan for this week without changing… |
+| K4.2.2 Updating belief during the game | PENDING | G-58 | A scripted opponent who shows one look every play shifts a z = +3 caller's belief past the half-way point by the 3rd repeat and a z = -3 caller's by the 12th, … |
+| K4.3.1 The matrix game and stored mixes | PENDING | G-58 | For 1,000 random matrices the stored mix's worst-case payoff equals the game value within 0.001. Total live call computation for a game stays under 5 ms on the… |
+| K4.3.2 Tilt toward the read, and call fit | PENDING | G-58 | Against a scripted opponent who always shows one look, the caller's share of the best counter rises with plays observed and is higher for higher `callFit`. Aga… |
+| K4.3.3 Self-scout penalty | PENDING | G-58 | Over a simulated season, the count of "strong" tendency rows (N2.3.1 rule 3) per AI caller falls as `selfScout` rises, with rank correlation below -0.5 across … |
+| K4.3.4 Sequencing: base, complement, constraint | PENDING | G-58 | In scripted tests where the defense shows the trigger reaction, the constraint's call share in the next 3 matching snaps is at least 1.3 times its share withou… |
+| K4.3.5 Readiness check | PENDING | G-58 | Calls with estimated readiness under 0.4 make up less than 1% of AI calls in league simulation. |
+| K4.3.6 The draw and the call record | PENDING | G-58 | Replaying a full game from its event log reproduces every AI call. Changing only the user's call on a snap leaves the opposing AI call on that snap identical. |
+| K4.3.7 System habits and game-state lean | PENDING | G-58 | With population means set by K2.3.1, simulated neutral pass rate, play action share, and 11 personnel share fall inside their J15 tolerances. Two callers ident… |
+| K4.4.1 The defensive call and when it is committed | PENDING | G-58 | A static test confirms the defensive call function's inputs contain no field of the offensive call object. Changing the offensive formation while holding perso… |
+| K4.5.1 The opening script | PENDING | G-58 | On opening drives, at least 80% of first-and-10 and second-and-medium calls come from the script. |
+| K4.5.2 Tempo choice | PENDING | G-58 | League no-huddle share inside the J15 tolerance. |
+| K4.5.3 Series-break and halftime adjustments | PENDING | G-58 | In league simulation, high-`adjustment` staffs' second-half expected points against first-half looks they were losing to improve more than low-`adjustment` sta… |
+| K4.6.1 Kicking-game calls | PENDING | G-58 | League fake rate and onside rate inside J15 tolerance where rows exist. |
+| K4.7.1 The exploit boundary | PENDING | G-58 | Q4.1.1 finds no dominant call against any shipped profile. A scripted "scout and attack" caller beats low-`selfScout` profiles by more than high-`selfScout` pr… |
+| K4.8.1 Fouls on purpose, feigned injuries, and the edges of the rules | PENDING | G-58 | In scripted end-of-half states where a delay of game gives a better punt result, AI coaches at `clockManagement` z of 0 or more take it in at least 80% of case… |
 | K5.1.1 Estimate, offset, advice, choice | MISSING | G-59 | A coach with zero offsets, full `analyticsTrust`, perfect estimates, and no errors chooses the model's best option in every non-close state of the I5.1.2 500-s… |
 | K5.2.1 Go, kick, or punt | MISSING | G-59 | League mix inside J15 tolerance for the default era and for the 1999 to 2005 era population. Across AI coaches, go rate on fourth and 2 or less is monotonic in… |
 | K5.3.1 One point or two | MISSING | G-59 | In scripted late-game states where the model margin for going for two exceeds 5 win-probability points, at least 90% of AI coaches go. |
@@ -1972,16 +1972,16 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | N4.4.1 The coaching record file | PENDING | G-95 | The data file's chain verifies with the published verification tool. Altering one record makes verification fail. Removing one of the 5 largest losses from the… |
 | N4.4.2 Work samples | PENDING | G-95 | Each listed object exports to a page that prints on one or two sheets. |
 | N4.5.1 What the decision record score does not show | PENDING | G-95 | The note appears on the decision record page and on page one of every export. Each of the five limits shows the record's own numbers. A component with 30 score… |
-| N5.1.1 Curriculum structure | MISSING | G-94 | - Every lesson's listed terms exist in the glossary, and every listed F, G, or B id resolves. - Passing every lesson in a course marks the course passed. - A s… |
-| N5.1.2 Lesson format and the graded scenario | MISSING | G-94 | - Every graded scenario has a stored best answer with a margin and seed count. - Two attempts at the same lesson draw different situations at least 80 percent … |
+| N5.1.1 Curriculum structure | PENDING | G-94 | - Every lesson's listed terms exist in the glossary, and every listed F, G, or B id resolves. - Passing every lesson in a course marks the course passed. - A s… |
+| N5.1.2 Lesson format and the graded scenario | PENDING | G-94 | - Every graded scenario has a stored best answer with a margin and seed count. - Two attempts at the same lesson draw different situations at least 80 percent … |
 | N5.2.1 Term links, hover cards, and "teach me this" | MISSING | G-93 | A scan of every screen string in the build finds no glossary term without a link. Every "Teach me this" button opens an existing lesson or is hidden. |
-| N5.3.1 Call-speed drill | MISSING | G-94 | A call made after the cut-off time is marked late. Session results persist and chart. |
-| N5.3.2 Coverage and front recognition on film | MISSING | G-94 | Every clip's truth label matches the call record that generated it. Weak-area weighting changes the next session's mix. |
-| N5.3.3 Clock and situation problems | MISSING | G-94 | For 1,000 generated kneel-down problems, the stored answer equals the result of simulating the kneel-downs on the engine. |
-| N5.3.4 Protection identification | MISSING | G-94 | Each stored answer leaves no rusher unaccounted for when run through the J4 assignment rules, or is marked "hot". |
-| N5.4.1 The personal lesson picker | MISSING | G-94 | A seeded log with one large repeated error produces that pattern as the top card with the right lesson. A log with no pattern outside the band produces no card. |
-| N5.5.1 One difficulty, and how the ladder teaches | MISSING | G-94 | - The build contains no difficulty option. A search of settings data finds none. - Gaining a duty in a test career produces its lesson offer exactly once. - Tw… |
-| N5.6.1 Watching the coaches above you | MISSING | G-94 | Every "why" answer maps to reason codes stored at the time of the call. Changing the AI coach's profile changes the reasons given in the same situation. |
+| N5.3.1 Call-speed drill | PENDING | G-94 | A call made after the cut-off time is marked late. Session results persist and chart. |
+| N5.3.2 Coverage and front recognition on film | PENDING | G-94 | Every clip's truth label matches the call record that generated it. Weak-area weighting changes the next session's mix. |
+| N5.3.3 Clock and situation problems | PENDING | G-94 | For 1,000 generated kneel-down problems, the stored answer equals the result of simulating the kneel-downs on the engine. |
+| N5.3.4 Protection identification | PENDING | G-94 | Each stored answer leaves no rusher unaccounted for when run through the J4 assignment rules, or is marked "hot". |
+| N5.4.1 The personal lesson picker | PENDING | G-94 | A seeded log with one large repeated error produces that pattern as the top card with the right lesson. A log with no pattern outside the band produces no card. |
+| N5.5.1 One difficulty, and how the ladder teaches | PENDING | G-94 | - The build contains no difficulty option. A search of settings data finds none. - Gaining a duty in a test career produces its lesson offer exactly once. - Tw… |
+| N5.6.1 Watching the coaches above you | PENDING | G-94 | Every "why" answer maps to reason codes stored at the time of the call. Changing the AI coach's profile changes the reasons given in the same situation. |
 
 ## O
 
@@ -2003,13 +2003,13 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | O1.5.1 Window layout and panels | PENDING | G-04 | 1. Every registered screen renders without clipping or horizontal scroll at 1280 by 720. 2. Column and panel choices survive a restart. |
 | O1.5.2 Start screen, saves, and new career | PENDING | G-04 | 1. A new career with all defaults reaches the office screen in under 60 s of user time. 2. Two new careers from the same seed string and choices have identical… |
 | O1.5.3 Help overlay and glossary access | PENDING | G-04 | Every screen in the registry has help text. Every glossary term found in UI text is linked. |
-| O2.1.1 Regions | MISSING | G-60 | 1. No region changes position or size between snaps in a recorded full game. 2. At 1280 by 720 every region is readable with no scrolling inside the situation … |
-| O2.1.2 Sideline panel | MISSING | G-60 | An automated check finds no field in this panel sourced from the truth layer or from the opponent's call object. |
-| O2.1.3 Booth line and messages | MISSING | G-60 | Message text never exceeds one line at the minimum window. Each message in the log records whether it was on screen before the call was confirmed. |
-| O2.2.1 Sheet rendering and box focus | MISSING | G-60 | 1. The on-screen grid equals the G7 layout cell for cell for three sample sheets. 2. Focus lands on the expected box within one frame of the dead-ball record f… |
-| O2.2.2 Key hints and call chords | MISSING | G-60 | Any entry on a 20-box, 200-entry sheet is selected in at most 2 key presses and confirmed with 1 more (matches I2.6.3). |
-| O2.2.3 Call builder line and confirm | MISSING | G-60 | 1. Time from the confirm key to the "sent" state is under 50 ms. 2. The call string shown equals the G4 string for 100 sample calls. |
-| O2.2.4 Defensive and special teams sheets | MISSING | G-60 | A full game can be called on offense, defense, and special teams with the keyboard only. |
+| O2.1.1 Regions | PENDING | G-60 | 1. No region changes position or size between snaps in a recorded full game. 2. At 1280 by 720 every region is readable with no scrolling inside the situation … |
+| O2.1.2 Sideline panel | PENDING | G-60 | An automated check finds no field in this panel sourced from the truth layer or from the opponent's call object. |
+| O2.1.3 Booth line and messages | PENDING | G-60 | Message text never exceeds one line at the minimum window. Each message in the log records whether it was on screen before the call was confirmed. |
+| O2.2.1 Sheet rendering and box focus | PENDING | G-60 | 1. The on-screen grid equals the G7 layout cell for cell for three sample sheets. 2. Focus lands on the expected box within one frame of the dead-ball record f… |
+| O2.2.2 Key hints and call chords | PENDING | G-60 | Any entry on a 20-box, 200-entry sheet is selected in at most 2 key presses and confirmed with 1 more (matches I2.6.3). |
+| O2.2.3 Call builder line and confirm | PENDING | G-60 | 1. Time from the confirm key to the "sent" state is under 50 ms. 2. The call string shown equals the G4 string for 100 sample calls. |
+| O2.2.4 Defensive and special teams sheets | PENDING | G-60 | A full game can be called on offense, defense, and special teams with the keyboard only. |
 | O2.3.1 Field geometry and orientation | PENDING | G-03 | 1. Measured on screen, the hash-to-hash distance is 18.5 feet at the drawn scale within one pixel (160 feet minus two times 70 feet 9 inches). 2. A marker plac… |
 | O2.3.2 Player and ball markers | PENDING | G-03 | 1. All 22 numbers are readable in a screenshot at the minimum window with the default camera. 2. With colour removed (greyscale test) offense and defense are s… |
 | O2.3.3 The pre-snap look | PENDING | G-03 | A scan of the pre-snap render data finds positions and facings only. No assignment, coverage, or call data is present in the message from the worker before the… |
@@ -2024,21 +2024,21 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | O2.5.3 Mistake guards | MISSING | G-61 | With guards on, a single tap of the challenge key throws no flag. A held key does. |
 | O2.6.1 Viewer layout and transport | PENDING | G-63 | Stepping forward N ticks then back N ticks returns to the same frame. A re-simulated play equals the stored trajectory bit for bit. |
 | O2.6.2 Overlays | PENDING | G-63 | With all overlays on, 60 frames per second holds on the minimum target. Opponent truth-layer data is absent from the viewer's data for opponent plays. |
-| O3.1.1 Layout | MISSING | G-90 | 1. Every field of the play schema (P3) can be set from this screen. 2. A play built here and reopened renders identically. |
-| O3.1.2 Drawing and dragging | MISSING | G-90 | 1. Each of the standard routes in F6 can be drawn in three pointer actions or fewer and is recognised by name. 2. A play can be built from scratch with the key… |
-| O3.1.3 Validator panel | MISSING | G-90 | For the G1 validation test set, the panel shows exactly the expected messages for every case. Results appear within 300 ms of an edit. |
-| O3.1.4 Test bench tab | MISSING | G-90 | 1. 500 runs complete within the P6 batch budget. 2. Re-running the same batch with the same seed gives identical results. 3. No bench output field exposes an o… |
-| O3.2.1 Layout and call assembly | MISSING | G-91 | For each formation in the switcher set, every gap and every eligible receiver has a named responsible defender or a validator message. |
+| O3.1.1 Layout | PENDING | G-90 | 1. Every field of the play schema (P3) can be set from this screen. 2. A play built here and reopened renders identically. |
+| O3.1.2 Drawing and dragging | PENDING | G-90 | 1. Each of the standard routes in F6 can be drawn in three pointer actions or fewer and is recognised by name. 2. A play can be built from scratch with the key… |
+| O3.1.3 Validator panel | PENDING | G-90 | For the G1 validation test set, the panel shows exactly the expected messages for every case. Results appear within 300 ms of an edit. |
+| O3.1.4 Test bench tab | PENDING | G-90 | 1. 500 runs complete within the P6 batch budget. 2. Re-running the same batch with the same seed gives identical results. 3. No bench output field exposes an o… |
+| O3.2.1 Layout and call assembly | PENDING | G-91 | For each formation in the switcher set, every gap and every eligible receiver has a named responsible defender or a validator message. |
 | O3.3.1 Playbook library | PENDING | G-67 | Filtering to "3rd down, 11 personnel, installed" on a 1,000-play book returns in under 100 ms. |
 | O3.3.2 Install board | PENDING | G-67 | The load total per day equals G5's formula for a sample week. |
-| O3.4.1 Game plan builder screen | MISSING | G-68 | Plan totals equal the sums of the listed entries. A delegated draft arrives as a proposal and changes nothing until accepted. |
-| O3.4.2 Call sheet editor | MISSING | G-68 | 1. The coverage map classifies every cell of a 4 downs by 6 distance buckets by 5 zones table. 2. The sheet shown in the game (O2.2.1) is identical to the edit… |
-| O3.4.3 Print and export view | MISSING | G-68 | A printed sheet matches the on-screen grid in box positions and entry order. |
+| O3.4.1 Game plan builder screen | PENDING | G-68 | Plan totals equal the sums of the listed entries. A delegated draft arrives as a proposal and changes nothing until accepted. |
+| O3.4.2 Call sheet editor | PENDING | G-68 | 1. The coverage map classifies every cell of a 4 downs by 6 distance buckets by 5 zones table. 2. The sheet shown in the game (O2.2.1) is identical to the edit… |
+| O3.4.3 Print and export view | PENDING | G-68 | A printed sheet matches the on-screen grid in box positions and entry order. |
 | O3.5.1 Week calendar and period blocks | PENDING |  | A plan that breaks an H3 limit saves after one warning and produces exactly one violation row. Period times never overlap. |
 | O3.5.2 Projection panel | PENDING |  | With a perfect-accuracy test staff, projected readiness equals the realised mean readiness over 200 simulated weeks within the model's stated tolerance. |
 | O3.6.1 Tendency table | PENDING |  | Counts in any cell equal a direct query of the charted records. No opponent truth-layer field is reachable from this screen. |
-| O3.7.1 Drafts, undo, and publishing | MISSING | G-90 | Undo returns the draft to a byte-identical earlier state. A crash during editing loses no more than the last edit. |
-| O3.7.2 Hours and delegation shown on every planning screen | MISSING | G-90 | The ledger total equals the sum of charged actions for a scripted week. |
+| O3.7.1 Drafts, undo, and publishing | PENDING | G-90 | Undo returns the draft to a byte-identical earlier state. A crash during editing loses no more than the last edit. |
+| O3.7.2 Hours and delegation shown on every planning screen | PENDING | G-90 | The ledger total equals the sum of charged actions for a scripted week. |
 | O4.1.1 Card layout | MISSING | G-72 | 1. A test asserts that the card's read model schema has no field from the true-attribute schema. 2. Opening a card takes under 100 ms. |
 | O4.1.2 Grades tab | MISSING | G-72 | For a test player with known true values, the displayed grade differs from truth by the D6 error model, and the band covers the truth at the D6 stated rate ove… |
 | O4.1.3 Performance and knowledge tabs | MISSING | G-72 | Every statistic equals a direct query of the play records. Every mental error link opens the right play. |
@@ -2052,9 +2052,9 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | O4.4.2 Meeting and conversation screen | MISSING | G-72 | Every conversation in the data files renders with at least two responses. Every promise made appears in the promise tracker. |
 | O4.5.1 Owner and general manager view | MISSING | G-72 | No hot-seat numeric value exists in the read model. |
 | O4.5.2 Media screen | MISSING | G-72 | Each required session appears in the Office agenda (O1.2.1). A story marked as caused by the coach links to the answer that caused it. |
-| O4.6.1 Career and reputation | MISSING | G-85 | The record equals league standings data. The export validates against the N4 format. The page contains no element bound to a skill value. |
-| O4.6.2 Personal finance | MISSING | G-85 | Net worth equals assets minus debts from the E6 ledger at every date. Changing any finance choice changes no football state (asserted by a state-diff test). |
-| O4.6.3 Time, energy, health, and family | MISSING | G-85 | Every active effect of the coach's state is listed on the screen, and a test confirms no unlisted effect exists in the effect table. |
+| O4.6.1 Career and reputation | PENDING | G-85 | The record equals league standings data. The export validates against the N4 format. The page contains no element bound to a skill value. |
+| O4.6.2 Personal finance | PENDING | G-85 | Net worth equals assets minus debts from the E6 ledger at every date. Changing any finance choice changes no football state (asserted by a state-diff test). |
+| O4.6.3 Time, energy, health, and family | PENDING | G-85 | Every active effect of the coach's state is listed on the screen, and a test confirms no unlisted effect exists in the effect table. |
 | O5.1.1 Keyboard-first rule | MISSING | G-98 | An automated run completes a new career, a game week, and a full game using only synthetic key events. |
 | O5.1.2 Mouse, controller, and touch | MISSING | G-98 | A full game can be called with the mouse only. Median mouse call time in the drill is reported beside the keyboard time. |
 | O5.2.1 Key map data and contexts | MISSING | G-98 | A validation test finds no collisions in the default map for any context. Every action in the registry of commands has a binding or is marked "no default". |
@@ -2077,20 +2077,20 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | O6.6.1 Wording rules and templates | PENDING | G-04 | A scan finds no user-facing string literal in component code. Switching a save's level swaps every level-keyed term. |
 | O6.7.1 Adopted practices | PENDING | G-04 | Each row's owner leaf exists and covers the practice. |
 | O6.8.1 Where graphics and sounds come from | PENDING |  | A check fails the build for an asset with no row, a hash mismatch, or a licence outside rule 3. |
-| O7.1.1 Screen permission states | MISSING | G-85 | 1. For each rung in a test table, every registered screen resolves to exactly one state. 2. No command for a task the user does not own is accepted by the core… |
-| O7.2.1 The assignment list | MISSING | G-85 | For a scripted graduate assistant week, every assignment appears with a due time, can be submitted, and returns a grade. |
-| O7.2.2 Hub contents by rung | MISSING | G-85 | Each rung in the default route table opens ten valid routes. |
-| O7.3.1 Film tagging screen | MISSING | G-85 | With a scripted perfect tagger the grade is 100%. Tag time per play is recorded. No truth field is in the screen's data before or after submission in a career. |
-| O7.3.2 Scout card and report builders | MISSING | G-85 | A card that matches the true play scores 100%. A deliberately wrong card lowers the modelled readiness against that play in a test. |
-| O7.3.3 Position room screens | MISSING | G-85 | Grading a 60-snap game for five players can be done with the keyboard alone. The evaluation score responds to deliberately wrong grades in a test. |
+| O7.1.1 Screen permission states | PENDING | G-85 | 1. For each rung in a test table, every registered screen resolves to exactly one state. 2. No command for a task the user does not own is accepted by the core… |
+| O7.2.1 The assignment list | PENDING | G-85 | For a scripted graduate assistant week, every assignment appears with a due time, can be submitted, and returns a grade. |
+| O7.2.2 Hub contents by rung | PENDING | G-85 | Each rung in the default route table opens ten valid routes. |
+| O7.3.1 Film tagging screen | PENDING | G-85 | With a scripted perfect tagger the grade is 100%. Tag time per play is recorded. No truth field is in the screen's data before or after submission in a career. |
+| O7.3.2 Scout card and report builders | PENDING | G-85 | A card that matches the true play scores 100%. A deliberately wrong card lowers the modelled readiness against that play in a test. |
+| O7.3.3 Position room screens | PENDING | G-85 | Grading a 60-snap game for five players can be done with the keyboard alone. The evaluation score responds to deliberately wrong grades in a test. |
 | O7.4.1 Seat layouts | MISSING | G-79 | A full game can be played from each seat. Each seat produces a graded record. The game's pace is unchanged by a user who does nothing in a non-calling seat. |
 | O7.4.2 Attention limit and weather delay | MISSING | G-79 | Messages from unselected channels never appear on the booth line. A delay event pauses the game clock and opens the prompt. |
-| O7.5.1 Recruiting screens | MISSING | G-85 | An action outside its contact period warns with the rule named, is allowed, and produces exactly one violation row. |
-| O7.5.2 Eligibility, transfers, and program screens | MISSING | G-85 | Switching a test save between level keys swaps the limit set and the program screen with no code path specific to a level. |
-| O7.5.3 Field and rule differences on screen | MISSING | G-85 | A scan finds no hard-coded field landmark in interface code. A college save draws hashes at the T1 value. |
-| O7.6.1 Job market and career screens | MISSING | G-85 | A scripted career moves through at least four rungs and two levels using only these screens for job changes. |
-| O7.6.2 People import and world setup screens | MISSING | G-85 | A pack with an image field fails validation. Every imported person has the origin flag in his record. |
-| O7.6.3 Long-run simulation controls | MISSING | G-85 | A 20-season advance completes within the P6 budget for long runs and stops at every must event. |
+| O7.5.1 Recruiting screens | PENDING | G-85 | An action outside its contact period warns with the rule named, is allowed, and produces exactly one violation row. |
+| O7.5.2 Eligibility, transfers, and program screens | PENDING | G-85 | Switching a test save between level keys swaps the limit set and the program screen with no code path specific to a level. |
+| O7.5.3 Field and rule differences on screen | PENDING | G-85 | A scan finds no hard-coded field landmark in interface code. A college save draws hashes at the T1 value. |
+| O7.6.1 Job market and career screens | PENDING | G-85 | A scripted career moves through at least four rungs and two levels using only these screens for job changes. |
+| O7.6.2 People import and world setup screens | PENDING | G-85 | A pack with an image field fails validation. Every imported person has the origin flag in his record. |
+| O7.6.3 Long-run simulation controls | PENDING | G-85 | A 20-season advance completes within the P6 budget for long runs and stops at every must event. |
 
 ## P
 
@@ -2149,7 +2149,7 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | P5.7.2 Export formats | PENDING | G-95 | Export then import of a playbook gives identical content hashes. |
 | P5.8.1 Autosave, copies, corruption | PENDING | G-01 | A test that kills the process at 1,000 random points during a simulated season always reloads to a state whose hash matches a clean run to the same log positio… |
 | P6.1.1 Simulation time budgets | MISSING | G-97 | Each row has a benchmark. A regression of more than 10% against the stored baseline fails the build. |
-| P6.2.1 The target machine | MISSING | G-88 | The benchmark suite is run on a machine at or below this target before each release, and its results are published with the release notes. |
+| P6.2.1 The target machine | PENDING | G-88 | The benchmark suite is run on a machine at or below this target before each release, and its results are published with the release notes. |
 | P6.3.1 Tick loop design rules | PENDING | WP-09 | The allocation counter for a play's tick loop reads zero in the benchmark build. |
 | P6.4.1 Tiers of the same engine | MISSING | G-82 | One game run at tier A and at tier B from the same input gives identical play rows. A distant game re-simulated from its stored inputs reproduces its saved res… |
 | P6.5.1 The benchmark suite | MISSING | G-97 | A test change that adds a 20% delay to the tick loop fails continuous integration. |
@@ -2183,12 +2183,12 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | Q1.5.1 Contrast and greyscale checks | PENDING | G-73 | No screen fails. A test theme with grey-on-grey text fails. |
 | Q1.5.2 Keyboard-only full game | PENDING | G-73 | The trace finishes the game with no delay-of-game foul caused by interface reach. A pause command injected during a live game is refused by the core. |
 | Q1.5.3 Route crawl | PENDING | G-73 | Every route passes at every rung. A route with a missing data binding fails. |
-| Q1.6.1 30-season career run | MISSING | G-88 | All 5 seeds finish with zero invariant failures and inside both budgets. |
-| Q1.6.2 Imported-people protection run | MISSING | G-88 | Zero protected events. A test build with `mayReceiveEvent` forced to true is caught. |
+| Q1.6.1 30-season career run | PENDING | G-88 | All 5 seeds finish with zero invariant failures and inside both budgets. |
+| Q1.6.2 Imported-people protection run | PENDING | G-88 | Zero protected events. A test build with `mayReceiveEvent` forced to true is caught. |
 | Q1.6.3 Distant-tier equivalence | NOT_APPLICABLE |  | All rows match. A tier C build with scoring raised 5% fails. |
-| Q1.6.4 Long-run stability of the world | MISSING | G-88 | No series drifts beyond tolerance. A test parameter set with aging decline removed fails on the age series. |
+| Q1.6.4 Long-run stability of the world | PENDING | G-88 | No series drifts beyond tolerance. A test parameter set with aging decline removed fails on the age series. |
 | Q1.7.1 Contest tests | PENDING |  | Every contest is monotonic and inside its band, or its band is marked provisional (Q6.3.1). |
-| Q1.7.2 Play, game, and season runs | MISSING | WP-26 | Every Verified row passes at its tolerance. |
+| Q1.7.2 Play, game, and season runs | PENDING | WP-26 | Every Verified row passes at its tolerance. |
 | Q1.7.3 Rating-response sweeps | PENDING |  | All curves have the listed direction. A test build where speed alone decides separation fails the dominance cap. |
 | Q1.8.1 What runs when | PENDING | G-100 | Each suite in this file appears in the table. |
 | Q2.1.1 Target rows | PENDING | WP-13 | Every row has a `factId` that exists. No college row shares a `factId` with a pro row. |
@@ -2205,13 +2205,13 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | Q3.2.3 Run game items | PENDING |  | Each row passes. |
 | Q3.2.4 Game management items | PENDING |  | Each row passes under both rule sets or names the rule set it covers. |
 | Q3.2.5 Preparation and tendency items | PENDING |  | Each row passes. |
-| Q3.2.6 Career-scale items | MISSING | G-89 | Each row passes, reported with its provisional mark. |
+| Q3.2.6 Career-scale items | PENDING | G-89 | Each row passes, reported with its provisional mark. |
 | Q3.3.1 Battery report | MISSING | G-87 | The report regenerates from a parameter-set ID. |
 | Q4.1.1 Dominant-call search | MISSING | G-86 | No unexplained exploit in the report. A planted exploit (a route the coverage rules ignore) is found by the search. |
 | Q4.1.2 Defensive and special teams search | MISSING | G-86 | No unexplained exploit. Blitzing every down loses to the standard AI offense over a season relative to a mixed plan. |
 | Q4.2.1 Clock, substitution, and penalty abuse | MISSING | G-86 | No sequence stops the play clock in a live game. Every illegal gain is answered by the rule engine as the rule set states. |
 | Q4.2.2 Information exploits | MISSING | G-86 | No leak beyond D6's learning rates. A bench that used true opponent ratings is caught. |
-| Q4.3.1 Career loop search | MISSING | G-89 | No greedy agent outperforms the standard AI coach's career outcomes by more than the starting margin of 25% over 30 seasons (Assumption). |
+| Q4.3.1 Career loop search | PENDING | G-89 | No greedy agent outperforms the standard AI coach's career outcomes by more than the starting margin of 25% over 30 seasons (Assumption). |
 | Q4.3.2 Rule-breaking parity: AI clubs break rules and are caught at the user's rates | PENDING |  | 1. A test build in which the user's finding chance is half the AI's fails rule 3. 2. A test build in which no AI coach ever breaks a rule fails rule 2. 3. A te… |
 | Q4.4.1 What happens when an exploit is found | MISSING | G-86 | Each closed exploit has a test that fails on the old build and passes on the new one. |
 | Q5.1.1 Review of content and film by coaches | PENDING | G-99 | Every written F and G4 file has at least one completed review round before release, or is marked "not reviewed" in the release notes. |
@@ -2307,10 +2307,10 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | S1.2.1 Reporting lines | PENDING | G-25 | Every seat except the head coach has exactly one evaluating boss. |
 | S1.2.2 Staff rules by league | PENDING | G-25 | A college head coach who flags a twelfth off-campus recruiter under the 2026 values is warned once, may proceed, and the act writes one violation row through L… |
 | S1.3.1 Typical paths and their clocks | PENDING | G-55 | Over a 30-season world simulation, the mean age of first-time top-subdivision head coaches is within 3 years of the target, and fewer than 10% of people who st… |
-| S10.1.1 Week modes | MISSING | G-89 | 1. A rung 2 season in key-weeks mode completes in under 60 minutes of play (same bar as E2.1.2). 2. A season-summary season completes in under 10 minutes. 3. E… |
-| S10.1.2 The offseason at speed | MISSING | G-89 | Simulation never passes an offer, a release, or a boss sit-down without stopping. |
-| S10.2.1 Starting above the bottom | MISSING | G-89 | Each start produces a valid save in which the user's seat, contract, and boss exist on day one. |
-| S10.3.1 Climb length targets | MISSING | G-89 | Scripted "perfect work" careers reach rung 7 in 8 to 14 game years across seeds. Scripted "average work" careers usually do not reach rung 9. |
+| S10.1.1 Week modes | PENDING | G-89 | 1. A rung 2 season in key-weeks mode completes in under 60 minutes of play (same bar as E2.1.2). 2. A season-summary season completes in under 10 minutes. 3. E… |
+| S10.1.2 The offseason at speed | PENDING | G-89 | Simulation never passes an offer, a release, or a boss sit-down without stopping. |
+| S10.2.1 Starting above the bottom | PENDING | G-89 | Each start produces a valid save in which the user's seat, contract, and boss exist on day one. |
+| S10.3.1 Climb length targets | PENDING | G-89 | Scripted "perfect work" careers reach rung 7 in 8 to 14 game years across seeds. Scripted "average work" careers usually do not reach rung 9. |
 | S11.1.1 Record structure | PENDING | G-52 | Every job in the history has at least one measure with a non-zero event count, or is marked fully simulated. |
 | S11.2.1 Former assistants and former players | PENDING | G-52 | A former assistant's head coach hire creates a tree entry and a news item in the same week. An assistant with one full season joins the tree; one with half a s… |
 | S11.3.1 Ways a career ends | PENDING | G-52 | Ending a career at any rung produces a summary and leaves a loadable world. |
@@ -2518,15 +2518,15 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | X1.3.1 Words from observed behavior, never numbers | PENDING | G-19 | A scripted search of every screen and export in a career build finds no facet or value number. A generated player with `coachability` 5 shows no wording about … |
 | X1.4.1 Imported real people get neutral blocks | PENDING | G-17 | In a world built from a test pack, every imported person has all stored facets at 50, no `faith` entry, and all values at 0 after 30 simulated seasons. |
 | X1.4.2 Bounds on effects | PENDING | G-17 | A test sets every facet of every player on one team to the favorable extreme and the other team to the unfavorable extreme with equal football attributes, simu… |
-| X10.1.1 Setup options | MISSING | G-81 | A static check of the setup screen definition finds no difficulty, slider, or modifier field. The time estimate is within 25 percent of actual on the reference… |
-| X10.1.2 Sharing a world | MISSING | G-81 | Two machines given one code produce identical world hashes. |
-| X10.2.1 Competitions and teams | MISSING | G-81 | Every team has a venue, a place, and a resource band. Changing the place step's seed changes no team count or conference, and two runs of one seed produce iden… |
-| X10.2.2 Founding people and cultures | MISSING | G-81 | Every roster and staff is legal for its level on day one. Founding pro rosters have a median age of 26 (plus or minus 1). No founding person has an event dated… |
-| X10.3.1 Running the past | MISSING | G-81 | The log from a history run contains no event with an imported actor. A world stopped at season 12 loads and plays. |
-| X10.3.2 What the run must produce, and the validator | MISSING | G-81 | 100 seeded 30-season runs: at least 95 pass on the first try (starting target). |
-| X10.3.3 Time budget | MISSING | G-81 | Measured time is reported by the size job each build. |
-| X10.4.1 Placing imported people | MISSING | G-81 | The X14.4.2 scan passes. No generated person shares a full name with an imported one. Every team is roster-legal after placement, and the count of `released` e… |
-| X10.4.2 Placing the user | MISSING | G-81 | A new user holds no labels on day one. His stated college teammates exist in the log. |
+| X10.1.1 Setup options | PENDING | G-81 | A static check of the setup screen definition finds no difficulty, slider, or modifier field. The time estimate is within 25 percent of actual on the reference… |
+| X10.1.2 Sharing a world | PENDING | G-81 | Two machines given one code produce identical world hashes. |
+| X10.2.1 Competitions and teams | PENDING | G-81 | Every team has a venue, a place, and a resource band. Changing the place step's seed changes no team count or conference, and two runs of one seed produce iden… |
+| X10.2.2 Founding people and cultures | PENDING | G-81 | Every roster and staff is legal for its level on day one. Founding pro rosters have a median age of 26 (plus or minus 1). No founding person has an event dated… |
+| X10.3.1 Running the past | PENDING | G-81 | The log from a history run contains no event with an imported actor. A world stopped at season 12 loads and plays. |
+| X10.3.2 What the run must produce, and the validator | PENDING | G-81 | 100 seeded 30-season runs: at least 95 pass on the first try (starting target). |
+| X10.3.3 Time budget | PENDING | G-81 | Measured time is reported by the size job each build. |
+| X10.4.1 Placing imported people | PENDING | G-81 | The X14.4.2 scan passes. No generated person shares a full name with an imported one. Every team is roster-legal after placement, and the count of `released` e… |
+| X10.4.2 Placing the user | PENDING | G-81 | A new user holds no labels on day one. His stated college teammates exist in the log. |
 | X11.1.1 Calendar windows | PENDING | G-12 | Each season of a soak has exactly one `cohort_entered` per cohort kind. In every season the undrafted pool forms on the same day as the last draft pick, and no… |
 | X11.1.2 What every new person carries | PENDING | G-12 | Every person created in a soak has a valid traits block and zero labels at creation. The age distribution of each soak season's pro entry pool has a median of … |
 | X11.1.3 The entry-level coach and staff cohort | PENDING | G-12 | Over 60 seasons no bottom-rung chair is unfilled for lack of candidates, and the count of unemployed young coaches stays inside a stated band. The soak reports… |
@@ -2537,12 +2537,12 @@ Commit `3b522f726219`. Bible: live from /mnt/project-files/bible, hash 5c69dc619
 | X11.3.1 Weekly top-up | PENDING | G-44 | No top-up person has an event dated before his creation. In a pro season soak, at least 80 percent of in-season signings are people who existed before the week… |
 | X11.4.1 Never copy a retired person | PENDING | G-44 | A static check finds no generator reading another person's attribute record. No `family` edge touches a protected person. |
 | X11.4.2 Name collisions with a loaded pack | PENDING | G-44 | After 60 seasons with a pack loaded, no generated person shares a full name with a pack person. A test pack containing "Michael Smith Jr." blocks generation of… |
-| X12.1.1 The loop by tier | MISSING | G-81 | Two runs of one seed give identical logs over 10 seasons. Reordering steps in a test changes the hash, proving order is part of state. |
-| X12.1.2 AI careers move | MISSING | G-81 | In a 40-season soak each exit path occurs, and head coach tenure stays inside the D13.4.1 band. |
-| X12.1.3 Leaving the world: retirement, the inactive record, and death of generated people | MISSING | G-81 | In a 60-season soak no imported person, active person, or user has a `died` event, and the world's stored person count levels off rather than rising every seas… |
+| X12.1.1 The loop by tier | PENDING | G-81 | Two runs of one seed give identical logs over 10 seasons. Reordering steps in a test changes the hash, proving order is part of state. |
+| X12.1.2 AI careers move | PENDING | G-81 | In a 40-season soak each exit path occurs, and head coach tenure stays inside the D13.4.1 band. |
+| X12.1.3 Leaving the world: retirement, the inactive record, and death of generated people | PENDING | G-81 | In a 60-season soak no imported person, active person, or user has a `died` event, and the world's stored person count levels off rather than rising every seas… |
 | X12.2.1 News reaches the user through people and media | PENDING | G-44 | A scripted room-only event reaches the user only when a chain of warm edges exists, and no sooner than the hop delay. |
 | X12.2.2 Rumor against fact | PENDING | G-44 | No label's evidence list contains a rumor. A false rumor is marked "Did not happen" within one cycle. |
-| X12.3.1 The simulation stops only for the user's decisions | MISSING | G-81 | A career advanced by day and one advanced by week with the same inputs have identical logs. No stop is caused by an event with no duty or addressee link to the… |
+| X12.3.1 The simulation stops only for the user's decisions | PENDING | G-81 | A career advanced by day and one advanced by week with the same inputs have identical logs. No stop is caused by an event with no duty or addressee link to the… |
 | X12.4.1 World-watching pages | PENDING |  | A static check finds no truth-data read in these page definitions. |
 | X13.1.1 Tier membership | MISSING | G-82 | For a scripted career with three job changes, the tier of 50 sampled people matches a hand-written expected table at each change. No person is in two tiers. Re… |
 | X13.1.2 What each tier stores and updates | MISSING | G-82 | For each cell, a test confirms the system ran at the stated frequency for a sampled person over one season. No person record is missing a stored field at any t… |
