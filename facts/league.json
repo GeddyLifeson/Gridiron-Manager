@@ -5567,6 +5567,57 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-league-0168",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "An underclassman may withdraw his draft declaration up to 72 hours after the early-entry deadline.",
+   "value": 72,
+   "unit": "hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Division I Enforcement, 2026 NFL Education Memo (https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf, read as a search-result excerpt)",
+     "locator": "Early-entry withdrawal deadline bullet",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "Early-entry withdrawal deadline for underclassmen: 72 hours after the early-entry deadline",
+     "value": 72
+    },
+    {
+     "citation": "NCAA Division I Enforcement, 2024 NFL Education Memo (https://ncaaorg.s3.amazonaws.com/enforcement/2024ENF_NFLEducationMemo.pdf, read as a search-result excerpt)",
+     "locator": "Early-entry withdrawal deadline bullet",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "Early-entry withdrawal deadline for underclassmen: 72 hours after the early-entry deadline",
+     "value": 72
+    },
+    {
+     "citation": "A to Z Sports, Deadline for underclassmen to enter the 2025 NFL Draft (https://atozsports.com/college-football/deadline-for-underclassmen-to-enter-the-2025-nfl-draft/, read as a search-result excerpt)",
+     "locator": "Underclassmen deadline article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "atozsports",
+     "primary": false,
+     "quote": "these players will have an extra 72 hours to withdraw their declarations",
+     "value": 72
+    }
+   ],
+   "usedBy": [],
+   "notes": "Two independence groups (the two NCAA memos are one group; A to Z Sports is the other). The league operations page names no revoke window, so the status stays 2 of 3. The excerpts were read in search results, not on the memo pages.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

@@ -2,7 +2,7 @@
 Rows for keys that G-34 (draft, PR 76) and G-45 (locker room, PR 79) read. Every CBA quote is searched in the
 local text copy by the builder. Status is computed, never typed. A key with no row here has no source that
 was read; it is listed in README.md under "Still owed"."""
-import re
+import re, os
 from core import *
 from rows_cba import LG, CAP, cba
 from rows_web import W, sec
@@ -24,7 +24,7 @@ LG.row('pro', 'Draft day three opens with round 4 (rounds 4 to 7 on Saturday).',
   notes='League page says rounds 4 to 7 on Saturday; SI says the remaining rounds (after rounds 1, 2, 3) are on April 25, 2026.')
 
 # Compensatory pick keys (CBA Appendix V and Article 6). Quotes come from the test fixture of PR 76.
-fx = open('/home/claude/gridiron-manager/packages/league/test/draft/fixtures.ts', encoding='utf-8').read()
+fx = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'comp-fixture-from-pr95.ts'), encoding='utf-8').read()  # frozen copy: the live fixture no longer carries the quotes
 CB = 'Compensatory pick system, CBA Appendix V'
 for m in re.finditer(r"key: '(league_rules\.draft\.comp_[a-z0-9_]+)', value: (\d+), source: '([^']*?)'", fx):
     key, val, src = m.group(1), int(m.group(2)), m.group(3)

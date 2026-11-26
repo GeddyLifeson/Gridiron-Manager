@@ -1592,6 +1592,16 @@
    "unit": "cents"
   },
   {
+   "key": "league_rules.draft.revoke_window_hours",
+   "type": "number",
+   "meaning": "Hours after the declaration deadline in which an underclassman may revoke",
+   "ownerLeaf": "C7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "hours"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "type": "number",
    "meaning": "Minimum cash spending as percent of cap",
@@ -2236,6 +2246,36 @@
    "type": "number",
    "meaning": "Signing bonus of the 2026 first overall pick",
    "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2023_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2023",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2025_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2025",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2026_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2026",
+   "ownerLeaf": "C7.4.1",
    "readBy": [
     "league (G-10 data)"
    ],

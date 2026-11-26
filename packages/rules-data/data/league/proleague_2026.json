@@ -972,6 +972,13 @@
    "factId": "F-league-0167"
   },
   {
+   "key": "league_rules.draft.revoke_window_hours",
+   "value": 72,
+   "unit": "hours",
+   "factId": "F-league-0168",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
@@ -1267,7 +1274,7 @@
   },
   {
    "key": "rookie.undrafted_pool_2024_usd",
-   "value": 172337,
+   "value": 183103,
    "unit": "USD",
    "factId": "F-cap-0049",
    "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
@@ -1368,6 +1375,27 @@
    "value": 38100000,
    "unit": "USD",
    "factId": "F-cap-0065"
+  },
+  {
+   "key": "rookie.undrafted_pool_2023_usd",
+   "value": 172337,
+   "unit": "USD",
+   "factId": "F-cap-0066",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "rookie.undrafted_pool_2025_usd",
+   "value": 206144,
+   "unit": "USD",
+   "factId": "F-cap-0067",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "rookie.undrafted_pool_2026_usd",
+   "value": 229224,
+   "unit": "USD",
+   "factId": "F-cap-0068",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
   }
  ]
 }
