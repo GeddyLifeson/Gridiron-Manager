@@ -16,3 +16,4 @@ export * as medical from './medical/index.ts';
 export * as market from './market/index.ts';
 export * as recruiting from './recruiting/index.ts';
 export * as schedule from './schedule/index.ts';
+export * as week from './week/index.ts';

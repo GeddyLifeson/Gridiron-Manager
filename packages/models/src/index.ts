@@ -6,3 +6,4 @@ export * as predictability from './predictability/index.ts';
 export * as decisions from './decisions/index.ts';
 export * as labels from './labels/index.ts';
 export * as tendencies from './tendencies/index.ts';
+export * as strength from './strength/index.ts';

@@ -6,3 +6,5 @@ export * as tokens from './tokens/index.ts';
 export * as rosterMoves from './screens/roster-moves/index.ts';
 export * as gameFrame from './screens/game-frame/index.ts';
 export * as scouting from './screens/scouting/index.ts';
+export * as analytics from './screens/analytics/index.ts';
+export * as week from './screens/week/index.ts';
