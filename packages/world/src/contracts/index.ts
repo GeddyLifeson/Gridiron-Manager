@@ -5,7 +5,7 @@ export {
   CONTRACTS_KEY, contractsOf, setContracts, contractOf, clubContracts, salaryIn, lastYear,
   type PlayerTerms, type PlayerContract, type FloorCheck, type ContractsState, type MarketYear,
 } from './state.ts';
-export { PAY_SCALE_SNAPSHOT, PAY_SCALE_FACTS, sourcedScale, sourcedYears, publicPercentiles, marketPrice, type PriceInput } from './scale.ts';
+export { PAY_SCALE_SNAPSHOT, PAY_SCALE_FACTS, sourcedScale, sourcedYears, publicPercentiles, marketPrice, positionValueWeights, type PriceInput } from './scale.ts';
 export {
   PLAYER_PAY_REASON, FLOOR_SHORTFALL_REASON, STREAM_FOUNDING, ruleSetFor, floorPeriodOf, runContractYear, playerCashPaid, contractsStep, suitorsAt,
   type ContractsBinding, type ContractYearRun, type Signing,

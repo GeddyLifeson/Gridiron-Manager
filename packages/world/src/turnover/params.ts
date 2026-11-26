@@ -10,16 +10,21 @@ const ROWS: readonly Row[] = [
   // D6.4.2: an off-screen AI evaluator with no staff record yet. The middle of the skill scale, the same
   // value the scouting module gives a person with no measured skill (`skill.userTerm`).
   ['grade.aiSkill', 50, 0, 100, 'skill points', 'assumption', 'D6.4.2', 'Off-screen evaluator skill until K2/L4 staff skill is read here. No source read'],
-  // D6.4.2: one season of watching a rostered player stands for this many season units of evidence.
-  ['grade.rosteredUnits', 1, 0.1, 10, 'season share', 'assumption', 'D6.4.2', 'One season of stats per look. No source read'],
+  // TO-25, D6.4.2: snaps of film graded of a rostered player per season (his club's game film, another club's
+  // opponent film, or a charting service). A pro team runs about 1,050 offensive or defensive snaps a season; a
+  // roster player is on the field for some share of them.
+  ['grade.filmSnapsPerSeason', 300, 10, 2000, 'snaps', 'assumption', 'D6.4.2', 'Snaps of film graded per season for a rostered player. No source read'],
   // D6.1.2: one workout (combine or pro day) for a prospect or free agent.
   ['grade.workoutUnits', 1, 0.1, 10, 'session', 'assumption', 'D6.1.2', 'One workout per look. No source read'],
+  // TO-21, D6.1.1: a look at a rostered pro pools the film of his seasons in the league, up to this many. At 4 the
+  // look's sd is half a one-season look's, about D6.4.1's prior sd of 6 for an established starter.
+  ['grade.pooledSeasonsMax', 4, 1, 20, 'seasons', 'assumption', 'D6.1.1', 'Seasons of film a look at a veteran pools (D6.1.1 precision-weighted update). Cap chosen to meet the D6.4.1 established-starter sd. No source read'],
   // K7.2.1: a position below its share of the real roster mix is worth this much more on the board.
   ['need.weight', 4, 0, 20, 'iss', 'assumption', 'K7.2.1', 'Need bonus on the board until front-office gm.needs is bound. No source read'],
   // M2: players at a position up to its mix count are starters for the development reps (D7.7.1 role).
   ['role.starterShareOfMix', 0.5, 0, 1, 'ratio', 'assumption', 'D7.7.1', 'Top half of each position by grade counts as starters. No source read'],
   // TO-06: the front office AI's contribution table until the J14.6.1 engine batch runs exist.
-  ['gm.winsPerIss', 0.05, 0, 1, 'wins per iss-season', 'assumption', 'K7.2.2', 'One rate for every position until J14.6.1 runs; general managers spread it by their own position values. No source read'],
+  ['gm.winsPerIss', 0.05, 0, 1, 'wins per iss-season', 'assumption', 'K7.2.2', 'The overall rate until J14.6.1 runs; TO-18 weights it by position from the sourced pay scale and general managers spread it by their own position values. No source read'],
   ['gm.replacementQuantile', 0.1, 0, 0.5, 'quantile', 'assumption', 'K7.2.2', "Replacement level is this quantile of the club's own observed grades at the position. No source read"],
   ['gm.depthSlotWeight', 0.25, 0, 1, 'ratio', 'assumption', 'K7.2.2', 'Lineup weight of each depth slot past the starters. No source read'],
   // TO-08: K7.5.1 gives 8 to 9 offers per expected signee at power programs (status 2 of 3, front-office README). No source for other tiers: the same multiple for all.

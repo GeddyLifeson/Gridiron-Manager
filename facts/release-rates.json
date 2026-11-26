@@ -1,0 +1,185 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-release-0001",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran deals in pay tier 0.0-0.5 (percentile of average per year at the position and signing year): 28.2% were released after one season or less (n 1009); 45.1% were released before they ran out.",
+   "value": 0.282,
+   "unit": "share released after one season",
+   "validFor": "veteran contracts of 2+ years signed 2011-2021",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.0-0.5; facts/release-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 0.282
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-checked against Spotrac via The Ringer (F-release-0007..0010, facts/release-rates-spotrac.json): free-agent deals only, 2011-2015, counted by full seasons, so higher (2-year deals 54% vs 32% here). Both sources fall with contract length. PFF (2022, 2013-2021 UFA signings) reports completion near 1/length, consistent with both. Status stays 1 of 3 per value: the definitions differ.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/release-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0002",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran deals in pay tier 0.5-0.8 (percentile of average per year at the position and signing year): 15.2% were released after one season or less (n 606); 43.9% were released before they ran out.",
+   "value": 0.152,
+   "unit": "share released after one season",
+   "validFor": "veteran contracts of 2+ years signed 2011-2021",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.5-0.8; facts/release-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 0.152
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-checked against Spotrac via The Ringer (F-release-0007..0010, facts/release-rates-spotrac.json): free-agent deals only, 2011-2015, counted by full seasons, so higher (2-year deals 54% vs 32% here). Both sources fall with contract length. PFF (2022, 2013-2021 UFA signings) reports completion near 1/length, consistent with both. Status stays 1 of 3 per value: the definitions differ.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/release-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0003",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran deals in pay tier 0.8-0.9 (percentile of average per year at the position and signing year): 8.2% were released after one season or less (n 207); 39.1% were released before they ran out.",
+   "value": 0.082,
+   "unit": "share released after one season",
+   "validFor": "veteran contracts of 2+ years signed 2011-2021",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.8-0.9; facts/release-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 0.082
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-checked against Spotrac via The Ringer (F-release-0007..0010, facts/release-rates-spotrac.json): free-agent deals only, 2011-2015, counted by full seasons, so higher (2-year deals 54% vs 32% here). Both sources fall with contract length. PFF (2022, 2013-2021 UFA signings) reports completion near 1/length, consistent with both. Status stays 1 of 3 per value: the definitions differ.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/release-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0004",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran deals in pay tier 0.9-1.0 (percentile of average per year at the position and signing year): 5.7% were released after one season or less (n 300); 36.7% were released before they ran out.",
+   "value": 0.057,
+   "unit": "share released after one season",
+   "validFor": "veteran contracts of 2+ years signed 2011-2021",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.9-1.0; facts/release-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 0.057
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-checked against Spotrac via The Ringer (F-release-0007..0010, facts/release-rates-spotrac.json): free-agent deals only, 2011-2015, counted by full seasons, so higher (2-year deals 54% vs 32% here). Both sources fall with contract length. PFF (2022, 2013-2021 UFA signings) reports completion near 1/length, consistent with both. Status stays 1 of 3 per value: the definitions differ.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/release-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0005",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "All veteran deals of two or more years: 19.4% were released after one season or less (n 2122).",
+   "value": 0.194,
+   "unit": "share released after one season",
+   "validFor": "veteran contracts of 2+ years signed 2011-2021",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "all tiers; facts/release-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 0.194
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-checked against Spotrac via The Ringer (F-release-0007..0010, facts/release-rates-spotrac.json): free-agent deals only, 2011-2015, counted by full seasons, so higher (2-year deals 54% vs 32% here). Both sources fall with contract length. PFF (2022, 2013-2021 UFA signings) reports completion near 1/length, consistent with both. Status stays 1 of 3 per value: the definitions differ.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/release-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0006",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Of released veteran deals in the top pay tier (0.9-1), 77.3% of the players signed their next contract by the league year after their last season with the club (n 110).",
+   "value": 0.773,
+   "unit": "share signed again within a year",
+   "validFor": "veteran contracts of 2+ years signed 2011-2021",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.9-1, released; facts/release-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 0.773
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-checked against Spotrac via The Ringer (F-release-0007..0010, facts/release-rates-spotrac.json): free-agent deals only, 2011-2015, counted by full seasons, so higher (2-year deals 54% vs 32% here). Both sources fall with contract length. PFF (2022, 2013-2021 UFA signings) reports completion near 1/length, consistent with both. Status stays 1 of 3 per value: the definitions differ.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/release-build/build.py)."
+    }
+   ]
+  }
+ ]
+}

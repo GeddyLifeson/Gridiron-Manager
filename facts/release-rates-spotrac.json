@@ -1,0 +1,125 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-release-0007",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Multiyear free-agent deals of 2 years signed 2011-2015: 54.2% lasted one full season or less (16.4% lasted no full season and 37.8% one season; n 299).",
+   "value": 0.542,
+   "unit": "share lasting one full season or less",
+   "validFor": "free-agent contracts of 2+ years signed 2011-2015",
+   "sources": [
+    {
+     "citation": "Danny Heifetz, \"When a Guarantee Isn't Guaranteed\", The Ringer, 2019-03-15, from Spotrac's database of multiyear free-agent deals signed 2011-2015 (648 deals in the table), theringer.com/2019/03/15/nfl/free-agent-contracts-guaranteed-money-how-long-do-deals-last",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "locator": "table, 2-year deals",
+     "dateRead": "2026-11-26",
+     "value": 0.542
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-check of F-release-0001..0005 (OverTheCap). A different count: a player cut during his second season has served one full season here, but OverTheCap's season history lists that season, so OverTheCap shows lower shares. OverTheCap free-agent (UFA) deals of the same years and lengths, served one season or less and released: 2 years 31.8%, 3 years 22.1%, 4 years 16.1%, 5 years 7.0% (facts/release-build). Both fall with length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load, cross-check of the OverTheCap release rates."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0008",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Multiyear free-agent deals of 3 years signed 2011-2015: 34.3% lasted one full season or less (5.5% none and 28.8% one; n 163).",
+   "value": 0.343,
+   "unit": "share lasting one full season or less",
+   "validFor": "free-agent contracts of 2+ years signed 2011-2015",
+   "sources": [
+    {
+     "citation": "Danny Heifetz, \"When a Guarantee Isn't Guaranteed\", The Ringer, 2019-03-15, from Spotrac's database of multiyear free-agent deals signed 2011-2015 (648 deals in the table), theringer.com/2019/03/15/nfl/free-agent-contracts-guaranteed-money-how-long-do-deals-last",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "locator": "table, 3-year deals",
+     "dateRead": "2026-11-26",
+     "value": 0.343
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-check of F-release-0001..0005 (OverTheCap). A different count: a player cut during his second season has served one full season here, but OverTheCap's season history lists that season, so OverTheCap shows lower shares. OverTheCap free-agent (UFA) deals of the same years and lengths, served one season or less and released: 2 years 31.8%, 3 years 22.1%, 4 years 16.1%, 5 years 7.0% (facts/release-build). Both fall with length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load, cross-check of the OverTheCap release rates."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0009",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Multiyear free-agent deals of 4 years signed 2011-2015: 23.1% lasted one full season or less (23.1% one season; n 91).",
+   "value": 0.231,
+   "unit": "share lasting one full season or less",
+   "validFor": "free-agent contracts of 2+ years signed 2011-2015",
+   "sources": [
+    {
+     "citation": "Danny Heifetz, \"When a Guarantee Isn't Guaranteed\", The Ringer, 2019-03-15, from Spotrac's database of multiyear free-agent deals signed 2011-2015 (648 deals in the table), theringer.com/2019/03/15/nfl/free-agent-contracts-guaranteed-money-how-long-do-deals-last",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "locator": "table, 4-year deals",
+     "dateRead": "2026-11-26",
+     "value": 0.231
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-check of F-release-0001..0005 (OverTheCap). A different count: a player cut during his second season has served one full season here, but OverTheCap's season history lists that season, so OverTheCap shows lower shares. OverTheCap free-agent (UFA) deals of the same years and lengths, served one season or less and released: 2 years 31.8%, 3 years 22.1%, 4 years 16.1%, 5 years 7.0% (facts/release-build). Both fall with length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load, cross-check of the OverTheCap release rates."
+    }
+   ]
+  },
+  {
+   "id": "F-release-0010",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Multiyear free-agent deals of 5 years signed 2011-2015: 14.7% lasted one full season or less (14.7% one season; n 95).",
+   "value": 0.147,
+   "unit": "share lasting one full season or less",
+   "validFor": "free-agent contracts of 2+ years signed 2011-2015",
+   "sources": [
+    {
+     "citation": "Danny Heifetz, \"When a Guarantee Isn't Guaranteed\", The Ringer, 2019-03-15, from Spotrac's database of multiyear free-agent deals signed 2011-2015 (648 deals in the table), theringer.com/2019/03/15/nfl/free-agent-contracts-guaranteed-money-how-long-do-deals-last",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "locator": "table, 5-year deals",
+     "dateRead": "2026-11-26",
+     "value": 0.147
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Cross-check of F-release-0001..0005 (OverTheCap). A different count: a player cut during his second season has served one full season here, but OverTheCap's season history lists that season, so OverTheCap shows lower shares. OverTheCap free-agent (UFA) deals of the same years and lengths, served one season or less and released: 2 years 31.8%, 3 years 22.1%, 4 years 16.1%, 5 years 7.0% (facts/release-build). Both fall with length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load, cross-check of the OverTheCap release rates."
+    }
+   ]
+  }
+ ]
+}

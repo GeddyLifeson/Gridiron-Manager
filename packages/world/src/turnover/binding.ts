@@ -25,6 +25,16 @@ export interface RosterPolicy {
   readonly pick?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], phase: Phase) => number | 'pass' | null;
   /** The players a team keeps at the cutdown (M6), or null for the default. Must keep `limit` with the minimums filled. */
   readonly cutdown?: (ctx: PolicyContext, teamId: number, roster: readonly number[], limit: number, minByPosition: Readonly<Record<string, number>>) => readonly number[] | null;
+  /**
+   * K7.3.1 rule 3 and C8.3.2 after the cutdown (M6): players other clubs just cut are on the street. The one
+   * this team signs from `candidates` and the player it releases to make room for him, or null for none.
+   */
+  readonly streetSign?: (ctx: PolicyContext, teamId: number, candidates: readonly number[]) => { readonly sign: number; readonly drop: number } | null;
+  /**
+   * K7.4.1 rule 3 at the start of the offseason: the players whose contracts have run out that the club will not
+   * re-sign at their price (more than his walk-away number). They go to free agency (TO-30). Null keeps everyone.
+   */
+  readonly letWalk?: (ctx: PolicyContext, teamId: number) => readonly number[] | null;
   /** K7.5.1: a college program's offers to ready recruits, best first, for `openPlaces` places; null for the default signing order. */
   readonly recruitOffers?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], openPlaces: number) => readonly number[] | null;
   /**
@@ -133,8 +143,25 @@ function lookValue(p: PersonRecord, memo?: WeakMap<object, number>): number {
 }
 
 /**
- * Observed grades, one look per team and player per season (D6.4.2: truth plus evaluator lean plus
- * noise). The truth is read only through `scouting.observe`, the module's single truth reader.
+ * TO-21: seasons of film a look at a rostered player pools, by the D6.1.1 precision-weighted update: his seasons
+ * in the pro league (credited seasons plus this one), up to `grade.pooledSeasonsMax`. A one-season look made the
+ * same veteran a star one year and ordinary the next, so clubs paid on one look and cut on the next.
+ */
+function pooledSeasons(p: PersonRecord): number {
+  const seasons = 1 + (p.playing?.eligibility.pro.creditedSeasons ?? 0);
+  return Math.min(param('grade.pooledSeasonsMax'), seasons);
+}
+
+/** A player with at least one credited pro season has film a club can watch, rostered or not (TO-21). */
+function hasFilm(p: PersonRecord): boolean {
+  return (p.playing?.eligibility.pro.creditedSeasons ?? 0) > 0;
+}
+
+/**
+ * Observed grades, one look per team and player per season (D6.4.2: truth plus evaluator lean plus noise),
+ * pooling a veteran's seasons of film (TO-21) and, for a club's look, updating the D6.4.1 prior (TO-22). An
+ * individual's truth is read only through `scouting.observe`; the prior's census mean is a population average
+ * at the position and level (D6.4.1 `positionLevelMean`), never one player's value.
  */
 export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>): GradeContext {
   const cache = new Map<number, Map<number, { mean: number; variance: number }>>();
@@ -154,6 +181,66 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
     }
     return e;
   };
+  // TO-22, D6.1.1 and D6.4.1: a look updates the public prior, it does not replace it. The prior mean is the
+  // position and level average of the population the public facts place him in (D6.4.1: unbiased across that
+  // population): a player with no credited pro season against the rostered players with none (the camp's
+  // rookies), anyone else against the rostered veterans, at the evaluating club's level (TO-24). With no rookie
+  // rostered (before the draft) the veterans' mean stands in; prospects are then only ranked among themselves. Its sd is D6.4.1's 12 for a prospect with no film, 8 with some film, 6 for an established
+  // player (film pooled to the cap).
+  const census = new Map<string, number>();
+  const isRookie = (q: PersonRecord) => (q.playing?.eligibility.pro.creditedSeasons ?? 0) === 0;
+  const censusMean = (level: Level, position: string, rookie: boolean): number => {
+    const k = `${level}:${position}:${rookie}`;
+    let m = census.get(k);
+    if (m === undefined) {
+      let sum = 0, n = 0;
+      const add = (q: PersonRecord | undefined) => {
+        if (q?.playing?.position !== position || isRookie(q) !== rookie) return;
+        sum += lookValue(q, looks); n++;
+      };
+      for (const [tid, ids] of world.rosters) {
+        if (levelOfTeam(world, tid) !== level) continue;
+        for (const id of ids) add(world.people.get(id));
+      }
+      m = n > 0 ? sum / n : rookie ? censusMean(level, position, false) : 0;
+      census.set(k, m);
+    }
+    return m;
+  };
+  const withPrior = (teamId: number, p: PersonRecord, filmed: boolean, value: number, variance: number): { mean: number; variance: number } => {
+    const info: scouting.PublicInformation = !filmed ? 'none' : pooledSeasons(p) >= param('grade.pooledSeasonsMax') ? 'established_starter' : 'production';
+    const sd0 = scouting.priorSd(info);
+    const v0 = sd0 * sd0;
+    const m0 = censusMean(levelOfTeam(world, teamId), p.playing!.position, isRookie(p));
+    const w = v0 / (v0 + variance);
+    return { mean: m0 + w * (value - m0), variance: (v0 * variance) / (v0 + variance) };
+  };
+  // TO-23, D6.1.1: pooled film is the same film. Each season's look at a player is drawn once (its stream is keyed
+  // by that season, not by today), and a pooled look is the precision-weighted mean of the seasons in the window,
+  // so next year's grade shares all but one season with this year's. Fresh noise each year reshuffled near-equal
+  // players every cutdown, which real clubs, watching the same tape, do not do.
+  const pooledLook = (truth: number, source: scouting.EvidenceSource, units: number, seasons: number, leniency: number, evaluator: { id: number; line: string }, rng: (seasonYear: number) => ReturnType<typeof stream>) => {
+    let sum = 0, variance = 0;
+    for (let k = 0; k < seasons; k++) {
+      const item = scouting.observe(truth, {
+        attribute: 'overall', source, units, date: world.date, evaluator, skill: param('grade.aiSkill'), estimateMean: 0, opponent: null,
+      }, { leniency, playerOffset: 0, schemeOffset: 0 }, rng(season - k));
+      sum += item.value; variance = item.variance;
+    }
+    return { value: sum / seasons, variance: variance / seasons };
+  };
+  // TO-25, D6.4.2: a filmed player's season is graded snap by snap, not from his line of stats. His own club has
+  // its game film and practice (game_film), another club cuts up his games (opponent_film), the public reads the
+  // charting services (grading_service), each over `grade.filmSnapsPerSeason` snaps a season. The club each
+  // player was with when this context was made (the start of the roster cycle, or the development pass) is his
+  // own club. A season-stats look (sd 11 a season) left a veteran's public percentile, and so his market price,
+  // mostly noise.
+  const clubAtStart = new Map<number, number>();
+  for (const [tid, ids] of world.rosters) for (const id of ids) clubAtStart.set(id, tid);
+  const lookOf = (p: PersonRecord, filmed: boolean, source: scouting.EvidenceSource, leniency: number, evaluator: { id: number; line: string }, rng: (seasonYear: number) => ReturnType<typeof stream>) =>
+    filmed
+      ? pooledLook(lookValue(p, looks), source, param('grade.filmSnapsPerSeason'), pooledSeasons(p), leniency, evaluator, rng)
+      : pooledLook(lookValue(p, looks), 'workout', param('grade.workoutUnits'), 1, leniency, evaluator, rng);
   const look = (teamId: number, personId: number): { mean: number; variance: number } => {
     let byPerson = cache.get(teamId);
     if (byPerson === undefined) { byPerson = new Map(); cache.set(teamId, byPerson); }
@@ -163,14 +250,11 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
     if (!p?.playing) return { mean: 0, variance: 0 };
     let len = leniency.get(teamId);
     if (len === undefined) { len = scouting.drawLeniency(stream(world.seed, 'world.turnover.lean', [teamId, season])); leniency.set(teamId, len); }
-    const rostered = rosteredIds.has(personId);
-    const item = scouting.observe(lookValue(p, looks), {
-      attribute: 'overall', source: rostered ? 'season_stats' : 'workout',
-      units: rostered ? param('grade.rosteredUnits') : param('grade.workoutUnits'), date: world.date,
-      evaluator: { id: evaluatorOf(teamId), line: `team:${teamId}` }, skill: param('grade.aiSkill'),
-      estimateMean: 0, opponent: null,
-    }, { leniency: len, playerOffset: 0, schemeOffset: 0 }, stream(world.seed, 'world.turnover.look', [teamId, personId, season]));
-    const out = { mean: item.value, variance: item.variance };
+    // TO-21: a rostered player, or a veteran out of work, has film; a prospect has only his workout.
+    const filmed = rosteredIds.has(personId) || hasFilm(p);
+    const item = lookOf(p, filmed, clubAtStart.get(personId) === teamId ? 'game_film' : 'opponent_film', len, { id: evaluatorOf(teamId), line: `team:${teamId}` },
+      (s) => stream(world.seed, 'world.turnover.look', [teamId, personId, s]));
+    const out = withPrior(teamId, p, filmed, item.value, item.variance);
     byPerson.set(personId, out);
     return out;
   };
@@ -183,11 +267,8 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
       if (hit !== undefined) return hit;
       const p = world.people.get(personId);
       if (!p?.playing) return 0;
-      const item = scouting.observe(lookValue(p, looks), {
-        attribute: 'overall', source: rosteredIds.has(personId) ? 'season_stats' : 'workout',
-        units: param('grade.rosteredUnits'), date: world.date, evaluator: { id: 0, line: 'public' }, skill: param('grade.aiSkill'),
-        estimateMean: 0, opponent: null,
-      }, scouting.NO_LEAN, stream(world.seed, 'world.turnover.public', [personId, season]));
+      const filmed = rosteredIds.has(personId) || hasFilm(p);
+      const item = lookOf(p, filmed, 'grading_service', 0, { id: 0, line: 'public' }, (s) => stream(world.seed, 'world.turnover.public', [personId, s]));
       pub.set(personId, item.value);
       return item.value;
     },

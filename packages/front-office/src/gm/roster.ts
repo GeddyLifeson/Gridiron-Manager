@@ -73,6 +73,12 @@ export interface CutdownInput {
   /** Cap charge by year the club keeps if it cuts him (C6.3.2). */
   readonly deadCentsByYear: ReadonlyMap<PersonId, readonly number[]>;
   readonly rounds: number;
+  /**
+   * K7.4.1 rule 2: this league year's cap. `roomCents` is the cap less the team salary if every player is kept;
+   * `deltaIfCutCents` is how much cutting each player changes this year's team salary (his salary saved, less
+   * guaranteed salary of later years that accelerates into this year, CBA Art. 13 s.6(d)(iv)). Absent: no cap.
+   */
+  readonly cap?: { readonly roomCents: number; readonly deltaIfCutCents: ReadonlyMap<PersonId, number> };
 }
 
 export interface Cutdown { readonly keep: readonly PersonId[]; readonly cut: readonly PersonId[]; readonly shortAt: readonly string[] }
@@ -101,8 +107,35 @@ export function cutdown(gm: GmProfile, input: CutdownInput, ctx: ValueContext, w
     for (const x of best) if (keep.size < input.limit) keep.add(x.v.personId);
   }
   for (const x of ranked) if (keep.size < input.limit) keep.add(x.v.personId);
+  if (input.cap) capRepair(ranked.map((x) => x.v), keep, input.cap);
   const order = ranked.map((x) => x.v.personId);
   return { keep: order.filter((id) => keep.has(id)), cut: order.filter((id) => !keep.has(id)), shortAt };
+}
+
+/**
+ * K7.4.1 rule 2 repair pass: the cuts may not leave this year's team salary over the cap. While they do, the
+ * cut player whose release costs the most room (accelerated guarantees) is kept instead of the lowest-ranked
+ * kept player at his position whose release saves room, so position counts and the limit hold; only if that
+ * is not enough, at any position. `ranked` is best first; `keep` is changed in place.
+ */
+function capRepair(ranked: readonly PlayerView[], keep: Set<PersonId>, cap: NonNullable<CutdownInput['cap']>): void {
+  const delta = (id: PersonId) => cap.deltaIfCutCents.get(id) ?? 0;
+  let over = ranked.filter((v) => !keep.has(v.personId)).reduce((s, v) => s + delta(v.personId), 0) - cap.roomCents;
+  const costly = ranked.filter((v) => !keep.has(v.personId) && delta(v.personId) > 0)
+    .sort((a, b) => delta(b.personId) - delta(a.personId) || a.personId - b.personId);
+  // The law comes before the head coach's position counts: a second pass may swap across positions.
+  for (const samePosition of [true, false]) {
+    for (const back of costly) {
+      if (over <= 0) return;
+      if (keep.has(back.personId)) continue;
+      // The lowest-ranked kept player (at the same position on the first pass) whose release saves room.
+      const out = [...ranked].reverse().find((v) => keep.has(v.personId) && (!samePosition || v.position === back.position) && delta(v.personId) <= 0);
+      if (!out) continue;
+      keep.delete(out.personId);
+      keep.add(back.personId);
+      over += delta(out.personId) - delta(back.personId);
+    }
+  }
 }
 
 /**

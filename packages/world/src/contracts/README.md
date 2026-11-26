@@ -51,7 +51,10 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 - **PC-06** A contract ends when it runs out, when the club no longer rosters the player, or when he leaves
   football. A release before the last year pays the guaranteed salary still owed, all at once, as player pay.
   This is a simplification: the CBA pays on schedule, and offset is not modelled. Retirement ends the contract
-  outright, where the CBA would toll it on the reserve/retired list.
+  outright, where the CBA would toll it on the reserve/retired list. On the cap the same timing is the CBA's: future
+  guaranteed salary goes into Team Salary at the release (Art. 13 s.6(d)(iv), read in cba_2020.txt lines 6295 to 6299), so the
+  front office's cutdown counts it against this year's cap and never cuts a club over it (world turnover TO-19, front-office
+  GM-17). Players cut at the cutdown can sign with other clubs the same offseason (turnover TO-20) at the PC-12 price.
 - **PC-07** A league year's salaries are charged once, at the first pass of the year, after the roster cycle,
   as one `player_pay` entry per club (the same timing as staff pay, MO-07). The world's contracts carry no
   bonuses, so cash equals the cap charge.
@@ -86,6 +89,13 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
   payroll meets the budget: down to fit, or up, with no player past the top of his position's scale. The
   scale sets who is paid what relative to whom; the owner's budget sets the club's total. Released
   guarantees of the year count against the room.
+- **PC-15** (supersedes PC-13's upward move after founding; Assumption: front-loading as the way to spend.) The market price is
+  what a player is paid. The owner's budget and the cap only bring the year's new money down to fit. A club with room left
+  front-loads its new multi-year deals: money moves from their later years into this one, each later year kept at or above its
+  minimum, so this year's cash rises toward the budget while the deal's total and average stay the market's. Room still left is
+  unspent (C6.2.4 carryover) and the C6.2.3 floor check charges any period shortfall. Founding still scales up (an invented
+  payroll starts at the budget). Scaling every price up had paid depth players 2 to 30 times their market price in the test
+  world (club-years 1997-2000), so the next year's front office cut them (turnover TO-23 to TO-31).
 - **PC-10** The user's club is included today, because the world runs its roster. Once the career module
   writes the user's player contracts, bind `skipTeam` for that club.
 
@@ -105,7 +115,8 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 | Pay shares of the cap by position and rank (PC-11) | `pay-scale.json`, F-market-pay-0001 to 0020 | 1 of 3 (OverTheCap via nflverse; second publisher and tag cross-check owed) |
 | World position to OverTheCap position mapping (PC-11) | `build.py` | Assumption |
 | Suitors: need at the median, room for the scale price (PC-12) | this module | Assumption (C8.3.1 rule 2 names need and room, not the tests) |
-| Club spends its owner budget, prices move in proportion (PC-13) | this module | Assumption |
+| Club spends its owner budget, prices move in proportion (PC-13, founding only after PC-15) | this module | Assumption |
+| Room left is spent by front-loading new multi-year deals (PC-15) | this module | Assumption |
 | Veteran years by pay tier and age from OverTheCap signings, market ceiling 5 (PC-14) | length-scale.json, F-aging-0023..0029 | 1 of 3; ceiling Assumption |
 | Four-year periods outside the CBA (PC-04) | C6.2.3 edge case | Assumption (bible) |
 | Equal shortfall shares (PC-08) | this module | Assumption |
@@ -140,8 +151,8 @@ productive year left by rule 3. This is reported, not tuned: it belongs to the D
   from proration (no bonuses exist to prorate).
 - Players' personal income is not recorded (the E6 sheets are for staff). Shortfall shares are logged in
   `floorChecks`.
-- K7's plan to meet the floor (C6.2.3 AI use) is not built. PC-13 sets payroll at the budget, so only an owner
-  who does not pay can fall short today.
+- K7's plan to meet the floor (C6.2.3 AI use) is not built. PC-15's front-loading brings most clubs to the budget; a club
+  with few multi-year deals can fall short and pays the shortfall at the period's end.
 
 ## For the integrators
 

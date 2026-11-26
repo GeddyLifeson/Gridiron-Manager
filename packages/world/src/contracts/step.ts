@@ -169,15 +169,32 @@ function openClub(r: Run, teamId: number, rules: RuleSet, capCents: number, keep
   const most = priced.map((x) => x.top - minimum(x.id));
   const room = target - committed - priced.reduce((s, x) => s + minimum(x.id), 0);
   const spend = (k: number) => extra.reduce((s, e, i) => s + Math.min(e * k, most[i]!), 0);
-  const scale = scaleTo(spend, Math.max(0, room));
-  for (const [i, x] of priced.entries()) {
+  // PC-15 (supersedes PC-13's upward move after founding): the market price is what a player is paid. The
+  // owner's budget and the cap bring the year's new money down to fit. A club with room left front-loads its new
+  // multi-year deals instead: money moves from their later years into this one, each later year kept at or
+  // above its minimum, so the cash spent this year rises toward the budget (and the C6.2.3 floor) while the
+  // deal's total and average are the market's. What room is still left stays unspent (C6.2.4 carryover; the
+  // floor check charges any period shortfall). Scaling every price up paid depth players up to 30 times their
+  // market price in the test world, so the next year's front office cut them. The founding year still scales up
+  // (PC-13): an invented payroll starts at the owner's budget.
+  const scale = r.founding ? scaleTo(spend, Math.max(0, room)) : Math.min(1, scaleTo(spend, Math.max(0, room)));
+  const plans = priced.map((x, i) => {
     const apy = minimum(x.id) + Math.floor(Math.min(extra[i]! * scale, most[i]!));
     // PC-14: sourced veteran years (PC-03 superseded); a founding contract is part way through its term.
     let n = x.years;
     if (r.founding) n = stream(world.seed, STREAM_FOUNDING, [teamId, x.id]).int(1, n);
+    const later = Array.from({ length: n - 1 }, (_, k) => Math.max(0, apy - minimum(x.id, k + 1)));
+    return { x, apy, n, movable: later.reduce((a, v) => a + v, 0), later };
+  });
+  const left = Math.max(0, room - spend(scale));
+  const movable = plans.reduce((a, p) => a + p.movable, 0);
+  const share = r.founding || movable === 0 ? 0 : Math.min(1, left / movable);
+  for (const { x, apy, n, later } of plans) {
     // PC-11: the guarantee share is carried as fully guaranteed salary in the first years.
     const guaranteed = Math.round(n * x.guaranteeShare);
-    const years = Array.from({ length: n }, (_, k) => contractYear(year + k, Math.max(apy, minimum(x.id, k)), k < guaranteed ? FULL : NONE));
+    const moved = later.map((v) => Math.floor(v * share));
+    const front = moved.reduce((a, v) => a + v, 0);
+    const years = Array.from({ length: n }, (_, k) => contractYear(year + k, k === 0 ? apy + front : Math.max(apy - moved[k - 1]!, minimum(x.id, k)), k < guaranteed ? FULL : NONE));
     out.push(newContract(r, x.id, teamId, apy === minimum(x.id) ? 'minimum' : 'veteran', years));
     if (x.free) r.freeAgentApy.push({ personId: x.id, teamId, apyCents: apy });
   }
