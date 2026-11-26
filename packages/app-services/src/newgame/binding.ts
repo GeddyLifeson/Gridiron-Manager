@@ -3,7 +3,7 @@
 // leaving and death, the Hall of Fame, the yearly cohorts, development and roster moves. Steps whose
 // owning system is not built yet stay unbound and are listed on the review screen; nothing is faked.
 // Today's rules for the whole span (Marlon 2026-11-26: "the rules have always been the rules").
-import { generation, loop, recruiting, season, turnover } from '@gm/world';
+import { contracts, generation, loop, recruiting, season, turnover } from '@gm/world';
 import { calendar } from '@gm/league';
 import { appWorldContent, type AppWorldContent, type Level } from './content.ts';
 
@@ -79,9 +79,12 @@ export function bindSystems(world: loop.LiveWorld, opts: SystemsOptions): BoundS
   const rb: recruiting.RecruitingBinding | null = opts.recruiting
     ? { turnover: binding, calendarFiles: calendar.CALENDAR_FILES, policy: () => recruiting.gmRecruitingPolicy(), ...(opts.recruitingUser ? { user: opts.recruitingUser } : {}) }
     : null;
-  const moves = rb
+  const roster = rb
     ? recruiting.movesWithRecruiting(rb, turnover.rosterMovesStep({ ...binding, policy: recruiting.lettersPolicy(binding.policy) }))
     : turnover.rosterMovesStep(binding);
+  // Contracts open after the year's draft and signings are on rosters (C6, C8.3.1; today's rules throughout, MO-02).
+  const cb: contracts.ContractsBinding = { rule, keys: (lvl) => app.leagueKeys[lvl as Level], rulesYear: app.rulesYear };
+  const moves = contracts.contractsStep(cb, roster);
   const systems = loop.systemsFrom({
     lifecycle: loop.lifecycleStep({ content, names, built: world }),
     games: loop.gamesStep(schedule, games),

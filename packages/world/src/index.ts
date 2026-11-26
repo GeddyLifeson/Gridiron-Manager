@@ -9,3 +9,4 @@ export * as turnover from './turnover/index.ts';
 export * as compliance from './compliance/index.ts';
 export * as recruiting from './recruiting/index.ts';
 export * as money from './money/index.ts';
+export * as contracts from './contracts/index.ts';
