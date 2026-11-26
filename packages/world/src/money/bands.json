@@ -2,7 +2,7 @@
   "$comment": "World pay bands that the career E3.2.1 table does not hold: the second college level's ladder and off-ladder seats (MO-11). USD per year, base pay. Each row cites fact rows; status is computed from them in the fact register, never typed here. median is the figure paid (MO-05). A seat with no row is not paid.",
   "ladder": {
     "college_second": {
-      "9": { "low": 175000, "median": 268679, "high": 400000, "facts": ["F-pay-college-second-0005", "F-pay-college-second-0006", "F-pay-college-second-0007", "F-pay-college-second-0003", "F-pay-college-second-0004"], "note": "median is the computed median of 12 Big Sky bases (2025); low is the lowest base found, high Norfolk State" },
+      "9": { "low": 175000, "median": 268679, "high": 400000, "facts": ["F-pay-college-second-0005", "F-pay-college-second-0007", "F-pay-college-second-0003", "F-pay-college-second-0004"], "note": "median is the computed median of 12 Big Sky bases (2025); low is the lowest base found, high Norfolk State" },
       "7": { "low": 85000, "median": 131452, "high": 177905, "facts": ["F-pay-college-second-0010", "F-pay-college-second-0011"], "note": "two examples; median is the midpoint (Assumption)" },
       "5": { "low": 40000, "median": 52500, "high": 128618, "facts": ["F-pay-college-second-0012", "F-pay-college-second-0013"], "note": "median is the midpoint of advertised mid-tier pay, $40K to $65K; high is the 2025 champion's top position coach" }
     }
