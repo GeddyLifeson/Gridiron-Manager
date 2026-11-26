@@ -5239,6 +5239,18 @@
    "key": "clock.foul_restart_offended_option_late",
    "value": false,
    "factId": "F-rule-2013"
+  },
+  {
+   "key": "field.width_ft",
+   "value": 160,
+   "factId": "F-rule-2015",
+   "unit": "ft"
+  },
+  {
+   "key": "field.ball_length_yd",
+   "value": 0.309028,
+   "factId": "F-rule-2017",
+   "unit": "yd"
   }
  ]
 }

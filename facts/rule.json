@@ -69154,6 +69154,136 @@
      "reason": "First load from the 2026 rule book text (WP-01)."
     }
    ]
+  },
+  {
+   "id": "F-rule-2015",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Width of the field, sideline to sideline: 160 ft (pro, 2026 rules).",
+   "value": 160,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 1, Article 1 (text copy rulebook_2026.txt, line 353)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The game shall be played upon a rectangular field, 360 feet in length and 160 feet in width.",
+     "value": 160
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.width_ft"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2016",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Width of the field, sideline to sideline: 160 ft (college, 2026 rules).",
+   "value": 160,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 2, Article 1 and Appendix D, field diagram, page FR-130 (PDF page 133). Figure read as an image in the rule book PDF (the text copy lacks it): The dimension line across the full width of the field is labelled 160, beside the 360 length line.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 160
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.width_ft"
+   ],
+   "notes": "The NCAA text copy gives the field dimensions only in Appendix D (Rule 1-2-1: \"with dimensions, lines, zones, goals and pylons as indicated in Appendix D\"); the figure was read as an image in the official PDF (ncaaorg.s3.amazonaws.com PRMFB_RulesBook.pdf). Unit feet, as for the 360 length. Independent published sources agree (Wikipedia American football field; BAFRA 2013 field diagrams), recorded here as a note, not as register sources. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2017",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).: 0.309028 yd (pro, 2026 rules).",
+   "value": 0.309028,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 2, Section 1 (text copy rulebook_2026.txt, line 421)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "long axis, 11 to 11¼ inches;",
+     "value": 0.309028
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.ball_length_yd"
+   ],
+   "notes": "Midpoint of the allowed long axis, 11.125 inches = 0.309028 yd (0.3090277...). The book gives a range, not one length. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2018",
+   "level": "college",
+   "domain": "rule",
+   "statement": "New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).: 0.309896 yd (college, 2026 rules).",
+   "value": 0.309896,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 3, Article 1-f and the ball diagram, page FR-22 (PDF page 25). Figure read as an image in the rule book PDF (the text copy lacks it): The ball diagram labels the length 10 7/8\" to 11 7/16\".",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0.309896
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.ball_length_yd"
+   ],
+   "notes": "The NCAA text copy says only \"Conforms to maximum and minimum dimensions and shape indicated in the accompanying diagram\" (1-3-1-f); the range was read as an image in the official PDF. Midpoint 11 5/32 in (11.15625) = 0.309896 yd. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
   }
  ]
 }

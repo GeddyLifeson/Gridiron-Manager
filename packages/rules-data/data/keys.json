@@ -10401,6 +10401,26 @@
    "readBy": [
     "officiating/clock"
    ]
+  },
+  {
+   "key": "field.width_ft",
+   "type": "number",
+   "meaning": "Width of the field, sideline to sideline",
+   "ownerLeaf": "J1.1.1",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "unit": "ft"
+  },
+  {
+   "key": "field.ball_length_yd",
+   "type": "number",
+   "meaning": "New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).",
+   "ownerLeaf": "B7.5.1",
+   "readBy": [
+    "officiating.scrimmage"
+   ],
+   "unit": "yd"
   }
  ]
 }
