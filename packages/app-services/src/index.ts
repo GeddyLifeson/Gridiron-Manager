@@ -63,3 +63,4 @@ export * as homeCommands from './commands/home/index.ts';
 export * as people from './read-models/people/index.ts';
 export * as peopleCommands from './commands/people/index.ts';
 export * as play from './play/index.ts';
+export * as newgame from './newgame/index.ts';
