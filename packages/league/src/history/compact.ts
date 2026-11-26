@@ -75,11 +75,12 @@ export function foldableIds(rows: readonly WorldEvent[], opts: EventLogOptions &
 
 function groupKey(e: WorldEvent): string {
   const actors = [...e.actors].map((a) => `${a.personId}:${a.role}`).sort().join(',');
-  return canonicalJson([e.when.date.seasonYear, e.type, e.competitionId, e.where.teamId, actors, e.witnesses]);
+  return canonicalJson([e.when.date.seasonYear, e.when.date.dayIndex, e.type, e.competitionId, e.where.teamId, actors, e.witnesses]);
 }
 
 /**
- * Fold old detail into summary rows. A summary takes the id and date of the last row it folds, and the
+ * Fold old detail into summary rows, one per day, type, actors, team, competition and witnesses: play-level
+ * rows become game-level rows (X2.4.1 rule 1), and evidence weights by date are unchanged. A summary takes the id and date of the last row it folds, and the
  * actors, team, competition and witnesses its rows share; its payload holds `of_type`, `count`, `first_id`,
  * `last_id`, and each counter's count and sums.
  */
