@@ -23,4 +23,9 @@ export {
   type AnalyticsReport, type AnalyticsWorker, type Delivery, type ReportPlan, type AccessInputs,
 } from './access.ts';
 export { confidence, coachsCall, LIMITS_NOTE, type ConfidenceMark, type ConfidenceReason, type Confidence, type ConfidenceInputs } from './limits.ts';
+export {
+  ASSUMED_ANALYTICS_DUTY, strengthGames, strengthMark, strengthView, accessView, chartView, trackingView,
+  type GameRowLike, type TeamRowLike, type JobRowLike, type StrengthRowView, type StrengthView, type AccessView, type ChartCellView, type ChartView,
+  type TrackingPlayerInput, type TrackingRowView, type TrackingView,
+} from './views.ts';
 export { RULE_KEYS, PARAMS } from './params.ts';
