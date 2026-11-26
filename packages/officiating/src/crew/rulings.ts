@@ -11,8 +11,8 @@
 //   score                    both directions for a runner at the goal line
 //   spot                     continuous error on every runner-down spot
 //   touching of a kick       both directions: a true touch not seen, and a touch by the receivers that
-//                            did not happen, ruled when the kickers gain possession (the only time it
-//                            changes the ruling: B6.3.2 item 4). The play runs on as the truth has it.
+//                            did not happen, ruled when the kickers recover or down the kick (the only
+//                            time it changes the ruling: B6.3.2 item 4). The play runs on as it did.
 //   field goal or try        both directions
 //   in bounds                recorded, never wrong (a missed step out of bounds needs continuing action)
 //   possession of a loose ball  not ruled: the possession event carries no margin
@@ -146,9 +146,11 @@ export function decideRulings(truth: PlayTruth, ctx: RulingContext, spots: reado
       landing = e;
     } else if (e.type === 'possession' && kickers !== null && !receiversTouched && e.side !== kickers) {
       receiversTouched = true;
-    } else if (e.type === 'possession' && kickers !== null && !receiversTouched && e.side === kickers) {
-      // B11.3.2 rule 2 and A3.1 ruling 22: the receivers are ruled to have touched the kick just before the kickers
-      // got the ball. The margin is the landing's, when the resolver gives one; otherwise only the floor chance.
+    } else if (kickers !== null && !receiversTouched
+      && ((e.type === 'possession' && e.side === kickers) || (e.type === 'dead_ball' && e.reason === 'kick_recovered_by_kickers' && e.side === kickers))) {
+      // B11.3.2 rule 2 and A3.1 ruling 22: the receivers are ruled to have touched the kick before the kickers got
+      // it, by recovering it or by downing it (a dead ball recovered by the kickers with no possession event).
+      // The margin is the landing's, when the resolver gives one; otherwise only the floor chance.
       const by = official(e.spot.x, e.spot.y);
       if (mistaken('touching', landing, by)) add('touching', i, 'untouched', 'touched', landing, by.position, canReview('touching'));
       kickers = null;

@@ -18,6 +18,11 @@ const everyPlay = () => [
 const numbered = (t: PlayTruth, playNumber: number): PlayTruth => ({ ...t, playNumber });
 const rate = (n: number, f: (i: number) => boolean) => { let k = 0; for (let i = 1; i <= n; i++) if (f(i)) k++; return k / n; };
 const wrong = (r: Ruling) => r.calledValue !== r.trueValue;
+/** Punt that lands at x = 80, rolls, and is downed by kicker-side player 47 at x = 88: a touch, then dead, with no possession event. */
+const puntDowned = (landing: { marginYd?: number | null } = {}) => truthOf([
+  ev.snap(), ev.kick(2.0, 'punt', 80), { ...ev.kickTouch(5.8, 'landed', 1, 1, 80, landing), playerId: null, side: null } as TruthEvent,
+  ev.kickTouch(7.4, 'touched_by_kickers', 47, 0, 88), ev.dead(7.6, 'kick_recovered_by_kickers', 88, 0, 47),
+]);
 /** Punt that lands at x = 80 untouched and is recovered by kicker-side player 47 at x = 84. */
 const puntRecoveredUntouched = (landing: { marginYd?: number | null; visibility?: 'open' | 'crowded' | 'pile' } = {}) => truthOf([
   ev.snap(), ev.kick(2.0, 'punt', 80), { ...ev.kickTouch(5.8, 'landed', 1, 1, 80, landing), playerId: null, side: null } as TruthEvent,
@@ -202,6 +207,23 @@ describe('a kick ruled touched by the receivers when nobody touched it (B11.3.2 
       return true;
     });
     expect(share).toBeGreaterThan(0.47); expect(share).toBeLessThan(0.53);
+  });
+  it('a downed punt can be ruled touched by the receivers first: the downing becomes the kickers recovery', () => {
+    const close = puntDowned({ marginYd: 0 });
+    let found = 0;
+    for (let i = 1; i <= 400 && found < 5; i++) {
+      const r = crewModel.perceive(numbered(close, i), [], ctx());
+      // The kickers' own touch is ruled on too (a true touch); only the touch that did not happen is looked at here.
+      const t = touching(r).filter((x) => x.trueValue === 'untouched');
+      if (t.length === 0 || touching(r).some((x) => x.trueValue === 'touched' && wrong(x))) continue;
+      found++;
+      expect(t).toEqual([expect.objectContaining({ eventIndex: 4, trueValue: 'untouched', calledValue: 'touched' })]);
+      expect(r.seen.events.map((e) => (e.type === 'kick_touch' ? e.kind : e.type))).toEqual(
+        ['snap', 'kick', 'landed', 'touched_by_receivers', 'touched_by_kickers', 'possession', 'dead_ball']);
+      expect(r.seen.events[5]).toMatchObject({ side: 0, playerId: 47, how: 'kick_recovery', spot: { x: 88 } });
+      expect(playTruthProblems(r.seen)).toEqual([]);
+    }
+    expect(found).toBe(5);
   });
   it('with no margin the chance is the floor: never zero, and rare', () => {
     const truth = puntRecoveredUntouched();
