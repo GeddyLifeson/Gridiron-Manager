@@ -169,6 +169,8 @@ export interface DesignerView {
   position: string | null;
   positions: readonly string[];
   archetypes: readonly { id: string; labelId: string }[];
+  /** Every position's archetypes, for the start panel before a sheet exists. */
+  archetypeCatalog: Readonly<Record<string, readonly { id: string; labelId: string }[]>>;
   archetypeId: string | null;
   realPerson: boolean;
   sandbox: boolean;
@@ -193,9 +195,10 @@ const TESTS: readonly (keyof SheetTests)[] = ['fortyS', 'tenSplitS', 'threeConeS
 export function designerView(s: DesignerSession, env: DesignerEnv): DesignerView {
   const access = designerAccess(s.world);
   const positions = [...PROFILE_POSITIONS];
+  const archetypeCatalog = access.ok ? Object.fromEntries(positions.map((p) => [p, archetypesFor(p).map((a) => ({ id: a.id, labelId: a.labelId }))])) : {};
   const closed = (): DesignerView => ({
     open: access.ok, refusal: access.ok ? null : { rule: access.rule, message: access.message }, hasSheet: false, entry: null, personId: null, position: null,
-    positions, archetypes: [], archetypeId: null, realPerson: false, sandbox: false, marksWorldEdited: s.world.kind === 'career', sections: [], derived: [],
+    positions, archetypes: [], archetypeCatalog, archetypeId: null, realPerson: false, sandbox: false, marksWorldEdited: s.world.kind === 'career', sections: [], derived: [],
     staffGrade: null, warnings: [], missing: [], blockers: [], canCommit: false, result: s.result,
   });
   if (!access.ok || !s.sheet) return closed();
@@ -239,7 +242,7 @@ export function designerView(s: DesignerSession, env: DesignerEnv): DesignerView
   return {
     open: true, refusal: null, hasSheet: true, entry: sh.entry, personId: sh.personId, position: sh.position, positions,
     archetypes: sh.position !== null && POSITION_TO_PROFILE[sh.position] ? archetypesFor(sh.position).map((a) => ({ id: a.id, labelId: a.labelId })) : [],
-    archetypeId: sh.archetypeId, realPerson: real, sandbox: sh.sandbox, marksWorldEdited: s.world.kind === 'career',
+    archetypeCatalog, archetypeId: sh.archetypeId, realPerson: real, sandbox: sh.sandbox, marksWorldEdited: s.world.kind === 'career',
     sections, derived, staffGrade: grade,
     warnings: warnings.map((w) => ({ fields: w.fields, kind: w.kind, value: w.value, oneIn: w.oneIn })),
     missing, blockers, canCommit: blockers.length === 0, result: s.result,
