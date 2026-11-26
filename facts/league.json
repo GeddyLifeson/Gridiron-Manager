@@ -3907,6 +3907,533 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-league-0115",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The top compensatory bracket (a CFA in the top 5%) gets a pick after the last selection of round 3.",
+   "value": 3,
+   "unit": "round",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 3(b)(1) (text copy cba_2020.txt, line 18028)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "following the last selection in the third round of the College Draft",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0116",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A compensatory free agent must rank within the top 35% of all league players.",
+   "value": 35,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 1(ii) (text copy cba_2020.txt, line 17932)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "ranked within the top 35% of all League players",
+     "value": 35
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0117",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A CFA lost within the top 5% (and below the previous bracket) earns a pick after round 3.",
+   "value": 5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 3(b) (text copy cba_2020.txt, line 18028)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "following the last selection in the third round of the College Draft",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0118",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A CFA lost within the top 10% (and below the previous bracket) earns a pick after round 4.",
+   "value": 10,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 3(b) (text copy cba_2020.txt, line 18032)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "following the last selection in the fourth round of the College Draft",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0119",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A CFA lost within the top 15% (and below the previous bracket) earns a pick after round 5.",
+   "value": 15,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 3(b) (text copy cba_2020.txt, line 18036)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "following the last selection in the fifth round of the College Draft",
+     "value": 15
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0120",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A CFA lost within the top 25% (and below the previous bracket) earns a pick after round 6.",
+   "value": 25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 3(b) (text copy cba_2020.txt, line 18040)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "following the last selection in the sixth round of the College Draft",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0121",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A CFA lost within the top 35% (and below the previous bracket) earns a pick after round 7.",
+   "value": 35,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 3(b) (text copy cba_2020.txt, line 18044)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "following the last selection in the seventh round of the College Draft",
+     "value": 35
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0122",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "First-team All-NFL or All-Pro adds 20 points.",
+   "value": 20,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 2(b)(1) (text copy cba_2020.txt, line 17974)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Selected 1st Team ALL NFL by PFWA or 1st Team ALL PRO by AP: 20 points.",
+     "value": 20
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0123",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "All-Conference (PFWA) adds 5 points.",
+   "value": 5,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 2(b)(2) (text copy cba_2020.txt, line 17977)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Selected All Conference by PFWA (except if selected ALL NFL or ALL PRO above): 5 points.",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0124",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Participation points need at least 25 percent of offensive or defensive plays.",
+   "value": 25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 2(b)(3) (text copy cba_2020.txt, line 17982)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 25% of the offensive/ defensive plays",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0125",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Punters get 1 point per punt attempted.",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 2(b)(3) (text copy cba_2020.txt, line 17986)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 point will be awarded for each punt attempted",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0126",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Punters get 1 point per punt inside the 20.",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 2(b)(3) (text copy cba_2020.txt, line 17987)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 point for each punt inside the 20-yard line during",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0127",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Kickers get 2 points per field goal attempted.",
+   "value": 2,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 2(b)(3) (text copy cba_2020.txt, line 17988)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "and 2 points for each field goal attempted",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0128",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Kickers get 1 point per field goal made.",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 2(b)(3) (text copy cba_2020.txt, line 17989)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "and 1 point for each field goal made during the",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0129",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A non-quarterback CFA with ten or more accrued seasons cannot earn a pick before round 5's end.",
+   "value": 10,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 4 (text copy cba_2020.txt, line 18049)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "with ten or more Accrued Seasons at the time of signing with his new Club",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0130",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Such a pick comes no earlier than the end of round 5.",
+   "value": 5,
+   "unit": "round",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 4 (text copy cba_2020.txt, line 18047)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "no Club shall be entitled to a Compensatory Draft Selection before the end of the fifth round",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0131",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "With equal numbers lost and gained, a pick needs the lost sum to exceed the gained sum by more than 300 points.",
+   "value": 300,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Appendix V Paragraph 5 (text copy cba_2020.txt, line 18054)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "is more than 300 points greater than the sum of",
+     "value": 300
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). One source group; the NFL.com compensatory-picks pages could be added as a second.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }
