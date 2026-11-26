@@ -21,7 +21,7 @@ web('lsdbi_109394', 'NCAA LSDBi proposal 2026-44, Age-based eligibility model, f
 web('ncaa_apr', 'NCAA.org, Academic Progress Rate (APR) (page modified 2026-10-20, https://www.ncaa.org/student-athletes/compliance/academic-progress-rate)', 'ncaa', True)
 web('ncaa_apr23', 'NCAA.org, Academic Performance Program penalties to return for 2024-25 (2023-02-10, https://www.ncaa.org/news/media-center-academic-performance-program-penalties-to-return-for-2024-25/)', 'ncaa', True)
 web('ncaa_news11', 'NCAA News Archive, New rule should boost APRs in football (2011-05-24, https://s3.amazonaws.com/ncaanewsarchive/2011/may/new-rule-should-boost-aprs-in-football.html)', 'ncaa', False)
-web('ncaa_memo', 'NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)', 'ncaa', True)
+source('ncaa_memo', 'NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)', 'ncaa', True, 'primary text', '/mnt/project-files/research/college/ncaa-primary/2026-nfl-education-memo-raw.txt', '2026-nfl-education-memo-raw.txt')
 # ---- school compliance pages restating the bylaws (each its own group)
 web('lsu', 'LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)', 'lsu-compliance')
 web('lsu_tr', 'LSU Compliance, Transfer Regulations (quotes Bylaw 15.3.5.1(f), copyright 2021, https://www.compliance.lsu.edu/transfer-regulations)', 'lsu-compliance')
