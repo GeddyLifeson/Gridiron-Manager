@@ -80,6 +80,7 @@
     "settings.audio.playClockTickVolume": "Volume of the tick under 10 seconds on the play clock.",
     "settings.audio.menuMusicOn": "Music on the menu and career screens. Off by default.",
     "settings.audio.playClockTickOn": "A tick when the play clock is under 10 seconds. The clock pulses on screen either way.",
+    "settings.audio.menuMusicOn": "Plays music on the menu screens. Off by default.",
     "settings.controls.keyProfile": "The key profile in use. Left hand only is included.",
     "settings.controls.keyOverrides": "Keys you changed from the default. Change them on the Keys page.",
     "settings.accessibility.colourVision": "Palettes for protan, deutan and tritan colour vision. Colour is never the only signal.",

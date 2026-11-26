@@ -7,3 +7,6 @@ export * as batch from './batch/index.ts';
 export * as diff from './diff/index.ts';
 export * as calibrationPlay from './calibration-play/index.ts';
 export * as exploit from './exploit/index.ts';
+export * as longRun from './long-run/index.ts';
+export * as careerRun from './career-run/index.ts';
+export * as bench from './bench/index.ts';

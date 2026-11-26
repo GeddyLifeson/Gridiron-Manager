@@ -27,3 +27,7 @@ export * as playBench from './play-bench/index.ts';
 export * as editor from './editor/index.ts';
 export * as defenseDesignerView from './read-models/defense-designer/index.ts';
 export * as playDesigner from './play-designer/index.ts';
+export * as presentationFeed from './presentation/feed/index.ts';
+export * as cosmetic from './cosmetic/index.ts';
+export * as seats from './read-models/seats/index.ts';
+export * as seatsCommands from './commands/seats/index.ts';
