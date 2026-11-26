@@ -1,0 +1,1175 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-honours-0001",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The pro league's best-known season awards are voted by a panel of 50 media members who cover the league.",
+   "value": 50,
+   "unit": "voters",
+   "validFor": "2022 season onward",
+   "sources": [
+    {
+     "citation": "The Associated Press NFL awards are the league's official awards (AP, 2025-02-06, via AOL)",
+     "locator": "https://lite.aol.com/sports/story/0001/20250206/e35810ba2c3bd99e76bcc8551476a6cb",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": true,
+     "quote": "A nationwide panel of 50 media members who regularly cover the league completed voting before the playoffs began.",
+     "value": 50
+    },
+    {
+     "citation": "CBS Sports, Voting format for NFL MVP award undergoing major change, starting with 2022 season (2022-11-20)",
+     "locator": "https://www.cbssports.com/nfl/news/voting-format-for-nfl-mvp-award-undergoing-major-change-starting-with-2022-season",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "quote": "the AP's 50 voters were only allowed to name one player on their MVP ballot",
+     "value": 50
+    },
+    {
+     "citation": "Pro Football Network, Who Votes on NFL Awards? (2023-02-09, modified 2024-08-01)",
+     "locator": "https://www.profootballnetwork.com/who-votes-on-nfl-awards-honors/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfn",
+     "primary": false,
+     "quote": "a panel of 50 sports journalists",
+     "value": 50
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Fox Sports (updated 2025-02-12) counted 49 media members voting for the 2024 season: a seat left empty that year, not a different panel size. The number who actually vote in a year may be one or two under 50.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0002",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Each voter ranks a top five per award; places score 10, 5, 3, 2 and 1 points.",
+   "value": "10,5,3,2,1",
+   "unit": "points by place",
+   "validFor": "2024 season onward (weighted points began 2022)",
+   "sources": [
+    {
+     "citation": "The Associated Press NFL awards are the league's official awards (AP, 2025-02-06, via AOL)",
+     "locator": "https://lite.aol.com/sports/story/0001/20250206/e35810ba2c3bd99e76bcc8551476a6cb",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": true,
+     "quote": "A first-place vote is worth 10 points, second place is 5 followed by 3, 2 and 1.",
+     "value": "10,5,3,2,1"
+    },
+    {
+     "citation": "Fox Sports, NFL Honors: Who votes for The Associated Press NFL awards (updated 2025-02-12)",
+     "locator": "https://www.foxsports.com/articles/nfl/nfl-honors-who-votes-for-the-associated-press-nfl-awards-how-to-watch-and-more",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "10, 5, 3, 2, 1 points; weighted system began in 2022",
+     "value": "10,5,3,2,1"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Pro Football Network (2023) describes an earlier step: MVP top five at 10-5-3-2-1 and the other awards top three at 5-3-1. The AP 2025 text says a top five for each award.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0003",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Award voting is completed before the playoffs begin.",
+   "value": "before_postseason",
+   "unit": "option",
+   "validFor": "2024 season",
+   "sources": [
+    {
+     "citation": "The Associated Press NFL awards are the league's official awards (AP, 2025-02-06, via AOL)",
+     "locator": "https://lite.aol.com/sports/story/0001/20250206/e35810ba2c3bd99e76bcc8551476a6cb",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ap",
+     "primary": true,
+     "quote": "completed voting before the playoffs began",
+     "value": "before_postseason"
+    },
+    {
+     "citation": "CBS Sports, Voting format for NFL MVP award undergoing major change, starting with 2022 season (2022-11-20)",
+     "locator": "https://www.cbssports.com/nfl/news/voting-format-for-nfl-mvp-award-undergoing-major-change-starting-with-2022-season",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "quote": "The voting for each award is done before the playoffs start.",
+     "value": "before_postseason"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "The CBS line comes from a summary of a truncated page, not a verbatim read.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0004",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Hall of fame class: at least three new members a year (Class of 2027 onward).",
+   "value": 3,
+   "unit": "members",
+   "validFor": "Class of 2027 onward",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process (modified 2026-09-18)",
+     "locator": "https://www.profootballhof.com/football-history/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "the Hall's current bylaws stipulate that between three and seven new members will be selected each year.",
+     "value": 3
+    },
+    {
+     "citation": "ESPN, Pro Football HOF makes sweeping changes to selection process (Jeff Legwold, 2026-09-04)",
+     "locator": "https://africa.espn.com/nfl/story/_/id/49823476/pro-football-hof-makes-sweeping-changes-selection-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "The Hall said an induction class could now be between three and seven members.",
+     "value": 3
+    },
+    {
+     "citation": "Associated Press via WDIV ClickOnDetroit, Pro Football Hall of Fame cuts selection panel nearly in half (2026-09-04)",
+     "locator": "https://www.clickondetroit.com/sports/2026/09/04/pro-football-hall-of-fame-cuts-selection-panel-nearly-in-half-in-the-latest-overhaul-of-the-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "The Hall said that would lead to a range of three to seven Hall of Famers each year",
+     "value": 3
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0005",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Hall of fame class: at most seven new members a year (Class of 2027 onward).",
+   "value": 7,
+   "unit": "members",
+   "validFor": "Class of 2027 onward",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process (modified 2026-09-18)",
+     "locator": "https://www.profootballhof.com/football-history/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "between three and seven new members will be selected each year.",
+     "value": 7
+    },
+    {
+     "citation": "ESPN, Pro Football HOF makes sweeping changes to selection process (Jeff Legwold, 2026-09-04)",
+     "locator": "https://africa.espn.com/nfl/story/_/id/49823476/pro-football-hof-makes-sweeping-changes-selection-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "could now be between three and seven members.",
+     "value": 7
+    },
+    {
+     "citation": "Associated Press via WDIV ClickOnDetroit, Pro Football Hall of Fame cuts selection panel nearly in half (2026-09-04)",
+     "locator": "https://www.clickondetroit.com/sports/2026/09/04/pro-football-hall-of-fame-cuts-selection-panel-nearly-in-half-in-the-latest-overhaul-of-the-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "a range of three to seven Hall of Famers each year",
+     "value": 7
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0006",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A hall of fame candidate needs approval from at least 80 percent of the full committee.",
+   "value": 0.8,
+   "unit": "share",
+   "validFor": "through and after the Class of 2027",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process (modified 2026-09-18)",
+     "locator": "https://www.profootballhof.com/football-history/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "must receive approval from at least 80% of the full Committee to be elected.",
+     "value": 0.8
+    },
+    {
+     "citation": "ESPN, Pro Football HOF makes sweeping changes to selection process (Jeff Legwold, 2026-09-04)",
+     "locator": "https://africa.espn.com/nfl/story/_/id/49823476/pro-football-hof-makes-sweeping-changes-selection-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "It takes 80% approval for enshrinement",
+     "value": 0.8
+    },
+    {
+     "citation": "Associated Press via WDIV ClickOnDetroit, Pro Football Hall of Fame cuts selection panel nearly in half (2026-09-04)",
+     "locator": "https://www.clickondetroit.com/sports/2026/09/04/pro-football-hall-of-fame-cuts-selection-panel-nearly-in-half-in-the-latest-overhaul-of-the-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "Voters will be able to vote for six people with 80% needed.",
+     "value": 0.8
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0007",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A player is eligible for the hall of fame five seasons after retiring.",
+   "value": 5,
+   "unit": "seasons",
+   "validFor": "through and after the Class of 2027",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process (modified 2026-09-18)",
+     "locator": "https://www.profootballhof.com/football-history/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "A Player must have been retired for at least five seasons before he can be considered",
+     "value": 5
+    },
+    {
+     "citation": "ESPN, Pro Football HOF makes sweeping changes to selection process (Jeff Legwold, 2026-09-04)",
+     "locator": "https://africa.espn.com/nfl/story/_/id/49823476/pro-football-hof-makes-sweeping-changes-selection-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "Players will still be eligible for induction five years after their retirement",
+     "value": 5
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0008",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A coach is eligible for the hall of fame after one full season out of the pro game.",
+   "value": 1,
+   "unit": "seasons",
+   "validFor": "through and after the Class of 2027",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process (modified 2026-09-18)",
+     "locator": "https://www.profootballhof.com/football-history/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "Coaches must be out of the pro game for one full season.",
+     "value": 1
+    },
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process FAQ (undated; read by the research pass)",
+     "locator": "https://profootballhof.com/hall-of-famers/selection-process-faq",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "out of the game for at least one season",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Both sources are the Hall itself (one independence group). No outside source read.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0009",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Hall of fame voting committee: 25 voting members (28 seats with 3 nonvoting), Class of 2027 onward.",
+   "value": 25,
+   "unit": "voters",
+   "validFor": "Class of 2027 onward",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection process improvements ahead of Class of 2027 election (2026-09-04)",
+     "locator": "https://www.profootballhof.com/news/pro-football-hall-of-fame-announces-selection-process-improvements-ahead-of-class-of-2027-election",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "25 voting, 3 nonvoting participants",
+     "value": 25
+    },
+    {
+     "citation": "ESPN, Pro Football HOF makes sweeping changes to selection process (Jeff Legwold, 2026-09-04)",
+     "locator": "https://africa.espn.com/nfl/story/_/id/49823476/pro-football-hof-makes-sweeping-changes-selection-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "25 members of the selection committee will be voting members, plus three alternates.",
+     "value": 25
+    },
+    {
+     "citation": "Associated Press via WDIV ClickOnDetroit, Pro Football Hall of Fame cuts selection panel nearly in half (2026-09-04)",
+     "locator": "https://www.clickondetroit.com/sports/2026/09/04/pro-football-hall-of-fame-cuts-selection-panel-nearly-in-half-in-the-latest-overhaul-of-the-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "with 25 of them eligible to vote each year",
+     "value": 25
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0010",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Hall of fame final candidates per year: 15 (13 players, 1 coach, 1 contributor), Class of 2027 onward.",
+   "value": 15,
+   "unit": "candidates",
+   "validFor": "Class of 2027 onward",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process (modified 2026-09-18)",
+     "locator": "https://www.profootballhof.com/football-history/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "a roster of 15 Candidates – 13 Players, 1 Coach and 1 Contributor",
+     "value": 15
+    },
+    {
+     "citation": "ESPN, Pro Football HOF makes sweeping changes to selection process (Jeff Legwold, 2026-09-04)",
+     "locator": "https://africa.espn.com/nfl/story/_/id/49823476/pro-football-hof-makes-sweeping-changes-selection-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "a list of 13 players, one coach and one contributor -- 15 in all",
+     "value": 15
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0011",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Hall of fame class before the Class of 2027: at least four new members a year.",
+   "value": 4,
+   "unit": "members",
+   "validFor": "through the Class of 2026",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process FAQ (undated; read by the research pass)",
+     "locator": "https://profootballhof.com/hall-of-famers/selection-process-faq",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "between four and eight members per year",
+     "value": 4
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the research pass (research/unsourced-pass/2-league-cap-draft.md item 14). No outside source read for the range.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0012",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Hall of fame class before the Class of 2027: at most eight new members a year.",
+   "value": 8,
+   "unit": "members",
+   "validFor": "through the Class of 2026",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection Process FAQ (undated; read by the research pass)",
+     "locator": "https://profootballhof.com/hall-of-famers/selection-process-faq",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "between four and eight members per year",
+     "value": 8
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "As row 0011.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0013",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Hall of fame voting committee before the Class of 2027: 50 selectors.",
+   "value": 50,
+   "unit": "voters",
+   "validFor": "through the Class of 2026",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Selection process improvements ahead of Class of 2027 election (2026-09-04)",
+     "locator": "https://www.profootballhof.com/news/pro-football-hall-of-fame-announces-selection-process-improvements-ahead-of-class-of-2027-election",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "Reduces panel from 50 Selectors to 28.",
+     "value": 50
+    },
+    {
+     "citation": "ESPN, Pro Football HOF makes sweeping changes to selection process (Jeff Legwold, 2026-09-04)",
+     "locator": "https://africa.espn.com/nfl/story/_/id/49823476/pro-football-hof-makes-sweeping-changes-selection-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "The board of selectors will be reduced from 50 to 28",
+     "value": 50
+    },
+    {
+     "citation": "Associated Press via WDIV ClickOnDetroit, Pro Football Hall of Fame cuts selection panel nearly in half (2026-09-04)",
+     "locator": "https://www.clickondetroit.com/sports/2026/09/04/pro-football-hall-of-fame-cuts-selection-panel-nearly-in-half-in-the-latest-overhaul-of-the-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "cutting the size of the selection committee from 50 people to 28",
+     "value": 50
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "All 50 voted under the old rules; how many of the 50 were non-voting was not stated, so 50 is used.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0014",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a player must have been a first-team All-America selection by a selector the NCAA recognises.",
+   "value": true,
+   "unit": "flag",
+   "validFor": "2026 and 2027 ballots",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "A PLAYER MUST HAVE RECEIVED FIRST-TEAM ALL-AMERICA RECOGNITION BY A SELECTOR",
+     "value": true
+    },
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "first-team All-America recognition by a selector",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Both pages are the National Football Foundation (one group).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0015",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a player becomes eligible 10 full seasons after his last college season.",
+   "value": 10,
+   "unit": "seasons",
+   "validFor": "2026 and 2027 ballots",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "10 full seasons after his last year of intercollegiate football played.",
+     "value": 10
+    },
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "10 full seasons after his last year of intercollegiate football played.",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0016",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a player must have played his last college season within the last 50 years.",
+   "value": 50,
+   "unit": "years",
+   "validFor": "2026 and 2027 ballots",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "Players must have played their last year of intercollegiate football within the last 50 years.",
+     "value": 50
+    },
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "within the last 50 years.",
+     "value": 50
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0017",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a coach must have coached at least 100 games.",
+   "value": 100,
+   "unit": "games",
+   "validFor": "2026 and 2027 ballots",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "coached at least 100 games with a .600 winning percentage.",
+     "value": 100
+    },
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "coached at least 100 games with a .595 winning percentage.",
+     "value": 100
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0018",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a coach needs a career winning percentage of at least .600 (through the 2026 ballot).",
+   "value": 0.6,
+   "unit": "share",
+   "validFor": "through the 2026 ballot",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "coached at least 100 games with a .600 winning percentage.",
+     "value": 0.6
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "The NFF page says the minimum was revised from .600 to .595, which confirms the earlier value (same group).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0019",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a coach needs a career winning percentage of at least .595 (from the 2027 ballot).",
+   "value": 0.595,
+   "unit": "share",
+   "validFor": "2027 ballot onward",
+   "sources": [
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "revising the minimum career winning percentage required for coaching eligibility from .600 to .595",
+     "value": 0.595
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0020",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a coach becomes eligible three full seasons after retiring.",
+   "value": 3,
+   "unit": "seasons",
+   "validFor": "2026 and 2027 ballots",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "A coach becomes eligible three full seasons after retirement",
+     "value": 3
+    },
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "A coach becomes eligible three full seasons after retirement",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0021",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: a retired coach aged 70 or older is eligible at once.",
+   "value": 70,
+   "unit": "years of age",
+   "validFor": "2026 and 2027 ballots",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "immediately following retirement provided he is at least 70 years old.",
+     "value": 70
+    },
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "immediately following retirement provided he is at least 70 years old.",
+     "value": 70
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0022",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College hall: an active coach becomes eligible at 75.",
+   "value": 75,
+   "unit": "years of age",
+   "validFor": "2026 and 2027 ballots",
+   "sources": [
+    {
+     "citation": "College Football Hall of Fame, Inductees Selection Process (cfbhall.com, footer 2026)",
+     "locator": "https://cfbhall.com/selection-process/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "Active coaches become eligible at 75 years of age.",
+     "value": 75
+    },
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame Criteria and Voting Process",
+     "locator": "https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame-criteria-and-voting-process.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "Active coaches become eligible at 75 years of age.",
+     "value": 75
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0023",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of players drafted 1980 to 2010 later in the pro hall of fame (a lower bound: some late picks are not yet eligible).",
+   "value": 0.0114,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "hof true: 101 of 8832",
+     "value": 0.0114
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0024",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the same cohort with at least one first-team all-league (All-Pro) selection.",
+   "value": 0.0414,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "allpro >= 1: 366 of 8832",
+     "value": 0.0414
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0025",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the same cohort with at least three first-team all-league selections.",
+   "value": 0.0101,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "allpro >= 3: 89 of 8832",
+     "value": 0.0101
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0026",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the same cohort with at least five first-team all-league selections.",
+   "value": 0.0032,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "allpro >= 5: 28 of 8832",
+     "value": 0.0032
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0027",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the same cohort with at least one all-star (Pro Bowl) selection.",
+   "value": 0.1051,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "probowls >= 1: 928 of 8832",
+     "value": 0.1051
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0028",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the same cohort with at least three all-star selections.",
+   "value": 0.0442,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "probowls >= 3: 390 of 8832",
+     "value": 0.0442
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0029",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the same cohort with at least five all-star selections.",
+   "value": 0.0222,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "probowls >= 5: 196 of 8832",
+     "value": 0.0222
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-honours-0030",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the same cohort who played at least one pro game.",
+   "value": 0.7955,
+   "unit": "share",
+   "validFor": "players drafted 1980 to 2010, data as loaded 2026",
+   "sources": [
+    {
+     "citation": "Project data data/people/nfl_draft_history.csv (Pro Football Reference columns via nflverse)",
+     "locator": "/mnt/project-files/data/people/nfl_draft_history.csv, rows with season 1980 to 2010 (8,832 players)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pfr",
+     "primary": false,
+     "quote": "games > 0: 7026 of 8832",
+     "value": 0.7955
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Calibration anchor only (X4.2.3), never a rule. Recomputed in this pass; matches X4.2.3. One data source: 1 of 3.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-43 (awards, records, halls); status computed from sources."
+    }
+   ]
+  }
+ ]
+}

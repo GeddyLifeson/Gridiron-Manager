@@ -1,0 +1,20 @@
+{
+ "$comment": "X4.1.1 content: base score per event type, family defaults, stakes table and career bases by rung. All values are Assumption starting weights (X4.1.1 'Football facts used: None. The weights are Assumption').",
+ "familyDefault": { "game": 0, "career": 10, "roster": 5, "relationship": 5, "discipline": 20, "health": 10, "personal": 0, "media": 5, "honors": 20, "world": 10 },
+ "types": {
+  "game_result": 10,
+  "weekly_honour": 15,
+  "season_award": 45,
+  "all_league_selection": 30,
+  "all_star_selection": 20,
+  "record_set": 25,
+  "career_milestone": 25,
+  "hall_nominated": 20,
+  "hall_finalist": 35,
+  "hall_elected": 60,
+  "hall_passed_over": 25
+ },
+ "stakes": { "playoff": 15, "title": 25, "elimination": 15, "rivalry": 10, "bowl": 10, "conference_title": 15 },
+ "careerTypes": ["hired", "fired", "retired"],
+ "rungBase": { "head_coach": 45, "coordinator": 25, "position_coach": 10, "assistant": 5, "graduate_assistant": 0, "quality_control": 0 }
+}

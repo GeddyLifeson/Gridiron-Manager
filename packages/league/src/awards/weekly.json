@@ -1,0 +1,9 @@
+{
+ "$comment": "C9.1.1 selection weights per D14 public statistic id. Assumption: voters reward counting statistics over quality (C9.1.1 rule 2), so the weights are counting-stat weights and no lineman statistic is listed. Tuned by the weekly honours test.",
+ "categories": {
+  "offense": { "pass_yards": 0.04, "pass_touchdowns": 4, "pass_interceptions": -2, "rush_yards": 0.1, "rush_touchdowns": 6, "receptions": 0.5, "receiving_yards": 0.1, "receiving_touchdowns": 6, "rush_fumbles_lost": -2, "receiving_fumbles_lost": -2 },
+  "defense": { "tackles_solo": 1, "tackles_assisted": 0.5, "tackles_for_loss": 1, "sacks": 4, "quarterback_hits": 0.5, "interceptions": 5, "passes_defended": 1, "forced_fumbles": 3, "fumble_recoveries": 2, "safeties": 4, "defensive_touchdowns": 6 },
+  "special_teams": { "field_goals_made": 3, "extra_points_made": 1, "punt_return_yards": 0.1, "punt_return_touchdowns": 6, "kickoff_return_yards": 0.05, "kickoff_return_touchdowns": 6, "punt_net_yards": 0.04 }
+ },
+ "skillPositions": ["QB", "RB", "FB", "WR", "TE"]
+}
