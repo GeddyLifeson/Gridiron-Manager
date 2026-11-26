@@ -136,4 +136,10 @@ export interface PlayContext {
   /** A clock or field-goal-range state in which a sack costs more (K1.3.3 rule 1). */
   readonly sackCostsMore?: boolean;
   readonly units?: readonly CommUnit[];
+  /**
+   * D9 knowledge (0 to 100) of a concept a player holds no item for in `gameDay.knowledge`, per side of the ball:
+   * [snapping team, other team]. A roster with no install record (a placeholder team) reads this for every
+   * assignment. Absent: full knowledge, so the D9.4.1 knowledge draw is zero.
+   */
+  readonly knowledgeDefault?: readonly [number, number];
 }

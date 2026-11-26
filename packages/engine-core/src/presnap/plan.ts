@@ -15,7 +15,8 @@ import { drawTeam, type TeamDraws } from './draws.ts';
 const ISS_PER_Z = 10;
 import {
   audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
-  disguiseQualityOf, falseStartChance, holdEndS, huddleDeliveryChance, offenseStartS, protectionRecognitionChance,
+  disguiseQualityOf, falseStartChance, holdEndS, huddleDeliveryChance, noHuddleDeliveryChance, offenseStartS, protectionRecognitionChance,
+  relayGarbleChance, relayTimeS, type RelayInput,
   readCorrectChance, runOnS, unitLateS, unitSetS, snapMotionSdS, substitutionErrorChance, targetClockAtSnapS, tightenSplit, unblockedAfterSet,
   type DefensiveForm, type Tempo, type Venue,
   type UnitChange,
@@ -103,6 +104,12 @@ export interface PresnapInput {
    * and the ball is in his hands at tick 0.
    */
   readonly snap?: SnapSpec | null;
+  /**
+   * I2.1.1 stages 1 to 3 (spotting, decision, relay) for a play called from the sideline: they run on the play
+   * clock before the huddle, so `playClockStartTenths` is then the reading when the ball became dead. Null or
+   * absent: the phase starts at `playClockStartTenths` with the call already in.
+   */
+  readonly relay?: RelayInput | null;
   /** Test switch for J5.4.2 acceptance 1 ("errors disabled"): every recognition and delivery succeeds. Draws are still taken. */
   readonly errorsDisabled?: boolean;
 }
@@ -193,6 +200,11 @@ export interface PresnapPlan {
   /** Mental errors to emit: slot and form (J4.5.3). */
   readonly mentalErrors: readonly { readonly slot: number; readonly cause: 'knowledge' | 'communication'; readonly form: string }[];
   readonly offenseSetS: number;
+  /** Seconds the call took to reach the huddle (I2.1.1 stages 1 to 3) and how many times it was sent again (I2.4.1 garble). 0 without a relay. */
+  readonly relayS: number;
+  readonly relayRepeats: number;
+  /** Seconds left on the play clock when the offense is set (J5.8.1), the K1.5.1 time to fix a teammate. */
+  readonly setClockLeftS: number;
   readonly draws: readonly [TeamDraws, TeamDraws];
 }
 
@@ -246,7 +258,12 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const mentalErrors: { slot: number; cause: 'knowledge' | 'communication'; form: string }[] = [];
   const fouls: PlannedFoul[] = [];
   const setPeriod = rules.num('formation.shift_set_seconds');
-  const clockStartS = input.playClockStartTenths / TICKS_PER_SECOND;
+  // I2.1.1 stages 1 to 3: the call's way in runs on the play clock before the huddle; noise garbles it (I2.4.1).
+  const relay = input.relay
+    ? relayTimeS(input.relay, relayGarbleChance(O.noise, input.callWords, p), dO.get('relay', 0, 0), dO.get('relay', 0, 1), dO.get('relay', 0, 2), math, p)
+    : { totalS: 0, repeats: 0 };
+  const clockStartTenths = Math.max(0, input.playClockStartTenths - Math.round(relay.totalS * TICKS_PER_SECOND));
+  const clockStartS = clockStartTenths / TICKS_PER_SECOND;
   const minPy = (0 - w.frame.originY) * w.frame.attackDir, maxPy = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
   const loPy = Math.min(minPy, maxPy), hiPy = Math.max(minPy, maxPy);
 
@@ -475,8 +492,11 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     const dist = Math.abs(spot[s]!.py - spot[caller]!.py) + Math.abs(spot[s]!.px - spot[caller]!.px);
     const fam = S.familiarityZ ?? 0;
     const live = callDeliveryChance(S.noise, dist, issToZ(iss(w, caller, 'football_intelligence')) + fam, issToZ(iss(w, s, 'football_intelligence')) + fam, 0, pp);
+    // J5.1.3: the play call in a huddle is heard near 1 whatever the crowd; without one it comes by signal and the
+    // quarterback's voice at the line, which noise cuts. `live` (J3.6.1) is the chance of a call made at the line.
     const hud = input.tempo === 'huddle'
-      ? huddleDeliveryChance(input.callWords, ts / (SLOTS_PER_TEAM - 1), iss(w, caller, 'clock_and_situation_command'), p) : live;
+      ? huddleDeliveryChance(input.callWords, ts / (SLOTS_PER_TEAM - 1), iss(w, caller, 'clock_and_situation_command'), p)
+      : noHuddleDeliveryChance(S.noise, p);
     // The signal caller hears the sideline on his helmet radio until it cuts off (B2.5.1); after that he reads signals.
     const callerHears = input.tempo === 'huddle' || radioOk || dr.get('callDelivery', ts, 0) < live;
     const r: [boolean, boolean, boolean] = s === caller
@@ -614,10 +634,10 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   }
 
   return {
-    firstTick: startTick, playClockStartTenths: input.playClockStartTenths, playClockAtSnapTenths: input.playClockStartTenths - N,
+    firstTick: startTick, playClockStartTenths: clockStartTenths, playClockAtSnapTenths: clockStartTenths - N,
     snapS, targets, received, log, fouls, qb, protection, checks, audible, disguiseQuality, startS,
     follower, motionSlot, motionStartTick: motionStartS >= 0 ? tickAt(motionStartS) : 1, missing, mentalErrors,
-    offenseSetS: readyS, draws: [dO, dD],
+    offenseSetS: readyS, relayS: relay.totalS, relayRepeats: relay.repeats, setClockLeftS: Math.max(0, clockStartS - readyS), draws: [dO, dD],
   };
 }
 

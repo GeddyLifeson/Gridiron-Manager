@@ -12,6 +12,7 @@ const VEN = 'J5.7.1 home/road split (1 of 3)';
 const SUB = 'J15.7 defensive too many men 0.15 per game (1 of 3)';
 const READ = 'J5.4.1 acceptance (read accuracy test)';
 const PROT = 'J5.4.2 acceptance 2';
+const DOG = 'J12.6.1 acceptance 2: delay of game 0.34 home, 0.47 road per 100 snaps (1 of 3)';
 const SCHED = 'J5.8.1 acceptance 1 and 3 (play-clock-at-snap data not yet sourced)';
 
 const ROWS: readonly ParamRow[] = [
@@ -40,6 +41,27 @@ const ROWS: readonly ParamRow[] = [
   ['huddle.longCallWords', 8, 4, 16, 'count', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
   ['huddle.longCallPerWord', 0.002, 0, 0.01, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
   ['huddle.clockCommandPerZ', 0.001, 0, 0.005, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
+  // J5.1.3 no-huddle: the call comes by signal and by the quarterback's voice at the line. The J3.6.1 voice chance
+  // (0.97 in silence) is for a call made during the play; taken for the whole play call it gave 40 missed calls a
+  // game at home. Base as the huddle's; the noise term is an Assumption sized to the J5.1.3 acceptance
+  // ("below 0.5 for a huddle offense at home and rise on the road in loud stadiums at no-huddle").
+  ['nohuddle.deliveryBase', 0.9995, 0.99, 1, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
+  ['nohuddle.noiseK', 0.004, 0, 0.02, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance; J12.8.1 acceptance 1'],
+  // I2.1.1 stages 1 to 3 and I2.4.1 garble: the call's way to the huddle runs on the play clock. The decision tail
+  // (mean of an exponential lateness of the call) and the noise term of the garble chance are Assumptions fitted to
+  // the delay-of-game rates by venue (J12.6.1: 0.34 home, 0.47 road per 100 snaps, 1 of 3).
+  // I2.1.1 stage durations the content port fills the relay with: spotting 3 to 6 s (the middle), radio 2 s and
+  // signals 3 s (I2.4.1). The caller's usual decision time and the seconds per spoken word are Assumptions (a long
+  // call "took a full three seconds" to read, I2.4.1, 1 of 3: about 8 words).
+  ['relay.spottingS', 4.5, 3, 6, 's', 'bible', 'I2.1.1', DOG],
+  ['relay.decisionS', 6, 2, 12, 's', 'assumption', 'I2.1.1', DOG],
+  ['relay.radioS', 2, 1, 4, 's', 'bible', 'I2.4.1', DOG],
+  ['relay.signalS', 3, 1, 6, 's', 'bible', 'I2.4.1', DOG],
+  ['relay.perWordS', 0.4, 0.2, 0.8, 's', 'assumption', 'I2.4.1', DOG],
+  ['relay.decisionTailS', 2.8, 0.5, 6, 's', 'assumption', 'I2.1.1', DOG],
+  ['relay.garbleBase', 0.005, 0, 0.05, 'probability', 'bible', 'I2.4.1', DOG],
+  ['relay.garblePerNoise', 0.15, 0, 0.5, 'probability', 'assumption', 'I2.4.1', DOG],
+  ['relay.garblePerWord', 0.002, 0, 0.02, 'probability', 'assumption', 'I2.4.1', DOG],
   ['huddle.breakS', 3, 1, 6, 's', 'assumption', 'J5.1.3', SCHED],
   // J5.2 alignment.
   ['align.lineSplitYd', 0.7, 0.3, 1.5, 'yd', 'bible', 'J5.2.1', 'J5.2.1 acceptance'],

@@ -263,14 +263,19 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     // sets none (a kick) would otherwise be read with the keys of the play before it, which differ from run to run of
     // the same game in one process.
     for (let s = 0; s < SLOT_COUNT; s++) { perception.configure(s, PERCEPTION_RESET); const cfg = s0.perception[s]; if (cfg !== undefined) perception.configure(s, cfg); }
-    playerAi.setPlay(slotPlays, s0.context, null);
-
     let loop = freeKickLoop;
     if (free) {
+      playerAi.setPlay(slotPlays, s0.context, null);
       plan = null; presnap = null; perceptionFrom = 0;
       interact.setPlay(contests!, null);
     } else {
       const thePlan = planPresnap(world, presnapInput), pp = presnapParams(params);
+      // K1.5.1 rule 2 reads the play clock left when the units are set (J5.8.1), which only the plan knows; and a
+      // player the call never reached plays the old assignment (J5.1.3, J4.5.3). A missing substitute is not on the field.
+      playerAi.setPlay(slotPlays, s0.context.playClockLeftS === undefined ? { ...s0.context, playClockLeftS: thePlan.setClockLeftS } : s0.context, null);
+      const missed: number[] = [];
+      for (let s = 0; s < SLOT_COUNT; s++) if (!thePlan.received[s]![0] && !thePlan.missing.includes(s)) missed.push(s);
+      playerAi.setMissedCalls(missed);
       plan = thePlan; presnap = createPresnapStages(thePlan, presnapInput);
       perceptionFrom = -q['setup.perceptionLeadTicks']!;
       interact.setPlay(contests!, (blocker, defender) => startingAdvantage(thePlan.startS[blocker]!, thePlan.startS[defender]!, pp));
