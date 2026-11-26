@@ -864,6 +864,78 @@
     "KeyK"
    ],
    "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "watch.toggle_offense",
+   "keys": [
+    "Ctrl+Digit1"
+   ],
+   "device": "keyboard",
+   "note": "Take the offense from the OC, or hand it back. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
+  },
+  {
+   "context": "global",
+   "action": "watch.toggle_defense",
+   "keys": [
+    "Ctrl+Digit2"
+   ],
+   "device": "keyboard",
+   "note": "Take the defense from the DC, or hand it back. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
+  },
+  {
+   "context": "global",
+   "action": "watch.toggle_special",
+   "keys": [
+    "Ctrl+Digit3"
+   ],
+   "device": "keyboard",
+   "note": "Take special teams, or hand them back. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
+  },
+  {
+   "context": "global",
+   "action": "watch.toggle_management",
+   "keys": [
+    "Ctrl+Digit4"
+   ],
+   "device": "keyboard",
+   "note": "Keep game management, or hand it to the assistant head coach. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
+  },
+  {
+   "context": "global",
+   "action": "watch.continue",
+   "keys": [
+    "Ctrl+Space"
+   ],
+   "device": "keyboard",
+   "note": "Go on after a stop rule halted the game. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
+  },
+  {
+   "context": "global",
+   "action": "watch.cycle_mode",
+   "keys": [
+    "Ctrl+KeyW"
+   ],
+   "device": "keyboard",
+   "note": "Watch, double speed, summary. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
+  },
+  {
+   "context": "global",
+   "action": "watch.timeout",
+   "keys": [
+    "Ctrl+KeyT"
+   ],
+   "device": "keyboard",
+   "note": "Timeout at the next dead ball the staff is calling. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
+  },
+  {
+   "context": "global",
+   "action": "watch.sim_series",
+   "keys": [
+    "Ctrl+KeyN"
+   ],
+   "device": "keyboard",
+   "note": "Staff runs to the end of the series. Game day with the staff calling (plans/head-coach-nuance.md item 2b)"
   }
  ]
 }

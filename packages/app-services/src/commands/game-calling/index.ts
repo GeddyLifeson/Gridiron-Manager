@@ -10,3 +10,4 @@ export * from './decision.ts';
 export * from './driver.ts';
 export * from './session.ts';
 export { specialTeamsSheet, type SpecialMenuGroup, type SpecialMenuItem, type SpecialSheetInputs } from './special-sheet.ts';
+export * from './staff-seat.ts';

@@ -15,8 +15,12 @@
 // Not here yet: the seat's week (H1 calendar, `seatWeek`), AI preparation (K3), the user's own call sheet
 // (G-68 bridge) and generated rosters. The teams are the real game's neutral placeholder rosters.
 import { season as seasons } from '@gm/world';
+import { seedFromHex, stream } from '@gm/engine-core';
 import type { DriveRecord, GameDeps, GameInput, PersonRecord, PlayRecord, SimPlayer } from '@gm/schema';
-import { GameCallingSession, type GameSessionOptions, type LineupFor } from '../commands/game-calling/index.ts';
+import {
+  DEFAULT_KEEP, GameCallingSession, SEAT_UNITS, chartCallerStaff, placeholderStaffChart,
+  type GameSessionOptions, type LineupFor, type SeatStaff, type SeatUnit, type WatchOptions,
+} from '../commands/game-calling/index.ts';
 import { seatTeamFromDepth, simPlayerFromPerson, type SeatDepth } from './seat-depth.ts';
 
 type GameContext = seasons.GameContext;
@@ -41,7 +45,17 @@ export type GameHost = Pick<GameSessionOptions, 'console' | 'resolve'>
   & {
     /** Wraps the game's resolver (presentation live `liveTap`, so the field gets each play's trajectory). */
     readonly tapResolver?: (resolver: GameDeps['resolver']) => GameDeps['resolver'];
+    /**
+     * Units the head coach keeps before the game (item 2b). Default: game management only; each coordinator calls
+     * his own unit (Marlon 2026-11-26 19:15 UTC). `ALL_UNITS` is the console-only game where he calls everything.
+     */
+    readonly keep?: readonly SeatUnit[];
+    /** How the staff's snaps are paced for watching (I9.4.1). Default: real speed with the default stop rules. Null: no pacing. */
+    readonly watch?: WatchOptions | null;
   };
+
+/** Every unit: the head coach calls the whole game himself. */
+export const ALL_UNITS: readonly SeatUnit[] = SEAT_UNITS;
 
 /** The seat's game in the coming step. */
 export interface SeatGame {
@@ -59,6 +73,12 @@ export interface SeasonPlaySave {
   /** The seat's game outcomes by game id: the season's only input that does not come from the seed. */
   readonly seatOutcomes: readonly { readonly gameId: number; readonly outcome: GameOutcome }[];
 }
+
+/** The console setup of a game the staff plays whole: no sheets, since the head coach holds nothing in it. */
+const STAFF_ONLY_CONSOLE: GameSessionOptions['console'] = {
+  sheets: {}, keys: {}, cadences: [], singlePress: false, guards: { challenge: false, lateTimeout: false },
+  defaultTempo: 'huddle', defaultRelay: 'radio', radioCutoffTenths: null,
+};
 
 /** Stand-in result of a dry run: one point for the home side, so no postseason game is tied. Never kept. */
 const DRY: GameOutcome = { points: [1, 0], touchdowns: [0, 0], overtime: false, stateHash: '', plays: 0, lines: [] };
@@ -280,7 +300,9 @@ export class SeasonPlay {
     const { tapResolver, ...sessionHost } = host;
     const base = this.port.game.deps(input);
     const deps = tapResolver ? { ...base, resolver: tapResolver(base.resolver) } : base;
-    const session = new GameCallingSession({ ...sessionHost, input, deps, userSide: seat.side, lineup });
+    const { keep, watch, ...rest } = sessionHost;
+    const staff = { seat: this.seatStaff(seat, deps, lineup), keep: keep ?? DEFAULT_KEEP, ...(watch === null ? {} : { watch: watch ?? { mode: 'watch' as const } }) };
+    const session = new GameCallingSession({ ...rest, input, deps, userSide: seat.side, lineup, staff });
     session.start();
     this.open = { context: seat.context, input, session };
     return session;
@@ -291,33 +313,57 @@ export class SeasonPlay {
     const g = this.open;
     if (!g) throw new Error('season session: no game is open');
     if (!g.session.final) throw new Error('season session: the game is not final');
-    const records: PlayRecord[] = [];
-    const drives: DriveRecord[] = [];
-    for (const e of g.session.events) {
-      if (e.type === 'play_resolved') records.push(e.record);
-      else if (e.type === 'drive_ended') drives.push(e.drive);
-    }
-    const outcome = seasons.outcomeOf(this.port.game, g.context.fixture, g.input, { final: g.session.game, events: g.session.events, records, drives });
+    const outcome = this.outcomeOfSession(g.context, g.input, g.session);
     this.seatOutcomes.set(g.context.fixture.gameId, outcome);
     this.open = null;
     this.advance();
     return outcome;
   }
 
-  /** The staff plays the seat's game of the coming step (the chart caller on both sides), then the rest of the step. */
+  /**
+   * The seat's staff plays its game of the coming step, then the rest of the step (K6.4.1): every unit with the
+   * coordinator who holds it, game management with the assistant head coach. The opponent is the chart caller.
+   */
   delegateGame(): GameOutcome {
     if (this.open) throw new Error('season session: a game is open on the console');
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
-    let outcome: GameOutcome;
-    if (this.seatDepth === null) outcome = this.port.playGame(seat.context);
-    else {
-      const { input } = this.seatInput(seat);
-      outcome = seasons.outcomeOf(this.port.game, seat.context.fixture, input, this.port.game.simulate(input));
-    }
+    const { input, lineup } = this.seatInput(seat);
+    const deps = this.port.game.deps(input);
+    const session = new GameCallingSession({
+      input, deps, userSide: seat.side, lineup, console: STAFF_ONLY_CONSOLE, resolve: () => undefined,
+      staff: { seat: this.seatStaff(seat, deps, lineup), keep: [] },
+    });
+    session.start();
+    if (!session.final) throw new Error('season session: the staff-run game stopped before the end');
+    const outcome = this.outcomeOfSession(seat.context, input, session);
     this.seatOutcomes.set(seat.context.fixture.gameId, outcome);
     this.advance();
     return outcome;
+  }
+
+  /**
+   * The seat's staff for a game: PLACEHOLDER coordinators generated from the season seed, each calling through the
+   * level's chart caller until the staff's K3 week reaches the game. The user is the head coach.
+   */
+  private seatStaff(seat: SeatGame, deps: GameDeps, lineup: LineupFor): SeatStaff {
+    const level = deps.rules.level === 'college' ? 'college' as const : 'pro' as const;
+    const seed = seedFromHex(this.options.seedHex);
+    return {
+      chart: placeholderStaffChart({ teamId: this.seatTeamId, level, seed }),
+      ...chartCallerStaff(deps.deciders[seat.side], lineup),
+      draws: (scope) => stream(seed, 'coachAI', ['seat_staff', seat.context.fixture.gameId, ...scope]),
+    };
+  }
+
+  private outcomeOfSession(context: GameContext, input: GameInput, session: GameCallingSession): GameOutcome {
+    const records: PlayRecord[] = [];
+    const drives: DriveRecord[] = [];
+    for (const e of session.events) {
+      if (e.type === 'play_resolved') records.push(e.record);
+      else if (e.type === 'drive_ended') drives.push(e.drive);
+    }
+    return seasons.outcomeOf(this.port.game, context.fixture, input, { final: session.game, events: session.events, records, drives });
   }
 
   /** The season's ports: the recorded seat outcome for the seat's game, the real game for every other. */

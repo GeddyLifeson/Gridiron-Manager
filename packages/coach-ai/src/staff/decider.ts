@@ -55,6 +55,11 @@ export interface StaffDeciderConfig {
   readonly sheets?: Readonly<Record<string, SheetRef>>;
   /** The conservative call of J11.6.1 for a view, used when the caller's call breaks an instruction. */
   conservative?(view: DecisionView): AnyCall | null;
+  /**
+   * The chart in force for this request, when the head coach can change who holds a duty during the game (I9.4.2:
+   * he takes a unit's calls at a dead ball and hands them back). Read once per request; default `chart`.
+   */
+  chartNow?(): StaffChart;
 }
 
 export interface StaffDecider extends Decider {
@@ -70,7 +75,8 @@ function kickMatch(choice: LastDownChoice): CallMatch {
 }
 
 export function createStaffDecider(cfg: StaffDeciderConfig): StaffDecider {
-  const { side, chart } = cfg;
+  const { side } = cfg;
+  let chart = cfg.chart;
   const rows = new Map<number, StaffDecisionRow>();
   const overrides = new Map<number, OverrideEvent>();
   /** Request id of our last try choice that chose two points. */
@@ -265,6 +271,7 @@ export function createStaffDecider(cfg: StaffDeciderConfig): StaffDecider {
   function decide(view: DecisionView): Decision | null {
     const { request, situation } = view;
     if (request.side !== side) return null;
+    if (cfg.chartNow) chart = cfg.chartNow();
     const duty = dutyFor(request.type, situation, tryIsTwo);
     const force = inForce(cfg.instructions, duty, request, situation, cfg.geometry);
     let owner = ownerOf(chart, duty, { standIn });

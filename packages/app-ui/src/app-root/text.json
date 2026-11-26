@@ -24,5 +24,17 @@
   "root.at": "at {team}",
   "root.delegate": "Let the staff coach this game",
   "root.noSheet": "No call sheet: the game cannot start.",
-  "root.resultLine": "{result} {us}-{them} {where} {opponent}"
+  "root.resultLine": "{result} {us}-{them} {where} {opponent}",
+  "root.staff.calls": "Calling",
+  "root.staff.offense": "Offense",
+  "root.staff.defense": "Defense",
+  "root.staff.special": "Special teams",
+  "root.staff.management": "Game management",
+  "root.staff.you": "you",
+  "root.staff.coordinator": "coach #{id}",
+  "root.staff.watch": "Watching",
+  "root.staff.double": "Double speed",
+  "root.staff.summary": "Summary",
+  "root.staff.paused": "Stopped ({reason}). {key} to go on.",
+  "root.staff.keys": "{offense} {defense} {special} {management}: take or hand back · {mode}: pace · {timeout}: timeout · {series}: staff runs the series"
 }

@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve as resolvePath } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import { season as seasons } from '@gm/world';
-import { SeasonPlay, contentKeyOfWorldTeam } from '../../src/play/index.ts';
+import { ALL_UNITS, SeasonPlay, contentKeyOfWorldTeam } from '../../src/play/index.ts';
 import type { GameCallingSession } from '../../src/commands/game-calling/index.ts';
 import { resolve, testConsoleConfig } from '../game-calling/fixtures.ts';
 import { input as depthInput } from '../read-models/depth-chart/fixture.ts';
@@ -74,7 +74,7 @@ describe('season session', () => {
     expect(play.state.games).toHaveLength(0); // the dry run leaves the season untouched
 
     expect(() => play.advance()).toThrow(/play the seat's game/);
-    const session = play.openGame({ console: testConsoleConfig(), resolve, keyIntervalMs: KEY_MS, startMs: 0, liveMs: () => LIVE_MS });
+    const session = play.openGame({ console: testConsoleConfig(), resolve, keyIntervalMs: KEY_MS, startMs: 0, liveMs: () => LIVE_MS, keep: ALL_UNITS, watch: null });
     expect(() => play.openGame({ console: testConsoleConfig(), resolve })).toThrow(/already open/);
     playByKeys(session);
     expect(session.final).toBe(true);
@@ -123,6 +123,22 @@ describe('season session', () => {
     expect(play.state.games.length).toBe(before + play.built.spec.fixtures.filter((f) => f.week === next.context.fixture.week).length);
     expect(play.state.games.find((g) => g.fixture.gameId === next.context.fixture.gameId)!.outcome).toEqual(delegated);
     expect(play.save().seatOutcomes.map((x) => x.gameId)).toEqual([seatFixture.gameId, next.context.fixture.gameId]);
+    // The staff-run game is the same game the chart callers play: the coordinators call through them (J14.4.1).
+    expect(port.playGame(next.context)).toEqual(delegated);
+  }, 300_000);
+
+  it('by default each coordinator calls his own unit on the console game and the head coach keeps game management', () => {
+    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, resolver: FAST, seatTeamKey: firstKey('pro_2026') });
+    const seat = play.nextSeatGame()!;
+    const session = play.openGame({ console: testConsoleConfig(), resolve, keyIntervalMs: KEY_MS, startMs: 0, liveMs: () => LIVE_MS });
+    expect(session.keptUnits).toEqual(['management']);
+    expect(session.watchPace).toBe('watch'); // watched at real speed by default
+    for (let i = 0; i < 60_000 && !session.final; i++) { session.wait(5000); session.resumeWatch(); }
+    expect(session.final).toBe(true);
+    const calls = session.events.flatMap((e) => (e.type === 'decision_made' && e.decision.side === seat.side && (e.decision.snappingCall || e.decision.opposingCall) ? [e.decision] : []));
+    expect(calls.length).toBeGreaterThan(50);
+    for (const c of calls) expect(c.actor.kind === 'staff' || c.actor.kind === 'default').toBe(true);
+    play.finishGame();
   }, 300_000);
 
   it('college: a bye in the opening week (week 0) plays without the seat, then the next game is up', () => {
@@ -164,7 +180,7 @@ describe('season session', () => {
     const d = depthInput();
     play.setDepthChart(d);
     const seat = play.nextSeatGame()!;
-    const session = play.openGame({ console: testConsoleConfig(), resolve, keyIntervalMs: KEY_MS, startMs: 0, liveMs: () => LIVE_MS });
+    const session = play.openGame({ console: testConsoleConfig(), resolve, keyIntervalMs: KEY_MS, startMs: 0, liveMs: () => LIVE_MS, keep: ALL_UNITS, watch: null });
     playByKeys(session);
     expect(session.final).toBe(true);
     const chartIds = new Set(d.people.map((p) => p.personId));

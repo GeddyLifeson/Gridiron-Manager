@@ -10,7 +10,7 @@ import { buildRoutes } from '../routes.ts';
 import { GameConsole, type ConsoleViewModel } from '../screens/game-calling/GameConsole.tsx';
 import { gameCalling } from '@gm/app-services';
 import { homeFromSeason, recordText } from './today.ts';
-import { FinalPanel, PlayLog, keyForIn, useLiveSession } from './ConsoleHost.tsx';
+import { FinalPanel, PlayLog, StaffStrip, keyForIn, useLiveSession } from './ConsoleHost.tsx';
 import { rt } from './text.ts';
 import { teamSources } from './sources/team.ts';
 import type { CareerPort, GameSession, SeasonToday } from './port.ts';
@@ -71,7 +71,7 @@ function LiveConsole({ port, session, bindings, now, soundStage, onDone }: LiveC
   ) : log;
   return (
     <div data-live-console data-step={session.final ? 'final' : session.driver.state.step} data-unit={session.driver.state.open?.unit ?? ''} style={{ height: '100%' }}>
-      {session.final ? <FinalPanel session={session} names={names} onDone={onDone} /> : null}
+      {session.final ? <FinalPanel session={session} names={names} onDone={onDone} /> : <StaffStrip session={session} bindings={bindings} />}
       {createElement(GameConsole, { view, field })}
     </div>
   );
