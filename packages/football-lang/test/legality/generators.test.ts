@@ -24,14 +24,19 @@ function numbers(rules: RuleSet) {
   };
 }
 
+/** What the motion option allows: one mover under `one_back_not_forward`, any number under a fixture option without the rule. */
+const motionMax = (rules: RuleSet): number => (rules.opt('formation.motion_rule') === 'one_back_not_forward' ? 1 : rules.num('substitution.max_players'));
+/** 0 means the rule set states no backfield limit. */
+const backfieldMax = (rules: RuleSet): number => rules.num('formation.backfield_max') || rules.num('substitution.max_players');
+
 /** Builds a legal alignment from the rule keys alone. */
 function legal(rules: RuleSet, r: () => number): Legal {
   const n = rules.num('substitution.max_players');
   const num = numbers(rules);
-  const needsNumber = rules.bool('numbering.eligible_position_needs_number');
+  const needsNumber = (rules.opt('numbering.scheme') === 'position_bands');
   const report = rules.bool('numbering.report_eligible_allowed');
-  const numberedMin = rules.num('formation.line_ineligible_numbers_min');
-  const minLine = Math.max(rules.num('formation.line_min'), n - rules.num('formation.backfield_max'), numberedMin + 2, 3);
+  const numberedMin = rules.num('formation.numbered_linemen_min');
+  const minLine = Math.max(rules.num('formation.line_min'), n - backfieldMax(rules), numberedMin + 2, 3);
   const lineCount = minLine + Math.floor(r() * (n - 1 - minLine + 1));
   const players: AlignedPlayer[] = [];
   // The line: the snapper over the ball, the rest spread left and right, ends widest.
@@ -75,7 +80,7 @@ function legal(rules: RuleSet, r: () => number): Legal {
   // Motion: up to the allowed count, from the backfield, flat or away from the line.
   let mover: string | null = null;
   const candidates = players.filter((p) => !p.onLine && p.role !== underCenter);
-  if (rules.num('formation.motion_max_at_snap') >= 1 && candidates.length > 0 && r() < 0.4) {
+  if (motionMax(rules) >= 1 && candidates.length > 0 && r() < 0.4) {
     const m = candidates[Math.floor(r() * candidates.length)]!;
     mover = m.role;
     const i = players.indexOf(m);
@@ -111,17 +116,17 @@ const BREAKERS: Record<string, Breaker> = {
     if (min <= 0) return null;
     const take = line - (min - 1);
     const off = b.players.length - line + take;
-    if (off > rules.num('formation.backfield_max')) return null;
+    if (off > backfieldMax(rules)) return null;
     const inner = interior(b.players).filter((p) => Math.abs(p.py) > P.num('legality.snapper.maxLateralYd'));
     if (inner.length < take) return null;
     let ps = b.players;
     // The men who leave the line become backs wearing eligible numbers.
     for (let i = 0; i < take; i++) ps = set(ps, inner[i]!.role, { px: -(CLEARLY_OFF + 1 + i), py: 20 - i * 2, onLine: false, jersey: numbers(rules).eligible(r), reported: false });
-    if (ps.filter((p) => p.onLine && p.jersey > rules.num('numbering.eligible_low_max') && p.jersey < rules.num('numbering.eligible_high_min')).length < rules.num('formation.line_ineligible_numbers_min')) return null;
+    if (ps.filter((p) => p.onLine && p.jersey > rules.num('numbering.eligible_low_max') && p.jersey < rules.num('numbering.eligible_high_min')).length < rules.num('formation.numbered_linemen_min')) return null;
     return ps;
   },
   'formation.backfield_max': (rules, b, r) => {
-    const max = rules.num('formation.backfield_max');
+    const max = backfieldMax(rules);
     const line = b.players.filter((p) => p.onLine);
     const off = b.players.length - line.length;
     if (off !== max || line.length - 1 < rules.num('formation.line_min')) return null;
@@ -130,12 +135,12 @@ const BREAKERS: Record<string, Breaker> = {
     const end = sorted[0]!, next = sorted[1]!;
     if (Math.abs(next.py) <= P.num('legality.snapper.maxLateralYd')) return null;
     let ps = set(b.players, end.role, { px: -(CLEARLY_OFF + 1), onLine: false, reported: false, jersey: numbers(rules).eligible(r) });
-    if (rules.bool('numbering.eligible_position_needs_number')) ps = set(ps, next.role, { jersey: numbers(rules).eligible(r), reported: false });
+    if ((rules.opt('numbering.scheme') === 'position_bands')) ps = set(ps, next.role, { jersey: numbers(rules).eligible(r), reported: false });
     const numbered = ps.filter((p) => p.onLine && p.jersey > rules.num('numbering.eligible_low_max') && p.jersey < rules.num('numbering.eligible_high_min')).length;
-    return numbered < rules.num('formation.line_ineligible_numbers_min') ? null : ps;
+    return numbered < rules.num('formation.numbered_linemen_min') ? null : ps;
   },
-  'formation.line_ineligible_numbers_min': (rules, b, r) => {
-    const min = rules.num('formation.line_ineligible_numbers_min');
+  'formation.numbered_linemen_min': (rules, b, r) => {
+    const min = rules.num('formation.numbered_linemen_min');
     if (min <= 0) return null;
     const lowMax = rules.num('numbering.eligible_low_max'), highMin = rules.num('numbering.eligible_high_min');
     const numbered = b.players.filter((p) => p.onLine && p.jersey > lowMax && p.jersey < highMin);
@@ -164,7 +169,7 @@ const BREAKERS: Record<string, Breaker> = {
     return ps;
   },
   'numbering.eligible_position_needs_number': (rules, b, r) => {
-    if (!rules.bool('numbering.eligible_position_needs_number')) return null;
+    if (!(rules.opt('numbering.scheme') === 'position_bands')) return null;
     const line = b.players.filter((p) => p.onLine).sort((x, y) => y.py - x.py);
     const spots = [line[0]!, line[line.length - 1]!, ...b.players.filter((p) => !p.onLine)];
     const m = spots[Math.floor(r() * spots.length)]!;
@@ -177,14 +182,14 @@ const BREAKERS: Record<string, Breaker> = {
     return set(b.players, inner[Math.floor(r() * inner.length)]!.role, { jersey: numbers(rules).ineligible(r), reported: true });
   },
   'formation.out_of_bounds': (rules, b, r) => {
-    if (!rules.bool('formation.in_bounds_required')) return null;
+    if (false) return null;
     const backs = farBack(b.players, b.underCenter);
     if (backs.length === 0) return null;
     const m = backs[Math.floor(r() * backs.length)]!;
     return set(b.players, m.role, { py: r() < 0.5 ? BOUNDS.maxPy + 0.01 + r() * 3 : BOUNDS.minPy - 0.01 - r() * 3 });
   },
   'formation.motion_max_at_snap': (rules, b, r) => {
-    const max = rules.num('formation.motion_max_at_snap');
+    const max = motionMax(rules);
     const backs = farBack(b.players, b.underCenter);
     if (backs.length < max + 1) return null;
     let ps = b.players;
@@ -192,20 +197,20 @@ const BREAKERS: Record<string, Breaker> = {
     return ps;
   },
   'formation.motion_from_line': (rules, b, r) => {
-    if (!rules.bool('formation.motion_from_backfield_only') || b.mover !== null || rules.num('formation.motion_max_at_snap') < 1) return null;
+    if (!(motionMax(rules) === 1) || b.mover !== null || motionMax(rules) < 1) return null;
     const line = b.players.filter((p) => p.onLine);
     const m = line[Math.floor(r() * line.length)]!;
     return set(b.players, m.role, { inMotion: true, velPx: -r() * 0.5, velPy: STATIONARY + 1 + r() * 5 });
   },
   'formation.motion_toward_line': (rules, b, r) => {
-    if (rules.opt('formation.motion_rule') !== 'not_toward_line' || rules.num('formation.motion_max_at_snap') < 1) return null;
+    if (rules.opt('formation.motion_rule') !== 'one_back_not_forward' || motionMax(rules) < 1) return null;
     const backs = farBack(b.players, b.underCenter);
     const m = b.mover !== null ? b.players.find((p) => p.role === b.mover)! : backs[0];
     if (m === undefined) return null;
     return set(b.players, m.role, { inMotion: true, velPx: TOWARD_TOL + 0.01 + r() * 6, velPy: STATIONARY + r() * 5 });
   },
   'formation.motion_under_center': (rules, b, r) => {
-    if (b.underCenter === null || b.mover !== null || rules.num('formation.motion_max_at_snap') < 1) return null;
+    if (b.underCenter === null || b.mover !== null || motionMax(rules) < 1) return null;
     return set(b.players, b.underCenter, { inMotion: true, velPx: -r() * 0.2, velPy: STATIONARY + 1 + r() * 4 });
   },
 };

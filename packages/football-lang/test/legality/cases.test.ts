@@ -24,7 +24,7 @@ describe('legality manifest and parameters', () => {
   it('every finding code that marks a design illegal names a foul', () => {
     const all = new Set<string>();
     const bad = [...base(), pl('E', -3, 30, false, 70, { inMotion: true, velPx: 2 }), pl('S', -0.5, 9, false, 12)];
-    for (const r of FIXTURES) for (const f of checkAlignment(bad, r, P, { minPy: -20, maxPy: 20 })) if (f.ruleKey !== null) all.add(f.code);
+    for (const r of FIXTURES) for (const f of checkAlignment(bad, r, P, { minPy: -20, maxPy: 20 })) if (isIllegalAsDrawn([f])) all.add(f.code);
     expect(all.size).toBeGreaterThan(3);
     for (const c of all) expect(FOUL_OF_CODE[c]).toBeDefined();
   });
@@ -183,12 +183,12 @@ describe('B2.3.3 reporting eligible', () => {
 describe('B13.2.2 numbered linemen and backs (second fixture)', () => {
   it('a formation with four linemen numbered in the ineligible band is flagged', () => {
     const fs = checkAlignment(swap(base(), 'RT', { jersey: 85 }), FREE, P);
-    expect(illegalCodes(fs)).toEqual(['formation.line_ineligible_numbers_min']);
+    expect(illegalCodes(fs)).toEqual(['formation.numbered_linemen_min']);
   });
   it('more backs than the rule set allows is flagged; the same set is legal where there is no such limit', () => {
     const fiveBacks = swap(base(), 'X', { px: -1, onLine: false });
     expect(codes(fiveBacks, FREE)).toEqual(['formation.backfield_max']);
-    const noLimit = { ...FREE, num: (k: string) => (k === 'formation.backfield_max' ? FREE.num('substitution.max_players') : FREE.num(k)) };
+    const noLimit = { ...FREE, num: (k: string) => (k === 'formation.backfield_max' ? 0 : FREE.num(k)) };
     expect(codes(fiveBacks, noLimit)).toEqual([]);
   });
   it('an ineligible number on the end is legal there and is not an eligible receiver', () => {

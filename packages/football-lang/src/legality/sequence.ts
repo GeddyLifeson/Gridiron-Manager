@@ -91,10 +91,10 @@ export function checkPreSnapScript(
   const snap = analyseAlignment(atSnap, rules, params, bounds, null).findings;
   findings.push(...snap);
   // B4.3.3 item 1: the motion man must have been lined up in the backfield when his motion began.
-  if (rules.bool('formation.motion_from_backfield_only')) {
+  if (rules.opt('formation.motion_rule') === 'one_back_not_forward') {
     for (const [role, mv] of moving) {
       if (mv.fromLine && !snap.some((f) => f.code === 'formation.motion_from_line' && f.role === role)) {
-        findings.push(seq('formation.motion_from_line', 'formation.motion_from_backfield_only', role, 'B4.3.3', null));
+        findings.push(seq('formation.motion_from_line', 'formation.motion_rule', role, 'B4.3.3', null));
       }
     }
   }

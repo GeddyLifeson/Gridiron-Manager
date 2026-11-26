@@ -24,19 +24,16 @@ export function fixtureRuleSet(id: string, values: Values): RuleSet {
 export const FIXTURE_BANDS: Values = {
   'substitution.max_players': 11,
   'formation.line_min': 7,
-  'formation.backfield_max': 11,
-  'formation.line_ineligible_numbers_min': 0,
+  'formation.backfield_max': 0,
+  'formation.numbered_linemen_min': 0,
   'formation.neither_behind_snapper_max': 1,
   'formation.t_quarterback_depth_yd': 1,
-  'formation.in_bounds_required': true,
-  'formation.motion_max_at_snap': 1,
-  'formation.motion_rule': 'not_toward_line',
-  'formation.motion_from_backfield_only': true,
+  'formation.motion_rule': 'one_back_not_forward',
   'formation.shift_set_seconds': 1,
   'numbering.eligible_low_max': 49,
   'numbering.eligible_high_min': 80,
   'numbering.eligible_high_max': 89,
-  'numbering.eligible_position_needs_number': true,
+  'numbering.scheme': 'position_bands',
   'numbering.report_eligible_allowed': true,
   'numbering.qb_under_center_eligible': false,
 };
@@ -45,9 +42,9 @@ export const FIXTURE_FREE: Values = {
   ...FIXTURE_BANDS,
   'formation.line_min': 0,
   'formation.backfield_max': 4,
-  'formation.line_ineligible_numbers_min': 5,
+  'formation.numbered_linemen_min': 5,
   'numbering.eligible_high_max': 99,
-  'numbering.eligible_position_needs_number': false,
+  'numbering.scheme': 'free_0_99_five_50_79',
   'numbering.report_eligible_allowed': false,
   'numbering.qb_under_center_eligible': true,
 };
@@ -77,8 +74,8 @@ export function swap(players: AlignedPlayer[], role: string, change: Partial<Ali
   return players.map((p) => (p.role === role ? { ...p, ...change } : p));
 }
 
-export const illegalCodes = (fs: readonly { code: string; ruleKey: string | null }[]): string[] =>
-  [...new Set(fs.filter((f) => f.ruleKey !== null).map((f) => f.code))].sort();
+export const illegalCodes = (fs: readonly { code: string; ruleKey: string | null; foul?: string | null }[]): string[] =>
+  [...new Set(fs.filter((f) => f.ruleKey !== null || (f.foul ?? null) !== null).map((f) => f.code))].sort();
 
 /** Small seeded generator for the test generators (mulberry32). Tests only: core code uses J13 streams. */
 export function rng(seed: number): () => number {

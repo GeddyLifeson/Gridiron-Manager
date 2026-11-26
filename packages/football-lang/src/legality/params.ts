@@ -7,24 +7,32 @@ import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
 const READ_BY = ['football-lang.legality'];
 
 /** Keys the legality validator reads. `substitution.max_players` exists already; the rest are new. */
-export const RULE_KEYS: RuleKeyManifest = [
-  { key: 'substitution.max_players', type: 'number', unit: 'count', meaning: 'Players per team on the field', ownerLeaf: 'B2.3.1', readBy: READ_BY },
-  { key: 'formation.line_min', type: 'number', unit: 'count', meaning: 'Fewest offensive players on the line of scrimmage at the snap (0 when the rule set has no such minimum)', ownerLeaf: 'B4.2.1', readBy: READ_BY },
-  { key: 'formation.backfield_max', type: 'number', unit: 'count', meaning: 'Most offensive players who may be off the line at the snap', ownerLeaf: 'B13.2.2', readBy: READ_BY },
-  { key: 'formation.line_ineligible_numbers_min', type: 'number', unit: 'count', meaning: 'Fewest players on the line who must wear a number outside the eligible bands (0 when not required)', ownerLeaf: 'B13.2.2', readBy: READ_BY },
+/**
+ * Keys the checker needs that the dictionary does not have yet. They are requested from WP-01 in the
+ * WP-10 report. The band edges and the two snapper distances are rule values, so they cannot be
+ * written in code; until the rule sets carry them, the checker runs on rule sets that do (the test fixtures).
+ */
+export const PROPOSED_RULE_KEYS: RuleKeyManifest = [
   { key: 'formation.neither_behind_snapper_max', type: 'number', unit: 'count', meaning: 'Players allowed neither on nor off the line when directly behind the snapper', ownerLeaf: 'B4.2.2', readBy: READ_BY },
   { key: 'formation.t_quarterback_depth_yd', type: 'number', unit: 'yd', meaning: 'A player this close or closer behind the snapper is the player under center', ownerLeaf: 'B4.1.2', readBy: READ_BY },
-  { key: 'formation.in_bounds_required', type: 'boolean', meaning: 'Every offensive player must be in bounds at the snap', ownerLeaf: 'B4.2.1', readBy: READ_BY },
-  { key: 'formation.motion_max_at_snap', type: 'number', unit: 'count', meaning: 'Most offensive players who may be moving at the snap', ownerLeaf: 'B4.3.3', readBy: READ_BY },
-  { key: 'formation.motion_rule', type: 'option', options: ['not_toward_line', 'any_direction'], meaning: 'Which way the motion man may be moving at the snap', ownerLeaf: 'B4.3.3', readBy: READ_BY },
-  { key: 'formation.motion_from_backfield_only', type: 'boolean', meaning: 'The motion man must have been lined up off the line', ownerLeaf: 'B4.3.3', readBy: READ_BY },
-  { key: 'formation.shift_set_seconds', type: 'number', unit: 's', meaning: 'How long all offensive players must be set after a shift before the snap', ownerLeaf: 'B4.3.1', readBy: READ_BY },
   { key: 'numbering.eligible_low_max', type: 'number', unit: 'index', meaning: 'Top of the lower band of eligible jersey numbers (the band starts at 0)', ownerLeaf: 'B2.3.2', readBy: READ_BY },
   { key: 'numbering.eligible_high_min', type: 'number', unit: 'index', meaning: 'Bottom of the upper band of eligible jersey numbers', ownerLeaf: 'B2.3.2', readBy: READ_BY },
   { key: 'numbering.eligible_high_max', type: 'number', unit: 'index', meaning: 'Top of the upper band of eligible jersey numbers', ownerLeaf: 'B2.3.2', readBy: READ_BY },
-  { key: 'numbering.eligible_position_needs_number', type: 'boolean', meaning: 'A player in an eligible position must wear an eligible number or have reported', ownerLeaf: 'B4.2.1', readBy: READ_BY },
-  { key: 'numbering.report_eligible_allowed', type: 'boolean', meaning: 'A player may report to the referee to change his eligibility for a down', ownerLeaf: 'B2.3.3', readBy: READ_BY },
-  { key: 'numbering.qb_under_center_eligible', type: 'boolean', meaning: 'The player under center is an eligible receiver by position', ownerLeaf: 'B13.2.2', readBy: READ_BY },
+];
+
+/** Keys the legality validator reads. */
+export const RULE_KEYS: RuleKeyManifest = [
+  // In the dictionary already (WP-01).
+  { key: 'substitution.max_players', type: 'number', unit: 'count', meaning: 'Players per team on the field', ownerLeaf: 'B2.3.1', readBy: READ_BY },
+  { key: 'formation.line_min', type: 'number', unit: 'count', meaning: 'Fewest offensive players who must be on the line at the snap (0 = the rule book states no such number)', ownerLeaf: 'B4.2.1', readBy: READ_BY },
+  { key: 'formation.backfield_max', type: 'number', unit: 'count', meaning: 'Most offensive players who may be backs at the snap (0 = the rule book states no such number)', ownerLeaf: 'B13.2.2', readBy: READ_BY },
+  { key: 'formation.numbered_linemen_min', type: 'number', unit: 'count', meaning: 'Fewest linemen who must wear a number in the ineligible band (0 = the rule book states no such number)', ownerLeaf: 'B13.2.2', readBy: READ_BY },
+  { key: 'formation.motion_rule', type: 'option', options: ['one_back_not_forward'], meaning: 'Who may be in motion at the snap', ownerLeaf: 'B4.3.3', readBy: READ_BY },
+  { key: 'formation.shift_set_seconds', type: 'number', unit: 's', meaning: 'Time all offensive players must be set after a shift', ownerLeaf: 'B4.3.1', readBy: READ_BY },
+  { key: 'numbering.scheme', type: 'option', options: ['position_bands', 'free_0_99_five_50_79'], meaning: 'How jersey numbers decide who may be an eligible receiver', ownerLeaf: 'B13.2.2', readBy: READ_BY },
+  { key: 'numbering.report_eligible_allowed', type: 'boolean', meaning: 'A player may change his eligibility by reporting to the referee', ownerLeaf: 'B2.3.3', readBy: READ_BY },
+  { key: 'numbering.qb_under_center_eligible', type: 'boolean', meaning: 'A quarterback under center is an eligible receiver without moving', ownerLeaf: 'B13.2.2', readBy: READ_BY },
+  ...PROPOSED_RULE_KEYS,
 ];
 
 /** Tuning constants of the legality validator. Each is a design tolerance, never a rule value. */

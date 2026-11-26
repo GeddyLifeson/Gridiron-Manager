@@ -61,11 +61,14 @@ export interface AlignmentReport {
 }
 
 /** Foul each finding code leads to, in the bible's words (B4.2.1, B4.3.1 to B4.3.3, B2.3.1). */
+/** The count the motion option `one_back_not_forward` names. */
+const ONE_MOVER = 1;
+
 export const FOUL_OF_CODE: Readonly<Record<string, FoulId>> = {
   'formation.too_many_players': 'too_many_players',
   'formation.line_min': 'illegal_formation',
   'formation.backfield_max': 'illegal_formation',
-  'formation.line_ineligible_numbers_min': 'illegal_formation',
+  'formation.numbered_linemen_min': 'illegal_formation',
   'formation.neither_position': 'illegal_formation',
   'formation.neither_count': 'illegal_formation',
   'numbering.eligible_position_needs_number': 'illegal_formation',
@@ -83,9 +86,9 @@ function finding(code: string, ruleKey: string | null, role: string | null, leaf
   return { severity: 'warning', code, ruleKey, role, messageKey: `legality.${code}`, foul: FOUL_OF_CODE[code] ?? null, leaf, step };
 }
 
-/** True when any finding marks the design illegal as drawn (G1.5.1). Soundness notes have no rule key. */
+/** True when any finding marks the design illegal as drawn (G1.5.1): it rests on a rule key or names a foul. Soundness notes do neither. */
 export function isIllegalAsDrawn(findings: readonly ValidationFinding[]): boolean {
-  return findings.some((f) => f.ruleKey !== null);
+  return findings.some((f) => f.ruleKey !== null || ((f as Partial<LegalityFinding>).foul ?? null) !== null);
 }
 
 function eligibleNumber(jersey: number, rules: RuleSet): boolean {
@@ -150,9 +153,11 @@ export function analyseAlignment(
     else offLine++;
   }
   if (onLine < rules.num('formation.line_min')) findings.push(finding('formation.line_min', 'formation.line_min', null, 'B4.2.1', step));
-  if (offLine > rules.num('formation.backfield_max')) findings.push(finding('formation.backfield_max', 'formation.backfield_max', null, 'B13.2.2', step));
-  if (lineIneligibleNumbers < rules.num('formation.line_ineligible_numbers_min')) {
-    findings.push(finding('formation.line_ineligible_numbers_min', 'formation.line_ineligible_numbers_min', null, 'B13.2.2', step));
+  // 0 means the rule book states no such number (the dictionary's meaning of the key).
+  const backfieldMax = rules.num('formation.backfield_max');
+  if (backfieldMax > 0 && offLine > backfieldMax) findings.push(finding('formation.backfield_max', 'formation.backfield_max', null, 'B13.2.2', step));
+  if (lineIneligibleNumbers < rules.num('formation.numbered_linemen_min')) {
+    findings.push(finding('formation.numbered_linemen_min', 'formation.numbered_linemen_min', null, 'B13.2.2', step));
   }
 
   // B4.2.2: nobody neither on nor off the line, except the allowed count directly behind the snapper.
@@ -188,9 +193,9 @@ export function analyseAlignment(
   const covered = players.map((p, i) => status[i] === 'on' && i !== endLeft && i !== endRight && eligibleNumber(p.jersey, rules));
 
   // B4.2.1 item 4 and B4.2.2 item 3: eligible positions wear eligible numbers unless reported.
-  if (rules.bool('numbering.eligible_position_needs_number')) {
+  if (rules.opt('numbering.scheme') === 'position_bands') {
     for (let i = 0; i < n; i++) {
-      if (eligiblePosition[i] && !numberOk[i]) findings.push(finding('numbering.eligible_position_needs_number', 'numbering.eligible_position_needs_number', players[i]!.role, 'B4.2.1', step));
+      if (eligiblePosition[i] && !numberOk[i]) findings.push(finding('numbering.eligible_position_needs_number', 'numbering.scheme', players[i]!.role, 'B4.2.1', step));
     }
   }
   // B4.2.1 edge case: a player who reported eligible must line up in an eligible position.
@@ -204,9 +209,9 @@ export function analyseAlignment(
   }
 
   // B4.2.1 item 3: no player out of bounds.
-  if (bounds !== null && rules.bool('formation.in_bounds_required')) {
+  if (bounds !== null) {
     for (const p of players) {
-      if (p.py < bounds.minPy || p.py > bounds.maxPy) findings.push(finding('formation.out_of_bounds', 'formation.in_bounds_required', p.role, 'B4.2.1', step));
+      if (p.py < bounds.minPy || p.py > bounds.maxPy) findings.push(finding('formation.out_of_bounds', null, p.role, 'B4.2.1', step));
     }
   }
 
@@ -218,12 +223,13 @@ export function analyseAlignment(
     const s = speedOf(players[i]!);
     if (players[i]!.inMotion || (s !== null && s > stationary)) movers.push(i);
   }
-  if (movers.length > rules.num('formation.motion_max_at_snap')) findings.push(finding('formation.motion_max_at_snap', 'formation.motion_max_at_snap', null, 'B4.3.3', step));
-  const fromBackfieldOnly = rules.bool('formation.motion_from_backfield_only');
-  const notTowardLine = rules.opt('formation.motion_rule') === 'not_toward_line';
+  // The option names the rule: one player, a back, not moving toward the line.
+  const oneBack = rules.opt('formation.motion_rule') === 'one_back_not_forward';
+  if (oneBack && movers.length > ONE_MOVER) findings.push(finding('formation.motion_max_at_snap', 'formation.motion_rule', null, 'B4.3.3', step));
+  const fromBackfieldOnly = oneBack, notTowardLine = oneBack;
   for (const i of movers) {
     const p = players[i]!;
-    if (fromBackfieldOnly && status[i] === 'on') findings.push(finding('formation.motion_from_line', 'formation.motion_from_backfield_only', p.role, 'B4.3.3', step));
+    if (fromBackfieldOnly && status[i] === 'on') findings.push(finding('formation.motion_from_line', 'formation.motion_rule', p.role, 'B4.3.3', step));
     if (i === underCenter) findings.push(finding('formation.motion_under_center', 'formation.motion_rule', p.role, 'B4.3.3', step));
     if (notTowardLine && p.velPx !== undefined && p.velPx > towardTol) findings.push(finding('formation.motion_toward_line', 'formation.motion_rule', p.role, 'B4.3.3', step));
   }
