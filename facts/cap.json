@@ -1495,16 +1495,31 @@
      "primary": false,
      "quote": "The 2026 additional compensation ceiling is $187,500.",
      "value": 187500
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 Section 2(b) (text copy cba_2020.txt, line 8776)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "to $187,500 for the 2026–27 League Years",
+     "value": 187500
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -1526,16 +1541,31 @@
      "primary": false,
      "quote": "For 2026, one eligible player can receive a base salary as much as $1.55 million above his minimum.",
      "value": 1550000
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 Section 7(b) (text copy cba_2020.txt, line 8886)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$1.55 million for the 2026-27 League Years",
+     "value": 1550000
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -1588,16 +1618,31 @@
      "primary": false,
      "quote": "There are four tiers of salary for fifth-year options: multiple Pro Bowls, one Pro Bowl, significant playtime and basic",
      "value": 4
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)-(iv): four salary formulas (third-through-25th, third-through-20th, Transition Tender, Franchise Tender) (text copy cba_2020.txt, line 2623)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "shall equal the Franchise Tender that applies in the League Year that is the fourth year",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },

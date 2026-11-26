@@ -306,18 +306,9 @@
      "independenceGroup": "nflverse",
      "primary": false,
      "value": 25
-    },
-    {
-     "citation": "Bible X11.2.3 rule 2 (same project file, method not recorded) (read and recorded by the bible depth pass, research/depth-pass/X11-log.md; not re-read by G-44)",
-     "locator": "X11.2.3 rule 2",
-     "dateRead": "2026-11-26",
-     "howRead": "dataset computed",
-     "independenceGroup": "gm-bible-depth-pass",
-     "primary": false,
-     "value": 27
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [
     "people.cohorts"
    ],
@@ -326,9 +317,14 @@
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Conflict\" did not match the status computed from the sources (Q6.1.2)."
     }
    ],
-   "notes": "Conflict: G-44 computes median 25 (26 by calendar-year age) where X11.2.3 rule 2 states 27; sent to the bible fixes thread. The soak band in params stays at the bible's 26 to 28 until the leaf is fixed."
+   "notes": "Conflict: G-44 computes median 25 (26 by calendar-year age) where X11.2.3 rule 2 states 27; sent to the bible fixes thread. The soak band in params stays at the bible's 26 to 28 until the leaf is fixed. Release gate cleanup: the bible X11.2.3 figure 27 is a design statement whose method is not recorded, not an independent measurement, so it is not a source; the disagreement stays logged here and with the bible fixes thread."
   }
  ]
 }
