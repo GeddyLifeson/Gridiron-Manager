@@ -1,0 +1,1674 @@
+{
+ "contentSchemaVersion": 1,
+ "note": "G-32 crisis catalogue (L9.2, L9.4, L9.5). Every number sits in a params entry, a stage clock or a severity range and cites a fact row in facts.json; status is computed there, never typed. Guard class (L9.1.2): personal crises never have an imported or minor subject. Pacing is L9.1.1.",
+ "pacing": {
+  "newPerTeamPerWeek": {
+   "value": 1,
+   "unit": "crises",
+   "factId": "F-crisis-0007"
+  },
+  "maxOpen": {
+   "value": 2,
+   "unit": "crises",
+   "factId": "F-crisis-0007"
+  },
+  "maxOpenWhenRoomLost": {
+   "value": 3,
+   "unit": "crises",
+   "factId": "F-crisis-0007"
+  },
+  "queueWeeks": {
+   "value": 4,
+   "unit": "weeks",
+   "factId": "F-crisis-0007"
+  }
+ },
+ "warning": {
+  "leadDays": {
+   "min": 2,
+   "max": 10,
+   "unit": "days",
+   "factId": "F-crisis-0007"
+  },
+  "falseAlarmShare": {
+   "value": 0.1,
+   "unit": "share",
+   "factId": "F-crisis-0008"
+  }
+ },
+ "crises": [
+  {
+   "id": "off_field_incident",
+   "leaf": "L9.2.1",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "personal",
+   "outsideClass": true,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [],
+   "hazard": {
+    "kind": "weekly_per_person",
+    "params": [
+     {
+      "id": "yearly_arrest_rate",
+      "value": 0.029,
+      "unit": "per player-year",
+      "factId": "F-crisis-0001",
+      "note": "D5.4.1 yearly arrest rate at league mean, spread over the weeks of the year; multiplied by (1 + stress / 200)"
+     },
+     {
+      "id": "stress_divisor",
+      "value": 200,
+      "unit": "stress points",
+      "factId": "F-crisis-0007"
+     },
+     {
+      "id": "first_report_error_share",
+      "value": 0.3,
+      "unit": "share of reports",
+      "factId": "F-crisis-0008"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 1,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": [
+     {
+      "id": "minor",
+      "share": 0.73,
+      "derivedFrom": "1 - violent share",
+      "factId": "F-crisis-0002"
+     },
+     {
+      "id": "serious",
+      "share": 0.24,
+      "factId": "F-crisis-0003"
+     },
+     {
+      "id": "grave",
+      "share": 0.03,
+      "factId": "F-crisis-0003"
+     }
+    ]
+   },
+   "stages": [
+    {
+     "id": "first_report",
+     "templateKey": "crisis.off_field_incident.first_report",
+     "knownTo": [
+      "coach"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "facts_confirmed",
+     "templateKey": "crisis.off_field_incident.facts_confirmed",
+     "knownTo": [
+      "coach",
+      "staff",
+      "owner_or_ad",
+      "reporters"
+     ],
+     "clock": {
+      "min": 2,
+      "max": 5,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "outside_process",
+     "templateKey": "crisis.off_field_incident.outside_process",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "league_or_school",
+      "public"
+     ],
+     "clock": {
+      "min": 14,
+      "max": 42,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "outcome",
+     "templateKey": "crisis.off_field_incident.outcome",
+     "knownTo": [
+      "coach",
+      "team",
+      "public"
+     ]
+    }
+   ],
+   "acts": [
+    "wait_for_facts",
+    "talk_private",
+    "speak_public",
+    "inform_upstairs",
+    "apply_discipline",
+    "address_team",
+    "change_role_lineup",
+    "report_outside"
+   ],
+   "titleKey": "crisis.off_field_incident.title",
+   "newsKey": "news.crisis.off_field_incident",
+   "factIds": [
+    "F-crisis-0001",
+    "F-crisis-0002",
+    "F-crisis-0003",
+    "F-crisis-0007",
+    "F-crisis-0008",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "league_suspension",
+   "leaf": "L9.2.2",
+   "levels": [
+    "pro"
+   ],
+   "guard": "personal",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "off_field_incident.outcome"
+   ],
+   "hazard": {
+    "kind": "cause_driven",
+    "params": [
+     {
+      "id": "suspension_lengths_games",
+      "values": [
+       2,
+       4,
+       6,
+       17
+      ],
+      "unit": "games",
+      "factId": "F-crisis-0013"
+     }
+    ],
+    "openResearch": "Policy draw rate for generated players has no sourced value yet (L9.2.2 open question); the crisis opens from a serious or grave L9.2.1 outcome only until it is researched."
+   },
+   "severity": {
+    "range": {
+     "min": 2,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "notice",
+     "templateKey": "crisis.league_suspension.notice",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "league_or_school"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "appeal",
+     "templateKey": "crisis.league_suspension.appeal",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "league_or_school",
+      "public"
+     ],
+     "clock": {
+      "min": 7,
+      "max": 21,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "served",
+     "templateKey": "crisis.league_suspension.served",
+     "knownTo": [
+      "coach",
+      "team"
+     ],
+     "clock": {
+      "min": 14,
+      "max": 70,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "return",
+     "templateKey": "crisis.league_suspension.return",
+     "knownTo": [
+      "coach",
+      "team"
+     ]
+    }
+   ],
+   "acts": [
+    "wait_for_facts",
+    "speak_public",
+    "change_role_lineup",
+    "talk_private",
+    "address_team",
+    "inform_upstairs"
+   ],
+   "titleKey": "crisis.league_suspension.title",
+   "newsKey": "news.crisis.league_suspension",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0013",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "injury_to_star",
+   "leaf": "L9.2.3",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": false,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "injury.long_term"
+   ],
+   "hazard": {
+    "kind": "cause_driven",
+    "params": [
+     {
+      "id": "influence_floor",
+      "value": 70,
+      "unit": "influence points",
+      "factId": "F-crisis-0012"
+     },
+     {
+      "id": "belief_drop_max",
+      "value": 5,
+      "unit": "buy_in points",
+      "factId": "F-crisis-0012"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 3,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "diagnosis",
+     "templateKey": "crisis.injury_to_star.diagnosis",
+     "knownTo": [
+      "coach",
+      "medical",
+      "staff"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 2,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "roles_reset",
+     "templateKey": "crisis.injury_to_star.roles_reset",
+     "knownTo": [
+      "coach",
+      "staff",
+      "team"
+     ],
+     "clock": {
+      "min": 2,
+      "max": 7,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "expectations",
+     "templateKey": "crisis.injury_to_star.expectations",
+     "knownTo": [
+      "coach",
+      "owner_or_ad"
+     ],
+     "clock": {
+      "min": 7,
+      "max": 21,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "change_role_lineup",
+    "address_team",
+    "inform_upstairs",
+    "speak_public",
+    "reassign_staff_work"
+   ],
+   "titleKey": "crisis.injury_to_star.title",
+   "newsKey": "news.crisis.injury_to_star",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0012",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "losing_streak",
+   "leaf": "L9.2.4",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": false,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "results.streak"
+   ],
+   "hazard": {
+    "kind": "threshold",
+    "params": [
+     {
+      "id": "streak_probability_ceiling",
+      "value": 0.1,
+      "unit": "probability under preseason expectation",
+      "factId": "F-crisis-0012"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 2,
+     "max": 4,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "opened",
+     "templateKey": "crisis.losing_streak.opened",
+     "knownTo": [
+      "coach",
+      "staff",
+      "team",
+      "reporters"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "pressure",
+     "templateKey": "crisis.losing_streak.pressure",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "reporters",
+      "public"
+     ],
+     "clock": {
+      "min": 7,
+      "max": 14,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "closed",
+     "templateKey": "crisis.losing_streak.closed",
+     "knownTo": [
+      "coach",
+      "team"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "address_team",
+    "change_role_lineup",
+    "reassign_staff_work",
+    "speak_public",
+    "background_reporter",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.losing_streak.title",
+   "newsKey": "news.crisis.losing_streak",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0012",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "public_dispute",
+   "leaf": "L9.2.5",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": false,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "breakpoint.anger",
+    "breakpoint.ego",
+    "sideline.event"
+   ],
+   "hazard": {
+    "kind": "cause_driven",
+    "params": [
+     {
+      "id": "captains_resolve_share",
+      "value": 0.6,
+      "unit": "share",
+      "factId": "F-crisis-0009"
+     },
+     {
+      "id": "captain_trust_floor",
+      "value": 50,
+      "unit": "trust points",
+      "factId": "F-crisis-0009"
+     },
+     {
+      "id": "private_talk_window_days",
+      "value": 2,
+      "unit": "days",
+      "factId": "F-crisis-0009"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 1,
+     "max": 3,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "seen",
+     "templateKey": "crisis.public_dispute.seen",
+     "knownTo": [
+      "coach",
+      "staff",
+      "team",
+      "reporters"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "handling",
+     "templateKey": "crisis.public_dispute.handling",
+     "knownTo": [
+      "coach",
+      "team"
+     ],
+     "clock": {
+      "min": 1,
+      "max": 3,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "settled",
+     "templateKey": "crisis.public_dispute.settled",
+     "knownTo": [
+      "coach",
+      "team"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "ask_captains",
+    "apply_discipline",
+    "speak_public",
+    "address_team",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.public_dispute.title",
+   "newsKey": "news.crisis.public_dispute",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0009",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "hazing",
+   "leaf": "L9.2.6",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "personal",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "culture.tolerance",
+    "rookie_program.setting"
+   ],
+   "hazard": {
+    "kind": "weekly_per_person",
+    "params": [
+     {
+      "id": "base_weekly_camp",
+      "value": 0.002,
+      "unit": "per person-week",
+      "factId": "F-crisis-0010"
+     },
+     {
+      "id": "base_weekly_season",
+      "value": 0.0005,
+      "unit": "per person-week",
+      "factId": "F-crisis-0010"
+     },
+     {
+      "id": "culture_divisor",
+      "value": 150,
+      "unit": "culture points",
+      "factId": "F-crisis-0010"
+     },
+     {
+      "id": "published_ban_factor",
+      "value": 0.5,
+      "unit": "multiplier",
+      "factId": "F-crisis-0010"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 2,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": [
+     {
+      "id": "minor",
+      "share": 0.85,
+      "factId": "F-crisis-0010"
+     },
+     {
+      "id": "serious",
+      "share": 0.13,
+      "factId": "F-crisis-0010"
+     },
+     {
+      "id": "grave",
+      "share": 0.02,
+      "factId": "F-crisis-0010"
+     }
+    ]
+   },
+   "stages": [
+    {
+     "id": "warning",
+     "templateKey": "crisis.hazing.warning",
+     "knownTo": [
+      "staff"
+     ],
+     "clock": {
+      "min": 2,
+      "max": 10,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "surfaced",
+     "templateKey": "crisis.hazing.surfaced",
+     "knownTo": [
+      "coach",
+      "staff",
+      "team"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 3,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "ruling",
+     "templateKey": "crisis.hazing.ruling",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "team"
+     ],
+     "clock": {
+      "min": 3,
+      "max": 14,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "closed",
+     "templateKey": "crisis.hazing.closed",
+     "knownTo": [
+      "coach",
+      "team"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "apply_discipline",
+    "address_team",
+    "inform_upstairs",
+    "report_outside",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.hazing.title",
+   "newsKey": "news.crisis.hazing",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0010",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "holdout",
+   "leaf": "L9.2.7",
+   "levels": [
+    "pro"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "contract.holdout_record"
+   ],
+   "hazard": {
+    "kind": "wrapper",
+    "params": []
+   },
+   "severity": {
+    "range": {
+     "min": 3,
+     "max": 4,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "absent",
+     "templateKey": "crisis.holdout.absent",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "reporters",
+      "team"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "talks",
+     "templateKey": "crisis.holdout.talks",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "agent"
+     ],
+     "clock": {
+      "min": 7,
+      "max": 30,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "resolved",
+     "templateKey": "crisis.holdout.resolved",
+     "knownTo": [
+      "coach",
+      "team",
+      "public"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "inform_upstairs",
+    "speak_public",
+    "change_role_lineup",
+    "address_team",
+    "call_family_agent"
+   ],
+   "titleKey": "crisis.holdout.title",
+   "newsKey": "news.crisis.holdout",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "family_emergency",
+   "leaf": "L9.2.8",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "personal",
+   "outsideClass": true,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": true
+   },
+   "causeEvents": [],
+   "hazard": {
+    "kind": "weekly_per_person",
+    "params": [
+     {
+      "id": "base_weekly",
+      "value": 0.001,
+      "unit": "per person-week",
+      "factId": "F-crisis-0011"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 3,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "told",
+     "templateKey": "crisis.family_emergency.told",
+     "knownTo": [
+      "coach",
+      "subject"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "away",
+     "templateKey": "crisis.family_emergency.away",
+     "knownTo": [
+      "coach",
+      "staff"
+     ],
+     "clock": {
+      "min": 1,
+      "max": 14,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "back",
+     "templateKey": "crisis.family_emergency.back",
+     "knownTo": [
+      "coach",
+      "team"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "give_time_off",
+    "change_role_lineup",
+    "address_team",
+    "inform_upstairs"
+   ],
+   "titleKey": "crisis.family_emergency.title",
+   "newsKey": "news.crisis.family_emergency",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0011",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "team_illness",
+   "leaf": "L9.2.9",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": false,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "outbreak.draw"
+   ],
+   "hazard": {
+    "kind": "per_team_season",
+    "params": [
+     {
+      "id": "outbreak_per_season",
+      "value": 0.04,
+      "unit": "per team-season",
+      "factId": "F-crisis-0015"
+     },
+     {
+      "id": "daily_spread_shared_room",
+      "value": 0.08,
+      "unit": "per well person-day",
+      "factId": "F-crisis-0015"
+     },
+     {
+      "id": "daily_spread_split_rooms",
+      "value": 0.03,
+      "unit": "per well person-day",
+      "factId": "F-crisis-0015"
+     },
+     {
+      "id": "outbreak_days",
+      "values": [
+       5,
+       9
+      ],
+      "unit": "days",
+      "factId": "F-crisis-0015"
+     },
+     {
+      "id": "days_out",
+      "values": [
+       2,
+       4
+      ],
+      "unit": "days",
+      "factId": "F-crisis-0015"
+     },
+     {
+      "id": "play_while_ill_endurance_penalty",
+      "value": 0.1,
+      "unit": "share",
+      "factId": "F-crisis-0015"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 2,
+     "max": 4,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "warning",
+     "templateKey": "crisis.team_illness.warning",
+     "knownTo": [
+      "medical",
+      "staff"
+     ],
+     "clock": {
+      "min": 1,
+      "max": 3,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "outbreak",
+     "templateKey": "crisis.team_illness.outbreak",
+     "knownTo": [
+      "coach",
+      "medical",
+      "staff",
+      "team"
+     ],
+     "clock": {
+      "min": 2,
+      "max": 9,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "over",
+     "templateKey": "crisis.team_illness.over",
+     "knownTo": [
+      "coach",
+      "team"
+     ]
+    }
+   ],
+   "acts": [
+    "give_time_off",
+    "change_role_lineup",
+    "address_team",
+    "reassign_staff_work",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.team_illness.title",
+   "newsKey": "news.crisis.team_illness",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0014",
+    "F-crisis-0015"
+   ]
+  },
+  {
+   "id": "staff_crisis",
+   "leaf": "L9.2.10",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "personal",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "staff.burnout",
+    "staff.resignation",
+    "staff.hired_away",
+    "staff.dispute"
+   ],
+   "hazard": {
+    "kind": "cause_driven",
+    "params": [
+     {
+      "id": "league_wide_coach_dui_per_year",
+      "value": 1.5,
+      "unit": "per year across the league",
+      "factId": "F-crisis-0006"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 2,
+     "max": 4,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "gone",
+     "templateKey": "crisis.staff_crisis.gone",
+     "knownTo": [
+      "coach",
+      "staff"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 2,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "covered",
+     "templateKey": "crisis.staff_crisis.covered",
+     "knownTo": [
+      "coach",
+      "staff"
+     ],
+     "clock": {
+      "min": 3,
+      "max": 10,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "settled",
+     "templateKey": "crisis.staff_crisis.settled",
+     "knownTo": [
+      "coach",
+      "staff"
+     ]
+    }
+   ],
+   "acts": [
+    "reassign_staff_work",
+    "talk_private",
+    "address_team",
+    "inform_upstairs",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.staff_crisis.title",
+   "newsKey": "news.crisis.staff_crisis",
+   "factIds": [
+    "F-crisis-0006",
+    "F-crisis-0007",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "portal_exodus",
+   "leaf": "L9.4.1",
+   "levels": [
+    "college"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": false,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "transfer.leaning"
+   ],
+   "hazard": {
+    "kind": "threshold",
+    "params": [
+     {
+      "id": "expected_departures_share_of_roster",
+      "value": 0.1,
+      "unit": "share",
+      "factId": "F-crisis-0012"
+     }
+    ],
+    "ruleDataKeys": [
+     "college.transfer_window"
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 3,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "before_window",
+     "templateKey": "crisis.portal_exodus.before_window",
+     "knownTo": [
+      "coach",
+      "staff"
+     ]
+    },
+    {
+     "id": "window",
+     "templateKey": "crisis.portal_exodus.window",
+     "knownTo": [
+      "coach",
+      "staff",
+      "public"
+     ]
+    },
+    {
+     "id": "after_window",
+     "templateKey": "crisis.portal_exodus.after_window",
+     "knownTo": [
+      "coach",
+      "owner_or_ad"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "change_role_lineup",
+    "inform_upstairs",
+    "call_family_agent",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.portal_exodus.title",
+   "newsKey": "news.crisis.portal_exodus",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0012",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "academic_ineligibility",
+   "leaf": "L9.4.2",
+   "levels": [
+    "college"
+   ],
+   "guard": "personal",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "academics.trend"
+   ],
+   "hazard": {
+    "kind": "cause_driven",
+    "params": [],
+    "ruleDataKeys": [
+     "college.academic_standard"
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 2,
+     "max": 4,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "trending",
+     "templateKey": "crisis.academic_ineligibility.trending",
+     "knownTo": [
+      "staff"
+     ],
+     "clock": {
+      "min": 7,
+      "max": 28,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "ruled_out",
+     "templateKey": "crisis.academic_ineligibility.ruled_out",
+     "knownTo": [
+      "coach",
+      "staff",
+      "owner_or_ad"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "regained",
+     "templateKey": "crisis.academic_ineligibility.regained",
+     "knownTo": [
+      "coach",
+      "team"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "change_role_lineup",
+    "inform_upstairs",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.academic_ineligibility.title",
+   "newsKey": "news.crisis.academic_ineligibility",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "investigation",
+   "leaf": "L9.4.3",
+   "levels": [
+    "college"
+   ],
+   "guard": "personal",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "compliance.case"
+   ],
+   "hazard": {
+    "kind": "wrapper",
+    "params": [
+     {
+      "id": "major_case_rate_per_program_year",
+      "value": 0.03,
+      "unit": "per D-I football program-year",
+      "factId": "F-crisis-0004"
+     },
+     {
+      "id": "case_length_months",
+      "value": 12,
+      "unit": "months",
+      "factId": "F-crisis-0005"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 4,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "notice",
+     "templateKey": "crisis.investigation.notice",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "league_or_school"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 7,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "interviews",
+     "templateKey": "crisis.investigation.interviews",
+     "knownTo": [
+      "coach",
+      "staff",
+      "owner_or_ad"
+     ],
+     "clock": {
+      "min": 30,
+      "max": 180,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "finding",
+     "templateKey": "crisis.investigation.finding",
+     "knownTo": [
+      "coach",
+      "owner_or_ad",
+      "public"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 30,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "appeal",
+     "templateKey": "crisis.investigation.appeal",
+     "knownTo": [
+      "coach",
+      "owner_or_ad"
+     ]
+    }
+   ],
+   "acts": [
+    "inform_upstairs",
+    "talk_private",
+    "address_team",
+    "speak_public",
+    "report_outside",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.investigation.title",
+   "newsKey": "news.crisis.investigation",
+   "factIds": [
+    "F-crisis-0004",
+    "F-crisis-0005",
+    "F-crisis-0007",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "booster_revolt",
+   "leaf": "L9.4.4",
+   "levels": [
+    "college"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": false,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "booster.mood"
+   ],
+   "hazard": {
+    "kind": "threshold",
+    "params": [
+     {
+      "id": "booster_mood_floor",
+      "value": 25,
+      "unit": "mood points",
+      "factId": "F-crisis-0012"
+     },
+     {
+      "id": "weeks_below_floor",
+      "value": 4,
+      "unit": "weeks",
+      "factId": "F-crisis-0012"
+     }
+    ]
+   },
+   "severity": {
+    "range": {
+     "min": 3,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "opened",
+     "templateKey": "crisis.booster_revolt.opened",
+     "knownTo": [
+      "coach",
+      "owner_or_ad"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 3,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "demands",
+     "templateKey": "crisis.booster_revolt.demands",
+     "knownTo": [
+      "coach",
+      "owner_or_ad"
+     ],
+     "clock": {
+      "min": 7,
+      "max": 28,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "ended",
+     "templateKey": "crisis.booster_revolt.ended",
+     "knownTo": [
+      "coach",
+      "owner_or_ad"
+     ]
+    }
+   ],
+   "acts": [
+    "inform_upstairs",
+    "talk_private",
+    "speak_public",
+    "change_role_lineup",
+    "wait_for_facts"
+   ],
+   "titleKey": "crisis.booster_revolt.title",
+   "newsKey": "news.crisis.booster_revolt",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0012",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "boss_fired",
+   "leaf": "L9.5.1",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "football",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": false,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "boss.fired",
+    "boss.resigned"
+   ],
+   "hazard": {
+    "kind": "cause_driven",
+    "params": []
+   },
+   "severity": {
+    "range": {
+     "min": 4,
+     "max": 5,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "announced",
+     "templateKey": "crisis.boss_fired.announced",
+     "knownTo": [
+      "staff",
+      "owner_or_ad",
+      "public"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 1,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "limbo",
+     "templateKey": "crisis.boss_fired.limbo",
+     "knownTo": [
+      "staff",
+      "coach"
+     ],
+     "clock": {
+      "min": 3,
+      "max": 30,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "decided",
+     "templateKey": "crisis.boss_fired.decided",
+     "knownTo": [
+      "coach"
+     ]
+    }
+   ],
+   "acts": [
+    "talk_private",
+    "inform_upstairs",
+    "wait_for_facts",
+    "call_family_agent"
+   ],
+   "titleKey": "crisis.boss_fired.title",
+   "newsKey": "news.crisis.boss_fired",
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0014"
+   ]
+  },
+  {
+   "id": "witnessed",
+   "leaf": "L9.5.2",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "guard": "personal",
+   "outsideClass": false,
+   "subjects": {
+    "generatedOnly": true,
+    "adultOnly": true,
+    "requiresFamilyObject": false
+   },
+   "causeEvents": [
+    "violation.on_team",
+    "hazing.case"
+   ],
+   "hazard": {
+    "kind": "cause_driven",
+    "params": []
+   },
+   "severity": {
+    "range": {
+     "min": 2,
+     "max": 4,
+     "unit": "severity",
+     "factId": "F-crisis-0007"
+    },
+    "classes": []
+   },
+   "stages": [
+    {
+     "id": "seen",
+     "templateKey": "crisis.witnessed.seen",
+     "knownTo": [
+      "coach"
+     ],
+     "clock": {
+      "min": 0,
+      "max": 3,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "decide",
+     "templateKey": "crisis.witnessed.decide",
+     "knownTo": [
+      "coach"
+     ],
+     "clock": {
+      "min": 1,
+      "max": 14,
+      "unit": "days",
+      "factId": "F-crisis-0014"
+     }
+    },
+    {
+     "id": "after",
+     "templateKey": "crisis.witnessed.after",
+     "knownTo": [
+      "coach"
+     ]
+    }
+   ],
+   "acts": [
+    "wait_for_facts",
+    "talk_private",
+    "inform_upstairs",
+    "report_outside"
+   ],
+   "titleKey": "crisis.witnessed.title",
+   "newsKey": null,
+   "factIds": [
+    "F-crisis-0007",
+    "F-crisis-0014"
+   ]
+  }
+ ]
+}
