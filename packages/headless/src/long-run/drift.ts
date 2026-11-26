@@ -1,8 +1,9 @@
 // Q1.6.4 drift report: for each series, a least-squares line over seasons 5 to 30 whose slope must sit
 // within a tolerance of zero, and every season inside the series' band. Records: the rate at which they
-// fall after season 10 must decline toward a low steady rate and never rise. Tolerances are Assumptions
-// (Q1.6.4 open question) and can be overridden per series by the caller.
+// fall after season 10 must decline toward a low steady rate and never rise. Tolerances come from real
+// NFL variation where a row exists in tolerances.ts (G-88 research), else they are Assumptions; the caller can override any.
 import { param } from './params.ts';
+import { REAL_TOLERANCES } from './tolerances.ts';
 import type { RecordFall, SeasonPoint } from './series.ts';
 
 export interface Band { readonly min: number; readonly max: number }
@@ -18,6 +19,8 @@ export interface DriftOptions {
   readonly bands?: Readonly<Record<string, Band>>;
   /** Per-series slope share overrides, by name or prefix ending in '.'. */
   readonly slopeShares?: Readonly<Record<string, number>>;
+  /** Per-series band share overrides, by name or prefix ending in '.'. */
+  readonly bandShares?: Readonly<Record<string, number>>;
   /** Series ignored by the drift verdict (still reported), by name or prefix ending in '.'. */
   readonly ignore?: readonly string[];
 }
@@ -88,10 +91,11 @@ export function testSeries(name: string, points: readonly SeasonPoint[], opts: D
   if (xs.length < 3) return null;
   const m = ys.reduce((a, b) => a + b, 0) / ys.length;
   const { slope } = fitLine(xs, ys);
-  const share = lookup(opts.slopeShares, name) ?? opts.slopeShare ?? param('drift.slopeShare');
+  const real = lookup(REAL_TOLERANCES, name);
+  const share = lookup(opts.slopeShares, name) ?? opts.slopeShare ?? real?.slopeShare ?? param('drift.slopeShare');
   const scale = Math.abs(m) > 1e-9 ? Math.abs(m) : 1;
   const slopeLimit = share * scale;
-  const bandShare = opts.bandShare ?? param('drift.bandShare');
+  const bandShare = lookup(opts.bandShares, name) ?? opts.bandShare ?? real?.bandShare ?? param('drift.bandShare');
   const band = lookup(opts.bands, name) ?? { min: m - bandShare * scale, max: m + bandShare * scale };
   const outside = xs.filter((_, i) => ys[i]! < band.min || ys[i]! > band.max);
   const slopeOk = Math.abs(slope) <= slopeLimit;
@@ -107,8 +111,9 @@ export function testSeries(name: string, points: readonly SeasonPoint[], opts: D
 export function testRecords(falls: readonly RecordFall[], recordCount: number, firstSeason: number, seasons: number, opts: { from?: number; window?: number; steadyRate?: number } = {}): RecordsResult {
   const from = opts.from ?? param('drift.recordsFrom');
   const window = opts.window ?? param('drift.recordWindow');
-  const steady = opts.steadyRate ?? param('drift.recordSteadyRate');
   const rates: number[] = [];
+  // With few tracked records one fall is already a large rate, so the steady rate is never below one fall per window.
+  const steady = Math.max(opts.steadyRate ?? param('drift.recordSteadyRate'), recordCount > 0 ? 1 / (recordCount * window) : 0);
   if (recordCount === 0) return { records: 0, windowRates: [], steadyRate: steady, pass: true, reason: 'no records tracked' };
   for (let start = from + 1; start + window - 1 <= seasons; start += window) {
     const lo = firstSeason + start - 1, hi = lo + window - 1;
