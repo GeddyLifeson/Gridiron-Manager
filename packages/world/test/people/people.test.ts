@@ -131,7 +131,7 @@ describe('people dynamics in the live world (X5, X6, X7, X9)', () => {
     const again = run(3);
     expect(loop.worldHash(again)).toBe(loop.worldHash(w));
     expect(again.passHash).toBe(w.passHash);
-  });
+  }, 60_000); // re-runs three seasons: about 5.6 s on a slow container, past vitest's 5 s default
 
   it('keeps every step state plain data that survives a JSON round trip', () => {
     for (const k of Object.values(people.KEY)) {
