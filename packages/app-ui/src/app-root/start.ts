@@ -3,6 +3,7 @@
 import { play, type newgame } from '@gm/app-services';
 import { careerPortFromSeason, type SeasonPortHost } from './season-port.ts';
 import type { CareerPort, SeatWorld } from './port.ts';
+import { hubSources } from './sources/index.ts';
 
 /** The four league files the season is built from (world season `LeagueContent`); the shell host imports them. */
 export type LeagueContent = Parameters<typeof play.SeasonPlay.start>[0];
@@ -29,13 +30,23 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const strips = new Map<string, { primary: string; alternate: string }>();
   for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
   const port = careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...host, level: s.level, seasonYear: s.seasonYear });
+  // The hubs' route sources, built once: the new-game seat hands over the generated world (its history).
+  const world = 'world' in s.seat && isStartedWorld(s.seat.world) ? s.seat.world : null;
+  const sources = hubSources({ season: sp, content, world });
+  const withSources: CareerPort = { ...port, sources: () => sources };
   const live = s.live;
-  if (!live || !('world' in s.seat)) return port;
+  if (!live || !('world' in s.seat)) return withSources;
   const seat: SeatWorld = {
     world: live.world, teamId: s.seat.teamId, userPersonId: live.userPersonId, level: s.level,
     leagueRules: s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules,
   };
-  return { ...port, seatWorld: () => seat };
+  return { ...withSources, seatWorld: () => seat };
+}
+
+/** The new-game picker's seat world is the whole generated world; a bare team list is not. */
+function isStartedWorld(w: play.WorldTeams): w is newgame.StartedWorld {
+  const x = w as Partial<newgame.StartedWorld>;
+  return x.people instanceof Map && x.jobs instanceof Map && x.log !== undefined && Array.isArray(x.seasons);
 }
 
 /** First team of the level in the content: the quick start's seat (a check entry, not a career choice). */

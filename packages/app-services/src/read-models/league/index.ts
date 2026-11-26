@@ -8,3 +8,4 @@ export { buildTeamPage } from './team.ts';
 export { buildTransactions, buildNews, type WireContext } from './wire.ts';
 export { buildRecords, type RecordsSource } from './records.ts';
 export { leagueSpecs, LEAGUE_MODELS, LEAGUE_SCREEN_IDS, type LeagueSchemas, type LeagueSources } from './spec.ts';
+export { LiveLeague, PLAIN_TEXT, LIVE_COMPETITION_ID, GUEST_COMPETITION_ID, UNMAPPED_TEAM_OFFSET, epochDayOfYearStart, type LiveLeagueOptions, type LiveLeagueText } from './live.ts';
