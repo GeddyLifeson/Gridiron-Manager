@@ -174,7 +174,13 @@ Mix rules from O5.3.2 (already in the bible): ducking of the crowd to about half
    | `codesign` (IMG.LY CoDesign) | Drafting icons, title cards, reel leaders and mood boards; exports SVG or PNG (PV-13, PV-18) | SVG exports may ship if redrawn into token colours; its AI generation counts as AI assets |
    | `animation-studio` skill | Title and menu animations with code-made sound; offline rendering of sound recipes (PV-07, PV-11) | Yes, if the output is rebuildable from the repo |
    | `image-generation` and `art-suite` skills, OpenArt connector (images and video) | Concept art and the era mood board; possibly title-screen art | Only non-information art, with a register row (model, terms, prompt) |
-   | Creative programs on Marlon's PC (list: `plans/pc-tools-inventory.md`, being written by "Inventory creative tools on Marlon's PC") | Audio and image editing, previewing renders by ear (no audio output in the cloud) | Files only with a register row |
+   | MuseScore Studio 4 and music21 (PC) | Draft the menu loops as scores, then port the notes into code recipes (PV-11) | No; the code recipe ships |
+| SoundCraft (PC, alpha) | Reference listening and editing for sound recipes; the cloud has no audio output (PV-07, PV-10) | Files only with a register row |
+| VectorCraft (PC, alpha) | Icon and field-art sketches, redrawn into token SVG (PV-13, PV-03) | No; the token SVG ships |
+| Playwright with soundfile, numpy and Pillow (PC) | Offline Web Audio renders with peak and RMS checks, screenshots, greyscale and contrast checks (PV-04, PV-05, PV-07, PV-17). True LUFS loudness needs a library that is not installed, so PV-07 sets its loudness check with RMS until one is added | Test tools only |
+| Blender (PC) | Pose reference for figure mode, only after the Q2 and Q3 gates (PV-16) | No |
+
+   Full list: `/mnt/project-files/pc-tools-inventory.md` (2026-11-26; installed versions read from the registry, command lines unverified until first use). ffmpeg, ImageMagick, Inkscape and SoX are not on the PC's PATH, and no package needs them.
 
 6. **Register.** `assets/LICENSES.json`, one row per non-code asset file: path, sha256, source URL, licence id, author, date retrieved, and for AI assets the model and prompt. PV-15 adds a checker the release gate (G-100) calls: every file under an asset folder has a row and every row's file exists; the existing name and mark scan also covers image files.
 
