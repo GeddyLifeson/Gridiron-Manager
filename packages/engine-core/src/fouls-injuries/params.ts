@@ -253,4 +253,18 @@ export const OPTIONAL_RULE_KEYS = {
   contactZone: 'foul.illegal_contact.zone_yd',
   /** Depth beyond the line at which an offensive block before the pass is offensive interference (pro Rule 8-5). */
   pickDepth: 'foul.opi.block_depth_yd',
+  /**
+   * How the ineligible-downfield depth is measured: \`entire_body\` (pro Rule 8-3-1, "entire body ... more than
+   * one yard beyond") or \`any_part\` (college Rule 7-3-10, "any part of their body is beyond"). Missing: the centre.
+   */
+  idfMeasure: 'foul.ineligible_downfield.measure',
+  /**
+   * When the depth counts: \`at_throw\` (pro, "before the pass has been thrown", judged at the throw) or
+   * \`any_time_before_throw\` (college, "shall be or have been"). Missing: at the throw.
+   */
+  idfWhen: 'foul.ineligible_downfield.when',
+  /** True where an ineligible who made contact within the limit on his initial charge may be driven past it (pro 8-3-1 Item 1). Missing: false. */
+  idfEngaged: 'foul.ineligible_downfield.engaged_exception',
+  /** True where the limit applies only to a pass that crosses the line (college 7-3-10). Missing: true (the bible's reading, B5.3.2 open question for pro). */
+  idfCross: 'foul.ineligible_downfield.pass_must_cross',
 } as const;
