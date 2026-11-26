@@ -84,3 +84,38 @@ describe('off-screen coach turnover (E2.3.4, E4.3, K7.6.1, K8.4.2)', () => {
     expect(again.w.passHash).toBe(g.w.passHash);
   });
 });
+
+// E2.3.4 acceptance on the trimmed world (GM_COACH_ACCEPTANCE=30 or 50). The rates are printed for the PR;
+// acceptance 1 (an opening every year at every rung 2 to 9) needs the full world, so only invariants are asserted.
+const LONG = Number(process.env.GM_COACH_ACCEPTANCE ?? 0);
+describe.skipIf(!LONG)(`coach turnover over ${LONG} seasons (E2.3.4 acceptance)`, () => {
+  it('keeps staffs legal and reports the opening rates', () => {
+    const g = build();
+    const problems: string[] = [];
+    const t0 = Date.now();
+    for (let i = 0; i < LONG; i++) {
+      loop.runSeason(g.w, g.sys, testSchedule);
+      problems.push(...staffProblems(g.w).map((p) => `season ${i + 1}: ${p}`));
+    }
+    const rows = turnover.coachOpenings(g.w);
+    const seasons = new Set(rows.map((r) => r.season)).size;
+    const teams = (lvl: string) => g.w.teams.filter((t) => turnover.levelOfTeam(g.w, t.id) === lvl).length;
+    const report: Record<string, unknown> = { seconds: Math.round((Date.now() - t0) / 1000), seasonsWithOpenings: seasons };
+    for (const lvl of ['pro', 'college']) {
+      const head = rows.filter((r) => r.level === lvl && r.reason === 'fired' && (r.rung === 9 || r.rung === 8)).reduce((a, r) => a + r.count, 0);
+      const heads = rows.filter((r) => r.level === lvl && (r.rung === 9 || r.rung === 8)).reduce((a, r) => a + r.count, 0);
+      report[`${lvl}_head_firings_per_team_season`] = +(head / teams(lvl) / LONG).toFixed(3);
+      report[`${lvl}_head_openings_per_team_season`] = +(heads / teams(lvl) / LONG).toFixed(3);
+      const years: Record<number, number> = {};
+      for (let rung = 2; rung <= 9; rung++) years[rung] = new Set(rows.filter((r) => r.level === lvl && r.rung === rung).map((r) => r.season)).size;
+      report[`${lvl}_years_with_an_opening_by_rung`] = years;
+    }
+    const reasons: Record<string, number> = {};
+    for (const r of rows) reasons[r.reason] = (reasons[r.reason] ?? 0) + r.count;
+    report.reasons = reasons;
+    const ages = [...g.w.jobs.values()].filter((j) => j.holderPersonId !== null).map((j) => g.w.date.seasonYear - g.w.people.get(j.holderPersonId!)!.birthDate.seasonYear);
+    report.mean_coach_age = +(ages.reduce((a, x) => a + x, 0) / ages.length).toFixed(1);
+    process.stderr.write(`\ncoach acceptance: ${JSON.stringify(report)}\n`);
+    expect(problems).toEqual([]);
+  }, 3_600_000);
+});
