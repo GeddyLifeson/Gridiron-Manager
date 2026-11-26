@@ -25,7 +25,7 @@ export function deskHooks(rec: Recorder): CareerYearHooks {
     seasonStart(y) {
       const checks = y.practice.plan([userPlan(wrec.dayOfWorld(y.world.date))]);
       const c = checks[0];
-      if (!c?.ok) rec.add('invalid', 'practice', 'practice.plan_refused', `The user practice plan was refused: ${[...(c?.problems ?? []).map((p) => p.message), ...(c?.findings ?? []).map((f) => f.plain)].join('; ')}`, OWNERS.practice);
+      if (!c?.ok) rec.add('invalid', 'practice', 'practice.plan_refused', `The user practice plan was refused: ${[...(c?.problems ?? []).map((p) => p.plain), ...(c?.findings ?? []).map((f) => f.plain)].join('; ')}`, OWNERS.practice);
       planned = y.practice.planned.length > 0;
     },
     week(y) {
