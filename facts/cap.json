@@ -1600,6 +1600,440 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-cap-0051",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Outside the top 51, only the amount above twice the minimum salary counts for other players.",
+   "value": 2,
+   "unit": "multiple",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 13 Section 6(a)(i)(2) (text copy cba_2020.txt, line 5704)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "exceeds twice the applicable Minimum Active/Inactive List Salary for all other players",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0052",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Veteran salary benefit needs four or more credited seasons.",
+   "value": 4,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 Section 1 (text copy cba_2020.txt, line 8759)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a player with four or more Credited Seasons",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0053",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The benefit contract counts against the cap at the minimum for two credited seasons.",
+   "value": 2,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 (text copy cba_2020.txt, line 8769)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "up to the Minimum Salary for a player with two Credited Seasons",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0054",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Basic fifth-year option: average of the third through twenty-fifth highest salaries (from rank 3).",
+   "value": 3,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i) (text copy cba_2020.txt, line 2550)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "third through twenty-fifth",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0055",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Basic fifth-year option: average of the third through twenty-fifth highest salaries (to rank 25).",
+   "value": 25,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i) (text copy cba_2020.txt, line 2550)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "third through twenty-fifth",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0056",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Playing-time fifth-year option: average of the third through twentieth highest salaries.",
+   "value": 20,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(ii) (text copy cba_2020.txt, line 2601)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "third through twentieth",
+     "value": 20
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0057",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Option playing-time test: at least 75 percent of plays in any two of the first three seasons.",
+   "value": 75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)(1) (text copy cba_2020.txt, line 2571)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 75% of his Club’s offensive or defensive plays in any two of his first three regular seasons",
+     "value": 75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0058",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Option playing-time test: cumulative average of at least 75 percent.",
+   "value": 75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)(2) (text copy cba_2020.txt, line 2572)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a “cumulative average” of at least 75%",
+     "value": 75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0059",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Option playing-time test: at least 50 percent of plays in each of the first three seasons.",
+   "value": 50,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)(3) (text copy cba_2020.txt, line 2574)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 50% of his Club’s offensive or defensive plays in each of his first three regular seasons",
+     "value": 50
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0060",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Top option tier: two or more Pro Bowls on the original ballot.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(iv) (text copy cba_2020.txt, line 2622)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "selected to two or more Pro Bowls on the original ballot",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0061",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Proven performance escalator, round 2: at least 60 percent of plays in two of the first three seasons.",
+   "value": 60,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(d)(i) (text copy cba_2020.txt, line 2192)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 60% of his Club’s offensive or defensive plays in any two of his first three regular seasons",
+     "value": 60
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0062",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Proven performance escalator, later rounds: at least 35 percent of plays.",
+   "value": 35,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(d)(ii) (text copy cba_2020.txt, line 2208)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 35%",
+     "value": 35
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0063",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Escalator higher level: at least 55 percent of plays in each of the first three seasons.",
+   "value": 55,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(d)(iii) (text copy cba_2020.txt, line 2219)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 55%",
+     "value": 55
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0064",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Escalator higher level adds $250,000.",
+   "value": 250000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(e)(iii) (text copy cba_2020.txt, line 2267)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "plus $250,000",
+     "value": 250000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

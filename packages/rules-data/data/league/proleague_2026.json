@@ -430,6 +430,18 @@
    "factId": "F-league-0067"
   },
   {
+   "key": "tag.cap_average_years",
+   "value": 5,
+   "unit": "years",
+   "factId": "F-league-0068"
+  },
+  {
+   "key": "tag.third_position_avg_pct",
+   "value": 120,
+   "unit": "percent",
+   "factId": "F-league-0069"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
@@ -736,6 +748,90 @@
    "unit": "count",
    "factId": "F-cap-0050",
    "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cap.top51_excess_multiple",
+   "value": 2,
+   "unit": "multiple",
+   "factId": "F-cap-0051"
+  },
+  {
+   "key": "cap.veteran_benefit_min_seasons",
+   "value": 4,
+   "unit": "seasons",
+   "factId": "F-cap-0052"
+  },
+  {
+   "key": "cap.veteran_benefit_count_seasons",
+   "value": 2,
+   "unit": "seasons",
+   "factId": "F-cap-0053"
+  },
+  {
+   "key": "rookie.option_basic_rank_from",
+   "value": 3,
+   "unit": "rank",
+   "factId": "F-cap-0054"
+  },
+  {
+   "key": "rookie.option_basic_rank_to",
+   "value": 25,
+   "unit": "rank",
+   "factId": "F-cap-0055"
+  },
+  {
+   "key": "rookie.option_playtime_rank_to",
+   "value": 20,
+   "unit": "rank",
+   "factId": "F-cap-0056"
+  },
+  {
+   "key": "rookie.option_playtime_two_of_three_pct",
+   "value": 75,
+   "unit": "percent",
+   "factId": "F-cap-0057"
+  },
+  {
+   "key": "rookie.option_playtime_average_pct",
+   "value": 75,
+   "unit": "percent",
+   "factId": "F-cap-0058"
+  },
+  {
+   "key": "rookie.option_playtime_each_pct",
+   "value": 50,
+   "unit": "percent",
+   "factId": "F-cap-0059"
+  },
+  {
+   "key": "rookie.option_franchise_pro_bowls",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-cap-0060"
+  },
+  {
+   "key": "rookie.escalator_l1_pct_round_2",
+   "value": 60,
+   "unit": "percent",
+   "factId": "F-cap-0061"
+  },
+  {
+   "key": "rookie.escalator_l1_pct_later_rounds",
+   "value": 35,
+   "unit": "percent",
+   "factId": "F-cap-0062"
+  },
+  {
+   "key": "rookie.escalator_l2_pct_each",
+   "value": 55,
+   "unit": "percent",
+   "factId": "F-cap-0063"
+  },
+  {
+   "key": "rookie.escalator_l2_extra_usd",
+   "value": 250000,
+   "unit": "USD",
+   "factId": "F-cap-0064"
   }
  ]
 }

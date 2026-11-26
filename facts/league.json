@@ -2287,6 +2287,68 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-league-0068",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The cap percentage average runs over the five preceding league years.",
+   "value": 5,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(a)(i)(A) (text copy cba_2020.txt, line 3308)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "for players at that position for the five preceding League Years",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0069",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Third franchise tag: 120 percent of the average of the five largest prior-year salaries at the position.",
+   "value": 120,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(b)(B) (text copy cba_2020.txt, line 3341)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "120% of the average of the five largest Prior Year Salaries",
+     "value": 120
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

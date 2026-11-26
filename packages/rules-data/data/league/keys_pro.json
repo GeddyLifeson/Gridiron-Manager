@@ -671,6 +671,26 @@
    "unit": "USD"
   },
   {
+   "key": "tag.cap_average_years",
+   "type": "number",
+   "meaning": "Years in the franchise tag cap-percentage average",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "tag.third_position_avg_pct",
+   "type": "number",
+   "meaning": "Third tag: percent of the position top-five average",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "type": "number",
    "meaning": "Minimum cash spending as percent of cap",
@@ -1169,6 +1189,146 @@
     "league (G-10 data)"
    ],
    "unit": "count"
+  },
+  {
+   "key": "cap.top51_excess_multiple",
+   "type": "number",
+   "meaning": "Outside the top 51 only salary above this multiple of the minimum counts",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "multiple"
+  },
+  {
+   "key": "cap.veteran_benefit_min_seasons",
+   "type": "number",
+   "meaning": "Credited seasons for the veteran salary benefit",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "cap.veteran_benefit_count_seasons",
+   "type": "number",
+   "meaning": "Credited-season minimum the benefit contract counts at",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "rookie.option_basic_rank_from",
+   "type": "number",
+   "meaning": "Option basic tier: first salary rank averaged",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "rank"
+  },
+  {
+   "key": "rookie.option_basic_rank_to",
+   "type": "number",
+   "meaning": "Option basic tier: last salary rank averaged",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "rank"
+  },
+  {
+   "key": "rookie.option_playtime_rank_to",
+   "type": "number",
+   "meaning": "Option playing-time tier: last salary rank averaged",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "rank"
+  },
+  {
+   "key": "rookie.option_playtime_two_of_three_pct",
+   "type": "number",
+   "meaning": "Option playing-time test: percent of plays in two of three seasons",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "rookie.option_playtime_average_pct",
+   "type": "number",
+   "meaning": "Option playing-time test: cumulative average percent",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "rookie.option_playtime_each_pct",
+   "type": "number",
+   "meaning": "Option playing-time test: percent of plays in each of three seasons",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "rookie.option_franchise_pro_bowls",
+   "type": "number",
+   "meaning": "Original-ballot Pro Bowls for the top option tier",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "rookie.escalator_l1_pct_round_2",
+   "type": "number",
+   "meaning": "Escalator level one: percent of plays, round 2 picks",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "rookie.escalator_l1_pct_later_rounds",
+   "type": "number",
+   "meaning": "Escalator level one: percent of plays, rounds 3 to 7",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "rookie.escalator_l2_pct_each",
+   "type": "number",
+   "meaning": "Escalator level two: percent of plays in each season",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "rookie.escalator_l2_extra_usd",
+   "type": "number",
+   "meaning": "Escalator level two: extra dollars",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
   }
  ]
 }
