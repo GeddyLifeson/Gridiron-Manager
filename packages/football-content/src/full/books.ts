@@ -64,10 +64,10 @@ const COLLEGE_AIR_RAID: Basis = { claim: 'College book: the Air Raid core concep
 const LEVEL_SHARES: Basis = { claim: 'Which families each level leans on (pro zone and play action, college spread, zone read and RPO) and how heavily: family shares by level are not researched', status: 'Assumption', sources: [] };
 
 // Pressure entries shared by both books. Their weights are set so the game's rusher mix on pass plays lands on the
-// measured league mix (facts F-measured-rate-0477 to 0480: five or more rushers on about 29% of pass plays, six or
-// more on about 7%, a simulated pressure on about 7.5%); the weights themselves are design values (Assumption).
-const PRESSURE_COVER3: readonly BookEntry[] = [d('def_cover3_fire_zone', 5), d('def_cover3_fire_zone_weak', 5), d('def_cover3_fire3_sim', 1), d('def_creeper_field_edge', 2), d('def_creeper_boundary', 1), d('def_sim_mug_cover3', 1), d('def_creeper_safety_insert', 2), d('def_creeper_boundary_safety', 2)];
-const PRESSURE_COVER1: readonly BookEntry[] = [d('def_cover1_five_man', 4), d('def_cover1_slot_blitz', 4), d('def_sim_mug_cover1_rat', 2)];
+// measured league mix (facts F-measured-rate-0477, 0481 and 0482: five or more rushers on about 29% of pass plays,
+// six or more on about 7%, a simulated pressure on about 7.5%); the weights themselves are design values (Assumption).
+const PRESSURE_COVER3: readonly BookEntry[] = [d('def_cover3_fire_zone', 5), d('def_cover3_fire_zone_weak', 5), d('def_cover3_fire3_sim', 1), d('def_creeper_field_edge', 2), d('def_creeper_boundary', 1), d('def_sim_mug_cover3', 2), d('def_creeper_safety_insert', 1), d('def_creeper_boundary_safety', 1)];
+const PRESSURE_COVER1: readonly BookEntry[] = [d('def_cover1_five_man', 6), d('def_cover1_slot_blitz', 2), d('def_sim_mug_cover1_rat', 2)];
 
 /** Pro starter book: an under-centre and gun book on zone, gap and play action with a full quick and dropback menu. */
 export const PRO_BOOK: StarterBook = {
