@@ -306,6 +306,16 @@ describe('J3.4 gaze', () => {
     for (let i = 0; i < 8; i++) loop.step(w);
     expect(w.players.gazeRad[VIEWER]).toBeCloseTo(w.players.headingRad[VIEWER]!, 9);
   });
+  it('a player told to find a ball he cannot see turns his eyes back to where the play started', () => {
+    const { w, see } = stage();
+    // The ball is in the air directly behind him: outside his field of view, so he has no ball to look at.
+    place(w, VIEWER, 20, 0); facing(w, VIEWER, 0);
+    w.ball.kind = 'passInFlight'; w.ball.carrierSlot = -1; w.ball.x = w.frame.originX; w.ball.y = w.frame.originY;
+    const start = w.players.gazeRad[VIEWER]!;
+    see.gazeAtBall(VIEWER);
+    runTicks(w, [see.stage], 3);
+    expect(w.players.gazeRad[VIEWER]).not.toBeCloseTo(start, 3);
+  });
   it('follows a player as last perceived, and the hips by default', () => {
     const { w, see } = stage();
     place(w, 0, 5, -20);

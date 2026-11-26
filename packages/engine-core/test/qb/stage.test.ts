@@ -155,6 +155,18 @@ describe('J7.3 judging open and deciding', () => {
     const v = new FakeView(QB).at(-7, 0).see(1, 50, 0, 0, 0);
     expect(qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 45 }), 0, false, qb.newEstimate()).ok).toBe(false);
     expect(qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 45, allowOutOfRange: true }), 0, false, qb.newEstimate()).ok).toBe(true);
+    const far = qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 45 }), 0, false, qb.newEstimate());
+    expect(far.outOfRange).toBe(true);
+    const near = qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 60 }), 0, false, qb.newEstimate());
+    expect([near.ok, near.outOfRange]).toEqual([true, false]);
+  });
+  it('he comes off a receiver who is past his arm at once, and does not wait out the read', () => {
+    const reads = threeReads().map((r) => ({ ...r, target: { ...r.target, breakIndex: -1 } }));
+    const base = runScene({ play: qb.basePlay(QB, 'gun3', reads), noThrow: true, maxTicks: 40, ...covered() });
+    const scripts = { ...covered().scripts, 1: alongRoute([{ px: 75, py: 0 }, { px: 95, py: 0 }], 6, true) };
+    const gone = runScene({ play: qb.basePlay(QB, 'gun3', reads), noThrow: true, maxTicks: 40, scripts });
+    expect(base.record.readTicks[1]! - base.record.readTicks[0]!).toBeGreaterThanOrEqual(4);
+    expect(gone.record.readTicks[1]! - gone.record.readTicks[0]!).toBeLessThanOrEqual(1);
   });
   it('J7.3.1 acceptance: a grade-80 reader estimates completion closer to the truth than a grade-30 reader', () => {
     // Truth is the estimate with no error. Mean absolute error and Brier score against it over 400 looks.
