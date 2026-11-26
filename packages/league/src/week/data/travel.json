@@ -1,0 +1,10 @@
+{
+  "$comment": "Departure rules of the three travel plans (H8.1.1). Departure day is G-n; time is local. Standard: afternoon of G-1 after a morning walkthrough. Early: G-2 after practice; the G-1 walkthrough is held at the destination. Extended: G-4 or earlier with host-site practice. Times are Assumption (H8.1.2 rule 1 gives the order of the travel day, not clock times). returnAfterGameMinutes is the gap from final whistle to departure home (Assumption).",
+  "plans": {
+    "standard": { "dayBefore": 1, "at": "13:00" },
+    "early": { "dayBefore": 2, "at": "17:30" },
+    "extended": { "dayBefore": 4, "at": "17:30" }
+  },
+  "returnAfterGameMinutes": 90,
+  "dayEnd": "23:00"
+}

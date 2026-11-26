@@ -1,0 +1,2062 @@
+{
+ "$comment": "Default week templates (H1.2.1 pro normal week, H1.3 irregular weeks, H1.5.1 college game week). Each set has day kinds (blocks with local start time and minutes) and sequences of kinds. Game day is built in code from the kickoff. Times, lengths and the daily emphasis are starting values: H1.2.1 marks block lengths Assumption and the day-by-day emphasis Unverified; the college countable minutes are the bracketed hours of H1.5.1. Default practices are in shells with thud contact, so the default template uses no padded practice and validates with zero warnings over a season (H1.2.1 acceptance 1 and 2): padding is the coach's choice.",
+ "sets": {
+  "pro_default": {
+   "leaf": "H1.2.1",
+   "sequences": {
+    "normal": [
+     "recovery",
+     "off",
+     "p1",
+     "p2",
+     "p3",
+     "final"
+    ],
+    "short": [
+     "short_recovery",
+     "short_mid",
+     "short_final"
+    ],
+    "bye_lead": [
+     "recovery",
+     "bye_practice",
+     "bye_practice",
+     "off",
+     "off",
+     "off",
+     "off"
+    ],
+    "after_bye": [
+     "restart",
+     "off",
+     "p1",
+     "p2",
+     "p3",
+     "final"
+    ],
+    "extra": "extra",
+    "drop_order": [
+     "off",
+     "p3"
+    ]
+   },
+   "kinds": {
+    "recovery": [
+     {
+      "type": "film_self",
+      "at": "06:00",
+      "min": 90,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "grade the last game"
+     },
+     {
+      "type": "staff_meeting",
+      "at": "07:30",
+      "min": 60,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "08:00",
+      "min": 120,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "10:00",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "corrections of the last game"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "10:30",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "10:30",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "11:30",
+      "min": 45,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach"
+     },
+     {
+      "type": "team_meeting",
+      "at": "12:30",
+      "min": 30,
+      "who": [
+       "leaders",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "leadership council (H4.5.2)"
+     },
+     {
+      "type": "media",
+      "at": "13:30",
+      "min": 20,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "day_after"
+     },
+     {
+      "type": "game_planning",
+      "at": "14:00",
+      "min": 240,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "begin opponent film"
+     }
+    ],
+    "off": [
+     {
+      "type": "player_free",
+      "at": "06:00",
+      "min": 900,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "09:00",
+      "min": 90,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "game_planning",
+      "at": "07:00",
+      "min": 720,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "game-plan day: report, base plan, scripts and scout cards"
+     }
+    ],
+    "p1": [
+     {
+      "type": "staff_meeting",
+      "at": "06:30",
+      "min": 30,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "07:00",
+      "min": 60,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "08:00",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "scouting report"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 50,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 50,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 50,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 50,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "10:25",
+      "min": 25,
+      "who": [
+       "team",
+       "st_staff"
+      ],
+      "lead": "st_coordinator",
+      "note": "special teams meeting"
+     },
+     {
+      "type": "walkthrough",
+      "at": "11:00",
+      "min": 30,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none"
+     },
+     {
+      "type": "media",
+      "at": "12:00",
+      "min": 45,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "session": "locker_room"
+     },
+     {
+      "type": "meal",
+      "at": "12:45",
+      "min": 30,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "practice",
+      "at": "13:30",
+      "min": 105,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "note": "longest install: base downs, run game, protections"
+     },
+     {
+      "type": "media",
+      "at": "15:30",
+      "min": 15,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "mid_week"
+     },
+     {
+      "type": "film_self",
+      "at": "16:00",
+      "min": 120,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "practice film"
+     },
+     {
+      "type": "game_planning",
+      "at": "18:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "third-down and pressure plan"
+     }
+    ],
+    "p2": [
+     {
+      "type": "staff_meeting",
+      "at": "06:30",
+      "min": 30,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "07:00",
+      "min": 60,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "08:00",
+      "min": 15,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 50,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 50,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 50,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 50,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "10:25",
+      "min": 25,
+      "who": [
+       "team",
+       "st_staff"
+      ],
+      "lead": "st_coordinator",
+      "note": "special teams meeting"
+     },
+     {
+      "type": "walkthrough",
+      "at": "11:00",
+      "min": 30,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none"
+     },
+     {
+      "type": "media",
+      "at": "12:00",
+      "min": 45,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "session": "locker_room"
+     },
+     {
+      "type": "meal",
+      "at": "12:45",
+      "min": 30,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "practice",
+      "at": "13:30",
+      "min": 105,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "note": "third down, pressure and blitz pickup"
+     },
+     {
+      "type": "media",
+      "at": "15:30",
+      "min": 12,
+      "who": [
+       "off_staff"
+      ],
+      "lead": "off_coordinator",
+      "session": "coordinator"
+     },
+     {
+      "type": "media",
+      "at": "15:30",
+      "min": 12,
+      "who": [
+       "def_staff"
+      ],
+      "lead": "def_coordinator",
+      "session": "coordinator"
+     },
+     {
+      "type": "media",
+      "at": "15:30",
+      "min": 12,
+      "who": [
+       "st_staff"
+      ],
+      "lead": "st_coordinator",
+      "session": "coordinator"
+     },
+     {
+      "type": "film_self",
+      "at": "16:00",
+      "min": 120,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "practice film"
+     },
+     {
+      "type": "game_planning",
+      "at": "18:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "red zone and short yardage plan"
+     }
+    ],
+    "p3": [
+     {
+      "type": "staff_meeting",
+      "at": "06:30",
+      "min": 30,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "07:00",
+      "min": 60,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "08:00",
+      "min": 15,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "10:25",
+      "min": 25,
+      "who": [
+       "team",
+       "st_staff"
+      ],
+      "lead": "st_coordinator",
+      "note": "special teams meeting"
+     },
+     {
+      "type": "media",
+      "at": "12:00",
+      "min": 45,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "session": "locker_room"
+     },
+     {
+      "type": "meal",
+      "at": "12:45",
+      "min": 30,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "practice",
+      "at": "13:30",
+      "min": 75,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "note": "red zone, goal line, two-minute, special teams polish"
+     },
+     {
+      "type": "media",
+      "at": "15:30",
+      "min": 15,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "mid_week"
+     },
+     {
+      "type": "game_planning",
+      "at": "16:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "finish call sheets (G7), game statuses (H5)"
+     }
+    ],
+    "final": [
+     {
+      "type": "staff_meeting",
+      "at": "07:30",
+      "min": 30,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "08:00",
+      "min": 60,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "walkthrough",
+      "at": "09:00",
+      "min": 30,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none",
+      "note": "mock game"
+     },
+     {
+      "type": "walkthrough",
+      "at": "09:30",
+      "min": 20,
+      "who": [
+       "team",
+       "st_staff"
+      ],
+      "lead": "st_coordinator",
+      "equip": "none",
+      "contact": "none",
+      "note": "special teams walkthrough"
+     },
+     {
+      "type": "film_self",
+      "at": "10:30",
+      "min": 90,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "final call sheet review"
+     },
+     {
+      "type": "media",
+      "at": "14:00",
+      "min": 45,
+      "who": [
+       "head_coach",
+       "coordinators"
+      ],
+      "lead": "head_coach",
+      "session": "production_meeting",
+      "mand": false
+     },
+     {
+      "type": "meal",
+      "at": "18:00",
+      "min": 60,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "unit_meeting",
+      "at": "19:00",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "19:00",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "team_meeting",
+      "at": "20:00",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "night-before meeting (H4.2.3)"
+     }
+    ],
+    "short_recovery": [
+     {
+      "type": "film_self",
+      "at": "06:00",
+      "min": 90,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "grade the last game"
+     },
+     {
+      "type": "staff_meeting",
+      "at": "07:30",
+      "min": 30,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "08:00",
+      "min": 120,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "09:00",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "opponent report"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "09:30",
+      "min": 30,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator",
+      "note": "corrections, kept to 30 minutes"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "09:30",
+      "min": 30,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator",
+      "note": "corrections, kept to 30 minutes"
+     },
+     {
+      "type": "walkthrough",
+      "at": "10:30",
+      "min": 45,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "11:30",
+      "min": 30,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach"
+     },
+     {
+      "type": "media",
+      "at": "13:00",
+      "min": 20,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "day_after"
+     },
+     {
+      "type": "game_planning",
+      "at": "13:30",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ],
+    "short_mid": [
+     {
+      "type": "staff_meeting",
+      "at": "06:30",
+      "min": 30,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "07:00",
+      "min": 60,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "08:00",
+      "min": 15,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "08:30",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "position_meeting",
+      "at": "09:30",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "walkthrough",
+      "at": "10:30",
+      "min": 60,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none",
+      "note": "walkthrough-tempo practice"
+     },
+     {
+      "type": "media",
+      "at": "13:00",
+      "min": 15,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "mid_week"
+     },
+     {
+      "type": "media",
+      "at": "13:30",
+      "min": 12,
+      "who": [
+       "off_staff"
+      ],
+      "lead": "off_coordinator",
+      "session": "coordinator"
+     },
+     {
+      "type": "media",
+      "at": "13:30",
+      "min": 12,
+      "who": [
+       "def_staff"
+      ],
+      "lead": "def_coordinator",
+      "session": "coordinator"
+     },
+     {
+      "type": "media",
+      "at": "13:30",
+      "min": 12,
+      "who": [
+       "st_staff"
+      ],
+      "lead": "st_coordinator",
+      "session": "coordinator"
+     },
+     {
+      "type": "film_self",
+      "at": "14:00",
+      "min": 120,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "game_planning",
+      "at": "16:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ],
+    "short_final": [
+     {
+      "type": "treatment_recovery",
+      "at": "08:00",
+      "min": 60,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "walkthrough",
+      "at": "09:00",
+      "min": 45,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none"
+     },
+     {
+      "type": "walkthrough",
+      "at": "09:45",
+      "min": 20,
+      "who": [
+       "team",
+       "st_staff"
+      ],
+      "lead": "st_coordinator",
+      "equip": "none",
+      "contact": "none",
+      "note": "special teams walkthrough"
+     },
+     {
+      "type": "media",
+      "at": "11:00",
+      "min": 15,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "mid_week"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "18:30",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "18:30",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "team_meeting",
+      "at": "19:30",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "night-before meeting (H4.2.3)"
+     }
+    ],
+    "extra": [
+     {
+      "type": "player_free",
+      "at": "06:00",
+      "min": 900,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "09:00",
+      "min": 90,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "film_self",
+      "at": "08:00",
+      "min": 240,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "self-scout or two-weeks-ahead study (H1.3.2 rule 2)"
+     }
+    ],
+    "bye_practice": [
+     {
+      "type": "staff_meeting",
+      "at": "07:00",
+      "min": 30,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "07:30",
+      "min": 60,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "08:00",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "position_meeting",
+      "at": "08:30",
+      "min": 50,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "position_meeting",
+      "at": "08:30",
+      "min": 50,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "position_coaches"
+     },
+     {
+      "type": "practice",
+      "at": "10:00",
+      "min": 90,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "note": "development periods (D7)"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "12:00",
+      "min": 45,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach"
+     },
+     {
+      "type": "film_self",
+      "at": "13:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "bye-week staff project (H1.3.3 rule 2)"
+     }
+    ],
+    "restart": [
+     {
+      "type": "staff_meeting",
+      "at": "07:30",
+      "min": 60,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "08:00",
+      "min": 90,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "team_meeting",
+      "at": "10:00",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "10:30",
+      "min": 45,
+      "who": [
+       "offense",
+       "off_staff"
+      ],
+      "lead": "off_coordinator"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "10:30",
+      "min": 45,
+      "who": [
+       "defense",
+       "def_staff"
+      ],
+      "lead": "def_coordinator"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "11:30",
+      "min": 45,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach"
+     },
+     {
+      "type": "team_meeting",
+      "at": "12:30",
+      "min": 30,
+      "who": [
+       "leaders",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "leadership council (H4.5.2)"
+     },
+     {
+      "type": "media",
+      "at": "13:30",
+      "min": 15,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "mid_week"
+     },
+     {
+      "type": "game_planning",
+      "at": "14:00",
+      "min": 240,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ]
+   },
+   "pregameMealParam": "pregame_meal_pro_hours"
+  },
+  "college_default": {
+   "leaf": "H1.5.1",
+   "sequences": {
+    "normal": [
+     "recovery",
+     "off",
+     "p1",
+     "p2",
+     "p3",
+     "final"
+    ],
+    "short": [
+     "short_recovery",
+     "short_mid",
+     "final"
+    ],
+    "bye_lead": [
+     "recovery",
+     "off",
+     "bye_practice",
+     "bye_practice",
+     "bye_practice",
+     "open",
+     "open"
+    ],
+    "after_bye": [
+     "restart",
+     "off",
+     "p1",
+     "p2",
+     "p3",
+     "final"
+    ],
+    "extra": "open",
+    "drop_order": [
+     "off",
+     "p3"
+    ]
+   },
+   "kinds": {
+    "recovery": [
+     {
+      "type": "film_self",
+      "at": "07:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "grade the game"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "10:00",
+      "min": 90,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:00",
+      "min": 90,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true,
+      "note": "film corrections of the game [1.5]"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "15:00",
+      "min": 60,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach",
+      "countable": true,
+      "note": "lift [1.0]"
+     },
+     {
+      "type": "recruiting",
+      "at": "16:00",
+      "min": 120,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "recruiting calls"
+     },
+     {
+      "type": "game_planning",
+      "at": "18:30",
+      "min": 150,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "begin opponent film"
+     }
+    ],
+    "off": [
+     {
+      "type": "class_academic",
+      "at": "08:00",
+      "min": 360,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "note": "day off from countable activity; class"
+     },
+     {
+      "type": "game_planning",
+      "at": "07:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "game-plan day; scout cards and scripts for Tuesday"
+     },
+     {
+      "type": "media",
+      "at": "12:00",
+      "min": 30,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "weekly_conference"
+     },
+     {
+      "type": "game_planning",
+      "at": "12:45",
+      "min": 360,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ],
+    "p1": [
+     {
+      "type": "class_academic",
+      "at": "08:00",
+      "min": 240,
+      "who": [
+       "team"
+      ],
+      "lead": "none"
+     },
+     {
+      "type": "game_planning",
+      "at": "07:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "third-down plan"
+     },
+     {
+      "type": "media",
+      "at": "12:15",
+      "min": 15,
+      "who": [
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "session": "conference_call"
+     },
+     {
+      "type": "team_meeting",
+      "at": "13:00",
+      "min": 15,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:15",
+      "min": 60,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true,
+      "note": "meetings [1.25]"
+     },
+     {
+      "type": "walkthrough",
+      "at": "14:15",
+      "min": 15,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none",
+      "countable": true
+     },
+     {
+      "type": "practice",
+      "at": "14:30",
+      "min": 150,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "countable": true,
+      "note": "longest install [2.5]"
+     },
+     {
+      "type": "film_self",
+      "at": "17:15",
+      "min": 90,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "practice film"
+     },
+     {
+      "type": "recruiting",
+      "at": "19:00",
+      "min": 120,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "recruiting calls in the evening"
+     }
+    ],
+    "p2": [
+     {
+      "type": "class_academic",
+      "at": "08:00",
+      "min": 240,
+      "who": [
+       "team"
+      ],
+      "lead": "none"
+     },
+     {
+      "type": "game_planning",
+      "at": "07:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "red zone plan"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:00",
+      "min": 60,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true,
+      "note": "meetings [1.0]"
+     },
+     {
+      "type": "walkthrough",
+      "at": "14:00",
+      "min": 15,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none",
+      "countable": true
+     },
+     {
+      "type": "practice",
+      "at": "14:15",
+      "min": 135,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "countable": true,
+      "note": "[2.25]"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "16:30",
+      "min": 30,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach",
+      "countable": true
+     },
+     {
+      "type": "film_self",
+      "at": "17:15",
+      "min": 90,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "practice film"
+     },
+     {
+      "type": "recruiting",
+      "at": "19:00",
+      "min": 90,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ],
+    "p3": [
+     {
+      "type": "class_academic",
+      "at": "08:00",
+      "min": 240,
+      "who": [
+       "team"
+      ],
+      "lead": "none"
+     },
+     {
+      "type": "game_planning",
+      "at": "07:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "finish call sheets; travel roster (H6.6.1)"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:00",
+      "min": 60,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true,
+      "note": "meetings [1.0]"
+     },
+     {
+      "type": "practice",
+      "at": "14:00",
+      "min": 120,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "countable": true,
+      "note": "shorter [2.0]"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "16:00",
+      "min": 30,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach",
+      "countable": true
+     },
+     {
+      "type": "film_self",
+      "at": "17:00",
+      "min": 60,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ],
+    "final": [
+     {
+      "type": "class_academic",
+      "at": "08:00",
+      "min": 180,
+      "who": [
+       "team"
+      ],
+      "lead": "none"
+     },
+     {
+      "type": "film_self",
+      "at": "08:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "walkthrough",
+      "at": "13:00",
+      "min": 30,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none",
+      "countable": true,
+      "note": "[0.5]"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:30",
+      "min": 40,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true
+     },
+     {
+      "type": "meal",
+      "at": "18:00",
+      "min": 60,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "team_meeting",
+      "at": "20:00",
+      "min": 20,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true,
+      "note": "night-before meeting; meetings [1.0] with the 13:30 block"
+     }
+    ],
+    "short_recovery": [
+     {
+      "type": "film_self",
+      "at": "07:00",
+      "min": 120,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "treatment_recovery",
+      "at": "10:00",
+      "min": 90,
+      "who": [
+       "injured"
+      ],
+      "lead": "trainer"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:00",
+      "min": 60,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true
+     },
+     {
+      "type": "walkthrough",
+      "at": "14:00",
+      "min": 45,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "none",
+      "contact": "none",
+      "countable": true
+     },
+     {
+      "type": "game_planning",
+      "at": "15:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ],
+    "short_mid": [
+     {
+      "type": "class_academic",
+      "at": "08:00",
+      "min": 240,
+      "who": [
+       "team"
+      ],
+      "lead": "none"
+     },
+     {
+      "type": "game_planning",
+      "at": "07:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:00",
+      "min": 60,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true
+     },
+     {
+      "type": "practice",
+      "at": "14:15",
+      "min": 120,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "countable": true
+     },
+     {
+      "type": "film_self",
+      "at": "17:00",
+      "min": 90,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ],
+    "open": [
+     {
+      "type": "player_free",
+      "at": "06:00",
+      "min": 900,
+      "who": [
+       "team"
+      ],
+      "lead": "none",
+      "mand": false
+     },
+     {
+      "type": "recruiting",
+      "at": "09:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "open date: recruiting and self-scout"
+     }
+    ],
+    "bye_practice": [
+     {
+      "type": "class_academic",
+      "at": "08:00",
+      "min": 240,
+      "who": [
+       "team"
+      ],
+      "lead": "none"
+     },
+     {
+      "type": "film_self",
+      "at": "07:00",
+      "min": 300,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "note": "open-date staff project"
+     },
+     {
+      "type": "position_meeting",
+      "at": "13:00",
+      "min": 45,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "position_coaches",
+      "countable": true
+     },
+     {
+      "type": "practice",
+      "at": "14:00",
+      "min": 105,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "equip": "shells",
+      "contact": "thud",
+      "countable": true,
+      "note": "development periods"
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "16:00",
+      "min": 30,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach",
+      "countable": true
+     }
+    ],
+    "restart": [
+     {
+      "type": "film_self",
+      "at": "07:00",
+      "min": 180,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     },
+     {
+      "type": "unit_meeting",
+      "at": "13:00",
+      "min": 60,
+      "who": [
+       "team",
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach",
+      "countable": true
+     },
+     {
+      "type": "lift_conditioning",
+      "at": "15:00",
+      "min": 60,
+      "who": [
+       "team"
+      ],
+      "lead": "strength_coach",
+      "countable": true
+     },
+     {
+      "type": "recruiting",
+      "at": "16:30",
+      "min": 120,
+      "who": [
+       "staff",
+       "head_coach"
+      ],
+      "lead": "head_coach"
+     }
+    ]
+   },
+   "pregameMealParam": "pregame_meal_college_hours"
+  }
+ }
+}

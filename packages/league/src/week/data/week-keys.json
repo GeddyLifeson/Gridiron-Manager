@@ -1,0 +1,271 @@
+{
+ "$comment": "Week rule values that have no league-rules key yet (requested from G-10 and the integrator, CR-G69-1). The lookup reads the league-rules file first and falls back to these rows; a key defined in both with different values throws. Flags are 0 or 1. Status is copied from the bible leaf's fact line, never raised here.",
+ "keys": [
+  {
+   "key": "work.days_off_after_thursday_game",
+   "value": 3,
+   "unit": "days",
+   "status": "2 of 3",
+   "leaf": "H1.1.2",
+   "levels": [
+    "pro"
+   ],
+   "source": "CBA 2020 Article 35 plus CBS 2020 (H1.1.2 facts)"
+  },
+  {
+   "key": "work.facility_day_cap_applies",
+   "value": 1,
+   "unit": "flag",
+   "status": "Assumption",
+   "leaf": "H1.1.2",
+   "levels": [
+    "pro",
+    "college"
+   ],
+   "source": "H1.1.2: no CBA daily facility cap found; 10-hour soft cap is a design value"
+  },
+  {
+   "key": "college.cara_week_hours",
+   "value": 20,
+   "unit": "hours",
+   "status": "Verified",
+   "leaf": "H1.5.2",
+   "levels": [
+    "college"
+   ],
+   "source": "college/R16-R19-ncaa-rules-and-limits.md R19, four school compliance pages quoting the bylaw (manual not read)"
+  },
+  {
+   "key": "college.cara_day_hours",
+   "value": 4,
+   "unit": "hours",
+   "status": "Verified",
+   "leaf": "H1.5.2",
+   "levels": [
+    "college"
+   ],
+   "source": "R19 as above"
+  },
+  {
+   "key": "college.cara_days_off_per_week",
+   "value": 1,
+   "unit": "days",
+   "status": "Verified",
+   "leaf": "H1.5.2",
+   "levels": [
+    "college"
+   ],
+   "source": "R19 as above"
+  },
+  {
+   "key": "college.cara_game_day_hours",
+   "value": 3,
+   "unit": "hours",
+   "status": "Verified",
+   "leaf": "H1.5.2",
+   "levels": [
+    "college"
+   ],
+   "source": "R19 as above"
+  },
+  {
+   "key": "college.no_cara_after_competition",
+   "value": 1,
+   "unit": "flag",
+   "status": "Verified",
+   "leaf": "H1.5.2",
+   "levels": [
+    "college"
+   ],
+   "source": "R19 as above; H8.5.1 rule 4"
+  },
+  {
+   "key": "college.travel_counts_as_cara",
+   "value": 0,
+   "unit": "flag",
+   "status": "Unverified",
+   "leaf": "H8.5.1",
+   "levels": [
+    "college"
+   ],
+   "source": "H8.5.1 rule 3 default false, Unverified"
+  },
+  {
+   "key": "college.travel_day_can_be_day_off",
+   "value": 0,
+   "unit": "flag",
+   "status": "Unverified",
+   "leaf": "H8.5.1",
+   "levels": [
+    "college"
+   ],
+   "source": "H8.5.1 rule 5 default false, Unverified"
+  },
+  {
+   "key": "college.fall_evaluation_days",
+   "value": 33,
+   "unit": "days",
+   "status": "Verified",
+   "leaf": "H1.5.4",
+   "levels": [
+    "college"
+   ],
+   "source": "R19: 33 evaluation days September 1 to November 30 (2025-26 calendar)"
+  },
+  {
+   "key": "college.off_campus_recruiters",
+   "value": 11,
+   "unit": "count",
+   "status": "2 of 3",
+   "leaf": "H1.5.4",
+   "levels": [
+    "college"
+   ],
+   "source": "R19 and college/03 (one league release, one report)"
+  },
+  {
+   "key": "college.recruit_comment_ban",
+   "value": 1,
+   "unit": "flag",
+   "status": "Unverified",
+   "leaf": "H7.4.1",
+   "levels": [
+    "college"
+   ],
+   "source": "H7.4.1 rule 4 default true, Unverified"
+  },
+  {
+   "key": "media.post_game_required",
+   "value": 1,
+   "unit": "flag",
+   "status": "1 of 3",
+   "leaf": "H7.1.1",
+   "levels": [
+    "pro",
+    "college"
+   ],
+   "source": "audit-r-gameops-media.md R10 item 1 (pro); H7.4.1 college default Assumption"
+  },
+  {
+   "key": "media.day_after_required",
+   "value": 1,
+   "unit": "flag",
+   "status": "1 of 3",
+   "leaf": "H7.1.1",
+   "levels": [
+    "pro"
+   ],
+   "source": "audit-r-gameops-media.md R10 item 2"
+  },
+  {
+   "key": "media.head_coach_days_per_week",
+   "value": 3,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "H7.1.1",
+   "levels": [
+    "pro"
+   ],
+   "source": "audit-r-gameops-media.md R10 item 3"
+  },
+  {
+   "key": "media.day_after_counts_toward_week",
+   "value": 1,
+   "unit": "flag",
+   "status": "Assumption",
+   "leaf": "H7.1.1",
+   "levels": [
+    "pro"
+   ],
+   "source": "Reading of R10: H1.2.1 places Monday (day after), Wednesday and Friday; H7.1.1 lists the day-after apart. Bible ruling MA-51 (2026-11-26): the day-after session counts as one of the 3 days"
+  },
+  {
+   "key": "media.bye_week_required",
+   "value": 0,
+   "unit": "flag",
+   "status": "Unverified",
+   "leaf": "H7.1.1",
+   "levels": [
+    "pro"
+   ],
+   "source": "H7.1.1 edge case: unknown in the source, default false"
+  },
+  {
+   "key": "media.conference_championship_days",
+   "value": 3,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "H7.1.1",
+   "levels": [
+    "pro"
+   ],
+   "source": "R10 item 9: Wednesday, Thursday, Friday with the head coach each day"
+  },
+  {
+   "key": "media.coordinator_sessions_per_week",
+   "value": 1,
+   "unit": "count",
+   "status": "1 of 3",
+   "leaf": "H7.1.2",
+   "levels": [
+    "pro"
+   ],
+   "source": "R10 item 5: each coordinator at least once Monday to Friday"
+  },
+  {
+   "key": "media.locker_room_days",
+   "value": 3,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "H7.1.2",
+   "levels": [
+    "pro"
+   ],
+   "source": "R10 item 6: Wednesday, Thursday and Friday"
+  },
+  {
+   "key": "media.college_weekly_conferences",
+   "value": 1,
+   "unit": "count",
+   "status": "Assumption",
+   "leaf": "H7.4.1",
+   "levels": [
+    "college"
+   ],
+   "source": "H7.4.1 rule 1: one weekly news conference on G-5, Assumption until a source exists"
+  },
+  {
+   "key": "media.college_conference_calls",
+   "value": 1,
+   "unit": "count",
+   "status": "Assumption",
+   "leaf": "H7.4.1",
+   "levels": [
+    "college"
+   ],
+   "source": "H7.4.1 rule 1, Assumption"
+  },
+  {
+   "key": "media.injury_report_exists",
+   "value": 1,
+   "unit": "flag",
+   "status": "1 of 3",
+   "leaf": "H7.2.3",
+   "levels": [
+    "pro"
+   ],
+   "source": "H7.2.3 and H5: the league publishes an injury report; players who missed practice are named"
+  },
+  {
+   "key": "college.availability_report",
+   "value": 0,
+   "unit": "flag",
+   "status": "Unverified",
+   "leaf": "H7.4.1",
+   "levels": [
+    "college"
+   ],
+   "source": "H7.4.1 rule 5 default off, Unverified"
+  }
+ ]
+}
