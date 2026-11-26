@@ -605,9 +605,15 @@ function beliefsOf(c: Cycle, id: number): interviews.Beliefs | null {
   if (!m) { m = new Map(); BELIEFS.set(c, m); }
   const hit = m.get(id);
   if (hit) return hit;
-  const b = interviews.drawBeliefs(c.world.people.get(id)?.traitBlock ?? null, stream(c.world.seed, STREAM_INTERVIEWS, ['beliefs', id]));
+  const b = coachViews(c.world, id)!;
   m.set(id, b);
   return b;
+}
+
+/** A person's coaching views (truth, never shown): what he answers in an interview and wants when he hires. Null for the user. */
+export function coachViews(world: LiveWorld, id: number): interviews.Beliefs | null {
+  if (id === world.userPersonId) return null;
+  return interviews.drawBeliefs(world.people.get(id)?.traitBlock ?? null, stream(world.seed, STREAM_INTERVIEWS, ['beliefs', id]));
 }
 
 const FIRED = new WeakMap<Cycle, Map<number, number>>();

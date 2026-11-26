@@ -78,6 +78,29 @@ describe('off-screen coach turnover (E2.3.4, E4.3, K7.6.1, K8.4.2)', () => {
     expect(turnover.coachEntrants(g.w)).toBeGreaterThanOrEqual(st.exits);
   });
 
+  it('hires people whose views fit the boss who interviewed them (Marlon 2026-11-26 14:26)', () => {
+    const start = g.w.date.seasonYear - SEASONS;
+    const gap = (a: number, b: number): number => {
+      const x = turnover.coachViews(g.w, a)!; const y = turnover.coachViews(g.w, b)!;
+      const ks = Object.keys(x);
+      return ks.reduce((s, k) => s + Math.abs(x[k]! - y[k]!), 0) / ks.length;
+    };
+    const jobs = [...g.w.jobs.values()];
+    const bosses = jobs.filter((j) => j.holderPersonId !== null && j.rung >= 5).map((j) => j.holderPersonId!);
+    let own = 0; let other = 0; let n = 0;
+    for (const j of jobs) {
+      if (j.holderPersonId === null || j.reportsToJobId === null || (j.holderSince?.seasonYear ?? start) <= start) continue;
+      const boss = g.w.jobs.get(j.reportsToJobId)?.holderPersonId ?? null;
+      if (boss === null || boss === j.holderPersonId) continue;
+      const stranger = bosses[(j.id * 7919) % bosses.length]!;
+      if (stranger === boss || stranger === j.holderPersonId) continue;
+      own += gap(j.holderPersonId, boss); other += gap(j.holderPersonId, stranger); n++;
+    }
+    console.log('hires', n, 'mean view gap to own boss', (own / n).toFixed(3), 'to another boss', (other / n).toFixed(3));
+    expect(n).toBeGreaterThan(20);
+    expect(own / n).toBeLessThan(other / n);
+  });
+
   it('is deterministic', () => {
     const again = build();
     for (let i = 0; i < SEASONS; i++) loop.runSeason(again.w, again.sys, testSchedule);
