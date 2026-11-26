@@ -149,13 +149,58 @@ export const PARAMS: ParamFile = {
 };
 
 /**
+ * College tables in the same shapes as the pro ones above, computed from cfbfastR play-by-play (CFBD-sourced), FBS
+ * against FBS, regular seasons 2022 to 2025 (2,998 games, 396,263 run and pass plays, 45,949 fourth downs), by
+ * research/tuning/college/cfbfastr_tables.py; 1 of 3. Plays follow the T12.3.1 pass.rate definition (rush or pass, no
+ * kneels, spikes or no-plays). Fourth-down cells with fewer than ten plays are cells that cannot happen and read 0, as
+ * in the pro table.
+ */
+const COLLEGE_PASS_SHARE: readonly (readonly number[])[] = [
+  [0.129, 0.256, 0.289, 0.448, 0.476, 0.563],
+  [0.293, 0.386, 0.514, 0.536, 0.624, 0.664],
+  [0.209, 0.627, 0.772, 0.805, 0.787, 0.703],
+  [0.267, 0.799, 0.862, 0.877, 0.855, 0.862],
+];
+const COLLEGE_PASS_GAME_RATIO: readonly (readonly number[])[] = [
+  [1.068, 1.024, 0.994, 0.977, 0.948, 0.937, 0.911],
+  [1.152, 1.099, 1.070, 1.036, 1.025, 1.028, 1.105],
+  [1.208, 1.376, 1.189, 0.959, 0.657, 0.542, 0.522],
+];
+const COLLEGE_FOURTH_GO: readonly (readonly number[])[] = [
+  [0.94, 0.65, 0.58, 0, 0, 0],
+  [0.84, 0.62, 0.29, 0.20, 0.13, 0],
+  [0.83, 0.60, 0.39, 0.26, 0.12, 0.11],
+  [0.90, 0.71, 0.52, 0.35, 0.17, 0.10],
+  [0.97, 0.87, 0.81, 0.68, 0.42, 0.19],
+  [0.96, 0.86, 0.69, 0.56, 0.31, 0.15],
+  [0.89, 0.67, 0.47, 0.36, 0.14, 0.09],
+  [0.76, 0.36, 0.20, 0.16, 0.10, 0.07],
+  [0.55, 0.19, 0.12, 0.09, 0.07, 0.05],
+  [0.29, 0.10, 0.07, 0.05, 0.05, 0.04],
+];
+/** Fitted on 4,000 college games so the measured pass rate and fourth-down go rate land on T12.3.1 and T12.4.1 (Assumptions). */
+const COLLEGE_PASS_SCALE = 1.03;
+const COLLEGE_GO_SCALE = 0.853;
+
+function collegeChart(): Record<string, number> {
+  const out: Record<string, number> = {};
+  PASS_DOWN_NAMES.forEach((d, di) => PASS_TOGO_NAMES.forEach((t, ti) => { out[`chart.passShare.${d}.${t}`] = COLLEGE_PASS_SHARE[di]![ti]!; }));
+  PASS_PHASE_NAMES.forEach((ph, pi) => PASS_MARGIN_NAMES.forEach((m, mi) => { out[`chart.passShare.game.${ph}.${m}`] = COLLEGE_PASS_GAME_RATIO[pi]![mi]!; }));
+  FOURTH_ZONE_NAMES.forEach((z, zi) => FOURTH_TOGO_NAMES.forEach((t, ti) => { out[`chart.fourth.go.${z}.${t}`] = COLLEGE_FOURTH_GO[zi]![ti]!; }));
+  out['chart.passShare.scale'] = COLLEGE_PASS_SCALE;
+  out['chart.fourth.goScale'] = COLLEGE_GO_SCALE;
+  return out;
+}
+
+/**
  * Chart values that differ by level. College offenses play faster: the college snap-to-snap gap after an in-bounds
  * play averages 33.3 s against 37.3 s in the pro game (cfbfastR 2023 to 2024, nflverse 2022 to 2024). No source
  * charts college no-huddle plays, so the share is the mix of the two pro tempo gaps that gives the college mean:
- * an Assumption (engine-game flow/pace-facts.json).
+ * an Assumption (engine-game flow/pace-facts.json). College run-pass mix and fourth-down choices read the college
+ * tables above.
  */
 export const CHART_LEVEL_OVERRIDES: Readonly<Record<string, Readonly<Record<string, number>>>> = {
-  college: { 'chart.noHuddleShare': 0.6, 'chart.noHuddle.trailingLateShare': 0.75 },
+  college: { ...collegeChart(), 'chart.noHuddleShare': 0.6, 'chart.noHuddle.trailingLateShare': 0.75 },
 };
 
 /** The chart overrides of a run: the level's values, then every `chart.*` name of the run's own overrides (CR-G87-5). */
