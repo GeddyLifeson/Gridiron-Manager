@@ -6,6 +6,7 @@ import type { PlayInput, Resolver } from '@gm/schema';
 import { TICKS_PER_SECOND } from '@gm/schema';
 import { LivePlayQueue, liveMsFrom, liveNoise, livePlay, liveSlots, liveTap } from '../../src/presentation/live/index.ts';
 import { encodeV1 } from '../read-models/film/fixtures.ts';
+import { CAMERA_CUE_KINDS } from '../../src/presentation/feed/types.ts';
 
 /** A two-frame stand-in trajectory with all 22 players at the spot (test data, not a real play). */
 function standIn(x: number, y: number) {
@@ -63,7 +64,11 @@ describe('live tap and live play on a real game', () => {
       expect(p.feed.visibility).toBe('user-visible');
       expect(p.film.slots).toHaveLength(22);
       // The feed's camera cues are the film's events (one filter for live play and film), flags aside.
-      const camera = p.feed.cues.filter((c) => !['contact', 'cadence', 'relay', 'ruling', 'flag'].includes(c.kind)).map((c) => `${c.kind}@${c.tick}`);
+      // Kick and post-hit cues (PV-00, KICK_CUE_KINDS) are feed-only and stay out of the film chart.
+      const cameraKinds: readonly string[] = CAMERA_CUE_KINDS.filter((k) => k !== 'flag');
+      const camera = p.feed.cues.filter((c) => cameraKinds.includes(c.kind)).map((c) => `${c.kind}@${c.tick}`);
+      const kicks = record.truth.events.filter((e) => e.type === 'kick').length;
+      expect(p.feed.cues.filter((c) => c.kind === 'kick')).toHaveLength(kicks);
       expect(camera).toEqual(p.film.events.filter((e) => e.kind !== 'flag').map((e) => `${e.kind}@${e.tick}`));
       if (p.feed.conditions.noise !== null) withNoise++;
       expect(p.feed.missing).not.toContain('noise');

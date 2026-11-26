@@ -2,7 +2,8 @@
 // nothing about a person is stored but the held state that `label_formed` / `label_faded` rows announce.
 // X2.2.2 rule 6: labels are computed as events arrive for tier 1 and tier 2 people, and for tier 3 people
 // only on demand (`labelsOn`), from the log. The history run plays every team at tier 3, so there the step
-// only moves its cursor: every past label is still computable on demand from the log.
+// only moves its cursor: every past label is still computable on demand from the log. The two output rows
+// name the label under `definition` and are never evidence (MA-80).
 import { labels } from '@gm/models';
 import type { WorldEvent } from '@gm/schema';
 import type { LiveWorld, StepContext, StepHandler } from '../loop/types.ts';
@@ -71,6 +72,8 @@ export interface LabelsBinding { readonly defs?: readonly labels.LabelDef[] }
 /** Weekly step 11 (X12.1.1): labels of tier 1 and 2 subjects touched by rows logged since the last pass. */
 export function labelsStep(b: LabelsBinding = {}): StepHandler {
   const defs = b.defs ?? LABEL_DEFS;
+  // MA-80: the label rows are outputs, never evidence.
+  for (const d of defs) if (typesOf(d).some((t) => t === LABEL_FORMED || t === LABEL_FADED)) throw new Error(`label ${d.id} reads label rows (MA-80)`);
   return (ctx) => {
     const { world } = ctx;
     const s = labelsStateOf(world);
