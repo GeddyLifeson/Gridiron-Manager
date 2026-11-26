@@ -80,16 +80,22 @@ export function runWeek(world: LiveWorld, systems: WorldSystems, opts: PassOptio
 
 export function summarizeSeason(world: LiveWorld): SeasonSummary {
   const champions: Record<number, number> = {};
+  const records: Record<number, { wins: number; losses: number; ties: number }> = {};
+  const line = (id: number) => (records[id] ??= { wins: 0, losses: 0, ties: 0 });
   let points = 0, passPlays = 0, runPlays = 0;
   for (const g of world.results) {
     points += g.homePoints + g.awayPoints; passPlays += g.passPlays; runPlays += g.runPlays;
+    if (g.kind === 'regular') {
+      const h = line(g.homeTeamId), a = line(g.awayTeamId);
+      if (g.homePoints === g.awayPoints) { h.ties++; a.ties++; } else if (g.homePoints > g.awayPoints) { h.wins++; a.losses++; } else { a.wins++; h.losses++; }
+    }
     if (g.title && g.homePoints !== g.awayPoints) champions[g.competitionId] = g.homePoints > g.awayPoints ? g.homeTeamId : g.awayTeamId;
   }
   const people = { active: 0, inactive: 0, deceased: 0 };
   for (const s of world.status.values()) people[s]++;
   const pools: Record<string, number> = {};
   for (const [name, ids] of [...world.pools].sort((a, b) => (a[0] < b[0] ? -1 : 1))) pools[name] = ids.length;
-  return { seasonYear: world.date.seasonYear, champions, games: world.results.length, points, passPlays, runPlays, pools, people };
+  return { seasonYear: world.date.seasonYear, champions, games: world.results.length, points, passPlays, runPlays, pools, people, records };
 }
 
 /** Who sat where this season: the head coach and the staff under him, per team. */
