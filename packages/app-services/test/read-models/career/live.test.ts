@@ -7,7 +7,7 @@ import { CAREER_SCREEN_SCHEMAS } from '@gm/schema';
 import { positions } from '@gm/career';
 import { newWorld, runningSave } from './live-world.ts';
 import { ObservedWorld, ReadModelRegistry, buildReadModel, crawlPassed, crawlReadModels, observerFor, PUBLIC_OBSERVER } from '../../../src/observer/index.ts';
-import { careerHost, careerSourcesOf, careerSpecs, CAREER_MODELS, EMPTY_VIEWS, liveCareerTables, teamSeasonOf } from '../../../src/read-models/career/index.ts';
+import { careerHost, careerSourcesOf, NOTEBOOK_KEY, careerSpecs, CAREER_MODELS, EMPTY_VIEWS, liveCareerTables, teamSeasonOf } from '../../../src/read-models/career/index.ts';
 
 // A position coach below head coach, so the Office list applies (O7.2.1).
 const fixture = runningSave(2);
@@ -91,6 +91,28 @@ describe('career screens from the running save (CR-CS-2 stop-gap)', () => {
     expect(rep.divergences).toEqual([]);
     expect(crawlPassed(rep)).toBe(true);
   });
+  it('the notebook keeps his notes in the save, stamped with the job he holds, subjects named as he knows them', () => {
+    const { w, user } = runningSave(1);
+    const h = careerHost(w);
+    expect(h.notebook()!.blank).toBe(true);
+    const mate = [...w.jobs.values()].find((j) => j.holderPersonId !== null && j.holderPersonId !== user)!.holderPersonId!;
+    expect(h.notebookAct({ kind: 'write', text: 'Runs the stretch well', subjects: [{ type: 'person', id: mate }] }, '2026-11-26')).toEqual({ ok: true });
+    expect(h.notebookAct({ kind: 'write', text: '   ' })).toEqual({ ok: false, key: 'note.empty' });
+    const v = h.notebook()!;
+    expect(v.rows).toHaveLength(1);
+    const p = w.people.get(mate)!;
+    expect(v.rows[0]!.subjects[0]!.name).toBe(`${p.name.first} ${p.name.last}`);
+    const job = [...w.jobs.values()].find((j) => j.holderPersonId === user)!;
+    expect(v.rows[0]!.job.key).toBe(`${job.catalogueId}@${job.teamId}`);
+    expect(w.systemState.get(NOTEBOOK_KEY)).toBeDefined();
+    // A fresh host over the same save reads the same file; the text export names the subject.
+    expect(careerHost(w).notebook()!.rows[0]!.text).toBe('Runs the stretch well');
+    expect(careerHost(w).notebookText()).toContain(p.name.last);
+    // Another coach's host on this save does not see his file.
+    expect(careerHost(w, { personId: mate }).notebook()!.blank).toBe(true);
+    // No statement saved yet: no ledger.
+    expect(h.ledger()).toEqual({ own: null, boss: null });
+  });
   it('a save with no user has no career screens', () => {
     const w = newWorld();
     w.userPersonId = null;
@@ -98,5 +120,6 @@ describe('career screens from the running save (CR-CS-2 stop-gap)', () => {
     expect(h.personId).toBeNull();
     expect(h.assignments()).toBeNull();
     expect(h.career().name).toBe('');
+    expect(h.notebook()).toBeNull();
   });
 });

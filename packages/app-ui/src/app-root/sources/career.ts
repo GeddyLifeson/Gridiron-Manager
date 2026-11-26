@@ -5,6 +5,7 @@
 // CareerRoot.
 import type { careerScreens } from '@gm/app-services';
 import type { RouteSources } from '../../routes.ts';
+import type { NotebookHost } from '../../screens/notebook/index.ts';
 import { screenById } from '../../shell/registry.ts';
 import type { ScreenProps } from '../../shell/index.ts';
 
@@ -39,4 +40,33 @@ export function careerSources(host: careerScreens.CareerHost, _redraw?: () => vo
     };
   }
   return out;
+}
+
+export interface NotebookSourceOptions {
+  /** Runs after an action changes the notebook, so the screen draws the new file. */
+  readonly redraw?: () => void;
+  /** Saves the exported text file (the shell owns files; core code writes none). */
+  readonly save?: (text: string) => void;
+  /** The shell's real date for the note stamp (E11.1.1); core reads no clock. */
+  readonly realDate?: () => string | null;
+}
+
+/**
+ * The coach's notebook (coach.notebook) over the same host: his notes kept in the save, names as he knows
+ * them. Mounted by the routes integrator's `notebook` source (notebookRoutes) once the registry row lands.
+ */
+export function notebookSource(host: careerScreens.CareerHost, o: NotebookSourceOptions = {}): NotebookHost | null {
+  if (host.personId === null) return null;
+  return {
+    notebook: (f) => host.notebook({
+      ...(f.text ? { text: f.text } : {}), kind: f.kind, subjectType: f.subjectType, tag: f.tag, season: f.season, job: f.job,
+    }),
+    ledger: () => host.ledger(),
+    act: (a) => {
+      const r = host.notebookAct(a, o.realDate?.() ?? null);
+      if (r.ok) o.redraw?.();
+      return r;
+    },
+    exportText: () => { o.save?.(host.notebookText()); },
+  };
 }

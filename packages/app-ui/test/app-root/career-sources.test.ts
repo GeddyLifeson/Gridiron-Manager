@@ -6,7 +6,8 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { careerScreens } from '@gm/app-services';
 import { buildRoutes, ASSIGNMENTS_SCREEN_ID } from '../../src/routes.ts';
-import { careerSources, screenPath } from '../../src/app-root/sources/career.ts';
+import { careerSources, notebookSource, screenPath } from '../../src/app-root/sources/career.ts';
+import { notebookRoutes, NO_FILTER } from '../../src/screens/notebook/index.ts';
 import { CAREER_SCREEN_IDS } from '../../src/screens/career/index.ts';
 import { screenById } from '../../src/shell/registry.ts';
 import type { ScreenProps } from '../../src/shell/index.ts';
@@ -22,6 +23,7 @@ function stand(personId: number | null): careerScreens.CareerHost {
       rights: R, jobTitle: 'Quality control coach (offense)', bossName: 'Ada Price', freeHours: 12,
       rows: [{ dutyId: 'film.tags', title: 'Tag film', leaf: 'H2', assignedBy: 'boss', due: null, hoursEst: 4, state: 'assigned', status: 'open', screenId: 'coach.record', command: null }],
     }),
+    notebook: () => null, ledger: () => ({ own: null, boss: null }), notebookAct: () => ({ ok: true }), notebookText: () => 'notes',
   };
 }
 
@@ -51,6 +53,17 @@ describe('career hub sources (item 2d)', () => {
     const row = host.assignments()!.rows.find((r) => screenPath(r.screenId) !== null)!;
     s.assignments!.onOpen!(props(ASSIGNMENTS_SCREEN_ID, nav), row.screenId);
     expect(nav).toEqual([screenPath(row.screenId)]);
+  });
+  it('the notebook source redraws after a change and hands the export to the shell', () => {
+    let redraws = 0; const saved: string[] = [];
+    const nb = notebookSource(host, { redraw: () => { redraws++; }, save: (t) => saved.push(t) })!;
+    expect(nb.act({ kind: 'write', text: 'x' })).toEqual({ ok: true });
+    expect(redraws).toBe(1);
+    nb.exportText();
+    expect(saved).toEqual(['notes']);
+    expect(nb.notebook(NO_FILTER)).toBeNull();
+    expect(() => renderToStaticMarkup(createElement(() => notebookRoutes(nb)['coach.notebook']!.render(props('coach.career')) as never))).not.toThrow();
+    expect(notebookSource(stand(null))).toBeNull();
   });
   it('a save with no user mounts no career screen', () => {
     expect(careerSources(stand(null))).toEqual({});

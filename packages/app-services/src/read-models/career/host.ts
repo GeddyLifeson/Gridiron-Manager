@@ -2,10 +2,11 @@
 // coach (liveCareerTables), opens them to his own observer, registers careerSpecs over CareerSources built from
 // that observed world, and serves each screen's read model. A screen whose model is empty (the save holds no
 // data for it yet, CR-CS-2) gets its empty view, so the screen shows "nothing yet" rather than a made-up value.
-import { CAREER_SCREEN_SCHEMAS } from '@gm/schema';
-import { ladder, positions } from '@gm/career';
+import { CAREER_SCREEN_SCHEMAS, type JobRecord, type PersonRecord, type TeamRecord } from '@gm/schema';
+import { coach, ladder, positions } from '@gm/career';
 import type { loop } from '@gm/world';
 import { ObservedWorld, ReadModelRegistry, buildReadModel, observerFor } from '../../observer/index.ts';
+import { applyNotebookAction, buildLedgerView, buildNotebook, exportNotebookText, type LedgerView, type NotebookAction, type NotebookFilter, type NotebookNamer, type NotebookView } from '../notebook/index.ts';
 import { careerSourcesOf, type TeamSeasonLine } from './live.ts';
 import { liveCareerTables } from './live-tables.ts';
 import { CAREER_MODELS } from './spec.ts';
@@ -35,7 +36,19 @@ export interface CareerHost {
   life(): LifeView;
   /** The Office list, or null when he holds no ladder seat. */
   assignments(): AssignmentsView | null;
+  /** The coach's notebook (coach.notebook, E11.4.1): his notes, kept in the save, named as he knows things. */
+  notebook(filter?: NotebookFilter): NotebookView | null;
+  /** His words and deeds (E10.4.1); the boss's as the staff sees it is not in the save yet (CR-CS-2). */
+  ledger(): { readonly own: LedgerView | null; readonly boss: LedgerView | null };
+  /** One notebook action; `real` is the shell's real date for the note stamp (core reads no clock). */
+  notebookAct(a: NotebookAction, real?: string | null): { readonly ok: true } | { readonly ok: false; readonly key: string };
+  /** The notebook as a text file (E11.4.1 rule 5); the shell saves it. */
+  notebookText(): string;
 }
+
+/** Save keys of the coach's own files, in the world's system state (plain data, saved with the world). */
+export const NOTEBOOK_KEY = 'career.notebook';
+export const PHILOSOPHY_KEY = 'career.philosophy';
 
 /** A team's regular-season line in one season: the season summary once folded, the played games before. */
 export function teamSeasonOf(world: LiveWorld, teamId: number, seasonYear: number): Omit<TeamSeasonLine, 'finish'> | null {
@@ -70,7 +83,7 @@ export const EMPTY_VIEWS = {
   }),
 };
 
-interface Built { readonly key: string; readonly model: (name: string) => unknown }
+interface Built { readonly key: string; readonly model: (name: string) => unknown; readonly names: NotebookNamer; readonly job: coach.AuthorJob }
 
 /** The host for the save's coach. Models rebuild when the world moves (a pass or a day), never per call. */
 export function careerHost(world: LiveWorld, opts: CareerHostOptions = {}): CareerHost {
@@ -92,14 +105,31 @@ export function careerHost(world: LiveWorld, opts: CareerHostOptions = {}): Care
     const registry = new ReadModelRegistry();
     for (const s of careerSpecs(CAREER_SCREEN_SCHEMAS, src)) registry.register(s);
     const cache = new Map<string, unknown>();
+    // Names as he knows them: everything below comes through his observer.
+    const people = new Map(observed.table('people').map((p) => [p.id, p as PersonRecord] as const));
+    const teams = new Map(observed.table('teams').map((t) => [t.id, t as TeamRecord] as const));
+    const cat = opts.catalogue ?? positions.CATALOGUE;
+    const personName = (id: number): string => { const p = people.get(id); return p?.name ? `${p.name.first} ${p.name.last}` : ''; };
+    const teamName = (id: number | null): string => (id === null ? '' : teams.get(id)?.identity?.name ?? '');
+    const names: NotebookNamer = {
+      subject: (s) => (s.type === 'person' && typeof s.id === 'number' ? personName(s.id) : s.type === 'team' && typeof s.id === 'number' ? teamName(s.id) : '') || String(s.id),
+      job: (j) => [cat.jobs.some((r) => r.id === j.jobCatalogueId) ? cat.job(j.jobCatalogueId).title : '', teamName(j.teamId)].filter((x) => x !== '').join(', '),
+      person: personName,
+    };
+    const now = (observed.table('jobs') as readonly JobRecord[]).find((j) => j.holderPersonId === personId);
     built = {
-      key,
+      key, names,
+      job: { jobCatalogueId: now?.catalogueId ?? '', teamId: now?.teamId ?? null },
       model: (name) => {
         if (!cache.has(name)) cache.set(name, buildReadModel(registry, source, observer, name, { personId }).model.data);
         return cache.get(name);
       },
     };
     return built;
+  };
+  const notebookOf = (): coach.Notebook => {
+    const nb = world.systemState.get(NOTEBOOK_KEY) as coach.Notebook | undefined;
+    return nb && nb.ownerPersonId === personId ? nb : coach.emptyNotebook(personId ?? 0);
   };
   const rights = (): readonly string[] => (get()?.model(CAREER_MODELS.assignments) as AssignmentsView | null)?.rights ?? SELF();
   const view = <V>(name: string, empty: (r: readonly string[]) => V): V => (get()?.model(name) as V | null | undefined) ?? empty(rights());
@@ -112,5 +142,21 @@ export function careerHost(world: LiveWorld, opts: CareerHostOptions = {}): Care
     finance: () => view(CAREER_MODELS['coach.finance'], EMPTY_VIEWS.finance),
     life: () => view(CAREER_MODELS['coach.life'], EMPTY_VIEWS.life),
     assignments: () => (get()?.model(CAREER_MODELS.assignments) as AssignmentsView | null | undefined) ?? null,
+    notebook: (filter = {}) => { const b = get(); return b ? buildNotebook(notebookOf(), b.names, filter) : null; },
+    ledger: () => {
+      const p = personId === null ? undefined : (world.systemState.get(PHILOSOPHY_KEY) as coach.Philosophy | undefined);
+      const today = { seasonYear: world.date.seasonYear, dayIndex: world.date.dayIndex };
+      // Decisions the measures read are not in the save yet: every commitment reads "not yet tested".
+      return { own: p && p.personId === personId ? buildLedgerView({ philosophy: p, decisions: [], now: today }) : null, boss: null };
+    },
+    notebookAct: (a, real = null) => {
+      const b = get();
+      if (!b || personId === null) return { ok: false, key: 'note.no_coach' };
+      const r = applyNotebookAction(notebookOf(), a, { world: { seasonYear: world.date.seasonYear, dayIndex: world.date.dayIndex }, real }, b.job);
+      if (!r.ok) return r;
+      world.systemState.set(NOTEBOOK_KEY, r.notebook);
+      return { ok: true };
+    },
+    notebookText: () => { const b = get(); return b ? exportNotebookText(notebookOf(), b.names) : ''; },
   };
 }
