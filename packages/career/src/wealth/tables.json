@@ -1,0 +1,35 @@
+{
+  "$comment": "G-30 personal wealth tables (E6.2, E6.6, E6.9). Every value is a fact id in facts.json; the code reads the value from the fact row, so editing facts.json changes results with no code change (E6.2.1 acceptance 2).",
+  "taxYear": 2026,
+  "federal": {
+    "single": { "brackets": "F-wealth-0001", "standardDeduction": "F-wealth-0003", "ltcg": "F-wealth-0005", "additionalMedicareThreshold": "F-wealth-0011" },
+    "married_joint": { "brackets": "F-wealth-0002", "standardDeduction": "F-wealth-0004", "ltcg": "F-wealth-0006", "additionalMedicareThreshold": "F-wealth-0012" }
+  },
+  "payroll": { "oasdiWageBase": "F-wealth-0007", "oasdiRate": "F-wealth-0008", "medicareRate": "F-wealth-0009", "additionalMedicareRate": "F-wealth-0010" },
+  "retirement": { "electiveDeferralLimit": "F-wealth-0013", "catchUpLimit": "F-wealth-0014" },
+  "states": [
+    { "id": "AK", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "FL", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "NV", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "NH", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "SD", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "TN", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "TX", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "WY", "kind": "none", "fact": "F-wealth-0020" },
+    { "id": "AZ", "kind": "flat", "fact": "F-wealth-0021" },
+    { "id": "CO", "kind": "flat", "fact": "F-wealth-0022" },
+    { "id": "IN", "kind": "flat", "fact": "F-wealth-0023" },
+    { "id": "KY", "kind": "flat", "fact": "F-wealth-0024" },
+    { "id": "MS", "kind": "flat", "fact": "F-wealth-0025" },
+    { "id": "NC", "kind": "flat", "fact": "F-wealth-0026" },
+    { "id": "GA", "kind": "flat", "fact": "F-wealth-0027" }
+  ],
+  "market": {
+    "stocks": { "mean": "F-wealth-0030", "sd": "F-wealth-0031" },
+    "bonds": { "mean": "F-wealth-0032", "sd": "F-wealth-0033" },
+    "bills": { "mean": "F-wealth-0034", "sd": "F-wealth-0035" },
+    "realEstate": { "mean": "F-wealth-0036", "sd": "F-wealth-0037" }
+  },
+  "inflation": "F-wealth-0040",
+  "safeWithdrawalRate": "F-wealth-0041"
+}
