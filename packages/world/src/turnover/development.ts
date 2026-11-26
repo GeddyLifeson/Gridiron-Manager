@@ -53,7 +53,7 @@ export function developmentStep(b: TurnoverBinding): StepHandler {
       for (const id of ids) {
         teamOf.set(id, teamId);
         const pos = world.people.get(id)?.playing?.position;
-        if (pos) byPos.set(pos, [...(byPos.get(pos) ?? []), id]);
+        if (pos) { const l = byPos.get(pos); if (l) l.push(id); else byPos.set(pos, [id]); }
       }
       for (const [pos, list] of byPos) {
         const keep = Math.ceil((targets[pos] ?? 0) * param('role.starterShareOfMix'));

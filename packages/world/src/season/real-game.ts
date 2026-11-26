@@ -11,7 +11,7 @@ import {
 } from '@gm/schema';
 import { DMATH, ball, carrier, contest, field, foulsInjuries, kinematics, perception, playerAi, presnap, qb, seedFromHex, stream, streamSource, tickResolver } from '@gm/engine-core';
 import { lang } from '@gm/football-lang';
-import { flow, stats } from '@gm/engine-game';
+import { environment, flow, stats } from '@gm/engine-game';
 import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
 import { full } from '@gm/football-content';
@@ -35,6 +35,8 @@ export const ENGINE_PARAM_FILES: readonly ParamFile[] = [
 export const TICK_PARAM_FILES: readonly ParamFile[] = [
   field.PARAMS, kinematics.PARAMS, perception.PARAMS, presnap.PARAMS, playerAi.PARAMS, ball.PARAMS, contest.PARAMS,
   qb.PARAMS, tickResolver.PARAMS, carrier.PARAMS, foulsInjuries.PARAMS, ...lang.PARAM_FILES,
+  // J12.6.1 and J12.8.1: the crowd on each play (tick content) and the gate venue.
+  environment.PARAMS,
 ];
 
 /** The game modules' files and the tick path's together: what a game with the tick resolver reads. */
@@ -101,8 +103,8 @@ export interface RealGameCore {
 }
 
 /** The tick resolver on all three real modules (no stand-ins) over the starter content port. */
-export function createRealTickResolver(): ReturnType<typeof tickResolver.createTickResolver> {
-  return tickResolver.createTickResolver({ content: createStarterContentPort(), plugs: tickResolver.availablePlugs() });
+export function createRealTickResolver(site: environment.Site = 'home'): ReturnType<typeof tickResolver.createTickResolver> {
+  return tickResolver.createTickResolver({ content: createStarterContentPort({ site }), plugs: tickResolver.availablePlugs() });
 }
 
 /** Which play resolver a real game runs: the tick engine (J1, the default) or the reference resolver (WP-08). */
@@ -156,6 +158,14 @@ export interface RealGameOptions {
   readonly resolver?: RealResolver;
   /** Default true on the tick engine: call from the level's starter book. False runs the one-play-per-kind defaults. */
   readonly book?: boolean;
+  /**
+   * Venue crowd `noiseBase` (J12.6.1). Default on the tick engine: the level's gate value (`environment.gate.noiseBase*`),
+   * so calibration games carry the home edge through its mechanisms; 0 is the empty-stadium test (J12.8.1 acceptance 2).
+   * The reference resolver reads no crowd and keeps the neutral snapshot.
+   */
+  readonly noiseBase?: number;
+  /** Home venue (default) or neutral site (no venue term, no familiarity). */
+  readonly site?: environment.Site;
 }
 
 /** The real game for a rule set: inputs, dependencies (both sides on the chart caller) and a whole-game run. */
@@ -186,17 +196,21 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   // On the tick engine both staffs call from the level's starter book (G3), so every call kind has a real mix of
   // concepts under it. The reference resolver reads no content, so it runs without one (and its results do not move).
   const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level) : null;
+  // The gate's venue (J12.8.1): the neutral indoor snapshot with the level's crowd. The weather stays neutral.
+  const site = opts.site ?? 'home';
+  const noiseBase = opts.noiseBase ?? (tick ? environment.gateNoiseBase(rules.level, params) : 0);
+  const gameEnvironment = noiseBase === 0 ? NEUTRAL_ENVIRONMENT : { ...NEUTRAL_ENVIRONMENT, noiseBase };
   const input = (gameIndex: number, seedHex: string): GameInput => {
     const [home, away] = teamIss(gameIndex, seedHex);
     return {
       gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
       teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
-      crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
+      crew: officiating.crew.neutralCrew(1), environment: gameEnvironment, seedHex, fidelityTier: 'B',
     };
   };
   const deps = (inp: GameInput): GameDeps => ({
     rules, params, geometry, streams: streamSource(seedFromHex(inp.seedHex)), math: DMATH,
-    resolver: tick ? createRealTickResolver() : resolver.REFERENCE_RESOLVER, officiating: off,
+    resolver: tick ? createRealTickResolver(site) : resolver.REFERENCE_RESOLVER, officiating: off,
     deciders: [
       chart.createChartCaller({ side: 0, geometry, roster: chart.depthRoster(inp.teams[0].depth), regulationPeriods, overrides, book }),
       chart.createChartCaller({ side: 1, geometry, roster: chart.depthRoster(inp.teams[1].depth), regulationPeriods, overrides, book }),
