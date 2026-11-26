@@ -152,6 +152,15 @@ describe('starter content port', () => {
     expect(pop.qb!.underCenter).toBe(true);
     expect(pop.qb!.launchPy ?? null).toBeNull();
   });
+  it('a route tag on the call re-lays that receiver\'s route and leaves the others alone', () => {
+    const named = (tags: string[]): PlayCalls => { const c = offenseCalls('dropback_pass', null); return { ...c, snapping: { ...c.snapping, playContentId: 'pass_y_cross', tags } } as PlayCalls; };
+    const plain = port.setup(inputOf(named([])))!;
+    const tagged = port.setup(inputOf(named(['route:Z:hitch'])))!;
+    const z = OFFENSE_ROLES.indexOf('Z'), x = OFFENSE_ROLES.indexOf('X');
+    expect(JSON.stringify(tagged.presnap.offense.assignments[z])).not.toBe(JSON.stringify(plain.presnap.offense.assignments[z]));
+    expect(JSON.stringify(tagged.presnap.offense.assignments[x])).toBe(JSON.stringify(plain.presnap.offense.assignments[x]));
+    expect(JSON.stringify(port.setup(inputOf(named(['relay:radio'])))!.presnap.offense.assignments[z])).toBe(JSON.stringify(plain.presnap.offense.assignments[z]));
+  });
   it('gives the screen one read, the back: the clear-out routes are not throws', () => {
     const s = port.setup(inputOf(offenseCalls('screen', null)))!;
     expect(s.qb!.reads.map((r) => r.target.slot)).toEqual([OFFENSE_ROLES.indexOf('R')]);

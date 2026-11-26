@@ -37,6 +37,11 @@ const ROWS: readonly ParamRow[] = [
   ['interact.coverHoldS', 1.5, 0.2, 3, 's', A, 'J6.1.2', 'a block on a man covering a kick holds him up this long at an even contest (a hold-up, not a sustained block)'],
   ['interact.helpClearYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'a pass protector with a free rusher of his own this near does not join a double team'],
   ['interact.interiorHalfWidthYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'rushers inside this lateral distance use the interior row'],
+  ['interact.comingDepthYd', 6, 3, 10, 'yd', A, 'F5.5.1', 'a defender this near the line and closing on it is read as a rusher by the protection'],
+  ['interact.onLineDepthYd', 1.5, 0.5, 2.5, 'yd', A, 'F5.2.2', 'a defender this near the line is a rusher to the protection until he backs off it'],
+  ['interact.comingYps', 1, 0.3, 3, 'yd/s', A, 'F5.5.1', 'closing speed toward the line that reads as a rush'],
+  ['interact.zoneSlackYd', 0.3, 0, 1, 'yd', A, 'F5.4.1', 'a slide blocker takes a rusher this far outside his gap'],
+  ['interact.freePressureYd', 2, 1, 3, 'yd', A, 'J6.2.4', 'a rusher no blocker touched who gets this near the passer is an unblocked pressure (the J6.2.5 pressure distance)'],
   // J2.1.3 planted cuts on drawn paths (route-cuts.ts).
   ['route.cutMatchYd', 4, 0.5, 8, 'yd', A, 'J2.1.3', 'a break point moved by a K1 depth or width error is still his break when his aim is this close to the drawn one'],
   // J7.3.1 inputs: whom the quarterback watches while he is on a read (plugs.ts). The count is spent

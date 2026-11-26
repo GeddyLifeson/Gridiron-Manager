@@ -1,6 +1,6 @@
 // Starts the career's season from what the new-game picker hands over (or a quick start for checks): the
 // season session from app-services, adapted to the career root's port.
-import { play, type newgame } from '@gm/app-services';
+import { play, weekLoop, type newgame } from '@gm/app-services';
 import { careerPortFromSeason, type SeasonPortHost } from './season-port.ts';
 import type { CareerPort, SeatWorld } from './port.ts';
 import { DEFAULT_KEYMAP } from '../shell/keymap.ts';
@@ -23,8 +23,6 @@ export interface CareerSeasonStart {
 /** What the shell host supplies. Without `consoleConfig` the console calls from the football desk's sheets. */
 export type CareerHost = Omit<SeasonPortHost, 'level' | 'seasonYear' | 'consoleConfig' | 'football'> & {
   readonly consoleConfig?: SeasonPortHost['consoleConfig'];
-  /** Key bindings for the desk's console setup (sheet key hints skip the console's own keys). */
-  readonly bindings?: readonly { readonly context: string; readonly keys: readonly string[] }[];
 };
 
 export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, host: CareerHost): CareerPort {
@@ -37,12 +35,19 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const c = content as any;
   const strips = new Map<string, { primary: string; alternate: string }>();
   for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
-  // The seat's football desk (plan item 2b): the football screens and, unless the host overrides it, the console read it.
+  const markets = new Map<string, number>();
+  for (const t of c.proLeague?.league?.clubs ?? []) if (typeof t.marketTier === 'number') markets.set(t.id, t.marketTier);
+  for (const t of c.college?.schools ?? []) if (typeof t.sizeTier === 'number') markets.set(t.id, t.sizeTier);
+  // The league rules the week screens check the week against (H1.1.2), from the same file the season is built on.
+  const ruleFile = s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules;
+  const weekRules = ruleFile?.values ? weekLoop.weekRules(ruleFile.values, s.level) : undefined;
+  // The seat's football desk (plan item 2b): the football screens edit its sheets, and the console calls from them.
   const football = new play.FootballDesk({ teamId: sp.seatTeamId, ruleSetId: s.ruleSetId, level: s.level });
-  const { bindings = DEFAULT_KEYMAP.bindings, consoleConfig, ...rest } = host;
+  const { consoleConfig, ...rest } = host;
   const port = careerPortFromSeason(sp, {
-    colours: (key) => strips.get(key) ?? null, ...rest, level: s.level, seasonYear: s.seasonYear, football,
-    consoleConfig: consoleConfig ?? ((gameId) => football.consoleConfig(gameId, bindings)),
+    colours: (key) => strips.get(key) ?? null, ...(weekRules ? { weekRules } : {}), venues: weekLoop.venuesOf(content, s.level), marketOf: (key) => markets.get(key) ?? null,
+    ...rest, level: s.level, seasonYear: s.seasonYear, football,
+    consoleConfig: consoleConfig ?? ((gameId) => football.consoleConfig(gameId, host.bindings ?? DEFAULT_KEYMAP.bindings)),
   });
   // Screens that edit hub state (the football desk) ask the root to redraw through the port's subscription.
   const redraws = new Set<() => void>();
@@ -50,14 +55,14 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   // The hubs' route sources, built once: the new-game seat hands over the generated world (its history).
   const world = s.live?.world ?? ('world' in s.seat && isStartedWorld(s.seat.world) ? s.seat.world : null);
   const sources = hubSources({ season: sp, content, world, football, changed, print: () => globalThis.print?.() });
-  const hub = { ...port, sources: () => sources, subscribe: (f: () => void) => { redraws.add(f); return () => { redraws.delete(f); }; } };
+  const withSources: CareerPort = { ...port, sources: () => sources, subscribe: (f) => { redraws.add(f); return () => { redraws.delete(f); }; } };
   const live = s.live;
-  if (!live || !('world' in s.seat)) return hub;
+  if (!live || !('world' in s.seat)) return withSources;
   const seat: SeatWorld = {
     world: live.world, teamId: s.seat.teamId, userPersonId: live.userPersonId, level: s.level,
     leagueRules: s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules,
   };
-  return { ...hub, seatWorld: () => seat };
+  return { ...withSources, seatWorld: () => seat };
 }
 
 /** The new-game picker's seat world is the whole generated world; a bare team list is not. */

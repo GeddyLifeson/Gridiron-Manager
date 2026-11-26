@@ -36,6 +36,8 @@ describe('football sources', () => {
     expect(gameplanCommand(d, 'offense', { kind: 'move_entry', boxId: box.id, entryId: a, by: -1 })).toBeNull();
     expect(gameplanCommand(d, 'offense', { kind: 'add_entry', boxId: box.id, playId: 'x' })).toMatchObject({ kind: 'add_entry', entry: { call: { playId: 'x' } } });
     expect(gameplanCommand(d, 'offense', { kind: 'print', paper: 'letter', keyHints: true })).toBeNull();
+    expect(gameplanCommand(d, 'offense', { kind: 'drop_entry', fromBoxId: box.id, entryId: a, toBoxId: 'b2', at: 0 })).toEqual({ kind: 'transfer_entry', fromBoxId: box.id, entryId: a, toBoxId: 'b2', at: 0 });
+    expect(gameplanCommand(d, 'offense', { kind: 'start_from_last_week' })).toBeNull();
   });
 
   it('dispatch runs the command and asks the root to redraw', () => {
@@ -51,6 +53,16 @@ describe('football sources', () => {
     s.install.dispatch('offense', { kind: 'fill' });
     expect(redraws).toBe(2);
     expect(s.install.view('offense', 'week')!.days.some((x) => x.cards.length > 0)).toBe(true);
+    // Last week's sheet: none until a game has been prepared for, then the screen's action restores it.
+    expect(s.gameplan.hasLastWeek!('defense')).toBe(false);
+    d.prepare('6');
+    expect(s.gameplan.hasLastWeek!('defense')).toBe(true);
+    s.gameplan.dispatch('defense', { kind: 'start_from_last_week' });
+    expect(redraws).toBe(3);
+    expect(d.sheets().defense.boxes.find((x) => x.id === box.id)!.entries.length).toBe(box.entries.length - 1);
+    // Folders: the playbook route's folder intents reach the desk.
+    s.playbook.dispatch('offense', { kind: 'create_folder', name: 'Openers' });
+    expect(s.playbook.view('offense', {})!.folders.map((f) => f.name)).toEqual(['Openers']);
   });
 
   for (const level of ['pro', 'college'] as const) {

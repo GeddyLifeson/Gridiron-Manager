@@ -13,6 +13,8 @@ export interface PlaybookFilter {
   readonly status?: string;
   readonly readinessAtLeast?: number;
   readonly includeRetired?: boolean;
+  /** One of the coach's folders: only its plays, in the coach's order ("My folders" view). */
+  readonly folder?: string;
 }
 
 export interface PlaybookRow {
@@ -63,6 +65,9 @@ export interface PlaybookSize {
   readonly sectionUpkeep: readonly { readonly section: string; readonly units: number; readonly share: number }[];
 }
 
+/** One of the coach's own folders, in his order; `playIds` keeps his order of plays. */
+export interface PlaybookFolder { readonly id: string; readonly name: string; readonly playIds: readonly string[] }
+
 export interface PlaybookOption { readonly id: string; readonly word: string }
 
 export interface PlaybookView {
@@ -76,6 +81,8 @@ export interface PlaybookView {
   readonly size: PlaybookSize | null;
   readonly locks: PlaybookLocks;
   readonly filter: PlaybookFilter;
+  /** The coach's folders for this side, in his order. */
+  readonly folders: readonly PlaybookFolder[];
   /** Choices for the part filters, from the parts this side's live plays use. */
   readonly options: { readonly formation: readonly PlaybookOption[]; readonly concept: readonly PlaybookOption[]; readonly personnel: readonly PlaybookOption[] };
 }

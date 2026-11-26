@@ -57,7 +57,11 @@ export function gameplanCommand(desk: Desk, unit: Unit, i: GameplanIntent): Desk
     case 'move_entry': return reorder(desk, side, i.boxId, i.entryId, i.by);
     // No wristband format is set for the team yet: the command refuses and says so (G7.6.1).
     case 'fill_band': return { kind: 'fill_band', chosen: [] };
+    // Drag and drop: the entry to a place in any box (G7.3.1).
+    case 'drop_entry': return { kind: 'transfer_entry', fromBoxId: i.fromBoxId, entryId: i.entryId, toBoxId: i.toBoxId, at: i.at };
     case 'print': return null;
+    // The route's own action: the desk keeps last week's sheet (FootballDesk.startFromLastWeek).
+    case 'start_from_last_week': return null;
     default: return i;
   }
 }
@@ -70,12 +74,14 @@ export function footballSources(desk: Desk, o: FootballSourceOptions = {}): Foot
     // The desk's read model is the app-services gameplan view; the screen declares the same shape (CR-G68-S3).
     view: (unit, opts) => desk.gameplanView(unit, { situation: opts.situation, paper: opts.paper, keyHints: opts.keyHints }) as GameplanView | null,
     dispatch: (unit, i) => {
+      if (i.kind === 'start_from_last_week') { desk.startFromLastWeek(unit); changed(); return; }
       const cmd = gameplanCommand(desk, unit, i);
       if (!cmd) return;
       const r = desk.runGameplan(unit, cmd);
       if (r.ok) save(`${unit}-sheet-${desk.gameId ?? 'week'}.txt`, r.file);
       changed();
     },
+    hasLastWeek: (unit) => desk.hasLastWeek(unit),
   };
   const doPrint = o.print;
   const print: PrintHost = { ...gameplan, ...(doPrint ? { print: doPrint } : {}) };

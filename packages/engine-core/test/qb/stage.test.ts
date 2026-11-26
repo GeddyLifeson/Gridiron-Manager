@@ -268,7 +268,7 @@ describe('J7.4 pressure', () => {
   });
   it('a rusher still locked up at the line is not pressure until he is winning by the felt margin (J6.2.5)', () => {
     const scene = (advantage: number) => runScene({
-      play: qb.basePlay(QB, 'uc5', threeReads()), noThrow: true, maxTicks: 4, scripts: { 12: still(0.9, 0.5) },
+      play: qb.basePlay(QB, 'uc5', threeReads()), noThrow: true, maxTicks: 4, scripts: { 12: still(0.1, 0.1) },
       setup: (w) => {
         w.contests.push({ type: 'passBlock', offenseSlot: 9, defenseSlot: 12, advantage, startedTick: 0, helperSlots: [], stream: w.streams('contest', [1, 1, 901, 912, 'passBlock']) });
         const i = w.contests.length - 1; (w.players.engagement as Int16Array)[12] = i; (w.players.engagement as Int16Array)[9] = i;

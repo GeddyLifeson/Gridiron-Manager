@@ -36,7 +36,7 @@ if (process.env.TUNE_CHILD) {
   process.stdout.write(JSON.stringify(rows));
 } else {
   const runs = await Promise.all(Array.from({ length: procs }, (_, k) => new Promise<Row[]>((ok, bad) => {
-    const seed = (0x1000n + BigInt(k)).toString(16).padStart(16, '0');
+    const seed = (BigInt(process.env.TUNE_SEED_BASE ?? '0x1000') + BigInt(k)).toString(16).padStart(16, '0');
     const c = spawn(process.execPath, [...process.execArgv, fileURLToPath(import.meta.url), ...process.argv.slice(2)], { env: { ...process.env, TUNE_CHILD: seed }, stdio: ['ignore', 'pipe', 'inherit'] });
     let buf = '';
     c.stdout.on('data', (d) => { buf += d; });
