@@ -6,7 +6,7 @@ import type { OffensePlayKind } from '@gm/schema';
 import type {
   CallName, DesignSlot, DrawnClause, DrawnPoint, IntentRole, PlayDraft, PlayStatus, PresnapStep, QbRules, SlotAssignment, Strength, Yd2,
 } from './types.ts';
-import { defaultSlot, slotsForPersonnel } from './slots.ts';
+import { defaultSlot, slotsForPersonnel, startingSlots } from './slots.ts';
 
 export class DesignError extends Error {}
 
@@ -57,7 +57,7 @@ export function newDraft(id: string, personnel: string, author: string, created:
     name: { formation: '', strength: '', motion: '', protection: '', concept: '', tags: [] },
     kind: 'dropback_pass', personnel,
     formation: { id: null, strength: 'right' },
-    slots: roles.map((r, i) => defaultSlot(r, Math.max(0, i - 6))),
+    slots: startingSlots(roles),
     presnap: [],
     qb: { action: 'drop', dropSteps: 3, readType: 'progression', progression: [], hot: [], throwAway: 'out_of_bounds' },
     protection: null, runDirection: null, shotgun: false, tagsAllowed: [],
@@ -90,7 +90,7 @@ export function applyEdit(d: PlayDraft, e: PlayEdit): PlayDraft {
       if (!roles) throw new DesignError(`personnel group ${e.personnel} cannot be met by eleven players`);
       // Keep every slot the new group still names; add the new ones at the starting picture (G1.1.2).
       const keep = new Map(d.slots.map((s) => [s.role, s]));
-      return { ...d, personnel: e.personnel, slots: roles.map((r, i) => keep.get(r) ?? defaultSlot(r, Math.max(0, i - 6))) };
+      return { ...d, personnel: e.personnel, slots: roles.map((r, i) => keep.get(r) ?? defaultSlot(r, i)) };
     }
     case 'apply_formation': {
       // Choosing a part rewrites the affected players' alignments by the part's definition (O3.1.1).

@@ -41,14 +41,36 @@ export const EMPTY_ASSIGNMENT: SlotAssignment = {
   behavior: 'stand', params: {}, path: [], rules: [], keys: [], gaze: 'default', technique: {}, concept: '', load: 0, calls: [],
 };
 
-/** A neutral starting spot so a fresh draft is a legal under-center set; the user then draws. */
+/** Starting spots by default letter (drawn axes): a picture to draw from, not a formation from F2. */
+const START: Readonly<Record<string, readonly [number, number, boolean]>> = {
+  X: [0, -12, true], Y: [0, 6, true], Z: [-1, 12, false], H: [-1, -8, false], R: [-5, 0, false], F: [-3, 0, false], U: [-1, 7, false], W: [-1, -15, false],
+};
+
+/** One slot at its starting spot. */
 export function defaultSlot(role: string, index: number): DesignSlot {
   const line: Record<string, number> = { LT: -4, LG: -2, C: 0, RG: 2, RT: 4 };
   const base = { role, letter: role, stance: 'two_point', reportsEligible: false, extraTackle: false, assignment: EMPTY_ASSIGNMENT };
   if (role in line) return { ...base, at: [0, line[role]!], onLine: true, stance: 'three_point' };
   if (role === 'Q') return { ...base, at: [-1, 0], onLine: false };
-  // Skill slots: two on the line at the ends, the rest behind (a starting picture, not a formation).
-  const spots: readonly [number, number, boolean][] = [[0, -12, true], [-1, 12, false], [0, 6, true], [-5, 0, false], [-1, -8, false]];
-  const [d, l, on] = spots[index % spots.length]!;
+  const [d, l, on] = START[role] ?? [-2, -6 - index, false];
   return { ...base, at: [d, l], onLine: on };
+}
+
+/**
+ * The group's eleven slots in a legal starting picture: seven on the line with an eligible slot at
+ * each end (G1.5.1). When the letters leave a side with no skill slot on the line, the widest
+ * off-line skill slot steps up on that side (moved across when no slot stands there).
+ */
+export function startingSlots(roles: readonly string[]): DesignSlot[] {
+  const slots = roles.map((r, i) => defaultSlot(r, i));
+  const skill = (s: DesignSlot) => s.role !== 'Q' && !isLineSlot(s.role);
+  for (const sign of [-1, 1]) {
+    if (slots.some((s) => skill(s) && s.onLine && Math.sign(s.at[1]) === sign)) continue;
+    const off = slots.filter((s) => skill(s) && !s.onLine).sort((a, b) => sign * (b.at[1] - a.at[1]));
+    const c = off[0];
+    if (!c) continue;
+    const lat = Math.sign(c.at[1]) === sign && Math.abs(c.at[1]) > 4 ? c.at[1] : sign * 8;
+    slots[slots.indexOf(c)] = { ...c, at: [0, lat], onLine: true };
+  }
+  return slots;
 }
