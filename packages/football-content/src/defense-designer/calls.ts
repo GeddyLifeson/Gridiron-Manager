@@ -30,7 +30,7 @@ const common = { declarations: DECL, runFits: FITS, matchups: [], source: 'start
 const cov = (id: string, name: string, family: string, shell: Coverage['shell'], motion: Coverage['motion'], match: Coverage['match'] = []): Coverage => ({ id, name, family, shell, match, motion });
 
 const WALK_OUT_EMPTY: Check = { id: 'empty_walk_out', when: ['empty'], note: 'Empty: the overhang walks out over number 2 to the passing strength', patch: { slots: { S: { align: { kind: 'rcv', n: 2, side: 'passStrong', depthYd: 5, leverage: 'inside' }, job: { kind: 'zone', area: 'curlFlat', side: 'passStrong' } } } } };
-const TE_WING_DOWN: Check = { id: 'te_wing_safety_down', when: ['teWing'], note: 'Tight end and wing: the strong safety walks down to own the extra gap', patch: { slots: { SS: { align: { kind: 'lb', gap: 'E', side: 'strong', depthYd: 3 }, job: { kind: 'zone', area: 'curlFlat', side: 'strong' } } } } };
+const TE_WING_DOWN: Check = { id: 'te_wing_safety_down', when: ['teWing'], note: 'Tight end and wing: the Sam squeezes to the D gap and the strong safety walks down to own the extra gap', patch: { slots: { S: { align: { kind: 'lb', gap: 'D', side: 'strong', depthYd: 2 } }, SS: { align: { kind: 'lb', gap: 'E', side: 'strong', depthYd: 3 }, job: { kind: 'zone', area: 'curlFlat', side: 'strong' } } } } };
 
 export const OVER_3_SKY: DefensiveCall = {
   ...common, id: 'dd_over_3_sky', name: 'Over 3 Sky', package: BASE,
@@ -107,12 +107,12 @@ export const NICKEL_QUARTERS: DefensiveCall = {
 export const NICKEL_FIRE_ZONE: DefensiveCall = {
   ...common, id: 'dd_nickel_fire_zone', name: 'Nickel Fire Zone', package: NICKEL,
   slots: [
-    slot('E', 'DE', { kind: 'tech', blocker: 'T', shade: 'outside', side: 'weak' }, { kind: 'zone', area: 'curlFlat', side: 'weak' }, { gapControl: 'one' }),
+    slot('E', 'DE', { kind: 'tech', blocker: 'T', shade: 'outside', side: 'passWeak' }, { kind: 'zone', area: 'curlFlat', side: 'passWeak' }, { gapControl: 'one' }),
     slot('N', 'NT', { kind: 'tech', blocker: 'C', shade: 'outside', side: 'weak' }, { kind: 'rush', gap: 'A', side: 'weak' }, { gapControl: 'one' }),
     slot('T', 'DT', { kind: 'tech', blocker: 'G', shade: 'outside', side: 'strong' }, { kind: 'rush', gap: 'B', side: 'strong' }, { gapControl: 'one' }),
     slot('K', 'DE', { kind: 'tech', blocker: 'T', shade: 'outside', side: 'strong' }, { kind: 'rush', gap: 'C', side: 'strong' }, { gapControl: 'one' }),
     slot('M', 'ILB', { kind: 'lb', gap: 'A', side: 'strong' }, { kind: 'rush', gap: 'A', side: 'strong' }),
-    slot('W', 'ILB', { kind: 'lb', gap: 'B', side: 'weak' }, { kind: 'zone', area: 'hook', side: 'weak' }),
+    slot('W', 'ILB', { kind: 'lb', gap: 'B', side: 'passWeak' }, { kind: 'zone', area: 'hook', side: 'passWeak' }),
     slot('NB', 'NB', { kind: 'rcv', n: 2, side: 'passStrong', depthYd: 4, leverage: 'inside' }, { kind: 'rush', gap: 'D', side: 'passStrong', delayS: 0 }),
     slot('SS', 'S', { kind: 'rcv', n: 2, side: 'passStrong', depthYd: 9, leverage: 'outside' }, { kind: 'zone', area: 'curlFlat', side: 'passStrong' }),
     slot('FS', 'S', { kind: 'deep', side: 'middle', depthYd: 12, outsideHashYd: 0 }, { kind: 'zone', area: 'deepMiddle' }),

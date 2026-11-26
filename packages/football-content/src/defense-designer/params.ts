@@ -22,6 +22,8 @@ const ROWS: readonly Row[] = [
   // G2.2.3 box: defenders inside this lateral margin outside the end men and this depth.
   ['fits.boxMarginYd', 2, 0, 6, 'yd', 'assumption', 'G2.2.3'],
   ['fits.boxDepthYd', 8, 3, 12, 'yd', 'assumption', 'G2.2.3'],
+  // G2.2.3 bounce player: a defender outside the end man no deeper than this can bounce a spilled run.
+  ['fits.bounceDepthYd', 6, 1, 12, 'yd', 'assumption', 'G2.2.3'],
   // G2.3.1 stunt timing.
   ['stunt.looperDelayS', 0.3, 0.1, 0.6, 's', 'bible', 'G2.3.1'],
   ['stunt.gapOpenWindowS', 0.5, 0, 2, 's', 'bible', 'G2.3.1'],

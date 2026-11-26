@@ -10,6 +10,8 @@ import type { Align } from './types.ts';
 const flip = (py: number): number => (py === 0 ? 0 : -py);
 const w = (text: string, when: Condition, then: Action[]): WhenClause => ({ when, guard: null, then, text });
 const DL = new Set(['DE', 'DT', 'NT']);
+/** The WP-10 vocabulary letters gaps A to D only; E and F (extra blockers) fit as D until the vocabulary grows (owed request CR-G91-2). */
+const VOCAB_GAP = (g: string): string => (g === 'E' || g === 'F' ? 'D' : g);
 
 function ruleName(a: Align): string {
   switch (a.kind) {
@@ -25,9 +27,9 @@ function ruleName(a: Align): string {
 function one(d: Defender, res: Resolution): Assignment {
   const fit = baseFits(res).find((x) => x.slot === d.slot.id)?.job;
   const fitClause: WhenClause[] = fit && fit.kind === 'gap'
-    ? [w(`Run read: fit the ${fit.side} ${fit.gap} gap`, test('read', { kind: 'run', dir: 'any' }), [act('switchBehavior', { to: 'runFit' }), act('fit', { gap: fit.gap, side: fit.side, shoulder: 'outside' })])]
+    ? [w(`Run read: fit the ${fit.side} ${fit.gap} gap`, test('read', { kind: 'run', dir: 'any' }), [act('switchBehavior', { to: 'runFit' }), act('fit', { gap: VOCAB_GAP(fit.gap), side: fit.side, shoulder: 'outside' })])]
     : fit && (fit.kind === 'force' || fit.kind === 'alley')
-      ? [w(`Run read: ${fit.kind}`, test('read', { kind: 'run', dir: 'any' }), [act('switchBehavior', { to: 'runFit' }), act(fit.kind === 'force' ? 'contain' : 'fit', fit.kind === 'force' ? {} : { gap: 'alley', side: 'mine', shoulder: 'inside' })])]
+      ? [w(`Run read: ${fit.kind}`, test('read', { kind: 'run', dir: 'any' }), [act('switchBehavior', { to: 'runFit' }), act(fit.kind === 'force' ? 'contain' : 'fit', fit.kind === 'force' ? {} : { gap: 'force', side: 'mine', shoulder: 'inside' })])]
       : [];
   let type = 'none';
   let params: Record<string, string | number | boolean> = {};
@@ -44,7 +46,7 @@ function one(d: Defender, res: Resolution): Assignment {
       break;
     case 'man': case 'bracket': {
       type = 'manCover';
-      const target = j.target ?? 'none';
+      const target = j.target === null ? 'nearestThreat' : `role:${j.target}`;
       params = j.kind === 'man' ? { man: target, technique: j.technique } : { man: target, bracket: j.part };
       rules = [w('Receiver crosses my face: stay with him', test('crossesFace', { target: 'man' }), [act('trail', { target: 'man' })]), w('Ball in the air to my man: play the ball', test('ballThrownToMyArea'), [act('breakOnBall')])];
       keys = [target]; gaze = 'man';

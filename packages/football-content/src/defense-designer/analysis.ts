@@ -64,7 +64,7 @@ export function baseFits(res: Resolution): FitRow[] {
       continue;
     }
     if (d.slot.align.kind === 'overhang') { out.push({ slot: id, job: { kind: 'force', side } }); continue; }
-    if (box.includes(d) && j.kind !== 'man' && (d.slot.pos === 'ILB' || d.slot.pos === 'OLB' || d.slot.align.kind === 'lb')) {
+    if (box.includes(d) && (j.kind !== 'man' || (d.slot.job.kind === 'man' && d.slot.job.target === 'back')) && (d.slot.pos === 'ILB' || d.slot.pos === 'OLB' || d.slot.align.kind === 'lb')) {
       if (d.slot.align.kind === 'lb' && d.slot.align.gap === 'over') {
         // Over the center: fits the strong-side A gap by default (the user edits it).
         out.push({ slot: id, job: { kind: 'gap', gap: 'A', side: res.declared.strong } });
@@ -80,7 +80,8 @@ export function baseFits(res: Resolution): FitRow[] {
     const cands = res.defenders.filter((d) => (d.py - r.center.py) * sgn(side) > 0);
     const corner = cands.find((d) => d.slot.pos === 'CB' && d.job.kind === 'zone' && d.job.area === 'flat');
     const alley = cands.find((d) => out.find((x) => x.slot === d.slot.id)?.job.kind === 'alley');
-    const pick = corner ?? alley ?? cands.find((d) => d.slot.pos === 'OLB' && d.slot.align.kind !== 'tech');
+    const free = (d: Defender): boolean => { const k = out.find((x) => x.slot === d.slot.id)?.job.kind; return k === 'passFirst' || k === 'alley'; };
+    const pick = [corner, alley, cands.find((d) => d.slot.pos === 'OLB' && d.slot.align.kind !== 'tech')].find((d): d is Defender => d !== undefined && free(d));
     if (pick) {
       const i = out.findIndex((x) => x.slot === pick.slot.id);
       out[i] = { slot: pick.slot.id, job: { kind: 'force', side } };
@@ -105,7 +106,7 @@ export function fitTable(call: DefensiveCall, res: Resolution, family: RunFamily
       rows = rows.map((x) => (x.slot === playEnd.slot.id ? { slot: x.slot, job: { kind: answer, side: playSide } } : x));
       if (answer === 'spill') {
         const endMan = r.line[playSide].wing ?? r.line[playSide].men.at(-1) ?? r.center;
-        const bounce = res.defenders.find((d) => d !== playEnd && (d.py - endMan.py) * s > 0 && d.px <= 10 && d.job.kind !== 'man');
+        const bounce = res.defenders.find((d) => d !== playEnd && (d.py - endMan.py) * s > 0 && d.px <= param('fits.bounceDepthYd') && d.job.kind !== 'man');
         if (!bounce) errors.push(`spill to the ${playSide} with no defender outside the end man to bounce the run`);
         else rows = rows.map((x) => (x.slot === bounce.slot.id ? { slot: x.slot, job: { kind: 'bounce', side: playSide } } : x));
       } else {
@@ -245,7 +246,9 @@ export function coverageReport(res: Resolution): CoverageReport {
   }
   const zones = res.defenders.filter((d) => d.job.kind === 'zone');
   const deepZones = zones.filter((d) => d.job.kind === 'zone' && d.job.rect.d0 >= 10);
-  const underSide = (s: Side): boolean => zones.some((d) => d.job.kind === 'zone' && d.job.rect.d0 < 10 && (d.job.side === s || d.job.side === null));
+  const under = zones.filter((d) => d.job.kind === 'zone' && d.job.rect.d0 < 10);
+  // A zone structure: three or more underneath zone defenders, or one on the receiver's own side. A lone robber in the hole is not a structure.
+  const underSide = (s: Side): boolean => under.length >= 3 || under.some((d) => d.job.kind === 'zone' && d.job.side === s);
   const uncovered: string[] = [];
   for (const p of r.eligible) {
     if ((manBy[p.role]?.length ?? 0) > 0) continue;
