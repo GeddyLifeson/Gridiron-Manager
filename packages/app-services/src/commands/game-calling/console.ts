@@ -304,16 +304,17 @@ export function pressKey(s0: ConsoleState, action: string | undefined, code: str
   if (s.pendingBox && atMs - s.pendingBox.atMs > chordMs) s = { ...s, pendingBox: null };
   if (s.boxPrefix && atMs - s.boxPrefix.atMs > chordMs) s = { ...s, boxPrefix: null };
   const clock = playClockAt(s, atMs);
+  const open = s.open!;
 
   // Controls live in every step.
   switch (action) {
     case 'call.timeout': {
-      if (!s.open.legal.timeout || s.timeoutThisDeadBall) return { state: { ...s, notice: s.open.timeoutReason ?? 'console.timeoutNotLegal' }, commands: [], handled: true };
+      if (!open.legal.timeout || s.timeoutThisDeadBall) return { state: { ...s, notice: open.timeoutReason ?? 'console.timeoutNotLegal' }, commands: [], handled: true };
       if (guarded(s, 'timeout', held, atMs)) return { state: { ...s, notice: 'console.holdToConfirm' }, commands: [], handled: true };
       return { state: logged({ ...s, timeoutThisDeadBall: true }, atMs, 'timeout'), commands: [{ type: 'timeout', atPlayClockTenths: clock }], handled: true };
     }
     case 'call.challenge': {
-      if (!s.open.legal.challenge || s.challengeThisDeadBall) return { state: { ...s, notice: s.open.challengeReason ?? 'console.challengeNotLegal' }, commands: [], handled: true };
+      if (!open.legal.challenge || s.challengeThisDeadBall) return { state: { ...s, notice: open.challengeReason ?? 'console.challengeNotLegal' }, commands: [], handled: true };
       if (guarded(s, 'challenge', held, atMs)) return { state: { ...s, notice: 'console.holdToConfirm' }, commands: [], handled: true };
       return { state: logged({ ...s, challengeThisDeadBall: true }, atMs, 'challenge'), commands: [{ type: 'challenge', atPlayClockTenths: clock }], handled: true };
     }
@@ -341,7 +342,7 @@ export function pressKey(s0: ConsoleState, action: string | undefined, code: str
   }
 
   // Step 'select'.
-  const unit = s.open.unit;
+  const unit = open.unit;
   const sheet = sheetOf(s, unit);
   const keys = s.cfg.keys[unit];
   if (!sheet || !keys) return none;
@@ -363,7 +364,7 @@ export function pressKey(s0: ConsoleState, action: string | undefined, code: str
     case 'call.confirm': return send(s, atMs);
     case 'call.clear': return { state: { ...s, selected: null, tags: [], preTags: [], personnel: null, armed: null, notice: null }, commands: [], handled: true };
     case 'call.take_suggestion': {
-      const id = s.open.suggestion;
+      const id = open.suggestion;
       const box = id ? sheet.boxes.find((b) => b.entries.some((e) => e.id === id)) : undefined;
       return box && id ? selectEntry(s, box.id, id, atMs) : { state: { ...s, notice: 'console.noSuggestion' }, commands: [], handled: true };
     }
