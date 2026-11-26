@@ -81,8 +81,9 @@ export function lostClubSpans(seed: WorldSeed, n: number, firstSeasonYear: numbe
 export function addLostClubs(
   built: BuiltStructures, seed: WorldSeed, content: WorldContent, n: number, firstSeasonYear: number, d: LostClubData = lostClubData(),
 ): LostClubsResult {
-  const pro = built.competitions.find((c) => c.level === 'pro');
-  if (!pro) throw new Error('lost clubs: the world has no pro competition');
+  // The pro competition is the one built from the content league (structures.ts names it so).
+  const pro = built.competitions.find((c) => c.name === content.pro.league.name);
+  if (!pro) throw new Error('lost clubs: the world has no competition for the content pro league');
   const spans = lostClubSpans(seed, n, firstSeasonYear, d);
   const competitions = built.competitions.map((c) => (c.id === pro.id ? { ...c, teamIds: [...c.teamIds] } : c));
   const proComp = competitions.find((c) => c.id === pro.id)!;

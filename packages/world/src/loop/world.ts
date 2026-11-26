@@ -48,9 +48,8 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   const seedStep = input.seedStep ?? 0;
   const seed = steppedSeed(setup.seedHex, seedStep * gparam('validate.redoSeedStep'));
   const base0 = buildStructures(setup, seed, content);
-  const proClubs = base0.competitions.filter((c) => c.level === 'pro').reduce((n, c) => n + c.teamIds.length, 0);
   const lost = input.lostClubs && input.lostClubs.fraction > 0
-    ? addLostClubs(base0, seed, content, lostClubCount(proClubs, undefined, input.lostClubs.fraction), setup.firstSeasonYear)
+    ? addLostClubs(base0, seed, content, lostClubCount(content.pro.league.clubs.length, undefined, input.lostClubs.fraction), setup.firstSeasonYear)
     : { built: base0, spans: [] };
   const built = lost.built;
   const sProblems = structureProblems(built);
