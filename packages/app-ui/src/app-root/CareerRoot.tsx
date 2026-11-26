@@ -123,6 +123,9 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
     if (gameDay && session === null && progress === null) setSession(port.startGame());
   }, [gameDay, session, port, progress]);
 
+  // A hub screen's edit (football desk) redraws the open screen.
+  useEffect(() => port.subscribe?.(bump), [port]);
+
   /**
    * Runs one season move. A port that plays the other games in place returns at once; one that plays them in
    * workers returns a promise, and the screen stays live with their progress until it settles. One at a time.

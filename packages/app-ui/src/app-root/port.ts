@@ -89,6 +89,8 @@ export interface CareerPort {
   names(session: GameSession): { playerName(id: number): string; teamName(side: 0 | 1): string };
   /** Route sources of the hubs (app-root/sources), fed from the running season; none for a scripted season. */
   sources?(): Partial<RouteSources>;
+  /** Calls `redraw` whenever a hub's state changes outside the season (an edit on a football screen); returns the unsubscribe. */
+  subscribe?(redraw: () => void): () => void;
   /**
    * The generated world behind the career and the seat in it, when the career started from the new-game
    * picker; absent or null for a quick start (no world). The team screens read it through the observer.

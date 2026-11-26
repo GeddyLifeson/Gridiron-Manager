@@ -17,6 +17,8 @@ export interface SeasonPortHost {
   readonly seasonYear: number;
   /** The console setup for the seat's game, built when the game opens (the staff's sheet or the user's own). */
   consoleConfig(gameId: string): ConsoleConfig;
+  /** The seat's football desk: its week follows the seat's next game, and the football screens read it. */
+  readonly football?: play.FootballDesk;
   /** Key bindings for the week's own sheets on the console; without them `consoleConfig` sets the console up. */
   readonly bindings?: readonly { readonly context: string; readonly keys: readonly string[] }[];
   readonly resolve: Resolve;
@@ -64,6 +66,8 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
   // The office reaches game day by advancing; until then the coming step's game is a week out (H1 adds the days).
   let gameDay = false;
   let field: LiveField | null = null;
+  // The desk's game week is the seat's next game: a new game gets the staff's fresh sheets, the same game keeps edits.
+  const syncDesk = () => { if (host.football) { const g = sp.nextSeatGame(); host.football.prepare(g ? String(g.context.fixture.gameId) : null); } };
   // The seat's week for the coming step, opened when the office first advances into it.
   let loop: weekLoop.SeatWeekLoop | null = null;
   const openLoop = (): weekLoop.SeatWeekLoop | null => {
@@ -127,6 +131,7 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
     };
   };
   const today = (): SeasonToday => {
+    syncDesk();
     const t = sp.today();
     const seat = t.standings.find((r) => r.teamId === t.seatTeamId);
     // The seat's own table: its division in the pro league, its conference in college.
