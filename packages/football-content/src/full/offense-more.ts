@@ -137,7 +137,7 @@ function pinPull(): PlayDef {
       rules: [pinOrPull('A defender in my inside gap: pin him instead of pulling'), clause('First puller: kick out the force player', not(test('defenderOn', { where: 'gapInside' })), [act('pull', { type: 'kick' })])] }),
     slot(F, 'Y', { behavior: 'runBlock', params: { scheme: 'pinPull', job: 'pin' }, concept: c, rules: [blockMan('Pin the end man down', 'down')] }),
     slot(F, 'Q', { behavior: 'quarterback', params: { action: 'handoff', side: 'right', exchange: 'underCenter' }, concept: c, gaze: 'ball' }),
-    slot(F, 'R', { behavior: 'ballCarrier', params: { track: 'pinPull', follow: 'secondPuller', cuts: 1 }, path: [through(-6, 2), through(-4, 7), cut(2, 9)], concept: c, load: 1.5, rules: [clause('Flat path; read the second puller\'s block and cut off it', test('read', { kind: 'run', dir: 'any' }), [act('runPath')])], gaze: 'key' }),
+    slot(F, 'R', { behavior: 'ballCarrier', params: { track: 'pinPull', follow: 'secondPuller', cuts: 1 }, path: [through(-4.5, 2.5), through(-3, 7), cut(2, 9)], concept: c, load: 1.5, rules: [clause('Flat path; read the second puller\'s block and cut off it', test('read', { kind: 'run', dir: 'any' }), [act('runPath')])], gaze: 'key' }),
     stalk(F, 'X', c), stalk(F, 'H', c), stalk(F, 'Z', c),
   ], ['Each play-side lineman pins down or pulls by whether a defender is in his inside gap.', 'Drawn against no play-side 3 technique: the tackle pulls first and kicks, the centre pulls second and leads to the point.', 'The back runs a flat path and reads the second puller.'], [
     { claim: 'Pin and pull: a play-side blocker pins (blocks down) when a defender is in his inside gap, otherwise he pulls', status: '2 of 3', sources: ['davis-pinpull', 'forbes-wham-pinpull'] },

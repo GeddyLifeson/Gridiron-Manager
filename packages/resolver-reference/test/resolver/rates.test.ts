@@ -5,7 +5,7 @@
 // (Q2, WP-13): most J15 rows are PROVISIONAL (build plan section 4).
 import { describe, expect, it } from 'vitest';
 import { deadBallOf, eventsOf, type PlayCalls, type PlayResult, type SimTeam } from '@gm/schema';
-import { PARAMS, REFERENCE_RESOLVER as R } from '../../src/resolver/index.ts';
+import { PARAMS, REFERENCE_RESOLVER as R, referenceParamTable } from '../../src/resolver/index.ts';
 import { defenseCall, input, kickCall, offenseCall, returnCall, situation, team } from './helpers.ts';
 
 const P = (name: string): number => {
@@ -17,9 +17,23 @@ const N = 40_000;
 /** Five standard errors of a share measured on n draws. */
 const tol = (p: number, n = N) => 5 * Math.sqrt((p * (1 - p)) / n);
 
-function runMany(calls: PlayCalls, n: number, over: Parameters<typeof situation>[0] = {}, teams?: readonly [SimTeam, SimTeam], seed = 1): PlayResult[] {
+/**
+ * The base rows are checked with the situation factors switched off: no down, field-position, coverage or play-action tilt, no
+ * screens taken out of the depth mix, no breakaway tail, and no return scores or fumbles on punts. The factors
+ * themselves are checked in their own block below, with the parameter file as it ships.
+ */
+const NEUTRAL = referenceParamTable({
+  ...Object.fromEntries(['d1', 'd2', 'd3', 'd4'].flatMap((d) => [[`pass.downCompletionFactor.${d}`, 1], [`pass.downSackFactor.${d}`, 1], [`pass.downDepthTilt.${d}`, 0]])),
+  ...Object.fromEntries(PARAMS.params.filter((p) => p.name.startsWith('resolverRef.pass.coverageCompletion.')).map((p) => [p.name.slice('resolverRef.'.length), 0.65])),
+  ...Object.fromEntries(PARAMS.params.filter((p) => p.name.startsWith('resolverRef.pass.coverageYacFactor.')).map((p) => [p.name.slice('resolverRef.'.length), 1])),
+  ...Object.fromEntries(PARAMS.params.filter((p) => p.name.startsWith('resolverRef.pass.goalCompletion.')).map((p) => [p.name.slice('resolverRef.'.length), P('pass.completionAll')])),
+  'pass.playActionYacFactor': 1, 'volume.screenShareOfAttempts': 0, 'pass.yacBreakawayShare': 0, 'pass.sticksShare': 0,
+  'punt.returnTdShare': 0, 'punt.returnFumbleLostShare': 0,
+});
+
+function runMany(calls: PlayCalls, n: number, over: Parameters<typeof situation>[0] = {}, teams?: readonly [SimTeam, SimTeam], seed = 1, params: typeof NEUTRAL = NEUTRAL): PlayResult[] {
   const out: PlayResult[] = [];
-  for (let i = 1; i <= n; i++) out.push(R.simulatePlay(input(situation({ ...over, playNumber: i }), calls, { teams, seed })));
+  for (let i = 1; i <= n; i++) out.push(R.simulatePlay(input(situation({ ...over, playNumber: i }), calls, { teams, seed, params })));
   return out;
 }
 
@@ -46,6 +60,37 @@ function passLine(results: readonly PlayResult[], ballX: number): PassLine {
 
 const pass = (rushers = 4): PlayCalls => ({ snapping: offenseCall(0, 'dropback_pass'), opposing: defenseCall(1, { rushers }) });
 const run = (boxCount = 7): PlayCalls => ({ snapping: offenseCall(0, 'run'), opposing: defenseCall(1, { boxCount }) });
+
+describe('reference resolver: situation factors, with the parameter file as it ships', () => {
+  const SHIPPED = referenceParamTable();
+  const n = 20_000;
+  const at = (over: Partial<import('@gm/schema').GameSituation>, calls: PlayCalls = pass(4), ballX = 35) => passLine(runMany(calls, n, { ballX, lineToGainX: ballX + (over.distanceYd ?? 10), ...over }, undefined, 1, SHIPPED), ballX);
+
+  it('third down brings more sacks, fewer completions and deeper throws than first down', () => {
+    const first = at({ down: 1 }), third = at({ down: 3 });
+    expect(third.sacks / n).toBeGreaterThan(first.sacks / n);
+    expect(third.completions / third.attempts).toBeLessThan(first.completions / first.attempts);
+    expect(third.air / third.attempts).toBeGreaterThan(first.air / first.attempts);
+  });
+
+  it('a screen is thrown behind the line and completed near its own row', () => {
+    const screen = at({ down: 1 }, { snapping: offenseCall(0, 'screen'), opposing: defenseCall(1) });
+    expect(screen.air / screen.attempts).toBeLessThan(0);
+    // First down and cover 3 each lift it about 3% off the row; 0.07 covers both.
+    expect(Math.abs(screen.completions / screen.attempts - P('pass.screenCompletion'))).toBeLessThan(0.07);
+  });
+
+  it('completions are harder to come by at the goal line than in the open field', () => {
+    const open = at({ down: 1 }), goal = at({ down: 1, distanceYd: 2, goalToGo: true }, pass(4), 98);
+    expect(goal.completions / goal.attempts).toBeLessThan(open.completions / open.attempts - 0.05);
+  });
+
+  it('man coverage gives up fewer completions than zone', () => {
+    const man = at({ down: 1 }, { snapping: offenseCall(0, 'dropback_pass'), opposing: defenseCall(1, { coverageFamily: 'cover1' }) });
+    const zone = at({ down: 1 }, { snapping: offenseCall(0, 'dropback_pass'), opposing: defenseCall(1, { coverageFamily: 'cover2' }) });
+    expect(man.completions / man.attempts).toBeLessThan(zone.completions / zone.attempts);
+  });
+});
 
 describe('reference resolver: dropbacks land on the J15.4 rows in the parameter file', () => {
   const line = passLine(runMany(pass(4), N), 35);
