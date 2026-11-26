@@ -72,9 +72,30 @@ export interface GradeContext {
   publicGrade(personId: number): number;
 }
 
+interface IdIndex { readonly of: readonly { readonly id: number }[]; readonly length: number; readonly at: Map<number, number> }
+const TEAM_INDEX = new WeakMap<LiveWorld, IdIndex>();
+const COMP_INDEX = new WeakMap<LiveWorld, IdIndex>();
+/** Position of the first element with each id, rebuilt when the array or its length changes. */
+function indexOf(cache: WeakMap<LiveWorld, IdIndex>, world: LiveWorld, list: readonly { readonly id: number }[]): IdIndex {
+  let ix = cache.get(world);
+  if (!ix || ix.of !== list || ix.length !== list.length) {
+    const at = new Map<number, number>();
+    for (let i = 0; i < list.length; i++) if (!at.has(list[i]!.id)) at.set(list[i]!.id, i);
+    ix = { of: list, length: list.length, at };
+    cache.set(world, ix);
+  }
+  return ix;
+}
+/** The first element with an id (as `find` gives), through the index; checked against the array so a replaced slot is still read live. */
+function byId<T extends { readonly id: number }>(cache: WeakMap<LiveWorld, IdIndex>, world: LiveWorld, list: readonly T[], id: number): T | undefined {
+  let i = indexOf(cache, world, list).at.get(id);
+  if (i !== undefined && list[i]?.id !== id) { cache.delete(world); i = indexOf(cache, world, list).at.get(id); }
+  return i === undefined ? undefined : list[i];
+}
+
 export function levelOfTeam(world: LiveWorld, teamId: number): Level {
-  const t = world.teams.find((x) => x.id === teamId);
-  const c = t && world.competitions.find((x) => x.id === t.competitionId);
+  const t = byId(TEAM_INDEX, world, world.teams, teamId);
+  const c = t && byId(COMP_INDEX, world, world.competitions, t.competitionId);
   if (!c) throw new Error(`team ${teamId} has no competition`);
   return c.level as Level;
 }
@@ -84,15 +105,23 @@ export function specOf(b: TurnoverBinding, world: LiveWorld, teamId: number): Le
 }
 
 /** Position targets on a full roster: the real mix scaled to the roster limit, as founding does (X10.2.2). */
-export function positionTargets(spec: LevelSpec): Record<string, number> {
-  return scaleMix(spec.rosterMix, spec.rosterLimit);
+const TARGETS = new WeakMap<LevelSpec, Readonly<Record<string, number>>>();
+export function positionTargets(spec: LevelSpec): Readonly<Record<string, number>> {
+  let t = TARGETS.get(spec);
+  if (!t) { t = Object.freeze(scaleMix(spec.rosterMix, spec.rosterLimit)); TARGETS.set(spec, t); }
+  return t;
 }
 
 const mean = (xs: readonly number[]): number => (xs.length === 0 ? 0 : xs.reduce((a, x) => a + x, 0) / xs.length);
 
 /** The whole-player value the evaluator looks at: the mean of the true attributes, read only inside `observe`. */
-function lookValue(p: PersonRecord): number {
-  return mean(Object.values(p.playing?.attributes ?? {}));
+function lookValue(p: PersonRecord, memo?: WeakMap<object, number>): number {
+  const attrs = p.playing?.attributes;
+  if (!attrs || !memo) return mean(Object.values(attrs ?? {}));
+  // Within one grade context no attribute map changes in place, so the mean is kept per map.
+  let v = memo.get(attrs);
+  if (v === undefined) { v = mean(Object.values(attrs)); memo.set(attrs, v); }
+  return v;
 }
 
 /**
@@ -100,31 +129,41 @@ function lookValue(p: PersonRecord): number {
  * noise). The truth is read only through `scouting.observe`, the module's single truth reader.
  */
 export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>): GradeContext {
-  const cache = new Map<string, { mean: number; variance: number }>();
+  const cache = new Map<number, Map<number, { mean: number; variance: number }>>();
   const pub = new Map<number, number>();
   const leniency = new Map<number, number>();
+  const looks = new WeakMap<object, number>();
   const season = world.date.seasonYear;
+  // Jobs do not change while a grade context lives (it is made inside one development or roster pass, after
+  // the coach moves), so each team's evaluator is found once.
+  const evaluators = new Map<number, number>();
   const evaluatorOf = (teamId: number): number => {
-    for (const j of world.jobs.values()) if (j.teamId === teamId && j.positionId === 'pos:head_coach' && j.holderPersonId !== null) return j.holderPersonId;
-    return 0;
+    let e = evaluators.get(teamId);
+    if (e === undefined) {
+      e = 0;
+      for (const j of world.jobs.values()) if (j.teamId === teamId && j.positionId === 'pos:head_coach' && j.holderPersonId !== null) { e = j.holderPersonId; break; }
+      evaluators.set(teamId, e);
+    }
+    return e;
   };
   const look = (teamId: number, personId: number): { mean: number; variance: number } => {
-    const key = `${teamId}:${personId}`;
-    const hit = cache.get(key);
+    let byPerson = cache.get(teamId);
+    if (byPerson === undefined) { byPerson = new Map(); cache.set(teamId, byPerson); }
+    const hit = byPerson.get(personId);
     if (hit !== undefined) return hit;
     const p = world.people.get(personId);
     if (!p?.playing) return { mean: 0, variance: 0 };
     let len = leniency.get(teamId);
     if (len === undefined) { len = scouting.drawLeniency(stream(world.seed, 'world.turnover.lean', [teamId, season])); leniency.set(teamId, len); }
     const rostered = rosteredIds.has(personId);
-    const item = scouting.observe(lookValue(p), {
+    const item = scouting.observe(lookValue(p, looks), {
       attribute: 'overall', source: rostered ? 'season_stats' : 'workout',
       units: rostered ? param('grade.rosteredUnits') : param('grade.workoutUnits'), date: world.date,
       evaluator: { id: evaluatorOf(teamId), line: `team:${teamId}` }, skill: param('grade.aiSkill'),
       estimateMean: 0, opponent: null,
     }, { leniency: len, playerOffset: 0, schemeOffset: 0 }, stream(world.seed, 'world.turnover.look', [teamId, personId, season]));
     const out = { mean: item.value, variance: item.variance };
-    cache.set(key, out);
+    byPerson.set(personId, out);
     return out;
   };
   return {
@@ -136,7 +175,7 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
       if (hit !== undefined) return hit;
       const p = world.people.get(personId);
       if (!p?.playing) return 0;
-      const item = scouting.observe(lookValue(p), {
+      const item = scouting.observe(lookValue(p, looks), {
         attribute: 'overall', source: rosteredIds.has(personId) ? 'season_stats' : 'workout',
         units: param('grade.rosteredUnits'), date: world.date, evaluator: { id: 0, line: 'public' }, skill: param('grade.aiSkill'),
         estimateMean: 0, opponent: null,
