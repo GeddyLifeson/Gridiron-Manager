@@ -57,6 +57,17 @@ for (let i = i0; i < i1; i++) {
   const res: any = core.simulate(inp);
   const sc = res.final?.score ?? res.score ?? res.result?.score;
   if (!sc) { console.log(Object.keys(res)); process.exit(1); }
+  // Contest outcomes straight from the truth events, by the team of the man with the ball (or the passer, or the
+  // intended receiver): the player-level response each contest gives, to set beside real player rates.
+  const teamOf = (id: number | null | undefined): number => id == null ? -1 : ((Math.floor(id / 1000) - 1 === 0) !== flip ? 0 : 1);
+  for (const rec of res.records) for (const e of rec.truth?.events ?? []) {
+    if (e.type === 'tackle_attempt') add(teamOf(e.carrierId), 'ev:tk:' + e.outcome);
+    else if (e.type === 'catch_point' && e.intendedId != null) { add(teamOf(e.intendedId), 'ev:cp:' + e.outcome); if (e.contested) add(teamOf(e.intendedId), 'ev:cp:contested'); }
+    else if (e.type === 'pressure') add(teamOf(e.passerId), 'ev:pr:' + e.kind);
+    else if (e.type === 'contest' && String(e.contest).startsWith('move.')) add(teamOf(e.winnerId), 'ev:move:' + (teamOf(e.winnerId) === teamOf(e.loserId) ? 'x' : 'w'));
+    else if (e.type === 'contest') add(teamOf(e.winnerId), 'ev:' + e.contest + ':won');
+    else if (e.type === 'fumble') add(teamOf(e.playerId ?? e.carrierId), 'ev:fumble');
+  }
   res.records.forEach((rec: any, k: number) => {
     const r: any = sm.playByPlay(rec, res.records[k + 1] ?? null);
     const offA = (r.offense === 0) !== flip; const t = offA ? 0 : 1;
@@ -80,5 +91,8 @@ console.log(`${rulesId} ${a} v ${b} ${opt.label ?? opt.attr ?? 'all'} ${opt.pos 
 
 if (opt.detail) for (const t of [0, 1]) { const x = T[t]!; const g = (k: string) => x[k] ?? 0;
   console.log(`  ${t === 0 ? 'A' : 'B'} off/gm: plays ${(g('plays') / N).toFixed(1)} db ${(g('db') / N).toFixed(1)} cmp% ${(100 * g('cmp') / g('att')).toFixed(1)} y/a ${(g('passYd') / g('att')).toFixed(2)} air ${(g('air') / g('att')).toFixed(1)} sack% ${(100 * g('sack') / g('db')).toFixed(1)} press% ${(100 * g('press') / g('db')).toFixed(1)} int% ${(100 * g('int') / g('att')).toFixed(1)} scr% ${(100 * g('scr') / g('db')).toFixed(1)} | rush ${(g('rush') / N).toFixed(1)} ypc ${(g('rushYd') / g('rush')).toFixed(2)} r10% ${(100 * g('r10') / g('rush')).toFixed(1)} stuff% ${(100 * g('stuff') / g('rush')).toFixed(1)} | fumL ${(g('fumL') / N).toFixed(2)} td ${(g('td') / N).toFixed(2)} fd ${(g('fd') / N).toFixed(1)} pen ${(g('pen') / N).toFixed(1)} penYd ${(g('penYd') / N).toFixed(0)} noPlay ${(g('noPlay') / N).toFixed(1)}`);
+  const tk = g('ev:tk:made') + g('ev:tk:broken') + g('ev:tk:missed'), cc = g('ev:cp:catch') + g('ev:cp:drop');
+  const cp = Object.keys(x).filter((k) => k.startsWith('ev:cp:') && k !== 'ev:cp:contested').reduce((a, k) => a + x[k]!, 0);
+  console.log(`   as ball side: tackled ${(100 * g('ev:tk:made') / tk).toFixed(1)}% of ${(tk / N).toFixed(1)} attempts (broken ${(100 * g('ev:tk:broken') / tk).toFixed(1)}, missed ${(100 * g('ev:tk:missed') / tk).toFixed(1)}) | catch points ${(cp / N).toFixed(1)}: caught ${(100 * g('ev:cp:catch') / cp).toFixed(1)}% drop ${(100 * g('ev:cp:drop') / cc).toFixed(1)}% of hands-on, breakup ${(100 * g('ev:cp:breakup') / cp).toFixed(1)}% int ${(100 * g('ev:cp:interception') / cp).toFixed(1)}% uncatchable ${(100 * g('ev:cp:uncatchable') / cp).toFixed(1)}% grounded ${(100 * g('ev:cp:grounded') / cp).toFixed(1)}% contested ${(100 * g('ev:cp:contested') / cp).toFixed(1)}%`);
   console.log('   ' + Object.keys(x).filter((k) => k.includes(':')).sort().map((k) => `${k} ${(x[k]! / N).toFixed(2)}`).join(', '));
 }
