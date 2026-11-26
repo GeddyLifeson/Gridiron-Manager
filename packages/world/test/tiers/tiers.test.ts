@@ -26,9 +26,9 @@ describe('what a tier may change (X13.1.2, P6.4.1, A3.1.1 row 20)', () => {
     expect(tiers.policyProblems(tiers.simCadence, bad).length).toBe(2);
   });
   it('keeps film for the user\'s games and leaves every other game re-simulable', () => {
-    expect(tiers.recordingFor(1)).toMatchObject({ playTier: 'A', trajectories: 'stored', near: true });
-    expect(tiers.recordingFor(2)).toMatchObject({ playTier: 'B', trajectories: 'regenerable', near: true });
-    expect(tiers.recordingFor(3)).toMatchObject({ playTier: 'B', trajectories: 'regenerable', near: false });
+    expect(tiers.recordingFor(1)).toMatchObject({ playTier: 'A', trajectories: 'stored', playRows: 'kept', eventDetail: 'play', near: true });
+    expect(tiers.recordingFor(2)).toMatchObject({ playTier: 'B', trajectories: 'regenerable', playRows: 'kept', eventDetail: 'game', near: true });
+    expect(tiers.recordingFor(3)).toMatchObject({ playTier: 'B', trajectories: 'regenerable', playRows: 'regenerable', eventDetail: 'season', near: false });
   });
   it('a game is as near as its nearer team', () => {
     expect(tiers.gameTier(3, 1)).toBe(1);

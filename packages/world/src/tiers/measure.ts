@@ -2,15 +2,15 @@
 // measurements agree, which configuration ships, and how two reports differ. Taking the timings needs a
 // clock, so the runner lives outside the core (headless); it hands its numbers to this file.
 //
-// Under A3.1.1 row 20 only recording may be thinned. The leaf's starting order also lists short memory,
-// weekly stress and "full engine for the other level"; those change the simulation and are refused here.
+// Under A3.1.1 row 20 and MA-66 only recording may be thinned. Steps that would change the simulation
+// (short memory, weekly stress, a lighter game method) are listed below and refused.
 import { param } from './params.ts';
 
 /** What a configuration may give up: stored detail only. In the order of least user-visible loss (rule 2). */
 export const THINNING_ORDER = ['trajectories_non_user_games', 'play_events_outside_tier1'] as const;
 export type ThinningStep = (typeof THINNING_ORDER)[number];
 
-/** Steps the leaf's starting order names that would change outcomes. Never applied (A3.1.1 row 20). */
+/** Steps that would change outcomes. Never applied (A3.1.1 row 20). */
 export const RULED_OUT_STEPS: Readonly<Record<string, string>> = {
   short_memory_outside_tier1: 'drops X6 memory, which changes how people act',
   weekly_stress_outside_tier2: 'coarsens X5 needs and stress',

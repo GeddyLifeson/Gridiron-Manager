@@ -2,9 +2,7 @@
 // no lighter simulation anywhere. A tier chooses what is RECORDED and how a game is RUN (shown or
 // headless, and in what order during a long advance). It never chooses how anything is resolved.
 //
-// The X13.1.2 table still thins some systems by tier (stress weekly, memory off, development at season
-// points, injuries drawn from rates, calling from tendencies). Those cells change outcomes, so they are
-// not built: every system below runs at one cadence at every tier. Sent to the bible fixes thread.
+// X13.1.2 as amended by MA-66: every system runs the same at every tier; tiers differ in what is kept.
 import type { PlayRecord, TrajectoryRef, WorldTier } from '@gm/schema';
 
 export const TIERS: readonly WorldTier[] = [1, 2, 3];
@@ -35,6 +33,13 @@ export interface TierRecording {
   readonly playTier: PlayRecord['fidelityTier'];
   /** P5.4.1: stored for film, or regenerable by re-simulating from the stored inputs. */
   readonly trajectories: TrajectoryRef['state'];
+  /**
+   * X13.1.2 Games row: play results kept at tiers 1 and 2; tier 3 keeps the box score and season lines,
+   * and its play rows come back by re-simulation. The engine produces the same rows either way.
+   */
+  readonly playRows: 'kept' | 'regenerable';
+  /** X13.1.2 Events row: the finest event scope written to the log (X2.4.1). A coarser row carries the counts. */
+  readonly eventDetail: 'play' | 'game' | 'season';
   /** P6.4.1 near and distant. Near games run on their usual schedule; distant games run headless at machine speed. */
   readonly near: boolean;
   /** During a long advance (O7.6.3) distant games are run first, so near games finish when the user looks. */
@@ -44,9 +49,9 @@ export interface TierRecording {
 }
 
 export const RECORDING: Readonly<Record<WorldTier, TierRecording>> = {
-  1: { playTier: 'A', trajectories: 'stored', near: true, runFirstInLongAdvance: false, labels: 'as_events_arrive' },
-  2: { playTier: 'B', trajectories: 'regenerable', near: true, runFirstInLongAdvance: false, labels: 'as_events_arrive' },
-  3: { playTier: 'B', trajectories: 'regenerable', near: false, runFirstInLongAdvance: true, labels: 'on_demand' },
+  1: { playTier: 'A', trajectories: 'stored', playRows: 'kept', eventDetail: 'play', near: true, runFirstInLongAdvance: false, labels: 'as_events_arrive' },
+  2: { playTier: 'B', trajectories: 'regenerable', playRows: 'kept', eventDetail: 'game', near: true, runFirstInLongAdvance: false, labels: 'as_events_arrive' },
+  3: { playTier: 'B', trajectories: 'regenerable', playRows: 'regenerable', eventDetail: 'season', near: false, runFirstInLongAdvance: true, labels: 'on_demand' },
 };
 
 export function recordingFor(tier: WorldTier): TierRecording {

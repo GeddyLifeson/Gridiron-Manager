@@ -1,9 +1,8 @@
 // X13.2 moving between tiers. Promotion is immediate; demotion waits for a week boundary, respects the
 // hold, and never drops a person the user is tied to (that floor is part of membership).
 //
-// X13.2.1 describes a seeded fill-in for state a lower tier did not keep. Under A3.1.1 row 20 no tier
-// drops or thins any simulated state, so there is nothing to fill in: a move changes the tier and
-// nothing else. The `tier.promote` stream is therefore not opened. Sent to the bible fixes thread.
+// X13.2.1 as amended by MA-66: no tier drops or thins any simulated state, so nothing is derived or
+// filled in at promotion. A move changes the tier and nothing else, and no `tier.promote` stream exists.
 import type { TierRow, WorldDate, WorldTier } from '@gm/schema';
 import type { LiveWorld } from '../loop/types.ts';
 import { TIER_CHANGED } from './events.ts';
