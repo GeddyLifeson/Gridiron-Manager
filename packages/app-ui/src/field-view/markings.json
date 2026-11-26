@@ -1,0 +1,25 @@
+{
+  "$comment": "Field markings the view draws that are not in FieldGeometry yet (CR-G03-3 asks for rule keys). Pro values are read from the 2026 NFL rulebook, Rule 1 Section 2. One source only, so the computed status is PROVISIONAL (Q6.3.1). College values were not read: a college game draws the pro markings and is flagged until the keys exist (J1.1.1 open question).",
+  "pro_2026": {
+    "sources": [
+      {
+        "title": "2026 NFL rulebook, Rule 1 Section 2 Articles 1, 2 and 4",
+        "where": "rulebook_2026.txt lines 375 to 391",
+        "read": "2026-11-26"
+      }
+    ],
+    "yardLineEveryYd": 5,
+    "hashEveryYd": 1,
+    "sidelineTickFromSidelineFt": 0.6667,
+    "sidelineTickLengthFt": 2,
+    "numbersEveryYd": 10,
+    "numbersBottomFromSidelineYd": 12,
+    "numeralLengthYd": 2,
+    "tryLineFromGoalLineYd": 2,
+    "tryLineLengthYd": 1
+  },
+  "assumptions": {
+    "$comment": "Not stated in the rule text read. Display choices.",
+    "inboundsHashLengthFt": 2
+  }
+}
