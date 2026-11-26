@@ -130,6 +130,8 @@ export function seenFrom(
   const deadIndex = deadBallIndex(truth);
   const removed = new Set<number>();
   const replaced = new Map<number, TruthEvent>();
+  /** Events the crew saw that did not happen, put in just before the event at the index. */
+  const inserted = new Map<number, TruthEvent[]>();
   let cut: Cut | null = null;
   let deadSwap: TruthEvent[] | null = null;
   let impetus = truth.endZoneImpetus;
@@ -238,6 +240,32 @@ export function seenFrom(
       }
     } else if (r.aspect === 'spot' && !fixed && e.type === 'dead_ball' && !deadSwap) {
       deadSwap = [{ ...e, spot: { x: Number(r.calledValue), y: e.spot.y } }];
+    } else if (r.aspect === 'touching' && !fixed && r.trueValue === 'untouched' && (e.type === 'possession' || e.type === 'dead_ball')) {
+      // A touch by the receivers that did not happen. Nothing that happened changes: the play runs on as it did,
+      // and the kick rules decide what the touch means (B6.3.2 item 4).
+      const kickers = e.side ?? offense;
+      const touch = (t: number, spot: Spot): TruthEvent => ({ type: 'kick_touch', t, marginYd: r.marginYd, marginS: r.marginS, visibility: r.visibility,
+        kind: 'touched_by_receivers', playerId: null, side: otherSide(kickers), spot });
+      if (e.type === 'possession') {
+        // Seen just before the kickers got the ball.
+        inserted.set(at, [touch(e.t, e.spot)]);
+      } else {
+        // A downed kick: seen before the kickers first touched it, and the downing is then the kickers' recovery.
+        const kickAt = ev.findIndex((x) => x.type === 'kick');
+        const first = ev.findIndex((x, j) => j > kickAt && j < at && x.type === 'kick_touch' && x.kind === 'touched_by_kickers');
+        const downer = first >= 0 ? (ev[first] as TruthEventOf<'kick_touch'>).playerId : null;
+        const playerId = e.carrierId ?? downer;
+        if (playerId !== null) {
+          const recovery: TruthEvent = { type: 'possession', t: e.t, side: kickers, playerId, spot: e.spot, how: 'kick_recovery' };
+          if (first >= 0) {
+            const k = ev[first] as TruthEventOf<'kick_touch'>;
+            inserted.set(first, [touch(k.t, k.spot)]);
+            inserted.set(at, [recovery]);
+          } else {
+            inserted.set(at, [touch(e.t, e.spot), recovery]);
+          }
+        }
+      }
     } else if (r.aspect === 'touching' && !fixed && e.type === 'kick_touch') {
       // A touch of the kick the crew did not see, and the muff that went with it.
       removed.add(at);
@@ -261,6 +289,8 @@ export function seenFrom(
   const out: TruthEvent[] = [];
   const end = cut ? cut.index : ev.length;
   for (let i = 0; i < end; i++) {
+    const before = inserted.get(i);
+    if (before) out.push(...before);
     if (removed.has(i)) continue;
     if (i === deadIndex && deadSwap && !cut) { out.push(...deadSwap); continue; }
     out.push(replaced.get(i) ?? ev[i]!);

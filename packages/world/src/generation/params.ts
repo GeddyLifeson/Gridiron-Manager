@@ -12,6 +12,10 @@ const ROWS: readonly Row[] = [
   ['history.short', 10, 1, 29, 'seasons', 'bible', 'X10.1.1', 'X10.1.1 preset'],
   ['history.default', 30, 10, 59, 'seasons', 'bible', 'X10.1.1', 'X10.1.1 default (Assumption in the leaf; open after X13.3.1 measurement)'],
   ['history.long', 60, 31, 120, 'seasons', 'bible', 'X10.1.1', 'X10.1.1 preset'],
+  // Marlon 2026-11-26: the history may run from football's first season to today, under today's rules
+  // throughout. The year is fact F-history-0001 (Verified: Rutgers, Princeton Alumni Weekly, History.com,
+  // scarletknights.com, Sports Illustrated): the first intercollegiate game, 6 November 1869.
+  ['history.footballStartYear', 1869, 1869, 1869, 'y', 'bible', 'X10.1.1', 'F-history-0001 (Verified): first intercollegiate game, 1869'],
   // X10.1.2 world code.
   ['code.formatVersion', 1, 1, 255, 'version', 'bible', 'X10.1.2', 'X10.1.2 rule 1: format version byte'],
   ['code.blockLength', 5, 4, 8, 'count', 'bible', 'X10.1.2', 'X10.1.2 rule 2: blocks of 5'],

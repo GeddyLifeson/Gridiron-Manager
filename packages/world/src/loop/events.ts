@@ -10,12 +10,17 @@ export const DEADLINE_LAPSED = 'deadline_lapsed';
 export const IMPORT_PLACED = 'import_placed';
 export const RELEASED = 'released';
 export const USER_BACKGROUND = 'user_background';
+export const TEAM_FOUNDED = 'team_founded';
+export const TEAM_FOLDED = 'team_folded';
 
 const CONSUMERS = ['world.loop'];
 
 export const WORLD_EVENT_TYPES: readonly EventTypeDef[] = [
   { id: WORLD_FOUNDED, family: 'world', payloadSchema: { teams: 'number', people: 'number', setup_hash: 'string' }, witnessRule: 'public', lineTemplate: 'event.world_founded', harmClass: 'none', importedAllowed: true, minTier: 3, consumers: ['world.loop', 'league.history'], compactable: false },
   { id: HISTORY_RUN_ENDED, family: 'world', payloadSchema: { seasons: 'number', stopped_early: 'boolean', seed_step: 'number' }, witnessRule: 'none', lineTemplate: 'event.history_run_ended', harmClass: 'none', importedAllowed: true, minTier: 3, consumers: CONSUMERS, compactable: false },
+  // Teams that start and end in the world's past (loop/lifecycle.ts).
+  { id: TEAM_FOUNDED, family: 'world', payloadSchema: { season: 'number' }, witnessRule: 'public', lineTemplate: 'event.team_founded', harmClass: 'none', importedAllowed: true, minTier: 3, consumers: ['world.loop', 'league.history'], compactable: false },
+  { id: TEAM_FOLDED, family: 'world', payloadSchema: { season: 'number', players: 'number' }, witnessRule: 'public', lineTemplate: 'event.team_folded', harmClass: 'none', importedAllowed: true, minTier: 3, consumers: ['world.loop', 'league.history'], compactable: false },
   // X12.1.3: internal status changes. Football grounds only, so they may land on anyone.
   { id: WENT_INACTIVE, family: 'career', payloadSchema: { since_year: 'number' }, witnessRule: 'none', lineTemplate: 'event.went_inactive', harmClass: 'none', importedAllowed: true, minTier: 3, consumers: ['world.loop', 'front-office.gm'], compactable: false },
   { id: RETURNED_ACTIVE, family: 'career', payloadSchema: { reason: 'string' }, witnessRule: 'none', lineTemplate: 'event.returned_active', harmClass: 'none', importedAllowed: true, minTier: 3, consumers: ['world.loop', 'front-office.gm'], compactable: false },
