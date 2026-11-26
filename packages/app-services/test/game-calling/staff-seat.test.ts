@@ -256,3 +256,18 @@ describe('simulating and watching reach the same game (J14.4.1)', () => {
     expect(s.keptUnits).toEqual(['management']);
   });
 });
+
+describe('the sideline seat (E7.5.1, plans/head-coach-nuance.md item 2)', () => {
+  it('a head coach who calls every unit himself gets management items late, after his call; with coordinators calling he gets them at once', () => {
+    const { session } = setup();
+    const caller = session(['offense', 'defense', 'special_teams', 'management']);
+    caller.start();
+    runOut(caller);
+    expect(caller.final).toBe(true);
+    expect(caller.attentionHolds).toBeGreaterThan(0);
+    const delegated = session();
+    delegated.start();
+    runOut(delegated);
+    expect(delegated.attentionHolds).toBe(0);
+  });
+});

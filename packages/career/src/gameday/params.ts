@@ -76,6 +76,11 @@ const ROWS: readonly Row[] = [
   ['watch.noticeAtZero', 0.3, 0, 1, 'probability', 'bible', 'I1.3.3'],
   ['watch.noticeAtFull', 0.7, 0, 1, 'probability', 'bible', 'I1.3.3'],
   ['watch.falseNote', 0.05, 0, 0.5, 'probability', 'bible', 'I1.3.3'],
+  // E7.5.1 one thing at a time on the sideline (plans/head-coach-nuance.md item 2, the sideline seat)
+  ['attention.switchTenths', 10, 0, 50, 'tenth', 'bible', 'E7.5.1 rule 1 (switching the headset channel takes 1 second)'],
+  ['attention.onCallTenths', 60, 0, 250, 'tenth', 'assumption', 'E7.5.1 rules 2 and 3 (a head coach on the call sheet takes a management item only when the call is in); 6 seconds chosen here'],
+  ['attention.bookReadTenths', 10, 0, 100, 'tenth', 'assumption', 'E7.5.1 with I1.4.2 (a pre-set decision book line is read, not worked out); 1 second chosen here'],
+  ['attention.thinkTenths', 80, 0, 250, 'tenth', 'assumption', 'E7.5.1 (working out a fourth down, a challenge or a try with no line ready); 8 seconds chosen here'],
   // I1.4.2 decision book
   ['book.closePp', 1, 0, 5, 'percentage point', 'bible', 'I1.4.2'],
   ['book.varianceShiftPp', 1, 0, 5, 'percentage point', 'assumption', 'I1.4.2 (the slider shifts close cells toward go; full-slider shift chosen here)'],

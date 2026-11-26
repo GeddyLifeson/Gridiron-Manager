@@ -21,6 +21,7 @@
 // double speed, or is summarised, and the game halts on his stop rules until he goes on (`resumeWatch`).
 import { flow } from '@gm/engine-game';
 import { staff as staffAi } from '@gm/coach-ai';
+import { gameday as careerGameday } from '@gm/career';
 import { yardsToGoal, type Decider, type Decision, type DecisionRequest, type GameDeps, type GameEvent, type GameInput, type GameSituation, type PlayRecord, type Side } from '@gm/schema';
 import { openRequest, playClockAt, type ConsoleConfig, type ConsoleCommand, type OpenInput, type SentCall } from './console.ts';
 import { callDecision, defaultDecision, optionDecision, type LineupFor } from './decision.ts';
@@ -148,6 +149,9 @@ export class GameCallingSession {
   private heldSnaps = 0;
   private lastOffense: Side | null = null;
   private deferred: DecisionRequest | null = null;
+  private readonly attended = new Set<number>();
+  /** Management items that waited on the head coach's own call (E7.5.1). */
+  attentionHolds = 0;
   private holdUntilMs = 0;
   /** Staff: the chart in force, the units the head coach holds now, the K6 decider and the takeover record. */
   private chart: staffAi.StaffChart | null = null;
@@ -335,6 +339,7 @@ export class GameCallingSession {
         const ms = this.o.liveMs(rec);
         if (ms > 0) { this.deferred = req; this.holdUntilMs = this.driver.nowMs + ms; this.pending = null; return; }
       }
+      if (this.attentionHold(req)) return;
       this.open(req);
       return;
     }
@@ -582,6 +587,24 @@ export class GameCallingSession {
   }
 
   private tryIsTwo(): boolean { return this.lastTryChoice() === flow.OPT.tryTwo; }
+
+  /**
+   * E7.5.1 (plans/head-coach-nuance.md item 2): a head coach who calls the coming snap himself is on the call sheet
+   * when a management item comes up (a challenge, a penalty choice, the try). It reaches him once his call is in and
+   * he has switched channel, while the clocks run. One who gave the calling away has the whole stoppage for it.
+   */
+  private attentionHold(req: DecisionRequest): boolean {
+    if (!this.chart || req.type === 'snapping_call' || req.type === 'opposing_call' || req.type === 'timeout') return false;
+    if (this.attended.has(req.requestId)) return false;
+    this.attended.add(req.requestId);
+    const s = flow.situationOf(this.deps, this.game);
+    const seat = { callsOnField: this.ownsCallAt(s) && callerOf(this.chart, 'management').isUser, bookLine: false, assistantLine: false };
+    const tenths = careerGameday.itemArrivalTenths(seat);
+    if (tenths <= 0) return false;
+    this.attentionHolds++;
+    this.deferred = req; this.holdUntilMs = this.driver.nowMs + tenths * 100; this.pending = null;
+    return true;
+  }
 
   /** Whether the head coach holds the call of the coming snap or kick. */
   private ownsCallAt(s: GameSituation): boolean {
