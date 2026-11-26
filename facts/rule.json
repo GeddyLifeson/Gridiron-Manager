@@ -40208,6 +40208,2415 @@
     }
    ],
    "unit": "yd"
+  },
+  {
+   "id": "F-rule-1161",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "periods in a half, to tell the last period of a half: 2 count (pro, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 1, Article 2 (text copy rulebook_2026.txt, line 935)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "There will be intervals of at least two minutes between the first and second periods (first half) and between the third and fourth periods (second half).",
+     "value": 2
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 1, Article 3 (text copy rulebook_2026.txt, line 941)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Between the second and third periods, there shall be an intermission of 13 minutes.",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.periods_per_half"
+   ],
+   "notes": "Four periods (clock.periods) and the halftime between the second and third make two periods per half. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1162",
+   "level": "college",
+   "domain": "rule",
+   "statement": "periods in a half, to tell the last period of a half: 2 count (college, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 1 (text copy ncaa-rulebook-2026.txt, line 2201)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "with one-minute intermissions between the first and second periods (first half) and between the third and fourth periods (second half)",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.periods_per_half"
+   ],
+   "notes": "Four periods (clock.periods) make two periods per half. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1163",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "a distance penalty is limited to a fraction of the distance to the offender's goal line: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 2, Article 1 (text copy rulebook_2026.txt, line 3641)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the penalty shall be half the distance from the spot of enforcement to its goal line",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.half_distance.applies"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1164",
+   "level": "college",
+   "domain": "rule",
+   "statement": "a distance penalty is limited to a fraction of the distance to the offender's goal line: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 2, Article 6 (text copy ncaa-rulebook-2026.txt, line 4971)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "shall exceed half the distance from the enforcement spot to the offending team’s goal line",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.half_distance.applies"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1165",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "the fraction of the distance to the goal line that limits a penalty: 0.5 ratio (pro, 2026 rules).",
+   "value": 0.5,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 2, Article 1 (text copy rulebook_2026.txt, line 3641)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the penalty shall be half the distance from the spot of enforcement to its goal line",
+     "value": 0.5
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.half_distance.fraction"
+   ],
+   "notes": "Half. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ratio"
+  },
+  {
+   "id": "F-rule-1166",
+   "level": "college",
+   "domain": "rule",
+   "statement": "the fraction of the distance to the goal line that limits a penalty: 0.5 ratio (college, 2026 rules).",
+   "value": 0.5,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 2, Article 6 (text copy ncaa-rulebook-2026.txt, line 4971)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "shall exceed half the distance from the enforcement spot to the offending team’s goal line",
+     "value": 0.5
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.half_distance.fraction"
+   ],
+   "notes": "Half. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ratio"
+  },
+  {
+   "id": "F-rule-1167",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A distance penalty may not exceed the distance from the enforcement spot to the offender goal line divided by this. Shared with the foul module, which owns it: 2 ratio (pro, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 2, Article 1 (text copy rulebook_2026.txt, line 3641)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the penalty shall be half the distance from the spot of enforcement to its goal line",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.half_distance_divisor"
+   ],
+   "notes": "The same rule as enforce.half_distance.fraction written as a divisor: half is divided by 2. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ratio"
+  },
+  {
+   "id": "F-rule-1168",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A distance penalty may not exceed the distance from the enforcement spot to the offender goal line divided by this. Shared with the foul module, which owns it: 2 ratio (college, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 2, Article 6 (text copy ncaa-rulebook-2026.txt, line 4971)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "shall exceed half the distance from the enforcement spot to the offending team’s goal line",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.half_distance_divisor"
+   ],
+   "notes": "The same rule as enforce.half_distance.fraction written as a divisor: half is divided by 2. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ratio"
+  },
+  {
+   "id": "F-rule-1169",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "a major foul against a simple minor foul is enforced instead of offsetting: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 5, Article 1, Exception 1 (text copy rulebook_2026.txt, line 3916)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the 15-yard penalty is enforced from the previous spot, and the five-yard penalty is disregarded",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.five_fifteen.applies"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1170",
+   "level": "college",
+   "domain": "rule",
+   "statement": "a major foul against a simple minor foul is enforced instead of offsetting: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 1, Article 4 (text copy ncaa-rulebook-2026.txt, line 4818)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If live-ball fouls by both teams are reported to the referee, the fouls offset and the down is repeated",
+     "value": false
+    },
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Whole book. Read for absence: The text was searched for \"versus\", \"five-yard penalt\" and \"15-yard penalt\": no rule lets a 15-yard foul cancel a smaller foul by the other team. Live-ball fouls by both teams offset (10-1-4); the only exceptions concern a change of possession.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.five_fifteen.applies"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1171",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "yardage of the minor foul in the major against minor rule: 5 yd (pro, 2026 rules).",
+   "value": 5,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 5, Article 1, Exception 1 (text copy rulebook_2026.txt, line 3915)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "is for a five-yard penalty without an automatic first down, a loss of down, or a 10-second runoff (15 yards versus five yards)",
+     "value": 5
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.five_fifteen.minor_yards"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1172",
+   "level": "college",
+   "domain": "rule",
+   "statement": "yardage of the minor foul in the major against minor rule: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 1, Article 4. Read for absence: The college book has no five against fifteen rule, so enforce.five_fifteen.applies is false and this value is never read.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.five_fifteen.minor_yards"
+   ],
+   "notes": "Inert value: never read while enforce.five_fifteen.applies is false. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1173",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "yardage of the major foul in the major against minor rule: 15 yd (pro, 2026 rules).",
+   "value": 15,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 5, Article 1, Exception 1 (text copy rulebook_2026.txt, line 3914)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If one or more fouls by one team includes a 15-yard penalty",
+     "value": 15
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.five_fifteen.major_yards"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1174",
+   "level": "college",
+   "domain": "rule",
+   "statement": "yardage of the major foul in the major against minor rule: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 1, Article 4. Read for absence: The college book has no five against fifteen rule, so enforce.five_fifteen.applies is false and this value is never read.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.five_fifteen.major_yards"
+   ],
+   "notes": "Inert value: never read while enforce.five_fifteen.applies is false. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1175",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "defensive pass interference is limited to a distance from the previous spot: false (pro, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 5, Penalty (text copy rulebook_2026.txt, line 2373)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "First down for the offensive team at the spot of the foul.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.interference.capped"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1176",
+   "level": "college",
+   "domain": "rule",
+   "statement": "defensive pass interference is limited to a distance from the previous spot: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 8, Penalty (text copy ncaa-rulebook-2026.txt, line 3762)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If the foul occurs 15 or more yards beyond the previous spot, Team A’s ball, first down, 15 yards from the previous spot",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.interference.capped"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1177",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "the limit, read only when capped: 0 yd (pro, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 5, Penalty (text copy rulebook_2026.txt, line 2373)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "First down for the offensive team at the spot of the foul.",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.interference.max_yards"
+   ],
+   "notes": "Inert value: the pro penalty has no distance limit, so enforce.interference.capped is false and this is never read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1178",
+   "level": "college",
+   "domain": "rule",
+   "statement": "the limit, read only when capped: 15 yd (college, 2026 rules).",
+   "value": 15,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 8, Penalty (text copy ncaa-rulebook-2026.txt, line 3762)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If the foul occurs 15 or more yards beyond the previous spot, Team A’s ball, first down, 15 yards from the previous spot",
+     "value": 15
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.interference.max_yards"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1179",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "yard line the ball is placed on when the floor rule applies: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 5, Penalty (text copy rulebook_2026.txt, line 2376)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "first down for the offensive team on the defense’s one-yard line at the inbounds spot corresponding to the spot of the interference",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.interference.floor_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1180",
+   "level": "college",
+   "domain": "rule",
+   "statement": "yard line the ball is placed on when the floor rule applies: 2 yd (college, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 8, Penalty (text copy ncaa-rulebook-2026.txt, line 3767)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "the penalty from the previous spot shall place the ball at the two-yard line, first down",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.interference.floor_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1181",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "when the floor yard line applies: a foul in the end zone, or any result inside the floor: end_zone_only (pro, 2026 rules).",
+   "value": "end_zone_only",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 5, Penalty (text copy rulebook_2026.txt, line 2375)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If the spot of the interference is behind the defensive team’s goal line and the previous spot was on or outside the defense’s two-yard line",
+     "value": "end_zone_only"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.interference.floor_rule"
+   ],
+   "notes": "Pro: the one-yard line applies only when the spot of the interference is behind the goal line (in the end zone). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1182",
+   "level": "college",
+   "domain": "rule",
+   "statement": "when the floor yard line applies: a foul in the end zone, or any result inside the floor: inside_floor (college, 2026 rules).",
+   "value": "inside_floor",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 8, Penalty (text copy ncaa-rulebook-2026.txt, line 3770)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "No penalty enforced from outside the two-yard line may place the ball inside the two-yard line",
+     "value": "inside_floor"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.interference.floor_rule"
+   ],
+   "notes": "College: the ball may never be placed inside the two-yard line from outside it, so any result inside the floor is moved to the floor. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1183",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "a previous spot inside this yard line gives half the distance instead of the floor: 2 yd (pro, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 5, Penalty (text copy rulebook_2026.txt, line 2377)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "or, if the previous spot was inside the defense’s two-yard line, the penalty shall be halfway between the previous spot and the goal line",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.interference.half_inside_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1184",
+   "level": "college",
+   "domain": "rule",
+   "statement": "a previous spot inside this yard line gives half the distance instead of the floor: 2 yd (college, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 8, Penalty (text copy ncaa-rulebook-2026.txt, line 3774)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If the previous spot was on or inside the two-yard line, first down halfway between the previous spot and the goal line",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.interference.half_inside_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1185",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "a previous spot exactly on that yard line counts as inside it: false (pro, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 5, Penalty (text copy rulebook_2026.txt, line 2392)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the previous spot was on or outside the defense’s two-yard line, then it is first down for the offensive team on the defense’s one-yard line",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.interference.half_inclusive"
+   ],
+   "notes": "A previous spot exactly on the two-yard line gets the one-yard-line spot, so it does not count as inside. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1186",
+   "level": "college",
+   "domain": "rule",
+   "statement": "a previous spot exactly on that yard line counts as inside it: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 8, Penalty (text copy ncaa-rulebook-2026.txt, line 3774)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If the previous spot was on or inside the two-yard line, first down halfway between the previous spot and the goal line",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.interference.half_inclusive"
+   ],
+   "notes": "A previous spot exactly on the two-yard line gets half the distance, so it counts as inside. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1187",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "yard line a post-possession foul in the end zone is treated as being on: 20 yd (pro, 2026 rules).",
+   "value": 20,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 4, Article 8 (4) (text copy rulebook_2026.txt, line 2708)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If the foul occurs in the end zone, it is deemed to have occurred at the 20-yard line, unless enforcement results in a safety",
+     "value": 20
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.end_zone_foul_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1188",
+   "level": "college",
+   "domain": "rule",
+   "statement": "yard line a post-possession foul in the end zone is treated as being on: 20 yd (college, 2026 rules).",
+   "value": 20,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 2, Section 25, Article 11-b (text copy ncaa-rulebook-2026.txt, line 1841)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "When the kick ends in Team B’s end zone, the postscrimmage kick spot is Team B’s 20-yard line.",
+     "value": 20
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.end_zone_foul_yardline"
+   ],
+   "notes": "The college book gives this through the postscrimmage kick spot, the basic spot for fouls by Team B on a scrimmage kick (10-2-3). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1189",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "yard line the ball goes to when an offsetting foul after a change would have been a safety: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 5, Article 3, Item 1 (text copy rulebook_2026.txt, line 3945)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If it is normally a safety, the ball is placed on the one-yard line.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.double_foul_safety_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1190",
+   "level": "college",
+   "domain": "rule",
+   "statement": "yard line the ball goes to when an offsetting foul after a change would have been a safety: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 1, Article 4. Read for absence: Offsetting live-ball fouls repeat the down (10-1-4); the text was read and has no rule that places the ball on a yard line when an offsetting foul after a change of possession would have been a safety.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.double_foul_safety_yardline"
+   ],
+   "notes": "Inert value. The college book has no double foul after a change of possession rule of the pro kind, so this module cannot apply it at college; see the pull request note on the college double foul procedure. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1191",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "a personal or unsportsmanlike foul before the change offsets a foul after it: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 5, Article 2, Item 1, Exception 3 (text copy rulebook_2026.txt, line 3935)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the penalties offset, and the team last in possession shall retain the ball at the spot where its foul would be enforced if it was the only foul",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.clean_hands.personal_offsets"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1192",
+   "level": "college",
+   "domain": "rule",
+   "statement": "a personal or unsportsmanlike foul before the change offsets a foul after it: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 1, Article 4, Exception 1 (text copy ncaa-rulebook-2026.txt, line 4822)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "the team last gaining possession had not fouled before last gaining possession, it may refuse offsetting fouls and thereby retain possession after completion of the penalty for its foul",
+     "value": false
+    },
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 1, Article 4. Read for absence: The exceptions of 10-1-4 were read: none makes a personal or unsportsmanlike foul by the other team before the change offset the clean hands team. That rule is the NFL 2024 rule only.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.clean_hands.personal_offsets"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1193",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "id of the dead-ball delay foul for spiking that the spiking team may take instead of an offset: delay_of_game_spike (pro, 2026 rules).",
+   "value": "delay_of_game_spike",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 5, Article 1, Exception 3 (text copy rulebook_2026.txt, line 3920)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If one of the fouls is a dead ball foul for delay of game for spiking the ball and the opponent’s foul is a live ball foul",
+     "value": "delay_of_game_spike"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.spike_delay_foul"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1194",
+   "level": "college",
+   "domain": "rule",
+   "statement": "id of the dead-ball delay foul for spiking that the spiking team may take instead of an offset: none (college, 2026 rules).",
+   "value": "none",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 1, Article 6 (text copy ncaa-rulebook-2026.txt, line 4844)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Live-ball fouls do not offset dead-ball fouls.",
+     "value": "none"
+    },
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 5. Read for absence: Spiking (A.R. 3-2-5) is a legal act with its own minimum time for the next play; the text has no delay foul for spiking and no spike option in double fouls.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": "none"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.spike_delay_foul"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1195",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "an accepted live-ball defensive foul on the last timed down lets the offense extend the period: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 8, Article 2 (a) (text copy rulebook_2026.txt, line 1230)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If there is a live ball foul by the defensive team that is accepted, the offensive team may choose to extend the period by an untimed down after enforcement of the penalty.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.defensive_foul_extends_period"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1196",
+   "level": "college",
+   "domain": "rule",
+   "statement": "an accepted live-ball defensive foul on the last timed down lets the offense extend the period: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 3-a-1 (text copy ncaa-rulebook-2026.txt, line 2259)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "A penalty is accepted for a live-ball foul(s) (Exception: Rule 10-2-5-a).",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.defensive_foul_extends_period"
+   ],
+   "notes": "College: the period is extended by rule in the 2nd or 4th quarter, with an option not to extend only when the foul is by the team in possession and the penalty includes loss of down. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1197",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "the scoring team may carry an opponent's foul on a touchdown to the kickoff instead of the try: false (pro, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 14, Section 2, Article 3 (text copy rulebook_2026.txt, line 3658)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "On a touchdown, the penalty, whether a live ball or dead ball foul or a foul between downs, is enforced on the Try.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:enforce.touchdown_foul_to_kickoff"
+   ],
+   "notes": "The pro book moves a foul on a touchdown to the kickoff only when the foul prevents the Try attempt (11-3-3 Item 2), which the module rules as a foul during a try. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1198",
+   "level": "college",
+   "domain": "rule",
+   "statement": "the scoring team may carry an opponent's foul on a touchdown to the kickoff instead of the try: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 10, Section 2, Article 5-a-1 (text copy ncaa-rulebook-2026.txt, line 4940)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Fifteen-yard penalties for personal fouls and for unsportsmanlike conduct fouls are enforced on the try, the succeeding kickoff or from the succeeding spot in extra periods at the option of the scoring team.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:enforce.touchdown_foul_to_kickoff"
+   ],
+   "notes": "College: only 15-yard personal and unsportsmanlike fouls may go to the kickoff; five and ten yard penalties are declined by rule (10-2-5-a-2). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1199",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Receiving team yard line where the landing zone begins (see officiating/kick): 20 yd (pro, 2026 rules).",
+   "value": 20,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 2 (e) (text copy rulebook_2026.txt, line 1680)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The “landing zone” shall be the area from the receiving team’s 20-yard line extending to its goal line.",
+     "value": 20
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.landing_zone_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1200",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Receiving team yard line where the landing zone begins (see officiating/kick): 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Sections 1 to 3. Read for absence: Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.landing_zone_yardline"
+   ],
+   "notes": "Inert value: kickoff.format is traditional, so this is never read. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1201",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Receiving team yard line where the ten non-kickers line up in the dynamic format. Not read in the traditional format: 40 yd (pro, 2026 rules).",
+   "value": 40,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 2 (b) (text copy rulebook_2026.txt, line 1675)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the restraining line for the remaining 10 players of the kicking team shall be the receiving team’s 40-yard line",
+     "value": 40
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.kicking_team_line_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1202",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Receiving team yard line where the ten non-kickers line up in the dynamic format. Not read in the traditional format: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Sections 1 to 3. Read for absence: Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.kicking_team_line_yardline"
+   ],
+   "notes": "Inert value: kickoff.format is traditional. At college the kicking team line is its own restraining line (kickoff.spot_yardline). No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1203",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Receiving team yard line of its restraining line in the dynamic format. Not read in the traditional format: 35 yd (pro, 2026 rules).",
+   "value": 35,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 2 (c) (text copy rulebook_2026.txt, line 1677)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the restraining line for the receiving team shall be the receiving team’s 35-yard line",
+     "value": 35
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.receiving_line_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1204",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Receiving team yard line of its restraining line in the dynamic format. Not read in the traditional format: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Sections 1 to 3. Read for absence: Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.receiving_line_yardline"
+   ],
+   "notes": "Inert value: kickoff.format is traditional. At college the receiving restraining line is onside.min_distance_yd beyond the kicker (6-1-1). No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1205",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Receiving team yard line of the back of the setup zone in the dynamic format. Not read in the traditional format: 30 yd (pro, 2026 rules).",
+   "value": 30,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 2 (d) (text copy rulebook_2026.txt, line 1678)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The “setup zone” for the receiving team is the 5-yard area between the receiving team’s 35-yard line and its 30-yard line.",
+     "value": 30
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.setup_zone_back_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1206",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Receiving team yard line of the back of the setup zone in the dynamic format. Not read in the traditional format: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Sections 1 to 3. Read for absence: Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.setup_zone_back_yardline"
+   ],
+   "notes": "Inert value: kickoff.format is traditional, so this is never read. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1207",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A kickoff made from this yard line of the kicking team, or beyond it, takes the reduced touchback spot: 50 yd (pro, 2026 rules).",
+   "value": 50,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 5 (text copy rulebook_2026.txt, line 1748)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "In either case, if the kickoff is from the 50-yard line and the play results in a touchback, then the dead ball spot is the 20-yard line.",
+     "value": 50
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.touchback_reduced_kick_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1208",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A kickoff made from this yard line of the kicking team, or beyond it, takes the reduced touchback spot: 50 yd (college, 2026 rules).",
+   "value": 50,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 6, Article 2. Read for absence: The college touchback spot after a free kick is the 25-yard line wherever the kick was made; there is no reduced spot.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 50
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.touchback_reduced_kick_yardline"
+   ],
+   "notes": "Inert value: kickoff.touchback_reduced_yardline equals kickoff.touchback_yardline at college, so the kick yard line makes no difference. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1209",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Receiving team yard line of a touchback on a kickoff made from kickoff.touchback_reduced_kick_yardline or beyond. Equal to kickoff.touchback_yardline where the level has no such rule: 20 yd (pro, 2026 rules).",
+   "value": 20,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 5 (text copy rulebook_2026.txt, line 1748)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "In either case, if the kickoff is from the 50-yard line and the play results in a touchback, then the dead ball spot is the 20-yard line.",
+     "value": 20
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.touchback_reduced_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1210",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Receiving team yard line of a touchback on a kickoff made from kickoff.touchback_reduced_kick_yardline or beyond. Equal to kickoff.touchback_yardline where the level has no such rule: 25 yd (college, 2026 rules).",
+   "value": 25,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 6, Article 2 (text copy ncaa-rulebook-2026.txt, line 4051)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "unless the touchback results from a free kick, in which case the ball belongs to Team B at its 25-yard line",
+     "value": 25
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.touchback_reduced_yardline"
+   ],
+   "notes": "No reduced touchback at college: equal to kickoff.touchback_yardline, as the key meaning says. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1211",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Kickoff short of the landing zone: receivers take the ball this many yards from the spot of the kick, or at the spot of the first touch if that is nearer the kick. Read only when the format is dynamic: 25 yd (pro, 2026 rules).",
+   "value": 25,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 2, Article 4 (text copy rulebook_2026.txt, line 1863)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The receiving team may elect to take possession of the ball 25 yards (or 30 yards in the event of a safety kick) from the spot of the kick at the inbounds line on the side of the field where the ball went out of bounds or lands or is touched short of the landing zone",
+     "value": 25
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.short_spot_yd_from_kick"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1212",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Kickoff short of the landing zone: receivers take the ball this many yards from the spot of the kick, or at the spot of the first touch if that is nearer the kick. Read only when the format is dynamic: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 1, Article 3 and Section 2. Read for absence: No landing zone: a free kick that does not reach the receiving restraining line is a live ball with the touching rules of 6-1-3, and the book has no short-kick spot.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.short_spot_yd_from_kick"
+   ],
+   "notes": "Inert value: no landing zone at college, so a kick is never short of it. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1213",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "The same distance for a safety kick: 30 yd (pro, 2026 rules).",
+   "value": 30,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 2, Article 4 (text copy rulebook_2026.txt, line 1863)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The receiving team may elect to take possession of the ball 25 yards (or 30 yards in the event of a safety kick) from the spot of the kick at the inbounds line on the side of the field where the ball went out of bounds or lands or is touched short of the landing zone",
+     "value": 30
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.safety_kick_short_spot_yd_from_kick"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1214",
+   "level": "college",
+   "domain": "rule",
+   "statement": "The same distance for a safety kick: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 1, Article 3 and Section 2. Read for absence: No landing zone: a free kick that does not reach the receiving restraining line is a live ball with the touching rules of 6-1-3, and the book has no short-kick spot.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.safety_kick_short_spot_yd_from_kick"
+   ],
+   "notes": "Inert value: no landing zone at college, so a kick is never short of it. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1215",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "The same distance for a safety kick: 30 yd (pro, 2026 rules).",
+   "value": 30,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 2, Article 4 (text copy rulebook_2026.txt, line 1863)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The receiving team may elect to take possession of the ball 25 yards (or 30 yards in the event of a safety kick) from the spot of the kick at the inbounds line on the side of the field where the ball went out of bounds or lands or is touched short of the landing zone",
+     "value": 30
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:kickoff.safety_kick_out_of_bounds_yd_from_kick"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1216",
+   "level": "college",
+   "domain": "rule",
+   "statement": "The same distance for a safety kick: 30 yd (college, 2026 rules).",
+   "value": 30,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 2, Article 1, Penalty (text copy ncaa-rulebook-2026.txt, line 3183)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "the receiving team may put the ball in play 30 yards beyond Team A’s restraining line at the hash mark",
+     "value": 30
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:kickoff.safety_kick_out_of_bounds_yd_from_kick"
+   ],
+   "notes": "College measures the 30 yards from the kicking team restraining line, which is the kick spot of a safety kick unless relocated by a penalty; the same distance applies to a kickoff (kickoff.out_of_bounds_spot_yards). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1217",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Distance from the kick to the receiving team restraining line on a ten-yard free kick (see officiating/kick): 10 yd (pro, 2026 rules).",
+   "value": 10,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 6 (g) (text copy rulebook_2026.txt, line 1773)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The restraining line for the receiving team shall be the yard line 10 yards in advance of the kicking team’s restraining line.",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:onside.min_distance_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1218",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Distance from the kick to the receiving team restraining line on a ten-yard free kick (see officiating/kick): 10 yd (college, 2026 rules).",
+   "value": 10,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3039)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "the receiving team’s restraining line shall be the yard line 10 yards beyond that point",
+     "value": 10
+    },
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 1, Article 3-a-2 (text copy ncaa-rulebook-2026.txt, line 3091)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "It breaks the plane of and remains beyond Team B’s restraining line",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:onside.min_distance_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1219",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Depth of the onside kick setup zone behind the receiving team restraining line. 0 where there is no such zone: 15 yd (pro, 2026 rules).",
+   "value": 15,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 6 (h) (text copy rulebook_2026.txt, line 1775)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "a spot 15 yards behind their restraining line (the “onside kick setup zone”)",
+     "value": 15
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:onside.setup_zone_depth_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1220",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Depth of the onside kick setup zone behind the receiving team restraining line. 0 where there is no such zone: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 1, Articles 1 to 3. Read for absence: The college book has no onside kick setup zone and no onside declaration (kickoff.onside_must_declare is false).",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:onside.setup_zone_depth_yd"
+   ],
+   "notes": "Inert value: no setup zone at college. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1221",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A declared onside kick untouched beyond this distance from the kick is dead and belongs to the receivers. 0 switches the rule off: 25 yd (pro, 2026 rules).",
+   "value": 25,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 6 (k) (text copy rulebook_2026.txt, line 1780)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If the onside kick goes untouched beyond the onside kick setup zone, the ball becomes dead and belongs to the receiving team.",
+     "value": 25
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 6 (h) (text copy rulebook_2026.txt, line 1775)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "a spot 15 yards behind their restraining line (the “onside kick setup zone”)",
+     "value": 25
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:onside.untouched_dead_beyond_yd"
+   ],
+   "notes": "Derived: the setup zone ends 15 yards behind the receiving restraining line (6-1-6-h), and that line is 10 yards from the kicking line (6-1-6-g); 10 + 15 = 25 yards from the kick. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1222",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A declared onside kick untouched beyond this distance from the kick is dead and belongs to the receivers. 0 switches the rule off: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 1, Articles 1 to 3. Read for absence: The college book has no onside kick setup zone, so no kick is dead untouched beyond one. 0 switches the rule off, as the key meaning says.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:onside.untouched_dead_beyond_yd"
+   ],
+   "notes": "Inert value: rule off. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1223",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Yards walked off from the kicking team restraining line when a declared onside kick is dead untouched beyond the setup zone: 15 yd (pro, 2026 rules).",
+   "value": 15,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 6, Section 1, Article 6, Penalty (text copy rulebook_2026.txt, line 1794)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Loss of 15 yards from the kicking team’s restraining line and the receiving team takes possession.",
+     "value": 15
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:onside.untouched_beyond_penalty_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1224",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Yards walked off from the kicking team restraining line when a declared onside kick is dead untouched beyond the setup zone: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 1, Articles 1 to 3. Read for absence: The college book has no onside kick setup zone, so the foul does not exist.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:onside.untouched_beyond_penalty_yd"
+   ],
+   "notes": "Inert value: rule off. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1225",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A first-touch spot is never nearer the receivers goal line than this yard line: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 4, Article 1, Note 4 (text copy rulebook_2026.txt, line 2597)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "but in no event inside the receiving team’s one-yard line",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:punt.first_touch_min_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1226",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A first-touch spot is never nearer the receivers goal line than this yard line: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 6, Section 3, Articles 2 and 11. Read for absence: The illegal touching spot is the spot of the violation; the only yard line the college text names is the touch of a ball batted in the end zone, whose spot is Team B’s 20-yard line (6-3-11), a case that is not a clamp on field of play touches. No minimum is stated, so 0 (the goal line) means no limit.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:punt.first_touch_min_yardline"
+   ],
+   "notes": "The module clamps every first touch spot to this yard line, so the 20-yard line of 6-3-11 cannot be written here without moving legal touches inside the 20. Open model gap for the integrator. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1227",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Receiving team yard line used when the missed field goal spot would be nearer the goal line: 20 yd (pro, 2026 rules).",
+   "value": 20,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 4, Article 2 (a) (text copy rulebook_2026.txt, line 2903)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If the spot of the kick was inside the receivers’ 20-yard line, it is the receivers’ ball at the 20-yard line",
+     "value": 20
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:fg.miss_spot_min_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1228",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Receiving team yard line used when the missed field goal spot would be nearer the goal line: 20 yd (college, 2026 rules).",
+   "value": 20,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 4, Article 2-b-1 (text copy ncaa-rulebook-2026.txt, line 3993)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "unless the previous spot was between its 20-yard line and its goal line. In that case Team B will next snap the ball at its 20-yard line.",
+     "value": 20
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:fg.miss_spot_min_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1229",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Try returned by the defense to the other end zone: 2 points (pro, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 3, Article 2 (b) (text copy rulebook_2026.txt, line 2841)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "If a Try results in a touchdown by either team, two points are awarded.",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:try.defense_return_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "points"
+  },
+  {
+   "id": "F-rule-1230",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Try returned by the defense to the other end zone: 2 points (college, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3850)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Successful Try: Touchdown — 2 Points",
+     "value": 2
+    },
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 3, Article 2 (text copy ncaa-rulebook-2026.txt, line 3885)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "A try is an opportunity for either team to score one or two points",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:try.defense_return_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "points"
+  },
+  {
+   "id": "F-rule-1231",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "The winner of the opening toss may defer its choice to the second half: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 2, Article 2 (text copy rulebook_2026.txt, line 962)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Unless the winner of the toss defers his choice to the second half, he must choose one of two privileges",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:toss.defer_allowed"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1232",
+   "level": "college",
+   "domain": "rule",
+   "statement": "The winner of the opening toss may defer its choice to the second half: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 1-g-3 (text copy ncaa-rulebook-2026.txt, line 2111)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "To defer their team’s selection to the second half.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:toss.defer_allowed"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
   }
  ]
 }
