@@ -280,16 +280,31 @@
      "primary": false,
      "quote": "allow football players to compete in up to four games without using a season of eligibility",
      "value": 4
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Bylaw 12.8.3.1.6 (renumbered 12.6.3.1.6 on 2025-07-01), https://web3.ncaa.org/lsdbi/bylaw?ruleId=100889&refDate=20260701",
+     "locator": "Bylaw text as of refDate 2026-07-01",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "12.6.3.1.6 Exception -- Football. [FBS/FCS] In football, a student-athlete representing a Division I institution may compete in up to four contests in a season without using a season of competition.",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Read 2026-11-26: the Division I Cabinet adopted the age-based model (Proposal 2026-44, report of 2026-06-23, effective 2026-08-01), which eliminates seasons of competition and redshirt exceptions for students first enrolling full time in 2027-28 and later; students enrolled before or during 2026-27 may still be under the seasons rules, so this row applies to the legacy seasons model only.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -310,16 +325,39 @@
      "primary": false,
      "quote": "the four-game limit applies only to regular-season games; conference championship games, bowl games, the FCS playoffs, and the College Football Playoff no longer count against the limit",
      "value": false
+    },
+    {
+     "citation": "NCAA Division I FBS Oversight Committee, report of the August 22, 2024 videoconference (https://ncaaorg.s3.amazonaws.com/committees/d1/fbsfboc/Aug2024D1FBSOC_Report.pdf)",
+     "locator": "Informational item 1",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "The committee recommended NCAA staff approve a blanket waiver to permit institutions to exempt postseason participation [conference championship game, bowl game, College Football Playoff contest(s)] from the limit of four contests a student-athlete may participate in without using a season of competition for the 2024-25 academic year."
+    },
+    {
+     "citation": "CBS Sports, NCAA rules postseason contests no longer count against four-game max for redshirt eligibility (2024, https://www.cbssports.com/college-football/news/ncaa-rules-postseason-contests-no-longer-count-against-four-game-max-for-redshirt-eligibility/)",
+     "locator": "Article body, first paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "quote": "The new rule, which goes into effect immediately for the 2024 seson still limits redshirting players to four games but will not count conference championship, bowl and College Football Playoff contests toward that number."
     }
    ],
    "usedBy": [],
-   "notes": "One source (Wikipedia summary of the 2024 adoption). Bible T5.2.1 says Verified on an NCAA release and two press reports; those were not re-read here, so this row carries what was read. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "One source (Wikipedia summary of the 2024 adoption). Bible T5.2.1 says Verified on an NCAA release and two press reports; those were not re-read here, so this row carries what was read. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Read 2026-11-26: the exemption is a blanket waiver renewed year by year (2022-23, 2023-24 and 2024-25 confirmed in the FBS Oversight Committee reports, text saved in research/college/ncaa-primary); the bylaw text itself (LSDBi) states only the four-contest limit. No page read confirms the waiver for 2025-26 or 2026-27.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cbs-sports, ncaa-official)."
     }
    ]
   },
@@ -350,16 +388,31 @@
      "primary": false,
      "quote": "challenging an NCAA rule counting seasons spent at junior colleges",
      "value": true
+    },
+    {
+     "citation": "NCAA.org, Division I and Division II age-based eligibility rules (https://www.ncaa.org/eligibility-center/division-i-and-division-ii-age-based-eligibility-rules/)",
+     "locator": "How the Five-Year Eligibility Period Works",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Initial full-time college enrollment: The academic term when the student-athlete first enrolls full time and attends class at any college or university, including a domestic institution, international institution or two-year college. ... Once the five-year period starts, it runs continuously. It does not pause because a student-athlete does not compete, transfers, sits out, changes teams or takes time away from participation",
+     "value": true
     }
    ],
    "usedBy": [],
-   "notes": "The pending Pavia case may change this. The age model starts the clock at any full-time enrollment, two-year college included (NCAA Eligibility 101). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). NCAA.org Eligibility 101 (read 2026-11-26): under the age-based model the five-year period begins at the first full-time enrollment at \"any college or university, including a domestic institution, international institution or two-year college\", so two-year college time counts toward the clock there as well.",
-   "status": "2 of 3",
+   "notes": "The pending Pavia case may change this. The age model starts the clock at any full-time enrollment, two-year college included (NCAA Eligibility 101). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). NCAA.org Eligibility 101 (read 2026-11-26): under the age-based model the five-year period begins at the first full-time enrollment at \"any college or university, including a domestic institution, international institution or two-year college\", so two-year college time counts toward the clock there as well. Answer for the age-based model, read 2026-11-26 on NCAA.org: the five-year period starts at first full-time enrollment at any college including a two-year college and runs continuously, so junior college time counts against the clock under both models.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -661,16 +714,31 @@
      "primary": false,
      "quote": "Student-athletes must pass 9 hours in the fall semester or sit the first 4 games of the subsequent season.",
      "value": 4
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Proposal ER-2013-7, text of Bylaw 14.4.3.1.6 (adopted 2013-05-28, https://web3.ncaa.org/lsdbi/search/proposalView?id=3069)",
+     "locator": "Bylaw 14.4.3.1.6 as amended",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "a student-athlete who is a member of the institution's football team and who does not successfully complete at least nine-semester hours or eight-quarter hours of academic credit during the fall term and or does not earn the Academic Progress Rate eligibility point for the fall term (or does not successfully complete either requirement) shall not be eligible to compete in the first four contests against outside competition in the following playing season.",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "The 2011 article also describes a one-time exception for players who earn 27 hours before the next fall; not modelled here. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "notes": "The 2011 article also describes a one-time exception for players who earn 27 hours before the next fall; not modelled here. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Read 2026-11-26: the bylaw text is the 2013 amendment in LSDBi (a current LSDBi page for 14.4.3.1.6 was not found); the NCAA Division I certification criteria PDF (current) still lists the 9 semester / 8 quarter credit-hour fall requirement for football. The 2013 text also allows a one-time regain of eligibility after 27 semester hours before the next fall term (14.4.3.1.6.2). Whether this survives the 2026 age-based model is not stated in the Cabinet reports read.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1356,16 +1424,31 @@
      "primary": false,
      "quote": "Once you initiate the process, your current scholarship may be protected through the applicable academic term",
      "value": false
+    },
+    {
+     "citation": "NCAA Legislative Services Database (LSDBi), Division I Bylaw 15.3.4.1(f), text as of 2026-07-01 (https://web3.ncaa.org/lsdbi/bylaw?ruleId=4145&refDate=20260701)",
+     "locator": "Bylaw 15.3.4.1 item (f)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Provides written notification of transfer (see Bylaw 13.1.1.4) to the institution ...; however, the student-athlete's financial aid may not be reduced or canceled until the end of the regular academic term in which written notification of transfer is received. If a student-athlete provides written notification of transfer to the institution between regular academic terms (winter break, summer break) the institution may reduce or cancel the financial aid immediately.",
+     "value": false
     }
    ],
    "usedBy": [],
    "notes": "The key is read as: aid ends automatically at term end (false). Under the bylaw the school may cancel after the term, so the module should treat cancellation as the school's choice. The LSU page is undated (footer 2021) and quotes the 2022-23 bylaw; the NCAA manual itself was not reachable. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1387,16 +1470,41 @@
      "primary": false,
      "quote": "The scholarship funding counted against the maximum amount of revenue.",
      "value": 2500000
+    },
+    {
+     "citation": "Fowlkes Firm, What Colleges Need to Know About the New Incremental Scholarship Rules Under the House Settlement (https://www.fowlkesfirm.com/blog/csc)",
+     "locator": "Section \"The Big Picture\"",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fowlkes-firm",
+     "primary": false,
+     "quote": "the first $2.5 million in incremental scholarship value (measured by published cost of attendance) counts against the institution's revenue-sharing/benefits cap. Any incremental scholarship spending above $2.5M does not count against the cap and is not subject to penalties.",
+     "value": 2500000
+    },
+    {
+     "citation": "NCAA Division I Governance, Q&A: Implementation of the House Settlement, updated September 10, 2025 (https://ncaaorg.s3.amazonaws.com/governance/d1/legislation/2024-25/Sep2025D1Gov_PhaseSixSetQuestionandAnswer.pdf; text copy research/college/ncaa-primary/Sep2025D1Gov_PhaseSix_QandA.txt)",
+     "locator": "Question D9",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Yes, up to $2.5 million of new incremental athletically related financial aid (e.g., scholarships) above the Division I institutional financial aid limits in the 2024-25 Division I Manual will count against the benefits cap each year. Beyond $2.5 million, new incremental athletically related financial aid beyond the Division I institutional financial aid limits in the 2024-25 Division I Manual will not count against the cap.",
+     "value": 2500000
     }
    ],
    "usedBy": [],
    "notes": "One source. The $2.5 million figure comes from Ohio State's plan as the article describes it; SI gives $2.5 million as a Texas Tech figure for new non-revenue-sport scholarships and does not say it counted. Treat as provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Check against the College Sports Commission revenue sharing page read 2026-11-26: it speaks of the 2026-27 fine of $0.20 per $1 over the cap for new scholarships up to $2.5M; it does not describe 2025-26. See the note on F-college-keys-0030.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (fowlkes-firm, ncaa-official)."
     }
    ]
   },
@@ -1418,16 +1526,31 @@
      "primary": false,
      "quote": "But the new scholarships do not apply toward the revenue sharing limits next year",
      "value": 0
+    },
+    {
+     "citation": "College Sports Commission, Revenue Sharing (https://www.collegesportscommission.org/focus-areas/revenue-sharing/)",
+     "locator": "Footnote under the cap table",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "*In 2026-27, a fine of $0.20 for every $1 by which an institution exceeds the cap due to spending on new scholarships created as a result of the removal of scholarship limits (up to $2.5M) will be levied. NCAA Bylaw 16.13.1.8 will then be modified, subject to appropriate NCAA approvals, and cap overages due to an increase in scholarships will not count against the institution's cap during the 2027-28 school year and beyond.",
+     "value": 2500000
     }
    ],
    "usedBy": [],
-   "notes": "One source (R18 flagged SI calling the change \"proposed\"). Provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). OPEN CONFLICT (2026-11-26, PC browser): the College Sports Commission revenue sharing page (primary) lists \"Athletically related financial aid in excess of the 2024-25 AY team limit\" as counting against the cap, says in 2026-27 a fine of $0.20 per $1 over the cap due to new scholarships (up to $2.5M) applies, and says cap overages due to more scholarships will not count \"during the 2027-28 school year and beyond\". That reads as the not-counting starting in 2027-28, not 2026-27. Not entered as a source because the value 0 would turn the row to Conflict and the rule key pay.scholarship_credit_2026_27 cites it; the key owner needs to decide.",
-   "status": "1 of 3",
+   "notes": "One source (R18 flagged SI calling the change \"proposed\"). Provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). OPEN CONFLICT (2026-11-26, PC browser): the College Sports Commission revenue sharing page (primary) lists \"Athletically related financial aid in excess of the 2024-25 AY team limit\" as counting against the cap, says in 2026-27 a fine of $0.20 per $1 over the cap due to new scholarships (up to $2.5M) applies, and says cap overages due to more scholarships will not count \"during the 2027-28 school year and beyond\". That reads as the not-counting starting in 2027-28, not 2026-27. Not entered as a source because the value 0 would turn the row to Conflict and the rule key pay.scholarship_credit_2026_27 cites it; the key owner needs to decide. CONFLICT entered 2026-11-26: the CSC page (primary) and the Fowlkes Firm note say new-scholarship spending up to $2.5M still counts toward the cap in 2026-27 (with a reduced fine of $0.20 per $1 over the cap) and stops counting from 2027-28, which contradicts the 2026-27 value of 0 here (Columbus Dispatch via AOL). The source value recorded for the CSC quote is 2,500,000 (the amount that is fined). The rule key pay.scholarship_credit_2026_27 should be reviewed by the schema integrator: it likely needs 2,500,000 for 2026-27 and 0 from 2027-28. The NCAA Division I Governance Q&A of 2025-09-10 (D9) says the $2.5 million of new aid counts against the benefits cap \"each year\", with no 2026-27 carve-out.",
+   "status": "Conflict",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (csc-official)."
     }
    ]
   },
@@ -1448,16 +1571,41 @@
      "primary": false,
      "quote": "A multi-year agreement may provide stability and certainty, but it may also limit flexibility",
      "value": true
+    },
+    {
+     "citation": "NCAA Division I Governance, Q&A: Implementation of the House Settlement, published June 13, 2025 (https://ncaaorg.s3.amazonaws.com/governance/d1/legislation/2024-25/June2025D1Gov_PhaseThreeInstSetQuestionandAnswer.pdf; text copy research/college/ncaa-primary/June2025D1Gov_PhaseThree_QandA.txt)",
+     "locator": "Question D20",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Additional payments promised in multiyear agreements are counted against a Participating Institution's benefits cap in the year that the payments and/or benefits are provided.",
+     "value": true
+    },
+    {
+     "citation": "NCAA Division I Governance, Q&A: Implementation of the House Settlement, updated September 10, 2025 (https://ncaaorg.s3.amazonaws.com/governance/d1/legislation/2024-25/Sep2025D1Gov_PhaseSixSetQuestionandAnswer.pdf; text copy research/college/ncaa-primary/Sep2025D1Gov_PhaseSix_QandA.txt)",
+     "locator": "Question D26",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Is there a maximum term for an NIL contract or payment between a Participating Institution and a current or prospective student-athlete? Yes. The term of the agreement may not be longer than the prospective or current student-athlete's period of eligibility to participate in intercollegiate athletics.",
+     "value": true
     }
    ],
    "usedBy": [],
-   "notes": "One source. No page read states a maximum term (see the owed list in the PR). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "One source. No page read states a maximum term (see the owed list in the PR). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary text read 2026-11-26 (NCAA Division I Governance Q&A, June and September 2025): multiyear agreements are allowed and count against the cap in the year paid; the maximum term is the student-athlete's remaining period of eligibility (D26, NIL agreements).",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },

@@ -334,16 +334,41 @@
      "primary": false,
      "quote": "Out of the 319 Division I schools that opted into revenue sharing",
      "value": 319
+    },
+    {
+     "citation": "College Sports Commission, About (https://www.collegesportscommission.org/about/)",
+     "locator": "Participating-schools paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "Division I schools outside of the ACC, Big Ten, Big 12, and SEC can opt in/out of revenue sharing annually; 319 schools opted-in for the 2025-2026 academic year.",
+     "value": 319
+    },
+    {
+     "citation": "Business of College Sports, House settlement opt-ins (https://businessofcollegesports.com/other/house-settlement-opt-ins/)",
+     "locator": "Opening paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "business-of-college-sports",
+     "primary": false,
+     "quote": "In total, 319 (82%) of Division I institutions opted in.",
+     "value": 319
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Not confirmed on the College Sports Commission pages read 2026-11-26 (no school count given there).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Not confirmed on the College Sports Commission pages read 2026-11-26 (no school count given there). Confirmed 2026-11-26 on the CSC About page (319 opted in for 2025-26). The earlier note that no school count was found referred to the CSC revenue-sharing page only. A 2025-26 report (NIL Newsstand) counts 307 schools that actually paid athletes; that is a different count.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (business-of-college-sports, csc-official)."
     }
    ]
   },
@@ -921,16 +946,30 @@
      "primary": false,
      "quote": "only 79 teams achieved the six wins necessary for bowl eligibility",
      "value": 6
+    },
+    {
+     "citation": "NCAA, Postseason Football Bowl Games 2020-21 to 2025-26 Bid Cycle (Bowl Certification Framework, https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/PBA/2020-26PBA_BowlCertificationFramework.pdf)",
+     "locator": "Item 1",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "6-6 teams shall continue to be defined as “deserving”."
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -952,16 +991,31 @@
      "primary": false,
      "quote": "No more than one win against a Football Championship Subdivision(FCS) team may count.",
      "value": 1
+    },
+    {
+     "citation": "NCAA, Postseason Football Bowl Games 2020-21 to 2025-26 Bid Cycle (Bowl Certification Framework, https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/PBA/2020-26PBA_BowlCertificationFramework.pdf)",
+     "locator": "Item 2a",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "FBS school may count one victory against Football Championship Subdivision (FCS) opponent, provided opponent averaged 90% of the permissible maximum number of grants-in-aid per year in football during rolling two-year period.",
+     "value": 1
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The same page also carries a scholarship test the page does not reconcile; wording is from a 2018-19 text.",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The same page also carries a scholarship test the page does not reconcile; wording is from a 2018-19 text. Condition read 2026-11-26 in the NCAA Bowl Certification Framework (2020-26 cycle, item 2a): the FCS win counts only if the FCS opponent averaged 90 percent of the permitted football grants over a rolling two years; otherwise it is an alternate case only (item 3a).",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -993,16 +1047,30 @@
      "primary": false,
      "quote": "NCAA rules allow five-win teams to fill spots",
      "value": 5
+    },
+    {
+     "citation": "NCAA, Postseason Football Bowl Games 2020-21 to 2025-26 Bid Cycle (Bowl Certification Framework, https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/PBA/2020-26PBA_BowlCertificationFramework.pdf)",
+     "locator": "Item 4",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Continue with the use of teams with a 5-7 record (based on APR) to fill open bowl slots that cannot be filled by teams with a 6-6 or better record (or by one of the exceptions or alternates above)."
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1146,16 +1214,31 @@
      "primary": false,
      "quote": "Schools that schedule multiple FCS programs will receive selection credit for only one such win.",
      "value": 1
+    },
+    {
+     "citation": "Pro Football Network, CFP executive director on FCS matchups in the 24-team playoff (https://www.profootballnetwork.com/cfb/cfp-executive-director-fcs-matchups-24-team-playoff/)",
+     "locator": "Article body, Rich Clark quote and fact-sheet paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfn",
+     "primary": false,
+     "quote": "\"No elimination, but a limit to one FCS game per team.\" ... The committee can give weight to a win over up to one FCS opponent per season.",
+     "value": 1
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). No CFP-published text for this limit was found on collegefootballplayoff.com on 2026-11-26 (the 24-team news release and fact sheet PDF carry the 10-game standard but not the FCS line). Source is the CFP executive director quoted by Pro Football Network, who calls the policy \"not binding\". Fact sheet text saved in research/college/ncaa-primary/CFP_24-Team_Format_FactSheet.txt.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (pfn)."
     }
    ]
   },
@@ -1187,16 +1270,41 @@
      "primary": false,
      "quote": "G6 institutions will likewise be required to play at least 10 qualifying regular-season games.",
      "value": 10
+    },
+    {
+     "citation": "College Football Playoff, news release on the 24-team format, scheduling standards (2026-11-09, https://collegefootballplayoff.com/news/2026/11/9/24-team-expansion)",
+     "locator": "Scheduling standards section",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Each A4 institution will be expected to play at least 10 qualifying regular season games consisting of the following: Conference games Non-conference games versus A4 conference opponents and Notre Dame",
+     "value": 10
+    },
+    {
+     "citation": "CBS Sports, College Football Playoff expansion: Indiana, USC and 2027 schedules (https://www.cbssports.com/college-football/news/college-football-playoff-expansion-indiana-usc-2027-schedules/)",
+     "locator": "Opening paragraphs",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "quote": "teams in the Power Four will now have to play 10 Power Four opponents (or Notre Dame) on their schedules.",
+     "value": 10
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). CFP release (2026-11-09): the 10-game standard is for Power Four schools; Group of Six schools are also expected to play 10 qualifying games, counting G6, A4, Notre Dame or other independents.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cbs-sports, cfp-official)."
     }
    ]
   },
