@@ -15,7 +15,7 @@
 // Not here yet: the seat's week (H1 calendar, `seatWeek`), AI preparation (K3), the user's own call sheet
 // (G-68 bridge) and generated rosters. The teams are the real game's neutral placeholder rosters.
 import { season as seasons } from '@gm/world';
-import type { DriveRecord, GameInput, PersonRecord, PlayRecord, SimPlayer } from '@gm/schema';
+import type { DriveRecord, GameDeps, GameInput, PersonRecord, PlayRecord, SimPlayer } from '@gm/schema';
 import { GameCallingSession, type GameSessionOptions, type LineupFor } from '../commands/game-calling/index.ts';
 import { seatTeamFromDepth, simPlayerFromPerson, type SeatDepth } from './seat-depth.ts';
 
@@ -37,7 +37,11 @@ export interface SeasonPlayOptions {
 
 /** What the host supplies to put the seat's game on the console: the console setup and the key map. */
 export type GameHost = Pick<GameSessionOptions, 'console' | 'resolve'>
-  & Partial<Pick<GameSessionOptions, 'keyIntervalMs' | 'startMs' | 'liveMs' | 'bookLine' | 'flowOptions' | 'firstPersonnel'>>;
+  & Partial<Pick<GameSessionOptions, 'keyIntervalMs' | 'startMs' | 'liveMs' | 'bookLine' | 'flowOptions' | 'firstPersonnel'>>
+  & {
+    /** Wraps the game's resolver (presentation live `liveTap`, so the field gets each play's trajectory). */
+    readonly tapResolver?: (resolver: GameDeps['resolver']) => GameDeps['resolver'];
+  };
 
 /** The seat's game in the coming step. */
 export interface SeatGame {
@@ -213,6 +217,8 @@ export class SeasonPlay {
   get champion(): number | null { return this.state.champion; }
   /** The console session of the seat's game while it is open. */
   get game(): GameCallingSession | null { return this.open?.session ?? null; }
+  /** The open game's input (teams and environment, for the live field), or null. */
+  get gameInput(): GameInput | null { return this.open?.input ?? null; }
 
   keyOf(teamId: number): string { return this.built.keyOf.get(teamId) ?? String(teamId); }
   nameOf(teamId: number): string { const k = this.keyOf(teamId); return this.names.get(k) ?? k; }
@@ -271,8 +277,10 @@ export class SeasonPlay {
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
     if (this.seatOutcomes.has(seat.context.fixture.gameId)) throw new Error(`season session: game ${seat.context.fixture.gameId} is already played`);
     const { input, lineup } = this.seatInput(seat);
-    const deps = this.port.game.deps(input);
-    const session = new GameCallingSession({ ...host, input, deps, userSide: seat.side, lineup });
+    const { tapResolver, ...sessionHost } = host;
+    const base = this.port.game.deps(input);
+    const deps = tapResolver ? { ...base, resolver: tapResolver(base.resolver) } : base;
+    const session = new GameCallingSession({ ...sessionHost, input, deps, userSide: seat.side, lineup });
     session.start();
     this.open = { context: seat.context, input, session };
     return session;

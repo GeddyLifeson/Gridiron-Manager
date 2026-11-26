@@ -7,7 +7,7 @@ import {
   SLOTS_PER_TEAM, TICKS_PER_SECOND, issToZ,
   type Assignment, type PlayPoint, type TickWorld, type TruthEventOf,
 } from '@gm/schema';
-import { callDeliveryChance, perceptionParams, type PerceptionParams } from '../perception/index.ts';
+import { callDeliveryChance, perceptionParams, type PerceptionConfig, type PerceptionParams } from '../perception/index.ts';
 type FoulPhase = TruthEventOf<'foul_committed'>['phase'];
 import { READING, opposingElevenZ } from '../tick/opposition.ts';
 import { drawTeam, type TeamDraws } from './draws.ts';
@@ -26,11 +26,23 @@ import { presnapParams, type PresnapFoulId, type PresnapParams } from './params.
 
 // ------------------------------------------------------------------------------------------- inputs
 
-export type PictureTrigger = 'empty' | 'bunch' | 'motion' | 'shift' | 'tempo';
+/**
+ * What a check keys on. `formation` is a look the content has already found in the offense's set formation
+ * (trips, a wing, heavy personnel: G2.5.1 looks the engine does not classify itself): it shows when the offense
+ * is aligned.
+ */
+export type PictureTrigger = 'empty' | 'bunch' | 'motion' | 'shift' | 'tempo' | 'formation';
 export type ReadTrigger = 'box_loaded' | 'one_high' | 'two_high' | 'zero' | 'man' | 'zone' | 'pressure';
 
-/** A defensive check rule installed in the week (G2, F11, J5.5.2). Checked in priority order. */
-export interface DefensiveCheck { readonly name: string; readonly trigger: PictureTrigger }
+/**
+ * A defensive check rule installed in the week (G2, F11, J5.5.2). Checked in priority order. `patch` is what the
+ * check changes (G2.5.1): each named defender plays the given assignment instead, walking to its alignment when the
+ * check is made, if the check is completed before the snap and reaches him. Absent: the check changes nothing on
+ * the field (timing and errors only).
+ */
+export interface DefensiveCheck { readonly name: string; readonly trigger: PictureTrigger; readonly patch?: readonly CheckPatch[] }
+/** One defender's part of a check (team slot 0 to 10), with his perception settings for the new job when they differ. */
+export interface CheckPatch { readonly teamSlot: number; readonly assignment: Assignment; readonly perception?: PerceptionConfig }
 /** A packaged call or audible at the line (I2.5.1, J5.4.3). `boxAtLeast` is read by `box_loaded`. */
 export interface Audible { readonly name: string; readonly trigger: ReadTrigger; readonly kind: 'kill' | 'audible'; readonly boxAtLeast?: number }
 /** One disguising defender: where he shows before he stems to his true spot (J5.5.1). */
@@ -171,7 +183,8 @@ export interface ProtectionResult {
   readonly dropped: boolean;
 }
 
-export interface CheckResult { readonly name: string; readonly fired: boolean; readonly completed: boolean; readonly atS: number }
+/** `patched`: defensive team slots that play the check's patch (completed, and the check reached them). */
+export interface CheckResult { readonly name: string; readonly fired: boolean; readonly completed: boolean; readonly atS: number; readonly patched: readonly number[] }
 
 export interface PresnapPlan {
   /** Tick 0 is the snap (J1.3.2). */
@@ -530,6 +543,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     empty: backs.length === 0 ? alignEnd : null,
     bunch: bunch ? alignEnd : null,
     tempo: input.tempo !== 'huddle' ? alignEnd : null,
+    formation: alignEnd,
     shift: startOf.has('shift') ? startOf.get('shift')! : null,
     motion: motionStartS >= 0 ? motionStartS : null,
   };
@@ -538,13 +552,23 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const checks: CheckResult[] = [];
   let anyCheck = false;
   const recognizedCheck = ok || dD.get('defensiveCheck', D.signalCaller) < math.logistic(p['check.recognizeIntercept']! + p['check.recognizePerZ']! * issToZ(ci));
+  // G2.5.1: a completed check moves the defenders it names to their new spots when it is made; one who did not
+  // hear it stays where he was and plays the old call (the missed_check error below).
+  const patchAt = new Map<number, { readonly tick: number; readonly px: number; readonly py: number }>();
   for (const c of D.checks) {
     const seen = picture[c.trigger];
-    if (anyCheck || seen === null || !recognizedCheck) { checks.push({ name: c.name, fired: false, completed: false, atS: -1 }); continue; }
+    if (anyCheck || seen === null || !recognizedCheck) { checks.push({ name: c.name, fired: false, completed: false, atS: -1, patched: [] }); continue; }
     anyCheck = true;
     const st = seen + checkRecognitionS(ci, p), end = st + checkDurationS(ci, p);
     const completed = end <= snapS;
-    checks.push({ name: c.name, fired: true, completed, atS: st });
+    const patched: number[] = [];
+    if (completed) for (const x of c.patch ?? []) {
+      const s = SLOTS_PER_TEAM + x.teamSlot;
+      if (x.teamSlot < 0 || x.teamSlot >= SLOTS_PER_TEAM || !received[s]![1] || missing.includes(s) || patched.includes(x.teamSlot)) continue;
+      patched.push(x.teamSlot);
+      patchAt.set(s, { tick: tickAt(end), px: x.assignment.preSnap.align.px, py: x.assignment.preSnap.align.py });
+    }
+    checks.push({ name: c.name, fired: true, completed, atS: st, patched });
     log.push({ side: 1, action: 'check', name: c.name, startS: st, endS: completed ? end : snapS, status: completed ? 'done' : st < snapS ? 'unfinished' : 'dropped' });
     if (completed) for (const s of defSlots) if (!received[s]![1]) mentalErrors.push({ slot: s, cause: 'communication', form: 'missed_check' });
   }
@@ -578,6 +602,14 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       }
     }
     list.sort((a, b) => a.fromTick - b.fromTick);
+    const moved = patchAt.get(s);
+    if (moved !== undefined) {
+      // Anything planned after the check (a stem to the true spot) now goes to the checked spot instead.
+      for (let k = 0; k < list.length; k++) if (list[k]!.fromTick > moved.tick) list[k] = { fromTick: list[k]!.fromTick, px: moved.px, py: moved.py };
+      let at = list.length;
+      while (at > 0 && list[at - 1]!.fromTick > moved.tick) at--;
+      list.splice(at, 0, { fromTick: moved.tick, px: moved.px, py: moved.py });
+    }
     targets.push(list);
   }
 

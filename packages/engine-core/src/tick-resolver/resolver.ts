@@ -225,7 +225,9 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
       streams: input.streams, math: input.math, rules: input.rules, params, slots,
     });
 
-    const O = s0.presnap.offense.assignments, D = s0.presnap.defense.assignments;
+    const O = s0.presnap.offense.assignments;
+    // The defense's assignments as played: a completed pre-snap check replaces those it names (G2.5.1).
+    let D = s0.presnap.defense.assignments;
     const look = s0.kickLook ?? null;
     const presnapInput = look === null ? s0.presnap : longSnapInput(input, s0.presnap, look, slots);
     const assignmentOf = (s: number): Assignment | undefined => (s < SLOTS_PER_TEAM ? O[s] : D[s - SLOTS_PER_TEAM]);
@@ -270,6 +272,24 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
       interact.setPlay(contests!, null);
     } else {
       const thePlan = planPresnap(world, presnapInput), pp = presnapParams(params);
+      // G2.5.1: a completed check puts the defenders it reached on their new assignment for the play, with the
+      // perception settings that go with it. The others play the call as it was (the plan logs their missed check).
+      for (const c of thePlan.checks) {
+        if (c.patched.length === 0) continue;
+        const rule = presnapInput.defense.checks.find((x) => x.name === c.name);
+        if (rule === undefined) continue;
+        const next = D.slice();
+        for (const ts of c.patched) {
+          const x = rule.patch!.find((y) => y.teamSlot === ts)!, s = SLOTS_PER_TEAM + ts, part = slotPlays[s];
+          next[ts] = x.assignment;
+          if (part === null || part === undefined) continue;
+          const compiled = compile(x.assignment);
+          if (compiled === null && !notCompiled.includes(s)) notCompiled.push(s);
+          slotPlays[s] = { ...part, compiled };
+          if (x.perception !== undefined) perception.configure(s, x.perception);
+        }
+        D = next;
+      }
       // K1.5.1 rule 2 reads the play clock left when the units are set (J5.8.1), which only the plan knows; and a
       // player the call never reached plays the old assignment (J5.1.3, J4.5.3). A missing substitute is not on the field.
       playerAi.setPlay(slotPlays, s0.context.playClockLeftS === undefined ? { ...s0.context, playClockLeftS: thePlan.setClockLeftS } : s0.context, null);
