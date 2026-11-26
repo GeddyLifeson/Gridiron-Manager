@@ -16,7 +16,7 @@ export {
   unbound, unboundSteps, systemsFrom, runWeek, runSeasonPoint, runSeason, summarizeSeason, recordStaffSeason, gamesStep, gamesStepBatch, batchOf, compactionStep, worldHash,
   type PassOptions,
 } from './order.ts';
-export { STREAM_LEAVING, yearlyDeathChance, deathTableProblems, employedIds, ageOf, leavingStep, reactivate, searchable, type LeavingPorts } from './leaving.ts';
+export { STREAM_LEAVING, DEFAULT_UNCLAIMED_POOLS, periodMortality, yearlyDeathChance, deathTableProblems, employedIds, ageOf, leavingStep, reactivate, searchable, type LeavingPorts } from './leaving.ts';
 export { GENERATED_COHORTS, cohortStep, type CohortBinding } from './cohorts.ts';
 export {
   STOP_KINDS, userDutyIds, isUsers, stopsThrough, stopProblems, advance,
@@ -36,4 +36,4 @@ export {
   type CoachSeasonRow, type PlayerLine, type HallMember, type HallBallotRecord, type HallState, type HallSpec, type HallBinding,
 } from './hall.ts';
 export { STREAM_HISTORY_SCHEDULE, seasonOrder, circleRound, roundsFor, historySchedule, type HistoryScheduleBinding } from './history-schedule.ts';
-export { slimmable, slimRetired, slimStep, withSlimming } from './archive.ts';
+export { slimmable, slimRetired, slimStep, withSlimming, ARCHIVE_KEY, archivePerson, archivedCount, archivedPerson, type ArchiveState, type ArchivedPerson } from './archive.ts';
