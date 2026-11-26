@@ -57,12 +57,6 @@ export const PROBES: readonly Probe[] = [
     blocker: 'the career run still answers offers through standInMarket (a copy of the G-80 formulas) although career.market is now exported; the user cannot apply for or accept a job through any command',
   },
   {
-    area: 'offseason', code: 'offseason.no_real_world', owner: `${OWNERS.worldLoop}; composition via ${OWNERS.exportsIntegrator}`,
-    exported: () => has(world, 'loop') && has(league, 'draft'),
-    missing: 'The world loop or the draft is not in the barrels.',
-    blocker: 'no production GamePort or SchedulePort binds the world loop to the real engine (only test doubles), the generation content (names lib) loads by file path (CR-G81-1), and WorldService holds a schema WorldState, not a LiveWorld, so a career save has no offseason: no draft, free agency, development or aging runs',
-  },
-  {
     area: 'evaluations', code: 'scouting.exported', owner: OWNERS.evaluations,
     exported: () => has(people, 'scouting'),
     missing: 'D6 scouting (observe, update, band) is not in the @gm/people barrel.',
