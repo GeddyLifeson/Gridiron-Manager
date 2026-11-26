@@ -1,0 +1,95 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-life-0001",
+   "level": "both",
+   "domain": "career",
+   "statement": "Adults should sleep 7 or more hours per night on a regular basis (lower bound of the recommended nightly sleep for adults 18 to 60).",
+   "value": 7,
+   "unit": "h/night",
+   "validFor": "adults aged 18 to 60, guidance current at 2026-11-26",
+   "sources": [
+    {
+     "citation": "Watson NF et al., 'Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society', Sleep 2015;38(6):843-844, doi 10.5665/sleep.4716",
+     "locator": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "aasm-srs-consensus",
+     "primary": true,
+     "quote": "Adults should sleep 7 or more hours per night on a regular basis to promote optimal health.",
+     "value": 7
+    },
+    {
+     "citation": "American Academy of Sleep Medicine, 'Adult Sleep Duration Health Advisory' (adopted 2014-02-17, updated 2015-08-14)",
+     "locator": "https://aasm.org/advocacy/position-statements/adult-sleep-duration-health-advisory/",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "aasm",
+     "primary": false,
+     "quote": "recommends that adults should sleep 7 or more hours per night on a regular basis to promote optimal health",
+     "value": 7
+    },
+    {
+     "citation": "US Centers for Disease Control and Prevention, 'About Sleep' (2024-05-15), recommended sleep table",
+     "locator": "https://www.cdc.gov/sleep/about/index.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cdc",
+     "primary": false,
+     "quote": "Adult | 18–60 years | 7 or more hours",
+     "value": 7
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Backs the floor of career.life.sleepNeedHours (E7.4.1). The bible's 7.5 h need is a design value inside the recommended range; the test checks it never drops below this row.",
+   "statusHistory": [{ "date": "2026-11-26", "status": "Verified", "reason": "G-53: three read sources in three independence groups, one primary" }]
+  },
+  {
+   "id": "F-life-0002",
+   "level": "both",
+   "domain": "career",
+   "statement": "Working 55 or more hours a week is associated with an estimated 35% higher risk of stroke and 17% higher risk of dying from ischemic heart disease, compared with 35 to 40 hours a week (WHO and ILO joint estimate). Value is the weekly-hours threshold.",
+   "value": 55,
+   "unit": "h/week",
+   "validFor": "WHO/ILO global estimate published 2021-05-17 (Environment International study)",
+   "sources": [
+    {
+     "citation": "World Health Organization and International Labour Organization, 'Long working hours increasing deaths from heart disease and stroke: WHO, ILO', news release 2021-05-17",
+     "locator": "https://www.who.int/news/item/17-05-2021-long-working-hours-increasing-deaths-from-heart-disease-and-stroke-who-ilo",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "who-ilo",
+     "primary": true,
+     "quote": "is associated with an estimated 35% higher risk of a stroke and a 17% higher risk of dying from ischemic heart disease",
+     "value": 55
+    },
+    {
+     "citation": "NPR, 'Overwork Killed More Than 745,000 People In A Year, WHO Study Finds', 2021-05-17",
+     "locator": "https://www.npr.org/2021/05/17/997462169/thousands-of-people-are-dying-from-working-long-hours-a-new-who-study-finds",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "face an estimated 35% higher risk of a stroke and a 17% higher risk of dying from heart disease",
+     "value": 55
+    },
+    {
+     "citation": "American Industrial Hygiene Association, 'ILO and WHO: Long Working Hours Can Increase Deaths from Heart Disease, Stroke', 2021-05-20",
+     "locator": "https://www.aiha.org/news/210520-ilo-and-who-long-working-hours-can-increase-deaths-from-heart-disease-stroke",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aiha",
+     "primary": false,
+     "quote": "Working 55 or more hours per week is associated with an estimated 35 percent higher risk of stroke",
+     "value": 55
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Backs the light/normal cut of the E8.1.1 load bands (the bible's starting cut point is the same 55 h). It is evidence that long hours carry health risk; it does not set the yearly health-step chances, which stay design values. NPR and AIHA report the WHO release; they say 'heart disease' where WHO says 'ischemic heart disease'.",
+   "statusHistory": [{ "date": "2026-11-26", "status": "Verified", "reason": "G-53: primary release plus two independent reports" }]
+  }
+ ]
+}
