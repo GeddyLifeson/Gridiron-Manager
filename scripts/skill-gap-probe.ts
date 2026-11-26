@@ -5,7 +5,10 @@
 //   not=<regex>    every attribute takes issA and issB except the matching ones, which sit at base
 //   base=<iss>     the level of the attributes held equal
 //   <param>=<n>    any name with a dot is a parameter override, for example contest.passBlock.skillGain=0.1
+//   procs=<n>     split the games over n child processes (same seeds as one process, so results are identical)
 // One game has a margin sd near 17, so 16 games resolve about 4 points. Use 100 or more to rank small effects.
+import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { season } from '@gm/world';
 import { field } from '@gm/engine-core';
 import { stats } from '@gm/engine-game';
@@ -29,7 +32,23 @@ function team(side: 0 | 1, iss: number) {
 }
 let sumM = 0, sumM2 = 0, pa = 0, pb = 0, wins = 0;
 const N = Number(n);
-for (let i = 0; i < N; i++) {
+const procs = Math.max(1, Number(opt.procs ?? '1'));
+const child = process.env.SKILL_PROBE_CHILD;
+const [i0, i1] = child ? child.split(',').map(Number) as [number, number] : [0, procs > 1 ? 0 : N];
+if (!child && procs > 1) {
+  const per = Math.ceil(N / procs);
+  const parts = await Promise.all(Array.from({ length: procs }, (_, k) => new Promise<any>((resolve, reject) => {
+    const c = spawn(process.execPath, [...process.execArgv, fileURLToPath(import.meta.url), ...process.argv.slice(2)],
+      { env: { ...process.env, SKILL_PROBE_CHILD: `${k * per},${Math.min(N, (k + 1) * per)}` }, stdio: ['ignore', 'pipe', 'inherit'] });
+    let out = ''; c.stdout.on('data', (d) => { out += d; });
+    c.on('close', (code) => { if (code === 0) resolve(JSON.parse(out)); else reject(new Error(`child ${k} exit ${code}`)); });
+  })));
+  for (const part of parts) {
+    sumM += part.sumM; sumM2 += part.sumM2; pa += part.pa; pb += part.pb; wins += part.wins;
+    for (const t of [0, 1]) for (const k of Object.keys(part.T[t])) add(t, k, part.T[t][k]);
+  }
+}
+for (let i = i0; i < i1; i++) {
   const seed = (0x3000 + i * 7919).toString(16).padStart(16, '0');
   // alternate home side so home edge cancels
   const flip = i % 2 === 1;
@@ -55,6 +74,7 @@ for (let i = 0; i < N; i++) {
   const sa = flip ? sc[1] : sc[0], sb = flip ? sc[0] : sc[1];
   sumM += sa - sb; sumM2 += (sa - sb) ** 2; pa += sa; pb += sb; if (sa > sb) wins++;
 }
+if (child) { process.stdout.write(JSON.stringify({ sumM, sumM2, pa, pb, wins, T })); process.exit(0); }
 const mean = sumM / N, sd = Math.sqrt(Math.max(0, sumM2 / N - mean * mean));
 console.log(`${rulesId} ${a} v ${b} ${opt.label ?? opt.attr ?? 'all'} ${opt.pos ?? ''} n=${N}: margin ${mean.toFixed(1)} (sd ${sd.toFixed(1)}, se ${(sd / Math.sqrt(N)).toFixed(1)}) pts ${(pa / N).toFixed(1)}-${(pb / N).toFixed(1)} winA ${(wins / N).toFixed(2)}`);
 
