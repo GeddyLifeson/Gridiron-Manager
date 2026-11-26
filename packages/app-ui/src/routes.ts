@@ -24,6 +24,8 @@ import { legendsRoute, LEGENDS_SCREEN_ID } from './screens/legends/index.ts';
 import { gamePlanRoute, callSheetRoute, PLAN_SCREEN_ID, SHEET_SCREEN_ID } from './screens/gameplan/index.ts';
 import { capRoute, SCREEN_ID as CAP_SCREEN_ID } from './screens/cap/index.ts';
 import { depthChartRoute, SCREEN_ID as DEPTH_CHART_SCREEN_ID } from './screens/depth-chart/index.ts';
+import { draftRoomRoute, DRAFT_ROOM_SCREEN_ID } from './screens/draft-room/index.ts';
+import { freeAgencyRoute, FREE_AGENCY_SCREEN_ID } from './screens/free-agency/index.ts';
 
 type Args<F extends (...a: never[]) => unknown> = Parameters<F>;
 
@@ -63,6 +65,10 @@ export interface RouteSources {
   readonly cap?: Args<typeof capRoute>[0];
   /** Depth chart (O4.2.2, M2). */
   readonly depthChart?: Args<typeof depthChartRoute>[0];
+  /** Draft room (C7, M4). */
+  readonly draftRoom?: Args<typeof draftRoomRoute>[0];
+  /** Free agency (C8, M5). */
+  readonly freeAgency?: Args<typeof freeAgencyRoute>[0];
 }
 
 /** Office screen id that shows the assignment list below head coach (O1.2.1, O7.2.1). */
@@ -101,6 +107,8 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.practice) put(PRACTICE_SCREEN_ID, practicePlannerRoute(s.practice.getModel, s.practice.onOpen));
   if (s.cap) put(CAP_SCREEN_ID, capRoute(s.cap));
   if (s.depthChart) put(DEPTH_CHART_SCREEN_ID, depthChartRoute(s.depthChart));
+  if (s.draftRoom) put(DRAFT_ROOM_SCREEN_ID, draftRoomRoute(s.draftRoom));
+  if (s.freeAgency) put(FREE_AGENCY_SCREEN_ID, freeAgencyRoute(s.freeAgency));
   if (s.gameplan) { put(PLAN_SCREEN_ID, gamePlanRoute(s.gameplan)); put(SHEET_SCREEN_ID, callSheetRoute(s.gameplan)); }
   return t;
 }
