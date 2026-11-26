@@ -1,0 +1,27 @@
+{
+ "$comment": "C9.1.2 award set per level. Award ids are generic text keys (A6): no real award names or sponsors. Term weights are Assumption starting values read by the voter model; the pro list mirrors the eight AP awards (fact F-honours-0001 notes). Coach terms follow E5.6.1 rule 1 (weights in params.json).",
+ "sets": {
+  "pro": [
+   { "id": "mvp", "kind": "player", "terms": { "stats": 1, "teamSuccess": 1, "narrative": 0.5 }, "positionWeights": { "QB": 1.5 } },
+   { "id": "offensive_player", "kind": "player", "side": "offense", "terms": { "stats": 1.2, "teamSuccess": 0.4, "narrative": 0.4 } },
+   { "id": "defensive_player", "kind": "player", "side": "defense", "terms": { "stats": 1.2, "teamSuccess": 0.4, "narrative": 0.4 } },
+   { "id": "offensive_rookie", "kind": "player", "side": "offense", "rookie": true, "terms": { "stats": 1.2, "teamSuccess": 0.3, "narrative": 0.3 } },
+   { "id": "defensive_rookie", "kind": "player", "side": "defense", "rookie": true, "terms": { "stats": 1.2, "teamSuccess": 0.3, "narrative": 0.3 } },
+   { "id": "comeback_player", "kind": "player", "comeback": true, "terms": { "stats": 0.8, "narrative": 1.2, "teamSuccess": 0.3 } },
+   { "id": "coach_of_year", "kind": "coach", "terms": {} },
+   { "id": "assistant_coach_of_year", "kind": "assistant", "terms": { "unitRankGain": 1, "narrative": 0.4 } }
+  ],
+  "college": [
+   { "id": "player_of_year", "kind": "player", "terms": { "stats": 1, "teamSuccess": 1, "narrative": 0.6 }, "positionWeights": { "QB": 1.5 } },
+   { "id": "defensive_player", "kind": "player", "side": "defense", "terms": { "stats": 1.2, "teamSuccess": 0.4, "narrative": 0.4 } },
+   { "id": "coach_of_year", "kind": "coach", "terms": {} }
+  ]
+ },
+ "allLeagueSlots": [
+  { "slot": "QB", "count": 1 }, { "slot": "RB", "count": 1 }, { "slot": "WR", "count": 2 }, { "slot": "TE", "count": 1 },
+  { "slot": "OT", "count": 2 }, { "slot": "OG", "count": 2 }, { "slot": "C", "count": 1 },
+  { "slot": "EDGE", "count": 2 }, { "slot": "DT", "count": 2 }, { "slot": "LB", "count": 2 }, { "slot": "CB", "count": 2 }, { "slot": "S", "count": 2 },
+  { "slot": "K", "count": 1 }, { "slot": "P", "count": 1 }, { "slot": "RET", "count": 1 }
+ ],
+ "allStarPerSlot": 3
+}

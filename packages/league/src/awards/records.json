@@ -1,0 +1,26 @@
+{
+ "$comment": "C9.2.1 record definitions as content: statistic (D14 id), scope, holder, aggregate, direction and qualifiers. No football facts: definitions mirror ordinary statistics. Rate qualifiers (minimum attempts) are Assumption.",
+ "records": [
+  { "id": "pass_yards_game", "statistic": "pass_yards", "scope": "game", "holder": "player" },
+  { "id": "pass_yards_season", "statistic": "pass_yards", "scope": "season", "holder": "player" },
+  { "id": "pass_yards_career", "statistic": "pass_yards", "scope": "career", "holder": "player" },
+  { "id": "pass_td_season", "statistic": "pass_touchdowns", "scope": "season", "holder": "player" },
+  { "id": "pass_td_career", "statistic": "pass_touchdowns", "scope": "career", "holder": "player" },
+  { "id": "rush_yards_game", "statistic": "rush_yards", "scope": "game", "holder": "player" },
+  { "id": "rush_yards_season", "statistic": "rush_yards", "scope": "season", "holder": "player" },
+  { "id": "rush_yards_career", "statistic": "rush_yards", "scope": "career", "holder": "player" },
+  { "id": "rush_td_season", "statistic": "rush_touchdowns", "scope": "season", "holder": "player" },
+  { "id": "receiving_yards_game", "statistic": "receiving_yards", "scope": "game", "holder": "player" },
+  { "id": "receiving_yards_season", "statistic": "receiving_yards", "scope": "season", "holder": "player" },
+  { "id": "receptions_season", "statistic": "receptions", "scope": "season", "holder": "player" },
+  { "id": "receiving_td_career", "statistic": "receiving_touchdowns", "scope": "career", "holder": "player" },
+  { "id": "sacks_season", "statistic": "sacks", "scope": "season", "holder": "player" },
+  { "id": "sacks_career", "statistic": "sacks", "scope": "career", "holder": "player" },
+  { "id": "interceptions_season", "statistic": "interceptions", "scope": "season", "holder": "player" },
+  { "id": "longest_field_goal", "statistic": "field_goal_longest", "scope": "career", "holder": "player", "aggregate": "max" },
+  { "id": "completion_share_season", "statistic": "pass_completions", "per": "pass_attempts", "minimum": 300, "scope": "season", "holder": "player" },
+  { "id": "team_rush_yards_game", "statistic": "rush_yards", "scope": "game", "holder": "team" },
+  { "id": "postseason_pass_yards_career", "statistic": "pass_yards", "scope": "postseason_career", "holder": "player" }
+ ],
+ "milestones": { "coach_wins": [100, 200, 300], "pass_yards": [10000, 20000, 30000, 40000, 50000], "rush_yards": [5000, 10000], "sacks": [50, 100] }
+}
