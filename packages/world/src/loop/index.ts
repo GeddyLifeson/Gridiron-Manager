@@ -3,7 +3,7 @@
 export { MODULE, PARAMS, param } from './params.ts';
 export {
   WORLD_FOUNDED, HISTORY_RUN_ENDED, WENT_INACTIVE, RETURNED_ACTIVE, DIED, DEADLINE_LAPSED, IMPORT_PLACED, RELEASED, USER_BACKGROUND,
-  TEAM_FOUNDED, TEAM_FOLDED, WORLD_EVENT_TYPES, RELEASED_FALLBACK, worldEventTypes,
+  TEAM_FOUNDED, TEAM_FOLDED, TITLE_WON, WORLD_EVENT_TYPES, RELEASED_FALLBACK, TITLE_WON_FALLBACK, worldEventTypes,
 } from './events.ts';
 export {
   WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER,
@@ -31,3 +31,9 @@ export {
   STREAM_LIFECYCLE, curveFor, curveProblems, foundingYear, planTeamSpans, isActive, activeTeamIds, awaitingFounding, lifecycleStep,
   type TeamSpan, type FoundingCurve, type LifecycleBinding,
 } from './lifecycle.ts';
+export {
+  STREAM_HALL, HALL_REQUIRED_KEYS, hallRuleGaps, emptyHallState, defaultHalls, leagueFirstSeason, hallOpens, recordHallSeason, treeHeadCoachCount, hallCandidates, hallStep,
+  type CoachSeasonRow, type PlayerLine, type HallMember, type HallBallotRecord, type HallState, type HallSpec, type HallBinding,
+} from './hall.ts';
+export { STREAM_HISTORY_SCHEDULE, seasonOrder, circleRound, roundsFor, historySchedule, type HistoryScheduleBinding } from './history-schedule.ts';
+export { slimmable, slimRetired, slimStep, withSlimming } from './archive.ts';
