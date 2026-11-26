@@ -1,0 +1,10 @@
+{
+  "$comment": "Test fixture, not game data. league.roster_limit is G-10's F-college-0001; the rest are the bible's stated values for keys requested from G-10 (T5.1.1, T5.1.2).",
+  "id": "fixture_college_roster",
+  "values": {
+    "league.roster_limit": [105, "F-college-0001"],
+    "league.preseason_roster_limit": [110, "NEW T5.1.1"],
+    "aid.cancel_for_athletic_reasons": [false, "NEW T5.1.2"],
+    "roster.medical_retirement_leaves_count": [true, "NEW T5.1.2"]
+  }
+}
