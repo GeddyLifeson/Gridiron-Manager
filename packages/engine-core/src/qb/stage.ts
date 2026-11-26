@@ -699,6 +699,16 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   // ---------------------------------------------------------------------------------------------------
   // J7.7.1 mesh
 
+  /**
+   * Distance between two bodies for an exchange (J9.1.2 "within 0.8 yd"): body edge to body edge. Two
+   * men cannot stand centre to centre closer than their radii allow (J2.6), so a centre distance of
+   * 0.8 yd is never reached once bodies collide.
+   */
+  function handGap(w: TickWorld, a: number, b: number): number {
+    const d = hyp(w.players.posX[b]! - w.players.posX[a]!, w.players.posY[b]! - w.players.posY[a]!) - w.slots[a]!.movement.bodyRadiusYd - w.slots[b]!.movement.bodyRadiusYd;
+    return d > 0 ? d : 0;
+  }
+
   function meshStep(w: TickWorld, v: PerceivedView, t: number): void {
     const p = P!, play = cur!, m = play.mesh!, s = play.qbSlot;
     const key = v.entity(m.keySlot);
@@ -726,7 +736,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     }
     const decision = mesh!.decision;
     // The exchange itself: one draw, made when the ball is pulled or handed (give, keep or throw alike).
-    const exchanging = decision !== 'give' || hyp(w.players.posX[m.backSlot]! - w.players.posX[s]!, w.players.posY[m.backSlot]! - w.players.posY[s]!) <= BP!['exchange.handoffRangeYd']!;
+    const exchanging = decision !== 'give' || handGap(w, s, m.backSlot) <= BP!['exchange.handoffRangeYd']!;
     if (exchanging && uBegin[U_MESH_FUMBLE]! < meshFumbleChance(zHandling, mesh!.late, wet, p, w.math)) {
       mesh = { ...mesh!, fumbled: true };
       const at = { x: roundYd(w.players.posX[s]!), y: roundYd(w.players.posY[s]!) };
@@ -745,7 +755,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       return;
     }
     // Give: the ball changes hands when the back is inside the handoff range (J9.1.2). A late give is flagged for J6.7.
-    const reach = hyp(w.players.posX[m.backSlot]! - w.players.posX[s]!, w.players.posY[m.backSlot]! - w.players.posY[s]!);
+    const reach = handGap(w, s, m.backSlot);
     if (reach > BP!['exchange.handoffRangeYd']!) {
       if (t > m.endS + p['mesh.lateS']) { meshLate = true; mesh = { ...mesh!, late: true }; }
       if (t > m.endS + p['mesh.lateS'] + p['mesh.lateS']) { mesh = { ...mesh!, decision: 'keep' }; startRun(w, v, 'keep'); }
@@ -1004,7 +1014,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
         underPressureNow = true;
         if (pressured[d] === 0) { pressured[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'pressure', rusherId, passerId: qbId, spot }); }
       }
-      if (gap > 0 || w.tick < rearm[d]!) continue;
+      if (gap > p['arrival.contactGapYd'] || w.tick < rearm[d]!) continue;
       if (!has) {
         // Contact just after the release is a hit on the passer and changes nothing about the throw (J6.2.5).
         if (hitDone[d] === 0) { hitDone[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'hit', rusherId, passerId: qbId, spot }); }

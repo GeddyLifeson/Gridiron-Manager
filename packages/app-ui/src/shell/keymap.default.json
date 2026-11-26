@@ -856,6 +856,14 @@
     "Backslash"
    ],
    "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.precommit_cycle",
+   "keys": [
+    "KeyK"
+   ],
+   "device": "keyboard"
   }
  ]
 }

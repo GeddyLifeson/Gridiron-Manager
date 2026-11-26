@@ -48,5 +48,17 @@
   "console.challengeNotLegal": "Challenge not allowed now",
   "console.noSuchTag": "No such tag on this call",
   "console.tagNotInstalled": "Tag not practised this week",
-  "console.noSuggestion": "No suggestion this snap"
+  "console.noSuggestion": "No suggestion this snap",
+  "console.unitReady": "Unit alerted on third down is on its way",
+  "console.queuedReady": "Queued call ready: Enter to send",
+  "console.queueFull": "Queue full",
+  "console.precommitThirdOnly": "Pre-commit is made on third down",
+  "console.queue": "Next",
+  "console.ifShort": "If short",
+  "console.book": "Book",
+  "console.reversal": "Changed unit: run-off and run-on",
+  "console.precommit.decide_then": "Decide then",
+  "console.precommit.punt": "Punt",
+  "console.precommit.field_goal": "Field goal",
+  "console.precommit.go": "Go"
 }

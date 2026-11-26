@@ -11,7 +11,7 @@ import {
   PARAMS, REFUSED, REPLAY, RULE_KEYS, boothMayReview, challengeAccounting, challengeRefusal, challengesLeft, evidenceQuality, replayParamNames, replayRules,
 } from '../../src/replay/index.ts';
 import { candidatesOf, ctx, ev, plays, truthOf, type CtxOptions } from '../crew/helpers.ts';
-import { PROB_FLOOR } from '@gm/schema';
+import { PROB_FLOOR, type TruthEvent } from '@gm/schema';
 
 /** Evidence so clear that every wrong reviewable ruling is changed. */
 const CLEAR = { [REPLAY.evidenceSightOpen]: 1, [REPLAY.evidenceScaleYd]: 0.01, [REPLAY.evidenceScaleS]: 0.005, [REPLAY.evidenceNoMargin]: 1 };
@@ -372,6 +372,15 @@ describe('B9.4.1 ball placement after a reversal', () => {
     expect(reviewOf(fg, [ruling('kick_good', 2, 'good', 'no_good')], booth, c).seen).toEqual(fg);
     const punt = plays.muffedPunt({ marginYd: 0.4 });
     expect(reviewOf(punt, [ruling('touching', 2, 'touched', 'untouched')], booth, c).seen).toEqual(punt);
+    // A touch that did not happen: replay takes it out and the kickers recovery stands as it was.
+    const untouched = truthOf([
+      ev.snap(), ev.kick(2.0, 'punt', 80), { ...ev.kickTouch(5.8, 'landed', 1, 1, 80), playerId: null, side: null } as TruthEvent,
+      ev.possession(7.0, 0, 47, 84, 'kick_recovery'), ev.dead(7.0, 'kick_recovered_by_kickers', 84, 0, 47),
+    ]);
+    const phantom = reviewOf(untouched, [ruling('touching', 3, 'untouched', 'touched', { marginYd: null })], booth, c);
+    expect(phantom.before.events.some((e) => e.type === 'kick_touch' && e.kind === 'touched_by_receivers')).toBe(true);
+    expect(phantom.reversed).toEqual([0]);
+    expect(phantom.seen).toEqual(untouched);
   });
 });
 

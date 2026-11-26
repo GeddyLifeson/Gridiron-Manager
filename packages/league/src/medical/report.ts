@@ -173,5 +173,7 @@ export interface ShadingContext {
 /** The act for a filed report that differs from the truth, or null for a truthful one (never an inquiry). */
 export function shadingAct(flags: readonly ReportFlag[], ctx: ShadingContext): Act | null {
   if (flags.length === 0) return null;
-  return { classId: 'injury_report_shading', actor: ctx.actor, orderedBy: ctx.orderedBy, knew: ctx.knew, date: ctx.date, competitionId: ctx.competitionId, gain: ctx.gain, tier: ctx.tier, source: ctx.source };
+  // H5.2.3 rule 2 (MA-40): a label shade alone is detected at 10% (minor); an unlisted or no-status mismatch at 60% (major).
+  const severity = flags.every((f) => f.kind === 'wrong_participation') ? 'minor' : 'major';
+  return { classId: 'injury_report_shading', severity, actor: ctx.actor, orderedBy: ctx.orderedBy, knew: ctx.knew, date: ctx.date, competitionId: ctx.competitionId, gain: ctx.gain, tier: ctx.tier, source: ctx.source };
 }
