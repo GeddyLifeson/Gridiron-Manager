@@ -11,3 +11,6 @@ export * as bosses from './bosses/index.ts';
 export * as staff from './staff/index.ts';
 export * as life from './life/index.ts';
 export * as reputation from './reputation/index.ts';
+export * as contract from './contract/index.ts';
+export * as crisis from './crisis/index.ts';
+export * as community from './community/index.ts';
