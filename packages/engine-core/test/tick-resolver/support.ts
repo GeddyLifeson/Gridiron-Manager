@@ -14,15 +14,20 @@ import { PARAMS as KIN_PARAMS } from '../../src/kinematics/index.ts';
 import { PARAMS as PERCEPTION_PARAMS } from '../../src/perception/index.ts';
 import { PARAMS as AI_PARAMS } from '../../src/player-ai/index.ts';
 import { PARAMS as PRESNAP_PARAMS } from '../../src/presnap/index.ts';
+import { PARAMS as QB_PARAMS, basePlay, type QbPlay } from '../../src/qb/index.ts';
 import { paramTableFromFiles } from '../../src/tick/index.ts';
-import { PARAMS, type PlayContentPort, type PlaySetup } from '../../src/tick-resolver/index.ts';
-import { asg as presnapAsg, defense as presnapDefense, defenseInput, input as presnapInput, offense as presnapOffense, offenseInput, ruleSet, JERSEYS } from '../presnap/support.ts';
+import { PARAMS, qbTargetOf, type PlayContentPort, type PlaySetup } from '../../src/tick-resolver/index.ts';
+import { asg as presnapAsg, defense as presnapDefense, defenseInput, FIXTURE_VALUES, input as presnapInput, offense as presnapOffense, offenseInput, ruleSet, JERSEYS } from '../presnap/support.ts';
 import { fixturePlayer } from '../tick/support.ts';
 
 export const TABLE: ParamTable = paramTableFromFiles([
-  FIELD_PARAMS, KIN_PARAMS, PERCEPTION_PARAMS, PRESNAP_PARAMS, AI_PARAMS, BALL_PARAMS, CONTEST_PARAMS, PARAMS, ...lang.PARAM_FILES,
+  FIELD_PARAMS, KIN_PARAMS, PERCEPTION_PARAMS, PRESNAP_PARAMS, AI_PARAMS, BALL_PARAMS, CONTEST_PARAMS, QB_PARAMS, PARAMS, ...lang.PARAM_FILES,
 ]);
-export const RULES: RuleSet = ruleSet();
+/** FIXTURE rule values: the pre-snap fixture plus the keys the quarterback and the catch point read. Not rule data. */
+export const RULES: RuleSet = ruleSet({
+  ...FIXTURE_VALUES, 'score.touchdown': 6, 'try.two_point_points': 2, 'pass.spike_requires_under_center': true,
+  'foul.intentional_grounding.exists': true, 'catch.feet_required': 2,
+});
 
 /** A table with some rows replaced, for forcing an event in a test. */
 export function tableWith(over: Record<string, number>): ParamTable {
@@ -33,14 +38,42 @@ export function tableWith(over: Record<string, number>): ParamTable {
 const GAZE = 'key';
 const fix = (a: Assignment): Assignment => ({ ...a, gaze: GAZE });
 const asg = (...args: Parameters<typeof presnapAsg>): Assignment => fix(presnapAsg(...args));
-const offense = (): Assignment[] => presnapOffense().map(fix);
+/** Routes for the fixture's receivers (the pre-snap fixture draws none): a dig, a stick, a post and a hitch. */
+const ROUTES: Record<string, { px: number; py: number; kind: 'through' | 'cut' | 'settle' }[]> = {
+  X: [{ px: 10, py: 12, kind: 'cut' }, { px: 10, py: 2, kind: 'through' }],
+  Y: [{ px: 6, py: -4.2, kind: 'cut' }, { px: 6, py: -8, kind: 'settle' }],
+  Z: [{ px: 12, py: 6, kind: 'cut' }, { px: 22, py: -2, kind: 'through' }],
+  H: [{ px: 5, py: 7, kind: 'cut' }, { px: 5, py: 4, kind: 'settle' }],
+};
+const routed = (a: Assignment): Assignment => {
+  const r = ROUTES[a.role];
+  return r && a.behavior.type === 'route' ? { ...a, behavior: { ...a.behavior, path: r.map((pt) => ({ ...pt, landmark: null })) } } : a;
+};
+const offense = (): Assignment[] => presnapOffense().map(fix).map(routed);
+const SLOT = { Y: 5, X: 6, Z: 7, H: 8, QB: 9, RB: 10, RE: SLOTS_PER_TEAM + 3 } as const;
+
+/** FIXTURE quarterback plays: a three-read dropback with a checkdown, and a zone read off the end. */
+export function qbPlayOf(kind: Kind, O: readonly Assignment[]): QbPlay | null {
+  if (kind === 'pass') {
+    const t = (slot: number) => qbTargetOf(slot, O[slot]!);
+    return { ...basePlay(SLOT.QB, 'gun3', [
+      { kind: 'receiver', target: t(SLOT.X), priorValue: 0.5 }, { kind: 'receiver', target: t(SLOT.Z), priorValue: 0.6 }, { kind: 'receiver', target: t(SLOT.Y), priorValue: 0.3 },
+    ]), checkdown: t(SLOT.H) };
+  }
+  if (kind === 'run') {
+    return { ...basePlay(SLOT.QB, 'gun3', []), kind: 'mesh', mesh: { keySlot: SLOT.RE, backSlot: SLOT.RB, startS: 0, endS: 0.2, onCrash: 'keep' }, eligible: [SLOT.Y, SLOT.X, SLOT.Z, SLOT.H, SLOT.RB] };
+  }
+  return null;
+}
 const defense = (): Assignment[] => presnapDefense().map(fix);
 
 export type Kind = 'pass' | 'run' | KickKind;
 
 /** The run fixture: the pass fixture with run blocks and the back taking the snap-side run path. */
 function runOffense(): Assignment[] {
-  return offense().map((a) => (a.behavior.type === 'passSet' ? { ...a, behavior: { ...a.behavior, type: 'runBlock' } } : a));
+  return offense().map((a) => (
+    a.role === 'RB' ? { ...a, behavior: { ...a.behavior, type: 'ballCarrier' } }
+      : a.behavior.type === 'passSet' ? { ...a, behavior: { ...a.behavior, type: 'runBlock' } } : a));
 }
 function runDefense(): Assignment[] {
   return defense().map((a) => (a.behavior.type === 'passRush' ? { ...a, behavior: { ...a.behavior, type: 'runFit' } } : a));
@@ -106,7 +139,7 @@ export const CONTENT: PlayContentPort = {
         offense: offenseInput({ assignments: u.O, signalCaller: qb >= 0 ? qb : 4 }),
         defense: defenseInput({ assignments: u.D, manMatch: kind === 'pass' || kind === 'run' ? { 6: 6, 7: 7, 8: 8 } : {} }),
       }),
-      slots, context: qb >= 0 ? { qbSlot: qb } : {},
+      slots, context: qb >= 0 ? { qbSlot: qb } : {}, qb: qbPlayOf(kind, u.O),
       perception: Array.from({ length: SLOT_COUNT }, (_, s) => (s >= SLOTS_PER_TEAM ? { readsKeys: true, boxDefender: s < SLOTS_PER_TEAM + 6 } : {})),
     };
   },

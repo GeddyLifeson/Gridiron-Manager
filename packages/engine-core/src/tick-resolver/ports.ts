@@ -12,6 +12,7 @@ import type { Movement } from '../kinematics/index.ts';
 import type { Perception, PerceptionConfig } from '../perception/index.ts';
 import type { PlayContext, PlayerAi, PlayerMind, SlotPlay } from '../player-ai/index.ts';
 import type { PresnapInput, PresnapPlan, SnapResult } from '../presnap/index.ts';
+import type { QbPlay } from '../qb/play.ts';
 import type { PlayStage } from '../tick/index.ts';
 
 /** The stage modules the build plan gives to other work packages. The assembly owns everything else. */
@@ -25,7 +26,7 @@ export type PlugId = (typeof PLUG_IDS)[number];
  * on anything read at run time. Changing it changes results and so changes the golden hashes.
  */
 export const MODULE_ORDER = [
-  'presnap', 'perception', 'playerAi', 'movement', 'heldBall', 'ball', 'boundary', 'interact', 'kickOp',
+  'presnap', 'perception', 'playerAi', 'movement', 'heldBall', 'ball', 'boundary', 'interact', 'kickOp', 'catchPoint',
   'qb', 'carrier', 'foulsInjuries', 'finish',
 ] as const;
 export type ModuleId = (typeof MODULE_ORDER)[number];
@@ -49,6 +50,14 @@ export interface PlayServices {
   setup(): PlaySetup;
   /** The input of the play being run: situation, calls, teams, environment. */
   input(): PlayInput;
+  /**
+   * The slot of a passer whose arrival contests the quarterback module is resolving this tick (J6.2.5:
+   * pressure, hit, sack, escape), or -1. A carrier module must not tackle that man: he is the
+   * quarterback module's until he throws, hands off or becomes a runner.
+   */
+  protectedPasser(): number;
+  /** The quarterback module registers how to answer `protectedPasser`. Called once, in `create`. */
+  claimPasser(slotNow: () => number): void;
 }
 
 /**
@@ -104,6 +113,12 @@ export interface PlaySetup {
   readonly perception: readonly PerceptionConfig[];
   /** The assignment a slot falls back to for J4.5.3 "ran the old call", by world slot. */
   readonly alternates?: readonly (Assignment | null)[];
+  /**
+   * What the quarterback is handed before the snap (J7 inputs): his drop, progression, hot rule, mesh
+   * read and the coach's instructions. Null or absent: the play has no quarterback procedure (a kick,
+   * a direct snap to a runner). Read by the quarterback module only.
+   */
+  readonly qb?: QbPlay | null;
 }
 
 export interface PlayContentPort {

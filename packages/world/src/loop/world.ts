@@ -9,6 +9,7 @@ import { param as gparam } from '../generation/params.ts';
 import { setupHashHex, type SetupRecord } from '../generation/setup.ts';
 import { buildStructures, structureProblems } from '../generation/structures.ts';
 import { WORLD_FOUNDED, worldEventTypes } from './events.ts';
+import { planTeamSpans, type FoundingCurve } from './lifecycle.ts';
 import type { LiveWorld } from './types.ts';
 
 export interface CreateWorldInput {
@@ -21,6 +22,12 @@ export interface CreateWorldInput {
   readonly seedStep?: number;
   readonly labelIds?: ReadonlySet<string>;
   readonly notabilityOf?: history.EventLogOptions['notabilityOf'];
+  /**
+   * Founding curves by competition (lifecycle.ts `curveFor`). With none, every team exists from the
+   * first season, as before. With curves, a team is founded in its own year and only teams that exist
+   * in the first season are founded on day one.
+   */
+  readonly foundingCurves?: Readonly<Record<string, FoundingCurve>>;
 }
 
 /** Seed plus `step` as a 64-bit value (X10.3.2 "derived seed (seed plus 1)"). */
@@ -37,8 +44,12 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   const built = buildStructures(setup, seed, content);
   const sProblems = structureProblems(built);
   if (sProblems.length > 0) throw new Error(`world structures are incomplete: ${sProblems.slice(0, 5).join('; ')}`);
-  const founding = foundPeople(setup, seed, content, built, input.names);
-  const fProblems = foundingProblems(setup, content, built, founding);
+  const careerStartYear = setup.firstSeasonYear + setup.historySeasons;
+  const teamSpans = planTeamSpans(seed, built.teams, built.competitions, input.foundingCurves ?? {}, setup.firstSeasonYear, careerStartYear);
+  const dayOne = new Set([...teamSpans.values()].filter((s) => s.founded <= setup.firstSeasonYear).map((s) => s.teamId));
+  const fOpts = { teamIds: dayOne };
+  const founding = foundPeople(setup, seed, content, built, input.names, fOpts);
+  const fProblems = foundingProblems(setup, content, built, founding, fOpts);
   if (fProblems.length > 0) throw new Error(`founding people are not legal on day one: ${fProblems.slice(0, 5).join('; ')}`);
 
   // The cohort step emits G-44's types, so they are added here when the caller's registry lacks them.
@@ -54,7 +65,7 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   const world: LiveWorld = {
     setup, seed, seedStep,
     date: { seasonYear: setup.firstSeasonYear, dayIndex: 0 }, week: 0, dayInWeek: 0,
-    competitions: built.competitions, conferences: built.conferences, places: built.places, venues: built.venues, teams: built.teams,
+    competitions: built.competitions, conferences: built.conferences, places: built.places, venues: built.venues, teams: built.teams, teamSpans,
     placeOfTeam: new Map(built.placeOfTeam),
     people, status: new Map(founding.people.map((p) => [p.id, 'active' as const])), outOfFootballSince: new Map(),
     jobs: new Map(founding.jobs.map((j) => [j.id, j])), rosters: founding.rosters,

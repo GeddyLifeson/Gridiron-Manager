@@ -1,0 +1,2744 @@
+{
+ "domain": "coaching-convention",
+ "rows": [
+  {
+   "id": "F-press-0001",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Share of reporter questions by topic in in-season pro head coach sessions: culture_leadership 0.130, unit_performance 0.130, injury_status 0.094, player_performance 0.080, decision_call 0.065, depth_chart 0.065, qb_performance 0.058, scheme_philosophy 0.051, result_overall 0.036, roster_move 0.036, specific_play 0.036, job_security 0.022, media_reports 0.022, officiating_rules 0.022, opponent_coach 0.022, opponent_player 0.022, staff 0.022, penalties 0.015, practice_prep 0.015, standings_stakes 0.015, analytics_stats 0.007, fans_crowd 0.007, game_plan 0.007, qb_change 0.007, rivalry_history 0.007, trade 0.007.",
+   "value": "research.json share",
+   "unit": "share of questions",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 11 real pro head coach press conference transcripts (138 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key pro_inseason",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": "research.json share"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "One classifier (a model reading each page) and one sample: PROVISIONAL. Topics never seen in the sample keep the floorShare chance (params.json)."
+  },
+  {
+   "id": "F-press-0003",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Tone of reporter questions in in-season pro sessions: soft 0.2971, neutral 0.5435, probing 0.1594, hostile 0.0.",
+   "value": "research.json tone",
+   "unit": "share of questions",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 11 real pro head coach press conference transcripts (138 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key pro_inseason",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": "research.json tone"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "No hostile question was seen in the sample; tone.hostileFloor (Assumption) keeps one possible. Tone labels are the classifier's judgment and differ between readers (the second pro batch labelled almost all neutral)."
+  },
+  {
+   "id": "F-press-0005",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Share of pro in-season questions that press the previous answer on the same topic: 0.2101.",
+   "value": 0.2101,
+   "unit": "share of questions",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 11 real pro head coach press conference transcripts (138 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key pro_inseason",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": 0.2101
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "PROVISIONAL."
+  },
+  {
+   "id": "F-press-0007",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Mean reporter questions per pro head coach session by kind: day_after 14.8, end_of_season 11.0, introductory 10.0, midweek 15.0, offseason 40.0, postgame 9.8, training_camp 18.2.",
+   "value": "research.json perSession",
+   "unit": "questions per session",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 19 real pro head coach press conference transcripts (312 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key pro",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": "research.json perSession"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Sessions differ widely (7 to 63 questions). Some transcripts are trimmed by the club. PROVISIONAL."
+  },
+  {
+   "id": "F-press-0002",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Share of reporter questions by topic in in-season college head coach sessions: unit_performance 0.140, player_performance 0.114, culture_leadership 0.105, depth_chart 0.097, injury_status 0.070, opponent_player 0.053, game_plan 0.044, qb_performance 0.044, schedule_travel_weather 0.044, staff 0.044, opponent_team 0.035, practice_prep 0.035, standings_stakes 0.026, transfer_nil 0.026, milestone_record 0.018, other 0.018, analytics_stats 0.009, decision_call 0.009, fans_crowd 0.009, job_security 0.009, officiating_rules 0.009, opponent_coach 0.009, personal_family 0.009, play_calling_role 0.009, recruiting 0.009, roster_move 0.009.",
+   "value": "research.json share",
+   "unit": "share of questions",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 7 real college head coach press conference transcripts (114 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key college_inseason",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": "research.json share"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "One classifier (a model reading each page) and one sample: PROVISIONAL. Topics never seen in the sample keep the floorShare chance (params.json)."
+  },
+  {
+   "id": "F-press-0004",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Tone of reporter questions in in-season college sessions: soft 0.693, neutral 0.2982, probing 0.0088, hostile 0.0.",
+   "value": "research.json tone",
+   "unit": "share of questions",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 7 real college head coach press conference transcripts (114 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key college_inseason",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": "research.json tone"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "No hostile question was seen in the sample; tone.hostileFloor (Assumption) keeps one possible. Tone labels are the classifier's judgment and differ between readers (the second pro batch labelled almost all neutral)."
+  },
+  {
+   "id": "F-press-0006",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Share of college in-season questions that press the previous answer on the same topic: 0.0263.",
+   "value": 0.0263,
+   "unit": "share of questions",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 7 real college head coach press conference transcripts (114 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key college_inseason",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": 0.0263
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "PROVISIONAL."
+  },
+  {
+   "id": "F-press-0008",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Mean reporter questions per college head coach session by kind: weekly 16.3.",
+   "value": "research.json perSession",
+   "unit": "questions per session",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Classified sample of 7 real college head coach press conference transcripts (114 questions), research/press/tally.py",
+     "locator": "research/press/tally.json key college",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "press-transcript-sample-2026-11",
+     "primary": false,
+     "value": "research.json perSession"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Sessions differ widely (7 to 63 questions). Some transcripts are trimmed by the club. PROVISIONAL."
+  },
+  {
+   "id": "F-press-0101",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'result_overall' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), jaguars",
+     "locator": "https://asaptext.com/asap_media/media/1048/1078/transcripts/161773.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-jaguars",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0102",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'specific_play' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0103",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'decision_call' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), jaguars",
+     "locator": "https://asaptext.com/asap_media/media/1048/1078/transcripts/161773.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-jaguars",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0104",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'play_calling_role' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), ravens",
+     "locator": "https://www.baltimoreravens.com/news/transcript-press-conference-2-18-26",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-ravens",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0105",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'unit_performance' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), jaguars",
+     "locator": "https://asaptext.com/asap_media/media/1048/1078/transcripts/161773.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-jaguars",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0106",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'player_performance' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), jaguars",
+     "locator": "https://asaptext.com/asap_media/media/1048/1078/transcripts/161773.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-jaguars",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0107",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'qb_performance' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0108",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'qb_change' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0109",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'depth_chart' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0110",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'injury_status' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), jaguars",
+     "locator": "https://asaptext.com/asap_media/media/1048/1078/transcripts/161773.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-jaguars",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0111",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'roster_move' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0112",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'trade' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0113",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'contract' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0114",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'draft_free_agency' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), ravens",
+     "locator": "https://www.baltimoreravens.com/news/transcript-press-conference-2-18-26",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-ravens",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0115",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'opponent_team' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0116",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'opponent_player' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0117",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'opponent_coach' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), ravens",
+     "locator": "https://www.baltimoreravens.com/news/transcript-press-conference-2-18-26",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-ravens",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0118",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'rivalry_history' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0119",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'scheme_philosophy' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0120",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'game_plan' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0121",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'practice_prep' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0122",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'culture_leadership' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), jaguars",
+     "locator": "https://asaptext.com/asap_media/media/1048/1078/transcripts/161773.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-jaguars",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), ravens",
+     "locator": "https://www.baltimoreravens.com/news/transcript-press-conference-2-18-26",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-ravens",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0123",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'discipline_conduct' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0124",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'officiating_rules' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), jaguars",
+     "locator": "https://asaptext.com/asap_media/media/1048/1078/transcripts/161773.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-jaguars",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0125",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'penalties' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0126",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'job_security' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0127",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'coach_career_self' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), ravens",
+     "locator": "https://www.baltimoreravens.com/news/transcript-press-conference-2-18-26",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-ravens",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0128",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'staff' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), ravens",
+     "locator": "https://www.baltimoreravens.com/news/transcript-press-conference-2-18-26",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-ravens",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0129",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'standings_stakes' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), ravens",
+     "locator": "https://www.baltimoreravens.com/news/transcript-press-conference-2-18-26",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-ravens",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0130",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'schedule_travel_weather' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0131",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'fans_crowd' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0132",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'media_reports' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0133",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'recruiting' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0134",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'transfer_nil' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0135",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'off_field_player' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0136",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'personal_family' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0137",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'social_issue' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0138",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'player_safety_health' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0139",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'analytics_stats' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), dolphins",
+     "locator": "https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-july-25-training-camp-practice-3 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-media-availability-sep-12 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-oct-30 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-dec-21 ; https://www.miamidolphins.com/news/transcript-mike-mcdaniel-s-postgame-media-availability-sep-14",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-dolphins",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0140",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'milestone_record' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), bears",
+     "locator": "https://asaptext.com/asap_media/media/1033/1033/transcripts/164050.pdf ; https://asaptext.com/asap_media/media/1033/1033/transcripts/159613.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-bears",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0141",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask pro head coaches questions of the kind 'other' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real pro head coach press conference transcript(s), giants",
+     "locator": "https://www.giants.com/news/quotes-gm-joe-schoen-and-coach-brian-daboll ; https://www.giants.com/news/quotes-8-19-coach-brian-daboll-asst-gm-brandon-brown-lt-andrew-thomas ; https://asaptext.com/asap_media/media/1086/1255/transcripts/154657.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-giants",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real pro head coach press conference transcript(s), patriots",
+     "locator": "https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-7-22 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-9-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-13 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-10-8 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-11-17 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-12-29 ; https://www.patriots.com/news/transcript-head-coach-mike-vrabel-press-conference-8-25",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-patriots",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0201",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'result_overall' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0202",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'specific_play' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0203",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'decision_call' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0204",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'play_calling_role' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0205",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'unit_performance' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0206",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'player_performance' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0207",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'qb_performance' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0208",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'qb_change' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0209",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'depth_chart' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0210",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'injury_status' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0211",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'roster_move' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0212",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'trade' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0213",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'contract' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0214",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'draft_free_agency' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0215",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'opponent_team' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0216",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'opponent_player' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0217",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'opponent_coach' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0218",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'rivalry_history' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0219",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'scheme_philosophy' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0220",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'game_plan' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0221",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'practice_prep' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0222",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'culture_leadership' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0223",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'discipline_conduct' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0224",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'officiating_rules' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0225",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'penalties' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0226",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'job_security' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0227",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'coach_career_self' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0228",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'staff' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0229",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'standings_stakes' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0230",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'schedule_travel_weather' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0231",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'fans_crowd' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0232",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'media_reports' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0233",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'recruiting' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0234",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'transfer_nil' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    },
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0235",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'off_field_player' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0236",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'personal_family' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0237",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'social_issue' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0238",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'player_safety_health' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [],
+   "status": "Unverified",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Not seen in the classified sample; the topic stays possible through floorShare (Assumption) when a public event or evergreen subject exists."
+  },
+  {
+   "id": "F-press-0239",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'analytics_stats' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), indiana",
+     "locator": "https://iuhoosiers.com/news/2025/10/27/football-media-monday-maryland",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-indiana",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0240",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'milestone_record' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), texasam",
+     "locator": "https://12thman.com/news/2025/10/6/football-mike-elko-press-conference-quotes-florida ; https://12thman.com/news/2025/10/13/football-mike-elko-press-conference-quotes-arkansas ; https://www.12thman.com/news/2025/11/3/football-mike-elko-press-conference-quotes-missouri",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-texasam",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  },
+  {
+   "id": "F-press-0241",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Reporters ask college head coaches questions of the kind 'other' (research/press/taxonomy.md).",
+   "value": "asked",
+   "validFor": "2024 to 2026 seasons",
+   "sources": [
+    {
+     "citation": "Real college head coach press conference transcript(s), pennstate",
+     "locator": "https://gopsusports.com/news/2025/09/1/weekly-press-conference-transcript-head-coach-james-franklin-fiu ; https://gopsusports.com/news/2025/09/22/weekly-press-conference-transcript-head-coach-james-franklin-oregon-2025 ; https://gopsusports.com/news/2024/11/11/weekly-press-conference-transcript-head-coach-james-franklin-purdue-2024",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "club-pennstate",
+     "primary": false,
+     "value": "asked"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "frontOffice.press"
+   ],
+   "statusHistory": [],
+   "notes": "Seen at each listed club in the classified sample."
+  }
+ ]
+}

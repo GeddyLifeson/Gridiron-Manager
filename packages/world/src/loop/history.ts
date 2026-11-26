@@ -2,7 +2,9 @@
 // as live play, every game through the game port (the real engine), every event `source: history_run`.
 // There is no separate history generator (X10.3.1 rule 3).
 import { param as gparam } from '../generation/params.ts';
+import { hash64Hex, utf8 } from '@gm/engine-core';
 import { HISTORY_RUN_ENDED } from './events.ts';
+import { activeTeamIds, isActive } from './lifecycle.ts';
 import { runSeason, unboundSteps, type PassOptions } from './order.ts';
 import type { LiveWorld, SchedulePort, SeasonSummary, StaffSeason, WorldSystems } from './types.ts';
 
@@ -135,8 +137,10 @@ export function validateHistory(world: LiveWorld, bands: ValidatorBands = {}): V
 
   // Champions: at least 3 different per level per full decade, and no team above 60 percent of titles.
   for (const comp of world.competitions) {
-    const titles = seasons.map((s) => s.champions[comp.id]).filter((t): t is number => t !== undefined);
-    if (titles.length < seasons.length) failures.push(`competition ${comp.id}: ${seasons.length - titles.length} seasons have no champion`);
+    // Only seasons in which the competition had two teams to play can have a champion (teams found and fold).
+    const played = seasons.filter((s) => activeTeamIds(world, comp.teamIds, s.seasonYear).length >= 2);
+    const titles = played.map((s) => s.champions[comp.id]).filter((t): t is number => t !== undefined);
+    if (titles.length < played.length) failures.push(`competition ${comp.id}: ${played.length - titles.length} seasons have no champion`);
     for (let i = 0; i + decade <= titles.length; i += decade) {
       const distinct = new Set(titles.slice(i, i + decade)).size;
       if (distinct < gparam('validate.championsPerDecade')) failures.push(`competition ${comp.id}: ${distinct} different champions in seasons ${i + 1} to ${i + decade}`);
@@ -166,14 +170,15 @@ export function validateHistory(world: LiveWorld, bands: ValidatorBands = {}): V
   // At least one team rivalry per conference.
   const teamById = new Map(world.teams.map((t) => [t.id, t]));
   for (const c of world.conferences.filter((x) => x.kind === 'conference')) {
-    const members = new Set(c.teamIds);
+    const members = new Set(activeTeamIds(world, c.teamIds));
     if (members.size < 2) continue;
-    const has = c.teamIds.some((id) => teamById.get(id)!.rivalTeamIds.some((r) => members.has(r)));
+    const has = [...members].some((id) => teamById.get(id)!.rivalTeamIds.some((r) => members.has(r)));
     if (!has) failures.push(`conference ${c.id} (${c.name}) has no rivalry`);
   }
 
   // Rosters and staffs legal.
   for (const t of world.teams) {
+    if (!isActive(world, t.id)) continue;
     if ((world.rosters.get(t.id) ?? []).length === 0) failures.push(`team ${t.id} has no players`);
   }
   const lastStaff = world.staffSeasons.filter((s) => s.seasonYear === seasons[seasons.length - 1]!.seasonYear);
@@ -264,4 +269,35 @@ export function gamesInSeason(world: LiveWorld, schedule: SchedulePort): number 
   let n = 0;
   for (let w = 0; w < schedule.weeksInSeason(world); w++) n += schedule.gamesOn(world, w).length;
   return n;
+}
+
+// ---------- Rerun history (Marlon 2026-11-26, the Dwarf Fortress-style world generation) ----------
+
+/**
+ * The seed of the n-th rerun of a world: derived from the first seed, so the first seed and the rerun
+ * count still name the world. Rerun 0 is the first seed itself.
+ */
+export function rerunSeedHex(seedHex: string, rerun: number): string {
+  if (!Number.isInteger(rerun) || rerun < 0) throw new Error('rerun: a whole number, 0 or more');
+  return rerun === 0 ? seedHex : hash64Hex(utf8(`${seedHex}:rerun:${rerun}`));
+}
+
+export interface HistoryDraft {
+  readonly rerun: number;
+  readonly seedHex: string;
+  readonly built: BuiltHistory;
+}
+
+/**
+ * Generate one draft of the past for the player to look over before the career starts. Rerunning asks for
+ * the next draft with a fresh seed; the player keeps whichever draft he starts in. Data baked into the
+ * game (calibration tables from the master data run) is never touched by a rerun.
+ */
+export function draftHistory(
+  baseSeedHex: string, rerun: number,
+  make: (seedHex: string, seedStep: number) => { world: LiveWorld; systems: WorldSystems; plan: HistoryPlan },
+  bands: ValidatorBands = {},
+): HistoryDraft {
+  const seedHex = rerunSeedHex(baseSeedHex, rerun);
+  return { rerun, seedHex, built: buildWithHistory((step) => make(seedHex, step), bands) };
 }
