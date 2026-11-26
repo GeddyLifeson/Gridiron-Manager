@@ -82,8 +82,19 @@ function seatAge(s: RandomStream, kind: positions.CascadeKind, rung: number | nu
   return triangularAge(s, min, min + param('age.staffModeOffset'), param('age.staffMax'));
 }
 
-export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldContent, built: BuiltStructures, names: PersonNameSource): FoundingResult {
-  const year = setup.firstSeasonYear;
+/**
+ * Which teams to found, in which year, and the first free ids. The default founds every team in the
+ * world's first season. The team lifecycle (loop/lifecycle.ts) founds a later team in its own founding
+ * year with the world's next ids, through this same code (X10.2.2 holds for every founding).
+ */
+export interface FoundOptions {
+  readonly teamIds?: ReadonlySet<number>;
+  readonly year?: number;
+  readonly firstIds?: { readonly person: number; readonly job: number };
+}
+
+export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldContent, built: BuiltStructures, names: PersonNameSource, opts: FoundOptions = {}): FoundingResult {
+  const year = opts.year ?? setup.firstSeasonYear;
   const date: WorldDate = { seasonYear: year, dayIndex: 0 };
   const rnd: generator.GeneratorRandom = {
     open: (name, scope) => stream(seed, name, scope),
@@ -101,9 +112,10 @@ export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldC
   const staffContractEndYear = new Map<number, number>();
   const classYearOf = new Map<number, number>();
   const implausible: number[] = [];
-  const next = { person: 1, job: 1 };
+  const next = { person: opts.firstIds?.person ?? 1, job: opts.firstIds?.job ?? 1 };
 
   for (const team of built.teams) {
+    if (opts.teamIds && !opts.teamIds.has(team.id)) continue;
     const level = levelOf.get(team.competitionId)!;
     const spec = content.levels[level];
     const place = regionOfPlace.get(built.placeOfTeam.get(team.id)!)!;
@@ -174,11 +186,13 @@ export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldC
 }
 
 /** X10.2.2 acceptance checks that need no other module. Empty when the founding is sound. */
-export function foundingProblems(setup: SetupRecord, content: WorldContent, built: BuiltStructures, f: FoundingResult): string[] {
+export function foundingProblems(setup: SetupRecord, content: WorldContent, built: BuiltStructures, f: FoundingResult, opts: FoundOptions = {}): string[] {
   const out: string[] = [];
+  const year = opts.year ?? setup.firstSeasonYear;
   const levelOf = new Map(built.competitions.map((c) => [c.id, c.level]));
   const byId = new Map(f.people.map((p) => [p.id, p]));
   for (const t of built.teams) {
+    if (opts.teamIds && !opts.teamIds.has(t.id)) continue;
     const spec = content.levels[levelOf.get(t.competitionId)!];
     const roster = f.rosters.get(t.id) ?? [];
     if (roster.length !== spec.rosterLimit) out.push(`team ${t.id}: ${roster.length} players, limit ${spec.rosterLimit}`);
@@ -189,7 +203,7 @@ export function foundingProblems(setup: SetupRecord, content: WorldContent, buil
     for (const b of positions.limitBreaches(staff, positions.limitsFrom(spec.staffLimits))) out.push(`team ${t.id}: ${b.key} ${b.count} over ${b.limit}`);
     for (const s of staff.seats) {
       if (s.holderPersonId === null) out.push(`team ${t.id}: seat ${s.catalogueId} is empty on day one`);
-      else if (s.holderSince?.seasonYear !== setup.firstSeasonYear) out.push(`team ${t.id}: seat ${s.catalogueId} has years in chair`);
+      else if (s.holderSince?.seasonYear !== year) out.push(`team ${t.id}: seat ${s.catalogueId} has years in chair`);
     }
     if (spec.ageModel === 'class_years') {
       const present = new Set(roster.map((id) => f.classYearOf.get(id)));
