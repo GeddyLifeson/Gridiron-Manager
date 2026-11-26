@@ -177,7 +177,7 @@ describe('week, film and media screens fed from the season (item 2d)', () => {
   for (const [level, ruleSetId, rulesFile] of [['pro', 'pro_2026', CONTENT.proLeagueRules], ['college', 'college_2026', CONTENT.collegeLeagueRules]] as const) {
     it(`${level}: the week screens read the coming week, take edits, and the called game files its film`, () => {
       const teams = level === 'pro' ? CONTENT.proLeague.league.clubs : CONTENT.college.schools;
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[3].id });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[3].id, resolver: 'reference' });
       const port = careerPortFromSeason(sp, {
         level, seasonYear: 2026, resolve, weekRules: weekLoop.weekRules(rulesFile.values, level), venues: weekLoop.venuesOf(CONTENT, level),
         consoleConfig: (gameId) => gameCalling.staffConsoleConfig(ruleSetId, gameId, DEFAULT_KEYMAP.bindings),
