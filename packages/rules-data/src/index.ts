@@ -60,6 +60,8 @@ export function resolveRuleSet(id: string, files: readonly RuleSetFile[] = RULE_
     if (v === undefined) throw new RuleSetError(`${id}: missing required key ${key}`);
     return v.value;
   };
+  // Sorted once (G-97): callers ask for the key list inside the play loop. Frozen, so no caller can change it.
+  const sortedKeys: readonly string[] = Object.freeze([...flat.keys()].sort());
   return Object.freeze({
     id: file.ruleset_id,
     level: file.level,
@@ -67,7 +69,7 @@ export function resolveRuleSet(id: string, files: readonly RuleSetFile[] = RULE_
     num(key: string) { const v = get(key); if (typeof v !== 'number') throw new RuleSetError(`${id}: ${key} is not a number`); return v; },
     bool(key: string) { const v = get(key); if (typeof v !== 'boolean') throw new RuleSetError(`${id}: ${key} is not a switch`); return v; },
     opt(key: string) { const v = get(key); if (typeof v !== 'string') throw new RuleSetError(`${id}: ${key} is not an option`); return v; },
-    keys() { return [...flat.keys()].sort(); },
+    keys() { return sortedKeys; },
   });
 }
 
