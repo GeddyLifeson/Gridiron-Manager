@@ -5,3 +5,5 @@ export * as starter from './starter/index.ts';
 export * as playbook from './playbook/index.ts';
 export * as gameplan from './gameplan/index.ts';
 export * as defenseDesigner from './defense-designer/index.ts';
+export * as full from './full/index.ts';
+export * as glossary from './glossary/index.ts';

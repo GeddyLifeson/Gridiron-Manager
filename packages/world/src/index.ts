@@ -2,3 +2,4 @@
 export const PACKAGE = 'world';
 export * as generation from './generation/index.ts';
 export * as loop from './loop/index.ts';
+export * as tiers from './tiers/index.ts';

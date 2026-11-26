@@ -17,3 +17,8 @@ export * as defenseDesigner from './screens/defense-designer/index.ts';
 export * as playDesigner from './screens/play-designer/index.ts';
 // Route table: binds each screen package's route factory to its screens.json id (integrator-owned).
 export { buildRoutes, ASSIGNMENTS_SCREEN_ID, WEEK_SCHEDULE_SCREEN_ID, type RouteSources } from './routes.ts';
+export * as icons from './presentation/icons/index.ts';
+export * as editorsScreen from './screens/editors/index.ts';
+export * as seats from './screens/seats/index.ts';
+export * as playerDesigner from './screens/player-designer/index.ts';
+export * as settings from './screens/settings/index.ts';
