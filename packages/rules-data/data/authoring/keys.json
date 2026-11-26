@@ -3992,6 +3992,1695 @@
    }
   },
   {
+   "key": "replay.reviewable.catch",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: complete, incomplete or intercepted pass",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 2, Item 1",
+      "q": "Completion of a Pass. Whether a pass was complete or incomplete.",
+      "line": 4032
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 2-a",
+      "q": "Pass ruled complete, incomplete or intercepted anywhere in the field of play or an end zone.",
+      "line": 5078
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.down_by_contact",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: runner down by contact (a whistle that stopped a live play is never reviewable)",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 3, Item 1",
+      "q": "Down by Contact. Whether a player should have been ruled down by contact while in possession of the ball.",
+      "line": 4070
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 3-d",
+      "q": "or live ball ruled dead in possession of a ball carrier, when there is a clear recovery or the ball goes out of bounds in the immediate continuing football action.",
+      "line": 5115
+     }
+    ],
+    "note": "College reviews a live ball ruled dead only when there is a clear recovery or the ball goes out of bounds in the immediate continuing action (12-3-3-d); the boolean records that the aspect is reviewable."
+   }
+  },
+  {
+   "key": "replay.reviewable.spot",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: the dead-ball spot against the line to gain",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 7",
+      "q": "The dead ball spot is reviewable to determine whether it was short of, at, or beyond the line to gain.",
+      "line": 4130
+     }
+    ],
+    "note": "The book limits spot review to the line to gain and the goal line (15-3-4 Item 1 Note 2, 15-3-7); the boolean cannot carry that limit."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 3-e",
+      "q": "Ball carrier’s forward progress, spot of fumble, or spot of out-of-bounds backward pass, with respect to a first down or the goal line.",
+      "line": 5130
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.forward_or_backward_pass",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: pass forward or backward",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 11, Item 1",
+      "q": "Direction of a Pass. Whether a pass was forward or backward.",
+      "line": 4168
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 2-e",
+      "q": "Pass ruled forward or backward.",
+      "line": 5086
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.in_bounds",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: runner or receiver in or out of bounds",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 5, Item 1",
+      "q": "Runner Inbounds. A ruling that a runner was inbounds is reviewable to determine whether the runner touched out of bounds.",
+      "line": 4106
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 3-g",
+      "q": "Ball carrier in or out of bounds. If a ball carrier is ruled out of bounds, the play is not reviewable, except as in Rules 12-3-1-a and 12-3-3-d.",
+      "line": 5134
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.score",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: ball breaking the plane of the goal line in possession",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 4, Item 1",
+      "q": "Ball breaking the plane of the goal line. Whether any part of the ball broke the plane of the goal line while in player possession and before the ball should have been declared dead.",
+      "line": 4094
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 1-a",
+      "q": "A potential touchdown or safety.",
+      "line": 5070
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.possession",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: recovery of a loose ball",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 2, Item 2",
+      "q": "Recovery of a Loose Ball. Whether a player legally recovered a loose ball in the field of play, at the sideline, goal line, or in the end zone.",
+      "line": 4041
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 3-j",
+      "q": "Catch or recovery of a loose ball in the field of play or an end zone.",
+      "line": 5141
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.fumble_before_down",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: fumble before the runner was down",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 2, Item 4",
+      "q": "Fumble. Whether a runner lost possession (a) before he was down by contact, out of bounds, or had given himself up",
+      "line": 4057
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 3-d",
+      "q": "or live ball ruled dead in possession of a ball carrier, when there is a clear recovery or the ball goes out of bounds in the immediate continuing football action.",
+      "line": 5115
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.kick_good",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: field goal or try good or no good",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 11, Item 3",
+      "q": "Whether a field goal or Try attempt crossed above the crossbar and inside the uprights is reviewable, but only if the ball crosses the plane of the goal post below the top of the uprights, or if the ball touches anything.",
+      "line": 4174
+     }
+    ],
+    "note": "Reviewable only where the ball crossed below the top of the uprights or touched something; the boolean cannot carry that limit."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 1-b",
+      "q": "Field goal attempts if and only if the ball is ruled (a) below or above the crossbar or (b) inside or outside the uprights when it is lower than the top of the uprights.",
+      "line": 5072
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.touching",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: touching of a kick or a loose ball",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 3, Item 4",
+      "q": "Touching of a Kick. Whether a player touched a kick and the spot of touching.",
+      "line": 4080
+     },
+     {
+      "cite": "Rule 15, Section 3, Article 3, Item 5",
+      "q": "Touching of a Loose Ball. Whether a player touched a loose ball.",
+      "line": 4089
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 4-a",
+      "q": "Touching of a kick.",
+      "line": 5145
+     },
+     {
+      "cite": "Rule 12, Section 3, Article 3-h",
+      "q": "Catch, recovery or touching of a loose ball by a player inbounds or out of bounds",
+      "line": 5136
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.reviewable.foul",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: a foul call (a single foul may be opened to review by its own switch)",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 15, Section 4",
+      "q": "any aspect of a play not listed as reviewable in Section 3 of this Rule.",
+      "line": 4191
+     }
+    ],
+    "note": "False for fouls in general. Penalty administration (15-7-1), a foul nullified or created by a changed ruling (15-7-2) and the listed college fouls (12-3-8) are reached through the per-foul switch foul.<id>.replay_reviewed, which belongs to the fouls rule rows."
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "No other plays or officiating decisions are reviewable.",
+      "line": 5231
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.booth_only.after_two_minute",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a play that begins after the two-minute warning of either half",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(a)",
+      "q": "that begins after the two-minute warning of each half;",
+      "line": 3976
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.booth_only.overtime",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a play in overtime",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(b)",
+      "q": "throughout any overtime period;",
+      "line": 3977
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.booth_only.scoring_play",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a play ruled a score",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(c)",
+      "q": "when points are scored by either team;",
+      "line": 3978
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.booth_only.try",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a try, good or no good",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(d)",
+      "q": "that is a Try attempt (successful or unsuccessful);",
+      "line": 3979
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.booth_only.turnover",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: an interception, or a fumble or backward pass ruled recovered by the opponent",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(e)(1)",
+      "q": "an interception by an opponent;",
+      "line": 3981
+     },
+     {
+      "cite": "Rule 15, Section 1, Article 2(e)(2)",
+      "q": "a fumble or backward pass recovered by an opponent or that goes out of bounds through the opponent’s end zone;",
+      "line": 3982
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.booth_only.failed_fourth_down",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: the offense ruled short of the line to gain on the last down of a series",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(e)(3)",
+      "q": "that the offense failed to reach the line to gain on fourth down;",
+      "line": 3983
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.booth_only.kick_possession",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: the kicking team ruled in possession at the end of a kick down",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(e)(4)",
+      "q": "possession by the kicking team at the end of any free kick or scrimmage kick down;",
+      "line": 3984
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.booth_only.disqualification",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a player disqualification",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2(e)(5)",
+      "q": "a disqualification of a player.",
+      "line": 3985
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "q": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+      "line": 5304
+     }
+    ],
+    "note": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b)."
+   }
+  },
+  {
+   "key": "replay.assist.catch",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect catch without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "completed, intercepted, or the direction of any pass;",
+      "line": 4251
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.down_by_contact",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect down_by_contact without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "down by contact (when a player is not ruled down by contact on the field);",
+      "line": 4254
+     }
+    ],
+    "note": "Only when the runner was not ruled down on the field. The engine's assistCanChange returns false for this aspect regardless of the key."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.spot",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect spot without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "location of the football or a player in relation to a line or the pocket area;",
+      "line": 4253
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.forward_or_backward_pass",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect forward_or_backward_pass without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "completed, intercepted, or the direction of any pass;",
+      "line": 4251
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.in_bounds",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect in_bounds without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "touching of a loose ball, boundary line, goal line, or end line;",
+      "line": 4252
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.score",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect score without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "touching of a loose ball, boundary line, goal line, or end line;",
+      "line": 4252
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.possession",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect possession without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "(e) possession; (f) completed, intercepted, or the direction of any pass;",
+      "line": 4250
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.fumble_before_down",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect fumble_before_down without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "(e) possession; (f) completed, intercepted, or the direction of any pass;",
+      "line": 4250
+     }
+    ],
+    "note": "Interpretation: a fumble before the runner was down is a possession question under 15-9(e). The book lists no item by this name."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.kick_good",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect kick_good without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9, items (a) to (j)",
+      "absent": "The list of matters replay assist may address names no ruling on whether a kick was good; items (a) to (j) read in full."
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.touching",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect touching without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "touching of a loose ball, boundary line, goal line, or end line;",
+      "line": 4252
+     }
+    ],
+    "note": "Covers a loose ball; touching of a kick is reached only through (j)(7), which is a per-foul switch."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+      "line": 5231
+     }
+    ],
+    "note": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted."
+   }
+  },
+  {
+   "key": "replay.assist.foul",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect foul without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 15, Section 9",
+      "q": "if a foul is called for:",
+      "line": 4255
+     }
+    ],
+    "note": "False for fouls in general: 15-9(j) lists seven specific fouls that may be removed. Those are per-foul switches foul.<id>.assist_removable, which belong to the fouls rule rows."
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 7",
+      "q": "This excludes fouls that are not specifically reviewable",
+      "line": 5234
+     }
+    ],
+    "note": "College has no separate named assist procedure. Article 7 lets the replay official correct obvious errors with a significant impact, whether or not the play is reviewable, but not fouls that are not specifically reviewable."
+   }
+  },
+  {
+   "key": "replay.no_recovery_end_zone_yardline",
+   "type": "number",
+   "meaning": "Yard line the ball goes to when replay shows it was lost in a team's own end zone and nobody clearly recovered it",
+   "ownerLeaf": "B9.4.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 15, Section 3, Article 2, Item 1, Note 2",
+      "q": "except that if possession was lost in the team’s own end zone, and the ball was not clearly recovered in the end zone, the ball will be placed at the one-yard line.",
+      "line": 4038
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 3-d-1",
+      "q": "the dead-ball ruling is upheld.",
+      "line": 5121
+     }
+    ],
+    "note": "Inert value 0: the NCAA text has no one-yard-line placement. With no clear recovery the on-field dead-ball ruling is upheld (12-3-3-d-1)."
+   },
+   "unit": "yd"
+  },
+  {
+   "key": "overtime.regular.max_periods",
+   "type": "number",
+   "meaning": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3(d)",
+      "q": "There shall be a maximum of one 10-minute period",
+      "line": 4295
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-h",
+      "q": "Each team will be allowed one timeout beginning with the third extra period until the game is ended.",
+      "line": 2186
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. 0 means no limit: the book names no last period."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.timeouts",
+   "type": "number",
+   "meaning": "Timeouts per team for each overtime half. None carry over",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3(e)",
+      "q": "Each team shall be entitled to two timeouts",
+      "line": 4297
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-h",
+      "q": "Each team shall be allowed one timeout for the first extra period and one timeout for the second extra period.",
+      "line": 2185
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.periods_per_half",
+   "type": "number",
+   "meaning": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each",
+   "ownerLeaf": "B10.5.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3(d)",
+      "q": "There shall be a maximum of one 10-minute period",
+      "line": 4295
+     }
+    ],
+    "note": "One period only, so timeouts are never carried over; the book speaks of halves only in the postseason."
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-h",
+      "q": "Unused extra-period timeouts may not be carried over to other extra periods.",
+      "line": 2189
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. Each period is its own timeout allowance."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.new_toss_after_periods",
+   "type": "number",
+   "meaning": "A new coin toss is held after this many overtime periods. 0 means never",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3(d)",
+      "q": "There shall be a maximum of one 10-minute period",
+      "line": 4295
+     }
+    ],
+    "note": "One period only, so no second toss."
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-c",
+      "q": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+      "line": 2145
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. No second toss: the loser of the toss chooses first in even-numbered periods."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.loser_chooses_at_period",
+   "type": "number",
+   "meaning": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3(d)",
+      "q": "There shall be a maximum of one 10-minute period",
+      "line": 4295
+     }
+    ],
+    "note": "One period only, so the loser never has a first choice."
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-c",
+      "q": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+      "line": 2145
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. The alternating format also gives the loser first choice in every later even-numbered period; the module reads this key only for the timed format."
+   },
+   "unit": "index"
+  },
+  {
+   "key": "overtime.postseason.max_periods",
+   "type": "number",
+   "meaning": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4(d)",
+      "q": "another overtime period will begin, and play will continue, regardless of how many 15-minute periods are necessary.",
+      "line": 4309
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-h",
+      "q": "Each team will be allowed one timeout beginning with the third extra period until the game is ended.",
+      "line": 2186
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. 0 means no limit: the book names no last period."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.timeouts",
+   "type": "number",
+   "meaning": "Timeouts per team for each overtime half. None carry over",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4(g)",
+      "q": "Each team is entitled to three timeouts during a half.",
+      "line": 4314
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-h",
+      "q": "Each team shall be allowed one timeout for the first extra period and one timeout for the second extra period.",
+      "line": 2185
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.periods_per_half",
+   "type": "number",
+   "meaning": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4(h)",
+      "q": "At the end of a second overtime period, timing rules shall apply as at the end of the first half.",
+      "line": 4315
+     },
+     {
+      "cite": "Rule 16, Section 1, Article 4(g)",
+      "q": "Each team is entitled to three timeouts during a half.",
+      "line": 4314
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-h",
+      "q": "Unused extra-period timeouts may not be carried over to other extra periods.",
+      "line": 2189
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. Each period is its own timeout allowance."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.new_toss_after_periods",
+   "type": "number",
+   "meaning": "A new coin toss is held after this many overtime periods. 0 means never",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 4,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4(i)",
+      "q": "At the end of a fourth overtime period, there will be another coin toss",
+      "line": 4317
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-c",
+      "q": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+      "line": 2145
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. No second toss: the loser of the toss chooses first in even-numbered periods."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.loser_chooses_at_period",
+   "type": "number",
+   "meaning": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4(e)",
+      "q": "At the beginning of the third overtime period, the captain who lost the coin toss prior to the first overtime period shall have the first choice of the two privileges in 4-2-2, unless the team that won the coin toss deferred.",
+      "line": 4311
+     }
+    ]
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-c",
+      "q": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+      "line": 2145
+     }
+    ],
+    "note": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. The alternating format also gives the loser first choice in every later even-numbered period; the module reads this key only for the timed format."
+   },
+   "unit": "index"
+  },
+  {
+   "key": "overtime.intermission_s",
+   "type": "number",
+   "meaning": "Intermission before overtime begins",
+   "ownerLeaf": "B10.1.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 180,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3",
+      "q": "Following an intermission of no more than three minutes after the end of a regular season game, an extra period of 10 minutes shall commence.",
+      "line": 4286
+     },
+     {
+      "cite": "Rule 16, Section 1, Article 4",
+      "q": "Following an intermission of no more than three minutes after the end of the regular game, an extra period of 15 minutes shall commence.",
+      "line": 4299
+     }
+    ],
+    "note": "The book states a maximum of three minutes; the value is that maximum."
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3",
+      "absent": "Article 3 (a) to (h) and Rule 3-2 read for a length of break before the first extra period. None is stated: the officials review the procedure, then the toss is held (3-1-3-a, b)."
+     }
+    ],
+    "note": "Inert value 0: the NCAA text states no length of break before the first extra period. Unresolved; a second source (conference or broadcast window) is wanted."
+   },
+   "unit": "s"
+  },
+  {
+   "key": "overtime.period_break_s",
+   "type": "number",
+   "meaning": "Intermission between overtime periods",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 120,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4(e)",
+      "q": "Between each overtime period, there shall be a two-minute intermission",
+      "line": 4310
+     }
+    ],
+    "note": "Postseason only: the regular season has a single period."
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-h",
+      "q": "In the absence of a media timeout, after the second extra period, there will be a two minute mandatory break period.",
+      "line": 2196
+     }
+    ],
+    "note": "Value 0: the book states a break only after the second extra period (two minutes, absent a media timeout), and a media timeout after the first and second periods. One key cannot carry a break after one period only; split the key if that matters."
+   },
+   "unit": "s"
+  },
+  {
+   "key": "overtime.two_minute_warning",
+   "type": "boolean",
+   "meaning": "A timed overtime period has a two-minute warning, and with it the two-minute fumble limit",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3(e)",
+      "q": "The general provisions for the fourth quarter of a game, including timing, shall apply.",
+      "line": 4297
+     },
+     {
+      "cite": "Rule 16, Section 1, Article 4(h)",
+      "q": "At the end of a second overtime period, timing rules shall apply as at the end of the first half.",
+      "line": 4315
+     }
+    ],
+    "note": "Inferred from \"general provisions for the fourth quarter, including timing\" and the end-of-half timing rule; Rule 3-41 names only the second and fourth periods. Second source wanted."
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-d",
+      "q": "An extra period shall consist of two possession series",
+      "line": 2148
+     }
+    ],
+    "note": "An extra period has no game clock, so it has no two-minute warning."
+   }
+  },
+  {
+   "key": "overtime.toss_defer_allowed",
+   "type": "boolean",
+   "meaning": "The winner of the overtime toss may defer",
+   "ownerLeaf": "B10.1.1",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4(e)",
+      "q": "unless the team that won the coin toss deferred.",
+      "line": 4312
+     },
+     {
+      "cite": "Rule 16, Section 1, Article 2",
+      "q": "in accordance with rules pertaining to a usual pregame toss",
+      "line": 4284
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-b",
+      "q": "The winner of the toss may not defer the choice",
+      "line": 2139
+     }
+    ]
+   }
+  },
+  {
+   "key": "field.end_zone_depth_ft",
+   "type": "number",
+   "meaning": "Depth of each end zone, goal line to end line",
+   "ownerLeaf": "J1.1.1",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "pro": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 3",
+      "q": "the edge of the line toward the field of play (actual goal line) is 30 feet from the inside edge of the end line.",
+      "line": 383
+     }
+    ]
+   },
+   "college": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 2, Section 12, Article 3",
+      "q": "An end line runs between the sidelines 10 yards behind each goal line",
+      "line": 1519
+     }
+    ],
+    "note": "10 yards written as 30 feet."
+   },
+   "unit": "ft"
+  },
+  {
+   "key": "field.numbers_bottom_from_sideline_ft",
+   "type": "number",
+   "meaning": "Distance from each sideline to the bottom of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram)",
+   "ownerLeaf": "J1.1.3",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "pro": {
+    "v": 36,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 4, Item 1",
+      "q": "Bottoms of numbers indicating yard lines in multiples of 10 must be placed beginning 12 yards in from each sideline.",
+      "line": 388
+     }
+    ],
+    "note": "12 yards written as 36 feet."
+   },
+   "college": {
+    "v": 21,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 1-h",
+      "q": "White field yard-line numbers not larger than 6 feet in height and 4 feet in width, with the tops of the numbers nine yards from the sidelines, are recommended.",
+      "line": 670
+     }
+    ],
+    "note": "Derived: top at 9 yards (27 feet) less the 6-foot maximum height. A recommendation, not a requirement; numbers may be smaller."
+   },
+   "unit": "ft"
+  },
+  {
+   "key": "field.numbers_top_from_sideline_ft",
+   "type": "number",
+   "meaning": "Distance from each sideline to the top of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram)",
+   "ownerLeaf": "J1.1.3",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "pro": {
+    "v": 42,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 4, Item 1",
+      "q": "Bottoms of numbers indicating yard lines in multiples of 10 must be placed beginning 12 yards in from each sideline. Each numeral must be in white and measure 2 yards in length.",
+      "line": 388
+     }
+    ],
+    "note": "Derived: bottom at 36 feet plus a numeral 2 yards (6 feet) long."
+   },
+   "college": {
+    "v": 27,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 1-h",
+      "q": "White field yard-line numbers not larger than 6 feet in height and 4 feet in width, with the tops of the numbers nine yards from the sidelines, are recommended.",
+      "line": 670
+     }
+    ],
+    "note": "9 yards written as 27 feet. A recommendation, not a requirement."
+   },
+   "unit": "ft"
+  },
+  {
+   "key": "formation.neither_behind_snapper_max",
+   "type": "number",
+   "meaning": "Players allowed neither on nor off the line when directly behind the snapper",
+   "ownerLeaf": "B4.2.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 7, Section 5, Article 1(d)",
+      "q": "Only one player may be in such a position, and he must wear an eligible number",
+      "line": 2087
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 7, Section 1, Article 4-a-2",
+      "q": "All players must be either linemen or backs",
+      "line": 3492
+     }
+    ],
+    "note": "Inert value 0: every college player is a lineman or a back at the snap, so no one is neither on nor off the line."
+   },
+   "unit": "count"
+  },
+  {
+   "key": "formation.t_quarterback_depth_yd",
+   "type": "number",
+   "meaning": "A player this close or closer behind the snapper is the player under center",
+   "ownerLeaf": "B4.1.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 3, Section 42",
+      "q": "A T-formation quarterback is defined as a player aligned one yard or less behind the snapper.",
+      "line": 924
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 2 (definitions) and Rule 7",
+      "absent": "Rule 2 definitions and Rule 7 searched for a T-formation or under-center quarterback defined by distance behind the snapper. The NCAA text has none; numbering.qb_under_center_eligible is true."
+     }
+    ],
+    "note": "Inert value 0: the NCAA text has no such definition."
+   },
+   "unit": "yd"
+  },
+  {
+   "key": "numbering.eligible_low_max",
+   "type": "number",
+   "meaning": "Top of the lower band of eligible jersey numbers (the band starts at 0)",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "pro": {
+    "v": 49,
+    "src": [
+     {
+      "cite": "Rule 5, Section 1, Article 2",
+      "q": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+      "line": 1299
+     }
+    ]
+   },
+   "college": {
+    "v": 49,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 3-c",
+      "q": "Each lineman who is on the end of their scrimmage line and who is wearing a number other than 50 through 79.",
+      "line": 3679
+     }
+    ],
+    "note": "Eligible numbers are every number other than 50 through 79, so the lower band runs 0 to 49."
+   },
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_min",
+   "type": "number",
+   "meaning": "Bottom of the upper band of eligible jersey numbers",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "pro": {
+    "v": 80,
+    "src": [
+     {
+      "cite": "Rule 5, Section 1, Article 2",
+      "q": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+      "line": 1299
+     }
+    ]
+   },
+   "college": {
+    "v": 80,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 3-c",
+      "q": "Each back wearing a number other than 50 through 79.",
+      "line": 3681
+     }
+    ],
+    "note": "Upper band starts at 80 (numbers run to 99, Rule 1-4-2-a)."
+   },
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_max",
+   "type": "number",
+   "meaning": "Top of the upper band of eligible jersey numbers",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "pro": {
+    "v": 89,
+    "src": [
+     {
+      "cite": "Rule 5, Section 1, Article 2",
+      "q": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+      "line": 1299
+     }
+    ]
+   },
+   "college": {
+    "v": 99,
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 2-a",
+      "q": "All players shall be numbered 0 through 99.",
+      "line": 883
+     }
+    ],
+    "note": "Top of the upper band is the top number, 99."
+   },
+   "unit": "index"
+  },
+  {
+   "key": "clock.foul_restart_offended_option_late",
+   "type": "boolean",
+   "meaning": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (college rule 3-4-3-b).",
+   "ownerLeaf": "B13.3.2",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 4, Section 3, Article 2(e)",
+      "q": "the game clock will start as if the foul had not occurred, except that the clock will start on the snap if:",
+      "line": 1001
+     }
+    ],
+    "note": "False: the pro clock starts on the snap by rule in the listed cases (4-3-2-e), with no option for the offended team and no test of who is ahead."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 4, Article 3-b",
+      "q": "If the game clock is stopped to complete a penalty for a foul by the team ahead in the score (or either team if the score is tied) anytime after the Two- Minute Timeout in the 2nd or 4th quarters and the clock would start by rule on the referee’s signal, it will start on the snap, at the option of the offended team.",
+      "line": 2682
+     }
+    ],
+    "note": "Rule 3-4-3-a (clock tactics, the referee's discretion, guideline under five minutes) is not modelled."
+   }
+  },
+  {
    "key": "foul.intentional_grounding.enforcement",
    "type": "option",
    "options": [
@@ -4032,6 +5721,67 @@
     ],
     "note": "No yardage: loss of down at the spot of the foul. This fits the standard procedure with the foul row spot_foul true and yards 0 (foul.intentional_grounding.spot_foul and .yards), so no new profile is needed."
    }
+  },
+  {
+   "key": "field.width_ft",
+   "type": "number",
+   "meaning": "Width of the field, sideline to sideline",
+   "ownerLeaf": "J1.1.1",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "pro": {
+    "v": 160,
+    "src": [
+     {
+      "cite": "Rule 1, Section 1, Article 1",
+      "q": "The game shall be played upon a rectangular field, 360 feet in length and 160 feet in width.",
+      "line": 353
+     }
+    ]
+   },
+   "college": {
+    "v": 160,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 1 and Appendix D, field diagram, page FR-130 (PDF page 133)",
+      "seen": "The dimension line across the full width of the field is labelled 160, beside the 360 length line."
+     }
+    ],
+    "note": "The NCAA text copy gives the field dimensions only in Appendix D (Rule 1-2-1: \"with dimensions, lines, zones, goals and pylons as indicated in Appendix D\"); the figure was read as an image in the official PDF (ncaaorg.s3.amazonaws.com PRMFB_RulesBook.pdf). Unit feet, as for the 360 length. Independent published sources agree (Wikipedia American football field; BAFRA 2013 field diagrams), recorded here as a note, not as register sources."
+   },
+   "unit": "ft"
+  },
+  {
+   "key": "field.ball_length_yd",
+   "type": "number",
+   "meaning": "New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).",
+   "ownerLeaf": "B7.5.1",
+   "readBy": [
+    "officiating.scrimmage"
+   ],
+   "pro": {
+    "v": 0.309028,
+    "src": [
+     {
+      "cite": "Rule 2, Section 1",
+      "q": "long axis, 11 to 11¼ inches;",
+      "line": 421
+     }
+    ],
+    "note": "Midpoint of the allowed long axis, 11.125 inches = 0.309028 yd (0.3090277...). The book gives a range, not one length."
+   },
+   "college": {
+    "v": 0.309896,
+    "src": [
+     {
+      "cite": "Rule 1, Section 3, Article 1-f and the ball diagram, page FR-22 (PDF page 25)",
+      "seen": "The ball diagram labels the length 10 7/8\" to 11 7/16\"."
+     }
+    ],
+    "note": "The NCAA text copy says only \"Conforms to maximum and minimum dimensions and shape indicated in the accompanying diagram\" (1-3-1-f); the range was read as an image in the official PDF. Midpoint 11 5/32 in (11.15625) = 0.309896 yd."
+   },
+   "unit": "yd"
   }
  ]
 }

@@ -1,0 +1,91 @@
+{
+ "$comment": "Reviewed scan hits that may stay in the release, one per file and term or name, each with the reason and who reviewed it (G-100). An entry hides nothing: allowed hits are still listed in the report. Empty until someone reviews a hit.",
+ "marks": [
+  {
+   "file": "packages/app-ui/src/field-view/markings.json",
+   "term": "NFL",
+   "reason": "Citation title of the rule the markings come from; shown nowhere (the presentation layer shows a source by rule key only).",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/college/priors.college.json",
+   "term": "NCAA",
+   "reason": "Provenance note: states that a third source (published statistics) was not read; not content.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/injuries/catalogue.json",
+   "term": "NCAA",
+   "reason": "Provenance field \"basis\": names the study population the injury time came from.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/rules-data/data/college_2026.json",
+   "term": "NCAA",
+   "reason": "\"document\" field: citation of the rulebook the values were read from.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/rules-data/data/pro_2026.json",
+   "term": "national football league",
+   "reason": "\"document\" field: citation of the rulebook the values were read from.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/names/hometowns.json",
+   "term": "lombardi",
+   "reason": "Near spelling of an ordinary Italian or German surname or a real town name (Lombard, Lombardo, Heilman); not the trophy, conference or person.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/names/surnames.json",
+   "term": "lombardi",
+   "reason": "Near spelling of an ordinary Italian or German surname or a real town name (Lombard, Lombardo, Heilman); not the trophy, conference or person.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/names/hometowns.json",
+   "term": "big sky",
+   "reason": "Near spelling of an ordinary Italian or German surname or a real town name (Lombard, Lombardo, Heilman); not the trophy, conference or person.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/names/surnames.json",
+   "term": "big sky",
+   "reason": "Near spelling of an ordinary Italian or German surname or a real town name (Lombard, Lombardo, Heilman); not the trophy, conference or person.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/names/hometowns.json",
+   "term": "heisman",
+   "reason": "Near spelling of an ordinary Italian or German surname or a real town name (Lombard, Lombardo, Heilman); not the trophy, conference or person.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/names/surnames.json",
+   "term": "heisman",
+   "reason": "Near spelling of an ordinary Italian or German surname or a real town name (Lombard, Lombardo, Heilman); not the trophy, conference or person.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/store/src/export/save-file.ts",
+   "term": "NFC",
+   "reason": "'NFC' is the Unicode normalization form passed to String.normalize, not a conference.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  }
+ ],
+ "names": [
+  {
+   "file": "packages/football-content/data/names/surnames.json",
+   "term": "Van Valkenburg",
+   "reason": "Surname list entry; a common Dutch surname that coincides with one person, not a reference to them.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  },
+  {
+   "file": "packages/football-content/data/world/reference-locations.json",
+   "term": "WILL ROGERS",
+   "reason": "Weather-station name of an airport (OKLAHOMA CITY WILL ROGERS AP); a place, not a person.",
+   "reviewedBy": "Claude (G-100 release gate cleanup), for Marlon to confirm"
+  }
+ ]
+}

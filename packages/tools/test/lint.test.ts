@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { lintDependencies, lintCorePurity, lintFacts, lintPackageTable, loadFacts, lintForbiddenKeys, lintUiProjection } from '../src/lint.ts';
+import { lintDependencies, lintCorePurity, lintFacts, lintPackageTable, loadFacts, lintForbiddenKeys, lintUiProjection, lintPresentationRandom } from '../src/lint.ts';
 import { RULE_SET_FILES } from '@gm/rules-data';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -32,6 +32,7 @@ describe('the repository passes its own lints', () => {
     expect(lintCorePurity(ROOT)).toEqual([]);
     expect(lintForbiddenKeys(ROOT)).toEqual([]);
     expect(lintUiProjection(ROOT)).toEqual([]);
+    expect(lintPresentationRandom(ROOT)).toEqual([]);
     expect(lintFacts(ROOT).problems).toEqual([]);
   });
 });
@@ -66,6 +67,31 @@ describe('core purity lint (P1.1.1 acceptance 1, P1.1.2 acceptance 2)', () => {
     expect(msgs.some((m) => m.startsWith('P1.1.2 level word'))).toBe(true);
     expect(msgs.some((m) => m.startsWith('P1.1.2 numeric literal') && m.includes('40'))).toBe(true);
     expect(msgs.some((m) => m.includes('Math.cos') || m.includes('Math.exp'))).toBe(false);
+  });
+});
+
+describe('presentation random lint (PV-01, section 6 test 3)', () => {
+  it('fails a planted Math.random in app-ui and crypto random in app-services; the J13.4.1 marker and prose pass', () => {
+    const root = fakeRepo({
+      'packages/app-ui/src/crowd.ts': "export const pitch = () => 0.95 + Math.random() * 0.1;\n// Math.random in a comment is fine\nconst s = 'Math.random in a string is fine';\n",
+      'packages/app-ui/src/seed.ts': "// allow-platform-random: J13.4.1\nexport const a = Math.random();\nexport const b = Math.random(); // allow-platform-random: J13.4.1\n",
+      'packages/app-services/src/rain.ts': "export const r = () => crypto.getRandomValues(new Uint32Array(1))[0];\nimport { randomBytes } from 'node:crypto';\n",
+    });
+    const p = lintPresentationRandom(root);
+    expect(p.every((x) => x.rule === 'PV-01 no platform random in presentation')).toBe(true);
+    expect(p.map((x) => `${x.file}:${x.line}`).sort()).toEqual(['packages/app-services/src/rain.ts:1', 'packages/app-services/src/rain.ts:2', 'packages/app-ui/src/crowd.ts:1']);
+  });
+
+  it('fails a core package that names the cosmetic stream', () => {
+    const root = fakeRepo({
+      'packages/engine-core/src/a.ts': "const s = stream(seed, 'cosmetic', [1]);\nconst t = `cosmetic.audio`;\n// 'cosmetic' in a comment is fine\n",
+      'packages/app-services/src/cosmetic/index.ts': "export const COSMETIC_STREAM = 'cosmetic';\n",
+    });
+    const p = lintPresentationRandom(root);
+    expect(p.map((x) => `${x.rule} ${x.file}:${x.line}`)).toEqual([
+      'PV-01 core reads a cosmetic stream packages/engine-core/src/a.ts:1',
+      'PV-01 core reads a cosmetic stream packages/engine-core/src/a.ts:2',
+    ]);
   });
 });
 

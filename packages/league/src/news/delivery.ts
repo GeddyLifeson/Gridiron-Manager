@@ -5,7 +5,7 @@
 // lose a detail. A contact with access may tip a coming public event early, sometimes wrongly. AI people
 // receive news by the same rules. Nothing here changes the world or reveals truth data; a delivery is a
 // record of who heard what, when, from whom, and how accurately.
-import { FACET_MAX, type RandomStream, type RelationshipEdge, type WorldEvent } from '@gm/schema';
+import { possible, FACET_MAX, type RandomStream, type RelationshipEdge, type WorldEvent } from '@gm/schema';
 import { MINUTES_PER_DAY } from '../calendar/date.ts';
 import { param } from './params.ts';
 
@@ -54,7 +54,7 @@ export function passChance(strength: number, candor: number, discipline: number)
   const floor = param('passCandorFloor');
   const c = floor + (1 - floor) * (candor / FACET_MAX);
   const d = 1 - param('passDisciplineWeight') * (discipline / FACET_MAX);
-  return Math.max(0, Math.min(1, s * c * d));
+  return possible(Math.max(0, Math.min(1, s * c * d)));
 }
 
 function warmNeighbours(edges: readonly RelationshipEdge[]): Map<number, { to: number; strength: number }[]> {

@@ -1,0 +1,1 @@
+{ "$comment": "Release gate evidence (G-100). One record per verification: check id, result, commit, date, three independent confirmations, who. Add records; never edit or delete old ones.", "records": [] }

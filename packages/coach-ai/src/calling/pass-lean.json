@@ -1,0 +1,17 @@
+{
+  "source": "research/audit-r-calibration-verify.md section 13 Rk1 (nflverse 2022-24, 89,243 plays, last two minutes of each half excluded)",
+  "status": "1 of 3",
+  "note": "Pro only, one source. College not measured. Dropback rate by offense margin band and quarter. Read by K4.3.7 rule 3 as cell minus the tied cell of the same quarter.",
+  "quarters": [1, 2, 3, 4],
+  "bands": [
+    { "id": "trail17", "maxMargin": -17, "rate": [0.607, 0.621, 0.668, 0.807] },
+    { "id": "trail9", "maxMargin": -9, "rate": [0.602, 0.604, 0.594, 0.811] },
+    { "id": "trail4", "maxMargin": -4, "rate": [0.587, 0.582, 0.568, 0.658] },
+    { "id": "trail1", "maxMargin": -1, "rate": [0.578, 0.570, 0.572, 0.618] },
+    { "id": "tied", "maxMargin": 0, "rate": [0.570, 0.592, 0.570, 0.592] },
+    { "id": "lead1", "maxMargin": 3, "rate": [0.557, 0.573, 0.561, 0.497] },
+    { "id": "lead4", "maxMargin": 8, "rate": [0.553, 0.579, 0.565, 0.481] },
+    { "id": "lead9", "maxMargin": 16, "rate": [0.559, 0.563, 0.547, 0.386] },
+    { "id": "lead17", "maxMargin": 9999, "rate": [0.600, 0.561, 0.517, 0.309] }
+  ]
+}

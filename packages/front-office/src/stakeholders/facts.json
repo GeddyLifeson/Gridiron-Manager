@@ -20,9 +20,15 @@
      "value": "5 to 9"
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "The source's own counts are not fully consistent for 2023 and 2025 (E4.3.1). One source only: PROVISIONAL."
   },
   {
@@ -44,9 +50,15 @@
      "value": "25% vs 18%"
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "No numeric weights for the other model factors were published. One source only: PROVISIONAL."
   },
   {
@@ -77,9 +89,15 @@
      "value": 31
     }
    ],
-   "status": "Unverified",
+   "status": "2 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "The CBS figure is derived by subtraction. Two groups: PROVISIONAL."
   },
   {
@@ -101,10 +119,55 @@
      "value": 12
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "The breakdown has one source; only the total has two. PROVISIONAL."
+  },
+  {
+   "id": "F-stakeholders-0005",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Share of professional head coach firings that happen during the regular season rather than after it: 16 of 44 over the 2020 to 2025 seasons (36 percent). Calibration target of E4.3.3. Copy of F-firing-0001 (PR 112, facts/coach-firing-timing.json).",
+   "value": 0.36,
+   "unit": "ratio",
+   "validFor": "2020 to 2025 seasons",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, 'NFL Head Coach Firings By Year' (2026-01-06), season totals 2020-2025 (7, 8, 5, 9, 7, 8 = 44); read by the G-10 research thread",
+     "locator": "https://www.si.com/nfl/nfl-head-coach-firings-by-year",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-firings-by-year",
+     "primary": false,
+     "value": 0.36
+    },
+    {
+     "citation": "NBC New York, 'History of Black Monday NFL coaches fired' (2026-01-05, updated 2026-01-19), in-season firings per season (3, 2, 3, 3, 3, 2 = 16); read by the G-10 research thread",
+     "locator": "https://www.nbcnewyork.com/news/sports/nfl/history-black-monday-nfl-coaches-fired/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-news",
+     "primary": false,
+     "value": 0.36
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
+   "notes": "Derived by listing coaches; 2025 partial as of 2026-01-06. Season shares range 25% to 60%. No college share was found, so the college in-season share stays an Assumption. PROVISIONAL (2 of 3)."
   }
  ]
 }

@@ -1,0 +1,302 @@
+{
+ "version": "g55.1",
+ "leaf": "S3.1.1",
+ "bands": [
+  "1",
+  "2",
+  "3",
+  "4-5",
+  "6",
+  "7",
+  "8-9"
+ ],
+ "marks": {
+  "O": "own",
+  "R": "recommend",
+  "B": "observe",
+  "O_or_R": "own if the seat calls plays, else recommend",
+  "by_power": "own if the power arrangement gives him roster say (L5.2.1), else recommend"
+ },
+ "families": [
+  {
+   "id": "practice_support",
+   "label": "Practice charting, cards, signals",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "O",
+    "2": "O",
+    "3": "",
+    "4-5": "",
+    "6": "",
+    "7": "",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "film_tagging",
+   "label": "Opponent film tagging",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "B",
+    "2": "O",
+    "3": "O",
+    "4-5": "",
+    "6": "",
+    "7": "",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "scout",
+   "label": "Scout cards and scout team",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "B",
+    "2": "O",
+    "3": "R",
+    "4-5": "",
+    "6": "",
+    "7": "",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "reports",
+   "label": "Tendency and self-scout reports",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "R",
+    "3": "O",
+    "4-5": "",
+    "6": "",
+    "7": "",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "game_management",
+   "label": "Game-management charts",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "O",
+    "4-5": "",
+    "6": "",
+    "7": "R",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "drills",
+   "label": "Individual drills and technique",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "R",
+    "3": "",
+    "4-5": "O",
+    "6": "O",
+    "7": "",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "position_meeting",
+   "label": "Position meeting and install teaching",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "B",
+    "2": "B",
+    "3": "",
+    "4-5": "O",
+    "6": "O",
+    "7": "R",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "player_grades",
+   "label": "Player grades",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "R",
+    "3": "",
+    "4-5": "O",
+    "6": "O",
+    "7": "O",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "depth_chart",
+   "label": "Depth chart at the position",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4-5": "R",
+    "6": "R",
+    "7": "O",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "recruiting",
+   "label": "Recruiting area (college)",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "B",
+    "2": "",
+    "3": "R",
+    "4-5": "O",
+    "6": "O",
+    "7": "O",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "plan_slice",
+   "label": "Game plan slice",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "B",
+    "4-5": "R",
+    "6": "O",
+    "7": "O",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "side_plan",
+   "label": "Side's game plan and call sheet",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4-5": "B",
+    "6": "R",
+    "7": "O",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "play_calling",
+   "label": "Play calling",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4-5": "",
+    "6": "",
+    "7": "O_or_R",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "staff_management",
+   "label": "Staff management",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4-5": "",
+    "6": "",
+    "7": "O",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "staff_hiring",
+   "label": "Staff hiring and dismissal on his side",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4-5": "",
+    "6": "",
+    "7": "R",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "install_drawings",
+   "label": "Playbook drawings, install sheets, practice scripts",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "B",
+    "2": "R",
+    "3": "O",
+    "4-5": "",
+    "6": "",
+    "7": "",
+    "8-9": ""
+   }
+  },
+  {
+   "id": "personnel_reports",
+   "label": "Personnel reports for the front office (pro)",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "R",
+    "3": "R",
+    "4-5": "R",
+    "6": "R",
+    "7": "R",
+    "8-9": "by_power"
+   }
+  },
+  {
+   "id": "academics_conduct",
+   "label": "His players' academics and conduct (college)",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "B",
+    "3": "",
+    "4-5": "O",
+    "6": "O",
+    "7": "R",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "whole_program",
+   "label": "Whole program",
+   "leaf": "S3.1.1",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4-5": "",
+    "6": "",
+    "7": "",
+    "8-9": "O"
+   }
+  },
+  {
+   "id": "coordinator_public",
+   "label": "Coordinator media, job pushes and interviews (S3.6.3; not a row in the S3.1.1 table)",
+   "leaf": "S3.6.3",
+   "cells": {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4-5": "",
+    "6": "",
+    "7": "O",
+    "8-9": ""
+   }
+  }
+ ]
+}

@@ -2,6 +2,7 @@
 // The act matches the need and what is legal now. Legality belongs to the owning rule areas (C6, T6, K7):
 // the caller passes the acts that are legal this week, so this module never bypasses a window (rule 4).
 // Level-neutral: which act a need produces is data, never a branch on a level (P1.1.2).
+import { possible } from '@gm/schema';
 import { np, type Draw } from './params.ts';
 import type { NeedId } from './registry.ts';
 import type { Contribution, StressBand, StressMemo } from './stress.ts';
@@ -87,7 +88,7 @@ export function largestUnmetNeed(levels: Readonly<Record<NeedId, number>>, weigh
 /** X5.2.3 rule 2: 15 percent a week, reduced by loyalty. */
 export function actChance(loyalty: number): number {
   const l = Math.min(100, Math.max(0, loyalty)) / 100;
-  return np('needs.act.weeklyChance') * (1 - np('needs.act.loyaltyReductionMax') * l);
+  return possible(np('needs.act.weeklyChance') * (1 - np('needs.act.loyaltyReductionMax') * l));
 }
 
 /** X5.2.4 rule 2: is this act blocked by repeat spacing? */

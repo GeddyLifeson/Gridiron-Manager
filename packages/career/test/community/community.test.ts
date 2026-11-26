@@ -10,6 +10,7 @@ import {
 } from '../../src/community/index.ts';
 import type { Order } from '../../src/crisis/index.ts';
 import { day, ruleSet, streams } from '../crisis/fixtures.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 /** Order kinds that touch only relationships, time, mood, ties, notices: never an attribute, culture value or contest. */
 const RELATIONSHIP_KINDS = new Set(['memory', 'group_memory', 'hours', 'fan_mood', 'booster_mood', 'standing_with_boss', 'tie', 'familiarity', 'notice', 'notability', 'scouting_note']);
@@ -106,8 +107,8 @@ describe('L8.3.2 rule changes and points of emphasis', () => {
     expect(emphasisFactor(9)).toBe(1);
     expect(emphasisFactor(4)).toBeGreaterThan(1);
     expect(staffAdviceErrorChance(3, true, true)).toBe(0.1);
-    expect(staffAdviceErrorChance(4, true, true)).toBe(0);
-    expect(staffAdviceErrorChance(0, false, true)).toBe(0);
+    expect(staffAdviceErrorChance(4, true, true)).toBe(PROB_FLOOR);
+    expect(staffAdviceErrorChance(0, false, true)).toBe(PROB_FLOOR);
   });
 });
 

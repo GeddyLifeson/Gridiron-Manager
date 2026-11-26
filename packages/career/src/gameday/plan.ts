@@ -2,6 +2,7 @@
 // can be done on game day, the decision book, standing instructions and delegation, the heads-up to the
 // officials, and the pregame challenge designee. G7 owns the sheet itself; this module checks and records the
 // day's edits on the caller's sheet rows.
+import { possible } from '@gm/schema';
 import { gp } from './params.ts';
 import type { GameDayRules } from './rules.ts';
 
@@ -172,7 +173,7 @@ export function addInstruction(d: DayDelegation, i: StandingInstruction): { ok: 
 /** I1.4.3: the chance per applicable snap that a coordinator misses one rule: 2% for each beyond 8. */
 export function instructionMissChance(active: number): number {
   const extra = active - gp('instructions.free');
-  return extra > 0 ? extra * gp('instructions.missPerExtra') : 0;
+  return possible(extra > 0 ? extra * gp('instructions.missPerExtra') : 0);
 }
 
 /** I1.4.3 edge case: among instructions that apply to a situation, the one highest in the list wins. */

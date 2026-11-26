@@ -1,0 +1,1727 @@
+{
+  "$comment": "PV-02 event cue table. One row per presentation feed cue kind (PV-00 FEED_CUE_KINDS) plus the non-feed cues in plan section 4.2. Rank, duration and rate-limit numbers are Assumptions (presentation tuning, no football fact). Ranks: lower number wins. Era column per plan 2.1: plain is the fallback skin, classic is the default skin. No marks, music or voices of any real league, team or broadcaster.",
+  "formatVersion": 1,
+  "visibility": "user-visible",
+  "lanes": {
+    "crowdReaction": {
+      "exclusive": true,
+      "maxWaitMs": 0,
+      "note": "One ranked crowd reaction per play. A higher rank (lower number) cuts in, a lower one is dropped (MB-7)."
+    },
+    "stinger": {
+      "exclusive": true,
+      "maxWaitMs": 1500,
+      "note": "Short tones (whistle, referee tone, alerts, count, relay, confirm). Never overlap: a higher rank cuts in, a lower one waits up to maxWaitMs, then is dropped. Rank values and durations are Assumptions (tuning)."
+    }
+  },
+  "rows": [
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "snap_thump",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 120,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "snap"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "snap",
+      "source": {
+        "kind": "feed",
+        "feedKind": "snap",
+        "qualifier": null
+      },
+      "bible": [
+        "J5.6.2",
+        "O6.4.1"
+      ],
+      "information": "The play started: play-clock readout stops and the strip shows LIVE. The ball is in motion from here.",
+      "visual": {
+        "cue": "strip_live_mark",
+        "where": "strip",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "throw",
+      "source": {
+        "kind": "feed",
+        "feedKind": "throw",
+        "qualifier": null
+      },
+      "bible": [
+        "O2.3.4",
+        "A-4"
+      ],
+      "information": "Who threw and who the intended receiver was: the ball flight line from passer to target.",
+      "visual": {
+        "cue": "pass_line",
+        "where": "field",
+        "switch": "display.cue.passLine",
+        "reducedMotion": "still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "ball_catch",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 150,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 120,
+          "defaultOn": true,
+          "caption": "catch"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "catch",
+      "source": {
+        "kind": "feed",
+        "feedKind": "catch",
+        "qualifier": null
+      },
+      "bible": [
+        "O2.3.4",
+        "O6.4.1"
+      ],
+      "information": "The ball was caught at this spot, by this player.",
+      "visual": {
+        "cue": "ball_ring",
+        "where": "field",
+        "switch": "display.cue.ballRing",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "ball_drop",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 150,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 120,
+          "defaultOn": true,
+          "caption": "dropped pass"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "drop",
+      "source": {
+        "kind": "feed",
+        "feedKind": "drop",
+        "qualifier": null
+      },
+      "bible": [
+        "O2.3.4",
+        "O6.4.1"
+      ],
+      "information": "The ball reached the receiver and was not held: a dropped pass.",
+      "visual": {
+        "cue": "ball_ring_open",
+        "where": "field",
+        "switch": "display.cue.ballRing",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "tackle",
+      "source": {
+        "kind": "feed",
+        "feedKind": "tackle",
+        "qualifier": null
+      },
+      "bible": [
+        "O2.3.4",
+        "O6.4.1"
+      ],
+      "information": "The ball carrier went down here, and which defenders made the tackle.",
+      "visual": {
+        "cue": "tackle_flatten",
+        "where": "field",
+        "switch": "display.cue.tackleFlatten",
+        "reducedMotion": "still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "fumble",
+      "source": {
+        "kind": "feed",
+        "feedKind": "fumble",
+        "qualifier": null
+      },
+      "bible": [
+        "A-4",
+        "O6.4.1"
+      ],
+      "information": "The ball came loose at this spot. Drawn as a loose-ball ring.",
+      "visual": {
+        "cue": "loose_ball_ring",
+        "where": "field",
+        "switch": "display.cue.looseBallRing",
+        "reducedMotion": "still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "flag",
+      "source": {
+        "kind": "feed",
+        "feedKind": "flag",
+        "qualifier": null
+      },
+      "bible": [
+        "B11",
+        "O2.4.3"
+      ],
+      "information": "A flag was thrown at this spot, against this side.",
+      "visual": {
+        "cue": "flag_icon",
+        "where": "field",
+        "switch": "display.cue.flag",
+        "reducedMotion": "still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "whistle",
+          "bus": "officials",
+          "lane": "stinger",
+          "rank": 1,
+          "durationMs": 700,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "whistle"
+        }
+      ],
+      "era": {
+        "plain": "Pealess whistle: steady synthesized tone.",
+        "classic": "Pea-whistle warble: the tone with a fast trill."
+      },
+      "id": "whistle",
+      "source": {
+        "kind": "feed",
+        "feedKind": "whistle",
+        "qualifier": null
+      },
+      "bible": [
+        "B11",
+        "O5.3.2"
+      ],
+      "information": "The play is dead. Nothing after this tick counts.",
+      "visual": {
+        "cue": "whistle_ring",
+        "where": "field",
+        "switch": "display.cue.whistleRing",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "outOfBounds",
+      "source": {
+        "kind": "feed",
+        "feedKind": "outOfBounds",
+        "qualifier": null
+      },
+      "bible": [
+        "A-4",
+        "B3"
+      ],
+      "information": "The ball carrier or the ball crossed the sideline or end line here.",
+      "visual": {
+        "cue": "boundary_mark",
+        "where": "field",
+        "switch": "display.cue.boundaryMark",
+        "reducedMotion": "still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "kickLanding",
+      "source": {
+        "kind": "feed",
+        "feedKind": "kickLanding",
+        "qualifier": null
+      },
+      "bible": [
+        "J9",
+        "O2.3.4"
+      ],
+      "information": "Where the kick came down. It only frames the camera; it draws nothing on the field.",
+      "visual": {
+        "cue": "camera_frame",
+        "where": "field",
+        "switch": "display.cue.ballRing",
+        "reducedMotion": "same"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "contact_thud_1",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 160,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 250,
+          "defaultOn": true,
+          "caption": "light contact"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "contact_1",
+      "source": {
+        "kind": "feed",
+        "feedKind": "contact",
+        "qualifier": "tier 1"
+      },
+      "bible": [
+        "MB-2",
+        "MB-9",
+        "O6.4.1",
+        "J6"
+      ],
+      "information": "How hard the hit looked (tier 1 of 4, light). It says nothing about the outcome of the contact.",
+      "visual": {
+        "cue": "contact_bar_tier_1",
+        "where": "field",
+        "switch": "display.cue.contactBar",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "contact_thud_2",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 200,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 250,
+          "defaultOn": true,
+          "caption": "solid contact"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "contact_2",
+      "source": {
+        "kind": "feed",
+        "feedKind": "contact",
+        "qualifier": "tier 2"
+      },
+      "bible": [
+        "MB-2",
+        "MB-9",
+        "O6.4.1",
+        "J6"
+      ],
+      "information": "How hard the hit looked (tier 2 of 4, solid). It says nothing about the outcome of the contact.",
+      "visual": {
+        "cue": "contact_bar_tier_2",
+        "where": "field",
+        "switch": "display.cue.contactBar",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "contact_thud_3",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 240,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 250,
+          "defaultOn": true,
+          "caption": "hard contact"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "contact_3",
+      "source": {
+        "kind": "feed",
+        "feedKind": "contact",
+        "qualifier": "tier 3"
+      },
+      "bible": [
+        "MB-2",
+        "MB-9",
+        "O6.4.1",
+        "J6"
+      ],
+      "information": "How hard the hit looked (tier 3 of 4, hard). It says nothing about the outcome of the contact.",
+      "visual": {
+        "cue": "contact_bar_tier_3",
+        "where": "field",
+        "switch": "display.cue.contactBar",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "contact_thud_4",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 280,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 250,
+          "defaultOn": true,
+          "caption": "heavy contact"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "contact_4",
+      "source": {
+        "kind": "feed",
+        "feedKind": "contact",
+        "qualifier": "tier 4"
+      },
+      "bible": [
+        "MB-2",
+        "MB-9",
+        "O6.4.1",
+        "J6"
+      ],
+      "information": "How hard the hit looked (tier 4 of 4, heavy). It says nothing about the outcome of the contact.",
+      "visual": {
+        "cue": "contact_bar_tier_4",
+        "where": "field",
+        "switch": "display.cue.contactBar",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "cadence_tone",
+          "bus": "cadence",
+          "lane": "stinger",
+          "rank": 5,
+          "durationMs": 400,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "count"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "cadence_voiced",
+      "source": {
+        "kind": "feed",
+        "feedKind": "cadence",
+        "qualifier": "voiced"
+      },
+      "bible": [
+        "J5.6.1",
+        "O5.3.2"
+      ],
+      "information": "The quarterback is calling the count aloud. The snap is on a voiced count.",
+      "visual": {
+        "cue": "count_pip_voiced",
+        "where": "console",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "cadence_tone_hard",
+          "bus": "cadence",
+          "lane": "stinger",
+          "rank": 5,
+          "durationMs": 400,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "hard count"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "cadence_hard",
+      "source": {
+        "kind": "feed",
+        "feedKind": "cadence",
+        "qualifier": "hard"
+      },
+      "bible": [
+        "J5.6.1",
+        "F3"
+      ],
+      "information": "A hard count: a sharp, rhythmic count meant to draw the defence offside. It was audible.",
+      "visual": {
+        "cue": "count_pip_hard",
+        "where": "console",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "cadence_silent",
+      "source": {
+        "kind": "feed",
+        "feedKind": "cadence",
+        "qualifier": "silent"
+      },
+      "bible": [
+        "J5.6.1",
+        "J12.6.1"
+      ],
+      "information": "A silent count: no sound is made. It is used when the road crowd is too loud to hear a count.",
+      "visual": {
+        "cue": "count_pip_silent",
+        "where": "console",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      },
+      "caption": "silent count"
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "relay_tone",
+          "bus": "cadence",
+          "lane": "stinger",
+          "rank": 5,
+          "durationMs": 250,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "call received"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "relay_clean",
+      "source": {
+        "kind": "feed",
+        "feedKind": "relay",
+        "qualifier": "clean"
+      },
+      "bible": [
+        "J5.1.3",
+        "I2.4.1"
+      ],
+      "information": "The call reached the huddle intact.",
+      "visual": {
+        "cue": "relay_mark_ok",
+        "where": "console",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "relay_tone_broken",
+          "bus": "cadence",
+          "lane": "stinger",
+          "rank": 5,
+          "durationMs": 350,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "call garbled"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "relay_garbled",
+      "source": {
+        "kind": "feed",
+        "feedKind": "relay",
+        "qualifier": "garbled"
+      },
+      "bible": [
+        "J5.1.3",
+        "I2.4.1"
+      ],
+      "information": "The call did not reach the huddle cleanly. Expect a late or wrong alignment.",
+      "visual": {
+        "cue": "relay_mark_broken",
+        "where": "console",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "crowd_touchdown",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 1,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd cheers touchdown"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_touchdown",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "touchdown"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "A touchdown: six points to the scoring side, with the new score.",
+      "visual": {
+        "cue": "banner_touchdown",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_field_goal_good",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "field_goal_good"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The field goal is good: three points, with the new score.",
+      "visual": {
+        "cue": "banner_field_goal_good",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      },
+      "caption": null,
+      "open": "Crowd reaction for kick scores is not in the MB-7 list; asked of the PV-08 owner."
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_field_goal_missed",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "field_goal_missed"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The field goal missed: no points, ball goes over.",
+      "visual": {
+        "cue": "banner_no_good",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_safety",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "safety"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "A safety: two points to the defence, and the ball changes hands by free kick.",
+      "visual": {
+        "cue": "banner_safety",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_try_good",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "try_good"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The try after touchdown is good, with the new score.",
+      "visual": {
+        "cue": "banner_try_good",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_try_failed",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "try_failed"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The try after touchdown failed: no point added.",
+      "visual": {
+        "cue": "banner_try_failed",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "crowd_turnover",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 2,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd reacts to turnover"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_interception",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "interception"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The pass was intercepted: possession changed.",
+      "visual": {
+        "cue": "banner_turnover",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "crowd_turnover",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 2,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd reacts to turnover"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_fumble_lost",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "fumble_lost"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The fumble was lost: possession changed.",
+      "visual": {
+        "cue": "banner_turnover",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "crowd_turnover",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 2,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd reacts to turnover"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_turnover_on_downs",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "turnover_on_downs"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "Failed on fourth down: the ball goes to the other side at the spot.",
+      "visual": {
+        "cue": "banner_turnover",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "crowd_sack",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 4,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd reacts to sack"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_sack",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "sack"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The passer was sacked: loss of yards and the down is used.",
+      "visual": {
+        "cue": "banner_sack",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_incomplete",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "incomplete"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The pass fell incomplete: clock stops, down used, ball stays.",
+      "visual": {
+        "cue": "strip_incomplete",
+        "where": "strip",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_first_down",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "first_down"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "A first down: the chains reset and the strip reads 1st and 10 (or goal to go) from the new spot.",
+      "visual": {
+        "cue": "strip_first_down",
+        "where": "strip",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_touchback",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "touchback"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "A touchback: the ball is spotted at the touchback line.",
+      "visual": {
+        "cue": "banner_touchback",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      },
+      "caption": null
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "referee_mic_tone",
+          "bus": "officials",
+          "lane": "stinger",
+          "rank": 2,
+          "durationMs": 400,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "referee tone"
+        },
+        {
+          "id": "crowd_flag_against_home",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 5,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "condition": "only when favours is the visitor (flag against the home side)",
+          "caption": "crowd groans at flag"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_penalty",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "penalty"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "A penalty: the foul, the player number, the enforcement and the accept or decline choice.",
+      "visual": {
+        "cue": "penalty_card",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "referee_mic_tone",
+          "bus": "officials",
+          "lane": "stinger",
+          "rank": 2,
+          "durationMs": 400,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "referee tone"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_review_upheld",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "review_upheld"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The review is over and the play stands as called.",
+      "visual": {
+        "cue": "banner_review_upheld",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "referee_mic_tone",
+          "bus": "officials",
+          "lane": "stinger",
+          "rank": 2,
+          "durationMs": 400,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "referee tone"
+        },
+        {
+          "id": "crowd_review_reversal",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 6,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd reacts to reversal"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "ruling_review_reversed",
+      "source": {
+        "kind": "feed",
+        "feedKind": "ruling",
+        "qualifier": "review_reversed"
+      },
+      "bible": [
+        "B11",
+        "I9.2.2",
+        "O6.4.1"
+      ],
+      "information": "The review is over and the call on the field is reversed.",
+      "visual": {
+        "cue": "banner_review_reversed",
+        "where": "banner",
+        "switch": "display.banners",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "whistle_tick",
+      "sounds": [
+        {
+          "id": "crowd_big_gain",
+          "bus": "crowd",
+          "lane": "crowdReaction",
+          "rank": 3,
+          "durationMs": 2500,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd cheers big gain"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "big_gain",
+      "source": {
+        "kind": "feed",
+        "feedKind": "result",
+        "qualifier": "yardsGained over a threshold"
+      },
+      "bible": [
+        "MB-7",
+        "O5.3.2"
+      ],
+      "information": "A play that gained a lot of yards. The threshold is owned by PV-08 and needs a sourced value; until then this row never fires.",
+      "visual": {
+        "cue": "strip_big_gain",
+        "where": "strip",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      },
+      "threshold": null
+    },
+    {
+      "phase": "v1",
+      "timing": "play_level",
+      "sounds": [
+        {
+          "id": "crowd_bed",
+          "bus": "crowd",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 0,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "crowd noise"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Period-feel crowd bed: same engine-driven level, different timbre."
+      },
+      "id": "crowd_bed",
+      "source": {
+        "kind": "state",
+        "feedKind": "conditions",
+        "qualifier": "noise"
+      },
+      "bible": [
+        "J12.6.1",
+        "MB-6"
+      ],
+      "information": "How loud the stadium is for this play. The level is the engine noise value, the same number the noise meter shows: when a road offence cannot hear its count.",
+      "visual": {
+        "cue": "noise_meter",
+        "where": "strip",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "ui_event",
+      "sounds": [
+        {
+          "id": "play_clock_tick",
+          "bus": "ui",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 60,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": false,
+          "caption": "play clock tick"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "play_clock_tick",
+      "source": {
+        "kind": "state",
+        "feedKind": "playClock",
+        "qualifier": "under 10 s"
+      },
+      "bible": [
+        "O5.3.2",
+        "O5.5.2"
+      ],
+      "information": "Time pressure: the play clock is under ten seconds.",
+      "visual": {
+        "cue": "play_clock_pulse",
+        "where": "strip",
+        "switch": "audio.playClockTickOn",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "ui_event",
+      "sounds": [
+        {
+          "id": "call_confirm",
+          "bus": "ui",
+          "lane": "stinger",
+          "rank": 4,
+          "durationMs": 200,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 120,
+          "defaultOn": true,
+          "caption": "call sent"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "call_confirm",
+      "source": {
+        "kind": "ui",
+        "feedKind": "console",
+        "qualifier": "call sent"
+      },
+      "bible": [
+        "O5.3.2",
+        "MB-12"
+      ],
+      "information": "Your call was taken by the console and will be signalled in.",
+      "visual": {
+        "cue": "sheet_row_sent",
+        "where": "console",
+        "switch": "display.banners",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "ui_event",
+      "sounds": [
+        {
+          "id": "alert_injury",
+          "bus": "ui",
+          "lane": "stinger",
+          "rank": 3,
+          "durationMs": 500,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "injury alert"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "alert_injury",
+      "source": {
+        "kind": "game_event",
+        "feedKind": "injury",
+        "qualifier": null
+      },
+      "bible": [
+        "O5.3.2",
+        "I9.2.2"
+      ],
+      "information": "A player is hurt and a decision about him is waiting.",
+      "visual": {
+        "cue": "banner_injury",
+        "where": "banner",
+        "switch": "audio.alertsOn",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "ui_event",
+      "sounds": [
+        {
+          "id": "alert_challenge_window",
+          "bus": "ui",
+          "lane": "stinger",
+          "rank": 3,
+          "durationMs": 500,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "challenge window alert"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "alert_challenge_window",
+      "source": {
+        "kind": "game_event",
+        "feedKind": "challenge_window",
+        "qualifier": null
+      },
+      "bible": [
+        "O5.3.2",
+        "I9.2.2"
+      ],
+      "information": "The window to challenge the last ruling is open.",
+      "visual": {
+        "cue": "banner_challenge_window",
+        "where": "banner",
+        "switch": "audio.alertsOn",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "ui_event",
+      "sounds": [
+        {
+          "id": "alert_timeout_called",
+          "bus": "ui",
+          "lane": "stinger",
+          "rank": 3,
+          "durationMs": 500,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "timeout called alert"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "alert_timeout_called",
+      "source": {
+        "kind": "game_event",
+        "feedKind": "timeout_called",
+        "qualifier": null
+      },
+      "bible": [
+        "O5.3.2",
+        "I9.2.2"
+      ],
+      "information": "A timeout was charged: who called it and how many remain.",
+      "visual": {
+        "cue": "banner_timeout",
+        "where": "banner",
+        "switch": "audio.alertsOn",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v1",
+      "timing": "ui_event",
+      "sounds": [
+        {
+          "id": "alert_two_minute",
+          "bus": "ui",
+          "lane": "stinger",
+          "rank": 3,
+          "durationMs": 500,
+          "pan": false,
+          "duckCrowd": true,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "two minute alert"
+        }
+      ],
+      "era": {
+        "plain": "Flat banner bar in token colours, cut on and off.",
+        "classic": "Character-generator lower third: blocky uppercase display face, hard drop shadow, flat colour bar, cut on and off."
+      },
+      "id": "alert_two_minute",
+      "source": {
+        "kind": "game_event",
+        "feedKind": "two_minute",
+        "qualifier": null
+      },
+      "bible": [
+        "O5.3.2",
+        "I9.2.2"
+      ],
+      "information": "The two-minute warning: the clock stops and a stoppage begins.",
+      "visual": {
+        "cue": "banner_two_minute",
+        "where": "banner",
+        "switch": "audio.alertsOn",
+        "reducedMotion": "half_and_still"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "state",
+      "sounds": [
+        {
+          "id": "stoppage_chime",
+          "bus": "ambience",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 1500,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": false,
+          "caption": "stadium sound between plays"
+        }
+      ],
+      "era": {
+        "plain": "Generic PA chime and band hits, synthesized.",
+        "classic": "Stadium organ sting and band hit.",
+        "gate": "Organ and band in stoppages are an Assumption in plan 2.1 until PV-10 checks the period fact. The classic sound stays off until that check passes."
+      },
+      "id": "ambience_stoppage",
+      "source": {
+        "kind": "state",
+        "feedKind": "stoppage",
+        "qualifier": null
+      },
+      "deferred": true,
+      "bible": [
+        "O5.3.2",
+        "A5"
+      ],
+      "information": "The play is dead and the game is in a stoppage. Carries nothing beyond that, so it ships off by default and is deferred under plan rule 2.",
+      "visual": {
+        "cue": "stoppage_caption",
+        "where": "strip",
+        "switch": "audio.ambienceOn",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "play_level",
+      "sounds": [
+        {
+          "id": "rain_bed",
+          "bus": "ambience",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 0,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "rain"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "weather_rain",
+      "source": {
+        "kind": "state",
+        "feedKind": "conditions",
+        "qualifier": "precip"
+      },
+      "bible": [
+        "J12.3.1",
+        "O5.3.2"
+      ],
+      "information": "It is raining: footing and ball security are worse. Same state the weather layer draws.",
+      "visual": {
+        "cue": "weather_layer_rain",
+        "where": "field",
+        "switch": "display.weatherLayer",
+        "reducedMotion": "still"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "play_level",
+      "sounds": [
+        {
+          "id": "wind_bed",
+          "bus": "ambience",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 0,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": true,
+          "caption": "wind gusts"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "weather_wind",
+      "source": {
+        "kind": "state",
+        "feedKind": "conditions",
+        "qualifier": "windMph, gustMph"
+      },
+      "bible": [
+        "J12.3.1",
+        "O5.3.2"
+      ],
+      "information": "Wind speed and direction, with gusts: affects kicks and deep throws. Same state the wind indicator shows.",
+      "visual": {
+        "cue": "wind_indicator",
+        "where": "strip",
+        "switch": "display.weatherLayer",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "state",
+      "sounds": [
+        {
+          "id": "projector_run",
+          "bus": "ambience",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 0,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 0,
+          "defaultOn": false,
+          "filmOnly": true,
+          "classicOnly": true,
+          "caption": "projector running"
+        }
+      ],
+      "era": {
+        "plain": "No projector sound; frame counter only.",
+        "classic": "16mm projector run sound for worlds before 1986 (period fact: Verified for 16mm, 1986 is 2 of 3)."
+      },
+      "id": "film_projector",
+      "source": {
+        "kind": "film",
+        "feedKind": "filmRoom",
+        "qualifier": "reel running"
+      },
+      "bible": [
+        "O2.6",
+        "plan 2.1"
+      ],
+      "information": "The film is running. The frame counter shows where in the reel you are. Film room only; never on the live field.",
+      "visual": {
+        "cue": "film_frame_counter",
+        "where": "film",
+        "switch": "display.filmLook",
+        "reducedMotion": "same"
+      }
+    }
+  ]
+}

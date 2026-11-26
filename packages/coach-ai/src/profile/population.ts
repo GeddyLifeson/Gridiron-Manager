@@ -3,7 +3,7 @@
 // Means that have a real source cite it through sources.ts; every other number is a named Assumption.
 // These live here until the content pipeline (G-08) gives coach content a home in football-content;
 // the shapes are plain data so they can move to a content file unchanged.
-import { BEHAVIOR_KEYS, DEFENSE_RATE_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, TENDENCY_KEYS, type BehaviorKey, type TendencyKey } from './keys.ts';
+import { BEHAVIOR_KEYS, DEFENSE_RATE_KEYS, EMPHASIS_KEYS, LATE_TENDENCY_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, TENDENCY_KEYS, type BehaviorKey, type TendencyKey } from './keys.ts';
 import { ASSUMPTIONS, PRO_TARGETS, PRO_TEAM_SPREADS, type SourceStatus } from './sources.ts';
 import type { CoachLevel, CoachRole, PersonnelKey, SideOfBall } from './types.ts';
 
@@ -98,6 +98,8 @@ function tendencyFields(): Record<TendencyKey, FieldSpec> {
     analyticsTrust: assumed(0.5, 0.18, 0.02, 0.98, 'K2.1.3, I5.1.2'),
     challengeEagerness: z('K2.1.3'),
     iceKicker: assumed(0.35, 0.15, 0.02, 0.98, 'K2.1.3'),
+    veteranBias: assumed(1, 1, -2, 4, 'K2.1.3 rule 4 (MA-60): ISS per five years of experience, no source'),
+    backupRepShare: assumed(0.18, 0.05, 0.05, 0.35, 'K2.1.3 rule 4 (MA-60): fraction of practice reps, no source'),
   };
 }
 
@@ -175,6 +177,7 @@ function build(level: CoachLevel, role: CoachRole): CoachPopulation {
   }
   const fields: Record<string, FieldSpec> = { ...sys };
   for (const [k, f] of Object.entries(tendencyFields())) fields[`tendencies.${k}`] = f;
+  for (const k of EMPHASIS_KEYS) fields[`tendencies.emphasis.${k}`] = assumed(0, 0.35, -1, 1, 'K2.1.3 rule 4 (MA-60): offset from neutral, no source');
   for (const [k, f] of Object.entries(behaviorFields(L.behaviorSpread))) fields[`behavior.${k}`] = f;
   return {
     key: `coachPopulation.${level}.${role}`,
@@ -209,8 +212,14 @@ export const FIELD_PATHS: readonly string[] = [
   ...OFFENSE_RATE_KEYS.map((k) => `offenseRates.${k}`),
   ...DEFENSE_RATE_KEYS.map((k) => `defenseRates.${k}`),
   'tempo.noHuddleShare', 'tempo.snapAtPlayClockS', 'sheet.offenseCalls', 'sheet.defenseCalls',
-  ...TENDENCY_KEYS.map((k) => `tendencies.${k}`),
+  ...TENDENCY_KEYS.filter((k) => !LATE_TENDENCY_KEYS.includes(k)).map((k) => `tendencies.${k}`),
   ...BEHAVIOR_KEYS.map((k) => `behavior.${k}`),
+];
+
+/** K2.1.3 rule 4 fields. Drawn after everything else, so profiles made before they existed keep every other value. */
+export const LATE_FIELD_PATHS: readonly string[] = [
+  ...LATE_TENDENCY_KEYS.map((k) => `tendencies.${k}`),
+  ...EMPHASIS_KEYS.map((k) => `tendencies.emphasis.${k}`),
 ];
 
 export { PERSONNEL_KEYS };

@@ -1,0 +1,1036 @@
+{
+ "version": "1",
+ "note": "Rows: [name, value, min, max, unit, basis, leaf, constrainedBy]. basis 'bible' = the K7 leaf states the number as a starting value; 'assumption' = the leaf names the quantity and this module chose the number. K7 states that no fact is sourced for these (philosophy and behaviour are design content). League rules (limits, dates, contract lengths) are never here: they are read by key through @gm/league.",
+ "rows": [
+  [
+   "value.horizonYears",
+   4,
+   1,
+   6,
+   "seasons",
+   "bible",
+   "K7.1.1 (this season against the next three)",
+   "gm test"
+  ],
+  [
+   "value.leanSdBase",
+   4,
+   0,
+   10,
+   "ISS",
+   "assumption",
+   "K7.2.2 inputs (evaluation error); K7.1.1 rule 2",
+   "gm test"
+  ],
+  [
+   "value.leanSdPerZ",
+   0.3,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 2",
+   "gm test"
+  ],
+  [
+   "value.leanSdMinFactor",
+   0.4,
+   0.1,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 2",
+   "gm test"
+  ],
+  [
+   "value.leanSdMaxFactor",
+   1.8,
+   1,
+   3,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 2",
+   "gm test"
+  ],
+  [
+   "value.riskBandZ",
+   0.8,
+   0,
+   1.5,
+   "sd",
+   "assumption",
+   "K7.2.2 edge case (lower part of the band)",
+   "gm test"
+  ],
+  [
+   "value.projectionTrustMin",
+   0.4,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.2.2 rule 3; K7.1.1 riskOnTraits",
+   "gm test"
+  ],
+  [
+   "value.projectionTrustMax",
+   0.9,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.2.2 rule 3; K7.1.1 riskOnTraits",
+   "gm test"
+  ],
+  [
+   "value.futureWeightMin",
+   0.35,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.2.2 rule 3 (discounting by timeHorizon)",
+   "gm test"
+  ],
+  [
+   "value.futureWeightMax",
+   0.95,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.2.2 rule 3",
+   "gm test"
+  ],
+  [
+   "value.flagDiscount",
+   0.08,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.2.2 inputs (character flags, D6.3.2)",
+   "gm test"
+  ],
+  [
+   "profile.styleSd",
+   0.45,
+   0.1,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 philosophy (design content)",
+   "gm test"
+  ],
+  [
+   "profile.positionValueSd",
+   0.08,
+   0,
+   0.3,
+   "ratio",
+   "assumption",
+   "K7.1.1 positionValues",
+   "gm test"
+  ],
+  [
+   "profile.positionValueMin",
+   0.75,
+   0.5,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 positionValues",
+   "gm test"
+  ],
+  [
+   "profile.positionValueMax",
+   1.25,
+   1,
+   1.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 positionValues",
+   "gm test"
+  ],
+  [
+   "profile.ageBeliefSd",
+   0.15,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 ageCurveBelief",
+   "gm test"
+  ],
+  [
+   "profile.ageBeliefMin",
+   0.6,
+   0.3,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 ageCurveBelief",
+   "gm test"
+  ],
+  [
+   "profile.ageBeliefMax",
+   1.5,
+   1,
+   2,
+   "ratio",
+   "assumption",
+   "K7.1.1 ageCurveBelief",
+   "gm test"
+  ],
+  [
+   "profile.capStyleMean",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 capStyle",
+   "gm test"
+  ],
+  [
+   "profile.capStyleSd",
+   0.2,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 capStyle",
+   "gm test"
+  ],
+  [
+   "profile.horizonMean",
+   0.55,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 timeHorizon",
+   "gm test"
+  ],
+  [
+   "profile.horizonSd",
+   0.2,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 timeHorizon",
+   "gm test"
+  ],
+  [
+   "profile.zClamp",
+   3,
+   2,
+   4,
+   "sd",
+   "assumption",
+   "K7.1.1 behavior (z-scored)",
+   "gm test"
+  ],
+  [
+   "profile.pressureHorizonCut",
+   0.6,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 4",
+   "gm test"
+  ],
+  [
+   "profile.seasonNudge",
+   0.03,
+   0,
+   0.1,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 5 (K2.5.1: a little)",
+   "gm test"
+  ],
+  [
+   "profile.collegeSd",
+   0.2,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.2 (field distributions: Assumption)",
+   "gm test"
+  ],
+  [
+   "profile.collegeMid",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.2",
+   "gm test"
+  ],
+  [
+   "profile.collegeHeadCoachWeight",
+   0.7,
+   0.7,
+   0.7,
+   "ratio",
+   "bible",
+   "K7.1.2 rule 2 (starting 0.7)",
+   "gm test"
+  ],
+  [
+   "voice.start.coach_final",
+   1,
+   1,
+   1,
+   "ratio",
+   "bible",
+   "K7.2.1 rule 5 and K7.1.1 rule 3 (the coach decides)",
+   "gm test"
+  ],
+  [
+   "voice.start.gm_final",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 3 (starts from the power arrangement)",
+   "gm test"
+  ],
+  [
+   "voice.start.split",
+   0.45,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 3",
+   "gm test"
+  ],
+  [
+   "voice.start.owner_final",
+   0.35,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 3",
+   "gm test"
+  ],
+  [
+   "voice.trustSlope",
+   0.25,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 3 (moves with L5.2.4 trust)",
+   "gm test"
+  ],
+  [
+   "needs.issScale",
+   15,
+   5,
+   30,
+   "ISS",
+   "assumption",
+   "K7.2.1 rule 1",
+   "gm test"
+  ],
+  [
+   "needs.expiryTerm",
+   0.25,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.2.1 rule 1 (contract-expiry term)",
+   "gm test"
+  ],
+  [
+   "needs.nowThreshold",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.2.1 outputs (time frame)",
+   "gm test"
+  ],
+  [
+   "needs.rankStep",
+   0.1,
+   0,
+   0.3,
+   "ratio",
+   "assumption",
+   "K7.2.1 rule 2",
+   "gm test"
+  ],
+  [
+   "needs.fullWeightAsks",
+   5,
+   5,
+   5,
+   "count",
+   "bible",
+   "K7.2.1 rule 3 (starting 5 priorities)",
+   "gm test"
+  ],
+  [
+   "needs.extraAskFactor",
+   0.5,
+   0.5,
+   0.5,
+   "ratio",
+   "bible",
+   "K7.2.1 rule 3 (half weight)",
+   "gm test"
+  ],
+  [
+   "needs.trustStep",
+   0.05,
+   0,
+   0.2,
+   "ratio",
+   "assumption",
+   "K7.2.1 rule 4 (L5.2.4 owns the record)",
+   "gm test"
+  ],
+  [
+   "trade.curveBend",
+   0.15,
+   0,
+   0.3,
+   "ratio",
+   "assumption",
+   "K7.1.1 pickValueCurve; C7.5.1 rule 3",
+   "gm test"
+  ],
+  [
+   "trade.pickLean",
+   0.08,
+   0,
+   0.2,
+   "ratio",
+   "assumption",
+   "K7.1.1 draftVsVeteran",
+   "gm test"
+  ],
+  [
+   "trade.readSdBase",
+   0.2,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 2 (marketRead)",
+   "gm test"
+  ],
+  [
+   "trade.readSdPerZ",
+   0.3,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 2",
+   "gm test"
+  ],
+  [
+   "trade.readSdMinFactor",
+   0.4,
+   0.1,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 2",
+   "gm test"
+  ],
+  [
+   "trade.readSdMaxFactor",
+   1.8,
+   1,
+   3,
+   "ratio",
+   "assumption",
+   "K7.1.1 rule 2",
+   "gm test"
+  ],
+  [
+   "trade.holdShare",
+   0.05,
+   0,
+   0.3,
+   "ratio",
+   "assumption",
+   "K7.4.4 rule 2 (estimate of better offers)",
+   "gm test"
+  ],
+  [
+   "trade.grudge",
+   0.5,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "K7.4.4 inputs (dealsWith memory)",
+   "gm test"
+  ],
+  [
+   "trade.proposeMargin",
+   0.15,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.4 rule 1 (by a margin)",
+   "gm test"
+  ],
+  [
+   "trade.weeklyProposals",
+   2,
+   2,
+   2,
+   "count",
+   "bible",
+   "K7.4.4 rule 4 (starting 2)",
+   "gm test"
+  ],
+  [
+   "draft.needBonusFirst",
+   0.05,
+   0.05,
+   0.05,
+   "ratio",
+   "bible",
+   "K7.4.3 rule 1 (starting 5%)",
+   "gm test"
+  ],
+  [
+   "draft.needBonusLast",
+   0.2,
+   0.2,
+   0.2,
+   "ratio",
+   "bible",
+   "K7.4.3 rule 1 (rising to 20%)",
+   "gm test"
+  ],
+  [
+   "draft.tradeDownWithin",
+   0.03,
+   0.03,
+   0.03,
+   "ratio",
+   "bible",
+   "K7.4.3 rule 3 (starting 3%)",
+   "gm test"
+  ],
+  [
+   "draft.tradeDownGroup",
+   3,
+   2,
+   6,
+   "count",
+   "assumption",
+   "K7.4.3 rule 3 (top several)",
+   "gm test"
+  ],
+  [
+   "draft.tradeUpGap",
+   0.15,
+   0.05,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.4.3 rule 3 (stands well above the rest)",
+   "gm test"
+  ],
+  [
+   "fa.needWeight",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.2 rule 1 (by need and surplus)",
+   "gm test"
+  ],
+  [
+   "fa.offersPerRound",
+   3,
+   1,
+   10,
+   "count",
+   "assumption",
+   "K7.4.2 rule 1; K7.8.1 (cost)",
+   "gm test"
+  ],
+  [
+   "fa.openBase",
+   0.8,
+   0.5,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.2 rule 1 (opening fraction)",
+   "gm test"
+  ],
+  [
+   "fa.openMin",
+   0.6,
+   0.3,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.2 rule 1",
+   "gm test"
+  ],
+  [
+   "fa.openPerNegotiationZ",
+   0.05,
+   0,
+   0.15,
+   "ratio",
+   "assumption",
+   "K7.4.2 rule 1 (set by negotiation)",
+   "gm test"
+  ],
+  [
+   "fa.openPerSuitor",
+   0.03,
+   0,
+   0.1,
+   "ratio",
+   "assumption",
+   "K7.4.2 rule 1 (read of competing interest)",
+   "gm test"
+  ],
+  [
+   "fa.suitorsForFullOpen",
+   6,
+   1,
+   12,
+   "count",
+   "assumption",
+   "K7.4.2 rule 1",
+   "gm test"
+  ],
+  [
+   "fa.raisePerRound",
+   0.04,
+   0,
+   0.2,
+   "ratio",
+   "assumption",
+   "K7.4.2 rules 1 and 2",
+   "gm test"
+  ],
+  [
+   "fa.passedOnDiscount",
+   0.1,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.1.1 memory.playersPassedOn",
+   "gm test"
+  ],
+  [
+   "contracts.restructureEase",
+   0.15,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 4 (capStyle)",
+   "gm test"
+  ],
+  [
+   "contracts.minSurplusStep",
+   0.001,
+   0.0001,
+   0.1,
+   "wins",
+   "assumption",
+   "K7.4.1 rule 2 (repair pass)",
+   "gm test"
+  ],
+  [
+   "contracts.bonusShareMin",
+   0.1,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 4",
+   "gm test"
+  ],
+  [
+   "contracts.bonusShareMax",
+   0.5,
+   0.2,
+   0.9,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 4",
+   "gm test"
+  ],
+  [
+   "contracts.breakdownChance",
+   0.3,
+   0,
+   1,
+   "probability",
+   "assumption",
+   "K7.4.1 rule 3 (talks can fail)",
+   "gm test"
+  ],
+  [
+   "contracts.thinOverlap",
+   0.03,
+   0,
+   0.2,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 3",
+   "gm test"
+  ],
+  [
+   "contracts.evenSplit",
+   0.5,
+   0.5,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 3",
+   "gm test"
+  ],
+  [
+   "contracts.sharePerZ",
+   0.1,
+   0,
+   0.2,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 3 (negotiation against the agent's)",
+   "gm test"
+  ],
+  [
+   "contracts.shareMin",
+   0.1,
+   0,
+   0.5,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 3",
+   "gm test"
+  ],
+  [
+   "contracts.shareMax",
+   0.9,
+   0.5,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.1 rule 3",
+   "gm test"
+  ],
+  [
+   "roster.claimMargin",
+   0.05,
+   0,
+   0.5,
+   "wins",
+   "assumption",
+   "K7.3.1 rule 3 (by a margin)",
+   "gm test"
+  ],
+  [
+   "roster.hideThreshold",
+   0.1,
+   0,
+   1,
+   "wins",
+   "assumption",
+   "K7.4.5 rule 4",
+   "gm test"
+  ],
+  [
+   "roster.ownPickBonus",
+   0.3,
+   0,
+   1,
+   "wins",
+   "assumption",
+   "K7.4.5 rule 3 (starting bonus by round, Assumption)",
+   "gm test"
+  ],
+  [
+   "roster.ownPickBonusLean",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.5 rule 3; K7.1.1 draftVsVeteran",
+   "gm test"
+  ],
+  [
+   "roster.udfaNeedWeight",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.5 rule 1 (with a need term)",
+   "gm test"
+  ],
+  [
+   "authority.objectMargin",
+   0.15,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "L5.2.1 (objects when he disagrees)",
+   "gm test"
+  ],
+  [
+   "authority.objectFloor",
+   0.1,
+   0,
+   1,
+   "wins",
+   "assumption",
+   "L5.2.1",
+   "gm test"
+  ],
+  [
+   "order.reducedTier",
+   3,
+   3,
+   3,
+   "index",
+   "bible",
+   "K7.8.1 rule 3 (tier 3)",
+   "gm test"
+  ],
+  [
+   "order.tier3MarketStepDays",
+   7,
+   1,
+   30,
+   "days",
+   "assumption",
+   "K7.8.1 rule 3 (coarser step; X13.1.2 owns it)",
+   "gm test"
+  ],
+  [
+   "needs.depthGapWeight",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "M1.4.1 (0.5 x depth gap); K7.2.1 rule 1",
+   "gm hookup test"
+  ],
+  [
+   "needs.shortfallIss",
+   10,
+   0,
+   30,
+   "ISS",
+   "assumption",
+   "M1.4.1 count shortfall penalty (same value as G-57 P-57-2); K7.2.1 rule 1",
+   "gm hookup test"
+  ],
+  [
+   "needs.futureFlagNeed",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "M1.4.3 future need; K7.2.1 time frame",
+   "gm hookup test"
+  ],
+  [
+   "draft.goneChance",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.3 rule 3 (will not last); M3.4.1 chance gone",
+   "gm hookup test"
+  ],
+  [
+   "roster.highGuaranteeShare",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "M6.4.1 inputs (a contract whose release costs too much cap: K7 marks it)",
+   "gm hookup test"
+  ],
+  [
+   "roster.bubbleSize",
+   5,
+   0,
+   15,
+   "count",
+   "assumption",
+   "M6.4.1 columns (bubble)",
+   "gm hookup test"
+  ],
+  [
+   "college.boardProjectionWeight",
+   0.6,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 1 (projection weighted heavily)",
+   "gm college test"
+  ],
+  [
+   "college.marketProjectionWeight",
+   0.15,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.5.2 (more weight on current grade, less on projection)",
+   "gm college test"
+  ],
+  [
+   "college.developLean",
+   0.4,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.2 developVsBuy",
+   "gm college test"
+  ],
+  [
+   "college.regionBonus",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.2 regionalFocus",
+   "gm college test"
+  ],
+  [
+   "college.needWeight",
+   0.5,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 1 (need term); K7.5.2 (by need and surplus)",
+   "gm college test"
+  ],
+  [
+   "college.evenBattleShare",
+   0.5,
+   0.1,
+   0.9,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 2 (head-to-head battles)",
+   "gm college test"
+  ],
+  [
+   "college.offerLossSpread",
+   0.8,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 2 (more for programs that lose more head-to-head battles)",
+   "gm college test"
+  ],
+  [
+   "college.offerMultipleMin",
+   3,
+   1,
+   10,
+   "ratio",
+   "bible",
+   "K7.5.1 rule 2 (spread by program of about 3 to 20)",
+   "gm college test"
+  ],
+  [
+   "college.offerMultipleMax",
+   20,
+   10,
+   40,
+   "ratio",
+   "bible",
+   "K7.5.1 rule 2 (spread by program of about 3 to 20)",
+   "gm college test"
+  ],
+  [
+   "college.committablePerPlace",
+   2,
+   1,
+   10,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 2 (many offers are not committable); T4.4.5",
+   "gm college test"
+  ],
+  [
+   "college.flipFloor",
+   0.1,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 5 (chance above a floor)",
+   "gm college test"
+  ],
+  [
+   "college.lowerSourceWeight",
+   0.5,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "K7.5.2 (two-year and lower-division players by highSchoolVsTransfer and need); T6.3.2",
+   "gm college test"
+  ],
+  [
+   "college.buyoutShareMax",
+   1,
+   0,
+   3,
+   "ratio",
+   "assumption",
+   "K7.1.2 lockIn; T7.3.2 (exit clauses)",
+   "gm college test"
+  ],
+  [
+   "violation.winsForFullGain",
+   1,
+   0.1,
+   5,
+   "wins",
+   "assumption",
+   "K7.7.1 (estimated gain from K7.2.2 on the K2.8.2 scale)",
+   "gm violations test"
+  ]
+ ]
+}

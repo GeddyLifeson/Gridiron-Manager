@@ -1,0 +1,10 @@
+{
+  "$comment": "Test fixture, not game data. College preseason values from the M6.1.1 edge case (29 practice opportunities, 2 of 3; live contact at most 3 days in 7 after a 5-day acclimatization, 1 of 3, NCAA recommendation), requested from G-10 as NEW keys.",
+  "id": "fixture_college_camp",
+  "values": {
+    "work.camp_acclimation_days": [5, "NEW M6.1.1"],
+    "work.preseason_practices_max": [29, "NEW M6.1.1"],
+    "work.live_contact_days_max": [3, "NEW M6.1.1"],
+    "work.live_contact_window_days": [7, "NEW M6.1.1"]
+  }
+}
