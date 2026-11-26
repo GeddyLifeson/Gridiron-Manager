@@ -2012,6 +2012,9 @@
 "T4.4.5",
 "Highest rating a lower program boards outside its home state"
 ],
+["shortlist.perOffer", 2, 1, 5, "ratio", "assumption", "T4.3.1", "Names a staff puts a first-pass grade on per offer it plans: about 500 board names a class (F-recruiting-practice-0002, 1 of 3, flagged) against about 237 offers (F-recruiting-practice-0001, Verified)"],
+["shortlist.homeBonus", 1, 0, 3, "stars", "assumption", "T4.3.1", "A prospect from the program's own region ranks one star higher when the staff draws up its shortlist (local coaches and camps, T4.6.1)"],
+["shortlist.findSpread", 1, 0, 3, "stars", "assumption", "T4.3.1", "Spread of a staff's own finds (camps, coaches' tips) when it draws up its shortlist, in stars: below-rated prospects can make the list"],
 [
 "ai.overSignAllowance",
 1,

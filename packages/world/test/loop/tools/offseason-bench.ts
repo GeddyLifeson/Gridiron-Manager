@@ -89,6 +89,24 @@ function recruitingCounts(): Record<string, number> {
   return Object.fromEntries(Object.entries(st).map(([k, v]) => [k, Array.isArray(v) ? v.length : v !== null && typeof v === 'object' ? Object.keys(v).length : 1]));
 }
 
+/** Approximate canonical text size of each part of the recruiting state in MB, entry by entry (no one giant string), and board grade count. */
+function recruitingBytes(): Record<string, number> {
+  const st = (w.systemState.get(rec.RECRUITING_KEY) as rec.WorldRecruiting | undefined)?.state as unknown as Record<string, unknown> | undefined;
+  if (!st) return {};
+  const len = (v: unknown): number => {
+    if (Array.isArray(v)) return v.reduce((a: number, x) => a + len(x), 0);
+    if (v !== null && typeof v === 'object') { let n = 0; for (const [k, x] of Object.entries(v)) n += k.length + len(x); return n; }
+    return JSON.stringify(v)?.length ?? 0;
+  };
+  const mb = (n: number) => Math.round(n / 1e5) / 10;
+  const out: Record<string, number> = {};
+  for (const [k, v] of Object.entries(st)) out[k] = mb(len(v));
+  const boards = Object.values((st['boards'] ?? {}) as Record<string, { grades: object; reads: object }>);
+  out['boardGradesCount'] = boards.reduce((a, b) => a + Object.keys(b.grades).length, 0);
+  out['boardGradesMb'] = mb(boards.reduce((a, b) => a + len(b.grades), 0));
+  return out;
+}
+
 let last = performance.now();
 loop.runHistory(w, systems, {
   seasons: SEASONS, schedule: testSchedule,
@@ -96,7 +114,7 @@ loop.runHistory(w, systems, {
     const now = performance.now();
     console.log(JSON.stringify({
       season: summary.seasonYear, done, ms: Math.round(now - last), steps: Object.fromEntries(Object.entries(timing).map(([k, v]) => [k, Math.round(v)])),
-      people: w.people.size, hash: HASH ? safeHash() : 'off', ...(SIZES ? { recruitingCounts: recruitingCounts() } : {}),
+      people: w.people.size, hash: HASH ? safeHash() : 'off', ...(SIZES ? { recruitingCounts: recruitingCounts(), recruitingMb: recruitingBytes() } : {}),
     }));
     for (const k of Object.keys(timing)) timing[k] = 0;
     last = performance.now();
