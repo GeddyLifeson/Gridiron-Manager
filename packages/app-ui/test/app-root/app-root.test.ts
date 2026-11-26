@@ -208,6 +208,7 @@ describe('week, film and media screens fed from the season (item 2d)', () => {
       expect(after.agenda).toHaveLength(1);
       expect(after.defaultAgenda).toBe(false);
       expect(redraws).toBe(1);
+      expect(src.week!.getModel(p)!.days.flatMap((d) => d.blocks).find((b) => b.id === mine!.blockId)!.unplanned).toBe(false);
       if (theirs) { src.meetings!.onCommand!({ kind: 'add_item', blockId: theirs.blockId, itemKind: theirs.itemKinds[0] ?? 'install' }); expect(redraws).toBe(1); }
       src.meetings!.onCommand!({ kind: 'remove_item', blockId: mine!.blockId, n: 1 });
       expect(src.meetings!.getModel(p)!.days.flatMap((d) => d.meetings).find((m) => m.blockId === mine!.blockId)!.agenda).toHaveLength(0);

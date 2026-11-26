@@ -94,7 +94,10 @@ export class WeekDesk {
     if (!o) return null;
     const now = o.loop.now();
     const findings = wk.checkWeek(o.loop.week, { rules: this.host.rules });
-    return wk.scheduleView(o.loop.week, findings, this.docs(o.loop, o.e).map((d) => wk.documentView(d, now)));
+    const v = wk.scheduleView(o.loop.week, findings, this.docs(o.loop, o.e).map((d) => wk.documentView(d, now)));
+    // A meeting with a saved agenda is planned (H1.1.1 rule 6): the user's agenda is its content.
+    const saved = o.e.agendas;
+    return { ...v, days: v.days.map((d) => ({ ...d, blocks: d.blocks.map((b) => (b.unplanned && saved[b.id]?.length ? { ...b, unplanned: false } : b)) })) };
   }
 
   meetings(): MeetingsView | null {
