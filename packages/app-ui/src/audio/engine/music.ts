@@ -5,7 +5,7 @@
 import { DEFAULT_FADE_SECONDS, type AudioEngine } from './engine.ts';
 
 /** Same shape as PV-11's MenuTrack (structural, so neither package imports the other). */
-export interface MusicTrackLike { id: string; title: string; file: string; loopSeconds: number }
+export interface MusicTrackLike { id: string; title: string; file: string; loopSeconds: number; /** Per-loop level match in dB. Default 0. */ gainDb?: number }
 
 export interface MusicOutputLike {
   play(track: MusicTrackLike): void;
@@ -22,7 +22,7 @@ export function createMusicOutput(engine: AudioEngine, fadeSeconds = DEFAULT_FAD
       if (current === track.id) return;
       // Files load lazily: the first play of a track may be silent until the decode lands, then it starts.
       const start = (): void => {
-        engine.startBed(MUSIC_BED_KEY, { bus: 'music', file: track.file, loopSeconds: track.loopSeconds }, 1, fadeSeconds);
+        engine.startBed(MUSIC_BED_KEY, { bus: 'music', file: track.file, loopSeconds: track.loopSeconds, gainDb: track.gainDb ?? 0 }, 1, fadeSeconds);
       };
       current = track.id;
       start();

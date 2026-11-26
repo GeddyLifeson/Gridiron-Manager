@@ -306,6 +306,16 @@ describe('music output (PV-11 interface)', () => {
     expect(music.current).toBeNull();
   });
 
+  it('applies the track gainDb as a level match', async () => {
+    const ctx = new FakeAudioContext({ decode: () => ctx.createBuffer(2, 8000 * 20, 8000) });
+    const engine = new AudioEngine(ctx, { settings: { music: { volumePct: 100, on: true } }, loader: { load: async () => new ArrayBuffer(8) } });
+    createMusicOutput(engine, 0.5).play({ ...track, gainDb: 6 });
+    await new Promise((r) => setTimeout(r, 0));
+    await new Promise((r) => setTimeout(r, 0));
+    const src = ctx.sources().find((s) => s.kind === 'bufferSource')!;
+    expect(ctx.pathGain(src, 1)).toBeCloseTo(10 ** (6 / 20), 5);
+  });
+
   it('is silent when the music bus is off (the default)', async () => {
     const ctx = new FakeAudioContext();
     const engine = new AudioEngine(ctx, { settings: busSettingsFrom(() => undefined), loader: { load: async () => new ArrayBuffer(8) } });

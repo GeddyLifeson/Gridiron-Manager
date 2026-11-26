@@ -30,6 +30,8 @@ export interface BedDef {
   file?: string;
   /** Loop end in seconds for a file (PV-11: whole bars, so a render's tail is cut). Default: the file's length. */
   loopSeconds?: number;
+  /** Fixed level match in dB on top of the level (PV-11 per-loop `gainDb`). Default 0. */
+  gainDb?: number;
 }
 
 export interface BedHandle {
@@ -61,6 +63,10 @@ interface BedState {
   out: GainNodeLike | null;
   sources: ScheduledSourceLike[];
   source: 'file' | 'synth' | 'none';
+}
+
+function bedGain(state: { level: number; def: BedDef }): number {
+  return state.level * 10 ** ((state.def.gainDb ?? 0) / 20);
 }
 
 const DEFAULT_SETTING: BusSetting = { volumePct: 100, on: true };
@@ -259,7 +265,7 @@ export class AudioEngine {
         const t = Math.max(engine.ctx.currentTime, when ?? engine.ctx.currentTime);
         state.out.gain.cancelScheduledValues(t);
         state.out.gain.setValueAtTime(state.out.gain.value, t);
-        state.out.gain.linearRampToValueAtTime(state.level, t + Math.max(0.01, rampSeconds));
+        state.out.gain.linearRampToValueAtTime(bedGain(state), t + Math.max(0.01, rampSeconds));
       },
       stop(fadeSeconds = DEFAULT_FADE_SECONDS) {
         engine.silenceBed(state, fadeSeconds);
@@ -273,7 +279,7 @@ export class AudioEngine {
     const t = this.ctx.currentTime;
     const out = this.ctx.createGain();
     out.gain.setValueAtTime(0, t);
-    out.gain.linearRampToValueAtTime(state.level, t + Math.max(0.01, fadeSeconds));
+    out.gain.linearRampToValueAtTime(bedGain(state), t + Math.max(0.01, fadeSeconds));
     out.connect(this.buses.get(state.def.bus)!.volume);
     const buf = state.def.file ? this.buffers.get(state.def.file) : undefined;
     if (buf) {
