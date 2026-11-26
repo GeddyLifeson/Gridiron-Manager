@@ -60,6 +60,9 @@ describe('history schedule over a changing league', () => {
       const s = loop.runSeasonPoint(w, sys, { source: 'history_run' });
       expect(s.seasonYear).toBe(year);
       for (const c of w.competitions) if (loop.activeTeamIds(w, c.teamIds, year).length >= 2) expect(s.champions[c.id]).toBeDefined();
+      // Each title is logged once, with the champion as the event's team (the legends pages read it).
+      const titles = w.log.rows().filter((e) => e.type === loop.TITLE_WON && e.when.date.seasonYear === year);
+      expect(titles.map((e) => [e.competitionId, e.where.teamId]).sort()).toEqual(Object.entries(s.champions).map(([c, t]) => [Number(c), t]).sort());
     }
   });
 
