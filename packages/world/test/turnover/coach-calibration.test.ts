@@ -130,8 +130,25 @@ describe.skipIf(!SEASONS)(`coach firing rates on the full world over ${SEASONS} 
       };
     }
     const perSeason: { pro: number[]; college: number[] } = { pro: [], college: [] };
+    // Player-to-coach pipeline (F-pipeline-0001): first-time chair holders by level and what they played.
+    const everHeld = new Set<number>();
+    for (const j of w.jobs.values()) if (j.holderPersonId !== null) everHeld.add(j.holderPersonId);
+    const entrants = { pro: { all: 0, formerPro: 0, formerCollege: 0 }, college: { all: 0, formerPro: 0, formerCollege: 0 } };
     for (let i = 0; i < SEASONS; i++) {
       loop.runSeason(w, sys, schedule);
+      for (const j of [...w.jobs.values()].sort((a, b) => a.id - b.id)) {
+        const id = j.holderPersonId;
+        if (id === null || everHeld.has(id)) continue;
+        everHeld.add(id);
+        const e = entrants[turnover.levelOfTeam(w, j.teamId)];
+        const played = turnover.levelPlayed(w.people.get(id)!);
+        e.all++;
+        if (played === 'pro') e.formerPro++; else if (played === 'college') e.formerCollege++;
+      }
+      const waiting = turnover.waitingFormerPlayers(w, w.date.seasonYear + 1);
+      const outPlayers = [...w.outOfFootballSince].filter(([id]) => w.people.get(id)?.playing);
+      process.stderr.write(`waiting ${waiting.length}; out-of-football players ${outPlayers.length}; by level ${JSON.stringify(outPlayers.reduce((a: Record<string, number>, [id]) => { const k = String(turnover.levelPlayed(w.people.get(id)!)); a[k] = (a[k] ?? 0) + 1; return a; }, {}))}; ages ${JSON.stringify(outPlayers.slice(0, 5).map(([id]) => w.date.seasonYear - w.people.get(id)!.birthDate.seasonYear))}\n`);
+      process.stderr.write(`pipeline after season ${i + 1}: ${JSON.stringify(entrants)}; pro chairs now held by former pro players ${JSON.stringify(turnover.formerProShare(w, (t) => turnover.levelOfTeam(w, t), 'pro', 0))}\n`);
       const fired = (lvl: 'pro' | 'college') => turnover.coachOpenings(w).filter((r) => r.level === lvl && r.reason === 'fired' && r.rung === 9).reduce((a, r) => a + r.count, 0);
       process.stderr.write(`season ${i + 1} done at ${Math.round((Date.now() - t0) / 1000)} s; head coaches fired so far: pro ${fired('pro')} (${inSeasonFired.pro} in season), college ${fired('college')} (${inSeasonFired.college} in season)\n`);
     }
@@ -146,6 +163,9 @@ describe.skipIf(!SEASONS)(`coach firing rates on the full world over ${SEASONS} 
       college_firings_per_season: perSeason.college, college_mean: +mean(perSeason.college).toFixed(2), college_per_team: +(mean(perSeason.college) / col).toFixed(3),
       pro_in_season_share: +(inSeasonFired.pro / Math.max(1, sum(perSeason.pro))).toFixed(3),
       college_in_season_share: +(inSeasonFired.college / Math.max(1, sum(perSeason.college))).toFixed(3),
+      pro_entrants_former_pro_share: +(entrants.pro.formerPro / Math.max(1, entrants.pro.all)).toFixed(3),
+      college_entrants_former_world_player_share: +((entrants.college.formerPro + entrants.college.formerCollege) / Math.max(1, entrants.college.all)).toFixed(3),
+      entrants,
     };
     process.stderr.write(`\ncoach calibration: ${JSON.stringify(report)}\n`);
     expect(report.pro_mean).toBeGreaterThan(0);
