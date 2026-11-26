@@ -917,41 +917,36 @@
    "level": "both",
    "domain": "career",
    "statement": "GA flat individual income tax rate on wages, 2026.",
-   "value": 0.0519,
+   "value": 0.0499,
    "unit": "ratio",
    "validFor": "tax year 2026",
    "sources": [
     {
-     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
-     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, table row Georgia",
+     "citation": "Georgia Department of Revenue, 'Important Tax Updates' (dor.georgia.gov/taxes/important-tax-updates), section 2026 Income Tax Changes; and Employer's Withholding Tax Guide 2026, revised September 2026, What's New for Tax Year 2026",
+     "locator": "https://dor.georgia.gov/taxes/important-tax-updates",
      "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "tax-foundation",
-     "primary": false,
-     "quote": "**Georgia** | 5.19% | > | $0",
-     "value": 0.0519
-    },
-    {
-     "citation": "CBS News, 'Nine states are cutting income taxes in 2026' (updated 2025-12-30)",
-     "locator": "https://www.cbsnews.com/news/nine-states-cutting-income-taxes-2026/",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "cbs-news",
-     "primary": false,
-     "quote": "will trim its income tax rate to 5.09% in 2026, down from 5.19% in 2025.",
-     "value": 0.0509
+     "howRead": "primary text",
+     "independenceGroup": "georgia-dor",
+     "primary": true,
+     "quote": "The Georgia income tax rate has been reduced to a flat rate of 4.99%.",
+     "value": 0.0499
     }
    ],
-   "status": "Conflict",
+   "status": "Rulebook only",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "Release gate cleanup: stored word \"Conflict\" did not match the status computed from the sources (Q6.1.2)."
     }
    ],
-   "notes": "Conflict: Tax Foundation's 2026-01-01 table shows 5.19%, CBS reports a cut to 5.09% for 2026. Not shippable until resolved."
+   "notes": "Release gate cleanup: the earlier two sources (Tax Foundation table as of 2026-01-01, CBS News 2025-12-30) predate the cut made by HB 463 (signed 2026-05-11, retroactive to 2026-01-01) and are superseded, not rivals. Employers kept withholding 5.19% until the change took effect. The quote was returned by the cloud web fetch on 2026-11-26 (no local copy). One primary source, no cross-check yet."
   },
   {
    "id": "F-wealth-0030",
