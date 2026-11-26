@@ -11,9 +11,10 @@ import { buildDocumentsView, type DocumentsInput } from './documents.ts';
 import { buildPressView, type PressConference } from './press.ts';
 import type { DocumentsView, MeetingsView, PressView, TravelView } from './types.ts';
 
+/** Read-model names (the observer registry takes lowerCamelCase names). Screen ids live in app-ui WEEK_SCREEN_IDS. */
 export const WEEK_MODELS = {
-  schedule: 'week.schedule', practice: 'practice.planner', meetings: 'week.meetings', travel: 'week.travel',
-  documents: 'week.documents', press: 'people.media',
+  schedule: 'weekSchedule', practice: 'practicePlanner', meetings: 'weekMeetings', travel: 'weekTravel',
+  documents: 'weekDocuments', press: 'pressConference',
 } as const;
 
 /** S3 task ids for the permission badge (O7.1.1). */

@@ -10552,6 +10552,65 @@
    "readBy": [
     "engine-core/fouls-injuries"
    ]
+  },
+  {
+   "key": "comm.c2p_designated_offense",
+   "type": "number",
+   "meaning": "Players a team may designate to carry a helmet radio on offense (0 means no designation limit)",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "career/gameday"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "comm.c2p_designated_defense",
+   "type": "number",
+   "meaning": "Players a team may designate to carry a helmet radio on defense (0 means no designation limit)",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "career/gameday"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "toss.minutes_before_kickoff",
+   "type": "number",
+   "meaning": "Minutes before the scheduled kickoff of the first half when the coin is tossed",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "career/gameday"
+   ],
+   "unit": "min"
+  },
+  {
+   "key": "toss.field_presence_minutes",
+   "type": "number",
+   "meaning": "Minutes before the scheduled kickoff by which both teams must be on the field (0 means no such rule)",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "career/gameday"
+   ],
+   "unit": "min"
+  },
+  {
+   "key": "toss.late_field_penalty_yd",
+   "type": "number",
+   "meaning": "Yards from the first-half kickoff spot for a team not on the field by the field-presence deadline (it also loses its coin-toss options); 0 means no such rule",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "career/gameday"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "replay.challenge_designee_allowed",
+   "type": "boolean",
+   "meaning": "The head coach may name a pregame challenge designee who may also throw the challenge flag",
+   "ownerLeaf": "I1",
+   "readBy": [
+    "career/gameday"
+   ]
   }
  ]
 }

@@ -28,6 +28,7 @@ import * as turnover from '../../../src/turnover/index.ts';
 import * as people from '../../../src/people/index.ts';
 import * as compliance from '../../../src/compliance/index.ts';
 import * as records from '../../../src/records/index.ts';
+import * as news from '../../../src/news/index.ts';
 import * as health from '../../../src/health/index.ts';
 import { medical } from '@gm/league';
 
@@ -121,6 +122,9 @@ const systems = loop.systemsFrom({
   // level-free placeholders until C2/T3 league-rules content names them (README PD-10).
   ...Object.fromEntries(Object.entries(people.peopleSteps({ turnover: binding, goals: () => ({ cut: 'postseason', top: 'top_fifth' }) }))
     .map(([k, h]) => [k, timed(k, h)])),
+  // X12.2.1: last in the week, so it reads every row the week wrote, labels included. Rows that are not
+  // public travel along the warm X7 ties the edges step keeps (world/src/people).
+  news: timed('news', news.newsStep({ edges: news.edgesFromTies })),
 }, 'master run: owning system not bound yet');
 
 const unbound = loop.unboundSteps(systems);
