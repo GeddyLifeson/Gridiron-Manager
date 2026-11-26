@@ -65,7 +65,7 @@ export function downAfterPenalty(outcome: PlayOutcome, fouls: readonly FoulRecor
     return counted();
   }
   // Rule 2: a loss-of-down foul counts the down.
-  if (e.lossOfDown) return counted();
+  if (e.lossOfDown) return reached ? fresh(A, spot, spot, true, false) : counted();
   if (e.automaticFirstDown || reached) return fresh(A, spot, spot, true, false);
   return e.replayDown ? same(s.down) : counted();
 }

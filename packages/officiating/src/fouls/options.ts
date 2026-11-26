@@ -117,16 +117,18 @@ function declined(w: World, calledIdx: readonly number[], side: Side): Choice {
   return { id: 'decline', label: 'penalty.option.decline', side, outcome: { ...w.outcome, enforcement: summary(w, null, calledIdx, false) } };
 }
 
-/** B1.6.1 rule 2 and B8.5.8 rule 6: is the ten-second runoff on offer with this plan? */
-function runoffOffered(w: World, plan: Plan): boolean {
+/** B1.6.1 rules 1 and 2: would this foul bring the ten-second runoff in this situation? Never against the defense. */
+function runoffApplies(w: World, r: FoulRecord): boolean {
   const s = w.ctx.situation;
-  if (!s.insideTwoMinute || plan.offsetting || plan.carriedTo !== null) return false;
-  return plan.enforced.some((i) => {
-    const r = w.fouls[i]!;
-    if (!r.runoffEligible || r.side !== w.facts.teamA) return false;
-    // Time must be in: the clock was running before a dead-ball foul, or the foul came during a timed down.
-    return r.timing === 'live' ? s.clockStatus !== 'untimed' && s.clockStatus !== 'intermission' : s.clockStatus === 'running';
-  });
+  if (!s.insideTwoMinute || !r.runoffEligible || r.side !== w.facts.teamA) return false;
+  // Time must be in: the clock was running before a dead-ball foul, or the foul came during a timed down.
+  return r.timing === 'live' ? s.clockStatus !== 'untimed' && s.clockStatus !== 'intermission' : s.clockStatus === 'running';
+}
+
+/** B8.5.8 rule 6: is the runoff on offer with this plan? */
+function runoffOffered(w: World, plan: Plan): boolean {
+  if (plan.offsetting || plan.carriedTo !== null) return false;
+  return plan.enforced.some((i) => runoffApplies(w, w.fouls[i]!));
 }
 
 function choices(w: World, plans: readonly Plan[], prefix: string, calledIdx: readonly number[], side: Side): Choice[] {
@@ -160,7 +162,7 @@ function offsetKeep(w: World, idx: readonly number[], to: number, possession: Si
 function isPersonal(r: FoulRecord): boolean { return r.foulClass !== 'other'; }
 
 function simpleMinor(w: World, r: FoulRecord): boolean {
-  return r.yards === w.rules.num(K.minorYards) && !r.afd && !r.lod && !r.runoffEligible && !r.spotFoul;
+  return r.yards === w.rules.num(K.minorYards) && !r.afd && !r.lod && !runoffApplies(w, r) && !r.spotFoul;
 }
 
 /** B8.5.5 rule 3: the index of the major foul to enforce, or null when the rule does not apply. */
