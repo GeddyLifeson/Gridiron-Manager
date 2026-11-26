@@ -197,6 +197,27 @@ export const CalledPlay = z.object({
 }).strict();
 export type CalledPlay = z.infer<typeof CalledPlay>;
 
+/** A ruling as a coach sees it (Q1.4.1, EX-0001): the called value only, no truth event, true value, margin or sight line. */
+export const ObservedRuling = Ruling.omit({ eventIndex: true, trueValue: true, marginYd: true, marginS: true, visibility: true }).strict();
+export type ObservedRuling = z.infer<typeof ObservedRuling>;
+
+/** A called foul as a coach sees it: no truth event index and no correctness. Uncalled fouls are never shown (B11.2.1 rule 5). */
+export const ObservedFoul = FoulRecord.omit({ eventIndex: true, correct: true }).strict();
+export type ObservedFoul = z.infer<typeof ObservedFoul>;
+
+/**
+ * What a decider is handed of the last ruling (Q1.4.1, Q4.2.2 EX-0001): `CalledPlay` with every truth-class
+ * field absent. `fouls` holds called fouls only, renumbered; enforcement indexes refer to that list.
+ */
+export const ObservedCalledPlay = z.object({
+  rulings: pub(z.array(ObservedRuling)),
+  fouls: pub(z.array(ObservedFoul)),
+  calledOutcome: pub(PlayOutcome),
+  options: pub(z.array(EnforcementOption).min(1)),
+  defaultOptionId: pub(z.string()),
+}).strict();
+export type ObservedCalledPlay = z.infer<typeof ObservedCalledPlay>;
+
 /** Down, distance and spot for the next snap (J11.3.2 outputs). */
 export const SeriesState = z.object({
   playKind: pub(PlayKind),

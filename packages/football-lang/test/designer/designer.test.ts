@@ -1,7 +1,7 @@
 // G-90 play designer model (G1, O3.1, O3.7). Rule values here are FIXTURES, not rule data (see
 // test/legality/fixtures.ts); the real-value cases run on the integrated rule sets.
 import { describe, expect, it } from 'vitest';
-import { designer as D } from '../../src/designer-entry.ts';
+import { designer as D } from '../../src/index.ts';
 import { PARAMS as LEGALITY_PARAMS, paramTableOf } from '../../src/legality/index.ts';
 import { fixtureRuleSet, FIXTURE_BANDS } from '../legality/fixtures.ts';
 

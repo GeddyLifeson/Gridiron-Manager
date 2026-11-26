@@ -18,3 +18,4 @@ export * as gameday from './gameday/index.ts';
 export * as ladder from './ladder/index.ts';
 export * as record from './record/index.ts';
 export * as market from './market/index.ts';
+export * as seats from './seats/index.ts';

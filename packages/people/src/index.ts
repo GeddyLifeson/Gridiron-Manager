@@ -11,3 +11,4 @@ export * as culture from './culture/index.ts';
 export * as pipeline from './pipeline/index.ts';
 export * as cohorts from './cohorts/index.ts';
 export * as importing from './import/index.ts';
+export * as designer from './designer/index.ts';

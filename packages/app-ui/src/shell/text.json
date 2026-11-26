@@ -102,6 +102,7 @@
   "help.screen.people.meeting": "Talk with a player, coach or boss.",
   "help.screen.people.owner": "Your owner or athletic director and general manager: expectations and standing.",
   "help.screen.people.media": "Press conferences, interviews and what is being written.",
+  "help.screen.people.player_designer": "Design a player by archetype, measurables or a blank sheet, with plausibility checks.",
   "help.screen.league.standings": "Standings, playoff picture and tiebreakers.",
   "help.screen.league.schedule": "Every game in the league, with results.",
   "help.screen.league.team": "Another team: roster, staff, record and tendencies seen.",
@@ -118,6 +119,7 @@
   "help.screen.school.lessons": "Lessons on real coaching, outside any career game.",
   "help.screen.school.glossary": "Every football term the game uses, with its definition.",
   "help.screen.school.drills": "Practice tools where time can be slowed or paused.",
+  "help.screen.school.mods": "Install, check and remove mods, and edit plays, formations and people.",
   "help.screen.school.settings": "Display, audio, controls, playback, accessibility, data and mods."
  }
 }
