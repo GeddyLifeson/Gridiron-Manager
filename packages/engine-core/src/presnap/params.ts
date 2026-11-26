@@ -1,0 +1,179 @@
+// Pre-snap phase tuning constants and rule-key manifest (J5). Every number is the starting value of
+// the J5 leaf named, or an Assumption where the bible gives no number. No value here is a fact: the
+// rates are fitted against J15 rows later (J6.8.1). Rule values (set period, motion rule, radio cut,
+// substitution matching, foul catalogue) are read from the rule set by key, never written here.
+import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
+import { defineParams, type ParamRow } from '../tick/param-util.ts';
+
+const NONE = 'none yet: flagged for J6.8.1 review';
+const FS = 'J15.7 false start 2.30 per game (1 of 3)';
+const DO = 'J15.7 offside 0.54, NZI 0.33, encroachment 0.12 per game (1 of 3)';
+const VEN = 'J5.7.1 home/road split (1 of 3)';
+const SUB = 'J15.7 defensive too many men 0.15 per game (1 of 3)';
+const READ = 'J5.4.1 acceptance (read accuracy test)';
+const PROT = 'J5.4.2 acceptance 2';
+const SCHED = 'J5.8.1 acceptance 1 and 3 (play-clock-at-snap data not yet sourced)';
+
+const ROWS: readonly ParamRow[] = [
+  // J5.1.1 substitution run-on and errors.
+  ['sub.jogSpeedYps', 6, 4, 8, 'yd/s', 'bible', 'J5.1.1', NONE],
+  ['sub.errorBasePerPlayer', 0.002, 0, 0.01, 'probability', 'bible', 'J5.1.1', SUB],
+  ['sub.errorHurryMult', 4, 3, 6, 'ratio', 'bible', 'J5.1.1', 'J5.1.1 acceptance 2'],
+  ['sub.errorLatePerS', 0.25, 0, 1, '1/s', 'assumption', 'J5.1.1', SUB],
+  ['sub.readinessIntercept', 2, 1, 3, 'ratio', 'assumption', 'J5.1.1', SUB],
+  ['sub.readinessDivisor', 50, 25, 100, 'iss', 'assumption', 'J5.1.1', SUB],
+  ['sub.readinessFloor', 0.25, 0.1, 1, 'ratio', 'assumption', 'J5.1.1', SUB],
+  ['sub.extraShare', 0.5, 0, 1, 'probability', 'assumption', 'J5.1.1', SUB],
+  // J5.1.2 substitution hold.
+  ['hold.capS', 8, 3, 15, 's', 'bible', 'J5.1.2', 'J5.1.2 acceptance'],
+  // J5.1.3 huddle delivery.
+  ['huddle.deliveryBase', 0.998, 0.98, 1, 'probability', 'bible', 'J5.1.3', 'J5.1.3 acceptance'],
+  ['huddle.longCallWords', 8, 4, 16, 'count', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
+  ['huddle.longCallPerWord', 0.002, 0, 0.01, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
+  ['huddle.clockCommandPerZ', 0.001, 0, 0.005, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
+  ['huddle.breakS', 3, 1, 6, 's', 'assumption', 'J5.1.3', SCHED],
+  // J5.2 alignment.
+  ['align.lineSplitYd', 0.7, 0.3, 1.5, 'yd', 'bible', 'J5.2.1', 'J5.2.1 acceptance'],
+  ['align.sidelineMarginYd', 2, 0.5, 5, 'yd', 'assumption', 'J5.2.1', 'J5.2.1 acceptance'],
+  ['align.errorBase', 0.003, 0, 0.02, 'probability', 'assumption', 'J5.2.1', 'J15.7 illegal formation 0.29 per game (1 of 3)'],
+  ['align.errorOffYd', 1.5, 1, 3, 'yd', 'assumption', 'J5.2.1', 'J15.7 illegal formation 0.29 per game (1 of 3)'],
+  ['align.arriveYd', 0.25, 0.05, 1, 'yd', 'assumption', 'J5.2.1', NONE],
+  ['align.shadeYd', 0.35, 0.2, 0.6, 'yd', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.gapSplitFrac', 0.5, 0.3, 0.7, 'ratio', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.lbDepthYd', 4.5, 3, 7, 'yd', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.pressDepthYd', 1, 0.5, 2, 'yd', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.offDepthMinYd', 6, 4, 8, 'yd', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.offDepthMaxYd', 8, 6, 10, 'yd', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.leverageMinYd', 0.5, 0.25, 1, 'yd', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.leverageMaxYd', 1, 0.5, 2, 'yd', 'bible', 'J5.2.2', 'J5.2.2 acceptance'],
+  ['align.defCommS', 1, 0.3, 2.5, 's', 'assumption', 'J5.2.2', SCHED],
+  // J5.3.1 shifts and motion.
+  ['motion.snapTimingSdS', 0.15, 0.05, 0.3, 's', 'bible', 'J5.3.1', 'J15.7 illegal shift 0.15 per game (1 of 3)'],
+  ['motion.snapTimingSdPerZ', 0.02, 0, 0.05, 's', 'assumption', 'J5.3.1', 'J15.7 illegal shift 0.15 per game (1 of 3)'],
+  ['motion.snapTimingSdMinS', 0.03, 0.01, 0.1, 's', 'assumption', 'J5.3.1', NONE],
+  // J5.3.2 and J5.5.2 defensive checks.
+  ['check.minS', 0.5, 0.3, 1, 's', 'bible', 'J5.3.2', 'J5.8.1 acceptance 1'],
+  ['check.maxS', 1.5, 1, 2.5, 's', 'bible', 'J5.3.2', 'J5.8.1 acceptance 1'],
+  ['check.midS', 1, 0.5, 1.5, 's', 'assumption', 'J5.3.2', 'J5.8.1 acceptance 1'],
+  ['check.perZS', 0.1, 0, 0.3, 's', 'assumption', 'J5.3.2', 'J5.8.1 acceptance 1'],
+  ['check.recognitionBaseS', 0.5, 0.2, 1, 's', 'assumption', 'J5.5.2', 'J5.8.1 acceptance 1'],
+  ['check.recognitionPerZS', 0.08, 0, 0.2, 's', 'assumption', 'J5.5.2', 'J5.8.1 acceptance 1'],
+  ['check.recognitionFloorS', 0.2, 0.05, 0.5, 's', 'assumption', 'J5.5.2', 'J5.8.1 acceptance 1'],
+  ['check.recognizeIntercept', 2.5, 1, 4, 'ratio', 'assumption', 'J5.5.2', 'J5.5.2 acceptance'],
+  ['check.recognizePerZ', 0.5, 0, 1, 'ratio', 'assumption', 'J5.5.2', 'J5.5.2 acceptance'],
+  ['check.bluffAlignCostYd', 0.5, 0, 1.5, 'yd', 'assumption', 'J5.3.2', 'J5.3.2 acceptance'],
+  ['check.bunchWidthYd', 2.5, 1, 4, 'yd', 'assumption', 'J5.5.2', NONE],
+  ['check.emptyDepthYd', 2, 1, 4, 'yd', 'assumption', 'J5.5.2', NONE],
+  // J5.4.1 shell read and box count.
+  ['read.intercept', 1.5, 0.5, 2.5, 'ratio', 'bible', 'J5.4.1', READ],
+  ['read.perZ', 0.7, 0.3, 1.2, 'ratio', 'bible', 'J5.4.1', READ],
+  ['read.disguiseK', 1, 0.5, 2, 'ratio', 'bible', 'J5.4.1', READ],
+  ['read.preparedK', 0.3, 0, 0.6, 'ratio', 'bible', 'J5.4.1', READ],
+  ['read.boxIntercept', 5, 3, 7, 'ratio', 'assumption', 'J5.4.1', READ],
+  ['read.motionTellK', 1.5, 0, 3, 'ratio', 'assumption', 'J5.3.2', 'J5.3.2 acceptance'],
+  ['read.minTimeS', 2, 1, 3, 's', 'bible', 'J5.4.1', READ],
+  ['read.boxDepthYd', 7, 5, 9, 'yd', 'assumption', 'J5.4.1', READ],
+  ['read.boxWidthYd', 5, 3, 7, 'yd', 'assumption', 'J5.4.1', READ],
+  ['read.highSafetyDepthYd', 10, 8, 14, 'yd', 'assumption', 'J5.4.1', READ],
+  // J5.4.2 protection.
+  ['prot.setS', 1, 0.3, 2, 's', 'assumption', 'J5.4.2', SCHED],
+  ['prot.intercept', 2, 1, 3, 'ratio', 'assumption', 'J5.4.2', PROT],
+  ['prot.perZ', 0.7, 0.3, 1.2, 'ratio', 'assumption', 'J5.4.2', PROT],
+  ['prot.disguiseK', 1, 0.5, 2, 'ratio', 'assumption', 'J5.4.2', PROT],
+  ['prot.simulatedK', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.4.2', PROT],
+  ['prot.noiseK', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.4.2', PROT],
+  ['prot.rusherDepthYd', 2.5, 1, 4, 'yd', 'assumption', 'J5.4.2', PROT],
+  // J5.4.3 checks and audibles.
+  ['audible.killS', 2, 1, 3, 's', 'bible', 'J5.4.3', 'J5.4.3 acceptance'],
+  ['audible.fullS', 3.5, 3, 4, 's', 'bible', 'J5.4.3', 'J5.4.3 acceptance'],
+  ['audible.hardCountS', 1, 0.5, 2, 's', 'assumption', 'J5.8.1', SCHED],
+  // J5.5.1 disguise.
+  ['disguise.base', 0.5, 0.3, 0.7, 'ratio', 'bible', 'J5.5.1', 'J5.5.1 acceptance'],
+  ['disguise.perZ', 0.1, 0, 0.2, 'ratio', 'bible', 'J5.5.1', 'J5.5.1 acceptance'],
+  ['disguise.leadK', 0.25, 0.1, 0.5, '1/s', 'bible', 'J5.5.1', 'J5.5.1 acceptance'],
+  ['disguise.leadBaseS', 1, 0.3, 2, 's', 'assumption', 'J5.5.1', 'J5.5.1 acceptance'],
+  ['disguise.leadSdS', 0.3, 0, 0.6, 's', 'assumption', 'J5.5.1', 'J5.5.1 acceptance'],
+  // J5.6.1 get-off.
+  ['getoff.silentMinS', 0.05, 0, 0.1, 's', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.silentMaxS', 0.15, 0.1, 0.25, 's', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.silentPerZS', 0.025, 0, 0.05, 's', 'assumption', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.keyDelayBaseS', 0.2, 0.1, 0.3, 's', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.keyDelayPerZS', 0.04, 0, 0.08, 's', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.keyDelayFloorS', 0.08, 0.04, 0.12, 's', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.anticipationMaxS', 0.08, 0, 0.15, 's', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.anticipationSnaps', 6, 3, 10, 'count', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.a0PerS', 3, 1, 5, '1/s', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  ['getoff.a0Min', -0.3, -0.5, -0.1, 'ratio', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
+  // J5.6.2 snap exchange (event contest, J6.1.3).
+  ['snap.offTargetShotgun', 0.015, 0.005, 0.04, 'probability', 'bible', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
+  ['snap.looseShotgun', 0.0015, 0.0005, 0.005, 'probability', 'bible', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
+  ['snap.underCenterOffTargetMult', 0.3, 0.1, 1, 'ratio', 'assumption', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
+  ['snap.underCenterLooseMult', 1, 0.5, 2, 'ratio', 'assumption', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
+  ['snap.beta1', 0.3, 0, 0.8, 'per z', 'assumption', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
+  ['snap.wetGamma', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.6.2', 'J5.6.2 acceptance: rate rises in rain'],
+  ['snap.silentGamma', 0.2, 0, 1, 'ratio', 'assumption', 'J5.6.2', NONE],
+  ['snap.offTargetMinS', 0.2, 0.1, 0.4, 's', 'bible', 'J5.6.2', NONE],
+  ['snap.offTargetMaxS', 0.6, 0.4, 1, 's', 'bible', 'J5.6.2', NONE],
+  // J5.7.1 pre-snap foul hazards. Base rates are starting values derived from the J15 rows named, to be fitted.
+  ['foul.baseFalseStartLine', 0.0028, 0.0005, 0.01, 'probability', 'assumption', 'J5.7.1', FS],
+  ['foul.baseFalseStartOther', 0.0008, 0.0001, 0.005, 'probability', 'assumption', 'J5.7.1', FS],
+  ['foul.baseDefOffside', 0.0016, 0.0003, 0.006, 'probability', 'assumption', 'J5.7.1', DO],
+  ['foul.discIntercept', 2, 1.5, 2.5, 'ratio', 'bible', 'J5.7.1', FS],
+  ['foul.discDivisor', 50, 40, 60, 'iss', 'bible', 'J5.7.1', FS],
+  ['foul.discFloor', 0.25, 0.1, 0.5, 'ratio', 'bible', 'J5.7.1', FS],
+  ['foul.gNoise', 0.7, 0, 1.5, 'per unit', 'bible', 'J5.7.1', FS],
+  ['foul.gHard', 0.4, 0, 1, 'ratio', 'bible', 'J5.7.1', FS],
+  ['foul.gStem', 0.3, 0, 1, 'ratio', 'bible', 'J5.7.1', FS],
+  ['foul.gRush', 0.3, 0, 1, 'ratio', 'bible', 'J5.7.1', FS],
+  ['foul.gLong', 0.2, 0, 1, 'ratio', 'bible', 'J5.7.1', FS],
+  ['foul.gFatigue', 0.2, 0, 1, 'per unit', 'bible', 'J5.7.1', FS],
+  ['foul.gHardOpp', 0.5, 0, 1, 'ratio', 'bible', 'J5.7.1', DO],
+  ['foul.gAnticip', 0.4, 0, 1, 'ratio', 'bible', 'J5.7.1', DO],
+  ['foul.gAggr', 0.3, 0, 1, 'ratio', 'bible', 'J5.7.1', DO],
+  ['foul.formOffside', 0.54, 0, 1, 'weight', 'assumption', 'J5.7.1', DO],
+  ['foul.formNeutralZone', 0.33, 0, 1, 'weight', 'assumption', 'J5.7.1', DO],
+  ['foul.formEncroachment', 0.12, 0, 1, 'weight', 'assumption', 'J5.7.1', DO],
+  ['foul.closeProximityYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J5.7.1', DO],
+  ['foul.venueRoadOffense', 1.025, 1, 1.1, 'ratio', 'bible', 'J5.7.1', VEN],
+  ['foul.venueHomeOffense', 0.975, 0.9, 1, 'ratio', 'bible', 'J5.7.1', VEN],
+  ['foul.venueRoadDefense', 1.066, 1, 1.2, 'ratio', 'bible', 'J5.7.1', VEN],
+  ['foul.venueHomeDefense', 0.934, 0.8, 1, 'ratio', 'bible', 'J5.7.1', VEN],
+  ['foul.teamStandards', 1, 0.85, 1.15, 'ratio', 'bible', 'J5.7.1', FS],
+  ['foul.severity', 0.5, 0, 1, 'ratio', 'assumption', 'J5.7.1', NONE],
+  // J5.8.1 schedule. Target play-clock reading at the snap by tempo: real distributions are not sourced (J5.8.1 open question).
+  ['sched.targetClockHuddleS', 5, 0, 15, 's', 'assumption', 'J5.8.1', SCHED],
+  ['sched.targetClockNoHuddleS', 12, 0, 30, 's', 'assumption', 'J5.8.1', SCHED],
+  ['sched.targetClockHurryS', 38, 25, 40, 's', 'assumption', 'J5.8.1', SCHED],
+  ['sched.forcedMarginS', 0.3, 0, 1, 's', 'assumption', 'J5.8.1', SCHED],
+  ['sched.strengthS', 0.5, 0.2, 1, 's', 'assumption', 'J5.8.1', SCHED],
+];
+
+export const PARAMS: ParamFile = defineParams('presnap', '0.1.0', ROWS);
+
+export type PresnapParams = Readonly<Record<string, number>>;
+
+/** Resolve once per play, never inside the tick. Property names are the row names above. */
+export function presnapParams(t: ParamTable): PresnapParams {
+  const out: Record<string, number> = {};
+  for (const row of ROWS) out[row[0]] = t.num(`presnap.${row[0]}`);
+  return out;
+}
+
+const READ_BY = ['engine-core.presnap'];
+
+/** Pre-snap fouls this module can commit, by catalogue id (WP-01 `fouls.json`). */
+export const PRESNAP_FOUL_IDS = [
+  'false_start', 'offside', 'encroachment', 'neutral_zone_infraction', 'delay_of_game',
+  'illegal_formation', 'illegal_shift', 'illegal_motion', 'too_many_in_formation', 'too_many_on_field',
+] as const;
+export type PresnapFoulId = (typeof PRESNAP_FOUL_IDS)[number];
+
+/** Keys in the WP-01 dictionary that this module reads. The foul catalogue rows are read through `foul.<id>.exists`. */
+export const RULE_KEYS: RuleKeyManifest = [
+  { key: 'formation.shift_set_seconds', type: 'number', unit: 's', meaning: 'Time all offensive players must be set after a shift', ownerLeaf: 'B4.3.1', readBy: READ_BY },
+  { key: 'formation.motion_rule', type: 'option', options: ['one_back_not_forward'], meaning: 'Who may be in motion at the snap', ownerLeaf: 'B4.3.3', readBy: READ_BY },
+  { key: 'substitution.max_players', type: 'number', unit: 'count', meaning: 'Players per team on the field', ownerLeaf: 'B2.3.1', readBy: READ_BY },
+  { key: 'substitution.match_window', type: 'boolean', meaning: 'After the offense substitutes, the snap is held until the defense has had the chance to substitute', ownerLeaf: 'B2.4.3', readBy: READ_BY },
+  { key: 'comm.c2p_cutoff_seconds', type: 'number', unit: 's', meaning: 'Play clock reading at which the helmet radio cuts off', ownerLeaf: 'B2.5.1', readBy: READ_BY },
+  ...PRESNAP_FOUL_IDS.map((id) => ({ key: `foul.${id}.exists`, type: 'boolean' as const, meaning: `The foul ${id} exists in this rule set`, ownerLeaf: 'B8.1.2', readBy: READ_BY })),
+];
