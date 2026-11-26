@@ -123,8 +123,7 @@ const ROWS = [
   ['secure.instructionZ', 0.4, 0, 1.0, 'z', 'assumption', 'J8.4.1', SECURE],
   // Covering the ball costs him the speed of a two-hand carry.
   ['secure.instructionSpeed', 0.97, 0.9, 1, 'share of speed', 'assumption', 'J8.4.1', SECURE],
-  // A hit counts as the "typical" hit of J2.6.1 at this energy (reduced mass in lb times closing speed squared).
-  ['secure.typicalHitEnergy', 4000, 1000, 10000, 'lb yd2/s2', 'assumption', 'J6.7.1', SECURE],
+  // Hit energy arrives from kinematics.contactNumbers in typical open-field tackles (1.0); this caps it.
   ['secure.maxHitEnergyRel', 4, 2, 8, 'ratio', 'assumption', 'J6.7.1', SECURE],
 
   // J8.4.2 situation rules
