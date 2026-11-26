@@ -4,7 +4,7 @@
 //                        less 47.5% of the Joint Contribution Amount, held between 48% and 48.5% of AR;
 //   Salary Cap = (Player Cost Amount less Projected Benefits) / clubs, adjusted by any True-Up.
 // The percents are rule keys (cap.player_cost_*, F-cap rows of the integrator's G-10 load). What no source
-// gives the world is read as follows (README MO-11 to MO-14):
+// gives the world is read as follows (README MO-12 to MO-15):
 // - revenue grows by a seeded yearly percentage, the C6.2.1 rule 5 draw (mean 7%, sd 3 points, bible
 //   Assumption set from the Verified 2013 to 2026 cap history); the CBA itself has no growth limit;
 // - the bucket mix is not public, so the three buckets are equal shares of AR (Assumption). The result
@@ -36,7 +36,7 @@ export type KeyRead = (key: string) => number | undefined;
 
 /**
  * Art. 12 s.6(c)(i) and (ii)(B): the Player Cost Amount as a share of projected AR, from the bucket rates and
- * the band, with the buckets in the MO-12 mix. Undefined where the league holds no such keys.
+ * the band, with the buckets in the MO-13 mix. Undefined where the league holds no such keys.
  */
 export function playerCostShare(read: KeyRead): number | undefined {
   const v = Object.fromEntries(Object.entries(PLAYER_COST_KEYS).map(([k, key]) => [k, read(key)])) as Record<keyof typeof PLAYER_COST_KEYS, number | undefined>;
@@ -65,7 +65,7 @@ export interface CapProjection {
   readonly revenueIndex: number;
   /** Player Cost Amount over projected AR (Art. 12 s.6(c)(i)-(ii)), or null where the league holds no such keys. */
   readonly playerCostShare: number | null;
-  /** True-Up carried into the year (MO-14: 0, projected revenue equals actual off-screen). */
+  /** True-Up carried into the year (MO-15: 0, projected revenue equals actual off-screen). */
   readonly trueUpCents: number;
   readonly capCents: number;
 }

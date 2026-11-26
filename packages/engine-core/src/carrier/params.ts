@@ -163,7 +163,9 @@ const ROWS = [
 
   // J6.6.1 contact (the carrier module runs the tackle contest on bodies)
   ['tackle.windowS', 0.3, 0.2, 0.5, 's', 'bible', 'J6.6.1', TACKLE],
-  ['tackle.contactGapYd', 0.15, 0, 0.4, 'yd', 'assumption', 'J6.6.1', STRUCT],
+  // The gap between body circles a tackler can reach across with his arms. At 0.15 a tackler had to run into the
+  // carrier's body, and a carrier who passed at arm's length was never touched (runs averaged over 10 yards).
+  ['tackle.contactGapYd', 0.6, 0, 1.0, 'yd', 'assumption', 'J6.6.1', STRUCT],
   ['tackle.missDownS', 0.8, 0.3, 1.5, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   ['tackle.brokenDownS', 0.4, 0.1, 1.0, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   // Square approach: angle quality is the cosine of the angle between the tackler's velocity and the line to the carrier, mapped to 0 to 1.

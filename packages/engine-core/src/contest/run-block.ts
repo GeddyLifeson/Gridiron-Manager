@@ -25,6 +25,8 @@ export interface SpaceBlockResult {
 
 export interface RunBlockContests {
   engagement(technique: GapTechnique): EngagementParams;
+  /** Share of the effective-z difference that drives the engagement (the rating response, fitted apart from the base rate). */
+  skillGain(): number;
   /** Speed at which the blocker moves the defender along the block's direction (J6.3.1). 0 when A is not positive. */
   displacementYps(advantage: number): number;
   /** `g(A)` for a defender held in a run block. */
@@ -48,6 +50,7 @@ export function createRunBlock(n: ContestNum, math: DeterministicMath): RunBlock
   const kappa = n('runBlock.kappa'), lambda = n('runBlock.lambda'), sigma = n('runBlock.sigma');
   const oneGap: EngagementParams = { kappa, lambda, sigma: sigma * n('runBlock.sigmaOneGapMult') };
   const twoGap: EngagementParams = { kappa, lambda, sigma: sigma * n('runBlock.sigmaTwoGapMult') };
+  const skillGain = n('runBlock.skillGain');
   const displacement = n('runBlock.displacementYps'), gapControlMaxA = n('runBlock.gapControlMaxA');
   const twoGapDelay = n('runBlock.twoGapShedDelayS'), gEven = n('runBlock.gEven'), gWinning = n('runBlock.gWinning');
   const comboZ = n('combo.doubleZ'), climbA = n('combo.climbA');
@@ -61,6 +64,7 @@ export function createRunBlock(n: ContestNum, math: DeterministicMath): RunBlock
 
   return {
     engagement: (technique) => (technique === 'oneGap' ? oneGap : twoGap),
+    skillGain: () => skillGain,
     displacementYps: (advantage) => (advantage > 0 ? displacement * (advantage > 1 ? 1 : advantage) : 0),
     defenderSpeedFactor: (advantage) => speedFactor(advantage, 1, gEven, gWinning),
     controlsGap: (bodyInGap, advantage) => bodyInGap && advantage < gapControlMaxA,

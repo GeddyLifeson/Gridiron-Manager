@@ -1,0 +1,529 @@
+{
+ "$comment": "Output of app-services read-models/notebook on its test fixture (packages/app-services/test/read-models/notebook/fixture.ts). Regenerate if the read model changes.",
+ "all": {
+  "rows": [
+   {
+    "id": 4,
+    "text": "Run inside zone from 12 personnel more when ahead.",
+    "kind": "idea",
+    "pinned": true,
+    "season": 2028,
+    "created": {
+     "seasonYear": 2028,
+     "dayIndex": 30,
+     "real": null
+    },
+    "edited": null,
+    "subjects": [
+     {
+      "type": "play",
+      "id": "inside_zone",
+      "name": "Inside zone"
+     }
+    ],
+    "tags": [],
+    "job": {
+     "key": "core:head_coach@13",
+     "name": "Head coach, Bayport"
+    },
+    "inheritedFrom": null,
+    "subjectMeasure": null,
+    "attachment": null
+   },
+   {
+    "id": 3,
+    "text": "This crew lets the corners hold at the top of routes.",
+    "kind": "official",
+    "pinned": false,
+    "season": 2028,
+    "created": {
+     "seasonYear": 2028,
+     "dayIndex": 5,
+     "real": null
+    },
+    "edited": null,
+    "subjects": [
+     {
+      "type": "crew",
+      "id": 3,
+      "name": "Crew of R. Ames"
+     }
+    ],
+    "tags": [],
+    "job": {
+     "key": "core:head_coach@13",
+     "name": "Head coach, Bayport"
+    },
+    "inheritedFrom": null,
+    "subjectMeasure": null,
+    "attachment": null
+   },
+   {
+    "id": 2,
+    "text": "Harbor City sit in quarters on third and long.",
+    "kind": "opponent",
+    "pinned": false,
+    "season": 2027,
+    "created": {
+     "seasonYear": 2027,
+     "dayIndex": 12,
+     "real": null
+    },
+    "edited": null,
+    "subjects": [
+     {
+      "type": "team",
+      "id": 4,
+      "name": "Harbor City"
+     }
+    ],
+    "tags": [
+     "third down",
+     "tells"
+    ],
+    "job": {
+     "key": "core:position_coach_lb@2",
+     "name": "Linebackers coach, Rivertown"
+    },
+    "inheritedFrom": null,
+    "subjectMeasure": null,
+    "attachment": null
+   },
+   {
+    "id": 1,
+    "text": "Ruiz shows blitz with his feet before the snap.",
+    "kind": "opponent",
+    "pinned": false,
+    "season": 2026,
+    "created": {
+     "seasonYear": 2026,
+     "dayIndex": 40,
+     "real": null
+    },
+    "edited": null,
+    "subjects": [
+     {
+      "type": "person",
+      "id": 501,
+      "name": "Dale Ruiz"
+     }
+    ],
+    "tags": [
+     "tells"
+    ],
+    "job": {
+     "key": "core:position_coach_lb@2",
+     "name": "Linebackers coach, Rivertown"
+    },
+    "inheritedFrom": null,
+    "subjectMeasure": null,
+    "attachment": null
+   },
+   {
+    "id": 5,
+    "text": "Old file: their owner calls the GM every Monday.",
+    "kind": "job",
+    "pinned": false,
+    "season": 2020,
+    "created": {
+     "seasonYear": 2020,
+     "dayIndex": 1,
+     "real": null
+    },
+    "edited": null,
+    "subjects": [],
+    "tags": [],
+    "job": {
+     "key": "core:head_coach@13",
+     "name": "Head coach, Bayport"
+    },
+    "inheritedFrom": "Earl Mason",
+    "subjectMeasure": null,
+    "attachment": null
+   }
+  ],
+  "facets": {
+   "kinds": [
+    "opponent",
+    "official",
+    "idea",
+    "job"
+   ],
+   "subjectTypes": [
+    "person",
+    "team",
+    "crew",
+    "play"
+   ],
+   "tags": [
+    "tells",
+    "third down"
+   ],
+   "seasons": [
+    2028,
+    2027,
+    2026,
+    2020
+   ],
+   "jobs": [
+    {
+     "key": "core:head_coach@13",
+     "name": "Head coach, Bayport"
+    },
+    {
+     "key": "core:position_coach_lb@2",
+     "name": "Linebackers coach, Rivertown"
+    }
+   ]
+  },
+  "blank": false,
+  "promptsOn": {
+   "game_end": true,
+   "job_end": true,
+   "season_end": true
+  }
+ },
+ "quartersOpponent": {
+  "rows": [
+   {
+    "id": 2,
+    "text": "Harbor City sit in quarters on third and long.",
+    "kind": "opponent",
+    "pinned": false,
+    "season": 2027,
+    "created": {
+     "seasonYear": 2027,
+     "dayIndex": 12,
+     "real": null
+    },
+    "edited": null,
+    "subjects": [
+     {
+      "type": "team",
+      "id": 4,
+      "name": "Harbor City"
+     }
+    ],
+    "tags": [
+     "third down",
+     "tells"
+    ],
+    "job": {
+     "key": "core:position_coach_lb@2",
+     "name": "Linebackers coach, Rivertown"
+    },
+    "inheritedFrom": null,
+    "subjectMeasure": null,
+    "attachment": null
+   }
+  ],
+  "facets": {
+   "kinds": [
+    "opponent",
+    "official",
+    "idea",
+    "job"
+   ],
+   "subjectTypes": [
+    "person",
+    "team",
+    "crew",
+    "play"
+   ],
+   "tags": [
+    "tells",
+    "third down"
+   ],
+   "seasons": [
+    2028,
+    2027,
+    2026,
+    2020
+   ],
+   "jobs": [
+    {
+     "key": "core:head_coach@13",
+     "name": "Head coach, Bayport"
+    },
+    {
+     "key": "core:position_coach_lb@2",
+     "name": "Linebackers coach, Rivertown"
+    }
+   ]
+  },
+  "blank": false,
+  "promptsOn": {
+   "game_end": true,
+   "job_end": true,
+   "season_end": true
+  }
+ },
+ "empty": {
+  "rows": [],
+  "facets": {
+   "kinds": [],
+   "subjectTypes": [],
+   "tags": [],
+   "seasons": [],
+   "jobs": []
+  },
+  "blank": true,
+  "promptsOn": {
+   "game_end": true,
+   "job_end": true,
+   "season_end": true
+  }
+ },
+ "own": {
+  "whose": "own",
+  "ownerName": null,
+  "statement": "Tough, smart, and fair. The film decides who plays.",
+  "draft": false,
+  "rows": [
+   {
+    "catalogueId": "best_player_plays",
+    "wording": "The best player plays. Every week.",
+    "textKey": "commitment.best_player_plays",
+    "audience": "team",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": null,
+    "measure": "depth_change",
+    "kept": 1,
+    "broke": 1,
+    "consistency": 0.5,
+    "windowSeasons": 3,
+    "recentKept": [
+     11
+    ],
+    "recentBroke": [
+     12
+    ],
+    "behaviour": "kept_and_broke",
+    "fromDiscipline": false
+   },
+   {
+    "catalogueId": "tell_you_first",
+    "wording": null,
+    "textKey": "commitment.tell_you_first",
+    "audience": "team",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": null,
+    "measure": "roster_notice",
+    "kept": 0,
+    "broke": 0,
+    "consistency": null,
+    "windowSeasons": 3,
+    "recentKept": [],
+    "recentBroke": [],
+    "behaviour": "not_yet_tested",
+    "fromDiscipline": false
+   },
+   {
+    "catalogueId": "go_when_numbers_say_go",
+    "wording": null,
+    "textKey": "commitment.go_when_numbers_say_go",
+    "audience": "public",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": {
+     "seasonYear": 2028,
+     "dayIndex": 200
+    },
+    "measure": "fourth_down",
+    "kept": 1,
+    "broke": 0,
+    "consistency": 1,
+    "windowSeasons": 3,
+    "recentKept": [
+     14
+    ],
+    "recentBroke": [],
+    "behaviour": "kept_every_time",
+    "fromDiscipline": false
+   }
+  ],
+  "overall": {
+   "kept": 2,
+   "broke": 1,
+   "share": 0.6666666666666666
+  }
+ },
+ "ownDraft": {
+  "whose": "own",
+  "ownerName": null,
+  "statement": "Tough, smart, and fair. The film decides who plays.",
+  "draft": true,
+  "rows": [
+   {
+    "catalogueId": "best_player_plays",
+    "wording": "The best player plays. Every week.",
+    "textKey": "commitment.best_player_plays",
+    "audience": "team",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": null,
+    "measure": "depth_change",
+    "kept": 0,
+    "broke": 0,
+    "consistency": null,
+    "windowSeasons": 3,
+    "recentKept": [],
+    "recentBroke": [],
+    "behaviour": "not_yet_tested",
+    "fromDiscipline": false
+   },
+   {
+    "catalogueId": "tell_you_first",
+    "wording": null,
+    "textKey": "commitment.tell_you_first",
+    "audience": "team",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": null,
+    "measure": "roster_notice",
+    "kept": 0,
+    "broke": 0,
+    "consistency": null,
+    "windowSeasons": 3,
+    "recentKept": [],
+    "recentBroke": [],
+    "behaviour": "not_yet_tested",
+    "fromDiscipline": false
+   },
+   {
+    "catalogueId": "go_when_numbers_say_go",
+    "wording": null,
+    "textKey": "commitment.go_when_numbers_say_go",
+    "audience": "public",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": {
+     "seasonYear": 2028,
+     "dayIndex": 200
+    },
+    "measure": "fourth_down",
+    "kept": 0,
+    "broke": 0,
+    "consistency": null,
+    "windowSeasons": 3,
+    "recentKept": [],
+    "recentBroke": [],
+    "behaviour": "not_yet_tested",
+    "fromDiscipline": false
+   }
+  ],
+  "overall": {
+   "kept": 0,
+   "broke": 0,
+   "share": null
+  }
+ },
+ "boss": {
+  "whose": "boss",
+  "ownerName": "Coach Hale",
+  "statement": "Tough, smart, and fair. The film decides who plays.",
+  "draft": false,
+  "rows": [
+   {
+    "catalogueId": "best_player_plays",
+    "wording": "The best player plays. Every week.",
+    "textKey": "commitment.best_player_plays",
+    "audience": "team",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": null,
+    "measure": "depth_change",
+    "kept": 1,
+    "broke": 1,
+    "consistency": 0.5,
+    "windowSeasons": 3,
+    "recentKept": [
+     11
+    ],
+    "recentBroke": [
+     12
+    ],
+    "behaviour": "kept_and_broke",
+    "fromDiscipline": false
+   },
+   {
+    "catalogueId": "tell_you_first",
+    "wording": null,
+    "textKey": "commitment.tell_you_first",
+    "audience": "team",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": null,
+    "measure": "roster_notice",
+    "kept": 0,
+    "broke": 0,
+    "consistency": null,
+    "windowSeasons": 3,
+    "recentKept": [],
+    "recentBroke": [],
+    "behaviour": "not_yet_tested",
+    "fromDiscipline": false
+   },
+   {
+    "catalogueId": "go_when_numbers_say_go",
+    "wording": null,
+    "textKey": "commitment.go_when_numbers_say_go",
+    "audience": "public",
+    "stated": {
+     "seasonYear": 2028,
+     "dayIndex": 0
+    },
+    "dropped": {
+     "seasonYear": 2028,
+     "dayIndex": 200
+    },
+    "measure": "fourth_down",
+    "kept": 1,
+    "broke": 0,
+    "consistency": 1,
+    "windowSeasons": 3,
+    "recentKept": [
+     14
+    ],
+    "recentBroke": [],
+    "behaviour": "kept_every_time",
+    "fromDiscipline": false
+   }
+  ],
+  "overall": {
+   "kept": 2,
+   "broke": 1,
+   "share": 0.6666666666666666
+  }
+ },
+ "emptyLedger": {
+  "whose": "own",
+  "ownerName": null,
+  "statement": "",
+  "draft": false,
+  "rows": [],
+  "overall": {
+   "kept": 0,
+   "broke": 0,
+   "share": null
+  }
+ }
+}

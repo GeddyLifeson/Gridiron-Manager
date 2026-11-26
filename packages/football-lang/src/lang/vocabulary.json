@@ -50,7 +50,7 @@
    "key": "The first entry of his key list.",
    "nearestThreat": "The nearest receiver.",
    "nearestDefender": "The nearest opponent.",
-   "nearestRusher": "The nearest opponent coming toward the line from the other side.",
+   "nearestRusher": "The nearest opponent coming toward the line from the other side. For a man on the offensive line: the nearest one no teammate on the line is nearer to, else the nearest.",
    "deepestReceiver": "The receiver farthest up the field.",
    "slot:": "A player by his slot in the play (0 to 21).",
    "role:": "A player by role label. Bound to a slot when the call is bound to players.",
@@ -1506,7 +1506,7 @@
    },
    "events": {
     "ballThrown": {
-     "action": "continue",
+     "action": "breakOnBall",
      "args": {}
     },
     "ballCaught": {

@@ -79,7 +79,7 @@ export const CENTS_PER_DOLLAR = 100;
  * Every league year up to the rules year reads the rules year: the past is played under today's rules (ruling
  * 2026-11-26), so the budget does not inflate or deflate with the calendar. A league year after the rules
  * year has no cap key; its cap is generated from the league's projected revenue under the CBA Art. 12 rule
- * (MO-11, `capProjection`). A league with no such key has no cap.
+ * (MO-12, `capProjection`). A league with no such key has no cap.
  */
 export function capFromRules(rule: RuleRead, rulesYear: number): CapCents {
   return (world, teamId, seasonYear) => {

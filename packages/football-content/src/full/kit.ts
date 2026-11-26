@@ -34,7 +34,7 @@ export const ZONE_RULE: Basis = { claim: 'Zone rule: a covered lineman blocks th
 export const NUMBERED_FROM_SIDELINE: Basis = { claim: 'Receivers are numbered 1, 2, 3 from the sideline in', status: 'Verified', sources: ['campbell-routes', 'haddad-routes', 'drinkall', 'lieberman'] };
 
 /** Pass protection for a dropback: the line sets, the back stays in or releases as the play says. */
-export const protect = (concept: string): Rest => ({ behavior: 'passSet', params: { type: 'full' }, concept, technique: { passSet: 'setBase' }, gaze: 'key', rules: [clause('Block the man on me; pick up the nearest rusher who comes free', test('defenderOn', { where: 'me' }), [act('block', { target: 'nearestRusher', type: 'base' })])] });
+export const protect = (concept: string): Rest => ({ behavior: 'passSet', params: { type: 'full' }, concept, technique: { passSet: 'setBase' }, gaze: 'key', rules: [clause('Set and block the man on me; pick up the nearest rusher who comes free', test('defenderOn', { where: 'me' }), [act('passSet', { type: 'full' })])] });
 
 /** A route slot: path from the formation spot, read by the quarterback. */
 export const route = (concept: string, path: Slot['path'], extra: Partial<Rest> = {}): Rest => ({ behavior: 'route', path, concept, keys: ['qb'], gaze: 'quarterback', ...extra });

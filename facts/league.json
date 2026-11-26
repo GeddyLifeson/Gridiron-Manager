@@ -3089,7 +3089,7 @@
    "statement": "Practice squad protection: a club may protect four players per week from other clubs signing them.",
    "value": 4,
    "unit": "count",
-   "validFor": "2026",
+   "validFor": "2020-2022",
    "sources": [
     {
      "citation": "Steelers Now, Steelers Protect Four Practice Squad Players (2021-09-07, https://steelersnow.com/steelers-protect-four-practice-squad-players)",
@@ -3113,7 +3113,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found. Open (2026-11-26, PC browser): the NFL Football Operations Contract Language page lists no weekly protection, and National Football Post (2026-10-23) says the weekly protection of up to four players began in 2020 as a pandemic-era change and that published explainers disagree on whether it still applies. Treat the value as unconfirmed for 2026; the status is not raised. Re-read 2026-11-26: the 2020 CBA text (Article 33, local copy) has no weekly protection provision. National Football Post (2026-10-23) says weekly protections were pandemic-era and that published explainers disagree on whether they still apply; two 2026 explainers (Locker Room Wire, Sporting Nation search snippet) repeat the ESPN claim of four per week every Tuesday. Still unconfirmed in a league document.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found. Open (2026-11-26, PC browser): the NFL Football Operations Contract Language page lists no weekly protection, and National Football Post (2026-10-23) says the weekly protection of up to four players began in 2020 as a pandemic-era change and that published explainers disagree on whether it still applies. Treat the value as unconfirmed for 2026; the status is not raised. Re-read 2026-11-26: the 2020 CBA text (Article 33, local copy) has no weekly protection provision. National Football Post (2026-10-23) says weekly protections were pandemic-era and that published explainers disagree on whether they still apply; two 2026 explainers (Locker Room Wire, Sporting Nation search snippet) repeat the ESPN claim of four per week every Tuesday. Still unconfirmed in a league document. SUPERSEDED for 2026 by F-league-0221 (value 0, 2026-11-26): the protections were a 2020 pandemic-era change, still in use in 2022 (Mile High Report), and 2026 sources (Big Blue View, National Football Post) say they no longer exist. This row describes the 2020 to 2022 rule; the ESPN 2025 line appears stale.",
    "status": "2 of 3",
    "statusHistory": [
     {
@@ -8136,7 +8136,7 @@
    "id": "F-league-0221",
    "level": "pro",
    "domain": "league-rule",
-   "statement": "Practice squad protections (up to four players per week) ended after the 2021 season and are not in effect in 2026.",
+   "statement": "Practice squad protections (up to four players per week, a 2020 pandemic-era change) are not in effect in 2026: the 2020 CBA has no protection clause.",
    "value": 0,
    "unit": "count",
    "validFor": "2026",
@@ -8170,10 +8170,30 @@
      "primary": true,
      "quote": "shall be completely free to negotiate and sign a Player Contract with any Club at any time during the League Year",
      "value": 0
+    },
+    {
+     "citation": "Big Blue View (SB Nation), Practice squad rules for 2026 explained (2026-08-31, syndicated at https://sports.yahoo.com/articles/practice-squad-rules-2026-explained-133000994.html)",
+     "locator": "Protections paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "sbnation-bigblueview",
+     "primary": false,
+     "quote": "no longer exist",
+     "value": 0
+    },
+    {
+     "citation": "National Football Post, practice squad protections explainer (2026-10-23)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nationalfootballpost",
+     "primary": false,
+     "quote": "The CBA itself has no provision that lets a club shield practice squad players from being signed away.",
+     "value": 0
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). CONFLICT WITH F-league-0078 (value 4): ESPN (2025-08-26) says \"Every Tuesday, teams can designate four players as protected\", with no citation; the 2020 CBA text has no protection clause; no NFL page lists protections. Two of three sources say ended, so the 2026 value is most likely 0, but no league document was found either way. The key owner should decide; F-league-0078 was left unchanged. CBA CHECK (2026-11-26, local text copy): Article 33 Section 2(a) says a practice squad player is \"completely free\" to sign with any club at any time \"without penalty or restriction\", and Article 33 has no protection clause (searched \"protect\" in the article). That is the text of record and implies no protection, but it is an inference from absence: the 2020 protections were a pandemic-era change that Wikipedia and Fantasy Nerds say ended after 2021. The only source for four a week in 2025 is one uncited ESPN line (2025-08-26). Marlon/key owner still decides; F-league-0078 is unchanged.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). CONFLICT WITH F-league-0078 (value 4): ESPN (2025-08-26) says \"Every Tuesday, teams can designate four players as protected\", with no citation; the 2020 CBA text has no protection clause; no NFL page lists protections. Two of three sources say ended, so the 2026 value is most likely 0, but no league document was found either way. The key owner should decide; F-league-0078 was left unchanged. CBA CHECK (2026-11-26, local text copy): Article 33 Section 2(a) says a practice squad player is \"completely free\" to sign with any club at any time \"without penalty or restriction\", and Article 33 has no protection clause (searched \"protect\" in the article). That is the text of record and implies no protection, but it is an inference from absence: the 2020 protections were a pandemic-era change that Wikipedia and Fantasy Nerds say ended after 2021. The only source for four a week in 2025 is one uncited ESPN line (2025-08-26). Marlon/key owner still decides; F-league-0078 is unchanged. SETTLED 2026-11-26 (Marlon: look specifically for a clause; if none, so be it). Searched the full 2020 CBA text (Article 33 Sections 1 to 7, side letters, Art. 70 Sec. 16 prior side letters): no protection clause. Big Blue View 2026 and 2024 and National Football Post 2026 say the COVID-era protections no longer exist; Mile High Report (2022-08-31) shows they still ran in 2022, so the Wikipedia end date (after 2021) is likely a year early. Value 0 for 2026, with the CBA primary text plus independent groups.",
    "status": "Verified",
    "statusHistory": [
     {

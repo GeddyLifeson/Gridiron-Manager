@@ -69,4 +69,10 @@ export const ComplianceStateSchema = z.object({
   orders: pub(z.array(z.object({ caseId: id(), order: PenaltyOrderSchema }).strict())),
   nextLogId: truth(z.number().int().positive(), 'id'),
   nextCaseId: truth(z.number().int().positive(), 'id'),
+  // Retired acts and closed cases past the window (log.ts); the rows stay hidden truth, the cases public.
+  archive: z.object({
+    rows: truth(z.array(z.array(ViolationLogRowSchema))),
+    cases: pub(z.array(z.array(CaseRowSchema))),
+  }).strict().optional(),
+  retireAt: truth(z.number().int().positive(), 'count').optional(),
 }).strict();

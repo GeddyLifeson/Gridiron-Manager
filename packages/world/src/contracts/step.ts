@@ -13,7 +13,7 @@ import { ageIn, gradeContext, levelOfTeam, rosteredSet, type GradeContext, type 
 import { PLAYER_DRAFTED, PLAYER_SIGNED } from '../turnover/events.ts';
 import { ageCurve } from '../turnover/front-office.ts';
 import { ruleSetFor, type ContractsBinding } from './binding.ts';
-import { KNOWN_FLOOR_PERIODS, param, type FloorPeriod } from './params.ts';
+import { param, type FloorPeriod } from './params.ts';
 import { marketPrice, publicPercentiles, sourcedScale } from './scale.ts';
 import { contractsOf, lastYear, salaryIn, setContracts, type ContractsState, type FloorCheck, type PlayerContract } from './state.ts';
 
@@ -26,18 +26,44 @@ export const STREAM_FOUNDING = 'world.contracts.founding';
 
 export { ruleSetFor, type ContractsBinding } from './binding.ts';
 
-/** The floor period holding a league year: a CBA period, else four-year periods on either side (PC-04). */
-export function floorPeriodOf(year: number): FloorPeriod {
-  const known = KNOWN_FLOOR_PERIODS.find((p) => year >= p.from && year <= p.to);
+/** League-rules key of a named floor period, `cap.min_cash_period_<from>_<to>_pct` (CBA Art. 12 s.9(a), (b)). */
+const PERIOD_KEY = /^cap\.min_cash_period_(\d+)_(\d+)_pct$/;
+/** The percent a year outside every named period reads (MO-02: today's rules). */
+export const FLOOR_PCT_KEY = 'cap.min_cash_spend_pct';
+
+/** The floor periods a level's league rules name, oldest first, each with its own percent. */
+export function namedFloorPeriods(b: ContractsBinding, level: Level): FloorPeriod[] {
+  const out: FloorPeriod[] = [];
+  for (const key of b.keys(level)) {
+    const m = PERIOD_KEY.exec(key);
+    const pct = m ? b.rule(level, key) : undefined;
+    if (m && pct !== undefined) out.push({ from: Number(m[1]), to: Number(m[2]), pct });
+  }
+  return out.sort((x, y) => x.from - y.from);
+}
+
+/**
+ * The floor period holding a league year (PC-04): a period the league rules name, with its own percent; else
+ * `floor.periodYears`-long periods on either side, at `cap.min_cash_spend_pct`. Null where the level has no floor.
+ */
+export function floorPeriodOf(b: ContractsBinding, level: Level, year: number): FloorPeriod | null {
+  const named = namedFloorPeriods(b, level);
+  const pct = b.rule(level, FLOOR_PCT_KEY);
+  const known = named.find((p) => year >= p.from && year <= p.to);
   if (known) return known;
+  if (pct === undefined) return null;
   const len = param('floor.periodYears');
-  const first = KNOWN_FLOOR_PERIODS[0]!, last = KNOWN_FLOOR_PERIODS[KNOWN_FLOOR_PERIODS.length - 1]!;
+  if (named.length === 0) {
+    const from = Math.floor(year / len) * len;
+    return { from, to: from + len - 1, pct };
+  }
+  const first = named[0]!, last = named[named.length - 1]!;
   if (year > last.to) {
     const from = last.to + 1 + Math.floor((year - last.to - 1) / len) * len;
-    return { from, to: from + len - 1 };
+    return { from, to: from + len - 1, pct };
   }
   const to = first.from - 1 - Math.floor((first.from - 1 - year) / len) * len;
-  return { from: to - len + 1, to };
+  return { from: to - len + 1, to, pct };
 }
 
 const NONE = { skill: false, cap: false, injury: false };
@@ -208,19 +234,25 @@ function closeContracts(r: Run): PlayerContract[] {
 /** C6.2.3 rule 2: check every floor period that ended last league year, once, and pay any shortfall to its players. */
 function checkFloors(r: Run): number {
   const { world, b, year } = r;
-  const period = floorPeriodOf(year - 1);
-  const key = `${period.from}-${period.to}`;
-  if (period.to !== year - 1 || r.state.checkedPeriods.includes(key)) return 0;
-  const counted = r.state.paidYears.filter((y) => y >= period.from && y <= period.to);
   const checks: FloorCheck[] = [];
+  const closed = new Set<string>();
   let total = 0;
   for (const [teamKey, players] of Object.entries(r.state.periodRoster).sort((x, y) => Number(x[0]) - Number(y[0]))) {
     const teamId = Number(teamKey);
-    if (counted.length === 0 || !isActive(world, teamId, year - 1)) continue;
+    if (!world.teams.some((t) => t.id === teamId)) continue;
+    const level = levelOfTeam(world, teamId);
+    const period = floorPeriodOf(b, level, year - 1);
+    if (!period || period.to !== year - 1) continue;
+    const key = `${period.from}-${period.to}`;
+    closed.add(key);
+    const counted = r.state.paidYears.filter((y) => y >= period.from && y <= period.to);
+    if (r.state.checkedPeriods.includes(key) || counted.length === 0 || !isActive(world, teamId, year - 1)) continue;
     const caps = counted.map((y) => r.cap(world, teamId, y) ?? 0);
     const spent = counted.map((y) => clubMoneyOf(world).payments
       .filter((p) => p.teamId === teamId && p.seasonYear === y && p.reason === PLAYER_PAY_REASON).reduce((s, p) => s + p.cents, 0));
-    const f = capRules.cashFloor(caps, spent, ruleSetFor(b, levelOfTeam(world, teamId)));
+    // The period's own percent from its key (89 for 2017-20, 90 after), handed to the cap module's floor.
+    const base = ruleSetFor(b, level);
+    const f = capRules.cashFloor(caps, spent, { ...base, num: (k) => (k === FLOOR_PCT_KEY ? period.pct : base.num(k)) });
     const ids = [...players].sort((x, y) => x - y);
     let recipients: FloorCheck['recipients'] = [];
     if (f.shortfallCents > 0) {
@@ -237,7 +269,9 @@ function checkFloors(r: Run): number {
     }
     checks.push({ teamId, from: period.from, to: period.to, yearsCounted: counted.length, ...f, paidYear: year, recipients });
   }
-  r.state = { ...r.state, periodRoster: {}, checkedPeriods: [...r.state.checkedPeriods, key], floorChecks: [...r.state.floorChecks, ...checks] };
+  if (closed.size === 0) return 0;
+  const fresh = [...closed].filter((k) => !r.state.checkedPeriods.includes(k)).sort();
+  r.state = { ...r.state, periodRoster: {}, checkedPeriods: [...r.state.checkedPeriods, ...fresh], floorChecks: [...r.state.floorChecks, ...checks] };
   return total;
 }
 
