@@ -5721,6 +5721,67 @@
     ],
     "note": "No yardage: loss of down at the spot of the foul. This fits the standard procedure with the foul row spot_foul true and yards 0 (foul.intentional_grounding.spot_foul and .yards), so no new profile is needed."
    }
+  },
+  {
+   "key": "field.width_ft",
+   "type": "number",
+   "meaning": "Width of the field, sideline to sideline",
+   "ownerLeaf": "J1.1.1",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "pro": {
+    "v": 160,
+    "src": [
+     {
+      "cite": "Rule 1, Section 1, Article 1",
+      "q": "The game shall be played upon a rectangular field, 360 feet in length and 160 feet in width.",
+      "line": 353
+     }
+    ]
+   },
+   "college": {
+    "v": 160,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 1 and Appendix D, field diagram, page FR-130 (PDF page 133)",
+      "seen": "The dimension line across the full width of the field is labelled 160, beside the 360 length line."
+     }
+    ],
+    "note": "The NCAA text copy gives the field dimensions only in Appendix D (Rule 1-2-1: \"with dimensions, lines, zones, goals and pylons as indicated in Appendix D\"); the figure was read as an image in the official PDF (ncaaorg.s3.amazonaws.com PRMFB_RulesBook.pdf). Unit feet, as for the 360 length. Independent published sources agree (Wikipedia American football field; BAFRA 2013 field diagrams), recorded here as a note, not as register sources."
+   },
+   "unit": "ft"
+  },
+  {
+   "key": "field.ball_length_yd",
+   "type": "number",
+   "meaning": "New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).",
+   "ownerLeaf": "B7.5.1",
+   "readBy": [
+    "officiating.scrimmage"
+   ],
+   "pro": {
+    "v": 0.309028,
+    "src": [
+     {
+      "cite": "Rule 2, Section 1",
+      "q": "long axis, 11 to 11¼ inches;",
+      "line": 421
+     }
+    ],
+    "note": "Midpoint of the allowed long axis, 11.125 inches = 0.309028 yd (0.3090277...). The book gives a range, not one length."
+   },
+   "college": {
+    "v": 0.309896,
+    "src": [
+     {
+      "cite": "Rule 1, Section 3, Article 1-f and the ball diagram, page FR-22 (PDF page 25)",
+      "seen": "The ball diagram labels the length 10 7/8\" to 11 7/16\"."
+     }
+    ],
+    "note": "The NCAA text copy says only \"Conforms to maximum and minimum dimensions and shape indicated in the accompanying diagram\" (1-3-1-f); the range was read as an image in the official PDF. Midpoint 11 5/32 in (11.15625) = 0.309896 yd."
+   },
+   "unit": "yd"
   }
  ]
 }
