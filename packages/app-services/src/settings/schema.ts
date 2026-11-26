@@ -52,7 +52,7 @@ export const ALERT_LEVELS = ['urgent', 'normal', 'quiet'] as const;
 
 export const SETTINGS: readonly SettingDef[] = [
   // Display (O5.3.2, O2.3.1, O6.2.1)
-  pick('display.theme', 'display', ['system', 'light', 'dark', 'high-contrast', 'classic'], 'system', ['O5.3.2', 'O6.2.1']),
+  pick('display.theme', 'display', ['system', 'light', 'dark', 'high-contrast', 'classic'], 'classic', ['O5.3.2', 'O6.2.1']),
   pick('display.windowMode', 'display', ['windowed', 'fullscreen'], 'windowed', ['O5.3.2']),
   pct('display.interfaceScale', 'display', 100, 'settings.display.interfaceScale', ['O5.3.2']),
   pick('display.fieldOrientation', 'display', ['offense-up', 'my-team-up', 'broadcast'], 'offense-up', ['O2.3.1', 'O5.3.2']),
