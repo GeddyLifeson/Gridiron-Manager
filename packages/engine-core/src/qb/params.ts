@@ -172,7 +172,7 @@ const ROWS = [
   ['resp.escapePerZEp', 0.07, 0, 0.2, 'EP/z', 'assumption', 'J7.4.2', RATES],
   ['resp.escapeCodPerZEp', 0.03, 0, 0.1, 'EP/z', 'assumption', 'J7.4.2', RATES],
   // Tuned from -0.15 (Assumption) against J15.4.1 sacks per pressure.
-  ['resp.throwAwayEp', 0, -0.6, 0.2, 'EP', 'assumption', 'J7.4.2', RATES],
+  ['resp.throwAwayEp', 0.2, -0.6, 0.2, 'EP', 'assumption', 'J7.4.2', RATES], // tuned from 0: a pressured passer threw it away too rarely (pressured completion 58.5% against real 48.1%, sacks per pressure 0.27 against 0.155)
   ['resp.sackEp', -0.45, -1.5, 0, 'EP', 'assumption', 'J7.4.2', RATES],
   ['resp.protectBallEp', 0.15, 0, 0.5, 'EP', 'assumption', 'J7.4.2', RATES],
   // Seconds after a pocket move before the same rusher, on him again, gets a second answer (throw now, throw away or go down).
@@ -250,7 +250,7 @@ const ROWS = [
   ['acc.minShare', 0.3, 0.1, 0.6, 'share', 'assumption', 'J7.6.2', STRUCT],
   ['acc.movingMult', 1.3, 1, 1.8, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.movingThrowSideMult', 1.15, 1, 1.5, 'ratio', 'bible', 'J7.6.2', ACC],
-  ['acc.hitMult', 2.5, 1.2, 2.5, 'ratio', 'bible', 'J7.6.2', ACC], // tuned from 1.8: pressured completion 62% against real 48.1% (1 of 3)
+  ['acc.hitMult', 1.8, 1.2, 2.5, 'ratio', 'bible', 'J7.6.2', ACC], // bible value; 2.5 was tried and changed nothing measurable (a hit throw's error does not reach the gate)
   ['acc.faceMult', 1.6, 1, 1.6, 'ratio', 'bible', 'J7.6.2', ACC], // tuned from 1.25 with acc.hitMult
   ['acc.wetMult', 1.1, 1, 1.3, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.unsetMult', 1.15, 1, 1.5, 'ratio', 'assumption', 'J7.1.1', ACC],
