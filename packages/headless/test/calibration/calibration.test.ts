@@ -262,8 +262,14 @@ describe('chart caller (D-20)', () => {
     expect(fg!.snappingCall).toMatchObject({ unit: 'kick', kickKind: 'field_goal' });
     const kneel = c.decide({ situation: situation({ period: 4, clockTenths: 900, score: [21, 14] }), lastCalled: null, request: request() });
     expect(kneel!.snappingCall).toMatchObject({ unit: 'offense', kind: 'kneel' });
-    const goLate = c.decide({ situation: situation({ period: 4, clockTenths: 900, score: [14, 21], down: 4, distanceYd: 12, ballX: 30 }), lastCalled: null, request: request() });
-    expect(goLate!.snappingCall!.unit).toBe('offense');
+    // Trailing late it goes for it on most fourth downs (chart.fourth.trailingLateGoShare), not on every one.
+    let went = 0;
+    for (let playNumber = 1; playNumber <= 400; playNumber++) {
+      const goLate = c.decide({ situation: situation({ playNumber, period: 4, clockTenths: 900, score: [14, 21], down: 4, distanceYd: 12, ballX: 30 }), lastCalled: null, request: request() });
+      if (goLate!.snappingCall!.unit === 'offense') went++;
+    }
+    expect(went / 400).toBeGreaterThan(0.6);
+    expect(went / 400).toBeLessThan(0.85);
   });
 
   it('sends a return unit on kickoffs and a predicted punt, and takes the default on other prompts', () => {
