@@ -1,0 +1,1063 @@
+{
+ "domain": "medical",
+ "rows": [
+  {
+   "id": "F-injury-cat-0001",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Re-injury risk and lasting-loss values for catalogue rows are design values, not measured here: D11.6 and D8.3.2 own the real rates and use this table only as a pointer.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible D11.2.1 and D11.6 (project design)",
+     "locator": "D11.2 \"Open questions\": external data for hamstring grades and unlisted types is still research",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "injuries.reinjury"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption: reinjury.value is null until D11.6 values are sourced."
+  },
+  {
+   "id": "F-injury-cat-0002",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "knee, games missed after first Out: median 3, mean 4.27, p25 2, p75 5, 18.5% miss one game, 27.9% do not return that season (1117 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.knee.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0003",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "ankle, games missed after first Out: median 3, mean 3.39, p25 2, p75 4, 21.2% miss one game, 19.0% do not return that season (906 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.ankle.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0004",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "hamstring, games missed after first Out: median 2, mean 3.12, p25 1, p75 4, 25.3% miss one game, 11.8% do not return that season (851 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.hamstring.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0005",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "concussion, games missed after first Out: median 1, mean 2.42, p25 1, p75 3, 53.3% miss one game, 14.8% do not return that season (803 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.concussion.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0006",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "shoulder, games missed after first Out: median 3, mean 4.28, p25 1, p75 6, 26.5% miss one game, 33.5% do not return that season (325 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.shoulder.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0007",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "foot, games missed after first Out: median 4, mean 5.13, p25 2, p75 7, 14.7% miss one game, 38.2% do not return that season (285 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.foot.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0008",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "groin, games missed after first Out: median 2, mean 3.26, p25 1, p75 4, 34.4% miss one game, 16.0% do not return that season (262 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.groin.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0009",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "calf, games missed after first Out: median 3, mean 3.39, p25 2, p75 4, 21.0% miss one game, 15.6% do not return that season (224 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.calf.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0010",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "back, games missed after first Out: median 3, mean 4.83, p25 1, p75 7, 30.4% miss one game, 44.1% do not return that season (161 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.back.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0011",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "neck, games missed after first Out: median 4, mean 5.06, p25 2, p75 7.75, 19.9% miss one game, 47.3% do not return that season (146 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.neck.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0012",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "quadriceps, games missed after first Out: median 2, mean 3.13, p25 2, p75 4, 22.0% miss one game, 12.6% do not return that season (127 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.quadriceps.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0013",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "hip, games missed after first Out: median 3, mean 3.93, p25 1, p75 4.75, 29.5% miss one game, 25.4% do not return that season (122 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.hip.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0014",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "ribs, games missed after first Out: median 2, mean 3.03, p25 1, p75 4, 28.1% miss one game, 16.9% do not return that season (89 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.ribs.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0015",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "elbow, games missed after first Out: median 3, mean 4.29, p25 1.75, p75 6, 25.0% miss one game, 28.6% do not return that season (84 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.elbow.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0016",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "hand, games missed after first Out: median 2, mean 2.98, p25 2, p75 4, 21.0% miss one game, 11.1% do not return that season (81 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.hand.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0017",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "toe, games missed after first Out: median 3, mean 3.86, p25 2, p75 5, 16.1% miss one game, 20.4% do not return that season (93 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.toe.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0018",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "illness, games missed after first Out: median 2, mean 3.66, p25 1, p75 5, 33.0% miss one game, 30.1% do not return that season (103 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.illness.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Out listings can include players cut or benched while listed, which inflates the rest-of-season share (source caveat). Dataset-computed; the same data is read as listings by facts/injury.json (G-10), so counts differ by method."
+  },
+  {
+   "id": "F-injury-cat-0019",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "All injury episodes combined, games missed after first Out: median 3, mean 3.7, 27% miss one game, 22.6% do not return that season (6,481 episodes).",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.all_other.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Position effects from the same dataset: QB median 3 and 31.7% rest of season; OL 3 and 26.2%; K 4, P 3 (small n)."
+  },
+  {
+   "id": "F-injury-cat-0020",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "High ankle sprain: about 3 games missed (mean 3.0 to 3.34) and about 30 days (range 8 to 90); games range 0 to 7+.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Sports Health / PMC3497951: high ankle (syndesmotic) sprains, one NFL team 1998-2008",
+     "locator": "mean 30.1 days, range 8-90, 17 sprains",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hi-ankle-pmc3497951",
+     "primary": false
+    },
+    {
+     "citation": "FantasyPoints, What to expect: ankle sprains (2020), 62 players 2016-2020",
+     "locator": "mean and median 3 games missed; 0 games 14%, 7+ games 5%",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hi-ankle-fantasypoints",
+     "primary": false
+    },
+    {
+     "citation": "The Fantasy Footballers, high ankle sprains and fantasy performance",
+     "locator": "mean 3.34 games, 35 skill players 2019-2021, excludes surgery",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hi-ankle-tff",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "injuries.high_ankle_sprain.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "One peer-reviewed study plus two media analyses (from project research/injuries-and-calibration.md, read through summarizing tools; recheck against the papers before shipping)."
+  },
+  {
+   "id": "F-injury-cat-0021",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "MCL sprain, NCAA football: grade I about 10 days, grade II about 35 days missed; every grade I and II player returned; managed non-operatively in nearly all cases.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Motamedi AR et al, J Am Acad Orthop Surg Glob Res Rev 2017;1(5):e019, doi:10.5435/JAAOSGlobal-D-17-00019 (NCAA Division I football, one institution 2001-2007, 47 MCL injuries)",
+     "locator": "\"Grade I injuries resulted in an average of 10 days of missed training time\"; \"grade II injuries resulted in an average of 35 days of missed practice time\"; grade I and II all returned; 98% of MCL injuries grade I or II; nearly all non-operative",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mcl-ncaa-football",
+     "primary": false,
+     "quote": "grade II injuries resulted in an average of 35 days of missed practice time"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.mcl_sprain.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "College population, one institution."
+  },
+  {
+   "id": "F-injury-cat-0022",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "MCL injury, elite soccer (different sport): median 33 days (range 3 to 259) and 4 games missed; 71% return at same level.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Lavoie-Gagne OZ et al, Orthop J Sports Med 2021;9(9), doi:10.1177/23259671211033904 (elite European soccer, 59 athletes, 61 MCL injuries)",
+     "locator": "\"missed a median of 33 days (range, 3-259 days) and 4 games (range, 1-30 games)\"; 71% returned to same level; surgery 14%",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mcl-soccer",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.mcl_sprain.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Soccer population; used only as a cross-check of scale, not as football truth."
+  },
+  {
+   "id": "F-injury-cat-0023",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "MCL sprain, isolated: media estimate of 2 to 3 games missed.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "FantasyPoints, What to expect: MCL sprains (2020)",
+     "locator": "\"2-3 games\" expected for isolated sprain, no sample size",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mcl-fantasypoints",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.mcl_sprain.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Weak: no sample."
+  },
+  {
+   "id": "F-injury-cat-0024",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Grade 2 hamstring strain, one NFL team: 25.7 days and 2.9 games missed without PRP (22.5 days, 1.3 games with PRP); one recurrence in each group.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bradley JP et al, Orthop J Sports Med 2020;8(4), doi:10.1177/2325967120911731 (one NFL team, 69 grade 2 hamstring injuries 2009-2018)",
+     "locator": "\"Average time missed in those treated with PRP injections was 22.5 days, 18.2 practices, and 1.3 games. In those who did not receive PRP injections, time missed was 25.7 days ... and 2.9 games\"; 1 recurrent injury in each group",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hamstring-bradley-2020",
+     "primary": false,
+     "quote": "time missed was 25.7 days"
+    },
+    {
+     "citation": "nflverse injury reports 2012-2025 merged with snap counts, games missed after first Out (research/longrun-aging-injury-stability.md section 2; results/injury_timing_by_injury.csv, project analysis script analysis_injury_timing.py)",
+     "locator": "row per injury group, episodes in last two team games excluded, n>=60",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "injuries.hamstring.grade2"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Second independent source for the hamstring row (nflverse median 2, mean 3.12 games)."
+  },
+  {
+   "id": "F-injury-cat-0025",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Concussion, NFL RB/WR 2012-2015: mean 19 days to return.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Henry Ford Health news release on AJSM 2019 concussion study (38 RB/WR vs 139 controls, 2012-2015)",
+     "locator": "mean 19 days to return",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "concussion-ajsm-2019",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.concussion.days"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "value": 19,
+   "unit": "days",
+   "notes": "Paper not read, press release only."
+  },
+  {
+   "id": "F-injury-cat-0026",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "ACL tear, NFL RB/WR 2009-2016: 61.8% returned; mean 13.6 months to return.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Research note: ACL, RB/WR 2009-2016, pubmed 33553449",
+     "locator": "61.8% returned, mean 13.6 months",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "acl-pubmed-33553449",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.acl_tear.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Bible D11.2.1 also gives 10.7 to 13.6 months and 55 to 65% return from other studies; those sources are not re-read here (bible says \"3 studies plus one\"). Needs second and third source rows before Verified."
+  },
+  {
+   "id": "F-injury-cat-0027",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Achilles rupture, NFL: 58.4% returned (59 of 101); a smaller repair series gives 78% (7 of 9) with mean 273 days.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "PMC8697200: Achilles, NFL 2009-2016, 59 of 101 returned",
+     "locator": "58.4% returned",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "achilles-pmc8697200",
+     "primary": false
+    },
+    {
+     "citation": "PubMed 25785466: mini-open Achilles repair, 7 of 9 returned, mean 273 days",
+     "locator": "78% returned; mean 273 days",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "achilles-pubmed25785466",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "injuries.achilles_rupture.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "The two sources disagree on rate (58 versus 78); sizes 101 versus 9."
+  },
+  {
+   "id": "F-injury-cat-0028",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Patellar tendon rupture, NFL: 79% (19 of 24) returned to a regular-season game in one study; 50% in another; return the following season.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "PubMed 21813442: patellar tendon rupture, NFL 1994-2004, 19 of 24 returned",
+     "locator": "79% returned to a regular-season game",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "patellar-pubmed21813442",
+     "primary": false
+    },
+    {
+     "citation": "PubMed 27311414: return to play after patellar repair, lowest of 10 procedures",
+     "locator": "50% return",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "patellar-pubmed27311414",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "injuries.patellar_tendon_rupture.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Sources disagree."
+  },
+  {
+   "id": "F-injury-cat-0029",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Lisfranc injury, NFL: median about 11 months to return (IQR 10.2 to 11.8), median 8.5 regular-season games missed, 82 to 93% return.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Penn Medicine release (2015), Lisfranc, NFL 2000-2010",
+     "locator": "median 11.1 months, median 8.5 regular-season games missed, 26 of 28 returned (92.9%)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lisfranc-penn",
+     "primary": false
+    },
+    {
+     "citation": "Univ. of Kentucky scholars record: Lisfranc, NFL 2009-2020, 33 athletes",
+     "locator": "median 11.0 months (IQR 10.2-11.8), 27 of 33 returned (81.8%)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lisfranc-uky",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "injuries.lisfranc.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-21)."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-cat-0030",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Turf toe: mean 36.7 days (SD 28.9) if back the same season; high grade 75.8 days non-operative, 221.4 days surgical, 91% returned.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "GWU Himmelfarb record 358: turf toe, NFL 2010-2015, 24 players",
+     "locator": "returned same season: mean 36.7 +/- 28.9 days; 3 needed season-ending surgery",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "turftoe-gwu",
+     "primary": false
+    },
+    {
+     "citation": "DOAJ 9036db8b3e0d46d6b8bc141eb636b603: high-grade turf toe, 53 athletes",
+     "locator": "91% returned; non-operative 75.8 days, surgical 221.4 days",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "turftoe-doaj",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "injuries.turf_toe.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-21)."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-cat-0031",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Pectoralis major injury, NFL: 85.3% to 85.7% return across two studies; mean 165.8 days (range 2 to 668) to return; grade I mean 30.4, grade II 117.4, grade III 297.5 days; non-operative 47.4 days, operative 289.5 days.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bodendorfer BM et al, Arthrosc Sports Med Rehabil 2021;3(4):e1097, doi:10.1016/j.asmr.2021.03.015 (NFL 1998-2020, 258 pectoralis major injuries)",
+     "locator": "\"85.3% players (220 of 258) returned to competition following PM injury, with a mean time to RTP of 165.8 +/- 147.9 days (range 2-668 days)\"",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pec-bodendorfer",
+     "primary": false,
+     "quote": "mean time to RTP of 165.8"
+    },
+    {
+     "citation": "Wise PM et al, Orthop J Sports Med 2021;9(6), doi:10.1177/23259671211018707 (NFL 2010-2018, 63 ruptures)",
+     "locator": "\"A total of 85.7% of players returned to play in the NFL after injury.\"",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pec-wise",
+     "primary": false,
+     "quote": "85.7% of players returned to play"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "injuries.pectoral.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "Return rates agree (85.3 vs 85.7). Time figures from the first study only."
+  },
+  {
+   "id": "F-injury-cat-0032",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Hand and wrist injury, NCAA football: metacarpal fracture time loss mean 12.3 days, median 2.5 (range 0 to 148); 71.4% of hand and wrist injuries cost no time.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bartels D et al, Orthop J Sports Med 2019;7(4), doi:10.1177/2325967119835375 (NCAA football hand and wrist injuries 2009-2014, 725 injuries)",
+     "locator": "Table 5 metacarpal fracture time loss 12.3 +/- 25.8 days, median 2.5 (0-148); 71.4% of all hand and wrist injuries no time loss; 7.4% surgery",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "handwrist-bartels",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "injuries.hand_wrist_fracture.recovery"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "notes": "College population; the NFL equivalent (PubMed 18502939) could not be read here. nflverse hand row (report level) is the pro cross-check."
+  },
+  {
+   "id": "F-injury-cat-0033",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Cramp: removes a player for a few plays to a series; per-play probability rises with heat index above 85 F, snap load, body mass and low conditioning, falls with rotation and hydration. Rates are design values.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible D11.7.1 (project design); heat cramps 43% of NCAA football heat illness cases 2009-2015 (J Athl Train 2019), about 70% in one southeastern season (PubMed 17043703)",
+     "locator": "D11.7.1 football facts",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "heat-cramps-bible",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "injuries.cramp"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Existence of cramps as most common heat illness is sourced (2 of 3 per bible); all rates are an assumption. No NFL in-game rate found."
+  },
+  {
+   "id": "F-injury-cat-0034",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Heat illness: rare, removes the player for the day; illness spread: entry 3 percent per team-week, 15 percent per exposed player in a room, absence 1 to 3 days.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible D11.7.1 starting values (project design)",
+     "locator": "D11.7.1 rules and logic",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "heat-illness-bible",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "injuries.heat_illness",
+    "injuries.illness_spread"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-21)."
+    }
+   ],
+   "assumption": true,
+   "notes": "All values are named design assumptions."
+  }
+ ]
+}
