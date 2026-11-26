@@ -22,6 +22,8 @@ export interface NewGameFlowProps {
   /** Wall clock in ms for the elapsed and time-left lines (shell supplied). */
   now?: () => number;
   benchmarkRatio?: number;
+  /** The save name the field starts with (the host passes a free one); default career-1. */
+  initialSaveName?: string;
 }
 
 const box: React.CSSProperties = { border: '1px solid var(--line)', borderRadius: 8, padding: 16, margin: '12px 0', background: 'var(--panel)' };
@@ -36,7 +38,7 @@ function Steps({ at }: { at: Step }) {
   );
 }
 
-export function NewGameFlow({ client, careerStartYear, randomSeedHex, onStart, now = () => 0, benchmarkRatio = 1 }: NewGameFlowProps): ReactNode {
+export function NewGameFlow({ client, careerStartYear, randomSeedHex, onStart, now = () => 0, benchmarkRatio = 1, initialSaveName = 'career-1' }: NewGameFlowProps): ReactNode {
   const [step, setStep] = useState<Step>('coach');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -48,7 +50,7 @@ export function NewGameFlow({ client, careerStartYear, randomSeedHex, onStart, n
   const [way, setWay] = useState<'origin' | 'preset'>('origin');
   const [originId, setOriginId] = useState(newgame.coachCards.origins[0]!.id);
   const [presetId, setPresetId] = useState(newgame.coachCards.presets[0]!.id);
-  const [saveName, setSaveName] = useState('career-1');
+  const [saveName, setSaveName] = useState(initialSaveName);
   const coachSeed = useMemo(() => parseInt(randomSeedHex().slice(0, 8), 16), [randomSeedHex]);
 
   // World

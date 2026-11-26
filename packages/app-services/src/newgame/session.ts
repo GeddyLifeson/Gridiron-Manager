@@ -271,11 +271,36 @@ export interface CareerStart {
   /** The level the coach starts at, and its rule set id. */
   readonly level: 'pro' | 'college';
   readonly ruleSetId: string;
-  /** The coach's team (his first job's team, or the home program); null when he starts with no team. */
-  readonly seatTeamId: number | null;
-  readonly seatTeamName: string | null;
+  /**
+   * The coach's team: his first job's team, or the home program, or (starting with neither) an entry seat
+   * at a program of his level drawn from the world seed (S2: the nobody starts on a staff's bottom rung).
+   */
+  readonly seatTeamId: number;
+  readonly seatTeamName: string;
+  /** 'team': the team his choices named; 'entry': the drawn entry seat. */
+  readonly seatKind: 'team' | 'entry';
   readonly saveName: string;
   readonly coach: career.coach.CreatedCoach;
+  /** Rebuilds this start exactly (the history and the coach are pure functions of it): stored in the save. */
+  readonly recipe: CareerRecipe;
+}
+
+/** The world choice, rerun count and coach choices a career save rebuilds its start from. */
+export interface CareerRecipe {
+  readonly choice: WorldChoice;
+  readonly rerun: number;
+  readonly choices: career.coach.CreationChoices;
+}
+
+/**
+ * Entry seat for a coach who starts with no team: one active program of his level, drawn from the world
+ * seed and the coach seed (same world and coach, same seat). Null only when the level has no active team.
+ */
+export function entrySeatTeamId(w: loop.LiveWorld, level: 'pro' | 'college', careerStartYear: number, seedHex: string, coachSeed: number): number | null {
+  const ids = creationWorld(w, careerStartYear).teams.filter((t) => t.level === level).map((t) => t.id).sort((a, b) => a - b);
+  if (ids.length === 0) return null;
+  const rng = engineCore.stream(engineCore.seedFromHex(seedHex), 'career.entry_seat', [coachSeed]);
+  return ids[Math.min(ids.length - 1, Math.floor(rng.uniform() * ids.length))]!;
 }
 
 export type StartResult =
@@ -288,14 +313,17 @@ export function startCareer(d: Draft, choices: career.coach.CreationChoices, sav
   const rng = engineCore.stream(engineCore.seedFromHex(d.seedHex), 'career.coach_creation', [choices.seed]);
   const r = career.coach.createCoach(choices, creationWorld(w, d.choice.careerStartYear), coachRules(), { uniform: () => rng.uniform() }, w.nextIds['person'] ?? w.people.size + 1);
   if (!r.ok) return { ok: false, problems: r.problems, notices: r.notices };
+  const named = r.coach.firstJob?.teamId ?? choices.firstTeamId;
+  const seatTeamId = named ?? entrySeatTeamId(w, r.coach.level, d.choice.careerStartYear, d.seedHex, choices.seed);
+  if (seatTeamId === null) throw new Error(`no active ${r.coach.level} team for an entry seat`);
   return {
     ok: true, world: w,
     start: {
       setup: d.setup, baseSeedHex: d.choice.seedHex, rerun: d.rerun, seedHex: d.seedHex, seedStep: d.built.seedStep, worldCode: d.worldCode,
       worldHash: loop.worldHash(w), careerStartYear: d.choice.careerStartYear,
       level: r.coach.level, ruleSetId: RULE_SET_OF_LEVEL[r.coach.level],
-      seatTeamId: r.coach.firstJob?.teamId ?? choices.firstTeamId, seatTeamName: (() => { const id = r.coach.firstJob?.teamId ?? choices.firstTeamId; return id === null ? null : teamName(w, id); })(),
-      saveName, coach: r.coach,
+      seatTeamId, seatTeamName: teamName(w, seatTeamId), seatKind: named === null ? 'entry' : 'team',
+      saveName, coach: r.coach, recipe: { choice: d.choice, rerun: d.rerun, choices },
     },
   };
 }

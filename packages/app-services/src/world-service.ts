@@ -18,7 +18,15 @@ export interface NewCareerOptions {
   saveName: string;
   masterSeedHex: string;
   startSeasonYear: number;
+  /**
+   * A career from the new-game flow: the recipe that rebuilds its start (JSON of newgame.CareerRecipe),
+   * the user's person, job and a summary line for the load list. Absent makes the phase 0 empty world.
+   */
+  career?: { readonly recipeJson: string; readonly userPersonId: number; readonly userJob: string; readonly summary: string };
 }
+
+/** The header key holding a career save's rebuild recipe. */
+export const CAREER_RECIPE_KEY = 'careerRecipe';
 
 export type CommandOutcome = { ok: true; events: { type: string; detail: string }[] } | { ok: false; reason: string; code: string };
 
@@ -47,15 +55,15 @@ export class WorldService {
       engineVersion: ENGINE_VERSION,
       parameterSetVersion: DUMMY_PARAMETER_SET,
       masterSeed: o.masterSeedHex,
-      generatorOptions: { worldSize: 'small' },
+      generatorOptions: { worldSize: 'small', ...(o.career ? { [CAREER_RECIPE_KEY]: o.career.recipeJson } : {}) },
       contentManifest: contentItems().map((c) => ({ packId: c.id, version: '2026', hash: c.hash })),
       ruleSets: [],
       settings: { worldSize: 'small', retentionProfile: 'standard' },
       certified: true,
       calendar: { seasonYear: o.startSeasonYear, dayIndex: 0 },
-      userPersonId: null,
-      userJob: null,
-      summary: 'Empty world',
+      userPersonId: o.career?.userPersonId ?? null,
+      userJob: o.career?.userJob ?? null,
+      summary: o.career?.summary ?? 'Empty world',
       hashChainHead: CHAIN_GENESIS,
       createdWith: appVersion,
       lastWrittenWith: appVersion,
@@ -106,7 +114,7 @@ export class WorldService {
       ...this.header,
       calendar: r.world.calendar,
       ruleSets: r.world.competitions.map((c) => ({ competitionId: c.id, ruleSetId: c.ruleSetId, leagueRulesId: c.leagueRulesId })),
-      summary: `${r.world.competitions.length} competitions, season ${r.world.calendar.seasonYear}, day ${r.world.calendar.dayIndex}`,
+      summary: this.careerRecipeJson() !== null ? this.header.summary : `${r.world.competitions.length} competitions, season ${r.world.calendar.seasonYear}, day ${r.world.calendar.dayIndex}`,
       hashChainHead: checkpoint?.head ?? this.chainHead,
       lastWrittenWith: `${this.platform.appVersion()} / ${APP_SERVICES_VERSION}`,
     };
@@ -143,6 +151,12 @@ export class WorldService {
   }
 
   saveHeader(): SaveHeader { return this.header; }
+
+  /** The career recipe (JSON) of a save made by the new-game flow; null for a phase 0 world. */
+  careerRecipeJson(): string | null {
+    const v = this.header.generatorOptions[CAREER_RECIPE_KEY];
+    return typeof v === 'string' ? v : null;
+  }
 
   async close(): Promise<void> { await this.driver.close(); }
 }

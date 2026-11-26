@@ -103,6 +103,22 @@ describe('a draft of the past, rerun, and the start', { timeout: 300_000 }, () =
     expect(started.world.teams.length).toBe(8);
     expect(loop.worldHash(started.world)).toBe(started.start.worldHash);
     expect(generation.decodeWorldCode(started.start.worldCode).ok).toBe(true);
+    // No team named: the coach takes an entry seat at a college program, drawn from the seeds.
+    expect(choices.firstTeamId).toBeNull();
+    expect(started.start.seatKind).toBe('entry');
+    expect(opts.teams.find((t) => t.id === started.start.seatTeamId)?.level).toBe('college');
+    expect(started.start.seatTeamName).toBe(opts.teams.find((t) => t.id === started.start.seatTeamId)?.name);
+
+    // The save's recipe rebuilds the same start in a fresh client (a loaded career save).
+    const recipe = JSON.parse(JSON.stringify(started.start.recipe)) as newgame.CareerRecipe;
+    const fresh = newgame.inlineClient({ binding: { content: CONTENT } });
+    await fresh.run(recipe.choice, recipe.rerun, () => {});
+    const again = await fresh.start(recipe.choices, 'career-1');
+    expect(again.ok).toBe(true);
+    if (!again.ok) return;
+    expect(again.start.worldHash).toBe(started.start.worldHash);
+    expect(again.start.seatTeamId).toBe(started.start.seatTeamId);
+    expect(again.start.coach.personId).toBe(started.start.coach.personId);
   });
 
   it('the same choice and rerun give the same world (the history is a pure function of its seed)', () => {

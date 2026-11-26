@@ -69,3 +69,22 @@ describe('world service and save (P1.1.3, P5)', () => {
     expect(Object.keys(svc.saveHeader().settings).sort()).toEqual(['retentionProfile', 'worldSize']);
   });
 });
+
+describe('career save header', () => {
+  it('keeps the career recipe, user and summary; a phase 0 world has none', async () => {
+    const p = new MemoryPlatform();
+    const empty = await WorldService.newCareer(p, { saveName: 'e', masterSeedHex: '00000000000000aa', startSeasonYear: 2026 });
+    expect(empty.careerRecipeJson()).toBeNull();
+    await empty.close();
+    const svc = await WorldService.newCareer(p, {
+      saveName: 'c', masterSeedHex: '00000000000000ab', startSeasonYear: 2026,
+      career: { recipeJson: '{"rerun":0}', userPersonId: 501, userJob: 'entry', summary: 'Pat Doe, Harbor State, 2026' },
+    });
+    await svc.close();
+    const back = await WorldService.load(p, 'c');
+    expect(back.careerRecipeJson()).toBe('{"rerun":0}');
+    expect(back.saveHeader().userPersonId).toBe(501);
+    expect(back.saveHeader().userJob).toBe('entry');
+    expect(back.saveHeader().summary).toBe('Pat Doe, Harbor State, 2026');
+  });
+});

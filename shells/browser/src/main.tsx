@@ -95,11 +95,14 @@ async function main() {
     now: () => performance.now(),
   };
   // ?quick=pro|college: a season with the level's first team, straight to the office (a check entry).
-  const quick = new URLSearchParams(location.search).get('quick');
+  const params = new URLSearchParams(location.search);
+  const quick = params.get('quick');
+  // ?dev=1: the phase 0 developer panels (empty world, world summary, determinism check).
+  const devTools = params.get('dev') === '1';
   const leagueContent = { proLeague, college, proLeagueRules, collegeLeagueRules };
   createRoot(document.getElementById('root')!).render(
     <App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} newGame={newGame} leagueContent={leagueContent}
-      quickCareer={quick === 'pro' || quick === 'college' ? quick : null} />,
+      quickCareer={quick === 'pro' || quick === 'college' ? quick : null} devTools={devTools} />,
   );
 }
 void main();
