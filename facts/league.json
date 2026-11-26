@@ -3907,6 +3907,1666 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-league-0115",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Draft day two opens with round 2 (rounds 2 and 3 on Friday).",
+   "value": 2,
+   "unit": "round",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Football Operations, The Rules of the Draft (saved page copy)",
+     "locator": "The Rules of the Draft (text copy nfl-operations--draft-rules.txt, line 34)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The second and third rounds are on Friday; rounds 4-7 are on Saturday.",
+     "value": 2
+    },
+    {
+     "citation": "Sports Illustrated, NFL Offseason Calendar: Key Dates (2026-02-12, https://www.si.com/nfl/offseason-calendar-key-dates-nfl-draft-free-agency-more)",
+     "locator": "Offseason calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "the second and third rounds will be on April 24",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "League page says rounds 2 and 3 on Friday; SI says the same for the 2026 draft (April 24). The league page also holds a stale round-1 clock, so only the day split is used from it.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0116",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Draft day three opens with round 4 (rounds 4 to 7 on Saturday).",
+   "value": 4,
+   "unit": "round",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Football Operations, The Rules of the Draft (saved page copy)",
+     "locator": "The Rules of the Draft (text copy nfl-operations--draft-rules.txt, line 34)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The second and third rounds are on Friday; rounds 4-7 are on Saturday.",
+     "value": 4
+    },
+    {
+     "citation": "Sports Illustrated, NFL Offseason Calendar: Key Dates (2026-02-12, https://www.si.com/nfl/offseason-calendar-key-dates-nfl-draft-free-agency-more)",
+     "locator": "Offseason calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "the remaining rounds will be on April 25",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "League page says rounds 4 to 7 on Saturday; SI says the remaining rounds (after rounds 1, 2, 3) are on April 25, 2026.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0117",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp first round = 3.",
+   "value": 3,
+   "unit": "round",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 3(b)(1) (text copy cba_2020.txt, line 18028)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "following the last selection in the third round",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0118",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp cfa top pct = 35.",
+   "value": 35,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 1(ii) (text copy cba_2020.txt, line 17932)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "ranked within the top 35% of all League players",
+     "value": 35
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0119",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp bracket top pct r3 = 5.",
+   "value": 5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 3(b)(1) (text copy cba_2020.txt, line 18027)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "within the top 5%",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0120",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp bracket top pct r4 = 10.",
+   "value": 10,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 3(b)(2) (text copy cba_2020.txt, line 18031)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "within the top 10%",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0121",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp bracket top pct r5 = 15.",
+   "value": 15,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 3(b)(3) (text copy cba_2020.txt, line 18035)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "within the top 15%",
+     "value": 15
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0122",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp bracket top pct r6 = 25.",
+   "value": 25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 3(b)(4) (text copy cba_2020.txt, line 18039)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "within the top 25%",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0123",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp bracket top pct r7 = 35.",
+   "value": 35,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 3(b)(5) (text copy cba_2020.txt, line 17932)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "within the top 35%",
+     "value": 35
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0124",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp points all league = 20.",
+   "value": 20,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 2(b)(1) (text copy cba_2020.txt, line 17975)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "20 points",
+     "value": 20
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0125",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp points all conference = 5.",
+   "value": 5,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 2(b)(2) (text copy cba_2020.txt, line 17978)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "5 points",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0126",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp snap min pct = 25.",
+   "value": 25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 2(b)(3) (text copy cba_2020.txt, line 17982)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 25% of the offensive/ defensive plays",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0127",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp points per punt = 1.",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 2(b)(3) (text copy cba_2020.txt, line 17986)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 point will be awarded for each punt attempted",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0128",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp points per punt inside20 = 1.",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 2(b)(3) (text copy cba_2020.txt, line 17987)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 point for each punt inside the 20-yard line",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0129",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp points per fga = 2.",
+   "value": 2,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 2(b)(3) (text copy cba_2020.txt, line 17988)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "2 points for each field goal attempted",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0130",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp points per fgm = 1.",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 2(b)(3) (text copy cba_2020.txt, line 17989)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 point for each field goal made",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0131",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp veteran accrued seasons = 10.",
+   "value": 10,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 4 (text copy cba_2020.txt, line 18049)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "ten or more Accrued Seasons",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0132",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp veteran earliest round = 5.",
+   "value": 5,
+   "unit": "round",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 4 (text copy cba_2020.txt, line 18048)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "before the end of the fifth round",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0133",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory pick system, CBA Appendix V: comp equal count margin points = 300.",
+   "value": 300,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "App. V para 5 (text copy cba_2020.txt, line 18054)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "more than 300 points greater",
+     "value": 300
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0134",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Club discipline for players follows the labour agreement schedule (Article 42), not a school code.",
+   "value": "labour_agreement",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1 (text copy cba_2020.txt, line 11907)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Any dispute involving Club discipline must be processed exclusively under Article 43",
+     "value": "labour_agreement"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Option value is the engine name for the CBA model; the college file takes school_code and has no source here.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0135",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 club fine for overweight: $847 per pound per day.",
+   "value": 847,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 11981)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Overweight / lbs per day $752 $775 $798 $822 $847 $872 $898 $925 $953",
+     "value": 847
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0136",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 club fine for unexcused late reporting to a listed activity: $3,182.",
+   "value": 3182,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 11983)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "activity that has been listed in Article $2,827 $2,912 $2,999 $3,089 $3,182 $3,277 $3,375 $3,476 $3,580",
+     "value": 3182
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0137",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 club fine for an unexcused missed activity listed in Section 1(b)(x): $16,984.",
+   "value": 16984,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12057)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Unexcused missed activity that has been listed in Article 42, Section $15,090 $15,543 $16,009 $16,489 $16,984 $17,494 $18,019 $18,560 $19,117",
+     "value": 16984
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0138",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 club fine for ejection from a game: $44,962.",
+   "value": 44962,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12067)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Ejection from game $39,949 $41,147 $42,381 $43,652 $44,962 $46,311 $47,700 $49,131 $50,605",
+     "value": 44962
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0139",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 fine for the first missed day of mandatory minicamp: $17,986.",
+   "value": 17986,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12031)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$15,980 $16,459 $16,953 $17,462 $17,986 $18,526 $19,082 $19,654 $20,244",
+     "value": 17986
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0140",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 fine for the second missed day of mandatory minicamp: $35,973.",
+   "value": 35973,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12035)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$31,961 $32,920 $33,908 $34,925 $35,973 $37,052 $38,164 $39,309 $40,488",
+     "value": 35973
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0141",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 fine for the third missed day of mandatory minicamp: $53,952.",
+   "value": 53952,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12039)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$47,936 $49,374 $50,855 $52,381 $53,952 $55,571 $57,238 $58,955 $60,724",
+     "value": 53952
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0142",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Mandatory 2026 fine per day for a veteran under contract late or absent from training camp: $60,000.",
+   "value": 60000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 11999)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$50,000 $50,000 $50,000 $50,000 $60,000 $60,000 $60,000 $60,000 $60,000",
+     "value": 60000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0143",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Mandatory 2026 fine per day for an unrestricted free agent signee late or absent from camp: $60,000 (plus one week of Paragraph 5 salary per preseason game missed).",
+   "value": 60000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 11816)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "by a player under contract signed as an Unrestricted Free Agent pursuant to Article 9—mandatory fine of $50,000 per day, plus one week’s Paragraph 5 Salary for each preseason game missed",
+     "value": 60000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0144",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Fine per day for a drafted or undrafted rookie late or absent from camp, 2026: $45,000.",
+   "value": 45000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12024)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$40,000 $40,000 $40,000 $40,000 $45,000 $45,000 $45,000 $45,000 $45,000",
+     "value": 45000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0145",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Fine per day for a fifth-year-option player late or absent from camp, 2026 to 2030: $45,000 (plus one week of regular season salary per preseason game missed).",
+   "value": 45000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(h)(i) (text copy cba_2020.txt, line 2697)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a fine of $40,000 per day for the 2020-2025 League Years and $45,000 per day for the 2026-2030 League Years, plus one week’s regular season salary for each preseason game missed",
+     "value": 45000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0146",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A veteran camp holdout fine is mandatory and cannot be reduced or waived by the club.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(vi) (text copy cba_2020.txt, line 11805)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "any such fines shall be mandatory, and shall not be reduced in amount or waived by the Club, in whole or in part",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Value false = not waivable.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0147",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "An unrestricted free agent signee camp holdout fine is mandatory and cannot be reduced or waived.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(vii) (text copy cba_2020.txt, line 11805)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "any such fines shall be mandatory, and shall not be reduced in amount or waived by the Club, in whole or in part",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Value false = not waivable. Rookie, option-year and minicamp fines carry no \"mandatory\" wording; no waivable key is given for them.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0148",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cumulative club fines in one day of preseason training camp: at most $35,967 in 2026.",
+   "value": 35967,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12042)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$31,956 $32,915 $33,902 $34,919 $35,967 $37,046 $38,157 $39,302 $40,481",
+     "value": 35967
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0149",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cumulative club fines in one day of the regular season or postseason: at most $48,556 in 2026.",
+   "value": 48556,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12051)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$43,142 $44,436 $45,769 $47,142 $48,556 $50,013 $51,513 $53,058 $54.650",
+     "value": 48556
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). The 2030 cell is misprinted \"$54.650\" in the executed text.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0150",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Overweight fines may be assessed at most twice a week.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(i) (text copy cba_2020.txt, line 11789)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "which fine may be assessed no more than twice per week",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0151",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Overweight fines must be at least three days apart.",
+   "value": 3,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(i) (text copy cba_2020.txt, line 11790)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "with each fine at least three days apart",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0152",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Progressive discipline, first offence: 40 percent of the maximum fine.",
+   "value": 0.4,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(a) (text copy cba_2020.txt, line 11773)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "for a first offense, 40% of the maximum fine",
+     "value": 0.4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0153",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Progressive discipline, second offence: 70 percent of the maximum fine.",
+   "value": 0.7,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(a) (text copy cba_2020.txt, line 11773)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "for a second offense, 70% of the maximum fine",
+     "value": 0.7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0154",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Progressive discipline, third offence: 100 percent of the maximum fine.",
+   "value": 1.0,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(a) (text copy cba_2020.txt, line 11774)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "for a third offense, 100% of the maximum fine",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0155",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A club may deduct at most $5,000 of fines from each pay period in 2026 to 2030.",
+   "value": 5000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 5(a) (text copy cba_2020.txt, line 11919)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "For the 2026–2030 League Years the rate will increase from $4,000 to $5,000",
+     "value": 5000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0156",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Clubs must donate at least half of all fines collected in a league year to youth football.",
+   "value": 0.5,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 5(c) (text copy cba_2020.txt, line 11928)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "donate at least fifty percent (50%) of all fines collected pursuant to this Article",
+     "value": 0.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0157",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Conduct-detrimental discipline for repeated offences is not allowed before the fourth violation in the league year.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 3(a)(i) (text copy cba_2020.txt, line 11889)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "no Club may impose a fine and/or suspension without pay for conduct detrimental to the Club prior to the player’s fourth violation in the same League Year",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0158",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Conduct detrimental to the club: fine of at most one week of salary.",
+   "value": 1,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(xvii) (text copy cba_2020.txt, line 11849)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "maximum fine of an amount equal to one week’s salary and/or suspension without pay for a period not to exceed four (4) weeks",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0159",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Conduct detrimental to the club: suspension without pay of at most four weeks.",
+   "value": 4,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(xvii) (text copy cba_2020.txt, line 11850)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "suspension without pay for a period not to exceed four (4) weeks",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0160",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A grievance must be initiated within 50 days of the event or of when it became known.",
+   "value": 50,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 43 Section 2 (text copy cba_2020.txt, line 12085)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "A grievance must be initiated within fifty (50) days from the date of the occurrence",
+     "value": 50
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0161",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The answer to a grievance is due within 10 days of receipt.",
+   "value": 10,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 43 Section 3 (text copy cba_2020.txt, line 12101)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "will answer in writing by certified mail, fax, or electronically via .pdf within ten (10) days of receipt of the grievance",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0162",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A hearing on a club suspension is held within 7 days of the filing.",
+   "value": 7,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 43 Section 4 (text copy cba_2020.txt, line 12122)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "within seven (7) days of the filing of the grievance",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0163",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "An expedited grievance is decided within 5 days of the hearing.",
+   "value": 5,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 43 Section 4 (text copy cba_2020.txt, line 12128)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "will issue their decision(s) within five (5) days of the completion of the hearing",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0164",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Each side may call four expedited grievances per calendar year.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 43 Section 4 (text copy cba_2020.txt, line 12127)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "ances of their respective choice each calendar year",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0165",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "An ordinary grievance decision is due within 30 days of the briefs.",
+   "value": 30,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 43 Section 8 (text copy cba_2020.txt, line 12243)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "The arbitrator will issue a written decision within thirty (30) days of the submission of briefs",
+     "value": 30
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0166",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The record in an ordinary grievance closes 60 days after the hearing.",
+   "value": 60,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 43 Section 7(b) (text copy cba_2020.txt, line 12226)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "The record should be closed sixty (60) days after the hearing date unless mutually extended",
+     "value": 60
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0167",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Second knowing and material concussion-checklist violation by a club in a league year: fine of at least $250,000.",
+   "value": 25000000,
+   "unit": "cents",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 39 (NFL Game Concussion Protocol enforcement, discipline paragraph 2) (text copy cba_2020.txt, line 10912)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the Commissioner shall impose a fine of at least Two Hundred and Fifty Thousand Dollars ($250,000) against the club",
+     "value": 25000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). This is a floor (\"at least\"); the first-violation fine is a ceiling of $500,000 and a floor of $100,000 only when aggravated, so no first-finding value is given.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

@@ -657,6 +657,321 @@
    "factId": "F-league-0114"
   },
   {
+   "key": "league_rules.draft.day2_first_round",
+   "value": 2,
+   "unit": "round",
+   "factId": "F-league-0115"
+  },
+  {
+   "key": "league_rules.draft.day3_first_round",
+   "value": 4,
+   "unit": "round",
+   "factId": "F-league-0116"
+  },
+  {
+   "key": "league_rules.draft.comp_first_round",
+   "value": 3,
+   "unit": "round",
+   "factId": "F-league-0117"
+  },
+  {
+   "key": "league_rules.draft.comp_cfa_top_pct",
+   "value": 35,
+   "unit": "percent",
+   "factId": "F-league-0118"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r3",
+   "value": 5,
+   "unit": "percent",
+   "factId": "F-league-0119"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r4",
+   "value": 10,
+   "unit": "percent",
+   "factId": "F-league-0120"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r5",
+   "value": 15,
+   "unit": "percent",
+   "factId": "F-league-0121"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r6",
+   "value": 25,
+   "unit": "percent",
+   "factId": "F-league-0122"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r7",
+   "value": 35,
+   "unit": "percent",
+   "factId": "F-league-0123"
+  },
+  {
+   "key": "league_rules.draft.comp_points_all_league",
+   "value": 20,
+   "unit": "points",
+   "factId": "F-league-0124"
+  },
+  {
+   "key": "league_rules.draft.comp_points_all_conference",
+   "value": 5,
+   "unit": "points",
+   "factId": "F-league-0125"
+  },
+  {
+   "key": "league_rules.draft.comp_snap_min_pct",
+   "value": 25,
+   "unit": "percent",
+   "factId": "F-league-0126"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_punt",
+   "value": 1,
+   "unit": "points",
+   "factId": "F-league-0127"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_punt_inside20",
+   "value": 1,
+   "unit": "points",
+   "factId": "F-league-0128"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_fga",
+   "value": 2,
+   "unit": "points",
+   "factId": "F-league-0129"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_fgm",
+   "value": 1,
+   "unit": "points",
+   "factId": "F-league-0130"
+  },
+  {
+   "key": "league_rules.draft.comp_veteran_accrued_seasons",
+   "value": 10,
+   "unit": "seasons",
+   "factId": "F-league-0131"
+  },
+  {
+   "key": "league_rules.draft.comp_veteran_earliest_round",
+   "value": 5,
+   "unit": "round",
+   "factId": "F-league-0132"
+  },
+  {
+   "key": "league_rules.draft.comp_equal_count_margin_points",
+   "value": 300,
+   "unit": "points",
+   "factId": "F-league-0133"
+  },
+  {
+   "key": "club_discipline.model",
+   "value": "labour_agreement",
+   "factId": "F-league-0134"
+  },
+  {
+   "key": "club_discipline.max_usd.overweight_per_lb_day",
+   "value": 847,
+   "unit": "USD",
+   "factId": "F-league-0135"
+  },
+  {
+   "key": "club_discipline.max_usd.late",
+   "value": 3182,
+   "unit": "USD",
+   "factId": "F-league-0136"
+  },
+  {
+   "key": "club_discipline.max_usd.missed",
+   "value": 16984,
+   "unit": "USD",
+   "factId": "F-league-0137"
+  },
+  {
+   "key": "club_discipline.max_usd.ejection",
+   "value": 44962,
+   "unit": "USD",
+   "factId": "F-league-0138"
+  },
+  {
+   "key": "club_discipline.max_usd.minicamp_day1",
+   "value": 17986,
+   "unit": "USD",
+   "factId": "F-league-0139"
+  },
+  {
+   "key": "club_discipline.max_usd.minicamp_day2",
+   "value": 35973,
+   "unit": "USD",
+   "factId": "F-league-0140"
+  },
+  {
+   "key": "club_discipline.max_usd.minicamp_day3",
+   "value": 53952,
+   "unit": "USD",
+   "factId": "F-league-0141"
+  },
+  {
+   "key": "club_discipline.max_usd.camp_veteran_day",
+   "value": 60000,
+   "unit": "USD",
+   "factId": "F-league-0142"
+  },
+  {
+   "key": "club_discipline.max_usd.camp_ufa_day",
+   "value": 60000,
+   "unit": "USD",
+   "factId": "F-league-0143"
+  },
+  {
+   "key": "club_discipline.max_usd.camp_rookie_day",
+   "value": 45000,
+   "unit": "USD",
+   "factId": "F-league-0144"
+  },
+  {
+   "key": "club_discipline.max_usd.camp_option_day",
+   "value": 45000,
+   "unit": "USD",
+   "factId": "F-league-0145"
+  },
+  {
+   "key": "club_discipline.waivable.camp_veteran_day",
+   "value": false,
+   "factId": "F-league-0146"
+  },
+  {
+   "key": "club_discipline.waivable.camp_ufa_day",
+   "value": false,
+   "factId": "F-league-0147"
+  },
+  {
+   "key": "club_discipline.daily_cap_usd.camp",
+   "value": 35967,
+   "unit": "USD",
+   "factId": "F-league-0148"
+  },
+  {
+   "key": "club_discipline.daily_cap_usd.season",
+   "value": 48556,
+   "unit": "USD",
+   "factId": "F-league-0149"
+  },
+  {
+   "key": "club_discipline.overweight_weekly_max",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-league-0150"
+  },
+  {
+   "key": "club_discipline.overweight_min_days_apart",
+   "value": 3,
+   "unit": "days",
+   "factId": "F-league-0151"
+  },
+  {
+   "key": "club_discipline.ladder_share.first",
+   "value": 0.4,
+   "unit": "ratio",
+   "factId": "F-league-0152"
+  },
+  {
+   "key": "club_discipline.ladder_share.second",
+   "value": 0.7,
+   "unit": "ratio",
+   "factId": "F-league-0153"
+  },
+  {
+   "key": "club_discipline.ladder_share.third",
+   "value": 1.0,
+   "unit": "ratio",
+   "factId": "F-league-0154"
+  },
+  {
+   "key": "club_discipline.deduction_per_pay_period_usd",
+   "value": 5000,
+   "unit": "USD",
+   "factId": "F-league-0155"
+  },
+  {
+   "key": "club_discipline.youth_share_min",
+   "value": 0.5,
+   "unit": "ratio",
+   "factId": "F-league-0156"
+  },
+  {
+   "key": "club_discipline.conduct_predicate_violation",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0157"
+  },
+  {
+   "key": "club_discipline.conduct_fine_max_weeks_salary",
+   "value": 1,
+   "unit": "weeks",
+   "factId": "F-league-0158"
+  },
+  {
+   "key": "club_discipline.conduct_suspension_max_weeks",
+   "value": 4,
+   "unit": "weeks",
+   "factId": "F-league-0159"
+  },
+  {
+   "key": "grievance.file_within_days",
+   "value": 50,
+   "unit": "days",
+   "factId": "F-league-0160"
+  },
+  {
+   "key": "grievance.answer_days",
+   "value": 10,
+   "unit": "days",
+   "factId": "F-league-0161"
+  },
+  {
+   "key": "grievance.suspension_hearing_days",
+   "value": 7,
+   "unit": "days",
+   "factId": "F-league-0162"
+  },
+  {
+   "key": "grievance.expedited_decision_days",
+   "value": 5,
+   "unit": "days",
+   "factId": "F-league-0163"
+  },
+  {
+   "key": "grievance.expedited_per_side_year",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0164"
+  },
+  {
+   "key": "grievance.ordinary_decision_days",
+   "value": 30,
+   "unit": "days",
+   "factId": "F-league-0165"
+  },
+  {
+   "key": "grievance.record_close_days",
+   "value": 60,
+   "unit": "days",
+   "factId": "F-league-0166"
+  },
+  {
+   "key": "compliance.concussion_protocol.club_fine_repeat_cents",
+   "value": 25000000,
+   "unit": "cents",
+   "factId": "F-league-0167"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
