@@ -5352,6 +5352,18 @@
    "key": "replay.challenge_designee_allowed",
    "value": false,
    "factId": "F-rule-2054"
+  },
+  {
+   "key": "formation.scrimmage_kick_kicker_depth_yd",
+   "value": 10,
+   "factId": "F-rule-2056",
+   "unit": "yd"
+  },
+  {
+   "key": "formation.scrimmage_kick_holder_depth_yd",
+   "value": 7,
+   "factId": "F-rule-2058",
+   "unit": "yd"
   }
  ]
 }

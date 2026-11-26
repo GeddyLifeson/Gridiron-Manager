@@ -50,11 +50,12 @@ describe('data files', () => {
     expect(new Set(names).size).toBe(names.length);
   });
 
-  it('fact status is computed from sources; nothing here is Verified, so every row prints PROVISIONAL', () => {
+  it('fact status is computed from sources; every row short of Verified prints PROVISIONAL', () => {
     for (const r of STAKEHOLDER_FACTS) {
       expect(r.status).toBe(computeStatus(r));
-      expect(stakeholderProvisional(r.id)).toBe('PROVISIONAL');
+      expect(stakeholderProvisional(r.id)).toBe(r.status === 'Verified' ? '' : 'PROVISIONAL');
     }
+    expect(STAKEHOLDER_FACTS.find((r) => r.id === 'F-stakeholders-0006')!.status).toBe('Verified');
     expect(STAKEHOLDER_FACTS.find((r) => r.id === 'F-stakeholders-0003')!.status).toBe('2 of 3');
     expect(STAKEHOLDER_FACTS.find((r) => r.id === 'F-stakeholders-0001')!.status).toBe('1 of 3');
   });
@@ -412,12 +413,12 @@ describe('calibration on the synthetic test league (E4.3.1 acceptance 1, E4.7.2 
     expect(all.filter((x) => x < 3 || x > 11).length / all.length).toBeLessThanOrEqual(0.05);
   });
 
-  it('college: 6% to 12% of programs fire their head coach each season; in-season share inside the 15% to 40% band (Assumption: no sourced college share)', () => {
+  it('college: 6% to 12% of programs fire their head coach each season; in-season share inside the real 45% to 67% range (F-stakeholders-0006, MA-77)', () => {
     const r = simulate(COLLEGE_SIM);
     const share = mean(r.firingsPerSeason) / COLLEGE_SIM.teams;
     const inSeason = mean(r.inSeasonPerSeason) / mean(r.firingsPerSeason);
-    expect(inSeason).toBeGreaterThanOrEqual(0.15);
-    expect(inSeason).toBeLessThanOrEqual(0.4);
+    expect(inSeason).toBeGreaterThanOrEqual(0.45);
+    expect(inSeason).toBeLessThanOrEqual(0.67);
     expect(share).toBeGreaterThanOrEqual(0.06);
     expect(share).toBeLessThanOrEqual(0.12);
   });

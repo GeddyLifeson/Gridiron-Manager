@@ -7,6 +7,7 @@ import { bosses } from '@gm/career';
 import type { LiveWorld } from '../loop/types.ts';
 import { levelOfTeam, type RuleRead } from '../turnover/binding.ts';
 import { param } from './params.ts';
+import { generatedCapCents } from './revenue.ts';
 
 /** `LiveWorld.systemState` key of club cash. */
 export const CLUB_MONEY_KEY = 'club_money';
@@ -75,12 +76,16 @@ export const CENTS_PER_DOLLAR = 100;
 
 /**
  * MO-02: the cap read from the club's league rules, `cap.amount_<rulesYear>` (USD, whole dollars) in cents.
- * Every league year reads the same rules year: the past is played under today's rules (ruling 2026-11-26), so
- * the budget does not inflate or deflate with the calendar. A league with no such key has no cap.
+ * Every league year up to the rules year reads the rules year: the past is played under today's rules (ruling
+ * 2026-11-26), so the budget does not inflate or deflate with the calendar. A league year after the rules
+ * year has no cap key; its cap is generated from the league's projected revenue under the CBA Art. 12 rule
+ * (MO-12, `capProjection`). A league with no such key has no cap.
  */
 export function capFromRules(rule: RuleRead, rulesYear: number): CapCents {
-  return (world, teamId) => {
-    const v = rule(levelOfTeam(world, teamId), `cap.amount_${rulesYear}`);
-    return v === undefined ? undefined : v * CENTS_PER_DOLLAR;
+  return (world, teamId, seasonYear) => {
+    const level = levelOfTeam(world, teamId);
+    const v = rule(level, `cap.amount_${rulesYear}`);
+    if (v === undefined) return undefined;
+    return generatedCapCents(world, (k) => rule(level, k), rulesYear, v * CENTS_PER_DOLLAR, seasonYear);
   };
 }

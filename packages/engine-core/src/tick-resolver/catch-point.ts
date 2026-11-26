@@ -33,6 +33,7 @@ import { dSqrt } from '../dmath.ts';
 import type { Perception } from '../perception/index.ts';
 import { qbParams } from '../qb/params.ts';
 import type { PlayStage } from '../tick/loop.ts';
+import { COVERING, READING, RECEIVING, opposingZ } from '../tick/opposition.ts';
 import { declareDead } from './finish.ts';
 import { tickResolverParams } from './params.ts';
 
@@ -186,7 +187,8 @@ export function createCatchPointStage(perception: Perception): CatchPointStage {
     if (receiver < 0) {
       // Step 4: a defender alone at the ball.
       const rng = stream(defender, defender);
-      if (cp.resolveDefenderAlone(z(w, defender, 'hands'), rng) === 'interception') {
+      // The other side of his hands: the receivers this ball was thrown among (a sharper group leaves him less of it).
+      if (cp.resolveDefenderAlone(z(w, defender, 'hands') - q['catch.opposedShare']! * opposingZ(w, defender, RECEIVING, READING), rng) === 'interception') {
         const got = feet(defender, rng);
         if (got < feetRequired) { outOfBounds(defender, got, [defender], false); return; }
         settled = true;
@@ -225,7 +227,9 @@ export function createCatchPointStage(perception: Perception): CatchPointStage {
 
     if (defender < 0 && !(near >= 0 && cp.isContested(nearD))) {
       const rng = stream(receiver, receiver);
-      if (cp.resolveUncontested({ zHands: z(w, receiver, 'hands'), placementError, hitAtCatch: hit, wet }, rng) === 'catch') { complete(rng, [], false); return; }
+      // The other side of an open catch: the coverage closing on it. Equal rosters drop the same share at any level.
+      const zHands = z(w, receiver, 'hands') - q['catch.opposedShare']! * opposingZ(w, receiver, COVERING, READING);
+      if (cp.resolveUncontested({ zHands, placementError, hitAtCatch: hit, wet }, rng) === 'catch') { complete(rng, [], false); return; }
       settled = true;
       emit(w, t, 'drop', bx, by, -1, [], 0, false, null);
       knockDown(w, q['catch.knockDownKeep']!);

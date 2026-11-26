@@ -41,7 +41,8 @@ async function main(): Promise<number> {
   }
   const ctx = await browser.newContext();
   const first = await serve(0);
-  const origin = `http://127.0.0.1:${first.port}/`;
+  // The plain save-file start (?saves=1): the check is that a career starts and saves with no network.
+  const origin = `http://127.0.0.1:${first.port}/?saves=1`;
   const page = await ctx.newPage();
   await page.goto(origin);
   await page.getByRole('button', { name: 'Start' }).waitFor();

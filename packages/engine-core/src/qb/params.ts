@@ -29,8 +29,13 @@ const CLOCK = 'J7.8.1 acceptance';
 const FREE = 'J7.8.2 acceptance (free-play air yards at least twice normal)';
 const N2 = 'N2 expected points model (replaces this stand-in)';
 const STRUCT = 'none: structural';
+const LEVEL = 'equal rosters at 25, 40, 50 and 75: sack, pressure and completion rates do not move with the level (ruling 2026-11-26)';
 
 const ROWS = [
+  // Ruling 2026-11-26: the share of the other eleven's reading grades set against each quarterback grade that has no
+  // opponent term of its own (accuracy, pocket movement, anticipation, the reads of coverage and blitz, football
+  // intelligence, ball handling, composure). 1: equal rosters play the 50 v 50 game at any level. 0: the leaf's formulas.
+  ['oppose.gradeShare', 1, 0, 1, 'ratio', 'assumption', 'J7.1.1', LEVEL],
   // J7.1.1 drops: set time and depth at grade 50
   ['drop.gunQuick.setS', 0.9, 0.6, 1.2, 's', 'bible', 'J7.1.1', TTT],
   ['drop.gunQuick.depthYd', 5, 4, 6, 'yd', 'bible', 'J7.1.1', TTT],
@@ -43,6 +48,8 @@ const ROWS = [
   ['drop.uc7.setS', 2.7, 2.4, 3.0, 's', 'bible', 'J7.1.1', TTT],
   ['drop.uc7.depthYd', 9, 8, 10, 'yd', 'bible', 'J7.1.1', TTT],
   ['drop.footworkPerZS', 0.05, 0, 0.1, 's/z', 'bible', 'J7.1.1', TTT],
+  // The other side of the drop: seconds per z of the rush he is dropping away from. Same size as his own slope.
+  ['drop.rushPerZS', 0.05, 0, 0.1, 's/z', 'assumption', 'J7.1.1', LEVEL],
   // He is "at" the launch point inside this distance (J7.1.1 acceptance tolerance).
   ['drop.arriveYd', 0.5, 0.2, 1, 'yd', 'bible', 'J7.1.1', STRUCT],
 
@@ -57,6 +64,8 @@ const ROWS = [
   // J7.2.1 progression
   ['read.tReadBaseS', 0.55, 0.4, 0.7, 's', 'bible', 'J7.2.1', PROG],
   ['read.tReadPerZS', 0.08, 0, 0.15, 's/z', 'bible', 'J7.2.1', PROG],
+  // The other side of a read: seconds per z of the coverage he is sorting out. Same size as his own slope.
+  ['read.coveragePerZS', 0.08, 0, 0.15, 's/z', 'assumption', 'J7.2.1', LEVEL],
   ['read.tReadFloorS', 0.30, 0.2, 0.4, 's', 'bible', 'J7.2.1', PROG],
   // Tuned from the bible's 2 against J15.4.1 sacks per pressure: with a rusher on him he may dump it to the back from his first read on.
   ['read.checkdownAfter', 1, 1, 3, 'reads', 'bible', 'J7.3.3', PROG],
@@ -237,9 +246,14 @@ const ROWS = [
   // J7.6.1 release and ball speed
   ['throw.releaseBaseS', 0.40, 0.3, 0.5, 's', 'bible', 'J7.6.1', TTT],
   ['throw.releasePerZS', 0.03, 0, 0.06, 's/z', 'bible', 'J7.6.1', TTT],
+  // The other side of the release: seconds per z of the rush closing on him. Same size as his own slope.
+  ['throw.releaseRushPerZS', 0.03, 0, 0.06, 's/z', 'assumption', 'J7.6.1', LEVEL],
   ['throw.releaseFloorS', 0.2, 0.1, 0.3, 's', 'assumption', 'J7.6.1', STRUCT],
   ['throw.vBallBaseYps', 26, 22, 30, 'yd/s', 'bible', 'J7.6.1', ARM],
   ['throw.vBallPerZYps', 1.5, 0.5, 3, 'yd/s/z', 'bible', 'J7.6.1', ARM],
+  // The other side of ball speed: yd/s per z of the eleven it is thrown against, same size as his own slope, so the
+  // race between the ball and the men breaking on it is the same at any level. How far he can throw stays his own arm.
+  ['throw.vBallDefensePerZYps', 1.5, 0, 3, 'yd/s/z', 'assumption', 'J7.6.1', LEVEL],
   ['throw.vBallFloorYps', 15, 10, 20, 'yd/s', 'assumption', 'J7.6.1', STRUCT],
   ['throw.touchRoomYd', 3, 1.5, 6, 'yd', 'assumption', 'J7.6.1', ACC],
   ['throw.driveSepYd', 3, 1, 5, 'yd', 'assumption', 'J7.6.1', ACC],

@@ -70459,6 +70459,138 @@
      "reason": "First load from the 2026 rule book text (WP-01)."
     }
    ]
+  },
+  {
+   "id": "F-rule-2055",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A scrimmage kick formation has a potential kicker at least this deep behind the neutral zone (punt formation): 10 yd (pro, 2026 rules).",
+   "value": 10,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 3, Section 17, Article 7, Item 1 (text copy rulebook_2026.txt, line 685)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "at least one player 10 or more yards behind the neutral zone",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:formation.scrimmage_kick_kicker_depth_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2056",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A scrimmage kick formation has a potential kicker at least this deep behind the neutral zone (punt formation): 10 yd (college, 2026 rules).",
+   "value": 10,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 2, Section 16, Article 10-a (text copy ncaa-rulebook-2026.txt, line 1627)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "10 or more yards behind the neutral zone",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:formation.scrimmage_kick_kicker_depth_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2057",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Or a potential holder and kicker at least this deep behind the neutral zone in position for a place kick: 7 yd (pro, 2026 rules).",
+   "value": 7,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 3, Section 17, Article 7, Item 1 (text copy rulebook_2026.txt, line 686)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "a potential holder and potential kicker seven or more yards behind the neutral zone",
+     "value": 7
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:formation.scrimmage_kick_holder_depth_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2058",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Or a potential holder and kicker at least this deep behind the neutral zone in position for a place kick: 7 yd (college, 2026 rules).",
+   "value": 7,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 2, Section 16, Article 10-a (text copy ncaa-rulebook-2026.txt, line 1628)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "potential kicker seven or more yards behind the neutral zone in position for a",
+     "value": 7
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:formation.scrimmage_kick_holder_depth_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
   }
  ]
 }

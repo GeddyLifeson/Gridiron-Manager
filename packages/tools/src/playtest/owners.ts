@@ -17,5 +17,6 @@ export const OWNERS = {
   worldLoop: 'G-81 world loop and G-87 season runner (world loop, world season)',
   home: 'G-72 office screens (app-services home)',
   rosterMoves: 'G-70 roster moves (app-services roster-moves)',
+  careerYear: 'Career year: season to season on the live world and its save (app-services play, thread "Run the career offseason and save the world")',
   saves: 'G-83 saves (store, app-services WorldService)',
 } as const;
