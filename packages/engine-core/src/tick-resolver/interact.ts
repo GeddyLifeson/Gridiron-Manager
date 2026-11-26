@@ -107,7 +107,8 @@ export function createInteract(): Interact {
       if (isDown(w, h) || gap(w, h, d) > q['interact.breakGapYd']!) { if (pl.engagement[h] === i) pl.engagement[h] = -1; c.helperSlots.splice(k, 1); }
     }
     const pass = c.type === 'passBlock';
-    let dz = zEff(w, o, pass ? PASS_BLOCK_ATTRS : RUN_BLOCK_ATTRS) - zEff(w, d, pass ? PASS_RUSH_ATTRS : RUN_DEFENSE_ATTRS);
+    // The players' own difference is scaled by the contest's rating response; help is a fact of numbers, not of skill, and is not.
+    let dz = (pass ? lib.passRush.skillGain() : lib.runBlock.skillGain()) * (zEff(w, o, pass ? PASS_BLOCK_ATTRS : RUN_BLOCK_ATTRS) - zEff(w, d, pass ? PASS_RUSH_ATTRS : RUN_DEFENSE_ATTRS));
     if (c.helperSlots.length > 0) dz += pass ? lib.passRush.helpZ('double', (w.tick - c.startedTick) * TICK_S) : lib.runBlock.comboZ();
     // Exactly one normal per open contest per tick, whatever happens next.
     let a = lib.math.stepEngagement(c.advantage, dz, paramsOf(i, c), c.stream.normal());

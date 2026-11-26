@@ -47,6 +47,11 @@ export const PARAMS: ParamFile = {
       ['passBlock.kappa', 0.9, 0.3, 2.0, '1/s', 'b'],
       ['passBlock.lambda', 0.3, 0, 1.5, '1/s', 'b'],
       ['passBlock.sigma', 0.45, 0.1, 1.0, 'A/sqrt(s)', 'b'],
+      // Share of the two players' effective-z difference that reaches the engagement drift. J6.1.2 as written
+      // (share 1) lets a blocker 1 z worse lose 93% of rushes inside 2.5 s; ESPN's 2024 win rates put a top-ten
+      // edge near 20 to 25% and a top-ten tackle near 95%, about 0.4 logit per z. 0.067 gives that slope and
+      // leaves the even matchup, help and start terms where they were. Status of the real slope: 1 of 3.
+      ['passBlock.skillGain', 0.067, 0.02, 1, 'share', 'a'],
       // "Interior rushers ... same form, own parameter row": the row starts equal to the edge row.
       ['passBlock.interior.kappa', 0.9, 0.3, 2.0, '1/s', 'a'],
       ['passBlock.interior.lambda', 0.3, 0, 1.5, '1/s', 'a'],
@@ -108,6 +113,9 @@ export const PARAMS: ParamFile = {
       ['runBlock.kappa', 0.8, 0.3, 2.0, '1/s', 'b'],
       ['runBlock.lambda', 0.4, 0, 1.5, '1/s', 'b'],
       ['runBlock.sigma', 0.40, 0.1, 1.0, 'A/sqrt(s)', 'b'],
+      // As passBlock.skillGain. ESPN 2024 run block and run stop win rates: top-ten players sit about 8 to 10
+      // points above the team averages (71.5% and 30.5%), again about 0.4 logit per z.
+      ['runBlock.skillGain', 0.07, 0.02, 1, 'share', 'a'],
       ['runBlock.displacementYps', 1.5, 0.5, 3.0, 'yd/s', 'b'],
       ['runBlock.gapControlMaxA', 0.3, 0, 0.6, 'A', 'b'],
       // J6.3.1 says one-gap technique has higher sigma and two-gap lower, without sizes.
