@@ -8,7 +8,7 @@ export interface ContactNumbers {
   closingSpeedYps: number;
   /** Carrier's weight times his speed toward the defender, over the defender's toward the carrier. */
   momentumRatio: number;
-  /** Reduced mass times closing speed squared, in units scaled by `hitEnergyScale`. */
+  /** Reduced mass times closing speed squared over the typical tackle's, times `hitEnergyScale`: 1.0 = a league-typical open-field tackle. */
   hitEnergy: number;
   /** The hit player's gaze was more than the blindside angle away from the hitter. */
   blindside: boolean;
@@ -30,7 +30,8 @@ export function contactNumbers(
   // A defender with no speed toward the carrier gives a ratio with no upper bound; report it as the carrier's momentum over one unit.
   out.momentumRatio = defMomentum > 0 ? carrierMomentum / defMomentum : carrierMomentum;
   const reduced = (carrierLb * defLb) / (carrierLb + defLb);
-  out.hitEnergy = closing > 0 ? reduced * closing * closing * p.hitEnergyScale! : 0;
+  const typical = p.typicalReducedLb! * p.typicalClosingYps! * p.typicalClosingYps!;
+  out.hitEnergy = closing > 0 ? ((reduced * closing * closing) / typical) * p.hitEnergyScale! : 0;
   out.blindside = dCos(carrierGazeRad) * lx + dSin(carrierGazeRad) * ly < dCos((p.blindsideDeg! * PI) / 180);
   return out;
 }
