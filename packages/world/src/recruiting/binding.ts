@@ -49,6 +49,30 @@ export interface RecruitingBinding {
   readonly calendarFiles: readonly calendar.CalendarFile[];
   /** K7.5.1 hooks on board order, offer count and committable offers (front office); absent keeps the G-36 defaults. */
   readonly policy?: (world: LiveWorld) => recruiting.AiProgramPolicy | undefined;
+  /**
+   * The user's own program (T4, X12.1.1): left out of the AI programs, and its queued acts taken through
+   * `act` on each recruiting Wednesday before the week resolves. Absent (history runs), every program is AI.
+   */
+  readonly user?: (world: LiveWorld) => UserRecruiting | undefined;
+}
+
+/** What the composition root gives for the user's program in one pass. */
+export interface UserRecruiting {
+  readonly teamIds: readonly number[];
+  /** Takes the user's queued acts for this recruiting day (league `takeAct`, `takeLook`, `makeOffer`...). */
+  act(a: UserRecruitingDay): void;
+  /** The user's answer on a commitment to a non-committable offer; absent, his staff answers as an AI program would. */
+  readonly decide?: recruiting.CommitDecider;
+}
+
+export interface UserRecruitingDay {
+  readonly state: recruiting.RecruitingState;
+  readonly ctx: recruiting.RecruitingContext;
+  readonly hook: recruiting.ComplianceHook;
+  readonly classYear: number;
+  readonly day: number;
+  /** Every program this pass, the user's included. */
+  readonly programs: readonly recruiting.ProgramInfo[];
 }
 
 /** World position code to the G-36 position group (T4.8.1 rooms). Unknown codes go to the nearest room by side. */

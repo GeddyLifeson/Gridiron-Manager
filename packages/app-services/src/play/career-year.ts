@@ -20,6 +20,9 @@ import { bindSystems, type BoundSystems } from '../newgame/binding.ts';
 import type { AppWorldContent } from '../newgame/content.ts';
 import { SeasonPlay, contentKeyOfWorldTeam, type SeasonPlaySave } from './season-session.ts';
 import { decodePlain, encodePlain } from './plain.ts';
+import { PracticeDesk, practiceRules, type PracticeDeskSave, type PracticeRecord } from './practice-desk.ts';
+import { RecruitingDesk, type RecruitingDeskSave } from './recruiting-desk.ts';
+import { ScoutingDesk, type ScoutingDeskSave } from './scouting-desk.ts';
 
 export interface CareerYearOptions {
   /** The world after the history run (newgame `startCareer`). It is kept and changed in place. */
@@ -42,6 +45,12 @@ export interface CareerYearSave {
   readonly season: SeasonPlaySave;
   /** Game ids of the season session already written into the world's results. */
   readonly injected: readonly number[];
+  /** The week's practice plans and the practice history (absent in saves from before the desks). */
+  readonly practice?: PracticeDeskSave;
+  /** The staff's belief store about the team's own players. */
+  readonly scouting?: ScoutingDeskSave;
+  /** The user's queued recruiting acts and their record (college careers). */
+  readonly recruiting?: RecruitingDeskSave;
 }
 
 /** What the office shows for the year: where the world and the season stand. */
@@ -74,6 +83,14 @@ export class CareerYear {
   private readonly injected = new Set<number>();
   /** Season-session team id to world team id, for the seat's competition. Rebuilt with each season. */
   private teamMap = new Map<number, number>();
+  /** The week's practices of the seat team (H3). */
+  practice: PracticeDesk;
+  /** The staff's observations of its own players (D6). */
+  scouting: ScoutingDesk = new ScoutingDesk();
+  /** The user's own recruiting acts (T4, college careers). */
+  recruiting: RecruitingDesk = new RecruitingDesk();
+  /** Practices and seat games folded into the scouting desk by the last pass. */
+  private lastPass: { practices: readonly PracticeRecord[]; gamesSeen: number } = { practices: [], gamesSeen: 0 };
 
   private constructor(o: CareerYearOptions, season: SeasonPlay | null) {
     this.world = o.world;
@@ -83,9 +100,12 @@ export class CareerYear {
     if (!comp) throw new Error(`career year: team ${o.seatTeamId} is in no competition`);
     this.seatCompetitionId = comp.id;
     const seatComp = comp.id;
+    this.practice = new PracticeDesk(() => this.level, () => this.practiceRules());
     this.bound = bindSystems(o.world, {
       games: o.games ?? seasons.historyGamePort(),
       recruiting: true,
+      // A college career's own program recruits through the user's desk, not as an AI program.
+      recruitingUser: (w) => (turnover.levelOfTeam(w, o.seatTeamId) === 'college' ? this.recruiting.binding(o.seatTeamId) : undefined),
       ...(o.worldContent ? { content: o.worldContent } : {}),
       // The seat's competition is played by the season session; its games are written in, not scheduled.
       // The base schedule reads a view of the world without it (its brackets read results it never scheduled).
@@ -110,6 +130,10 @@ export class CareerYear {
     const world = loop.unpackWorld(decodePlain(save.world) as loop.PackedWorld, { eventTypes: turnover.TURNOVER_EVENT_TYPES });
     const y = new CareerYear({ ...o, world, seatTeamId: save.seatTeamId }, SeasonPlay.restore(o.content, save.season));
     for (const id of save.injected) y.injected.add(id);
+    const s = save.practice;
+    if (s) y.practice = PracticeDesk.restore(() => y.level, () => y.practiceRules(), s);
+    if (save.scouting) y.scouting = ScoutingDesk.restore(save.scouting);
+    if (save.recruiting) y.recruiting = RecruitingDesk.restore(save.recruiting);
     return y;
   }
 
@@ -117,6 +141,10 @@ export class CareerYear {
   get ruleSetId(): string { return RULE_SET[this.level] ?? 'pro_2026'; }
   get systems(): loop.WorldSystems { return this.bound.systems; }
   get schedule(): loop.SchedulePort { return this.bound.schedule; }
+  /** Practice rule lookup at the seat's level (league rules, week and practice key rows). */
+  practiceRules(): (key: string) => number | undefined { return practiceRules((k) => this.bound.binding.rule(this.level, k), this.level); }
+  /** What the last weekly pass fed the staff's eye: practices run and seat games seen. */
+  get lastWeek(): { readonly practices: readonly PracticeRecord[]; readonly gamesSeen: number } { return this.lastPass; }
 
   private newSeason(): SeasonPlay {
     const year = this.world.date.seasonYear;
@@ -143,12 +171,12 @@ export class CareerYear {
    * Writes the season session's played games into the world's results, once each. The title game is the
    * last postseason game once the season is final, when its winner is the champion.
    */
-  private inject(): number {
+  private inject(): number[] {
     const games = this.season.state.games;
     const final = this.season.state.stage === 'final';
     const champion = this.season.state.champion;
     const last = games.at(-1);
-    let n = 0;
+    const seat: number[] = [];
     for (const g of games) {
       if (this.injected.has(g.fixture.gameId)) continue;
       if (g === last && !final && g.fixture.phase === 'postseason') continue; // may yet be the title game
@@ -163,16 +191,21 @@ export class CareerYear {
         homeTeamId: home, awayTeamId: away, homePoints: hp, awayPoints: ap, passPlays: 0, runPlays: 0,
         kind: g.fixture.phase === 'postseason' ? 'postseason' : 'regular', title,
       });
-      n++;
+      if (home === this.seatTeamId || away === this.seatTeamId) seat.push(g.fixture.gameId);
     }
-    return n;
+    return seat;
   }
 
   private over(): boolean { return this.season.stage === 'final'; }
 
   /** The world's weekly pass, after the season session's step, while the world's season has weeks left. */
   private worldPass(): void {
-    this.inject();
+    // The week's practice (the user's plans or the staff week), then the staff's eye on it and on the seat's game.
+    const practices = this.practice.runWeek(this.world, this.seatTeamId);
+    practices.forEach((r, i) => this.scouting.observePractice(this.world, this.seatTeamId, r, i));
+    const seen = this.inject();
+    for (const id of seen) this.scouting.observeGame(this.world, this.seatTeamId, id);
+    this.lastPass = { practices, gamesSeen: seen.length };
     if (this.world.week < this.schedule.weeksInSeason(this.world)) loop.runWeek(this.world, this.systems);
   }
 
@@ -208,10 +241,11 @@ export class CareerYear {
    */
   runOffseason(): loop.SeasonSummary {
     if (this.season.stage !== 'final') throw new Error('career year: the season is not over');
-    this.inject();
+    for (const id of this.inject()) this.scouting.observeGame(this.world, this.seatTeamId, id);
     while (this.world.week < this.schedule.weeksInSeason(this.world)) loop.runWeek(this.world, this.systems);
     const summary = loop.runSeasonPoint(this.world, this.systems);
     this.injected.clear();
+    this.practice.newSeason();
     this.season = this.newSeason();
     this.mapTeams();
     return summary;
@@ -226,6 +260,8 @@ export class CareerYear {
   }
 
   save(): CareerYearSave {
-    return { version: 1, seatTeamId: this.seatTeamId, world: encodePlain(loop.packWorld(this.world)), season: this.season.save(), injected: [...this.injected].sort((a, b) => a - b) };
+    return { version: 1, seatTeamId: this.seatTeamId, world: encodePlain(loop.packWorld(this.world)), season: this.season.save(), injected: [...this.injected].sort((a, b) => a - b),
+      practice: this.practice.save(), scouting: this.scouting.save(), recruiting: this.recruiting.save(),
+    };
   }
 }
