@@ -1,9 +1,10 @@
+// Moved here from app-services/test/read-models/legends/schemas.ts (CR-G84-1); registered in READ_MODELS (commands.ts).
 // Data schemas of the legends read models (G-84). They live here because app-services may not import zod
 // (CR-G84-1, same as CR-G27-4); the integrator moves this file into @gm/schema and passes the schemas to
 // `legendsReadModels`. Every field is public: the legends views show the public record plus what reached
 // this viewer, and the observer filter has already cut events to what he may see (X3.1.3).
 import { z } from 'zod';
-import { pub } from '@gm/schema';
+import { pub } from '../field.ts';
 
 const id = () => pub(z.number().int(), 'id');
 const year = () => pub(z.number().int(), 'season_year');
