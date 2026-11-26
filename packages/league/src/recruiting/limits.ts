@@ -75,8 +75,8 @@ export function poolFor(ctx: RecruitingContext, kind: ActionKind, day: number): 
   const period = periodOn(ctx, day);
   const y = civil(day).y;
   if (isFall(day) && period === 'evaluation') return { pool: 'eval_fall', size: num(rules, KEY.evalDaysFall), season: y };
-  if (model === 'opps_2027' && isSpring(day) && period === 'contact') return { pool: 'person_spring', size: num(rules, KEY.personDaysSpring), season: y };
-  if (model === 'days_2025' && isSpring(day) && period === 'evaluation') return { pool: 'person_spring', size: num(rules, KEY.personDaysSpring), season: y };
+  // Both models spend the spring pool in the contact period (2025-26 official calendar: April 15 to May 23, 140 recruiting-person days).
+  if (model !== null && isSpring(day) && period === 'contact') return { pool: 'person_spring', size: num(rules, KEY.personDaysSpring), season: y };
   return null;
 }
 
@@ -95,14 +95,18 @@ function startDay(rules: RuleSet, classYear: number, m: string, d: string, yb: s
   return dayNumber({ y: classYear - back, m: month, d: dom });
 }
 
+function blankTie(prospectId: number, teamId: number): SchoolTie {
+  return {
+    prospectId, teamId, impression: 0, recruiterId: null, hcInvolvement: 0, officialVisits: [], unofficialVisits: [],
+    officialVisitHeadCoach: null, offCampusContacts: 0, oppsSpring: 0, oppsFall: 0, lastContactDay: null,
+    weekStart: 0, contactsThisWeek: 0, inPersonThisWeek: 0, callsThisWeek: 0, oppsThisWeek: 0, recruiterLeftDay: null, decommitDay: null,
+  };
+}
+
 export function tieOf(state: RecruitingState, prospectId: number, teamId: number): SchoolTie {
   let t = findTie(state, prospectId, teamId);
   if (!t) {
-    t = {
-      prospectId, teamId, impression: 0, recruiterId: null, hcInvolvement: 0, officialVisits: [], unofficialVisits: [],
-      officialVisitHeadCoach: null, offCampusContacts: 0, oppsSpring: 0, oppsFall: 0, lastContactDay: null,
-      weekStart: 0, contactsThisWeek: 0, inPersonThisWeek: 0, callsThisWeek: 0, oppsThisWeek: 0, recruiterLeftDay: null, decommitDay: null,
-    };
+    t = blankTie(prospectId, teamId);
     // The table is brought up to date before the state changes, so a first build never lists the new tie twice.
     noteTie(state, t);
     state.ties[key2(prospectId, teamId)] = t;
@@ -138,6 +142,23 @@ export function nameRecruiters(state: RecruitingState, ctx: RecruitingContext, t
 
 /** Every rule the act would break (T4.2.1, T4.2.2, T4.5.2 signing). Empty when it breaks none. */
 export function breachesOf(state: RecruitingState, ctx: RecruitingContext, act: ActRef): Breach[] {
+  const t = tieOf(state, act.prospectId, act.teamId);
+  rollWeek(t, act.day);
+  return breachesWith(state, ctx, act, t);
+}
+
+/**
+ * The same list as `breachesOf` without touching the state: no tie is created and no week is rolled. Read
+ * models use it (a screen may show the rule an act would break before anyone chooses it).
+ */
+export function peekBreaches(state: RecruitingState, ctx: RecruitingContext, act: ActRef): Breach[] {
+  const found = findTie(state, act.prospectId, act.teamId);
+  const t: SchoolTie = found ? { ...found } : blankTie(act.prospectId, act.teamId);
+  rollWeek(t, act.day);
+  return breachesWith(state, ctx, act, t);
+}
+
+function breachesWith(state: RecruitingState, ctx: RecruitingContext, act: ActRef, t: SchoolTie): Breach[] {
   const out: BreachRule[] = [];
   const rules = ctx.rulesOn(act.day);
   const period = periodOn(ctx, act.day);
@@ -164,8 +185,6 @@ export function breachesOf(state: RecruitingState, ctx: RecruitingContext, act: 
     const ks = startDay(rules, p.classYear, KEY.callStartMonth, KEY.callStartDay, KEY.callStartYearsBefore);
     if (act.kind === 'call' && ks !== undefined && act.day < ks) out.push('call_before_start_date');
   }
-  const t = tieOf(state, act.prospectId, act.teamId);
-  rollWeek(t, act.day);
   // Contact limits (T4.2.1).
   if (offCampus) {
     const perWeek = num(rules, KEY.contactsPerWeek);

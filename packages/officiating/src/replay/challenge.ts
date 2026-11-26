@@ -93,5 +93,7 @@ export function boothReview(called: CalledPlay, ctx: RulingContext): ReviewReque
 export function challengeAccounting(request: ReviewRequest, result: { allowed: boolean; reversed: readonly number[] }, ctx: RulingContext): { timeoutCharged: boolean; challengeLost: boolean } {
   if (request.source !== 'coach_challenge') return { timeoutCharged: false, challengeLost: false };
   const won = result.allowed && result.reversed.length > 0;
-  return { challengeLost: !won, timeoutCharged: !won || !ctx.rules.bool(KEY.overturnRefundsTimeout) };
+  // A team with no timeout left has none to lose: it is fouled instead (rule 5), never charged a timeout it does not have.
+  const hasTimeout = request.side !== null && ctx.before.timeoutsLeft[request.side] > 0;
+  return { challengeLost: !won, timeoutCharged: hasTimeout && (!won || !ctx.rules.bool(KEY.overturnRefundsTimeout)) };
 }
