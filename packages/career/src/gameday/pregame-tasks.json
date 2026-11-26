@@ -1,0 +1,21 @@
+{
+  "$comment": "I1.1.1 task list. Times are named marks: 'window' (the screen opens), 'report' (the Game Day Administration Report, rule key roster.inactives_due_minutes_before_kickoff), 'toss' (rule key toss.minutes_before_kickoff), 'kickoff', or a parameter name in minutes before kickoff. 'needs' names a GameDayRules switch that must be on for the task to exist. 'locks' means the item can no longer change after its deadline (I1.1.1 acceptance 1).",
+  "tasks": [
+    { "id": "conditions", "opens": "window", "deadline": "kickoff", "cost": "cost.conditions", "locks": false, "leaf": "I1.3.1", "default": "staff_report" },
+    { "id": "workouts", "opens": "pregame.workoutsFromMin", "deadline": "pregame.workoutsUntilMin", "cost": "cost.workout", "locks": false, "leaf": "I1.2.1", "default": "practice_report_only", "perPlayer": true },
+    { "id": "inactives", "opens": "window", "deadline": "report", "cost": "cost.inactivesReview", "locks": true, "leaf": "I1.2.2", "default": "staff_list" },
+    { "id": "emergency_qb", "opens": "window", "deadline": "report", "cost": "cost.emergencyQb", "locks": true, "leaf": "I1.2.3", "default": "staff_designation", "needs": "emergencyQb" },
+    { "id": "radio", "opens": "window", "deadline": "report", "cost": "cost.radio", "locks": true, "leaf": "I1.2.4", "default": "staff_designation", "needs": "radioDesignation" },
+    { "id": "captains", "opens": "window", "deadline": "report", "cost": "cost.captains", "locks": true, "leaf": "I1.5.1", "default": "season_captains" },
+    { "id": "depth_card", "opens": "window", "deadline": "kickoff", "cost": "cost.depthCard", "locks": false, "leaf": "I1.2.5", "default": "staff_card" },
+    { "id": "kicking_lines", "opens": "pregame.kickingLinesAfterMin", "deadline": "kickoff", "cost": "cost.kickingLines", "locks": false, "leaf": "I1.3.2", "default": "coordinator_report" },
+    { "id": "opponent_watch", "opens": "pregame.opponentReportMin", "deadline": "pregame.lockerRoomMin", "cost": "cost.opponentWatch", "locks": false, "leaf": "I1.3.3", "default": "staff_notes" },
+    { "id": "decision_book", "opens": "window", "deadline": "kickoff", "cost": "cost.decisionBookAccept", "locks": false, "leaf": "I1.4.2", "default": "analyst_book" },
+    { "id": "instructions", "opens": "window", "deadline": "kickoff", "cost": "cost.standingInstructions", "locks": false, "leaf": "I1.4.3", "default": "coordinators_call" },
+    { "id": "crew_alert", "opens": "window", "deadline": "pregame.sheetEditsCloseMin", "cost": "cost.crewAlert", "locks": true, "leaf": "I1.4.4", "default": "no_alert" },
+    { "id": "challenge_designee", "opens": "window", "deadline": "kickoff", "cost": "cost.challengeDesignee", "locks": true, "leaf": "I1.4.5", "default": "none", "needs": "challengeDesignee" },
+    { "id": "sheet_edits", "opens": "window", "deadline": "pregame.sheetEditsCloseMin", "cost": "cost.sheetEdit", "locks": true, "leaf": "I1.4.1", "default": "sheet_as_built" },
+    { "id": "talk", "opens": "pregame.lockerRoomMin", "deadline": "pregame.talkMin", "cost": "cost.talk", "locks": true, "leaf": "I1.6.1", "default": "captain_speaks" },
+    { "id": "toss", "opens": "window", "deadline": "toss", "cost": "cost.toss", "locks": true, "leaf": "I1.5.2", "default": "defer" }
+  ]
+}
