@@ -20,10 +20,13 @@ const CONTENT: seasons.LeagueContent = {
   collegeLeagueRules: read('packages', 'rules-data', 'data', 'league', 'collegeleague_2026.json'),
 };
 const SEED = '3a5c7e9b1d2f4608';
+// The reference resolver keeps whole weeks fast (a tick-engine week is minutes); pool jobs carry the season's
+// resolver, so the workers play with it too.
+const FAST = 'reference' as const;
 
 function proPlay(): SeasonPlay {
   const built = seasons.buildSeason(CONTENT, 'pro_2026', { season: 2026, seedHex: SEED });
-  return SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: built.spec.teams[0]!.key });
+  return SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: built.spec.teams[0]!.key, resolver: FAST });
 }
 
 /**
@@ -81,7 +84,7 @@ describe('week pool', () => {
     // A seat whose first game is not in the opening step, so the advance plays whole weeks without it.
     const first = Math.min(...built.spec.fixtures.map((f) => f.week));
     const seat = built.spec.teams.find((t) => !built.spec.fixtures.some((f) => f.week === first && (f.home === t.id || f.away === t.id)))!;
-    const make = () => SeasonPlay.start(CONTENT, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: seat.key });
+    const make = () => SeasonPlay.start(CONTENT, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: seat.key, resolver: FAST });
     const here = make();
     here.advanceToGame();
     const pooled = make();
