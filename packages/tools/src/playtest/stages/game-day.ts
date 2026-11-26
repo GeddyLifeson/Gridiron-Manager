@@ -84,7 +84,10 @@ export function playGameDay(rec: Recorder, ruleSetId: string, seedHex: string, g
   return { final: session.final, plays: session.game.playCounter, score: [score[0], score[1]], userSide, steps };
 }
 
-export function checkGame(rec: Recorder, session: gc.GameCallingSession, ruleSetId: string, userSide: Side, perHalf: number): void {
+/** The post-game checks; exported so a test can plant faults and see each one caught. */
+export interface CheckedGame { readonly game: gc.GameCallingSession['game']; readonly events: readonly gc.GameCallingSession['events'][number][]; readonly final: boolean }
+
+export function checkGame(rec: Recorder, session: CheckedGame, ruleSetId: string, userSide: Side, perHalf: number): void {
   const area = 'game_day';
   const st = GameState.safeParse(session.game);
   if (!st.success) rec.add('invalid', area, 'state.schema', `Final game state fails its schema: ${st.error.issues[0]?.path.join('.')} ${st.error.issues[0]?.message}`, OWNERS.engine, { ruleSetId });

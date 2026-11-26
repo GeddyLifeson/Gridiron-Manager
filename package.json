@@ -27,7 +27,8 @@
     "check:quick": "tsx scripts/check.ts --quick",
     "desktop:installer": "npm run build:browser && cd shells/desktop && tauri build",
     "browsers": "playwright install chromium firefox webkit",
-    "playtest": "tsx packages/tools/src/playtest/cli.ts"
+    "playtest": "tsx packages/tools/src/playtest/cli.ts",
+    "phase-gates": "tsx packages/tools/src/phase-gates/cli.ts"
   },
   "devDependencies": {
     "@tauri-apps/cli": "2.12.4",
