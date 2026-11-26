@@ -97,6 +97,7 @@ export function takeLook(
     g.band[f] = f === 'measurables' && kind === 'camp' ? P('look.measuredHalfWidth') : g.band[f] * (1 - share * factor);
   }
   g.looks[kind] = n + 1;
+  g.lastLookDay = day;
   if (kind === 'camp') {
     const r = ctx.rng(['camp', teamId, prospectId, day]);
     g.measured = { heightIn: p.heightIn, weightLb: p.weightLb, fortyS: p.fortyS + P('look.campTimingError') * (r.uniform() + r.uniform() - 1) };

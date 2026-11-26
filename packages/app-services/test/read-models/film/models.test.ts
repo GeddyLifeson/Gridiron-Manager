@@ -3,7 +3,7 @@ import { ReadModelRegistry, buildReadModel, observerFor } from '../../../src/obs
 import { fixtureWorld, USER } from '../../observer/fixture-world.ts';
 import { FilmRoom, filmReadModels, filmRecord, standardReel, breakdown, staffResponsibility, staffGradeSheet, buildCorrections, recordFromWire, toBase64, fromBase64 } from '../../../src/read-models/film/index.ts';
 import { applyFilmCommand as apply, FILM_COMMAND_TABLE, FilmCommandError } from '../../../src/commands/film/index.ts';
-import { FILM_COMMAND_SPECS, FILM_MODEL_SCHEMAS } from './schemas.ts';
+import { FILM_COMMAND_SPECS, FILM_MODEL_SCHEMAS } from '@gm/schema';
 const applyFilmCommand = (room: FilmRoom, type: string, raw: unknown) => apply(room, FILM_COMMAND_SPECS, type, raw);
 import { makeSource, HOME, SEED, person } from './fixtures.ts';
 

@@ -11,7 +11,7 @@ import {
 import { gmRequest, requestMeeting, writeNote } from '../../../src/commands/people/index.ts';
 import { fixtureTables, HOME, AWAY, USER, ASSISTANT, AWAY_COACH, OWNER, HOME_PLAYERS, TRUE_ARM } from '../../observer/fixture-world.ts';
 import { metaOf } from '@gm/schema';
-import { PEOPLE_SCHEMAS, PlayerCardData, OwnerViewData, CoachCardData } from './data-schema.ts';
+import { PEOPLE_SCHEMAS, PlayerCardData, OwnerViewData, CoachCardData } from '@gm/schema';
 
 const worldFor = (tables: Record<string, unknown[]>, person: number) => {
   const src = tablesOf(tables);
