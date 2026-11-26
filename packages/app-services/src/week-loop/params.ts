@@ -30,6 +30,21 @@ export const PARAMS: ParamFile = {
     // Week screens' desk (item 2d).
     row('meeting.newItemMinutes', 10, 1, 60, 'min', 'assumption', 'H4.1.2',
       'A-2d-1: minutes a new agenda item starts with in the editor; H4.1.2 gives each item minutes but no starting length (the user sets it)'),
+    // C1.4.1 travel matrix and road time (item 2d travel).
+    row('trip.cruiseKmh', 800, 500, 950, 'km/h', 'bible', 'C1.4.1', 'C1.4.1 outputs: flight hours are the distance divided by a starting cruise value of 800 km per hour, plus 1 hour'),
+    row('trip.flightFixedHours', 1, 0, 3, 'h', 'bible', 'C1.4.1', 'C1.4.1 outputs: plus 1 hour on every flight'),
+    row('trip.roadCircuity', 1.2, 1, 1.6, 'ratio', 'assumption', 'C1.4.1',
+      'A-2d-3: road km per great-circle km. No bible value; about 1.2 for the United States in road-circuity studies (Ballou, Rahardja and Sakai 2002), one source, so an assumption'),
+    row('trip.busKmh', 90, 60, 110, 'km/h', 'assumption', 'H8.1.1',
+      'A-2d-4: average team-bus speed door to door before handling (H8.1.1 adds bus handling). No source; a highway-coach assumption'),
+    // Stand-in press corps (item 2d press): no reporters are generated people yet (L6.1.1).
+    row('press.reachLocal', 3, 1, 5, 'scale', 'assumption', 'L6.1.1', 'A-2d-5: reach of a local outlet in the stand-in room (L6.1.1 reach 1 to 5), the middle of the scale'),
+    row('press.reachNational', 5, 1, 5, 'scale', 'assumption', 'L6.1.1', 'A-2d-5: reach of the national outlet in the stand-in room, the top of the scale'),
+    row('press.trust', 50, 0, 100, 'scale', 'assumption', 'L6.1.1', 'A-2d-6: stand-in reporters start neutral toward the coach (L6 trust 0 to 100, the midpoint)'),
+    row('press.controversy', 0.5, 0, 1, 'ratio', 'assumption', 'K8.7.1', 'A-2d-6: stand-in appetite for controversy, the middle of K8.7.1 0 to 1'),
+    row('press.goodwill', 50, 0, 100, 'scale', 'assumption', 'L6', 'A-2d-6: L6 mean goodwill toward the coach before the media model holds one, the midpoint'),
+    row('press.notability', 50, 0, 100, 'scale', 'assumption', 'X4.1.1', 'A-2d-7: notability of a season event until the world news step scores it (X4.1.1 0 to 100, the midpoint)'),
+    row('press.streakGames', 3, 2, 6, 'count', 'assumption', 'H7.2.1', 'A-2d-8: games in a row before a winning or losing streak is a press event; no bible count'),
     row('documents.groups', 8, 1, 12, 'count', 'assumption', 'H9.1.2',
       'A-2d-2: position groups that get a players packet (H9.1.2 rule 1, 4 hours per group): QB, RB, WR, TE, OL, DL, LB, DB, the eight football groups of the coach position list (career POSITION_GROUPS) until staffs set their own rooms'),
   ],

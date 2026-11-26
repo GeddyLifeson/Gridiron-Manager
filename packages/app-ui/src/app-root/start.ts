@@ -26,10 +26,13 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const c = content as any;
   const strips = new Map<string, { primary: string; alternate: string }>();
   for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
+  const markets = new Map<string, number>();
+  for (const t of c.proLeague?.league?.clubs ?? []) if (typeof t.marketTier === 'number') markets.set(t.id, t.marketTier);
+  for (const t of c.college?.schools ?? []) if (typeof t.sizeTier === 'number') markets.set(t.id, t.sizeTier);
   // The league rules the week screens check the week against (H1.1.2), from the same file the season is built on.
   const ruleFile = s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules;
   const weekRules = ruleFile?.values ? weekLoop.weekRules(ruleFile.values, s.level) : undefined;
-  return careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...(weekRules ? { weekRules } : {}), ...host, level: s.level, seasonYear: s.seasonYear });
+  return careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...(weekRules ? { weekRules } : {}), venues: weekLoop.venuesOf(content, s.level), marketOf: (key) => markets.get(key) ?? null, ...host, level: s.level, seasonYear: s.seasonYear });
 }
 
 /** First team of the level in the content: the quick start's seat (a check entry, not a career choice). */

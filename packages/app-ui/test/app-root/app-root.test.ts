@@ -179,7 +179,7 @@ describe('week, film and media screens fed from the season (item 2d)', () => {
       const teams = level === 'pro' ? CONTENT.proLeague.league.clubs : CONTENT.college.schools;
       const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[3].id });
       const port = careerPortFromSeason(sp, {
-        level, seasonYear: 2026, resolve, weekRules: weekLoop.weekRules(rulesFile.values, level),
+        level, seasonYear: 2026, resolve, weekRules: weekLoop.weekRules(rulesFile.values, level), venues: weekLoop.venuesOf(CONTENT, level),
         consoleConfig: (gameId) => gameCalling.staffConsoleConfig(ruleSetId, gameId, DEFAULT_KEYMAP.bindings),
       });
       let redraws = 0;
@@ -225,14 +225,35 @@ describe('week, film and media screens fed from the season (item 2d)', () => {
       src.documents!.onCommand!({ kind: 'detail', detail: 'exceptions' });
       expect(src.documents!.getModel(p)!.detail).toBe('exceptions');
 
-      // Travel: a home week lists no plans; an away week waits for the trip (no geography in the season yet).
-      const tv = src.travel!.getModel(p);
-      if (sched.home) expect(tv!.options).toEqual([]); else expect(tv).toBeNull();
+      // Travel: a home week lists no plans; an away week offers the H8 plans for the C1.4.1 trip, and one can be chosen.
+      const tv = src.travel!.getModel(p)!;
+      if (sched.home) expect(tv.options).toEqual([]);
+      else {
+        expect(tv.options.length).toBeGreaterThan(0);
+        const alt = tv.options.find((o) => !o.isDefault) ?? tv.options[0]!;
+        src.travel!.onChoose!(alt.plan);
+        expect(src.travel!.getModel(p)!.options.find((o) => o.chosen)!.plan).toBe(alt.plan);
+      }
 
-      // Press: the week's sessions with times; no press corps yet, so opening one is refused.
+      // Press: a stand-in room asks the generator's questions about the season; answer one, then the bland rest.
       const pv = src.press!.getModel(p)!;
       expect(pv.live).toBeNull();
-      if (pv.sessions[0]) { src.press!.onCommand!({ kind: 'open_session', blockId: pv.sessions[0].blockId }); expect(src.press!.getModel(p)!.live).toBeNull(); }
+      expect(pv.sessions.length).toBeGreaterThan(0);
+      src.press!.onCommand!({ kind: 'open_session', blockId: pv.sessions[0]!.blockId });
+      const live = src.press!.getModel(p)!.live!;
+      expect(live.current!.text.length).toBeGreaterThan(10);
+      expect(live.choices.length).toBeGreaterThanOrEqual(2);
+      src.press!.onCommand!({ kind: 'answer', choice: live.choices[0]!.id, timedOut: false });
+      expect(src.press!.getModel(p)!.live!.history).toHaveLength(1);
+      src.press!.onCommand!({ kind: 'bland_all' });
+      expect(src.press!.getModel(p)!.live!.done).toBe(true);
+      expect(JSON.stringify(src.press!.getModel(p))).not.toMatch(/trust|controversy|goodwill/);
+
+      // Staff write the documents the user left them: once the week runs past a due time, that document is out.
+      port.advance!('end_of_day'); port.advance!('end_of_day'); port.advance!('end_of_day');
+      src.documents!.onCommand!({ kind: 'detail', detail: 'all' });
+      const docs2 = src.documents!.getModel(p)!;
+      expect(docs2.rows.some((r) => r.state === 'published' && r.author !== 'head_coach')).toBe(true);
 
       // The week the screens showed is the one Today runs; the called game lands in the film room.
       port.advanceToGameDay();

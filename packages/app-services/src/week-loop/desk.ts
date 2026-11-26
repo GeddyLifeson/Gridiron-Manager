@@ -10,7 +10,9 @@
 //     loop's week (wk.applyTravel moves blocks; the loop owns its week).
 //   - A live press conference needs the press corps (generated reporters, front-office press). The host
 //     supplies the session; without one the media screen lists the week's sessions only.
-//   - Staff do not write documents as the week runs yet: documents move only by the user's actions.
+//   - Staff write their documents on time (H9.1.2: overload lowers quality, not timing): a draft once the week's
+//     clock has started, published at its due time. A document the user took, sent to review or sent back waits
+//     for him. Quality by workload needs staff hours (K6), which the season does not hold yet.
 import { calendar, week as wk } from '@gm/league';
 import type { press } from '@gm/front-office';
 import type { RandomStream } from '@gm/schema';
@@ -51,6 +53,8 @@ interface WeekEdits {
   agendas: Record<string, AgendaInput[]>;
   tones: Record<string, string>;
   docs: wk.Document[] | null;
+  /** Documents the user holds (he writes or reviews them): staff leave them alone. */
+  held: Set<string>;
   sentBack: Set<string>;
   detail: 'all' | 'exceptions';
   travel: wk.PlanType | null;
@@ -72,7 +76,7 @@ export class WeekDesk {
     const id = loop.week.weekId;
     let e = this.edits.get(id);
     if (!e) {
-      e = { agendas: {}, tones: {}, docs: null, sentBack: new Set(), detail: 'all', travel: null, press: null };
+      e = { agendas: {}, tones: {}, docs: null, held: new Set(), sentBack: new Set(), detail: 'all', travel: null, press: null };
       this.edits.set(id, e);
     }
     return { loop, e };
@@ -84,6 +88,16 @@ export class WeekDesk {
       const due = wk.selfScoutDue(weeksSinceBye(loop), seasons.comingOffBye(loop.ctx));
       e.docs = wk.createWeekDocuments(loop.week, { groups: P('documents.groups'), planScale: 1, countable: this.host.countable, selfScoutDue: due });
     }
+    // The staff's own work up to now (H9.1.1 rule 1 lifecycle; H9.1.2 rule 2 puts overload into quality, not time).
+    const now = loop.now();
+    const started = loop.week.completed.length > 0;
+    e.docs = e.docs.map((d) => {
+      if (e.held.has(d.id) || d.author === USER_AUTHOR) return d;
+      let x = d;
+      if (x.state === 'not_started' && started) x = wk.moveDoc(x, 'draft', now);
+      if (x.state === 'draft' && calendar.compareInstant(now, x.dueAt) >= 0) x = wk.moveDoc(x, 'published', x.dueAt);
+      return x;
+    });
     return e.docs;
   }
 
@@ -205,15 +219,18 @@ export class WeekDesk {
           docs.push({ ...v.next, id: `${d.id}.v${v.next.version}`, author: USER_AUTHOR });
         } else put({ ...(d.state === 'not_started' ? wk.moveDoc(d, 'draft', at) : d), author: USER_AUTHOR });
         o.e.sentBack.delete(d.id);
+        o.e.held.add(d.id);
         return OK;
       case 'assign': {
         // Back to the type table's author (H9.1.1): the staff member who owns that document.
         const owner = wk.DOC_TYPES.find((t) => t.id === d.type)?.author ?? d.author;
         put({ ...d, author: owner });
+        o.e.held.delete(d.id);
         return OK;
       }
       case 'review':
         if (d.state === 'draft') put({ ...wk.moveDoc(d, 'in_review', at), reviewer: USER_AUTHOR });
+        o.e.held.add(d.id);
         return OK;
       case 'approve':
         put(wk.moveDoc(d, 'published', at));
@@ -222,6 +239,7 @@ export class WeekDesk {
       case 'send_back':
         put(wk.moveDoc(d, 'draft', at));
         o.e.sentBack.add(d.id);
+        o.e.held.add(d.id);
         return OK;
       default:
         return OK;

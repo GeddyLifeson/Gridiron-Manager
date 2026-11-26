@@ -34,7 +34,7 @@ import { P } from './params.ts';
 type ChartedPlay = tendencies.ChartedPlay;
 type Block = weekly.Block;
 
-export const WEEK_LOOP_STREAMS = ['scouting'] as const;
+export const WEEK_LOOP_STREAMS = ['scouting', 'press'] as const;
 export type WeekLoopStream = (typeof WEEK_LOOP_STREAMS)[number];
 
 /** PLACEHOLDER until the depth chart feeds special teams: fakes and two-point plays use 11 personnel (as game-day setup). */

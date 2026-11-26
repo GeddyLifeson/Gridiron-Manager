@@ -5,3 +5,5 @@ export * from './week-loop.ts';
 export { PARAMS as WEEK_LOOP_PARAMS } from './params.ts';
 export * from './desk.ts';
 export * from './film-room.ts';
+export * from './trip.ts';
+export * from './press-corps.ts';

@@ -26,6 +26,10 @@ export interface SeasonPortHost {
   colours?(teamKey: string): { readonly primary: string; readonly alternate: string } | null;
   /** League rules for the week checks (`weekLoop.weekRules` on the league-rules file); the week screens need them. */
   readonly weekRules?: weekLoop.WeekDeskHost['rules'];
+  /** Home venues by team content key (`weekLoop.venuesOf`), for away-week trips (C1.4.1). */
+  readonly venues?: ReadonlyMap<string, weekLoop.Venue>;
+  /** Market size 1 to 5 by team content key (pro market tier, college size tier), for the press room (H7.2). */
+  marketOf?(teamKey: string): number | null;
 }
 
 /** The theme's own home and away colours for a team the content gives none: presentation only, no team mark (A6). */
@@ -40,6 +44,9 @@ export function epochDayOfNewYear(year: number): number {
   const y = year - 1;
   return 365 * (year - 1970) + (Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)) - (Math.floor(1969 / 4) - Math.floor(1969 / 100) + Math.floor(1969 / 400));
 }
+
+/** Market size when the content gives none: the middle of C1's 1 to 5. */
+const MIDDLE_MARKET = 3;
 
 /** Days in a league week: the season steps a week at a time; inside a game week the week loop counts the days. */
 const DAYS_PER_WEEK = 7;
@@ -74,7 +81,17 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
     loop = weekLoop.SeatWeekLoop.open(sp);
     return loop;
   };
-  const desk = host.weekRules ? new weekLoop.WeekDesk(viewLoop, { rules: host.weekRules, countable: host.level === 'college' }) : null;
+  // An away week's trip: the seat's home venue to the home team's (a neutral site counts as the home team's venue).
+  const trip = (l: weekLoop.SeatWeekLoop) => {
+    const f = l.game.context.fixture;
+    const home = host.venues?.get(sp.keyOf(sp.seatTeamId)), site = host.venues?.get(sp.keyOf(f.home));
+    return home && site ? weekLoop.tripBetween(home, site, String(f.gameId), l.kickoff.day) : null;
+  };
+  // The media screen's room: a stand-in press corps asking about the season's own events (H7.2).
+  const pressSession = (l: weekLoop.SeatWeekLoop, blockId: string) => weekLoop.standInSession(l, blockId, {
+    level: host.level, coachId: 0, market: host.marketOf?.(sp.keyOf(sp.seatTeamId)) ?? MIDDLE_MARKET, nameOf: (id) => sp.nameOf(id),
+  });
+  const desk = host.weekRules ? new weekLoop.WeekDesk(viewLoop, { rules: host.weekRules, countable: host.level === 'college', trip, pressSession }) : null;
   const film = new weekLoop.SeatFilmRoom(sp.seatTeamId, sp.options.seedHex);
   let filmView: { geometry: GameSession['geometry']; home: { primary: string; alternate: string }; away: { primary: string; alternate: string } } | null = null;
   let filmTap: presentationLive.LiveTap | null = null;
