@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { App, soundStage as sound } from '@gm/app-ui';
-import { runGolden, compareGolden, goldenInputs, settings, WorldService, newgame, type GoldenReport, type Platform } from '@gm/app-services';
+import { runGolden, compareGolden, goldenInputs, settings, WorldService, newgame, play, type GoldenReport, type Platform } from '@gm/app-services';
 import golden from '../../../golden/golden.json';
 import proLeague from '../../../packages/football-content/data/world/pro-league.json';
 import college from '../../../packages/football-content/data/world/college.json';
@@ -94,6 +94,11 @@ async function main() {
     careerStartYear: new Date().getUTCFullYear(),
     now: () => performance.now(),
   };
+  // The week's other games: a pool of Web Workers, one per spare core, up to 8 (each holds a copy of the game).
+  const weekPool = typeof Worker === 'undefined' ? undefined : play.workerPool(
+    () => new Worker(new URL('./week-worker.ts', import.meta.url), { type: 'module' }) as unknown as play.PoolWorker,
+    Math.max(1, Math.min(8, (navigator.hardwareConcurrency || 2) - 1)),
+  );
   // ?quick=pro|college: a season with the level's first team, straight to the office (a check entry).
   // ?saves=1: the plain save-file start (save name and world seed) without the new-game history, for the
   // browser gate's save round trip and the offline check (R1.2.1 item 2, P2.3.2); a check entry like ?quick.
@@ -103,7 +108,7 @@ async function main() {
   const leagueContent = { proLeague, college, proLeagueRules, collegeLeagueRules };
   createRoot(document.getElementById('root')!).render(
     <App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} {...(savesOnly ? {} : { newGame })} leagueContent={leagueContent}
-      quickCareer={quick === 'pro' || quick === 'college' ? quick : null} />,
+      quickCareer={quick === 'pro' || quick === 'college' ? quick : null} weekPool={weekPool} />,
   );
 }
 void main();
