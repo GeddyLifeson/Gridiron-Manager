@@ -29,9 +29,19 @@ export const PARAMS: Contract.ParamFile = {
     P('spottingMaxTenths', 60, 0, 200, 'tenths_s', 'bible', 'J11.4.2', 'J15.3.2 elapsed time per play'),
     P('spottingPerYardTenths', 1, 0, 5, 'tenths_s_per_yd', 'assumption', 'J11.4.2', 'J15.3.2 elapsed time per play'),
     P('spottingStoppageExtraTenths', 20, 0, 100, 'tenths_s', 'assumption', 'J11.4.2', 'J15.3.2 elapsed time per play'),
-    P('preSnapHuddleTenths', 120, 0, 400, 'tenths_s', 'assumption', 'I2.1.1', 'J15.3.2 elapsed time per play'),
-    P('preSnapNoHuddleTenths', 60, 0, 400, 'tenths_s', 'assumption', 'I2.1.1', 'J15.3.2 elapsed time per play'),
-    P('preSnapHurryUpTenths', 20, 0, 400, 'tenths_s', 'assumption', 'I2.1.1', 'J15.3.2 elapsed time per play'),
+    // Between plays (I2.1.1, J5.8.1). The three `preSnap*` values are the time from the accepted call until the
+    // offense is set and can snap (relay, huddle, break, align, set, cadence). The offense then snaps at its tempo's
+    // target: a huddle offense at a play-clock value, a no-huddle or hurry-up offense after a wait. Fitted to the
+    // snap-to-snap game-clock gaps of nflverse 2022 to 2024 (flow/pace-facts.json); every value is a starting value.
+    P('preSnapHuddleTenths', 190, 0, 400, 'tenths_s', 'assumption', 'I2.1.1', 'pace.snapToSnap.inBounds.huddle'),
+    P('preSnapNoHuddleTenths', 125, 0, 400, 'tenths_s', 'assumption', 'I2.1.1', 'pace.snapToSnap.inBounds.noHuddle'),
+    P('preSnapHurryUpTenths', 105, 0, 400, 'tenths_s', 'assumption', 'I2.1.1', 'pace.snapToSnap.inBounds.hurryUp'),
+    P('preSnapSpreadShare', 0.3, 0, 1, 'share', 'assumption', 'I2.1.1', 'pace.snapToSnap.inBounds.hurryUp'),
+    P('snapTargetHuddleFloorTenths', 10, 0, 400, 'tenths_s', 'assumption', 'J5.8.1', 'pace.snapToSnap.inBounds.huddle'),
+    P('snapTargetHuddleMeanTenths', 47, 0, 400, 'tenths_s', 'assumption', 'J5.8.1', 'pace.snapToSnap.inBounds.huddle'),
+    P('snapWaitNoHuddleMeanTenths', 85, 0, 400, 'tenths_s', 'assumption', 'J5.8.1', 'pace.snapToSnap.inBounds.noHuddle'),
+    P('snapWaitHurryUpMeanTenths', 25, 0, 400, 'tenths_s', 'assumption', 'J5.8.1', 'pace.snapToSnap.inBounds.hurryUp'),
+    P('snapLatestPlayClockTenths', 10, 0, 400, 'tenths_s', 'assumption', 'J5.8.1', 'J15.7.1 delay of game'),
     P('kickRestartPreSnapTenths', 50, 0, 400, 'tenths_s', 'assumption', 'J11.7.1', 'J15.3.2 elapsed time per play'),
     P('callDeadlinePlayClockTenths', 150, 0, 400, 'tenths_s', 'assumption', 'J11.6.1', 'J15.3.2 elapsed time per play'),
     P('penaltyDecisionWindowTenths', 150, 0, 600, 'tenths_s', 'bible', 'J11.6.1', 'Q1.2.2 game completes with no answers'),
@@ -48,7 +58,8 @@ export const PARAMS: Contract.ParamFile = {
 /** Parameter names, so a misspelling is a compile error. */
 export type FlowParam =
   | 'spottingMinTenths' | 'spottingMaxTenths' | 'spottingPerYardTenths' | 'spottingStoppageExtraTenths'
-  | 'preSnapHuddleTenths' | 'preSnapNoHuddleTenths' | 'preSnapHurryUpTenths' | 'kickRestartPreSnapTenths'
+  | 'preSnapHuddleTenths' | 'preSnapNoHuddleTenths' | 'preSnapHurryUpTenths' | 'preSnapSpreadShare' | 'snapTargetHuddleFloorTenths'
+  | 'snapTargetHuddleMeanTenths' | 'snapWaitNoHuddleMeanTenths' | 'snapWaitHurryUpMeanTenths' | 'snapLatestPlayClockTenths' | 'kickRestartPreSnapTenths'
   | 'callDeadlinePlayClockTenths' | 'penaltyDecisionWindowTenths' | 'fixedDecisionWindowTenths'
   | 'officialTimeoutTenths' | 'injuryTimeoutTenths' | 'defaultFieldGoalMaxYardsToGoal' | 'defaultRushers'
   | 'defaultBoxCount' | 'maxPlays';

@@ -233,10 +233,32 @@ function spottingTenths(r: Run, record: Contract.PlayRecord): number {
   return Math.max(0, Math.round(raw / r.state.crew.pace));
 }
 
-function preSnapTenths(r: Run, call: Contract.SnappingCall): number {
-  if (isFreeKick(r.state.nextPlayKind)) return r.num('kickRestartPreSnapTenths');
+/** Second key of the pre-snap draws, so they never share a stream with the spotting draw of the same play. */
+const PRE_SNAP_DRAWS = 1;
+
+/**
+ * The play-clock value at the snap (I2.1.1 stages 3 to 6, J5.8.1). From the accepted call the offense needs its
+ * procedure time (relay, huddle, break, align, set, cadence) before it can snap. Then the tempo decides: a huddle
+ * offense snaps at a target play-clock value near the end of the clock, a no-huddle or hurry-up offense snaps a
+ * drawn wait after it is set and never plans to go under the latest value. An offense that is set late snaps as
+ * soon as it is set, and at zero when the clock ran out first (the delay foul is the resolver's and the crew's).
+ */
+function snapClockTenths(r: Run, call: Contract.SnappingCall, acceptedAt: number): number {
+  if (isFreeKick(r.state.nextPlayKind)) return Math.max(0, acceptedAt - r.num('kickRestartPreSnapTenths'));
   const tempo = call.unit === 'offense' ? call.tempo : 'huddle';
-  return r.num(tempo === 'hurry_up' ? 'preSnapHurryUpTenths' : tempo === 'no_huddle' ? 'preSnapNoHuddleTenths' : 'preSnapHuddleTenths');
+  const draws = r.deps.streams('between', [r.state.gameId, r.state.playCounter, PRE_SNAP_DRAWS]);
+  const spread = r.num('preSnapSpreadShare');
+  const base = r.num(tempo === 'hurry_up' ? 'preSnapHurryUpTenths' : tempo === 'no_huddle' ? 'preSnapNoHuddleTenths' : 'preSnapHuddleTenths');
+  const ready = acceptedAt - base * (1 - spread + (spread + spread) * draws.uniform());
+  // One exponential draw: mean times minus the log of a uniform in (0, 1].
+  const exp = (mean: number) => -mean * r.deps.math.log(1 - draws.uniform());
+  let snap: number;
+  if (tempo === 'huddle') snap = Math.min(ready, r.num('snapTargetHuddleFloorTenths') + exp(r.num('snapTargetHuddleMeanTenths')));
+  else {
+    const wait = exp(r.num(tempo === 'hurry_up' ? 'snapWaitHurryUpMeanTenths' : 'snapWaitNoHuddleMeanTenths'));
+    snap = Math.max(ready - wait, Math.min(ready, r.num('snapLatestPlayClockTenths')));
+  }
+  return Math.max(0, Math.round(snap));
 }
 
 /** Teams as the resolver reads them: the input's players with the game-day state the game has reached. */
@@ -312,7 +334,7 @@ function unitPlay(r: Run): void {
     // The play clock always runs (I2.1.2): the call and the pre-snap procedure use it, and a running game clock with it.
     playClock = r.state.playClockTenths;
     const acceptedAt = Math.min(playClock, dS.acceptedAtPlayClockTenths ?? playClock);
-    snapAt = Math.max(0, acceptedAt - preSnapTenths(r, calls.snapping));
+    snapAt = snapClockTenths(r, calls.snapping, acceptedAt);
     // Either coach may still take a timeout until the snap; after one, the calls are made again.
     const late = lateTimeoutWindow(r, [offense, other(offense)], snapAt);
     if (late === 'period_end') return;

@@ -16,6 +16,8 @@ function run(o: FakeGameOptions): CheckedRun & { steps: Step[]; game: ReturnType
   return { ...r, steps, game };
 }
 
+const huddleParams = fakeGame({ seed: 1 }).deps.params;
+
 const pickFor = (type: Contract.DecisionType, choose: (request: Contract.DecisionRequest, situation: Contract.GameSituation) => string | undefined): ChartPolicy['pick'] =>
   (request, situation) => (request.type === type ? choose(request, situation) : undefined);
 
@@ -189,15 +191,63 @@ describe('periods and clocks (J11.4, J11.8.1)', () => {
   it('in hurry-up the earliest snap is limited by the spotting delay, not by the offense (J11.4.2)', () => {
     const r = run({ seed: 8, paramsOver: { 'flow.preSnapHurryUpTenths': 0 }, policy: { tempo: 'hurry_up' } });
     const min = r.game.deps.params.num('flow.spottingMinTenths');
-    let checked = 0;
+    const full = r.game.rules.num('clock.play_clock_s') * 10;
+    let checked = 0, afterStoppage = 0;
     for (let i = 1; i < r.result.records.length; i++) {
       const prev = r.result.records[i - 1]!, next = r.result.records[i]!;
       if (next.calls.snapping.unit !== 'offense' || prev.situation.period !== next.situation.period) continue;
       if (r.steps.some((s) => s.event.type === 'timeout_charged' && s.after.playCounter === prev.index)) continue;
+      // The full play clock starts at the dead ball, so the spotting delay is on it. A shorter clock starts on the
+      // ready signal, after the spotting (Rule 4-6-2), so no spotting time shows on it.
+      if (prev.clockAfter.playClockTenths !== full) { afterStoppage++; continue; }
       expect(prev.clockAfter.playClockTenths - next.situation.playClockAtSnapTenths).toBeGreaterThanOrEqual(min);
       checked++;
     }
     expect(checked).toBeGreaterThan(50);
+    expect(afterStoppage).toBeGreaterThan(5);
+  });
+
+  it('the snap comes at the tempo\'s target: a huddle offense uses most of the play clock, no-huddle less, hurry-up least (J5.8.1)', () => {
+    const used = (tempo: 'huddle' | 'no_huddle' | 'hurry_up') => {
+      const r = run({ seed: 21, policy: { tempo } });
+      const full = r.game.rules.num('clock.play_clock_s') * 10;
+      const xs: number[] = [];
+      for (let i = 1; i < r.result.records.length; i++) {
+        const prev = r.result.records[i - 1]!, next = r.result.records[i]!;
+        if (next.calls.snapping.unit !== 'offense' || prev.situation.period !== next.situation.period || prev.clockAfter.playClockTenths !== full) continue;
+        if (r.steps.some((s) => s.event.type === 'timeout_charged' && s.after.playCounter === prev.index)) continue;
+        expect(next.situation.playClockAtSnapTenths).toBeGreaterThanOrEqual(0);
+        xs.push(full - next.situation.playClockAtSnapTenths);
+      }
+      expect(xs.length).toBeGreaterThan(30);
+      return { mean: xs.reduce((a, b) => a + b, 0) / xs.length, min: Math.min(...xs), max: Math.max(...xs) };
+    };
+    const huddle = used('huddle'), noHuddle = used('no_huddle'), hurry = used('hurry_up');
+    // Dead ball to snap, in tenths. The real gaps these follow are in flow/pace-facts.json (snap to snap, so with the live play).
+    expect(huddle.mean).toBeGreaterThan(300);
+    expect(huddle.mean).toBeLessThan(380);
+    expect(noHuddle.mean).toBeGreaterThan(200);
+    expect(noHuddle.mean).toBeLessThan(huddle.mean - 50);
+    expect(hurry.mean).toBeGreaterThan(120);
+    expect(hurry.mean).toBeLessThan(noHuddle.mean - 30);
+    // Nobody snaps before the ball is spotted and the offense is set.
+    const p = (name: string) => huddleParams.num(name);
+    expect(hurry.min).toBeGreaterThanOrEqual(p('flow.spottingMinTenths') + p('flow.preSnapHurryUpTenths') * (1 - p('flow.preSnapSpreadShare')) - 1);
+  });
+
+  it('a play clock set after a stoppage starts on the ready signal, the full one at the dead ball (Rule 4-6)', () => {
+    const r = run({ seed: 22 });
+    const full = r.game.rules.num('clock.play_clock_s') * 10;
+    let stopped = 0, ran = 0;
+    for (const s of r.steps) {
+      if (s.event.type !== 'clock_advanced' || s.event.reason !== 'spotting' || s.before.phase !== 'dead_ball') continue;
+      expect(s.after.playClockRunning).toBe(true);
+      // An official stoppage (injury, two-minute timeout) holds even the full clock until the ready signal.
+      if (s.before.playClockRunning) { expect(s.before.playClockTenths).toBe(full); expect(s.after.playClockTenths).toBe(Math.max(0, full - s.event.tenths)); ran++; }
+      else { expect(s.after.playClockTenths).toBe(s.before.playClockTenths); if (s.before.playClockTenths !== full) stopped++; }
+    }
+    expect(ran).toBeGreaterThan(20);
+    expect(stopped).toBeGreaterThan(5);
   });
 
   it('a coach who calls late snaps with the play clock at zero; the flow reports it and plays on', () => {
@@ -239,7 +289,7 @@ describe('periods and clocks (J11.4, J11.8.1)', () => {
     expect(back.after.elapsedTenths - back.before.elapsedTenths).toBe(r.game.rules.num('timeout.length_seconds') * 10);
 
     // An answer naming an option that was not offered is treated as no answer: the deadline event and the default.
-    const bad = run({ seed: 2, policy: { pick: undefined }, deciders: (env, input) => [chartDecider(0, env, input), {
+    const bad = run({ seed: 3, policy: { pick: undefined }, deciders: (env, input) => [chartDecider(0, env, input), {
       side: 1, decide(v) { const d = chartDecider(1, env, input).decide(v); return d && v.request.type === 'try_choice' ? { ...d, optionId: 'three_points' } : d; },
     }] });
     const tries = eventsOfType(bad.result.events, 'decision_requested').filter((e) => e.request.type === 'try_choice' && e.request.side === 1);
@@ -250,7 +300,7 @@ describe('periods and clocks (J11.4, J11.8.1)', () => {
 
   it('runoff: the opponent may take it or decline it, and the offender may spend a timeout instead (B1.6.1)', () => {
     // Short periods inside the fixture two-minute mark; every second snap after it draws a foul on the offense.
-    const rulesOver = { 'clock.period_length_s': 100, 'fixture.two_minute_s': 90 };
+    const rulesOver = { 'clock.period_length_s': 300, 'fixture.two_minute_s': 290 };
     const script: FakeScript = (sit, calls) => {
       if (calls.snapping.unit === 'kick') return { foul: null, injury: false, ret: 0 };
       return { ...QUIET, liveTenths: 30, foul: sit.insideTwoMinute && sit.playNumber % 2 === 0 ? { on: 'offense', yards: 5 } : null };
