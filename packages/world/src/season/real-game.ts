@@ -121,15 +121,18 @@ export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
  * the generator's own output, not checked against real college spread data, and every founding school draws
  * the same tier mix, so the spread is sampling only (no program strength yet).
  *
- * `gate` is what the gate plays today. College stays at 50 with equal teams because the tick engine does not
- * yet play low or unequal skill realistically: at 25 for both teams sacks are 30% of dropbacks and accepted
- * fouls 16.7 per team, and a 1.6 ISS team spread at 50 makes the mean margin 23 points (real 16.3). The gate
- * moves to `census` when skill response is fixed (thread "Make skill gaps produce realistic margins").
+ * `gate` is what the gate plays today. College plays the census team spread around 50, not the census level:
+ * the tick engine measures skill on the absolute scale, so at 25 for both teams sacks are 30% of dropbacks and
+ * accepted fouls 16.7 per team (quarterback clocks and mental terms are per absolute z). Playing 50 with the
+ * census spread is the same as handing the engine attributes shifted by (50 - census level), the interim route
+ * proposed in research/tuning/skill-response.md until skill is measured against the level of play. With block
+ * engagements on skill difference (#299), the 1.6 spread gives a mean margin of 15.8 (real 16.3) and a home
+ * margin sd of 20.4 (real 20.3) over 40 games; without #299 the same spread gave 23.0 and 28.3.
  */
 export interface RosterLevel { readonly iss: number; readonly teamSd: number }
 export const GATE_ROSTER_LEVEL: Readonly<Record<string, { readonly gate: RosterLevel; readonly census: RosterLevel }>> = {
   pro: { gate: { iss: 50, teamSd: 0 }, census: { iss: 50, teamSd: 0 } },
-  college: { gate: { iss: 50, teamSd: 0 }, census: { iss: 25, teamSd: 1.6 } },
+  college: { gate: { iss: 50, teamSd: 1.6 }, census: { iss: 25, teamSd: 1.6 } },
 };
 
 export interface RealGameOptions {
