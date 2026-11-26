@@ -336,6 +336,34 @@ describe('J5.5 the defense\'s pre-snap process', () => {
     const notEmpty = planPresnap(world(), input({ errorsDisabled: true, defense: defenseInput({ checks: [{ name: 'cover1_five', trigger: 'empty' }] }) }));
     expect(notEmpty.checks[0]!.fired).toBe(false);
   });
+  it('G2.5.1: a completed check with a patch walks the named defender to his new spot; a check that misses him leaves him', () => {
+    const empty = offense(); empty[10] = asg('RB', 'route', -1.5, -6, false);
+    const walked = asg('SS', 'zoneDrop', 5, 9, false);
+    const check = { name: 'walk_out', trigger: 'empty' as const, patch: [{ teamSlot: 9, assignment: walked }] };
+    const r = run(input({ errorsDisabled: true, offense: offenseInput({ assignments: empty }), defense: defenseInput({ checks: [check] }) }));
+    expect(r.plan.checks[0]!.completed).toBe(true);
+    expect(r.plan.checks[0]!.patched).toEqual([9]);
+    const s = SLOTS_PER_TEAM + 9, last = r.plan.targets[s]![r.plan.targets[s]!.length - 1]!;
+    expect([last.px, last.py]).toEqual([5, 9]);
+    expect(Math.hypot(playX(r.w, s) - 5, playY(r.w, s) - 9)).toBeLessThan(1.5);
+    expect(ofType(r.w, 'detail').some((e) => e.code === 'presnap.check_patched')).toBe(true);
+    // Without the look the check never fires and nobody moves.
+    const plain = planPresnap(world(), input({ errorsDisabled: true, defense: defenseInput({ checks: [check] }) }));
+    expect(plain.checks[0]!.patched).toEqual([]);
+    // A defender the check did not reach is not patched (J3.6.1 delivery).
+    let missed = 0;
+    for (const seed of SEEDS(60)) {
+      const plan = planPresnap(world({ seed }), input({ offense: offenseInput({ assignments: empty }), defense: defenseInput({ noise: 1, checks: [check] }) }));
+      const c = plan.checks[0]!;
+      if (c.completed && !plan.received[s]![1]) { missed++; expect(c.patched).toEqual([]); }
+      if (c.completed && plan.received[s]![1]) expect(c.patched).toEqual([9]);
+    }
+    expect(missed).toBeGreaterThan(0);
+  });
+  it('a formation check (a look the content found) shows when the offense is aligned', () => {
+    const plan = planPresnap(world(), input({ errorsDisabled: true, defense: defenseInput({ checks: [{ name: 'trips_check', trigger: 'formation' }] }) }));
+    expect(plan.checks[0]!.fired).toBe(true);
+  });
   it('J5.3.2: a check takes 0.5 to 1.5 s, shorter for a better signal caller', () => {
     expect(checkDurationS(50, P)).toBe(1);
     expect(checkDurationS(100, P)).toBe(0.5);
@@ -371,11 +399,24 @@ describe('J5.6 cadence and the snap', () => {
   });
   it('J5.6.2 acceptance: bad snaps rise in rain, fall with a better pairing; an average dry shotgun pair matches the starting rates', () => {
     const [l0, o0] = badSnapChances(0, false, false, true, P, DMATH);
-    expect(l0).toBeCloseTo(0.0015, 9); expect(o0).toBeCloseTo(0.015, 9);
+    expect(l0).toBeCloseTo(0.0025, 9); expect(o0).toBeCloseTo(0.015, 9);
     const [l1, o1] = badSnapChances(0, true, false, true, P, DMATH);
     expect(l1).toBeGreaterThan(l0); expect(o1).toBeGreaterThan(o0);
     expect(badSnapChances(1.5, false, false, true, P, DMATH)[1]).toBeLessThan(o0);
     expect(badSnapChances(0, false, false, false, P, DMATH)[1]).toBeLessThan(o0);
+  });
+});
+
+describe('J5.6.2 snap exchange fitted to real aborted snaps (nflverse 2018-2025, 1 of 3)', () => {
+  const logit = (q: number) => Math.log(q / (1 - q));
+  it('an average pair aborts 0.25% of shotgun snaps and 0.40% under center', () => {
+    expect(badSnapChances(0, false, false, true, P, DMATH)[0]).toBeCloseTo(0.0025, 6);
+    expect(badSnapChances(0, false, false, false, P, DMATH)[0]).toBeCloseTo(0.004, 6);
+  });
+  it('one sd of the centre and quarterback pair (dz 0.707) moves the aborted rate about 0.5 logit (real 0.61 shotgun, 0.39 under center)', () => {
+    const pairSd = Math.SQRT1_2;
+    const shift = logit(badSnapChances(-pairSd, false, false, true, P, DMATH)[0]) - logit(badSnapChances(0, false, false, true, P, DMATH)[0]);
+    expect(shift).toBeGreaterThan(0.39); expect(shift).toBeLessThan(0.61);
   });
 });
 

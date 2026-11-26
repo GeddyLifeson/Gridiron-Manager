@@ -21,7 +21,12 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const sp = 'key' in s.seat
     ? play.SeasonPlay.start(content, { ...base, seatTeamKey: s.seat.key })
     : play.SeasonPlay.fromWorld(content, s.seat.world, { ...base, seatTeamId: s.seat.teamId });
-  return careerPortFromSeason(sp, { ...host, level: s.level, seasonYear: s.seasonYear });
+  // Team strips from the content (club and school primary and secondary colours).
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const c = content as any;
+  const strips = new Map<string, { primary: string; alternate: string }>();
+  for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
+  return careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...host, level: s.level, seasonYear: s.seasonYear });
 }
 
 /** First team of the level in the content: the quick start's seat (a check entry, not a career choice). */

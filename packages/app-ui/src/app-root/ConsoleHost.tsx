@@ -13,6 +13,8 @@ import type { GameSession } from './port.ts';
 
 /** Longest step one frame may take, so a hidden tab does not run the play clock out in one jump. */
 export const MAX_FRAME_MS = 250;
+/** Redraw interval of the console while nothing else changes: the play clock reads in tenths (O2.1.1). */
+export const REDRAW_MS = 100;
 
 /** The resolve function the session's key driver uses: chord to action in the console's contexts. */
 export function resolverFor(bindings: readonly Binding[]): (chord: string, contexts: readonly string[]) => string | undefined {
@@ -49,13 +51,16 @@ export function useLiveSession(session: GameSession | null, o: LiveSessionOption
   useEffect(() => {
     if (!session) return;
     let last = now();
+    let drawn = last;
+    let events = session.events.length;
     let raf = 0;
     const frame = () => {
       const t = now();
       const dt = Math.min(MAX_FRAME_MS, Math.max(0, t - last));
       last = t;
       if (!session.final && dt > 0) session.wait(dt);
-      bump();
+      // The clocks show tenths: redraw ten times a second, or at once when the game moved on.
+      if (t - drawn >= REDRAW_MS || session.events.length !== events || session.final) { drawn = t; events = session.events.length; bump(); }
       if (!session.final) raf = requestAnimationFrame(frame);
     };
     raf = requestAnimationFrame(frame);

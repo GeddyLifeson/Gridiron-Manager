@@ -2,7 +2,7 @@
 // (sheets, keys, radio cutoff) comes from the host, so the sheet bridge supplies it without this file knowing.
 import { presentationLive, TICKS_PER_SECOND, type gameCallingCommands, type play } from '@gm/app-services';
 import { rt } from './text.ts';
-import { NEUTRAL_STRIPS } from '../tokens/index.ts';
+import { resolveColours, tokenValue } from '../tokens/tokens.ts';
 import type { CareerPort, GameSession, LiveField, SeasonToday, StandingRow } from './port.ts';
 
 type ConsoleConfig = gameCallingCommands.ConsoleConfig;
@@ -20,8 +20,12 @@ export interface SeasonPortHost {
   colours?(teamKey: string): { readonly primary: string; readonly alternate: string } | null;
 }
 
-/** Neutral strip for a team the content gives no colours: presentation only, no team mark (A6). */
-const NEUTRAL = NEUTRAL_STRIPS;
+/** The theme's own home and away colours for a team the content gives none: presentation only, no team mark (A6). */
+const TOKEN_TEAMS = (() => {
+  const b = resolveColours('classic');
+  const home = tokenValue(b, 'team.home'), away = tokenValue(b, 'team.away');
+  return [{ primary: home, alternate: away }, { primary: away, alternate: home }] as const;
+})();
 
 /** Days from 1970-01-01 to 1 January of `year` (proleptic Gregorian; integer arithmetic only). */
 export function epochDayOfNewYear(year: number): number {
@@ -86,7 +90,7 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       const session = sp.openGame({ console: host.consoleConfig(String(seat.context.fixture.gameId)), resolve: host.resolve, keyIntervalMs: 0, startMs: 0, liveMs: shown, tapResolver: tapped });
       const input = sp.gameInput!;
       const queue = new presentationLive.LivePlayQueue({ tap: tap!, teams: input.teams, ticksPerSecond: TICKS_PER_SECOND, environment: () => input.environment, userSide: seat.side, rules: session.rules });
-      const col = (teamId: number, i: 0 | 1) => host.colours?.(sp.keyOf(teamId)) ?? NEUTRAL[i];
+      const col = (teamId: number, i: 0 | 1) => host.colours?.(sp.keyOf(teamId)) ?? TOKEN_TEAMS[i];
       const home = seat.side === 0 ? sp.today().seatTeamId : seat.opponentId;
       const away = seat.side === 0 ? seat.opponentId : sp.today().seatTeamId;
       field = { take: () => queue.take(session.events), geometry: session.geometry, userSide: seat.side, level: host.level, colours: [col(home, 0), col(away, 1)] };

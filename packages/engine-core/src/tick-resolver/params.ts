@@ -34,6 +34,7 @@ const ROWS: readonly ParamRow[] = [
   ['interact.breakGapYd', 1.5, 0.5, 3, 'yd', A, 'J6.1.2', 'a block ends when the bodies are this far apart'],
   ['interact.wonRecoveryS', 1.5, 0.5, 4, 's', A, 'J6.1.2', 'defender out of the play after A = +1 (pancake or locked out)'],
   ['interact.shedFreeS', 0.6, 0.1, 2, 's', A, 'J6.1.2', 'no blocker can pick him up again this soon after a shed'],
+  ['interact.coverHoldS', 1.5, 0.2, 3, 's', A, 'J6.1.2', 'a block on a man covering a kick holds him up this long at an even contest (a hold-up, not a sustained block)'],
   ['interact.helpClearYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'a pass protector with a free rusher of his own this near does not join a double team'],
   ['interact.interiorHalfWidthYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'rushers inside this lateral distance use the interior row'],
   // J2.1.3 planted cuts on drawn paths (route-cuts.ts).

@@ -135,8 +135,8 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
       )}
       {!svc && (
         <section style={box} aria-label="Careers">
-          {!newGame && (<>
-            <h2 style={{ fontSize: 17 }}>New career</h2>
+          {(<>
+            <h2 style={{ fontSize: 17 }}>{newGame ? 'Empty world (phase 0 developer check)' : 'New career'}</h2>
             <label>Save name <input value={name} onChange={(e) => setName(e.target.value.replace(/[^\w-]/g, ''))} /></label>{' '}
             <label>World seed <input value={seed} onChange={(e) => setSeed(e.target.value.replace(/[^0-9a-f]/gi, '').slice(0, 16).toLowerCase())} style={{ fontFamily: 'monospace' }} /></label>{' '}
             <button onClick={newCareer} disabled={!name || !seed}>Start</button>
