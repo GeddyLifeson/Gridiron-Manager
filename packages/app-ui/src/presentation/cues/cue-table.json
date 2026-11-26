@@ -1364,7 +1364,7 @@
       "visual": {
         "cue": "play_clock_pulse",
         "where": "strip",
-        "switch": "audio.playClockTickOn",
+        "switch": "display.cue.playClockPulse",
         "reducedMotion": "same"
       }
     },
@@ -1442,7 +1442,7 @@
       "visual": {
         "cue": "banner_injury",
         "where": "banner",
-        "switch": "audio.alertsOn",
+        "switch": "display.banners",
         "reducedMotion": "half_and_still"
       }
     },
@@ -1481,7 +1481,7 @@
       "visual": {
         "cue": "banner_challenge_window",
         "where": "banner",
-        "switch": "audio.alertsOn",
+        "switch": "display.banners",
         "reducedMotion": "half_and_still"
       }
     },
@@ -1520,7 +1520,7 @@
       "visual": {
         "cue": "banner_timeout",
         "where": "banner",
-        "switch": "audio.alertsOn",
+        "switch": "display.banners",
         "reducedMotion": "half_and_still"
       }
     },
@@ -1559,7 +1559,7 @@
       "visual": {
         "cue": "banner_two_minute",
         "where": "banner",
-        "switch": "audio.alertsOn",
+        "switch": "display.banners",
         "reducedMotion": "half_and_still"
       }
     },
@@ -1600,7 +1600,7 @@
       "visual": {
         "cue": "stoppage_caption",
         "where": "strip",
-        "switch": "audio.ambienceOn",
+        "switch": "display.banners",
         "reducedMotion": "same"
       }
     },
@@ -1720,6 +1720,127 @@
         "cue": "film_frame_counter",
         "where": "film",
         "switch": "display.filmLook",
+        "reducedMotion": "same"
+      }
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "kick_foot",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 120,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 120,
+          "defaultOn": true,
+          "caption": "kick"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "kick",
+      "source": {
+        "kind": "game_event",
+        "feedKind": "kick",
+        "qualifier": null
+      },
+      "bible": [
+        "J9",
+        "O2.3.4",
+        "O5.5.2"
+      ],
+      "information": "The ball was kicked at this spot: the ball marker leaves the kicker on the kick tick.",
+      "visual": {
+        "cue": "kick_mark",
+        "where": "field",
+        "switch": "display.cue.ballRing",
+        "reducedMotion": "still"
+      },
+      "open": "Added by PV-14 so every PV-07 recipe has a visual twin and a caption. The feed kind needs a PV-00 change request before the cue can fire from the engine."
+    },
+    {
+      "phase": "v2",
+      "timing": "event_tick",
+      "sounds": [
+        {
+          "id": "post_hit",
+          "bus": "contact",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 200,
+          "pan": true,
+          "duckCrowd": false,
+          "rateLimitMs": 120,
+          "defaultOn": true,
+          "caption": "ball hits the post"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "post_hit",
+      "source": {
+        "kind": "game_event",
+        "feedKind": "postHit",
+        "qualifier": null
+      },
+      "bible": [
+        "J9",
+        "B6",
+        "O5.5.2"
+      ],
+      "information": "The kicked ball struck an upright or the crossbar at this spot; the kick result line follows.",
+      "visual": {
+        "cue": "post_hit_mark",
+        "where": "field",
+        "switch": "display.cue.ballRing",
+        "reducedMotion": "still"
+      },
+      "open": "Added by PV-14 so every PV-07 recipe has a visual twin and a caption. The feed kind needs a PV-00 change request before the cue can fire from the engine."
+    },
+    {
+      "phase": "v1",
+      "timing": "ui_event",
+      "sounds": [
+        {
+          "id": "hover_tick",
+          "bus": "ui",
+          "lane": "none",
+          "rank": 0,
+          "durationMs": 40,
+          "pan": false,
+          "duckCrowd": false,
+          "rateLimitMs": 120,
+          "defaultOn": false,
+          "caption": "hover"
+        }
+      ],
+      "era": {
+        "plain": "Same as the plain look.",
+        "classic": "Same as the plain look."
+      },
+      "id": "hover_tick",
+      "source": {
+        "kind": "ui",
+        "feedKind": "console",
+        "qualifier": "hover"
+      },
+      "bible": [
+        "O5.3.2",
+        "MB-12"
+      ],
+      "information": "Which call sheet row the pointer or focus is on: the focus highlight moves to that row.",
+      "visual": {
+        "cue": "focus_highlight",
+        "where": "console",
+        "switch": "accessibility.focusHighlight",
         "reducedMotion": "same"
       }
     }

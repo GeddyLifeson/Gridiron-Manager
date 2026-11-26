@@ -5,5 +5,5 @@ export { panFor, PAN_WIDTH, Ducker, RateLimiter, DUCK_LEVEL, DUCK_MAX_HOLD, DUCK
 export { RankedQueue, CROWD_REACTION_RANK, type CrowdReaction, type QueueItem, type QueueDecision, type RankedQueueOptions } from './ranked-queue.ts';
 export { buildRecipe, buildSustained, recipeSeconds, envelopeSeconds, variantCents, noiseBuffer } from './synth.ts';
 export { createMusicOutput, MUSIC_BED_KEY, type MusicTrackLike, type MusicOutputLike } from './music.ts';
-export { busSettingsFrom, BUS_DEFAULTS } from './settings.ts';
+export { busSettingsFrom, monoFrom, BUS_DEFAULTS } from './settings.ts';
 export { FakeAudioContext, FakeNode, FakeGain, FakeSource, FakeParam, FakeBufferSource, FakeOscillator, type FakeContextOptions } from './fake-context.ts';

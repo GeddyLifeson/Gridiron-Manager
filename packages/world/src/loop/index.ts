@@ -7,7 +7,7 @@ export {
 } from './events.ts';
 export {
   WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER,
-  type WeeklyStep, type SeasonStep, type StepId, type PersonStatus, type Scalar, type GameResult, type StaffSeason, type SeasonSummary,
+  type WeeklyStep, type SeasonStep, type StepId, type PersonStatus, type Scalar, type GameResult, type StaffSeason, type SeasonSummary, type TeamRecordLine,
   type LiveWorld, type StepContext, type StepDigest, type StepHandler, type WorldSystems, type SchedulePort, type ScheduledGame,
   type GameRequest, type GamePlayed, type GamePort,
 } from './types.ts';

@@ -6,8 +6,9 @@
 //               (accepted penalty or a timeout), punt, field_goal, extra_point, kickoff; empty on
 //               game and quarter markers. Two-point tries are pass or run rows with an empty down.
 //   first_down  counts first downs by penalty too, as the simulated row's `firstDown` does.
-// Fields the public file does not chart are listed in UNCHARTED_FIELDS. They are filled with a neutral
-// value because the row type has no "unknown", and no real-data cell may read them.
+// Fields no public file charts are listed in UNCHARTED_FIELDS; the participation and FTN files chart the
+// CHART_FIELDS, applied by charting.ts. Both are filled with a neutral value when absent because the row
+// type has no "unknown", and no real-data cell may read them.
 import type { PlayByPlayRow } from '@gm/schema';
 import type { CsvRecord } from './csv.ts';
 
@@ -22,10 +23,10 @@ export const PUBLIC_COLUMNS_READ: readonly string[] = [
 ];
 
 /** Row fields with no source in the base public file. A measure that reads one cannot run on real rows. */
-export const UNCHARTED_FIELDS: readonly (keyof PlayByPlayRow)[] = [
-  'offenseKind', 'playAction', 'motion', 'personnelCode', 'rushers', 'boxCount', 'coverageFamily', 'pressure',
-  'snapToSnapTenths', 'epBefore', 'epAfter',
-];
+export const UNCHARTED_FIELDS: readonly (keyof PlayByPlayRow)[] = ['offenseKind', 'snapToSnapTenths', 'epBefore', 'epAfter'];
+
+/** Row fields the participation and FTN files chart (see charting.ts). Neutral on a row built without a chart. */
+export const CHART_FIELDS: readonly (keyof PlayByPlayRow)[] = ['playAction', 'motion', 'personnelCode', 'rushers', 'boxCount', 'coverageFamily', 'pressure'];
 
 const one = (v: string | undefined): boolean => v === '1' || v === '1.0';
 const numOrNull = (v: string | undefined): number | null => {

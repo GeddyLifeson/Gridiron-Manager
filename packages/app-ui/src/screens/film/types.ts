@@ -13,7 +13,11 @@ export interface FilmEventLike {
   readonly tick: number; readonly x: number; readonly y: number; readonly slots?: readonly number[];
 }
 
-export interface OverlayLineLike { readonly slot: number; readonly words: string; readonly points: readonly PointLike[]; readonly author: string }
+export interface OverlayLineLike {
+  readonly slot: number; readonly words: string; readonly points: readonly PointLike[]; readonly author: string;
+  /** Staff guesses only: the H2 film-confidence word (strong, fair, thin). Never a number (O2.6.2). */
+  readonly confidence?: string;
+}
 
 export interface BaseSetLike {
   readonly quarter: number; readonly odk: 'O' | 'D' | 'K'; readonly down: number | null; readonly distance: number | null;

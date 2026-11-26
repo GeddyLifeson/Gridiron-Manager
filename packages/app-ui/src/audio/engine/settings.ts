@@ -1,8 +1,7 @@
-// Bus settings from the app settings store (O5.3.2, plan 4.1, amendment A-3). The eight-bus keys
-// (`audio.<bus>Volume`, `audio.<bus>On`) win when present. Until the settings split lands (PV-14 with
-// the G-98 owner), the current keys stand in: `whistleCrowd` drives crowd and officials, `alerts`
-// drives ui, `menuMusicOn` (PV-11) drives the music switch. This file only reads; it never edits the
-// shared schema.
+// Bus settings from the app settings store (O5.3.2, plan 4.1, amendment A-3). The schema holds the
+// eight-bus keys (`audio.<bus>Volume`, `audio.<bus>On`) since PV-14; the music switch is
+// `audio.menuMusicOn` (PV-11). The old keys (`whistleCrowd` for crowd and officials, `alerts` for ui)
+// are still read as a fallback for a store that lacks the new ones. This file only reads.
 import { BUSES, type BusId, type BusSetting } from './types.ts';
 
 /** Defaults when no key exists. Ambience is off by default (plan 4.2, rank 6); music is off until Marlon decides (plan 9). */
@@ -37,4 +36,9 @@ export function busSettingsFrom(get: (key: string) => unknown): Record<BusId, Bu
     };
   }
   return out;
+}
+
+/** Mono (plan 7, A-3, PV-14): pan collapsed to the centre. Pass to `AudioEngine.setMono`. */
+export function monoFrom(get: (key: string) => unknown): boolean {
+  return get('audio.mono') === true;
 }

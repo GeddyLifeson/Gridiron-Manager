@@ -1,7 +1,7 @@
 // Perception tuning constants (J3). All are the starting values of the leaf named, or Assumptions
 // where the bible gives no number. The vision angles are gameplay Assumptions, not vision science (J3.1.2).
 import type { ParamFile, ParamTable } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const READ = 'J3.2.2 key-read timing targets', NONE = 'none yet: flagged for J6.8.1 review', PA = 'J15 play-action band (J3.3.1)';
 
@@ -67,9 +67,15 @@ export const PARAMS: ParamFile = defineParams('perception', '0.1.0', ROWS);
 
 export type PerceptionParams = Readonly<Record<string, number>>;
 
+const RESOLVED = new WeakMap<ParamTable, PerceptionParams>();
 /** Resolve once per play, never inside the tick. Property names are the row names above. */
 export function perceptionParams(t: ParamTable): PerceptionParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`perception.${row[0]}`);
-  return out;
+  const fast = fastParams(out);
+  RESOLVED.set(t, fast);
+  return fast;
 }

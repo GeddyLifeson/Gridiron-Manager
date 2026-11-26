@@ -3,7 +3,7 @@
 // rates are fitted against J15 rows later (J6.8.1). Rule values (set period, motion rule, radio cut,
 // substitution matching, foul catalogue) are read from the rule set by key, never written here.
 import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const NONE = 'none yet: flagged for J6.8.1 review';
 const FS = 'J15.7 false start 2.30 per game (1 of 3)';
@@ -24,6 +24,13 @@ const ROWS: readonly ParamRow[] = [
   ['sub.readinessDivisor', 50, 25, 100, 'iss', 'assumption', 'J5.1.1', SUB],
   ['sub.readinessFloor', 0.25, 0.1, 1, 'ratio', 'assumption', 'J5.1.1', SUB],
   ['sub.extraShare', 0.5, 0, 1, 'probability', 'assumption', 'J5.1.1', SUB],
+  // I4.1.1 a kicking unit coming on for a fourth down: dead ball to set, by unit; more when the unit
+  // was not alerted on third down; the full run-off and run-on when the coach changed his mind after a
+  // unit had started on. The same four starting values as the calling console's marker (console.*Unit*).
+  ['unit.puntSetS', 8, 5, 12, 's', 'bible', 'I4.1.1', 'I4.1.1: set with 10 s left in 95% of trials when alerted'],
+  ['unit.fieldGoalSetS', 9, 5, 13, 's', 'bible', 'I4.1.1', 'I4.1.1: set with 10 s left in 95% of trials when alerted'],
+  ['unit.notAlertedS', 5, 0, 10, 's', 'bible', 'I4.1.1', 'I4.1.1'],
+  ['unit.reversalS', 10, 5, 15, 's', 'bible', 'I4.1.1', 'I4.1.1: a reversal leaves under 8 s in a share of trials'],
   // J5.1.2 substitution hold.
   ['hold.capS', 8, 3, 15, 's', 'bible', 'J5.1.2', 'J5.1.2 acceptance'],
   // J5.1.3 huddle delivery.
@@ -160,8 +167,9 @@ export function presnapParams(t: ParamTable): PresnapParams {
   if (memoTable === t && memo !== null) return memo;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`presnap.${row[0]}`);
-  memoTable = t; memo = out;
-  return out;
+  const fast = fastParams(out);
+  memoTable = t; memo = fast;
+  return fast;
 }
 let memoTable: ParamTable | null = null, memo: PresnapParams | null = null;
 

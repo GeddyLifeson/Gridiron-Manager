@@ -43,6 +43,8 @@ export const FOULS_INJURIES_VERSION = 'fouls-injuries-0.1.0';
 const DOWN = MOVE_MODES.indexOf('down');
 const B = (name: (typeof BEHAVIORS)[number]): number => BEHAVIORS.indexOf(name);
 const BEH_ROUTE = B('route'), BEH_MAN = B('manCover'), BEH_JAM = B('jammer'), BEH_HOLDER = B('holder'), BEH_RETURNER = B('returner');
+const INTERIOR = new Set(['C', 'G', 'T', 'OL', 'OG', 'OT', 'LT', 'LG', 'RG', 'RT']);
+const SNAP_BLOCKERS = new Set([B('snapper'), B('passSet'), B('runBlock'), B('pull')]);
 const FREE_KICKS = new Set(['kickoff', 'onside_kick', 'safety_kick', 'fair_catch_kick']);
 const PLACE_OR_PUNT = new Set(['punt', 'field_goal', 'try_kick']);
 const SCORE_REASONS = new Set(['ball_across_goal_line_in_possession', 'kick_through_uprights']);
@@ -101,7 +103,10 @@ export interface FoulsInjuries {
   record(): FoulsInjuriesRecord;
 }
 
-interface Exists { readonly rulesId: string; readonly on: Readonly<Record<string, boolean>>; readonly idfYd: number | null; readonly lowBlock: string | null; readonly zoneYd: number | null; readonly pickYd: number | null }
+type IdfMeasure = 'entire_body' | 'any_part' | 'centre';
+interface Exists {
+  readonly rulesId: string; readonly on: Readonly<Record<string, boolean>>; readonly idfYd: number | null;
+  readonly idfMeasure: IdfMeasure; readonly idfAnyTime: boolean; readonly idfEngaged: boolean; readonly idfCross: boolean; readonly lowBlock: string | null; readonly zoneYd: number | null; readonly pickYd: number | null }
 
 function readRules(rules: RuleSet): Exists {
   const keys = new Set(rules.keys());
@@ -110,6 +115,10 @@ function readRules(rules: RuleSet): Exists {
   const num = (k: string): number | null => (keys.has(k) ? rules.num(k) : null);
   return {
     rulesId: rules.id, on, idfYd: num('foul.ineligible_downfield.yards'),
+    idfMeasure: keys.has(OPTIONAL_RULE_KEYS.idfMeasure) ? (rules.opt(OPTIONAL_RULE_KEYS.idfMeasure) as IdfMeasure) : 'centre',
+    idfAnyTime: keys.has(OPTIONAL_RULE_KEYS.idfWhen) && rules.opt(OPTIONAL_RULE_KEYS.idfWhen) === 'any_time_before_throw',
+    idfEngaged: keys.has(OPTIONAL_RULE_KEYS.idfEngaged) && rules.bool(OPTIONAL_RULE_KEYS.idfEngaged),
+    idfCross: keys.has(OPTIONAL_RULE_KEYS.idfCross) ? rules.bool(OPTIONAL_RULE_KEYS.idfCross) : true,
     lowBlock: keys.has('foul.low_block.rule') ? rules.opt('foul.low_block.rule') : null,
     zoneYd: num(OPTIONAL_RULE_KEYS.contactZone), pickYd: num(OPTIONAL_RULE_KEYS.pickDepth),
   };
@@ -129,6 +138,11 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   const firstNear = new Int32Array(SLOT_COUNT), inSprint = new Uint8Array(SLOT_COUNT), cutReady = new Int32Array(SLOT_COUNT);
   const prevVx = new Float64Array(SLOT_COUNT), prevVy = new Float64Array(SLOT_COUNT), oobTick = new Int32Array(SLOT_COUNT);
   const victim = new Uint8Array(SLOT_COUNT), conductDone = new Uint8Array(SLOT_COUNT), catchTick = new Int32Array(SLOT_COUNT);
+  const blockedAtSnap = new Uint8Array(SLOT_COUNT);
+  let eligibleFilled = false;
+  // B5.3.2 / B13.5.3 per-slot downfield record before the throw: contact made within the limit, depth when that
+  // contact broke (NaN while engaged or never broken), deepest point reached.
+  const idfContact = new Uint8Array(SLOT_COUNT), idfBreak = new Float64Array(SLOT_COUNT), idfMax = new Float64Array(SLOT_COUNT);
   const load = new Float64Array(SLOT_COUNT), soreness = new Float64Array(SLOT_COUNT * N_MECH);
   const contestSeen: boolean[] = [];
   const evaluations: ConcussionEvaluation[] = [], missed: MissedConcussion[] = [], explainRows: ExplainRow[] = [];
@@ -280,19 +294,72 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   };
 
   // --- event handlers -------------------------------------------------------------------------------
+  /**
+   * Ineligible receivers (B5.3.2). `players.eligible` is the contract's flag; while no module fills it
+   * (all zero for the offense), fall back to who blocked at the snap: a snapper or a man who set to
+   * pass-block, run-block or pull, or a listed interior position.
+   */
+  const ineligible = (w: TickWorld, s: number): boolean => {
+    if (eligibleFilled) return w.players.eligible[s] !== 1;
+    return INTERIOR.has(w.slots[s]!.player.position) || blockedAtSnap[s] === 1;
+  };
   const onPassRelease = (w: TickWorld, e: TruthEventOf<'pass_release'>): void => {
     releaseTick = w.tick; passer = idSlot(w, e.passerId); target = idSlot(w, e.targetId); forward = e.forward;
     firstNear.fill(NEVER);
-    // J10.2.3: pure geometry at the release tick against the rule-set key; a pass that does not cross the line has no limit here.
+    // J10.2.3: geometry against the rule-set key, judged at the release tick.
     const lim = ex!.idfYd;
-    if (!e.forward || lim === null || e.airYd <= 0 || !ex!.on.ineligible_downfield_pass) return;
-    const q = p!, line = 0; // the line of scrimmage is px = 0 (J1.1.2)
+    if (!e.forward || lim === null || !ex!.on.ineligible_downfield_pass) return;
+    // A pass that does not cross the line has no limit where the rule set says so (college 7-3-10).
+    if (ex!.idfCross && e.airYd <= 0) return;
+    const q = p!;
     const off = w.slots[passer]?.side ?? w.situation.offense;
+    // Eligibility is fixed at the snap (B4.2.1); without flags, ineligible() falls back to interior positions and snap blockers.
     for (let s = 0; s < SLOT_COUNT; s++) {
-      if (s === passer || w.slots[s]!.side !== off || w.players.eligible[s] === 1) continue;
-      const beyond = px(w, s) - line - lim;
+      if (s === passer || w.slots[s]!.side !== off || !ineligible(w, s)) continue;
+      const now = idfDepth(w, s);
+      const deepest = ex!.idfAnyTime && idfMax[s]! > now ? idfMax[s]! : now;
+      const beyond = deepest - lim;
+      if (beyond > 0 && legallyDownfield(w, s, now, lim)) continue;
       if (beyond > 0) commit(w, 'ineligible_downfield_pass', s, e.t, severityOf(beyond / lim, foulStream(w, s, 'ineligible_downfield_pass').uniform(), q), 'live');
       else if (beyond > -q.borderlineYd) commit(w, 'ineligible_downfield_pass', s, e.t, 0, 'live', true);
+    }
+  };
+
+  /** Depth beyond the line of scrimmage (px = 0, J1.1.2) as the rule set measures it. */
+  const idfDepth = (w: TickWorld, s: number): number => {
+    const r = w.slots[s]!.movement.bodyRadiusYd, m = ex!.idfMeasure;
+    return px(w, s) + (m === 'any_part' ? r : m === 'entire_body' ? -r : 0);
+  };
+
+  /**
+   * Pro 8-3-1 Item 1: after contact made within the limit on his initial charge he may be past it while
+   * blocking or being blocked, or after the contact breaks past the limit if he stays, moves sideways or
+   * moves back (Item 2(c): still advancing is a foul). Contact broken within the limit gives nothing (Item 2(b)).
+   */
+  const legallyDownfield = (w: TickWorld, s: number, now: number, lim: number): boolean => {
+    if (!ex!.idfEngaged || idfContact[s] !== 1) return false;
+    if (w.players.engagement[s]! >= 0) return true;
+    const b = idfBreak[s]!;
+    return b === b && b > lim && now <= b;
+  };
+
+  /** Before the throw, every tick: contact history and deepest point of each offensive ineligible. */
+  const trackDownfield = (w: TickWorld): void => {
+    const lim = ex!.idfYd;
+    if (lim === null || releaseTick >= 0 || !ex!.on.ineligible_downfield_pass) return;
+    const off = w.situation.offense;
+    for (let s = 0; s < SLOT_COUNT; s++) {
+      if (w.slots[s]!.side !== off || !ineligible(w, s)) continue;
+      const d = idfDepth(w, s);
+      if (d > idfMax[s]!) idfMax[s] = d;
+      if (w.players.engagement[s]! >= 0) {
+        if (idfContact[s] === 0 && d <= lim) idfContact[s] = 1;
+        idfBreak[s] = NaN;
+      } else if (idfContact[s] === 1) {
+        if (idfBreak[s]! !== idfBreak[s]!) idfBreak[s] = d;
+        // Item 1(c): forced back behind the line after the contact broke: normal limits again.
+        if (px(w, s) < 0 && idfBreak[s]! > lim) { idfContact[s] = 0; idfBreak[s] = NaN; }
+      }
     }
   };
 
@@ -617,13 +684,16 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     name: 'interact',
     begin(w: TickWorld): void {
       p = foulsInjuriesParams(w.params); kp = kinParams(w.params);
-      typicalEnergy = p['energy.typicalReducedLb'] * p['energy.typicalClosingYps'] * p['energy.typicalClosingYps'] * kp.hitEnergyScale!;
+      // The reference tackle through kinematics' own formula: carrier at the origin, tackler one yard east, closing head-on.
+      contactNumbers(0, 0, 0, 0, p['energy.typicalCarrierLb'], 0, 1, 0, -p['energy.typicalClosingYps'], 0, p['energy.typicalTacklerLb'], kp, cn);
+      typicalEnergy = cn.hitEnergy > 0 ? cn.hitEnergy : 1;
       if (ex === null || ex.rulesId !== w.rules.id) ex = readRules(w.rules);
       foulStreams.clear(); injuryStreams.clear();
       holdUntil.fill(0); holdDef.fill(-1); holdDone.fill(0); faceDone.fill(0); faceDoneDef.fill(0); covDone.fill(0);
       passerHit.fill(0); lateHit.fill(0); kickHit.fill(0); kciDone.fill(0); intentDone.fill(0); injured.fill(0); evaluated.fill(0);
+      idfContact.fill(0); idfBreak.fill(NaN); idfMax.fill(-Infinity);
       firstNear.fill(NEVER); inSprint.fill(0); cutReady.fill(0); oobTick.fill(NEVER); victim.fill(0); conductDone.fill(0); catchTick.fill(-1);
-      load.fill(0); soreness.fill(0); contestSeen.length = 0;
+      load.fill(0); soreness.fill(0); contestSeen.length = 0; blockedAtSnap.fill(0); eligibleFilled = false;
       for (let s = 0; s < SLOT_COUNT; s++) { prevVx[s] = w.players.velX[s]!; prevVy[s] = w.players.velY[s]!; }
       evaluations.length = 0; missed.length = 0; explainRows.length = 0;
       cursor = w.events.length; releaseTick = -1; passer = -1; target = -1; forward = false;
@@ -635,6 +705,14 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
       const q = p, t = tNow(w);
       if (w.deadAtTick === null) {
         if (w.tick === 0) for (let s = 0; s < SLOT_COUNT; s++) if (w.slots[s]!.player.gameDay.playingHurt.length > 0) exposure(w, s, MECH_OVERUSE, 1, t, 1);
+        if (w.tick === 0) {
+          eligibleFilled = false;
+          for (let s = 0; s < SLOT_COUNT; s++) {
+            if (w.slots[s]!.side === w.situation.offense && w.players.eligible[s] === 1) eligibleFilled = true;
+            blockedAtSnap[s] = SNAP_BLOCKERS.has(w.players.behavior[s]!) ? 1 : 0;
+          }
+        }
+        trackDownfield(w);
         scanEvents(w);
         blocking(w, q, t);
         coverage(w, q, t);

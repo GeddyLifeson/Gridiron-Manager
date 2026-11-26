@@ -4,7 +4,7 @@
 //   session - temporary view states, never written
 // Unknown keys in a stored file are kept and written back, so a downgrade loses nothing. A corrupt
 // file is set aside under another name and defaults are loaded, with a notice.
-import { SETTINGS, SETTINGS_BY_KEY, checkValue, defaultValues, type SettingDef, type SettingScope, type SettingValue } from './schema.ts';
+import { LEGACY_AUDIO_KEYS, SETTINGS, SETTINGS_BY_KEY, checkValue, defaultValues, type SettingDef, type SettingScope, type SettingValue } from './schema.ts';
 
 export const SETTINGS_FILE_FORMAT = 'gm-settings';
 export const SETTINGS_FILE_VERSION = 1;
@@ -49,6 +49,15 @@ export function parseSettingsFile(text: string | null): ParsedSettings {
     const why = checkValue(def, raw);
     if (why) { out.notices.push({ kind: 'invalid-value', key, message: `${why}. The default was loaded.` }); continue; }
     values[key] = structuredClone(raw) as SettingValue;
+  }
+  const stored = d.values as Record<string, unknown>;
+  for (const [oldKey, newKeys] of Object.entries(LEGACY_AUDIO_KEYS)) {
+    if (!(oldKey in out.unknown)) continue;
+    for (const k of newKeys) {
+      const def = SETTINGS_BY_KEY.get(k);
+      if (!def || k in stored || checkValue(def, out.unknown[oldKey])) continue;
+      values[k] = structuredClone(out.unknown[oldKey]) as SettingValue;
+    }
   }
   return out;
 }

@@ -158,7 +158,15 @@ function tickBenches(o: SuiteOptions): BenchResult[] {
   const r = JSON.parse(run.stdout.trim().split('\n').pop()!) as { msPerPlay: number[]; plays: number; resultHash: string; standIns: string[]; bench500Ms: number[]; bench500Hash: string };
   const p = median(r.msPerPlay), b = median(r.bench500Ms);
   const stand = r.standIns.length ? ` Stand-in modules: ${r.standIns.join(', ')}.` : '';
+  // The same row with the real quarterback plugged in (WP-20): what a play costs once real modules replace stand-ins.
+  const qbScript = fileURLToPath(new URL('../../../engine-core/test/bench/qb-play.ts', import.meta.url));
+  const qbRun = spawnSync(process.execPath, ['--import', 'tsx', qbScript, String(o.repeats), '60'], { encoding: 'utf8', maxBuffer: 1 << 24 });
+  if (qbRun.status !== 0) throw new Error(`quarterback play bench failed: ${qbRun.stderr}`);
+  const q = JSON.parse(qbRun.stdout.trim().split('\n').pop()!) as { msPerPlay: number[]; plays: number; resultHash: string; standIns: string[] };
+  const qm = median(q.msPerPlay);
   return [
+    { id: 'play.tick.qb', row: 'P6.1.1 One play, full engine, real quarterback module', tier: 'change', budgetMs: 50, budgetMachine: 'minimum target, one core', ms: qm, samples: q.msPerPlay, status: statusOf(qm, 50), gated: true, hash: q.resultHash,
+      note: `Tick resolver with the real quarterback plug (WP-20) on ${q.plays} fixture pass and run plays.${q.standIns.length ? ` Stand-in modules: ${q.standIns.join(', ')}.` : ''}` },
     { id: 'play.tick', row: 'P6.1.1 One play, full engine, trajectory recorded', tier: 'change', budgetMs: 50, budgetMachine: 'minimum target, one core', ms: p, samples: r.msPerPlay, status: statusOf(p, 50), gated: true, hash: r.resultHash,
       note: `Tick resolver (WP-23) with full record, on the WP-23 fixture plays (${r.plays} plays: pass, run, punt, field goal, kickoff).${stand}` },
     { id: 'bench.500', row: 'P6.1.1 Test-bench batch, 500 runs of one play (O3.1.4)', tier: 'change', budgetMs: 5000, budgetMachine: 'minimum target', ms: b, samples: r.bench500Ms, status: statusOf(b, 5000), gated: true, hash: r.bench500Hash,

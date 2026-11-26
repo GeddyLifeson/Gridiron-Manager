@@ -7,7 +7,7 @@ export { buildMarkings, markingStatus, markingsFor, PRO_MARKINGS, COLLEGE_MARKIN
 export { markerFor, positionLetter, DEFAULT_MARKERS, type MarkerStyle, type MarkerTable, type MarkerShape } from './markers.ts';
 export { resolveTeamColours, fieldPalette, inkOn, mixColour, contrastRatio, relativeLuminance, type ResolvedColours, type FieldPalette } from './colours.ts';
 export { buildCues, activeCues, cueDisplaySeconds, CUE_FOR, type Cue, type CueShape } from './cues.ts';
-export { Playback, ReplayAllowance, SPEEDS, stills, PlaybackRuleError, type PlaybackStill } from './playback.ts';
+export { Playback, ReplayAllowance, SPEEDS, FILM_STUDY_SPEEDS, stills, PlaybackRuleError, type PlaybackStill } from './playback.ts';
 export { FieldRenderer, OverlaySourceError, type Canvas2DLike, type RenderOptions, type EndZoneMark, type Aftermath } from './renderer.ts';
 export { blockText, blockWidth, blockCellCount, fillBlockText, BLOCK_CHARS, GLYPH_ROWS, GLYPH_COLS, ADVANCE_COLS } from './blockFont.ts';
 export { mergeNotes, layoutNotes, noteLabel, type FieldNote, type MergedNote, type PlacedNote } from './fieldText.ts';

@@ -14,8 +14,14 @@ import { codZOf } from './movement-params.ts';
 const M_STANCE = MOVE_MODES.indexOf('stance'), M_SPRINT = MOVE_MODES.indexOf('sprint'), M_RUN = MOVE_MODES.indexOf('run');
 const M_BACKPEDAL = MOVE_MODES.indexOf('backpedal'), M_SHUFFLE = MOVE_MODES.indexOf('shuffle');
 const M_ENGAGED = MOVE_MODES.indexOf('engaged'), M_DOWN = MOVE_MODES.indexOf('down');
+// Imported values read inside the sub-step are copied to module constants once: a plain constant is
+// cheaper to read in a loop than an imported binding under some module loaders (G-97). Same values.
+const N = SLOT_COUNT, TICK = TICK_S, PI_ = PI, TWO_PI_ = TWO_PI;
 const DEG = PI / 180;
 const TINY_SPEED = 1e-9;
+/** The code of a move mode name. The same answer as `MOVE_MODES.indexOf`, without the search. */
+const MODE_CODE: Readonly<Record<string, number>> = Object.fromEntries(MOVE_MODES.map((m, i) => [m, i]));
+const modeCode = (m: string): number => { const c = MODE_CODE[m]; return c === undefined ? -1 : c; };
 /** Pushes land a hair outside the floor so rounding cannot leave them a hair inside it. Not a football number. */
 const SPACING_SLACK = 1 + 1e-9;
 
@@ -62,22 +68,24 @@ export interface Movement {
 }
 
 export function createMovement(options: MovementOptions = {}): Movement {
-  const f = () => new Float64Array(SLOT_COUNT);
+  const f = () => new Float64Array(N);
   const nx = f(), ny = f(), nvx = f(), nvy = f();
   const zCod = f(), zBackpedal = f(), costScale = f(), baseFatigue = f(), cost = f(), radius = f();
   const transLeft = f(), cutCap = f(), fracBackpedal = f(), fracShuffle = f();
-  const cutFlag = new Uint8Array(SLOT_COUNT), lastMode = new Uint8Array(SLOT_COUNT), reverted = new Uint8Array(SLOT_COUNT);
-  const chase = new Int8Array(SLOT_COUNT).fill(-1);
-  const planFlag = new Uint8Array(SLOT_COUNT), planDone = new Uint8Array(SLOT_COUNT), planRun = new Uint8Array(SLOT_COUNT);
+  const cutFlag = new Uint8Array(N), lastMode = new Uint8Array(N), reverted = new Uint8Array(N);
+  const chase = new Int8Array(N).fill(-1);
+  const planFlag = new Uint8Array(N), planDone = new Uint8Array(N), planRun = new Uint8Array(N);
   const planV = f(), planPx = f(), planPy = f();
   const limit = new Float64Array(3);
+  /** Per sub-step scratch for the pair sweeps: body radius as it counts now (smaller on the ground), and who is down. */
+  const rEff = f(), isDown = new Uint8Array(N);
   const engagementLimit = options.engagementLimit ?? null, fatigueEnv = options.fatigueEnv ?? null;
   let P: KinParams | null = null, cosFree = 0;
 
   const begin = (w: TickWorld): void => {
     const p = P = kinParams(w.params);
     cosFree = dCos(p.gazeFreeDeg! * DEG);
-    for (let s = 0; s < SLOT_COUNT; s++) {
+    for (let s = 0; s < N; s++) {
       const info = w.slots[s]!, a = info.player.attributes;
       zCod[s] = codZOf(info.movement, p);
       zBackpedal[s] = issToZ(a['backpedal_and_transition']!);
@@ -111,9 +119,9 @@ export function createMovement(options: MovementOptions = {}): Movement {
     const pl = w.players, frame = w.frame, dir = frame.attackDir;
     const footing = w.environment.derived.footing, footFwd = 1 - (1 - footing) / 2;
     const env = fatigueEnv ? fatigueEnv(w) : 1;
-    const dtShare = dt / TICK_S, cosGazeFree = cosFree;
+    const dtShare = dt / TICK, cosGazeFree = cosFree;
 
-    for (let s = 0; s < SLOT_COUNT; s++) {
+    for (let s = 0; s < N; s++) {
       const x = pl.posX[s]!, y = pl.posY[s]!;
       let vx = pl.velX[s]!, vy = pl.velY[s]!;
       if (pl.moveMode[s] === M_DOWN || w.tick < pl.onGroundUntilTick[s]!) {
@@ -121,7 +129,7 @@ export function createMovement(options: MovementOptions = {}): Movement {
         continue;
       }
       const intent: Intent = w.intents[s]!;
-      const mode = pl.engagement[s]! >= 0 ? M_ENGAGED : MOVE_MODES.indexOf(intent.moveMode);
+      const mode = pl.engagement[s]! >= 0 ? M_ENGAGED : modeCode(intent.moveMode);
       const from = lastMode[s]!;
       if ((from === M_BACKPEDAL || from === M_SHUFFLE) && (mode === M_SPRINT || mode === M_RUN)) {
         const z = from === M_BACKPEDAL ? zBackpedal[s]! : zCod[s]!;
@@ -176,9 +184,9 @@ export function createMovement(options: MovementOptions = {}): Movement {
           }
           // J2.5.3: steer around players close along the path who are not his contest opponent.
           let side = 0;
-          for (let o = 0; o < SLOT_COUNT; o++) {
-            if (o === s || o === chase[s]) continue;
-            const eng = pl.engagement[s]!;
+          const eng = pl.engagement[s]!, chased = chase[s]!;
+          for (let o = 0; o < N; o++) {
+            if (o === s || o === chased) continue;
             if (eng >= 0 && pl.engagement[o] === eng) continue;
             const rx = pl.posX[o]! - x, ry = pl.posY[o]! - y;
             const ahead = rx * ux + ry * uy;
@@ -270,14 +278,14 @@ export function createMovement(options: MovementOptions = {}): Movement {
       else if (ft !== null) { const fx = frame.originX + ft.px * dir - x, fy = frame.originY + ft.py * dir - y; if (fx !== 0 || fy !== 0) face = dAtan2(fy, fx); }
       else if (mode === M_BACKPEDAL && nsp > TINY_SPEED) face = dAtan2(-vy, -vx);
       let turn = face - pl.headingRad[s]!;
-      while (turn > PI) turn -= TWO_PI;
-      while (turn <= -PI) turn += TWO_PI;
+      while (turn > PI_) turn -= TWO_PI_;
+      while (turn <= -PI_) turn += TWO_PI_;
       const maxTurn = p.hipTurnRateRadPs! * dt;
       if (turn > maxTurn) turn = maxTurn; else if (turn < -maxTurn) turn = -maxTurn;
       if (turn !== 0) {
         let h = pl.headingRad[s]! + turn;
-        while (h > PI) h -= TWO_PI;
-        while (h <= -PI) h += TWO_PI;
+        while (h > PI_) h -= TWO_PI_;
+        while (h <= -PI_) h += TWO_PI_;
         pl.headingRad[s] = h;
       }
 
@@ -292,18 +300,22 @@ export function createMovement(options: MovementOptions = {}): Movement {
     // J2.5.3 "the wash": if two body circles would overlap after the move, the lower-priority player
     // (not the ball carrier, then the higher slot) is held and loses speed. Pairs in fixed slot order.
     // Values fixed for the whole pair sweep are read once (G-97); the arithmetic and its order are unchanged.
+    // The move mode does not change during the sweeps, so each player's radius-as-it-counts and down flag
+    // are worked out once per sub-step instead of once per pair. The products are the same products.
     const downFrac = p.downRadiusFrac!, spacingFrac = p.minSpacingFrac!;
-    for (let a = 0; a < SLOT_COUNT; a++) {
-      const ea = pl.engagement[a]!, aDown = pl.moveMode[a] === M_DOWN, ra = radius[a]! * (aDown ? downFrac : 1);
-      for (let b = a + 1; b < SLOT_COUNT; b++) {
-        if (ea >= 0 && ea === pl.engagement[b]) continue;
-        const bDown = pl.moveMode[b] === M_DOWN;
+    const engagement = pl.engagement, posX = pl.posX, posY = pl.posY;
+    for (let s = 0; s < N; s++) { const down = pl.moveMode[s] === M_DOWN; isDown[s] = down ? 1 : 0; rEff[s] = radius[s]! * (down ? downFrac : 1); }
+    for (let a = 0; a < N; a++) {
+      const ea = engagement[a]!, aDown = isDown[a] === 1, ra = rEff[a]!;
+      for (let b = a + 1; b < N; b++) {
+        if (ea >= 0 && ea === engagement[b]) continue;
+        const bDown = isDown[b] === 1;
         if (aDown && bDown) continue;
-        const reach = ra + radius[b]! * (bDown ? downFrac : 1);
+        const reach = ra + rEff[b]!;
         const dx = nx[b]! - nx[a]!, dy = ny[b]! - ny[a]!;
         const d2 = dx * dx + dy * dy;
         if (d2 >= reach * reach) continue;
-        const ox = pl.posX[b]! - pl.posX[a]!, oy = pl.posY[b]! - pl.posY[a]!;
+        const ox = posX[b]! - posX[a]!, oy = posY[b]! - posY[a]!;
         if (d2 >= ox * ox + oy * oy) continue;
         // Who gives way: a player on the ground never moves; otherwise the carrier wins, then the lower slot.
         let loser = b;
@@ -333,15 +345,15 @@ export function createMovement(options: MovementOptions = {}): Movement {
     // out pushes him into another, the players still too close stay where they were, one at a time,
     // lower priority first. Every player staying put is the state before the move, so this ends.
     reverted.fill(0);
-    for (let pass = 0; pass < SLOT_COUNT + 2; pass++) {
+    for (let pass = 0; pass < N + 2; pass++) {
       let changed = false;
-      for (let a = 0; a < SLOT_COUNT; a++) {
-        const ea = pl.engagement[a]!, aDown = pl.moveMode[a] === M_DOWN, ra = radius[a]! * (aDown ? downFrac : 1);
-        for (let b = a + 1; b < SLOT_COUNT; b++) {
-          if (ea >= 0 && ea === pl.engagement[b]) continue;
-          const bDown = pl.moveMode[b] === M_DOWN;
+      for (let a = 0; a < N; a++) {
+        const ea = engagement[a]!, aDown = isDown[a] === 1, ra = rEff[a]!;
+        for (let b = a + 1; b < N; b++) {
+          if (ea >= 0 && ea === engagement[b]) continue;
+          const bDown = isDown[b] === 1;
           if (aDown && bDown) continue;
-          const floor = (ra + radius[b]! * (bDown ? downFrac : 1)) * spacingFrac;
+          const floor = (ra + rEff[b]!) * spacingFrac;
           const dx = nx[b]! - nx[a]!, dy = ny[b]! - ny[a]!;
           const d2 = dx * dx + dy * dy;
           if (d2 >= floor * floor) continue;
@@ -363,7 +375,7 @@ export function createMovement(options: MovementOptions = {}): Movement {
       }
       if (!changed) break;
     }
-    for (let s = 0; s < SLOT_COUNT; s++) { pl.posX[s] = nx[s]!; pl.posY[s] = ny[s]!; pl.velX[s] = nvx[s]!; pl.velY[s] = nvy[s]!; }
+    for (let s = 0; s < N; s++) { pl.posX[s] = nx[s]!; pl.posY[s] = ny[s]!; pl.velX[s] = nvx[s]!; pl.velY[s] = nvy[s]!; }
   };
 
   return {

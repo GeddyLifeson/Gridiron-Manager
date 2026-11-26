@@ -387,13 +387,42 @@ describe('J2.6.1 momentum at contact', () => {
     contactNumbers(0, 0, 6, 0, 220, 0, 3, 0, -4, 0, 200, KP, out);
     expect(out.closingSpeedYps).toBe(10);
     expect(out.momentumRatio).toBeCloseTo((220 * 6) / (200 * 4), 12);
-    expect(out.hitEnergy).toBeCloseTo(((220 * 200) / 420) * 100, 9);
+    expect(out.hitEnergy).toBeCloseTo((((220 * 200) / 420) * 100) / (102 * 25), 9);
     expect(out.blindside).toBe(false);
     contactNumbers(0, 0, 6, 0, 220, Math.PI, 3, 0, -4, 0, 200, KP, out);
     expect(out.blindside).toBe(true); // looking the other way
     const heavy = { ...out };
     contactNumbers(0, 0, 6, 0, 240, 0, 3, 0, -4, 0, 200, KP, heavy);
     expect(heavy.momentumRatio).toBeGreaterThan((220 * 6) / (200 * 4));
+  });
+});
+
+describe('J2.6.1 hit energy scale (typical open-field tackle = 1.0)', () => {
+  const out: ContactNumbers = { closingSpeedYps: 0, momentumRatio: 0, hitEnergy: 0, blindside: false };
+  const reducedLb = (210 * 200) / 410;
+  it('a 210 lb carrier met by a 200 lb tackler closing at 5 yd/s is about 1.0, not about 2,500', () => {
+    contactNumbers(0, 0, 3, 0, 210, 0, 1, 0, -2, 0, 200, KP, out);
+    expect(out.closingSpeedYps).toBe(5);
+    expect(out.hitEnergy).toBeCloseTo((reducedLb * 25) / (102 * 25), 9);
+    expect(out.hitEnergy).toBeGreaterThan(0.95);
+    expect(out.hitEnergy).toBeLessThan(1.05);
+  });
+  it('a helmet-to-helmet hard hit (9.3 m/s closing, Viano and Pellman 2005) reads about 4', () => {
+    const closingYps = 9.3 / 0.9144;
+    contactNumbers(0, 0, closingYps / 2, 0, 210, 0, 1, 0, -closingYps / 2, 0, 200, KP, out);
+    expect(out.hitEnergy).toBeGreaterThan(3.5);
+    expect(out.hitEnergy).toBeLessThan(4.5);
+  });
+  it('implied average force of the typical tackle sits below the measured hard-hit peak', () => {
+    // Stopping the relative motion of the reduced mass over a 0.1 s body contact; Viano and Pellman 2005
+    // measured 7.2 kN peak (6.4 kN time-averaged) for hard helmet-to-helmet hits.
+    const forceN = (reducedLb * 0.45359237 * 5 * 0.9144) / 0.1;
+    expect(forceN).toBeGreaterThan(1000);
+    expect(forceN).toBeLessThan(6372);
+  });
+  it('no closing speed means no hit energy', () => {
+    contactNumbers(0, 0, -3, 0, 210, 0, 1, 0, 2, 0, 200, KP, out);
+    expect(out.hitEnergy).toBe(0);
   });
 });
 
