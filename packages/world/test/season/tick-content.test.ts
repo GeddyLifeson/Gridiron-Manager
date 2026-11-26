@@ -1,6 +1,6 @@
 // The starter content port and the real game on the tick resolver (WP-23 owed item: real content port).
 import { describe, expect, it } from 'vitest';
-import { SLOT_COUNT, SLOTS_PER_TEAM, type PlayCalls, type PlayInput } from '@gm/schema';
+import { NEUTRAL_ENVIRONMENT, SLOT_COUNT, SLOTS_PER_TEAM, type Environment, type PlayCalls, type PlayInput } from '@gm/schema';
 import { legality } from '@gm/football-lang';
 import { field } from '@gm/engine-core';
 import { resolveRuleSet } from '@gm/rules-data';
@@ -18,13 +18,61 @@ function offenseCalls(kind: string, runDirection: 'left' | 'right' | 'middle' | 
     opposing: { unit: 'defense', callContentId: null, contentHash: null, packageId: null, frontId: null, coverageId: null, pressureId: null, coverageFamily, rushers: 4, boxCount: 7, players: [] },
   } as unknown as PlayCalls;
 }
-const inputOf = (calls: PlayCalls, rules = pro): PlayInput => ({
-  calls, rules, params, geometry: field.fieldGeometry(rules),
-  situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: 0 },
+const inputOf = (calls: PlayCalls, rules = pro, o: { environment?: Environment; offense?: 0 | 1; down?: number | null } = {}): PlayInput => ({
+  calls, rules, params, geometry: field.fieldGeometry(rules), environment: o.environment ?? NEUTRAL_ENVIRONMENT,
+  situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: o.offense ?? 0, down: o.down === undefined ? 1 : o.down, score: [0, 0] },
 } as unknown as PlayInput);
 
 describe('starter content port', () => {
   const port = createStarterContentPort();
+  it('carries the crowd into the play (J12.6.1): the visiting offense on third down hears it, goes silent, and is on the road', () => {
+    const loud = { ...NEUTRAL_ENVIRONMENT, noiseBase: 0.9 };
+    const road = port.setup(inputOf(offenseCalls('dropback_pass', null), pro, { environment: loud, offense: 1, down: 3 }))!;
+    expect(road.presnap.venue).toBe('road');
+    expect(road.presnap.offense.noise).toBeCloseTo(0.9, 12);
+    expect(road.presnap.defense.noise).toBeLessThan(road.presnap.offense.noise);
+    expect(road.presnap.silentCount).toBe(true);
+    expect(road.context.noise).toEqual([road.presnap.offense.noise, road.presnap.defense.noise]);
+    expect(road.context.familiarityZ![1]).toBeGreaterThan(0);
+    const home = port.setup(inputOf(offenseCalls('dropback_pass', null), pro, { environment: loud, offense: 0, down: 3 }))!;
+    expect(home.presnap.venue).toBe('home');
+    expect(home.presnap.silentCount).toBe(false);
+    const neutral = createStarterContentPort({ site: 'neutral' }).setup(inputOf(offenseCalls('dropback_pass', null), pro, { environment: loud, offense: 1, down: 3 }))!;
+    expect(neutral.presnap.venue).toBe('neutral');
+    const quiet = port.setup(inputOf(offenseCalls('dropback_pass', null), pro, { offense: 1, down: 3 }))!;
+    expect([quiet.presnap.offense.noise, quiet.presnap.defense.noise]).toEqual([0, 0]);
+  });
+  it('wakes the crowd channels: relay on the play clock, knowledge of a placeholder roster, pressure of the moment, the units that talk', () => {
+    const late = (calls: PlayCalls, over: Record<string, unknown> = {}): PlayInput => {
+      const base = inputOf(calls, pro, { offense: 1, down: 3 });
+      return { ...base, situation: { ...base.situation, period: 4, clockTenths: 600, goalToGo: false, ...over } } as unknown as PlayInput;
+    };
+    const huddle = port.setup(late(offenseCalls('dropback_pass', null)))!;
+    // I2.1.1 stages 1 to 3: spotting, decision, radio 2 s plus the spoken call (I2.4.1).
+    expect(huddle.presnap.playClockStartTenths).toBe(pro.num('clock.play_clock_s') * 10);
+    expect(huddle.presnap.relay).toEqual({
+      spottingS: params.num('presnap.relay.spottingS'), decisionS: params.num('presnap.relay.decisionS'),
+      methodS: params.num('presnap.relay.radioS'), spokenS: huddle.presnap.callWords * params.num('presnap.relay.perWordS'),
+    });
+    const noHuddle = offenseCalls('dropback_pass', null); (noHuddle.snapping as { tempo: string }).tempo = 'no_huddle';
+    expect(port.setup(late(noHuddle))!.presnap.relay).toMatchObject({ methodS: params.num('presnap.relay.signalS'), spokenS: 0 });
+    const hurry = offenseCalls('dropback_pass', null); (hurry.snapping as { tempo: string }).tempo = 'hurry_up';
+    expect(port.setup(late(hurry))!.presnap.relay).toBeNull();
+    expect(port.setup(late(offenseCalls('kneel', null)))!.presnap.relay).toBeNull();
+    // D9.4.1: the placeholder roster's knowledge, both sides of the ball.
+    expect(huddle.context.knowledgeDefault).toEqual([params.num('environment.gate.knowledge'), params.num('environment.gate.knowledge')]);
+    // D4.3.1: a tied game late on third down is the top of the scale; the first quarter on first down is not.
+    expect(huddle.context.pressure!).toBeGreaterThan(0.95);
+    const early = port.setup(late(offenseCalls('dropback_pass', null), { period: 1, clockTenths: 9000, down: 1 }))!;
+    expect(early.context.pressure!).toBeLessThan(0.35);
+    expect(port.setup(late(offenseCalls('dropback_pass', null), { score: [35, 0] }))!.context.pressure).toBe(0);
+    // K1.5.1: centre and quarterback, middle linebacker and free safety; nobody is in two units.
+    const units = huddle.context.units!;
+    expect(units.map((u) => u.communicator)).toEqual([OFFENSE_ROLES.indexOf('C'), OFFENSE_ROLES.indexOf('Q'), SLOTS_PER_TEAM + DEFENSE_ROLES.indexOf('MIKE'), SLOTS_PER_TEAM + DEFENSE_ROLES.indexOf('FS')]);
+    const all = units.flatMap((u) => [u.communicator, ...u.members]);
+    expect(new Set(all).size).toBe(all.length);
+    expect(all.length).toBe(SLOT_COUNT);
+  });
   it('gives every chart kind a play with eleven a side in the fixed role order', () => {
     for (const kind of ['run', 'dropback_pass', 'quick_pass', 'play_action', 'screen', 'rpo', 'kneel']) {
       const s = port.setup(inputOf(offenseCalls(kind, kind === 'run' ? 'left' : null)))!;
@@ -130,7 +178,7 @@ describe('starter content port', () => {
   });
   it('builds kicking units from the rule set: dynamic kickoff lines for pro, traditional for college', () => {
     const kick = (k: string) => ({ snapping: { unit: 'kick', kickKind: k, callContentId: null, contentHash: null, direction: null, players: [] }, opposing: { unit: 'return', returnKind: 'kick_return', callContentId: null, contentHash: null, players: [] } }) as unknown as PlayCalls;
-    const proKo = port.setup({ ...inputOf(kick('kickoff')), situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: 0 } } as unknown as PlayInput)!;
+    const proKo = port.setup({ ...inputOf(kick('kickoff')), situation: { period: 1, attackDir: 1, ballX: 45, ballY: 26.65, offense: 0, down: null, score: [0, 0] } } as unknown as PlayInput)!;
     const own = 45 - field.fieldGeometry(pro).goalLineWestX;
     expect(proKo.presnap.offense.assignments[0]!.preSnap.align.px).toBeCloseTo(100 - own - pro.num('kickoff.kicking_team_line_yardline'));
     const college = resolveRuleSet('college_2026');
