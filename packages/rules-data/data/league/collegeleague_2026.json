@@ -145,6 +145,11 @@
    "unit": "wins",
    "factId": "F-college-0023",
    "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "club_discipline.model",
+   "value": "school_code",
+   "factId": "F-college-0028"
   }
  ]
 }

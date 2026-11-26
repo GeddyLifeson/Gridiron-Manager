@@ -214,6 +214,19 @@
     "league (G-10 data)"
    ],
    "unit": "wins"
+  },
+  {
+   "key": "club_discipline.model",
+   "type": "option",
+   "meaning": "Which club discipline model applies",
+   "ownerLeaf": "L3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "labour_agreement",
+    "school_code"
+   ]
   }
  ]
 }

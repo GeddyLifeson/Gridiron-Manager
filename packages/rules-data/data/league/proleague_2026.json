@@ -1136,6 +1136,61 @@
    "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
   },
   {
+   "key": "club_discipline.club_suspension_roster_status",
+   "value": "reserve_suspended",
+   "factId": "F-league-0196"
+  },
+  {
+   "key": "compliance.feigned_injury.club_fine_first_cents",
+   "value": 35000000,
+   "unit": "cents",
+   "factId": "F-league-0197"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_head_coach_first_cents",
+   "value": 10000000,
+   "unit": "cents",
+   "factId": "F-league-0198"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_assistant_first_cents",
+   "value": 5000000,
+   "unit": "cents",
+   "factId": "F-league-0199"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_player_first_cents",
+   "value": 5000000,
+   "unit": "cents",
+   "factId": "F-league-0200"
+  },
+  {
+   "key": "compliance.injury_report_shading.club_fine_first_cents",
+   "value": 7500000,
+   "unit": "cents",
+   "factId": "F-league-0201"
+  },
+  {
+   "key": "compliance.injury_report_shading.fine_head_coach_first_cents",
+   "value": 2500000,
+   "unit": "cents",
+   "factId": "F-league-0202"
+  },
+  {
+   "key": "compliance.signal_recording.fine_head_coach_first_cents",
+   "value": 50000000,
+   "unit": "cents",
+   "factId": "F-league-0203",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "compliance.signal_recording.club_fine_first_cents",
+   "value": 25000000,
+   "unit": "cents",
+   "factId": "F-league-0204",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
