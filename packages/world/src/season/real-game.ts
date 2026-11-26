@@ -124,13 +124,11 @@ export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
  * team sd 3.9 to 4.0. The second division sits at 26.0, sd 1.2. The shape is 2 of 3; the fit is an Assumption.
  * Before program strength every school drew one tier mix and the sd was 1.6 (sampling only).
  *
- * `gate` is what the gate plays today. College plays the census team spread around 50, not the census level:
- * the tick engine measures skill on the absolute scale, so at 25 for both teams sacks are 30% of dropbacks and
- * accepted fouls 16.7 per team (quarterback clocks and mental terms are per absolute z). Playing 50 with the
- * census spread is the same as handing the engine attributes shifted by (50 - census level), the interim route
- * proposed in research/tuning/skill-response.md until skill is measured against the level of play. With block
- * engagements on skill difference (#299), the 1.6 spread gives a mean margin of 15.8 (real 16.3) and a home
- * margin sd of 20.4 (real 20.3) over 40 games; without #299 the same spread gave 23.0 and 28.3.
+ * `gate` is what the gate plays today: college plays its census level (30.4), with the team spread held at
+ * 1.6. Each one-man skill term is read against the men across from it (tick/opposition.ts,
+ * research/tuning/level-opposition.md), so equal rosters play about the same game at any level and the level
+ * no longer needs the interim 50. Measured on that change over 40 games, same seeds: 12 of 48 gate rows pass at
+ * 30.4 against 7 at 50 (plans/calibration/tick-probe/college/on-325/).
  *
  * The gate keeps 1.6, not the census 4.0, because the engine answers a skill point with about twice the real
  * margin: 54 v 46 college gives +37.6 (4.7 points per ISS), 52 v 48 pro +22.6 (5.6), 40 games each, while the
@@ -141,7 +139,7 @@ export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
 export interface RosterLevel { readonly iss: number; readonly teamSd: number }
 export const GATE_ROSTER_LEVEL: Readonly<Record<string, { readonly gate: RosterLevel; readonly census: RosterLevel }>> = {
   pro: { gate: { iss: 50, teamSd: 0 }, census: { iss: 50, teamSd: 0 } },
-  college: { gate: { iss: 50, teamSd: 1.6 }, census: { iss: 30.4, teamSd: 4.0 } },
+  college: { gate: { iss: 30.4, teamSd: 1.6 }, census: { iss: 30.4, teamSd: 4.0 } },
 };
 
 export interface RealGameOptions {
