@@ -6,7 +6,7 @@ import { computeStatus } from '../../../packages/schema/src/index.ts';
 
 for (const f of process.argv.slice(2)) {
   const text = readFileSync(f, 'utf8');
-  const indent = /^\{\n( +)"/.exec(text)?.[1].length ?? 2;
+  const indent = /^\{\n( +)"/.exec(text)?.[1]?.length ?? 2;
   const d = JSON.parse(text);
   let n = 0;
   for (const r of d.rows) {
