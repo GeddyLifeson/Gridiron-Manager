@@ -18,6 +18,11 @@ const SCHED = 'J5.8.1 acceptance 1 and 3 (play-clock-at-snap data not yet source
 const ROWS: readonly ParamRow[] = [
   // J5.1.1 substitution run-on and errors.
   ['sub.jogSpeedYps', 6, 4, 8, 'yd/s', 'bible', 'J5.1.1', NONE],
+  // J5.8.1: what the walk from the huddle (or the bench) to a spot really takes in the tick engine, which starts, jogs,
+  // slows and settles (J9 movement): measured over 3,806 walks, median 1.4 s + 0.28 s per yard, slowest 2.0 s + 0.37 s
+  // per yard. The plan has to count the slowest, or it calls a man set who is still moving and snaps on him (B4.3.3).
+  ['align.settleS', 2.2, 0, 4, 's', 'assumption', 'J5.8.1', 'J5.8.1 acceptance: no man moving at the snap whom the plan calls set'],
+  ['align.paceYps', 2.7, 2, 6, 'yd/s', 'assumption', 'J5.8.1', 'J5.8.1 acceptance: no man moving at the snap whom the plan calls set'],
   ['sub.errorBasePerPlayer', 0.002, 0, 0.01, 'probability', 'bible', 'J5.1.1', SUB],
   ['sub.errorHurryMult', 4, 3, 6, 'ratio', 'bible', 'J5.1.1', 'J5.1.1 acceptance 2'],
   ['sub.errorLatePerS', 0.25, 0, 1, '1/s', 'assumption', 'J5.1.1', SUB],
@@ -54,11 +59,11 @@ const ROWS: readonly ParamRow[] = [
   // signals 3 s (I2.4.1). The caller's usual decision time and the seconds per spoken word are Assumptions (a long
   // call "took a full three seconds" to read, I2.4.1, 1 of 3: about 8 words).
   ['relay.spottingS', 4.5, 3, 6, 's', 'bible', 'I2.1.1', DOG],
-  ['relay.decisionS', 6, 2, 12, 's', 'assumption', 'I2.1.1', DOG],
+  ['relay.decisionS', 2, 1, 12, 's', 'assumption', 'I2.1.1', DOG],
   ['relay.radioS', 2, 1, 4, 's', 'bible', 'I2.4.1', DOG],
   ['relay.signalS', 3, 1, 6, 's', 'bible', 'I2.4.1', DOG],
   ['relay.perWordS', 0.4, 0.2, 0.8, 's', 'assumption', 'I2.4.1', DOG],
-  ['relay.decisionTailS', 3.5, 0.5, 6, 's', 'assumption', 'I2.1.1', DOG],
+  ['relay.decisionTailS', 3, 0.5, 6, 's', 'assumption', 'I2.1.1', DOG],
   // J12.6.1 "noise lengthens the visiting offense's call relay and huddle-to-snap time": seconds added per unit of
   // noise the offense hears (the call is said twice, the huddle leans in). Assumption, fitted with the tail above.
   ['relay.noiseSlowS', 1.3, 0, 5, 's', 'assumption', 'J12.6.1', DOG],

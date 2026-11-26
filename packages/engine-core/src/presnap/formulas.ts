@@ -13,6 +13,16 @@ export type Tempo = 'huddle' | 'no_huddle' | 'hurry_up';
 /** J5.1.1 run-on time: bench-to-spot distance at jog speed. */
 export function runOnS(distanceYd: number, p: PresnapParams): number { return distanceYd / p['sub.jogSpeedYps']!; }
 
+/**
+ * J5.8.1 time for a man to reach his spot and stand still there, as the tick engine moves him (start, jog, slow, settle):
+ * a fixed part and a pace well under the jog speed. Zero for a man already on his spot.
+ */
+export function alignTravelS(distanceYd: number, p: PresnapParams): number {
+  return distanceYd < ALIGN_AT_SPOT_YD ? 0 : p['align.settleS']! + distanceYd / p['align.paceYps']!;
+}
+/** Closer than this a man is on his spot (the stage's own test, `stages.ts`). */
+const ALIGN_AT_SPOT_YD = 0.1;
+
 /** I4.1.1 What the coach's fourth-down choice does to the kicking unit's run-on. */
 export interface UnitChange {
   readonly unit: 'punt' | 'field_goal';
