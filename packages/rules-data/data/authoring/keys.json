@@ -1,0 +1,2138 @@
+{
+ "dateRead": "2026-11-26",
+ "entries": [
+  {
+   "key": "field.goal_width_ft",
+   "type": "number",
+   "unit": "ft",
+   "meaning": "Width of the goal between the uprights",
+   "ownerLeaf": "B2",
+   "readBy": [
+    "engine-core/field",
+    "engine-core/ball"
+   ],
+   "pro": {
+    "v": 18.5,
+    "src": [
+     {
+      "cite": "Rule 1, Section 3, Article 1",
+      "q": "a centrally placed horizontal crossbar 18 feet, 6 inches in length",
+      "line": 401
+     }
+    ]
+   },
+   "college": {
+    "v": 18.5,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 5-b",
+      "q": "the uprights shall be white or yellow and 18 feet, six inches apart inside to inside",
+      "line": 742
+     }
+    ]
+   }
+  },
+  {
+   "key": "field.crossbar_height_ft",
+   "type": "number",
+   "unit": "ft",
+   "meaning": "Height of the top of the crossbar above the ground",
+   "ownerLeaf": "B2",
+   "readBy": [
+    "engine-core/field",
+    "engine-core/ball"
+   ],
+   "pro": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 1, Section 3, Article 1",
+      "q": "the top face of which is 10 feet above the ground",
+      "line": 402
+     }
+    ]
+   },
+   "college": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 1, Section 2, Article 5-a",
+      "q": "the top of which is 10 feet above the ground",
+      "line": 739
+     }
+    ]
+   }
+  },
+  {
+   "key": "numbering.scheme",
+   "type": "option",
+   "options": [
+    "position_bands",
+    "free_0_99_five_50_79"
+   ],
+   "meaning": "How jersey numbers decide who may be an eligible receiver",
+   "ownerLeaf": "B13.2.2",
+   "readBy": [
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": "position_bands",
+    "src": [
+     {
+      "cite": "Rule 5, Section 1, Article 2",
+      "q": "Such numerals must be by playing position, as follows:",
+      "line": 1291
+     },
+     {
+      "cite": "Rule 5, Section 1, Article 2",
+      "q": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+      "line": 1299
+     }
+    ]
+   },
+   "college": {
+    "v": "free_0_99_five_50_79",
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 2-a",
+      "q": "All players shall be numbered 0 through 99.",
+      "line": 883
+     },
+     {
+      "cite": "Rule 7, Section 1, Article 4-a-3",
+      "q": "At least five linemen must wear jerseys numbered 50 through 79",
+      "line": 3494
+     }
+    ]
+   }
+  },
+  {
+   "key": "numbering.qb_under_center_eligible",
+   "type": "boolean",
+   "meaning": "A quarterback under center is an eligible receiver without moving",
+   "ownerLeaf": "B13.2.2",
+   "readBy": [
+    "football-lang/legality",
+    "officiating/scrimmage"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 8, Section 1, Article 5-c",
+      "q": "Offensive players who are legally at least one yard behind the line at the snap, provided they either have the numbers of eligible players",
+      "line": 2209
+     },
+     {
+      "cite": "Rule 3, Section 26 (T-formation quarterback)",
+      "q": "A T-formation quarterback is defined as a player aligned one yard or less behind the snapper.",
+      "line": 924
+     }
+    ],
+    "note": "Eligible backs are those at least one yard behind the line; a T-formation quarterback is one yard or less behind the snapper, so he is not in the eligible list (Article 6 makes every other offensive player ineligible)."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 2, Section 27, Article 4",
+      "q": "A back is also the player in position to receive a hand-to-hand snap.",
+      "line": 1894
+     },
+     {
+      "cite": "Rule 7, Section 3, Article 3-c-2",
+      "q": "Each back wearing a number other than 50 through 79.",
+      "line": 3681
+     }
+    ]
+   }
+  },
+  {
+   "key": "numbering.report_eligible_allowed",
+   "type": "boolean",
+   "meaning": "A player may change his eligibility by reporting to the referee",
+   "ownerLeaf": "B13.2.2",
+   "readBy": [
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 1",
+      "q": "is permitted to line up in the position of an eligible pass receiver or T-formation quarterback",
+      "line": 1394
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 1-4-2, Rule 7-1-4 and Rule 7-3-3",
+      "absent": "the numbering and eligibility articles were read in full and the text searched for 'report'; eligibility follows the number worn (other than 50 through 79) and position, with no reporting procedure. The only exception is the scrimmage-kick numbering exception (7-1-4-a-5)."
+     }
+    ]
+   }
+  },
+  {
+   "key": "formation.line_min",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Fewest offensive players who must be on the line at the snap (0 = the rule book states no such number)",
+   "ownerLeaf": "B4",
+   "readBy": [
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": 7,
+    "src": [
+     {
+      "cite": "Rule 7, Section 5, Article 1-a",
+      "q": "It must have seven or more players on the line",
+      "line": 2083
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 7, Section 1, Article 4-a",
+      "absent": "the formation article was read in full; it limits backs (no more than four) and requires five linemen numbered 50 through 79, and states no minimum count on the line."
+     }
+    ]
+   }
+  },
+  {
+   "key": "formation.backfield_max",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Most offensive players who may be backs at the snap (0 = the rule book states no such number)",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 7, Section 5, Article 1",
+      "absent": "the article was read in full; it requires seven or more players on the line and states no maximum number of backs."
+     }
+    ]
+   },
+   "college": {
+    "v": 4,
+    "src": [
+     {
+      "cite": "Rule 7, Section 1, Article 4-a-4",
+      "q": "No more than four players may be backs.",
+      "line": 3497
+     }
+    ]
+   }
+  },
+  {
+   "key": "formation.numbered_linemen_min",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Fewest linemen who must wear a number in the ineligible band (0 = the rule book states no such number)",
+   "ownerLeaf": "B13.2.2",
+   "readBy": [
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 7, Section 5, Article 1 and Rule 5, Section 1, Article 2",
+      "absent": "both articles were read in full; eligibility is by position band and by reporting, with no count of numbered linemen."
+     }
+    ]
+   },
+   "college": {
+    "v": 5,
+    "src": [
+     {
+      "cite": "Rule 7, Section 1, Article 4-a-3",
+      "q": "At least five linemen must wear jerseys numbered 50 through 79",
+      "line": 3494
+     }
+    ]
+   }
+  },
+  {
+   "key": "formation.motion_rule",
+   "type": "option",
+   "options": [
+    "one_back_not_forward"
+   ],
+   "meaning": "Who may be in motion at the snap",
+   "ownerLeaf": "B4",
+   "readBy": [
+    "football-lang/legality",
+    "engine-core/presnap"
+   ],
+   "pro": {
+    "v": "one_back_not_forward",
+    "src": [
+     {
+      "cite": "Rule 7, Section 4, Article 8",
+      "q": "one player who is lined up in the backfield may be in motion, provided that he is moving parallel to or away from the line of scrimmage",
+      "line": 2072
+     }
+    ]
+   },
+   "college": {
+    "v": "one_back_not_forward",
+    "src": [
+     {
+      "cite": "Rule 7, Section 1, Article 4-b-1",
+      "q": "One back may be in motion, but that back may not be moving toward their opponent’s goal line.",
+      "line": 3523
+     }
+    ]
+   }
+  },
+  {
+   "key": "formation.shift_set_seconds",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Time all offensive players must be set after a shift",
+   "ownerLeaf": "B4",
+   "readBy": [
+    "football-lang/legality",
+    "engine-core/presnap"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 7, Section 4, Article 6",
+      "q": "come to a complete stop and be in a set position simultaneously for at least one full second prior to the snap",
+      "line": 2059
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 2, Section 22, Article 1-b",
+      "q": "The shift ends when all players have been motionless for one full second.",
+      "line": 1759
+     }
+    ]
+   }
+  },
+  {
+   "key": "substitution.match_window",
+   "type": "boolean",
+   "meaning": "After the offense substitutes, the snap is held until the defense has had the chance to substitute",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "engine-game/bench",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 5, Section 2, Article 10",
+      "q": "the offense shall not be permitted to snap the ball until the defense has been permitted to respond with its substitutions",
+      "line": 1372
+     }
+    ],
+    "note": "The pro article applies to substitutions made before the two-minute warning of either half."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 5, Article 2-e",
+      "q": "the officials will not allow the ball to be snapped until Team B has been given an opportunity to substitute",
+      "line": 2752
+     }
+    ]
+   }
+  },
+  {
+   "key": "clock.first_down_stop",
+   "type": "option",
+   "options": [
+    "never",
+    "after_two_minute_timeout"
+   ],
+   "meaning": "When the game clock stops for an offensive first down in bounds",
+   "ownerLeaf": "B13.3.1",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": "never",
+    "src": [
+     {
+      "cite": "Rule 4, Section 4 (Stopping the game clock), items (a) to (j)",
+      "absent": "the list of reasons the clock stops was read in full; a first down is not one of them."
+     }
+    ]
+   },
+   "college": {
+    "v": "after_two_minute_timeout",
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 2-e-1",
+      "q": "Team A is awarded a first down, either through play or by penalty anytime after the Two-Minute Timeout in the 2nd or 4th quarters.",
+      "line": 2396
+     }
+    ]
+   }
+  },
+  {
+   "key": "clock.out_of_bounds_restart",
+   "type": "option",
+   "options": [
+    "signal_except_last_2min_first_half_last_5min_second_half",
+    "signal_before_2min_snap_after"
+   ],
+   "meaning": "When the clock restarts after a runner goes out of bounds",
+   "ownerLeaf": "B13.3.2",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": "signal_except_last_2min_first_half_last_5min_second_half",
+    "src": [
+     {
+      "cite": "Rule 4, Section 3, Article 2-a",
+      "q": "Whenever a runner goes out of bounds on a play from scrimmage, the game clock starts on the Referee’s signal that a ball has been returned to play, except that the clock will start on the snap:",
+      "line": 986
+     },
+     {
+      "cite": "Rule 4, Section 3, Article 2-a-2",
+      "q": "after the two-minute warning of the first half; or",
+      "line": 989
+     },
+     {
+      "cite": "Rule 4, Section 3, Article 2-a-3",
+      "q": "inside the last five minutes of the second half.",
+      "line": 990
+     }
+    ]
+   },
+   "college": {
+    "v": "signal_before_2min_snap_after",
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 2-d-2",
+      "q": "A Team A ball carrier, fumble or backward pass is ruled out of bounds anytime after the Two-Minute Timeout in the 2nd or 4th quarters.",
+      "line": 2377
+     },
+     {
+      "cite": "Rule 3, Section 3, Article 2-e-3",
+      "q": "A Team A ball carrier, fumble or backward pass is ruled out of bounds before the Two-Minute Timeout in the 2nd or 4th quarters.",
+      "line": 2399
+     }
+    ]
+   }
+  },
+  {
+   "key": "clock.out_of_bounds_snap_window_first_half_s",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Time left in the first half inside which the clock restarts on the snap after a runner goes out of bounds",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": 120,
+    "src": [
+     {
+      "cite": "Rule 4, Section 3, Article 2-a-2",
+      "q": "after the two-minute warning of the first half; or",
+      "line": 989
+     }
+    ]
+   },
+   "college": {
+    "v": 120,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 2-d-2",
+      "q": "A Team A ball carrier, fumble or backward pass is ruled out of bounds anytime after the Two-Minute Timeout in the 2nd or 4th quarters.",
+      "line": 2377
+     }
+    ]
+   }
+  },
+  {
+   "key": "clock.out_of_bounds_snap_window_second_half_s",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Time left in the second half inside which the clock restarts on the snap after a runner goes out of bounds",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": 300,
+    "src": [
+     {
+      "cite": "Rule 4, Section 3, Article 2-a-3",
+      "q": "inside the last five minutes of the second half.",
+      "line": 990
+     }
+    ]
+   },
+   "college": {
+    "v": 120,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 2-d-2",
+      "q": "A Team A ball carrier, fumble or backward pass is ruled out of bounds anytime after the Two-Minute Timeout in the 2nd or 4th quarters.",
+      "line": 2377
+     }
+    ]
+   }
+  },
+  {
+   "key": "clock.two_minute_timeout",
+   "type": "boolean",
+   "meaning": "An automatic stop at two minutes left in each half",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/clock",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 38 (Two-minute warning)",
+      "q": "The two-minute warning is an automatic timeout that occurs at the conclusion of the last down for which the ball is legally snapped",
+      "line": 920
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 5-a",
+      "q": "the Referee shall stop the clock with exactly two minutes remaining in the second and fourth quarters for a Two-Minute Timeout",
+      "line": 2494
+     }
+    ]
+   }
+  },
+  {
+   "key": "clock.injury_feign_charge",
+   "type": "boolean",
+   "meaning": "A player who presents as injured after the ball is spotted costs his team a timeout",
+   "ownerLeaf": "B13.3.4",
+   "readBy": [
+    "officiating/clock"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 4, Section 5, Article 4, Note 8",
+      "q": "The Competition Committee deprecates feigning injuries, with subsequent withdrawal, to obtain a timeout without penalty. Coaches are urged to cooperate in discouraging this practice.",
+      "line": 1109
+     }
+    ],
+    "note": "The pro book discourages feigning and states no charge for it. Its injury timeout charge after the two-minute warning (Article 4) applies to every injury and is a different rule."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 6-a-1",
+      "q": "If a player presents as injured after the ball is spotted by officials, that team will be charged a Team Timeout or a delay penalty if all timeouts have been used",
+      "line": 2510
+     }
+    ]
+   }
+  },
+  {
+   "key": "clock.runoff_seconds",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Seconds taken off the game clock by the late-half runoff",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "officiating/clock",
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 4, Section 7, Article 1, Item 1",
+      "q": "officials will run off 10 seconds from the game clock",
+      "line": 1192
+     }
+    ]
+   },
+   "college": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 3, Section 4, Article 4-a",
+      "q": "the referee will subtract 10 seconds from the game clock at the option of the offended team",
+      "line": 2694
+     }
+    ]
+   }
+  },
+  {
+   "key": "timeout.length_seconds",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Length of a full charged team timeout",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/clock",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": 120,
+    "src": [
+     {
+      "cite": "Rule 4, Section 5, Article 1, Item 2",
+      "q": "Charged team timeouts shall be two minutes in length unless the timeout is not used by television for a commercial break.",
+      "line": 1037
+     }
+    ]
+   },
+   "college": {
+    "v": 60,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 8-a",
+      "q": "A charged full team timeout requested by any player or head coach shall be one minute plus the five-second referee notification and the 25-second play clock interval.",
+      "line": 2561
+     }
+    ]
+   }
+  },
+  {
+   "key": "timeout.short_length_seconds",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Length of a short charged team timeout",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/clock",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 4, Section 5, Article 1, Item 2",
+      "q": "Timeouts shall be 30 seconds in length when the designated number of television commercials has been exhausted in a quarter",
+      "line": 1038
+     }
+    ]
+   },
+   "college": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 8-b",
+      "q": "For live-televised games only, a charged team timeout shall be 30 seconds plus",
+      "line": 2566
+     }
+    ]
+   }
+  },
+  {
+   "key": "injury.sit_downs",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Downs an injured player must sit out after an injury timeout",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/clock",
+    "engine-game/bench"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 4, Section 5, Article 3",
+      "q": "the injured player must leave the game for the completion of one down",
+      "line": 1060
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 6-a-1",
+      "q": "That player must remain out of the game for at least one down",
+      "line": 2508
+     }
+    ]
+   }
+  },
+  {
+   "key": "deadball.down_without_contact",
+   "type": "boolean",
+   "meaning": "A runner is down when his body touches the ground, with or without contact by an opponent",
+   "ownerLeaf": "B13.4.1",
+   "readBy": [
+    "officiating/series",
+    "officiating/scrimmage"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 7, Section 2, Article 1-a",
+      "q": "when a runner is contacted by an opponent and touches the ground with any part of his body other than his hands",
+      "line": 1914
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 4, Section 1, Article 3-b",
+      "q": "When any part of the ball carrier’s body, except the hand or foot, touches the ground",
+      "line": 2821
+     }
+    ]
+   }
+  },
+  {
+   "key": "deadball.helmet_off_ends_play",
+   "type": "boolean",
+   "meaning": "The ball is dead when the runner's helmet comes completely off",
+   "ownerLeaf": "B13.4.1",
+   "readBy": [
+    "officiating/series",
+    "officiating/scrimmage"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 7, Section 2, Article 1-s",
+      "q": "when a runner’s helmet comes completely off",
+      "line": 1969
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 10-c",
+      "q": "If the ball carrier’s helmet comes off as in paragraph a (above) the ball is dead",
+      "line": 2628
+     }
+    ]
+   }
+  },
+  {
+   "key": "deadball.fake_slide_ends_play",
+   "type": "boolean",
+   "meaning": "The ball is dead when a runner fakes a slide",
+   "ownerLeaf": "B13.4.1",
+   "readBy": [
+    "officiating/series",
+    "officiating/scrimmage"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 7, Section 2, Article 1-d-2",
+      "q": "When a runner slides or dives feet or head first or simulates sliding or diving, the ball is dead the instant",
+      "line": 1922
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 4, Section 1, Article 3-r",
+      "q": "simulates or fakes a feet-first slide, the ball should be declared dead",
+      "line": 2863
+     }
+    ]
+   }
+  },
+  {
+   "key": "catch.feet_required",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Feet that must touch in bounds to complete a catch",
+   "ownerLeaf": "B13.4.2",
+   "readBy": [
+    "officiating/scrimmage",
+    "engine-core/qb"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 8, Section 1, Article 3-b",
+      "q": "touches the ground inbounds with both feet or with any part of his body other than his hands",
+      "line": 2172
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 2, Section 4, Article 3-a-2",
+      "q": "Touches the ground inbounds with any part of the body, and then",
+      "line": 1361
+     }
+    ]
+   }
+  },
+  {
+   "key": "fumble.advance_restriction",
+   "type": "option",
+   "options": [
+    "fourth_down_try_and_after_two_minute_warning",
+    "fourth_down_and_try"
+   ],
+   "meaning": "When only the fumbler may advance his own team's fumble",
+   "ownerLeaf": "B13.4.1",
+   "readBy": [
+    "officiating/scrimmage",
+    "officiating/series"
+   ],
+   "pro": {
+    "v": "fourth_down_try_and_after_two_minute_warning",
+    "src": [
+     {
+      "cite": "Rule 8, Section 7, Article 5",
+      "q": "The player who fumbled is the only Team A player permitted to recover and advance the ball prior to a change of possession.",
+      "line": 2471
+     },
+     {
+      "cite": "Rule 8, Section 7, Article 6 (fumble after the two-minute warning or during a Try), item (b)",
+      "q": "The player who fumbled is the only player of his team who is permitted to recover and advance the ball.",
+      "line": 2478
+     }
+    ]
+   },
+   "college": {
+    "v": "fourth_down_and_try",
+    "src": [
+     {
+      "cite": "Rule 7, Section 2, Article 2-a, Exception 2",
+      "q": "On fourth down before a change of team possession, when a Team A fumble is caught or recovered by a Team A player other than the fumbler, the ball is dead.",
+      "line": 3606
+     },
+     {
+      "cite": "Rule 7, Section 2, Article 2-a, Exception 1",
+      "q": "Rule 8-3-2-d-5 (Team A fumble on the try).",
+      "line": 3605
+     }
+    ]
+   }
+  },
+  {
+   "key": "pass.spike_requires_under_center",
+   "type": "boolean",
+   "meaning": "Only a quarterback under center may spike the ball to stop the clock",
+   "ownerLeaf": "B13.5.4",
+   "readBy": [
+    "officiating/scrimmage",
+    "officiating/fouls",
+    "engine-core/qb"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 8, Section 2, Article 1, Item 3",
+      "q": "A T-Formation Quarterback is permitted to stop the game clock legally to conserve time if, immediately upon receiving the snap, he begins a continuous throwing motion and throws the ball directly into the ground.",
+      "line": 2248
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 2-f",
+      "q": "The passer to conserve time throws the ball directly to the ground (1) after the ball has already touched the ground; or (2) not immediately after controlling the ball.",
+      "line": 3661
+     }
+    ],
+    "note": "The college rule makes a spike illegal only in the two listed cases and speaks of 'the passer', with no position requirement, so a passer in the shotgun may spike immediately after controlling the snap."
+   }
+  },
+  {
+   "key": "pass.ineligible_downfield_limit_yd",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "How far an ineligible receiver may be beyond the line before a forward pass is thrown",
+   "ownerLeaf": "B13.5.3",
+   "readBy": [
+    "officiating/fouls",
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 8, Section 3, Article 1",
+      "q": "his entire body is more than one yard beyond the line of scrimmage without contacting an opponent",
+      "line": 2279
+     }
+    ]
+   },
+   "college": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 10",
+      "q": "No originally ineligible receiver shall be or have been more than three yards beyond the neutral zone",
+      "line": 3821
+     }
+    ]
+   }
+  },
+  {
+   "key": "foul.dpi.max_yards",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Cap on defensive pass interference yardage from the previous spot (0 = no cap, the foul is enforced at its spot)",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Article 2, Penalty",
+      "q": "For pass interference by the defense: First down for the offensive team at the spot of the foul.",
+      "line": 2373
+     }
+    ]
+   },
+   "college": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8, Penalty",
+      "q": "If the foul occurs 15 or more yards beyond the previous spot, Team A’s ball, first down, 15 yards from the previous spot",
+      "line": 3762
+     }
+    ]
+   }
+  },
+  {
+   "key": "foul.illegal_contact.zone_yards",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Depth beyond the line inside which a defender may contact a receiver (0 = no such zone)",
+   "ownerLeaf": "B5",
+   "readBy": [
+    "officiating/fouls",
+    "engine-core/player-ai"
+   ],
+   "pro": {
+    "v": 5,
+    "src": [
+     {
+      "cite": "Rule 8, Section 4, Article 1",
+      "q": "Within the area five yards beyond the line of scrimmage, a defensive player may chuck an eligible receiver in front of him.",
+      "line": 2292
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 9, Section 3, Article 4 and Appendix G (Summary of Penalties)",
+      "absent": "the defensive use-of-hands article and the penalty summary were read; neither has a contact zone measured in yards or an illegal contact foul."
+     }
+    ]
+   }
+  },
+  {
+   "key": "foul.grounding.enforcement",
+   "type": "option",
+   "options": [
+    "ten_or_spot_loss_of_down",
+    "spot_loss_of_down"
+   ],
+   "meaning": "How intentional grounding is enforced",
+   "ownerLeaf": "B13.5.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": "ten_or_spot_loss_of_down",
+    "src": [
+     {
+      "cite": "Rule 8, Section 2, Article 1, Penalty (a)",
+      "q": "Loss of down and 10 yards from the previous spot; or",
+      "line": 2253
+     },
+     {
+      "cite": "Rule 8, Section 2, Article 1, Penalty (b)",
+      "q": "Loss of down at the spot of the pass if the spot is more than 10 yards from the previous spot or more than half the",
+      "line": 2254
+     }
+    ]
+   },
+   "college": {
+    "v": "spot_loss_of_down",
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 2, Penalty [f-h]",
+      "q": "Loss of down at the spot of the foul",
+      "line": 3673
+     }
+    ]
+   }
+  },
+  {
+   "key": "foul.low_block.rule",
+   "type": "option",
+   "options": [
+    "tight_end_box_only",
+    "tackle_box_only"
+   ],
+   "meaning": "Where a block below the waist is legal on a scrimmage down before a change of possession",
+   "ownerLeaf": "B13.12.1",
+   "readBy": [
+    "officiating/fouls",
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": "tight_end_box_only",
+    "src": [
+     {
+      "cite": "Rule 12, Section 2, Article 4, Item 2-d",
+      "q": "by players of either team during a scrimmage down prior to a change of possession unless the contact occurs in the tight end box",
+      "line": 3140
+     }
+    ]
+   },
+   "college": {
+    "v": "tackle_box_only",
+    "src": [
+     {
+      "cite": "Rule 9, Section 1, Article 6-a-1",
+      "q": "Linemen with initial position completely inside the tackle box may legally block below the waist inside the tackle box on their initial line charge.",
+      "line": 4268
+     },
+     {
+      "cite": "Rule 9, Section 1, Article 6-a-3",
+      "q": "All other Team A players are not allowed to block below the waist.",
+      "line": 4284
+     }
+    ]
+   }
+  },
+  {
+   "key": "dq.unsportsmanlike_fouls_for_ejection",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Unsportsmanlike conduct fouls in one game that bring automatic ejection",
+   "ownerLeaf": "B8.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 12, Section 4, Article 1",
+      "q": "automatically disqualified if that person is penalized twice in the same game for committing one of the unsportsmanlike conduct fouls listed below",
+      "line": 3476
+     }
+    ],
+    "note": "The pro rule counts only the listed types of unsportsmanlike conduct."
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 9, Section 2, Article 6-a",
+      "q": "who commits two unsportsmanlike conduct fouls in the same game shall be ejected",
+      "line": 4597
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.format",
+   "type": "option",
+   "options": [
+    "dynamic",
+    "traditional"
+   ],
+   "meaning": "Kickoff procedure module",
+   "ownerLeaf": "B13.6.1",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": "dynamic",
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 2-b",
+      "q": "the restraining line for the remaining 10 players of the kicking team shall be the receiving team’s 40-yard line",
+      "line": 1675
+     },
+     {
+      "cite": "Rule 6, Section 1, Article 2-e",
+      "q": "The “landing zone” shall be the area from the receiving team’s 20-yard line extending to its goal line.",
+      "line": 1680
+     }
+    ]
+   },
+   "college": {
+    "v": "traditional",
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 1",
+      "q": "the receiving team’s restraining line shall be the yard line 10 yards beyond that point",
+      "line": 3039
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.spot_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Kicking team's yard line for a kickoff",
+   "ownerLeaf": "B6",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 35,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 2-a",
+      "q": "the restraining line for the kick by the kicking team shall be its 35-yard line for a kickoff",
+      "line": 1673
+     }
+    ]
+   },
+   "college": {
+    "v": 35,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 1",
+      "q": "the kicking team’s restraining line on a kickoff shall be its 35-yard line",
+      "line": 3040
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.safety_kick_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Kicking team's yard line for a free kick after a safety",
+   "ownerLeaf": "B6",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 2-a",
+      "q": "20-yard line for a safety kick unless it is adjusted because of a distance penalty",
+      "line": 1674
+     }
+    ]
+   },
+   "college": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 1",
+      "q": "and for a free kick after a safety, its 20-yard line",
+      "line": 3041
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.touchback_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Touchback spot for a kickoff that reaches the end zone without first touching the ground or a player in the field of play",
+   "ownerLeaf": "B13.6.1",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 35,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 5",
+      "q": "It is a touchback, and the dead ball spot is the 35-yard line if, without first touching the ground or a player in the landing zone",
+      "line": 1743
+     }
+    ]
+   },
+   "college": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 8, Section 6, Article 2",
+      "q": "unless the touchback results from a free kick, in which case the ball belongs to Team B at its 25-yard line",
+      "line": 4051
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.touchback_after_landing_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Touchback spot for a kickoff that first touches the ground or a player short of the goal line and then goes dead in the end zone",
+   "ownerLeaf": "B6",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 5",
+      "q": "It is a touchback, and the dead ball spot is the 20-yard line if a kickoff or a safety kick:",
+      "line": 1740
+     },
+     {
+      "cite": "Rule 6, Section 1, Article 5-a",
+      "q": "touches the ground or a player in the landing zone and is downed in the end zone by the receiving team or goes out of bounds",
+      "line": 1741
+     }
+    ]
+   },
+   "college": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 8, Section 6, Article 2",
+      "q": "unless the touchback results from a free kick, in which case the ball belongs to Team B at its 25-yard line",
+      "line": 4051
+     }
+    ],
+    "note": "The college rule has one touchback spot for every free kick."
+   }
+  },
+  {
+   "key": "kickoff.fair_catch_inside_25_to_25",
+   "type": "boolean",
+   "meaning": "A fair catch of a kickoff behind the receiving team's 25 is spotted at the 25",
+   "ownerLeaf": "B13.6.1",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 4",
+      "q": "the receiving team has the option of putting the ball in play by a snap or fair catch kick (drop kick or place kick without a tee) from the spot of the catch or succeeding spot after enforcement of any applicable penalties",
+      "line": 2790
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 6, Section 5, Article 1-a",
+      "q": "If a Team B player makes a fair catch of a free kick behind Team B’s 25-yard line, the ball belongs to Team B at its own 25-yard line.",
+      "line": 3347
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.out_of_bounds_spot_yards",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Yards beyond the kickoff spot where the receiving team may take the ball after a kickoff out of bounds",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 6, Section 2, Article 4, Penalty",
+      "q": "The receiving team may elect to take possession of the ball 25 yards (or 30 yards in the event of a safety kick) from the spot of the kick",
+      "line": 1863
+     }
+    ]
+   },
+   "college": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 6, Section 2, Article 1, Penalty",
+      "q": "the receiving team may put the ball in play 30 yards beyond Team A’s restraining line at the hash mark",
+      "line": 3183
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.onside_must_declare",
+   "type": "boolean",
+   "meaning": "The kicking team must tell the officials before an onside kick",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 1-c",
+      "q": "An onside kick puts the ball in play by the kicking team, who must declare that form of a free kick to the officials.",
+      "line": 1657
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 6, Sections 1 and 2 (free kicks)",
+      "absent": "both sections were read and the whole text searched for 'onside' and 'declare'; the college book has no onside declaration."
+     }
+    ]
+   }
+  },
+  {
+   "key": "kickoff.tee_max_height_in",
+   "type": "number",
+   "unit": "in",
+   "meaning": "Highest a tee may hold the ball off the ground on a free kick",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart",
+    "engine-core/ball"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 1, Note",
+      "q": "a manufactured tee designed to hold the ball no more than one inch from the ground",
+      "line": 1659
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 2, Section 16, Article 4-b",
+      "q": "It may not elevate the ball’s lowest point more than one inch above the ground",
+      "line": 1584
+     }
+    ]
+   }
+  },
+  {
+   "key": "punt.release",
+   "type": "option",
+   "options": [
+    "ends_only_before_kick",
+    "all_at_snap"
+   ],
+   "meaning": "Which kicking team players may go downfield before a scrimmage kick is made",
+   "ownerLeaf": "B6",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart",
+    "football-lang/legality"
+   ],
+   "pro": {
+    "v": "ends_only_before_kick",
+    "src": [
+     {
+      "cite": "Rule 9, Section 1, Article 2",
+      "q": "only the end men (eligible receivers) on each side of the line of scrimmage at the time of the snap, or an eligible receiver who is aligned or in motion behind the line and is more than one yard outside the end man on either side, are permitted to advance more than one yard beyond the line before the ball is kicked",
+      "line": 2520
+     }
+    ]
+   },
+   "college": {
+    "v": "all_at_snap",
+    "src": [
+     {
+      "cite": "Rule 6, Section 3 (scrimmage kicks) and Rule 7, Section 3, Article 10",
+      "absent": "the scrimmage kick section was read in full; it has no rule holding kicking team players at the line until the kick. The ineligible-downfield article applies only to a legal forward pass that crosses the neutral zone."
+     }
+    ]
+   }
+  },
+  {
+   "key": "fg.fair_catch_kick",
+   "type": "boolean",
+   "meaning": "A team may try a free place kick or drop kick for a field goal after a fair catch",
+   "ownerLeaf": "B13.6.2",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 18, Article 4",
+      "q": "A fair catch kick is a drop kick or place kick without a tee from the spot of a fair catch",
+      "line": 672
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 2, Section 16, Article 11-b",
+      "q": "optionally the ball may be put in play by a Fair Catch Kick by the receiving team at the spot of the catch or the succeeding spot after penalties",
+      "line": 1641
+     }
+    ]
+   }
+  },
+  {
+   "key": "fg.miss_spot",
+   "type": "option",
+   "options": [
+    "kick_spot_min_20",
+    "previous_spot_min_20"
+   ],
+   "meaning": "Where the defense takes the ball after an untouched missed field goal",
+   "ownerLeaf": "B13.6.2",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": "kick_spot_min_20",
+    "src": [
+     {
+      "cite": "Rule 11, Section 4, Article 2-b",
+      "q": "it is the receivers’ ball at the spot of the kick",
+      "line": 2904
+     },
+     {
+      "cite": "Rule 11, Section 4, Article 2-a",
+      "q": "If the spot of the kick was inside the receivers’ 20-yard line, it is the receivers’ ball at the 20-yard line; or",
+      "line": 2903
+     }
+    ]
+   },
+   "college": {
+    "v": "previous_spot_min_20",
+    "src": [
+     {
+      "cite": "Rule 8, Section 4, Article 2-b-1",
+      "q": "Team B will snap the ball at the previous spot unless the previous spot was between its 20-yard line and its goal line. In that case Team B will next snap the ball at its 20-yard line.",
+      "line": 3992
+     }
+    ]
+   }
+  },
+  {
+   "key": "touchback.yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Touchback spot other than after a free kick",
+   "ownerLeaf": "B7",
+   "readBy": [
+    "officiating/kick",
+    "officiating/restart",
+    "officiating/series"
+   ],
+   "pro": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 11, Section 6, Article 3",
+      "q": "the team that has been awarded the touchback shall next snap the ball at its 20-yard line",
+      "line": 2996
+     }
+    ]
+   },
+   "college": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 8, Section 6, Article 2",
+      "q": "After a touchback is declared, the ball belongs to the defending team at its own 20-yard line",
+      "line": 4050
+     }
+    ]
+   }
+  },
+  {
+   "key": "overtime.format",
+   "type": "option",
+   "options": [
+    "timed_period",
+    "alternating_series_25"
+   ],
+   "meaning": "Overtime procedure module",
+   "ownerLeaf": "B13.7.1",
+   "readBy": [
+    "officiating/overtime",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": "timed_period",
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3",
+      "q": "an extra period of 10 minutes shall commence",
+      "line": 4287
+     }
+    ]
+   },
+   "college": {
+    "v": "alternating_series_25",
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-d",
+      "q": "An extra period shall consist of two possession series with each team putting the ball in play by a snap on or between the hash marks on the designated 25-yard line",
+      "line": 2148
+     }
+    ]
+   }
+  },
+  {
+   "key": "overtime.period_length_s",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Length of a regular-season overtime period (0 = the period has no game clock)",
+   "ownerLeaf": "B10",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 600,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 3",
+      "q": "an extra period of 10 minutes shall commence",
+      "line": 4287
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-e",
+      "q": "Each team retains the ball during a possession series until it scores or fails to make a first down.",
+      "line": 2156
+     }
+    ],
+    "note": "A college extra period is two possession series, not a length of time."
+   }
+  },
+  {
+   "key": "overtime.postseason_period_length_s",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Length of a postseason overtime period (0 = the period has no game clock)",
+   "ownerLeaf": "B10",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 900,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Article 4",
+      "q": "an extra period of 15 minutes shall commence",
+      "line": 4300
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-e",
+      "q": "Each team retains the ball during a possession series until it scores or fails to make a first down.",
+      "line": 2156
+     }
+    ],
+    "note": "A college extra period is two possession series, not a length of time."
+   }
+  },
+  {
+   "key": "overtime.series_start_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Opponent's yard line where each overtime possession series starts (0 = overtime does not use possession series)",
+   "ownerLeaf": "B13.7.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1, Articles 3 and 4",
+      "absent": "the overtime rule was read; a pro overtime period is a timed period that starts with a kickoff, with no fixed series start."
+     }
+    ]
+   },
+   "college": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-b-1",
+      "q": "Offense or defense, with the offense at the opponent’s 25-yard line to start the first possession series.",
+      "line": 2141
+     }
+    ]
+   }
+  },
+  {
+   "key": "overtime.two_point_required_from_period",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Extra period from which a team that scores a touchdown must try for two points (0 = never)",
+   "ownerLeaf": "B13.7.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1",
+      "absent": "the overtime rule was read in full; it has no required two-point try."
+     }
+    ]
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-f",
+      "q": "Beginning with the second extra period, teams scoring a touchdown must attempt a two-point try.",
+      "line": 2167
+     }
+    ]
+   }
+  },
+  {
+   "key": "overtime.two_point_plays_from_period",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Extra period from which each possession is one two-point play (0 = never)",
+   "ownerLeaf": "B13.7.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 16, Section 1",
+      "absent": "the overtime rule was read in full; it has no alternating two-point plays."
+     }
+    ]
+   },
+   "college": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 3-e",
+      "q": "Beginning with the third extra period, a team’s possession series will be one play for a two-point try from the three-yard line",
+      "line": 2160
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.model",
+   "type": "option",
+   "options": [
+    "challenge_plus_booth",
+    "booth_all_plays"
+   ],
+   "meaning": "How a replay review starts",
+   "ownerLeaf": "B13.9.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": "challenge_plus_booth",
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 1",
+      "q": "Each team is permitted a minimum of two challenges that will initiate Instant Replay reviews:",
+      "line": 3958
+     },
+     {
+      "cite": "Rule 15, Section 1, Article 2",
+      "q": "Only the Replay Official or the Senior Vice President of Officiating or his or her designee may initiate a review of a play:",
+      "line": 3974
+     }
+    ]
+   },
+   "college": {
+    "v": "booth_all_plays",
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-a",
+      "q": "The replay official and their crew shall review every play of a game.",
+      "line": 5296
+     }
+    ]
+   }
+  },
+  {
+   "key": "challenge.count",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Coach's challenges per game before any is earned back",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/replay",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 1",
+      "q": "Each team is permitted a minimum of two challenges",
+      "line": 3958
+     }
+    ]
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-1",
+      "q": "The head coach has two replay challenges per game.",
+      "line": 5308
+     }
+    ]
+   }
+  },
+  {
+   "key": "challenge.third_if",
+   "type": "option",
+   "options": [
+    "either_of_first_two_won"
+   ],
+   "meaning": "Condition for a third challenge",
+   "ownerLeaf": "B13.9.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": "either_of_first_two_won",
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 1-f",
+      "q": "A team will be permitted a third challenge if it is successful on at least one of its challenges.",
+      "line": 3972
+     }
+    ]
+   },
+   "college": {
+    "v": "either_of_first_two_won",
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-1",
+      "q": "If a coach wins either of their first two challenges, they are awarded a third challenge.",
+      "line": 5309
+     }
+    ]
+   }
+  },
+  {
+   "key": "challenge.requires_timeout",
+   "type": "boolean",
+   "meaning": "A challenge is made by taking a team timeout (false = by a flag, with the timeout charged only if the challenge fails)",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "officiating/replay",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 1-a",
+      "q": "can initiate a challenge by throwing a red flag onto the field of play before the next legal snap or kick",
+      "line": 3960
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-1",
+      "q": "A head coach initiates this challenge by taking a team timeout before the ball is next legally put in play",
+      "line": 5306
+     }
+    ]
+   }
+  },
+  {
+   "key": "challenge.needs_available_timeout",
+   "type": "boolean",
+   "meaning": "A team with no timeouts left may not challenge",
+   "ownerLeaf": "B9",
+   "readBy": [
+    "officiating/replay",
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 1-d",
+      "q": "Each challenge requires an available team timeout.",
+      "line": 3966
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-6",
+      "q": "A head coach may not challenge an on-field ruling if the team timeouts are not available or have been exhausted for that half or in that extra period.",
+      "line": 5326
+     }
+    ]
+   }
+  },
+  {
+   "key": "challenge.overturn_refunds_timeout",
+   "type": "boolean",
+   "meaning": "A successful challenge costs no timeout",
+   "ownerLeaf": "B13.9.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 1-e",
+      "q": "If a challenge is unsuccessful, the team will be charged a timeout.",
+      "line": 3971
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-2",
+      "q": "if the on-field ruling is overturned, that team’s timeout will not be charged",
+      "line": 5311
+     }
+    ]
+   }
+  },
+  {
+   "key": "challenge.allowed_in_overtime",
+   "type": "boolean",
+   "meaning": "A coach may challenge in overtime",
+   "ownerLeaf": "B13.9.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2",
+      "q": "Only the Replay Official or the Senior Vice President of Officiating or his or her designee may initiate a review of a play:",
+      "line": 3974
+     },
+     {
+      "cite": "Rule 15, Section 1, Article 2-b",
+      "q": "throughout any overtime period;",
+      "line": 3977
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-3",
+      "q": "the charged team timeout counts as one of the three permitted that team for that half or the one permitted in that extra period",
+      "line": 5314
+     }
+    ]
+   }
+  },
+  {
+   "key": "challenge.allowed_after_two_minute",
+   "type": "boolean",
+   "meaning": "A coach may challenge a play that starts after the two-minute stop of a half",
+   "ownerLeaf": "B9",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 2",
+      "q": "Only the Replay Official or the Senior Vice President of Officiating or his or her designee may initiate a review of a play:",
+      "line": 3974
+     },
+     {
+      "cite": "Rule 15, Section 1, Article 2-a",
+      "q": "that begins after the two-minute warning of each half;",
+      "line": 3976
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b",
+      "absent": "the head coach's challenge article (items 1 to 6) was read in full; it sets no time of the game after which a challenge is barred."
+     }
+    ]
+   }
+  },
+  {
+   "key": "comm.c2p_allowed",
+   "type": "boolean",
+   "meaning": "Coach-to-player helmet radio is allowed",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "engine-game/flow",
+    "engine-core/presnap"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 3",
+      "q": "The Coach-to-Player system allows a member of the coaching staff in the bench area or the coaches’ booth to communicate to a designated offensive or defensive player with a speaker in his helmet.",
+      "line": 1422
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "q": "Coach-to-player communications through the helmet is permissive for all divisions of college football",
+      "line": 1161
+     }
+    ],
+    "note": "Permissive: each league decides whether to use it (B13.13.1)."
+   }
+  },
+  {
+   "key": "comm.c2p_cutoff_seconds",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Play clock reading at which the helmet radio cuts off",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "engine-game/flow",
+    "engine-core/presnap"
+   ],
+   "pro": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 3",
+      "q": "is cut off when the play clock reaches 15 seconds or the ball is snapped, whichever occurs first",
+      "line": 1424
+     }
+    ]
+   },
+   "college": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "q": "Coach-to-player communications will be shut off when the play clock reaches 15 seconds or at the snap, whichever comes first",
+      "line": 1166
+     }
+    ]
+   }
+  },
+  {
+   "key": "comm.c2p_receivers_offense",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Offensive players on the field with a helmet radio on a scrimmage down",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 3",
+      "q": "Each offensive and defensive team is permitted no more than one player on the field with a speaker in his helmet.",
+      "line": 1426
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "q": "Only one (1) player may be on the field per team at a time with radio receiving capability",
+      "line": 1163
+     }
+    ]
+   }
+  },
+  {
+   "key": "comm.c2p_receivers_defense",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Defensive players on the field with a helmet radio on a scrimmage down",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 3",
+      "q": "Each offensive and defensive team is permitted no more than one player on the field with a speaker in his helmet.",
+      "line": 1426
+     }
+    ]
+   },
+   "college": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "q": "Only one (1) player may be on the field per team at a time with radio receiving capability",
+      "line": 1163
+     }
+    ]
+   }
+  },
+  {
+   "key": "comm.c2p_free_kick_mode",
+   "type": "option",
+   "options": [
+    "on_one_receiver",
+    "off_unlimited_dots"
+   ],
+   "meaning": "Helmet radio on kicking plays",
+   "ownerLeaf": "B13.10.1",
+   "readBy": [
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": "on_one_receiver",
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 3",
+      "q": "For special teams’ plays, only one player per team with a receiver will be permitted on the field.",
+      "line": 1438
+     }
+    ]
+   },
+   "college": {
+    "v": "off_unlimited_dots",
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "q": "There is no limitation to the number of green dot helmets for either team during free kick downs",
+      "line": 1177
+     },
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "q": "communications will be turned off from the ready-for-play until the down ends",
+      "line": 1176
+     }
+    ]
+   }
+  },
+  {
+   "key": "toss.captains_max",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Most captains a team may send to the coin toss",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "engine-game/flow"
+   ],
+   "pro": {
+    "v": 6,
+    "src": [
+     {
+      "cite": "Rule 4, Section 2, Article 2",
+      "q": "limit of six per team, active, inactive or honorary",
+      "line": 960
+     }
+    ]
+   },
+   "college": {
+    "v": 4,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 1",
+      "q": "not more than four field captains from each team",
+      "line": 2099
+     }
+    ]
+   }
+  }
+ ]
+}

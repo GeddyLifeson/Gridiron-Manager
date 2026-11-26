@@ -121,6 +121,370 @@
    "value": 1,
    "unit": "yd",
    "factId": "F-rule-0037"
+  },
+  {
+   "key": "field.goal_width_ft",
+   "value": 18.5,
+   "factId": "F-rule-0039",
+   "unit": "ft"
+  },
+  {
+   "key": "field.crossbar_height_ft",
+   "value": 10,
+   "factId": "F-rule-0041",
+   "unit": "ft"
+  },
+  {
+   "key": "numbering.scheme",
+   "value": "position_bands",
+   "factId": "F-rule-0043"
+  },
+  {
+   "key": "numbering.qb_under_center_eligible",
+   "value": false,
+   "factId": "F-rule-0045"
+  },
+  {
+   "key": "numbering.report_eligible_allowed",
+   "value": true,
+   "factId": "F-rule-0047"
+  },
+  {
+   "key": "formation.line_min",
+   "value": 7,
+   "factId": "F-rule-0049",
+   "unit": "count"
+  },
+  {
+   "key": "formation.backfield_max",
+   "value": 0,
+   "factId": "F-rule-0051",
+   "unit": "count"
+  },
+  {
+   "key": "formation.numbered_linemen_min",
+   "value": 0,
+   "factId": "F-rule-0053",
+   "unit": "count"
+  },
+  {
+   "key": "formation.motion_rule",
+   "value": "one_back_not_forward",
+   "factId": "F-rule-0055"
+  },
+  {
+   "key": "formation.shift_set_seconds",
+   "value": 1,
+   "factId": "F-rule-0057",
+   "unit": "s"
+  },
+  {
+   "key": "substitution.match_window",
+   "value": true,
+   "factId": "F-rule-0059"
+  },
+  {
+   "key": "clock.first_down_stop",
+   "value": "never",
+   "factId": "F-rule-0061"
+  },
+  {
+   "key": "clock.out_of_bounds_restart",
+   "value": "signal_except_last_2min_first_half_last_5min_second_half",
+   "factId": "F-rule-0063"
+  },
+  {
+   "key": "clock.out_of_bounds_snap_window_first_half_s",
+   "value": 120,
+   "factId": "F-rule-0065",
+   "unit": "s"
+  },
+  {
+   "key": "clock.out_of_bounds_snap_window_second_half_s",
+   "value": 300,
+   "factId": "F-rule-0067",
+   "unit": "s"
+  },
+  {
+   "key": "clock.two_minute_timeout",
+   "value": true,
+   "factId": "F-rule-0069"
+  },
+  {
+   "key": "clock.injury_feign_charge",
+   "value": false,
+   "factId": "F-rule-0071"
+  },
+  {
+   "key": "clock.runoff_seconds",
+   "value": 10,
+   "factId": "F-rule-0073",
+   "unit": "s"
+  },
+  {
+   "key": "timeout.length_seconds",
+   "value": 120,
+   "factId": "F-rule-0075",
+   "unit": "s"
+  },
+  {
+   "key": "timeout.short_length_seconds",
+   "value": 30,
+   "factId": "F-rule-0077",
+   "unit": "s"
+  },
+  {
+   "key": "injury.sit_downs",
+   "value": 1,
+   "factId": "F-rule-0079",
+   "unit": "count"
+  },
+  {
+   "key": "deadball.down_without_contact",
+   "value": false,
+   "factId": "F-rule-0081"
+  },
+  {
+   "key": "deadball.helmet_off_ends_play",
+   "value": true,
+   "factId": "F-rule-0083"
+  },
+  {
+   "key": "deadball.fake_slide_ends_play",
+   "value": true,
+   "factId": "F-rule-0085"
+  },
+  {
+   "key": "catch.feet_required",
+   "value": 2,
+   "factId": "F-rule-0087",
+   "unit": "count"
+  },
+  {
+   "key": "fumble.advance_restriction",
+   "value": "fourth_down_try_and_after_two_minute_warning",
+   "factId": "F-rule-0089"
+  },
+  {
+   "key": "pass.spike_requires_under_center",
+   "value": true,
+   "factId": "F-rule-0091"
+  },
+  {
+   "key": "pass.ineligible_downfield_limit_yd",
+   "value": 1,
+   "factId": "F-rule-0093",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.dpi.max_yards",
+   "value": 0,
+   "factId": "F-rule-0095",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_contact.zone_yards",
+   "value": 5,
+   "factId": "F-rule-0097",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.grounding.enforcement",
+   "value": "ten_or_spot_loss_of_down",
+   "factId": "F-rule-0099"
+  },
+  {
+   "key": "foul.low_block.rule",
+   "value": "tight_end_box_only",
+   "factId": "F-rule-0101"
+  },
+  {
+   "key": "dq.unsportsmanlike_fouls_for_ejection",
+   "value": 2,
+   "factId": "F-rule-0103",
+   "unit": "count"
+  },
+  {
+   "key": "kickoff.format",
+   "value": "dynamic",
+   "factId": "F-rule-0105"
+  },
+  {
+   "key": "kickoff.spot_yardline",
+   "value": 35,
+   "factId": "F-rule-0107",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.safety_kick_yardline",
+   "value": 20,
+   "factId": "F-rule-0109",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.touchback_yardline",
+   "value": 35,
+   "factId": "F-rule-0111",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.touchback_after_landing_yardline",
+   "value": 20,
+   "factId": "F-rule-0113",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.fair_catch_inside_25_to_25",
+   "value": false,
+   "factId": "F-rule-0115"
+  },
+  {
+   "key": "kickoff.out_of_bounds_spot_yards",
+   "value": 25,
+   "factId": "F-rule-0117",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.onside_must_declare",
+   "value": true,
+   "factId": "F-rule-0119"
+  },
+  {
+   "key": "kickoff.tee_max_height_in",
+   "value": 1,
+   "factId": "F-rule-0121",
+   "unit": "in"
+  },
+  {
+   "key": "punt.release",
+   "value": "ends_only_before_kick",
+   "factId": "F-rule-0123"
+  },
+  {
+   "key": "fg.fair_catch_kick",
+   "value": true,
+   "factId": "F-rule-0125"
+  },
+  {
+   "key": "fg.miss_spot",
+   "value": "kick_spot_min_20",
+   "factId": "F-rule-0127"
+  },
+  {
+   "key": "touchback.yardline",
+   "value": 20,
+   "factId": "F-rule-0129",
+   "unit": "yd"
+  },
+  {
+   "key": "overtime.format",
+   "value": "timed_period",
+   "factId": "F-rule-0131"
+  },
+  {
+   "key": "overtime.period_length_s",
+   "value": 600,
+   "factId": "F-rule-0133",
+   "unit": "s"
+  },
+  {
+   "key": "overtime.postseason_period_length_s",
+   "value": 900,
+   "factId": "F-rule-0135",
+   "unit": "s"
+  },
+  {
+   "key": "overtime.series_start_yardline",
+   "value": 0,
+   "factId": "F-rule-0137",
+   "unit": "yd"
+  },
+  {
+   "key": "overtime.two_point_required_from_period",
+   "value": 0,
+   "factId": "F-rule-0139",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.two_point_plays_from_period",
+   "value": 0,
+   "factId": "F-rule-0141",
+   "unit": "count"
+  },
+  {
+   "key": "replay.model",
+   "value": "challenge_plus_booth",
+   "factId": "F-rule-0143"
+  },
+  {
+   "key": "challenge.count",
+   "value": 2,
+   "factId": "F-rule-0145",
+   "unit": "count"
+  },
+  {
+   "key": "challenge.third_if",
+   "value": "either_of_first_two_won",
+   "factId": "F-rule-0147"
+  },
+  {
+   "key": "challenge.requires_timeout",
+   "value": false,
+   "factId": "F-rule-0149"
+  },
+  {
+   "key": "challenge.needs_available_timeout",
+   "value": true,
+   "factId": "F-rule-0151"
+  },
+  {
+   "key": "challenge.overturn_refunds_timeout",
+   "value": true,
+   "factId": "F-rule-0153"
+  },
+  {
+   "key": "challenge.allowed_in_overtime",
+   "value": false,
+   "factId": "F-rule-0155"
+  },
+  {
+   "key": "challenge.allowed_after_two_minute",
+   "value": false,
+   "factId": "F-rule-0157"
+  },
+  {
+   "key": "comm.c2p_allowed",
+   "value": true,
+   "factId": "F-rule-0159"
+  },
+  {
+   "key": "comm.c2p_cutoff_seconds",
+   "value": 15,
+   "factId": "F-rule-0161",
+   "unit": "s"
+  },
+  {
+   "key": "comm.c2p_receivers_offense",
+   "value": 1,
+   "factId": "F-rule-0163",
+   "unit": "count"
+  },
+  {
+   "key": "comm.c2p_receivers_defense",
+   "value": 1,
+   "factId": "F-rule-0165",
+   "unit": "count"
+  },
+  {
+   "key": "comm.c2p_free_kick_mode",
+   "value": "on_one_receiver",
+   "factId": "F-rule-0167"
+  },
+  {
+   "key": "toss.captains_max",
+   "value": 6,
+   "factId": "F-rule-0169",
+   "unit": "count"
   }
  ]
 }
