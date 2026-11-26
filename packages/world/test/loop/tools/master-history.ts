@@ -4,7 +4,7 @@
 //
 // Run on a many-core PC (Node 22+, from the repo root):
 //   npx tsx packages/world/test/loop/tools/master-history.ts --out=master-run [--seed=HEX] [--workers=N]
-//       [--seasons=157] [--size=full] [--games=real|test] [--lost=1]
+//       [--seasons=157] [--size=full] [--games=real|test] [--lost=1] [--checkpoint-every=N] [--resume] [--today=YEAR] [--bundle]
 //
 // --workers defaults to the core count minus one; the calling thread plays games too. --games=test swaps
 // in the TEST DOUBLE game port for a quick dry run of the whole pipeline; every output then says so, and
@@ -20,15 +20,12 @@
 // Field names are a contract with the bake (run.json formatVersion); change them only with a version bump.
 // The run is deterministic: the same seed, size and seasons give the same world hash on any machine and
 // any worker count (G-97: results are placed by game index).
-import { mkdirSync, writeFileSync, appendFileSync, readFileSync } from 'node:fs';
+import { appendFileSync, closeSync, existsSync, fstatSync, mkdirSync, openSync, readFileSync, readSync, renameSync, writeFileSync, writeSync } from 'node:fs';
+import { deserialize, serialize } from 'node:v8';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
-import * as people from '../../../src/people/index.ts';
-import * as compliance from '../../../src/compliance/index.ts';
-import * as records from '../../../src/records/index.ts';
-import * as news from '../../../src/news/index.ts';
 import * as health from '../../../src/health/index.ts';
 import { medical } from '@gm/league';
 
@@ -40,11 +37,17 @@ const SIZE = arg('size', 'full') as generation.SizePreset;
 const GAMES = arg('games', 'real');
 const LOST = Number(arg('lost', '1'));
 const WORKERS = Number(arg('workers', String(Math.max(0, availableParallelism() - 1))));
-const TODAY = new Date().getUTCFullYear();
+const TODAY = Number(arg('today', String(new Date().getUTCFullYear())));
+// Checkpoints (for machines that can be reclaimed): the whole world after every N seasons, written to
+// <out>/checkpoint.v8 through a temp file and a rename. --resume carries on from it; the restore checks the
+// world hash, and the run ends on the same hash as an unbroken one (test/loop/checkpoint.test.ts).
+const CHECKPOINT_EVERY = Number(arg('checkpoint-every', '0'));
+const RESUME = process.argv.includes('--resume');
+const BUNDLE = process.argv.includes('--bundle');
+const CHECKPOINT = join(OUT, 'checkpoint.v8');
 
 mkdirSync(OUT, { recursive: true });
 const write = (f: string, v: unknown): void => writeFileSync(join(OUT, f), `${JSON.stringify(v, null, 1)}\n`);
-writeFileSync(join(OUT, 'progress.jsonl'), '');
 
 // ---------- the world ----------
 const content = CONTENT;
@@ -53,9 +56,7 @@ const levelLookup = (level: string): generation.RuleLookup => (level === 'pro' ?
 const s = setup({ seedHex: SEED, size: SIZE, firstSeasonYear: TODAY - SEASONS, historySeasons: SEASONS });
 const tBuild = performance.now();
 const w = loop.createWorld({
-  setup: s, content, names: NAMES,
-  eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...health.HEALTH_EVENT_TYPES, ...records.RECORDS_EVENT_TYPES, ...people.peopleEventTypes()],
-  notabilityOf: records.worldNotability(),
+  setup: s, content, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...turnover.COACH_EVENT_TYPES, ...health.HEALTH_EVENT_TYPES],
   foundingCurves: generation.defaultFoundingCurves(), lostClubs: LOST > 0 ? { fraction: LOST } : undefined,
 });
 const buildMs = performance.now() - tBuild;
@@ -68,9 +69,13 @@ if (GAMES === 'real') {
   // The week pool lives in @gm/headless, whose entry point does not export it yet; loaded by path, as the
   // fixture loads the names helpers.
   const wp = await import(new URL('../../../../headless/src/week-pool/index.ts', import.meta.url).href);
-  const ref = wp.realWeekRef();
+  // --bundle (G-97 part 3, PR 260): play from plain JavaScript bundles of the worker and the job module in
+  // every thread, skipping tsx's per-closure renaming. Same bytes as the sources (bundle.test.ts).
+  const source = wp.realWeekRef();
+  const bundle = BUNDLE ? (await import(new URL('../../../../headless/src/week-pool/bundle.ts', import.meta.url).href)).bundleForPool(source) : null;
+  const ref = bundle?.module ?? source;
   const main = await wp.loadJobRunner(ref);
-  pool = wp.createSyncPool({ module: ref, workers: WORKERS, mainRunner: main }) as Pool;
+  pool = wp.createSyncPool({ module: ref, workers: WORKERS, mainRunner: main, ...(bundle ? { workerPath: bundle.workerPath, execArgv: [] } : {}) }) as Pool;
   gamePort = wp.realWeekPort((jobs: readonly unknown[]) => pool!.run(jobs)) as loop.GameBatchPort;
 } else if (GAMES === 'test') {
   gamePort = loop.batchOf(testGamePort());
@@ -102,29 +107,19 @@ const systems = loop.systemsFrom({
   leaving: timed('leaving', loop.leavingStep()),
   // Log compaction has no counter list yet (X2.4.1 owner); the slot drops dead playing blocks (archive.ts).
   compaction: timed('compaction', loop.slimStep()),
-  hall: timed('hall', loop.hallStep({ halls: loop.defaultHalls({ pro: 'pro', college: 'college' }, PRO_LOOKUP('standings.tie_win_value') ?? 0.5), honours: records.honoursOf })),
+  hall: timed('hall', loop.hallStep({ halls: loop.defaultHalls({ pro: 'pro', college: 'college' }, PRO_LOOKUP('standings.tie_win_value') ?? 0.5) })),
   cohorts: timed('cohorts', loop.cohortStep({
     // Recruit classes follow the college teams alive this season; the draft pool follows the clubs alive.
     scale: (world) => {
       const alive = world.teams.filter((t) => loop.isActive(world, t.id));
       const pro = alive.filter((t) => turnover.levelOfTeam(world, t.id) === 'pro').length;
-      return { topCollegeTeams: alive.length - pro, draftedCount: pro * (PRO_LOOKUP(turnover.RULE_KEY.draftRounds) ?? 0), openEntryChairs: 0, retiredWouldBeCoaches: 0 };
+      return { topCollegeTeams: alive.length - pro, draftedCount: pro * (PRO_LOOKUP(turnover.RULE_KEY.draftRounds) ?? 0), openEntryChairs: turnover.coachEntrants(world), retiredWouldBeCoaches: 0 };
     },
-    names: NAMES, positionMix: content.levels.pro.rosterMix, homeRegion: () => 'region', kinds: ['recruit_class', 'college_walk_on', 'pro_entry_pool'],
+    names: NAMES, positionMix: content.levels.pro.rosterMix, homeRegion: () => 'region', kinds: ['recruit_class', 'college_walk_on', 'pro_entry_pool', 'coach_staff_entry'],
   })),
   development: timed('development', turnover.developmentStep(binding)),
-  moves: timed('moves', turnover.rosterMovesStep(binding)),
-  compliance: timed('compliance', compliance.complianceStep(compliance.complianceBindingFrom(binding, 'pro'))),
-  statistics: timed('statistics', records.statisticsStep({ schedule })),
-  notability: timed('notability', records.notabilityStep()),
-  labels: timed('labels', records.labelsStep()),
-  // X6 memory, X7 edges, X5 needs and the X9 culture pass (world/src/people). Postseason goal ids are
-  // level-free placeholders until C2/T3 league-rules content names them (README PD-10).
-  ...Object.fromEntries(Object.entries(people.peopleSteps({ turnover: binding, goals: () => ({ cut: 'postseason', top: 'top_fifth' }) }))
-    .map(([k, h]) => [k, timed(k, h)])),
-  // X12.2.1: last in the week, so it reads every row the week wrote, labels included. Rows that are not
-  // public travel along the warm X7 ties the edges step keeps (world/src/people).
-  news: timed('news', news.newsStep({ edges: news.edgesFromTies })),
+  // Coach moves run before the roster cycle (C4), as the live world binds them (PR 231).
+  moves: timed('moves', turnover.movesStep(binding, turnover.rosterMovesStep(binding))),
 }, 'master run: owning system not bound yet');
 
 const unbound = loop.unboundSteps(systems);
@@ -132,7 +127,7 @@ const head = {
   // Output format of this folder. The bake refuses a format it does not know: bump on any field change.
   formatVersion: 1,
   kind: GAMES === 'real' ? 'MASTER DATA RUN' : 'DRY RUN WITH THE TEST DOUBLE GAME PORT: NOT FOR BAKING',
-  seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, workers: GAMES === 'real' ? WORKERS : 0,
+  seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, workers: GAMES === 'real' ? WORKERS : 0, bundled: GAMES === 'real' && BUNDLE,
   lostClubsFraction: LOST, worldCode: generation.worldCode(s, 'gridiron-manager', content.contentVersion), teams: w.teams.length, proClubsWithLost: proClubs,
   peopleAtFounding: w.people.size, buildMs: Math.round(buildMs), unbound,
   medicalRuleFallbacks: { pro: medicalRules.pro.fallbackKeys, college: medicalRules.college.fallbackKeys },
@@ -145,7 +140,30 @@ const unboundNow = (): typeof unbound => {
     ? [...unbound, { step: 'health', reason: `bound, but ${h.unreportedGames} of ${h.unreportedGames + h.reportedGames} games reported no injuries (game rosters are not world people yet)` }]
     : unbound;
 };
-write('run.json', { ...head, status: 'running' });
+// The run's identity: a checkpoint from a different run is refused.
+const identity = { seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, lostClubsFraction: LOST, worldCode: head.worldCode };
+let alreadyDone = 0, elapsedBeforeMs = 0;
+if (RESUME && existsSync(CHECKPOINT)) {
+  const tR = performance.now();
+  // readFileSync stops at 2 GiB, so the checkpoint is read in slices too.
+  const fd = openSync(CHECKPOINT, 'r');
+  const buf = Buffer.allocUnsafe(fstatSync(fd).size);
+  for (let at = 0; at < buf.length; ) at += readSync(fd, buf, at, Math.min(1 << 30, buf.length - at), at);
+  closeSync(fd);
+  const cp = deserialize(buf) as loop.WorldCheckpoint;
+  const extra = cp.extra as { done: number; elapsedMs: number; identity: typeof identity };
+  if (JSON.stringify(extra.identity) !== JSON.stringify(identity)) throw new Error(`checkpoint is from another run: ${JSON.stringify(extra.identity)}`);
+  loop.restoreCheckpoint(w, cp, SEED);
+  alreadyDone = extra.done; elapsedBeforeMs = extra.elapsedMs;
+  // Progress rows past the checkpoint are played again, so they are dropped.
+  const rows = existsSync(join(OUT, 'progress.jsonl')) ? readFileSync(join(OUT, 'progress.jsonl'), 'utf8').split('\n').filter((l) => l.trim()) : [];
+  writeFileSync(join(OUT, 'progress.jsonl'), rows.filter((l) => JSON.parse(l).done <= alreadyDone).map((l) => `${l}\n`).join(''));
+  console.log(JSON.stringify({ resumed: alreadyDone, worldHash: cp.worldHash, restoreMs: Math.round(performance.now() - tR) }));
+} else {
+  if (RESUME) console.log(JSON.stringify({ resume: 'no checkpoint found, starting from the first season' }));
+  writeFileSync(join(OUT, 'progress.jsonl'), '');
+  write('run.json', { ...head, status: 'running' });
+}
 console.log(JSON.stringify(head));
 
 // ---------- the outputs ----------
@@ -164,7 +182,7 @@ function snapshot(status: 'running' | 'stopped' | 'finished', seasonsRun: number
   const validation = loop.validateHistory(w);
   const worldHash = loop.worldHash(w);
   write('run.json', {
-    ...head, status, seasonsRun, totalSeconds: Math.round((performance.now() - t0) / 1000),
+    ...head, status, seasonsRun, totalSeconds: Math.round((elapsedBeforeMs + performance.now() - t0) / 1000), resumedFrom: alreadyDone || undefined,
     unbound: unboundNow(), injuriesOpened: health.healthOf(w).opened,
     validation, worldHash, peopleAtEnd: w.people.size, hallMembers: w.hall.members.length,
   });
@@ -174,13 +192,12 @@ function snapshot(status: 'running' | 'stopped' | 'finished', seasonsRun: number
 // ---------- the run ----------
 let last = t0;
 const report = loop.runHistory(w, systems, {
-  seasons: SEASONS, schedule,
+  seasons: SEASONS, schedule, alreadyDone,
   onSeason: (summary, done) => {
     const now = performance.now();
     const row = {
       season: summary.seasonYear, done, ms: Math.round(now - last), steps: Object.fromEntries(Object.entries(timing).map(([k, v]) => [k, Math.round(v)])),
-      heapMB: Math.round(process.memoryUsage().heapUsed / 1e6), people: w.people.size, logRows: w.log.size,
-      peopleState: people.stateSizes(w),
+      heapMB: Math.round(process.memoryUsage().heapUsed / 1e6), people: w.people.size, logRows: w.log.rows().length,
       teamsActive: w.teams.filter((t) => loop.isActive(w, t.id, summary.seasonYear)).length, hallMembers: w.hall.members.length,
       games: summary.games, points: summary.points, passPlays: summary.passPlays, runPlays: summary.runPlays,
       champions: summary.champions, peopleByStatus: summary.people, pools: summary.pools,
@@ -188,6 +205,16 @@ const report = loop.runHistory(w, systems, {
     appendFileSync(join(OUT, 'progress.jsonl'), `${JSON.stringify(row)}\n`);
     if (done % 5 === 0 || done === SEASONS) console.log(JSON.stringify({ season: row.season, done, ms: row.ms, heapMB: row.heapMB, people: row.people, hall: row.hallMembers }));
     snapshot('running', done);
+    if (CHECKPOINT_EVERY > 0 && done % CHECKPOINT_EVERY === 0 && done < SEASONS) {
+      const tC = performance.now();
+      const bytes = serialize(loop.checkpointData(w, SEED, { done, elapsedMs: elapsedBeforeMs + performance.now() - t0, identity }));
+      // One write call takes at most 2 GiB, and a full world's checkpoint is larger, so it goes in slices.
+      const fd = openSync(`${CHECKPOINT}.tmp`, 'w');
+      for (let at = 0; at < bytes.length; at += 1 << 30) writeSync(fd, bytes, at, Math.min(1 << 30, bytes.length - at));
+      closeSync(fd);
+      renameSync(`${CHECKPOINT}.tmp`, CHECKPOINT);
+      console.log(JSON.stringify({ checkpoint: done, MB: Math.round(bytes.length / 1e6), ms: Math.round(performance.now() - tC) }));
+    }
     for (const k of Object.keys(timing)) timing[k] = 0;
     last = performance.now();
   },
