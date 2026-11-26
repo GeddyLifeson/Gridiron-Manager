@@ -95,3 +95,6 @@ export const KEY_MAP: {
 } = keyMapJson as never;
 /** Catalogue foul ids (and the fouling role, when the label fixes one) behind a stat-source foul label. An unknown label is taken as a catalogue id. */
 export function foulStatLabel(label: string): FoulStatLabel { return KEY_MAP.statLabels[label] ?? { ids: [label] }; }
+
+// League-rules files by level (C5, C6, T5), read by the world setup in the app.
+export * as league from './league/index.ts';

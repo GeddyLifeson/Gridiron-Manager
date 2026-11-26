@@ -13,8 +13,7 @@ import { flow, stats } from '@gm/engine-game';
 import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
 import { resolveRuleSet } from '@gm/rules-data';
-import { PARAMS as CHART_PARAMS, createChartCaller, depthRoster, runBatch, type BatchResult } from '../calibration/index.ts';
-import { chartOverrides } from '../calibration/params.ts';
+import { PARAMS as CHART_PARAMS, chartOverrides, createChartCaller, depthRoster, runBatch, type BatchResult } from '../calibration/index.ts';
 
 /**
  * Every parameter file the tick path reads (J1 to J10): field, kinematics, perception, pre-snap, player AI,
