@@ -1,0 +1,24 @@
+{
+ "contentSchemaVersion": 1,
+ "language": "en",
+ "templates": [
+  {
+   "key": "warning.hide_case",
+   "params": {},
+   "default": "You are about to hide a case from the people who must know. It is allowed, it is logged, and it can come out.",
+   "note": "guard=football; L8.2.5 warning"
+  },
+  {
+   "key": "warning.shade_report",
+   "params": {},
+   "default": "You are about to shade a report. It is allowed, it is logged, and an inquiry can find it.",
+   "note": "guard=football; L8.2.5 warning"
+  },
+  {
+   "key": "warning.improper_benefit",
+   "params": {},
+   "default": "You are about to give an improper benefit to keep a player. It is allowed, it is logged, and it can be found.",
+   "note": "guard=football; L8.2.5 warning"
+  }
+ ]
+}
