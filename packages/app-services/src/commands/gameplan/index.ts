@@ -60,6 +60,10 @@ export type GameplanCommand =
   | { readonly kind: 'fill_band'; readonly chosen: readonly pb.Call[] }
   | { readonly kind: 'set_audibles'; readonly list: readonly gp.Audible[]; readonly freedom?: gp.QbFreedom }
   | { readonly kind: 'apply_template'; readonly text: string }
+  /** Drag an entry to another box (or another place in its own box) at position `at` (end when absent). */
+  | { readonly kind: 'transfer_entry'; readonly fromBoxId: string; readonly entryId: string; readonly toBoxId: string; readonly at?: number }
+  /** Start this week's sheet from a saved sheet (last week's export): layout, entries, scripts, audibles and notes come over; the wristband is refilled. */
+  | { readonly kind: 'start_from_sheet'; readonly text: string }
   // head coach card (G7.5.3)
   | { readonly kind: 'edit_fourth'; readonly distanceYd: number; readonly yardsToGoalYd: number; readonly call: gp.FourthCall }
   | { readonly kind: 'edit_two_point'; readonly scoreDiff: number; readonly goForTwo: boolean }
@@ -80,7 +84,7 @@ const GROUP: Readonly<Record<GameplanCommand['kind'], Group>> = {
   add_to_plan: 'plan', remove_from_plan: 'plan', set_matchup: 'plan', remove_matchup: 'plan', submit_plan: 'plan', accept_proposal: 'plan', reject_proposal: 'plan',
   approve_plan: 'approve', send_back_plan: 'approve',
   add_box: 'sheet', move_box: 'sheet', remove_box: 'sheet', set_situation: 'sheet', set_box_situation: 'sheet', add_entry: 'sheet', remove_entry: 'sheet',
-  reorder_box: 'sheet', set_script: 'sheet', set_must_calls: 'sheet', set_notes: 'sheet', fill_band: 'sheet', set_audibles: 'sheet', apply_template: 'sheet', lock_sheet: 'sheet',
+  reorder_box: 'sheet', set_script: 'sheet', set_must_calls: 'sheet', set_notes: 'sheet', fill_band: 'sheet', set_audibles: 'sheet', apply_template: 'sheet', lock_sheet: 'sheet', transfer_entry: 'sheet', start_from_sheet: 'sheet',
   edit_fourth: 'card', edit_two_point: 'card', refresh_card_block: 'card',
   export_sheet: 'read',
 };
@@ -187,6 +191,26 @@ export function runGameplanCommand(s: GameplanState, ctx: CommandContext, cmd: G
       try { t = gp.parseSheet(cmd.text, true); } catch (e) { return refuse('G7.1.1', (e as Error).message); }
       if (t.unit !== sheet.unit) return refuse('G7.1.1', `the template is for ${t.unit}, the sheet is for ${sheet.unit}`);
       return done(withSheet(s, { ...sheet, page: t.page, situations: t.situations, boxes: t.boxes }), ['layout and situations replaced; entries start empty']);
+    }
+    case 'transfer_entry': {
+      const from = sheet.boxes.find((b) => b.id === cmd.fromBoxId);
+      const to = sheet.boxes.find((b) => b.id === cmd.toBoxId);
+      if (!from) return refuse('G7.3.1', `no box ${cmd.fromBoxId}`);
+      if (!to) return refuse('G7.3.1', `no box ${cmd.toBoxId}`);
+      const entry = from.entries.find((e) => e.id === cmd.entryId);
+      if (!entry) return refuse('G7.3.1', `no entry ${cmd.entryId} in ${from.title}`);
+      if (from.id !== to.id && to.entries.some((e) => e.id === entry.id)) return refuse('G7.3.1', `entry ${entry.id} already in ${to.title}`);
+      return done(withSheet(s, gp.addEntry(gp.removeEntry(sheet, from.id, entry.id), to.id, entry, cmd.at)));
+    }
+    case 'start_from_sheet': {
+      let t: gp.Sheet;
+      try { t = gp.parseSheet(cmd.text, false); } catch (e) { return refuse('G7.1.1', (e as Error).message); }
+      if (t.unit !== sheet.unit) return refuse('G7.1.1', `that sheet is for ${t.unit}, this sheet is for ${sheet.unit}`);
+      const next: gp.Sheet = { ...t, gameId: sheet.gameId, wristband: [], lockedAt: null, version: 1 };
+      const offPlan = next.boxes.flatMap((b) => b.entries).filter((e) => !s.menu.some((m) => m.call.playId === e.call.playId)).length;
+      const notes = ['layout, entries, scripts, audibles and notes copied; refill the wristband'];
+      if (offPlan) notes.push(`${offPlan} entr${offPlan === 1 ? 'y is' : 'ies are'} not in this week's plan: not practised this week (G7.3.1)`);
+      return done(withSheet(s, next), notes);
     }
     case 'edit_fourth':
       if (!s.card) return refuse('G7.5.3', 'there is no head coach card for this game');

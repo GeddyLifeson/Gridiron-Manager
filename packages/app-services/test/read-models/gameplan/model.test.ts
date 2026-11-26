@@ -177,3 +177,30 @@ describe('O3.4.3 print', () => {
     expect(letter.boxes.every((b) => b.textPt >= 7)).toBe(true);
   });
 });
+
+describe('call sheet drag and drop and last week\'s sheet', () => {
+  it('drags an entry to another box at a position, and within its own box', () => {
+    const s = state();
+    const from = s.sheet.boxes.find((b) => b.entries.length >= 2)!;
+    const to = s.sheet.boxes.find((b) => b.id !== from.id)!;
+    const e = from.entries[0]!;
+    const r = ok(runGameplanCommand(s, ctx(s), { kind: 'transfer_entry', fromBoxId: from.id, entryId: e.id, toBoxId: to.id, at: 0 })).state;
+    expect(r.sheet.boxes.find((b) => b.id === from.id)!.entries.some((x) => x.id === e.id)).toBe(false);
+    expect(r.sheet.boxes.find((b) => b.id === to.id)!.entries[0]!.id).toBe(e.id);
+    const back = ok(runGameplanCommand(s, ctx(s), { kind: 'transfer_entry', fromBoxId: from.id, entryId: e.id, toBoxId: from.id, at: 1 })).state;
+    expect(back.sheet.boxes.find((b) => b.id === from.id)!.entries.map((x) => x.id).indexOf(e.id)).toBe(1);
+    expect(runGameplanCommand(s, ctx(s), { kind: 'transfer_entry', fromBoxId: from.id, entryId: 'nope', toBoxId: to.id }).ok).toBe(false);
+  });
+  it('starts from last week\'s sheet: layout and entries come over unlocked, on this week\'s game, wristband cleared', () => {
+    const s = state();
+    const lastWeek = gp.serializeSheet({ ...s.sheet, gameId: 'last', lockedAt: 50, version: 3 });
+    const fresh: GameplanState = { ...s, sheet: gp.emptySheet('offense', s.sheet.gameId) };
+    const r = ok(runGameplanCommand(fresh, ctx(fresh), { kind: 'start_from_sheet', text: lastWeek }));
+    expect(r.state.sheet.gameId).toBe(s.sheet.gameId);
+    expect(r.state.sheet.lockedAt).toBeNull();
+    expect(r.state.sheet.version).toBe(1);
+    expect(r.state.sheet.wristband).toEqual([]);
+    expect(r.state.sheet.boxes.map((b) => b.entries.length)).toEqual(s.sheet.boxes.map((b) => b.entries.length));
+    expect(runGameplanCommand(fresh, ctx(fresh), { kind: 'start_from_sheet', text: '{}' }).ok).toBe(false);
+  });
+});

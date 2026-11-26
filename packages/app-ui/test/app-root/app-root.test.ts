@@ -94,6 +94,7 @@ function playByKeys(session: GameSession): number {
   for (let guard = 0; guard < 20000 && !session.final; guard++) {
     const s = session.driver.state;
     if (session.holding) { session.wait(LIVE_MS); continue; }
+    if (session.watching) { session.wait(LIVE_MS); session.resumeWatch(); continue; }
     const p = session.pending;
     if (p?.late) { session.wait(1000); continue; }
     if (!p || !s.open) throw new Error('session waits with no open request');
@@ -123,6 +124,8 @@ describe('a game on the staff sheets through the career port', () => {
       const session = port.startGame();
       const v = gameCalling.consoleViewOfSession(session, { keyFor: () => null });
       expect(v.prompt).not.toBeNull(); // the toss
+      // The head coach says before the game that he calls every unit himself (coordinators call by default, Marlon 19:15).
+      for (const u of ['offense', 'defense', 'special_teams'] as const) session.takeOver(u);
       expect(playByKeys(session)).toBeGreaterThan(100);
       expect(session.final).toBe(true);
       const s = session.situation();

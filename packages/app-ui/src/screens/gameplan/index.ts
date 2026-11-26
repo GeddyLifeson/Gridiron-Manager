@@ -21,6 +21,8 @@ export interface GameplanOptions { situation: string | null; paper: (typeof PAPE
 export interface GameplanHost {
   view(unit: Unit, options: GameplanOptions): GameplanView | null;
   dispatch(unit: Unit, intent: GameplanIntent): void;
+  /** True when a sheet from last week is kept for this unit (the "start from last week's sheet" action). */
+  hasLastWeek?(unit: Unit): boolean;
 }
 
 const unitOf = (s: string | undefined): Unit => ((UNITS as readonly string[]).includes(s ?? '') ? (s as Unit) : 'offense');
@@ -62,6 +64,7 @@ export function callSheetRoute(host: GameplanHost): RouteEntry {
         view: host.view(unit, optionsFromView(p.location.view)),
         tab: isTab(p.location.view.tab) ? p.location.view.tab : 'layout',
         readOnly: p.readOnly,
+        canStartFromLastWeek: host.hasLastWeek?.(unit) ?? false,
         onTab: (tab) => p.setView({ ...p.location.view, tab }),
         onIntent: (i) => {
           if (i.kind === 'print') p.setView({ ...p.location.view, paper: i.paper, keys: i.keyHints ? '1' : '0' });
