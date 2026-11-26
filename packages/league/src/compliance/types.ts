@@ -97,13 +97,26 @@ export type PenaltyOrder =
   | { readonly kind: 'show_cause'; readonly personId: number; readonly years: number }
   | { readonly kind: 'rules_education'; readonly teamId: number };
 
+/** Rows and closed cases no step reads again (log.ts `retireSpent`), kept for N4 certified mode and history. */
+export interface ComplianceArchive {
+  /** Retired rows, one chunk per sweep, oldest first. */
+  readonly rows: readonly (readonly ViolationLogRow[])[];
+  /** Closed cases past the detection window, one chunk per sweep. */
+  readonly cases: readonly (readonly CaseRow[])[];
+}
+
 export interface ComplianceState {
+  /** The live log: acts still detectable, held by an open case, or inside the cooldown. */
   readonly log: readonly ViolationLogRow[];
   readonly cases: readonly CaseRow[];
   readonly record: readonly LeagueRecordEntry[];
   readonly orders: readonly { readonly caseId: number; readonly order: PenaltyOrder }[];
   readonly nextLogId: number;
   readonly nextCaseId: number;
+  /** Retired rows and cases (absent until the first sweep moves something). */
+  readonly archive?: ComplianceArchive;
+  /** Live log length at which `commitAct` sweeps again (log.ts `retireIfGrown`). */
+  readonly retireAt?: number;
 }
 
 export function emptyCompliance(): ComplianceState {

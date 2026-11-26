@@ -1,8 +1,7 @@
 // E6 personal money in the off-screen world, the part the world can ground today: what a person actually paid
 // out of his own pocket (a fine the club may not repay, C11.2.4 rule 2). MO-03: no opening balance sheet is
-// drawn yet. E6.1.2 opens a sheet from modelled prior pay, and the world holds no staff pay (only contract end
-// years), and general managers sit on no pay-band rung; an invented balance would be a number from nowhere.
-// When world pay lands, `personalPaid` is the debit side that opening sheet must carry.
+// drawn yet. Gross pay is kept by pay.ts (`priorPay`); the sheet also needs a tax profile and cost of living
+// per place and K2 money settings, which are not wired. `personalPaid` is the debit side that sheet carries.
 import type { LiveWorld } from '../loop/types.ts';
 
 /** `LiveWorld.systemState` key of personal payments. */

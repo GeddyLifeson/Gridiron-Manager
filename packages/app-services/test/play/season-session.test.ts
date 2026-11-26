@@ -8,6 +8,7 @@ import { season as seasons } from '@gm/world';
 import { SeasonPlay, contentKeyOfWorldTeam } from '../../src/play/index.ts';
 import type { GameCallingSession } from '../../src/commands/game-calling/index.ts';
 import { resolve, testConsoleConfig } from '../game-calling/fixtures.ts';
+import { input as depthInput } from '../read-models/depth-chart/fixture.ts';
 
 const ROOT = resolvePath(import.meta.dirname, '../../../..');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,6 +20,9 @@ const CONTENT: seasons.LeagueContent = {
   collegeLeagueRules: read('packages', 'rules-data', 'data', 'league', 'collegeleague_2026.json'),
 };
 const SEED = '3a5c7e9b1d2f4608';
+// The reference resolver keeps these whole weeks fast (a tick-engine pro week is minutes). The session passes the
+// resolver through unchanged, so the season logic under test is the same; the default is checked separately.
+const FAST = 'reference' as const;
 const KEY_MS = 250; // virtual time per key press: a named test assumption, not a measured value
 const LIVE_MS = 6000; // virtual time from a committed call to the next dead ball: a named test assumption
 
@@ -56,7 +60,7 @@ function firstKey(ruleSetId: string, skip: (built: seasons.BuiltSeason, id: numb
 
 describe('season session', () => {
   it('pro: plays the seat game on the console, records it with the week, saves, restores and replays', () => {
-    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: firstKey('pro_2026') });
+    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, resolver: FAST, seatTeamKey: firstKey('pro_2026') });
     const firstWeek = play.state.week;
     const weekGames = play.built.spec.fixtures.filter((f) => f.week === firstWeek);
     const seatFixture = weekGames.find((f) => f.home === play.seatTeamId || f.away === play.seatTeamId);
@@ -96,7 +100,7 @@ describe('season session', () => {
     expect(today.seasonOver).toBe(false);
     if (today.nextGame) { expect(today.weeksToGame).toBe(0); expect(today.nextGame.opponentName.length).toBeGreaterThan(0); } else expect(today.weeksToGame).toBeGreaterThan(0);
     // Every other game is the real game, exactly as the season runner plays it.
-    const port = seasons.realGamePort({ ruleSetId: 'pro_2026' });
+    const port = seasons.realGamePort({ ruleSetId: 'pro_2026', resolver: FAST });
     const other = state.games.find((g) => g.fixture.gameId !== seatFixture.gameId)!;
     expect(port.playGame({ season: 2026, ruleSetId: 'pro_2026', fixture: other.fixture, seedHex: other.seedHex, preparation: [null, null], seatSide: null })).toEqual(other.outcome);
 
@@ -127,7 +131,7 @@ describe('season session', () => {
     const busy = new Set(probe.spec.fixtures.filter((f) => f.week === opening).flatMap((f) => [f.home, f.away]));
     const nextWeek = new Set(probe.spec.fixtures.filter((f) => f.week === opening + 1).flatMap((f) => [f.home, f.away]));
     const key = firstKey('college_2026', (_b, id) => busy.has(id) || !nextWeek.has(id));
-    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: key });
+    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: SEED, resolver: FAST, seatTeamKey: key });
     expect(play.nextSeatGame()).toBeNull();
     expect(play.today().weeksToGame).toBe(1);
     expect(() => play.openGame({ console: testConsoleConfig(), resolve })).toThrow(/no game/);
@@ -150,13 +154,46 @@ describe('season session', () => {
     expect(contentKeyOfWorldTeam(CONTENT, world, 41)).toBe(c.id);
     expect(() => contentKeyOfWorldTeam(CONTENT, world, 42)).toThrow(/matches 0/);
     expect(() => contentKeyOfWorldTeam(CONTENT, world, 7)).toThrow(/not in the world/);
-    const play = SeasonPlay.fromWorld(CONTENT, world, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamId: 41 });
+    const play = SeasonPlay.fromWorld(CONTENT, world, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamId: 41, resolver: FAST });
     expect(play.keyOf(play.seatTeamId)).toBe(c.id);
     expect(play.today().seatTeamName).toBe(`${c.city} ${c.nickname}`);
   });
 
+  it('the depth chart decides who plays the seat game, on the console and when the staff plays it', () => {
+    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, resolver: FAST, seatTeamKey: firstKey('pro_2026') });
+    const d = depthInput();
+    play.setDepthChart(d);
+    const seat = play.nextSeatGame()!;
+    const session = play.openGame({ console: testConsoleConfig(), resolve, keyIntervalMs: KEY_MS, startMs: 0, liveMs: () => LIVE_MS });
+    playByKeys(session);
+    expect(session.final).toBe(true);
+    const chartIds = new Set(d.people.map((p) => p.personId));
+    const calls = session.events.flatMap((e) => (e.type === 'decision_made' && e.decision.side === seat.side && e.decision.actor.kind === 'user' && (e.decision.snappingCall || e.decision.opposingCall) ? [e.decision] : []));
+    expect(calls.length).toBeGreaterThan(50);
+    let offense = 0;
+    for (const c of calls) {
+      const call = (c.snappingCall ?? c.opposingCall)!;
+      if (call.unit === 'return') continue; // no return unit in this chart: the placeholder eleven
+      for (const p of call.players) expect(chartIds.has(p.playerId)).toBe(true);
+      if (call.unit === 'offense') { offense++; expect(call.players.map((p) => p.playerId)).toContain(1); }
+    }
+    expect(offense).toBeGreaterThan(20);
+    play.finishGame();
+    // Week 2 by the staff, with the starting quarterback ruled out: the game runs on the backup.
+    play.setDepthChart({ ...d, people: d.people.map((p) => (p.personId === 1 ? { ...p, out: true } : p)) });
+    const outcome = play.delegateGame();
+    expect(outcome.plays).toBeGreaterThan(0);
+    play.setDepthChart(null);
+    expect(play.seatDepth).toBeNull();
+  }, 300_000);
+
+  it('runs on the tick engine unless told otherwise', () => {
+    const play = SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: firstKey('pro_2026') });
+    expect(play.resolverId).toBe('tick');
+  });
+
   it('refuses a seat team that is not in the competition', () => {
-    expect(() => SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, seatTeamKey: 'no-such-team' })).toThrow(/not in the competition/);
+    expect(() => SeasonPlay.start(CONTENT, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: SEED, resolver: FAST, seatTeamKey: 'no-such-team' })).toThrow(/not in the competition/);
   });
 });
 

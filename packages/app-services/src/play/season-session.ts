@@ -23,7 +23,8 @@
 import { season as seasons } from '@gm/world';
 import { postseason, standings } from '@gm/league';
 import type { DriveRecord, GameInput, PlayRecord } from '@gm/schema';
-import { GameCallingSession, type GameSessionOptions } from '../commands/game-calling/index.ts';
+import { GameCallingSession, type GameSessionOptions, type LineupFor } from '../commands/game-calling/index.ts';
+import { seatTeamFromDepth, type SeatDepth } from './seat-depth.ts';
 
 type GameContext = seasons.GameContext;
 type GameOutcome = seasons.GameOutcome;
@@ -37,6 +38,8 @@ export interface SeasonPlayOptions {
   readonly seedHex: string;
   /** World-data key of the team the user coaches. */
   readonly seatTeamKey: string;
+  /** Play resolver of every game: the tick engine by default (world season real game); `reference` for fast harnesses. */
+  readonly resolver?: seasons.RealResolver;
 }
 
 /** What the host supplies to put the seat's game on the console: the console setup and the key map. */
@@ -121,6 +124,7 @@ export interface WorldSeasonOptions {
   readonly seedHex: string;
   /** Team id in the world's team table. */
   readonly seatTeamId: number;
+  readonly resolver?: seasons.RealResolver;
 }
 
 /**
@@ -163,7 +167,7 @@ export class SeasonPlay {
     this.built = seasons.buildSeason(content, options.ruleSetId, { season: options.seasonYear, seedHex: options.seedHex, seatTeamKey: options.seatTeamKey });
     if (this.built.spec.seatTeamId === null) throw new Error(`season session: no seat team for ${options.seatTeamKey}`);
     this.seatTeamId = this.built.spec.seatTeamId;
-    this.port = seasons.realGamePort({ ruleSetId: options.ruleSetId });
+    this.port = seasons.realGamePort({ ruleSetId: options.ruleSetId, ...(options.resolver ? { resolver: options.resolver } : {}) });
     this.state = state ?? seasons.createSeason(this.built.spec);
   }
 
@@ -178,7 +182,7 @@ export class SeasonPlay {
    * not reach the games yet (placeholder rosters, see the file header).
    */
   static fromWorld(content: seasons.LeagueContent, world: WorldTeams, o: WorldSeasonOptions): SeasonPlay {
-    return new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId) });
+    return new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId), ...(o.resolver ? { resolver: o.resolver } : {}) });
   }
 
   /** A saved season, continued from its saved state. */
@@ -202,6 +206,9 @@ export class SeasonPlay {
     if (play.state.chain !== save.state.chain) throw new Error(`season session: replay reached chain ${play.state.chain}, the save has ${save.state.chain}`);
     return play;
   }
+
+  /** The play resolver the games run on. */
+  get resolverId(): seasons.RealResolver { return this.port.game.resolverId; }
 
   get stage(): seasons.SeasonStage { return this.state.stage; }
   get champion(): number | null { return this.state.champion; }
@@ -230,9 +237,28 @@ export class SeasonPlay {
     return game;
   }
 
-  /** The seat's game input for the coming step, exactly as an all-AI run would build it. */
-  private inputFor(ctx: GameContext): GameInput {
-    return seasons.fixtureInput(this.port.game, ctx.fixture, ctx.seedHex);
+  /**
+   * The user's depth chart (the depth chart screen's chart, unit definitions, roster and actives). From the next
+   * game on it decides who plays for the seat, on the console and when the staff plays the game; null puts the
+   * placeholder eleven back. Not saved with the season: the world keeps the chart.
+   */
+  seatDepth: SeatDepth | null = null;
+  setDepthChart(d: SeatDepth | null): void { this.seatDepth = d; }
+
+  /** The seat's game input for the coming step: the all-AI input, with the seat team from the depth chart when one is set. */
+  private seatInput(seat: SeatGame): { input: GameInput; lineup: LineupFor } {
+    const input = seasons.fixtureInput(this.port.game, seat.context.fixture, seat.context.seedHex);
+    if (this.seatDepth === null) {
+      const roster = seasons.chart.depthRoster(input.teams[seat.side].depth);
+      return { input, lineup: (unit, personnel) => roster(unit, personnel) };
+    }
+    const own = seatTeamFromDepth(input.teams[seat.side], this.seatDepth);
+    const other = input.teams[seat.side === 0 ? 1 : 0];
+    const theirs = new Set(other.players.map((p) => p.playerId));
+    const clash = own.team.players.filter((p) => theirs.has(p.playerId)).map((p) => p.playerId);
+    if (clash.length) throw new Error(`season session: depth chart ids ${clash.slice(0, 5).join(', ')} are also opponent placeholder ids`);
+    const teams = (seat.side === 0 ? [own.team, other] : [other, own.team]) as unknown as GameInput['teams'];
+    return { input: { ...input, teams }, lineup: own.lineup };
   }
 
   /** Puts the seat's game of the coming step on the console. The opponent is the chart caller. */
@@ -241,10 +267,9 @@ export class SeasonPlay {
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
     if (this.seatOutcomes.has(seat.context.fixture.gameId)) throw new Error(`season session: game ${seat.context.fixture.gameId} is already played`);
-    const input = this.inputFor(seat.context);
+    const { input, lineup } = this.seatInput(seat);
     const deps = this.port.game.deps(input);
-    const roster = seasons.chart.depthRoster(input.teams[seat.side].depth);
-    const session = new GameCallingSession({ ...host, input, deps, userSide: seat.side, lineup: (unit, personnel) => roster(unit, personnel) });
+    const session = new GameCallingSession({ ...host, input, deps, userSide: seat.side, lineup });
     session.start();
     this.open = { context: seat.context, input, session };
     return session;
@@ -273,7 +298,12 @@ export class SeasonPlay {
     if (this.open) throw new Error('season session: a game is open on the console');
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
-    const outcome = this.port.playGame(seat.context);
+    let outcome: GameOutcome;
+    if (this.seatDepth === null) outcome = this.port.playGame(seat.context);
+    else {
+      const { input } = this.seatInput(seat);
+      outcome = seasons.outcomeOf(this.port.game, seat.context.fixture, input, this.port.game.simulate(input));
+    }
     this.seatOutcomes.set(seat.context.fixture.gameId, outcome);
     this.advance();
     return outcome;

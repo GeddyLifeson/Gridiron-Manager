@@ -96,7 +96,9 @@ const ROWS = [
   ['move.windowMaxS', 0.5, 0.4, 0.7, 's', 'bible', 'J8.3.1', MOVES],
   ['move.tempYd', 0.5, 0.2, 1.0, 'yd', 'bible', 'J8.3.1', MOVES],
   ['move.beta0', 0.0, -1, 1, 'logit', 'assumption', 'J8.3.1', MOVES],
-  ['move.beta1', 0.6, 0.2, 1.2, 'logit/z', 'assumption', 'J8.3.1', MOVES],
+  // Moved with contest.tackle.beta1 (0.6 * 0.35 / 0.5): the move contest and the tackle read the same pair of
+  // players, and together they are fitted to the real spread of missed and broken tackle rates (see that row).
+  ['move.beta1', 0.42, 0.2, 1.2, 'logit/z', 'assumption', 'J8.3.1', MOVES],
   ['move.brokeDown', -0.8, -2, 0, 'logit', 'assumption', 'J8.3.1', MOVES],
   ['move.room', 0.6, 0, 1.5, 'logit', 'assumption', 'J8.3.1', MOVES],
   ['move.winYd', 3.0, 1, 6, 'yd', 'assumption', 'J8.3.1', MOVES],
@@ -163,7 +165,9 @@ const ROWS = [
 
   // J6.6.1 contact (the carrier module runs the tackle contest on bodies)
   ['tackle.windowS', 0.3, 0.2, 0.5, 's', 'bible', 'J6.6.1', TACKLE],
-  ['tackle.contactGapYd', 0.15, 0, 0.4, 'yd', 'assumption', 'J6.6.1', STRUCT],
+  // The gap between body circles a tackler can reach across with his arms. At 0.15 a tackler had to run into the
+  // carrier's body, and a carrier who passed at arm's length was never touched (runs averaged over 10 yards).
+  ['tackle.contactGapYd', 0.6, 0, 1.0, 'yd', 'assumption', 'J6.6.1', STRUCT],
   ['tackle.missDownS', 0.8, 0.3, 1.5, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   ['tackle.brokenDownS', 0.4, 0.1, 1.0, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   // Square approach: angle quality is the cosine of the angle between the tackler's velocity and the line to the carrier, mapped to 0 to 1.

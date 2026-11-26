@@ -10786,6 +10786,36 @@
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
     }
    ]
+  },
+  {
+   "id": "F-measured-rate-0390",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Run and pass snaps per team game with a down, kneel-downs and spikes excluded, FBS against FBS regular season: 65.56 (college, 2024). Basis of the college G7.2.3 expected-snaps table.",
+   "value": 65.56,
+   "unit": "plays",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play 2024 (sportsdataverse-data release cfbfastR_cfb_pbp, play_by_play_2024.parquet), FBS against FBS regular season, 752 games, 98,609 snaps; computed by the project",
+     "locator": "packages/football-content/test/gameplan/build_reference_college.py; output packages/football-content/src/gameplan/reference-college-2024.ts",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 65.56
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "New row for the college expected-snaps table. Publishers checked on 2026-11-26 count plays another way and do not confirm this definition."
+    }
+   ],
+   "notes": "Agrees with F-measured-rate-0282's note (65.4 to 65.7 excluding kneels and spikes, 2023-2025). Checked 2026-11-26: TeamRankings plays per game (2024 column, page dated 2025-01-21) shows no league average and no definition; the 82 teams read averaged about 71.4, a top-sorted partial list, so not comparable. CBS Sports (Dennis Dodd, 2025-02-26) gives about 175 combined plays per game for both teams, which counts kicks and penalties, not this definition. Sports-reference could not be read from the cloud. No independent source on the same definition yet."
   }
  ]
 }
