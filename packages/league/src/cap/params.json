@@ -1,0 +1,18 @@
+{
+  "module": "league.cap",
+  "version": "g16.1",
+  "params": [
+    {
+      "name": "league.cap.minSalaryStepUsd",
+      "value": 45000,
+      "min": 0,
+      "max": 200000,
+      "unit": "usd_per_year",
+      "belongsTo": "league.cap",
+      "basis": "bible",
+      "leaf": "C6.4.1",
+      "constrainedBy": "C6.4.1 rule 4: every Article 26 row rises $45,000 a year to 2030; generated years after the last rule-set year continue the step (Assumption, the agreement ends in 2030)",
+      "status": "starting"
+    }
+  ]
+}
