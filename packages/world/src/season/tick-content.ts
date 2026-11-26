@@ -21,6 +21,7 @@ import {
 } from '@gm/schema';
 import { perception as perceptionModule, qb as qbModule, tickResolver } from '@gm/engine-core';
 import { starter } from '@gm/football-content';
+import { lang } from '@gm/football-lang';
 
 type PlaySetup = tickResolver.PlaySetup;
 type QbPlay = qbModule.QbPlay;
@@ -48,13 +49,15 @@ export const PROVISIONAL: readonly string[] = [
   'kick, return and free-kick unit spots are design values (Assumption); dynamic-kickoff lines come from the rule set',
   'a call without a content id gets the starter play of its kind (run: inside zone, middle: draw; one play per pass kind)',
   'run left mirrors the play; passes are always drawn to the right',
-  'drop words: threeStepFromGun = gun3, fiveStepFromGun = uc7 (gun 5 equals under-centre 7), sevenStep = uc7',
+  'drop words: threeStepFromGun = gun3, fiveStepFromGun = uc5 (he starts 4.5 yd deep, so five steps from the gun take the time and depth of five from under centre), sevenStep = uc7',
   'read order: the quarterback key roles, else routes as drawn; read values 0.6 falling by 0.1',
   'RPO and the flea flicker run as their run branch and as a play-action pass',
   'off-the-line receivers drawn at 1 yd are set at 1.4 yd so the pre-snap walk tolerance cannot leave them in the neither band',
   'an under-centre quarterback is set 0.9 yd behind the ball (the bodies touch nearer than the drawn 0.6 yd)',
   'a return or block unit sent against an offensive play (or a defense against a kick) plays the snap in its return or block alignment',
   'J4.2.2 rally rule added to every scrimmage defender (first for those with no run read in the starter content)',
+  'a defender with no run read in the content comes up on a run read; an underneath zone defender holds 0.5 s before he drops',
+  'a zone defender with no drawn path drops to a landmark for his zone name (yards from the ball) at the content depth',
   'package readiness 70 and opponent preparation 0.5 for every unit (neutral rosters carry no knowledge)',
 ];
 
@@ -116,11 +119,57 @@ const RALLY: Assignment['rules'][number] = {
   when: { op: 'test', name: 'ballCarrierDeclared', args: {} }, guard: null,
   then: [{ name: 'pursue', args: { angle: 'intercept' } }], text: 'Ball carrier declared: rally to the ball (J4.2.2)',
 };
+/** Zone defenders play with their eyes on the quarterback and the ball, wherever their hips point (J3.4.1). */
+const ZONE_EYES: ReadonlySet<string> = new Set(['zoneDrop', 'deepZone']);
+/**
+ * The run read the starter linebackers and defensive backs do not carry (their content rules cover the pass only):
+ * on a run read the player comes up for the ball, and an underneath zone defender holds his ground for a read step
+ * before he drops, so a handoff does not find him backing away. The read step is a design value (Assumption).
+ */
+const RUN_READ: Assignment['rules'][number] = {
+  when: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } }, guard: null,
+  then: [{ name: 'pursue', args: { angle: 'intercept' } }], text: 'Run read: come up and play the ball',
+};
+export const READ_STEP_S = 1.0;
 const readsRun = (a: Assignment): boolean => JSON.stringify(a.rules).includes('"read"');
 function withRally(a: Assignment): Assignment {
-  return { ...a, rules: readsRun(a) ? [...a.rules, RALLY] : [RALLY, ...a.rules] };
+  return readsRun(a) ? { ...a, rules: [...a.rules, RALLY] } : { ...a, rules: [RALLY, RUN_READ, ...a.rules] };
 }
 
+/**
+ * Where a zone defender drops to. The starter content names the zone and its depth but draws no path, and the
+ * language's zone behaviors follow the drawn path, so without one he stands on his alignment all play. Lateral
+ * landmarks are yards from the ball (design values, Assumption): hole 0, hook 4, hook-curl 7, curl-flat 11, flat 14,
+ * deep middle 0, deep half 10, deep third and outside quarter 15, inside quarter 6. Depth is the content's `workTo`
+ * or `depth`, else 5 for a flat and 15 for a deep zone. A deep defender goes at the snap (a drawn path). An
+ * underneath defender holds for the read step and then drops (a rule after the run read, so a run read wins).
+ */
+const ZONE_LATERAL: readonly (readonly [string, number])[] = [
+  ['hookCurl', 7], ['curlFlat', 11], ['hook', 4], ['hole', 0], ['flat', 14],
+  ['deepMiddle', 0], ['deepHalf', 10], ['deepThird', 15], ['deepQuarter', 15], ['insideQuarter', 6],
+];
+function withDropPath(a: Assignment): Assignment {
+  const type = a.behavior.type;
+  if ((type !== 'zoneDrop' && type !== 'deepZone') || a.behavior.path.length > 0) return a;
+  const zone = String(a.behavior.params['zone'] ?? '');
+  const row = ZONE_LATERAL.find(([k]) => zone.toLowerCase().includes(k.toLowerCase()));
+  if (row === undefined) return a;
+  const num = (k: string): number | null => (typeof a.behavior.params[k] === 'number' ? (a.behavior.params[k] as number) : null);
+  const depth = num('workTo') ?? num('depth') ?? (type === 'deepZone' ? 15 : 5);
+  // The content's left is the assignment frame's positive side (build.ts flips the drawing).
+  const side = zone.endsWith('Left') ? 1 : zone.endsWith('Right') ? -1 : 0;
+  const px = Math.max(depth, a.preSnap.align.px), py = side * row[1];
+  if (type === 'deepZone') return { ...a, behavior: { ...a.behavior, path: [{ px, py, kind: 'settle', landmark: null }] } };
+  const drop: Assignment['rules'][number] = {
+    when: { op: 'any', of: [{ op: 'test', name: 'read', args: { kind: 'pass', dir: 'any' } }, { op: 'test', name: 'timeGt', args: { s: READ_STEP_S } }] },
+    guard: { op: 'not', of: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } } },
+    then: [{ name: 'dropTo', args: { px, py } }], text: 'Pass read, or no read after the read step: drop to my zone',
+  };
+  const at = a.rules.indexOf(RUN_READ);
+  return { ...a, rules: [...a.rules.slice(0, at + 1), drop, ...a.rules.slice(at + 1)] };
+}
+
+const BOX_DEPTH_YD = 6, BOX_HALF_WIDTH_YD = 6;
 const LINEMEN: ReadonlySet<string> = new Set(['LT', 'LG', 'C', 'RG', 'RT']);
 /**
  * A defender's assignment key list (J3.1.2) resolved to slots for the perception system, with the ball last.
@@ -151,6 +200,17 @@ function defenderKeys(a: Assignment, O: readonly Assignment[], qbSlot: number): 
       if (m !== null) s = receiver(Number(m[1]), m[2] === 'right' ? -1 : 1);
     }
     if (s >= 0 && !out.includes(s)) out.push(s);
+  }
+  // A defender whose assignment names no key still has to read run or pass (J3.2.2 reads only from a primary key).
+  // Provisional: a man in the box reads the lineman across from him through to the quarterback, anyone else the
+  // quarterback. J3.1.2 names no default, so this is a design value until the calls carry their keys.
+  if (out.length === 0) {
+    if (a.preSnap.align.px <= BOX_DEPTH_YD && Math.abs(a.preSnap.align.py) <= BOX_HALF_WIDTH_YD) {
+      let best = -1, bestD = Infinity;
+      O.forEach((x, i) => { const d = Math.abs(x.preSnap.align.py - a.preSnap.align.py); if (LINEMEN.has(x.role) && d < bestD) { bestD = d; best = i; } });
+      if (best >= 0) out.push(best);
+    }
+    if (qbSlot >= 0) out.push(qbSlot);
   }
   out.push(perceptionModule.KEY_BALL);
   return out;
@@ -251,8 +311,8 @@ const ROUTE = 'route';
 
 function dropOf(word: unknown, shotgun: boolean): DropType {
   if (word === 'threeStepFromGun') return 'gun3';
-  if (word === 'fiveStepFromGun' || word === 'sevenStep') return 'uc7';
-  if (word === 'fiveStep') return 'uc5';
+  if (word === 'sevenStep') return 'uc7';
+  if (word === 'fiveStep' || word === 'fiveStepFromGun') return 'uc5';
   if (word === 'threeStep') return 'uc3';
   return shotgun ? 'gun3' : 'uc5';
 }
@@ -320,6 +380,18 @@ export interface StarterContentPort extends tickResolver.PlayContentPort {
 }
 
 /** The content port over the starter content and the provisional kicking units. One per game runner; it caches by object. */
+/**
+ * J4.3.1 binding for the fixed slot orders of this port: `role:X` and `qb` selectors become slots (offense 0 to
+ * 10, defense 11 to 21). Without it they resolve to nobody: a man defender keyed to `role:R` has no man, and a
+ * rusher or a zone defender who reads the quarterback has nobody to read. Mirroring is done before this.
+ */
+const SLOT_OF_ROLE: Readonly<Record<string, number>> = Object.fromEntries([
+  ...OFFENSE_ROLES.map((r, i) => [r, i] as const), ...DEFENSE_ROLES.map((r, i) => [r, SLOTS_PER_TEAM + i] as const),
+]);
+function bound(as: Assignment[]): Assignment[] {
+  return lang.bindAssignments({ assignments: as, slotOfRole: SLOT_OF_ROLE, qbSlot: OFFENSE_ROLES.indexOf('Q') }).bound;
+}
+
 export function createStarterContentPort(): StarterContentPort {
   const offense = new Map<string, OffensePlay>();
   const defense = new Map<string, Assignment[]>();
@@ -343,7 +415,7 @@ export function createStarterContentPort(): StarterContentPort {
     let p = offense.get(key);
     if (p === undefined) {
       const raw = starter.assignmentsOf(def).map(clearOfLine);
-      p = { def, O: inOrder(left ? raw.map(mirror) : raw, OFFENSE_ROLES) };
+      p = { def, O: bound(inOrder(left ? raw.map(mirror) : raw, OFFENSE_ROLES)) };
       offense.set(key, p);
     }
     return p;
@@ -352,7 +424,7 @@ export function createStarterContentPort(): StarterContentPort {
     let d = defense.get(family);
     if (d === undefined) {
       const def = defenseByFamily.get(family) ?? defenseByFamily.get('cover3')!;
-      d = inOrder(starter.assignmentsOf(def).map(withRally), DEFENSE_ROLES);
+      d = bound(inOrder(starter.assignmentsOf(def).map(withRally).map(withDropPath), DEFENSE_ROLES));
       defense.set(family, d);
     }
     return d;
@@ -442,8 +514,14 @@ export function createStarterContentPort(): StarterContentPort {
       const qbSlot = qb === null ? -1 : qb.qbSlot;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
       const slots: PlaySetup['slots'] = Array.from({ length: SLOT_COUNT }, (_, w) => ({ conceptId: (w < SLOTS_PER_TEAM ? O[w]! : D[w - SLOTS_PER_TEAM]!).conceptId }));
-      const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => (w >= SLOTS_PER_TEAM && s.unit === 'offense'
-        ? { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(D[w - SLOTS_PER_TEAM]!, O, qbSlot) } : {}));
+      // Eyes (J3.4.1): a zone defender plays with his on the ball, and so does a receiver in his route, who looks
+      // for the ball over his shoulder. Without it a man running downfield never saw the throw and never played it.
+      const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => {
+        if (s.unit !== 'offense') return {};
+        if (w < SLOTS_PER_TEAM) return O[w]!.behavior.type === 'route' ? { gaze: 'ball' as const } : {};
+        const a = D[w - SLOTS_PER_TEAM]!;
+        return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}) };
+      });
       return {
         presnap: {
           tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, callWords: 6, hardCount: false, silentCount: false, longCount: false,

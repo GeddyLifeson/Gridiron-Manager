@@ -114,6 +114,8 @@ export function projectAlongRoute(route: readonly PlayPoint[], settles: boolean,
   locate(route, px, py);
   const offX = px - loc.cx, offY = py - loc.cy;
   let left = travelYd, x = loc.cx, y = loc.cy, ux = 1, uy = 0;
+  // Standing on the end of his segment he keeps that leg's heading, not straight upfield.
+  { const a = route[loc.seg]!, b = route[loc.seg + 1]!, len = hyp(b.px - a.px, b.py - a.py); if (len > 0) { ux = (b.px - a.px) / len; uy = (b.py - a.py) / len; } }
   for (let i = loc.seg; i + 1 < route.length; i++) {
     const b = route[i + 1]!;
     const dx = b.px - x, dy = b.py - y, len = hyp(dx, dy);
@@ -176,7 +178,12 @@ export function walkRoute(target: QbTarget, ctx: JudgeContext, px: number, py: n
     return share >= 1 ? Infinity : vTop * share;
   };
   let cap = capAt(seg + 1);
-  { const dx = route[seg + 1]!.px - x, dy = route[seg + 1]!.py - y; if (toEnd > 0) { ux = dx / toEnd; uy = dy / toEnd; } }
+  // A man already at (or past) the end of his segment has no distance to take a heading from: he keeps the leg's own.
+  const segmentHeading = (r: readonly PlayPoint[], i: number): void => {
+    const dx = r[i + 1]!.px - r[i]!.px, dy = r[i + 1]!.py - r[i]!.py, len = hyp(dx, dy);
+    if (len > 0) { ux = dx / len; uy = dy / len; }
+  };
+  { const dx = route[seg + 1]!.px - x, dy = route[seg + 1]!.py - y; if (toEnd > 0) { ux = dx / toEnd; uy = dy / toEnd; } else segmentHeading(route, seg); }
   for (let step = 0; step < WALK_MAX_STEPS && t < timeS; step++) {
     let dt = timeS - t; if (dt > WALK_DT_S) dt = WALK_DT_S;
     // The most he can carry here and still be down to the cut speed at the point (J2.1.3).

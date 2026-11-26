@@ -56,6 +56,8 @@ export interface PerceptionConfig {
   /** D9 complexity delay and J4.5.1 hesitation delay, seconds. */
   dComplexityS?: number;
   dKnowledgeS?: number;
+  /** J3.4.1 where his eyes start the play: with his hips (the default) or on the ball (a zone defender's eyes). */
+  gaze?: 'hips' | 'ball';
   /** True for a defender who reads a run-pass key (J3.2.2). */
   readsKeys?: boolean;
   /** Starting evidence from the situation prior (J3.3.1): positive leans run. */
@@ -138,7 +140,11 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
     head = (head + 1) % RING;
     const base = head * SLOT_COUNT, pl = w.players;
     for (let s = 0; s < SLOT_COUNT; s++) { rx[base + s] = pl.posX[s]!; ry[base + s] = pl.posY[s]!; rvx[base + s] = pl.velX[s]!; rvy[base + s] = pl.velY[s]!; }
-    rbx[head] = w.ball.x; rby[head] = w.ball.y; rbvx[head] = w.ball.velX; rbvy[head] = w.ball.velY;
+    // A held ball moves with the man who holds it (the ball record keeps no velocity of its own while held), so a
+    // player who sees the ball but is not watching the carrier himself still sees which way it is going.
+    const held = w.ball.kind === 'held' && w.ball.carrierSlot >= 0 ? w.ball.carrierSlot : -1;
+    rbx[head] = w.ball.x; rby[head] = w.ball.y;
+    rbvx[head] = held >= 0 ? pl.velX[held]! : w.ball.velX; rbvy[head] = held >= 0 ? pl.velY[held]! : w.ball.velY;
     rbKind[head] = BALL_STATES.indexOf(w.ball.kind); rbCarrier[head] = w.ball.carrierSlot;
   };
   const back = (ticks: number): number => (head - ticks + RING * 2) % RING;
@@ -167,6 +173,25 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
     const d = p.keyDelayBaseS! * (p.keyDelayRecIntercept! - recIss[s]! / p.keyDelayRecDivisor!) * (1 - p.keyDelayPrepCut! * prep[s]!)
       + p.keyDelayFatigueS! * fat * fat + dComplexity[s]! + dKnowledge[s]!;
     delayNow[s] = d < p.keyDelayFloorS! ? p.keyDelayFloorS! : d > p.delayCapS! ? p.delayCapS! : d;
+  };
+
+  /** Receiver numbers (J4.1.2): eligible players of a team, counted from the sideline in on each side of the ball. */
+  const numberReceivers = (w: TickWorld): void => {
+    const pl = w.players, frame = w.frame, dir = frame.attackDir;
+    for (let s = 0; s < SLOT_COUNT; s++) {
+      let n = 0;
+      const team = s < SLOTS_PER_TEAM ? 0 : 1;
+      const py = (pl.posY[s]! - frame.originY) * dir;
+      if (pl.eligible[s] === 1 && py !== 0) {
+        n = 1;
+        for (let o = 0; o < SLOT_COUNT; o++) {
+          if (o === s || pl.eligible[o] !== 1 || (o < SLOTS_PER_TEAM ? 0 : 1) !== team) continue;
+          const opy = (pl.posY[o]! - frame.originY) * dir;
+          if ((opy > 0) === (py > 0) && opy !== 0 && (py > 0 ? opy > py : opy < py)) n++;
+        }
+      }
+      for (let v = 0; v < SLOT_COUNT; v++) views[v]!.receiverNumbers[s] = n;
+    }
   };
 
   const begin = (w: TickWorld): void => {
@@ -210,21 +235,7 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       threshold[s] = readThreshold(zDisc[s]!, aggression[s]!, p); keyW[s] = keyWeight(zDisc[s]!, p);
       gain[s] = evidenceGain(zRec[s]!, p); noiseSd[s] = evidenceNoiseSd(zRec[s]!, p);
     }
-    // Receiver numbers at the snap (J4.1.2): eligible players of a team, counted from the sideline in on each side of the ball.
-    for (let s = 0; s < SLOT_COUNT; s++) {
-      let n = 0;
-      const team = s < SLOTS_PER_TEAM ? 0 : 1;
-      const py = (pl.posY[s]! - frame.originY) * dir;
-      if (pl.eligible[s] === 1 && py !== 0) {
-        n = 1;
-        for (let o = 0; o < SLOT_COUNT; o++) {
-          if (o === s || pl.eligible[o] !== 1 || (o < SLOTS_PER_TEAM ? 0 : 1) !== team) continue;
-          const opy = (pl.posY[o]! - frame.originY) * dir;
-          if ((opy > 0) === (py > 0) && opy !== 0 && (py > 0 ? opy > py : opy < py)) n++;
-        }
-      }
-      for (let v = 0; v < SLOT_COUNT; v++) views[v]!.receiverNumbers[s] = n;
-    }
+    numberReceivers(w);
     airActive = false; calls = 0; occludedSlot = -1; occludedUntil = -2147483648;
   };
 
@@ -253,6 +264,9 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
   const run = (w: TickWorld): void => {
     const p = P ?? (P = perceptionParams(w.params));
     const pl = w.players, frame = w.frame, dir = frame.attackDir, tick = w.tick;
+    // The count is of where the receivers line up, so it is taken again at the snap: at the start of the play clock
+    // the units are still in their huddles (J5.1) and a count made there numbers nobody rightly.
+    if (tick === 0) numberReceivers(w);
     push(w);
     for (let c = 0; c < calls;) {
       if (callTick[c]! <= tick) {
@@ -439,6 +453,7 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       if (c.prior !== undefined) prior[slot] = c.prior;
       if (c.aggression !== undefined) aggression[slot] = c.aggression;
       if (c.boxDefender !== undefined) boxDefender[slot] = c.boxDefender ? 1 : 0;
+      if (c.gaze !== undefined) setGaze(slot, c.gaze === 'ball' ? G_BALL : G_HEADING, 0, 0, 0);
     },
     gazeAtSlot: (slot, target) => setGaze(slot, G_SLOT, target, 0, 0),
     gazeAtBall: (slot) => setGaze(slot, G_BALL, 0, 0, 0),

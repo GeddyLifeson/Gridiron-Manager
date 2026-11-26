@@ -12,6 +12,23 @@ const ROWS: readonly ParamRow[] = [
   // Perception keeps 1.5 s of history (J3.1.1); it starts this many ticks before the snap.
   ['setup.perceptionLeadTicks', 20, 15, 100, 'ticks', A, 'J3.1.1', 'must cover the longest key delay'],
   ['setup.defaultCohesion', 0.5, 0, 1, 'ratio', A, 'J3.6.1', 'D9.5.1 cohesion when the call names no dependents'],
+  // J3.2.2 what a key shows (key-evidence.ts). Evidence per tick, + toward run and - toward pass. The five sizes
+  // the bible names are its starting values; the handoff, the ball in the air and the distances are the author's.
+  ['keyRead.lineRunEvidence', 1.0, 0.3, 2, 'evidence', 'bible', 'J3.2.2', 'J3.2.2 time to read run'],
+  ['keyRead.linePassEvidence', -1.0, -2, -0.3, 'evidence', 'bible', 'J3.2.2', 'J3.2.2 time to read pass'],
+  ['keyRead.pullEvidence', 1.5, 0.5, 3, 'evidence', 'bible', 'J3.2.2', 'J3.3.2 counter test'],
+  ['keyRead.backPathEvidence', 0.8, 0.2, 2, 'evidence', 'bible', 'J3.2.2', 'J3.3.1 linebacker depth against play action'],
+  ['keyRead.qbDropEvidence', -0.8, -2, -0.2, 'evidence', 'bible', 'J3.2.2', 'J3.2.2 time to read pass'],
+  ['keyRead.handoffEvidence', 1.5, 0.5, 3, 'evidence', A, 'J3.2.2', 'a ball seen in a runner\'s hands settles the read'],
+  ['keyRead.ballInAirEvidence', -2, -4, -0.5, 'evidence', A, 'J3.2.2', 'a thrown ball settles the read'],
+  ['keyRead.releaseEvidence', -0.8, -2, -0.2, 'evidence', A, 'J3.2.2', 'a receiver running his stem shows pass to the man keyed on him'],
+  ['keyRead.releaseStemYd', 3, 1, 6, 'yd', A, 'J3.2.2', 'a receiver this far downfield has released into a route'],
+  ['keyRead.qbDropStepYd', 1.0, 0.3, 3, 'yd', A, 'J3.2.2', 'a quarterback this far back off his spot with no back downhill is dropping'],
+  ['keyRead.lineStepYd', 0.3, 0.1, 1, 'yd', A, 'J3.2.2', 'a lineman this far off his spot, forward or back, shows his hat'],
+  ['keyRead.pullStepYd', 1.5, 0.5, 3, 'yd', A, 'J3.2.2', 'a lineman this far down the line is pulling'],
+  ['keyRead.backStepYd', 1.0, 0.3, 3, 'yd', A, 'J3.2.2', 'a back this far downhill before the mesh shows a run path'],
+  ['keyRead.backfieldDepthYd', 2, 1, 5, 'yd', A, 'J3.2.2', 'an eligible man at least this deep at the snap is a back'],
+  ['keyRead.meshS', 1.0, 0.5, 2, 's', A, 'J3.2.2', 'a quarterback who still has the ball this long after the snap is dropping'],
   // J6 engagements as bodies (Interact stage).
   ['interact.contactGapYd', 0.25, 0, 1, 'yd', A, 'J6.1.2', 'a block starts when the body circles are this close'],
   ['interact.breakGapYd', 1.5, 0.5, 3, 'yd', A, 'J6.1.2', 'a block ends when the bodies are this far apart'],

@@ -24,6 +24,7 @@ import { createPresnapStages, planPresnap, presnapParams, snapperOf, startingAdv
 import { createTickLoop, createTickWorld, createTrajectoryRecorder, type PlayStage, type TrajectoryRecorder } from '../tick/index.ts';
 import { createCatchPointStage } from './catch-point.ts';
 import { createFinish } from './finish.ts';
+import { createKeyEvidence } from './key-evidence.ts';
 import { createRouteCuts } from './route-cuts.ts';
 import { createInteract } from './interact.ts';
 import { createKickOp, isFreeKick } from './kick-op.ts';
@@ -79,7 +80,8 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
 
   // Shared instances (ports.ts `PlayServices`).
   const interact = createInteract();
-  const perception = createPerception();
+  const keyEvidence = createKeyEvidence();
+  const perception = createPerception({ evidence: keyEvidence.source });
   const movement = createMovement({ engagementLimit: interact.limit });
   const playerAi = createPlayerAi({
     view: perception.view,
@@ -130,6 +132,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     begin(w: TickWorld): void { inner.begin?.(w); },
     run(w: TickWorld, dt: number): void { if (w.tick >= from()) inner.run(w, dt); },
   });
+  const keysThenPerception: PlayStage = { name: perception.stage.name, begin(w: TickWorld): void { perception.stage.begin?.(w); }, run(w: TickWorld, dt: number): void { keyEvidence.record(w); perception.stage.run(w, dt); } };
   // What the play cost each man is read at the whistle, so film ticks after it never change a result.
   const energyAtWhistle = new Float64Array(SLOT_COUNT);
   let energyTaken = false;
@@ -144,7 +147,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   };
   // MODULE_ORDER, spelled out. The loop groups by stage name and keeps this order inside each name.
   const fixedStages: readonly PlayStage[] = [
-    gate(perception.stage, () => perceptionFrom), gate(playerAi.stage, () => 0), routeCuts.stage, movement.stage, heldBall,
+    gate(keysThenPerception, () => perceptionFrom), gate(playerAi.stage, () => 0), routeCuts.stage, movement.stage, heldBall,
     ball.move, ball.detect, boundary.moveStage, boundary.detectStage, interact.stage, kickOp.stage, catchPoint.stage,
     ...built[0]!.stages, ...built[1]!.stages, ...built[2]!.stages, finish, ledger,
   ];
@@ -272,6 +275,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     kickOp.setPlay(input, O, s0.context.pressure ?? 0, snapOf, look, kickAs);
     catchPoint.setPlay(contests!);
     routeCuts.setPlay(world, assignmentOf);
+    keyEvidence.setPlay(assignmentOf);
     for (const b of built) b.setPlay?.(world);
 
     const full = input.options.detail === 'full', stopAtTick = input.options.stopAtTick;

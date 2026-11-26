@@ -52,7 +52,7 @@ export const PARAMS: ParamFile = {
       ['passBlock.interior.lambda', 0.3, 0, 1.5, '1/s', 'a'],
       ['passBlock.interior.sigma', 0.45, 0.1, 1.0, 'A/sqrt(s)', 'a'],
       ['passBlock.gLosing', 1.0, 0.8, 1.0, 'share of free speed', 'b'],
-      ['passBlock.gEven', 0.35, 0.1, 0.7, 'share of free speed', 'b'],
+      ['passBlock.gEven', 0.15, 0.1, 0.7, 'share of free speed', 'b'],
       ['passBlock.gWinning', 0, 0, 0.2, 'share of free speed', 'b'],
       ['passBlock.counterThreshold', 0.4, 0.2, 0.8, 'A', 'b'],
       ['passBlock.counterHoldS', 0.5, 0.2, 1.0, 's', 'b'],

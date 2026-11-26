@@ -1506,7 +1506,7 @@
    },
    "events": {
     "ballThrown": {
-     "action": "continue",
+     "action": "breakOnBall",
      "args": {}
     },
     "ballCaught": {

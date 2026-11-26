@@ -274,7 +274,8 @@ export function createMovement(options: MovementOptions = {}): Movement {
       let face = pl.headingRad[s]!;
       const nsp = ns;
       const ft = intent.faceTarget;
-      if (mode === M_SPRINT || mode === M_RUN) { if (nsp > TINY_SPEED) face = dAtan2(vy, vx); }
+      // A man standing in a running mode has no velocity to follow, so he turns to his face target like anyone else.
+      if ((mode === M_SPRINT || mode === M_RUN) && nsp > TINY_SPEED) face = dAtan2(vy, vx);
       else if (ft !== null) { const fx = frame.originX + ft.px * dir - x, fy = frame.originY + ft.py * dir - y; if (fx !== 0 || fy !== 0) face = dAtan2(fy, fx); }
       else if (mode === M_BACKPEDAL && nsp > TINY_SPEED) face = dAtan2(-vy, -vx);
       let turn = face - pl.headingRad[s]!;

@@ -3,7 +3,7 @@
 // movement intent for J2 (target, facing, effort, move mode), a technique choice for J6, and calls
 // (J3.6). It reads the perceived view only. A fired action persists tick after tick until another
 // rule fires or it reports that it is complete (J4.4.1 rule 3).
-import { SLOTS_PER_TEAM, type PerceivedEntity } from '@gm/schema';
+import { SLOTS_PER_TEAM, TICK_S, type PerceivedEntity } from '@gm/schema';
 import { aim, dist, eachOf, face, faceBall, nearestOf, seenCarrier, speed, type ActivePoint, type Ctx, type Sel } from './runtime.ts';
 import type { Args, CompileEnv } from './conditions.ts';
 import { isBehavior } from './vocabulary.ts';
@@ -98,7 +98,29 @@ export const INSTANT_ACTIONS: ReadonlySet<string> = new Set(['call', 'continue',
 
 export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActFn>> = {
   // Movement
-  runPath: () => (c) => { followPath(c); return false; },
+  // A defender who runs to a spot (a zone drop, a deep landmark) keeps his eyes on the ball: his eyes go with his
+  // hips unless a rule says otherwise (J3.4.1), and a man who ran to his landmark looking downfield never saw the run.
+  runPath: () => (c) => {
+    followPath(c);
+    if (c.offense) return false;
+    faceBall(c);
+    // A deep zone defender is the top of the coverage: he stays deeper than the deepest receiver coming into his
+    // zone (J4.2.1 deepZone "range"). Sitting on his landmark let a go route run past him untouched.
+    if (c.behavior === 'deepZone' && c.view.ballKind() === 'held') {
+      const k = c.k, lm = c.path.length > 0 ? c.path[c.path.length - 1]! : null, homePy = lm === null ? c.startPy : lm.py;
+      let top: PerceivedEntity | null = null, topPx = -Infinity;
+      eachOf(c, 0, (e) => {
+        if (c.view.receiverNumber(e.slot) === 0 || Math.abs(e.py - homePy) > k.deepZoneHalfWidth) return;
+        const at = e.px + e.velPx * k.offLeadS;
+        if (at > topPx) { topPx = at; top = e; }
+      });
+      if (top !== null && topPx + k.offCushion > c.self.px) {
+        const t = top as PerceivedEntity;
+        aim(c, topPx + k.offCushion, (homePy + t.py + t.velPy * k.offLeadS) / 2); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint';
+      }
+    }
+    return false;
+  },
   continue: () => () => true,
   settleInWindow: (_a, env) => {
     const m = env.alloc(3);
@@ -179,6 +201,14 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
     return (c) => {
       const e = target(c);
       if (e === null) { hold(c); return false; }
+      // A defender who starts off his man (on top of him) stays on top: he gives ground as the man comes, a step ahead
+      // of where the man will be, and never runs up to him. Running to the trail spot from seven yards off turned him
+      // around under a man at full speed and left him yards behind. Once the man is even or past, he trails.
+      if (!c.offense && c.self.px > e.px + c.k.trailOffset) {
+        const k = c.k, px = e.px + e.velPx * k.offLeadS + k.offCushion;
+        aim(c, px > c.self.px ? px : c.self.px, e.py + e.velPy * k.offLeadS); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
+        return false;
+      }
       aim(c, e.px - (c.offense ? -1 : 1) * c.k.trailOffset, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
       return false;
     };
@@ -186,15 +216,36 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
   pursue: (a) => {
     const angle = str(a, 'angle');
     return (c) => {
-      const e = carrierOrBall(c);
-      if (e === null) { hold(c); return false; }
-      const k = c.k, lead = angle === 'direct' ? 0 : k.pursueLeadS;
+      const seen = carrierOrBall(c);
+      if (seen === null) { hold(c); return false; }
+      // A carrier who has run out of his sight is taken to have kept running: the pursuer plays where the man should
+      // be by now, not the spot he last saw him, so he turns toward him and picks him up again.
+      // What he sees is also a key delay old (J3.2.1), and he plays a running man a step ahead of what he sees.
+      const k0 = c.k, lost = seen.staleTicks * TICK_S;
+      const ahead = lost + k0.pursueAnticipateS;
+      const e = { ...seen, px: seen.px + seen.velPx * ahead, py: seen.py + seen.velPy * ahead };
+      // The angle to where he can meet the carrier: the time at which a man at his own pace (or the carrier's, if he is
+      // slower or standing) reaches the carrier's line, capped. With no meeting point (a faster carrier going away) he
+      // chases the man himself. A fixed lead put a pursuer who was already close ahead of the carrier, running beside him.
+      const k = c.k;
+      let lead = 0;
+      if (angle !== 'direct') {
+        const rx = e.px - c.self.px, ry = e.py - c.self.py, vs = Math.max(speed(c.self), speed(e), k.blockSpeed);
+        const qa = e.velPx * e.velPx + e.velPy * e.velPy - vs * vs, qb = 2 * (rx * e.velPx + ry * e.velPy), qc = rx * rx + ry * ry;
+        if (qa < -1e-9) { const disc = qb * qb - 4 * qa * qc; lead = disc >= 0 ? (-qb - Math.sqrt(disc)) / (2 * qa) : 0; }
+        else if (qb < -1e-9) lead = -qc / qb;
+        lead = lead > 0 ? Math.min(lead, k.pursueMaxLeadS) : 0;
+      }
       const px = e.px + e.velPx * lead;
       let py = e.py + e.velPy * lead;
       if (angle === 'cutback') py -= sgn(e.velPy) * k.pursueCutback;
       else if (angle === 'insideOut') py -= sgn(py) * k.shoulderOffset;
       else if (angle === 'contain') py = c.side * Math.max(c.side * py + k.containWidth, c.side * c.startPy);
-      aim(c, px, py); c.intent.arrival = 'breakdown'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
+      // Inside tackling range he stops gathering and goes through the man: a tackler who kept breaking down toward a
+      // meeting point let a carrier who veered slide past him at arm's length.
+      const near = dist(e.px, e.py, c.self.px, c.self.py) <= k.pursueAttackYd;
+      aim(c, px, py);
+      c.intent.arrival = near ? 'through' : 'breakdown'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
       return false;
     };
   },
@@ -335,9 +386,21 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
       if (first && type !== '') c.technique['passSet'] = type;
       const k = c.k, e = (c.man === null ? null : c.man(c)) ?? rusher(c);
       const px = c.startPx - k.passSetDepth;
-      if (e === null) aim(c, px, c.startPy);
-      else { aim(c, px, Math.max(c.startPy - k.gap, Math.min(c.startPy + k.gap, e.py))); face(c, e.px, e.py); }
       c.intent.arrival = 'arrive'; c.intent.moveMode = 'shuffle';
+      if (e === null) { aim(c, px, c.startPy); return false; }
+      face(c, e.px, e.py);
+      // The spot he protects: the middle of the pocket at the quarterback's depth (F6: stay between the rusher and the launch point).
+      const dx = -k.passSetPocketDepth - e.px, dy = -e.py, len = dist(-k.passSetPocketDepth, 0, e.px, e.py);
+      if (e.px > px + k.passSetMirrorGap && len > 0) {
+        // The rusher has not reached the set depth: wait at it, on his line to the pocket, no wider than a gap from the start.
+        const py = e.py + dy * ((e.px - px) / (e.px + k.passSetPocketDepth));
+        aim(c, px, Math.max(c.startPy - k.gap, Math.min(c.startPy + k.gap, py)));
+        return false;
+      }
+      // He is at the set depth or past it: give ground with him, staying on his line to the pocket at arm's length.
+      if (len > k.passSetMirrorGap) aim(c, e.px + (dx / len) * k.passSetMirrorGap, e.py + (dy / len) * k.passSetMirrorGap);
+      else aim(c, c.self.px, c.self.py);
+      c.intent.arrival = 'through';
       return false;
     };
   },
@@ -394,7 +457,20 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
   },
 
   // Ball
-  breakOnBall: () => (c) => { toBall(c); return false; },
+  // With the ball still in a passer's or runner's hands there is no ball to break on: a coverage defender sent to
+  // "drive on" a threat plays the nearest receiver, a step on top of him, until the ball is thrown. (Running at the
+  // held ball sent flat defenders after the quarterback.)
+  breakOnBall: () => (c) => {
+    const kind = c.view.ballKind();
+    const holder = kind === 'held' ? seenCarrier(c) : null;
+    if (!c.offense && holder !== null && holder.slot < SLOTS_PER_TEAM && holder.px <= 0) {
+      const e = nearestOf(c, 0, (x) => c.view.receiverNumber(x.slot) > 0);
+      if (e === null) { hold(c); return false; }
+      aim(c, e.px + c.k.trailOffset, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
+      return false;
+    }
+    toBall(c); return false;
+  },
   playHands: () => (c, first) => {
     if (first) c.technique['ballPlay'] = 'playHands';
     const e = c.man === null ? null : c.man(c);
