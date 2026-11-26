@@ -29,7 +29,7 @@
      "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
     }
    ],
-   "notes": "The source's own counts are not fully consistent for 2023 and 2025 (E4.3.1). One source only: PROVISIONAL."
+   "notes": "The source's own counts are not fully consistent for 2023 and 2025 (E4.3.1). One source only: PROVISIONAL. Cross-check, not counted as a source because it confirms only the floor: WBAL-TV (Hearst data team, 2025-01-10, https://www.wbaltv.com/article/are-nfl-coaches-getting-fired-more-often-heres-the-data/63364672) says 'Since 2015, at least five head coaches have been fired each season' and '58 coaches' in the 2010s (5.8 a season). The SI table was read directly on 2026-11-26 (inkl copy): 7, 8, 5, 7, 8, 5, 9, 7, 8 for 2017 to 2025, mean 7.1."
   },
   {
    "id": "F-stakeholders-0002",
@@ -117,18 +117,32 @@
      "independenceGroup": "deseret-yahoo-carousel",
      "primary": false,
      "value": 12
+    },
+    {
+     "citation": "Wikipedia, '2023 NCAA Division I FBS football season', Coaching changes section (https://en.wikipedia.org/wiki/2023_NCAA_Division_I_FBS_football_season)",
+     "locator": "Coaching changes: in-season table (6 rows with reason 'Fired') and end-of-season table (6 rows with reason 'Fired')",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-fbs-season",
+     "primary": false,
+     "value": 12
     }
    ],
-   "status": "1 of 3",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source: the Wikipedia 2023 FBS season page lists 12 head coaches with reason 'Fired' (read by the coach turnover thread)."
     }
    ],
-   "notes": "The breakdown has one source; only the total has two. PROVISIONAL."
+   "notes": "The breakdown has one source; only the total has two. PROVISIONAL. Wikipedia's 2023 page counts 6 of the 12 firings in season (from May 1) and 6 at season end; its 2022 page lists 15 firings (9 in season, 6 at season end). So the real college in-season share is about half, above the 15% to 40% assumption band of E4.7.2 (not triple verified)."
   },
   {
    "id": "F-stakeholders-0005",
