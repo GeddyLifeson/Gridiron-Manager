@@ -6,7 +6,12 @@
 //   - the ball in a runner's possession goes out of bounds (B3.2.1 e) or a loose ball does (q);
 //   - the ball in possession crosses the goal line its carrier attacks;
 //   - a forward pass reaches the ground (g);
-//   - a loose ball has come to rest (i).
+//   - a loose ball has come to rest (i);
+//   - the ball is on the ground, or in a man's hands, outside the field and no boundary event said so:
+//     a kick or a fumble that flew over a boundary line and came down beyond it (the boundary watcher
+//     follows held and loose balls only, a ball in flight is not its to report), or a man who took the
+//     ball while standing out of bounds. The spot is where the ball crossed the line (B3 out-of-bounds
+//     spot), the time is the tick it was found.
 // A tackle, a kneel, a slide, a sack, forward progress and the kick results are ended by the modules
 // that own those acts (carrier, quarterback, kick operation). Kicks dead by rule alone (a kickoff
 // short of the landing zone, an untouched kick in the end zone) are NOT built: until they are, such a
@@ -28,14 +33,29 @@ export function declareDead(w: TickWorld, reason: DeadBallReason, t: number, x: 
 
 export function createFinish(): PlayStage {
   let cursor = 0;
+  // Where the live ball last went from inside the field to outside it, whatever its state.
+  let wasInside = true, prevX = 0, prevY = 0, exitX = 0, exitY = 0;
+  const inside = (w: TickWorld, x: number, y: number): boolean => x > 0 && x < w.geometry.lengthYd && y > 0 && y < w.geometry.widthYd;
+  const track = (w: TickWorld): void => {
+    const b = w.ball, x = b.x, y = b.y, now = inside(w, x, y);
+    if (wasInside && !now) {
+      // The first of the four lines the straight path from the last spot reached.
+      let fr = 1;
+      const g = w.geometry, cross = (a: number, c: number, line: number): void => { if ((a - line) * (c - line) <= 0 && a !== c) { const q = (line - a) / (c - a); if (q >= 0 && q < fr) fr = q; } };
+      cross(prevX, x, 0); cross(prevX, x, g.lengthYd); cross(prevY, y, 0); cross(prevY, y, g.widthYd);
+      exitX = prevX + (x - prevX) * fr; exitY = prevY + (y - prevY) * fr;
+    }
+    wasInside = now; prevX = x; prevY = y;
+  };
   const slotOfId = (w: TickWorld, id: number): number => { for (let s = 0; s < SLOT_COUNT; s++) if (w.slots[s]!.playerId === id) return s; return -1; };
   return {
     name: 'detect',
-    begin(): void { cursor = 0; },
+    begin(w: TickWorld): void { cursor = 0; wasInside = true; prevX = w.ball.x; prevY = w.ball.y; exitX = prevX; exitY = prevY; },
     run(w: TickWorld): void {
       const from = cursor;
       cursor = w.events.length;
       if (w.deadAtTick !== null) { if (w.ball.kind !== 'dead') w.ball.kind = 'dead'; return; }
+      track(w);
       if (w.tick < 0) return;
       // Candidates of this tick; the earliest interpolated time wins, the scan order breaks ties.
       let reason: DeadBallReason | null = null, t = Infinity, x = 0, y = 0, carrier = -1;
@@ -56,6 +76,10 @@ export function createFinish(): PlayStage {
       if (f.grounded !== null && f.grounded.t < t) { reason = 'incomplete_pass'; carrier = -1; t = f.grounded.t; x = f.grounded.x; y = f.grounded.y; }
       const end = (w.tick + 1) * TICK_S;
       if (reason === null && w.ball.kind === 'loose' && f.atRest) { reason = 'loose_ball_at_rest'; t = end; x = w.ball.x; y = w.ball.y; }
+      if (reason === null && !wasInside && (w.ball.kind === 'loose' || w.ball.kind === 'held')) {
+        carrier = w.ball.kind === 'held' ? w.ball.carrierSlot : -1;
+        reason = carrier >= 0 ? 'runner_out_of_bounds' : 'ball_out_of_bounds'; t = end; x = exitX; y = exitY;
+      }
       if (reason !== null) declareDead(w, reason, t, x, y, carrier);
     },
   };
