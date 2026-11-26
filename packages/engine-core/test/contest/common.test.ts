@@ -41,8 +41,8 @@ describe('contest parameter file (J6.8.1)', () => {
     };
     for (const k of Object.keys(want)) expect(paramValue(k), k).toBe(want[k]);
     for (const p of PARAMS.params) if (Object.keys(want).includes(p.name.replace('contest.', ''))) expect(p.basis).toBe('bible');
-    // The even-block speed share is tuned away from J6.2.1's 0.35 (sack rate), so it is no longer a bible row.
-    expect(paramValue('passBlock.gEven')).toBe(0.15);
+    // The even-block speed share is tuned away from J6.2.1's 0.35 (sack rate, then pressure rate), so it is no longer a bible row.
+    expect(paramValue('passBlock.gEven')).toBe(0.1);
     expect(PARAMS.params.find((p) => p.name === 'contest.passBlock.gEven')!.basis).toBe('assumption');
   });
 
