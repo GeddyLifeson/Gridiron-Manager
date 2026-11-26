@@ -102,7 +102,9 @@ function strengthPort(): loop.GamePort {
 describe.skipIf(!SEASONS)(`coach firing rates on the full world over ${SEASONS} seasons`, () => {
   it('reports head coach firing rates by level', () => {
     const t0 = Date.now();
-    const binding: turnover.TurnoverBinding = { content: CONTENT, rule, policy: turnover.gmPolicy() };
+    // The default roster policy: gmPolicy adds about 10 minutes an offseason on the full world, and coach firings
+    // read records, which roster strength drives either way. GM_COACH_CALIBRATION_GM=1 binds the front office.
+    const binding: turnover.TurnoverBinding = { content: CONTENT, rule, ...(process.env.GM_COACH_CALIBRATION_GM ? { policy: turnover.gmPolicy() } : {}) };
     const w = loop.createWorld({ setup: setup({}), content: CONTENT, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...turnover.COACH_EVENT_TYPES] });
     const pro = w.teams.filter((t) => turnover.levelOfTeam(w, t.id) === 'pro').length;
     const col = w.teams.length - pro;
@@ -118,10 +120,8 @@ describe.skipIf(!SEASONS)(`coach firing rates on the full world over ${SEASONS} 
     const perSeason: { pro: number[]; college: number[] } = { pro: [], college: [] };
     for (let i = 0; i < SEASONS; i++) {
       loop.runSeason(w, sys, schedule);
-      const rows = turnover.coachOpenings(w).filter((r) => r.season === w.date.seasonYear - 1 && r.reason === 'fired' && r.rung === 9);
-      // Openings are dated by the season the offseason opens (in-season firings by their own season); count by row season.
-      void rows;
-      process.stderr.write(`season ${i + 1} done at ${Math.round((Date.now() - t0) / 1000)} s\n`);
+      const fired = (lvl: 'pro' | 'college') => turnover.coachOpenings(w).filter((r) => r.level === lvl && r.reason === 'fired' && r.rung === 9).reduce((a, r) => a + r.count, 0);
+      process.stderr.write(`season ${i + 1} done at ${Math.round((Date.now() - t0) / 1000)} s; head coaches fired so far: pro ${fired('pro')}, college ${fired('college')}\n`);
     }
     const rows = turnover.coachOpenings(w);
     const seasons = [...new Set(rows.map((r) => r.season))].sort();

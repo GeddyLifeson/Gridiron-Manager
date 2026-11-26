@@ -306,7 +306,14 @@ export function gmPolicy(): RosterPolicy {
       const byPos = new Map<string, number[]>();
       for (const v of pool) byPos.set(v.position, [...(byPos.get(v.position) ?? []), v.grade.mean]);
       const allGrades = pool.map((v) => v.grade.mean);
-      const table: gm.ContributionTable = { ...t.ctx.table, replacementIss: (pos) => quantile(byPos.get(pos) ?? allGrades, param('gm.replacementQuantile')) };
+      // One sort per position per call (the board asks for every recruit and every year of his horizon).
+      const repl = new Map<string, number>();
+      const replacementIss = (pos: string): number => {
+        let r = repl.get(pos);
+        if (r === undefined) { r = quantile(byPos.get(pos) ?? allGrades, param('gm.replacementQuantile')); repl.set(pos, r); }
+        return r;
+      };
+      const table: gm.ContributionTable = { ...t.ctx.table, replacementIss };
       const board = gm.recruitBoard(b, pool, gm.placeNeeds(b, places), new Set(), { ...t.ctx, table });
       return board.slice(0, gm.offersWanted(openPlaces, param('college.offersPerSignee'), gm.P('college.evenBattleShare'))).map((r) => r.personId);
     },
