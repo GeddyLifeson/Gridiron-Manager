@@ -123,6 +123,14 @@ export const KickCall = z.object({
   contentHash: own(z.string()).nullable(),
   /** Aim side of a punt or kickoff; null means straight. */
   direction: own(Lateral).nullable(),
+  /**
+   * I4.1.1 kicking-unit state from the console, for the pre-snap set time (engine-core presnap
+   * `UnitChange`): the unit was alerted on the previous down, and the coach changed his mind after a unit
+   * had started onto the field. Absent means the console sent no unit state (PR 193 request). Both are visible on
+   * the field, so public.
+   */
+  unitAlerted: pub(z.boolean()).optional(),
+  unitReversed: pub(z.boolean()).optional(),
   players: pub(z.array(FieldedPlayer)),
 }).strict();
 export type KickCall = z.infer<typeof KickCall>;

@@ -1,0 +1,22 @@
+{
+  "$comment": "Practice planner screen text (H3, O1.2.3). Screen-local until the shell text table takes screen keys.",
+  "period": "Period",
+  "minutes": "Min",
+  "type": "Type",
+  "tempo": "Tempo",
+  "groups": "Groups",
+  "leader": "Leader",
+  "reps": "Reps",
+  "pads": { "none": "No pads", "shells": "Shells", "full": "Full pads" },
+  "planned": "{planned} of {block} minutes planned ({transitions} in transitions), {remaining} left",
+  "expectedReps": "Expected team reps: {reps}",
+  "coverage": "Plan coverage: {zero} plays with no reps, {one} with one, {more} with more",
+  "padded": "Padded practices left: {left}",
+  "hours": "Countable time today: {used} of {limit} minutes",
+  "provisional": "provisional value",
+  "noScript": "no script",
+  "limits": "Rules and warnings",
+  "noFindings": "Inside every rule.",
+  "participation": "Participation",
+  "labels": { "full": "Full", "limited": "Limited", "did_not_participate": "Did not participate" }
+}

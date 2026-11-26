@@ -8,6 +8,7 @@ import { stream } from '@gm/engine-core';
 import { development, draft } from '@gm/league';
 import { cohorts } from '@gm/people';
 import type { RuleSet } from '@gm/schema';
+import { applyForfeits } from '../compliance/penalties.ts';
 import { param as genParam } from '../generation/params.ts';
 import { isActive } from '../loop/lifecycle.ts';
 import { RELEASED } from '../loop/events.ts';
@@ -254,7 +255,8 @@ function runDraft(c: Cycle, level: Level, order: readonly number[], shares: Map<
   const slots = order.map((teamId, i) => ({ pick: i + 1, teamId, tier: champion.includes(teamId) ? 1 : 0 }))
     .sort((x, y) => x.tier - y.tier || shares.get(x.teamId)! - shares.get(y.teamId)! || x.pick - y.pick)
     .map((s, i) => ({ ...s, pick: i + 1 }));
-  const ledger = draft.createLedger(c.season, order, rules, 0);
+  // C7.2.1 rule 5: picks the league took for discipline (L8.2.5 orders) are gone from this draft.
+  const ledger = applyForfeits(c.world, draft.createLedger(c.season, order, rules, 0));
   const selections = draft.selectionOrder(slots, shares, ledger, rules);
   const pool = take(c.world, POOL.proEntry).filter((id) => available(c.world, id));
   const drafted: number[] = [];
@@ -336,7 +338,8 @@ function collegeSignings(c: Cycle, level: Level): void {
  * still has a place. Returns the recruits nobody signed, for the default fill. Without the policy hook every
  * ready recruit goes to the default fill.
  */
-function recruitByOffers(c: Cycle, order: readonly number[], ready: readonly number[], limit: (teamId: number) => number): number[] {
+function recruitByOffers(c: Cycle, order: readonly number[], ready0: readonly number[], limit: (teamId: number) => number): number[] {
+  const ready = signLetters(c, order, ready0, limit);
   const offersOf = c.b.policy?.recruitOffers;
   if (!offersOf) return [...ready];
   const offers = new Map<number, number[]>();
@@ -358,6 +361,21 @@ function recruitByOffers(c: Cycle, order: readonly number[], ready: readonly num
     }
     if (top === null) { left.push(id); continue; }
     sign(c, top, id, 'recruit');
+  }
+  return left;
+}
+
+/** T4.5.2 letters from the recruiting system (`recruitSignings`): each signs with his school while it has a place. Returns the rest. */
+function signLetters(c: Cycle, order: readonly number[], ready: readonly number[], limit: (teamId: number) => number): number[] {
+  const letters = c.b.policy?.recruitSignings?.(c);
+  if (!letters || letters.size === 0) return [...ready];
+  const here = new Set(order);
+  const left: number[] = [];
+  for (const id of [...ready].sort((x, y) => x - y)) {
+    const t = letters.get(id);
+    if (t === undefined || !here.has(t) || (c.world.rosters.get(t) ?? []).length >= limit(t)) { left.push(id); continue; }
+    sign(c, t, id, 'recruit');
+    bump(c, 'recruit_letters');
   }
   return left;
 }

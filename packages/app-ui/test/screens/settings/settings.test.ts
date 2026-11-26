@@ -275,3 +275,20 @@ describe('playback settings (O5.4.1)', () => {
     expect(playbackPrefs(defaults())).toEqual({ watch: 'every-play', speed: 'normal', compression: 'real', reducedMotion: false, certified: false });
   });
 });
+
+describe('theme menu (PV-18 Classic skin)', () => {
+  it('offers Classic in the theme menu with a label, and maps each value to a token theme', async () => {
+    const m = await import('../../../src/screens/settings/model.ts');
+    const { THEME_IDS } = await import('../../../src/tokens/tokens.ts');
+    const theme = m.settingsPage({}).flatMap((g) => g.rows).find((r) => r.key === 'display.theme')!;
+    expect(theme).toBeDefined();
+    expect(m.sx('option.classic')).not.toBe('option.classic');
+    for (const v of ['light', 'dark', 'high-contrast', 'classic'] as const) {
+      expect(m.themeForSetting(v, false)).toBe(v);
+      expect(THEME_IDS).toContain(v);
+    }
+    expect(m.themeForSetting('system', true)).toBe('dark');
+    expect(m.themeForSetting('system', false)).toBe('light');
+    expect(m.themeForSetting(undefined, false)).toBe('light');
+  });
+});

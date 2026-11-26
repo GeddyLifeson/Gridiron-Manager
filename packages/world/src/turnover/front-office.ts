@@ -13,6 +13,7 @@
 import { stream } from '@gm/engine-core';
 import { gm } from '@gm/front-office';
 import { cap, development } from '@gm/league';
+import { isSuspended } from '../compliance/penalties.ts';
 import { complianceOf, complianceRules, dispositionOf, generalManagerOf, partyOf, publicBelief, setCompliance, sinkFor, STREAM_CONDUCT, streamFor } from '../compliance/binding.ts';
 import { ageIn, levelOfTeam, positionTargets, specOf, type Level, type PolicyContext, type Phase, type RosterPolicy } from './binding.ts';
 import { POOL, ruleSetOf } from './moves.ts';
@@ -233,6 +234,12 @@ export function gmPolicy(): RosterPolicy {
     return { ctx, byId: new Map(fas.map((v) => [v.personId, v])), ranked: gm.targets(t.profile, fas, needs, ctx) };
   };
 
+  /** A suspended general manager may not act (L8.2.5 order): his club's acting front office keeps the default board. */
+  const gmOut = (pc: PolicyContext, teamId: number): boolean => {
+    const id = generalManagerOf(pc.world, teamId);
+    return id !== null && isSuspended(pc.world, id);
+  };
+
   const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
 
   const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
@@ -243,7 +250,7 @@ export function gmPolicy(): RosterPolicy {
 
   return {
     pick(pc, teamId, candidates, phase: Phase) {
-      if (!isPro(pc, teamId) || candidates.length === 0) return null;
+      if (!isPro(pc, teamId) || candidates.length === 0 || gmOut(pc, teamId)) return null;
       const t = teamOf(pc, teamId);
       const needs = needsOf(pc, teamId, t);
       const pool = candidates.map((id) => view(pc, teamId, id));
@@ -257,7 +264,7 @@ export function gmPolicy(): RosterPolicy {
       return faBoard(pc, teamId, pool, needs, t).ranked[0]?.personId ?? 'pass';
     },
     earlyContact(pc, teamId, candidates, slot) {
-      if (!isPro(pc, teamId) || candidates.length === 0) return null;
+      if (!isPro(pc, teamId) || candidates.length === 0 || gmOut(pc, teamId)) return null;
       // K7.7.1 needs a person who can act: no general manager in the seat, no act.
       const gmId = generalManagerOf(pc.world, teamId);
       if (gmId === null) return null;
@@ -304,7 +311,7 @@ export function gmPolicy(): RosterPolicy {
       return board.slice(0, gm.offersWanted(openPlaces, param('college.offersPerSignee'), gm.P('college.evenBattleShare'))).map((r) => r.personId);
     },
     cutdown(pc, teamId, roster, limit, minByPosition) {
-      if (!isPro(pc, teamId)) return null;
+      if (!isPro(pc, teamId) || gmOut(pc, teamId)) return null;
       const t = teamOf(pc, teamId);
       const result = gm.cutdown(t.profile, {
         roster: roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => view(pc, teamId, id)),
