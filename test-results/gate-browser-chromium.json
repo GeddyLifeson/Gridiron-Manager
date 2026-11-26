@@ -2,8 +2,8 @@
   "suite": "Q1.3.1 golden-seed determinism (phase 0 dummy game)",
   "platform": "browser-chromium",
   "ok": true,
-  "digest": "ebf3bf6b4fac3b84",
-  "goldenDigest": "ebf3bf6b4fac3b84",
+  "digest": "0a02906ae953cc6e",
+  "goldenDigest": "0a02906ae953cc6e",
   "mismatches": [],
   "counts": {
     "pro_2026.plays": 200,

@@ -2,16 +2,16 @@
   "ok": true,
   "problems": [],
   "factNotes": [
-    "quotes checked 1381/1701 (rule book texts not found locally for the rest; set GM_NFL_RULEBOOK_TXT and GM_NCAA_RULEBOOK_TXT to check them)",
-    "PROVISIONAL rows (not Verified): 1742 of 1781",
-    "rule keys in the dictionary: 580"
+    "quotes checked 1443/1763 (rule book texts not found locally for the rest; set GM_NFL_RULEBOOK_TXT and GM_NCAA_RULEBOOK_TXT to check them)",
+    "PROVISIONAL rows (not Verified): 1817 of 1856",
+    "rule keys in the dictionary: 616"
   ],
   "ruleValueStatus": {
     "pro_2026": {
-      "Rulebook only": 580
+      "Rulebook only": 616
     },
     "college_2026": {
-      "Rulebook only": 580
+      "Rulebook only": 616
     }
   }
 }
