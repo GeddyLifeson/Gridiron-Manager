@@ -5,7 +5,10 @@ import { describe, expect, it } from 'vitest';
 import { deadBallOf, eventsOf, playTruthProblems, type PlayResult, type TruthEvent } from '@gm/schema';
 import { canonicalBytes } from '../../src/canonical.ts';
 import { PLUG_IDS, createTickResolver, orderEvents, standInPlug, tickResolverParams, PARAMS } from '../../src/tick-resolver/index.ts';
-import { CONTENT, TABLE, playInput, tableWith, type Kind } from './support.ts';
+import { fieldGeometry } from '../../src/field/index.ts';
+import { CONTENT, RULES, TABLE, playInput, tableWith, type Kind } from './support.ts';
+
+const GEOMETRY = fieldGeometry(RULES);
 
 const KINDS: readonly Kind[] = ['pass', 'run', 'punt', 'field_goal', 'try_kick', 'kickoff', 'onside_kick', 'safety_kick', 'fair_catch_kick'];
 const hex = (r: PlayResult): string => Buffer.from(canonicalBytes({ truth: r.truth, deltas: r.deltas, live: r.liveDurationTenths })).toString('hex');
@@ -116,6 +119,24 @@ describe('tick resolver: determinism (J13)', () => {
     const a = hex(resolver.simulatePlay(playInput({ seed: 11 })));
     expect(hex(resolver.simulatePlay(playInput({ seed: 12 })))).not.toBe(a);
     expect(hex(resolver.simulatePlay(playInput({ seed: 11, playNumber: 2 })))).not.toBe(a);
+  });
+  it('B7.7.1: a kick fielded and downed in the end zone is the kicking team\'s impetus, not the returner\'s', () => {
+    let downedIn = 0;
+    for (let seed = 1; seed <= 80; seed++) {
+      const t = resolver.simulatePlay(playInput({ kind: 'kickoff', seed })).truth;
+      const dead = eventsOf(t, 'dead_ball')[0], kick = eventsOf(t, 'kick')[0];
+      if (!dead || !kick || t.endZoneImpetus === null) continue;
+      // The kicker has no possession: every possession on a kickoff is the receiving team's.
+      const receiving = eventsOf(t, 'possession').filter((e) => e.t <= dead.t);
+      if (receiving.length === 0) continue;
+      const kicking = receiving[0]!.side === 0 ? 1 : 0;
+      // Every time the receiving team had it, it was already on or behind the goal line where it died.
+      const west = dead.spot.x <= GEOMETRY.goalLineWestX, inside = receiving.every((e) => (west ? e.spot.x <= GEOMETRY.goalLineWestX : e.spot.x >= GEOMETRY.goalLineEastX));
+      if (!inside) continue;
+      downedIn++;
+      expect(t.endZoneImpetus, `seed ${seed}`).toBe(kicking);
+    }
+    expect(downedIn).toBeGreaterThan(0);
   });
   it('gives the same truth at full and at summary detail', () => {
     for (const kind of ['pass', 'punt', 'kickoff'] as const) {

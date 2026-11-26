@@ -48,6 +48,8 @@ export interface JudgeContext {
 export interface Estimate {
   /** False when there is nothing to judge: the receiver is unseen with no route to trust, or the throw is out of range. */
   ok: boolean;
+  /** True when the only thing wrong is that the throw is past his arm's reach. */
+  outOfRange: boolean;
   pHat: number;
   iHat: number;
   /** Estimated gain past the line: air yards plus what he expects after the catch. */
@@ -78,7 +80,7 @@ export interface Estimate {
 
 export function newEstimate(): Estimate {
   return {
-    ok: false, pHat: 0, iHat: 0, yards: 0, v: 0, sepYd: 0, laneClearYd: 0, aimPx: 0, aimPy: 0, distYd: 0, airYd: 0, arriveS: 0,
+    ok: false, outOfRange: false, pHat: 0, iHat: 0, yards: 0, v: 0, sepYd: 0, laneClearYd: 0, aimPx: 0, aimPy: 0, distYd: 0, airYd: 0, arriveS: 0,
     trajectory: 'firm', nearestDefender: -1, defenderPosition: 'inPhase', seen: false, broken: true, toBreakS: 0, dirPx: 1, dirPy: 0,
   };
 }
@@ -241,7 +243,7 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
   const p = ctx.p, route = target.route;
   const qx = view.self.px, qy = view.self.py;
   const rec = view.entity(target.slot);
-  out.ok = false; out.seen = rec !== null; out.nearestDefender = -1; out.defenderPosition = 'inPhase'; out.trajectory = 'firm';
+  out.ok = false; out.outOfRange = false; out.seen = rec !== null; out.nearestDefender = -1; out.defenderPosition = 'inPhase'; out.trajectory = 'firm';
 
   // Step 1: where the receiver is now, as he sees it, or where the design says he should be.
   let rx: number, ry: number, speed: number, vx = 0, vy = 0;
@@ -382,6 +384,7 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
   out.distYd = best.dist; out.airYd = best.ax > 0 ? best.ax : 0;
   out.arriveS = best.arrive; out.nearestDefender = best.nearest; out.defenderPosition = best.position; out.dirPx = best.dirX; out.dirPy = best.dirY;
   out.ok = ctx.allowOutOfRange || best.dist <= ctx.maxRangeYd;
+  out.outOfRange = !out.ok;
   return out;
 }
 

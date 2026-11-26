@@ -53,6 +53,11 @@ describe('actions: movement', () => {
     expect(o.technique['conversion']).toBe('hitch');
     const rel = runAction(act('convertRoute', { to: 'sitDown', px: 2, py: -1, relative: true }), world({ self: [4, 8] }), O);
     expect(target(rel)).toEqual([6, 7]);
+    // A conversion he runs through carries on straight upfield after the point, not along the old route's last leg.
+    const seam = { behavior: { type: 'route', params: {}, path: [pt(10, 8), pt(30, -8)] } };
+    const on = runAction(act('convertRoute', { to: 'seam', px: 6, py: 8, kind: 'through' }), world({ self: [6.2, 8] }), O, seam);
+    expect(target(on)[1]).toBe(8);
+    expect(target(on)[0]).toBeGreaterThan(6.2);
   });
 
   it('scrambleDrill: goes deep, comes back to the passer, or mirrors his movement', () => {
@@ -273,6 +278,10 @@ describe('actions: blocking', () => {
 });
 
 describe('actions: the ball', () => {
+  it('breakOnBall: a receiver who knows the ball is up but not yet where it comes down keeps running his route', () => {
+    const o = runAction(act('breakOnBall'), world({ self: [10, 8], kind: 'passInFlight', ball: [0, 0, 20, 4] }), O, { behavior: { type: 'route', params: {}, path: [pt(30, 8)] } });
+    expect(target(o)).toEqual([30, 8]);
+  });
   it('breakOnBall: goes where the ball is coming down', () => {
     expect(target(runAction(A('breakOnBall'), world({ self: [10, 0], kind: 'passInFlight', landing: [14, 5] })))).toEqual([14, 5]);
     expect(target(runAction(act('breakOnBall'), world({ self: [10, 0], kind: 'passInFlight', ball: [0, 0, 20, 4] })))).toEqual([20 * K.pursueLeadS, 4 * K.pursueLeadS]);

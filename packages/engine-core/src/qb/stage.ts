@@ -704,6 +704,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     lookAtSlot(w, targetOf(w, v, idx).slot);
     if (t < blockUntil - EPS) return;
     const thr = judgeRead(w, v, idx, t, est);
+    // A receiver already past his arm's reach only gets farther away: he comes off him at once and does not wait
+    // out the read. Waiting cost him the next receiver, who had run out of his window by the time he looked.
+    if (thr !== thr && est.outOfRange) { idx++; newVisit(w, t); if (idx < seq.length) note(w, 'read', seq[idx]!.target.slot, idx); return; }
     if (thr === thr) {
       if (!evaluating) { evaluating = true; visitStart = t > blockUntil ? t : blockUntil; }
       if (!options.test?.noThrow && est.v >= thr && est.iHat <= intCeil) { startRelease(w, t, targetOf(w, v, idx), 'pass', idx, false, est, thr); return; }

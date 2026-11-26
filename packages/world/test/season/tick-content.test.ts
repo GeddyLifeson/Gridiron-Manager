@@ -107,9 +107,9 @@ describe('starter content port', () => {
       if (a.keys.length === 0 && keys.length === 2) expect(keys[0], a.role).toBeLessThan(5);
     });
   });
-  it('starts zone defenders and route runners with their eyes on the ball, and nobody else', () => {
+  it('starts zone defenders with their eyes on the ball, and nobody else: receivers look when it is thrown', () => {
     const s = port.setup(inputOf(offenseCalls('dropback_pass', null)))!;
-    s.presnap.offense.assignments.forEach((a, i) => expect(s.perception[i]!.gaze, a.role).toBe(a.behavior.type === 'route' ? 'ball' : undefined));
+    s.presnap.offense.assignments.forEach((a, i) => expect(s.perception[i]!.gaze, a.role).toBeUndefined());
     s.presnap.defense.assignments.forEach((a, i) => expect(s.perception[SLOTS_PER_TEAM + i]!.gaze, a.role).toBe(a.behavior.type === 'zoneDrop' || a.behavior.type === 'deepZone' ? 'ball' : undefined));
   });
   it('binds roles to slots, so a man or a key named by role resolves to a player', () => {
@@ -119,6 +119,10 @@ describe('starter content port', () => {
         expect(JSON.stringify([a.keys, a.behavior.params]), `${kind} ${a.role}`).not.toMatch(/role:/);
       }
     }
+  });
+  it('gives the screen one read, the back: the clear-out routes are not throws', () => {
+    const s = port.setup(inputOf(offenseCalls('screen', null)))!;
+    expect(s.qb!.reads.map((r) => r.target.slot)).toEqual([OFFENSE_ROLES.indexOf('R')]);
   });
   it('orders the quarterback\'s reads: the receiver his keys name first, then from the shortest route to the deepest', () => {
     for (const kind of ['dropback_pass', 'quick_pass']) {

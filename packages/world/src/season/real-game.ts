@@ -146,7 +146,7 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   const overrides = chart.chartOverrides(rules.level, opts.paramOverrides);
   // On the tick engine both staffs call from the level's starter book (G3), so every call kind has a real mix of
   // concepts under it. The reference resolver reads no content, so it runs without one (and its results do not move).
-  const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level === 'college' ? 'college' : 'pro') : null;
+  const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level) : null;
   // The gate's venue (J12.8.1): the neutral indoor snapshot with the level's crowd. The weather stays neutral.
   const site = opts.site ?? 'home';
   const noiseBase = opts.noiseBase ?? (tick ? environment.gateNoiseBase(rules.level, params) : 0);
