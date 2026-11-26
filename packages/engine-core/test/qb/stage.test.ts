@@ -287,13 +287,16 @@ describe('J7.4 pressure', () => {
     const a = rate(0.5), b = rate(1.5), c = rate(2.5);
     expect(a).toBeGreaterThan(b);
     expect(b).toBeGreaterThan(c);
-    expect(a).toBeGreaterThan(0.1);
+    // With a second answer to the same rusher he gets most of these out (thrown or thrown away): the share was 0.1+
+    // when a pocket move was his only answer.
+    expect(a).toBeGreaterThan(0.02);
   });
   it('pocket movement 70 against 30, same free rusher: when he moves in the pocket he is sacked on a smaller share', () => {
     const tally = (g: number): { sackShare: number } => {
       let moved = 0, sacked = 0;
       for (let seed = 1; seed <= 2 * N; seed++) {
-        const r = rushed(seed, 1.2, { attrs: { pocket_movement: g }, scripts: { 13: (t) => (t < 2.2 ? alongRoute([{ px: 0.5, py: 5 }, { px: 6.5, py: 5 }], 6, true)(t) : [6.5 + (t - 2.2) * 7, 5 - (t - 2.2) * 7]) } });
+        // No throw on offer, so the share measures the movement alone (with one, his second answer gets the ball out).
+        const r = rushed(seed, 1.2, { noThrow: true, attrs: { pocket_movement: g }, scripts: { 13: (t) => (t < 2.2 ? alongRoute([{ px: 0.5, py: 5 }, { px: 6.5, py: 5 }], 6, true)(t) : [6.5 + (t - 2.2) * 7, 5 - (t - 2.2) * 7]) } });
         if (r.record.response !== 'pocketMovement') continue;
         moved++;
         if (r.record.sack) sacked++;
@@ -306,9 +309,9 @@ describe('J7.4 pressure', () => {
   it('J7.4.1 acceptance: an unseen blindside rusher forces fumbles on a larger share of his sacks than one in his face', () => {
     let bs = 0, bf = 0, fs = 0, ff = 0;
     for (let seed = 1; seed <= 4 * N; seed++) {
-      const blind = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [-12, 3, 7, 0.8] }, hidden: [14], attrs: { pocket_movement: 20 }, ...covered() });
+      const blind = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [-12, 3, 7, 0.8] }, hidden: [14], attrs: { pocket_movement: 20 }, noThrow: true, ...covered() });
       if (blind.record.sack) { bs++; if (blind.record.sack.fumble) bf++; }
-      const front = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [1, 0.5, 7, 0.8] }, attrs: { pocket_movement: 20 }, ...covered() });
+      const front = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [1, 0.5, 7, 0.8] }, attrs: { pocket_movement: 20 }, noThrow: true, ...covered() });
       if (front.record.sack) { fs++; if (front.record.sack.fumble) ff++; }
     }
     expect(bs).toBeGreaterThan(50);

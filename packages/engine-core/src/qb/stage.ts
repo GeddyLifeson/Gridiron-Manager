@@ -743,7 +743,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const scores: number[] = [], which: number[] = [];
     // Throw now: the read he is on, or the checkdown once it is available (J7.3.3).
     let throwIdx = -1, thr = NaN;
-    if (idx < seq.length) { thr = judgeRead(w, v, idx, t, est); if (thr === thr && est.iHat <= intCeil) throwIdx = idx; }
+    // In his drop he has no throw (the hot throw, J7.3.3, is the answer to a rusher that early).
+    const canThrow = phase !== DROP;
+    if (canThrow && idx < seq.length) { thr = judgeRead(w, v, idx, t, est); if (thr === thr && est.iHat <= intCeil) throwIdx = idx; }
     if (throwIdx < 0 && play.checkdown && (phase === EXTEND || idx >= p['read.checkdownAfter'])) {
       const cd = seq.length - 1;
       thr = judgeRead(w, v, cd, t, est);
@@ -754,7 +756,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     // one read he had no throw in two answers out of three, and those ended as sacks or throwaways (15 to 18% of
     // dropbacks together against 10.4% real). Rating every receiver on the first answer went too far the other way
     // (sacks 3.4%): he cannot look the whole field over in the half second he has.
-    if (throwIdx < 0 || again) {
+    if (canThrow && (throwIdx < 0 || again)) {
       let bestV = throwIdx >= 0 ? est.v : -Infinity, bestI = throwIdx;
       for (let i = 0; i < seq.length; i++) {
         if (i === throwIdx) continue;
@@ -780,10 +782,13 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     // it the throwaway outranked moving in the pocket and escaping, and half of all answers with no throw on were
     // throwaways (11% of dropbacks; charted throwaways are 3.5 to 3.6% of dropbacks, FTN 2023 and 2024).
     if ((legal !== 0 || dump) && !options.test?.noThrow) { scores.push((p['resp.throwAwayEp'] - p['value.incompleteCostEp']) / temp); which.push(3); }
+    // A second answer with neither a throw nor a throwaway on is no answer: he keeps moving.
+    if (again && scores.length === 0) return;
     scores.push((p['resp.sackEp'] + (play.instructions.protectBall ? p['resp.protectBallEp'] : 0)) / temp); which.push(4);
     const pick = which[pickOutcome(contests.math.outcomeProbabilities(scores, w.math), uTick[3]!)]!;
-    response = PRESSURE_RESPONSES[pick]!;
-    note(w, `pressure: ${response}`, threat, threatTtc);
+    // The record keeps his first answer; a second answer to the same rusher shows in the notes and in what he did.
+    if (!again) response = PRESSURE_RESPONSES[pick]!;
+    note(w, `pressure: ${PRESSURE_RESPONSES[pick]!}`, threat, threatTtc);
     if (pick === 0) startRelease(w, t, targetOf(w, v, throwIdx), 'pass', throwIdx, false, est, thr);
     else if (pick === 1) dodge = true;
     else if (pick === 2) toExtend(w, v, away);
@@ -1104,7 +1109,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     }
 
     if (takeSack) { stay(w, v); track(w); return; }
-    if (level === IMMINENT && (threat !== respondedTo || (answers === 1 && response === 'pocketMovement' && t >= respondedAt + p['resp.secondAnswerS'] - EPS))) {
+    if (level === IMMINENT && (threat !== respondedTo || (answers === 1 && response === 'pocketMovement' && phase !== DROP && t >= respondedAt + p['resp.secondAnswerS'] - EPS))) {
       respond(w, v, t);
       if (phase === RELEASE || takeSack) { stay(w, v); track(w); return; }
     }

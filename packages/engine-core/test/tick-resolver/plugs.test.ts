@@ -93,7 +93,7 @@ describe('tick resolver with the real quarterback: who ends the play', () => {
       return Object.fromEntries(['pass_set', 'anchor', 'mirror', 'hand_use_in_protection', 'get_off', 'power_rush', 'hand_moves', 'speed_rush_and_bend', 'inside_counter'].map((a) => [a, v]));
     };
     let sacks = 0, held = 0;
-    for (let seed = 1; seed <= 120; seed++) {
+    for (let seed = 1; seed <= 600; seed++) {
       const r = resolver.simulatePlay(playInput({ seed, playNumber: seed, grade }));
       expect(playTruthProblems(r.truth)).toEqual([]);
       const sack = eventsOf(r.truth, 'pressure').find((e) => e.kind === 'sack');
