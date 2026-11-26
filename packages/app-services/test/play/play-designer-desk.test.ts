@@ -3,6 +3,7 @@
 // validator judges the picture, and publishing a legal play keeps a version.
 import { describe, it, expect } from 'vitest';
 import { PlayDesignerDesk } from '../../src/play/play-designer-desk.ts';
+import { FootballDesk } from '../../src/play/football-desk.ts';
 
 const desk = () => new PlayDesignerDesk({ ruleSetId: 'pro_2026', calendarLabel: () => '2026, week 1' });
 
@@ -30,13 +31,58 @@ describe('play designer desk', () => {
     expect(d.play.personnel).toBe('12');
   });
 
-  it('publishing keeps a version when nothing refuses it', () => {
+  it('the Against tab lines the defensive calls up against the drawn formation', () => {
     const d = desk();
-    d.send({ type: 'publish', confirmIllegal: true });
-    const v = d.view();
-    if (v.counts.refused === 0) {
-      expect(d.published.length).toBe(1);
-      expect(d.published[0]!.version).toBe(1);
-    } else expect(d.published.length).toBe(0);
+    const looks = d.view().looks;
+    expect(looks.length).toBeGreaterThan(0);
+    d.send({ type: 'look', id: looks[0]!.id });
+    const shown = d.view().canvas.look!;
+    expect(shown.id).toBe(looks[0]!.id);
+    expect(shown.markers.length).toBe(11);
+    // Defenders stand on their side of the ball.
+    expect(shown.markers.every((m) => m.at[0] >= 0)).toBe(true);
+  });
+
+  it('the parts list offers the content formations, the book protections and tags, and the drop', () => {
+    const book = new FootballDesk({ teamId: 4, ruleSetId: 'pro_2026', level: 'pro' });
+    const d = new PlayDesignerDesk({ ruleSetId: 'pro_2026', calendarLabel: () => 'x', bookParts: () => book.playbook.parts.values() });
+    const part = (k: string) => d.view().parts.find((p) => p.kind === k)!;
+    const formation = part('formation').options.find((o) => o.label.endsWith('(11)'))!;
+    const before = JSON.stringify(d.play.slots.map((x) => x.at));
+    d.send({ type: 'choose_part', kind: 'formation', id: formation.id });
+    expect(d.play.formation.id).toBe(formation.id);
+    expect(JSON.stringify(d.play.slots.map((x) => x.at))).not.toBe(before);
+    const protection = part('protection').options[0]!;
+    d.send({ type: 'choose_part', kind: 'protection', id: protection.id });
+    expect(d.play.protection!.id).toBe(protection.id);
+    const tag = part('tags').options[0]!;
+    d.send({ type: 'choose_part', kind: 'tags', id: tag.id });
+    expect(d.play.tagsAllowed).toEqual([tag.id]);
+    d.send({ type: 'choose_part', kind: 'tags', id: tag.id });
+    expect(d.play.tagsAllowed).toEqual([]);
+    d.send({ type: 'choose_part', kind: 'qb', id: 'drop5' });
+    expect(d.play.qb.dropSteps).toBe(5);
+  });
+
+  it('a published play goes into the playbook, and publishing it again replaces it', () => {
+    const book = new FootballDesk({ teamId: 4, ruleSetId: 'pro_2026', level: 'pro' });
+    const before = book.playbookView('offense', {}).rows.length;
+    const d = new PlayDesignerDesk({ ruleSetId: 'pro_2026', calendarLabel: () => '2026, week 1', onPublish: (p, v) => book.addDesigned(p, v) });
+    d.send({ type: 'publish', confirmIllegal: false });
+    expect(d.published.map((x) => x.version)).toEqual([1]);
+    const id = `design:${d.play.id}`;
+    const rows = book.playbookView('offense', {}).rows;
+    expect(rows.length).toBe(before + 1);
+    const row = rows.find((r) => r.id === id)!;
+    expect(row.status).toBe('valid');
+    expect(book.playbook.plays.get(id)!.parts.personnel).toBeDefined();
+    d.send({ type: 'notes', text: 'beat cover 3' });
+    d.send({ type: 'publish', confirmIllegal: false });
+    expect(d.published.map((x) => x.version)).toEqual([1, 2]);
+    expect(book.playbookView('offense', {}).rows.filter((r) => r.id === id).length).toBe(1);
+    expect(book.playbook.plays.get(id)!.origin).toContain(':v2');
+    // The staff draft no drawn play onto a sheet (it has no content play yet), and nothing breaks.
+    book.prepare('1');
+    expect(book.sheets().offense.boxes.flatMap((b) => b.entries).some((e) => e.call.playId === id)).toBe(false);
   });
 });
