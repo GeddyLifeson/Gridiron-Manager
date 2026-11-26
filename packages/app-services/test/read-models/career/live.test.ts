@@ -1,13 +1,13 @@
 // The coach screens over a running save: a trimmed real-content world run for two seasons with the loop's test
 // doubles (world/test/fixtures; the doubles are not a result model), the user put in a staff seat. The host must
 // read only what his observer may read, show his stints, his team's seasons and the people he worked beside,
-// and give each screen the save has no data for (money, life, market, contract terms) its empty view.
+// and fill contract, market, money and life from his own file in the save (coach-state.test.ts covers it).
 import { describe, expect, it } from 'vitest';
 import { CAREER_SCREEN_SCHEMAS } from '@gm/schema';
 import { positions } from '@gm/career';
 import { newWorld, runningSave } from './live-world.ts';
 import { ObservedWorld, ReadModelRegistry, buildReadModel, crawlPassed, crawlReadModels, observerFor, PUBLIC_OBSERVER } from '../../../src/observer/index.ts';
-import { careerHost, careerSourcesOf, NOTEBOOK_KEY, careerSpecs, CAREER_MODELS, EMPTY_VIEWS, liveCareerTables, teamSeasonOf } from '../../../src/read-models/career/index.ts';
+import { careerHost, careerSourcesOf, COACH_KEY, NOTEBOOK_KEY, careerSpecs, CAREER_MODELS, EMPTY_VIEWS, liveCareerTables, teamSeasonOf } from '../../../src/read-models/career/index.ts';
 
 // A position coach below head coach, so the Office list applies (O7.2.1).
 const fixture = runningSave(2);
@@ -45,13 +45,15 @@ describe('career screens from the running save (CR-CS-2 stop-gap)', () => {
     }
     for (const n of v.network) expect(mates.has(n.name)).toBe(true);
   });
-  it('screens the save holds nothing for show their empty view, never a made-up value', () => {
+  it('contract, market, money and life read the coach\'s own file in the save (career.coach)', () => {
     const h = careerHost(fixture.w);
     const rights = h.career().rights;
-    expect(h.finance()).toEqual(EMPTY_VIEWS.finance(rights));
-    expect(h.life()).toEqual(EMPTY_VIEWS.life(rights));
-    expect(h.jobMarket()).toEqual(EMPTY_VIEWS.jobMarket(rights));
-    expect(h.contract()).toEqual(EMPTY_VIEWS.contract(rights));
+    expect(fixture.w.systemState.get(COACH_KEY)).toBeDefined();
+    expect(h.finance()).not.toEqual(EMPTY_VIEWS.finance(rights));
+    expect(h.finance().netWorth.length).toBe(1);
+    expect(h.life().family).toEqual([]);
+    expect(h.life().hours.length).toBeGreaterThan(0);
+    expect(h.jobMarket().windowOpen).toBe(h.jobMarket().openings.length > 0);
   });
   it('the Office list carries his seat\'s duties and the hours left after required work', () => {
     // Between seasons the loop sits at week 0: an off-season week, where only seasonal duties show (S3.1.1).
