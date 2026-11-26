@@ -22,6 +22,8 @@ export interface RosterPolicy {
   readonly pick?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], phase: Phase) => number | null;
   /** The players a team keeps at the cutdown (M6), or null for the default. Must keep `limit` with the minimums filled. */
   readonly cutdown?: (ctx: PolicyContext, teamId: number, roster: readonly number[], limit: number, minByPosition: Readonly<Record<string, number>>) => readonly number[] | null;
+  /** K7.5.1: a college program's offers to ready recruits, best first, for `openPlaces` places; null for the default signing order. */
+  readonly recruitOffers?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], openPlaces: number) => readonly number[] | null;
 }
 
 /** Which choice a pick is (C7, C8, X11.1.1, T4). */

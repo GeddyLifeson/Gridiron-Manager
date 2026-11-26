@@ -298,13 +298,46 @@ function collegeSignings(c: Cycle, level: Level): void {
   for (const [pool, kind] of [[POOL.recruits, 'recruit'], [POOL.walkOns, 'walk_on']] as const) {
     const ids = c.world.pools.get(pool) ?? [];
     const ready = ids.filter((id) => available(c.world, id) && ageIn(c.world.people.get(id)!, c.season) >= enrol);
-    const left = new Set(fill(c, order, ready, limit, kind));
+    const offered = kind === 'recruit' ? recruitByOffers(c, order, ready, limit) : ready;
+    const left = new Set(fill(c, order, offered, limit, kind));
     // Recruits not signed at enrolment age play somewhere the world does not hold: they leave its football.
     for (const id of left) leaveFootball(c, id);
     bump(c, `unsigned_${kind}`, left.size);
     const readySet = new Set(ready);
     c.world.pools.set(pool, ids.filter((id) => !readySet.has(id) && available(c.world, id)));
   }
+}
+
+/**
+ * K7.5.1 offers, then the recruit's choice (TO-08): each program offers down its own board; recruits, best
+ * public grade first, take the offer from the program they rank highest (prestige plus their own noise) that
+ * still has a place. Returns the recruits nobody signed, for the default fill. Without the policy hook every
+ * ready recruit goes to the default fill.
+ */
+function recruitByOffers(c: Cycle, order: readonly number[], ready: readonly number[], limit: (teamId: number) => number): number[] {
+  const offersOf = c.b.policy?.recruitOffers;
+  if (!offersOf) return [...ready];
+  const offers = new Map<number, number[]>();
+  for (const teamId of order) {
+    const open = limit(teamId) - (c.world.rosters.get(teamId) ?? []).length;
+    if (open <= 0) continue;
+    for (const id of offersOf(c, teamId, ready, open) ?? []) offers.set(id, [...(offers.get(id) ?? []), teamId]);
+  }
+  const prestige = new Map(c.world.teams.map((t) => [t.id, t.prestige]));
+  const left: number[] = [];
+  const byGrade = [...ready].sort((x, y) => c.grades.publicGrade(y) - c.grades.publicGrade(x) || x - y);
+  for (const id of byGrade) {
+    const s = stream(c.world.seed, STREAM_MOVES, ['recruit_choice', id, c.season]);
+    const open = (offers.get(id) ?? []).filter((t) => (c.world.rosters.get(t) ?? []).length < limit(t)).sort((x, y) => x - y);
+    let top: number | null = null, topPull = -Infinity;
+    for (const t of open) {
+      const pull = (prestige.get(t) ?? 0) + s.normal() * param('recruit.prestigeNoiseSd');
+      if (pull > topPull) { top = t; topPull = pull; }
+    }
+    if (top === null) { left.push(id); continue; }
+    sign(c, top, id, 'recruit');
+  }
+  return left;
 }
 
 export function rosterMovesStep(b: TurnoverBinding): StepHandler {

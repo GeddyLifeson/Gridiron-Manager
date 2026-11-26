@@ -52,6 +52,29 @@ describe('the front office AI as the roster policy (K7, TO-06)', () => {
     expect(kinds.has('free_agent')).toBe(true);
   });
 
+  // C-level acceptance: class quality follows program reputation (T4, K7.5.1).
+  it('gives higher-prestige programs better recruiting classes than the default order does', () => {
+    const corr = (w: loop.LiveWorld): number => {
+      const sum = new Map<number, { s: number; n: number }>();
+      for (const e of w.log.rows()) {
+        if (e.type !== turnover.PLAYER_SIGNED || e.payload.kind !== 'recruit') continue;
+        const attrs = Object.values(w.people.get(e.subjects[0]!.id)!.playing!.attributes);
+        const v = attrs.reduce((a, x) => a + x, 0) / attrs.length;
+        const r = sum.get(e.payload.team as number) ?? { s: 0, n: 0 };
+        r.s += v; r.n++; sum.set(e.payload.team as number, r);
+      }
+      const rows = [...sum].map(([t, r]) => [w.teams.find((x) => x.id === t)!.prestige, r.s / r.n] as const);
+      const mx = rows.reduce((a, r) => a + r[0], 0) / rows.length, my = rows.reduce((a, r) => a + r[1], 0) / rows.length;
+      let sxy = 0, sxx = 0, syy = 0;
+      for (const [x, y] of rows) { sxy += (x - mx) * (y - my); sxx += (x - mx) ** 2; syy += (y - my) ** 2; }
+      return sxy / Math.sqrt(sxx * syy);
+    };
+    const cg = corr(g.w), cd = corr(d.w);
+    console.log('prestige vs class quality: gm', cg.toFixed(3), 'default', cd.toFixed(3));
+    expect(cg).toBeGreaterThan(0.3);
+    expect(cg).toBeGreaterThan(cd);
+  });
+
   it('is deterministic with the policy bound', () => {
     const again = build(turnover.gmPolicy());
     for (let i = 0; i < 3; i++) loop.runSeason(again.w, again.sys, testSchedule);

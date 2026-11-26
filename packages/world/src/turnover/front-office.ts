@@ -177,6 +177,24 @@ export function gmPolicy(): RosterPolicy {
     return needs;
   };
 
+  const builderSets = new WeakMap<object, Map<string, gm.CollegeRosterPhilosophy>>();
+  /** K7.1.2: the head coach's roster-building record, one per program and head coach. */
+  const builderOf = (pc: PolicyContext, teamId: number): gm.CollegeRosterPhilosophy => {
+    let hc = 0;
+    for (const j of pc.world.jobs.values()) if (j.teamId === teamId && j.positionId === 'pos:head_coach' && j.holderPersonId !== null) hc = j.holderPersonId;
+    const k = `${teamId}:${hc}`;
+    let builders = builderSets.get(pc.world);
+    if (!builders) { builders = new Map(); builderSets.set(pc.world, builders); }
+    let b = builders.get(k);
+    if (!b) {
+      const positions = Object.keys(specOf(pc.b, pc.world, teamId).rosterMix).sort();
+      // No transfers in the world yet (TO-04), so the era's transfer share is 0.
+      b = gm.generateCollegeBuilder(stream(pc.world.seed, STREAM_GM, ['college', teamId, hc]), hc, positions, 0);
+      builders.set(k, b);
+    }
+    return b;
+  };
+
   const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
 
   const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
@@ -200,6 +218,26 @@ export function gmPolicy(): RosterPolicy {
       // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
       const fas = pool.map((v) => ({ ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }));
       return gm.targets(t.profile, fas, needs, t.ctx)[0]?.personId ?? null;
+    },
+    recruitOffers(pc, teamId, candidates, openPlaces) {
+      if (isPro(pc, teamId) || candidates.length === 0) return null;
+      const b = builderOf(pc, teamId);
+      const t = teamOf(pc, teamId);
+      const targets = positionTargets(specOf(pc.b, pc.world, teamId));
+      const have: Record<string, number> = {};
+      for (const id of pc.world.rosters.get(teamId) ?? []) { const pos = pc.world.people.get(id)?.playing?.position; if (pos) have[pos] = (have[pos] ?? 0) + 1; }
+      const places: Record<string, gm.Places> = {};
+      for (const [pos, n] of Object.entries(targets)) places[pos] = { open: Math.max(0, n - (have[pos] ?? 0)), target: n };
+      // Recruits carry no projection, sign chance or home region off-screen yet (TO-08): the board is value and need.
+      const pool: gm.Recruit[] = candidates.map((id) => ({ ...view(pc, teamId, id), region: '', signChance: 1, committedElsewhere: false, lowerSource: false }));
+      // Replacement level for a class is the low end of the class itself, as this staff grades it: against the
+      // club's own roster almost no freshman would rate above replacement.
+      const byPos = new Map<string, number[]>();
+      for (const v of pool) byPos.set(v.position, [...(byPos.get(v.position) ?? []), v.grade.mean]);
+      const allGrades = pool.map((v) => v.grade.mean);
+      const table: gm.ContributionTable = { ...t.ctx.table, replacementIss: (pos) => quantile(byPos.get(pos) ?? allGrades, param('gm.replacementQuantile')) };
+      const board = gm.recruitBoard(b, pool, gm.placeNeeds(b, places), new Set(), { ...t.ctx, table });
+      return board.slice(0, gm.offersWanted(openPlaces, param('college.offersPerSignee'), gm.P('college.evenBattleShare'))).map((r) => r.personId);
     },
     cutdown(pc, teamId, roster, limit, minByPosition) {
       if (!isPro(pc, teamId)) return null;
