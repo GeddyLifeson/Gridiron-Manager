@@ -16,6 +16,7 @@
     "lint": "tsx packages/tools/src/cli.ts lint",
     "new-save": "tsx packages/tools/src/cli.ts new-save",
     "facts": "tsx packages/tools/src/cli.ts facts",
+    "content": "tsx packages/tools/src/content/cli.ts",
     "headless": "tsx packages/headless/src/cli.ts",
     "gate": "tsx packages/headless/src/cli.ts gate",
     "release-gate": "tsx scripts/release/gate.ts",
