@@ -3454,20 +3454,20 @@
    "id": "F-measured-rate-0111",
    "level": "pro",
    "domain": "measured-rate",
-   "statement": "Completion percentage under pressure: 0.409 (pro, 2022-2024).",
-   "value": 0.409,
+   "statement": "Completion percentage under pressure: 0.481 of attempts (pro, 2023-2024; participation pressure flag, throwaways in).",
+   "value": 0.481,
    "unit": "share",
-   "validFor": "2022-2024",
+   "validFor": "2023-2024",
    "sources": [
     {
-     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
-     "locator": "participation was_pressure true, all pass plays but spikes",
+     "citation": "nflverse play-by-play and participation files, regular seasons 2023 and 2024, github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with research/tuning/trace-tools/real-under-pressure.py (thread \"Tune pressured throws and interceptions\")",
+     "locator": "participation was_pressure true, pass attempts (no sacks, no spikes)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
      "independenceGroup": "nflverse",
      "primary": false,
-     "quote": "Recomputed 2026-11-26 from the nflverse files; completion share 0.409 on 16,628 pressured dropbacks.",
-     "value": 0.409
+     "quote": "Recomputed 2026-11-26 from the nflverse files: completion 48.1% of pressured attempts (clean 70.5%).",
+     "value": 0.481
     }
    ],
    "status": "1 of 3",
@@ -3482,27 +3482,33 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Value recomputed on the feed pressure flag over attempts (2023-2024); one source group."
     }
-   ]
+   ],
+   "notes": "2026-11-26: value replaced from 0.409 (base not stated; 40.8% is the completion rate when the quarterback is hit on the play, which may be its origin). The bible's verification pass got 49.0% and 5.93 from the same feed over 2022-2024 (same group, so not a second source). Opta Analyst 2024 (57.3% on adjusted attempts, own flag) uses another definition."
   },
   {
    "id": "F-measured-rate-0112",
    "level": "pro",
    "domain": "measured-rate",
-   "statement": "Yards per attempt under pressure: 3.87 (pro, 2022-2024).",
-   "value": 3.87,
+   "statement": "Yards per attempt under pressure: 5.76 (pro, 2023-2024; participation pressure flag, over attempts, throwaways in).",
+   "value": 5.76,
    "unit": "yards",
-   "validFor": "2022-2024",
+   "validFor": "2023-2024",
    "sources": [
     {
-     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
-     "locator": "participation was_pressure true, all pass plays but spikes",
+     "citation": "nflverse play-by-play and participation files, regular seasons 2023 and 2024, github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with research/tuning/trace-tools/real-under-pressure.py (thread \"Tune pressured throws and interceptions\")",
+     "locator": "participation was_pressure true, pass attempts (no sacks, no spikes)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
      "independenceGroup": "nflverse",
      "primary": false,
-     "quote": "Recomputed 2026-11-26 from the nflverse files; yards per attempt 3.868 (rounds to 3.87).",
-     "value": 3.87
+     "quote": "Recomputed 2026-11-26 from the nflverse files: 5.76 yards per pressured attempt (clean 7.53).",
+     "value": 5.76
     }
    ],
    "status": "1 of 3",
@@ -3517,8 +3523,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Value recomputed on the feed pressure flag over attempts (2023-2024); one source group."
     }
-   ]
+   ],
+   "notes": "2026-11-26: value replaced from 3.87 (not reproduced; 5.93 over 2022-2024 in the verification pass). The bible's verification pass got 49.0% and 5.93 from the same feed over 2022-2024 (same group, so not a second source). Opta Analyst 2024 (57.3% on adjusted attempts, own flag) uses another definition."
   },
   {
    "id": "F-measured-rate-0113",
@@ -10818,6 +10830,442 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0390",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Run and pass snaps per team game with a down, kneel-downs and spikes excluded, FBS against FBS regular season: 65.56 (college, 2024). Basis of the college G7.2.3 expected-snaps table.",
+   "value": 65.56,
+   "unit": "plays",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play 2024 (sportsdataverse-data release cfbfastR_cfb_pbp, play_by_play_2024.parquet), FBS against FBS regular season, 752 games, 98,609 snaps; computed by the project",
+     "locator": "packages/football-content/test/gameplan/build_reference_college.py; output packages/football-content/src/gameplan/reference-college-2024.ts",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 65.56
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "New row for the college expected-snaps table. Publishers checked on 2026-11-26 count plays another way and do not confirm this definition."
+    }
+   ],
+   "notes": "Agrees with F-measured-rate-0282's note (65.4 to 65.7 excluding kneels and spikes, 2023-2025). Checked 2026-11-26: TeamRankings plays per game (2024 column, page dated 2025-01-21) shows no league average and no definition; the 82 teams read averaged about 71.4, a top-sorted partial list, so not comparable. CBS Sports (Dennis Dodd, 2025-02-26) gives about 175 combined plays per game for both teams, which counts kicks and penalties, not this definition. Sports-reference could not be read from the cloud. No independent source on the same definition yet."
+  },
+  {
+   "id": "F-measured-rate-0471",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pressure rate on blitzes, league-wide: 42.3% (pro, 2025).",
+   "value": 42.3,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Daire Carragher, \"5 most effective blitzers from the 2025 NFL season,\" PFF, 2026-03-02, pff.com/news/nfl-5-most-effective-blitzers-from-the-2025-nfl-season",
+     "locator": "research/tuning/pass-protection.md section 1, row R1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 42.3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0472",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of pass plays with a five-man protection: more than 70% in every season (pro, 2018-2021). The value is the stated lower bound.",
+   "value": 70,
+   "unit": "percent",
+   "validFor": "2018-2021",
+   "sources": [
+    {
+     "citation": "Diante Lee, \"How NFL defenses attacked five-man protections in 2021,\" PFF, 2022-02-25, pff.com/news/nfl-how-nfl-defenses-attacked-five-man-protections-2021",
+     "locator": "research/tuning/pass-protection.md section 1, row R2",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 70
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0473",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pressure rate against five-man protections: 40% of passing snaps in three of four seasons (pro, 2018-2021).",
+   "value": 40,
+   "unit": "percent",
+   "validFor": "2018-2021",
+   "sources": [
+    {
+     "citation": "Diante Lee, \"How NFL defenses attacked five-man protections in 2021,\" PFF, 2022-02-25, pff.com/news/nfl-how-nfl-defenses-attacked-five-man-protections-2021",
+     "locator": "research/tuning/pass-protection.md section 1, row R3",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 40
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0474",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Unblocked pressures per blitz, highest team defense: 26.74% (Cleveland, 50 on 187 blitzes; pro, 2023).",
+   "value": 26.74,
+   "unit": "percent",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "PFF, \"Introducing Unlocked Pressure Rate: Assessing how often blitzes lead to unblocked pressures,\" 2024-10-17, pff.com/news/nfl-unlocked-pressure-rate-week-6, 2023 table",
+     "locator": "research/tuning/pass-protection.md section 1, row R4",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 26.74
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0475",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Unblocked pressures per blitz, lowest team defense: 8.56% (Green Bay, 19 on 222 blitzes; pro, 2023).",
+   "value": 8.56,
+   "unit": "percent",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "PFF, \"Introducing Unlocked Pressure Rate: Assessing how often blitzes lead to unblocked pressures,\" 2024-10-17, pff.com/news/nfl-unlocked-pressure-rate-week-6, 2023 table",
+     "locator": "research/tuning/pass-protection.md section 1, row R5",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 8.56
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0476",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Unblocked pressure rate, highest team defense: 11.3% (Kansas City, 73 unblocked pressures; pro, 2023 regular season). The page does not state the denominator; 73 over 11.3% is about 646, a season of dropbacks faced.",
+   "value": 11.3,
+   "unit": "percent",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "NFL Next Gen Stats, \"How defensive pressure defined the 2023 NFL season,\" nfl.com/news/next-gen-stats-how-defensive-pressure-defined-the-2023-nfl-season",
+     "locator": "research/tuning/pass-protection.md section 1, row R6",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-next-gen-stats",
+     "primary": false,
+     "value": 11.3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0477",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with five or more pass rushers, league-wide: 28.9% (pro, 2025; 5,390 plays).",
+   "value": 28.9,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 28.9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0478",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with five or more pass rushers, league-wide: 29.1% (pro, 2026 through early November).",
+   "value": 29.1,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Matt Becker, \"How the Vikings Are Leading the NFL's Disruption of Long-Held Blitzing Conventions,\" Opta Analyst, 2026-11-11, theanalyst.com/articles/nfl-blitz-rate-minnesota-vikings-brian-flores",
+     "locator": "research/tuning/pass-protection.md section 6, row P2",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "opta",
+     "primary": false,
+     "value": 29.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0479",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with exactly four pass rushers, league-wide: 70.6% (pro, 2025).",
+   "value": 70.6,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Matt Becker, \"How the Vikings Are Leading the NFL's Disruption of Long-Held Blitzing Conventions,\" Opta Analyst, 2026-11-11, theanalyst.com/articles/nfl-blitz-rate-minnesota-vikings-brian-flores",
+     "locator": "research/tuning/pass-protection.md section 6, row P3",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "opta",
+     "primary": false,
+     "value": 70.6
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0480",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with exactly five pass rushers, league-wide: 19.8% (pro, 2025).",
+   "value": 19.8,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Matt Becker, \"How the Vikings Are Leading the NFL's Disruption of Long-Held Blitzing Conventions,\" Opta Analyst, 2026-11-11, theanalyst.com/articles/nfl-blitz-rate-minnesota-vikings-brian-flores",
+     "locator": "research/tuning/pass-protection.md section 6, row P4",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "opta",
+     "primary": false,
+     "value": 19.8
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0481",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with six or more pass rushers: mean of the 32 team rates 6.9% (pro, 2025; team range 2.2% to 15.1%).",
+   "value": 6.9,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P5",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 6.9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0482",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Simulated pressures (a linebacker or defensive back rushes and an edge or interior lineman drops): mean of the 32 team rates 7.5% of pass plays (pro, 2025; team range 1.4% to 12.4%).",
+   "value": 7.5,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P6",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 7.5
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0483",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Simulated pressures on first and second down, mean of defensive systems as charted by MatchQuarters: 18.60% (pro, 2025). A wider definition than F-measured-rate-0482.",
+   "value": 18.6,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Cody Alexander, \"Early-Down Run Pressures: Building System Rules,\" MatchQuarters, 2026-06-22 (free part), matchquarters.com/p/early-down-run-pressures-simulated-blitz-thresholds-saints-buccaneers-patriots",
+     "locator": "research/tuning/pass-protection.md section 6, row P7",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "alexander",
+     "primary": false,
+     "value": 18.6
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0484",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with three or fewer pass rushers: mean of the 32 team rates 3.4% (pro, 2025; team range 0.7% to 9.2%).",
+   "value": 3.4,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P8",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 3.4
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
     }
    ]
   }

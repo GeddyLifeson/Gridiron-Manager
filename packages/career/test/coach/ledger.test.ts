@@ -14,6 +14,13 @@ const depth = (id: number, y: number, promotedGrade: number, demotedGrade: numbe
   ({ id, date: day(y, id), deciderId: ME, factsKnown: true, kind: 'depth_change', promotedId: 1, demotedId: 2, promotedGrade, demotedGrade, demotedIsStarOrHighPick: false, ...extra }) as LedgerDecision;
 
 describe('E10.1.1 statement', () => {
+  it('the catalogue is the nine entries Marlon approved on 2026-11-26', () => {
+    expect(COMMITMENT_CATALOGUE.map((e) => e.id)).toEqual([
+      'best_player_plays', 'rules_same_for_everyone', 'go_when_numbers_say_go', 'go_for_two_when_numbers_say',
+      'run_to_win_fourth_quarter', 'young_players_real_snaps', 'tell_you_first', 'no_beating_ourselves', 'nobody_plays_hurt',
+    ]);
+  });
+
   it('every catalogue entry has a measure, and only catalogue entries can be committed', () => {
     for (const e of COMMITMENT_CATALOGUE) expect(e.measure).toBeTruthy();
     const r = stateCommitment(emptyPhilosophy(ME, false), 'win_every_game', 'team', day(2026));

@@ -7,6 +7,9 @@ const C2 = 0xab0e9789;
 const C3 = 0x38b34ae5;
 const C4 = 0xa1e38b93;
 
+/** True when the platform stores numbers little-endian (every current JavaScript platform; checked, not assumed). */
+const LITTLE_ENDIAN = new Uint8Array(new Uint32Array([1]).buffer)[0] === 1;
+
 function rotl(x: number, r: number): number {
   return ((x << r) | (x >>> (32 - r))) >>> 0;
 }
@@ -29,15 +32,21 @@ export function murmur3x86_128(data: Uint8Array, seed = 0): [number, number, num
   let h3 = seed >>> 0;
   let h4 = seed >>> 0;
 
-  const word = (i: number): number =>
-    ((data[i]! | (data[i + 1]! << 8) | (data[i + 2]! << 16) | (data[i + 3]! << 24)) >>> 0);
-
+  // Words are little-endian by definition. On a little-endian platform with the data on a 4-byte boundary
+  // they are read through a 32-bit view; otherwise byte by byte. Same words either way (G-97).
+  const words = LITTLE_ENDIAN && (data.byteOffset & 3) === 0 && nblocks > 0 ? new Int32Array(data.buffer, data.byteOffset, nblocks * 4) : null;
   for (let b = 0; b < nblocks; b++) {
     const i = b * 16;
-    let k1 = word(i);
-    let k2 = word(i + 4);
-    let k3 = word(i + 8);
-    let k4 = word(i + 12);
+    let k1: number, k2: number, k3: number, k4: number;
+    if (words !== null) {
+      const w = b * 4;
+      k1 = words[w]!; k2 = words[w + 1]!; k3 = words[w + 2]!; k4 = words[w + 3]!;
+    } else {
+      k1 = data[i]! | (data[i + 1]! << 8) | (data[i + 2]! << 16) | (data[i + 3]! << 24);
+      k2 = data[i + 4]! | (data[i + 5]! << 8) | (data[i + 6]! << 16) | (data[i + 7]! << 24);
+      k3 = data[i + 8]! | (data[i + 9]! << 8) | (data[i + 10]! << 16) | (data[i + 11]! << 24);
+      k4 = data[i + 12]! | (data[i + 13]! << 8) | (data[i + 14]! << 16) | (data[i + 15]! << 24);
+    }
 
     k1 = Math.imul(k1, C1); k1 = rotl(k1, 15); k1 = Math.imul(k1, C2); h1 = (h1 ^ k1) >>> 0;
     h1 = rotl(h1, 19); h1 = (h1 + h2) >>> 0; h1 = (Math.imul(h1, 5) + 0x561ccd1b) >>> 0;

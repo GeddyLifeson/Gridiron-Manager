@@ -84,7 +84,15 @@ export interface ExpectedContract {
 
 /** C8.3.1 rules 1 to 4: the "expected contract" line (years, average per year, guarantee, each with a range). */
 export function expectedContract(v: ValueInput): ExpectedContract {
-  const k = demandFactor(v.suitors) * timeFactor(v.now, v.dates);
+  return contractAtTime(v, timeFactor(v.now, v.dates));
+}
+
+/**
+ * The same line with the rule 4 time factor given rather than read from the market dates: for a caller
+ * that knows when in the market the deal lands but holds no calendar (1 = the first wave).
+ */
+export function contractAtTime(v: Omit<ValueInput, 'now' | 'dates'>, time: number): ExpectedContract {
+  const k = demandFactor(v.suitors) * time;
   const apy = (p: number) => Math.max(v.minimumCents, Math.round(shareAt(v.scale, p) * v.capCents * k));
   const years = Math.min(P.maxContractYears, Math.max(1, Math.round(v.productiveYearsLeft)));
   const pastPrime = Math.max(0, v.age - v.primeEndAge);

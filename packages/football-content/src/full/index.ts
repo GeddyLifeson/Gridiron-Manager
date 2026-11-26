@@ -10,6 +10,9 @@ import { ADDED_PLAYS, FULL_PLAYS } from './offense.ts';
 
 export { ALL_SOURCES, FULL_SOURCES, SOURCE_BY_ID } from './sources.ts';
 export { FULL_FORMATIONS } from './formations.ts';
+export { PROTECTIONS, PROTECTION_BY_ID, PROTECTION_SOURCES, protectionFor, type ProtectionDef, type ProtectionCallDef, type KeptInJob } from './protections.ts';
+export { PRESSURE_DEFENSE, PRESSURE_SOURCES, isSimulatedPressure } from './defense-pressure.ts';
+export { PRO_BOOK, COLLEGE_BOOK, STARTER_BOOKS, STARTER_BOOK_BY_LEVEL, INTENT_WEIGHT, starterBookFor, menuFor, pickEntry, bookPlay, bookCall, type StarterBook, type BookEntry, type BookSituation } from './books.ts';
 export { ADDED_PLAYS, FULL_PLAYS, ADDED_DEFENSE, FULL_DEFENSE, ALL_FORMATIONS, FORMATION_BY_ID };
 
 export const FULL = { formations: ALL_FORMATIONS, plays: FULL_PLAYS, defense: FULL_DEFENSE, added: { plays: ADDED_PLAYS, defense: ADDED_DEFENSE } } as const;

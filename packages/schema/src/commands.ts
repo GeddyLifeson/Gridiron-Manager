@@ -5,8 +5,13 @@ import { Calendar, Level } from './entities.ts';
 import { GameplanData } from './read-models/gameplan.ts';
 import { PlaybookData } from './read-models/playbook.ts';
 import { InstallData } from './read-models/install.ts';
+import { PracticeDeskData } from './read-models/practice.ts';
 import { DraftRoomData, FreeAgencyData } from './read-models/draft-room.ts';
 import { RecruitingBoardData } from './read-models/recruiting.ts';
+import { SchoolData } from './read-models/school.ts';
+import { PlayerDesignerData } from './read-models/player-designer.ts';
+import { EditorsData } from './read-models/editors.ts';
+import { ScoutingTableData, ScoutingPersonnelData } from './read-models/scouting.ts';
 import { GAME_DAY_COMMAND_SPECS } from './game-day-commands.ts';
 import { GAMEPLAN_COMMAND_SPECS } from './gameplan-commands.ts';
 import { FILM_MODEL_SCHEMAS, FILM_COMMAND_SPECS } from './read-models/film.ts';
@@ -144,9 +149,12 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   // PLAYBOOK_MODEL, INSTALL_MODEL (PR 251), DRAFT_ROOM_MODEL, FREE_AGENCY_MODEL (PR 268), RECRUITING_BOARD_MODEL (PR 257).
   playbook: readModelOf(PlaybookData),
   install: readModelOf(InstallData),
+  practiceDesk: readModelOf(PracticeDeskData),
   draftRoom: readModelOf(DraftRoomData),
   freeAgency: readModelOf(FreeAgencyData),
   recruitingBoard: readModelOf(RecruitingBoardData),
+  scoutingTable: readModelOf(ScoutingTableData),
+  scoutingPersonnel: readModelOf(ScoutingPersonnelData),
   playerCard: readModelOf(PlayerCardData),
   rosterTable: readModelOf(RosterTableData),
   staff: readModelOf(StaffData),
@@ -185,4 +193,7 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   filmGradeSheet: readModelOf(FILM_MODEL_SCHEMAS.gradeSheet),
   filmCorrections: readModelOf(FILM_MODEL_SCHEMAS.corrections),
   filmCutUps: readModelOf(FILM_MODEL_SCHEMAS.cutUps),
+  school: readModelOf(SchoolData),
+  playerDesigner: readModelOf(PlayerDesignerData),
+  editors: readModelOf(EditorsData),
 };

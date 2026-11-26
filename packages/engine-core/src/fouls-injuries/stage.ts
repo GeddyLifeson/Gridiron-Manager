@@ -21,13 +21,14 @@
 // perception module's `landingEstimate` (J3.5.1 "located the ball") and player AI's `foulIntent`
 // (K1.3.3 deliberate fouls). Nothing else, and none of their private state.
 import {
-  BEHAVIORS, MOVE_MODES, SLOT_COUNT, TICK_S, roundSimS, roundYd,
+  BEHAVIORS, MOVE_MODES, SLOT_COUNT, SLOTS_PER_TEAM, TICK_S, roundSimS, roundYd,
   type RandomStream, type RuleSet, type TickWorld, type TruthEvent, type TruthEventOf,
 } from '@gm/schema';
 import { dAtan2, dCos, dSqrt, PI } from '../dmath.ts';
 import { kinParams, type KinParams } from '../kinematics/index.ts';
 import { contactNumbers, type ContactNumbers } from '../kinematics/momentum.ts';
 import type { PlayStage } from '../tick/index.ts';
+import { READING, opposingElevenZ } from '../tick/opposition.ts';
 import {
   CONTACT_FORMS, LIVE_FOULS, OPTIONAL_RULE_KEYS, foulsInjuriesParams, type FoulsInjuriesParams, type LiveFoulId,
 } from './params.ts';
@@ -157,6 +158,12 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   };
   const iss = (w: TickWorld, s: number, a: string): number => w.slots[s]!.player.attributes[a] ?? 50;
   const z = (w: TickWorld, s: number, a: string): number => zOf(iss(w, s, a));
+  // A hazard's grades, read against the other eleven (`opposedShare`): what tests a man's discipline and technique is
+  // the men across from him. Injury terms keep the plain grade.
+  const oppZ: [number, number] = [0, 0];
+  // `skillScale`: how strongly the grade gap moves the hazard, fitted to how much real favourites' flag counts differ.
+  let skillScale = 1;
+  const zt = (w: TickWorld, s: number, a: string): number => skillScale * (z(w, s, a) - oppZ[s < SLOTS_PER_TEAM ? 0 : 1]);
   const dist = (w: TickWorld, a: number, b: number): number => {
     const dx = w.players.posX[a]! - w.players.posX[b]!, dy = w.players.posY[a]! - w.players.posY[b]!;
     return dSqrt(dx * dx + dy * dy);
@@ -382,11 +389,11 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
       const trailing = dd - dr > 0 ? dd - dr : 0;
       const early = firstNear[d]! !== NEVER && (w.tick - firstNear[d]!) * TICK_S > q['dpi.earlyS'] ? 1 : 0;
       const tm = teamMultiplier(team(w, d).defCoverage, q['team.defCoverageMin'], q['team.defCoverageMax']);
-      const chance = interferenceChance({ notLocated: located ? 0 : 1, trailingYd: trailing, early, bothLocated: located && recLocated, zDisc: z(w, d, 'foul_discipline'), zBallSkills: z(w, d, 'ball_skills'), team: tm }, q);
+      const chance = interferenceChance({ notLocated: located ? 0 : 1, trailingYd: trailing, early, bothLocated: located && recLocated, zDisc: zt(w, d, 'foul_discipline'), zBallSkills: zt(w, d, 'ball_skills'), team: tm }, q);
       hazard(w, 'dpi', d, chance, trailing / q['dpi.contactYd'] + (located ? 0 : q['severity.gain']), e.t);
     }
     // J10.3.2 push-off: an optional act at a contested catch point by a receiver with little separation.
-    if (e.contested && nearest <= q['dpi.contactYd']) hazard(w, 'opi', rec, pushOffChance(nearest, z(w, rec, 'foul_discipline'), q), 1 - nearest / q['dpi.contactYd'], e.t);
+    if (e.contested && nearest <= q['dpi.contactYd']) hazard(w, 'opi', rec, pushOffChance(nearest, zt(w, rec, 'foul_discipline'), q), 1 - nearest / q['dpi.contactYd'], e.t);
   };
 
   const onTackle = (w: TickWorld, e: TruthEventOf<'tackle_attempt'>): void => {
@@ -402,7 +409,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
       const toD = dAtan2(w.players.posY[d]! - w.players.posY[c]!, w.players.posX[d]! - w.players.posX[c]!);
       const behind = dCos(toD - w.players.headingRad[c]!) < dCos((q['block.behindDeg'] * PI) / 180);
       const aggr = options.aggression?.(w.slots[d]!.side as 0 | 1) ?? 0;
-      const inputs = { energy, lunge: speed(w, d) >= q['form.lungeYps'], behind, defenseless: recentCatch || recentThrow, zDisc: z(w, d, 'foul_discipline'), zTackling: z(w, d, 'tackling'), aggression: aggr };
+      const inputs = { energy, lunge: speed(w, d) >= q['form.lungeYps'], behind, defenseless: recentCatch || recentThrow, zDisc: zt(w, d, 'foul_discipline'), zTackling: zt(w, d, 'tackling'), aggression: aggr };
       for (const form of CONTACT_FORMS) {
         if (!ex!.on[form]) continue;
         if (hazard(w, form, d, contactFormChance(form, inputs, q), energy - 1, e.t)) break;
@@ -446,7 +453,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
       // J10.2.1 physical effect: a committed hold resets A toward -0.2 while it lasts, called or not.
       if (holdUntil[o]! > w.tick && holdDef[o] === d && c.advantage < q['hold.resetA']) c.advantage = q['hold.resetA'];
       if (c.advantage >= q['hold.aOpen'] || dist(w, o, d) > q['hold.reachYd']) continue;
-      const zd = z(w, o, 'foul_discipline');
+      const zd = zt(w, o, 'foul_discipline');
       // Hands to the face: one draw per exposure, its own intercept (J10.1.1).
       if (faceDone[o] === 0) { faceDone[o] = 1; hazard(w, 'illegal_use_of_hands_offense', o, handsToFaceChance(q['face.b0Blocker'], -c.advantage + q['hold.aOpen'], zd, q), -c.advantage, t); }
       if (holdDone[o] === 1) continue;
@@ -483,7 +490,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     }
     if (illegal === null) return;
     const st = foulStream(w, o, illegal);
-    if (st.chance(avoidIllegalBlockChance(z(w, o, 'foul_discipline'), z(w, o, 'football_intelligence'), q))) {
+    if (st.chance(avoidIllegalBlockChance(zt(w, o, 'foul_discipline'), zt(w, o, 'football_intelligence'), q))) {
       // He pulls off: the block is missed (J10.2.2).
       const i = w.players.engagement[o]!;
       if (i >= 0) w.contests[i]!.advantage = -1;
@@ -512,10 +519,10 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
         if (trail <= q['dh.trailYd']) continue;
         covDone[d] = 1;
         const tm = teamMultiplier(team(w, d).defCoverage, q['team.defCoverageMin'], q['team.defCoverageMax']);
-        const zd = z(w, d, 'foul_discipline'), beaten = trail - q['dh.trailYd'];
+        const zd = zt(w, d, 'foul_discipline'), beaten = trail - q['dh.trailYd'];
         if (faceDoneDef[d] === 0) { faceDoneDef[d] = 1; hazard(w, 'illegal_use_of_hands_defense', d, handsToFaceChance(q['face.b0Defender'], beaten, zd, q), beaten, t); }
         const zone = ex!.zoneYd, beyond = zone !== null && px(w, r) > zone;
-        const chance = coverageHoldChance(beaten, z(w, d, 'press_technique'), zd, tm, q);
+        const chance = coverageHoldChance(beaten, zt(w, d, 'press_technique'), zd, tm, q);
         if (beyond && ex!.on.illegal_contact && foulStream(w, d, 'illegal_contact').chance(q['dh.contactShare'])) hazard(w, 'illegal_contact', d, chance, beaten, t);
         else hazard(w, 'def_holding', d, chance, beaten, t);
         break;
@@ -550,7 +557,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
         const gap = (w.tick - releaseTick) * TICK_S;
         collision(w, passer, d, t);
         // Body control: no D3 attribute names it; tackling technique stands in (Assumption, J10.4.1).
-        hazard(w, 'roughing_passer', d, lateHitChance(gap, z(w, d, 'foul_discipline'), z(w, d, 'tackling'), q), gap / q['late.windowS'], t);
+        hazard(w, 'roughing_passer', d, lateHitChance(gap, zt(w, d, 'foul_discipline'), zt(w, d, 'tackling'), q), gap / q['late.windowS'], t);
       }
     }
     // Out of bounds (dead by rule, J10.4.1) or after the whistle: the runner is the dead ball's carrier.
@@ -568,7 +575,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
         if (gap <= q['late.couldNotStopS']) continue;
         collision(w, c, d, t);
         const tm = teamMultiplier(team(w, d).postPlay, q['team.postPlayMin'], q['team.postPlayMax']);
-        if (hazard(w, 'unnecessary_roughness', d, lateHitChance(gap, z(w, d, 'foul_discipline'), z(w, d, 'tackling'), q) * tm, gap / q['late.windowS'], t, 'dead_ball')) {
+        if (hazard(w, 'unnecessary_roughness', d, lateHitChance(gap, zt(w, d, 'foul_discipline'), zt(w, d, 'tackling'), q) * tm, gap / q['late.windowS'], t, 'dead_ball')) {
           victim[c] = 1;
           retaliate(w, c, d, t);
         }
@@ -593,7 +600,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     if (conductDone[s] === 1) return;
     conductDone[s] = 1;
     const q = p!, tm = teamMultiplier(team(w, s).postPlay, q['team.postPlayMin'], q['team.postPlayMax']);
-    const chance = conductChance(weight, z(w, s, 'composure'), z(w, s, 'foul_discipline'), retaliation, tm, q);
+    const chance = conductChance(weight, zt(w, s, 'composure'), zt(w, s, 'foul_discipline'), retaliation, tm, q);
     const st = foulStream(w, s, 'conduct');
     if (!st.chance(chance)) return;
     const u = st.uniform();
@@ -636,7 +643,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
         const closing = cn.closingSpeedYps;
         collision(w, victimSlot, d, t);
         const blockIt = options.blockItCall?.(w.slots[d]!.side as 0 | 1) ?? false;
-        const chance = kickerContactChance(closing, z(w, d, 'foul_discipline'), blockIt, q);
+        const chance = kickerContactChance(closing, zt(w, d, 'foul_discipline'), blockIt, q);
         const excess = (closing - q['kick.closingFreeYps']) / q['kick.closingFreeYps'];
         if (victimSlot === holder) { hazard(w, 'roughing_holder', d, chance, excess, t); continue; }
         // Contact type from geometry and force: a severe contact is roughing, a light one running into (B8.3.3).
@@ -660,7 +667,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
         if (kciDone[d] === 1 || w.slots[d]!.side !== kickSide || dist(w, d, r) > q['kci.contactYd']) continue;
         kciDone[d] = 1;
         const id: LiveFoulId = fairSignal === r ? 'fair_catch_interference' : 'kick_catch_interference';
-        hazard(w, id, d, kickCatchInterferenceChance(landS, z(w, d, 'coverage_lane_discipline'), q), landS, t);
+        hazard(w, id, d, kickCatchInterferenceChance(landS, zt(w, d, 'coverage_lane_discipline'), q), landS, t);
       }
     }
   };
@@ -684,6 +691,8 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     name: 'interact',
     begin(w: TickWorld): void {
       p = foulsInjuriesParams(w.params); kp = kinParams(w.params);
+      skillScale = p.skillScale;
+      oppZ[0] = p.opposedShare * opposingElevenZ(w, 0, READING); oppZ[1] = p.opposedShare * opposingElevenZ(w, SLOTS_PER_TEAM, READING);
       // The reference tackle through kinematics' own formula: carrier at the origin, tackler one yard east, closing head-on.
       contactNumbers(0, 0, 0, 0, p['energy.typicalCarrierLb'], 0, 1, 0, -p['energy.typicalClosingYps'], 0, p['energy.typicalTacklerLb'], kp, cn);
       typicalEnergy = cn.hitEnergy > 0 ? cn.hitEnergy : 1;

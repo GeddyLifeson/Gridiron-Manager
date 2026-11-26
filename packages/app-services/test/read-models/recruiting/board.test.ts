@@ -8,6 +8,8 @@ import { act, hostVisit, offer, queue, setUserGrade, watchFilm, withdraw, type R
 import { D, HEAD_COACH, NAMES, USER_STAFF, USER_TEAM, world, type World } from './fixture.ts';
 
 const DAY = D('2026-05-06');
+/** In the FBS dead period (February 2 to March 1, 2026, sourced calendar of PR 254) and before the July 1 contact date for the 2027 class. */
+const DEAD_DAY = D('2026-02-10');
 const ALL = { evaluate: 'do_it', contact: 'do_it', visit: 'do_it', offer: 'do_it', plan: 'do_it' } as const;
 
 function input(w: World, over: Partial<RecruitingBoardInput> = {}): RecruitingBoardInput {
@@ -91,26 +93,27 @@ describe('the read model is a pure observer (K9.1.1)', () => {
 });
 
 describe('acts warn with the rule named and log exactly one violation (O7.5.1 acceptance)', () => {
-  it('an off-campus contact in May for the 2027 class names the rules it breaks and stays offered', () => {
-    const r = buildRecruitingBoardView(input(W, { list: 'pool' })).rows[0]!;
+  it('an off-campus contact in a dead period for the 2027 class names the rules it breaks and stays offered', () => {
+    const r = buildRecruitingBoardView(input(W, { list: 'pool', day: DEAD_DAY })).rows[0]!;
     const a = r.actions.find((x) => x.kind === 'contact_off_campus')!;
     expect(a.breaches).toEqual(expect.arrayContaining(['contact_out_of_period', 'contact_before_start_date']));
     expect(a.warning).not.toBeNull();
     expect(a.button).toBe('do_it');
     expect(a.hours).toBe(recruiting.hoursOf('contact_off_campus'));
-    expect(r.nextContactDay === null || r.nextContactDay > DAY).toBe(true);
+    expect(r.nextContactDay === null || r.nextContactDay > DEAD_DAY).toBe(true);
   });
   it('the command warns first, then logs one row when the user goes ahead', () => {
     const w = world();
     const id = top(w, 7);
     const before = w.state.violations.length;
-    const first = act(cmd(w), 'contact_off_campus', id);
+    const c = cmd(w, { day: DEAD_DAY });
+    const first = act(c, 'contact_off_campus', id);
     expect(first).toMatchObject({ ok: false, kind: 'warning' });
     expect(w.state.violations.length).toBe(before);
-    const second = act(cmd(w), 'contact_off_campus', id, { goAhead: true });
+    const second = act(c, 'contact_off_campus', id, { goAhead: true });
     expect(second.ok && second.kind === 'done' && second.logId).not.toBeNull();
     expect(w.state.violations.length).toBe(before + 1);
-    const v = buildRecruitingBoardView(input(w));
+    const v = buildRecruitingBoardView(input(w, { day: DEAD_DAY }));
     expect(v.violations.filter((x) => x.prospect === NAMES.person(id))).toHaveLength(1);
     expect(v.violations[0]!.rules).toContain('contact_out_of_period');
   });

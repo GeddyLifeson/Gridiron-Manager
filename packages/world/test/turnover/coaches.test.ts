@@ -45,6 +45,9 @@ function staffProblems(w: loop.LiveWorld): string[] {
 
 describe('off-screen coach turnover (E2.3.4, E4.3, K7.6.1, K8.4.2)', () => {
   const g = build();
+  const digests: Record<string, unknown>[] = [];
+  const moves = g.sys.moves;
+  (g.sys as Record<string, unknown>).moves = (ctx: Parameters<typeof moves>[0]) => { const d = moves(ctx); if (d) digests.push(d as Record<string, unknown>); return d; };
   const problems: string[] = [];
   for (let i = 0; i < SEASONS; i++) {
     loop.runSeason(g.w, g.sys, testSchedule);
@@ -76,6 +79,21 @@ describe('off-screen coach turnover (E2.3.4, E4.3, K7.6.1, K8.4.2)', () => {
   it('feeds the entrant count from exits (E2.3.4 rule 5)', () => {
     const st = turnover.coachState(g.w);
     expect(turnover.coachEntrants(g.w)).toBeGreaterThanOrEqual(st.exits);
+  });
+
+  it('hires people whose views fit the people who interviewed them (Marlon 2026-11-26 14:26)', () => {
+    const searches = digests.reduce((a, d) => a + Number(d['interview_searches'] ?? 0), 0);
+    const edge = digests.reduce((a, d) => a + Number(d['interview_fit_edge_milli'] ?? 0), 0) / 1000 / Math.max(1, searches);
+    console.log('searches with a hire', searches, 'mean fit of the hire above those interviewed', edge.toFixed(3));
+    expect(edge).toBeGreaterThan(0.01);
+  });
+
+  it('hires people who do the graded interview work well (Marlon 2026-11-26 14:52)', () => {
+    const searches = digests.reduce((a, d) => a + Number(d['interview_searches'] ?? 0), 0);
+    const edge = digests.reduce((a, d) => a + Number(d['interview_craft_edge_milli'] ?? 0), 0) / 1000 / Math.max(1, searches);
+    console.log('searches with a hire', searches, 'mean hidden craft of the hire above those interviewed', edge.toFixed(3));
+    expect(searches).toBeGreaterThan(50);
+    expect(edge).toBeGreaterThan(0.2);
   });
 
   it('is deterministic', () => {

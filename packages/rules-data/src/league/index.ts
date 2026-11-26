@@ -101,3 +101,14 @@ export function resolveLeagueRules(id: string, files: Readonly<Record<string, re
     lookup: (key: string) => values.get(key)?.value,
   });
 }
+
+/** League-rules id of each level's 2026 season. */
+const LEAGUE_ID_OF: Readonly<Record<'pro' | 'college', string>> = { pro: 'pro_league_2026', college: 'college_league_2026' };
+
+/** Numeric league-rules values of a level ('pro' or 'college'), by key: the new-game content's lookup. */
+export function leagueNumbers(level: 'pro' | 'college'): ReadonlyMap<string, number> {
+  const r = resolveLeagueRules(LEAGUE_ID_OF[level]);
+  const m = new Map<string, number>();
+  for (const k of r.keys()) { const v = r.get(k); if (typeof v === 'number') m.set(k, v); }
+  return m;
+}
