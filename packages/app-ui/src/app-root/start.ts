@@ -1,6 +1,6 @@
 // Starts the career's season from what the new-game picker hands over (or a quick start for checks): the
 // season session from app-services, adapted to the career root's port.
-import { play } from '@gm/app-services';
+import { play, weekLoop } from '@gm/app-services';
 import { careerPortFromSeason, type SeasonPortHost } from './season-port.ts';
 import type { CareerPort } from './port.ts';
 
@@ -26,7 +26,10 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const c = content as any;
   const strips = new Map<string, { primary: string; alternate: string }>();
   for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
-  return careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...host, level: s.level, seasonYear: s.seasonYear });
+  // The league rules the week screens check the week against (H1.1.2), from the same file the season is built on.
+  const ruleFile = s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules;
+  const weekRules = ruleFile?.values ? weekLoop.weekRules(ruleFile.values, s.level) : undefined;
+  return careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...(weekRules ? { weekRules } : {}), ...host, level: s.level, seasonYear: s.seasonYear });
 }
 
 /** First team of the level in the content: the quick start's seat (a check entry, not a career choice). */

@@ -7,6 +7,7 @@ import { rt } from './text.ts';
 import { resolveColours, tokenValue } from '../tokens/tokens.ts';
 import type { AdvanceTarget } from '../screens/home/view.ts';
 import type { CareerPort, GameSession, LiveField, SeasonToday, StandingRow, WeekToday } from './port.ts';
+import { filmSources, weekSources } from './sources/index.ts';
 
 type ConsoleConfig = gameCallingCommands.ConsoleConfig;
 type Resolve = (chord: string, contexts: readonly string[]) => string | undefined;
@@ -23,6 +24,8 @@ export interface SeasonPortHost {
   liveMs?(): number;
   /** Team colours by content key (home strip primary, away alternate); neutral greys when missing. */
   colours?(teamKey: string): { readonly primary: string; readonly alternate: string } | null;
+  /** League rules for the week checks (`weekLoop.weekRules` on the league-rules file); the week screens need them. */
+  readonly weekRules?: weekLoop.WeekDeskHost['rules'];
 }
 
 /** The theme's own home and away colours for a team the content gives none: presentation only, no team mark (A6). */
@@ -64,6 +67,17 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
     if (!l.atGameDay) l.toGameDay();
     if (!l.isFinished) l.finish();
   };
+  /** The coming game week for the week screens: opened without playing anything when the seat's game is up. */
+  const viewLoop = (): weekLoop.SeatWeekLoop | null => {
+    if (loop) return loop;
+    if (sp.nextSeatGame() === null) return null;
+    loop = weekLoop.SeatWeekLoop.open(sp);
+    return loop;
+  };
+  const desk = host.weekRules ? new weekLoop.WeekDesk(viewLoop, { rules: host.weekRules, countable: host.level === 'college' }) : null;
+  const film = new weekLoop.SeatFilmRoom(sp.seatTeamId, sp.options.seedHex);
+  let filmView: { geometry: GameSession['geometry']; home: { primary: string; alternate: string }; away: { primary: string; alternate: string } } | null = null;
+  let filmTap: presentationLive.LiveTap | null = null;
   const step = (target: AdvanceTarget) => {
     const l = openLoop();
     if (!l) return;
@@ -139,7 +153,8 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       // The live field: the resolver is tapped for each play's trajectory, and the console holds the next call
       // while the play runs on screen (I2.1.1); with no trajectory (reference resolver) the hold is the host's.
       let tap: presentationLive.LiveTap | null = null;
-      const tapped = (r: Parameters<typeof presentationLive.liveTap>[0]) => (tap = presentationLive.liveTap(r)).resolver;
+      // Two taps: the film room keeps every play's trajectory; the live field drops them once shown.
+      const tapped = (r: Parameters<typeof presentationLive.liveTap>[0]) => (tap = presentationLive.liveTap((filmTap = presentationLive.liveTap(r)).resolver)).resolver;
       const shown = (rec: Parameters<ReturnType<typeof presentationLive.liveMsFrom>>[0]) => {
         const ms = tap ? presentationLive.liveMsFrom(tap, TICKS_PER_SECOND)(rec) : 0;
         return ms > 0 ? ms : host.liveMs?.() ?? 0;
@@ -156,7 +171,17 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       field = { take: () => queue.take(session.events), geometry: session.geometry, userSide: seat.side, level: host.level, colours: [col(home, 0), col(away, 1)] };
       return session;
     },
-    finishGame: () => { sp.finishGame(); gameDay = false; field = null; loop = null; },
+    finishGame: (session) => {
+      const input = sp.gameInput;
+      const t = filmTap;
+      if (input && t && session.final) {
+        film.file({ session, input, trajectory: (n) => t.trajectory(n) });
+        const own = host.colours?.(sp.keyOf(sp.seatTeamId)) ?? TOKEN_TEAMS[0];
+        filmView = { geometry: session.geometry, home: own, away: TOKEN_TEAMS[1] };
+      }
+      sp.finishGame(); gameDay = false; field = null; loop = null; filmTap = null;
+    },
+    routeSources: (redraw) => ({ ...(desk ? weekSources(desk, redraw) : {}), ...filmSources(film, filmView) }),
     liveField: () => field,
     delegateGame: () => { closeLoop(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; loop = null; },
     // PLACEHOLDER rosters have no names yet: a player is his jersey slot until generated people play (G-17).

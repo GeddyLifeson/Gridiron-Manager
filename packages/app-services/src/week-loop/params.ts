@@ -27,6 +27,11 @@ export const PARAMS: ParamFile = {
     // H1.2.2 install: available team reps.
     row('install.teamMinuteShare', 0.4, 0.1, 0.9, 'share', 'assumption', 'H1.2.2',
       'share of a practice block spent in team periods (H3.1.1 period kinds); the template blocks carry minutes, not periods'),
+    // Week screens' desk (item 2d).
+    row('meeting.newItemMinutes', 10, 1, 60, 'min', 'assumption', 'H4.1.2',
+      'A-2d-1: minutes a new agenda item starts with in the editor; H4.1.2 gives each item minutes but no starting length (the user sets it)'),
+    row('documents.groups', 8, 1, 12, 'count', 'assumption', 'H9.1.2',
+      'A-2d-2: position groups that get a players packet (H9.1.2 rule 1, 4 hours per group): QB, RB, WR, TE, OL, DL, LB, DB, the eight football groups of the coach position list (career POSITION_GROUPS) until staffs set their own rooms'),
   ],
 };
 
