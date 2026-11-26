@@ -5,7 +5,7 @@ import { tick } from '@gm/engine-core';
 import { param } from './params.ts';
 import { emptyAnnotation } from './annotations.ts';
 import type { Charter, CoachingField } from './types.ts';
-import type { Annotation, FilmRecord, OverlayLine, PlayRow } from './schemas.ts';
+import type { Annotation, FilmRecord, OverlayLine, PlayRow } from './views.ts';
 
 export type DistanceBand = 'short' | 'medium' | 'long';
 export type FieldZone = 'backed_up' | 'own_territory' | 'opp_territory' | 'red_zone' | 'goal_line';

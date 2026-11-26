@@ -2,7 +2,8 @@
 import { describe, expect, it } from 'vitest';
 import { tick } from '@gm/engine-core';
 import { bridges, readModelSchemaProblems } from '../../../src/observer/index.ts';
-import { filmRecord, FilmRecordS, scrubTrajectory, BASE_FIELDS, COACHING_FIELDS, FILM_EVENT_KINDS } from '../../../src/read-models/film/index.ts';
+import { FilmRecordS } from './schemas.ts';
+import { filmRecord, scrubTrajectory, BASE_FIELDS, COACHING_FIELDS, FILM_EVENT_KINDS } from '../../../src/read-models/film/index.ts';
 import { makeSource, HOME, AWAY, SEED } from './fixtures.ts';
 
 const OTHER = 9;

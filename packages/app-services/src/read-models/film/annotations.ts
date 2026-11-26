@@ -3,7 +3,7 @@
 // free tag that matches a fixed term (any case) is stored as the fixed term.
 import { param } from './params.ts';
 import { CAUSE_TYPES, type CauseType } from './types.ts';
-import type { Annotation, Drawing } from './schemas.ts';
+import type { Annotation, Drawing } from './views.ts';
 
 export function emptyAnnotation(playId: string): Annotation {
   return { playId, tags: [], causeTags: [], note: '', noteOverSoftLimit: false, drawings: [] };

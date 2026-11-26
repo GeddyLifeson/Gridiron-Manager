@@ -7,7 +7,7 @@ import { stream, type WorldSeed } from '@gm/engine-core';
 import { param } from './params.ts';
 import { playIdOf, viewerSide } from './chart.ts';
 import { CAUSE_TYPES, type CauseType, type FilmSource, type Grader } from './types.ts';
-import type { Breakdown, Responsibility } from './schemas.ts';
+import type { Breakdown, Responsibility } from './views.ts';
 
 /** Call value (expected points) beyond which a staff calls a call good or poor. Assumption (design). */
 const CALL_WORD_EP = 0.1;

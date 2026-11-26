@@ -11,7 +11,7 @@ import { param } from './params.ts';
 import { loafCandidates } from './loafs.ts';
 import scales from './scales.json' with { type: 'json' };
 import type { FilmSource, Grader, Side } from './types.ts';
-import type { GradeSheet, SnapMark } from './schemas.ts';
+import type { GradeSheet, SnapMark } from './views.ts';
 import { playIdOf } from './chart.ts';
 
 /** What happened to one player on one snap. Internal to the grader. */

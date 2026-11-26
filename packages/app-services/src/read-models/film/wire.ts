@@ -1,6 +1,6 @@
 // Plain-data form of a film record for read models (P1.3.2): the trajectory bytes as base64. Written
 // here because core and app-services code read no platform encoder.
-import type { FilmRecord, FilmRecordWire } from './schemas.ts';
+import type { FilmRecord, FilmRecordWire } from './views.ts';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 const PAD = '=';

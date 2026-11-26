@@ -1,10 +1,7 @@
 // Film read models (P1.3.2). Each builder reads the club's FilmRoom, which holds only what the film
 // filter released, never the save's truth. The registry refuses these shapes if any field were truth.
 // The world parameter is unused until film moves into world tables (CR-G63-1).
-import { z } from 'zod';
-import { own, pub } from '@gm/schema';
-import type { ReadModelSpec } from '../../observer/index.ts';
-import { AnnotationS, BreakdownS, CorrectionS, CutUpS, FilmRecordWireS, GradeSheetS, PlayRowS, ResponsibilityS } from './schemas.ts';
+import type { ReadModelSpec, Schema } from '../../observer/index.ts';
 import type { FilmFilter } from './library.ts';
 import { STANDARD_REELS } from './library.ts';
 import { reelFromTemplate } from './cutups.ts';
@@ -12,34 +9,18 @@ import { displayGrade, GRADE_SCALES, type GradeScale } from './grading.ts';
 import { topPerUnit } from './corrections.ts';
 import type { FilmRoom } from './room.ts';
 import { recordToWire } from './wire.ts';
-import type { Breakdown } from './schemas.ts';
+import type { Breakdown, FilmCorrectionsData, FilmCutUpsData, FilmGradeSheetData, FilmPlayData, FilmPlayListData } from './views.ts';
 
-export const FilmPlayData = z.object({
-  record: pub(FilmRecordWireS),
-  annotation: own(AnnotationS),
-  breakdown: own(BreakdownS).nullable(),
-  responsibility: own(ResponsibilityS).nullable(),
-}).strict();
-
-export const FilmPlayListData = z.object({ rows: pub(z.array(PlayRowS)), total: pub(z.number().int(), 'count') }).strict();
-
-export const FilmGradeSheetData = z.object({
-  sheet: own(GradeSheetS).nullable(),
-  display: own(z.string()),
-  scale: own(z.enum(GRADE_SCALES)),
-}).strict();
-
-export const FilmCorrectionsData = z.object({ shown: own(z.array(CorrectionS)), more: own(z.array(CorrectionS)) }).strict();
-
-export const FilmCutUpsData = z.object({ cutups: own(z.array(CutUpS)), templates: pub(z.array(z.object({ id: pub(z.string()), title: pub(z.string()) }).strict())) }).strict();
+/** The zod data schemas of the five read models, every field classed. They live in @gm/schema (CR-G63-0) because app-services may not import zod. */
+export interface FilmModelSchemas { readonly play: Schema; readonly playList: Schema; readonly gradeSheet: Schema; readonly corrections: Schema; readonly cutUps: Schema }
 
 type Ps = Record<string, string | number | boolean | null>;
 
 /** The film read models of one club's room. `breakdownOf` supplies the staff panel for own plays (built by the film filter's breakdown). */
-export function filmReadModels(room: FilmRoom, breakdownOf: (playId: string) => Breakdown | null = () => null): ReadModelSpec<any, any>[] {
-  const play: ReadModelSpec<{ playId: string } & Ps, z.infer<typeof FilmPlayData>> = {
+export function filmReadModels(room: FilmRoom, schemas: FilmModelSchemas, breakdownOf: (playId: string) => Breakdown | null = () => null): ReadModelSpec<any, any>[] {
+  const play: ReadModelSpec<{ playId: string } & Ps, FilmPlayData> = {
     name: 'filmPlay',
-    data: FilmPlayData,
+    data: schemas.play,
     taskIds: ['film.review'],
     build: (_w, { playId }) => {
       const record = room.library.get(playId);
@@ -47,18 +28,18 @@ export function filmReadModels(room: FilmRoom, breakdownOf: (playId: string) => 
       return { data: { record: recordToWire(record), annotation: room.library.annotation(playId), breakdown: breakdownOf(playId), responsibility: room.responsibility.get(playId) ?? null } };
     },
   };
-  const list: ReadModelSpec<{ filter: string } & Ps, z.infer<typeof FilmPlayListData>> = {
+  const list: ReadModelSpec<{ filter: string } & Ps, FilmPlayListData> = {
     name: 'filmPlayList',
-    data: FilmPlayListData,
+    data: schemas.playList,
     taskIds: ['film.review'],
     build: (_w, { filter }) => {
       const rows = room.library.rows(JSON.parse(filter) as FilmFilter);
       return { data: { rows, total: rows.length } };
     },
   };
-  const sheet: ReadModelSpec<{ gameId: number; personId: number; scale: string } & Ps, z.infer<typeof FilmGradeSheetData>> = {
+  const sheet: ReadModelSpec<{ gameId: number; personId: number; scale: string } & Ps, FilmGradeSheetData> = {
     name: 'filmGradeSheet',
-    data: FilmGradeSheetData,
+    data: schemas.gradeSheet,
     taskIds: ['film.grade'],
     build: (_w, { gameId, personId, scale }) => {
       const s = room.sheet(gameId, personId) ?? null;
@@ -66,15 +47,15 @@ export function filmReadModels(room: FilmRoom, breakdownOf: (playId: string) => 
       return { data: { sheet: s, display: s ? displayGrade(s, sc) : '', scale: sc } };
     },
   };
-  const corrections: ReadModelSpec<{ gameId: number } & Ps, z.infer<typeof FilmCorrectionsData>> = {
+  const corrections: ReadModelSpec<{ gameId: number } & Ps, FilmCorrectionsData> = {
     name: 'filmCorrections',
-    data: FilmCorrectionsData,
+    data: schemas.corrections,
     taskIds: ['film.corrections'],
     build: (_w, { gameId }) => ({ data: topPerUnit(room.corrections.get(gameId) ?? []) }),
   };
-  const cutups: ReadModelSpec<Ps, z.infer<typeof FilmCutUpsData>> = {
+  const cutups: ReadModelSpec<Ps, FilmCutUpsData> = {
     name: 'filmCutUps',
-    data: FilmCutUpsData,
+    data: schemas.cutUps,
     taskIds: ['film.review'],
     build: () => ({ data: { cutups: [...room.cutups.values()], templates: STANDARD_REELS.map((t) => ({ id: t.id, title: t.title })) } }),
   };

@@ -2,7 +2,7 @@
 // cut-ups, tags and notes, grading and grade scales, breakdown and responsibility, corrections, film
 // time and the watch-without-calling rules, and the film read models.
 export * from './types.ts';
-export * from './schemas.ts';
+export * from './views.ts';
 export { filmRecord, publicEvents, baseSet, coachingSet, ownAssignments, viewerSide, playIdOf, DEFAULT_VOCAB, type ChartOptions } from './chart.ts';
 export { scrubTrajectory, TrajectoryScrubError } from './scrub.ts';
 export { loafCandidates, type LoafCandidate, type LoafPattern, type LoafInput } from './loafs.ts';
@@ -20,5 +20,5 @@ export { filmAvailable, filmHours, type FilmKind, type WeekFilmWork, type FilmHo
 export { SPEEDS_BY_CONTEXT, defaultStopRules, stopBeforeSnap, stopAfterPlay, driveSummary, checkRuleCount, type StopRule, type StripSituation, type PlayAfter, type WatchMode, type SummaryPlay } from './watch.ts';
 export { FilmRoom } from './room.ts';
 export { recordToWire, recordFromWire, toBase64, fromBase64 } from './wire.ts';
-export { filmReadModels, standardReel, FilmPlayData, FilmPlayListData, FilmGradeSheetData, FilmCorrectionsData, FilmCutUpsData } from './models.ts';
+export { filmReadModels, standardReel, type FilmModelSchemas } from './models.ts';
 export { PARAMS, param, provisionalParams } from './params.ts';

@@ -2,7 +2,7 @@
 // an audience. It keeps working after its season is archived: it holds ids, not copies.
 import { param } from './params.ts';
 import type { FilmLibrary, ReelTemplate } from './library.ts';
-import type { CutUp } from './schemas.ts';
+import type { CutUp } from './views.ts';
 
 export type Audience = CutUp['audience'];
 

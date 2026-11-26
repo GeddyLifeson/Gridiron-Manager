@@ -4,7 +4,7 @@
 // film tables yet (CR-G63-1), so the room is built in memory from the play records of the save.
 import { FilmLibrary } from './library.ts';
 import type { GradePolicy, PolicyForm } from './grading.ts';
-import type { Correction, CutUp, GradeSheet, Responsibility } from './schemas.ts';
+import type { Correction, CutUp, GradeSheet, Responsibility } from './views.ts';
 
 export type Room = 'team' | string;
 

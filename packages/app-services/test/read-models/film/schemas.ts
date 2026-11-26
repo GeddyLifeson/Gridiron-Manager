@@ -1,11 +1,13 @@
-// Read-model shapes of the film room (P1.3.2, P3.1.2). Every field has a visibility class and none is
+// DRAFT for @gm/schema (CR-G63-0): the film room's zod schemas, to move into packages/schema/src/world/film.ts.
+// app-services may not import zod (P1.2.2), so its code takes these as parameters. Read-model shapes (P1.3.2, P3.1.2). Every field has a visibility class and none is
 // truth, so the read-model registry accepts them and the Q1.4.2 scan can walk them. Classes:
 //  public            film itself, the public play-by-play, the club's own published grades
 //  own_team          the club's own calls, assignments, notes and correction list
 //  observer_estimate a staff member's chart, grade or attribution (it can be wrong)
 import { z } from 'zod';
-import { pub, own, est } from '@gm/schema';
-import { CAUSE_TYPES, COACHING_FIELDS, type CoachingField } from './types.ts';
+import { pub, own, est, type CommandSpec } from '@gm/schema';
+import { FILM_COMMAND_TABLE } from '../../../src/commands/film/index.ts';
+import { CAUSE_TYPES, COACHING_FIELDS, type CoachingField } from '../../../src/read-models/film/types.ts';
 
 const int = () => z.number().int();
 const SideS = z.union([z.literal(0), z.literal(1)]);
@@ -214,3 +216,47 @@ export const TrajectoryWireS = z.object({
 }).strict();
 export const FilmRecordWireS = FilmRecordS.extend({ trajectory: pub(TrajectoryWireS) }).strict();
 export type FilmRecordWire = z.infer<typeof FilmRecordWireS>;
+
+// Read-model data shapes (filmReadModels takes these as FilmModelSchemas).
+const GRADE_SCALE_IDS = ['decimal', 'letter', 'hundred', 'tiers', 'assignment', 'zeroToFour'] as const;
+export const FilmPlayDataS = z.object({
+  record: pub(FilmRecordWireS),
+  annotation: own(AnnotationS),
+  breakdown: own(BreakdownS).nullable(),
+  responsibility: own(ResponsibilityS).nullable(),
+}).strict();
+export const FilmPlayListDataS = z.object({ rows: pub(z.array(PlayRowS)), total: pub(z.number().int(), 'count') }).strict();
+export const FilmGradeSheetDataS = z.object({ sheet: own(GradeSheetS).nullable(), display: own(z.string()), scale: own(z.enum(GRADE_SCALE_IDS)) }).strict();
+export const FilmCorrectionsDataS = z.object({ shown: own(z.array(CorrectionS)), more: own(z.array(CorrectionS)) }).strict();
+export const FilmCutUpsDataS = z.object({ cutups: own(z.array(CutUpS)), templates: pub(z.array(z.object({ id: pub(z.string()), title: pub(z.string()) }).strict())) }).strict();
+export const FILM_MODEL_SCHEMAS = { play: FilmPlayDataS, playList: FilmPlayListDataS, gradeSheet: FilmGradeSheetDataS, corrections: FilmCorrectionsDataS, cutUps: FilmCutUpsDataS };
+
+// Command payloads (P1.3.1). FILM_COMMAND_SPECS joins COMMANDS in @gm/schema.
+const playIdS = () => own(z.string().regex(/^\d+:\d+$/));
+const idS = () => own(z.number().int().positive(), 'id');
+const PointPayloadS = z.object({ x: own(z.number(), 'yd'), y: own(z.number(), 'yd') }).strict();
+export const FilmTagPlay = z.object({ playId: playIdS(), tag: own(z.string().min(1).max(40)) }).strict();
+export const FilmSetNote = z.object({ playId: playIdS(), note: own(z.string().max(20000)) }).strict();
+export const FilmDraw = z.object({ playId: playIdS(), shape: own(z.enum(['line', 'circle', 'arrow'])), points: own(z.array(PointPayloadS).min(2).max(64)) }).strict();
+export const FilmEraseDrawing = z.object({ playId: playIdS(), index: own(z.number().int().min(0), 'index') }).strict();
+export const FilmChartPlay = z.object({ playId: playIdS(), field: own(z.enum(COACHING_FIELDS)), value: own(z.string().min(1).max(40)) }).strict();
+export const FilmSaveCutUp = z.object({ id: own(z.string().min(1).max(60)), title: own(z.string().min(1).max(80)), playIds: own(z.array(z.string())), notes: own(z.record(z.string(), own(z.string().max(2000)))) }).strict();
+export const FilmSendCutUp = z.object({ id: own(z.string()), kind: own(z.enum(['room', 'player', 'staff', 'none'])), to: own(z.string()).nullable() }).strict();
+export const FilmGradeSnap = z.object({
+  gameId: idS(), personId: idS(), playId: playIdS(),
+  assignment: own(z.enum(['right', 'wrong'])), technique: own(z.enum(['plus', 'zero', 'minus'])),
+  lostContest: own(z.boolean()), loaf: own(z.boolean()), note: own(z.string().max(500)),
+}).strict();
+export const FilmAssignBust = z.object({ playId: playIdS(), personId: idS().nullable(), cause: own(z.enum(CAUSE_TYPES)) }).strict();
+export const FilmSetCorrection = z.object({ gameId: idS(), correctionId: own(z.string()), state: own(z.enum(['open', 'accepted', 'dismissed'])) }).strict();
+export const FilmSetGradePolicy = z.object({
+  room: own(z.string()), policy: own(z.enum(['posted', 'one_on_one', 'private'])),
+  forms: own(z.array(z.enum(['loaf_board', 'effort_points', 'season_award', 'morning_sheets']))),
+}).strict();
+export const FilmWatchPlay = z.object({ week: own(z.number().int().min(0), 'index'), playId: playIdS() }).strict();
+
+const PAYLOADS: Record<string, z.ZodType> = {
+  FilmTagPlay, FilmUntagPlay: FilmTagPlay, FilmSetNote, FilmDraw, FilmEraseDrawing, FilmChartPlay, FilmSaveCutUp, FilmSendCutUp,
+  FilmGradeSnap, FilmAssignBust, FilmSetCorrection, FilmSetGradePolicy, FilmWatchPlay,
+};
+export const FILM_COMMAND_SPECS: readonly CommandSpec[] = FILM_COMMAND_TABLE.map((c) => ({ ...c, payload: PAYLOADS[c.type]! }));

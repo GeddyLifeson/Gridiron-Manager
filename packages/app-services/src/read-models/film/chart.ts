@@ -16,7 +16,7 @@ import { registerBridge } from '../../observer/index.ts';
 import { param } from './params.ts';
 import { scrubTrajectory } from './scrub.ts';
 import { BASE_FIELDS, COACHING_FIELDS, type AssignmentLine, type BaseField, type Charter, type CoachingField, type FieldSource, type FilmSource, type Side } from './types.ts';
-import type { BaseSet, CoachingSet, FilmEvent, FilmRecord } from './schemas.ts';
+import type { BaseSet, CoachingSet, FilmEvent, FilmRecord } from './views.ts';
 
 registerBridge({
   name: 'film.filter',
@@ -155,7 +155,7 @@ export function baseSet(src: FilmSource, opts: ChartOptions): BaseSet {
     const pick = s.uniform();
     if (miss) out[f] = misread(f, exact[f], pick);
   }
-  return out as BaseSet;
+  return out as unknown as BaseSet;
 }
 
 /** A plausible wrong value for a base-set field: a number off by one, a direction swapped, a flag flipped. */

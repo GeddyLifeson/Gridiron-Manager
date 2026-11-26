@@ -4,7 +4,7 @@
 // each repeat of the same error in the previous games. Scheme causes are items for the coach.
 import { param } from './params.ts';
 import type { CauseType } from './types.ts';
-import type { Correction, GradeSheet, Responsibility } from './schemas.ts';
+import type { Correction, GradeSheet, Responsibility } from './views.ts';
 
 export type Unit = Correction['unit'];
 

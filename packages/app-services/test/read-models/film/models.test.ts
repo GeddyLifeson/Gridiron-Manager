@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { ReadModelRegistry, buildReadModel, observerFor } from '../../../src/observer/index.ts';
 import { fixtureWorld, USER } from '../../observer/fixture-world.ts';
 import { FilmRoom, filmReadModels, filmRecord, standardReel, breakdown, staffResponsibility, staffGradeSheet, buildCorrections, recordFromWire, toBase64, fromBase64 } from '../../../src/read-models/film/index.ts';
-import { applyFilmCommand, FILM_COMMANDS, FilmCommandError } from '../../../src/commands/film/index.ts';
+import { applyFilmCommand as apply, FILM_COMMAND_TABLE, FilmCommandError } from '../../../src/commands/film/index.ts';
+import { FILM_COMMAND_SPECS, FILM_MODEL_SCHEMAS } from './schemas.ts';
+const applyFilmCommand = (room: FilmRoom, type: string, raw: unknown) => apply(room, FILM_COMMAND_SPECS, type, raw);
 import { makeSource, HOME, SEED, person } from './fixtures.ts';
 
 function room() {
@@ -15,7 +17,7 @@ describe('film read models', () => {
   it('register (no truth field) and build', () => {
     const rm = room();
     const reg = new ReadModelRegistry();
-    for (const s of filmReadModels(rm)) reg.register(s);
+    for (const s of filmReadModels(rm, FILM_MODEL_SCHEMAS)) reg.register(s);
     expect(reg.names()).toEqual(['filmCorrections', 'filmCutUps', 'filmGradeSheet', 'filmPlay', 'filmPlayList']);
     const world = fixtureWorld();
     const user = observerFor(world, USER);
@@ -67,7 +69,7 @@ describe('wire form', () => {
 describe('film commands', () => {
   it('every command validates and applies; errors are named', () => {
     const rm = room();
-    expect(FILM_COMMANDS.every((c) => c.allowedInCertified)).toBe(true);
+    expect(FILM_COMMAND_TABLE.every((c) => c.allowedInCertified)).toBe(true);
     applyFilmCommand(rm, 'FilmTagPlay', { playId: '7:1', tag: 'Alignment' });
     expect(rm.library.annotation('7:1').causeTags).toEqual(['alignment']);
     applyFilmCommand(rm, 'FilmSetNote', { playId: '7:1', note: 'Mike widened' });

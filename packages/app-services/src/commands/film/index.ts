@@ -1,52 +1,31 @@
 // G-63 film commands (P1.3.1): every change the user makes in the film room. Each command names its
 // S3 task, is undoable where a coach could take it back, and is allowed in certified mode (film work
 // changes no outcome, only what the coach knows and tells his players).
-import { z } from 'zod';
-import { own, type CommandSpec } from '@gm/schema';
+import type { CommandSpec } from '@gm/schema';
 import {
   FilmRoom, addTag, removeTag, setNote, addDrawing, removeDrawing, buildCutUp, sendCutUp, userGradeSheet, userResponsibility,
-  setState, filmHours, CAUSE_TYPES, COACHING_FIELDS, type SnapMark, type GradePolicy, type PolicyForm,
+  setState, filmHours, type SnapMark, type GradePolicy, type PolicyForm,
 } from '../../read-models/film/index.ts';
 
-const playId = () => own(z.string().regex(/^\d+:\d+$/));
-const id = () => own(z.number().int().positive(), 'id');
-const Point = z.object({ x: own(z.number(), 'yd'), y: own(z.number(), 'yd') }).strict();
-
-export const FilmTagPlay = z.object({ playId: playId(), tag: own(z.string().min(1).max(40)) }).strict();
-export const FilmUntagPlay = FilmTagPlay;
-export const FilmSetNote = z.object({ playId: playId(), note: own(z.string().max(20000)) }).strict();
-export const FilmDraw = z.object({ playId: playId(), shape: own(z.enum(['line', 'circle', 'arrow'])), points: own(z.array(Point).min(2).max(64)) }).strict();
-export const FilmEraseDrawing = z.object({ playId: playId(), index: own(z.number().int().min(0), 'index') }).strict();
-export const FilmChartPlay = z.object({ playId: playId(), field: own(z.enum(COACHING_FIELDS)), value: own(z.string().min(1).max(40)) }).strict();
-export const FilmSaveCutUp = z.object({ id: own(z.string().min(1).max(60)), title: own(z.string().min(1).max(80)), playIds: own(z.array(z.string())), notes: own(z.record(z.string(), own(z.string().max(2000)))) }).strict();
-export const FilmSendCutUp = z.object({ id: own(z.string()), kind: own(z.enum(['room', 'player', 'staff', 'none'])), to: own(z.string()).nullable() }).strict();
-export const FilmGradeSnap = z.object({
-  gameId: id(), personId: id(), playId: playId(),
-  assignment: own(z.enum(['right', 'wrong'])), technique: own(z.enum(['plus', 'zero', 'minus'])),
-  lostContest: own(z.boolean()), loaf: own(z.boolean()), note: own(z.string().max(500)),
-}).strict();
-export const FilmAssignBust = z.object({ playId: playId(), personId: id().nullable(), cause: own(z.enum(CAUSE_TYPES)) }).strict();
-export const FilmSetCorrection = z.object({ gameId: id(), correctionId: own(z.string()), state: own(z.enum(['open', 'accepted', 'dismissed'])) }).strict();
-export const FilmSetGradePolicy = z.object({
-  room: own(z.string()), policy: own(z.enum(['posted', 'one_on_one', 'private'])),
-  forms: own(z.array(z.enum(['loaf_board', 'effort_points', 'season_award', 'morning_sheets']))),
-}).strict();
-export const FilmWatchPlay = z.object({ week: own(z.number().int().min(0), 'index'), playId: playId() }).strict();
-
-export const FILM_COMMANDS: readonly CommandSpec[] = [
-  { type: 'FilmTagPlay', payload: FilmTagPlay, task: 'film.review', undoable: true, allowedInCertified: true },
-  { type: 'FilmUntagPlay', payload: FilmUntagPlay, task: 'film.review', undoable: true, allowedInCertified: true },
-  { type: 'FilmSetNote', payload: FilmSetNote, task: 'film.review', undoable: true, allowedInCertified: true },
-  { type: 'FilmDraw', payload: FilmDraw, task: 'film.review', undoable: true, allowedInCertified: true },
-  { type: 'FilmEraseDrawing', payload: FilmEraseDrawing, task: 'film.review', undoable: true, allowedInCertified: true },
-  { type: 'FilmChartPlay', payload: FilmChartPlay, task: 'film.chart', undoable: true, allowedInCertified: true },
-  { type: 'FilmSaveCutUp', payload: FilmSaveCutUp, task: 'film.review', undoable: true, allowedInCertified: true },
-  { type: 'FilmSendCutUp', payload: FilmSendCutUp, task: 'film.review', undoable: false, allowedInCertified: true },
-  { type: 'FilmGradeSnap', payload: FilmGradeSnap, task: 'film.grade', undoable: true, allowedInCertified: true },
-  { type: 'FilmAssignBust', payload: FilmAssignBust, task: 'film.grade', undoable: true, allowedInCertified: true },
-  { type: 'FilmSetCorrection', payload: FilmSetCorrection, task: 'film.corrections', undoable: true, allowedInCertified: true },
-  { type: 'FilmSetGradePolicy', payload: FilmSetGradePolicy, task: 'film.policy', undoable: true, allowedInCertified: true },
-  { type: 'FilmWatchPlay', payload: FilmWatchPlay, task: 'film.review', undoable: false, allowedInCertified: true },
+/**
+ * The film commands without their payload schemas. app-services may not import zod (P1.2.2), so the
+ * payload schemas join these rows in @gm/schema's COMMANDS (CR-G63-0) and `applyFilmCommand` takes the
+ * joined specs.
+ */
+export const FILM_COMMAND_TABLE: readonly Omit<CommandSpec, 'payload'>[] = [
+  { type: 'FilmTagPlay', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmUntagPlay', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmSetNote', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmDraw', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmEraseDrawing', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmChartPlay', task: 'film.chart', undoable: true, allowedInCertified: true },
+  { type: 'FilmSaveCutUp', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmSendCutUp', task: 'film.review', undoable: false, allowedInCertified: true },
+  { type: 'FilmGradeSnap', task: 'film.grade', undoable: true, allowedInCertified: true },
+  { type: 'FilmAssignBust', task: 'film.grade', undoable: true, allowedInCertified: true },
+  { type: 'FilmSetCorrection', task: 'film.corrections', undoable: true, allowedInCertified: true },
+  { type: 'FilmSetGradePolicy', task: 'film.policy', undoable: true, allowedInCertified: true },
+  { type: 'FilmWatchPlay', task: 'film.review', undoable: false, allowedInCertified: true },
 ];
 
 export class FilmCommandError extends Error {}
@@ -59,9 +38,10 @@ export interface FilmCommandResult {
 }
 
 /** Validates and applies one film command to a club's room. */
-export function applyFilmCommand(room: FilmRoom, type: string, raw: unknown): FilmCommandResult {
-  const spec = FILM_COMMANDS.find((c) => c.type === type);
-  if (!spec) throw new FilmCommandError(`unknown film command ${type}`);
+export function applyFilmCommand(room: FilmRoom, specs: readonly CommandSpec[], type: string, raw: unknown): FilmCommandResult {
+  if (!FILM_COMMAND_TABLE.some((c) => c.type === type)) throw new FilmCommandError(`unknown film command ${type}`);
+  const spec = specs.find((c) => c.type === type);
+  if (!spec) throw new FilmCommandError(`no payload schema for film command ${type}`);
   const parsed = spec.payload.safeParse(raw);
   if (!parsed.success) throw new FilmCommandError(`${type}: ${parsed.error.issues.map((i) => `${i.path.join('.')} ${i.message}`).join('; ')}`);
   const p = parsed.data as Record<string, any>;
