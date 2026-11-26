@@ -123,6 +123,8 @@ const ROWS: readonly ParamRow[] = [
   ['prot.simulatedK', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.4.2', PROT],
   ['prot.noiseK', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.4.2', PROT],
   ['prot.rusherDepthYd', 2.5, 1, 4, 'yd', 'assumption', 'J5.4.2', PROT],
+  ['prot.threatHalfWidthYd', 7, 4, 10, 'yd', 'assumption', 'F5.2.2', PROT],
+  ['prot.edgeGapYd', 3, 1.5, 5, 'yd', 'assumption', 'F5.4.1', PROT],
   // J5.4.3 checks and audibles.
   ['audible.killS', 2, 1, 3, 's', 'bible', 'J5.4.3', 'J5.4.3 acceptance'],
   ['audible.fullS', 3.5, 3, 4, 's', 'bible', 'J5.4.3', 'J5.4.3 acceptance'],
@@ -189,6 +191,7 @@ const ROWS: readonly ParamRow[] = [
   // Ruling 2026-11-26 (one pro scale, no level of play): foul discipline before the snap is read against how sharp
   // the other eleven is. 1: two rosters of the same skill jump at the same rate whatever that skill is.
   ['foul.opposedShare', 1, 0, 1, 'ratio', 'assumption', 'J5.7.1', 'equal rosters at 25, 40, 50 and 75: pre-snap flags per game do not move with the level'],
+  ['foul.skillScale', 0.5, 0, 1, 'ratio', 'assumption', 'J5.7.1', 'flag-count gap between favourites and underdogs (nflverse 2022 to 2024), with foulsInjuries.skillScale'],
   ['foul.severity', 0.5, 0, 1, 'ratio', 'assumption', 'J5.7.1', NONE],
   // J5.8.1 schedule. Target play-clock reading at the snap by tempo: real distributions are not sourced (J5.8.1 open question).
   ['sched.targetClockHuddleS', 5, 0, 15, 's', 'assumption', 'J5.8.1', SCHED],
