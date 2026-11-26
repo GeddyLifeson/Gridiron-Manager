@@ -10,7 +10,7 @@ import { cueRow, cueRowId } from '../presentation/cues/cue-table.ts';
 import { FlashGuard, FLASH_RULE } from '../presentation/flash/flash.ts';
 import type { FilmEvent, FilmEventKind } from './types.ts';
 
-export type CueShape = 'passLine' | 'ring' | 'openRing' | 'cross' | 'looseRing' | 'flag' | 'whistle' | 'boundary' | 'contact';
+export type CueShape = 'passLine' | 'ring' | 'openRing' | 'cross' | 'looseRing' | 'flag' | 'whistle' | 'boundary' | 'contact' | 'kickMark' | 'postMark';
 
 /** Event kind to the cue drawn for it. `snap` and `kickLanding` draw nothing (the snap is the motion starting; the landing spot only frames the camera). */
 export const CUE_FOR: Readonly<Record<FilmEventKind, CueShape | null>> = {
@@ -42,9 +42,25 @@ export interface FieldContact {
   readonly slots: readonly number[];
 }
 
+/**
+ * A kicked-ball event as the presentation feed gives it (`KickCue` and `PostHitCue` of PV-00, structural
+ * copy): the foot meeting the ball, or the ball striking an upright or the crossbar.
+ */
+export interface FieldKick {
+  readonly kind: 'kick' | 'postHit';
+  readonly tick: number;
+  readonly x: number;
+  readonly y: number;
+  /** The kicker's slot on a kick, when the feed names one. */
+  readonly slots?: readonly number[];
+}
+
+/** Kicked-ball kind to the cue drawn for it (cue table rows `kick` -> `kick_mark`, `post_hit` -> `post_hit_mark`). */
+export const KICK_CUE_FOR: Readonly<Record<FieldKick['kind'], CueShape>> = { kick: 'kickMark', postHit: 'postMark' };
+
 export interface Cue {
   readonly shape: CueShape;
-  readonly event: FilmEvent | FieldContact;
+  readonly event: FilmEvent | FieldContact | FieldKick;
   readonly fromTick: number;
   readonly toTick: number;
   /** The engine's tier, on contact cues only. */
@@ -57,14 +73,14 @@ export interface Cue {
 export type CueSwitches = Readonly<Record<string, boolean>>;
 
 /** The cue table's switch for an event kind (and contact tier). Throws if the table has no row. */
-export function cueSwitch(kind: FilmEventKind | 'contact', tier?: ContactTier): string {
+export function cueSwitch(kind: FilmEventKind | 'contact' | FieldKick['kind'], tier?: ContactTier): string {
   const row = cueRow(cueRowId(kind, tier));
   if (!row) throw new Error(`cue table has no row for ${kind}${tier ? ` tier ${tier}` : ''}`);
   return row.visual.switch;
 }
 
 /** Builds the cue list once per play, sorted by start tick. */
-export function buildCues(events: readonly FilmEvent[], ticksPerSecond: number, contacts: readonly FieldContact[] = []): Cue[] {
+export function buildCues(events: readonly FilmEvent[], ticksPerSecond: number, contacts: readonly FieldContact[] = [], kicks: readonly FieldKick[] = []): Cue[] {
   const len = param('cueSeconds') * ticksPerSecond;
   const out: Cue[] = [];
   for (const e of events) {
@@ -74,6 +90,11 @@ export function buildCues(events: readonly FilmEvent[], ticksPerSecond: number, 
   for (const c of contacts) {
     if (![1, 2, 3, 4].includes(c.tier)) throw new Error(`contact tier ${String(c.tier)} is not 1 to 4`);
     out.push({ shape: 'contact', event: c, fromTick: c.tick, toTick: c.tick + len, tier: c.tier, switchKey: cueSwitch('contact', c.tier) });
+  }
+  for (const k of kicks) {
+    const shape = KICK_CUE_FOR[k.kind];
+    if (!shape) throw new Error(`no cue for kicked-ball kind ${String(k.kind)}`);
+    out.push({ shape, event: k, fromTick: k.tick, toTick: k.tick + len, switchKey: cueSwitch(k.kind) });
   }
   return out.sort((a, b) => a.fromTick - b.fromTick);
 }

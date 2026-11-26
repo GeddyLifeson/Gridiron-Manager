@@ -3,7 +3,7 @@
 // ball, the official's flag and the cues of visible events. It has no access to engine truth beyond
 // the trajectory and the filtered event list, so it cannot leak it (I9.3.2, O2.3.3).
 import { Camera, type CameraContext, type FieldBox } from './camera.ts';
-import { buildCues, activeCues, limitFlashes, switchedOn, cueSwitch, type Cue, type CueSwitches, type FieldContact, type ContactTier } from './cues.ts';
+import { buildCues, activeCues, limitFlashes, switchedOn, cueSwitch, type Cue, type CueSwitches, type FieldContact, type FieldKick, type ContactTier } from './cues.ts';
 import { decodeTrajectory, FILM_MOVE_MODES, type FilmFrames } from './format.ts';
 import { buildMarkings, PRO_MARKINGS, type FieldMarkings, type MarkingSet } from './markings.ts';
 import { fillBlockText, blockWidth } from './blockFont.ts';
@@ -70,6 +70,8 @@ export interface RenderOptions {
    * falls back to two engaged markers touching, drawn at the lightest weight.
    */
   readonly contacts?: readonly FieldContact[];
+  /** The feed's kick and post-hit cues for the play (PV-00 `kick`, `postHit`). Absent draws neither. */
+  readonly kicks?: readonly FieldKick[];
   /** Per-cue settings switches by cue-table key (MB-17). Missing keys are on. */
   readonly cueSwitches?: CueSwitches;
   /** Playback speed, for the flash limiter (display time). Default 1; see `setSpeed`. */
@@ -131,7 +133,7 @@ export class FieldRenderer {
     if (play.slots.length !== this.frames.slotCount) throw new Error(`play ${play.playId} lists ${play.slots.length} slots, the trajectory has ${this.frames.slotCount}`);
     this.sample = newSample(this.frames.slotCount, this.frames.officialCount);
     this.labelLift = new Float64Array(this.frames.slotCount);
-    this.allCues = buildCues(play.events, play.ticksPerSecond, opts.contacts ?? []);
+    this.allCues = buildCues(play.events, play.ticksPerSecond, opts.contacts ?? [], opts.kicks ?? []);
     this.applyLimits(opts.speed ?? 1);
     this.markings = buildMarkings(geometry, opts.markings ?? PRO_MARKINGS);
     const table = opts.markers ?? DEFAULT_MARKERS;
@@ -624,6 +626,15 @@ export class FieldRenderer {
           ctx.beginPath(); ctx.arc(x, y, r * 2.8, 0, TWO_PI); ctx.stroke(); break;
         case 'boundary':
           ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.moveTo(x - r * 1.5, y); ctx.lineTo(x + r * 1.5, y); ctx.stroke(); break;
+        case 'kickMark':
+          // The kick spot: a small ring with a short tee line under it, steady for the cue's life.
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.arc(x, y, r * 1.2, 0, TWO_PI); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(x - r, y + r * 1.8); ctx.lineTo(x + r, y + r * 1.8); ctx.stroke(); break;
+        case 'postMark':
+          // The ball struck the goal: a double tick across the spot, never a flash (O5.5.2).
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath();
+          ctx.moveTo(x - r * 1.5, y - r * 0.6); ctx.lineTo(x + r * 1.5, y - r * 0.6);
+          ctx.moveTo(x - r * 1.5, y + r * 0.6); ctx.lineTo(x + r * 1.5, y + r * 0.6); ctx.stroke(); break;
       }
     }
   }

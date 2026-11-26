@@ -1761,8 +1761,7 @@
         "where": "field",
         "switch": "display.cue.ballRing",
         "reducedMotion": "still"
-      },
-      "open": "Added by PV-14 so every PV-07 recipe has a visual twin and a caption. The feed kind needs a PV-00 change request before the cue can fire from the engine."
+      }
     },
     {
       "phase": "v2",
@@ -1802,8 +1801,7 @@
         "where": "field",
         "switch": "display.cue.ballRing",
         "reducedMotion": "still"
-      },
-      "open": "Added by PV-14 so every PV-07 recipe has a visual twin and a caption. The feed kind needs a PV-00 change request before the cue can fire from the engine."
+      }
     },
     {
       "phase": "v1",
