@@ -5,3 +5,4 @@ export {
   type ClubPayment, type ClubMoney, type CapCents,
 } from './club.ts';
 export { PERSON_MONEY_KEY, personMoneyOf, chargePerson, personalPaid, type PersonPayment, type PersonMoney } from './person.ts';
+export { STREAM_REVENUE, PLAYER_COST_KEYS, playerCostShare, revenueGrowth, revenueIndex, capProjection, generatedCapCents, type KeyRead, type CapProjection } from './revenue.ts';
