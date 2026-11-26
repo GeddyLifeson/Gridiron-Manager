@@ -1,0 +1,1767 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-college-keys-0001",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Age model: a player who turns 19 before Sept. 1 is counted for that academic year; the cut-off month is September.",
+   "value": 9,
+   "unit": "month",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules: Eligibility 101 (https://www.ncaa.org/eligibility-center/division-i-and-division-ii-age-based-eligibility-rules/)",
+     "locator": "Eligibility 101, how the period works (text copy ncaa--age-based-eligibility.txt, line 27)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "if the student-athlete turns 19 before Sept. 1",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source (the NCAA page). The cut-off is stated as a date, so month 9 and day 1 are one fact read two ways. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0002",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Age model: the cut-off day within September is the 1st.",
+   "value": 1,
+   "unit": "day",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules: Eligibility 101 (https://www.ncaa.org/eligibility-center/division-i-and-division-ii-age-based-eligibility-rules/)",
+     "locator": "Eligibility 101, how the period works (text copy ncaa--age-based-eligibility.txt, line 27)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "For an individual who turns 19 on or after Sept. 1, the period of eligibility begins at the start of the subsequent academic year",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0003",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Only the age model applies to players who first enroll full time in fall 2027 or later (2027 is the first entry year).",
+   "value": 2027,
+   "unit": "season_year",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules: Eligibility 101 (https://www.ncaa.org/eligibility-center/division-i-and-division-ii-age-based-eligibility-rules/)",
+     "locator": "Eligibility 101, transition rules (text copy ncaa--age-based-eligibility.txt, line 47)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Prospects who initially enroll full time at any college or university in fall 2027 or later: the age-based rule only.",
+     "value": 2027
+    },
+    {
+     "citation": "AP via PBS NewsHour, NCAA panel approves new eligibility rules giving Division I athletes 5 years to play 5 seasons (2026-06-23, https://www.pbs.org/newshour/nation/ncaa-panel-approves-new-eligibility-rules-giving-division-i-athletes-5-years-to-play-5-seasons)",
+     "locator": "AP report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "will affect all athletes who enroll in 2027-28",
+     "value": 2027
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0004",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The new rules start with the 2026-27 academic year; players with eligibility left after 2025-26 get the better of the old and new rules, and players who used their last season in 2025-26 get nothing more.",
+   "value": 2026,
+   "unit": "season_year",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules: Eligibility 101 (https://www.ncaa.org/eligibility-center/division-i-and-division-ii-age-based-eligibility-rules/)",
+     "locator": "Eligibility 101 (text copy ncaa--age-based-eligibility.txt, line 9)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "NCAA Divisions I and II eligibility rules are changing starting with the 2026-27 academic year.",
+     "value": 2026
+    },
+    {
+     "citation": "NCAA LSDBi proposal 2026-44, Age-based eligibility model, five-year period of eligibility (Adopted Final 2026; https://web3.ncaa.org/lsdbi/search/proposalView?id=109394); quotes came through the fetch tool's summary of the page",
+     "locator": "Proposal 2026-44 summary",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "effective August 1, 2026",
+     "value": 2026
+    }
+   ],
+   "usedBy": [],
+   "notes": "The LSDBi line is from the fetch tool's summary (effective August 1, 2026, adopted by the Cabinet June 24, 2026). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0005",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Seasons model: four seasons of competition.",
+   "value": 4,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "AP via PBS NewsHour, NCAA panel approves new eligibility rules giving Division I athletes 5 years to play 5 seasons (2026-06-23, https://www.pbs.org/newshour/nation/ncaa-panel-approves-new-eligibility-rules-giving-division-i-athletes-5-years-to-play-5-seasons)",
+     "locator": "AP report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "gave athletes five years to complete four seasons of competition",
+     "value": 4
+    },
+    {
+     "citation": "Wikipedia, Redshirt (college sports) (saved page copy)",
+     "locator": "Redshirt article (text copy wikipedia--redshirt-college-sports.txt, line 9)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "Typically, a student's athletic eligibility in a given sport is four seasons",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0006",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Seasons model: the seasons are used within five years of first full-time enrollment.",
+   "value": 5,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "AP via PBS NewsHour, NCAA panel approves new eligibility rules giving Division I athletes 5 years to play 5 seasons (2026-06-23, https://www.pbs.org/newshour/nation/ncaa-panel-approves-new-eligibility-rules-giving-division-i-athletes-5-years-to-play-5-seasons)",
+     "locator": "AP report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "gave athletes five years to complete four seasons of competition",
+     "value": 5
+    },
+    {
+     "citation": "BakerHostetler, When JuCo Seasons Count: NCAA Eligibility Rules Face Legal Scrutiny (2026-05-11, https://www.bakerlaw.com/insights/when-juco-seasons-count-ncaa-eligibility-rules-face-legal-scrutiny/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bakerhostetler",
+     "primary": false,
+     "quote": "complete all seasons of participation within five calendar years of their initial full-time collegiate enrollment",
+     "value": 5
+    },
+    {
+     "citation": "Wikipedia, Redshirt (college sports) (saved page copy)",
+     "locator": "Redshirt article (text copy wikipedia--redshirt-college-sports.txt, line 9)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "a student athlete has at most five academic years to use the four years of eligibility",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0007",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Seasons model, football: a player who appears in four or fewer games does not use a season of eligibility.",
+   "value": 4,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, Redshirt (college sports) (saved page copy)",
+     "locator": "Four-game rule (text copy wikipedia--redshirt-college-sports.txt, line 21)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "redshirt status would not be lost unless a player participated in more than four games in a season",
+     "value": 4
+    },
+    {
+     "citation": "BakerHostetler, When JuCo Seasons Count: NCAA Eligibility Rules Face Legal Scrutiny (2026-05-11, https://www.bakerlaw.com/insights/when-juco-seasons-count-ncaa-eligibility-rules-face-legal-scrutiny/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bakerhostetler",
+     "primary": false,
+     "quote": "allow football players to compete in up to four games without using a season of eligibility",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0008",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Postseason games do not count toward the football four-game line (only regular-season games do).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, Redshirt (college sports) (saved page copy)",
+     "locator": "Four-game rule (text copy wikipedia--redshirt-college-sports.txt, line 21)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "the four-game limit applies only to regular-season games; conference championship games, bowl games, the FCS playoffs, and the College Football Playoff no longer count against the limit",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source (Wikipedia summary of the 2024 adoption). Bible T5.2.1 says Verified on an NCAA release and two press reports; those were not re-read here, so this row carries what was read. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0009",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Under the rule now in force, junior college seasons count against the NCAA eligibility clock. Whether they count under the age model is not stated by the pages read.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "BakerHostetler, When JuCo Seasons Count: NCAA Eligibility Rules Face Legal Scrutiny (2026-05-11, https://www.bakerlaw.com/insights/when-juco-seasons-count-ncaa-eligibility-rules-face-legal-scrutiny/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bakerhostetler",
+     "primary": false,
+     "quote": "For now, the NCAA considers time spent in JuCo to be the same as time spent in a Division 1 program.",
+     "value": true
+    },
+    {
+     "citation": "AP via PBS NewsHour, NCAA panel approves new eligibility rules giving Division I athletes 5 years to play 5 seasons (2026-06-23, https://www.pbs.org/newshour/nation/ncaa-panel-approves-new-eligibility-rules-giving-division-i-athletes-5-years-to-play-5-seasons)",
+     "locator": "AP report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "challenging an NCAA rule counting seasons spent at junior colleges",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "The pending Pavia case may change this. The age model starts the clock at any full-time enrollment, two-year college included (NCAA Eligibility 101). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0010",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Full-time load: at least 12 semester or quarter hours per term.",
+   "value": 12,
+   "unit": "credit_hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA LSDBi proposal 2024-5, Recruiting and academic eligibility, four-year college transfers (Adopted Final 2024; https://web3.ncaa.org/lsdbi/search/proposalView?id=107787)",
+     "locator": "Bylaw 14.2.2",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "which shall not be less than 12 semester or quarter hours",
+     "value": 12
+    },
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Maintain a full-time schedule (at least 12 credits) at all times;",
+     "value": 12
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "continue enrollment in coursework on a minimum full-time basis (at least 12 credits) in a given semester",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0011",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A player must have passed at least six hours in the preceding term to play in the next.",
+   "value": 6,
+   "unit": "credit_hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Pass at least six (6) credit hours per semester.",
+     "value": 6
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "SA must satisfactorily complete a minimum of 6 semester hours of degree-applicable credit each semester",
+     "value": 6
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "Six semester hours of academic credit during the preceding regular academic term",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0012",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A player must have passed at least 18 hours since the beginning of the previous fall term (summer hours do not count toward it).",
+   "value": 18,
+   "unit": "credit_hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "Eighteen semester hours of academic credit since the beginning of the previous fall term",
+     "value": 18
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "SA must complete 18 semester hours during each academic year (2 semesters).",
+     "value": 18
+    },
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Pass at least 18 credit hours each academic year",
+     "value": 18
+    }
+   ],
+   "usedBy": [],
+   "notes": "The \"summer excluded\" detail is the bible's; the pages read do not state it. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0013",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A first-year player must have passed 24 hours before the start of the second year of full-time enrollment.",
+   "value": 24,
+   "unit": "credit_hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "Twenty-four semester hours of academic credit prior to the start of the student-athlete's second year",
+     "value": 24
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "SA must complete 24 semester hours prior to the beginning of the SA's 2nd year (third semester) of full-time enrollment",
+     "value": 24
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0014",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Football fall rule: a player must pass nine hours in the fall term.",
+   "value": 9,
+   "unit": "credit_hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA News Archive, New rule should boost APRs in football (2011-05-24, https://s3.amazonaws.com/ncaanewsarchive/2011/may/new-rule-should-boost-aprs-in-football.html)",
+     "locator": "NCAA news",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "The rule requires players to earn nine credit hours in every fall term",
+     "value": 9
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "Student-athletes must pass 9 hours in the fall semester or sit the first 4 games of the subsequent season.",
+     "value": 9
+    },
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "In the sport of football, a student-athlete must pass nine (9) credit hours",
+     "value": 9
+    },
+    {
+     "citation": "College Sports Scholarships, Football Nine Hour Rule Stays Quiet Once Again (2013-09-20, https://www.collegesportsscholarships.com/2013/09/20/football-nine-hour-rule-stays-quite-once-again)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "collegesportsscholarships",
+     "primary": false,
+     "quote": "requiring football players to earn nine credits in the fall semester",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0015",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Football fall rule: a player who misses it is held out of the first four games of the next season.",
+   "value": 4,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA News Archive, New rule should boost APRs in football (2011-05-24, https://s3.amazonaws.com/ncaanewsarchive/2011/may/new-rule-should-boost-aprs-in-football.html)",
+     "locator": "NCAA news",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "be suspended for the first four games the following fall.",
+     "value": 4
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "Student-athletes must pass 9 hours in the fall semester or sit the first 4 games of the subsequent season.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "The 2011 article also describes a one-time exception for players who earn 27 hours before the next fall; not modelled here. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0016",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Degree progress: at least 40 percent of the degree program completed before the third year.",
+   "value": 40,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Prior to 5th semester- meet 40% completion of degree and maintain at least a 1.9 overall GPA",
+     "value": 40
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "By Year 3 – 40% degree GPA 1.9 GPA",
+     "value": 40
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "must have completed successfully at least 40 percent of the course requirements in the student's specific degree program",
+     "value": 40
+    },
+    {
+     "citation": "NCAA LSDBi proposal 2026-44, Age-based eligibility model, five-year period of eligibility (Adopted Final 2026; https://web3.ncaa.org/lsdbi/search/proposalView?id=109394); quotes came through the fetch tool's summary of the page",
+     "locator": "Bylaw 14.4.3.2 as summarised by the fetch tool",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "shall have completed successfully at least 40 percent of the course requirements",
+     "value": 40
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0017",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Degree progress: at least 60 percent of the degree program completed before the fourth year.",
+   "value": 60,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Prior to 7th semester- meet 60% completion of degree and maintain at least 2.0 overall GPA",
+     "value": 60
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "By Year 4 – 60% degree GPA 2.0 GPA",
+     "value": 60
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "must have completed successfully at least 60 percent of the course requirements",
+     "value": 60
+    },
+    {
+     "citation": "NCAA LSDBi proposal 2026-44, Age-based eligibility model, five-year period of eligibility (Adopted Final 2026; https://web3.ncaa.org/lsdbi/search/proposalView?id=109394); quotes came through the fetch tool's summary of the page",
+     "locator": "Bylaw 14.4.3.2 as summarised by the fetch tool",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "shall have completed successfully at least 60 percent of the course requirements",
+     "value": 60
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0018",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Degree progress: at least 80 percent of the degree program completed before the fifth year.",
+   "value": 80,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Prior to 9th semester- meet 80% completion of degree and maintain at least 2.0 overall GPA",
+     "value": 80
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "By Year 5 – 80% degree GPA 2.0 GPA",
+     "value": 80
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "must have completed successfully at least 80 percent of the course requirements",
+     "value": 80
+    },
+    {
+     "citation": "NCAA LSDBi proposal 2026-44, Age-based eligibility model, five-year period of eligibility (Adopted Final 2026; https://web3.ncaa.org/lsdbi/search/proposalView?id=109394); quotes came through the fetch tool's summary of the page",
+     "locator": "Bylaw 14.4.3.2 as summarised by the fetch tool",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "shall have completed successfully at least 80 percent of the course requirements",
+     "value": 80
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0019",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Minimum cumulative grade point average 1.8 by year 2.",
+   "value": 1.8,
+   "unit": "gpa",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Prior to 3rd semester- maintain at least a 1.8 overall GPA",
+     "value": 1.8
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "By Year 2 – 24 credit hours GPA 1.8 GPA",
+     "value": 1.8
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "must present a cumulative minimum grade-point average (based on a maximum 4.00) that equals at least 1.80",
+     "value": 1.8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0020",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Minimum cumulative grade point average 1.9 by year 3.",
+   "value": 1.9,
+   "unit": "gpa",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Prior to 5th semester- meet 40% completion of degree and maintain at least a 1.9 overall GPA",
+     "value": 1.9
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "By Year 3 – 40% degree GPA 1.9 GPA",
+     "value": 1.9
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "must present a cumulative minimum grade-point average (based on a maximum of 4.00) that equals at least 1.90",
+     "value": 1.9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0021",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Minimum cumulative grade point average 2.0 by year 4 and after.",
+   "value": 2.0,
+   "unit": "gpa",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Eligibility Requirements (copyright 2021, https://www.compliance.lsu.edu/eligibility-requirements-1)",
+     "locator": "Eligibility page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Prior to 7th semester- meet 60% completion of degree and maintain at least 2.0 overall GPA",
+     "value": 2.0
+    },
+    {
+     "citation": "West Virginia University Athletics, Continuing eligibility (undated PDF, https://academics.wvusports.com/assets/pdf/continuing-eligibility.pdf)",
+     "locator": "Continuing eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wvu-compliance",
+     "primary": false,
+     "quote": "By Year 4 – 60% degree GPA 2.0 GPA",
+     "value": 2.0
+    },
+    {
+     "citation": "Duquesne University 2025-2026 Graduate Catalog, NCAA Progress Toward Degree (page updated 2026-07-17, https://duq.edu/academics/university-catalogs/2025-2026-catalog/graduate/academic-policies/ncaa.php)",
+     "locator": "Progress toward degree",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "duquesne",
+     "primary": false,
+     "quote": "must present a cumulative minimum grade-point average (based on a maximum of 4.00) that equals at least 2.00",
+     "value": 2.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0022",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Academic Progress Rate: the highest team score is 1,000.",
+   "value": 1000,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA.org, Academic Progress Rate (APR) (page modified 2026-10-20, https://www.ncaa.org/student-athletes/compliance/academic-progress-rate)",
+     "locator": "APR page",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Individual points combine into a team score, with a maximum of 1,000 points.",
+     "value": 1000
+    },
+    {
+     "citation": "Wikipedia, Academic Progress Rate (https://en.wikipedia.org/wiki/Academic_Progress_Rate)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "A perfect score is 1000.",
+     "value": 1000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0023",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A team whose multi-year Academic Progress Rate is below 930 may not play in the postseason.",
+   "value": 930,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA.org, Academic Progress Rate (APR) (page modified 2026-10-20, https://www.ncaa.org/student-athletes/compliance/academic-progress-rate)",
+     "locator": "APR page",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Teams must meet a minimum multi-year APR benchmark (currently 930) to be eligible for postseason competition.",
+     "value": 930
+    },
+    {
+     "citation": "NCAA.org, Academic Performance Program penalties to return for 2024-25 (2023-02-10, https://www.ncaa.org/news/media-center-academic-performance-program-penalties-to-return-for-2024-25/)",
+     "locator": "NCAA news",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "The minimum score for each team to avoid penalties and to be eligible for postseason competition remains 930.",
+     "value": 930
+    },
+    {
+     "citation": "ESPN, NCAA: 15 Division I programs face postseason bans over APR results (2020-05-19, https://www.espn.com/college-sports/story/_/id/29194905/ncaa-hits-15-division-programs-postseason-bans-apr-results)",
+     "locator": "ESPN article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "The standard to avoid penalties and play in the postseason is an overall four-year rate from 2015-16 through 2018-19 of 930",
+     "value": 930
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0024",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Players on teams still playing when the window opens (the two title-game teams) get a separate five-day window starting the day after their last game.",
+   "value": 5,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "ESPN, NCAA adopts Jan. 2-16 transfer portal window for FBS, FCS in '26 (2025-10-07, https://www.espn.com/college-football/story/_/id/46524004/ncaa-adopts-jan-2-16-transfer-portal-window-fbs-fcs-26)",
+     "locator": "ESPN article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "will get an additional five-day period from Jan. 20 to 24",
+     "value": 5
+    },
+    {
+     "citation": "Sports Illustrated, NCAA announces new college football transfer portal window dates (2025-10-08, https://www.si.com/fannation/college/cfb-hq/transfer-portal/ncaa-announces-new-college-football-transfer-portal-window-dates)",
+     "locator": "SI article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "will be allowed a brief five-day opportunity to enter once their season concludes",
+     "value": 5
+    },
+    {
+     "citation": "AP via Washington Times, NCAA OKs single January transfer window for college football (2025-10-08, https://www.washingtontimes.com/news/2025/oct/8/ncaa-oks-single-january-transfer-window-college-football/)",
+     "locator": "AP article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "Players on teams competing on or after Jan. 12 can notify during a consecutive-five-day period",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Sources differ on who qualifies (title-game teams per ESPN; teams playing on or after Jan. 12 per AP); the length, five days, is the same in all three. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0025",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "After a head coach change, the players' window opens five days after the hire is announced.",
+   "value": 5,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "ESPN, NCAA adopts Jan. 2-16 transfer portal window for FBS, FCS in '26 (2025-10-07, https://www.espn.com/college-football/story/_/id/46524004/ncaa-adopts-jan-2-16-transfer-portal-window-fbs-fcs-26)",
+     "locator": "ESPN article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "starting five days after a new head coach is hired or announced",
+     "value": 5
+    },
+    {
+     "citation": "Sports Illustrated, NCAA announces new college football transfer portal window dates (2025-10-08, https://www.si.com/fannation/college/cfb-hq/transfer-portal/ncaa-announces-new-college-football-transfer-portal-window-dates)",
+     "locator": "SI article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "will begin five days after the new coach is hired or publicly introduced",
+     "value": 5
+    },
+    {
+     "citation": "On3, New details emerge on rules surrounding transfer portal during coaching changes (https://www.on3.com/news/more-details-emerge-rules-around-coaching-changes-college-football-transfer-portal)",
+     "locator": "On3 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "starts five days after the coach is hired, provided that occurs between January 2 and June 30",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0026",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "After a head coach change, the players' window is 15 days long (it was 30 before October 2025).",
+   "value": 15,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "ESPN, NCAA adopts Jan. 2-16 transfer portal window for FBS, FCS in '26 (2025-10-07, https://www.espn.com/college-football/story/_/id/46524004/ncaa-adopts-jan-2-16-transfer-portal-window-fbs-fcs-26)",
+     "locator": "ESPN article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "players will have a 15-day window to enter their names in the portal",
+     "value": 15
+    },
+    {
+     "citation": "Sports Illustrated, NCAA announces new college football transfer portal window dates (2025-10-08, https://www.si.com/fannation/college/cfb-hq/transfer-portal/ncaa-announces-new-college-football-transfer-portal-window-dates)",
+     "locator": "SI article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "that timeframe will be 15 days",
+     "value": 15
+    },
+    {
+     "citation": "AP via Washington Times, NCAA OKs single January transfer window for college football (2025-10-08, https://www.washingtontimes.com/news/2025/oct/8/ncaa-oks-single-january-transfer-window-college-football/)",
+     "locator": "AP article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "the head coach change exception for football will now be 15 days, starting five days after a new coach is hired",
+     "value": 15
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0027",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "There is no limit on the number of times a player may transfer (while he has eligibility); since April 2024 each transfer is immediately eligible.",
+   "value": 0,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "ESPN, Transfer portal explained (saved page copy)",
+     "locator": "ESPN explainer (text copy espn--transfer-portal-explained.txt, line 19)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "now allows players to transfer an unlimited number of times during their college career as long as they meet academic requirements.",
+     "value": 0
+    },
+    {
+     "citation": "Sports Illustrated, Transfer portal rules (saved page copy)",
+     "locator": "SI explainer (text copy si--transfer-portal-rules.txt, line 15)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "multi-time transfers will be allowed immediate eligibility",
+     "value": 0
+    },
+    {
+     "citation": "ESPN via ABC7, Why did college football move its transfer portal? An FAQ (2025-10-10, https://abc7.com/post/did-college-football-move-transfer-portal-faq/17977693/)",
+     "locator": "ESPN FAQ",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "Now that players are permitted unlimited transfers",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "The ESPN explainer and the ESPN FAQ are one independence group; the SI page is the second. Academic standing is still required (bible T6.1.1). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0028",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Entering the portal does not by itself end a player's aid: the school may not reduce or cancel it until the end of the regular academic term in which he gave written notice, and may then reduce or cancel it (the player may appeal).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "LSU Compliance, Transfer Regulations (quotes Bylaw 15.3.5.1(f), copyright 2021, https://www.compliance.lsu.edu/transfer-regulations)",
+     "locator": "Cancellation or Reduction of Athletics Aid (Bylaw 15.3.5.1(f))",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "A student-athlete's financial aid may not be reduced or canceled until the end of the regular academic term in which written notification",
+     "value": false
+    },
+    {
+     "citation": "NCSA, NCAA Transfer Portal 2026-27: Dates & Rules (updated 2026-11-02, https://www.ncsasports.org/recruiting/ncaa-transfer-rules)",
+     "locator": "NCSA page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "Once you initiate the process, your current scholarship may be protected through the applicable academic term",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "The key is read as: aid ends automatically at term end (false). Under the bylaw the school may cancel after the term, so the module should treat cancellation as the school's choice. The LSU page is undated (footer 2021) and quotes the 2022-23 bylaw; the NCAA manual itself was not reachable. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0029",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2025-26: $2.5 million of added scholarship cost counted toward the school's revenue-sharing cap.",
+   "value": 2500000,
+   "unit": "USD",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (undated, https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-dispatch",
+     "primary": false,
+     "quote": "The scholarship funding counted against the maximum amount of revenue.",
+     "value": 2500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source. The $2.5 million figure comes from Ohio State's plan as the article describes it; SI gives $2.5 million as a Texas Tech figure for new non-revenue-sport scholarships and does not say it counted. Treat as provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0030",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2026-27: new scholarships do not count toward the revenue-sharing cap.",
+   "value": 0,
+   "unit": "USD",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (undated, https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-dispatch",
+     "primary": false,
+     "quote": "But the new scholarships do not apply toward the revenue sharing limits next year",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source (R18 flagged SI calling the change \"proposed\"). Provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0031",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "School revenue-share agreements may run more than one year (multi-year agreements exist and need a stated term).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fredrikson & Byron, The New College Sports Economy: Understanding NIL, Revenue Sharing and Athlete Opportunities After House (2026-07-01, https://www.fredlaw.com/alert-the-new-college-sports-economy-understanding-nil-revenue-sharing-and-athlete-opportunities-after-house)",
+     "locator": "Section \"Term Length Matters\"",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fredrikson",
+     "primary": false,
+     "quote": "A multi-year agreement may provide stability and certainty, but it may also limit flexibility",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source. No page read states a maximum term (see the owed list in the PR). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0032",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The SCORE Act's cap on agent fees has not become law (the bill was pulled from the House floor and has not passed).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Morgan Lewis, No SCORE: Congress Leaves College Sports in Regulatory Limbo, Forcing the White House to Sub In (2026-05-27, https://www.morganlewis.com/pubs/2026/05/no-score-congress-leaves-college-sports-in-regulatory-limbo-forcing-the-white-house-to-sub-in)",
+     "locator": "LawFlash",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "morgan-lewis",
+     "primary": false,
+     "quote": "Republican leadership pulled HR 4312",
+     "value": false
+    },
+    {
+     "citation": "Congress.gov, H.R. 4312 SCORE Act, text as reported in the House (2025-09-11, https://www.congress.gov/119/bills/hr4312/BILLS-119hr4312rh.htm); part read through the fetch tool's summary",
+     "locator": "Congress.gov bill page",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "congress",
+     "primary": true,
+     "quote": "Reported in House",
+     "value": false
+    },
+    {
+     "citation": "Congressional Research Service, College Athlete Compensation: Impacts of the House Settlement (LSB11349, 2025-08-15, https://www.congress.gov/crs_external_products/LSB/PDF/LSB11349/LSB11349.2.pdf)",
+     "locator": "CRS sidebar",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "crs",
+     "primary": true,
+     "quote": "recently advanced out of the House Education and Workforce",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "As of the Morgan Lewis note of 2026-05-27; later floor action (R18 mentions Sept-Nov 2026 delays) was not re-read. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0033",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "If enacted, the SCORE Act would cap an agent's fee at 5 percent of an endorsement contract.",
+   "value": 5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Congress.gov, H.R. 4312 SCORE Act, text as reported in the House (2025-09-11, https://www.congress.gov/119/bills/hr4312/BILLS-119hr4312rh.htm); part read through the fetch tool's summary",
+     "locator": "Sec. 6(a)(8)(C), bill text as reported",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "congress",
+     "primary": true,
+     "quote": "to not more than 5 percent of such compensation",
+     "value": 5
+    },
+    {
+     "citation": "Morgan Lewis, No SCORE: Congress Leaves College Sports in Regulatory Limbo, Forcing the White House to Sub In (2026-05-27, https://www.morganlewis.com/pubs/2026/05/no-score-congress-leaves-college-sports-in-regulatory-limbo-forcing-the-white-house-to-sub-in)",
+     "locator": "LawFlash",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "morgan-lewis",
+     "primary": false,
+     "quote": "imposing agent fee caps of 5% of the total compensation of an NIL agreement",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0034",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College athletes are not classified as employees: the settlement leaves the question open and no law makes them employees.",
+   "value": "not_employee",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Congressional Research Service, College Athlete Compensation: Impacts of the House Settlement (LSB11349, 2025-08-15, https://www.congress.gov/crs_external_products/LSB/PDF/LSB11349/LSB11349.2.pdf)",
+     "locator": "CRS sidebar",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "crs",
+     "primary": true,
+     "quote": "Another contested issue not addressed in the House settlement is whether college athletes should be considered employees of their institutions.",
+     "value": "not_employee"
+    },
+    {
+     "citation": "Willkie, Money on My Mind (And In My Pocket) (2025-06-13, https://www.willkie.com/publications/2025/06/money-on-my-mind-and-in-my-pocket)",
+     "locator": "Client alert",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "willkie",
+     "primary": false,
+     "quote": "Labor issues, including the potential classification of student athletes as employees, remain unanswered but of significant importance.",
+     "value": "not_employee"
+    },
+    {
+     "citation": "Morgan Lewis, No SCORE: Congress Leaves College Sports in Regulatory Limbo, Forcing the White House to Sub In (2026-05-27, https://www.morganlewis.com/pubs/2026/05/no-score-congress-leaves-college-sports-in-regulatory-limbo-forcing-the-white-house-to-sub-in)",
+     "locator": "LawFlash",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "morgan-lewis",
+     "primary": false,
+     "quote": "the act categorically prohibits student-athletes from being classified as employees",
+     "value": "not_employee"
+    }
+   ],
+   "usedBy": [],
+   "notes": "The sources say the status is unresolved and that the one bill that would settle it (SCORE, not passed) would bar employee status. The value is the status quo: no source classifies them as employees. Read as a default, not a ruling. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0035",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A player may enter the NFL draft early only when at least three years removed from high school graduation.",
+   "value": 3,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, Forty-two players granted special eligibility for 2026 NFL Draft (January 2026, https://www.nfl.com/news/forty-two-players-granted-special-eligibility-for-2026-nfl-draft)",
+     "locator": "NFL.com",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "have met the league's three-year eligibility rule",
+     "value": 3
+    },
+    {
+     "citation": "NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)",
+     "locator": "FAQ 2, Entering the NFL Draft",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "NFL rules require you to be three years from high school graduation",
+     "value": 3
+    },
+    {
+     "citation": "Bleacher Report, NFL Reveals Deadlines to Declare for 2025 Draft with 'Championship' Rule Change (2024-11-05, https://bleacherreport.com/articles/10142390-nfl-reveals-deadlines-to-declare-for-2025-draft-with-championship-rule-change)",
+     "locator": "2025 cycle article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "must have been out of high school for at least three years",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0036",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The early-entry deadline for underclassmen is in January (January 14 in 2026).",
+   "value": 1,
+   "unit": "month",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, Forty-two players granted special eligibility for 2026 NFL Draft (January 2026, https://www.nfl.com/news/forty-two-players-granted-special-eligibility-for-2026-nfl-draft)",
+     "locator": "NFL.com",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "a traditional deadline of Jan. 14",
+     "value": 1
+    },
+    {
+     "citation": "NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)",
+     "locator": "Key dates",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Early-entry deadline for underclassmen not participating in the CFP Championship game: January 14, 2026.",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Fox Sports and AOL/USA Today say Jan. 5; NFL.com and the NCAA memo call Jan. 5 an early \"soft\" deadline for all-star game planning and Jan. 14 the deadline, so they are not entered here as disagreeing sources. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0037",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The early-entry deadline day for underclassmen not in the title game was the 14th in 2026.",
+   "value": 14,
+   "unit": "day",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, Forty-two players granted special eligibility for 2026 NFL Draft (January 2026, https://www.nfl.com/news/forty-two-players-granted-special-eligibility-for-2026-nfl-draft)",
+     "locator": "NFL.com",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "a traditional deadline of Jan. 14",
+     "value": 14
+    },
+    {
+     "citation": "NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)",
+     "locator": "Key dates",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Early-entry deadline for underclassmen not participating in the CFP Championship game: January 14, 2026.",
+     "value": 14
+    }
+   ],
+   "usedBy": [],
+   "notes": "A 2026 date; the 2027 date (13 per the NFL calendar row F-league in league.json) is read by the calendar, not this key. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0038",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The early-entry deadline day for underclassmen in the national title game was the 23rd in 2026.",
+   "value": 23,
+   "unit": "day",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, Forty-two players granted special eligibility for 2026 NFL Draft (January 2026, https://www.nfl.com/news/forty-two-players-granted-special-eligibility-for-2026-nfl-draft)",
+     "locator": "NFL.com",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "For those players, a \"Championship\" deadline of Jan. 23 has been added.",
+     "value": 23
+    },
+    {
+     "citation": "NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)",
+     "locator": "Key dates",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Early-entry deadline for underclassmen participating in the CFP Championship game January 23, 2026",
+     "value": 23
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-keys-0039",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "An early entrant keeps college eligibility only by declaring in writing within 72 hours of the declaration date that he will resume college play (and must not be drafted); otherwise the petition renounces all remaining eligibility. An early entrant who goes undrafted therefore cannot return after the draft.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)",
+     "locator": "FAQ 2, Entering the NFL Draft",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "provided you are not drafted by any team",
+     "value": false
+    },
+    {
+     "citation": "NCAA, Information Regarding the 2026 NFL Draft, Tryouts and Agents (memo dated 2025-12-01, https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf)",
+     "locator": "FAQ 2, petition for special eligibility",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "renounces all remaining collegiate eligibility",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source, and the memo's sentence is ambiguous: it allows return only for a player who is not drafted and who declares intent to return within 72 hours of the declaration date, and otherwise the renunciation stands. The reading \"false after the draft\" is an inference from that; the 72-hour withdrawal is the only return route the memo states. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  }
+ ]
+}

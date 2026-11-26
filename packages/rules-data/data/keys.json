@@ -9870,6 +9870,21 @@
    ]
   },
   {
+   "key": "foul.intentional_grounding.enforcement",
+   "type": "option",
+   "meaning": "Intentional grounding: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ]
+  },
+  {
    "key": "replay.reviewable.catch",
    "type": "boolean",
    "meaning": "Replay may change a ruling of: complete, incomplete or intercepted pass",

@@ -352,3 +352,15 @@ describe('X4.2.3 calibration', () => {
     expect(A.historicSeasonCheck(40, 1000).ok).toBe(true);
   });
 });
+
+describe('honour drafts through the G-22 event log', () => {
+  it('every honour type emits through EventLog with the notability hook, and kept rows survive the keep line', async () => {
+    const { EventLog, typeRegistry } = await import('../../src/history/index.ts');
+    const log = new EventLog({ registry: typeRegistry([...A.HONOUR_EVENT_TYPES]), notabilityOf: A.notabilityFor(() => ({})) });
+    const meta = { date: { seasonYear: 2031, dayIndex: 40 }, competitionId: 1, teamId: 3, tier: 3 as const, source: 'sim' as const };
+    const d = A.honourDraft(A.HONOUR.elected, meta, 7, 'candidate', { hall: 'pro', yesShare: 0.84, ballot: 2030 });
+    const res = log.emit({ type: d.type, date: d.when.date, competitionId: d.competitionId, teamId: d.where.teamId, actors: d.actors, subjects: d.subjects, payload: d.payload, witnesses: d.witnesses, tier: d.tier, source: d.source });
+    expect(res.ok, JSON.stringify(res)).toBe(true);
+    if (res.ok) { expect(res.event.notability).toBe(60); expect(A.isKept(res.event)).toBe(true); }
+  });
+});

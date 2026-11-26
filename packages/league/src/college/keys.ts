@@ -210,7 +210,8 @@ export function collegeRules(rs: RuleSet): CollegeRules {
       revenueShareCap: revenueShareCapFor(rs, year, read),
       scholarshipCredit: has(scholarshipKey) ? num(scholarshipKey) : 0,
       nilReportThreshold: num('pay.nil_report_threshold_usd'),
-      agreementMaxYears: num('pay.agreement_max_years'),
+      // Missing key means no maximum (the value is unsourced so far).
+      agreementMaxYears: has('pay.agreement_max_years') ? num('pay.agreement_max_years') : Number.POSITIVE_INFINITY,
       multiYear: bool('pay.multi_year'),
       agentFeeCapPct: bool('pay.agent_fee_cap') ? num('pay.agent_fee_cap_pct') : null,
       employee: opt('pay.employment_status') === 'employee',

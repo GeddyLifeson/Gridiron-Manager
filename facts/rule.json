@@ -65520,6 +65520,80 @@
    "id": "F-rule-1905",
    "level": "pro",
    "domain": "rule",
+   "statement": "Intentional grounding: enforcement procedure of B8.5: previous_or_spot_worse (pro, 2026 rules).",
+   "value": "previous_or_spot_worse",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 2, Article 1, Penalty (a) (text copy rulebook_2026.txt, line 2253)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Loss of down and 10 yards from the previous spot; or",
+     "value": "previous_or_spot_worse"
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 2, Article 1, Penalty (b) (text copy rulebook_2026.txt, line 2254)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Loss of down at the spot of the pass if the spot is more than 10 yards from the previous spot or more than half the",
+     "value": "previous_or_spot_worse"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:foul.intentional_grounding.enforcement"
+   ],
+   "notes": "Ten yards from the previous spot, or the spot of the pass when that is worse for the passer; the profile is not limited by half the distance. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1906",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Intentional grounding: enforcement procedure of B8.5: standard (college, 2026 rules).",
+   "value": "standard",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 2, Penalty [f-h] (text copy ncaa-rulebook-2026.txt, line 3673)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Loss of down at the spot of the foul",
+     "value": "standard"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:foul.intentional_grounding.enforcement"
+   ],
+   "notes": "No yardage: loss of down at the spot of the foul. This fits the standard procedure with the foul row spot_foul true and yards 0 (foul.intentional_grounding.spot_foul and .yards), so no new profile is needed. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1907",
+   "level": "pro",
+   "domain": "rule",
    "statement": "Replay may change a ruling of: complete, incomplete or intercepted pass: true (pro, 2026 rules).",
    "value": true,
    "validFor": "2026",
@@ -65549,7 +65623,7 @@
    ]
   },
   {
-   "id": "F-rule-1906",
+   "id": "F-rule-1908",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: complete, incomplete or intercepted pass: true (college, 2026 rules).",
@@ -65581,7 +65655,7 @@
    ]
   },
   {
-   "id": "F-rule-1907",
+   "id": "F-rule-1909",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: runner down by contact (a whistle that stopped a live play is never reviewable): true (pro, 2026 rules).",
@@ -65613,7 +65687,7 @@
    ]
   },
   {
-   "id": "F-rule-1908",
+   "id": "F-rule-1910",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: runner down by contact (a whistle that stopped a live play is never reviewable): true (college, 2026 rules).",
@@ -65645,7 +65719,7 @@
    ]
   },
   {
-   "id": "F-rule-1909",
+   "id": "F-rule-1911",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: the dead-ball spot against the line to gain: true (pro, 2026 rules).",
@@ -65677,7 +65751,7 @@
    ]
   },
   {
-   "id": "F-rule-1910",
+   "id": "F-rule-1912",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: the dead-ball spot against the line to gain: true (college, 2026 rules).",
@@ -65709,7 +65783,7 @@
    ]
   },
   {
-   "id": "F-rule-1911",
+   "id": "F-rule-1913",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: pass forward or backward: true (pro, 2026 rules).",
@@ -65741,7 +65815,7 @@
    ]
   },
   {
-   "id": "F-rule-1912",
+   "id": "F-rule-1914",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: pass forward or backward: true (college, 2026 rules).",
@@ -65773,7 +65847,7 @@
    ]
   },
   {
-   "id": "F-rule-1913",
+   "id": "F-rule-1915",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: runner or receiver in or out of bounds: true (pro, 2026 rules).",
@@ -65805,7 +65879,7 @@
    ]
   },
   {
-   "id": "F-rule-1914",
+   "id": "F-rule-1916",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: runner or receiver in or out of bounds: true (college, 2026 rules).",
@@ -65837,7 +65911,7 @@
    ]
   },
   {
-   "id": "F-rule-1915",
+   "id": "F-rule-1917",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: ball breaking the plane of the goal line in possession: true (pro, 2026 rules).",
@@ -65869,7 +65943,7 @@
    ]
   },
   {
-   "id": "F-rule-1916",
+   "id": "F-rule-1918",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: ball breaking the plane of the goal line in possession: true (college, 2026 rules).",
@@ -65901,7 +65975,7 @@
    ]
   },
   {
-   "id": "F-rule-1917",
+   "id": "F-rule-1919",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: recovery of a loose ball: true (pro, 2026 rules).",
@@ -65933,7 +66007,7 @@
    ]
   },
   {
-   "id": "F-rule-1918",
+   "id": "F-rule-1920",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: recovery of a loose ball: true (college, 2026 rules).",
@@ -65965,7 +66039,7 @@
    ]
   },
   {
-   "id": "F-rule-1919",
+   "id": "F-rule-1921",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: fumble before the runner was down: true (pro, 2026 rules).",
@@ -65997,7 +66071,7 @@
    ]
   },
   {
-   "id": "F-rule-1920",
+   "id": "F-rule-1922",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: fumble before the runner was down: true (college, 2026 rules).",
@@ -66029,7 +66103,7 @@
    ]
   },
   {
-   "id": "F-rule-1921",
+   "id": "F-rule-1923",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: field goal or try good or no good: true (pro, 2026 rules).",
@@ -66061,7 +66135,7 @@
    ]
   },
   {
-   "id": "F-rule-1922",
+   "id": "F-rule-1924",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: field goal or try good or no good: true (college, 2026 rules).",
@@ -66093,7 +66167,7 @@
    ]
   },
   {
-   "id": "F-rule-1923",
+   "id": "F-rule-1925",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: touching of a kick or a loose ball: true (pro, 2026 rules).",
@@ -66135,7 +66209,7 @@
    ]
   },
   {
-   "id": "F-rule-1924",
+   "id": "F-rule-1926",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: touching of a kick or a loose ball: true (college, 2026 rules).",
@@ -66177,7 +66251,7 @@
    ]
   },
   {
-   "id": "F-rule-1925",
+   "id": "F-rule-1927",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay may change a ruling of: a foul call (a single foul may be opened to review by its own switch): false (pro, 2026 rules).",
@@ -66209,7 +66283,7 @@
    ]
   },
   {
-   "id": "F-rule-1926",
+   "id": "F-rule-1928",
    "level": "college",
    "domain": "rule",
    "statement": "Replay may change a ruling of: a foul call (a single foul may be opened to review by its own switch): false (college, 2026 rules).",
@@ -66241,7 +66315,7 @@
    ]
   },
   {
-   "id": "F-rule-1927",
+   "id": "F-rule-1929",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play that begins after the two-minute warning of either half: true (pro, 2026 rules).",
@@ -66273,7 +66347,7 @@
    ]
   },
   {
-   "id": "F-rule-1928",
+   "id": "F-rule-1930",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play that begins after the two-minute warning of either half: false (college, 2026 rules).",
@@ -66305,7 +66379,7 @@
    ]
   },
   {
-   "id": "F-rule-1929",
+   "id": "F-rule-1931",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play in overtime: true (pro, 2026 rules).",
@@ -66337,7 +66411,7 @@
    ]
   },
   {
-   "id": "F-rule-1930",
+   "id": "F-rule-1932",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play in overtime: false (college, 2026 rules).",
@@ -66369,7 +66443,7 @@
    ]
   },
   {
-   "id": "F-rule-1931",
+   "id": "F-rule-1933",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play ruled a score: true (pro, 2026 rules).",
@@ -66401,7 +66475,7 @@
    ]
   },
   {
-   "id": "F-rule-1932",
+   "id": "F-rule-1934",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play ruled a score: false (college, 2026 rules).",
@@ -66433,7 +66507,7 @@
    ]
   },
   {
-   "id": "F-rule-1933",
+   "id": "F-rule-1935",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a try, good or no good: true (pro, 2026 rules).",
@@ -66465,7 +66539,7 @@
    ]
   },
   {
-   "id": "F-rule-1934",
+   "id": "F-rule-1936",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a try, good or no good: false (college, 2026 rules).",
@@ -66497,7 +66571,7 @@
    ]
   },
   {
-   "id": "F-rule-1935",
+   "id": "F-rule-1937",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: an interception, or a fumble or backward pass ruled recovered by the opponent: true (pro, 2026 rules).",
@@ -66539,7 +66613,7 @@
    ]
   },
   {
-   "id": "F-rule-1936",
+   "id": "F-rule-1938",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: an interception, or a fumble or backward pass ruled recovered by the opponent: false (college, 2026 rules).",
@@ -66571,7 +66645,7 @@
    ]
   },
   {
-   "id": "F-rule-1937",
+   "id": "F-rule-1939",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: the offense ruled short of the line to gain on the last down of a series: true (pro, 2026 rules).",
@@ -66603,7 +66677,7 @@
    ]
   },
   {
-   "id": "F-rule-1938",
+   "id": "F-rule-1940",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: the offense ruled short of the line to gain on the last down of a series: false (college, 2026 rules).",
@@ -66635,7 +66709,7 @@
    ]
   },
   {
-   "id": "F-rule-1939",
+   "id": "F-rule-1941",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: the kicking team ruled in possession at the end of a kick down: true (pro, 2026 rules).",
@@ -66667,7 +66741,7 @@
    ]
   },
   {
-   "id": "F-rule-1940",
+   "id": "F-rule-1942",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: the kicking team ruled in possession at the end of a kick down: false (college, 2026 rules).",
@@ -66699,7 +66773,7 @@
    ]
   },
   {
-   "id": "F-rule-1941",
+   "id": "F-rule-1943",
    "level": "pro",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a player disqualification: true (pro, 2026 rules).",
@@ -66731,7 +66805,7 @@
    ]
   },
   {
-   "id": "F-rule-1942",
+   "id": "F-rule-1944",
    "level": "college",
    "domain": "rule",
    "statement": "Under replay.model challenge_plus_booth, only the booth may review: a player disqualification: false (college, 2026 rules).",
@@ -66763,7 +66837,7 @@
    ]
   },
   {
-   "id": "F-rule-1943",
+   "id": "F-rule-1945",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect catch without a review: true (pro, 2026 rules).",
@@ -66795,7 +66869,7 @@
    ]
   },
   {
-   "id": "F-rule-1944",
+   "id": "F-rule-1946",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect catch without a review: true (college, 2026 rules).",
@@ -66827,7 +66901,7 @@
    ]
   },
   {
-   "id": "F-rule-1945",
+   "id": "F-rule-1947",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect down_by_contact without a review: true (pro, 2026 rules).",
@@ -66859,7 +66933,7 @@
    ]
   },
   {
-   "id": "F-rule-1946",
+   "id": "F-rule-1948",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect down_by_contact without a review: true (college, 2026 rules).",
@@ -66891,7 +66965,7 @@
    ]
   },
   {
-   "id": "F-rule-1947",
+   "id": "F-rule-1949",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect spot without a review: true (pro, 2026 rules).",
@@ -66923,7 +66997,7 @@
    ]
   },
   {
-   "id": "F-rule-1948",
+   "id": "F-rule-1950",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect spot without a review: true (college, 2026 rules).",
@@ -66955,7 +67029,7 @@
    ]
   },
   {
-   "id": "F-rule-1949",
+   "id": "F-rule-1951",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect forward_or_backward_pass without a review: true (pro, 2026 rules).",
@@ -66987,7 +67061,7 @@
    ]
   },
   {
-   "id": "F-rule-1950",
+   "id": "F-rule-1952",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect forward_or_backward_pass without a review: true (college, 2026 rules).",
@@ -67019,7 +67093,7 @@
    ]
   },
   {
-   "id": "F-rule-1951",
+   "id": "F-rule-1953",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect in_bounds without a review: true (pro, 2026 rules).",
@@ -67051,7 +67125,7 @@
    ]
   },
   {
-   "id": "F-rule-1952",
+   "id": "F-rule-1954",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect in_bounds without a review: true (college, 2026 rules).",
@@ -67083,7 +67157,7 @@
    ]
   },
   {
-   "id": "F-rule-1953",
+   "id": "F-rule-1955",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect score without a review: true (pro, 2026 rules).",
@@ -67115,7 +67189,7 @@
    ]
   },
   {
-   "id": "F-rule-1954",
+   "id": "F-rule-1956",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect score without a review: true (college, 2026 rules).",
@@ -67147,7 +67221,7 @@
    ]
   },
   {
-   "id": "F-rule-1955",
+   "id": "F-rule-1957",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect possession without a review: true (pro, 2026 rules).",
@@ -67179,7 +67253,7 @@
    ]
   },
   {
-   "id": "F-rule-1956",
+   "id": "F-rule-1958",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect possession without a review: true (college, 2026 rules).",
@@ -67211,7 +67285,7 @@
    ]
   },
   {
-   "id": "F-rule-1957",
+   "id": "F-rule-1959",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect fumble_before_down without a review: true (pro, 2026 rules).",
@@ -67243,7 +67317,7 @@
    ]
   },
   {
-   "id": "F-rule-1958",
+   "id": "F-rule-1960",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect fumble_before_down without a review: true (college, 2026 rules).",
@@ -67275,7 +67349,7 @@
    ]
   },
   {
-   "id": "F-rule-1959",
+   "id": "F-rule-1961",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect kick_good without a review: false (pro, 2026 rules).",
@@ -67306,7 +67380,7 @@
    ]
   },
   {
-   "id": "F-rule-1960",
+   "id": "F-rule-1962",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect kick_good without a review: true (college, 2026 rules).",
@@ -67338,7 +67412,7 @@
    ]
   },
   {
-   "id": "F-rule-1961",
+   "id": "F-rule-1963",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect touching without a review: true (pro, 2026 rules).",
@@ -67370,7 +67444,7 @@
    ]
   },
   {
-   "id": "F-rule-1962",
+   "id": "F-rule-1964",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect touching without a review: true (college, 2026 rules).",
@@ -67402,7 +67476,7 @@
    ]
   },
   {
-   "id": "F-rule-1963",
+   "id": "F-rule-1965",
    "level": "pro",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect foul without a review: false (pro, 2026 rules).",
@@ -67434,7 +67508,7 @@
    ]
   },
   {
-   "id": "F-rule-1964",
+   "id": "F-rule-1966",
    "level": "college",
    "domain": "rule",
    "statement": "Replay assist may correct a ruling of aspect foul without a review: false (college, 2026 rules).",
@@ -67466,7 +67540,7 @@
    ]
   },
   {
-   "id": "F-rule-1965",
+   "id": "F-rule-1967",
    "level": "pro",
    "domain": "rule",
    "statement": "Yard line the ball goes to when replay shows it was lost in a team's own end zone and nobody clearly recovered it: 1 yd (pro, 2026 rules).",
@@ -67499,7 +67573,7 @@
    "unit": "yd"
   },
   {
-   "id": "F-rule-1966",
+   "id": "F-rule-1968",
    "level": "college",
    "domain": "rule",
    "statement": "Yard line the ball goes to when replay shows it was lost in a team's own end zone and nobody clearly recovered it: 0 yd (college, 2026 rules).",
@@ -67532,7 +67606,7 @@
    "unit": "yd"
   },
   {
-   "id": "F-rule-1967",
+   "id": "F-rule-1969",
    "level": "pro",
    "domain": "rule",
    "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 1 count (pro, 2026 rules).",
@@ -67565,7 +67639,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1968",
+   "id": "F-rule-1970",
    "level": "college",
    "domain": "rule",
    "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 0 count (college, 2026 rules).",
@@ -67598,7 +67672,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1969",
+   "id": "F-rule-1971",
    "level": "pro",
    "domain": "rule",
    "statement": "Timeouts per team for each overtime half. None carry over: 2 count (pro, 2026 rules).",
@@ -67631,7 +67705,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1970",
+   "id": "F-rule-1972",
    "level": "college",
    "domain": "rule",
    "statement": "Timeouts per team for each overtime half. None carry over: 1 count (college, 2026 rules).",
@@ -67664,7 +67738,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1971",
+   "id": "F-rule-1973",
    "level": "pro",
    "domain": "rule",
    "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 1 count (pro, 2026 rules).",
@@ -67697,7 +67771,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1972",
+   "id": "F-rule-1974",
    "level": "college",
    "domain": "rule",
    "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 1 count (college, 2026 rules).",
@@ -67730,7 +67804,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1973",
+   "id": "F-rule-1975",
    "level": "pro",
    "domain": "rule",
    "statement": "A new coin toss is held after this many overtime periods. 0 means never: 0 count (pro, 2026 rules).",
@@ -67763,7 +67837,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1974",
+   "id": "F-rule-1976",
    "level": "college",
    "domain": "rule",
    "statement": "A new coin toss is held after this many overtime periods. 0 means never: 0 count (college, 2026 rules).",
@@ -67796,7 +67870,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1975",
+   "id": "F-rule-1977",
    "level": "pro",
    "domain": "rule",
    "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 0 index (pro, 2026 rules).",
@@ -67829,7 +67903,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-1976",
+   "id": "F-rule-1978",
    "level": "college",
    "domain": "rule",
    "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 2 index (college, 2026 rules).",
@@ -67862,7 +67936,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-1977",
+   "id": "F-rule-1979",
    "level": "pro",
    "domain": "rule",
    "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 0 count (pro, 2026 rules).",
@@ -67895,7 +67969,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1978",
+   "id": "F-rule-1980",
    "level": "college",
    "domain": "rule",
    "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 0 count (college, 2026 rules).",
@@ -67928,7 +68002,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1979",
+   "id": "F-rule-1981",
    "level": "pro",
    "domain": "rule",
    "statement": "Timeouts per team for each overtime half. None carry over: 3 count (pro, 2026 rules).",
@@ -67961,7 +68035,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1980",
+   "id": "F-rule-1982",
    "level": "college",
    "domain": "rule",
    "statement": "Timeouts per team for each overtime half. None carry over: 1 count (college, 2026 rules).",
@@ -67994,7 +68068,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1981",
+   "id": "F-rule-1983",
    "level": "pro",
    "domain": "rule",
    "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 2 count (pro, 2026 rules).",
@@ -68037,7 +68111,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1982",
+   "id": "F-rule-1984",
    "level": "college",
    "domain": "rule",
    "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 1 count (college, 2026 rules).",
@@ -68070,7 +68144,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1983",
+   "id": "F-rule-1985",
    "level": "pro",
    "domain": "rule",
    "statement": "A new coin toss is held after this many overtime periods. 0 means never: 4 count (pro, 2026 rules).",
@@ -68103,7 +68177,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1984",
+   "id": "F-rule-1986",
    "level": "college",
    "domain": "rule",
    "statement": "A new coin toss is held after this many overtime periods. 0 means never: 0 count (college, 2026 rules).",
@@ -68136,7 +68210,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-1985",
+   "id": "F-rule-1987",
    "level": "pro",
    "domain": "rule",
    "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 3 index (pro, 2026 rules).",
@@ -68169,7 +68243,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-1986",
+   "id": "F-rule-1988",
    "level": "college",
    "domain": "rule",
    "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 2 index (college, 2026 rules).",
@@ -68202,7 +68276,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-1987",
+   "id": "F-rule-1989",
    "level": "pro",
    "domain": "rule",
    "statement": "Intermission before overtime begins: 180 s (pro, 2026 rules).",
@@ -68245,7 +68319,7 @@
    "unit": "s"
   },
   {
-   "id": "F-rule-1988",
+   "id": "F-rule-1990",
    "level": "college",
    "domain": "rule",
    "statement": "Intermission before overtime begins: 0 s (college, 2026 rules).",
@@ -68277,7 +68351,7 @@
    "unit": "s"
   },
   {
-   "id": "F-rule-1989",
+   "id": "F-rule-1991",
    "level": "pro",
    "domain": "rule",
    "statement": "Intermission between overtime periods: 120 s (pro, 2026 rules).",
@@ -68310,7 +68384,7 @@
    "unit": "s"
   },
   {
-   "id": "F-rule-1990",
+   "id": "F-rule-1992",
    "level": "college",
    "domain": "rule",
    "statement": "Intermission between overtime periods: 0 s (college, 2026 rules).",
@@ -68343,7 +68417,7 @@
    "unit": "s"
   },
   {
-   "id": "F-rule-1991",
+   "id": "F-rule-1993",
    "level": "pro",
    "domain": "rule",
    "statement": "A timed overtime period has a two-minute warning, and with it the two-minute fumble limit: true (pro, 2026 rules).",
@@ -68385,7 +68459,7 @@
    ]
   },
   {
-   "id": "F-rule-1992",
+   "id": "F-rule-1994",
    "level": "college",
    "domain": "rule",
    "statement": "A timed overtime period has a two-minute warning, and with it the two-minute fumble limit: false (college, 2026 rules).",
@@ -68417,7 +68491,7 @@
    ]
   },
   {
-   "id": "F-rule-1993",
+   "id": "F-rule-1995",
    "level": "pro",
    "domain": "rule",
    "statement": "The winner of the overtime toss may defer: true (pro, 2026 rules).",
@@ -68459,7 +68533,7 @@
    ]
   },
   {
-   "id": "F-rule-1994",
+   "id": "F-rule-1996",
    "level": "college",
    "domain": "rule",
    "statement": "The winner of the overtime toss may defer: false (college, 2026 rules).",
@@ -68491,7 +68565,7 @@
    ]
   },
   {
-   "id": "F-rule-1995",
+   "id": "F-rule-1997",
    "level": "pro",
    "domain": "rule",
    "statement": "Depth of each end zone, goal line to end line: 30 ft (pro, 2026 rules).",
@@ -68524,7 +68598,7 @@
    "unit": "ft"
   },
   {
-   "id": "F-rule-1996",
+   "id": "F-rule-1998",
    "level": "college",
    "domain": "rule",
    "statement": "Depth of each end zone, goal line to end line: 30 ft (college, 2026 rules).",
@@ -68557,7 +68631,7 @@
    "unit": "ft"
   },
   {
-   "id": "F-rule-1997",
+   "id": "F-rule-1999",
    "level": "pro",
    "domain": "rule",
    "statement": "Distance from each sideline to the bottom of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 36 ft (pro, 2026 rules).",
@@ -68590,7 +68664,7 @@
    "unit": "ft"
   },
   {
-   "id": "F-rule-1998",
+   "id": "F-rule-2000",
    "level": "college",
    "domain": "rule",
    "statement": "Distance from each sideline to the bottom of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 21 ft (college, 2026 rules).",
@@ -68623,7 +68697,7 @@
    "unit": "ft"
   },
   {
-   "id": "F-rule-1999",
+   "id": "F-rule-2001",
    "level": "pro",
    "domain": "rule",
    "statement": "Distance from each sideline to the top of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 42 ft (pro, 2026 rules).",
@@ -68656,7 +68730,7 @@
    "unit": "ft"
   },
   {
-   "id": "F-rule-2000",
+   "id": "F-rule-2002",
    "level": "college",
    "domain": "rule",
    "statement": "Distance from each sideline to the top of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 27 ft (college, 2026 rules).",
@@ -68689,7 +68763,7 @@
    "unit": "ft"
   },
   {
-   "id": "F-rule-2001",
+   "id": "F-rule-2003",
    "level": "pro",
    "domain": "rule",
    "statement": "Players allowed neither on nor off the line when directly behind the snapper: 1 count (pro, 2026 rules).",
@@ -68722,7 +68796,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-2002",
+   "id": "F-rule-2004",
    "level": "college",
    "domain": "rule",
    "statement": "Players allowed neither on nor off the line when directly behind the snapper: 0 count (college, 2026 rules).",
@@ -68755,7 +68829,7 @@
    "unit": "count"
   },
   {
-   "id": "F-rule-2003",
+   "id": "F-rule-2005",
    "level": "pro",
    "domain": "rule",
    "statement": "A player this close or closer behind the snapper is the player under center: 1 yd (pro, 2026 rules).",
@@ -68788,7 +68862,7 @@
    "unit": "yd"
   },
   {
-   "id": "F-rule-2004",
+   "id": "F-rule-2006",
    "level": "college",
    "domain": "rule",
    "statement": "A player this close or closer behind the snapper is the player under center: 0 yd (college, 2026 rules).",
@@ -68820,7 +68894,7 @@
    "unit": "yd"
   },
   {
-   "id": "F-rule-2005",
+   "id": "F-rule-2007",
    "level": "pro",
    "domain": "rule",
    "statement": "Top of the lower band of eligible jersey numbers (the band starts at 0): 49 index (pro, 2026 rules).",
@@ -68853,7 +68927,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-2006",
+   "id": "F-rule-2008",
    "level": "college",
    "domain": "rule",
    "statement": "Top of the lower band of eligible jersey numbers (the band starts at 0): 49 index (college, 2026 rules).",
@@ -68886,7 +68960,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-2007",
+   "id": "F-rule-2009",
    "level": "pro",
    "domain": "rule",
    "statement": "Bottom of the upper band of eligible jersey numbers: 80 index (pro, 2026 rules).",
@@ -68919,7 +68993,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-2008",
+   "id": "F-rule-2010",
    "level": "college",
    "domain": "rule",
    "statement": "Bottom of the upper band of eligible jersey numbers: 80 index (college, 2026 rules).",
@@ -68952,7 +69026,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-2009",
+   "id": "F-rule-2011",
    "level": "pro",
    "domain": "rule",
    "statement": "Top of the upper band of eligible jersey numbers: 89 index (pro, 2026 rules).",
@@ -68985,7 +69059,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-2010",
+   "id": "F-rule-2012",
    "level": "college",
    "domain": "rule",
    "statement": "Top of the upper band of eligible jersey numbers: 99 index (college, 2026 rules).",
@@ -69018,7 +69092,7 @@
    "unit": "index"
   },
   {
-   "id": "F-rule-2011",
+   "id": "F-rule-2013",
    "level": "pro",
    "domain": "rule",
    "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (NCAA 3-4-3-b).: false (pro, 2026 rules).",
@@ -69050,7 +69124,7 @@
    ]
   },
   {
-   "id": "F-rule-2012",
+   "id": "F-rule-2014",
    "level": "college",
    "domain": "rule",
    "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (NCAA 3-4-3-b).: true (college, 2026 rules).",
