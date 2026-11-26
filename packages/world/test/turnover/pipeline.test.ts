@@ -81,6 +81,21 @@ describe('player-to-coach pipeline: who wants to coach (D13.3.5 rule 3a)', () =>
   });
 });
 
+describe('player-to-coach pipeline: who hears of a former player (D13.3.5 rule 4)', () => {
+  const { w } = build();
+  const noTie = () => 0;
+  it('a staff knows its own former players, a coach tied to the head coach recommends his, others are rare cold applications', () => {
+    const coached = new Map([[901, 3], [902, 1]]);
+    expect(turnover.routeTo(w, 1, 2000, 5, coached, new Set([902, 50]), 50, noTie)).toEqual({ route: 'own', via: 902 });
+    expect(turnover.routeTo(w, 1, 2000, 5, coached, new Set([50]), 50, (a, b) => (a === 50 && b === 901 ? 25 : 0))).toEqual({ route: 'recommended', via: 901 });
+    let cold = 0;
+    const n = 4000;
+    for (let i = 0; i < n; i++) if (turnover.routeTo(w, i, 2000, 5, coached, new Set([50]), 50, noTie) !== null) cold++;
+    expect(cold / n).toBeGreaterThan(turnover.param('pipeline.coldConsidered') * 0.5);
+    expect(cold / n).toBeLessThan(turnover.param('pipeline.coldConsidered') * 1.6);
+  });
+});
+
 describe('player-to-coach pipeline in the world loop (D13.3.5, S11.2.1)', () => {
   const SEASONS = 8;
   const g = build();

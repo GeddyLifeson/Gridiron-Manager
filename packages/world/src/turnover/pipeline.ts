@@ -155,3 +155,28 @@ export function formerProShare(world: LiveWorld, levelOf: (teamId: number) => st
   }
   return { holders: seen.size, formerPro };
 }
+
+// ---------- how an entry-level chair is really filled: who hears of him, interviews, references ----------
+
+/** How a waiting former player comes to a hiring staff's notice. */
+export type Route = 'own' | 'recommended' | 'cold';
+
+/**
+ * D13.3.5 rule 4 and S6: a staff knows its own former players ('own': the head coach or one of his staff
+ * coached him); a coach who coached him and has worked with the head coach can recommend him
+ * ('recommended'); anyone else is a cold application, read with a small chance per opening.
+ * Returns null when he is not considered for this opening at all.
+ */
+export function routeTo(world: LiveWorld, seatId: number, season: number, playerId: number, coachedBy: ReadonlyMap<number, number> | undefined,
+  hiringIds: ReadonlySet<number>, headId: number, tie: (a: number, b: number) => number): { route: Route; via: number | null } | null {
+  if (coachedBy) {
+    let own: number | null = null, rec: number | null = null;
+    for (const [coach] of [...coachedBy].sort((a, b) => b[1] - a[1] || a[0] - b[0])) {
+      if (own === null && hiringIds.has(coach)) own = coach;
+      if (rec === null && !hiringIds.has(coach) && tie(headId, coach) > 0) rec = coach;
+    }
+    if (own !== null) return { route: 'own', via: own };
+    if (rec !== null) return { route: 'recommended', via: rec };
+  }
+  return stream(world.seed, STREAM_PIPELINE, ['cold', seatId, playerId, season]).chance(param('pipeline.coldConsidered')) ? { route: 'cold', via: null } : null;
+}

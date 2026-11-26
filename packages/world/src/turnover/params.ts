@@ -63,6 +63,7 @@ const ROWS: readonly Row[] = [
   ['pipeline.veteranSeasons', 8, 1, 20, 'seasons', 'assumption', 'E1.2.1', 'A pro career this long can start at assistant position coach (E1 former_pro_player origin plays 2 to 10 seasons). No source read'],
   ['pipeline.veteranEntryRung', 4, 0, 9, 'rung', 'assumption', 'E2.1.1', 'Assistant position coach (catalogue rung 4)'],
   ['pipeline.playedUnderTiePerSeason', 15, 0, 100, 'edge points', 'assumption', 'D13.3.5', 'Rule 4: a coach knows the players he coached; per season together, capped at 100. Below a staff season (coach.tiePerSeason 25). No source read'],
+  ['pipeline.coldConsidered', 0.02, 0, 1, 'chance per opening', 'assumption', 'D13.3.5', 'A former player with no coach to vouch for him is read for an opening with this chance (cold application). Real entry jobs go mostly to people the coach knows or who are referred (Coaching Portfolio 2023, EYES UP 2026); no rate found'],
 ];
 
 export const PARAMS: ParamFile = {

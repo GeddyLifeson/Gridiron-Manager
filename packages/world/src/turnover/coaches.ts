@@ -661,7 +661,6 @@ function hire(c: Cycle, teamId: number, job: JobRecord, personId: number, years:
     c.world.outOfFootballSince.delete(personId);
     bump(c, 'former_player_hired');
     bump(c, `former_${pipeline.levelPlayed(p) ?? 'none'}_player_hired`);
-    if ((playedUnderOf(c).get(personId)?.size ?? 0) > 0) bump(c, 'former_player_hired_by_own_coaches');
   }
   const fromSeats = c.ix.heldBy(personId).filter((j) => j.id !== job.id);
   for (const j of fromSeats) {
@@ -800,19 +799,30 @@ function fillStaff(c: Cycle, teamId: number, v: Views): void {
   const staffIdsOf = staff.seats.filter((x) => x.holderPersonId !== null && x.holderPersonId !== headId).map((x) => x.holderPersonId!);
   for (const seat0 of openSeats) {
     const external = new Map<number, number>();
+    const routes = new Map<number, pipeline.Route>();
     const decide = (s: positions.Staff, seatId: number): positions.VacancyDecision => {
       const seat = positions.seat(s, seatId);
       const rung = seat.rung ?? 0;
       const job = c.world.jobs.get(seatId)!;
       const inside = s.seats.filter((x) => x.holderPersonId !== null && x.holderPersonId !== headId && x.holderPersonId !== c.world.userPersonId && x.seatId !== seatId && (x.rung ?? 0) < rung && (x.rung ?? 0) >= rung - param('coach.stepsBelow')).map((x) => x.holderPersonId!);
+      // D13.3.5 rule 4 and S6: a waiting former player reaches this opening only through a coach who
+      // coached him (on this staff, or tied to this head coach) or, rarely, a cold application.
       const former = formerPlayers(c);
-      const fresh = [...former].filter(([, max]) => rung <= max).map(([id]) => id);
+      const hiringIds = new Set<number>([headId, ...staffIdsOf]);
+      const fresh: number[] = [];
+      for (const [id, max] of former) {
+        if (rung > max || taken.has(id)) continue;
+        const r = pipeline.routeTo(c.world, seatId, c.season, id, playedUnderOf(c).get(id), hiringIds, headId, v.tie);
+        if (r === null) continue;
+        routes.set(id, r.route);
+        fresh.push(id);
+      }
       const outside = [...poolIds(c).filter((id) => rung <= 2 || (c.st.careers.get(id)?.lastRung ?? 0) >= rung - param('coach.stepsBelow')), ...fresh].filter((id) => !taken.has(id));
       const ids = [...new Set([...inside, ...outside])].sort((a, b) => a - b);
       if (ids.length === 0) return { kind: 'post' };
       const ranked = staffSearch.rankCandidates(ids.map((id) => {
         const r = v.record(id);
-        return { personId: id, input: { sameFamily: false, termOverlap: 0, viewOfQuality: r === null ? 0.5 : r, tie: Math.max(v.tie(headId, id), inside.includes(id) ? param('coach.tiePerSeason') : 0, former.has(id) ? formerPlayerTie(c, headId, staffIdsOf, id) : 0), askCents: 0, budgetLeftCents: 1 } };
+        return { personId: id, input: { sameFamily: false, termOverlap: 0, viewOfQuality: r === null ? 0.5 : r, tie: Math.max(v.tie(headId, id), inside.includes(id) ? param('coach.tiePerSeason') : 0, routes.has(id) ? formerPlayerTie(c, headId, staffIdsOf, id) : 0), askCents: 0, budgetLeftCents: 1 } };
       }));
       const sr = stream(c.world.seed, STREAM_COACHES, ['staff_search', seatId, c.season]);
       const res = staffSearch.runSearch(ranked, (id) => offerTo(c, job, id, prospects), sr);
@@ -822,6 +832,8 @@ function fillStaff(c: Cycle, teamId: number, v: Views): void {
       if (inside.includes(who)) return { kind: 'promote', personId: who };
       external.set(seatId, who);
       taken.add(who);
+      const route = routes.get(who);
+      if (route) bump(c, `former_player_hired_${route}`);
       return { kind: 'post' };
     };
     if (positions.seat(staff, seat0.seatId).holderPersonId !== null) continue;

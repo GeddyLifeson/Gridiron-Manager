@@ -16,5 +16,5 @@ export {
 } from './coaches.ts';
 export {
   STREAM_PIPELINE, playedGroup, playedPro, playedCollege, levelPlayed, wantsToCoachChance, wantsToCoach, entryRungMax, waitingFormerPlayers, playedUnder, playedUnderTie,
-  playersWhoCoach, formerProShare, type PlayedGroup, type FormerPlayer,
+  playersWhoCoach, formerProShare, routeTo, type PlayedGroup, type FormerPlayer, type Route,
 } from './pipeline.ts';
