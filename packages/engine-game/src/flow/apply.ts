@@ -239,7 +239,8 @@ function enterOvertimePeriod(env: FlowEnv, state: GameState, e: GameEvent): Game
   };
   const timeouts = env.officiating.overtime.timeoutsPerTeam(next, env);
   next.timeoutsLeft = [timeouts, timeouts];
-  const step = env.officiating.overtime.start(next, env);
+  // The overtime rules place a restart only when they are given a ruling context: a spot needs the field (WP-03).
+  const step = env.officiating.overtime.start(next, rulingContext(env, next));
   if (step.state !== null) next.overtime = step.state;
   if (step.next === 'toss') { next.phase = 'overtime_toss'; return next; }
   if (step.restart === null) fail(state, e, `overtime start answered ${step.next} with no restart`);
@@ -299,7 +300,7 @@ function onToss(env: FlowEnv, state: GameState, e: EventOf<'toss'>): GameState {
     return next;
   }
   next.overtime = { otPeriod: state.overtime?.otPeriod ?? 1, possessions: [], tossWinner: e.winner, firstPossession: out.receiver };
-  const step = env.officiating.overtime.start(next, env);
+  const step = env.officiating.overtime.start(next, rulingContext(env, next));
   if (step.restart === null) fail(state, e, `overtime start answered ${step.next} with no restart after the toss`);
   if (step.state !== null) next.overtime = step.state;
   next = withRestart(env, next, step.restart);
