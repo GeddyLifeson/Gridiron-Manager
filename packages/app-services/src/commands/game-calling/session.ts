@@ -109,6 +109,24 @@ export class GameCallingSession {
 
   get final(): boolean { return this.game.phase === 'final'; }
 
+  /** The public situation of the next snap (scoreboard facts only, J1.6.1), for the console strip. */
+  situation(): GameSituation { return flow.situationOf(this.deps, this.game); }
+
+  /** The field geometry of this game, for the strip's spot and hash wording. */
+  get geometry(): GameDeps['geometry'] { return this.deps.geometry; }
+
+  /** The side the console calls for. */
+  get userSide(): Side { return this.o.userSide; }
+
+  /** The game's rule set (strip clock lengths, challenge counts). */
+  get rules(): GameDeps['rules'] { return this.deps.rules; }
+
+  /** The game's parameter table (the statistics module reads it for the play-by-play rows). */
+  get params(): GameDeps['params'] { return this.deps.params; }
+
+  /** The user's personnel group on the field now (I3.1.1). */
+  get personnelOnField(): string { return this.personnel; }
+
   /** Runs the game to the first request for the user's team. */
   start(): void { this.step(); }
 
