@@ -228,12 +228,14 @@ describe('J5.3 shifts and motion', () => {
   });
   it('J5.3.1: a forced snap before the offense is set is an illegal shift, or a dead-ball false start with the clock running inside two minutes', () => {
     const far = (w: ReturnType<typeof world>) => { for (let s = 0; s < SLOTS_PER_TEAM; s++) w.players.posX[s] = w.frame.originX - 22 * w.frame.attackDir; return w; };
+    // A clock that lets every man reach his spot (J5.8.1 `alignTravelS`) half a second before it runs out: aligned, not set.
+    const short = Math.round((planPresnap(far(world()), input({ tempo: 'no_huddle' })).offenseSetS - 0.5) * 10);
     const w = far(world());
-    const plan = planPresnap(w, input({ tempo: 'no_huddle', playClockStartTenths: 45 }));
+    const plan = planPresnap(w, input({ tempo: 'no_huddle', playClockStartTenths: short }));
     expect(plan.fouls.map((f) => f.foulId)).toContain('illegal_shift');
     const w2 = far(world());
     (w2.situation as { insideTwoMinute: boolean }).insideTwoMinute = true;
-    const plan2 = planPresnap(w2, input({ tempo: 'no_huddle', playClockStartTenths: 45 }));
+    const plan2 = planPresnap(w2, input({ tempo: 'no_huddle', playClockStartTenths: short }));
     expect(plan2.fouls.find((f) => f.slot === null && f.foulId === 'false_start')?.deadBall).toBe(true);
   });
   it('J5.3.2 acceptance: against a man call with no bluff the matched defender follows the motion on 100% of trials', () => {
@@ -381,8 +383,10 @@ describe('J5.7 pre-snap fouls', () => {
   it('D4.2.2 discipline enters once: 1 at grade 50, 2 at 0, floored at 0.25', () => {
     expect(disciplineMult(50, P)).toBe(1); expect(disciplineMult(0, P)).toBe(2); expect(disciplineMult(100, P)).toBe(0.25);
   });
-  it('venue term: road-to-home ratios are 1.051 on offense and 1.142 on defense; neutral is 1', () => {
-    expect(venueMult('road', true, P) / venueMult('home', true, P)).toBeCloseTo(1.051, 3);
+  it('venue term: 1.142 road to home on defense; none on offense, where the delay-of-game split from the relay carries the measured gap; neutral is 1', () => {
+    // J5.7.1: the term closes the gap the mechanisms leave. Offense: 2.194 road against 2.087 home is 0.107 per 100 snaps,
+    // and delay of game alone is 0.13 (J12.6.1: 0.47 against 0.34), which the play clock now produces (relay.test.ts).
+    expect(venueMult('road', true, P) / venueMult('home', true, P)).toBe(1);
     expect(venueMult('road', false, P) / venueMult('home', false, P)).toBeCloseTo(1.142, 2);
     expect(venueMult('neutral', true, P)).toBe(1);
   });
@@ -390,7 +394,10 @@ describe('J5.7 pre-snap fouls', () => {
     const t0 = { noise: 0, hardCountOwn: false, defensiveMovement: false, rushedSnap: false, longCount: false, fatigue: 0 };
     const b = P['foul.baseFalseStartLine']!;
     expect(falseStartChance(b, 50, 'neutral', t0, DMATH, P)).toBeCloseTo(b, 12);
-    expect(falseStartChance(b, 50, 'neutral', { ...t0, noise: 1 }, DMATH, P)).toBeCloseTo(b * Math.exp(0.7), 9);
+    // J12.6.1: "little or no noise weight" on the direct false-start term (road false starts show no excess).
+    expect(P['foul.gNoise']!).toBeLessThanOrEqual(0.1);
+    expect(falseStartChance(b, 50, 'neutral', { ...t0, noise: 1 }, DMATH, P)).toBeCloseTo(b * Math.exp(P['foul.gNoise']!), 9);
+    expect(falseStartChance(b, 50, 'neutral', { ...t0, fatigue: 1 }, DMATH, P)).toBeGreaterThan(b);
     expect(falseStartChance(b, 50, 'neutral', { ...t0, hardCountOwn: true }, DMATH, P)).toBeGreaterThan(b);
     const o0 = { hardCountOpp: false, anticipated: false, aggression: false, fatigue: 0 };
     const d = P['foul.baseDefOffside']!;
@@ -410,10 +417,15 @@ describe('J5.7 pre-snap fouls', () => {
     const perGameBoth = 2 * 62.1 * perSnap;
     expect(perGameBoth).toBeGreaterThan(2.3 * 0.75); expect(perGameBoth).toBeLessThan(2.3 * 1.25);
   });
-  it('home teams commit fewer pre-snap fouls than road teams over many snaps', () => {
-    const big = tableWith({ 'presnap.foul.baseFalseStartLine': 0.03, 'presnap.foul.baseFalseStartOther': 0.01 });
-    const count = (venue: 'home' | 'road') => SEEDS(1500).reduce((t, seed) => t + planPresnap(world({ seed, params: big }), input({ venue })).fouls.filter((f) => f.foulId === 'false_start').length, 0);
-    expect(count('road')).toBeGreaterThan(count('home'));
+  it('a road defense commits more pre-snap fouls than a home defense over many snaps, and false starts do not differ by venue', () => {
+    const big = tableWith({ 'presnap.foul.baseFalseStartLine': 0.03, 'presnap.foul.baseFalseStartOther': 0.01, 'presnap.foul.baseDefOffside': 0.03 });
+    const DEF = new Set(['offside', 'defensive_offside', 'neutral_zone_infraction', 'encroachment']);
+    // `venue` is the offense's: a home offense faces a road defense.
+    const count = (venue: 'home' | 'road', test: (id: string) => boolean) => SEEDS(1500).reduce((t, seed) => t + planPresnap(world({ seed, params: big }), input({ venue })).fouls.filter((f) => test(f.foulId)).length, 0);
+    expect(count('home', (id) => DEF.has(id))).toBeGreaterThan(count('road', (id) => DEF.has(id)));
+    // The same draws against the same chance: a false start by the line is the same snap at home and on the road.
+    const lineFalseStarts = (venue: 'home' | 'road') => SEEDS(300).map((seed) => planPresnap(world({ seed, params: tableWith({ 'presnap.foul.baseFalseStartLine': 0.03, 'presnap.foul.baseDefOffside': 0 }) }), input({ venue })).fouls.filter((f) => f.foulId === 'false_start').length);
+    expect(lineFalseStarts('road')).toEqual(lineFalseStarts('home'));
   });
   it('a dead-ball pre-snap foul ends the play before the snap: flag, dead ball, no snap', () => {
     const r = run(input(), { params: tableWith({ 'presnap.foul.baseFalseStartLine': 1 }) });

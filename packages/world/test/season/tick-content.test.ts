@@ -42,6 +42,37 @@ describe('starter content port', () => {
     const quiet = port.setup(inputOf(offenseCalls('dropback_pass', null), pro, { offense: 1, down: 3 }))!;
     expect([quiet.presnap.offense.noise, quiet.presnap.defense.noise]).toEqual([0, 0]);
   });
+  it('wakes the crowd channels: relay on the play clock, knowledge of a placeholder roster, pressure of the moment, the units that talk', () => {
+    const late = (calls: PlayCalls, over: Record<string, unknown> = {}): PlayInput => {
+      const base = inputOf(calls, pro, { offense: 1, down: 3 });
+      return { ...base, situation: { ...base.situation, period: 4, clockTenths: 600, goalToGo: false, ...over } } as unknown as PlayInput;
+    };
+    const huddle = port.setup(late(offenseCalls('dropback_pass', null)))!;
+    // I2.1.1 stages 1 to 3: spotting, decision, radio 2 s plus the spoken call (I2.4.1).
+    expect(huddle.presnap.playClockStartTenths).toBe(pro.num('clock.play_clock_s') * 10);
+    expect(huddle.presnap.relay).toEqual({
+      spottingS: params.num('presnap.relay.spottingS'), decisionS: params.num('presnap.relay.decisionS'),
+      methodS: params.num('presnap.relay.radioS'), spokenS: huddle.presnap.callWords * params.num('presnap.relay.perWordS'),
+    });
+    const noHuddle = offenseCalls('dropback_pass', null); (noHuddle.snapping as { tempo: string }).tempo = 'no_huddle';
+    expect(port.setup(late(noHuddle))!.presnap.relay).toMatchObject({ methodS: params.num('presnap.relay.signalS'), spokenS: 0 });
+    const hurry = offenseCalls('dropback_pass', null); (hurry.snapping as { tempo: string }).tempo = 'hurry_up';
+    expect(port.setup(late(hurry))!.presnap.relay).toBeNull();
+    expect(port.setup(late(offenseCalls('kneel', null)))!.presnap.relay).toBeNull();
+    // D9.4.1: the placeholder roster's knowledge, both sides of the ball.
+    expect(huddle.context.knowledgeDefault).toEqual([params.num('environment.gate.knowledge'), params.num('environment.gate.knowledge')]);
+    // D4.3.1: a tied game late on third down is the top of the scale; the first quarter on first down is not.
+    expect(huddle.context.pressure!).toBeGreaterThan(0.95);
+    const early = port.setup(late(offenseCalls('dropback_pass', null), { period: 1, clockTenths: 9000, down: 1 }))!;
+    expect(early.context.pressure!).toBeLessThan(0.35);
+    expect(port.setup(late(offenseCalls('dropback_pass', null), { score: [35, 0] }))!.context.pressure).toBe(0);
+    // K1.5.1: centre and quarterback, middle linebacker and free safety; nobody is in two units.
+    const units = huddle.context.units!;
+    expect(units.map((u) => u.communicator)).toEqual([OFFENSE_ROLES.indexOf('C'), OFFENSE_ROLES.indexOf('Q'), SLOTS_PER_TEAM + DEFENSE_ROLES.indexOf('MIKE'), SLOTS_PER_TEAM + DEFENSE_ROLES.indexOf('FS')]);
+    const all = units.flatMap((u) => [u.communicator, ...u.members]);
+    expect(new Set(all).size).toBe(all.length);
+    expect(all.length).toBe(SLOT_COUNT);
+  });
   it('gives every chart kind a play with eleven a side in the fixed role order', () => {
     for (const kind of ['run', 'dropback_pass', 'quick_pass', 'play_action', 'screen', 'rpo', 'kneel']) {
       const s = port.setup(inputOf(offenseCalls(kind, kind === 'run' ? 'left' : null)))!;

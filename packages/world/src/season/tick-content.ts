@@ -19,7 +19,7 @@ import {
   SLOT_COUNT, SLOTS_PER_TEAM,
   type Assignment, type CoverageFamily, type KickCall, type PlayCalls, type PlayInput, type ReturnCall, type RuleSet,
 } from '@gm/schema';
-import { perception as perceptionModule, qb as qbModule, tickResolver } from '@gm/engine-core';
+import { perception as perceptionModule, playerAi as playerAiModule, qb as qbModule, tickResolver } from '@gm/engine-core';
 import { full, starter } from '@gm/football-content';
 import { lang } from '@gm/football-lang';
 import { environment } from '@gm/engine-game';
@@ -451,6 +451,26 @@ function bound(as: Assignment[]): Assignment[] {
   return lang.bindAssignments({ assignments: as, slotOfRole: SLOT_OF_ROLE, qbSlot: OFFENSE_ROLES.indexOf('Q') }).bound;
 }
 
+/** Spoken length of a starter call, in words (I2.4.2). PROVISIONAL: the starter content carries no call sheet wording. */
+const CALL_WORDS = 6;
+
+/**
+ * K1.5.1 communicators of the fixed slot orders: the centre makes the line's calls and the quarterback the skill
+ * players'; the middle linebacker sets the front and the free safety the coverage. PROVISIONAL (Assumption): who
+ * wears the green dot and who makes the line calls is a depth-chart choice (I6, G5.5.2) that no caller makes yet.
+ */
+const unitSlotOf = (roles: readonly string[], side: 0 | 1) => (role: string): number => side * SLOTS_PER_TEAM + roles.indexOf(role);
+const oSlot = unitSlotOf(OFFENSE_ROLES, 0), dSlot = unitSlotOf(DEFENSE_ROLES, 1);
+const OFFENSE_UNITS: readonly playerAiModule.CommUnit[] = [
+  { communicator: oSlot('C'), members: ['LT', 'LG', 'RG', 'RT'].map(oSlot) },
+  { communicator: oSlot('Q'), members: ['R', 'X', 'Z', 'Y', 'H'].map(oSlot) },
+];
+const SCRIMMAGE_UNITS: readonly playerAiModule.CommUnit[] = [
+  ...OFFENSE_UNITS,
+  { communicator: dSlot('MIKE'), members: ['LDE', 'LDT', 'RDT', 'RDE', 'WILL', 'SAM'].map(dSlot) },
+  { communicator: dSlot('FS'), members: ['LCB', 'RCB', 'SS'].map(dSlot) },
+];
+
 export interface StarterContentOptions {
   /** Where the game is played (J12.8.1): at side 0's venue (the default) or at a neutral site. */
   readonly site?: environment.Site;
@@ -596,9 +616,23 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
       // The crowd on this play (J12.6.1, J12.8.1): noise each unit hears, the J5.7.1 venue, the road silent count,
       // the D9.4.1 noise factor and the residual familiarity term, all from the snapshot and the scoreboard.
       const crowd = environment.crowdForPlay(input.environment, { offense: sit.offense, down: sit.down, score: sit.score }, site, input.rules, input.params);
+      const P = (name: string): number => input.params.num(name);
+      // I2.1.1 stages 1 to 3 for a play called from the sideline: spotting, the caller's decision, and the relay by
+      // helmet radio into a huddle (2 s plus the spoken call) or by signal without one (I2.4.1). They run on the play
+      // clock before the huddle, and noise garbles the relay. A hurry-up call is made at the line, and a kneel or a
+      // spike needs no call from the sideline; a kicking unit's time on is its own (I4.1.1).
+      const scrimmage = s.unit === 'offense' && sit.down !== null;
+      const called = scrimmage && tempo !== 'hurry_up' && s.kind !== 'kneel' && s.kind !== 'spike';
+      const relay = !called ? null : {
+        spottingS: P('presnap.relay.spottingS'), decisionS: P('presnap.relay.decisionS'),
+        methodS: tempo === 'huddle' ? P('presnap.relay.radioS') : P('presnap.relay.signalS'),
+        spokenS: tempo === 'huddle' ? CALL_WORDS * P('presnap.relay.perWordS') : 0,
+      };
+      // D9.4.1: what a player with no install record knows of his assignment (a placeholder roster holds none).
+      const knowledge = P('environment.gate.knowledge');
       return {
         presnap: {
-          tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, callWords: 6, hardCount: false, silentCount: s.unit === 'offense' && crowd.silentCount, longCount: false,
+          tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, relay, callWords: CALL_WORDS, hardCount: false, silentCount: s.unit === 'offense' && crowd.silentCount, longCount: false,
           snapsOnSameCount: 0, shotgun, venue: crowd.venue, snapFoulPhase: phase,
           offense: { assignments: O, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: qbSlot >= 0 ? qbSlot : 0, noise: crowd.unitNoise[0], familiarityZ: crowd.familiarityZ[0], shift: null, motion: null, audibles: [], canRedirect: true, prepared: 0.5 },
           defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: crowd.unitNoise[1], familiarityZ: crowd.familiarityZ[1], coverage, manMatch, bluff: false, checks: [], disguise: [], simulatedPressure: false, aggressiveGetOff: false },
@@ -607,6 +641,11 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
         context: {
           ...(qbSlot >= 0 ? { qbSlot } : {}), tempo: tempo === 'huddle' ? 0 : tempo === 'no_huddle' ? 0.5 : 1, secondHalf: sit.period > 2,
           noise: crowd.unitNoise, noiseFactor: crowd.noiseFactor, familiarityZ: crowd.familiarityZ,
+          knowledgeDefault: [knowledge, knowledge],
+          // D4.3.1 pressure of the moment, from the scoreboard, the clock, the down and the crowd.
+          pressure: environment.pressureOfMoment({ period: sit.period, clockTenths: sit.clockTenths, down: sit.down, goalToGo: sit.goalToGo, score: sit.score }, crowd.noise, input.rules, input.params),
+          // K1.5.1: the players who make a unit's calls. Kicking units carry none here.
+          ...(scrimmage && o.unit === 'defense' ? { units: SCRIMMAGE_UNITS } : scrimmage ? { units: OFFENSE_UNITS } : {}),
         },
         perception, qb, carrier,
       };
