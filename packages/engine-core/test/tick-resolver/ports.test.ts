@@ -14,6 +14,6 @@ describe('tick resolver integration points', () => {
     expect(at[at.length - 1]).toBeLessThan(MODULE_ORDER.indexOf('finish'));
   });
   it('keeps the order that the golden hashes were made with', () => {
-    expect(MODULE_ORDER.join(' ')).toBe('presnap perception playerAi movement heldBall ball interact qb carrier foulsInjuries finish');
+    expect(MODULE_ORDER.join(' ')).toBe('presnap perception playerAi movement heldBall ball boundary interact kickOp qb carrier foulsInjuries finish');
   });
 });

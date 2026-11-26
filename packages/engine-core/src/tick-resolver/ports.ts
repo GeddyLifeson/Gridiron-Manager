@@ -25,7 +25,7 @@ export type PlugId = (typeof PLUG_IDS)[number];
  * on anything read at run time. Changing it changes results and so changes the golden hashes.
  */
 export const MODULE_ORDER = [
-  'presnap', 'perception', 'playerAi', 'movement', 'heldBall', 'ball', 'interact',
+  'presnap', 'perception', 'playerAi', 'movement', 'heldBall', 'ball', 'boundary', 'interact', 'kickOp',
   'qb', 'carrier', 'foulsInjuries', 'finish',
 ] as const;
 export type ModuleId = (typeof MODULE_ORDER)[number];
@@ -42,11 +42,13 @@ export interface PlayServices {
   readonly ball: BallStages;
   /** Built once per play from the play's parameter table. */
   contests(): Contests;
-  /** The pre-snap plan of the play being run (J5), and the snap once it has happened. */
-  plan(): PresnapPlan;
+  /** The pre-snap plan of the play being run (J5), null on a free kick, and the snap once it has happened. */
+  plan(): PresnapPlan | null;
   snap(): SnapResult | null;
   /** What the content port supplied for the play. */
   setup(): PlaySetup;
+  /** The input of the play being run: situation, calls, teams, environment. */
+  input(): PlayInput;
 }
 
 /**
