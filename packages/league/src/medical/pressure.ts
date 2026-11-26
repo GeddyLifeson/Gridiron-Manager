@@ -2,7 +2,7 @@
 // "can you give me a quarter?", overriding a snap cap. Always available to the user and AI, with no
 // switch. Pressure never changes a concussion state or a structural "not cleared"; playing him anyway is
 // the separate breakable act in authority.ts.
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { P } from './params.ts';
 import type { MedicalCase } from './types.ts';
 
@@ -17,7 +17,7 @@ export interface TrustChange { readonly medicalStaff: number; readonly player: n
 
 /** Chance the player agrees to play before full recovery: toughness, trust in the coach, contract year. */
 export function agreeChance(toughness: number, trust: number, contractYear: boolean): number {
-  return clamp01(P('agreeBase') + P('agreeToughnessWeight') * clamp01(toughness) + P('agreeTrustWeight') * clamp01(trust) + (contractYear ? P('agreeContractYearBonus') : 0));
+  return possible(P('agreeBase') + P('agreeToughnessWeight') * clamp01(toughness) + P('agreeTrustWeight') * clamp01(trust) + (contractYear ? P('agreeContractYearBonus') : 0));
 }
 
 export interface PressureResult {
@@ -34,7 +34,7 @@ export interface PressureResult {
  * injury. Asking the player succeeds by `agreeChance`. Every use costs medical-staff trust.
  */
 export function applyPressure(c: MedicalCase, kind: PressureKind, day: number, who: { toughness: number; trust: number; contractYear: boolean }, s: RandomStream): PressureResult {
-  const agrees = s.chance(agreeChance(who.toughness, who.trust, who.contractYear));
+  const agrees = s.chance(possible(agreeChance(who.toughness, who.trust, who.contractYear)));
   const doctorsMovable = !c.protocol && !c.structural;
   const effective = kind === 'ask_trainer' ? doctorsMovable : kind === 'ask_player' ? agrees : kind === 'override_snap_cap';
   const next: MedicalCase = {

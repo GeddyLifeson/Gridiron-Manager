@@ -81,7 +81,8 @@ export interface SystemBlock {
 /**
  * K2.1.3 tendencies: offsets from a decision model, not quality.
  * `fourthDownOffset` and `twoPointOffset` are win-probability percentage points (positive = more
- * conservative). `analyticsTrust` and `iceKicker` are probabilities. The rest are z-scores read by K4/K5.
+ * conservative). `analyticsTrust` and `iceKicker` are probabilities. `veteranBias`, `backupRepShare` and
+ * `emphasis` carry their own units (rule 4). The rest are z-scores read by K4/K5.
  */
 export interface TendencyBlock {
   fourthDownOffset: number;
@@ -94,6 +95,24 @@ export interface TendencyBlock {
   analyticsTrust: number;
   challengeEagerness: number;
   iceKicker: number;
+  /** K2.1.3 rule 4: ISS added to a veteran's grade per five years of pro experience (college: per two years of eligibility used). Read by K3.7.1. */
+  veteranBias: number;
+  /** K2.1.3 rule 4: base share of practice reps given to backups, before K3.5.1 adds health risk. */
+  backupRepShare: number;
+  /** K2.1.3 rule 4: the defensive weekly dials he sets (G6.4.2). Offsets from neutral, -1 to +1. */
+  emphasis: EmphasisBlock;
+}
+
+/** G6.4.2 dials as an AI coach sets them. A tendency, not quality (K2.1.3 rule 1). */
+export interface EmphasisBlock {
+  /** Strip attempts. */
+  takeaway: number;
+  /** Negative: wrap and wait for help. Positive: attack the ball carrier. */
+  tackleAttack: number;
+  /** Negative: win fast. Positive: stay in lanes. */
+  rushLanes: number;
+  /** How hard corners jump short routes. */
+  cornerJump: number;
 }
 
 /** K2.1.4 hidden behaviour parameters, each a z-score. Never displayed, summed or averaged (rule 3). */

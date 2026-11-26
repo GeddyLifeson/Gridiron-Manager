@@ -1,6 +1,6 @@
 // Field lists and readers of the profile (K2.1.4 table, K2.6.1, X1 reader rule).
 // The reader rule: a parameter with no reader fails the content build (K2.1.4 rule 1, K2.7.1 rule 6).
-import type { BehaviorBlock, CoachRole, DefenseRates, OffenseRates, PersonnelKey, TendencyBlock } from './types.ts';
+import type { BehaviorBlock, CoachRole, DefenseRates, EmphasisBlock, OffenseRates, PersonnelKey, TendencyBlock } from './types.ts';
 
 export const BEHAVIOR_KEYS = ['callFit', 'preparation', 'adjustment', 'selfScout', 'clockManagement', 'teaching', 'evaluation'] as const satisfies readonly (keyof BehaviorBlock)[];
 export type BehaviorKey = typeof BEHAVIOR_KEYS[number];
@@ -19,6 +19,7 @@ export const BEHAVIOR_READERS: Readonly<Record<BehaviorKey, readonly string[]>> 
 export const TENDENCY_KEYS = [
   'fourthDownOffset', 'twoPointOffset', 'endOfHalfAggression', 'leadProtection', 'deficitUrgency',
   'lateDefenseRisk', 'starterRestBias', 'analyticsTrust', 'challengeEagerness', 'iceKicker',
+  'veteranBias', 'backupRepShare',
 ] as const satisfies readonly (keyof TendencyBlock)[];
 export type TendencyKey = typeof TENDENCY_KEYS[number];
 
@@ -34,7 +35,16 @@ export const TENDENCY_READERS: Readonly<Record<TendencyKey, readonly string[]>> 
   analyticsTrust: ['K5', 'I5.1.2'],
   challengeEagerness: ['K5'],
   iceKicker: ['K5'],
+  veteranBias: ['K3.7.1'],
+  backupRepShare: ['K3.5.1'],
 };
+
+/** K2.1.3 rule 4: the emphasis dials, a block inside `tendencies`. Readers: K3.4.1 writes them to the plan (G6.4.2). */
+export const EMPHASIS_KEYS = ['takeaway', 'tackleAttack', 'rushLanes', 'cornerJump'] as const satisfies readonly (keyof EmphasisBlock)[];
+export type EmphasisKey = typeof EMPHASIS_KEYS[number];
+export const EMPHASIS_READERS: readonly string[] = ['K3.4.1', 'G6.4.2'];
+/** Tendency fields added after the first release of the generator: drawn last so earlier draws keep their values. */
+export const LATE_TENDENCY_KEYS: readonly TendencyKey[] = ['veteranBias', 'backupRepShare'];
 
 /** Tendencies stored as probabilities (0 to 1) and as win-probability points; the rest are z-scores. */
 export const PROBABILITY_TENDENCIES: readonly TendencyKey[] = ['analyticsTrust', 'iceKicker'];

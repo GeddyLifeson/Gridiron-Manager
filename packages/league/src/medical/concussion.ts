@@ -2,7 +2,7 @@
 // engine (J10, B1); this module owns what the evaluation decides, the next-day follow-up exam, and the
 // five-step return with no fixed timeline. No user action changes a step; sending a player back against
 // the protocol is a breakable act (authority.ts).
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import data from './data/concussion.json' with { type: 'json' };
 import { quantile } from './catalogue.ts';
 import type { ConcussionProtocol } from './keys.ts';
@@ -30,7 +30,7 @@ export type EvaluationResult = 'out_no_go' | 'out_diagnosed' | 'cleared_to_retur
  * the evaluation did not find, for the follow-up exam.
  */
 export function evaluate(signs: readonly NoGoSign[], trueConcussion: boolean, s: RandomStream): { result: EvaluationResult; missed: boolean } {
-  const found = s.chance(P('concussionDetection'));
+  const found = s.chance(possible(P('concussionDetection')));
   if (signs.length > 0) return { result: 'out_no_go', missed: false };
   if (!trueConcussion) return { result: 'cleared_to_return', missed: false };
   return found ? { result: 'out_diagnosed', missed: false } : { result: 'cleared_to_return', missed: true };
@@ -38,7 +38,7 @@ export function evaluate(signs: readonly NoGoSign[], trueConcussion: boolean, s:
 
 /** The next-day follow-up exam every evaluated player gets (D11.4.1 rule 7) can find a missed concussion. */
 export function followUpFinds(missed: boolean, s: RandomStream): boolean {
-  const hit = s.chance(P('followUpFindsMissed'));
+  const hit = s.chance(possible(P('followUpFindsMissed')));
   return missed && hit;
 }
 
@@ -75,7 +75,7 @@ export function startProtocol(protocol: ConcussionProtocol, day: number, symptom
  */
 export function protocolDay(st: ProtocolState, day: number, consultantConfirms: boolean, consultantAvailable: boolean, s: RandomStream): ProtocolState {
   if (st.cleared || day <= st.lastStepDay) return st;
-  const relapse = s.chance(P('stepFailChance'));
+  const relapse = s.chance(possible(P('stepFailChance')));
   if (st.symptomDaysLeft > 0) return { ...st, symptomDaysLeft: st.symptomDaysLeft - 1, lastStepDay: day };
   const last = protocolDef(st.protocol).steps.length;
   if (relapse && st.step > 1) return { ...st, step: st.step - 1, lastStepDay: day };

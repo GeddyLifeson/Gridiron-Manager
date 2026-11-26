@@ -1378,16 +1378,31 @@
      "primary": false,
      "quote": "Players with four or more seasons accrued are considered vested veterans and are not subject to waivers",
      "value": 4
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 29 Section 1(a) (text copy cba_2020.txt, line 9117)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "fourth year of credited service",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Whether the measure is accrued or pension-credited seasons (bible C5.5.1 conflict) is not settled by this source.",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Whether the measure is accrued or pension-credited seasons (bible C5.5.1 conflict) is not settled by this source. Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -2006,16 +2021,31 @@
      "primary": false,
      "quote": "A player earns one when he was on, or should have been on, full pay status for at least three regular season games.",
      "value": 3
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 2 (text copy cba_2020.txt, line 8545)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a total of three or more regular season games",
+     "value": 3
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -6416,6 +6446,934 @@
     {
      "date": "2026-11-26",
      "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0195",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "An underclassman may withdraw his draft declaration up to 72 hours after the early-entry deadline.",
+   "value": 72,
+   "unit": "hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Division I Enforcement, 2026 NFL Education Memo (https://ncaaorg.s3.amazonaws.com/enforcement/2026ENF_NFLEducationMemo.pdf, read as a search-result excerpt)",
+     "locator": "Early-entry withdrawal deadline bullet",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "Early-entry withdrawal deadline for underclassmen: 72 hours after the early-entry deadline",
+     "value": 72
+    },
+    {
+     "citation": "NCAA Division I Enforcement, 2024 NFL Education Memo (https://ncaaorg.s3.amazonaws.com/enforcement/2024ENF_NFLEducationMemo.pdf, read as a search-result excerpt)",
+     "locator": "Early-entry withdrawal deadline bullet",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "Early-entry withdrawal deadline for underclassmen: 72 hours after the early-entry deadline",
+     "value": 72
+    },
+    {
+     "citation": "A to Z Sports, Deadline for underclassmen to enter the 2025 NFL Draft (https://atozsports.com/college-football/deadline-for-underclassmen-to-enter-the-2025-nfl-draft/, read as a search-result excerpt)",
+     "locator": "Underclassmen deadline article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "atozsports",
+     "primary": false,
+     "quote": "these players will have an extra 72 hours to withdraw their declarations",
+     "value": 72
+    }
+   ],
+   "usedBy": [],
+   "notes": "Two independence groups (the two NCAA memos are one group; A to Z Sports is the other). The league operations page names no revoke window, so the status stays 2 of 3. The excerpts were read in search results, not on the memo pages.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0196",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A player suspended by his club is placed on Reserve/Suspended by Club and does not count against the 53-man roster.",
+   "value": "reserve_suspended",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Broncos Wire via Yahoo Sports, Broncos place J.K. Dobbins on reserve/suspended list (Jon Heath, 2026-11-25, https://sports.yahoo.com/nfl/articles/broncos-place-j-k-dobbins-220952934.html)",
+     "locator": "Article text, 2026 case",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "broncos-wire-yahoo",
+     "primary": false,
+     "quote": "While suspended, Dobbins will not count against the 53-man roster.",
+     "value": "reserve_suspended"
+    },
+    {
+     "citation": "Denver Gazette, Broncos suspend Dobbins for 1 game for conduct detrimental to the team (Chris Tomasson, 2026-11-24, https://www.denvergazette.com/2026/11/24/broncos-suspend-dobbins-for-1-game-for-conduct-detrimental-to-the-team/)",
+     "locator": "Article text, 2026 case",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "denver-gazette",
+     "primary": false,
+     "quote": "since Dobbins will not count this week on the 53-man roster",
+     "value": "reserve_suspended"
+    },
+    {
+     "citation": "NBC Sports Boston via Yahoo Sports, Why Patriots moved Jack Jones, Jake Bailey to reserve/suspended list (Justin Leger, 2023-01-06, https://sports.yahoo.com/patriots-move-jack-jones-jake-224000279.html)",
+     "locator": "Article text, 2023 case",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-boston",
+     "primary": false,
+     "quote": "will not be paid their base salary or count toward roster limits while on the list",
+     "value": "reserve_suspended"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Three independent outlets, two clubs, 2023 and 2026. The CBA (Art. 42) says nothing about roster status of a club suspension; the NFL.com 2026 reserve-list page did not render the November 2026 table, so the transaction wire itself was not read.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0197",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Feigning an injury: minimum fine for the club is $350,000.",
+   "value": 35000000,
+   "unit": "cents",
+   "validFor": "2022",
+   "sources": [
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL warns teams about faking injuries (2022-12-04, https://profootballtalk.nbcsports.com/2022/12/04/nfl-warns-teams-about-faking-injuries/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "a minimum fine of $350,000 for the club",
+     "value": 35000000
+    },
+    {
+     "citation": "NFL.com, Saints, HC Dennis Allen, DE Cameron Jordan fined for violating NFL rule on faking an injury (2022-12, https://www.nfl.com/news/saints-hc-dennis-allen-de-cameron-jordan-fined-for-violating-nfl-rule-on-faking-)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "listed the minimum fines of $350,000 for clubs",
+     "value": 35000000
+    },
+    {
+     "citation": "Yahoo Sports, NFL reportedly fines Saints, Cameron Jordan for allegedly faking MNF injury (2022-12-10, https://sports.yahoo.com/nfl-reportedly-fines-saints-cameron-jordan-500-k-for-allegedly-fake-mnf-injury-181729870.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "yahoo-sports",
+     "primary": false,
+     "quote": "a minimum fine of $350,000 for the club",
+     "value": 35000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "League memo minimums of December 2022, reported by three outlets. Minimums, not maxima; a suspension or lost pick is also possible under the memo (not entered). Repeat amounts are not published.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0198",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Feigning an injury: minimum fine for the head coach is $100,000.",
+   "value": 10000000,
+   "unit": "cents",
+   "validFor": "2022",
+   "sources": [
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL warns teams about faking injuries (2022-12-04, https://profootballtalk.nbcsports.com/2022/12/04/nfl-warns-teams-about-faking-injuries/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "a minimum fine of $100,000 for the head coach",
+     "value": 10000000
+    },
+    {
+     "citation": "NFL.com, Saints, HC Dennis Allen, DE Cameron Jordan fined for violating NFL rule on faking an injury (2022-12, https://www.nfl.com/news/saints-hc-dennis-allen-de-cameron-jordan-fined-for-violating-nfl-rule-on-faking-)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "$100,000 for a head coach",
+     "value": 10000000
+    },
+    {
+     "citation": "Yahoo Sports, NFL reportedly fines Saints, Cameron Jordan for allegedly faking MNF injury (2022-12-10, https://sports.yahoo.com/nfl-reportedly-fines-saints-cameron-jordan-500-k-for-allegedly-fake-mnf-injury-181729870.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "yahoo-sports",
+     "primary": false,
+     "quote": "a minimum fine of $100,000 for the head coach",
+     "value": 10000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "League memo minimums of December 2022, reported by three outlets. Minimums, not maxima; a suspension or lost pick is also possible under the memo (not entered). Repeat amounts are not published.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0199",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Feigning an injury: minimum fine for the assistant coaches is $50,000.",
+   "value": 5000000,
+   "unit": "cents",
+   "validFor": "2022",
+   "sources": [
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL warns teams about faking injuries (2022-12-04, https://profootballtalk.nbcsports.com/2022/12/04/nfl-warns-teams-about-faking-injuries/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "a minimum fine of $50,000 for assistant coaches, if applicable",
+     "value": 5000000
+    },
+    {
+     "citation": "NFL.com, Saints, HC Dennis Allen, DE Cameron Jordan fined for violating NFL rule on faking an injury (2022-12, https://www.nfl.com/news/saints-hc-dennis-allen-de-cameron-jordan-fined-for-violating-nfl-rule-on-faking-)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "and $50,000 for players/assistant coaches for violating the rule",
+     "value": 5000000
+    },
+    {
+     "citation": "Yahoo Sports, NFL reportedly fines Saints, Cameron Jordan for allegedly faking MNF injury (2022-12-10, https://sports.yahoo.com/nfl-reportedly-fines-saints-cameron-jordan-500-k-for-allegedly-fake-mnf-injury-181729870.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "yahoo-sports",
+     "primary": false,
+     "quote": "a minimum fine of $50,000 for assistant coaches, if applicable",
+     "value": 5000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "League memo minimums of December 2022, reported by three outlets. Minimums, not maxima; a suspension or lost pick is also possible under the memo (not entered). Repeat amounts are not published.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0200",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Feigning an injury: minimum fine for the players is $50,000.",
+   "value": 5000000,
+   "unit": "cents",
+   "validFor": "2022",
+   "sources": [
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL warns teams about faking injuries (2022-12-04, https://profootballtalk.nbcsports.com/2022/12/04/nfl-warns-teams-about-faking-injuries/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "a minimum fine of $50,000 for players",
+     "value": 5000000
+    },
+    {
+     "citation": "NFL.com, Saints, HC Dennis Allen, DE Cameron Jordan fined for violating NFL rule on faking an injury (2022-12, https://www.nfl.com/news/saints-hc-dennis-allen-de-cameron-jordan-fined-for-violating-nfl-rule-on-faking-)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "and $50,000 for players/assistant coaches for violating the rule",
+     "value": 5000000
+    },
+    {
+     "citation": "Yahoo Sports, NFL reportedly fines Saints, Cameron Jordan for allegedly faking MNF injury (2022-12-10, https://sports.yahoo.com/nfl-reportedly-fines-saints-cameron-jordan-500-k-for-allegedly-fake-mnf-injury-181729870.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "yahoo-sports",
+     "primary": false,
+     "quote": "a minimum fine of $50,000 for players",
+     "value": 5000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "League memo minimums of December 2022, reported by three outlets. Minimums, not maxima; a suspension or lost pick is also possible under the memo (not entered). Repeat amounts are not published.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0201",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Injury-report violation: the club fined $75,000 (three cases, 2019 and 2023).",
+   "value": 7500000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "CBS Sports, Steelers, Mike Tomlin reportedly fined for hiding Ben Roethlisberger's injury (2019-11-01, https://www.cbssports.com/nfl/news/steelers-mike-tomlin-reportedly-fined-for-hiding-ben-roethlisbergers-injury-on-week-2-report)",
+     "locator": "2019 Steelers",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "quote": "the Steelers have been fined $75,000",
+     "value": 7500000
+    },
+    {
+     "citation": "NBC Sports ProFootballTalk, Lions, Bob Quinn, Matt Patricia fined for failing to properly report Matthew Stafford injury (2019-12-07, https://profootballtalk.nbcsports.com/2019/12/07/lions-bob-quinn-matt-patricia-fined-for-failing-to-properly-report-matt-stafford-injury/)",
+     "locator": "2019 Lions",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "The NFL fined the Lions $75,000",
+     "value": 7500000
+    },
+    {
+     "citation": "ESPN, Falcons, Arthur Smith fined for handling of Week 7 injury report (2023-12-22, https://africa.espn.com/nfl/story/_/id/39168452/falcons-arthur-smith-fined-handling-week-7-injury-report)",
+     "locator": "2023 Falcons",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "The NFL has fined the Atlanta Falcons $75,000",
+     "value": 7500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Three cases (Steelers 2019, Lions 2019, Falcons 2023), each read in one outlet; the Lions case also fined the general manager $10,000 (not entered: a different amount from the 2019-2023 head-coach pattern would need its own key and the executive group has one case).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0202",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Injury-report violation: the head coach fined $25,000 (three cases, 2019 and 2023).",
+   "value": 2500000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "CBS Sports, Steelers, Mike Tomlin reportedly fined for hiding Ben Roethlisberger's injury (2019-11-01, https://www.cbssports.com/nfl/news/steelers-mike-tomlin-reportedly-fined-for-hiding-ben-roethlisbergers-injury-on-week-2-report)",
+     "locator": "2019 Steelers",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "quote": "and head coach Mike Tomlin an additional $25,000",
+     "value": 2500000
+    },
+    {
+     "citation": "NBC Sports ProFootballTalk, Lions, Bob Quinn, Matt Patricia fined for failing to properly report Matthew Stafford injury (2019-12-07, https://profootballtalk.nbcsports.com/2019/12/07/lions-bob-quinn-matt-patricia-fined-for-failing-to-properly-report-matt-stafford-injury/)",
+     "locator": "2019 Lions",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "coach Matt Patricia $25,000",
+     "value": 2500000
+    },
+    {
+     "citation": "ESPN, Falcons, Arthur Smith fined for handling of Week 7 injury report (2023-12-22, https://africa.espn.com/nfl/story/_/id/39168452/falcons-arthur-smith-fined-handling-week-7-injury-report)",
+     "locator": "2023 Falcons",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "and coach Arthur Smith $25,000",
+     "value": 2500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Three cases (Steelers 2019, Lions 2019, Falcons 2023), each read in one outlet; the Lions case also fined the general manager $10,000 (not entered: a different amount from the 2019-2023 head-coach pattern would need its own key and the executive group has one case).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0203",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Signal recording (Spygate, 2007): the head coach fined $500,000.",
+   "value": 50000000,
+   "unit": "cents",
+   "validFor": "2007",
+   "sources": [
+    {
+     "citation": "AP wire text as carried by NFL.com (https://nfl.com/_amp/nfl-fines-belichick-strips-patriots-of-draft-pick-09000d5d80251b7e) and Patriots.com (same text, one group)",
+     "locator": "AP text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-wire",
+     "primary": false,
+     "quote": "Belichick was fined the NFL maximum of $500,000 Thursday",
+     "value": 50000000
+    },
+    {
+     "citation": "Fox News, Patriots lose first draft pick, fined maximum penalty for spying (2007-09-13, https://www.foxnews.com/story/patriots-lose-first-draft-pick-fined-maximum-penalty-for-spying)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-news",
+     "primary": false,
+     "quote": "fine him $500,000",
+     "value": 50000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case (2007 Patriots). The draft-pick penalty (first-round pick if the club makes the playoffs, otherwise second and third) is conditional and is not entered as a pick key. The ESPN wire page returned no text.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0204",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Signal recording (Spygate, 2007): the club fined $250,000.",
+   "value": 25000000,
+   "unit": "cents",
+   "validFor": "2007",
+   "sources": [
+    {
+     "citation": "AP wire text as carried by NFL.com (https://nfl.com/_amp/nfl-fines-belichick-strips-patriots-of-draft-pick-09000d5d80251b7e) and Patriots.com (same text, one group)",
+     "locator": "AP text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-wire",
+     "primary": false,
+     "quote": "the Patriots were ordered to pay $250,000 for spying on an opponent's defensive signals",
+     "value": 25000000
+    },
+    {
+     "citation": "Fox News, Patriots lose first draft pick, fined maximum penalty for spying (2007-09-13, https://www.foxnews.com/story/patriots-lose-first-draft-pick-fined-maximum-penalty-for-spying)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-news",
+     "primary": false,
+     "quote": "dock the team $250,000",
+     "value": 25000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case (2007 Patriots). The draft-pick penalty (first-round pick if the club makes the playoffs, otherwise second and third) is conditional and is not entered as a pick key. The ESPN wire page returned no text.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0205",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Piped crowd noise (Falcons, 2015): club fined $350,000.",
+   "value": 35000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "Fox Sports, Falcons lose 2016 draft pick, receive fine for piping artificial noise into stadium (2015-03-30, https://foxsports.com/stories/other/falcons-lose-2016-draft-pick-receive-fine-for-piping-artificial-noise-into-stadium)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-sports",
+     "primary": false,
+     "quote": "were fined $350,000 on Monday and lost a fifth-round draft pick in 2016",
+     "value": 35000000
+    },
+    {
+     "citation": "ABC7, Falcons fined $350K, lose draft pick (2015-03-30, https://abc7.com/post/falcons-fined-$350k-lose-draft-pick/587664/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc",
+     "primary": false,
+     "quote": "have been fined $350,000 and will forfeit a 2016 draft pick",
+     "value": 35000000
+    },
+    {
+     "citation": "CBS News Detroit (AP), Falcons fined, lose draft pick for pumping in fake noise (2015-03-30, https://www.cbsnews.com/amp/detroit/news/falcons-fined-lose-draft-pick-for-pumping-in-fake-noise)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news-ap",
+     "primary": false,
+     "quote": "the Falcons have been fined $350,000 and will forfeit their fifth-round selection in the 2016 draft",
+     "value": 35000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0206",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Piped crowd noise (Falcons, 2015): a fifth-round pick forfeited.",
+   "value": 5,
+   "unit": "round",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "Fox Sports, Falcons lose 2016 draft pick, receive fine for piping artificial noise into stadium (2015-03-30, https://foxsports.com/stories/other/falcons-lose-2016-draft-pick-receive-fine-for-piping-artificial-noise-into-stadium)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-sports",
+     "primary": false,
+     "quote": "lost a fifth-round draft pick in 2016",
+     "value": 5
+    },
+    {
+     "citation": "ABC7, Falcons fined $350K, lose draft pick (2015-03-30, https://abc7.com/post/falcons-fined-$350k-lose-draft-pick/587664/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc",
+     "primary": false,
+     "quote": "will lose a fifth-round pick in next year's draft",
+     "value": 5
+    },
+    {
+     "citation": "CBS News Detroit (AP), Falcons fined, lose draft pick for pumping in fake noise (2015-03-30, https://www.cbsnews.com/amp/detroit/news/falcons-fined-lose-draft-pick-for-pumping-in-fake-noise)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news-ap",
+     "primary": false,
+     "quote": "forfeit their fifth-round selection in the 2016 draft",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0207",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Football inflation (Patriots, 2015): club fined $1 million.",
+   "value": 100000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL releases statement on Patriots violations (2015-05-11, https://www.nfl.com/news/nfl-releases-statement-on-patriots-violations-0ap3000000492190)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "are fined $1 million and will forfeit the club's first-round selection in the 2016 NFL Draft",
+     "value": 100000000
+    },
+    {
+     "citation": "NPR, NFL suspends Tom Brady for 4 games over Deflategate scandal (2015-05-11, https://www.npr.org/sections/thetwo-way/2015/05/11/406009797/nfl-suspends-tom-brady-for-4-games-over-deflategate-scandal)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "a $1 million fine for the Patriots",
+     "value": 100000000
+    },
+    {
+     "citation": "ABC News, Deflategate: Tom Brady suspended for 4 games, Patriots fined $1 million (https://abcnews.com/Sports/deflategate-tom-brady-suspended-games/story?id=30966151)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc-news",
+     "primary": false,
+     "quote": "The Patriots will also be fined $1 million",
+     "value": 100000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0208",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Football inflation (Patriots, 2015): the first-round pick of 2016 forfeited (a 2017 fourth-round pick as well; the key holds the highest round).",
+   "value": 1,
+   "unit": "round",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL releases statement on Patriots violations (2015-05-11, https://www.nfl.com/news/nfl-releases-statement-on-patriots-violations-0ap3000000492190)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "will forfeit the club's first-round selection in the 2016 NFL Draft",
+     "value": 1
+    },
+    {
+     "citation": "NPR, NFL suspends Tom Brady for 4 games over Deflategate scandal (2015-05-11, https://www.npr.org/sections/thetwo-way/2015/05/11/406009797/nfl-suspends-tom-brady-for-4-games-over-deflategate-scandal)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "The Patriots will also lose their first-round pick in next year's draft",
+     "value": 1
+    },
+    {
+     "citation": "ABC News, Deflategate: Tom Brady suspended for 4 games, Patriots fined $1 million (https://abcnews.com/Sports/deflategate-tom-brady-suspended-games/story?id=30966151)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc-news",
+     "primary": false,
+     "quote": "will have to forfeit first-round selection in the 2016 NFL Draft",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case; the fourth-round 2017 pick is not entered.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0209",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Football inflation (Patriots, 2015): the responsible player suspended four games without pay.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL releases statement on Patriots violations (2015-05-11, https://www.nfl.com/news/nfl-releases-statement-on-patriots-violations-0ap3000000492190)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "will be suspended without pay for the first four games of the 2015 regular season",
+     "value": 4
+    },
+    {
+     "citation": "NPR, NFL suspends Tom Brady for 4 games over Deflategate scandal (2015-05-11, https://www.npr.org/sections/thetwo-way/2015/05/11/406009797/nfl-suspends-tom-brady-for-4-games-over-deflategate-scandal)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "Brady will sit out the first four games of the 2015 regular season without pay",
+     "value": 4
+    },
+    {
+     "citation": "ABC News, Deflategate: Tom Brady suspended for 4 games, Patriots fined $1 million (https://abcnews.com/Sports/deflategate-tom-brady-suspended-games/story?id=30966151)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc-news",
+     "primary": false,
+     "quote": "will be suspended without pay for the first four games of the regular 2015 NFL season",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0210",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Sideline interference (Tomlin, 2013): head coach fined $100,000.",
+   "value": 10000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Mike Tomlin fined $100,000 for actions in Steelers loss (2013-12-04, https://nfl.com/_amp/mike-tomlin-fined-100-000-for-actions-in-steelers-loss-0ap2000000292517)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "The NFL fined Pittsburgh Steelers coach Mike Tomlin $100,000",
+     "value": 10000000
+    },
+    {
+     "citation": "NPR, Steelers coach fined $100K for interfering with play (2013-12-04, https://www.npr.org/sections/thetwo-way/2013/12/04/248881870/steelers-coach-fined-100k-for-interfering-with-play)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "Pittsburgh Steelers coach Mike Tomlin has been fined $100,000 for interfering with a kickoff return",
+     "value": 10000000
+    },
+    {
+     "citation": "Sports Illustrated, Mike Tomlin fine (2013-12-04, https://www.si.com/nfl/2013/12/04/mike-tomlin-fine-pittsburgh-steelers-baltimore-ravens)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Mike Tomlin has been fined $100,000 by NFL Executive Vice President of Football Operations Ray Anderson",
+     "value": 10000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case; the club was not fined.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0211",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Concussion protocol (Seahawks, 2017): club fined $100,000 (remedial training also ordered).",
+   "value": 10000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Seahawks fined for not following concussion protocol (2017-12-21, https://www.nfl.com/news/seahawks-fined-for-not-following-concussion-protocol-0ap3000000896202)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "A joint NFL and NFL Players Association review resulted in a $100,000 fine for the team",
+     "value": 10000000
+    },
+    {
+     "citation": "CBS Sports, Seahawks fined $100K for violating concussion protocol, letting Russell Wilson play (2017-12-21; headline only, body truncated in the fetch)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "quote": "Seahawks fined $100K for violating concussion protocol, letting Russell Wilson play",
+     "value": 10000000
+    },
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL fines Seahawks $100,000 for Russell Wilson concussion protocol violation (2017-12-21; page title only, body truncated in the fetch)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "NFL fines Seahawks $100,000 for Russell Wilson concussion protocol violation",
+     "value": 10000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case. The CBA $250,000 floor for a repeat is a separate row.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0212",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Tampering (Dolphins, 2022): owner fined $1.5 million.",
+   "value": 150000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Dolphins lose 2023 first-round draft pick, owner Stephen Ross suspended (2022-08-02, https://nfl.com/news/dolphins-lose-2023-first-round-draft-pick-owner-stephen-ross-suspended-following)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "Ross also has been fined $1.5 million, has been removed from all NFL committees indefinitely",
+     "value": 150000000
+    },
+    {
+     "citation": "NPR, NFL punishes Miami Dolphins owner over inquiry into tanking, tampering and Tom Brady (2022-08-02, https://www.npr.org/2022/08/02/1115226180/nfl-fines-miami-dolphins-owner-stephen-ross-tom-brady)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "the NFL hit Ross with a $1.5 million fine and suspended him through Oct. 17",
+     "value": 150000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case; the CBS page fetch was truncated so it is not counted.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0213",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Tampering (Dolphins, 2022): a 2023 first-round pick forfeited (a 2024 third-round pick as well; the key holds the highest round).",
+   "value": 1,
+   "unit": "round",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Dolphins lose 2023 first-round draft pick, owner Stephen Ross suspended (2022-08-02, https://nfl.com/news/dolphins-lose-2023-first-round-draft-pick-owner-stephen-ross-suspended-following)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "the Miami Dolphins will forfeit their 2023 first-round draft pick and 2024 third-round pick",
+     "value": 1
+    },
+    {
+     "citation": "NPR, NFL punishes Miami Dolphins owner over inquiry into tanking, tampering and Tom Brady (2022-08-02, https://www.npr.org/2022/08/02/1115226180/nfl-fines-miami-dolphins-owner-stephen-ross-tom-brady)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "losing their first-round pick in the 2023 draft and their third-round selection in the 2024 draft",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
     }
    ]

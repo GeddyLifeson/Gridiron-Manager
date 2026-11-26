@@ -20,9 +20,15 @@
      "value": "5 to 9"
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "The source's own counts are not fully consistent for 2023 and 2025 (E4.3.1). One source only: PROVISIONAL."
   },
   {
@@ -44,9 +50,15 @@
      "value": "25% vs 18%"
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "No numeric weights for the other model factors were published. One source only: PROVISIONAL."
   },
   {
@@ -77,9 +89,15 @@
      "value": 31
     }
    ],
-   "status": "Unverified",
+   "status": "2 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "The CBS figure is derived by subtraction. Two groups: PROVISIONAL."
   },
   {
@@ -101,9 +119,15 @@
      "value": 12
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "The breakdown has one source; only the total has two. PROVISIONAL."
   },
   {
@@ -134,9 +158,15 @@
      "value": 0.36
     }
    ],
-   "status": "Unverified",
+   "status": "2 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "Derived by listing coaches; 2025 partial as of 2026-01-06. Season shares range 25% to 60%. No college share was found, so the college in-season share stays an Assumption. PROVISIONAL (2 of 3)."
   }
  ]

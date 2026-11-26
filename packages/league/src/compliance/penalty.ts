@@ -3,7 +3,7 @@
 // Escalation by the league record (L8.2.3), cooperation one tier lower (L8.2.5), head coach
 // responsibility up the chain (T9.5.1 rule 5, K6.6.1 rule 3). Identical for the user and for AI:
 // nothing here reads who is the user.
-import type { RuleSet, WorldDate } from '@gm/schema';
+import { possible, type RuleSet, type WorldDate } from '@gm/schema';
 import { violationClass, type ViolationClass } from './catalogue.ts';
 import { K, P, TIERS, type Tier } from './params.ts';
 import { hasPenaltyTable } from './act.ts';
@@ -73,7 +73,7 @@ export function penaltiesFor(
   const keyed = row.severity === 'major' && hasPenaltyTable(rules, cls);
   const ck = (f: string) => K.classField(cls.id, f);
   // Commissioner discretion (C11.2.4 edge case): one draw per row, keyed by case and row.
-  const halved = cls.commissionerDiscretion && ctx.enforcement(['commissioner', c.id, row.id]).chance(P('first_offence_halved_chance'));
+  const halved = cls.commissionerDiscretion && ctx.enforcement(['commissioner', c.id, row.id]).chance(possible(P('first_offence_halved_chance')));
 
   const fine = (party: PartyKey, firstKey: string, repeatKey: string, repeat: boolean, mayRepay: boolean) => {
     const step = repeat && !coop ? 'repeat' : 'first';
@@ -126,7 +126,7 @@ export function penaltiesFor(
       orders.push({ kind: 'rules_education', teamId: team.id });
       // T9.5.3 rule 2a: a detected minor violation suspends the responsible head coach at 56 / 2,233.
       const hc = responsible ?? people.find((x) => x.p.role === 'head_coach')?.p ?? null;
-      if (hc && ctx.enforcement(['minor_suspension', c.id, row.id]).chance(P('minor_suspension_chance'))) {
+      if (hc && ctx.enforcement(['minor_suspension', c.id, row.id]).chance(possible(P('minor_suspension_chance')))) {
         orders.push({ kind: 'suspension', personId: hc.personId, games: P('minor_suspension_games') });
       }
     }

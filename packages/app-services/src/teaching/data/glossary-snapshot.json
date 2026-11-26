@@ -1,0 +1,544 @@
+{
+ "note": "Snapshot of the A4.5 rows the curriculum names (id, term, level, computed status, source count), taken 2026-11-26 from research/glossary/final/glossary-terms.jsonl. Replaced by the G-93 glossary content (content/glossary/*.json) when it lands.",
+ "terms": [
+  {
+   "id": "term.0-technique",
+   "term": "0-technique",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.1-technique",
+   "term": "1-technique",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.10-second-runoff",
+   "term": "10-second runoff",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.25-second-clock",
+   "term": "25-second clock",
+   "level": "both",
+   "status": "Rulebook only",
+   "sources": 3
+  },
+  {
+   "id": "term.3-technique",
+   "term": "3-technique",
+   "level": "both",
+   "status": "Verified",
+   "sources": 7
+  },
+  {
+   "id": "term.40-second-clock",
+   "term": "40-second clock",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.5-man-pressure",
+   "term": "5-man pressure",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.5-technique",
+   "term": "5-technique",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.backed-up",
+   "term": "Backed up",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.blitz",
+   "term": "blitz",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.bootleg",
+   "term": "Bootleg",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 3
+  },
+  {
+   "id": "term.box",
+   "term": "box",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 3
+  },
+  {
+   "id": "term.bubble-screen",
+   "term": "Bubble screen",
+   "level": "both",
+   "status": "1 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.cadence",
+   "term": "Cadence",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.cover-0",
+   "term": "Cover 0",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.cover-1",
+   "term": "Cover 1",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.cover-2",
+   "term": "Cover 2",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.cover-2-man",
+   "term": "Cover 2 Man",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.cover-3",
+   "term": "Cover 3",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.cover-4",
+   "term": "Cover 4",
+   "level": "both",
+   "status": "Verified",
+   "sources": 6
+  },
+  {
+   "id": "term.cover-6",
+   "term": "Cover 6",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.disguise",
+   "term": "disguise",
+   "level": "both",
+   "status": "1 of 3",
+   "sources": 1
+  },
+  {
+   "id": "term.down",
+   "term": "down",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.draw",
+   "term": "Draw",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 4
+  },
+  {
+   "id": "term.expected-points",
+   "term": "Expected points",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.field-goal",
+   "term": "field goal",
+   "level": "both",
+   "status": "Verified",
+   "sources": 7
+  },
+  {
+   "id": "term.formation",
+   "term": "Formation",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.fourth-down",
+   "term": "fourth down",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.game-plan",
+   "term": "Game plan",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.gap",
+   "term": "gap",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.go-for-it",
+   "term": "Go for it",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 3
+  },
+  {
+   "id": "term.hot-route",
+   "term": "Hot route",
+   "level": "both",
+   "status": "1 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.i-formation",
+   "term": "I formation",
+   "level": "both",
+   "status": "1 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.inside-zone",
+   "term": "Inside zone",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.kickoff",
+   "term": "kickoff",
+   "level": "both",
+   "status": "Verified",
+   "sources": 8
+  },
+  {
+   "id": "term.kneel-down",
+   "term": "Kneel down",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.line-of-scrimmage",
+   "term": "line of scrimmage",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.line-to-gain",
+   "term": "line to gain",
+   "level": "both",
+   "status": "Verified",
+   "sources": 6
+  },
+  {
+   "id": "term.man-coverage",
+   "term": "man coverage",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.man-free",
+   "term": "man free",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.mike",
+   "term": "Mike",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.motion",
+   "term": "Motion",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.neutral-zone",
+   "term": "neutral zone",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.personnel-grouping",
+   "term": "Personnel grouping",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.play-action",
+   "term": "Play action",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 3
+  },
+  {
+   "id": "term.play-clock",
+   "term": "play clock",
+   "level": "both",
+   "status": "Verified",
+   "sources": 8
+  },
+  {
+   "id": "term.pocket-protection",
+   "term": "Pocket protection",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.press",
+   "term": "press",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.punt",
+   "term": "punt",
+   "level": "both",
+   "status": "Verified",
+   "sources": 8
+  },
+  {
+   "id": "term.red-zone",
+   "term": "Red zone",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.rotation",
+   "term": "rotation",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 3
+  },
+  {
+   "id": "term.route-tree",
+   "term": "Route tree",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.run-pass-option",
+   "term": "Run-pass option",
+   "level": "both",
+   "status": "1 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.running-back-screen",
+   "term": "Running back screen",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 3
+  },
+  {
+   "id": "term.sail-concept",
+   "term": "Sail concept",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.scout-team-college",
+   "term": "scout team",
+   "level": "college",
+   "status": "1 of 3",
+   "sources": 1
+  },
+  {
+   "id": "term.shift",
+   "term": "Shift",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.short-yardage",
+   "term": "Short yardage",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.shotgun",
+   "term": "Shotgun",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.single-high",
+   "term": "single-high",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.slide-protection-pro",
+   "term": "Slide protection",
+   "level": "pro",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.spike",
+   "term": "Spike",
+   "level": "both",
+   "status": "Verified",
+   "sources": 7
+  },
+  {
+   "id": "term.stick",
+   "term": "Stick",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.tampa-2-pro",
+   "term": "Tampa 2",
+   "level": "pro",
+   "status": "Verified",
+   "sources": 6
+  },
+  {
+   "id": "term.third-and-long",
+   "term": "Third and long",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.third-and-short",
+   "term": "Third and short",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.timeout",
+   "term": "timeout",
+   "level": "both",
+   "status": "Rulebook only",
+   "sources": 4
+  },
+  {
+   "id": "term.trips",
+   "term": "trips",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.try",
+   "term": "try",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.two-high",
+   "term": "two-high",
+   "level": "both",
+   "status": "2 of 3",
+   "sources": 2
+  },
+  {
+   "id": "term.two-minute-warning",
+   "term": "Two-minute warning",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.two-point-conversion",
+   "term": "Two-point conversion",
+   "level": "both",
+   "status": "Verified",
+   "sources": 6
+  },
+  {
+   "id": "term.under-center",
+   "term": "Under center",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.win-probability",
+   "term": "Win probability",
+   "level": "both",
+   "status": "Verified",
+   "sources": 3
+  },
+  {
+   "id": "term.zone-blitz",
+   "term": "zone blitz",
+   "level": "both",
+   "status": "Verified",
+   "sources": 5
+  },
+  {
+   "id": "term.zone-coverage",
+   "term": "zone coverage",
+   "level": "both",
+   "status": "Verified",
+   "sources": 4
+  },
+  {
+   "id": "term.zone-read",
+   "term": "Zone read",
+   "level": "both",
+   "status": "1 of 3",
+   "sources": 3
+  }
+ ]
+}

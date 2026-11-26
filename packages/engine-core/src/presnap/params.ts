@@ -156,10 +156,14 @@ export type PresnapParams = Readonly<Record<string, number>>;
 
 /** Resolve once per play, never inside the tick. Property names are the row names above. */
 export function presnapParams(t: ParamTable): PresnapParams {
+  // The pre-snap stages ask every tick; the rows of one table are read once (P6.3.1).
+  if (memoTable === t && memo !== null) return memo;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`presnap.${row[0]}`);
+  memoTable = t; memo = out;
   return out;
 }
+let memoTable: ParamTable | null = null, memo: PresnapParams | null = null;
 
 const READ_BY = ['engine-core.presnap'];
 

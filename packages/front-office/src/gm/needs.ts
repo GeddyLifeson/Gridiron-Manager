@@ -30,7 +30,7 @@ function quality(gm: GmProfile, players: readonly PlayerView[], position: string
 }
 
 /** Rule 1: the general manager's own need by position, 0 to 1, with its time frame. */
-export function gmNeeds(gm: GmProfile, input: NeedsInput, ctx: ValueContext): { position: string; need: number; frame: TimeFrame }[] {
+export function gmNeeds(gm: GmProfile, input: NeedsInput, ctx: ValueContext): OwnNeed[] {
   return Object.keys(input.baselineIss).sort().map((position) => {
     const here = input.roster.filter((v) => v.position === position);
     const playing = here.filter((v) => !input.unavailable.has(v.personId));
@@ -51,16 +51,24 @@ export function askWeight(rank: number): number {
   return rank > P('needs.fullWeightAsks') ? w * P('needs.extraAskFactor') : w;
 }
 
+/** His own need at one position before the coach is heard: from `gmNeeds`, or from the M1.4.1 board (`personnel.ts`). */
+export interface OwnNeed { readonly position: string; readonly need: number; readonly frame: TimeFrame }
+
 /** Rule 2 (rule 5 at college: pass `w` 1): need = (1 - w) x gmNeed + w x coachNeed for positions the coach listed. */
-export function blendNeeds(gm: GmProfile, input: NeedsInput, asks: readonly CoachAsk[], ctx: ValueContext, w: number = gm.coachVoiceWeight): Need[] {
+export function blendOwn(own: readonly OwnNeed[], asks: readonly CoachAsk[], w: number): Need[] {
   const coach = new Map<string, number>();
   for (const a of [...asks].sort((x, y) => x.rank - y.rank)) if (!coach.has(a.position)) coach.set(a.position, askWeight(a.rank));
-  return gmNeeds(gm, input, ctx)
+  return own
     .map((n) => {
       const c = coach.get(n.position);
       return { position: n.position, gmNeed: n.need, coachNeed: c ?? null, need: c === undefined ? (1 - w) * n.need : (1 - w) * n.need + w * c, frame: n.frame };
     })
     .sort((a, b) => b.need - a.need || (a.position < b.position ? -1 : 1));
+}
+
+/** Rule 2 from his own grades alone (no needs board to hand). */
+export function blendNeeds(gm: GmProfile, input: NeedsInput, asks: readonly CoachAsk[], ctx: ValueContext, w: number = gm.coachVoiceWeight): Need[] {
+  return blendOwn(gmNeeds(gm, input, ctx), asks, w);
 }
 
 /** Rule 4: a logged ask the front office acted on. */

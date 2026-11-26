@@ -2,7 +2,7 @@
 Rows for keys that G-34 (draft, PR 76) and G-45 (locker room, PR 79) read. Every CBA quote is searched in the
 local text copy by the builder. Status is computed, never typed. A key with no row here has no source that
 was read; it is listed in README.md under "Still owed"."""
-import re
+import re, os
 from core import *
 from rows_cba import LG, CAP, cba
 from rows_web import W, sec

@@ -338,15 +338,25 @@
      "primary": true,
      "quote": "a maximum of $160,000 per Club may be paid to Undrafted Rookies as signing bonus",
      "value": 160000
+    },
+    {
+     "citation": "Spotrac, NFL Undrafted Pools by Team, one page per year (https://www.spotrac.com/nfl/undrafted/spending/team/_/year/<year>)",
+     "locator": "2021 undrafted pools page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "how much of its $160,000 signing bonus pool it used",
+     "value": 160000
     }
    ],
    "usedBy": [],
    "notes": "2026 amount not found in any source read; it rises each year by the percent rise in the Total Rookie Compensation Pool.",
-   "status": "Rulebook only",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
-     "status": "Rulebook only",
+     "status": "Verified",
      "reason": "First load by G-10 from sources read this session."
     }
    ]
@@ -1495,16 +1505,31 @@
      "primary": false,
      "quote": "The 2026 additional compensation ceiling is $187,500.",
      "value": 187500
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 Section 2(b) (text copy cba_2020.txt, line 8776)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "to $187,500 for the 2026–27 League Years",
+     "value": 187500
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -1526,16 +1551,31 @@
      "primary": false,
      "quote": "For 2026, one eligible player can receive a base salary as much as $1.55 million above his minimum.",
      "value": 1550000
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 Section 7(b) (text copy cba_2020.txt, line 8886)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$1.55 million for the 2026-27 League Years",
+     "value": 1550000
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -1543,24 +1583,24 @@
    "id": "F-cap-0049",
    "level": "pro",
    "domain": "league-rule",
-   "statement": "Undrafted rookie signing bonus pool per club in 2024: $172,337 (reported).",
-   "value": 172337,
+   "statement": "Undrafted rookie signing bonus pool per club in 2024: $183,103 (Spotrac); Pro Football Network reports $172,337 for 2024, which Spotrac lists as the 2023 pool.",
+   "value": 183103,
    "unit": "USD",
    "validFor": "2024",
    "sources": [
     {
-     "citation": "Pro Football Network, How Much Will 2026 NFL UDFAs Earn (2026-04-26, https://www.profootballnetwork.com/how-much-will-2026-nfl-undrafted-free-agents-earn-details-udfa-contracts-salaries/)",
-     "locator": "Undrafted free agents page",
+     "citation": "Spotrac, NFL Undrafted Pools by Team, one page per year (https://www.spotrac.com/nfl/undrafted/spending/team/_/year/<year>)",
+     "locator": "2024 undrafted pools page",
      "dateRead": "2026-11-26",
      "howRead": "secondary summary",
-     "independenceGroup": "pfn",
+     "independenceGroup": "spotrac",
      "primary": false,
-     "quote": "In 2024, that figure was reportedly $172,337.",
-     "value": 172337
+     "quote": "how much of its $183,103 signing bonus pool it used",
+     "value": 183103
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). 2026 amount not found.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Conflict: PFN says $172,337 for 2024; Spotrac pool pages say 2023 = $172,337 and 2024 = $183,103. Spotrac matches the CBA figure for 2021 ($160,000), so its year labels are used for the value. See rows_g10c.py.",
    "status": "1 of 3",
    "statusHistory": [
     {
@@ -1588,16 +1628,31 @@
      "primary": false,
      "quote": "There are four tiers of salary for fifth-year options: multiple Pro Bowls, one Pro Bowl, significant playtime and basic",
      "value": 4
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)-(iv): four salary formulas (third-through-25th, third-through-20th, Transition Tender, Franchise Tender) (text copy cba_2020.txt, line 2623)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "shall equal the Franchise Tender that applies in the League Year that is the fourth year",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -2081,6 +2136,99 @@
     {
      "date": "2026-11-26",
      "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0066",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Undrafted rookie signing-bonus pool per club in 2023: $172,337 (Spotrac).",
+   "value": 172337,
+   "unit": "USD",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "Spotrac, NFL Undrafted Pools by Team, one page per year (https://www.spotrac.com/nfl/undrafted/spending/team/_/year/<year>)",
+     "locator": "2023 undrafted pools page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "how much of its $172,337 signing bonus pool it used",
+     "value": 172337
+    }
+   ],
+   "usedBy": [],
+   "notes": "Spotrac pool page for the year, read through the built-in browser 2026-11-26. One source group. The same page matches the CBA text for 2021 ($160,000), which supports its year labels. No second publisher states the figure; an NFL or CBA calculation (the pool rises with the Total Rookie Compensation Pool) is not yet found.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0067",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Undrafted rookie signing-bonus pool per club in 2025: $206,144 (Spotrac).",
+   "value": 206144,
+   "unit": "USD",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Spotrac, NFL Undrafted Pools by Team, one page per year (https://www.spotrac.com/nfl/undrafted/spending/team/_/year/<year>)",
+     "locator": "2025 undrafted pools page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "how much of its $206,144 signing bonus pool it used",
+     "value": 206144
+    }
+   ],
+   "usedBy": [],
+   "notes": "Spotrac pool page for the year, read through the built-in browser 2026-11-26. One source group. The same page matches the CBA text for 2021 ($160,000), which supports its year labels. No second publisher states the figure; an NFL or CBA calculation (the pool rises with the Total Rookie Compensation Pool) is not yet found.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0068",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Undrafted rookie signing-bonus pool per club in 2026: $229,224 (Spotrac).",
+   "value": 229224,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Spotrac, NFL Undrafted Pools by Team, one page per year (https://www.spotrac.com/nfl/undrafted/spending/team/_/year/<year>)",
+     "locator": "2026 undrafted pools page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "how much of its $229,224 signing bonus pool it used",
+     "value": 229224
+    }
+   ],
+   "usedBy": [],
+   "notes": "Spotrac pool page for the year, read through the built-in browser 2026-11-26. One source group. The same page matches the CBA text for 2021 ($160,000), which supports its year labels. No second publisher states the figure; an NFL or CBA calculation (the pool rises with the Total Rookie Compensation Pool) is not yet found.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
     }
    ]

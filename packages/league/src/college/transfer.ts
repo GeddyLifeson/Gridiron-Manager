@@ -2,6 +2,7 @@
 // T6.3.2), and contact before entry (T6.4.1). Entry outside a window is refused because the
 // association's database does not accept it (the one case where the game blocks an act). Contact is
 // never blocked: before entry it is tampering, an act for the compliance pipeline.
+import { possible } from '@gm/schema';
 import type { CollegeRules } from './keys.ts';
 import { clamp01, param } from './params.ts';
 import type { Day, StaffRead, Stream } from './types.ts';
@@ -91,7 +92,7 @@ export function entryChance(f: RetentionFactors): number {
     + (f.backupWithEligibility ? param('entryBackupWithEligibility') : 0)
     - param('entryRelationship') * clamp01(f.relationship)
     - (f.rolePromise ? param('entryRolePromise') : 0);
-  return Math.min(param('entryMax'), clamp01(p));
+  return possible(Math.min(param('entryMax'), clamp01(p)));
 }
 
 /**
@@ -117,7 +118,7 @@ export function unsignedShare(level: Subdivision, powerConferenceScholarship: bo
 
 /** Chance a target signs with a suitor; tampering before entry adds a head start (T6.4.1). */
 export function landingChance(base: number, tampered: boolean): number {
-  return clamp01(base + (tampered ? param('tamperingLandingBoost') : 0));
+  return possible(base + (tampered ? param('tamperingLandingBoost') : 0));
 }
 
 export type ProspectSource = 'high_school' | 'same_level' | 'lower_subdivision' | 'lower_division' | 'juco';

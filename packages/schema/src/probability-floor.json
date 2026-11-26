@@ -1,0 +1,18 @@
+{
+ "module": "prob",
+ "version": "ma52.1",
+ "params": [
+  {
+   "name": "prob.floor",
+   "value": 0.0001,
+   "min": 0.0000001,
+   "max": 0.01,
+   "unit": "probability",
+   "belongsTo": "prob",
+   "basis": "assumption",
+   "leaf": "A3.1 ruling 22 (MA-52)",
+   "constrainedBy": "Marlon 2026-11-26: anything possible always has a nonzero chance. Starting value from A3.1 ruling 22, an Assumption. Test 'no exposed probability reaches 0' (packages/schema/src/probability.test.ts and the module floor tests)",
+   "status": "starting"
+  }
+ ]
+}

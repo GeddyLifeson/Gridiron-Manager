@@ -7,6 +7,7 @@ import {
   CRISIS_EVENT, type Channel, type PendingTrigger, type WitnessedMatter,
 } from '../../src/crisis/index.ts';
 import { ACTS, CATALOGUE, MemorySink, cause, day, fixture, person, ruleSet, streams } from './fixtures.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 describe('L9.1.3 early warning', () => {
   const pending = (i: number): PendingTrigger => ({ key: `p${i}`, teamId: 1, aboutId: i, health: false, fires: day(40) });
@@ -33,12 +34,12 @@ describe('L9.1.3 early warning', () => {
     expect(r.falseShare).toBeLessThan(0.14);
   });
   it('reads each channel by its own rule', () => {
-    expect(passOnChance({ kind: 'council', personId: 1, trust: 80, councilMetOn: day(0) }, { health: false }, day(30))).toBe(0);
+    expect(passOnChance({ kind: 'council', personId: 1, trust: 80, councilMetOn: day(0) }, { health: false }, day(30))).toBe(PROB_FLOOR);
     expect(passOnChance({ kind: 'open_door', personId: 1, trust: 70, openDoorThisWeek: true }, { health: false }, day(30))).toBeCloseTo(0.5);
     expect(passOnChance({ kind: 'medical', personId: 1 }, { health: true }, day(30))).toBe(0.9);
-    expect(passOnChance({ kind: 'medical', personId: 1 }, { health: false }, day(30))).toBe(0);
+    expect(passOnChance({ kind: 'medical', personId: 1 }, { health: false }, day(30))).toBe(PROB_FLOOR);
     expect(passOnChance({ kind: 'position_coach', personId: 1, reportUp: 1 }, { health: false }, day(30))).toBe(0.95);
-    expect(passOnChance({ kind: 'reporter', personId: 1, goodwillBand: 3 }, { health: false }, day(30))).toBe(0);
+    expect(passOnChance({ kind: 'reporter', personId: 1, goodwillBand: 3 }, { health: false }, day(30))).toBe(PROB_FLOOR);
   });
   it('no warning exists without a pending trigger: no channels, no warnings', () => {
     expect(drawWarnings(CATALOGUE, pending(1), [], () => 50, [2, 3], day(30), streams(1))).toEqual([]);

@@ -53,6 +53,28 @@ describe('K2.2.1 generating a coach', () => {
     expect(share).toBeLessThan(0.83);
   });
 
+  it('K2.1.3 rule 4 (MA-60): veteran bias, backup rep share and the four emphasis dials match their distributions and stay in range', () => {
+    const ps = population(3000, 'pro', 'headCoach');
+    const want: [string, number, number, number, number][] = [
+      ['tendencies.veteranBias', 1, 1, -2, 4], ['tendencies.backupRepShare', 0.18, 0.05, 0.05, 0.35],
+      ['tendencies.emphasis.takeaway', 0, 0.35, -1, 1], ['tendencies.emphasis.tackleAttack', 0, 0.35, -1, 1],
+      ['tendencies.emphasis.rushLanes', 0, 0.35, -1, 1], ['tendencies.emphasis.cornerJump', 0, 0.35, -1, 1],
+    ];
+    for (const [path, mean, sd, lo, hi] of want) {
+      const m = moments(ps, path);
+      expect(Math.abs(m.mean - mean)).toBeLessThan(0.08 * sd + 0.005);
+      expect(m.sd).toBeGreaterThan(0.85 * sd); expect(m.sd).toBeLessThan(1.1 * sd);
+      const spec = getPopulation('pro', 'headCoach').fields[path]!;
+      expect([spec.min, spec.max]).toEqual([lo, hi]);
+    }
+    for (const p of ps) {
+      expect(p.tendencies.backupRepShare).toBeGreaterThanOrEqual(0.05); expect(p.tendencies.backupRepShare).toBeLessThanOrEqual(0.35);
+      for (const v of Object.values(p.tendencies.emphasis)) expect(Math.abs(v)).toBeLessThanOrEqual(1);
+    }
+    const one = ps[0]!;
+    expect(fromHiddenMap(toHiddenMap(one), restOf(one))).toEqual(one);
+  });
+
   it('rule 4 correlations hold at the stated sizes', () => {
     const n = 3000;
     const facets = (i: number) => {

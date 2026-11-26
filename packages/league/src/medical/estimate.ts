@@ -1,6 +1,6 @@
 // The estimate the coach gets (D11.3.2, H5.1.2): a sideline read, imaging with a range, a daily update
 // that narrows, and setbacks that add time and reset the range. The true date is never shown.
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { P } from './params.ts';
 import { SEVERITY_CLASSES, type MedicalStaff, type SeverityClass } from './types.ts';
 
@@ -16,17 +16,17 @@ export function severityClassOf(days: number): SeverityClass {
 
 /** Probability the sideline read names the right class: 0.6 + 0.3 x accuracy. */
 export function sidelineCorrectChance(accuracy: number): number {
-  return P('sidelineBase') + P('sidelineSlope') * clamp01(accuracy);
+  return possible(P('sidelineBase') + P('sidelineSlope') * clamp01(accuracy));
 }
 
 /** First read within a few plays: the true class, or an adjacent one (a "sprain" that is a tear). */
 export function sidelineRead(trueDays: number, staff: MedicalStaff, s: RandomStream): SeverityClass {
   const truth = severityClassOf(trueDays);
-  if (s.chance(sidelineCorrectChance(staff.diagnosticAccuracy))) return truth;
+  if (s.chance(possible(sidelineCorrectChance(staff.diagnosticAccuracy)))) return truth;
   const i = SEVERITY_CLASSES.indexOf(truth);
   const down = i > 0 ? SEVERITY_CLASSES[i - 1]! : null;
   const up = i < SEVERITY_CLASSES.length - 1 ? SEVERITY_CLASSES[i + 1]! : null;
-  if (down && up) return s.chance(P('iqrMid')) ? down : up;
+  if (down && up) return s.chance(possible(P('iqrMid'))) ? down : up;
   return (down ?? up)!;
 }
 
@@ -71,6 +71,6 @@ export function shownRange(totalDays: number, progressDays: number, factor: numb
 /** Setback drawn at injury time: the progress day it strikes, or null (5 to 15 percent, D11.3.2). */
 export function drawSetback(totalDays: number, s: RandomStream): { at: number | null; days: number } {
   const days = Math.max(1, Math.round(totalDays * P('setbackAddedShare')));
-  if (totalDays <= 1 || !s.chance(P('setbackChance'))) { s.uniform(); return { at: null, days }; }
+  if (totalDays <= 1 || !s.chance(possible(P('setbackChance')))) { s.uniform(); return { at: null, days }; }
   return { at: Math.max(1, Math.floor(s.uniform() * totalDays)), days };
 }

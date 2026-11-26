@@ -1,0 +1,2998 @@
+{
+ "leaf": "A4.5.3",
+ "terms": [
+  {
+   "id": "term.0-technique",
+   "term": "0-technique",
+   "aliases": [
+    "zero technique",
+    "0 tech"
+   ],
+   "definition": "A defender lined up head-up (directly) over the center.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0001",
+   "variants": [
+    "0 shade (offset version)"
+   ]
+  },
+  {
+   "id": "term.1-technique",
+   "term": "1-technique",
+   "aliases": [
+    "1-tech",
+    "one-technique"
+   ],
+   "definition": "A defensive lineman aligned shaded on a shoulder of the center, in an A gap.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0003",
+   "variants": [
+    "1-tech"
+   ]
+  },
+  {
+   "id": "term.2-technique",
+   "term": "2-technique",
+   "aliases": [
+    "2-tech"
+   ],
+   "definition": "A defender lined up head-up on an offensive guard.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0011"
+  },
+  {
+   "id": "term.2i-technique",
+   "term": "2i-technique",
+   "aliases": [
+    "2i",
+    "2i tech"
+   ],
+   "definition": "A defender lined up on the inside shoulder of an offensive guard.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0021",
+   "variants": [
+    "2i"
+   ]
+  },
+  {
+   "id": "term.3-4-under-pro",
+   "term": "3-4 Under",
+   "aliases": [
+    "3-4 Under front"
+   ],
+   "definition": "A one-gap 3-4 front shifted to the closed (tight end) side: the nose in a 0 shade or 1-technique toward the tight end, the open-side end in a 2- or 3-technique.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0024",
+   "variants": [
+    "3-4 Under"
+   ]
+  },
+  {
+   "id": "term.3-technique",
+   "term": "3-technique",
+   "aliases": [
+    "3-tech",
+    "3-technique alignment",
+    "three-technique",
+    "under tackle (one usage)"
+   ],
+   "definition": "An interior defensive lineman aligned on the outside shoulder of the offensive guard, aiming at the B gap; in a 4-3 he is the quick penetrating tackle.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0025",
+   "variants": [
+    "3-tech"
+   ]
+  },
+  {
+   "id": "term.3-under-3-deep",
+   "term": "3-under 3-deep",
+   "aliases": [
+    "3-deep 3-under",
+    "fire zone shell"
+   ],
+   "definition": "The back-end coverage behind a five-man fire zone: three defenders deep and three underneath.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0026",
+   "variants": [
+    "fire zone coverage"
+   ]
+  },
+  {
+   "id": "term.4-technique",
+   "term": "4-technique",
+   "aliases": [
+    "four-technique"
+   ],
+   "definition": "A defender lined up head-up on an offensive tackle (a 4i is the inside-shoulder version).",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0031",
+   "variants": [
+    "4i (inside shade)"
+   ]
+  },
+  {
+   "id": "term.46-defense-pro",
+   "term": "46 defense",
+   "aliases": [
+    "46",
+    "Buddy Ryan 46"
+   ],
+   "definition": "A 4-3 variation developed by Buddy Ryan for the Chicago Bears that crowds the line with six players and puts eight in the box; the line is shifted toward the offense's weak side and three defensive backs crowd the line. Named after Bears strong safety Doug Plank's jersey number.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0034",
+   "variants": [
+    "46",
+    "Bear (nickname for the front)"
+   ]
+  },
+  {
+   "id": "term.4i-technique",
+   "term": "4i-technique",
+   "aliases": [
+    "4i",
+    "inside 4"
+   ],
+   "definition": "A defender lined up on the inside shoulder of an offensive tackle.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0035",
+   "variants": [
+    "4i"
+   ]
+  },
+  {
+   "id": "term.5-man-pressure",
+   "term": "5-man pressure",
+   "aliases": [
+    "five-man pressure",
+    "five-man rush"
+   ],
+   "definition": "A pass rush of five defenders, one more than the usual four.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0038",
+   "variants": [
+    "five-man pressure"
+   ]
+  },
+  {
+   "id": "term.5-technique",
+   "term": "5-technique",
+   "aliases": [
+    "five-technique",
+    "5-tech"
+   ],
+   "definition": "A defensive lineman aligned on the offensive tackle (outside shade in most sources); the standard end in a 3-4 front.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0039",
+   "variants": [
+    "5-tech"
+   ]
+  },
+  {
+   "id": "term.6-technique",
+   "term": "6-technique",
+   "aliases": [
+    "six-technique"
+   ],
+   "definition": "A defender lined up head-up on a tight end.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0043"
+  },
+  {
+   "id": "term.7-technique",
+   "term": "7-technique",
+   "aliases": [
+    "7-tech",
+    "seven-technique"
+   ],
+   "definition": "A defender lined up on the inside shoulder of a tight end.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0045"
+  },
+  {
+   "id": "term.9-technique",
+   "term": "9-technique",
+   "aliases": [
+    "nine-technique",
+    "wide 9 alignment"
+   ],
+   "definition": "A defender lined up outside the tight end (or the last blocker on the line), at least a half yard outside his outside shoulder.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0046",
+   "variants": [
+    "wide 9"
+   ]
+  },
+  {
+   "id": "term.a-gap",
+   "term": "A gap",
+   "aliases": [
+    "A-gap"
+   ],
+   "definition": "The gap between the center and a guard; there is one on each side.",
+   "domain": "defense",
+   "subdomain": "gaps",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0048",
+   "variants": [
+    "A-gap"
+   ]
+  },
+  {
+   "id": "term.b-gap",
+   "term": "B gap",
+   "aliases": [
+    "B-gap"
+   ],
+   "definition": "The gap between an offensive guard and tackle.",
+   "domain": "defense",
+   "subdomain": "run defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0084"
+  },
+  {
+   "id": "term.bail",
+   "term": "bail",
+   "aliases": [
+    "press-bail",
+    "bail technique"
+   ],
+   "definition": "A corner's technique of turning and sinking backward at the snap, often from a press alignment, to get depth for the deep zone.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0091",
+   "variants": [
+    "press-bail"
+   ]
+  },
+  {
+   "id": "term.bandit-college",
+   "term": "Bandit",
+   "aliases": [
+    "Buck",
+    "Jack (rush)",
+    "hybrid rush end"
+   ],
+   "definition": "A hybrid defensive end/linebacker rush role used by some defenses, mostly in college; the label is a team playbook name, not one fixed position.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0096",
+   "variants": [
+    "Bandit",
+    "Buck",
+    "Rover (related)"
+   ]
+  },
+  {
+   "id": "term.banjo",
+   "term": "banjo",
+   "aliases": [
+    "banjo coverage"
+   ],
+   "definition": "A man-coverage call used against stacked, bunched or slot receivers in which defenders switch assignments by what the receivers do.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0097"
+  },
+  {
+   "id": "term.bear-front",
+   "term": "Bear front",
+   "aliases": [
+    "Bear"
+   ],
+   "definition": "A front that puts defenders on the center and both guards (head up) to clog the interior gaps.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0104",
+   "variants": [
+    "Bear"
+   ]
+  },
+  {
+   "id": "term.big-end-pro",
+   "term": "Big end",
+   "aliases": [
+    "Seattle Big end"
+   ],
+   "definition": "A strong-side defensive end, typically 280+ pounds, who stops the run on base downs and moves inside to tackle on passing downs; used by Seattle, Denver, Cincinnati and Las Vegas.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0110",
+   "variants": [
+    "Big end"
+   ]
+  },
+  {
+   "id": "term.blitz",
+   "term": "blitz",
+   "aliases": [
+    "blitzing"
+   ],
+   "definition": "A defensive call that sends extra rushers, usually linebackers or defensive backs, after the quarterback beyond the normal four-man line rush.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0112"
+  },
+  {
+   "id": "term.boundary-corner-college",
+   "term": "boundary corner",
+   "aliases": [
+    "boundary cornerback"
+   ],
+   "definition": "The cornerback who plays to the short side of the field (the boundary), often a bigger, more physical jam corner.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0128",
+   "variants": [
+    "field corner (wide side)"
+   ]
+  },
+  {
+   "id": "term.box",
+   "term": "box",
+   "aliases": [
+    "the box"
+   ],
+   "definition": "The area on the defensive side of the ball within about five yards of the line and framed by the offensive tackles, where run defenders line up.",
+   "domain": "defense",
+   "subdomain": "run defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0131"
+  },
+  {
+   "id": "term.bracket",
+   "term": "bracket",
+   "aliases": [
+    "bracket coverage",
+    "double coverage"
+   ],
+   "definition": "Two defenders, usually one underneath/inside and one over the top/outside, take away one receiver together.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0132",
+   "variants": [
+    "bracket",
+    "double"
+   ]
+  },
+  {
+   "id": "term.buck",
+   "term": "Buck",
+   "aliases": [
+    "Bandit (similar)"
+   ],
+   "definition": "A name for a pass-rushing edge/outside linebacker, often the weak-side or boundary rusher; some defenses use Buck and Jack as two different edge roles.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0136",
+   "variants": [
+    "backside linebacker",
+    "Joker",
+    "Jack",
+    "Elephant"
+   ]
+  },
+  {
+   "id": "term.bull-rush",
+   "term": "bull rush",
+   "aliases": [
+    "power rush"
+   ],
+   "definition": "A power move where the rusher drives straight into the blocker's chest and tries to push him back into the quarterback.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0137",
+   "variants": [
+    "bull"
+   ]
+  },
+  {
+   "id": "term.bump-and-run",
+   "term": "bump and run",
+   "aliases": [
+    "press-man",
+    "press coverage"
+   ],
+   "definition": "Man coverage where the corner lines up tight on the receiver and jams him at the line.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0138",
+   "variants": [
+    "press",
+    "bump-and-run",
+    "jam"
+   ]
+  },
+  {
+   "id": "term.c-gap",
+   "term": "C gap",
+   "aliases": [
+    "C-gap"
+   ],
+   "definition": "The gap between an offensive tackle and the tight end (outside the tackle).",
+   "domain": "defense",
+   "subdomain": "gaps",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0142",
+   "variants": [
+    "C-gap"
+   ]
+  },
+  {
+   "id": "term.carry",
+   "term": "carry",
+   "aliases": [
+    "carry vertical"
+   ],
+   "definition": "A defender stays with a receiver running vertically through his zone, often until handing him to a deeper defender.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0152"
+  },
+  {
+   "id": "term.club-move",
+   "term": "club move",
+   "aliases": [
+    "club"
+   ],
+   "definition": "A rush move where the rusher strikes (clubs) the blocker's shoulder or arm with a forearm or hand to knock him off balance before getting past.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0185",
+   "variants": [
+    "chop club",
+    "counter club"
+   ]
+  },
+  {
+   "id": "term.combo-coverage",
+   "term": "combo coverage",
+   "aliases": [
+    "combo man"
+   ],
+   "definition": "A man coverage in which two defenders work together on a star receiver, such as double coverage.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0198",
+   "variants": [
+    "combo man"
+   ]
+  },
+  {
+   "id": "term.cone-college",
+   "term": "Cone",
+   "aliases": [
+    "Cover 3 Cone"
+   ],
+   "definition": "A Saban pattern-match coverage call, like Dog but with the corner's leverage inverted: the corner takes outside leverage with a safety bracketing inside.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0211"
+  },
+  {
+   "id": "term.contain",
+   "term": "contain",
+   "aliases": [
+    "containment"
+   ],
+   "definition": "A defensive assignment to keep the ball carrier from getting to the edge and turning upfield, usually given to an outside linebacker or cornerback.",
+   "domain": "defense",
+   "subdomain": "run defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0217"
+  },
+  {
+   "id": "term.contain-rusher",
+   "term": "contain rusher",
+   "aliases": [
+    "contain rush",
+    "contain"
+   ],
+   "definition": "A rusher told to hold the outside lane so the quarterback cannot run past him outside the pocket.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0218",
+   "variants": [
+    "contain"
+   ]
+  },
+  {
+   "id": "term.corner-blitz",
+   "term": "corner blitz",
+   "aliases": [
+    "corner fire",
+    "cornerback blitz"
+   ],
+   "definition": "A rush by a cornerback.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0221"
+  },
+  {
+   "id": "term.cornerback",
+   "term": "cornerback",
+   "aliases": [
+    "CB",
+    "corner"
+   ],
+   "definition": "A defensive back who lines up across from a wide receiver, mainly to cover him and break up passes, and who also supports against the run.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0223",
+   "variants": [
+    "CB"
+   ]
+  },
+  {
+   "id": "term.cover-0",
+   "term": "Cover 0",
+   "aliases": [
+    "Cover Zero",
+    "pure man",
+    "zero coverage"
+   ],
+   "definition": "Pure man coverage with no deep safety help, usually paired with a blitz.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0226",
+   "variants": [
+    "Cover 0"
+   ]
+  },
+  {
+   "id": "term.cover-1",
+   "term": "Cover 1",
+   "aliases": [
+    "man-free",
+    "Cover 1 man"
+   ],
+   "definition": "Man coverage on every eligible receiver with one deep safety helping over the top.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0227",
+   "variants": [
+    "man free",
+    "Cover 1 Robber",
+    "single-high man"
+   ]
+  },
+  {
+   "id": "term.cover-1-rat-pro",
+   "term": "Cover 1 Rat",
+   "aliases": [
+    "Cover 1 with a rat",
+    "rat"
+   ],
+   "definition": "Cover 1 with a 'rat', an underneath defender (often the end opposite the pressure or a linebacker) who acts as a vision dropper in the middle; the '1' in Cover 1 signals a rat in the coverage.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0228",
+   "variants": [
+    "rat",
+    "Cover 1 Lurk",
+    "Cover 1 Hole"
+   ]
+  },
+  {
+   "id": "term.cover-2",
+   "term": "Cover 2",
+   "aliases": [
+    "two-deep zone",
+    "2-deep"
+   ],
+   "definition": "A zone coverage with two deep safeties each covering a deep half, corners usually jamming at the line and sinking, and five defenders underneath.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0229",
+   "variants": [
+    "Tampa 2",
+    "Cover 2 Man",
+    "Cover 2 Invert",
+    "Red 2",
+    "Green 2"
+   ]
+  },
+  {
+   "id": "term.cover-2-man",
+   "term": "Cover 2 Man",
+   "aliases": [
+    "2-Man",
+    "Cover 5 (Saban)"
+   ],
+   "definition": "Two safeties deep in halves with man-to-man coverage underneath on every receiver.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0230",
+   "variants": [
+    "2-man",
+    "Cover 5 (Saban)"
+   ]
+  },
+  {
+   "id": "term.cover-3",
+   "term": "Cover 3",
+   "aliases": [
+    "three-deep zone"
+   ],
+   "definition": "A zone coverage with three deep defenders (two corners and a safety), each covering a third of the deep field, with four defenders underneath.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0231",
+   "variants": [
+    "Cover 3 Sky",
+    "Cover 3 Cloud",
+    "Cover 3 Buzz",
+    "Seattle Cover 3"
+   ]
+  },
+  {
+   "id": "term.cover-3-cloud-pro",
+   "term": "Cover 3 Cloud",
+   "aliases": [
+    "3 Cloud",
+    "Cloud coverage"
+   ],
+   "definition": "A Cover 3 variation where one corner rolls to the flat and two safeties cover the three deep zones with the other corner.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0232",
+   "variants": [
+    "Cloud",
+    "3 Cloud"
+   ]
+  },
+  {
+   "id": "term.cover-4",
+   "term": "Cover 4",
+   "aliases": [
+    "Cover 4 Quarters",
+    "Cover Four",
+    "Quarters",
+    "quarters"
+   ],
+   "definition": "A zone-based coverage with four deep defenders each responsible for a quarter of the deep field and three underneath, using man-to-man principles and bracketing the number-one receivers.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0233",
+   "variants": [
+    "Quarters",
+    "match quarters",
+    "Palms (variant)"
+   ]
+  },
+  {
+   "id": "term.cover-6",
+   "term": "Cover 6",
+   "aliases": [
+    "quarter-quarter-half",
+    "Cover 4/2 split"
+   ],
+   "definition": "A split-field coverage that plays quarters (Cover 4) on one side and Cover 2 on the other.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0234",
+   "variants": [
+    "quarter-quarter-half"
+   ]
+  },
+  {
+   "id": "term.crash",
+   "term": "crash",
+   "aliases": [
+    "crashing end"
+   ],
+   "definition": "A defensive end charging hard into the backfield instead of staying wide.",
+   "domain": "defense",
+   "subdomain": "pass rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0239",
+   "variants": [
+    "crashing ends"
+   ]
+  },
+  {
+   "id": "term.curl-flat-pro",
+   "term": "curl-flat",
+   "aliases": [
+    "curl-flat defender",
+    "curl/flat zone"
+   ],
+   "definition": "A zone-coverage assignment where the defender buzzes the curl area and then widens to the flat; usually the strong safety and a linebacker or nickel in Cover 3.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0245",
+   "variants": [
+    "curl-flat drop"
+   ]
+  },
+  {
+   "id": "term.cushion",
+   "term": "cushion",
+   "aliases": [
+    "off coverage"
+   ],
+   "definition": "The space between a defender and the receiver at the snap.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0247",
+   "variants": [
+    "off coverage"
+   ]
+  },
+  {
+   "id": "term.cut-college",
+   "term": "cut",
+   "aliases": [
+    "Cut (Saban)"
+   ],
+   "definition": "A Saban call used against balanced 2x2 formations in which the corner jams the first receiver breaking outside and the apex handles the second receiver if he goes vertical.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0249"
+  },
+  {
+   "id": "term.d-gap",
+   "term": "D gap",
+   "aliases": [
+    "D-gap"
+   ],
+   "definition": "The gap outside the tight end (the opposite side from the tackle).",
+   "domain": "defense",
+   "subdomain": "run defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0251"
+  },
+  {
+   "id": "term.deep-fourth",
+   "term": "deep fourth",
+   "aliases": [
+    "quarter",
+    "deep 1/4"
+   ],
+   "definition": "One of the four deep zones in Cover 4; each deep defender is responsible for a quarter of the deep field.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0269",
+   "variants": [
+    "quarters",
+    "deep 1/4"
+   ]
+  },
+  {
+   "id": "term.deep-half",
+   "term": "deep half",
+   "aliases": [
+    "deep halves"
+   ],
+   "definition": "The half of the field behind the underneath coverage that a safety covers in Cover 2.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0270"
+  },
+  {
+   "id": "term.deep-middle",
+   "term": "deep middle",
+   "aliases": [],
+   "definition": "The deep center of the field, covered by a free safety in man-free and Cover 3.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0271"
+  },
+  {
+   "id": "term.deep-third",
+   "term": "deep third",
+   "aliases": [
+    "deep 1/3",
+    "outside third",
+    "middle third"
+   ],
+   "definition": "One of the three deep zones of the field that a defender covers in Cover 3.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0272",
+   "variants": [
+    "deep 1/3"
+   ]
+  },
+  {
+   "id": "term.defensive-back",
+   "term": "defensive back",
+   "aliases": [
+    "DB"
+   ],
+   "definition": "A cornerback or safety, the players who defend the pass behind the linebackers.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0274"
+  },
+  {
+   "id": "term.defensive-end",
+   "term": "defensive end",
+   "aliases": [
+    "DE"
+   ],
+   "definition": "A lineman on an outside end of the defensive line who rushes the passer and contains or stops runs to his side.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0276",
+   "variants": [
+    "edge rusher"
+   ]
+  },
+  {
+   "id": "term.defensive-tackle",
+   "term": "defensive tackle",
+   "aliases": [
+    "DT"
+   ],
+   "definition": "An interior defensive lineman who lines up opposite the offensive guards and tries to stop the run and disrupt the play in the backfield.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0280",
+   "variants": [
+    "nose tackle (3-4)"
+   ]
+  },
+  {
+   "id": "term.dick-lebeau-zone-blitz-pro",
+   "term": "Dick LeBeau zone blitz",
+   "aliases": [
+    "zone blitz"
+   ],
+   "definition": "The zone blitz, in which a pass rusher drops into coverage while another defender rushes; LeBeau refined and popularized it.",
+   "domain": "defense",
+   "subdomain": "schemes",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0290"
+  },
+  {
+   "id": "term.dime-4-1-6",
+   "term": "dime 4-1-6",
+   "aliases": [
+    "4-1-6 dime"
+   ],
+   "definition": "A dime package of four linemen, one linebacker and six defensive backs (numbers are linemen, linebackers, backs).",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0294",
+   "variants": [
+    "4-1-6"
+   ]
+  },
+  {
+   "id": "term.dime-back",
+   "term": "dime back",
+   "aliases": [
+    "dime",
+    "sixth defensive back",
+    "dimeback"
+   ],
+   "definition": "The sixth defensive back on the field, added in obvious passing situations; named because a dime is worth two nickels.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0295",
+   "variants": [
+    "dime",
+    "dime package"
+   ]
+  },
+  {
+   "id": "term.disguise",
+   "term": "disguise",
+   "aliases": [],
+   "definition": "Showing a coverage look before the snap that differs from the coverage actually played.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0304"
+  },
+  {
+   "id": "term.eagle-front-pro",
+   "term": "Eagle front",
+   "aliases": [
+    "3-4 Eagle"
+   ],
+   "definition": "A 3-4 one-gap front where both ends align in a 4i (inside shoulder of the tackle) and play the B gap, the nose works to the front side A gap, and the Sam plays a two-gap technique over the tight end.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0336",
+   "variants": [
+    "3-4 Eagle"
+   ]
+  },
+  {
+   "id": "term.edge-rusher",
+   "term": "edge rusher",
+   "aliases": [
+    "edge defender",
+    "rush end"
+   ],
+   "definition": "A defender whose main job is attacking the quarterback from the outside edge of the offensive line: a defensive end in a four-man front or an outside linebacker in a three-man front.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0340",
+   "variants": [
+    "edge",
+    "edge defender"
+   ]
+  },
+  {
+   "id": "term.eight-in-the-box",
+   "term": "eight in the box",
+   "aliases": [
+    "8 in the box"
+   ],
+   "definition": "Eight defenders in the box, which happens when a safety moves down to help against the run.",
+   "domain": "defense",
+   "subdomain": "run defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0341",
+   "variants": [
+    "8-in-the-box"
+   ]
+  },
+  {
+   "id": "term.even-front",
+   "term": "Even front",
+   "aliases": [],
+   "definition": "A 4-3 base look with no nose tackle, a left and right tackle instead.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0356"
+  },
+  {
+   "id": "term.field-and-boundary",
+   "term": "Field and Boundary",
+   "aliases": [
+    "field",
+    "boundary"
+   ],
+   "definition": "The wide side (field) and the short side (boundary) of the field, used to align players and calls.",
+   "domain": "defense",
+   "subdomain": "calls",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0381"
+  },
+  {
+   "id": "term.field-boundary-call",
+   "term": "field/boundary call",
+   "aliases": [
+    "field and boundary",
+    "boundary side"
+   ],
+   "definition": "The wide side of the field is 'the field' and the short side is 'the boundary'; defenses set strengths and positions (field corner, boundary corner) by these sides.",
+   "domain": "defense",
+   "subdomain": "alignment",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0382",
+   "variants": [
+    "field",
+    "boundary"
+   ]
+  },
+  {
+   "id": "term.field-corner",
+   "term": "field corner",
+   "aliases": [
+    "field cornerback",
+    "wide-side corner"
+   ],
+   "definition": "The cornerback who lines up on the wide side of the field (the field), as opposed to the boundary corner on the short side.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0383",
+   "variants": [
+    "field cornerback"
+   ]
+  },
+  {
+   "id": "term.fill",
+   "term": "fill",
+   "aliases": [
+    "fit"
+   ],
+   "definition": "To step up and take a gap or area to stop a run, often a safety or linebacker filling a gap vacated by a lineman.",
+   "domain": "defense",
+   "subdomain": "run-defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0395",
+   "variants": [
+    "run fit"
+   ]
+  },
+  {
+   "id": "term.fire-zone",
+   "term": "fire zone",
+   "aliases": [],
+   "definition": "A zone blitz that sends five rushers with three deep and three under defenders behind it.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0397"
+  },
+  {
+   "id": "term.flat",
+   "term": "flat",
+   "aliases": [
+    "the flat",
+    "flats"
+   ],
+   "definition": "The area near the sideline close to the line of scrimmage, the underneath outside zone.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0406",
+   "variants": [
+    "flats"
+   ]
+  },
+  {
+   "id": "term.force",
+   "term": "force",
+   "aliases": [
+    "force player",
+    "force defender"
+   ],
+   "definition": "The defender who is responsible for the edge on a run play, keeping the ball carrier from turning the corner and forcing him back inside to pursuit.",
+   "domain": "defense",
+   "subdomain": "run-defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0416",
+   "variants": [
+    "force player",
+    "contain"
+   ]
+  },
+  {
+   "id": "term.free-safety",
+   "term": "free safety",
+   "aliases": [
+    "FS"
+   ],
+   "definition": "The safety who lines up deeper, is free to roam and follow the ball, and is the last man back on pass plays.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0436",
+   "variants": [
+    "FS",
+    "free safety"
+   ]
+  },
+  {
+   "id": "term.front-seven",
+   "term": "front seven",
+   "aliases": [
+    "front 7"
+   ],
+   "definition": "The defensive linemen and linebackers together.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0438"
+  },
+  {
+   "id": "term.gap",
+   "term": "gap",
+   "aliases": [
+    "gap responsibility"
+   ],
+   "definition": "The space between two offensive linemen, lettered A through D from the center outward, that a defender can be assigned to control.",
+   "domain": "defense",
+   "subdomain": "run defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0451"
+  },
+  {
+   "id": "term.ghost-rush",
+   "term": "ghost rush",
+   "aliases": [
+    "ghost"
+   ],
+   "definition": "A pass-rush move where the rusher baits the blocker's punch, ducks under it and turns the corner.",
+   "domain": "defense",
+   "subdomain": "pass rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0456"
+  },
+  {
+   "id": "term.head-up",
+   "term": "head up",
+   "aliases": [
+    "head-up",
+    "heads up"
+   ],
+   "definition": "Lining up directly across from a blocker, nose to nose.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0495",
+   "variants": [
+    "head-up"
+   ]
+  },
+  {
+   "id": "term.hero-college",
+   "term": "Hero",
+   "aliases": [
+    "hero back"
+   ],
+   "definition": "A name for a hybrid defensive back used in some programs; Penn State's Rip Engle gave the name to his strong safety position.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0498"
+  },
+  {
+   "id": "term.hook",
+   "term": "hook",
+   "aliases": [
+    "hook zone"
+   ],
+   "definition": "The underneath zone between the hash marks about ten yards deep, covered by linebackers.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0506",
+   "variants": [
+    "hook-curl"
+   ]
+  },
+  {
+   "id": "term.inside-leverage",
+   "term": "inside leverage",
+   "aliases": [
+    "inside shade"
+   ],
+   "definition": "A defender lined up on the inside shoulder of the receiver, taking away inside-breaking routes by alignment and using the sideline as help.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0561",
+   "variants": [
+    "inside shade"
+   ]
+  },
+  {
+   "id": "term.inside-linebacker",
+   "term": "inside linebacker",
+   "aliases": [
+    "ILB"
+   ],
+   "definition": "A linebacker aligned inside, between the outside linebackers, in a 3-4 (two ILBs) or as the middle linebacker.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0562",
+   "variants": [
+    "middle linebacker"
+   ]
+  },
+  {
+   "id": "term.invert",
+   "term": "invert",
+   "aliases": [
+    "inverted coverage",
+    "Cover 2 Invert"
+   ],
+   "definition": "A coverage where a safety drops underneath into the box while a corner plays the deep half, the reverse of normal roles.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0577",
+   "variants": [
+    "inverted coverage",
+    "Cover 2 Invert"
+   ]
+  },
+  {
+   "id": "term.jack",
+   "term": "Jack",
+   "aliases": [
+    "Joker",
+    "Elephant",
+    "Buck"
+   ],
+   "definition": "A linebacker name whose meaning depends on the system. Most sources use it for the 3-4 outside linebacker or end who is the primary edge pass rusher and may line up on either side; Bowen and the Wikipedia glossary use it for the weak-side inside linebacker of a 3-4.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0578",
+   "variants": [
+    "Jack",
+    "Joker",
+    "Buck",
+    "Elephant",
+    "Mo (inside-LB sense)"
+   ]
+  },
+  {
+   "id": "term.jam",
+   "term": "jam",
+   "aliases": [
+    "jam at the line"
+   ],
+   "definition": "Using the hands to make contact with a receiver and disrupt his route at the line of scrimmage.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0580"
+  },
+  {
+   "id": "term.leo-pro",
+   "term": "Leo",
+   "aliases": [
+    "LEO"
+   ],
+   "definition": "A hybrid defensive end/outside linebacker in the Seahawks-style 4-3 Under who rushes from the weak side, usually standing up, in a one-gap technique.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0624",
+   "variants": [
+    "Leo end"
+   ]
+  },
+  {
+   "id": "term.linebacker",
+   "term": "linebacker",
+   "aliases": [
+    "LB",
+    "backer"
+   ],
+   "definition": "A defender who lines up behind the defensive line and can stop the run, rush the passer or drop into pass coverage.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0632",
+   "variants": [
+    "backer"
+   ]
+  },
+  {
+   "id": "term.linebacker-blitz",
+   "term": "linebacker blitz",
+   "aliases": [],
+   "definition": "A blitz by a linebacker, the most common kind.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0633"
+  },
+  {
+   "id": "term.lock-pro",
+   "term": "lock",
+   "aliases": [
+    "solo",
+    "lock coverage",
+    "solo coverage"
+   ],
+   "definition": "A call that puts a corner in off-man coverage on one receiver, often the backside X of a 3x1 formation, with no inside help so the safety can help elsewhere.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0638",
+   "variants": [
+    "solo",
+    "lock"
+   ]
+  },
+  {
+   "id": "term.lurk",
+   "term": "lurk",
+   "aliases": [
+    "lurk call",
+    "Cover 1 lurk"
+   ],
+   "definition": "A Cover 1 tag on a four-man rush that makes the linebacker opposite the running back the free 'vision dropper' sitting underneath; coaches reverse lurk and hole.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0647",
+   "variants": [
+    "lurk",
+    "hole",
+    "rat",
+    "cross"
+   ]
+  },
+  {
+   "id": "term.man-coverage",
+   "term": "man coverage",
+   "aliases": [
+    "man-to-man",
+    "man"
+   ],
+   "definition": "A pass coverage in which each defender is assigned to a specific offensive player.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0649",
+   "variants": [
+    "man-to-man"
+   ]
+  },
+  {
+   "id": "term.man-free",
+   "term": "man free",
+   "aliases": [
+    "Cover 1",
+    "Cover One"
+   ],
+   "definition": "Man-to-man coverage on the receivers with one free safety playing deep middle.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0650",
+   "variants": [
+    "Cover 1"
+   ]
+  },
+  {
+   "id": "term.man-up",
+   "term": "man-up",
+   "aliases": [],
+   "definition": "Close man-to-man coverage on a receiver, as in bump-and-run.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0651"
+  },
+  {
+   "id": "term.match-coverage",
+   "term": "match coverage",
+   "aliases": [
+    "pattern match",
+    "pattern matching",
+    "match"
+   ],
+   "definition": "A zone-based coverage in which defenders switch to man on a receiver based on the route he runs.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0654",
+   "variants": [
+    "pattern match",
+    "zone-match",
+    "man-match"
+   ]
+  },
+  {
+   "id": "term.meg",
+   "term": "Meg",
+   "aliases": [
+    "MEG",
+    "4-Lock"
+   ],
+   "definition": "Man Everywhere he Goes: a man-match Quarters call in which a defender stays on his receiver wherever he goes.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0660",
+   "variants": [
+    "4-Lock"
+   ]
+  },
+  {
+   "id": "term.mike",
+   "term": "Mike",
+   "aliases": [
+    "MLB",
+    "middle linebacker"
+   ],
+   "definition": "The linebacker the defense treats as its middle linebacker: in a 4-3 the middle man who relays the call and sets the front, in a 3-4 the stronger, larger inside linebacker.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0664",
+   "variants": [
+    "Mike (MLB)"
+   ]
+  },
+  {
+   "id": "term.mint-front",
+   "term": "Mint front",
+   "aliases": [
+    "Mint"
+   ],
+   "definition": "A Tite-based front that walks a Jack linebacker onto the edge.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0667"
+  },
+  {
+   "id": "term.mo",
+   "term": "Mo",
+   "aliases": [
+    "Mo linebacker",
+    "weak-side inside linebacker"
+   ],
+   "definition": "A name for the weak-side interior linebacker of a 3-4, the same player the Wikipedia glossary also calls Jack.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0669",
+   "variants": [
+    "Mo"
+   ]
+  },
+  {
+   "id": "term.mod-college",
+   "term": "Mod",
+   "aliases": [
+    "Man On Demand"
+   ],
+   "definition": "Short for 'Man On Demand', the core of Saban's man-match system: a defender attaches to a receiver only on a route over five yards, otherwise he plays zone and passes the receiver off.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0670",
+   "variants": [
+    "MOD",
+    "Man On Demand"
+   ]
+  },
+  {
+   "id": "term.mofo",
+   "term": "MOFO",
+   "aliases": [
+    "middle of field open",
+    "open MOF"
+   ],
+   "definition": "Short for 'middle of the field open': coverages with two deep safeties, so the deep middle is not guarded by one player (versus MOFC, middle of the field closed, one deep safety).",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0671",
+   "variants": [
+    "open MOF",
+    "MOFC (closed)"
+   ]
+  },
+  {
+   "id": "term.money-college",
+   "term": "Money",
+   "aliases": [
+    "money back",
+    "money position"
+   ],
+   "definition": "The name some teams use for the sixth defensive back in a dime package.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0672",
+   "variants": [
+    "dime back"
+   ]
+  },
+  {
+   "id": "term.monster",
+   "term": "Monster",
+   "aliases": [
+    "monster back",
+    "box safety"
+   ],
+   "definition": "A strong safety given free rein to play the run, cover or rush the passer.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0673",
+   "variants": [
+    "Monster",
+    "hero back (Penn State, 1950s)"
+   ]
+  },
+  {
+   "id": "term.monte-kiffin-4-3-pro",
+   "term": "Monte Kiffin 4-3",
+   "aliases": [
+    "Kiffin Tampa 2"
+   ],
+   "definition": "Monte Kiffin's Tampa Cover 2 scheme out of a 4-3 front.",
+   "domain": "defense",
+   "subdomain": "coach-systems",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0674",
+   "variants": [
+    "Tampa 2"
+   ]
+  },
+  {
+   "id": "term.nickel-4-2-5-package",
+   "term": "nickel 4-2-5 package",
+   "aliases": [
+    "4-2-5",
+    "nickel"
+   ],
+   "definition": "The nickel base look with four linemen, two linebackers and five defensive backs.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0695",
+   "variants": [
+    "4-2-5"
+   ]
+  },
+  {
+   "id": "term.nickelback",
+   "term": "nickelback",
+   "aliases": [
+    "fifth defensive back",
+    "nickel",
+    "nickel back"
+   ],
+   "definition": "A fifth defensive back who comes on in passing situations, usually in place of a linebacker.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0696",
+   "variants": [
+    "nickel"
+   ]
+  },
+  {
+   "id": "term.nose-tackle",
+   "term": "nose tackle",
+   "aliases": [
+    "nose guard",
+    "NT",
+    "0-technique tackle"
+   ],
+   "definition": "The defensive lineman who lines up over or across from the center, the middle man of a three-man front, usually tying up blockers to protect linebackers.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0705",
+   "variants": [
+    "nose guard",
+    "nose tackle"
+   ]
+  },
+  {
+   "id": "term.odd-front",
+   "term": "Odd front",
+   "aliases": [
+    "odd-man front"
+   ],
+   "definition": "A defensive front with an odd number of down linemen, most often three (a 3-4).",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0709",
+   "variants": [
+    "odd front"
+   ]
+  },
+  {
+   "id": "term.off-coverage",
+   "term": "off coverage",
+   "aliases": [
+    "off-man",
+    "cushion"
+   ],
+   "definition": "A defender lines up several yards off the receiver, giving him a cushion.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0710",
+   "variants": [
+    "off-man"
+   ]
+  },
+  {
+   "id": "term.okie-front",
+   "term": "Okie front",
+   "aliases": [
+    "3-4 Okie",
+    "Oklahoma front"
+   ],
+   "definition": "A 3-4 front descended from the 5-2 Oklahoma defense.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0726",
+   "variants": [
+    "Okie",
+    "Tite/Okie"
+   ]
+  },
+  {
+   "id": "term.one-gap",
+   "term": "one-gap",
+   "aliases": [
+    "1-gap",
+    "one-gap technique"
+   ],
+   "definition": "A technique where a lineman is responsible for attacking one gap, instead of holding two.",
+   "domain": "defense",
+   "subdomain": "gaps",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0728",
+   "variants": [
+    "1-gap"
+   ]
+  },
+  {
+   "id": "term.outside-eye",
+   "term": "outside eye",
+   "aliases": [
+    "outside shade",
+    "outside shoulder"
+   ],
+   "definition": "Lining up on the outside shoulder of the player across from you; a defender with 'outside leverage' aligns on the outside eye of the receiver.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0748",
+   "variants": [
+    "outside shade",
+    "outside leverage"
+   ]
+  },
+  {
+   "id": "term.outside-leverage",
+   "term": "outside leverage",
+   "aliases": [],
+   "definition": "Lining up on the outside shoulder of the receiver to force him inside.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0749"
+  },
+  {
+   "id": "term.outside-linebacker",
+   "term": "outside linebacker",
+   "aliases": [
+    "OLB",
+    "SAM/WILL (4-3)",
+    "rush linebacker (3-4)"
+   ],
+   "definition": "A linebacker aligned outside the box tackles: responsible for outside containment, blitzing and covering the flats; in a 3-4 he is often the main edge rusher.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0750",
+   "variants": [
+    "OLB"
+   ]
+  },
+  {
+   "id": "term.over-front",
+   "term": "Over front",
+   "aliases": [
+    "4-3 Over"
+   ],
+   "definition": "A 4-3 front shifted to the strong (tight end, closed) side: the 3-technique tackle lines up on the strong side and the nose on the weak side in a 0 shade or 2i.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0752",
+   "variants": [
+    "Over",
+    "4-3 Over"
+   ]
+  },
+  {
+   "id": "term.palms",
+   "term": "Palms",
+   "aliases": [
+    "2-Trap",
+    "trap coverage",
+    "Cover 2 trap"
+   ],
+   "definition": "A split-field coverage from a Cover 2 look where the corner reads the number-two receiver's release and jumps the first outside route, with a safety deep over the top; also called 2-Trap.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0760",
+   "variants": [
+    "2-Trap",
+    "trap",
+    "Kathy",
+    "gold"
+   ]
+  },
+  {
+   "id": "term.pass-defense",
+   "term": "pass defense",
+   "aliases": [],
+   "definition": "Defending against passing plays through coverage and pass rush.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0765"
+  },
+  {
+   "id": "term.pass-rush",
+   "term": "pass rush",
+   "aliases": [
+    "rush"
+   ],
+   "definition": "The defenders' effort to reach and pressure the quarterback on a pass play, usually by the four down linemen plus any blitzers.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0768"
+  },
+  {
+   "id": "term.pass-strength",
+   "term": "pass strength",
+   "aliases": [
+    "passing strength"
+   ],
+   "definition": "The side of the formation with the most passing threats, where the defense adds a coverage player.",
+   "domain": "defense",
+   "subdomain": "calls",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0769"
+  },
+  {
+   "id": "term.pattern-match",
+   "term": "pattern match",
+   "aliases": [
+    "pattern matching",
+    "match coverage"
+   ],
+   "definition": "A zone-looking coverage in which defenders switch to man-style responsibilities based on how the receivers' routes develop.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0773",
+   "variants": [
+    "match",
+    "match coverage"
+   ]
+  },
+  {
+   "id": "term.pedal",
+   "term": "pedal",
+   "aliases": [
+    "backpedal",
+    "pedal technique"
+   ],
+   "definition": "A defender moving backward with short, quick steps while keeping his eyes on the receiver or quarterback.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0777",
+   "variants": [
+    "backpedal"
+   ]
+  },
+  {
+   "id": "term.penetrate",
+   "term": "penetrate",
+   "aliases": [
+    "penetration",
+    "shoot a gap"
+   ],
+   "definition": "To charge through a gap into the backfield with speed and quickness to disrupt the play, as the 3-technique and rush end do in a 4-3.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0780",
+   "variants": [
+    "penetrating"
+   ]
+  },
+  {
+   "id": "term.pete-carroll-defense-pro",
+   "term": "Pete Carroll defense",
+   "aliases": [
+    "Seahawks 4-3 hybrid",
+    "Seattle Cover 3"
+   ],
+   "definition": "The 4-3 Under, Leo end and Cover 3 with a safety dropping near linebacker depth, put together by Pete Carroll and Dan Quinn at Seattle.",
+   "domain": "defense",
+   "subdomain": "schemes",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0787",
+   "variants": [
+    "Seattle 4-3 hybrid"
+   ]
+  },
+  {
+   "id": "term.plug",
+   "term": "plug",
+   "aliases": [
+    "plug the gap"
+   ],
+   "definition": "To close a gap, often a lineman holding it against a run while linebackers flow around him.",
+   "domain": "defense",
+   "subdomain": "run-defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0815"
+  },
+  {
+   "id": "term.poach",
+   "term": "poach",
+   "aliases": [],
+   "definition": "A safety on the back side of a coverage helps on the front side.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0816"
+  },
+  {
+   "id": "term.pocket",
+   "term": "pocket",
+   "aliases": [
+    "passing pocket"
+   ],
+   "definition": "The area behind the offensive line created by pass blockers where the quarterback stands to throw.",
+   "domain": "defense",
+   "subdomain": "offense (coverage context)",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0817"
+  },
+  {
+   "id": "term.press",
+   "term": "press",
+   "aliases": [
+    "press coverage",
+    "press-man"
+   ],
+   "definition": "A defender lines up on the receiver at the line to jam him and disrupt the route at the snap.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0845",
+   "variants": [
+    "bump-and-run"
+   ]
+  },
+  {
+   "id": "term.prevent-defense",
+   "term": "prevent defense",
+   "aliases": [
+    "prevent",
+    "prevent shell"
+   ],
+   "definition": "A deep zone defense, used to protect a lead late in a half or game, that gives up short gains to stop long ones.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0848",
+   "variants": [
+    "prevent",
+    "Green 2"
+   ]
+  },
+  {
+   "id": "term.red-dog",
+   "term": "red dog",
+   "aliases": [
+    "red-dog"
+   ],
+   "definition": "An old term for a linebacker rush that made six rushers against five blockers.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0898"
+  },
+  {
+   "id": "term.rip-liz",
+   "term": "Rip/Liz",
+   "aliases": [
+    "Rip",
+    "Liz",
+    "Rip Liz Match"
+   ],
+   "definition": "A Saban-originated Cover 3 match call: rip or liz tells which way the safety rotates (to the right or left), and the match rules handle the receivers, especially against four verticals.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0930",
+   "variants": [
+    "Rip",
+    "Liz"
+   ]
+  },
+  {
+   "id": "term.rip-move",
+   "term": "rip move",
+   "aliases": [
+    "rip"
+   ],
+   "definition": "A pass-rush move where the rusher drives his inside arm up under the blocker's arm to win leverage.",
+   "domain": "defense",
+   "subdomain": "pass rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0931",
+   "variants": [
+    "rip"
+   ]
+  },
+  {
+   "id": "term.robber",
+   "term": "robber",
+   "aliases": [
+    "robber technique",
+    "hole player",
+    "Cover 1 Robber"
+   ],
+   "definition": "A safety (sometimes a linebacker) who starts deep or shows another coverage, then drops into the underneath middle of the field in man-free coverage to undercut crossing, slant, in and dig routes.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0933",
+   "variants": [
+    "Robber",
+    "Cover 1 Robber",
+    "hole"
+   ]
+  },
+  {
+   "id": "term.roll",
+   "term": "roll",
+   "aliases": [
+    "rotate",
+    "roll the coverage"
+   ],
+   "definition": "Changing the coverage after the snap from the look shown before it.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0934",
+   "variants": [
+    "rotation"
+   ]
+  },
+  {
+   "id": "term.rotation",
+   "term": "rotation",
+   "aliases": [
+    "safety rotation",
+    "roll the coverage"
+   ],
+   "definition": "Moving the safeties (and sometimes corners) before or after the snap so the coverage shell changes, often to disguise it.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0947",
+   "variants": [
+    "roll",
+    "spin",
+    "rip/liz (Saban)"
+   ]
+  },
+  {
+   "id": "term.rover-college",
+   "term": "Rover",
+   "aliases": [
+    "hybrid safety"
+   ],
+   "definition": "A hybrid safety-linebacker used near the line who has both defensive back and linebacker duties; the name is more common in college than the NFL.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0954",
+   "variants": [
+    "rover"
+   ]
+  },
+  {
+   "id": "term.run-strength",
+   "term": "run strength",
+   "aliases": [
+    "strong side",
+    "strength"
+   ],
+   "definition": "The side of the offensive formation where the tight end lines up (or that has the most blockers), toward which the defense sets its run strength.",
+   "domain": "defense",
+   "subdomain": "alignment",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0958",
+   "variants": [
+    "strong side"
+   ]
+  },
+  {
+   "id": "term.saban-pattern-match-coverage-college",
+   "term": "Saban pattern-match coverage",
+   "aliases": [
+    "Saban defense",
+    "match quarters",
+    "pattern match Cover 3"
+   ],
+   "definition": "Nick Saban's system of pattern-matching coverage, in which defenders use rules based on what routes do to decide whom to cover rather than only spot-dropping or playing straight man.",
+   "domain": "defense",
+   "subdomain": "coach-systems",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0966",
+   "variants": [
+    "pattern match",
+    "match quarters",
+    "Cover 7"
+   ]
+  },
+  {
+   "id": "term.sack",
+   "term": "sack",
+   "aliases": [
+    "quarterback sack"
+   ],
+   "definition": "A tackle of the quarterback behind the line of scrimmage before he throws.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0967",
+   "variants": [
+    "sack"
+   ]
+  },
+  {
+   "id": "term.safety-blitz",
+   "term": "safety blitz",
+   "aliases": [],
+   "definition": "A blitz in which a safety, usually the free safety, rushes the passer.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0970"
+  },
+  {
+   "id": "term.sam",
+   "term": "Sam",
+   "aliases": [
+    "SLB",
+    "strong-side linebacker"
+   ],
+   "definition": "The strong-side linebacker, who lines up on the tight end's side and has to handle the tight end and edge run plays.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0975",
+   "variants": [
+    "Sam (SLB)"
+   ]
+  },
+  {
+   "id": "term.seam",
+   "term": "seam",
+   "aliases": [
+    "seam route",
+    "seam area"
+   ],
+   "definition": "The vertical lane between the hashes (and the zone defenders), where vertical routes up the middle run; a defender 'runs the seam' to carry it.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0989",
+   "variants": [
+    "inside seam"
+   ]
+  },
+  {
+   "id": "term.seattle-cover-3-pro",
+   "term": "Seattle Cover 3",
+   "aliases": [
+    "Seahawks Cover 3"
+   ],
+   "definition": "A Cover 3 with a safety dropping to about linebacker depth, putting eight defenders near the line.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0992"
+  },
+  {
+   "id": "term.secondary",
+   "term": "secondary",
+   "aliases": [
+    "defensive backfield",
+    "defensive backs"
+   ],
+   "definition": "The defensive backs as a group, the cornerbacks and safeties, mainly responsible for pass coverage.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-0999",
+   "variants": [
+    "defensive backfield"
+   ]
+  },
+  {
+   "id": "term.set-the-edge",
+   "term": "set the edge",
+   "aliases": [
+    "setting the edge"
+   ],
+   "definition": "To hold outside leverage against the blocker so the runner cannot get outside the tackle and is funneled back inside.",
+   "domain": "defense",
+   "subdomain": "run-defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1007",
+   "variants": [
+    "set the edge"
+   ]
+  },
+  {
+   "id": "term.shade",
+   "term": "shade",
+   "aliases": [
+    "shade technique"
+   ],
+   "definition": "Lining up on one shoulder of a blocker instead of head-up.",
+   "domain": "defense",
+   "subdomain": "techniques",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1010",
+   "variants": [
+    "inside shade",
+    "outside shade"
+   ]
+  },
+  {
+   "id": "term.shoot-the-gap",
+   "term": "shoot the gap",
+   "aliases": [
+    "shoot a gap"
+   ],
+   "definition": "A defender charging into a gap at the snap.",
+   "domain": "defense",
+   "subdomain": "run-defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1015",
+   "variants": [
+    "shoot"
+   ]
+  },
+  {
+   "id": "term.single-high",
+   "term": "single-high",
+   "aliases": [
+    "one-high",
+    "single high safety",
+    "MOFC"
+   ],
+   "definition": "A shell with one safety deep in the middle of the field, as in Cover 1 and Cover 3.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1032",
+   "variants": [
+    "one-high",
+    "single-high safety"
+   ]
+  },
+  {
+   "id": "term.slant",
+   "term": "Slant",
+   "aliases": [
+    "slant route"
+   ],
+   "definition": "A quick inside-breaking route: a receiver takes a few steps upfield then cuts across the field at about 45 degrees.",
+   "domain": "defense",
+   "subdomain": "offense (coverage context)",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1039"
+  },
+  {
+   "id": "term.slot",
+   "term": "slot",
+   "aliases": [
+    "slot receiver",
+    "slot area"
+   ],
+   "definition": "The area between the split end and the rest of the offensive line, or the receiver aligned there; defenses cover it with a nickel or slot corner.",
+   "domain": "defense",
+   "subdomain": "alignment",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1042",
+   "variants": [
+    "slotback"
+   ]
+  },
+  {
+   "id": "term.spill",
+   "term": "spill",
+   "aliases": [
+    "spill technique"
+   ],
+   "definition": "To force a runner outside, toward pursuit help, instead of letting him cut up inside.",
+   "domain": "defense",
+   "subdomain": "run-defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1062"
+  },
+  {
+   "id": "term.spin",
+   "term": "spin",
+   "aliases": [
+    "spin down",
+    "spin the safeties"
+   ],
+   "definition": "A rotation where a safety spins down toward the line or flat after the snap while the other safety or a corner takes the deep area.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1063",
+   "variants": [
+    "spin down"
+   ]
+  },
+  {
+   "id": "term.spin-move",
+   "term": "spin move",
+   "aliases": [
+    "spin"
+   ],
+   "definition": "A pass-rush move where the rusher turns a full circle past the blocker.",
+   "domain": "defense",
+   "subdomain": "pass rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1064"
+  },
+  {
+   "id": "term.spy",
+   "term": "spy",
+   "aliases": [
+    "QB spy",
+    "quarterback spy",
+    "spy the quarterback"
+   ],
+   "definition": "A defender who neither rushes nor drops into a normal zone, but watches and mirrors a mobile quarterback to stop scrambles.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1075",
+   "variants": [
+    "QB spy",
+    "green dog (related)"
+   ]
+  },
+  {
+   "id": "term.stack-pro",
+   "term": "Stack",
+   "aliases": [
+    "stack front",
+    "tan-zero-tan"
+   ],
+   "definition": "A look where linebackers line up behind the down linemen; Bowen names the 4-3 Over linebacker look 'tan-zero-tan' (tackle, zero technique, tackle).",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1079",
+   "variants": [
+    "stack",
+    "tan-zero-tan"
+   ]
+  },
+  {
+   "id": "term.stand-up-end",
+   "term": "stand-up end",
+   "aliases": [
+    "stand-up rusher",
+    "two-point end"
+   ],
+   "definition": "A defensive end or rush linebacker who plays from a standing two-point stance; Wikipedia's Defensive end page also uses the term for the traditional containment-style end who waits rather than crashes inside.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1080",
+   "variants": [
+    "stand-up rusher"
+   ]
+  },
+  {
+   "id": "term.star-college",
+   "term": "star",
+   "aliases": [
+    "Star",
+    "nickel (college)",
+    "star nickel"
+   ],
+   "definition": "Saban's name for the nickel (fifth DB) slot hybrid, a cornerback-sized slot defender who also plays the run.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1082",
+   "variants": [
+    "Star",
+    "nickel"
+   ]
+  },
+  {
+   "id": "term.strength-call",
+   "term": "strength call",
+   "aliases": [
+    "strength"
+   ],
+   "definition": "The defense's call naming its strong side, normally the side of the tight end (run strength).",
+   "domain": "defense",
+   "subdomain": "calls",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1088"
+  },
+  {
+   "id": "term.strong-safety",
+   "term": "strong safety",
+   "aliases": [
+    "SS",
+    "box safety (informal)"
+   ],
+   "definition": "The safety who lines up on the strong side (the tight end side), plays closer to the line than the free safety, and helps against the run.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1091",
+   "variants": [
+    "SS"
+   ]
+  },
+  {
+   "id": "term.strong-side",
+   "term": "strong side",
+   "aliases": [
+    "strongside"
+   ],
+   "definition": "The side of the offense with the tight end, or with the most players if there is no tight end or more than one.",
+   "domain": "defense",
+   "subdomain": "calls",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1092",
+   "variants": [
+    "strong"
+   ]
+  },
+  {
+   "id": "term.stubbie",
+   "term": "Stubbie",
+   "aliases": [
+    "stubbie coverage"
+   ],
+   "definition": "A split-field coverage against a 3x1 (three-receiver) side in which the corner presses the number-one receiver in man, a defender takes number two man-to-man unless number three goes to the flat, and the safety takes number three vertically or brackets number two.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1093",
+   "variants": [
+    "Stubbie",
+    "Stump (related)"
+   ]
+  },
+  {
+   "id": "term.stuff",
+   "term": "stuff",
+   "aliases": [
+    "stuffed",
+    "run stuff"
+   ],
+   "definition": "A tackle of a ball carrier on a running play behind the line of scrimmage.",
+   "domain": "defense",
+   "subdomain": "run-defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1094",
+   "variants": [
+    "stuff rate"
+   ]
+  },
+  {
+   "id": "term.stunt",
+   "term": "stunt",
+   "aliases": [
+    "twist",
+    "line stunt",
+    "TEX stunt"
+   ],
+   "definition": "A pass-rush move where two rushers exchange paths so one blocker is picked or screened and a rusher gets free; a twist is the stunt where the two cross.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1096",
+   "variants": [
+    "twist",
+    "TEX",
+    "X stunt"
+   ]
+  },
+  {
+   "id": "term.swim-move",
+   "term": "swim move",
+   "aliases": [
+    "swim"
+   ],
+   "definition": "A rush move where the rusher grabs or pulls the blocker's shoulder or jersey and swings an arm over the top to get past him.",
+   "domain": "defense",
+   "subdomain": "pass-rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1108",
+   "variants": [
+    "swim"
+   ]
+  },
+  {
+   "id": "term.tackle-box",
+   "term": "tackle box",
+   "aliases": [
+    "tackle-box"
+   ],
+   "definition": "The area in the offensive backfield between the two offensive tackles; NCAA rules define it as a rectangle bounded by the neutral zone, lines five yards each side of the snapper and the offense's end line.",
+   "domain": "defense",
+   "subdomain": "rules",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1113"
+  },
+  {
+   "id": "term.tackle-for-loss",
+   "term": "tackle for loss",
+   "aliases": [
+    "TFL",
+    "stuff"
+   ],
+   "definition": "A tackle of a ball carrier behind the line of scrimmage, costing the offense yardage.",
+   "domain": "defense",
+   "subdomain": "run defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1114",
+   "variants": [
+    "stuff"
+   ]
+  },
+  {
+   "id": "term.tampa-2-mike-pro",
+   "term": "tampa-2 Mike",
+   "aliases": [
+    "Tampa 2 Mike"
+   ],
+   "definition": "The middle linebacker in the Tampa 2 who runs deep down the middle behind the underneath linebackers.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1119"
+  },
+  {
+   "id": "term.tampa-2-pro",
+   "term": "Tampa 2",
+   "aliases": [
+    "Cover 2 zone",
+    "Tampa Cover 2"
+   ],
+   "definition": "A Cover 2 zone in which the middle linebacker runs the deep middle seam, giving a three-deep look behind two deep safeties; built from a 4-3 front.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1120",
+   "variants": [
+    "Tampa Cover 2",
+    "Cover 2 zone"
+   ]
+  },
+  {
+   "id": "term.tite-front",
+   "term": "Tite front",
+   "aliases": [
+    "tight front",
+    "Tite"
+   ],
+   "definition": "A compressed front with a nose tackle over the center and the ends in 4i alignments, mainly used to defend spread offenses and cover B gaps.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1149",
+   "variants": [
+    "tight front"
+   ]
+  },
+  {
+   "id": "term.trail",
+   "term": "trail",
+   "aliases": [
+    "trail technique"
+   ],
+   "definition": "A defender plays behind and outside the receiver, keeping him in front or to the inside.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1162"
+  },
+  {
+   "id": "term.trips",
+   "term": "trips",
+   "aliases": [
+    "Trips",
+    "trips formation",
+    "3x1"
+   ],
+   "definition": "A formation with three receivers lined up to one side.",
+   "domain": "defense",
+   "subdomain": "offense (coverage context)",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1173",
+   "variants": [
+    "3x1"
+   ]
+  },
+  {
+   "id": "term.tuff-college",
+   "term": "Tuff",
+   "aliases": [
+    "Tuff call"
+   ],
+   "definition": "A Saban-system call for defending the single receiver on the backside of a 3x1 set: the safety spins down to the curl/flat, and the corner either stays in man-on-the-edge or inverts to the deep half, giving a Cover 6 look.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "college",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1176",
+   "variants": [
+    "Tuff"
+   ]
+  },
+  {
+   "id": "term.twist",
+   "term": "twist",
+   "aliases": [
+    "T-E stunt"
+   ],
+   "definition": "A line stunt in which two rushers swap paths, one looping around behind the other.",
+   "domain": "defense",
+   "subdomain": "pass rush",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1182",
+   "variants": [
+    "loop"
+   ]
+  },
+  {
+   "id": "term.two-gap",
+   "term": "two-gap",
+   "aliases": [
+    "2-gap",
+    "two gapping",
+    "two-gap technique"
+   ],
+   "definition": "A technique where a lineman controls the blocker and is responsible for two gaps, letting linebackers run free; used by 3-4 ends and nose tackles.",
+   "domain": "defense",
+   "subdomain": "gaps",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1185",
+   "variants": [
+    "2-gap",
+    "two-gapping"
+   ]
+  },
+  {
+   "id": "term.two-high",
+   "term": "two-high",
+   "aliases": [
+    "two-deep",
+    "split-safety",
+    "MOFO"
+   ],
+   "definition": "A defense that plays two safeties deep.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1186"
+  },
+  {
+   "id": "term.two-level-defense",
+   "term": "two-level defense",
+   "aliases": [
+    "two-level"
+   ],
+   "definition": "A defense with only two levels of defenders (line and one back level) instead of the usual three; usually more aggressive.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1187",
+   "variants": [
+    "2-level"
+   ]
+  },
+  {
+   "id": "term.under-front",
+   "term": "Under front",
+   "aliases": [
+    "4-3 Under",
+    "Under"
+   ],
+   "definition": "A 4-3 front where the nose tackle sits on the closed (tight end) side and the 3-technique to the open side, the opposite of the Over front.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1196",
+   "variants": [
+    "Under",
+    "4-3 Under"
+   ]
+  },
+  {
+   "id": "term.wade-phillips-3-4-pro",
+   "term": "Wade Phillips 3-4",
+   "aliases": [
+    "3-4 Under (Phillips)"
+   ],
+   "definition": "A one-gap 3-4 front (the 3-4 Under) run by Wade Phillips with the Texans.",
+   "domain": "defense",
+   "subdomain": "coach-systems",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1220",
+   "variants": [
+    "3-4 Under"
+   ]
+  },
+  {
+   "id": "term.walk-up",
+   "term": "walk-up",
+   "aliases": [
+    "walked up"
+   ],
+   "definition": "A linebacker or defender aligned at the line of scrimmage rather than behind it.",
+   "domain": "defense",
+   "subdomain": "alignment",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1227"
+  },
+  {
+   "id": "term.wall",
+   "term": "wall",
+   "aliases": [
+    "wall off"
+   ],
+   "definition": "To 'wall off' a route: a middle-hook defender closes off inside-breaking and crossing routes underneath.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1229",
+   "variants": [
+    "walling off"
+   ]
+  },
+  {
+   "id": "term.weak-side",
+   "term": "weak side",
+   "aliases": [
+    "weakside",
+    "open side",
+    "Weak side"
+   ],
+   "definition": "The side of the formation away from the tight end (or with the fewest offensive players on or near the line); the opposite of the strong side.",
+   "domain": "defense",
+   "subdomain": "alignment",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1231",
+   "variants": [
+    "open side",
+    "boundary-opposite"
+   ]
+  },
+  {
+   "id": "term.wide-9-pro",
+   "term": "Wide 9",
+   "aliases": [
+    "wide-9",
+    "wide nine"
+   ],
+   "definition": "A front where the defensive ends line up very wide of the offensive tackle, in a 9-technique, to rush the edge; the name became popular after the Eagles.",
+   "domain": "defense",
+   "subdomain": "fronts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1239",
+   "variants": [
+    "wide-9"
+   ]
+  },
+  {
+   "id": "term.will",
+   "term": "Will",
+   "aliases": [
+    "weak-side linebacker",
+    "W"
+   ],
+   "definition": "The weak-side linebacker, the one who lines up away from the tight end; in a 4-3 usually the fastest of the three linebackers.",
+   "domain": "defense",
+   "subdomain": "positions",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1243",
+   "variants": [
+    "Will",
+    "W"
+   ]
+  },
+  {
+   "id": "term.zero-blitz",
+   "term": "zero blitz",
+   "aliases": [
+    "Cover 0 blitz"
+   ],
+   "definition": "A blitz run out of Cover 0: more rushers than the offense has blockers, every receiver covered man-to-man and no deep safety.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1266",
+   "variants": [
+    "Cover 0 pressure"
+   ]
+  },
+  {
+   "id": "term.zone-blitz",
+   "term": "zone blitz",
+   "aliases": [
+    "fire zone",
+    "zone pressure"
+   ],
+   "definition": "A rush of five or more in which one or more players who normally rush (often a lineman or edge) drop into coverage while other defenders rush, behind a zone coverage.",
+   "domain": "defense",
+   "subdomain": "blitz",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1267",
+   "variants": [
+    "fire zone",
+    "zone dog"
+   ]
+  },
+  {
+   "id": "term.zone-coverage",
+   "term": "zone coverage",
+   "aliases": [
+    "zone"
+   ],
+   "definition": "Pass coverage in which each defender covers an area of the field rather than a specific receiver.",
+   "domain": "defense",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.3",
+   "factRow": "F-glossary-1269",
+   "variants": [
+    "zone"
+   ]
+  }
+ ]
+}

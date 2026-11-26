@@ -1,0 +1,16 @@
+{
+  "leaf": "N5.4.1 rule 3",
+  "note": "A pattern's bucket key is '<decision type>' or '<decision type>:<detail>' (decision types: @gm/models decisions catalogue, N3.2). The map reads the decision type. A type with no row shows the evidence alone.",
+  "rows": [
+    { "decisionType": "fourth_down", "lesson": "situations.fourth_down", "drill": null },
+    { "decisionType": "field_goal_attempt", "lesson": "situations.fourth_down", "drill": null },
+    { "decisionType": "try", "lesson": "situations.two_point", "drill": null },
+    { "decisionType": "timeout", "lesson": "situations.end_of_game", "drill": "clock" },
+    { "decisionType": "clock_mode", "lesson": "situations.end_of_game", "drill": "clock" },
+    { "decisionType": "kickoff_onside", "lesson": "special.kicks", "drill": null },
+    { "decisionType": "penalty_acceptance", "lesson": "rules.downs", "drill": null },
+    { "decisionType": "offensive_play_call", "lesson": "calling.self_scout", "drill": "call_speed" },
+    { "decisionType": "defensive_call", "lesson": "defense.shells", "drill": "recognition" },
+    { "decisionType": "depth_chart_change", "lesson": "people.depth_chart", "drill": null }
+  ]
+}
