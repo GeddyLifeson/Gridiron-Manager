@@ -155,3 +155,23 @@ describe('E10.4.1 words and deeds', () => {
     expect(e.overall.share).toBeNull();
   });
 });
+
+describe('screen fixture', () => {
+  it('app-ui test/screens/notebook/views.json is the current read-model output on this fixture', async () => {
+    const { readFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    const file = JSON.parse(readFileSync(join(import.meta.dirname, '../../../../app-ui/test/screens/notebook/views.json'), 'utf8')) as Record<string, unknown>;
+    const nb = sampleNotebook();
+    const now = { seasonYear: 2028, dayIndex: 220 };
+    const want = {
+      all: buildNotebook(nb, namer),
+      quartersOpponent: buildNotebook(nb, namer, { text: 'quarters', kind: 'opponent' }),
+      empty: buildNotebook(coach.emptyNotebook(ME), namer),
+      own: buildLedgerView({ philosophy: samplePhilosophy(), decisions: sampleDecisions(), now }),
+      ownDraft: buildLedgerView({ philosophy: samplePhilosophy(ME, true), decisions: [], now }),
+      boss: buildLedgerView({ philosophy: samplePhilosophy(BOSS), decisions: sampleDecisions(BOSS), now }, 'boss', 'Coach Hale'),
+      emptyLedger: buildLedgerView({ philosophy: coach.emptyPhilosophy(ME, false), decisions: [], now }),
+    };
+    expect(JSON.parse(JSON.stringify(want))).toEqual(Object.fromEntries(Object.entries(file).filter(([k]) => k !== '$comment')));
+  });
+});

@@ -3,32 +3,35 @@ import { describe, expect, it } from 'vitest';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { coach } from '@gm/career';
-// The barrel line for this read model is owed by the exports integrator; until then the test reads the folder.
-import { applyNotebookAction, buildLedgerView, buildNotebook, exportNotebookText } from '../../../../app-services/src/read-models/notebook/index.ts';
-import { BOSS, HC_JOB, ME, at, namer, sampleDecisions, sampleNotebook, samplePhilosophy } from '../../../../app-services/test/read-models/notebook/fixture.ts';
 import {
   LedgerPage, NO_FILTER, NOTEBOOK_SCREEN_ID, NotebookScreen, hasNbText, notebookRoutes, notebookStateFromView, nt, viewFromNotebookState,
-  type NotebookHost, type UiLedgerView, type UiNotebookFilter, type UiNotebookView,
+  type NotebookHost, type UiLedgerView, type UiNotebookAction, type UiNotebookFilter, type UiNotebookView,
 } from '../../../src/screens/notebook/index.ts';
+// Read-model output on the app-services fixture; the app-services test checks this file has not drifted.
+import VIEWS from './views.json';
+
+const V = VIEWS as unknown as {
+  all: UiNotebookView; quartersOpponent: UiNotebookView; empty: UiNotebookView;
+  own: UiLedgerView; ownDraft: UiLedgerView; boss: UiLedgerView; emptyLedger: UiLedgerView;
+};
 
 function host(opts: { boss?: boolean; draft?: boolean; empty?: boolean } = {}) {
-  let nb = opts.empty ? coach.emptyNotebook(ME) : sampleNotebook();
-  const exports: string[] = [];
-  const now = { seasonYear: 2028, dayIndex: 220 };
+  const asked: UiNotebookFilter[] = [];
+  const actions: UiNotebookAction[] = [];
+  let exported = 0;
   const h: NotebookHost = {
-    notebook: (f: UiNotebookFilter): UiNotebookView => buildNotebook(nb, namer, f),
-    ledger: () => ({
-      own: buildLedgerView({ philosophy: samplePhilosophy(ME, opts.draft ?? false), decisions: sampleDecisions(), now }) satisfies UiLedgerView,
-      boss: opts.boss ? buildLedgerView({ philosophy: samplePhilosophy(BOSS), decisions: sampleDecisions(BOSS), now }, 'boss', 'Coach Hale') : null,
-    }),
-    act: (a) => {
-      const r = applyNotebookAction(nb, a, at(2028, 220), HC_JOB);
-      if (r.ok) nb = r.notebook;
-      return r.ok ? { ok: true } : { ok: false, key: r.key };
+    notebook: (f) => {
+      asked.push(f);
+      if (opts.empty) return V.empty;
+      if (f.text === 'quarters' && f.kind === 'opponent') return V.quartersOpponent;
+      if (f.text === 'zzz') return { ...V.all, rows: [] };
+      return V.all;
     },
-    exportText: () => { exports.push(exportNotebookText(nb, namer)); },
+    ledger: () => ({ own: opts.draft ? V.ownDraft : V.own, boss: opts.boss ? V.boss : null }),
+    act: (a) => { actions.push(a); return a.kind === 'merge' && a.ids.length < 2 ? { ok: false, key: 'note.merge_needs_two' } : { ok: true }; },
+    exportText: () => { exported++; },
   };
-  return { h, exports, get nb() { return nb; } };
+  return { h, asked, actions, get exported() { return exported; } };
 }
 
 const page = (h: NotebookHost, tab: 'notes' | 'ledger' = 'notes', filter: UiNotebookFilter = NO_FILTER, readOnly = false) =>
@@ -78,20 +81,15 @@ describe('E11.4.1 notes page', () => {
     expect(html).toContain('Export notebook as text');
   });
 
-  it('host actions change the notebook: pin, edit, merge, delete, write; export writes subject names', () => {
-    const t = host();
-    expect(t.h.act({ kind: 'pin', id: 1, pinned: true })).toEqual({ ok: true });
-    expect(t.h.act({ kind: 'edit', id: 4, text: 'Inside zone from 12 personnel when ahead, and from 11 on early downs.' })).toEqual({ ok: true });
-    expect(t.h.act({ kind: 'merge', ids: [1] })).toEqual({ ok: false, key: 'note.merge_needs_two' });
-    expect(t.h.act({ kind: 'merge', ids: [1, 2] })).toEqual({ ok: true });
-    expect(t.h.act({ kind: 'delete', id: 3 })).toEqual({ ok: true });
-    expect(t.h.act({ kind: 'write', text: 'Check the punt team splits.' })).toEqual({ ok: true });
-    const html = page(t.h);
-    expect([...html.matchAll(/data-note="(\d+)"/g)].map((m) => Number(m[1]))).toEqual([4, 1, 6, 5]);
-    expect(html).toContain('Edited Season 2028, day 220');
-    t.h.exportText();
-    expect(t.exports[0]).toContain('About: Dale Ruiz');
+  it('every action error the read model can return has text', () => {
     for (const key of ['note.merge_needs_two', 'note.too_long', 'note.empty', 'note.unknown']) expect(hasNbText(`nb.error.${key}`), key).toBe(true);
+  });
+
+  it('the screen asks the host for exactly the filter in the address', () => {
+    const t = host();
+    const f: UiNotebookFilter = { ...NO_FILTER, tag: 'tells', season: 2027 };
+    page(t.h, 'notes', f);
+    expect(t.asked).toEqual([f]);
   });
 });
 
@@ -128,8 +126,7 @@ describe('E10.4.1 words and deeds', () => {
   });
 
   it('an empty statement says so', () => {
-    const empty = buildLedgerView({ philosophy: coach.emptyPhilosophy(ME, false), decisions: [], now: { seasonYear: 2028, dayIndex: 1 } });
-    const html = renderToStaticMarkup(createElement(LedgerPage, { ledger: empty }));
+    const html = renderToStaticMarkup(createElement(LedgerPage, { ledger: V.emptyLedger }));
     expect(html).toContain('No statement written.');
     expect(html).toContain('No commitments made.');
   });
