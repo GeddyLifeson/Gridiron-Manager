@@ -26,4 +26,12 @@ describe('deferred items are authored', () => {
     expect(call('def_cover3_sky_flat')!.slots.find((s) => s.role === 'SS')!.params!['zone']).toBe('curlFlatRight');
     expect(call('def_cover3_cloud')!.slots.find((s) => s.role === 'RCB')!.params!['zone']).toBe('cloudFlatRight');
   });
+  it('has the second-pass items: speed option, short-yardage bear, Cover 4 MEG and Solo', () => {
+    expect(play('qb_speed_option_right')!.kind).toBe('qb_run');
+    expect(call('def_short_yardage_bear')!.coverageFamily).toBe('cover0');
+    expect(call('def_cover4_meg')!.slots.filter((s) => s.behavior === 'manCover').map((s) => s.role).sort()).toEqual(['LCB', 'RCB']);
+    const solo = call('def_cover4_solo')!;
+    expect(solo.drawnAgainst).toBe('gun_trips_right_11');
+    expect(solo.slots.find((s) => s.role === 'LCB')!.behavior).toBe('manCover');
+  });
 });
