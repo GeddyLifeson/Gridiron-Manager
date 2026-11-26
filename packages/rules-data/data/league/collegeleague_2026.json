@@ -9,31 +9,6 @@
  "schema_version": 1,
  "values": [
   {
-   "key": "playoff.reseed",
-   "value": false,
-   "factId": "F-league-0214"
-  },
-  {
-   "key": "cfp.at_large_pool_rank",
-   "value": 0,
-   "unit": "rank",
-   "factId": "F-league-0215"
-  },
-  {
-   "key": "ranking.schedule_standard_games",
-   "value": 0,
-   "unit": "games",
-   "factId": "F-league-0216",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
-  },
-  {
-   "key": "standings.tie_win_value",
-   "value": 0.5,
-   "unit": "ratio",
-   "factId": "F-league-0217",
-   "note": "PROVISIONAL: status Assumption (Q6.3.1)"
-  },
-  {
    "key": "league.roster_limit",
    "value": 105,
    "unit": "count",
@@ -73,8 +48,7 @@
    "key": "pay.opted_in_schools",
    "value": 319,
    "unit": "count",
-   "factId": "F-college-0007",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-college-0007"
   },
   {
    "key": "eligibility.window_years",
@@ -143,22 +117,19 @@
    "key": "bowl.eligibility_wins",
    "value": 6,
    "unit": "wins",
-   "factId": "F-college-0021",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-0021"
   },
   {
    "key": "bowl.lower_division_wins_counted",
    "value": 1,
    "unit": "wins",
-   "factId": "F-college-0022",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-college-0022"
   },
   {
    "key": "bowl.fill_min_wins",
    "value": 5,
    "unit": "wins",
-   "factId": "F-college-0023",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-0023"
   },
   {
    "key": "club_discipline.model",
@@ -205,20 +176,17 @@
    "key": "eligibility.redshirt_max_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-college-keys-0007",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0007"
   },
   {
    "key": "eligibility.postseason_counts",
    "value": false,
-   "factId": "F-college-keys-0008",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0008"
   },
   {
    "key": "eligibility.juco_seasons_count",
    "value": true,
-   "factId": "F-college-keys-0009",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0009"
   },
   {
    "key": "academic.full_time_hours",
@@ -254,8 +222,7 @@
    "key": "academic.fall_rule_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-college-keys-0015",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0015"
   },
   {
    "key": "academic.progress_pct_year3",
@@ -332,28 +299,25 @@
   {
    "key": "transfer.aid_ends_on_entry",
    "value": false,
-   "factId": "F-college-keys-0028",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0028"
   },
   {
    "key": "pay.scholarship_credit_2025_26",
    "value": 2500000,
    "unit": "USD",
-   "factId": "F-college-keys-0029",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0029"
   },
   {
    "key": "pay.scholarship_credit_2026_27",
-   "value": 2500000,
+   "value": 0,
    "unit": "USD",
    "factId": "F-college-keys-0030",
-   "note": "PROVISIONAL: Rulebook only (CSC primary text), open conflict with a news report (Q6.3.1)"
+   "note": "PROVISIONAL: status Conflict (Q6.3.1)"
   },
   {
    "key": "pay.multi_year",
    "value": true,
-   "factId": "F-college-keys-0031",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-college-keys-0031"
   },
   {
    "key": "pay.agent_fee_cap",
@@ -491,22 +455,19 @@
    "key": "recruiting.message_start_month",
    "value": 6,
    "unit": "month",
-   "factId": "F-recruiting-0021",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-recruiting-0021"
   },
   {
    "key": "recruiting.message_start_day",
    "value": 15,
    "unit": "day",
-   "factId": "F-recruiting-0022",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-recruiting-0022"
   },
   {
    "key": "recruiting.message_start_years_before_class",
    "value": 2,
    "unit": "years",
-   "factId": "F-recruiting-0023",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-recruiting-0023"
   },
   {
    "key": "visits.official_per_school",
@@ -517,29 +478,25 @@
   {
    "key": "visits.second_after_hc_change",
    "value": true,
-   "factId": "F-recruiting-0025",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-recruiting-0025"
   },
   {
    "key": "visits.max_hours",
    "value": 48,
    "unit": "hours",
-   "factId": "F-recruiting-0026",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-recruiting-0026"
   },
   {
    "key": "visits.paid_companions",
    "value": 2,
    "unit": "count",
-   "factId": "F-recruiting-0027",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-recruiting-0027"
   },
   {
    "key": "iawp.window_years",
    "value": 2,
    "unit": "years",
-   "factId": "F-recruiting-0030",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-recruiting-0030"
   },
   {
    "key": "college.initial_eligibility.core_courses",
