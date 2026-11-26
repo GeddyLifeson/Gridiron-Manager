@@ -28,22 +28,23 @@ export interface MarketDates {
   readonly unsignedRightsEnd: Instant;
 }
 
-const at = (r: CalendarResolver, season: number, id: string): Instant => {
+/** An anchor's instant. A whole-day anchor opens at midnight, or, read as a deadline, closes at the day's last minute. */
+const at = (r: CalendarResolver, season: number, id: string, deadline = false): Instant => {
   const a = r.anchor(season, id);
-  return { day: a.day, minute: a.minute ?? 0 };
+  return { day: a.day, minute: a.minute ?? (deadline ? MINUTES_PER_DAY - 1 : 0) };
 };
 
 /**
  * Builds the year's market dates from calendar anchors. Two readings are this module's: the UFA tender is
  * due by the end of the Monday after the draft (the CBA gives the day, not the hour), and "the first
- * scheduled day of the first NFL training camp" is the league's veteran report date (the calendar's
- * per-club report dates come later from club schedules).
+ * scheduled day of the first NFL training camp" is the league's rookie report date, the earliest
+ * camp reporting day the calendar holds.
  */
 export function marketDates(r: CalendarResolver, season: number, rules: MarketRules): MarketDates {
   const draftEnd = at(r, season, 'draft_end');
   const mondayAfter = onOrAfter(draftEnd.day + 1, WEEKDAY.mon);
   const july22 = at(r, season, 'ufa_tender_deadline');
-  const camp = at(r, season, 'veterans_report');
+  const camp = at(r, season, 'rookies_report');
   const tradeDeadline = at(r, season, 'trade_deadline');
   const extraWeeks = need(rules.unsignedRightsEndAfterWeek, 'fa.unsigned_rights_end_after_week') - need(rules.tradeDeadlineAfterWeek, 'trade.deadline_after_week');
   return {
@@ -51,7 +52,7 @@ export function marketDates(r: CalendarResolver, season: number, rules: MarketRu
     negotiatingOpen: at(r, season, 'negotiating_open'),
     negotiatingClose: at(r, season, 'negotiating_close'),
     leagueYearStart: at(r, season, 'league_year_start'),
-    offerSheetDeadline: at(r, season, 'rfa_offer_sheet_deadline'),
+    offerSheetDeadline: at(r, season, 'rfa_offer_sheet_deadline', true),
     draftStart: at(r, season, 'draft_start'),
     draftEnd,
     ufaTenderBy: { day: mondayAfter, minute: MINUTES_PER_DAY - 1 },
