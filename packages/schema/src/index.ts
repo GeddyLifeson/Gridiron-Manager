@@ -13,6 +13,11 @@ export * from './probability.ts';
 // Read-model data schemas moved in from app-services (CR-G68-S1 and later).
 export * from './read-models/gameplan.ts';
 export * from './read-models/people.ts';
+export * from './read-models/legends.ts';
+export * from './read-models/analytics.ts';
+export * from './read-models/roster-moves.ts';
+export * from './read-models/game-management.ts';
+export * from './read-models/game-frame.ts';
 // World contract for the game build (plans/game-build-plan.md, G-00). Decisions: src/world/DECISIONS.md.
 export * from './world/index.ts';
 // zod for packages that may import only this entry point (app-services read-model and command schemas, CR-G63-0).

@@ -1,9 +1,10 @@
+// Moved here from app-services/test/read-models/game-management/schema.ts (CR-G61-1); registered in READ_MODELS (commands.ts).
 // Data schema of the game management read model (G-61). It lives here because app-services may not import
 // zod (CR-G61-1, same as CR-G27-4); the integrator moves it into @gm/schema and passes it to
 // `gameManagementReadModels`. Every field carries a visibility class: the clock, timeouts and score state are
 // public; the decision bar, chart, analyst line, staff messages and injury words are the team's own. None is truth.
 import { z } from 'zod';
-import { pub, own } from '@gm/schema';
+import { pub, own } from '../field.ts';
 
 const Kind = z.enum(['penalty', 'runoff', 'challenge', 'fourth_down', 'try', 'kickoff', 'coin_toss', 'overtime_toss', 'kneel']);
 const Mark = z.enum(['solid', 'fair', 'thin']);
