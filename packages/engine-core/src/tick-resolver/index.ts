@@ -7,6 +7,7 @@ export * from './interact.ts';
 export * from './finish.ts';
 export * from './kick-op.ts';
 export * from './kick-check.ts';
+export * from './fake-look.ts';
 export * from './catch-point.ts';
 export * from './plugs.ts';
 export * from './stand-ins.ts';

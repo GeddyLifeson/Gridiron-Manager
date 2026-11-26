@@ -19,7 +19,11 @@ export type LookCondition =
   /** At most `count` defenders within `halfWidthYd` of the ball across and `depthYd` downfield ("a six-man box"). */
   | { readonly kind: 'boxAtMost'; readonly count: number; readonly halfWidthYd: number; readonly depthYd: number }
   /** Nobody lined up outside `outsidePy` on `side` (+1 the positive-y side, -1 the other) within `depthYd` downfield ("the rush leaves the edge open"). */
-  | { readonly kind: 'edgeOpen'; readonly side: 1 | -1; readonly outsidePy: number; readonly depthYd: number };
+  | { readonly kind: 'edgeOpen'; readonly side: 1 | -1; readonly outsidePy: number; readonly depthYd: number }
+  /** At most `count` defenders outside `beyondPy` on `side` within `depthYd` downfield ("the defense does not match the gate"). */
+  | { readonly kind: 'sideAtMost'; readonly side: 1 | -1; readonly beyondPy: number; readonly count: number; readonly depthYd: number }
+  /** Any one of these holds ("the gunner or the slot is uncovered"). */
+  | { readonly kind: 'either'; readonly of: readonly LookCondition[] };
 
 /** A disguising defender's shown spot (`PresnapDefense.disguise`): the reader sees him there. */
 export interface ShownSpot { readonly teamSlot: number; readonly shown: PlayPoint }
@@ -35,20 +39,30 @@ export function lookShown(look: readonly LookCondition[], O: readonly Assignment
   for (const d of disguise) shownBy.set(d.teamSlot, d.shown);
   const spots: PlayPoint[] = [];
   for (let i = 0; i < D.length; i++) { const a = D[i]; if (a !== undefined) spots.push(shownBy.get(i) ?? a.preSnap.align); }
-  for (const c of look) {
-    if (c.kind === 'uncovered') {
-      const man = O[c.teamSlot];
-      if (man === undefined) return false;
-      const y = man.preSnap.align.py;
-      for (const s of spots) if (s.px >= 0 && s.px <= c.depthYd && Math.abs(s.py - y) <= c.lateralYd) return false;
-    } else if (c.kind === 'boxAtMost') {
-      let n = 0;
-      for (const s of spots) if (s.px >= 0 && s.px <= c.depthYd && Math.abs(s.py) <= c.halfWidthYd) n++;
-      if (n > c.count) return false;
-    } else {
-      for (const s of spots) if (s.px >= 0 && s.px <= c.depthYd && s.py * c.side > c.outsidePy) return false;
-    }
+  for (const c of look) if (!holds(c, O, spots)) return false;
+  return true;
+}
+
+function holds(c: LookCondition, O: readonly Assignment[], spots: readonly PlayPoint[]): boolean {
+  if (c.kind === 'either') { for (const x of c.of) if (holds(x, O, spots)) return true; return false; }
+  if (c.kind === 'uncovered') {
+    const man = O[c.teamSlot];
+    if (man === undefined) return false;
+    const y = man.preSnap.align.py;
+    for (const s of spots) if (s.px >= 0 && s.px <= c.depthYd && Math.abs(s.py - y) <= c.lateralYd) return false;
+    return true;
   }
+  if (c.kind === 'boxAtMost') {
+    let n = 0;
+    for (const s of spots) if (s.px >= 0 && s.px <= c.depthYd && Math.abs(s.py) <= c.halfWidthYd) n++;
+    return n <= c.count;
+  }
+  if (c.kind === 'sideAtMost') {
+    let n = 0;
+    for (const s of spots) if (s.px >= 0 && s.px <= c.depthYd && s.py * c.side > c.beyondPy) n++;
+    return n <= c.count;
+  }
+  for (const s of spots) if (s.px >= 0 && s.px <= c.depthYd && s.py * c.side > c.outsidePy) return false;
   return true;
 }
 
@@ -68,6 +82,7 @@ export function checkReadChance(recognition: number, repped: boolean, q: TickRes
 export function validateLook(look: readonly LookCondition[], where: string): void {
   if (look.length === 0) throw new Error(`tick resolver: ${where}: the fake's check names no look`);
   for (const c of look) {
+    if (c.kind === 'either') { validateLook(c.of, where); continue; }
     if (c.kind === 'uncovered' && (!Number.isInteger(c.teamSlot) || c.teamSlot < 0 || c.teamSlot >= SLOTS_PER_TEAM)) {
       throw new Error(`tick resolver: ${where}: the fake's look names team slot ${String(c.teamSlot)}, which is not one of the eleven`);
     }
