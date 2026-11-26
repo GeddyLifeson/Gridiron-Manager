@@ -53,6 +53,16 @@
   ["proposal_floor", 0.02, 0.0001, 0.5, "probability", "assumption", "Marlon 2026-11-25 21:32 (both paths stay possible for every assistant)", "staff test 'violations'"],
   ["pref_min_seen", 5, 2, 50, "count", "assumption", "Marlon 2026-11-26 07:08 (staff learn the head coach's preferences): decisions of one kind and situation a staff member must have seen before he treats a habit as a preference", "staff test 'preferences'"],
   ["pref_min_share", 0.6, 0.5, 1, "ratio", "assumption", "Marlon 2026-11-26 07:08: share of those decisions that must go one way before he calls it a preference", "staff test 'preferences'"],
-  ["pref_suggestions_per_meeting", 3, 1, 10, "count", "assumption", "Marlon 2026-11-26 07:08 (one-on-one in game week): most suggestions he brings to one meeting, largest gap first", "staff test 'preferences'"]
+  ["pref_suggestions_per_meeting", 3, 1, 10, "count", "assumption", "Marlon 2026-11-26 07:08 (one-on-one in game week): most suggestions he brings to one meeting, largest gap first", "staff test 'preferences'"],
+  ["lean_fourth_max", 0.02, 0, 0.1, "wp", "assumption", "plans/head-coach-nuance.md item 1 (staff with an angle; N2, N9): largest fourth-down lean of the boldest or most cautious adviser, from riskTolerance; size chosen here", "staff test 'lean'"],
+  ["lean_fourth_offense", 0.01, 0, 0.05, "wp", "assumption", "item 1: the offensive coordinator's extra lean toward going for it (his unit stays on the field); size chosen here", "staff test 'lean'"],
+  ["lean_own_unit", 0.3, 0, 0.9, "ratio", "assumption", "item 1: share by which a coordinator undersells his own unit's problems at the highest ego; size chosen here", "staff test 'lean'"],
+  ["lean_room_promotion", 0.25, 0, 1, "z", "assumption", "item 1: how far an assistant who wants a coordinator job oversells his room's grades; size chosen here", "staff test 'lean'"],
+  ["lean_room_ego", 0.1, 0, 1, "z", "assumption", "item 1: oversell of his own room from ego alone; size chosen here", "staff test 'lean'"],
+  ["filter_candor", 0.4, 0, 0.9, "ratio", "assumption", "item 1 (bad news comes soft and late): softening of the least candid adviser; size chosen here", "staff test 'lean'"],
+  ["filter_fear", 0.4, 0, 0.9, "ratio", "assumption", "item 1: extra softening when he no longer feels safe bringing bad news (K6.3.2 safety at its floor); size chosen here", "staff test 'lean'"],
+  ["filter_cap", 0.9, 0.5, 0.99, "ratio", "assumption", "Marlon 2026-11-25 21:32 (never certain): bad news is never wholly hidden", "staff test 'lean'"],
+  ["filter_delay_max_days", 6, 0, 14, "day", "assumption", "item 1: days the most filtered bad news waits before it reaches the head coach; size chosen here", "staff test 'lean'"],
+  ["track_shrink", 5, 0, 50, "count", "assumption", "item 1: settled calls before a head coach's correction for an adviser's lean counts at half weight; size chosen here", "staff test 'lean'"]
  ]
 }

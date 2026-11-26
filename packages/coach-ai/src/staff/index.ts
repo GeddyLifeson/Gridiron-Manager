@@ -13,3 +13,4 @@ export * from './candor.ts';
 export * from './simulate.ts';
 export * from './violations.ts';
 export * from './preferences.ts';
+export * from './lean.ts';
