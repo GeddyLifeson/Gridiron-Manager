@@ -27,9 +27,12 @@ export interface TeamSpan { readonly teamId: number; readonly founded: number; r
  */
 export type FoundingCurve = readonly (readonly [number, number])[];
 
-/** The key a competition's curve is stored under: 'pro' for the pro league, else the competition's level id. */
-export function curveKey(c: Pick<CompetitionRecord, 'level' | 'name'>): string {
-  return c.level === 'pro' ? 'pro' : c.name;
+/**
+ * The curve for a competition: the one stored under its name (a college level id such as 'college_top'),
+ * else the one stored under its level ('pro'). Undefined when neither exists.
+ */
+export function curveFor(curves: Readonly<Record<string, FoundingCurve>>, c: Pick<CompetitionRecord, 'level' | 'name'>): FoundingCurve | undefined {
+  return curves[c.name] ?? curves[c.level];
 }
 
 export function curveProblems(curve: FoundingCurve): string[] {
@@ -66,7 +69,7 @@ export function planTeamSpans(
   const compById = new Map(competitions.map((c) => [c.id, c]));
   const out = new Map<number, TeamSpan>();
   for (const t of teams) {
-    const curve = curves[curveKey(compById.get(t.competitionId)!)];
+    const curve = curveFor(curves, compById.get(t.competitionId)!);
     let founded = firstSeasonYear;
     if (curve) founded = Math.min(careerStartYear, foundingYear(curve, stream(seed, STREAM_LIFECYCLE, [t.id, 'founded']).uniform()));
     out.set(t.id, { teamId: t.id, founded, folded: null });

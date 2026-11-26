@@ -23,7 +23,7 @@ export interface CreateWorldInput {
   readonly labelIds?: ReadonlySet<string>;
   readonly notabilityOf?: history.EventLogOptions['notabilityOf'];
   /**
-   * Founding curves by competition (lifecycle.ts `curveKey`). With none, every team exists from the
+   * Founding curves by competition (lifecycle.ts `curveFor`). With none, every team exists from the
    * first season, as before. With curves, a team is founded in its own year and only teams that exist
    * in the first season are founded on day one.
    */

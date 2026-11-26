@@ -28,6 +28,6 @@ export {
   type HistoryPlan, type HistoryRunReport, type ValidatorBands, type ValidationResult, type BuiltHistory, type BudgetInput, type HistoryDraft,
 } from './history.ts';
 export {
-  STREAM_LIFECYCLE, curveKey, curveProblems, foundingYear, planTeamSpans, isActive, activeTeamIds, awaitingFounding, lifecycleStep,
+  STREAM_LIFECYCLE, curveFor, curveProblems, foundingYear, planTeamSpans, isActive, activeTeamIds, awaitingFounding, lifecycleStep,
   type TeamSpan, type FoundingCurve, type LifecycleBinding,
 } from './lifecycle.ts';
