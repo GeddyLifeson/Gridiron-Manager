@@ -26,7 +26,7 @@ function nakedBoot(): PlayDef {
     ...OL.map(fakeLeft),
     slot(F, 'Q', { behavior: 'quarterback', params: { action: 'boot', side: 'right', roll: 'full', read: 'lowToHigh', protection: 'none' }, concept: 'nakedBootRight', load: 2, keys: ['role:Y', 'role:X', 'role:Z'], gaze: 'key' }),
     slot(F, 'R', { behavior: 'ballCarrier', params: { track: 'wideZone', fake: true, side: 'left' }, path: [through(-3, -3), through(0, -8)], concept: 'nakedBootRight' }),
-    slot(F, 'Y', route('nakedBootRight', [through(-1, 6), through(0, 12)], { params: { route: 'arrowFlat' } })),
+    slot(F, 'Y', route('nakedBootRight', [through(-1, 6), settle(0, 12)], { params: { route: 'arrowFlat' } })),
     slot(F, 'X', route('nakedBootRight', [through(8, -17), cut(12, -8), through(14, 2), through(14, 9)], { params: { route: 'crosser' } })),
     slot(F, 'Z', route('nakedBootRight', [through(10, 16), cut(15, 22)], { params: { route: 'corner' } })),
     slot(F, 'H', route('nakedBootRight', [through(5, -7.5), settle(12, -4)], { params: { route: 'alertBackside' } })),
