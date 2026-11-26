@@ -3227,6 +3227,1722 @@
    "key": "toss.defer_allowed",
    "value": true,
    "factId": "F-rule-1232"
+  },
+  {
+   "key": "foul.roughing_kicker.kick_block_attempt",
+   "value": false,
+   "factId": "F-rule-1234"
+  },
+  {
+   "key": "foul.running_into_kicker.kick_block_attempt",
+   "value": false,
+   "factId": "F-rule-1236"
+  },
+  {
+   "key": "foul.roughing_holder.kick_block_attempt",
+   "value": false,
+   "factId": "F-rule-1238"
+  },
+  {
+   "key": "foul.kick_block_leverage.kick_block_attempt",
+   "value": false,
+   "factId": "F-rule-1240"
+  },
+  {
+   "key": "foul.kick_block_leaping.kick_block_attempt",
+   "value": false,
+   "factId": "F-rule-1242"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.kick_block_attempt",
+   "value": false,
+   "factId": "F-rule-1244"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.kick_block_attempt",
+   "value": false,
+   "factId": "F-rule-1246"
+  },
+  {
+   "key": "foul.foul_against_official.separate",
+   "value": false,
+   "factId": "F-rule-1248"
+  },
+  {
+   "key": "foul.challenge_without_timeout.separate",
+   "value": false,
+   "factId": "F-rule-1250"
+  },
+  {
+   "key": "foul.excess_injury_timeout.separate",
+   "value": false,
+   "factId": "F-rule-1252"
+  },
+  {
+   "key": "foul.palpably_unfair.enforcement",
+   "value": "equitable",
+   "factId": "F-rule-1254"
+  },
+  {
+   "key": "foul.dpi.enforcement",
+   "value": "interference_spot",
+   "factId": "F-rule-1256"
+  },
+  {
+   "key": "foul.delay_of_game_spike.exists",
+   "value": false,
+   "factId": "F-rule-1258"
+  },
+  {
+   "key": "foul.delay_of_game_spike.yards",
+   "value": 0,
+   "factId": "F-rule-1260",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.delay_of_game_spike.afd",
+   "value": false,
+   "factId": "F-rule-1262"
+  },
+  {
+   "key": "foul.delay_of_game_spike.lod",
+   "value": false,
+   "factId": "F-rule-1264"
+  },
+  {
+   "key": "foul.delay_of_game_spike.spot_foul",
+   "value": false,
+   "factId": "F-rule-1266"
+  },
+  {
+   "key": "foul.delay_of_game_spike.dead_ball",
+   "value": false,
+   "factId": "F-rule-1268"
+  },
+  {
+   "key": "foul.delay_of_game_spike.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1270"
+  },
+  {
+   "key": "foul.delay_of_game_spike.class",
+   "value": "other",
+   "factId": "F-rule-1272"
+  },
+  {
+   "key": "foul.delay_of_game_spike.dq",
+   "value": "none",
+   "factId": "F-rule-1274"
+  },
+  {
+   "key": "foul.excess_timeout.exists",
+   "value": false,
+   "factId": "F-rule-1276"
+  },
+  {
+   "key": "foul.excess_timeout.yards",
+   "value": 0,
+   "factId": "F-rule-1278",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.excess_timeout.afd",
+   "value": false,
+   "factId": "F-rule-1280"
+  },
+  {
+   "key": "foul.excess_timeout.lod",
+   "value": false,
+   "factId": "F-rule-1282"
+  },
+  {
+   "key": "foul.excess_timeout.spot_foul",
+   "value": false,
+   "factId": "F-rule-1284"
+  },
+  {
+   "key": "foul.excess_timeout.dead_ball",
+   "value": false,
+   "factId": "F-rule-1286"
+  },
+  {
+   "key": "foul.excess_timeout.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1288"
+  },
+  {
+   "key": "foul.excess_timeout.class",
+   "value": "other",
+   "factId": "F-rule-1290"
+  },
+  {
+   "key": "foul.excess_timeout.dq",
+   "value": "none",
+   "factId": "F-rule-1292"
+  },
+  {
+   "key": "foul.illegal_substitution.exists",
+   "value": true,
+   "factId": "F-rule-1294"
+  },
+  {
+   "key": "foul.illegal_substitution.yards",
+   "value": 5,
+   "factId": "F-rule-1296",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_substitution.afd",
+   "value": false,
+   "factId": "F-rule-1298"
+  },
+  {
+   "key": "foul.illegal_substitution.lod",
+   "value": false,
+   "factId": "F-rule-1300"
+  },
+  {
+   "key": "foul.illegal_substitution.spot_foul",
+   "value": false,
+   "factId": "F-rule-1302"
+  },
+  {
+   "key": "foul.illegal_substitution.dead_ball",
+   "value": false,
+   "factId": "F-rule-1304"
+  },
+  {
+   "key": "foul.illegal_substitution.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1306"
+  },
+  {
+   "key": "foul.illegal_substitution.class",
+   "value": "other",
+   "factId": "F-rule-1308"
+  },
+  {
+   "key": "foul.illegal_substitution.dq",
+   "value": "none",
+   "factId": "F-rule-1310"
+  },
+  {
+   "key": "foul.second_forward_pass.exists",
+   "value": true,
+   "factId": "F-rule-1312"
+  },
+  {
+   "key": "foul.second_forward_pass.yards",
+   "value": 5,
+   "factId": "F-rule-1314",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.second_forward_pass.afd",
+   "value": false,
+   "factId": "F-rule-1316"
+  },
+  {
+   "key": "foul.second_forward_pass.lod",
+   "value": true,
+   "factId": "F-rule-1318"
+  },
+  {
+   "key": "foul.second_forward_pass.spot_foul",
+   "value": true,
+   "factId": "F-rule-1320"
+  },
+  {
+   "key": "foul.second_forward_pass.dead_ball",
+   "value": false,
+   "factId": "F-rule-1322"
+  },
+  {
+   "key": "foul.second_forward_pass.runoff_eligible",
+   "value": true,
+   "factId": "F-rule-1324"
+  },
+  {
+   "key": "foul.second_forward_pass.class",
+   "value": "other",
+   "factId": "F-rule-1326"
+  },
+  {
+   "key": "foul.second_forward_pass.dq",
+   "value": "none",
+   "factId": "F-rule-1328"
+  },
+  {
+   "key": "foul.forward_pass_after_change.exists",
+   "value": true,
+   "factId": "F-rule-1330"
+  },
+  {
+   "key": "foul.forward_pass_after_change.yards",
+   "value": 5,
+   "factId": "F-rule-1332",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.forward_pass_after_change.afd",
+   "value": false,
+   "factId": "F-rule-1334"
+  },
+  {
+   "key": "foul.forward_pass_after_change.lod",
+   "value": false,
+   "factId": "F-rule-1336"
+  },
+  {
+   "key": "foul.forward_pass_after_change.spot_foul",
+   "value": true,
+   "factId": "F-rule-1338"
+  },
+  {
+   "key": "foul.forward_pass_after_change.dead_ball",
+   "value": false,
+   "factId": "F-rule-1340"
+  },
+  {
+   "key": "foul.forward_pass_after_change.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1342"
+  },
+  {
+   "key": "foul.forward_pass_after_change.class",
+   "value": "other",
+   "factId": "F-rule-1344"
+  },
+  {
+   "key": "foul.forward_pass_after_change.dq",
+   "value": "none",
+   "factId": "F-rule-1346"
+  },
+  {
+   "key": "foul.illegal_cut_block.exists",
+   "value": false,
+   "factId": "F-rule-1348"
+  },
+  {
+   "key": "foul.illegal_cut_block.yards",
+   "value": 0,
+   "factId": "F-rule-1350",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_cut_block.afd",
+   "value": false,
+   "factId": "F-rule-1352"
+  },
+  {
+   "key": "foul.illegal_cut_block.lod",
+   "value": false,
+   "factId": "F-rule-1354"
+  },
+  {
+   "key": "foul.illegal_cut_block.spot_foul",
+   "value": false,
+   "factId": "F-rule-1356"
+  },
+  {
+   "key": "foul.illegal_cut_block.dead_ball",
+   "value": false,
+   "factId": "F-rule-1358"
+  },
+  {
+   "key": "foul.illegal_cut_block.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1360"
+  },
+  {
+   "key": "foul.illegal_cut_block.class",
+   "value": "other",
+   "factId": "F-rule-1362"
+  },
+  {
+   "key": "foul.illegal_cut_block.dq",
+   "value": "none",
+   "factId": "F-rule-1364"
+  },
+  {
+   "key": "foul.peel_back.exists",
+   "value": false,
+   "factId": "F-rule-1366"
+  },
+  {
+   "key": "foul.peel_back.yards",
+   "value": 0,
+   "factId": "F-rule-1368",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.peel_back.afd",
+   "value": false,
+   "factId": "F-rule-1370"
+  },
+  {
+   "key": "foul.peel_back.lod",
+   "value": false,
+   "factId": "F-rule-1372"
+  },
+  {
+   "key": "foul.peel_back.spot_foul",
+   "value": false,
+   "factId": "F-rule-1374"
+  },
+  {
+   "key": "foul.peel_back.dead_ball",
+   "value": false,
+   "factId": "F-rule-1376"
+  },
+  {
+   "key": "foul.peel_back.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1378"
+  },
+  {
+   "key": "foul.peel_back.class",
+   "value": "other",
+   "factId": "F-rule-1380"
+  },
+  {
+   "key": "foul.peel_back.dq",
+   "value": "none",
+   "factId": "F-rule-1382"
+  },
+  {
+   "key": "foul.crackback.exists",
+   "value": false,
+   "factId": "F-rule-1384"
+  },
+  {
+   "key": "foul.crackback.yards",
+   "value": 0,
+   "factId": "F-rule-1386",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.crackback.afd",
+   "value": false,
+   "factId": "F-rule-1388"
+  },
+  {
+   "key": "foul.crackback.lod",
+   "value": false,
+   "factId": "F-rule-1390"
+  },
+  {
+   "key": "foul.crackback.spot_foul",
+   "value": false,
+   "factId": "F-rule-1392"
+  },
+  {
+   "key": "foul.crackback.dead_ball",
+   "value": false,
+   "factId": "F-rule-1394"
+  },
+  {
+   "key": "foul.crackback.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1396"
+  },
+  {
+   "key": "foul.crackback.class",
+   "value": "other",
+   "factId": "F-rule-1398"
+  },
+  {
+   "key": "foul.crackback.dq",
+   "value": "none",
+   "factId": "F-rule-1400"
+  },
+  {
+   "key": "foul.roughing_holder.exists",
+   "value": true,
+   "factId": "F-rule-1402"
+  },
+  {
+   "key": "foul.roughing_holder.yards",
+   "value": 15,
+   "factId": "F-rule-1404",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.roughing_holder.afd",
+   "value": true,
+   "factId": "F-rule-1406"
+  },
+  {
+   "key": "foul.roughing_holder.lod",
+   "value": false,
+   "factId": "F-rule-1408"
+  },
+  {
+   "key": "foul.roughing_holder.spot_foul",
+   "value": false,
+   "factId": "F-rule-1410"
+  },
+  {
+   "key": "foul.roughing_holder.dead_ball",
+   "value": false,
+   "factId": "F-rule-1412"
+  },
+  {
+   "key": "foul.roughing_holder.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1414"
+  },
+  {
+   "key": "foul.roughing_holder.class",
+   "value": "personal",
+   "factId": "F-rule-1416"
+  },
+  {
+   "key": "foul.roughing_holder.dq",
+   "value": "if_flagrant",
+   "factId": "F-rule-1418"
+  },
+  {
+   "key": "foul.taunting.exists",
+   "value": true,
+   "factId": "F-rule-1420"
+  },
+  {
+   "key": "foul.taunting.yards",
+   "value": 15,
+   "factId": "F-rule-1422",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.taunting.afd",
+   "value": true,
+   "factId": "F-rule-1424"
+  },
+  {
+   "key": "foul.taunting.lod",
+   "value": false,
+   "factId": "F-rule-1426"
+  },
+  {
+   "key": "foul.taunting.spot_foul",
+   "value": false,
+   "factId": "F-rule-1428"
+  },
+  {
+   "key": "foul.taunting.dead_ball",
+   "value": false,
+   "factId": "F-rule-1430"
+  },
+  {
+   "key": "foul.taunting.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1432"
+  },
+  {
+   "key": "foul.taunting.class",
+   "value": "unsportsmanlike",
+   "factId": "F-rule-1434"
+  },
+  {
+   "key": "foul.taunting.dq",
+   "value": "if_flagrant",
+   "factId": "F-rule-1436"
+  },
+  {
+   "key": "foul.kick_block_leverage.exists",
+   "value": true,
+   "factId": "F-rule-1438"
+  },
+  {
+   "key": "foul.kick_block_leverage.yards",
+   "value": 15,
+   "factId": "F-rule-1440",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_block_leverage.afd",
+   "value": true,
+   "factId": "F-rule-1442"
+  },
+  {
+   "key": "foul.kick_block_leverage.lod",
+   "value": false,
+   "factId": "F-rule-1444"
+  },
+  {
+   "key": "foul.kick_block_leverage.spot_foul",
+   "value": false,
+   "factId": "F-rule-1446"
+  },
+  {
+   "key": "foul.kick_block_leverage.dead_ball",
+   "value": false,
+   "factId": "F-rule-1448"
+  },
+  {
+   "key": "foul.kick_block_leverage.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1450"
+  },
+  {
+   "key": "foul.kick_block_leverage.class",
+   "value": "personal",
+   "factId": "F-rule-1452"
+  },
+  {
+   "key": "foul.kick_block_leverage.dq",
+   "value": "if_flagrant",
+   "factId": "F-rule-1454"
+  },
+  {
+   "key": "foul.kick_block_leaping.exists",
+   "value": true,
+   "factId": "F-rule-1456"
+  },
+  {
+   "key": "foul.kick_block_leaping.yards",
+   "value": 15,
+   "factId": "F-rule-1458",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_block_leaping.afd",
+   "value": true,
+   "factId": "F-rule-1460"
+  },
+  {
+   "key": "foul.kick_block_leaping.lod",
+   "value": false,
+   "factId": "F-rule-1462"
+  },
+  {
+   "key": "foul.kick_block_leaping.spot_foul",
+   "value": false,
+   "factId": "F-rule-1464"
+  },
+  {
+   "key": "foul.kick_block_leaping.dead_ball",
+   "value": false,
+   "factId": "F-rule-1466"
+  },
+  {
+   "key": "foul.kick_block_leaping.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1468"
+  },
+  {
+   "key": "foul.kick_block_leaping.class",
+   "value": "personal",
+   "factId": "F-rule-1470"
+  },
+  {
+   "key": "foul.kick_block_leaping.dq",
+   "value": "if_flagrant",
+   "factId": "F-rule-1472"
+  },
+  {
+   "key": "foul.clock_manipulation.exists",
+   "value": false,
+   "factId": "F-rule-1474"
+  },
+  {
+   "key": "foul.clock_manipulation.yards",
+   "value": 0,
+   "factId": "F-rule-1476",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.clock_manipulation.afd",
+   "value": false,
+   "factId": "F-rule-1478"
+  },
+  {
+   "key": "foul.clock_manipulation.lod",
+   "value": false,
+   "factId": "F-rule-1480"
+  },
+  {
+   "key": "foul.clock_manipulation.spot_foul",
+   "value": false,
+   "factId": "F-rule-1482"
+  },
+  {
+   "key": "foul.clock_manipulation.dead_ball",
+   "value": false,
+   "factId": "F-rule-1484"
+  },
+  {
+   "key": "foul.clock_manipulation.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1486"
+  },
+  {
+   "key": "foul.clock_manipulation.class",
+   "value": "other",
+   "factId": "F-rule-1488"
+  },
+  {
+   "key": "foul.clock_manipulation.dq",
+   "value": "none",
+   "factId": "F-rule-1490"
+  },
+  {
+   "key": "foul.palpably_unfair.exists",
+   "value": true,
+   "factId": "F-rule-1492"
+  },
+  {
+   "key": "foul.palpably_unfair.yards",
+   "value": 0,
+   "factId": "F-rule-1494",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.palpably_unfair.afd",
+   "value": false,
+   "factId": "F-rule-1496"
+  },
+  {
+   "key": "foul.palpably_unfair.lod",
+   "value": false,
+   "factId": "F-rule-1498"
+  },
+  {
+   "key": "foul.palpably_unfair.spot_foul",
+   "value": false,
+   "factId": "F-rule-1500"
+  },
+  {
+   "key": "foul.palpably_unfair.dead_ball",
+   "value": false,
+   "factId": "F-rule-1502"
+  },
+  {
+   "key": "foul.palpably_unfair.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1504"
+  },
+  {
+   "key": "foul.palpably_unfair.class",
+   "value": "unsportsmanlike",
+   "factId": "F-rule-1506"
+  },
+  {
+   "key": "foul.palpably_unfair.dq",
+   "value": "none",
+   "factId": "F-rule-1508"
+  },
+  {
+   "key": "foul.league_dq.exists",
+   "value": false,
+   "factId": "F-rule-1510"
+  },
+  {
+   "key": "foul.league_dq.yards",
+   "value": 0,
+   "factId": "F-rule-1512",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.league_dq.afd",
+   "value": false,
+   "factId": "F-rule-1514"
+  },
+  {
+   "key": "foul.league_dq.lod",
+   "value": false,
+   "factId": "F-rule-1516"
+  },
+  {
+   "key": "foul.league_dq.spot_foul",
+   "value": false,
+   "factId": "F-rule-1518"
+  },
+  {
+   "key": "foul.league_dq.dead_ball",
+   "value": false,
+   "factId": "F-rule-1520"
+  },
+  {
+   "key": "foul.league_dq.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1522"
+  },
+  {
+   "key": "foul.league_dq.class",
+   "value": "other",
+   "factId": "F-rule-1524"
+  },
+  {
+   "key": "foul.league_dq.dq",
+   "value": "none",
+   "factId": "F-rule-1526"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.exists",
+   "value": true,
+   "factId": "F-rule-1528"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.yards",
+   "value": 15,
+   "factId": "F-rule-1530",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.afd",
+   "value": true,
+   "factId": "F-rule-1532"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.lod",
+   "value": false,
+   "factId": "F-rule-1534"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.spot_foul",
+   "value": false,
+   "factId": "F-rule-1536"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.dead_ball",
+   "value": true,
+   "factId": "F-rule-1538"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1540"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.class",
+   "value": "unsportsmanlike",
+   "factId": "F-rule-1542"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.dq",
+   "value": "if_flagrant",
+   "factId": "F-rule-1544"
+  },
+  {
+   "key": "foul.foul_against_official.exists",
+   "value": true,
+   "factId": "F-rule-1546"
+  },
+  {
+   "key": "foul.foul_against_official.yards",
+   "value": 15,
+   "factId": "F-rule-1548",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.foul_against_official.afd",
+   "value": true,
+   "factId": "F-rule-1550"
+  },
+  {
+   "key": "foul.foul_against_official.lod",
+   "value": false,
+   "factId": "F-rule-1552"
+  },
+  {
+   "key": "foul.foul_against_official.spot_foul",
+   "value": false,
+   "factId": "F-rule-1554"
+  },
+  {
+   "key": "foul.foul_against_official.dead_ball",
+   "value": true,
+   "factId": "F-rule-1556"
+  },
+  {
+   "key": "foul.foul_against_official.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1558"
+  },
+  {
+   "key": "foul.foul_against_official.class",
+   "value": "unsportsmanlike",
+   "factId": "F-rule-1560"
+  },
+  {
+   "key": "foul.foul_against_official.dq",
+   "value": "automatic",
+   "factId": "F-rule-1562"
+  },
+  {
+   "key": "foul.challenge_without_timeout.exists",
+   "value": false,
+   "factId": "F-rule-1564"
+  },
+  {
+   "key": "foul.challenge_without_timeout.yards",
+   "value": 0,
+   "factId": "F-rule-1566",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.challenge_without_timeout.afd",
+   "value": false,
+   "factId": "F-rule-1568"
+  },
+  {
+   "key": "foul.challenge_without_timeout.lod",
+   "value": false,
+   "factId": "F-rule-1570"
+  },
+  {
+   "key": "foul.challenge_without_timeout.spot_foul",
+   "value": false,
+   "factId": "F-rule-1572"
+  },
+  {
+   "key": "foul.challenge_without_timeout.dead_ball",
+   "value": false,
+   "factId": "F-rule-1574"
+  },
+  {
+   "key": "foul.challenge_without_timeout.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1576"
+  },
+  {
+   "key": "foul.challenge_without_timeout.class",
+   "value": "other",
+   "factId": "F-rule-1578"
+  },
+  {
+   "key": "foul.challenge_without_timeout.dq",
+   "value": "none",
+   "factId": "F-rule-1580"
+  },
+  {
+   "key": "foul.excess_injury_timeout.exists",
+   "value": false,
+   "factId": "F-rule-1582"
+  },
+  {
+   "key": "foul.excess_injury_timeout.yards",
+   "value": 0,
+   "factId": "F-rule-1584",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.excess_injury_timeout.afd",
+   "value": false,
+   "factId": "F-rule-1586"
+  },
+  {
+   "key": "foul.excess_injury_timeout.lod",
+   "value": false,
+   "factId": "F-rule-1588"
+  },
+  {
+   "key": "foul.excess_injury_timeout.spot_foul",
+   "value": false,
+   "factId": "F-rule-1590"
+  },
+  {
+   "key": "foul.excess_injury_timeout.dead_ball",
+   "value": false,
+   "factId": "F-rule-1592"
+  },
+  {
+   "key": "foul.excess_injury_timeout.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1594"
+  },
+  {
+   "key": "foul.excess_injury_timeout.class",
+   "value": "other",
+   "factId": "F-rule-1596"
+  },
+  {
+   "key": "foul.excess_injury_timeout.dq",
+   "value": "none",
+   "factId": "F-rule-1598"
+  },
+  {
+   "key": "foul.free_kick_early_movement.exists",
+   "value": false,
+   "factId": "F-rule-1600"
+  },
+  {
+   "key": "foul.free_kick_early_movement.yards",
+   "value": 0,
+   "factId": "F-rule-1602",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_early_movement.afd",
+   "value": false,
+   "factId": "F-rule-1604"
+  },
+  {
+   "key": "foul.free_kick_early_movement.lod",
+   "value": false,
+   "factId": "F-rule-1606"
+  },
+  {
+   "key": "foul.free_kick_early_movement.spot_foul",
+   "value": false,
+   "factId": "F-rule-1608"
+  },
+  {
+   "key": "foul.free_kick_early_movement.dead_ball",
+   "value": false,
+   "factId": "F-rule-1610"
+  },
+  {
+   "key": "foul.free_kick_early_movement.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1612"
+  },
+  {
+   "key": "foul.free_kick_early_movement.class",
+   "value": "other",
+   "factId": "F-rule-1614"
+  },
+  {
+   "key": "foul.free_kick_early_movement.dq",
+   "value": "none",
+   "factId": "F-rule-1616"
+  },
+  {
+   "key": "foul.illegal_free_kick.exists",
+   "value": true,
+   "factId": "F-rule-1618"
+  },
+  {
+   "key": "foul.illegal_free_kick.yards",
+   "value": 5,
+   "factId": "F-rule-1620",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_free_kick.afd",
+   "value": false,
+   "factId": "F-rule-1622"
+  },
+  {
+   "key": "foul.illegal_free_kick.lod",
+   "value": false,
+   "factId": "F-rule-1624"
+  },
+  {
+   "key": "foul.illegal_free_kick.spot_foul",
+   "value": false,
+   "factId": "F-rule-1626"
+  },
+  {
+   "key": "foul.illegal_free_kick.dead_ball",
+   "value": true,
+   "factId": "F-rule-1628"
+  },
+  {
+   "key": "foul.illegal_free_kick.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1630"
+  },
+  {
+   "key": "foul.illegal_free_kick.class",
+   "value": "other",
+   "factId": "F-rule-1632"
+  },
+  {
+   "key": "foul.illegal_free_kick.dq",
+   "value": "none",
+   "factId": "F-rule-1634"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.exists",
+   "value": true,
+   "factId": "F-rule-1636"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.yards",
+   "value": 5,
+   "factId": "F-rule-1638",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.afd",
+   "value": false,
+   "factId": "F-rule-1640"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.lod",
+   "value": false,
+   "factId": "F-rule-1642"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.spot_foul",
+   "value": false,
+   "factId": "F-rule-1644"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.dead_ball",
+   "value": false,
+   "factId": "F-rule-1646"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1648"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.class",
+   "value": "other",
+   "factId": "F-rule-1650"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.dq",
+   "value": "none",
+   "factId": "F-rule-1652"
+  },
+  {
+   "key": "foul.illegal_double_team.exists",
+   "value": false,
+   "factId": "F-rule-1654"
+  },
+  {
+   "key": "foul.illegal_double_team.yards",
+   "value": 0,
+   "factId": "F-rule-1656",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_double_team.afd",
+   "value": false,
+   "factId": "F-rule-1658"
+  },
+  {
+   "key": "foul.illegal_double_team.lod",
+   "value": false,
+   "factId": "F-rule-1660"
+  },
+  {
+   "key": "foul.illegal_double_team.spot_foul",
+   "value": false,
+   "factId": "F-rule-1662"
+  },
+  {
+   "key": "foul.illegal_double_team.dead_ball",
+   "value": false,
+   "factId": "F-rule-1664"
+  },
+  {
+   "key": "foul.illegal_double_team.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1666"
+  },
+  {
+   "key": "foul.illegal_double_team.class",
+   "value": "other",
+   "factId": "F-rule-1668"
+  },
+  {
+   "key": "foul.illegal_double_team.dq",
+   "value": "none",
+   "factId": "F-rule-1670"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.exists",
+   "value": false,
+   "factId": "F-rule-1672"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.yards",
+   "value": 0,
+   "factId": "F-rule-1674",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.afd",
+   "value": false,
+   "factId": "F-rule-1676"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.lod",
+   "value": false,
+   "factId": "F-rule-1678"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.spot_foul",
+   "value": false,
+   "factId": "F-rule-1680"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.dead_ball",
+   "value": false,
+   "factId": "F-rule-1682"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1684"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.class",
+   "value": "other",
+   "factId": "F-rule-1686"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.dq",
+   "value": "none",
+   "factId": "F-rule-1688"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.exists",
+   "value": true,
+   "factId": "F-rule-1690"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.yards",
+   "value": 0,
+   "factId": "F-rule-1692",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.afd",
+   "value": false,
+   "factId": "F-rule-1694"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.lod",
+   "value": false,
+   "factId": "F-rule-1696"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.spot_foul",
+   "value": false,
+   "factId": "F-rule-1698"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.dead_ball",
+   "value": false,
+   "factId": "F-rule-1700"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1702"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.class",
+   "value": "other",
+   "factId": "F-rule-1704"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.dq",
+   "value": "none",
+   "factId": "F-rule-1706"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.exists",
+   "value": true,
+   "factId": "F-rule-1708"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.yards",
+   "value": 5,
+   "factId": "F-rule-1710",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.afd",
+   "value": false,
+   "factId": "F-rule-1712"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.lod",
+   "value": false,
+   "factId": "F-rule-1714"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.spot_foul",
+   "value": false,
+   "factId": "F-rule-1716"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.dead_ball",
+   "value": false,
+   "factId": "F-rule-1718"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1720"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.class",
+   "value": "other",
+   "factId": "F-rule-1722"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.dq",
+   "value": "none",
+   "factId": "F-rule-1724"
+  },
+  {
+   "key": "foul.running_into_free_kicker.exists",
+   "value": false,
+   "factId": "F-rule-1726"
+  },
+  {
+   "key": "foul.running_into_free_kicker.yards",
+   "value": 0,
+   "factId": "F-rule-1728",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.running_into_free_kicker.afd",
+   "value": false,
+   "factId": "F-rule-1730"
+  },
+  {
+   "key": "foul.running_into_free_kicker.lod",
+   "value": false,
+   "factId": "F-rule-1732"
+  },
+  {
+   "key": "foul.running_into_free_kicker.spot_foul",
+   "value": false,
+   "factId": "F-rule-1734"
+  },
+  {
+   "key": "foul.running_into_free_kicker.dead_ball",
+   "value": false,
+   "factId": "F-rule-1736"
+  },
+  {
+   "key": "foul.running_into_free_kicker.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1738"
+  },
+  {
+   "key": "foul.running_into_free_kicker.class",
+   "value": "other",
+   "factId": "F-rule-1740"
+  },
+  {
+   "key": "foul.running_into_free_kicker.dq",
+   "value": "none",
+   "factId": "F-rule-1742"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.exists",
+   "value": true,
+   "factId": "F-rule-1744"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.yards",
+   "value": 5,
+   "factId": "F-rule-1746",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.afd",
+   "value": false,
+   "factId": "F-rule-1748"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.lod",
+   "value": false,
+   "factId": "F-rule-1750"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.spot_foul",
+   "value": false,
+   "factId": "F-rule-1752"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.dead_ball",
+   "value": false,
+   "factId": "F-rule-1754"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1756"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.class",
+   "value": "other",
+   "factId": "F-rule-1758"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.dq",
+   "value": "none",
+   "factId": "F-rule-1760"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.exists",
+   "value": true,
+   "factId": "F-rule-1762"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.yards",
+   "value": 5,
+   "factId": "F-rule-1764",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.afd",
+   "value": false,
+   "factId": "F-rule-1766"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.lod",
+   "value": false,
+   "factId": "F-rule-1768"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.spot_foul",
+   "value": false,
+   "factId": "F-rule-1770"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.dead_ball",
+   "value": false,
+   "factId": "F-rule-1772"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1774"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.class",
+   "value": "other",
+   "factId": "F-rule-1776"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.dq",
+   "value": "none",
+   "factId": "F-rule-1778"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.exists",
+   "value": false,
+   "factId": "F-rule-1780"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.yards",
+   "value": 0,
+   "factId": "F-rule-1782",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.afd",
+   "value": false,
+   "factId": "F-rule-1784"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.lod",
+   "value": false,
+   "factId": "F-rule-1786"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.spot_foul",
+   "value": false,
+   "factId": "F-rule-1788"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.dead_ball",
+   "value": false,
+   "factId": "F-rule-1790"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1792"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.class",
+   "value": "other",
+   "factId": "F-rule-1794"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.dq",
+   "value": "none",
+   "factId": "F-rule-1796"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.exists",
+   "value": true,
+   "factId": "F-rule-1798"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.yards",
+   "value": 10,
+   "factId": "F-rule-1800",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.afd",
+   "value": true,
+   "factId": "F-rule-1802"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.lod",
+   "value": false,
+   "factId": "F-rule-1804"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.spot_foul",
+   "value": false,
+   "factId": "F-rule-1806"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.dead_ball",
+   "value": false,
+   "factId": "F-rule-1808"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1810"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.class",
+   "value": "other",
+   "factId": "F-rule-1812"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.dq",
+   "value": "none",
+   "factId": "F-rule-1814"
+  },
+  {
+   "key": "foul.kick_holding.exists",
+   "value": true,
+   "factId": "F-rule-1816"
+  },
+  {
+   "key": "foul.kick_holding.yards",
+   "value": 10,
+   "factId": "F-rule-1818",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_holding.afd",
+   "value": true,
+   "factId": "F-rule-1820"
+  },
+  {
+   "key": "foul.kick_holding.lod",
+   "value": false,
+   "factId": "F-rule-1822"
+  },
+  {
+   "key": "foul.kick_holding.spot_foul",
+   "value": false,
+   "factId": "F-rule-1824"
+  },
+  {
+   "key": "foul.kick_holding.dead_ball",
+   "value": false,
+   "factId": "F-rule-1826"
+  },
+  {
+   "key": "foul.kick_holding.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1828"
+  },
+  {
+   "key": "foul.kick_holding.class",
+   "value": "other",
+   "factId": "F-rule-1830"
+  },
+  {
+   "key": "foul.kick_holding.dq",
+   "value": "none",
+   "factId": "F-rule-1832"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.exists",
+   "value": true,
+   "factId": "F-rule-1834"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.yards",
+   "value": 0,
+   "factId": "F-rule-1836",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.afd",
+   "value": false,
+   "factId": "F-rule-1838"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.lod",
+   "value": false,
+   "factId": "F-rule-1840"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.spot_foul",
+   "value": false,
+   "factId": "F-rule-1842"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.dead_ball",
+   "value": false,
+   "factId": "F-rule-1844"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1846"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.class",
+   "value": "other",
+   "factId": "F-rule-1848"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.dq",
+   "value": "none",
+   "factId": "F-rule-1850"
+  },
+  {
+   "key": "foul.fair_catch_interference.exists",
+   "value": true,
+   "factId": "F-rule-1852"
+  },
+  {
+   "key": "foul.fair_catch_interference.yards",
+   "value": 15,
+   "factId": "F-rule-1854",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.fair_catch_interference.afd",
+   "value": false,
+   "factId": "F-rule-1856"
+  },
+  {
+   "key": "foul.fair_catch_interference.lod",
+   "value": false,
+   "factId": "F-rule-1858"
+  },
+  {
+   "key": "foul.fair_catch_interference.spot_foul",
+   "value": true,
+   "factId": "F-rule-1860"
+  },
+  {
+   "key": "foul.fair_catch_interference.dead_ball",
+   "value": false,
+   "factId": "F-rule-1862"
+  },
+  {
+   "key": "foul.fair_catch_interference.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1864"
+  },
+  {
+   "key": "foul.fair_catch_interference.class",
+   "value": "other",
+   "factId": "F-rule-1866"
+  },
+  {
+   "key": "foul.fair_catch_interference.dq",
+   "value": "if_flagrant",
+   "factId": "F-rule-1868"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.exists",
+   "value": true,
+   "factId": "F-rule-1870"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.yards",
+   "value": 15,
+   "factId": "F-rule-1872",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.afd",
+   "value": false,
+   "factId": "F-rule-1874"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.lod",
+   "value": false,
+   "factId": "F-rule-1876"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.spot_foul",
+   "value": true,
+   "factId": "F-rule-1878"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.dead_ball",
+   "value": false,
+   "factId": "F-rule-1880"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1882"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.class",
+   "value": "other",
+   "factId": "F-rule-1884"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.dq",
+   "value": "if_flagrant",
+   "factId": "F-rule-1886"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.exists",
+   "value": true,
+   "factId": "F-rule-1888"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.yards",
+   "value": 10,
+   "factId": "F-rule-1890",
+   "unit": "yd"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.afd",
+   "value": false,
+   "factId": "F-rule-1892"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.lod",
+   "value": false,
+   "factId": "F-rule-1894"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.spot_foul",
+   "value": true,
+   "factId": "F-rule-1896"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.dead_ball",
+   "value": false,
+   "factId": "F-rule-1898"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.runoff_eligible",
+   "value": false,
+   "factId": "F-rule-1900"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.class",
+   "value": "other",
+   "factId": "F-rule-1902"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.dq",
+   "value": "none",
+   "factId": "F-rule-1904"
   }
  ]
 }

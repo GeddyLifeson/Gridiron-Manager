@@ -29,7 +29,7 @@ const PRO: Record<string, [number, string]> = {
   unsportsmanlike: [15, 'Auf'], taunting: [15, 'ADuf'], kick_block_leverage: [15, 'Au'], kick_block_leaping: [15, 'Au'],
   clock_manipulation: [15, 'u'], palpably_unfair: [15, 'uf'], league_dq: [15, 'pa'], illegal_bat: [10, 'LR'], illegal_kick: [10, 'LR'],
   non_player_unsportsmanlike: [15, 'Auf'], foul_against_official: [15, 'Aua'], challenge_without_timeout: [15, 'u'], excess_injury_timeout: [5, ''],
-  free_kick_offside: [5, ''], free_kick_illegal_formation: [5, ''], free_kick_early_movement: [5, ''], illegal_free_kick: [5, ''],
+  free_kick_offside: [5, ''], free_kick_early_movement: [5, ''], illegal_free_kick: [5, ''],
   free_kick_illegal_block: [10, ''], illegal_wedge: [15, 'Sp'], illegal_double_team: [15, 'Sp'], onside_untouched_past_zone: [15, 'u'],
   free_kick_illegal_touching: [5, ''], free_kick_voluntary_oob: [5, ''], running_into_free_kicker: [5, ''],
   illegal_scrimmage_kick: [5, 'L'], kick_ineligible_downfield: [5, ''], kick_voluntary_oob: [5, ''], def_illegal_formation_kick: [5, ''],

@@ -103,7 +103,6 @@ export const FOUL_IDS: readonly FoulIdDef[] = [
   row('excess_injury_timeout', 'B8.5.1', ['separate']),
   // Kicking (B8.1.2 table six, B6)
   row('free_kick_offside', 'B8.1.2'),
-  row('free_kick_illegal_formation', 'B8.1.2'),
   row('free_kick_early_movement', 'B8.1.2'),
   row('illegal_free_kick', 'B8.1.2'),
   row('free_kick_illegal_block', 'B8.1.2'),
