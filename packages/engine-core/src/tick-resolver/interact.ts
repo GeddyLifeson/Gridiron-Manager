@@ -30,6 +30,7 @@ const DOWN = MOVE_MODES.indexOf('down');
 const code = (b: Behavior): number => BEHAVIORS.indexOf(b);
 const PASS_BLOCKERS = new Set([code('passSet'), code('protectKick')]);
 const RUN_BLOCKERS = new Set([code('runBlock'), code('pull'), code('returnBlock'), code('kickReturnBlock')]);
+const COVERING = new Set([code('kickCoverage'), code('gunner')]);
 
 // D3 grades behind each side of a block (J6.2.1, J6.3.1 inputs). Equal weights until the technique matrix exists.
 const PASS_BLOCK_ATTRS = ['pass_set', 'anchor', 'mirror', 'hand_use_in_protection'] as const;
@@ -59,6 +60,8 @@ export function createInteract(): Interact {
   let p: TickResolverParams | null = null;
   const open: boolean[] = [], interior: boolean[] = [], held: number[] = [], countered: boolean[] = [];
   const freeUntil = new Int32Array(SLOT_COUNT), everEngaged = new Uint8Array(SLOT_COUNT);
+  /** `beaten[blocker * SLOT_COUNT + coverMan]`: this blocker's hold-up of this cover man is over for the play. */
+  const beaten = new Uint8Array(SLOT_COUNT * SLOT_COUNT);
 
   const isDown = (w: TickWorld, s: number): boolean => w.players.moveMode[s] === DOWN || w.tick < w.players.onGroundUntilTick[s]!;
   const meanZ = (w: TickWorld, s: number, attrs: readonly string[]): number => {
@@ -100,7 +103,8 @@ export function createInteract(): Interact {
 
   const step = (w: TickWorld, i: number, q: TickResolverParams): void => {
     const c = w.contests[i]!, o = c.offenseSlot, d = c.defenseSlot, pl = w.players, lib = contests!;
-    if (isDown(w, o) || isDown(w, d) || pl.hasBall[o] === 1 || pl.hasBall[d] === 1 || gap(w, o, d) > q['interact.breakGapYd']!) { close(w, i); return; }
+    // A protector on a kicking unit who has gone to cover the kick has let go of his man: the block is over.
+    if (isDown(w, o) || isDown(w, d) || pl.hasBall[o] === 1 || pl.hasBall[d] === 1 || gap(w, o, d) > q['interact.breakGapYd']! || COVERING.has(pl.behavior[o]!)) { close(w, i); return; }
     // Help that has drifted off or gone down stops counting; the contest itself goes on.
     for (let k = c.helperSlots.length - 1; k >= 0; k--) {
       const h = c.helperSlots[k]!;
@@ -121,6 +125,16 @@ export function createInteract(): Interact {
       }
     }
     c.advantage = a;
+    // A block on a man covering a kick is a hold-up, not a sustained block (F12): in the open field a blocker cannot
+    // stay on a man running past him without holding. The cover man is off it after `interact.coverHoldS`, later when
+    // the blocker is winning and sooner when he is losing, and that blocker does not get him a second time.
+    if (!pass && COVERING.has(pl.behavior[d]!) && a > -1 && a < 1 && (w.tick - c.startedTick) * TICK_S >= q['interact.coverHoldS']! * (1 + a)) {
+      freeUntil[d] = w.tick + Math.round(q['interact.shedFreeS']! / TICK_S);
+      beaten[o * SLOT_COUNT + d] = 1;
+      for (let k = 0; k < c.helperSlots.length; k++) beaten[c.helperSlots[k]! * SLOT_COUNT + d] = 1;
+      close(w, i);
+      return;
+    }
     if (a <= -1) { freeUntil[d] = w.tick + Math.round(q['interact.shedFreeS']! / TICK_S); won(w, i, d, o); return; }
     if (a >= 1) { pl.onGroundUntilTick[d] = w.tick + 1 + Math.round(q['interact.wonRecoveryS']! / TICK_S); won(w, i, o, d); return; }
     if (!pass && a > 0) {
@@ -174,7 +188,7 @@ export function createInteract(): Interact {
     const side = w.slots[b]!.side, reach = q['interact.contactGapYd']!;
     let best = -1, bestGap = reach;
     for (let d = 0; d < SLOT_COUNT; d++) {
-      if (w.slots[d]!.side === side || pl.hasBall[d] === 1 || isDown(w, d) || w.tick < freeUntil[d]!) continue;
+      if (w.slots[d]!.side === side || pl.hasBall[d] === 1 || isDown(w, d) || w.tick < freeUntil[d]! || beaten[b * SLOT_COUNT + d] === 1) continue;
       const e = pl.engagement[d]!;
       // An opponent who is himself blocking someone, or who already has two men on him, is not picked up.
       if (e >= 0 && (w.contests[e]!.defenseSlot !== d || w.contests[e]!.helperSlots.length > 0)) continue;
@@ -208,7 +222,7 @@ export function createInteract(): Interact {
     begin(w: TickWorld): void {
       p = tickResolverParams(w.params);
       open.length = 0; interior.length = 0; held.length = 0; countered.length = 0;
-      freeUntil.fill(-2147483648); everEngaged.fill(0);
+      freeUntil.fill(-2147483648); everEngaged.fill(0); beaten.fill(0);
     },
     run(w: TickWorld): void {
       if (w.tick < 0 || w.deadAtTick !== null || contests === null) return;

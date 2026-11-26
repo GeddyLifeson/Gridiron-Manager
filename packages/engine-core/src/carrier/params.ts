@@ -152,7 +152,7 @@ const ROWS = [
   ['yac.inStrideMinYps', 3, 1, 6, 'yd/s', 'assumption', 'J8.6.1', YAC],
 
   // J8.6.2 returns
-  ['ret.fairCatchS', 0.8, 0.4, 1.2, 's', 'bible', 'J8.6.2', RETURN],
+  ['ret.fairCatchS', 0.35, 0.2, 1.2, 's', 'assumption', 'J8.6.2', RETURN + '; fair catches 27.9% of punts, returned 43.0% (nflverse 2022-2024). J8.6.2 states 0.8, set before the punt team covered; fitted with gunners running'],
   // A kicked ball can be caught at or below this height.
   ['ret.catchHeightYd', 1.2, 0.8, 1.6, 'yd', 'assumption', 'J8.6.2', RETURN],
   ['ret.touchGapYd', 0.3, 0.1, 0.6, 'yd', 'assumption', 'J8.6.2', STRUCT],

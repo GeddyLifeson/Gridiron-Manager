@@ -233,22 +233,54 @@ const PLAY_FOR_KIND: Readonly<Record<string, string>> = {
 
 // --------------------------------------------------------------------------------------- kicking units
 
-type Raw = { role: string; behavior: string; at: [number, number]; onLine?: boolean; params?: Record<string, string | number | boolean> };
-const slotOf = (r: Raw): Assignment => starter.toAssignment({ role: r.role, behavior: r.behavior, at: r.at, onLine: r.onLine ?? false, params: r.params ?? {}, concept: `st.${r.behavior}`, gaze: 'key' });
+type Clause = NonNullable<starter.Slot['rules']>[number];
+type Raw = { role: string; behavior: string; at: [number, number]; onLine?: boolean; params?: Record<string, string | number | boolean>; path?: [number, number][]; rules?: Clause[] };
+const slotOf = (r: Raw): Assignment => starter.toAssignment({
+  role: r.role, behavior: r.behavior, at: r.at, onLine: r.onLine ?? false, params: r.params ?? {}, concept: `st.${r.behavior}`, gaze: 'key',
+  ...(r.path ? { path: r.path.map(([px, py]) => ({ px, py })) } : {}), ...(r.rules ? { rules: r.rules } : {}),
+});
+
+// What the kicking units do once the ball is kicked (F12 coverage lanes and returns; provisional design values).
+// The language's kicking behaviors stand on their spot until a rule or a drawn path moves them, so without these the
+// punt team watched the punt from the line and covered only after the catch.
+/** A gunner's path ends this far short of where the punt is expected to come down: the returner's spot, or a normal punt's distance when he stands deeper than that (design values). */
+const GUNNER_BREAKDOWN_YD = 6, PUNT_EXPECTED_YD = 48;
+const KICKED = { op: 'test', name: 'ballKicked', args: {} } as const;
+/** After this long the punt is away (snap 0.75 s plus 1.3 s to the foot, J9.4.3): the protectors count it and release (design value). */
+const PUNT_RELEASE_S = 2.2;
+const RELEASED = { op: 'test', name: 'timeGt', args: { s: PUNT_RELEASE_S } } as const;
+const RETURNER = `slot:${SLOTS_PER_TEAM + 10}`;
+/** A protector lets go of his block and runs his coverage lane; at the catch the behavior's own table sends him to the returner. */
+const COVER_LANE: Clause = { when: RELEASED, then: [{ name: 'switchBehavior', args: { to: 'kickCoverage' } }, { name: 'runPath', args: {} }], text: 'Punt away: release and cover the lane' };
+/** The snapper has no lane: he goes down the middle at the returner. */
+const COVER_MIDDLE: Clause = { when: RELEASED, then: [{ name: 'switchBehavior', args: { to: 'kickCoverage' } }, { name: 'carry', args: { target: RETURNER, toDepth: 60 } }], text: 'Punt away: release down the middle to the returner' };
+/**
+ * A gunner releases at the snap down his drawn path, past the jammer and in to a spot short of where the returner lines
+ * up. He holds there for the tackle at the catch (the behavior's own table) or goes to a ball on the ground (its fumble
+ * event). He does not run at the returner himself: a man that far away drops in and out of what he can follow.
+ */
+const gunnerPath = (returnerPx: number, side: 1 | -1): [number, number][] => [[5, 18 * side], [Math.min(returnerPx, PUNT_EXPECTED_YD) - GUNNER_BREAKDOWN_YD, 3 * side]];
+/** A man on the return team turns from the rush to block the first cover man near him. */
+const HOLD_UP: Clause = { when: KICKED, then: [{ name: 'switchBehavior', args: { to: 'kickReturnBlock' } }, { name: 'block', args: { target: 'nearestDefender', type: 'base' } }], text: 'Ball kicked: block the nearest cover man' };
+const jam = (slot: number): Clause => ({ when: { op: 'test', name: 'timeGt', args: { s: 0 } }, then: [{ name: 'block', args: { target: `slot:${slot}`, type: 'base' } }], text: 'Snap: hold up the gunner' });
+/** How deep the punt team's lanes run before the men hold them and wait for the returner (design value). */
+const PUNT_LANE_DEPTH_YD = 40;
+/** Where the punt returner stands: this deep from the line, but not behind the yard line inside which he lets a punt go (design values; I4.5 default card "never field a punt inside the 10"). */
+const PUNT_RETURNER_DEPTH_YD = 52, PUNT_LET_GO_INSIDE_YD = 10;
+const puntReturnerPx = (input: PlayInput): number => Math.max(15, Math.min(PUNT_RETURNER_DEPTH_YD, 100 - Math.round(ownYard(input)) - PUNT_LET_GO_INSIDE_YD));
 
 /** Spread punt: seven on the line (snapper, guards, tackles, two gunners), two wings, the personal protector, the punter. */
-function puntUnit(): Assignment[] {
+function puntUnit(returnerPx: number): Assignment[] {
+  const cover = (role: string, at: [number, number], laneY: number, onLine = true, behavior = 'protectKick'): Assignment =>
+    slotOf({ role, behavior, at, onLine, path: [[PUNT_LANE_DEPTH_YD, laneY]], rules: [COVER_LANE] });
   return [
-    slotOf({ role: 'LS', behavior: 'snapper', at: [-0.4, 0], onLine: true }),
-    slotOf({ role: 'LG', behavior: 'protectKick', at: [-0.4, -1.3], onLine: true }),
-    slotOf({ role: 'RG', behavior: 'protectKick', at: [-0.4, 1.3], onLine: true }),
-    slotOf({ role: 'LT', behavior: 'protectKick', at: [-0.4, -2.6], onLine: true }),
-    slotOf({ role: 'RT', behavior: 'protectKick', at: [-0.4, 2.6], onLine: true }),
-    slotOf({ role: 'LE', behavior: 'kickCoverage', at: [-0.4, -18], onLine: true }),
-    slotOf({ role: 'RE', behavior: 'kickCoverage', at: [-0.4, 18], onLine: true }),
-    slotOf({ role: 'LW', behavior: 'protectKick', at: [-1.2, -3.6] }),
-    slotOf({ role: 'RW', behavior: 'protectKick', at: [-1.2, 3.6] }),
-    slotOf({ role: 'H', behavior: 'protectKick', at: [-5, 0.5] }),
+    slotOf({ role: 'LS', behavior: 'snapper', at: [-0.4, 0], onLine: true, rules: [COVER_MIDDLE] }),
+    cover('LG', [-0.4, -1.3], -6), cover('RG', [-0.4, 1.3], 6),
+    cover('LT', [-0.4, -2.6], -12), cover('RT', [-0.4, 2.6], 12),
+    slotOf({ role: 'LE', behavior: 'gunner', at: [-0.4, -18], onLine: true, path: gunnerPath(returnerPx, -1) }),
+    slotOf({ role: 'RE', behavior: 'gunner', at: [-0.4, 18], onLine: true, path: gunnerPath(returnerPx, 1) }),
+    cover('LW', [-1.2, -3.6], -18, false), cover('RW', [-1.2, 3.6], 18, false),
+    cover('H', [-5, 0.5], 3, false),
     slotOf({ role: 'K', behavior: 'kicker', at: [-14, 0] }),
   ];
 }
@@ -271,12 +303,13 @@ function placeKickUnit(): Assignment[] {
 }
 
 /** Punt return: six at the line, two jammers on the gunners, two set up the wall, the returner deep. */
-function puntReturnUnit(): Assignment[] {
+function puntReturnUnit(returnerPx: number): Assignment[] {
   const out: Assignment[] = [];
-  for (let i = 0; i < 6; i++) out.push(slotOf({ role: RETURN_ROLES[i]!, behavior: 'rushKick', at: [1, (i - 2.5) * 1.6], onLine: true }));
-  out.push(slotOf({ role: 'R7', behavior: 'kickReturnBlock', at: [1, -17] }), slotOf({ role: 'R8', behavior: 'kickReturnBlock', at: [1, 17] }));
-  out.push(slotOf({ role: 'R9', behavior: 'kickReturnBlock', at: [12, -4] }), slotOf({ role: 'R10', behavior: 'kickReturnBlock', at: [12, 4] }));
-  out.push(slotOf({ role: 'KR', behavior: 'returner', at: [42, 0] }));
+  for (let i = 0; i < 6; i++) out.push(slotOf({ role: RETURN_ROLES[i]!, behavior: 'rushKick', at: [1, (i - 2.5) * 1.6], onLine: true, rules: [HOLD_UP] }));
+  // The jammers line up across from the gunners (kicking-unit slots 5 and 6: the left and right ends).
+  out.push(slotOf({ role: 'R7', behavior: 'kickReturnBlock', at: [1, -18], rules: [jam(KICK_ROLES.indexOf('LE'))] }), slotOf({ role: 'R8', behavior: 'kickReturnBlock', at: [1, 18], rules: [jam(KICK_ROLES.indexOf('RE'))] }));
+  out.push(slotOf({ role: 'R9', behavior: 'kickReturnBlock', at: [12, -4], rules: [HOLD_UP] }), slotOf({ role: 'R10', behavior: 'kickReturnBlock', at: [12, 4], rules: [HOLD_UP] }));
+  out.push(slotOf({ role: 'KR', behavior: 'returner', at: [returnerPx, 0] }));
   return out;
 }
 
@@ -493,10 +526,10 @@ export function createStarterContentPort(): StarterContentPort {
     return d;
   };
 
-  const returnUnitsOf = (kind: 'punt' | 'field_goal'): Assignment[] => {
-    const key = `ret|${kind}`;
+  const returnUnitsOf = (kind: 'punt' | 'field_goal', input: PlayInput): Assignment[] => {
+    const px = kind === 'punt' ? puntReturnerPx(input) : 0, key = `ret|${kind}|${px}`;
     let u = units.get(key);
-    if (u === undefined) { u = { O: [], D: kind === 'punt' ? puntReturnUnit() : kickBlockUnit() }; units.set(key, u); }
+    if (u === undefined) { u = { O: [], D: kind === 'punt' ? puntReturnUnit(px) : kickBlockUnit() }; units.set(key, u); }
     return u.D;
   };
   const kickUnitsOf = (input: PlayInput, kick: KickCall, ret: ReturnCall | null): { O: Assignment[]; D: Assignment[] } => {
@@ -504,10 +537,10 @@ export function createStarterContentPort(): StarterContentPort {
     const kind = kick.kickKind;
     const free = kind === 'kickoff' || kind === 'onside_kick' || kind === 'safety_kick' || kind === 'fair_catch_kick';
     if (!free) {
-      const key = `${kind}|${ret?.returnKind ?? ''}`;
+      const px = kind === 'punt' ? puntReturnerPx(input) : 0, key = `${kind}|${ret?.returnKind ?? ''}|${px}`;
       let u = units.get(key);
       if (u === undefined) {
-        u = kind === 'punt' ? { O: puntUnit(), D: puntReturnUnit() } : { O: placeKickUnit(), D: kickBlockUnit() };
+        u = kind === 'punt' ? { O: puntUnit(px), D: puntReturnUnit(px) } : { O: placeKickUnit(), D: kickBlockUnit() };
         units.set(key, u);
       }
       return u;
@@ -558,7 +591,7 @@ export function createStarterContentPort(): StarterContentPort {
         if (o.unit !== 'defense') {
           // The other side read the down as a kick (the chart predicts the kick from its side) and sent its
           // return or block unit out against an offensive play: those eleven play the snap as they stand.
-          D = o.returnKind === 'punt_return' || o.returnKind === 'punt_block' ? returnUnitsOf('punt') : returnUnitsOf('field_goal');
+          D = o.returnKind === 'punt_return' || o.returnKind === 'punt_block' ? returnUnitsOf('punt', input) : returnUnitsOf('field_goal', input);
         } else D = defenseOf(o.coverageFamily, o.callContentId);
         if (o.unit === 'defense' && MAN_FAMILIES.has(o.coverageFamily)) {
           coverage = 'man';
@@ -572,7 +605,7 @@ export function createStarterContentPort(): StarterContentPort {
         // kick's own return or block unit: the same men, in the alignment the kick asks of them.
         const u = kickUnitsOf(input, s, o.unit === 'return' ? o : null);
         O = u.O; D = u.D; phase = 'scrimmage_kick';
-        if (o.unit === 'return') carrier = { returnPlan: { side: 'middle', fairCatchAllowed: true } };
+        if (o.unit === 'return') carrier = { returnPlan: { side: 'middle', fairCatchAllowed: true, ...(s.kickKind === 'punt' ? { letGoInsideYd: PUNT_LET_GO_INSIDE_YD } : {}) } };
       }
       const qbSlot = qb === null ? -1 : qb.qbSlot;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
