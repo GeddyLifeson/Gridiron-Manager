@@ -43,6 +43,27 @@ describe('play designer desk', () => {
     expect(shown.markers.every((m) => m.at[0] >= 0)).toBe(true);
   });
 
+  it('the parts list offers the content formations, the book protections and tags, and the drop', () => {
+    const book = new FootballDesk({ teamId: 4, ruleSetId: 'pro_2026', level: 'pro' });
+    const d = new PlayDesignerDesk({ ruleSetId: 'pro_2026', calendarLabel: () => 'x', bookParts: () => book.playbook.parts.values() });
+    const part = (k: string) => d.view().parts.find((p) => p.kind === k)!;
+    const formation = part('formation').options.find((o) => o.label.endsWith('(11)'))!;
+    const before = JSON.stringify(d.play.slots.map((x) => x.at));
+    d.send({ type: 'choose_part', kind: 'formation', id: formation.id });
+    expect(d.play.formation.id).toBe(formation.id);
+    expect(JSON.stringify(d.play.slots.map((x) => x.at))).not.toBe(before);
+    const protection = part('protection').options[0]!;
+    d.send({ type: 'choose_part', kind: 'protection', id: protection.id });
+    expect(d.play.protection!.id).toBe(protection.id);
+    const tag = part('tags').options[0]!;
+    d.send({ type: 'choose_part', kind: 'tags', id: tag.id });
+    expect(d.play.tagsAllowed).toEqual([tag.id]);
+    d.send({ type: 'choose_part', kind: 'tags', id: tag.id });
+    expect(d.play.tagsAllowed).toEqual([]);
+    d.send({ type: 'choose_part', kind: 'qb', id: 'drop5' });
+    expect(d.play.qb.dropSteps).toBe(5);
+  });
+
   it('a published play goes into the playbook, and publishing it again replaces it', () => {
     const book = new FootballDesk({ teamId: 4, ruleSetId: 'pro_2026', level: 'pro' });
     const before = book.playbookView('offense', {}).rows.length;

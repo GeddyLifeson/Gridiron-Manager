@@ -10,7 +10,10 @@
 // against the drawn formation by the defensive designer's own resolver, grey markers only (O3.1.1).
 // - the test bench: no `runBench` port (the screen says the bench is not available);
 // - missing positions: the season's rosters are placeholders (G-17), so the roster check finds none;
-// - the formation/motion/protection/concept/tag part lists: the content parts are not in designer form.
+// - the motion and concept part lists: a content motion or concept is several slot paths, and a part choice is one
+//   edit; the user draws them.
+// Parts list: personnel the designer can seat, every content formation (football-content full ALL_FORMATIONS, with
+// its alignments), the team book's protections and tags, and the QB's drop.
 // Hours: the E7 ledger does not feed the strip yet. PLACEHOLDER: hours left are the coach's awake hours of the
 // week less the design hours charged here.
 import { defenseDesigner as dd, full } from '@gm/football-content';
@@ -32,6 +35,8 @@ const FT_PER_YD = 3;
 const PERSONNEL = ['00', '01', '02', '10', '11', '12', '13', '20', '21', '22', '23', '31', '32'] as const;
 /** Behaviours the designer's own checks know (football-lang designer validate.ts sets), plus standing still. */
 const LINE_BEHAVIORS = ['pass_block', 'chip_block', 'run_block', 'block', 'pull', 'stand'] as const;
+/** Drop depths offered for the QB (G1.3 quarterback rules); the draft's own action and read are kept. */
+const DROP_STEPS = [1, 3, 5, 7] as const;
 const BACK_BEHAVIORS = ['route', 'release', 'option_route', 'screen_release', 'pass_block', 'chip_block', 'run_block', 'lead_block', 'block', 'stand'] as const;
 
 export interface PlayDesignerDeskOptions {
@@ -40,6 +45,8 @@ export interface PlayDesignerDeskOptions {
   readonly calendarLabel: () => string;
   /** True during a game (O3.1.4: the bench is off). */
   readonly inGame?: () => boolean;
+  /** The team book's parts (protections and tags offered in the parts list). */
+  readonly bookParts?: () => Iterable<{ readonly id: string; readonly type: string; readonly words: { readonly descriptive: string } }>;
   /** A published version goes to the playbook (FootballDesk.addDesigned). */
   readonly onPublish?: (play: designer.PlayDraft, version: number) => void;
 }
@@ -103,14 +110,40 @@ export class PlayDesignerDesk {
       recognizeRoute: (from, path) => designer.recognizeRoute(from, path as readonly designer.DrawnPoint[], this.templates, params),
       fieldLines: lines,
       behaviors: (role) => (designer.isLineSlot(role) ? LINE_BEHAVIORS : BACK_BEHAVIORS),
-      partOptions: (kind: PartKind): readonly PartOption<Edit>[] => (kind === 'personnel'
-        ? PERSONNEL.filter((c) => designer.slotsForPersonnel(c) !== null).map((c) => ({ id: c, label: c, edit: { type: 'set_personnel', personnel: c } }))
-        : []),
+      partOptions: (kind: PartKind, play: P): readonly PartOption<Edit>[] => this.partOptions(kind, play),
       missingPositions: () => [],
       hours: (): HoursStrip => ({ usedThisWeekH: this.usedH, leftThisWeekH: Math.max(0, awakeWeekHours() - this.usedH), owner: { kind: 'coach' }, assistants: [] }),
       calendarLabel: () => this.o.calendarLabel(),
       inGame: () => this.o.inGame?.() ?? false,
     };
+  }
+
+  private partOptions(kind: PartKind, play: Draft): PartOption<Edit>[] {
+    const book = [...(this.o.bookParts?.() ?? [])];
+    switch (kind) {
+      case 'personnel':
+        return PERSONNEL.filter((c) => designer.slotsForPersonnel(c) !== null).map((c) => ({ id: c, label: c, edit: { type: 'set_personnel', personnel: c } }));
+      case 'formation':
+        // The group's own formations first, then the rest (choosing one sets its personnel too).
+        return [...full.ALL_FORMATIONS].filter((f) => designer.slotsForPersonnel(f.personnel) !== null)
+          .sort((a, b) => Number(b.personnel === play.personnel) - Number(a.personnel === play.personnel))
+          .map((f) => ({
+            id: f.id, label: `${f.name} (${f.personnel})`,
+            edit: { type: 'apply_formation', formation: { id: f.id, personnel: f.personnel, shotgun: f.shotgun, players: f.players.map((x) => ({ role: x.role, at: [x.px, x.py] as Yd2, onLine: x.onLine })) } },
+          }));
+      case 'protection':
+        return book.filter((x) => x.type === 'protection').map((x) => ({ id: x.id, label: x.words.descriptive, edit: { type: 'set_protection', protection: { id: x.id, redirects: [] } } }));
+      case 'tags':
+        // A tag toggles: chosen again, it comes off.
+        return book.filter((x) => x.type === 'tag').map((x) => ({
+          id: x.id, label: play.tagsAllowed.includes(x.id) ? `${x.words.descriptive} (on)` : x.words.descriptive,
+          edit: { type: 'set_tags_allowed', tags: play.tagsAllowed.includes(x.id) ? play.tagsAllowed.filter((t) => t !== x.id) : [...play.tagsAllowed, x.id] },
+        }));
+      case 'qb':
+        return DROP_STEPS.map((n) => ({ id: `drop${n}`, label: `${n}-step drop`, edit: { type: 'set_qb', qb: { ...play.qb, dropSteps: n } } }));
+      default:
+        return [];
+    }
   }
 
   /** The defensive calls aligned against this formation (the call designer's resolver); a call it cannot read is left out. */
