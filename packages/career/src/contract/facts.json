@@ -1,0 +1,826 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-contract-0001",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Professional head coach contracts are effectively fully guaranteed; a coach fired without cause is owed the remaining salary (share owed).",
+   "value": 1,
+   "unit": "ratio",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "SI, Andrew Brandt, Business of Football, 2022-01-19 (fired coaches)",
+     "locator": "research/audit-r-coach-hiring.md source S12",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-brandt",
+     "primary": false,
+     "value": 1
+    },
+    {
+     "citation": "ESPN, Bill Barnwell, 2021-12-09 (coach salaries)",
+     "locator": "research/audit-r-coach-hiring.md source S13",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-barnwell",
+     "primary": false,
+     "value": 1
+    },
+    {
+     "citation": "Fox Business, late 2019 (Black Monday contracts)",
+     "locator": "research/audit-r-coach-hiring.md source S14",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-business",
+     "primary": false,
+     "value": 1
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Read through a fetch agent on 2026-11-25; recorded in research/audit-r-coach-hiring.md R11.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0002",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Professional head coach guarantees are offset guarantees: pay from a new employer reduces what the old club owes.",
+   "value": true,
+   "unit": "flag",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "SI, Andrew Brandt, Business of Football, 2022-01-19 (fired coaches)",
+     "locator": "research/audit-r-coach-hiring.md source S12",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-brandt",
+     "primary": false,
+     "value": true
+    },
+    {
+     "citation": "ESPN, Bill Barnwell, 2021-12-09 (coach salaries)",
+     "locator": "research/audit-r-coach-hiring.md source S13",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-barnwell",
+     "primary": false,
+     "value": true
+    },
+    {
+     "citation": "Fox Business, late 2019 (Black Monday contracts)",
+     "locator": "research/audit-r-coach-hiring.md source S14",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-business",
+     "primary": false,
+     "value": true
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Read through a fetch agent on 2026-11-25; recorded in research/audit-r-coach-hiring.md R11.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0003",
+   "level": "college",
+   "domain": "career",
+   "statement": "Kentucky 2025 head coach: share of remaining pay owed if fired without cause, paid monthly.",
+   "value": 0.7,
+   "unit": "ratio",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Kentucky head coach agreement of 2025-12-02",
+     "locator": "https://legal.uky.edu/sites/default/files/2026-02/stein-fy2526.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uky-2025",
+     "primary": true,
+     "value": 0.7
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0004",
+   "level": "college",
+   "domain": "career",
+   "statement": "Oregon 2025 position coach: share of remaining guaranteed salary owed if fired without cause.",
+   "value": 0.7,
+   "unit": "ratio",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Oregon assistant (position coach) agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/kaai-lake-2025-2028",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": 0.7
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0005",
+   "level": "college",
+   "domain": "career",
+   "statement": "Oregon 2025 coordinator: share of remaining guaranteed salary owed if fired without cause.",
+   "value": 1,
+   "unit": "ratio",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Oregon coordinator agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/mehringer-andrew-2025-28",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0006",
+   "level": "college",
+   "domain": "career",
+   "statement": "Top college head coach contracts commonly guarantee 75% to 100% of remaining pay if fired without cause.",
+   "value": "0.75-1",
+   "unit": "ratio range",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Greenberg, Mitigation Clauses in College Football coach contracts (Marquette Sports Law review)",
+     "locator": "https://law.marquette.edu/assets/sports-law/pdf/gcc-Mitigation-Clauses-in-College-Football.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "marquette-greenberg",
+     "primary": false,
+     "value": "0.75-1"
+    },
+    {
+     "citation": "Project research research/college R21 section 21.6 (coach contracts)",
+     "locator": "/mnt/project-files/research/college/ R21 21.6",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "project-r21",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host). R21 gives 85% or more in most top contracts without a single range; Kentucky 2025 is 70%, outside the range, so the primary texts are not counted as support.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0007",
+   "level": "college",
+   "domain": "career",
+   "statement": "Group of Six assistant (Miami Ohio 2025): when the head coach leaves, 60 days notice or up to two months of salary.",
+   "value": 2,
+   "unit": "months",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Miami University (Ohio) assistant appointment letters 2025",
+     "locator": "https://miamioh.edu/athletics/_documents/ica-2025-2026/welsh-hugh-2025.pdf ; aylward-john-2025.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "miamioh-2025",
+     "primary": true,
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0008",
+   "level": "college",
+   "domain": "career",
+   "statement": "Kentucky 2025 head coach leaving early owes 30% of remaining base and media pay, lump sum within 90 days.",
+   "value": 0.3,
+   "unit": "ratio",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Kentucky head coach agreement of 2025-12-02",
+     "locator": "https://legal.uky.edu/sites/default/files/2026-02/stein-fy2526.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uky-2025",
+     "primary": true,
+     "value": 0.3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0009",
+   "level": "college",
+   "domain": "career",
+   "statement": "Oregon 2025 assistant resignation damages: 100% of remaining guaranteed salary before August 1 of the first season, 50% until the next February 1, 25% after.",
+   "value": "1,0.5,0.25",
+   "unit": "ratio ladder",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Oregon assistant (position coach) agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/kaai-lake-2025-2028",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": "1,0.5,0.25"
+    },
+    {
+     "citation": "Oregon coordinator agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/mehringer-andrew-2025-28",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": "1,0.5,0.25"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0010",
+   "level": "college",
+   "domain": "career",
+   "statement": "Oregon 2025 assistant incentive ladder annual cap (same for position coach and coordinator).",
+   "value": 155000,
+   "unit": "USD",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Oregon assistant (position coach) agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/kaai-lake-2025-2028",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": 155000
+    },
+    {
+     "citation": "Oregon coordinator agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/mehringer-andrew-2025-28",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": 155000
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0011",
+   "level": "college",
+   "domain": "career",
+   "statement": "Kentucky 2025 head coach: cure period for a curable cause ground.",
+   "value": 5,
+   "unit": "days",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Kentucky head coach agreement of 2025-12-02",
+     "locator": "https://legal.uky.edu/sites/default/files/2026-02/stein-fy2526.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uky-2025",
+     "primary": true,
+     "value": 5
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0012",
+   "level": "college",
+   "domain": "career",
+   "statement": "Kentucky 2025 head coach: longest suspension without base pay instead of termination.",
+   "value": 90,
+   "unit": "days",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Kentucky head coach agreement of 2025-12-02",
+     "locator": "https://legal.uky.edu/sites/default/files/2026-02/stein-fy2526.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uky-2025",
+     "primary": true,
+     "value": 90
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0013",
+   "level": "college",
+   "domain": "career",
+   "statement": "Kentucky 2025 head coach: one contract year added per playoff season, up to this many unexpired years.",
+   "value": 5,
+   "unit": "years",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Kentucky head coach agreement of 2025-12-02",
+     "locator": "https://legal.uky.edu/sites/default/files/2026-02/stein-fy2526.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uky-2025",
+     "primary": true,
+     "value": 5
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0014",
+   "level": "college",
+   "domain": "career",
+   "statement": "Kentucky 2025 head coach: days to report new pay after accepting another job while paid by the school.",
+   "value": 14,
+   "unit": "days",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Kentucky head coach agreement of 2025-12-02",
+     "locator": "https://legal.uky.edu/sites/default/files/2026-02/stein-fy2526.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uky-2025",
+     "primary": true,
+     "value": 14
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host). Houston 2014 gives 10 days and Texas 2016 gives 20.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0015",
+   "level": "both",
+   "domain": "career",
+   "statement": "Coach agents typically take 4 to 5 percent of the contract.",
+   "value": "0.04-0.05",
+   "unit": "ratio range",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, Kahler, 2025-01-17 (agents and coaching searches)",
+     "locator": "research/audit-r-coach-hiring.md source S18",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-kahler",
+     "primary": false,
+     "value": "0.04-0.05"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Read through a fetch agent on 2026-11-25; recorded in research/audit-r-coach-hiring.md R11.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0016",
+   "level": "college",
+   "domain": "career",
+   "statement": "A college settlement paid about $11M on about $20M owed (share of face value).",
+   "value": 0.55,
+   "unit": "ratio",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "USA Today via Yahoo Sports, 2022-10-09 (Chryst settlement)",
+     "locator": "https://ca.sports.yahoo.com/news/not-risk-why-college-football-101957279.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usa-today",
+     "primary": false,
+     "value": 0.55
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0017",
+   "level": "college",
+   "domain": "career",
+   "statement": "Texas 2016 head coach contract: the win-loss record alone is not cause for termination.",
+   "value": true,
+   "unit": "flag",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Texas 2016 restated head coach agreement",
+     "locator": "https://static.texastribune.org/media/files/6848d600da55db1efc9d299a0d4f9d76/Herman_contract.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "utexas-2016",
+     "primary": true,
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0018",
+   "level": "college",
+   "domain": "career",
+   "statement": "Oregon 2025 assistants: resignation damages waived when leaving for a top-subdivision or professional head coach job, or a coordinator job with full play-calling duties.",
+   "value": true,
+   "unit": "flag",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Oregon assistant (position coach) agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/kaai-lake-2025-2028",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": true
+    },
+    {
+     "citation": "Oregon coordinator agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/mehringer-andrew-2025-28",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0019",
+   "level": "college",
+   "domain": "career",
+   "statement": "Texas 2016 head coach leaving early owes $3M per remaining contract year, prorated, lump sum within 75 days.",
+   "value": 3000000,
+   "unit": "USD per remaining year",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Texas 2016 restated head coach agreement",
+     "locator": "https://static.texastribune.org/media/files/6848d600da55db1efc9d299a0d4f9d76/Herman_contract.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "utexas-2016",
+     "primary": true,
+     "value": 3000000
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0020",
+   "level": "college",
+   "domain": "career",
+   "statement": "Houston 2014 head coach leaving early owes a fixed amount falling by year: $2.25M, $1M, $0.5M.",
+   "value": "2250000,1000000,500000",
+   "unit": "USD by contract year",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Houston 2014 head coach agreement (attached to the Texas 2016 file)",
+     "locator": "https://static.texastribune.org/media/files/6848d600da55db1efc9d299a0d4f9d76/Herman_contract.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uh-2014",
+     "primary": true,
+     "value": "2250000,1000000,500000"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0021",
+   "level": "college",
+   "domain": "career",
+   "statement": "Kentucky 2025 head coach annual incentive cap.",
+   "value": 2150000,
+   "unit": "USD",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Kentucky head coach agreement of 2025-12-02",
+     "locator": "https://legal.uky.edu/sites/default/files/2026-02/stein-fy2526.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uky-2025",
+     "primary": true,
+     "value": 2150000
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0022",
+   "level": "pro",
+   "domain": "career",
+   "statement": "NFL quality control coach average pay, one coach estimate in 2018.",
+   "value": "100000-150000",
+   "unit": "USD range",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "ESPN Commanders blog 2018, the grind of a quality control coach",
+     "locator": "https://www.espn.com/blog/washington-commanders/post/_/id/37647/long-days-big-dreams-the-grind-of-a-quality-control-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-2018",
+     "primary": false,
+     "value": "100000-150000"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0023",
+   "level": "college",
+   "domain": "career",
+   "statement": "Oregon 2025 power four position coach annual salary.",
+   "value": 350000,
+   "unit": "USD",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Oregon assistant (position coach) agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/kaai-lake-2025-2028",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": 350000
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0024",
+   "level": "college",
+   "domain": "career",
+   "statement": "Oregon 2025 power four coordinator annual salary.",
+   "value": 1400000,
+   "unit": "USD",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Oregon coordinator agreement 2025-28",
+     "locator": "https://publicrecords.uoregon.edu/mehringer-andrew-2025-28",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "uoregon-2025",
+     "primary": true,
+     "value": 1400000
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  },
+  {
+   "id": "F-contract-0025",
+   "level": "college",
+   "domain": "career",
+   "statement": "Miami (Ohio) 2025 Group of Six assistant annual salaries (two letters).",
+   "value": "80000,182000",
+   "unit": "USD",
+   "validFor": "coach contracts as read (see sources)",
+   "sources": [
+    {
+     "citation": "Miami University (Ohio) assistant appointment letters 2025",
+     "locator": "https://miamioh.edu/athletics/_documents/ica-2025-2026/welsh-hugh-2025.pdf ; aylward-john-2025.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "miamioh-2025",
+     "primary": true,
+     "value": "80000,182000"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Read by the bible depth pass on 2026-11-26 and recorded in research/depth-pass/E3-log.md and bible E3; this thread could not reopen the page (sandbox proxy blocks the host).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-51 coach contracts from project research files."
+    }
+   ]
+  }
+ ]
+}
