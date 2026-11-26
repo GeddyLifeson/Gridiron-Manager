@@ -1,0 +1,360 @@
+{
+ "$comment": "H3.1.2 starting period table (weights 0 to 3, Assumption) and the drill list (H3.6.2). Drills marked prohibited are in the palette with the rule: the G-12 work-rule checker (camp.prohibited_drills, C11.2.2, CBA Article 24 Section 1(e), status 1 of 3) reports them; placing one opens the L8.2.5 warning.",
+ "periodTypes": [
+  {
+   "id": "warmup",
+   "plain": "Stretch and warm-up: preparation",
+   "knowledge": 0,
+   "technique": 0,
+   "load": 0,
+   "injury": 0,
+   "kind": "warmup",
+   "line": false,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "walkthrough",
+   "plain": "Walkthrough: assignments at walking pace",
+   "knowledge": 2,
+   "technique": 0,
+   "load": 0,
+   "injury": 0,
+   "kind": "walkthrough",
+   "line": false,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "individual",
+   "plain": "Individual: position drills with the position coach",
+   "knowledge": 0,
+   "technique": 3,
+   "load": 1,
+   "injury": 1,
+   "kind": "individual",
+   "line": false,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "inside_run",
+   "plain": "Group: inside run. Linemen, tight ends and backs against the front seven",
+   "knowledge": 1,
+   "technique": 2,
+   "load": 2,
+   "injury": 2,
+   "kind": "group",
+   "line": true,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "seven_on_seven",
+   "plain": "Group: seven-on-seven. Pass skeleton, no linemen",
+   "knowledge": 2,
+   "technique": 2,
+   "load": 1,
+   "injury": 1,
+   "kind": "group",
+   "line": false,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "one_on_one_rush",
+   "plain": "Group: one-on-one pass rush. Rusher against blocker",
+   "knowledge": 0,
+   "technique": 3,
+   "load": 2,
+   "injury": 2,
+   "kind": "group",
+   "line": true,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "one_on_one_wr_db",
+   "plain": "Group: one-on-one receivers and defensive backs. Release and coverage",
+   "knowledge": 0,
+   "technique": 3,
+   "load": 1,
+   "injury": 1,
+   "kind": "group",
+   "line": false,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "blitz_pickup",
+   "plain": "Blitz pickup: protection against scripted pressures",
+   "knowledge": 2,
+   "technique": 2,
+   "load": 2,
+   "injury": 2,
+   "kind": "group",
+   "line": true,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "team_scout",
+   "plain": "Team against scout look: starters run the plan against cards",
+   "knowledge": 3,
+   "technique": 1,
+   "load": 2,
+   "injury": 2,
+   "kind": "team",
+   "line": true,
+   "needsScript": true,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "team_good_on_good",
+   "plain": "Team, good on good: starters against starters",
+   "knowledge": 1,
+   "technique": 2,
+   "load": 3,
+   "injury": 3,
+   "kind": "team",
+   "line": true,
+   "needsScript": true,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "situational",
+   "plain": "Situational team: two-minute, red zone, goal line, backed up, four-minute, last play",
+   "knowledge": 3,
+   "technique": 1,
+   "load": 2,
+   "injury": 2,
+   "kind": "team",
+   "line": true,
+   "needsScript": true,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "special_teams",
+   "plain": "Special teams: one unit at a time",
+   "knowledge": 2,
+   "technique": 1,
+   "load": 2,
+   "injury": 2,
+   "kind": "team",
+   "line": false,
+   "needsScript": true,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "competition",
+   "plain": "Competition: scored one-on-one or team reps with a winner",
+   "knowledge": 0,
+   "technique": 2,
+   "load": 3,
+   "injury": 3,
+   "kind": "group",
+   "line": true,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "conditioning",
+   "plain": "Conditioning: running after practice",
+   "knowledge": 0,
+   "technique": 0,
+   "load": 3,
+   "injury": 1,
+   "kind": "conditioning",
+   "line": false,
+   "needsScript": false,
+   "levels": [
+    "pro",
+    "college"
+   ]
+  },
+  {
+   "id": "developmental",
+   "plain": "Developmental period: players outside the two-deep run base plays against each other",
+   "knowledge": 2,
+   "technique": 2,
+   "load": 2,
+   "injury": 2,
+   "kind": "team",
+   "line": true,
+   "needsScript": true,
+   "levels": [
+    "college"
+   ]
+  }
+ ],
+ "drills": [
+  {
+   "id": "stance_start",
+   "plain": "Stance and start",
+   "prohibitedInRules": false,
+   "techniques": [
+    "get_off"
+   ]
+  },
+  {
+   "id": "hand_placement",
+   "plain": "Hand placement and punch",
+   "prohibitedInRules": false,
+   "techniques": [
+    "hand_use"
+   ]
+  },
+  {
+   "id": "pass_set",
+   "plain": "Pass set and mirror",
+   "prohibitedInRules": false,
+   "techniques": [
+    "pass_block"
+   ]
+  },
+  {
+   "id": "rush_moves",
+   "plain": "Rush moves against a bag",
+   "prohibitedInRules": false,
+   "techniques": [
+    "pass_rush"
+   ]
+  },
+  {
+   "id": "tackling_form",
+   "plain": "Form tackling (thud)",
+   "prohibitedInRules": false,
+   "techniques": [
+    "tackling"
+   ]
+  },
+  {
+   "id": "ball_security",
+   "plain": "Ball security gauntlet",
+   "prohibitedInRules": false,
+   "techniques": [
+    "ball_security"
+   ]
+  },
+  {
+   "id": "route_release",
+   "plain": "Release against press",
+   "prohibitedInRules": false,
+   "techniques": [
+    "route_running"
+   ]
+  },
+  {
+   "id": "press_coverage",
+   "plain": "Press and mirror",
+   "prohibitedInRules": false,
+   "techniques": [
+    "man_coverage"
+   ]
+  },
+  {
+   "id": "catching",
+   "plain": "Catching and ball skills",
+   "prohibitedInRules": false,
+   "techniques": [
+    "hands"
+   ]
+  },
+  {
+   "id": "footwork_qb",
+   "plain": "Quarterback drop and footwork",
+   "prohibitedInRules": false,
+   "techniques": [
+    "throwing_footwork"
+   ]
+  },
+  {
+   "id": "bull_in_the_ring",
+   "plain": "Bull in the ring",
+   "prohibitedInRules": true,
+   "techniques": [
+    "tackling"
+   ]
+  },
+  {
+   "id": "oklahoma",
+   "plain": "Oklahoma drill",
+   "prohibitedInRules": true,
+   "techniques": [
+    "run_block",
+    "block_shedding"
+   ]
+  },
+  {
+   "id": "inline_board",
+   "plain": "In-line run blocking on boards",
+   "prohibitedInRules": true,
+   "techniques": [
+    "run_block"
+   ]
+  },
+  {
+   "id": "half_line",
+   "plain": "Half-line",
+   "prohibitedInRules": true,
+   "techniques": [
+    "run_block"
+   ]
+  },
+  {
+   "id": "pods",
+   "plain": "Pods",
+   "prohibitedInRules": true,
+   "techniques": [
+    "run_block"
+   ]
+  },
+  {
+   "id": "three_spot",
+   "plain": "3-spot",
+   "prohibitedInRules": true,
+   "techniques": [
+    "run_block"
+   ]
+  }
+ ]
+}
