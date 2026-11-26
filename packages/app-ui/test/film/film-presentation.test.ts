@@ -264,11 +264,10 @@ describe('film look (plan 2.1; PV-18 supplies grain through the port)', () => {
 describe('film room only (route rule: none of this reaches the live field)', () => {
   const src = join(import.meta.dirname, '../../src');
   const files = (readdirSync(src, { recursive: true }) as string[]).filter((f) => /\.tsx?$/.test(f) && statSync(join(src, f)).isFile());
-  it('only the film screens, the package barrel and the route table import the film screens or their presentation', () => {
+  it('only the film screens and the package barrel import the film screens or their presentation', () => {
     for (const f of files) {
       const rel = relative(src, join(src, f)).replace(/\\/g, '/');
-      // routes.ts binds each screen package's route factory to its id (P1.2.2); it mounts no film drawing on the live field.
-      if (rel.startsWith('screens/film/') || rel === 'index.ts' || rel === 'routes.ts') continue;
+      if (rel.startsWith('screens/film/') || rel === 'index.ts') continue;
       const text = readFileSync(join(src, f), 'utf8');
       expect(text, rel).not.toMatch(/screens\/film|film\/presentation/);
     }
