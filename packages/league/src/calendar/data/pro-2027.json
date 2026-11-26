@@ -1,0 +1,53 @@
+{
+ "$comment": "Pro calendar, season 2027: real published dates that override the pattern. Each row cites its research file and carries the status the bible gives it.",
+ "level": "pro",
+ "kind": "dated",
+ "season": 2027,
+ "anchors": [
+  {
+   "id": "combine_open",
+   "rule": {
+    "date": "2027-03-01"
+   },
+   "status": "1 of 3",
+   "leaf": "C4.2.3",
+   "source": "NFL Football Operations dates page (C4.2.3)"
+  },
+  {
+   "id": "combine_close",
+   "rule": {
+    "date": "2027-03-08"
+   },
+   "status": "1 of 3",
+   "leaf": "C4.2.3",
+   "source": "NFL Football Operations dates page (C4.2.3)"
+  },
+  {
+   "id": "draft_start",
+   "rule": {
+    "date": "2027-04-29"
+   },
+   "status": "2 of 3",
+   "leaf": "C4.2.5",
+   "source": "NFL.com release; NFL Football Operations important dates page (C4.2.5)"
+  },
+  {
+   "id": "program_start",
+   "rule": {
+    "date": "2027-04-19"
+   },
+   "status": "1 of 3",
+   "leaf": "C4.3.1",
+   "source": "C4.3.1 program start dates (2027)"
+  },
+  {
+   "id": "program_start_new_hc",
+   "rule": {
+    "date": "2027-04-05"
+   },
+   "status": "1 of 3",
+   "leaf": "C4.3.1",
+   "source": "C4.3.1 program start dates (2027)"
+  }
+ ]
+}

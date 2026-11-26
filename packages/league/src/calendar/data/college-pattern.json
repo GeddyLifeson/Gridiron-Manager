@@ -1,0 +1,570 @@
+{
+ "$comment": "College calendar pattern (T3.2.1). Season Y = the season played in the fall of Y; its anchors run from January 1 of Y to the playoff final in January of Y+1. The playoff pattern follows the 2027 24-team shape. Recruiting periods are dated data only (T4.2.1): a year with no dated file has none, and the engine reports it.",
+ "level": "college",
+ "kind": "pattern",
+ "anchors": [
+  {
+   "id": "year_start",
+   "rule": {
+    "md": "01-01"
+   },
+   "status": "Verified",
+   "leaf": "T3.2.1",
+   "source": "Civil date: January 1"
+  },
+  {
+   "id": "transfer_window_open",
+   "rule": {
+    "md": "01-02",
+    "nextBusinessDay": true
+   },
+   "status": "Conflict",
+   "leaf": "T6.1",
+   "source": "T6.1 and T3.2.1: from January 2027, 10 days from the first business day after January 1, if adopted (R19 reads approved, college-off-field-facts.md reads pending)"
+  },
+  {
+   "id": "transfer_window_close",
+   "rule": {
+    "from": "transfer_window_open",
+    "days": 9
+   },
+   "status": "Conflict",
+   "leaf": "T6.1",
+   "source": "Ten days (T6.1)"
+  },
+  {
+   "id": "february_signing",
+   "rule": {
+    "nth": 1,
+    "weekday": "wed",
+    "month": 2
+   },
+   "status": "Unverified",
+   "leaf": "T4.5.2",
+   "source": "T4.5.2: a second signing date in early February; first Wednesday is the design placement, no date source read"
+  },
+  {
+   "id": "spring_practice_start",
+   "rule": {
+    "nth": 1,
+    "weekday": "mon",
+    "month": 3
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Each school picks its spring dates; first Monday of March is the default for generated schools"
+  },
+  {
+   "id": "spring_practice_end",
+   "rule": {
+    "from": "spring_practice_start",
+    "days": 33
+   },
+   "status": "1 of 3",
+   "leaf": "T3.2.1",
+   "source": "Spring practice: 15 sessions in 34 consecutive days (school compliance page quoting Bylaw 17.11.7.5, R19)"
+  },
+  {
+   "id": "winter_end",
+   "rule": {
+    "from": "spring_practice_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Winter runs to spring practice"
+  },
+  {
+   "id": "summer_start",
+   "rule": {
+    "from": "spring_practice_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Summer follows spring practice"
+  },
+  {
+   "id": "first_saturday",
+   "rule": {
+    "nth": -1,
+    "weekday": "sat",
+    "month": 8
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Pattern: the last Saturday of August (2027 first Saturday 2027-08-28 matches)"
+  },
+  {
+   "id": "season_week1_start",
+   "rule": {
+    "from": "first_saturday",
+    "days": -6
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "College week runs Sunday to Saturday (design reading); the optional early week is week one"
+  },
+  {
+   "id": "preseason_practice_start",
+   "rule": {
+    "from": "first_saturday",
+    "days": -27
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Preseason practice window of 27 days before the first Saturday, borrowed from the 2027 rule (21 practices in 27 days); the 2026 rule counts 25 practices with no dated window read"
+  },
+  {
+   "id": "preseason_practice_end",
+   "rule": {
+    "from": "first_saturday",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Preseason practice ends before the first game"
+  },
+  {
+   "id": "summer_end",
+   "rule": {
+    "from": "preseason_practice_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Summer runs to preseason practice"
+  },
+  {
+   "id": "recruit_class_entry",
+   "rule": {
+    "md": "09-01"
+   },
+   "status": "1 of 3",
+   "leaf": "X11.1.1",
+   "source": "X11.1.1 and T4.2.1: the fall evaluation period and weekly calls to seniors start September 1 (official FBS calendar 2026-27); used as the date the recruit class enters the tracked years"
+  },
+  {
+   "id": "thanksgiving",
+   "rule": {
+    "nth": 4,
+    "weekday": "thu",
+    "month": 11
+   },
+   "status": "Verified",
+   "leaf": "T3.2.1",
+   "source": "Civil holiday: fourth Thursday of November"
+  },
+  {
+   "id": "regular_season_end",
+   "rule": {
+    "from": "thanksgiving",
+    "days": 2
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: the Saturday after Thanksgiving (2027-11-27, 2 of 3); used as the pattern for other years"
+  },
+  {
+   "id": "head_coach_review",
+   "rule": {
+    "from": "regular_season_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "E4.8",
+   "source": "T3.2.1: the main head coach review falls the day after the regular season ends"
+  },
+  {
+   "id": "championship_saturday",
+   "rule": {
+    "from": "regular_season_end",
+    "days": 7
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Conference title games in early December: the Saturday after the regular season (design placement)"
+  },
+  {
+   "id": "championship_week_start",
+   "rule": {
+    "from": "regular_season_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Championship week follows the regular season"
+  },
+  {
+   "id": "early_signing_open",
+   "rule": {
+    "nth": 1,
+    "weekday": "wed",
+    "month": 12
+   },
+   "status": "1 of 3",
+   "leaf": "T4.5.2",
+   "source": "T4.5.2: the early signing period for the 2026 class opened Wednesday 2025-12-03 (first Wednesday of December, T4.5.2 and T3.2.1)"
+  },
+  {
+   "id": "early_signing_close",
+   "rule": {
+    "from": "early_signing_open",
+    "days": 2
+   },
+   "status": "Conflict",
+   "leaf": "T4.5.2",
+   "source": "End date reported as both December 5 and 6 (T4.5.2)"
+  },
+  {
+   "id": "playoff_r1_start",
+   "rule": {
+    "from": "regular_season_end",
+    "days": 12
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Pattern from the 2027 shape (first round December 9 to 11 against a November 27 season end); official text: the playoff begins the first full week of December"
+  },
+  {
+   "id": "playoff_r1_end",
+   "rule": {
+    "from": "playoff_r1_start",
+    "days": 2
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Pattern from 2027"
+  },
+  {
+   "id": "playoff_r2_start",
+   "rule": {
+    "from": "playoff_r1_start",
+    "days": 7
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Pattern from 2027 (second round December 16 to 18)"
+  },
+  {
+   "id": "playoff_r2_end",
+   "rule": {
+    "from": "playoff_r2_start",
+    "days": 2
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Pattern from 2027"
+  },
+  {
+   "id": "playoff_qf_start",
+   "rule": {
+    "md": "12-31"
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Quarterfinals December 31 and January 1 (2027 shape)"
+  },
+  {
+   "id": "playoff_qf_end",
+   "rule": {
+    "md": "01-01",
+    "yearOffset": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Quarterfinals December 31 and January 1 (2027 shape)"
+  },
+  {
+   "id": "playoff_sf_start",
+   "rule": {
+    "nth": 2,
+    "weekday": "thu",
+    "month": 1,
+    "yearOffset": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Semifinals on the second Thursday and Friday of January (2027-01-14 and 2028-01-13 match)"
+  },
+  {
+   "id": "playoff_sf_end",
+   "rule": {
+    "from": "playoff_sf_start",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Two semifinal days"
+  },
+  {
+   "id": "playoff_final",
+   "rule": {
+    "nth": 4,
+    "weekday": "mon",
+    "month": 1,
+    "yearOffset": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.5.1",
+   "source": "Final on the fourth Monday of January (2027-01-25 and 2028-01-24 match)"
+  },
+  {
+   "id": "postseason_start",
+   "rule": {
+    "from": "championship_saturday",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Bowls and playoff follow championship week"
+  },
+  {
+   "id": "offseason_start",
+   "rule": {
+    "from": "regular_season_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "T3.2.1",
+   "source": "Schools out of the postseason move to the offseason (coaching changes, recruiting)"
+  },
+  {
+   "id": "year_end",
+   "rule": {
+    "md": "12-31"
+   },
+   "status": "Verified",
+   "leaf": "T3.2.1",
+   "source": "Civil date: December 31"
+  }
+ ],
+ "windows": [
+  {
+   "id": "college_winter",
+   "kind": "phase",
+   "label": "Winter: transfers, recruiting, staff",
+   "leaf": "T3.2.1",
+   "opens": "year_start",
+   "closes": "winter_end",
+   "phase": "college_winter",
+   "order": 5
+  },
+  {
+   "id": "college_spring_practice",
+   "kind": "phase",
+   "label": "Spring practice",
+   "leaf": "T3.2.1",
+   "opens": "spring_practice_start",
+   "closes": "spring_practice_end",
+   "phase": "college_spring_practice",
+   "order": 20
+  },
+  {
+   "id": "college_summer",
+   "kind": "phase",
+   "label": "Summer",
+   "leaf": "T3.2.1",
+   "opens": "summer_start",
+   "closes": "summer_end",
+   "phase": "college_summer",
+   "order": 15
+  },
+  {
+   "id": "college_preseason_practice",
+   "kind": "phase",
+   "label": "Preseason practice",
+   "leaf": "T3.2.1",
+   "opens": "preseason_practice_start",
+   "closes": "preseason_practice_end",
+   "phase": "college_preseason_practice",
+   "order": 30
+  },
+  {
+   "id": "college_regular_season",
+   "kind": "phase",
+   "label": "Regular season",
+   "leaf": "T3.2.1",
+   "opens": "first_saturday",
+   "closes": "regular_season_end",
+   "phase": "college_regular_season",
+   "order": 50
+  },
+  {
+   "id": "college_championship_week",
+   "kind": "phase",
+   "label": "Conference championship week",
+   "leaf": "T3.3.1",
+   "opens": "championship_week_start",
+   "closes": "championship_saturday",
+   "phase": "college_championship_week",
+   "order": 55,
+   "audience": "postseason"
+  },
+  {
+   "id": "college_postseason",
+   "kind": "phase",
+   "label": "Bowls and playoff",
+   "leaf": "T3.5.1",
+   "opens": "postseason_start",
+   "closes": "playoff_final",
+   "phase": "college_postseason",
+   "order": 60,
+   "audience": "postseason"
+  },
+  {
+   "id": "college_offseason",
+   "kind": "phase",
+   "label": "Offseason after the season",
+   "leaf": "T3.2.1",
+   "opens": "offseason_start",
+   "closes": "year_end",
+   "phase": "college_offseason",
+   "order": 8
+  },
+  {
+   "id": "regular_week",
+   "kind": "window",
+   "label": "Regular-season week",
+   "leaf": "T3.1.1",
+   "opens": "season_week1_start",
+   "repeat": {
+    "untilAnchor": "regular_season_end",
+    "stepDays": 7,
+    "lengthDays": 7
+   }
+  },
+  {
+   "id": "transfer_window",
+   "kind": "window",
+   "label": "Transfer window",
+   "leaf": "T6.1",
+   "opens": "transfer_window_open",
+   "closes": "transfer_window_close"
+  },
+  {
+   "id": "spring_practice",
+   "kind": "window",
+   "label": "Spring practice period",
+   "leaf": "T3.2.1",
+   "opens": "spring_practice_start",
+   "closes": "spring_practice_end"
+  },
+  {
+   "id": "preseason_practice",
+   "kind": "window",
+   "label": "Preseason practice",
+   "leaf": "T3.2.1",
+   "opens": "preseason_practice_start",
+   "closes": "preseason_practice_end"
+  },
+  {
+   "id": "early_signing",
+   "kind": "window",
+   "label": "Early signing period",
+   "leaf": "T4.5.2",
+   "opens": "early_signing_open",
+   "closes": "early_signing_close"
+  },
+  {
+   "id": "playoff_r1",
+   "kind": "window",
+   "label": "Playoff first round",
+   "leaf": "T3.5.1",
+   "opens": "playoff_r1_start",
+   "closes": "playoff_r1_end"
+  },
+  {
+   "id": "playoff_r2",
+   "kind": "window",
+   "label": "Playoff second round",
+   "leaf": "T3.5.1",
+   "opens": "playoff_r2_start",
+   "closes": "playoff_r2_end"
+  },
+  {
+   "id": "playoff_qf",
+   "kind": "window",
+   "label": "Playoff quarterfinals",
+   "leaf": "T3.5.1",
+   "opens": "playoff_qf_start",
+   "closes": "playoff_qf_end"
+  },
+  {
+   "id": "playoff_sf",
+   "kind": "window",
+   "label": "Playoff semifinals",
+   "leaf": "T3.5.1",
+   "opens": "playoff_sf_start",
+   "closes": "playoff_sf_end"
+  },
+  {
+   "id": "transfer_window_close",
+   "kind": "deadline",
+   "label": "Transfer window closes",
+   "leaf": "T6.1",
+   "opens": "transfer_window_close",
+   "check": "college.transfer_window",
+   "stopsUser": false
+  },
+  {
+   "id": "february_signing_day",
+   "kind": "event",
+   "label": "February signing date",
+   "leaf": "T4.5.2",
+   "opens": "february_signing"
+  },
+  {
+   "id": "head_coach_review",
+   "kind": "event",
+   "label": "Head coach review",
+   "leaf": "E4.8",
+   "opens": "head_coach_review"
+  },
+  {
+   "id": "conference_championships",
+   "kind": "event",
+   "label": "Conference title games",
+   "leaf": "T3.3.1",
+   "opens": "championship_saturday"
+  },
+  {
+   "id": "playoff_final",
+   "kind": "event",
+   "label": "Playoff final",
+   "leaf": "T3.5.1",
+   "opens": "playoff_final"
+  },
+  {
+   "id": "cohort_recruit_class",
+   "kind": "cohort",
+   "cohort": "recruit_class",
+   "label": "Recruit class enters the tracked years",
+   "leaf": "X11.1.1",
+   "opens": "recruit_class_entry"
+  },
+  {
+   "id": "cohort_college_walk_on",
+   "kind": "cohort",
+   "cohort": "college_walk_on",
+   "label": "Walk-ons and late adds",
+   "leaf": "X11.1.1",
+   "opens": "preseason_practice_start"
+  },
+  {
+   "id": "cohort_coach_staff_entry_college",
+   "kind": "cohort",
+   "cohort": "coach_staff_entry",
+   "label": "Coach and staff entrants (college hiring cycle)",
+   "leaf": "X11.1.1",
+   "opens": "head_coach_review"
+  },
+  {
+   "id": "college_year_begins",
+   "kind": "event",
+   "label": "New college year: season number advances",
+   "leaf": "C4.7.1",
+   "opens": "year_start"
+  }
+ ]
+}

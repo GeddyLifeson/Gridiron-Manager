@@ -1,0 +1,43 @@
+{
+ "$comment": "In-week deadline offsets relative to a club's game (C4.5.1). Minutes are relative to kickoff for inactives and to midnight Eastern otherwise.",
+ "practiceReportDaysBefore": {
+  "value": [
+   4,
+   3,
+   2
+  ],
+  "status": "Assumption",
+  "leaf": "C4.5.1",
+  "source": "C4.5.1: practice reports on the three practice days; placed on the three days before the day-before-game status report"
+ },
+ "gameStatusDaysBefore": {
+  "value": 1,
+  "status": "Conflict",
+  "leaf": "C4.5.1",
+  "source": "C4.5.1: game status the day before the game (wording Conflict, roster_concussion.md A7)"
+ },
+ "gameStatusTime": {
+  "value": "16:00",
+  "status": "Assumption",
+  "leaf": "C4.5.1",
+  "source": "Design time of day for the status report"
+ },
+ "elevationDaysBefore": {
+  "value": 1,
+  "status": "Assumption",
+  "leaf": "C4.5.1",
+  "source": "C4.5.1: elevations by the last transaction deadline before the game; placed the day before"
+ },
+ "elevationTime": {
+  "value": "16:00",
+  "status": "Assumption",
+  "leaf": "C4.5.1",
+  "source": "Design time of day for the transaction deadline"
+ },
+ "inactivesMinutesBeforeKickoff": {
+  "value": 90,
+  "status": "2 of 3",
+  "leaf": "C4.5.1",
+  "source": "C4.5.1: inactives declared 90 minutes before kickoff"
+ }
+}

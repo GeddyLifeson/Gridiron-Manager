@@ -1,0 +1,173 @@
+{
+ "$comment": "Pro calendar, season 2026: real published dates that override the pattern. Each row cites its research file and carries the status the bible gives it.",
+ "level": "pro",
+ "kind": "dated",
+ "season": 2026,
+ "anchors": [
+  {
+   "id": "league_year_start",
+   "rule": {
+    "date": "2026-03-11",
+    "time": "16:00"
+   },
+   "status": "Verified",
+   "leaf": "C4.1.1",
+   "source": "research/audit-r-waivers-contracts-draft.md 3i",
+   "factId": "F-league-0042"
+  },
+  {
+   "id": "tag_window_open",
+   "rule": {
+    "date": "2026-02-17"
+   },
+   "status": "Verified",
+   "leaf": "C4.2.4",
+   "source": "research/audit-r-waivers-contracts-draft.md 3c",
+   "factId": "F-league-0044"
+  },
+  {
+   "id": "tag_window_close",
+   "rule": {
+    "date": "2026-03-03",
+    "time": "16:00"
+   },
+   "status": "Verified",
+   "leaf": "C4.2.4",
+   "source": "research/audit-r-waivers-contracts-draft.md 3c"
+  },
+  {
+   "id": "negotiating_open",
+   "rule": {
+    "date": "2026-03-09",
+    "time": "12:00"
+   },
+   "status": "Verified",
+   "leaf": "C4.2.4",
+   "source": "research/audit-r-waivers-contracts-draft.md 3g",
+   "factId": "F-league-0043"
+  },
+  {
+   "id": "negotiating_close",
+   "rule": {
+    "date": "2026-03-11",
+    "time": "15:59"
+   },
+   "status": "Verified",
+   "leaf": "C4.2.4",
+   "source": "research/audit-r-waivers-contracts-draft.md 3g (3:59:59 p.m.)"
+  },
+  {
+   "id": "rfa_offer_sheet_deadline",
+   "rule": {
+    "date": "2026-04-17"
+   },
+   "status": "Verified",
+   "leaf": "C4.2.4",
+   "source": "research/audit-r-waivers-contracts-draft.md 3h"
+  },
+  {
+   "id": "rfa_rofr_deadline",
+   "rule": {
+    "date": "2026-04-22"
+   },
+   "status": "Verified",
+   "leaf": "C4.2.4",
+   "source": "research/audit-r-waivers-contracts-draft.md 3h"
+  },
+  {
+   "id": "draft_start",
+   "rule": {
+    "date": "2026-04-23"
+   },
+   "status": "Verified",
+   "leaf": "C4.2.5",
+   "source": "research/audit-r-waivers-contracts-draft.md 8a (2026 draft April 23 to 25)"
+  },
+  {
+   "id": "fifth_year_option_deadline",
+   "rule": {
+    "date": "2026-05-01",
+    "time": "16:00"
+   },
+   "status": "Conflict",
+   "leaf": "C4.2.4",
+   "source": "research/audit-r-waivers-contracts-draft.md 3b: league calendar May 1 against CBA 'prior to May 3'"
+  },
+  {
+   "id": "kickoff_sunday",
+   "rule": {
+    "date": "2026-09-13"
+   },
+   "status": "1 of 3",
+   "leaf": "C4.5.1",
+   "source": "C4.5.1: kickoff weekend 2026 is September 9 to 14"
+  },
+  {
+   "id": "cutdown",
+   "rule": {
+    "date": "2026-08-30",
+    "time": "18:00"
+   },
+   "status": "Verified",
+   "leaf": "C4.4.4",
+   "source": "nfl-rules/sections/roster_concussion.md (TRIPLE): reduce to 53 by Sunday August 30, 6:00 p.m. eastern"
+  },
+  {
+   "id": "cutdown_claims_expire",
+   "rule": {
+    "date": "2026-08-31",
+    "time": "13:00"
+   },
+   "status": "2 of 3",
+   "leaf": "C4.4.4",
+   "source": "C4.4.4: claims expire August 31, 1:00 p.m. eastern"
+  },
+  {
+   "id": "practice_squad_formation",
+   "rule": {
+    "date": "2026-08-31",
+    "time": "13:00"
+   },
+   "status": "Verified",
+   "leaf": "C4.4.4",
+   "source": "C4.4.4 (TRIPLE): practice squads may be formed August 31 after claims are processed"
+  },
+  {
+   "id": "trade_deadline",
+   "rule": {
+    "date": "2026-11-10",
+    "time": "16:00"
+   },
+   "status": "Verified",
+   "leaf": "C4.5.2",
+   "source": "research/audit-r-waivers-contracts-draft.md 4"
+  },
+  {
+   "id": "vested_waivers_begin",
+   "rule": {
+    "date": "2026-11-11"
+   },
+   "status": "Verified",
+   "leaf": "C4.5.2",
+   "source": "research/audit-r-waivers-contracts-draft.md 1c and 4"
+  },
+  {
+   "id": "playoff_roster_freeze",
+   "rule": {
+    "date": "2027-01-13"
+   },
+   "status": "1 of 3",
+   "leaf": "C4.5.2",
+   "source": "C4.5.2 table (football-manager-reference.md 5.2)"
+  },
+  {
+   "id": "championship_game",
+   "rule": {
+    "date": "2027-02-14"
+   },
+   "status": "2 of 3",
+   "leaf": "C4.6.1",
+   "source": "C4.6.1: league championship February 14, 2027"
+  }
+ ]
+}
