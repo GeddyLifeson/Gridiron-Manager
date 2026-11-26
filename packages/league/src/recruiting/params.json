@@ -1352,6 +1352,7 @@
 "T4.4.1",
 "\"trailing\"; beyond, \"no real chance\""
 ],
+["read.evidenceKept", 12, 1, 100, "count", "assumption", "T4.4.1", "Evidence events a staff read keeps, newest last; the read's standing, reasons and rivals each keep their own basis and date, so older events add nothing to the page (bounds the saved state, shortlist ruling 2026-11-26)"],
 [
 "read.pleaserShare",
 0.15,

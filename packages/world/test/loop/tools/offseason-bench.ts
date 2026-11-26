@@ -103,7 +103,9 @@ function recruitingBytes(): Record<string, number> {
   for (const [k, v] of Object.entries(st)) out[k] = mb(len(v));
   const boards = Object.values((st['boards'] ?? {}) as Record<string, { grades: object; reads: object }>);
   out['boardGradesCount'] = boards.reduce((a, b) => a + Object.keys(b.grades).length, 0);
-  out['boardGradesMb'] = mb(boards.reduce((a, b) => a + len(b.grades), 0));
+  for (const part of ['grades', 'reads', 'circles', 'firmness', 'academics', 'queue']) {
+    out[`board.${part}Mb`] = mb(boards.reduce((a, b) => a + len((b as unknown as Record<string, unknown>)[part]), 0));
+  }
   return out;
 }
 

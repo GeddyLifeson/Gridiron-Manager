@@ -218,6 +218,8 @@ function readOf(board: Board, prospectId: number): StaffRead {
 export function addEvidence(state: RecruitingState, teamId: number, prospectId: number, ev: Evidence): void {
   const r = readOf(boardOf(state, teamId), prospectId);
   r.evidence.push(ev);
+  // The log keeps the newest events only: every line of the read carries its own basis and date (T4.4.1).
+  if (r.evidence.length > P('read.evidenceKept')) r.evidence.splice(0, r.evidence.length - P('read.evidenceKept'));
   if (ev.signal !== null) { r.standing = ev.signal; r.basis = { kind: ev.kind, day: ev.day }; r.asOf = ev.day; }
   if (ev.reason) {
     r.reasons = r.reasons.filter((x) => x.key !== ev.reason!.key);
