@@ -1,0 +1,201 @@
+{
+ "$comment": "College calendar, season 2027 (T3.2.1 column 'From the 2027 season'). Recruiting periods after January 2027 are not loaded: the official file's period labels could not be paired with its date ranges (T4.2.1).",
+ "level": "college",
+ "kind": "dated",
+ "season": 2027,
+ "anchors": [
+  {
+   "id": "transfer_window_open",
+   "rule": {
+    "date": "2027-01-04"
+   },
+   "status": "Conflict",
+   "leaf": "T6.1",
+   "source": "T4.2.1 and T6.1: the single window reported to open January 4, 2027 for 10 days; approval Conflict between research files"
+  },
+  {
+   "id": "transfer_window_close",
+   "rule": {
+    "date": "2027-01-13"
+   },
+   "status": "Conflict",
+   "leaf": "T6.1",
+   "source": "Ten days from January 4, 2027"
+  },
+  {
+   "id": "first_saturday",
+   "rule": {
+    "date": "2027-08-28"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: first Saturday 2027-08-28 (ESPN syndicated article, fbschedules)"
+  },
+  {
+   "id": "regular_season_end",
+   "rule": {
+    "date": "2027-11-27"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: Saturday after Thanksgiving, 2027-11-27"
+  },
+  {
+   "id": "preseason_practice_start",
+   "rule": {
+    "from": "first_saturday",
+    "days": -27
+   },
+   "status": "1 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: 21 practices in 27 days from the 2027 season (NCAA, pending approval)"
+  },
+  {
+   "id": "championship_saturday",
+   "rule": {
+    "date": "2027-12-04"
+   },
+   "status": "Conflict",
+   "leaf": "T3.3.1",
+   "source": "T3.2.1: per conference (title_method); the four power conferences drop the game as widely reported, the official release leaves it to each conference; 2027-12-04 holds the service academy game by data flag"
+  },
+  {
+   "id": "playoff_r1_start",
+   "rule": {
+    "date": "2027-12-09"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: 24-team playoff, first round December 9 to 11"
+  },
+  {
+   "id": "playoff_r1_end",
+   "rule": {
+    "date": "2027-12-11"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1"
+  },
+  {
+   "id": "playoff_r2_start",
+   "rule": {
+    "date": "2027-12-16"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: second round December 16 to 18"
+  },
+  {
+   "id": "playoff_r2_end",
+   "rule": {
+    "date": "2027-12-18"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1"
+  },
+  {
+   "id": "playoff_qf_start",
+   "rule": {
+    "date": "2027-12-31"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: quarterfinals December 31 and January 1"
+  },
+  {
+   "id": "playoff_qf_end",
+   "rule": {
+    "date": "2028-01-01"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1"
+  },
+  {
+   "id": "playoff_sf_start",
+   "rule": {
+    "date": "2028-01-13"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: semifinals January 13 and 14"
+  },
+  {
+   "id": "playoff_sf_end",
+   "rule": {
+    "date": "2028-01-14"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1"
+  },
+  {
+   "id": "playoff_final",
+   "rule": {
+    "date": "2028-01-24"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: final 2028-01-24 in New Orleans"
+  },
+  {
+   "id": "recruiting_j1_open",
+   "rule": {
+    "date": "2027-01-01"
+   },
+   "status": "1 of 3",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: FBS Oversight Committee January 2027 rule (quiet from January 1 through the last day of the transfer window, contact for the rest of January)"
+  },
+  {
+   "id": "recruiting_j1_close",
+   "rule": {
+    "from": "transfer_window_close"
+   },
+   "status": "1 of 3",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: FBS Oversight Committee January 2027 rule (quiet from January 1 through the last day of the transfer window, contact for the rest of January)"
+  },
+  {
+   "id": "recruiting_j2_open",
+   "rule": {
+    "from": "transfer_window_close",
+    "days": 1
+   },
+   "status": "1 of 3",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: FBS Oversight Committee January 2027 rule (quiet from January 1 through the last day of the transfer window, contact for the rest of January)"
+  },
+  {
+   "id": "recruiting_j2_close",
+   "rule": {
+    "date": "2027-01-31"
+   },
+   "status": "1 of 3",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: FBS Oversight Committee January 2027 rule (quiet from January 1 through the last day of the transfer window, contact for the rest of January)"
+  }
+ ],
+ "windows": [
+  {
+   "id": "recruiting_j1",
+   "kind": "window",
+   "label": "Recruiting quiet period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_j1_open",
+   "closes": "recruiting_j1_close",
+   "period": "quiet"
+  },
+  {
+   "id": "recruiting_j2",
+   "kind": "window",
+   "label": "Recruiting contact period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_j2_open",
+   "closes": "recruiting_j2_close",
+   "period": "contact"
+  }
+ ]
+}
