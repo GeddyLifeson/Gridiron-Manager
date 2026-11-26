@@ -336,7 +336,8 @@ function collegeSignings(c: Cycle, level: Level): void {
  * still has a place. Returns the recruits nobody signed, for the default fill. Without the policy hook every
  * ready recruit goes to the default fill.
  */
-function recruitByOffers(c: Cycle, order: readonly number[], ready: readonly number[], limit: (teamId: number) => number): number[] {
+function recruitByOffers(c: Cycle, order: readonly number[], ready0: readonly number[], limit: (teamId: number) => number): number[] {
+  const ready = signLetters(c, order, ready0, limit);
   const offersOf = c.b.policy?.recruitOffers;
   if (!offersOf) return [...ready];
   const offers = new Map<number, number[]>();
@@ -358,6 +359,21 @@ function recruitByOffers(c: Cycle, order: readonly number[], ready: readonly num
     }
     if (top === null) { left.push(id); continue; }
     sign(c, top, id, 'recruit');
+  }
+  return left;
+}
+
+/** T4.5.2 letters from the recruiting system (`recruitSignings`): each signs with his school while it has a place. Returns the rest. */
+function signLetters(c: Cycle, order: readonly number[], ready: readonly number[], limit: (teamId: number) => number): number[] {
+  const letters = c.b.policy?.recruitSignings?.(c);
+  if (!letters || letters.size === 0) return [...ready];
+  const here = new Set(order);
+  const left: number[] = [];
+  for (const id of [...ready].sort((x, y) => x - y)) {
+    const t = letters.get(id);
+    if (t === undefined || !here.has(t) || (c.world.rosters.get(t) ?? []).length >= limit(t)) { left.push(id); continue; }
+    sign(c, t, id, 'recruit');
+    bump(c, 'recruit_letters');
   }
   return left;
 }
