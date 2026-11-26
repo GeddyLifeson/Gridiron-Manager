@@ -1,0 +1,15 @@
+{
+  "module": "league.draft",
+  "version": "0.1.0",
+  "params": [
+    { "name": "league.draft.ledgerDraftsAhead", "value": 3, "min": 1, "max": 5, "unit": "drafts", "belongsTo": "league.draft", "basis": "bible", "leaf": "C7.2.1", "constrainedBy": "C7.2.1 outputs: ledger of future picks, starting horizon 3 drafts ahead", "status": "starting" },
+    { "name": "league.draft.futureDiscountRoundsPerYear", "value": 1, "min": 0, "max": 2, "unit": "rounds", "belongsTo": "league.draft", "basis": "bible", "leaf": "C7.2.3", "constrainedBy": "C7.2.3 rule 3: a future pick is discounted one round per year of delay (starting rule, Unverified practice)", "status": "starting" },
+    { "name": "league.draft.futureSlotFractionOfRound", "value": 0.5, "min": 0, "max": 1, "unit": "ratio", "belongsTo": "league.draft", "basis": "assumption", "leaf": "C7.2.3", "constrainedBy": "Assumption: a future pick whose slot is unknown is priced at this fraction through its (discounted) round, the middle by default", "status": "starting" },
+    { "name": "league.draft.chartMinStepRatio", "value": 0.001, "min": 0, "max": 0.05, "unit": "ratio", "belongsTo": "league.draft", "basis": "bible", "leaf": "C7.5.1", "constrainedBy": "C7.5.1 acceptance: the chart is strictly falling; a fitted plateau is stepped down by this share of the slot before it", "status": "starting" },
+    { "name": "league.draft.udfaWeightBonus", "value": 1, "min": 0, "max": 3, "unit": "ratio", "belongsTo": "league.draft", "basis": "assumption", "leaf": "C7.4.1", "constrainedBy": "C7.4.1 rule 2 names the factors but not their weights; starting weight for bonus offered (share of the best offer)", "status": "starting" },
+    { "name": "league.draft.udfaWeightDepth", "value": 1, "min": 0, "max": 3, "unit": "ratio", "belongsTo": "league.draft", "basis": "assumption", "leaf": "C7.4.1", "constrainedBy": "C7.4.1 rule 2: depth chart ahead of him at his position; starting weight per player ahead, scaled by the deepest offer", "status": "starting" },
+    { "name": "league.draft.udfaWeightCall", "value": 0.5, "min": 0, "max": 2, "unit": "ratio", "belongsTo": "league.draft", "basis": "assumption", "leaf": "C7.4.1", "constrainedBy": "C7.4.1 rule 2 and M4.5.2: a coach's call; starting weight", "status": "starting" },
+    { "name": "league.draft.udfaWeightDistance", "value": 0.25, "min": 0, "max": 2, "unit": "ratio", "belongsTo": "league.draft", "basis": "assumption", "leaf": "C7.4.1", "constrainedBy": "C7.4.1 rule 2: distance from home; starting weight, scaled by the farthest offer", "status": "starting" },
+    { "name": "league.draft.udfaNoise", "value": 0.25, "min": 0, "max": 1, "unit": "ratio", "belongsTo": "league.draft", "basis": "assumption", "leaf": "C7.4.1", "constrainedBy": "C7.4.1 rule 2: with noise; width of the uniform noise term", "status": "starting" }
+  ]
+}
