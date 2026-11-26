@@ -228,6 +228,16 @@ const ROWS = [
   // Mean closing speed on the mesh below which the key is "feathering": the read is then a draw.
   ['mesh.ambiguousYps', 1.5, 0.5, 3, 'yd/s', 'assumption', 'J7.7.1', MESH],
   ['mesh.lateS', 0.15, 0, 0.4, 's', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
+  // J7.7.1 edge case: the ball on the ground at the exchange. No measured rate in project research.
+  ['mesh.fumbleBeta0', -6.0, -9, -3, 'logit', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
+  ['mesh.fumblePerZ', 0.5, 0, 1.5, 'logit/z', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
+  ['mesh.fumbleLate', 2.5, 0, 5, 'logit', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
+  ['mesh.fumbleWet', 0.7, 0, 2, 'logit', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
+  // J7.6.1 edge case: the pump fake. The leaf gives its cost and its cue, not when he uses it.
+  ['pump.beta0', -1.5, -4, 1, 'logit', 'assumption', 'J7.6.1', 'J15 interception rate; J4.5 defender bite rate'],
+  ['pump.perZ', 0.5, 0, 1.5, 'logit/z', 'assumption', 'J7.6.1', 'J15 interception rate; J4.5 defender bite rate'],
+  // J7.6.2 edge case: a rusher's reach with his hands up and a short jump, as a share of his height. Not measured.
+  ['bat.reachPerHeight', 1.45, 1.3, 1.6, 'ratio', 'assumption', 'J7.6.2', 'J9.2.1 batted-pass rate (to be measured, R3)'],
   ['mesh.pitchDistYd', 3, 1.5, 5, 'yd', 'assumption', 'J7.7.1', MESH],
   ['mesh.pitchSpeedYps', 10, 6, 14, 'yd/s', 'assumption', 'J7.7.1', MESH],
 
