@@ -630,7 +630,9 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     name: 'interact',
     begin(w: TickWorld): void {
       p = foulsInjuriesParams(w.params); kp = kinParams(w.params);
-      typicalEnergy = p['energy.typicalReducedLb'] * p['energy.typicalClosingYps'] * p['energy.typicalClosingYps'] * kp.hitEnergyScale!;
+      // The reference tackle through kinematics' own formula: carrier at the origin, tackler one yard east, closing head-on.
+      contactNumbers(0, 0, 0, 0, p['energy.typicalCarrierLb'], 0, 1, 0, -p['energy.typicalClosingYps'], 0, p['energy.typicalTacklerLb'], kp, cn);
+      typicalEnergy = cn.hitEnergy > 0 ? cn.hitEnergy : 1;
       if (ex === null || ex.rulesId !== w.rules.id) ex = readRules(w.rules);
       foulStreams.clear(); injuryStreams.clear();
       holdUntil.fill(0); holdDef.fill(-1); holdDone.fill(0); faceDone.fill(0); faceDoneDef.fill(0); covDone.fill(0);

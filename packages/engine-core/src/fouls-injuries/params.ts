@@ -50,11 +50,12 @@ const ROWS = [
   // Borderline legal acts (B11.3.2 rule 1): within this margin of a geometric limit.
   ['borderlineYd', 0.3, 0.05, 1, 'yd', 'assumption', 'J10.2.3', 'B11.3.2 false-flag rate'],
   ['contactGapYd', 0.25, 0, 0.6, 'yd', 'assumption', 'J10.4.1', STRUCT],
-  // J2.6.1 hit energy is reduced mass times closing speed squared times kinematics.hitEnergyScale. J10 reads
-  // it with 1 = a league-typical open-field tackle; these two rows define that tackle (a 210 lb carrier met
-  // by a 200 lb tackler, reduced mass about 102 lb, closing at 5 yd/s), so the reading stays right whatever
-  // the kinematics scale is.
-  ['energy.typicalReducedLb', 102, 60, 160, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
+  // J10 reads hit energy with 1 = a league-typical open-field tackle. The stage runs this tackle (a 210 lb
+  // carrier met head-on by a 200 lb tackler closing at 5 yd/s) through kinematics' own contactNumbers once
+  // per play and divides by the result, so the reading stays right whether or not kinematics already
+  // normalises (PR 199 makes it do so; then this divisor is about 1).
+  ['energy.typicalCarrierLb', 210, 150, 260, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
+  ['energy.typicalTacklerLb', 200, 150, 260, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
   ['energy.typicalClosingYps', 5, 3, 8, 'yd/s', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
 
   // J10.2.1 offensive holding: per-tick hazard while A < -0.6 and the defender is within reach.
