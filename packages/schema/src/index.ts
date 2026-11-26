@@ -15,6 +15,7 @@ export * from './probability.ts';
 // Read-model data schemas moved in from app-services (CR-G68-S1 and later).
 export * from './read-models/gameplan.ts';
 export * from './read-models/people.ts';
+export * from './read-models/career.ts';
 export * from './read-models/legends.ts';
 export * from './read-models/analytics.ts';
 export * from './read-models/roster-moves.ts';
