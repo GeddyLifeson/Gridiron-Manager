@@ -16,7 +16,8 @@
 // (G-68 bridge) and generated rosters. The teams are the real game's neutral placeholder rosters.
 import { season as seasons } from '@gm/world';
 import type { DriveRecord, GameInput, PlayRecord } from '@gm/schema';
-import { GameCallingSession, type GameSessionOptions } from '../commands/game-calling/index.ts';
+import { GameCallingSession, type GameSessionOptions, type LineupFor } from '../commands/game-calling/index.ts';
+import { seatTeamFromDepth, type SeatDepth } from './seat-depth.ts';
 
 type GameContext = seasons.GameContext;
 type GameOutcome = seasons.GameOutcome;
@@ -226,9 +227,28 @@ export class SeasonPlay {
     return game;
   }
 
-  /** The seat's game input for the coming step, exactly as an all-AI run would build it. */
-  private inputFor(ctx: GameContext): GameInput {
-    return seasons.fixtureInput(this.port.game, ctx.fixture, ctx.seedHex);
+  /**
+   * The user's depth chart (the depth chart screen's chart, unit definitions, roster and actives). From the next
+   * game on it decides who plays for the seat, on the console and when the staff plays the game; null puts the
+   * placeholder eleven back. Not saved with the season: the world keeps the chart.
+   */
+  seatDepth: SeatDepth | null = null;
+  setDepthChart(d: SeatDepth | null): void { this.seatDepth = d; }
+
+  /** The seat's game input for the coming step: the all-AI input, with the seat team from the depth chart when one is set. */
+  private seatInput(seat: SeatGame): { input: GameInput; lineup: LineupFor } {
+    const input = seasons.fixtureInput(this.port.game, seat.context.fixture, seat.context.seedHex);
+    if (this.seatDepth === null) {
+      const roster = seasons.chart.depthRoster(input.teams[seat.side].depth);
+      return { input, lineup: (unit, personnel) => roster(unit, personnel) };
+    }
+    const own = seatTeamFromDepth(input.teams[seat.side], this.seatDepth);
+    const other = input.teams[seat.side === 0 ? 1 : 0];
+    const theirs = new Set(other.players.map((p) => p.playerId));
+    const clash = own.team.players.filter((p) => theirs.has(p.playerId)).map((p) => p.playerId);
+    if (clash.length) throw new Error(`season session: depth chart ids ${clash.slice(0, 5).join(', ')} are also opponent placeholder ids`);
+    const teams = (seat.side === 0 ? [own.team, other] : [other, own.team]) as unknown as GameInput['teams'];
+    return { input: { ...input, teams }, lineup: own.lineup };
   }
 
   /** Puts the seat's game of the coming step on the console. The opponent is the chart caller. */
@@ -237,10 +257,9 @@ export class SeasonPlay {
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
     if (this.seatOutcomes.has(seat.context.fixture.gameId)) throw new Error(`season session: game ${seat.context.fixture.gameId} is already played`);
-    const input = this.inputFor(seat.context);
+    const { input, lineup } = this.seatInput(seat);
     const deps = this.port.game.deps(input);
-    const roster = seasons.chart.depthRoster(input.teams[seat.side].depth);
-    const session = new GameCallingSession({ ...host, input, deps, userSide: seat.side, lineup: (unit, personnel) => roster(unit, personnel) });
+    const session = new GameCallingSession({ ...host, input, deps, userSide: seat.side, lineup });
     session.start();
     this.open = { context: seat.context, input, session };
     return session;
@@ -269,7 +288,12 @@ export class SeasonPlay {
     if (this.open) throw new Error('season session: a game is open on the console');
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
-    const outcome = this.port.playGame(seat.context);
+    let outcome: GameOutcome;
+    if (this.seatDepth === null) outcome = this.port.playGame(seat.context);
+    else {
+      const { input } = this.seatInput(seat);
+      outcome = seasons.outcomeOf(this.port.game, seat.context.fixture, input, this.port.game.simulate(input));
+    }
     this.seatOutcomes.set(seat.context.fixture.gameId, outcome);
     this.advance();
     return outcome;
