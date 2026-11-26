@@ -1,7 +1,7 @@
 // Commands of the game management panel (G-61: O2.1.2, O2.1.3, O2.4, I5.1.1, I5.5.1, I5.6.1, I7.5.1).
 // A screen sends one of these; the world service checks it against the engine again (the view is a copy
 // of the engine's legality, never the authority), applies it through the game flow (J11) and writes the
-// decision record (N3, I5.11.1) with what was on screen. Plain data only, so a save replays them (Q1.3.1).
+// decision record (N3, I5.11.1) with what was on screen. Plain data only, so a save replays them (Q1.3.1); the world service stamps the real time on receipt.
 // AI coaches use the same commands (K5).
 import type { Channel, DecisionKind, GameManagementView } from '../../read-models/game-management/index.ts';
 
@@ -9,18 +9,18 @@ import type { Channel, DecisionKind, GameManagementView } from '../../read-model
 export type DecidedBy = 'user' | 'standing_rule' | 'default' | 'delegate';
 
 export type GameManagementCommand =
-  | { readonly type: 'gm.timeout'; readonly gameId: string; readonly atRealS: number }
-  | { readonly type: 'gm.timeout_request'; readonly gameId: string; readonly atRealS: number } // coordinator asks the head coach (S5.4.1)
-  | { readonly type: 'gm.challenge'; readonly gameId: string; readonly aspect: string; readonly atRealS: number }
+  | { readonly type: 'gm.timeout'; readonly gameId: string }
+  | { readonly type: 'gm.timeout_request'; readonly gameId: string } // coordinator asks the head coach (S5.4.1)
+  | { readonly type: 'gm.challenge'; readonly gameId: string; readonly aspect: string }
   | {
     readonly type: 'gm.decide'; readonly gameId: string; readonly decisionId: string; readonly kind: DecisionKind; readonly optionId: string;
-    readonly decidedBy: DecidedBy; readonly atRealS: number;
+    readonly decidedBy: DecidedBy;
     /** What was on screen when he chose (N3: the information shown). */
     readonly shown: { readonly chartOption: string | null; readonly advisorOption: string | null };
   }
-  | { readonly type: 'gm.recommend'; readonly gameId: string; readonly decisionId: string; readonly optionId: string; readonly atRealS: number } // analyst seat (S5.3.3)
+  | { readonly type: 'gm.recommend'; readonly gameId: string; readonly decisionId: string; readonly optionId: string } // analyst seat (S5.3.3)
   | { readonly type: 'gm.channel'; readonly gameId: string; readonly channel: Channel }
-  | { readonly type: 'gm.ask_booth'; readonly gameId: string; readonly questionId: string; readonly atRealS: number }
+  | { readonly type: 'gm.ask_booth'; readonly gameId: string; readonly questionId: string }
   | { readonly type: 'gm.message_read'; readonly gameId: string; readonly messageId: string; readonly beforeCallConfirmed: boolean };
 
 const TYPES: ReadonlySet<string> = new Set(['gm.timeout', 'gm.timeout_request', 'gm.challenge', 'gm.decide', 'gm.recommend', 'gm.channel', 'gm.ask_booth', 'gm.message_read']);
@@ -58,11 +58,11 @@ export function refusal(c: GameManagementCommand, view: GameManagementView): str
 }
 
 /** The command the timer sends at zero (I5.1.1): the standing instruction, else the default, logged as which. */
-export function expiryCommand(view: GameManagementView, atRealS: number): GameManagementCommand | null {
+export function expiryCommand(view: GameManagementView): GameManagementCommand | null {
   const bar = view.bar;
   if (!bar || bar.secondsLeft > 0 || bar.mode !== 'decide') return null;
   return {
     type: 'gm.decide', gameId: view.gameId, decisionId: bar.id, kind: bar.kind, optionId: bar.onExpiry.optionId,
-    decidedBy: bar.onExpiry.by, atRealS, shown: { chartOption: bar.chart?.option ?? null, advisorOption: bar.advisor?.optionId ?? null },
+    decidedBy: bar.onExpiry.by, shown: { chartOption: bar.chart?.option ?? null, advisorOption: bar.advisor?.optionId ?? null },
   };
 }

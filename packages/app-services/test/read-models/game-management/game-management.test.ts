@@ -240,25 +240,25 @@ describe('commands', () => {
   const view = buildGameManagementView(inputs());
 
   it('refusals mirror the view; T twice does not call two timeouts', () => {
-    const t: GameManagementCommand = { type: 'gm.timeout', gameId: 'g1', atRealS: 1000 };
+    const t: GameManagementCommand = { type: 'gm.timeout', gameId: 'g1' };
     expect(isGameManagementCommand(t)).toBe(true);
     expect(refusal(t, view)).toBeNull();
     const pendingView = buildGameManagementView(inputs({ controls: { ...inputs().controls, timeout: { allowed: true, refusedKey: null, pending: true } } }));
     expect(refusal(t, pendingView)).toBe('game_management.timeout.pending');
     expect(refusal({ ...t, gameId: 'g2' }, view)).toBe('game_management.refused.other_game');
-    expect(refusal({ type: 'gm.challenge', gameId: 'g1', aspect: 'spot', atRealS: 1000 }, view)).toBeNull();
-    expect(refusal({ type: 'gm.challenge', gameId: 'g1', aspect: 'forward_progress', atRealS: 1000 }, view)).toBe('game_management.refused.not_reviewable');
-    const decide: GameManagementCommand = { type: 'gm.decide', gameId: 'g1', decisionId: 'd4', kind: 'fourth_down', optionId: 'go', decidedBy: 'user', atRealS: 1000, shown: { chartOption: 'go', advisorOption: null } };
+    expect(refusal({ type: 'gm.challenge', gameId: 'g1', aspect: 'spot' }, view)).toBeNull();
+    expect(refusal({ type: 'gm.challenge', gameId: 'g1', aspect: 'forward_progress' }, view)).toBe('game_management.refused.not_reviewable');
+    const decide: GameManagementCommand = { type: 'gm.decide', gameId: 'g1', decisionId: 'd4', kind: 'fourth_down', optionId: 'go', decidedBy: 'user', shown: { chartOption: 'go', advisorOption: null } };
     expect(refusal(decide, view)).toBeNull();
     expect(refusal({ ...decide, optionId: 'fake' }, view)).toBe('game_management.refused.not_an_option');
-    expect(refusal({ type: 'gm.recommend', gameId: 'g1', decisionId: 'd4', optionId: 'go', atRealS: 1000 }, view)).toBe('game_management.refused.not_your_seat');
-    expect(refusal({ type: 'gm.timeout_request', gameId: 'g1', atRealS: 1000 }, view)).toBe('game_management.refused.not_your_seat');
+    expect(refusal({ type: 'gm.recommend', gameId: 'g1', decisionId: 'd4', optionId: 'go' }, view)).toBe('game_management.refused.not_your_seat');
+    expect(refusal({ type: 'gm.timeout_request', gameId: 'g1' }, view)).toBe('game_management.refused.not_your_seat');
   });
 
   it('the timer at zero sends the expiry decision and logs who decided (I5.1.1, O2.4.2)', () => {
-    expect(expiryCommand(view, 1000)).toBeNull();
+    expect(expiryCommand(view)).toBeNull();
     const zero = buildGameManagementView(inputs({ live: live({ playClockTenths: 0 }), standing: { fourth_down: 'punt' } }));
-    expect(expiryCommand(zero, 1030)).toMatchObject({ type: 'gm.decide', optionId: 'punt', decidedBy: 'standing_rule', shown: { chartOption: 'go' } });
+    expect(expiryCommand(zero)).toMatchObject({ type: 'gm.decide', optionId: 'punt', decidedBy: 'standing_rule', shown: { chartOption: 'go' } });
   });
 });
 
