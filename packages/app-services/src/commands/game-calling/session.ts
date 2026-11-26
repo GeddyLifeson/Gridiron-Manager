@@ -19,7 +19,8 @@ import { openRequest, playClockAt, type ConsoleConfig, type ConsoleCommand, type
 import { callDecision, defaultDecision, optionDecision, type LineupFor } from './decision.ts';
 import { ConsoleKeyDriver, type ConsoleKeyDriverOptions } from './driver.ts';
 import { initialConsole } from './console.ts';
-import type { SheetSituation } from './sheet.ts';
+import type { SheetEntry, SheetSituation, Unit } from './sheet.ts';
+import { addInGameCall } from './in-game.ts';
 
 type GameState = ReturnType<typeof flow.newGame>;
 
@@ -299,6 +300,16 @@ export class GameCallingSession {
     this.pending = { request: req, preview, openedAtMs: atMs, playClockTenths: clock };
     this.driver.state = openRequest(this.driver.state, input);
     this.driver.wait(0);
+  }
+
+  /**
+   * Puts a call found by the playbook search, or drawn on the sideline, on the sheet's in-game box and selects
+   * it (in-game.ts). The play clock keeps running: this only moves the console's state.
+   */
+  addCall(unit: Unit, entry: SheetEntry): boolean {
+    const r = addInGameCall(this.driver.state, unit, entry, this.driver.nowMs);
+    this.driver.state = r.state;
+    return r.handled;
   }
 
   /** Turns the console's new commands into answers and steps the flow on. */

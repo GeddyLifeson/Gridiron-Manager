@@ -57,6 +57,9 @@ export function gameplanCommand(desk: Desk, unit: Unit, i: GameplanIntent): Desk
     case 'move_entry': return reorder(desk, side, i.boxId, i.entryId, i.by);
     // No wristband format is set for the team yet: the command refuses and says so (G7.6.1).
     case 'fill_band': return { kind: 'fill_band', chosen: [] };
+    case 'drop_entry': return { kind: 'transfer_entry', fromBoxId: i.fromBoxId, entryId: i.entryId, toBoxId: i.toBoxId, at: i.at };
+    // The desk keeps no last week's sheet yet (the #353 wiring follows), so the host offers no "last week" button.
+    case 'start_from_last_week': return null;
     case 'print': return null;
     default: return i;
   }

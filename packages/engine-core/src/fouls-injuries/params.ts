@@ -40,6 +40,7 @@ const ROWS = [
   // Ruling 2026-11-26 (one pro scale, no level of play): every grade a foul hazard reads is read against how sharp
   // the other eleven is. 1: two rosters of the same skill foul at the same rate whatever that skill is.
   ['opposedShare', 1, 0, 1, 'ratio', 'assumption', 'J10.1.1', 'equal rosters at 25, 40, 50 and 75: flags per game do not move with the level'],
+  ['skillScale', 0.5, 0, 1, 'ratio', 'assumption', 'J10.1.1', 'flag-count gap between favourites and underdogs (nflverse 2022 to 2024): 52 v 48 flags -1.6 at 1, -0.2 at 0.33; real -0.5 at that margin'],
   // A committed foul's severity: base + gain * how badly the contest was lost + spread * (u - 0.5), clipped 0 to 1.
   ['severity.base', 0.35, 0, 1, 'ratio', 'assumption', 'J10.1.1', SEV],
   ['severity.gain', 0.4, 0, 1, 'ratio', 'assumption', 'J10.1.1', SEV],

@@ -138,6 +138,8 @@ export const GAMEPLAN_PAYLOADS = {
   fill_band: z.object({ chosen: arr(Call) }).strict(),
   set_audibles: z.object({ list: arr(Audible), freedom: own(z.enum(['none', 'package', 'full'])).optional() }).strict(),
   apply_template: z.object({ text: own(z.string().min(1)) }).strict(),
+  transfer_entry: z.object({ fromBoxId: s(), entryId: s(), toBoxId: s(), at: int0('index').optional() }).strict(),
+  start_from_sheet: z.object({ text: own(z.string().min(1)) }).strict(),
   // head coach card (G7.5.3)
   edit_fourth: z.object({ distanceYd: own(z.number().min(0), 'yd'), yardsToGoalYd: own(z.number().min(0), 'yd'), call: own(z.enum(['go', 'field_goal', 'punt'])) }).strict(),
   edit_two_point: z.object({ scoreDiff: own(z.number().int(), 'points'), goForTwo: flag() }).strict(),
@@ -156,6 +158,7 @@ const TASK: Readonly<Record<GameplanCommandKind, string>> = {
   add_box: 'gameplan.sheet', move_box: 'gameplan.sheet', remove_box: 'gameplan.sheet', set_situation: 'gameplan.sheet', set_box_situation: 'gameplan.sheet',
   add_entry: 'gameplan.sheet', remove_entry: 'gameplan.sheet', reorder_box: 'gameplan.sheet', set_script: 'gameplan.sheet', set_must_calls: 'gameplan.sheet',
   set_notes: 'gameplan.sheet', fill_band: 'gameplan.sheet', set_audibles: 'gameplan.sheet', apply_template: 'gameplan.sheet', lock_sheet: 'gameplan.sheet',
+  transfer_entry: 'gameplan.sheet', start_from_sheet: 'gameplan.sheet',
   edit_fourth: 'gameplan.card', edit_two_point: 'gameplan.card', refresh_card_block: 'gameplan.card',
   export_sheet: 'gameplan.export',
 };

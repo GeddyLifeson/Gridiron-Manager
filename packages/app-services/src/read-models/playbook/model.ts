@@ -21,6 +21,8 @@ export interface PlaybookInput {
   /** Coach-to-player cutoff from the rule set (radioRules), for latest-start times. */
   readonly cutoffS: number | null;
   readonly filter?: PlaybookFilter;
+  /** The coach's own folders (commands/playbook state). */
+  readonly folders?: pb.Folders;
 }
 
 const word = (words: pb.WordList, id: string | undefined): string => (id ? words.entries.get(id)?.word ?? id : '');
@@ -96,7 +98,13 @@ function optionsOf(inp: PlaybookInput): PlaybookView['options'] {
 export function buildPlaybookView(inp: PlaybookInput): PlaybookView {
   const parse = pb.buildIndex(inp.book, inp.words, inp.template);
   const ix = pb.buildSearchIndex(inp.book, inp.words, parse);
-  const hits = pb.search(ix, filters(inp.filter, inp.side), inp.usage);
+  const folders = pb.foldersOf(inp.folders ?? [], inp.book, inp.side);
+  let hits = pb.search(ix, filters(inp.filter, inp.side), inp.usage);
+  if (inp.filter?.folder) {
+    const order = folders.find((f) => f.id === inp.filter!.folder)?.playIds ?? [];
+    const byId = new Map(hits.map((p) => [p.id, p]));
+    hits = order.flatMap((id) => (byId.has(id) ? [byId.get(id)!] : []));
+  }
   const sectionCounts = new Map<string, number>();
   for (const p of inp.book.plays.values()) if (p.book === inp.side && (inp.filter?.includeRetired || p.status !== 'retired')) sectionCounts.set(p.section.join('/'), (sectionCounts.get(p.section.join('/')) ?? 0) + 1);
   const size = inp.size ? pb.sizeReport(inp.book, inp.size, inp.side) : null;
@@ -110,6 +118,7 @@ export function buildPlaybookView(inp: PlaybookInput): PlaybookView {
     size: size ? { readinessCeiling: size.readinessCeiling, upkeep: round(size.upkeep), capacity: round(size.capacity), warning: size.warning, warnings: [...size.warnings], sectionUpkeep: size.sectionUpkeep.map((s) => ({ section: s.section, units: round(s.units), share: round(s.share) })) } : null,
     locks: locksFor(inp.holder, inp.side),
     filter: inp.filter ?? {},
+    folders: folders.map((f) => ({ id: f.id, name: f.name, playIds: [...f.playIds] })),
     options: optionsOf(inp),
   };
 }

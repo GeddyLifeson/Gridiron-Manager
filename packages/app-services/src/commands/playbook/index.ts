@@ -8,6 +8,8 @@ export interface PlaybookState {
   readonly words: pb.WordList;
   readonly links: readonly pb.RoleLink[];
   readonly history: pb.History;
+  /** The coach's own folders (absent in saves made before folders: read as none). */
+  readonly folders?: pb.Folders;
 }
 
 export interface CommandContext {
@@ -28,7 +30,14 @@ export type PlaybookCommand =
   | { readonly kind: 'set_role'; readonly playId: string; readonly role: pb.Role }
   | { readonly kind: 'rename_word'; readonly partId: string; readonly word: string }
   | { readonly kind: 'link'; readonly link: pb.RoleLink }
-  | { readonly kind: 'export'; readonly playIds: readonly string[] };
+  | { readonly kind: 'export'; readonly playIds: readonly string[] }
+  /** The coach's own folders. Create takes its id from the context's `newId`. */
+  | { readonly kind: 'create_folder'; readonly name: string }
+  | { readonly kind: 'rename_folder'; readonly folderId: string; readonly name: string }
+  | { readonly kind: 'delete_folder'; readonly folderId: string }
+  | { readonly kind: 'reorder_folder'; readonly folderId: string; readonly index: number }
+  | { readonly kind: 'file_plays'; readonly folderId: string; readonly playIds: readonly string[]; readonly index?: number; readonly fromFolderId?: string }
+  | { readonly kind: 'unfile_plays'; readonly folderId: string; readonly playIds: readonly string[] };
 
 export type CommandResult =
   | { readonly ok: true; readonly state: PlaybookState; readonly file?: string; readonly notes: readonly string[] }
@@ -37,6 +46,8 @@ export type CommandResult =
 const EDIT: Readonly<Record<PlaybookCommand['kind'], pb.PlaybookAction>> = {
   retire: 'edit_side_playbook', restore: 'edit_side_playbook', duplicate: 'draft_play', set_role: 'edit_side_playbook',
   rename_word: 'edit_side_playbook', link: 'edit_side_playbook', export: 'view',
+  // Folders are the user's own way of keeping the book: anyone who can read the book can file it.
+  create_folder: 'view', rename_folder: 'view', delete_folder: 'view', reorder_folder: 'view', file_plays: 'view', unfile_plays: 'view',
 };
 
 function version(h: pb.History, play: pb.PlayEntry, stamp: number, note: string): pb.History {
@@ -88,6 +99,16 @@ export function runPlaybookCommand(s: PlaybookState, ctx: CommandContext, cmd: P
         return { ok: true, state: { ...s, links: pb.addLink(s.book, s.links, cmd.link) }, notes: [] };
       case 'export':
         return { ok: true, state: s, file: pb.toJson(pb.exportPlays(s.book, cmd.playIds)), notes: [] };
+      case 'create_folder':
+      case 'rename_folder':
+      case 'delete_folder':
+      case 'reorder_folder':
+      case 'file_plays':
+      case 'unfile_plays': {
+        const edit: pb.FolderEdit = cmd.kind === 'create_folder' ? { kind: 'create_folder', id: ctx.newId, name: cmd.name, book: ctx.side } : cmd;
+        const r = pb.editFolders(s.folders ?? [], s.book, edit);
+        return r.ok ? { ok: true, state: { ...s, folders: r.folders }, notes: [] } : { ok: false, refusal: r.refusal };
+      }
     }
   } catch (e) {
     return { ok: false, refusal: (e as Error).message };

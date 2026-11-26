@@ -1,6 +1,6 @@
 // Starts the career's season from what the new-game picker hands over (or a quick start for checks): the
 // season session from app-services, adapted to the career root's port.
-import { play, type newgame } from '@gm/app-services';
+import { play, weekLoop, type newgame } from '@gm/app-services';
 import { careerPortFromSeason, type SeasonPortHost } from './season-port.ts';
 import type { CareerPort, SeatWorld } from './port.ts';
 import { DEFAULT_KEYMAP } from '../shell/keymap.ts';
@@ -37,11 +37,20 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const c = content as any;
   const strips = new Map<string, { primary: string; alternate: string }>();
   for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
+  const markets = new Map<string, number>();
+  for (const t of c.proLeague?.league?.clubs ?? []) if (typeof t.marketTier === 'number') markets.set(t.id, t.marketTier);
+  for (const t of c.college?.schools ?? []) if (typeof t.sizeTier === 'number') markets.set(t.id, t.sizeTier);
+  // The league rules the week screens check the week against (H1.1.2), from the same file the season is built on.
+  const ruleFile = s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules;
+  const weekRules = ruleFile?.values ? weekLoop.weekRules(ruleFile.values, s.level) : undefined;
   // The seat's football desk (plan item 2b): the football screens and, unless the host overrides it, the console read it.
+  // The port gets no bindings, so the console takes this setup rather than the week loop's own staff sheets: an edit
+  // on the call sheet is the sheet called on game day.
   const football = new play.FootballDesk({ teamId: sp.seatTeamId, ruleSetId: s.ruleSetId, level: s.level });
   const { bindings = DEFAULT_KEYMAP.bindings, consoleConfig, ...rest } = host;
   const port = careerPortFromSeason(sp, {
-    colours: (key) => strips.get(key) ?? null, ...rest, level: s.level, seasonYear: s.seasonYear, football,
+    colours: (key) => strips.get(key) ?? null, ...(weekRules ? { weekRules } : {}), venues: weekLoop.venuesOf(content, s.level), marketOf: (key) => markets.get(key) ?? null,
+    ...rest, level: s.level, seasonYear: s.seasonYear, football,
     consoleConfig: consoleConfig ?? ((gameId) => football.consoleConfig(gameId, bindings)),
   });
   // Screens that edit hub state (the football desk) ask the root to redraw through the port's subscription.
