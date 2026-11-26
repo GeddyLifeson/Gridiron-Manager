@@ -198,57 +198,49 @@
    "key": "roster.ir_min_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-league-0032",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0032"
   },
   {
    "key": "roster.ir_return_designations",
    "value": 8,
    "unit": "count",
-   "factId": "F-league-0033",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0033"
   },
   {
    "key": "roster.ir_return_designations_postseason",
    "value": 2,
    "unit": "count",
-   "factId": "F-league-0034",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0034"
   },
   {
    "key": "roster.ir_returns_per_player",
    "value": 2,
    "unit": "count",
-   "factId": "F-league-0035",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0035"
   },
   {
    "key": "roster.ir_practice_window_days",
    "value": 21,
    "unit": "days",
-   "factId": "F-league-0036",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0036"
   },
   {
    "key": "roster.pup_min_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-league-0037",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0037"
   },
   {
    "key": "roster.nfi_min_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-league-0038",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0038"
   },
   {
    "key": "waivers.claim_period_hours",
    "value": 24,
    "unit": "hours",
-   "factId": "F-league-0039",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0039"
   },
   {
    "key": "waivers.vested_min_seasons",
@@ -586,28 +578,24 @@
   {
    "key": "playoff.grouping",
    "value": "conference",
-   "factId": "F-league-0105",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0105"
   },
   {
    "key": "playoff.byes",
    "value": 1,
    "unit": "count",
-   "factId": "F-league-0106",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0106"
   },
   {
    "key": "playoff.reseed",
    "value": true,
-   "factId": "F-league-0107",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0107"
   },
   {
    "key": "playoff.campus_rounds",
    "value": 3,
    "unit": "count",
-   "factId": "F-league-0108",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0108"
   },
   {
    "key": "compliance.work_rules_practice.fine_head_coach_first_cents",

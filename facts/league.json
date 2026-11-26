@@ -1185,16 +1185,51 @@
      "primary": false,
      "quote": "forced to miss four games before they are eligible to return to the active roster.",
      "value": 4
+    },
+    {
+     "citation": "Football Nation USA, How NFL Injured Reserve, PUP and NFI Lists Work (https://www.footballnationusa.com/post/how-nfl-injured-reserve-pup-nfi-lists-work)",
+     "locator": "IR section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "The player must miss at least four games before activation.",
+     "value": 4
+    },
+    {
+     "citation": "National Football Post, NFL IR Rules 2026 (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-injured-reserve-rules)",
+     "locator": "Opening summary",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "each one must miss at least four games first.",
+     "value": 4
+    },
+    {
+     "citation": "VAVEL USA, NFL Injured Reserve, PUP List and Practice Squad Elevation Rules Explained (2026-11-22, https://www.vavel.com/en-us/nfl/2026/11/22/1279842-nfl-injured-reserve-pup-list-practice-squad-elevation-rules-explained.html)",
+     "locator": "Opening definition",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "must miss a minimum of four regular-season or postseason games played by his team, excluding bye weeks",
+     "value": 4
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (footballnation, nfp, vavel)."
     }
    ]
   },
@@ -1226,16 +1261,51 @@
      "primary": false,
      "quote": "Over the course of the regular season, each team will be able to make such a designation eight times.",
      "value": 8
+    },
+    {
+     "citation": "Football Nation USA, How NFL Injured Reserve, PUP and NFI Lists Work (https://www.footballnationusa.com/post/how-nfl-injured-reserve-pup-nfi-lists-work)",
+     "locator": "IR section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "A club may use eight return designations during the regular season, with two additional designations available to a postseason club.",
+     "value": 8
+    },
+    {
+     "citation": "National Football Post, NFL IR Rules 2026 (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-injured-reserve-rules)",
+     "locator": "Return designations",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "Each club gets eight designations for the regular season, and returns from IR and Reserve/NFI share that pool.",
+     "value": 8
+    },
+    {
+     "citation": "VAVEL USA, NFL Injured Reserve, PUP List and Practice Squad Elevation Rules Explained (2026-11-22, https://www.vavel.com/en-us/nfl/2026/11/22/1279842-nfl-injured-reserve-pup-list-practice-squad-elevation-rules-explained.html)",
+     "locator": "Eight-return cap section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "Each franchise receives eight total return designations during the regular season",
+     "value": 8
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (footballnation, nfp, vavel)."
     }
    ]
   },
@@ -1257,16 +1327,51 @@
      "primary": false,
      "quote": "The postseason rule change sees each team granted two additional designations in the postseason.",
      "value": 2
+    },
+    {
+     "citation": "Football Nation USA, How NFL Injured Reserve, PUP and NFI Lists Work (https://www.footballnationusa.com/post/how-nfl-injured-reserve-pup-nfi-lists-work)",
+     "locator": "IR section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "with two additional designations available to a postseason club.",
+     "value": 2
+    },
+    {
+     "citation": "National Football Post, NFL IR Rules 2026 (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-injured-reserve-rules)",
+     "locator": "Return designations",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "playoff teams get two more designations for the postseason, with a cap of 10 for the season and no more than eight in the regular season.",
+     "value": 2
+    },
+    {
+     "citation": "VAVEL USA, NFL Injured Reserve, PUP List and Practice Squad Elevation Rules Explained (2026-11-22, https://www.vavel.com/en-us/nfl/2026/11/22/1279842-nfl-injured-reserve-pup-list-practice-squad-elevation-rules-explained.html)",
+     "locator": "Eight-return cap section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "Any team that punches a ticket to the postseason picks up two bonus return slots for January and February, raising a playoff club's maximum to ten total returns.",
+     "value": 2
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (footballnation, nfp, vavel)."
     }
    ]
   },
@@ -1288,16 +1393,41 @@
      "primary": false,
      "quote": "only twice in a single season",
      "value": 2
+    },
+    {
+     "citation": "Football Nation USA, How NFL Injured Reserve, PUP and NFI Lists Work (https://www.footballnationusa.com/post/how-nfl-injured-reserve-pup-nfi-lists-work)",
+     "locator": "IR section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "An individual player may return from reserve twice in one season, and each return uses one club designation.",
+     "value": 2
+    },
+    {
+     "citation": "National Football Post, NFL IR Rules 2026 (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-injured-reserve-rules)",
+     "locator": "Return designations",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "One player can be designated twice in the same season, but each designation uses one of the eight.",
+     "value": 2
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (footballnation, nfp)."
     }
    ]
   },
@@ -1329,16 +1459,41 @@
      "primary": false,
      "quote": "When a player is cleared to practice, a 21-day window begins",
      "value": 21
+    },
+    {
+     "citation": "National Football Post, NFL IR Rules 2026 (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-injured-reserve-rules)",
+     "locator": "Return designations",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "Once he returns to practice, the club has 21 days to activate him.",
+     "value": 21
+    },
+    {
+     "citation": "VAVEL USA, NFL Injured Reserve, PUP List and Practice Squad Elevation Rules Explained (2026-11-22, https://www.vavel.com/en-us/nfl/2026/11/22/1279842-nfl-injured-reserve-pup-list-practice-squad-elevation-rules-explained.html)",
+     "locator": "Eight-return cap section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "his team opens a 21-calendar-day practice window.",
+     "value": 21
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfp, vavel)."
     }
    ]
   },
@@ -1360,16 +1515,41 @@
      "primary": false,
      "quote": "must sit out the first four games.",
      "value": 4
+    },
+    {
+     "citation": "National Football Post, NFL IR Rules 2026 (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-injured-reserve-rules)",
+     "locator": "Summary table, Reserve/PUP row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "Can start practicing after the club's second game (new in 2026), but can't be activated until after the fourth game",
+     "value": 4
+    },
+    {
+     "citation": "VAVEL USA, NFL Injured Reserve, PUP List and Practice Squad Elevation Rules Explained (2026-11-22, https://www.vavel.com/en-us/nfl/2026/11/22/1279842-nfl-injured-reserve-pup-list-practice-squad-elevation-rules-explained.html)",
+     "locator": "Summary table, Reserve / PUP row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "Reserve / PUP (Regular Season) First 4 games of regular season",
+     "value": 4
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfp, vavel)."
     }
    ]
   },
@@ -1391,16 +1571,41 @@
      "primary": false,
      "quote": "they can be placed on the reserve/NFI list and will sit out four games.",
      "value": 4
+    },
+    {
+     "citation": "National Football Post, NFL IR Rules 2026 (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-injured-reserve-rules)",
+     "locator": "NFI section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "A player who starts the season on Reserve/NFI must miss the first four games.",
+     "value": 4
+    },
+    {
+     "citation": "VAVEL USA, NFL Injured Reserve, PUP List and Practice Squad Elevation Rules Explained (2026-11-22, https://www.vavel.com/en-us/nfl/2026/11/22/1279842-nfl-injured-reserve-pup-list-practice-squad-elevation-rules-explained.html)",
+     "locator": "Summary table, NFI row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "Non-Football Injury (NFI) List First 4 games if moved to Reserve/NFI",
+     "value": 4
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfp, vavel)."
     }
    ]
   },
@@ -1422,16 +1627,41 @@
      "primary": false,
      "quote": "If they go unclaimed after the 24-hour waiver period, they become a free agent.",
      "value": 24
+    },
+    {
+     "citation": "National Football Post, NFL Practice Squad and Waiver Rules (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-practice-squad-rules)",
+     "locator": "How NFL waivers work",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "A waived player can be claimed by any other club during a 24-hour claiming period.",
+     "value": 24
+    },
+    {
+     "citation": "VAVEL USA, NFL Injured Reserve, PUP List and Practice Squad Elevation Rules Explained (2026-11-22, https://www.vavel.com/en-us/nfl/2026/11/22/1279842-nfl-injured-reserve-pup-list-practice-squad-elevation-rules-explained.html)",
+     "locator": "Cutdown paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "expose a healthy depth player to waivers for 24 hours",
+     "value": 24
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The daily deadline clock time stays a conflict between sources.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfp, vavel)."
     }
    ]
   },
@@ -2883,7 +3113,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found. Open (2026-11-26, PC browser): the NFL Football Operations Contract Language page lists no weekly protection, and National Football Post (2026-10-23) says the weekly protection of up to four players began in 2020 as a pandemic-era change and that published explainers disagree on whether it still applies. Treat the value as unconfirmed for 2026; the status is not raised.",
    "status": "2 of 3",
    "statusHistory": [
     {
@@ -3763,6 +3993,16 @@
      "primary": true,
      "quote": "14-team playoff: Starting in the 2020 season, seven teams from each conference will make the playoffs",
      "value": 7
+    },
+    {
+     "citation": "National Football Post, How Many Teams Make the NFL Playoffs? Format & Tiebreakers (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-playoff-format-tiebreakers)",
+     "locator": "Opening line",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "Fourteen teams, seven from each conference, qualify for the NFL playoffs",
+     "value": 7
     }
    ],
    "usedBy": [],
@@ -3798,16 +4038,39 @@
      "primary": false,
      "quote": "seven teams from each of the league's two conferences qualify for the playoffs",
      "value": "conference"
+    },
+    {
+     "citation": "National Football Post, How Many Teams Make the NFL Playoffs? Format & Tiebreakers (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-playoff-format-tiebreakers)",
+     "locator": "Bracket section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "The postseason is a single-elimination bracket inside each conference."
+    },
+    {
+     "citation": "NBC Sports, How do the 2025-26 NFL playoffs work? (https://www.nbcsports.com/nfl/news/how-do-the-2025-26-nfl-playoffs-work-teams-first-round-byes-bracket-reseeding)",
+     "locator": "Conference championship paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports",
+     "primary": false,
+     "quote": "The winners of the Divisional Round advance to the Conference Championship Games, which determine the AFC and NFC champions."
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nbc-sports, nfp)."
     }
    ]
   },
@@ -3829,16 +4092,51 @@
      "primary": false,
      "quote": "The top team in each conference receives a first-round bye, automatically advancing to the next round.",
      "value": 1
+    },
+    {
+     "citation": "FOX Sports, NFL Playoff Format: How does the NFL postseason work? (https://www.foxsports.com/stories/nfl/nfl-playoff-format-how-does-the-nfl-postseason-work)",
+     "locator": "Byes answer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-sports",
+     "primary": false,
+     "quote": "1 seed in each conference receives a bye and advances automatically to the divisional round.",
+     "value": 1
+    },
+    {
+     "citation": "National Football Post, How Many Teams Make the NFL Playoffs? Format & Tiebreakers (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-playoff-format-tiebreakers)",
+     "locator": "Bracket section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "Since 2020, a first-round bye goes only to the top seed in each conference.",
+     "value": 1
+    },
+    {
+     "citation": "NBC Sports, How do the 2025-26 NFL playoffs work? (https://www.nbcsports.com/nfl/news/how-do-the-2025-26-nfl-playoffs-work-teams-first-round-byes-bracket-reseeding)",
+     "locator": "Wild Card paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports",
+     "primary": false,
+     "quote": "only the top seed receives a first-round bye, advancing directly to the Divisional Round.",
+     "value": 1
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (fox-sports, nbc-sports, nfp)."
     }
    ]
   },
@@ -3859,16 +4157,41 @@
      "primary": false,
      "quote": "The NFL does not use a fixed bracket system.",
      "value": true
+    },
+    {
+     "citation": "National Football Post, How Many Teams Make the NFL Playoffs? Format & Tiebreakers (2026-10-23, https://www.nationalfootballpost.com/2026/10/23/nfl-playoff-format-tiebreakers)",
+     "locator": "Divisional round and reseeding",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "The bracket is not fixed.",
+     "value": true
+    },
+    {
+     "citation": "NBC Sports, How do the 2025-26 NFL playoffs work? (https://www.nbcsports.com/nfl/news/how-do-the-2025-26-nfl-playoffs-work-teams-first-round-byes-bracket-reseeding)",
+     "locator": "Reseeding answer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports",
+     "primary": false,
+     "quote": "Following the Wild Card Round, the playoffs move into the Divisional Round, where reseeding comes into play. The No. 1 seed is matched up against the lowest remaining seed from the Wild Card Round",
+     "value": true
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). FOX Sports (read 2026-11-26) writes \"there is no reseeding in the NFL playoffs\" but in the same sentence says the host is set by seed number, not bracket position; it is read as the same rule in different words and is not counted. The NBC and National Football Post pages state the lowest-remaining-seed pairing.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nbc-sports, nfp)."
     }
    ]
   },
@@ -3890,16 +4213,39 @@
      "primary": false,
      "quote": "hosted by the higher-seeded team",
      "value": 3
+    },
+    {
+     "citation": "FOX Sports, NFL Playoff Format: How does the NFL postseason work? (https://www.foxsports.com/stories/nfl/nfl-playoff-format-how-does-the-nfl-postseason-work)",
+     "locator": "Reseeding answer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-sports",
+     "primary": false,
+     "quote": "the host of each game is determined by seeding number, not position in the bracket."
+    },
+    {
+     "citation": "NBC Sports, How do the 2025-26 NFL playoffs work? (https://www.nbcsports.com/nfl/news/how-do-the-2025-26-nfl-playoffs-work-teams-first-round-byes-bracket-reseeding)",
+     "locator": "Conference championship paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports",
+     "primary": false,
+     "quote": "These games are hosted by the higher-seeded team and serve as the final step before the Super Bowl."
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Count is read from the three round descriptions (wild card, divisional, conference championship); the quote is the conference championship line.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (fox-sports, nbc-sports)."
     }
    ]
   },

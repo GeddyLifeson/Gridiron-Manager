@@ -6,7 +6,7 @@ import json, os, re, sys
 from core import status
 ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 DATE = '2026-11-26'
-from g10f_core import SRC, ADD
+from g10f_core import SRC, ADD, NOTES
 import g10f_entries   # fills SRC and ADD
 
 FILES = ['league', 'cap', 'college', 'college-keys', 'college-recruiting', 'schedule-staff', 'injury', 'measured-rate']
@@ -23,6 +23,10 @@ for rid, name, loc, quote, val in ADD:
     if val is not None: e['value'] = val
     r['sources'].append(e); touched.add(f)
     changed.setdefault(rid, name)
+for rid, text in NOTES:
+    f, r = rows[rid]
+    if text not in (r.get('notes') or ''):
+        r['notes'] = ((r.get('notes') or '') + ' ' + text).strip(); touched.add(f)
 for rid in changed:
     f, r = rows[rid]
     old = r['status']; new = status(r)
