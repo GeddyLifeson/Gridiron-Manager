@@ -10,3 +10,4 @@ export * as replay from './replay/index.ts';
 export * as kick from './kick/index.ts';
 export * as restart from './restart/index.ts';
 export * as overtime from './overtime/index.ts';
+export * as facade from './facade/index.ts';
