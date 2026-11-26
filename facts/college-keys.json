@@ -1963,6 +1963,47 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-college-keys-0040",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2026-27: up to $2.5 million of added scholarship cost (athletics aid above the 2024-25 team limit) counts toward the revenue-sharing cap; overage above the cap is fined $0.20 per $1.",
+   "value": 2500000,
+   "unit": "USD",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "College Sports Commission, Revenue Sharing (https://www.collegesportscommission.org/focus-areas/revenue-sharing/; undated)",
+     "locator": "Cap table row \"Athletically related financial aid in excess of the 2024-25 AY team limit\" marked as counting against the cap; footnote",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "*In 2026-27, a fine of $0.20 for every $1 by which an institution exceeds the cap due to spending on new scholarships",
+     "value": 2500000
+    },
+    {
+     "citation": "JD Supra / Eversheds Sutherland, Film Room: CSC announcements and NIL deal flow report (2026-01-14, https://www.jdsupra.com/legalnews/film-room-csc-announcements-and-nil-9990032/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "eversheds",
+     "primary": false,
+     "quote": "requires that increased athletic scholarship amounts up to $2.5 million be counted against the institutional cap.",
+     "value": 2500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Replaces the reading in F-college-keys-0030 (value 0, Conflict), which rests on a Columbus Dispatch line and reads the CSC footnote as \"not counted in 2026-27\". The CSC page itself places the added aid in its \"counts against cap\" column for 2026-27, and says the overage stops counting only \"during the 2027-28 school year and beyond\" (subject to NCAA approval). Caveats: the JD Supra article describes the January 2026 policy ($1 fine per $1 in 2025-26), which the CSC page later softened to $0.20; the CSC page does not say outright whether the first $2.5M below the cap still counts in 2027-28 (open); the CSC \"Rules & Policies\" page and the Eversheds-hosted incremental scholarship policy were not read; the NCAA Q&A (Feb and May 2026) was read only as far as page 16, so its Section D is unread. The key pay.scholarship_credit_2026_27 should cite this row (2,500,000) and not 0030.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
   }
  ]
 }

@@ -1642,6 +1642,260 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-recruiting-0038",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college nonqualifier had to complete three full-time semesters (four quarters) before transferring.",
+   "value": 3,
+   "unit": "terms",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must spend at least three full-time semesters at the two-year college.",
+     "value": 3
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete at least three semesters or four quarters as a full-time student? Summer school does not count.",
+     "value": 3
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "must have attended a minimum of 3 semesters/4 quarters, graduate from the two-year college with 48 semester hours",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.nonqualifier_full_time_terms. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0039",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college nonqualifier had to complete 48 semester (72 quarter) hours of transferable credit.",
+   "value": 48,
+   "unit": "semester hours",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must satisfactorily complete 48 semester hours of transferable credit.",
+     "value": 48
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete 48 transferable credit hours if your school uses semesters or 72 transferable credit hours if your school uses quarters?",
+     "value": 48
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "graduate from the two-year college with 48 semester hours",
+     "value": 48
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.nonqualifier_hours. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0040",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college nonqualifier had to graduate from the two-year college.",
+   "value": true,
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must graduate from the two-year college.",
+     "value": true
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Graduate from your two-year school? You must have earned 25% of your credit hours at the two-year school awarding your degree.",
+     "value": true
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "graduate from the two-year college with 48 semester hours",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.nonqualifier_must_graduate. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0041",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college qualifier had to complete at least one full-time semester or quarter.",
+   "value": 1,
+   "unit": "terms",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must spend at least one full-time semester at the two-year college.",
+     "value": 1
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete at least one semester or quarter as a full-time student? Summer school does not count.",
+     "value": 1
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "Has spent at least one full-time semester or one full-time quarter of residence at the two-year college",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.qualifier_full_time_terms. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0042",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Before May 2026, a Division I two-year-college qualifier had to average 12 transferable hours for each full-time term attended.",
+   "value": 12,
+   "unit": "hours per term",
+   "validFor": "through 2025-26 (changed May 2026)",
+   "sources": [
+    {
+     "citation": "UNLV Athletics, NEW NCAA Transfer Eligibility Requirements for 2-4 and 4-2-4 (rules for athletes first enrolling on or after 2012-08-01, https://unlv.edu/sites/default/files/page_files/3/NEW-NCAA-Transfer-Eligibility-Requirements-for-2-4-and-4-2-4.pdf)",
+     "locator": "Nonqualifier/qualifier headings",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unlv-handout",
+     "primary": false,
+     "quote": "Must satisfactorily complete an average of 12 semester hours of transferable credit for each full-time semester at the two-year college.",
+     "value": 12
+    },
+    {
+     "citation": "NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 (\"Updated November 2018\", hosted at https://www.tamiu.edu/athleticcompliance/documents/19-20-two-year-transfer.pdf)",
+     "locator": "Division I 2-4 transfer chart",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-guide",
+     "primary": true,
+     "quote": "Complete an average of 12 transferable credit hours in each term you attended full time?",
+     "value": 12
+    },
+    {
+     "citation": "NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)",
+     "locator": "Letter text describing the current rule",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfca",
+     "primary": false,
+     "quote": "average of at least 12-semester or quarter hours of transferable-degree credit",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key juco.qualifier_hours_per_term. This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test (\"based on enrollment history\", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
   }
  ]
 }
