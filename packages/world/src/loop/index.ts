@@ -14,7 +14,7 @@ export {
 export { createWorld, steppedSeed, worldLogOptions, type CreateWorldInput } from './world.ts';
 export { packWorld, unpackWorld, type PackedWorld } from './transfer.ts';
 export {
-  unbound, unboundSteps, systemsFrom, runWeek, runSeasonPoint, runSeason, summarizeSeason, recordStaffSeason, gamesStep, gamesStepBatch, batchOf, compactionStep, worldHash,
+  unbound, unboundSteps, systemsFrom, runWeek, runSeasonPoint, SeasonNotOverError, runSeason, summarizeSeason, recordStaffSeason, gamesStep, gamesStepBatch, batchOf, compactionStep, worldHash,
   type PassOptions,
 } from './order.ts';
 export { STREAM_LEAVING, yearlyDeathChance, deathTableProblems, employedIds, ageOf, leavingStep, reactivate, searchable, type LeavingPorts } from './leaving.ts';

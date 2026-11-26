@@ -210,7 +210,7 @@ export class CareerYear {
     if (this.season.stage !== 'final') throw new Error('career year: the season is not over');
     this.inject();
     while (this.world.week < this.schedule.weeksInSeason(this.world)) loop.runWeek(this.world, this.systems);
-    const summary = loop.runSeasonPoint(this.world, this.systems);
+    const summary = loop.runSeasonPoint(this.world, this.systems, { weeksInSeason: this.schedule.weeksInSeason(this.world) });
     this.injected.clear();
     this.season = this.newSeason();
     this.mapTeams();
