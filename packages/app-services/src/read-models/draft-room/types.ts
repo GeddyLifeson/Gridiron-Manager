@@ -33,8 +33,8 @@ export interface BoardLine {
   readonly position: string;
   readonly school: string | null;
   readonly grade: ObservedGrade;
-  /** Potential in words only, a text key; null when the staff has not projected him (MA-48). */
-  readonly potential: string | null;
+  /** Potential in words only, with who wrote it; null when the staff has no read (MA-48, D6.5.1). */
+  readonly potential: { readonly text: string; readonly evaluator: string } | null;
   readonly consensusRank: number;
   readonly taken: TakenBy | null;
 }

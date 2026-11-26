@@ -52,7 +52,7 @@ export function prospects(): DraftProspect[] {
   return POOL.map((personId, i) => ({
     personId, name: `Prospect ${personId}`, position: i % 3 === 0 ? 'OT' : i % 3 === 1 ? 'CB' : 'WR', school: 'State',
     grade: i % 5 === 4 ? { state: 'unwatched', attribute: 'role', text: 'not watched', source: { kind: 'public' } } : graded(personId),
-    potential: i < 3 ? 'potential.starter' : null, consensusRank: i + 1,
+    potential: i < 3 ? { kind: 'hunch', text: 'I think there is more in him.', direction: 'up', horizon: 'at his peak', evaluator: 'area scout', writtenOn: { seasonYear: 2027, dayIndex: 40 } } as never : null, consensusRank: i + 1,
   }));
 }
 

@@ -17,8 +17,8 @@ export interface DraftProspect {
   readonly school: string | null;
   /** The club's role grade cell for him (G-19 `gradeCells`), or null when nobody watched. */
   readonly grade: scouting.GradeCell | null;
-  /** Potential words text key (MA-48), or null. */
-  readonly potential: string | null;
+  /** The staff's potential read in words (G-19 `potentialRead`, MA-48), or null. */
+  readonly potential: scouting.PotentialRead | null;
   readonly consensusRank: number;
 }
 
@@ -99,7 +99,7 @@ export function buildDraftRoomView(input: DraftRoomInput): DraftRoomView {
     const t = takenBy.get(personId);
     return {
       rank: i + 1, personId, name: p?.name ?? `#${personId}`, position: p?.position ?? '', school: p?.school ?? null,
-      grade: observedGrade(p?.grade), potential: p?.potential ?? null, consensusRank: p?.consensusRank ?? 0,
+      grade: observedGrade(p?.grade), potential: p?.potential ? { text: p.potential.text, evaluator: p.potential.evaluator } : null, consensusRank: p?.consensusRank ?? 0,
       taken: t ? { overall: t.overall, clubId: t.clubId, clubName: name(t.clubId) } : null,
     };
   });
