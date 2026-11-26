@@ -78,9 +78,10 @@ describe('extractor', () => {
     expect(r.provisional).toBe(true);
     expect(r.provisionalReasons.join(' ')).toMatch(/test-double/);
   });
-  it('refuses unknown formats, unfinished runs and broken season rows', () => {
+  it('refuses unknown formats and broken season rows; a killed run (still "running") bakes as provisional', () => {
     expect(() => bake.extractRun(folder(5, { formatVersion: 2 }))).toThrow(/formatVersion 2/);
-    expect(() => bake.extractRun(folder(5, { status: 'running' }))).toThrow(/still running/);
+    const killed = bake.extractRun(folder(157, { status: 'running', worldHash: undefined }));
+    expect(killed.provisionalReasons.join(' ')).toMatch(/status is running after 157 seasons.*no final world hash/);
     const gap = folder(5);
     expect(() => bake.extractRun({ ...gap, progress: [gap.progress[0]!, gap.progress[2]!] , run: { ...gap.run, seasonsRun: 2 } })).toThrow(/does not follow/);
   });

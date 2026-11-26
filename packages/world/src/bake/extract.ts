@@ -109,8 +109,6 @@ export function runProblems(files: RunFiles): string[] {
   const out: string[] = [];
   const v = files.run.formatVersion ?? 1;
   if (v !== RUN_FORMAT_VERSION) out.push(`run.json formatVersion ${v} is not ${RUN_FORMAT_VERSION}`);
-  if (files.run.status === 'running') out.push('run.json says the run is still running (no final state written)');
-  if (!files.run.worldHash) out.push('run.json has no worldHash');
   if (files.progress.length === 0) out.push('progress has no seasons');
   files.progress.forEach((r, i) => {
     if (i > 0 && r.season !== files.progress[i - 1]!.season + 1) out.push(`progress season ${r.season} does not follow ${files.progress[i - 1]!.season}`);
@@ -132,7 +130,9 @@ export function extractRun(files: RunFiles, opts: ExtractOptions = {}): BakedRun
   const unbound = (run.unbound ?? []).map((u) => (typeof u === 'string' ? u : u.step));
   const reasons: string[] = [];
   if (dry) reasons.push(`dry run with the test-double game port (kind "${run.kind}", games=${run.games})`);
-  if (run.status !== 'finished') reasons.push(`run status is ${run.status}`);
+  // A killed run leaves status "running" with every file written up to its last season (PR 226).
+  if (run.status !== 'finished') reasons.push(`run status is ${run.status} after ${seasonsRun} seasons`);
+  if (!run.worldHash) reasons.push('run.json has no final world hash');
   if (seasonsRun < fullSpan) reasons.push(`${seasonsRun} of the ${fullSpan} seasons from football's first season`);
   if (run.validation && !run.validation.pass) reasons.push(`validator failed: ${(run.validation.failures ?? []).slice(0, 3).join('; ')}`);
   if (!run.validation) reasons.push('run.json has no validation result');
@@ -158,7 +158,7 @@ export function extractRun(files: RunFiles, opts: ExtractOptions = {}): BakedRun
   return {
     source: {
       kind: run.kind, seedHex: run.seedHex, size: run.size, firstSeasonYear: first, seasons: run.seasons, seasonsRun,
-      games: run.games, status: run.status, worldCode: run.worldCode, worldHash: run.worldHash!,
+      games: run.games, status: run.status, worldCode: run.worldCode, worldHash: run.worldHash ?? '',
       validationPass: run.validation?.pass ?? false, unbound,
       inputDigest: bytesToHex(sha256(canonicalBytes(files as unknown))),
     },
