@@ -1,0 +1,97 @@
+{
+ "formatVersion": 1,
+ "masterSize": "full",
+ "provisional": true,
+ "endYear": 2025,
+ "runs": {
+  "full": {
+   "source": {
+    "kind": "x",
+    "seedHex": "0",
+    "size": "full",
+    "firstSeasonYear": 2023,
+    "seasons": 3,
+    "seasonsRun": 3,
+    "games": "test",
+    "status": "finished",
+    "worldCode": "c",
+    "worldHash": "h",
+    "validationPass": true,
+    "unbound": [],
+    "inputDigest": "63559c78bc3d984e5308583c69631953984f6cc37a462fd08277c068471b489c"
+   },
+   "provisional": true,
+   "provisionalReasons": [
+    "dry run with the test-double game port (kind \"x\", games=test)",
+    "3 of the 157 seasons from football's first season"
+   ],
+   "seasons": [
+    {
+     "seasonYear": 2023,
+     "ms": 100,
+     "games": 10,
+     "pointsPerTeamGame": 20,
+     "passRate": 0.6,
+     "teamsActive": 5,
+     "people": 50,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 2024,
+     "ms": 100,
+     "games": 10,
+     "pointsPerTeamGame": 20,
+     "passRate": 0.6,
+     "teamsActive": 5,
+     "people": 50,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 2025,
+     "ms": 100,
+     "games": 10,
+     "pointsPerTeamGame": 20,
+     "passRate": 0.6,
+     "teamsActive": 5,
+     "people": 50,
+     "hallMembers": 0
+    }
+   ],
+   "timing": {
+    "msPerGame": 10,
+    "seasonMs": 0,
+    "totalSeconds": 0.3
+   },
+   "parity": {
+    "decades": [
+     {
+      "competitionId": 1,
+      "decadeStart": 2020,
+      "seasons": 3,
+      "distinctChampions": 1,
+      "topShare": 1
+     }
+    ],
+    "minDistinctChampions": null,
+    "maxTopShare": null
+   },
+   "tenures": null,
+   "hall": {
+    "members": 0,
+    "players": 0,
+    "coaches": 0,
+    "charter": 0,
+    "firstBallotSeason": null,
+    "classSize": null
+   },
+   "teams": {
+    "total": 0,
+    "folded": 0,
+    "foldedLifespan": null,
+    "foundedByDecade": {},
+    "foldedByDecade": {}
+   }
+  }
+ },
+ "digest": "8e3baf799fcc3a3116bd7c6662c5ff46360a540e5916f2223d5944e381e86590"
+}
