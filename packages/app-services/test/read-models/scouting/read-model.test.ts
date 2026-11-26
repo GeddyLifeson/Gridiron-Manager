@@ -1,7 +1,7 @@
 // The scouting read models through the observer filter (G-27): they register (no truth or unclassed
 // field), build for the club's own seats only, and pass the Q1.4.2 crawler for every seat.
 import { describe, expect, it } from 'vitest';
-import { ReadModelRegistry, buildReadModel, crawlReadModels, crawlPassed, observerFor, tablesOf, PUBLIC_OBSERVER } from '../../../src/observer/index.ts';
+import { type Params, ReadModelRegistry, buildReadModel, crawlReadModels, crawlPassed, observerFor, tablesOf, PUBLIC_OBSERVER } from '../../../src/observer/index.ts';
 import { SCOUTING_MODELS, scoutingPersonnelSpec, scoutingTableSpec, type PersonnelReportView, type ScoutingSources, type ScoutingView } from '../../../src/read-models/scouting/index.ts';
 import { ScoutingPersonnelData, ScoutingTableData } from '@gm/schema';
 import { USER, ASSISTANT, AWAY_COACH } from '../../observer/fixture-world.ts';
@@ -53,7 +53,7 @@ describe('scouting read models (P1.3.2, Q1.4.2)', () => {
     const observers = [USER, ASSISTANT, AWAY_COACH].map((id) => ({ name: `person ${id}`, observer: observerFor(world, id) })).concat([{ name: 'public', observer: PUBLIC_OBSERVER }]);
     const r = crawlReadModels({
       registry: registryFor, source: world, observers,
-      params: (name) => (name === SCOUTING_MODELS.table
+      params: (name): Params[] => (name === SCOUTING_MODELS.table
         ? [{ clubId: HOME, subject: 'self' }, { clubId: HOME, subject: 'opponent', teamId: AWAY }, { clubId: AWAY, subject: 'self' }]
         : [{ clubId: HOME, teamId: AWAY }, { clubId: HOME, teamId: HOME }, { clubId: AWAY, teamId: HOME }]),
     });
