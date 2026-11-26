@@ -9,11 +9,11 @@ import type {
 type Value = number | boolean | string;
 
 const SET_A: Record<string, Value> = {
-  'clock.periods': 4, 'clock.periods_per_half': 2, 'clock.period_length_s': 900, 'clock.period_break_s': 120, 'clock.halftime_min': 13,
+  'clock.periods': 4, 'clock.period_length_s': 900, 'clock.period_break_s': 120, 'clock.halftime_min': 13,
   'clock.play_clock_s': 40, 'clock.play_clock_after_stoppage_s': 25, 'clock.play_clock_after_runoff_s': 30, 'clock.play_clock_floor_s': 10,
-  'clock.two_minute_timeout': true, 'clock.two_minute_s': 120, 'clock.first_down_stop': 'never',
-  'clock.out_of_bounds_restart': 'signal_before_2min_first_half_late_window_second_half', 'clock.late_window_second_half_s': 300,
-  'clock.foul_restart_on_snap_late': true, 'clock.runoff_s': 10, 'clock.defense_half_end_window_s': 40, 'timeout.per_half': 3,
+  'clock.two_minute_timeout': true, 'clock.out_of_bounds_snap_window_first_half_s': 120, 'clock.first_down_stop': 'never',
+  'clock.out_of_bounds_snap_window_second_half_s': 300,
+  'clock.foul_restart_on_snap_late': true, 'clock.runoff_seconds': 10, 'clock.defense_half_end_window_s': 40, 'timeout.per_half': 3,
   'series.downs': 4, 'series.yards_to_gain': 10, 'field.hash_from_sideline_ft': 70.75, 'field.ball_length_yd': 0.31,
   'score.touchdown': 6, 'score.safety': 2, 'try.two_point_points': 2, 'try.safety_points': 1, 'try.defense_can_score': true,
   'fumble.advance_restriction': 'fourth_down_try_and_after_two_minute_warning',
@@ -22,7 +22,7 @@ const SET_A: Record<string, Value> = {
 
 const SET_B: Record<string, Value> = {
   ...SET_A,
-  'clock.halftime_min': 20, 'clock.first_down_stop': 'after_two_minute_timeout', 'clock.out_of_bounds_restart': 'signal_before_2min_snap_after',
+  'clock.halftime_min': 20, 'clock.first_down_stop': 'after_two_minute_timeout', 'clock.out_of_bounds_snap_window_second_half_s': 120,
   'clock.foul_restart_on_snap_late': false, 'field.hash_from_sideline_ft': 60,
   'series.downs': 3, 'series.yards_to_gain': 12, 'score.touchdown': 7, 'score.safety': 3, 'try.two_point_points': 5, 'try.safety_points': 4,
   'fumble.advance_restriction': 'fourth_down_and_try', 'touchback.yardline': 25, 'touchback.momentum_min_yardline': 3, 'deadball.loose_at_rest_yardline': 2,

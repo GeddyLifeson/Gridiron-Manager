@@ -22,6 +22,9 @@ const KICK_RESULTS: ReadonlySet<PlayResultType> = new Set<PlayResultType>([
   'punt', 'field_goal_good', 'field_goal_missed', 'kickoff', 'safety_kick', 'fair_catch_kick',
 ]);
 
+/** A game has two halves by the meaning of the word; this is not a rule value. The number of periods is (`clock.periods`). */
+const HALVES = 1 + 1;
+
 /** Where a period sits in the game (B1.1.1). Overtime periods take the timing of the last period (B5.6.2 rule 8, B10). */
 export interface PeriodTiming {
   readonly regulation: boolean;
@@ -33,22 +36,21 @@ export interface PeriodTiming {
 
 export function periodTiming(period: number, rules: RuleSet): PeriodTiming {
   const periods = rules.num('clock.periods');
-  const perHalf = rules.num('clock.periods_per_half');
+  const perHalf = periods / HALVES;
   const regulation = period <= periods;
   return { regulation, lastOfHalf: !regulation || period % perHalf === 0, firstHalf: regulation && period <= perHalf, lastOfRegulation: period === periods };
 }
 
-/** "After the two-minute warning of the first half, or inside the last five minutes of the second" (B1.2.3). */
+/**
+ * "After the two-minute warning of the first half, or inside the last five minutes of the second" (B1.2.3).
+ * The second-half window is a rule value, so a rule set whose window equals its two-minute mark gives
+ * "after the two-minute timeout" in both halves (B13.3.2) with no branch.
+ */
 function lateWindow(t: PeriodTiming, insideTwoMinute: boolean, clock: Tenths, rules: RuleSet): boolean {
   if (!t.lastOfHalf) return false;
   if (t.firstHalf) return insideTwoMinute;
   // B1.2.3 edge case: the boundary is "less than or equal to" the window (an Assumption in the bible).
-  return clock <= tenthsOf(rules.num('clock.late_window_second_half_s'));
-}
-
-function outOfBoundsOnSnap(t: PeriodTiming, insideTwoMinute: boolean, clock: Tenths, rules: RuleSet): boolean {
-  if (rules.opt('clock.out_of_bounds_restart') === 'signal_before_2min_snap_after') return t.lastOfHalf && insideTwoMinute;
-  return lateWindow(t, insideTwoMinute, clock, rules);
+  return clock <= tenthsOf(rules.num('clock.out_of_bounds_snap_window_second_half_s'));
 }
 
 function atSnap(_clockTenths: Tenths, status: ClockStatus, ctx: RulingContext): ClockStatus {
@@ -91,7 +93,7 @@ export function afterPlayWithFacts(outcome: PlayOutcome, liveDurationTenths: Ten
 
   let clock = sit.clockTenths;
   if (timed && !resetToSnap) clock = Math.max(0, clock - liveDurationTenths);
-  if (runoffTaken) clock = Math.max(0, clock - tenthsOf(rules.num('clock.runoff_s')));
+  if (runoffTaken) clock = Math.max(0, clock - tenthsOf(rules.num('clock.runoff_seconds')));
 
   // A period with no clock at all (an overtime played by possessions) never expires on time.
   const clocklessPeriod = sit.overtime && sit.clockStatus === 'untimed' && sit.clockTenths === 0 && !ctx.before.untimedDownOwed && !sit.untimedDown;
@@ -99,7 +101,7 @@ export function afterPlayWithFacts(outcome: PlayOutcome, liveDurationTenths: Ten
 
   const touchdown = outcome.score !== null && outcome.score.type === 'touchdown';
   const twoMinuteStop = timed && !periodExpired && rules.bool('clock.two_minute_timeout') && t.lastOfHalf && !ctx.before.insideTwoMinute
-    && clock <= tenthsOf(rules.num('clock.two_minute_s'));
+    && clock <= tenthsOf(rules.num('clock.out_of_bounds_snap_window_first_half_s'));
   const inside = ctx.before.insideTwoMinute || twoMinuteStop;
 
   const v = downVerdict(outcome, ctx);
@@ -111,7 +113,7 @@ export function afterPlayWithFacts(outcome: PlayOutcome, liveDurationTenths: Ten
   let base: ClockStatus;
   if (outcome.noPlay) base = !timed || sit.clockStatus === STOPPED_SNAP || enf === null ? STOPPED_SNAP : STOPPED_READY;
   else if (!timed || kick || outcome.score !== null || outcome.touchback || outcome.incomplete || lost) base = STOPPED_SNAP;
-  else if (outcome.endedOutOfBounds) base = !facts.looseBallOutOfBounds && outOfBoundsOnSnap(t, inside, clock, rules) ? STOPPED_SNAP : STOPPED_READY;
+  else if (outcome.endedOutOfBounds) base = !facts.looseBallOutOfBounds && lateWindow(t, inside, clock, rules) ? STOPPED_SNAP : STOPPED_READY;
   else if (firstDownStop) base = STOPPED_READY;
   else base = 'running';
 

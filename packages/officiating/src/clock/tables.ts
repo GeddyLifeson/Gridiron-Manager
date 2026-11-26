@@ -56,7 +56,7 @@ export function settleRunoff(choice: RunoffChoice, clockTenths: Tenths, src: Num
   if (choice !== 'runoff') {
     return { clockTenths, status: 'stopped_start_on_snap', playClockTenths: admin, halfEnds: false, timeoutCharged: choice === 'timeout_instead' };
   }
-  const left = Math.max(0, clockTenths - tenthsOf(rules.num('clock.runoff_s')));
+  const left = Math.max(0, clockTenths - tenthsOf(rules.num('clock.runoff_seconds')));
   return { clockTenths: left, status: 'stopped_start_on_ready', playClockTenths: tenthsOf(rules.num('clock.play_clock_after_runoff_s')), halfEnds: left === 0, timeoutCharged: false };
 }
 
@@ -78,7 +78,7 @@ export function defenseConservesTime(clockTenths: Tenths, defenseTimeoutsLeft: n
 export function advanceBetweenDowns(state: GameState, elapsedTenths: Tenths, src: NumberSources): { clockTenths: Tenths; twoMinuteStop: boolean } {
   if (state.clockStatus !== 'running') return { clockTenths: state.clockTenths, twoMinuteStop: false };
   const after = Math.max(0, state.clockTenths - elapsedTenths);
-  const mark = tenthsOf(src.rules.num('clock.two_minute_s'));
+  const mark = tenthsOf(src.rules.num('clock.out_of_bounds_snap_window_first_half_s'));
   const applies = src.rules.bool('clock.two_minute_timeout') && periodTiming(state.period, src.rules).lastOfHalf && !state.insideTwoMinute;
   if (applies && state.clockTenths > mark && after <= mark) return { clockTenths: mark, twoMinuteStop: true };
   return { clockTenths: after, twoMinuteStop: false };

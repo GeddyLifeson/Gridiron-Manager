@@ -236,7 +236,7 @@ describe('B1.4.4 two-minute warning', () => {
   });
   it('the automatic stop is a switch and its time is a rule value', () => {
     expect(after({ rules: fixtureRules('fixture_a', { 'clock.two_minute_timeout': false }), period: 2, clockS: 125 }).twoMinuteStop).toBe(false);
-    expect(after({ rules: fixtureRules('fixture_a', { 'clock.two_minute_s': 180 }), period: 2, clockS: 185 }).twoMinuteStop).toBe(true);
+    expect(after({ rules: fixtureRules('fixture_a', { 'clock.out_of_bounds_snap_window_first_half_s': 180 }), period: 2, clockS: 185 }).twoMinuteStop).toBe(true);
   });
 });
 
@@ -291,7 +291,7 @@ describe('B1.6.1 the 10-second runoff', () => {
     expect(end).toMatchObject({ clockTenths: 0, periodExpired: true, untimedDown: false });
   });
   it('the seconds run off come from the rule set', () => {
-    expect(settleRunoff('runoff', 300, { rules: fixtureRules('fixture_a', { 'clock.runoff_s': 7 }), params: src.params }).clockTenths).toBe(230);
+    expect(settleRunoff('runoff', 300, { rules: fixtureRules('fixture_a', { 'clock.runoff_seconds': 7 }), params: src.params }).clockTenths).toBe(230);
   });
 });
 
@@ -365,7 +365,7 @@ describe('J11.8.1 and B1.1 period changes', () => {
     expect(end(5, [13, 10]).next).toBe('final');
   });
   it('the shape of the game is rule data: a game of two periods has no quarter break', () => {
-    const rules = fixtureRules('fixture_a', { 'clock.periods': 2, 'clock.periods_per_half': 1 });
+    const rules = fixtureRules('fixture_a', { 'clock.periods': 2 });
     const at = (period: number) => clockRules.endOfPeriod(context({ rules, period, clockS: 0, score: [7, 3] }).before, src(rules));
     expect(at(1).next).toBe('halftime');
     expect(at(2).next).toBe('final');
