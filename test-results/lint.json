@@ -2,6 +2,7 @@
   "ok": true,
   "problems": [],
   "factNotes": [
+<<<<<<< HEAD
     "quotes checked 2249/2863 (rule book texts not found locally for the rest; set GM_NFL_RULEBOOK_TXT and GM_NCAA_RULEBOOK_TXT to check them)",
     "PROVISIONAL rows (not Verified): 2706 of 2809",
     "rule keys in the dictionary: 1009"
@@ -12,6 +13,18 @@
     },
     "college_2026": {
       "Rulebook only": 1009
+=======
+    "quotes checked 2135/2493 (rule book texts not found locally for the rest; set GM_NFL_RULEBOOK_TXT and GM_NCAA_RULEBOOK_TXT to check them)",
+    "PROVISIONAL rows (not Verified): 2525 of 2566",
+    "rule keys in the dictionary: 953"
+  ],
+  "ruleValueStatus": {
+    "pro_2026": {
+      "Rulebook only": 953
+    },
+    "college_2026": {
+      "Rulebook only": 953
+>>>>>>> a1e831fd10068d8df8431fce693c8f3e635320dc
     }
   }
 }
