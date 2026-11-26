@@ -734,13 +734,13 @@
 ],
 [
 "commit.thresholdMean",
-50,
+46,
 30,
 90,
 "iss",
 "assumption",
 "T4.5.2",
-"Interest at which a prospect commits; fitted so 85 percent of the top 400 commit by August (T4.1.1 acceptance)"
+"Interest at which a prospect commits; fitted with commit.marginMean toward 85 percent of the top 400 committed by August (T4.1.1; reaches about 80)"
 ],
 [
 "commit.thresholdSd",
@@ -774,7 +774,7 @@
 ],
 [
 "commit.marginMean",
-3,
+1,
 0,
 20,
 "iss",

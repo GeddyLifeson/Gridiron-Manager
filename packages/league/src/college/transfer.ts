@@ -10,6 +10,9 @@ import type { Day, StaffRead, Stream } from './types.ts';
 /** The national window for one cycle, from the calendar anchors `transfer_window_open` and `transfer_window_close` (G-12). */
 export interface TransferWindow { readonly open: Day; readonly close: Day }
 
+/** The part of the college rules the window checks read: callers holding only the transfer keys (the off-screen world) pass this. */
+export type TransferRules = Pick<CollegeRules, 'transfer'>;
+
 export interface EntryContext {
   /** The last game day of his team's season if it was still playing when the window closed (postseason exception). */
   readonly teamLastGameDay: Day | null;
@@ -28,7 +31,7 @@ export type EntryVerdict =
   | { readonly ok: false; readonly reason: 'outside_window' | 'no_eligibility' | 'transfer_limit' | 'no_transfer_rules' };
 
 /** The days a coaching change opens for that team's players (T6.1.1). */
-export function coachChangeWindow(hiredDay: Day, rules: CollegeRules): TransferWindow | null {
+export function coachChangeWindow(hiredDay: Day, rules: TransferRules): TransferWindow | null {
   const t = rules.transfer;
   if (!t) return null;
   const open = hiredDay + t.coachChangeDelayDays;
@@ -36,7 +39,7 @@ export function coachChangeWindow(hiredDay: Day, rules: CollegeRules): TransferW
 }
 
 /** The extra days a team still playing when the window closed gets after its last game (T6.1.1). */
-export function postseasonWindow(win: TransferWindow, lastGameDay: Day, rules: CollegeRules): TransferWindow | null {
+export function postseasonWindow(win: TransferWindow, lastGameDay: Day, rules: TransferRules): TransferWindow | null {
   const t = rules.transfer;
   if (!t || lastGameDay < win.close - t.postseasonExtraDays + 1) return null;
   return { open: lastGameDay + 1, close: lastGameDay + t.postseasonExtraDays };
@@ -45,7 +48,7 @@ export function postseasonWindow(win: TransferWindow, lastGameDay: Day, rules: C
 const inside = (w: TransferWindow | null, day: Day) => w !== null && day >= w.open && day <= w.close;
 
 /** May a player enter the transfer database on this day (T6.1.1 acceptance)? */
-export function entryAllowed(day: Day, win: TransferWindow, ctx: EntryContext, rules: CollegeRules): EntryVerdict {
+export function entryAllowed(day: Day, win: TransferWindow, ctx: EntryContext, rules: TransferRules): EntryVerdict {
   const t = rules.transfer;
   if (!t) return { ok: false, reason: 'no_transfer_rules' };
   if (!ctx.hasEligibilityLeft) return { ok: false, reason: 'no_eligibility' };
@@ -135,6 +138,6 @@ export function evaluationBandFactor(source: ProspectSource): number {
 }
 
 /** Whether entering ends the player's aid at the end of the term (T6.2.1 data switch). */
-export function aidEndsOnEntry(rules: CollegeRules): boolean {
+export function aidEndsOnEntry(rules: TransferRules): boolean {
   return rules.transfer?.aidEndsOnEntry ?? false;
 }

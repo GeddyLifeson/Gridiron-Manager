@@ -11,6 +11,7 @@ import { groupOf } from './roles.ts';
 import { onOrBefore, yearsBetween } from './dates.ts';
 import { EVENT, draft, nameable } from './events.ts';
 import type { WorldTier } from '@gm/schema';
+import { someRecordEntry } from './log-index.ts';
 import type {
   CaseRow, ComplianceContext, ComplianceState, EventSink, LeagueRecordEntry, PartyKey, PartyRef, PenaltyOrder, ViolationLogRow,
 } from './types.ts';
@@ -20,8 +21,8 @@ function flag(rules: RuleSet, key: string): boolean { return rules.keys().includ
 
 /** A prior finding of the same class against the same party within the repeat window (C11.2.4, L8.2.3). */
 export function isRepeat(record: readonly LeagueRecordEntry[], party: PartyKey, classId: string, date: WorldDate): boolean {
-  return record.some((e) => e.party.kind === party.kind && e.party.id === party.id && e.classId === classId
-    && onOrBefore(e.date, date) && yearsBetween(e.date, date) <= P('repeat_window_years'));
+  // The same test as `record.some(...)` over this party's entries of this class (the record index).
+  return someRecordEntry(record, party.kind, party.id, classId, (d) => onOrBefore(d, date) && yearsBetween(d, date) <= P('repeat_window_years'));
 }
 
 /** Default ladder step (L8.2.5): minor starts one step above a warning, major two; repeat +1; cooperation -1. */
@@ -139,16 +140,21 @@ interface Meta { readonly tier: WorldTier; readonly source: 'sim' | 'history_run
 
 /** Close every case due on or before `date`: findings, record entries, orders, and public events. */
 export function resolveDueCases(state: ComplianceState, date: WorldDate, ctx: ComplianceContext, sink: EventSink, meta: Meta): ComplianceState {
-  let s = state;
-  for (const c of state.cases) {
-    if (c.status !== 'open' || !onOrBefore(c.resolveBy, date)) continue;
-    const rows = s.log.filter((r) => c.rowIds.includes(r.id));
+  const due = state.cases.filter((c) => c.status === 'open' && onOrBefore(c.resolveBy, date));
+  if (due.length === 0) return state;
+  // One copy of the record and the orders for the whole call, then appends: the same entries in the same
+  // order as copying per row, without copying a long history for every finding.
+  const record: LeagueRecordEntry[] = [...state.record];
+  const allOrders: { readonly caseId: number; readonly order: PenaltyOrder }[] = [...state.orders];
+  const closed = new Map<number, 'finding' | 'no_finding'>();
+  for (const c of due) {
+    const ids = new Set(c.rowIds);
+    const rows = state.log.filter((r) => ids.has(r.id));
     const orders: PenaltyOrder[] = [];
-    let record = s.record;
     for (const r of rows) {
       const out = penaltiesFor(r, c, record, ctx, date);
       orders.push(...out.orders);
-      record = [...record, ...out.entries];
+      record.push(...out.entries);
       const named = nameable([r.actor, r.orderedBy], EVENT.detected);
       sink.append(draft(EVENT.detected, { date, competitionId: r.competitionId, teamId: c.teamId, ...meta },
         named.map((p) => ({ personId: p.personId, role: p.role })), [{ kind: 'team', id: c.teamId }],
@@ -158,12 +164,13 @@ export function resolveDueCases(state: ComplianceState, date: WorldDate, ctx: Co
     // A finding ends in `penalty_imposed`; an inquiry with nothing behind it closes with no penalty (L8.2.5).
     sink.append(draft(rows.length ? EVENT.penalty : EVENT.closed, { date, competitionId: rows[0]?.competitionId ?? null, teamId: c.teamId, ...meta }, [],
       [{ kind: 'team', id: c.teamId }], rows.length ? { caseId: c.id, orders: orders.length } : { caseId: c.id }, { kind: 'public' }, null));
-    s = {
-      ...s,
-      record,
-      orders: [...s.orders, ...orders.map((order) => ({ caseId: c.id, order }))],
-      cases: s.cases.map((x) => (x.id === c.id ? { ...x, status: 'closed', outcome } : x)),
-    };
+    for (const order of orders) allOrders.push({ caseId: c.id, order });
+    closed.set(c.id, outcome);
   }
-  return s;
+  return {
+    ...state,
+    record,
+    orders: allOrders,
+    cases: state.cases.map((x) => { const outcome = closed.get(x.id); return outcome ? { ...x, status: 'closed', outcome } : x; }),
+  };
 }
