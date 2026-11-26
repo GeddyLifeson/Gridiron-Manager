@@ -113,6 +113,12 @@ export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): Pre
           w.emit({ type: 'detail', t: roundSimS(t), code: `presnap.${e.status}.${e.action}`, playerIds: [], spot: null, value: e.side });
         }
         for (const s of plan.missing) w.emit({ type: 'detail', t: roundSimS(t), code: 'presnap.short_handed', playerIds: [w.slots[s]!.playerId], spot: null, value: null });
+        // J5.4.1: the quarterback read the coverage wrong before the snap (J7.2.1 starts him on the wrong side).
+        if (plan.qb.made && qbTs >= 0 && (!plan.qb.shellCorrect || !plan.qb.manCorrect)) w.emit({ type: 'detail', t: roundSimS(t), code: 'presnap.qb_misread', playerIds: [w.slots[qbTs]!.playerId], spot: null, value: null });
+        // G2.5.1: who changed his assignment on a completed check, for film and the self-scout.
+        for (const c of plan.checks) {
+          if (c.patched.length > 0) w.emit({ type: 'detail', t: roundSimS(t), code: 'presnap.check_patched', playerIds: c.patched.map((ts) => w.slots[SLOTS_PER_TEAM + ts]!.playerId), spot: null, value: null });
+        }
       }
       if (w.tick !== -1) return;
       // Last pre-snap tick. Dead-ball fouls kill the play before it starts.

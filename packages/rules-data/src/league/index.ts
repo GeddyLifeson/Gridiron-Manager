@@ -102,24 +102,13 @@ export function resolveLeagueRules(id: string, files: Readonly<Record<string, re
   });
 }
 
-// League-rules files as plain value lists, merged per level for numeric lookups (new game content reads these).
-export interface LeagueRulesValue { readonly key: string; readonly value: unknown; readonly unit?: string; readonly factId?: string }
-export interface LeagueRulesFile { readonly ruleset_id: string; readonly level: string; readonly season_year: number; readonly values: readonly LeagueRulesValue[] }
+/** League-rules id of each level's 2026 season. */
+const LEAGUE_ID_OF: Readonly<Record<'pro' | 'college', string>> = { pro: 'pro_league_2026', college: 'college_league_2026' };
 
-export const LEAGUE_RULES_FILES: readonly LeagueRulesFile[] = [
-  proLeague, proSchedStaff, collegeLeague, collegeSchedStaff,
-] as unknown as readonly LeagueRulesFile[];
-
-/** Numeric league-rules values of a level ('pro' or 'college'), by key. A key in two files of one level is an error. */
+/** Numeric league-rules values of a level ('pro' or 'college'), by key: the new-game content's lookup. */
 export function leagueNumbers(level: 'pro' | 'college'): ReadonlyMap<string, number> {
+  const r = resolveLeagueRules(LEAGUE_ID_OF[level]);
   const m = new Map<string, number>();
-  for (const f of LEAGUE_RULES_FILES) {
-    if (f.level !== level) continue;
-    for (const v of f.values) {
-      if (typeof v.value !== 'number') continue;
-      if (m.has(v.key)) throw new Error(`league rules: ${v.key} is set twice for ${level}`);
-      m.set(v.key, v.value);
-    }
-  }
+  for (const k of r.keys()) { const v = r.get(k); if (typeof v === 'number') m.set(k, v); }
   return m;
 }

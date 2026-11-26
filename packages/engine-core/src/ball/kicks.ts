@@ -221,6 +221,12 @@ export interface PuntInput {
   readonly type: PuntType;
   /** Rush pressure inside the time margin, 0 to 1 (J9.5.1). */
   readonly pressure: number;
+  /**
+   * Yards from the line of scrimmage to the goal line he punts toward. When given, a punter whose normal punt would
+   * carry past his landing target (`punt.pinTargetYd` from that goal line) takes distance off and kicks it higher
+   * (F12 plus-50 punt): the call names no punt type yet, so the punter's own judgment stands in for it.
+   */
+  readonly toGoalYd?: number;
 }
 
 export interface PuntDraw {
@@ -251,6 +257,10 @@ export function resolvePunt(rng: RandomStream, inp: PuntInput, p: BallParams): P
     muD -= p['punt.pinLossYd']!;
     muH += p['punt.pinHangGainS']!;
     bias = p['punt.pinBias']!;
+  }
+  if (inp.toGoalYd !== undefined && inp.type !== 'pin') {
+    const cap = inp.toGoalYd - p['punt.pinTargetYd']!;
+    if (muD > cap) { muD = cap; muH += p['punt.pinHangGainS']!; bias = p['punt.pinBias']!; }
   }
   const rho = p['punt.corr']!;
   let distYd = muD + p['punt.distSdYd']! * n1;

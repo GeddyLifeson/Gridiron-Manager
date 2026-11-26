@@ -182,7 +182,10 @@ export const PARAMS: ParamFile = {
       ['catch.radiusPerZYd', 0.1, 0, 0.25, 'yd/z', 'b'],
       ['catch.uncontestedDistYd', 1.0, 0.5, 2.0, 'yd', 'b'],
       ['catch.beta0', 3.0, 1.5, 4.5, 'logit', 'b'],
-      ['catch.hands', 0.5, 0.1, 1.2, 'logit/z', 'b'],
+      // J6.5.1 states 0.5. Fitted to the real spread of drop rates between receivers: drops per catchable ball,
+      // 2018 to 2025, true-talent sd 1.77 points on 6.43%, 0.29 logit per player sd (PFR advanced receiving, one
+      // charting source: 1 of 3). 104 tick games at 55 v 45: 0.5 gave 0.50 logit per z, 0.3 gives 0.27.
+      ['catch.hands', 0.3, 0.1, 1.2, 'logit/z', 'a'],
       ['catch.placement', -1.2, -3.0, 0, 'logit per unit error', 'b'],
       ['catch.hit', -0.6, -2.0, 0, 'logit', 'b'],
       ['catch.wet', -0.3, -1.0, 0, 'logit', 'b'],
@@ -220,14 +223,20 @@ export const PARAMS: ParamFile = {
       ['feet.perExtraFoot', -0.9, -2.5, 0, 'logit per foot beyond one', 'a'],
       ['feet.tightness', -1.5, -4, 0, 'logit', 'a'],
       ['ground.beta0', 3.5, 2, 5, 'logit', 'a'],
-      ['ground.hands', 0.4, 0, 1.2, 'logit/z', 'a'],
+      // Moved with catch.hands (same attribute, same real spread): 0.4 * 0.3 / 0.5.
+      ['ground.hands', 0.24, 0, 1.2, 'logit/z', 'a'],
       ['ground.hit', -0.8, -2.5, 0, 'logit', 'a'],
     ]),
 
     // J6.6.1 tackle attempt
     ...group('tackle attempt', 'J6.6.1', TACKLE, [
       ['tackle.beta0', 1.7, 0.5, 3.0, 'logit', 'b'],
-      ['tackle.beta1', 0.5, 0.1, 1.2, 'logit/z', 'b'],
+      // J6.6.1 states 0.5. Fitted to the real spread between players (PFR advanced tables, 2018 to 2025, one
+      // charting source: 1 of 3): missed tackle rate true-talent sd 2.53 points on 8.97%, 0.31 logit per defender
+      // sd; broken tackles per rush 0.35 logit per back sd (0.59 per reception). 104 tick games at 55 v 45: 0.5
+      // (with move.beta1 0.6) gave 0.52 per z of tackling and 0.46 per z of the carrier; 0.35 (with 0.42) gives
+      // 0.38 and 0.41. Tool: research/tuning/fit-tools/player_spread.py.
+      ['tackle.beta1', 0.35, 0.1, 1.2, 'logit/z', 'a'],
       // The leaf names g_angle, g_mom, g_help, g_space, g_move and the strip trade-off without values.
       ['tackle.angle', 0.8, 0, 2.0, 'logit', 'a'],
       ['tackle.momentum', -0.6, -2.0, 0, 'logit per unit ratio', 'a'],

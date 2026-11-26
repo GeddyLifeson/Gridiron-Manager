@@ -24,18 +24,46 @@ export interface Target { readonly personId: PersonId; readonly priority: number
 
 /** Rule 1: targets by need and surplus at the price he expects to pay. A player he passed on before ranks lower. */
 export function targets(gm: GmProfile, pool: readonly FreeAgent[], needs: readonly Need[], ctx: ValueContext): Target[] {
+  const needWeight = P('fa.needWeight');
+  const passedFactor = 1 - P('fa.passedOnDiscount');
+  const passedOn = gm.memory.playersPassedOn.length > 0 ? new Set(gm.memory.playersPassedOn) : null;
+  const needBy = new Map<string, number>();
+  const needOf = (position: string): number => {
+    let n = needBy.get(position);
+    if (n === undefined) { n = needAt(needs, position); needBy.set(position, n); }
+    return n;
+  };
   return pool
     .map((v) => {
       const years = Math.max(1, v.expectedYears);
-      const walk = walkAwayCents(gm, v, ctx, years);
-      const passed = gm.memory.playersPassedOn.includes(v.personId) ? 1 - P('fa.passedOnDiscount') : 1;
-      const value = playerWorth(gm, v, ctx, years).value;
-      return { personId: v.personId, priority: value * (1 + P('fa.needWeight') * needAt(needs, v.position)) * passed, walkAwayApyCents: walk, years, min: v.minimumCents };
+      const { walk, value } = priced(gm, v, ctx, years);
+      const passed = passedOn?.has(v.personId) ? passedFactor : 1;
+      return { personId: v.personId, priority: value * (1 + needWeight * needOf(v.position)) * passed, walkAwayApyCents: walk, years, min: v.minimumCents };
     })
     .filter((t) => t.walkAwayApyCents >= t.min && t.priority > 0)
     .sort((a, b) => b.priority - a.priority || a.personId - b.personId)
     .map(({ min: _min, ...t }) => t);
 }
+
+/**
+ * His walk-away number and his value of one free agent at one length. Both read only the profile, the view and
+ * the context, so a context that may remember (`memo`, types.ts) keeps them: a club asks again every pick and
+ * every round of a market, over the same views, and the answer cannot have moved.
+ */
+function priced(gm: GmProfile, v: FreeAgent, ctx: ValueContext, years: number): { readonly walk: number; readonly value: number } {
+  if (!ctx.memo) return { walk: walkAwayCents(gm, v, ctx, years), value: playerWorth(gm, v, ctx, years).value };
+  let byGm = PRICED.get(ctx);
+  if (!byGm) { byGm = new WeakMap(); PRICED.set(ctx, byGm); }
+  let byView = byGm.get(gm);
+  if (!byView) { byView = new WeakMap(); byGm.set(gm, byView); }
+  let byYears = byView.get(v);
+  if (!byYears) { byYears = new Map(); byView.set(v, byYears); }
+  let out = byYears.get(years);
+  if (!out) { out = { walk: walkAwayCents(gm, v, ctx, years), value: playerWorth(gm, v, ctx, years).value }; byYears.set(years, out); }
+  return out;
+}
+
+const PRICED = new WeakMap<ValueContext, WeakMap<GmProfile, WeakMap<FreeAgent, Map<number, { readonly walk: number; readonly value: number }>>>>();
 
 export interface ClubOffer { readonly personId: PersonId; readonly years: number; readonly apyCents: number; readonly guaranteedCents: number }
 

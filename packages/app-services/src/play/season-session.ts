@@ -12,11 +12,23 @@
 // input that does not follow from the seed. `replay` rebuilds the season from the seed and those outcomes and
 // must reach the same hash chain (Q1.3.1 season replay).
 //
-// Not here yet: the seat's week (H1 calendar, `seatWeek`), AI preparation (K3), the user's own call sheet
-// (G-68 bridge) and generated rosters. The teams are the real game's neutral placeholder rosters.
+// Film: every game is filmed as it is played (week-loop/film.ts), the seat's and every other, so opponent
+// scouting and self-scout read charted rows of any team's games. `rebuildFilm` plays a non-seat game again
+// for its full play records. The save keeps the packed archive (optional: an older save has none).
+//
+// The seat's week (H1): the week loop (week-loop/week-loop.ts) runs the seat's days before the game and hands
+// its record in with `setSeatWeek`; the next step passes it to the runner's `seatWeek` port.
+//
+// Not here yet: AI preparation (K3) and generated rosters. The teams are the real game's neutral placeholder rosters.
 import { season as seasons } from '@gm/world';
-import type { DriveRecord, GameDeps, GameInput, PlayRecord } from '@gm/schema';
-import { GameCallingSession, type GameSessionOptions } from '../commands/game-calling/index.ts';
+import { field } from '@gm/engine-core';
+import { stats } from '@gm/engine-game';
+import { ep } from '@gm/models';
+import type { DriveRecord, GameDeps, GameInput, PersonRecord, PlayRecord, SimPlayer } from '@gm/schema';
+import { GameCallingSession, type GameSessionOptions, type LineupFor } from '../commands/game-calling/index.ts';
+import { seatTeamFromDepth, simPlayerFromPerson, type SeatDepth } from './seat-depth.ts';
+import { FilmArchive, packFilm, type PackedGame } from '../week-loop/film.ts';
+import { createGameKit, filmOf, jobOfContext, playWithKit, type GameKit, type OtherGameJob, type OtherGameResult, type WeekPool, type WeekProgress } from './other-games.ts';
 
 type GameContext = seasons.GameContext;
 type GameOutcome = seasons.GameOutcome;
@@ -30,6 +42,8 @@ export interface SeasonPlayOptions {
   readonly seedHex: string;
   /** World-data key of the team the user coaches. */
   readonly seatTeamKey: string;
+  /** Play resolver of every game: the tick engine by default (world season real game); `reference` for fast harnesses. */
+  readonly resolver?: seasons.RealResolver;
 }
 
 /** What the host supplies to put the seat's game on the console: the console setup and the key map. */
@@ -55,6 +69,8 @@ export interface SeasonPlaySave {
   readonly state: SeasonState;
   /** The seat's game outcomes by game id: the season's only input that does not come from the seed. */
   readonly seatOutcomes: readonly { readonly gameId: number; readonly outcome: GameOutcome }[];
+  /** The film archive (week-loop/film.ts); missing in saves made before it. */
+  readonly film?: readonly PackedGame[];
 }
 
 /** Stand-in result of a dry run: one point for the home side, so no postseason game is tied. Never kept. */
@@ -110,6 +126,9 @@ function teamNames(content: seasons.LeagueContent): Map<string, string> {
 /** What `fromWorld` reads of a generated world (@gm/world loop LiveWorld): its teams and their public identity. */
 export interface WorldTeams {
   readonly teams: readonly { readonly id: number; readonly identity: { readonly name: string; readonly abbreviation: string } }[];
+  /** The world's people and date: when present, the seat's players play with their own ratings. */
+  readonly people?: ReadonlyMap<number, PersonRecord>;
+  readonly date?: { readonly seasonYear: number };
 }
 
 export interface WorldSeasonOptions {
@@ -118,6 +137,7 @@ export interface WorldSeasonOptions {
   readonly seedHex: string;
   /** Team id in the world's team table. */
   readonly seatTeamId: number;
+  readonly resolver?: seasons.RealResolver;
 }
 
 /**
@@ -148,8 +168,17 @@ export class SeasonPlay {
   private readonly port: ReturnType<typeof seasons.realGamePort>;
   private readonly seatOutcomes = new Map<number, GameOutcome>();
   private open: OpenGame | null = null;
-  private dry: { state: SeasonState; game: SeatGame | null } | null = null;
+  private dry: { state: SeasonState; game: SeatGame | null; others: readonly GameContext[] } | null = null;
+  /** Games of the coming step already played elsewhere (a worker pool), by game id; the step takes them. */
+  private readonly ready = new Map<number, OtherGameResult>();
   private readonly names: Map<string, string>;
+  /** Every game played so far, filmed (H2.6.1 archive). */
+  readonly film = new FilmArchive();
+  /** The real game, statistics, geometry and success shares: the same kit a pool worker plays with (other-games.ts). */
+  private readonly kit: GameKit;
+  private get statsModule(): GameKit['statsModule'] { return this.kit.statsModule; }
+  /** The seat's finished week for the coming step, from the week loop. */
+  private seatWeek: seasons.SeatWeekRecord | null = null;
 
   private constructor(content: seasons.LeagueContent, options: SeasonPlayOptions, state?: SeasonState) {
     this.options = options;
@@ -157,7 +186,8 @@ export class SeasonPlay {
     this.built = seasons.buildSeason(content, options.ruleSetId, { season: options.seasonYear, seedHex: options.seedHex, seatTeamKey: options.seatTeamKey });
     if (this.built.spec.seatTeamId === null) throw new Error(`season session: no seat team for ${options.seatTeamKey}`);
     this.seatTeamId = this.built.spec.seatTeamId;
-    this.port = seasons.realGamePort({ ruleSetId: options.ruleSetId });
+    this.kit = createGameKit(options.ruleSetId, options.resolver);
+    this.port = this.kit.port;
     this.state = state ?? seasons.createSeason(this.built.spec);
   }
 
@@ -172,7 +202,13 @@ export class SeasonPlay {
    * not reach the games yet (placeholder rosters, see the file header).
    */
   static fromWorld(content: seasons.LeagueContent, world: WorldTeams, o: WorldSeasonOptions): SeasonPlay {
-    return new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId) });
+    const play = new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId), ...(o.resolver ? { resolver: o.resolver } : {}) });
+    const people = world.people;
+    if (people) {
+      const year = world.date?.seasonYear ?? o.seasonYear;
+      play.playerOf = (id) => { const p = people.get(id); return p ? simPlayerFromPerson(p, year) : null; };
+    }
+    return play;
   }
 
   /** A saved season, continued from its saved state. */
@@ -180,6 +216,7 @@ export class SeasonPlay {
     if (save.version !== 1) throw new Error(`season session: save version ${String(save.version)} is not supported`);
     const play = new SeasonPlay(content, save.options, save.state);
     for (const s of save.seatOutcomes) play.seatOutcomes.set(s.gameId, s.outcome);
+    for (const g of save.film ?? []) play.film.put(g);
     return play;
   }
 
@@ -194,8 +231,18 @@ export class SeasonPlay {
     const at = (s: SeasonState) => s.stage === save.state.stage && s.week === save.state.week && s.round === save.state.round;
     while (!at(play.state) && play.state.stage !== 'final') play.state = seasons.stepSeason(play.built.spec, play.state, play.ports(true));
     if (play.state.chain !== save.state.chain) throw new Error(`season session: replay reached chain ${play.state.chain}, the save has ${save.state.chain}`);
+    // The replay films every game again except the seat's own (called on the console): those come from the save.
+    // A saved film of a game the replay played must match it.
+    for (const g of save.film ?? []) {
+      const again = play.film.get(g.gameId);
+      if (!again) play.film.put(g);
+      else if (JSON.stringify(again) !== JSON.stringify(g)) throw new Error(`season session: replayed film of game ${g.gameId} differs from the save`);
+    }
     return play;
   }
+
+  /** The play resolver the games run on. */
+  get resolverId(): seasons.RealResolver { return this.port.game.resolverId; }
 
   get stage(): seasons.SeasonStage { return this.state.stage; }
   get champion(): number | null { return this.state.champion; }
@@ -209,11 +256,21 @@ export class SeasonPlay {
 
   /** The seat's game in the coming step, or null in a bye week, after elimination or once the season is over. */
   nextSeatGame(): SeatGame | null {
-    if (this.dry?.state === this.state) return this.dry.game;
+    return this.dryRun().game;
+  }
+
+  /**
+   * The coming step's games, by a dry run of the pure runner: the seat's game and every other. The games of
+   * one step do not depend on each other's results (a week's fixtures, or a round's pairings, are set before
+   * it is played), so the contexts the dry run sees are the ones the real step hands the port.
+   */
+  private dryRun(): { game: SeatGame | null; others: readonly GameContext[] } {
+    if (this.dry?.state === this.state) return this.dry;
     let context: GameContext | null = null;
+    const others: GameContext[] = [];
     if (this.state.stage !== 'final') {
       seasons.stepSeason(this.built.spec, this.state, {
-        playGame: (ctx) => { if (ctx.seatSide !== null) context = ctx; return DRY; },
+        playGame: (ctx) => { if (ctx.seatSide !== null) context = ctx; else others.push(ctx); return DRY; },
       });
     }
     const ctx = context as GameContext | null;
@@ -222,13 +279,110 @@ export class SeasonPlay {
       opponentId: ctx.seatSide === 0 ? ctx.fixture.away : ctx.fixture.home,
       opponentKey: this.keyOf(ctx.seatSide === 0 ? ctx.fixture.away : ctx.fixture.home),
     };
-    this.dry = { state: this.state, game };
-    return game;
+    this.dry = { state: this.state, game, others };
+    return this.dry;
   }
 
-  /** The seat's game input for the coming step, exactly as an all-AI run would build it. */
-  private inputFor(ctx: GameContext): GameInput {
-    return seasons.fixtureInput(this.port.game, ctx.fixture, ctx.seedHex);
+  /**
+   * The coming step's games still to play, as plain jobs for a pool (other-games.ts): every game the seat does
+   * not call, and with `seat` the seat's own game too (the staff coaching it). Games already supplied are left out.
+   */
+  stepJobs(o: { readonly seat?: boolean } = {}): OtherGameJob[] {
+    const d = this.dryRun();
+    // With a depth chart the seat's game is not the all-AI input, so it stays out of the pool (delegateGame plays it here).
+    const withSeat = o.seat && this.seatDepth === null && d.game && !this.seatOutcomes.has(d.game.context.fixture.gameId);
+    const ctxs = withSeat && d.game ? [...d.others, d.game.context] : d.others;
+    return ctxs.filter((c) => !this.ready.has(c.fixture.gameId)).map((c) => this.jobOf(c));
+  }
+
+  /** A game of the season as a pool job, with the season's play resolver. */
+  private jobOf(ctx: GameContext): OtherGameJob {
+    return jobOfContext(ctx, this.options.resolver);
+  }
+
+  /**
+   * Hands in games of the coming step played elsewhere. Each must be a game of the step with its own seed;
+   * the step then takes its outcome and film instead of playing it here. Same function, same result (J13).
+   */
+  supply(results: readonly OtherGameResult[]): void {
+    const d = this.dryRun();
+    const step = new Map<number, GameContext>(d.others.map((c) => [c.fixture.gameId, c]));
+    if (d.game) step.set(d.game.context.fixture.gameId, d.game.context);
+    for (const r of results) {
+      const ctx = step.get(r.gameId);
+      if (!ctx) throw new Error(`season session: game ${r.gameId} is not in the coming step`);
+      if (ctx.seedHex !== r.seedHex) throw new Error(`season session: game ${r.gameId} was played with seed ${r.seedHex}, the season has ${ctx.seedHex}`);
+      this.ready.set(r.gameId, r);
+    }
+  }
+
+  /**
+   * Plays the coming step's games in `pool` (Web Workers in the browser) and hands them in, so the next
+   * `advance`, `finishGame` or `delegateGame` only records them. With `seat`, the seat's game is played too
+   * (for `delegateGame`). Returns how many games the pool played.
+   */
+  async prepareStep(pool: WeekPool, o: { readonly seat?: boolean; readonly onProgress?: (p: WeekProgress) => void } = {}): Promise<number> {
+    const jobs = this.stepJobs(o.seat ? { seat: true } : {});
+    const at = this.state;
+    const results = await pool.run(jobs, o.onProgress);
+    if (this.state !== at) throw new Error('season session: the season moved while the pool played its step');
+    this.supply(results);
+    return results.length;
+  }
+
+  /** `advance` with the step's other games played in `pool` first. */
+  async advanceIn(pool: WeekPool, onProgress?: (p: WeekProgress) => void): Promise<SeasonState> {
+    await this.prepareStep(pool, onProgress ? { onProgress } : {});
+    return this.advance();
+  }
+
+  /** `advanceToGame` with every step's games played in `pool`. `onProgress` gets each step's batch. */
+  async advanceToGameIn(pool: WeekPool, onProgress?: (p: WeekProgress) => void): Promise<SeasonState> {
+    while (this.state.stage !== 'final' && this.nextSeatGame() === null) await this.advanceIn(pool, onProgress);
+    return this.state;
+  }
+
+  /** `finishGame` with the rest of the step played in `pool`. */
+  async finishGameIn(pool: WeekPool, onProgress?: (p: WeekProgress) => void): Promise<GameOutcome> {
+    if (!this.open?.session.final) return this.finishGame(); // throws the same errors
+    await this.prepareStep(pool, onProgress ? { onProgress } : {});
+    return this.finishGame();
+  }
+
+  /** `delegateGame` with the seat's game and the rest of the step played in `pool`. */
+  async delegateGameIn(pool: WeekPool, onProgress?: (p: WeekProgress) => void): Promise<GameOutcome> {
+    if (this.open) throw new Error('season session: a game is open on the console');
+    if (!this.nextSeatGame()) throw new Error('season session: the seat has no game in the coming step');
+    await this.prepareStep(pool, { seat: true, ...(onProgress ? { onProgress } : {}) });
+    return this.delegateGame();
+  }
+
+  /**
+   * The user's depth chart (the depth chart screen's chart, unit definitions, roster and actives). From the next
+   * game on it decides who plays for the seat, on the console and when the staff plays the game; null puts the
+   * placeholder eleven back. Not saved with the season: the world keeps the chart.
+   */
+  seatDepth: SeatDepth | null = null;
+  /** Ratings source for chart players when the chart brings none: the world's people (`fromWorld`), else none. */
+  playerOf: ((personId: number) => SimPlayer | null) | null = null;
+  setDepthChart(d: SeatDepth | null): void {
+    this.seatDepth = d === null || d.playerOf || !this.playerOf ? d : { ...d, playerOf: this.playerOf };
+  }
+
+  /** The seat's game input for the coming step: the all-AI input, with the seat team from the depth chart when one is set. */
+  private seatInput(seat: SeatGame): { input: GameInput; lineup: LineupFor } {
+    const input = seasons.fixtureInput(this.port.game, seat.context.fixture, seat.context.seedHex);
+    if (this.seatDepth === null) {
+      const roster = seasons.chart.depthRoster(input.teams[seat.side].depth);
+      return { input, lineup: (unit, personnel) => roster(unit, personnel) };
+    }
+    const own = seatTeamFromDepth(input.teams[seat.side], this.seatDepth);
+    const other = input.teams[seat.side === 0 ? 1 : 0];
+    const theirs = new Set(other.players.map((p) => p.playerId));
+    const clash = own.team.players.filter((p) => theirs.has(p.playerId)).map((p) => p.playerId);
+    if (clash.length) throw new Error(`season session: depth chart ids ${clash.slice(0, 5).join(', ')} are also opponent placeholder ids`);
+    const teams = (seat.side === 0 ? [own.team, other] : [other, own.team]) as unknown as GameInput['teams'];
+    return { input: { ...input, teams }, lineup: own.lineup };
   }
 
   /** Puts the seat's game of the coming step on the console. The opponent is the chart caller. */
@@ -237,12 +391,11 @@ export class SeasonPlay {
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
     if (this.seatOutcomes.has(seat.context.fixture.gameId)) throw new Error(`season session: game ${seat.context.fixture.gameId} is already played`);
-    const input = this.inputFor(seat.context);
+    const { input, lineup } = this.seatInput(seat);
     const { tapResolver, ...sessionHost } = host;
     const base = this.port.game.deps(input);
     const deps = tapResolver ? { ...base, resolver: tapResolver(base.resolver) } : base;
-    const roster = seasons.chart.depthRoster(input.teams[seat.side].depth);
-    const session = new GameCallingSession({ ...sessionHost, input, deps, userSide: seat.side, lineup: (unit, personnel) => roster(unit, personnel) });
+    const session = new GameCallingSession({ ...sessionHost, input, deps, userSide: seat.side, lineup });
     session.start();
     this.open = { context: seat.context, input, session };
     return session;
@@ -259,8 +412,9 @@ export class SeasonPlay {
       if (e.type === 'play_resolved') records.push(e.record);
       else if (e.type === 'drive_ended') drives.push(e.drive);
     }
-    const outcome = seasons.outcomeOf(this.port.game, g.context.fixture, g.input, { final: g.session.game, events: g.session.events, records, drives });
+    const outcome = seasons.outcomeOf(this.port.game, g.context.fixture, g.input, { final: g.session.game, events: g.session.events, records, drives }, this.statsModule);
     this.seatOutcomes.set(g.context.fixture.gameId, outcome);
+    this.fileFilm(g.context, records);
     this.open = null;
     this.advance();
     return outcome;
@@ -271,7 +425,8 @@ export class SeasonPlay {
     if (this.open) throw new Error('season session: a game is open on the console');
     const seat = this.nextSeatGame();
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
-    const outcome = this.port.playGame(seat.context);
+    // With a depth chart the staff play the seat's own team; without one, the all-AI input. Either way it is filmed.
+    const outcome = this.playFilmed(seat.context, this.seatDepth === null ? undefined : this.seatInput(seat).input);
     this.seatOutcomes.set(seat.context.fixture.gameId, outcome);
     this.advance();
     return outcome;
@@ -281,12 +436,66 @@ export class SeasonPlay {
   private ports(replaying = false): seasons.SeasonPorts {
     return {
       playGame: (ctx) => {
-        if (ctx.seatSide === null) return this.port.playGame(ctx);
+        if (ctx.seatSide === null) return this.playFilmed(ctx);
         const o = this.seatOutcomes.get(ctx.fixture.gameId);
         if (!o) throw new Error(replaying ? `season session: the save has no outcome for the seat's game ${ctx.fixture.gameId}` : `season session: play the seat's game ${ctx.fixture.gameId} first`);
         return o;
       },
+      ...(this.seatWeek && !replaying ? { seatWeek: (ctx: seasons.PrepContext) => this.takeSeatWeek(ctx) } : {}),
     };
+  }
+
+  /** Plays a game the seat does not call (the real game, chart caller on both sides) and files its film. */
+  private playFilmed(ctx: GameContext, given?: GameInput): GameOutcome {
+    if (given) {
+      // The seat's own team from the depth chart: played here, never in a pool (the pool plays the all-AI input).
+      const res = this.port.game.simulate(given);
+      this.fileFilm(ctx, res.records);
+      return seasons.outcomeOf(this.port.game, ctx.fixture, given, res, this.statsModule);
+    }
+    const r = this.ready.get(ctx.fixture.gameId) ?? playWithKit(this.kit, this.jobOf(ctx));
+    this.ready.delete(ctx.fixture.gameId);
+    if (!this.film.has(ctx.fixture.gameId)) this.film.put(r.film);
+    return r.outcome;
+  }
+
+  private fileFilm(ctx: GameContext, records: readonly PlayRecord[]): void {
+    const f = ctx.fixture;
+    if (this.film.has(f.gameId)) return;
+    this.film.put(filmOf(this.kit, { season: ctx.season, fixture: f }, records));
+  }
+
+  /**
+   * The full play records of a game the seat did not call, played again from its context. The game is a pure
+   * function of its fixture and seed (J13), so the film is exact; it must reach the archived final state hash.
+   */
+  rebuildFilm(gameId: number): { readonly records: readonly PlayRecord[]; readonly drives: readonly DriveRecord[]; readonly input: GameInput } {
+    const played = this.state.games.find((g) => g.fixture.gameId === gameId);
+    if (!played) throw new Error(`season session: game ${gameId} has not been played`);
+    if (played.fixture.home === this.seatTeamId || played.fixture.away === this.seatTeamId) throw new Error(`season session: game ${gameId} was called by the seat; its film is the film room's`);
+    const input = seasons.fixtureInput(this.port.game, played.fixture, played.seedHex);
+    const res = this.port.game.simulate(input);
+    const hash = res.records.length ? res.records[res.records.length - 1]!.stateHash : '';
+    if (hash !== played.outcome.stateHash) throw new Error(`season session: rebuilt film of game ${gameId} ends at ${hash}, the season has ${played.outcome.stateHash}`);
+    return { records: res.records, drives: res.drives, input };
+  }
+
+  /** The seat's week for the coming step, finished by the week loop: the next `advance` hands it to the runner. */
+  setSeatWeek(rec: seasons.SeatWeekRecord): void {
+    if (this.state.stage === 'final') throw new Error('season session: the season is over');
+    this.seatWeek = rec;
+  }
+
+  /** The step the runner is playing: league week for a regular step, last regular week plus the round after it. */
+  stepWeek(): number {
+    return this.state.stage === 'regular' ? this.state.week : this.state.lastRegularWeek + this.state.round + 1;
+  }
+
+  private takeSeatWeek(ctx: seasons.PrepContext): seasons.SeatWeekRecord {
+    const rec = this.seatWeek!;
+    this.seatWeek = null;
+    if (rec.week !== ctx.week) throw new Error(`season session: the seat's week is for week ${rec.week}, the step is week ${ctx.week}`);
+    return rec;
   }
 
   /**
@@ -297,7 +506,10 @@ export class SeasonPlay {
     if (this.open) throw new Error('season session: finish the open game first');
     const seat = this.nextSeatGame();
     if (seat && !this.seatOutcomes.has(seat.context.fixture.gameId)) throw new Error(`season session: play the seat's game ${seat.context.fixture.gameId} first`);
-    this.state = seasons.stepSeason(this.built.spec, this.state, this.ports());
+    const next = seasons.stepSeason(this.built.spec, this.state, this.ports());
+    // Every supplied game must have been one the step played: a leftover means the dry run and the step differ.
+    if (this.ready.size) { const left = [...this.ready.keys()]; this.ready.clear(); throw new Error(`season session: supplied games ${left.join(', ')} were not in the step`); }
+    this.state = next;
     return this.state;
   }
 
@@ -350,6 +562,7 @@ export class SeasonPlay {
     return {
       version: 1, options: this.options, state: this.state,
       seatOutcomes: [...this.seatOutcomes].sort((a, b) => a[0] - b[0]).map(([gameId, outcome]) => ({ gameId, outcome })),
+      film: this.film.save(),
     };
   }
 }

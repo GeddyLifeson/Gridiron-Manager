@@ -34,6 +34,7 @@ const ROWS: readonly ParamRow[] = [
   ['interact.breakGapYd', 1.5, 0.5, 3, 'yd', A, 'J6.1.2', 'a block ends when the bodies are this far apart'],
   ['interact.wonRecoveryS', 1.5, 0.5, 4, 's', A, 'J6.1.2', 'defender out of the play after A = +1 (pancake or locked out)'],
   ['interact.shedFreeS', 0.6, 0.1, 2, 's', A, 'J6.1.2', 'no blocker can pick him up again this soon after a shed'],
+  ['interact.coverHoldS', 1.5, 0.2, 3, 's', A, 'J6.1.2', 'a block on a man covering a kick holds him up this long at an even contest (a hold-up, not a sustained block)'],
   ['interact.helpClearYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'a pass protector with a free rusher of his own this near does not join a double team'],
   ['interact.interiorHalfWidthYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'rushers inside this lateral distance use the interior row'],
   // J2.1.3 planted cuts on drawn paths (route-cuts.ts).
@@ -52,6 +53,8 @@ const ROWS: readonly ParamRow[] = [
   ['catch.hitClosingYps', 3, 0.5, 8, 'yd/s', A, 'J6.5.1', 'closing speed that makes the contact a hit'],
   ['catch.movingYps', 2, 0.5, 5, 'yd/s', A, 'J6.5.1', 'receiver faster than this has a direction a defender can trail'],
   ['catch.knockDownKeep', 0.25, 0, 1, 'ratio', A, 'J6.5.1', 'share of its pace a dropped or broken-up ball keeps'],
+  // Ruling 2026-11-26 (one pro scale, no level of play): the hands at a ball are read against the men across from it.
+  ['catch.opposedShare', 1, 0, 1, 'ratio', A, 'J6.5.1', 'equal rosters at 25, 40, 50 and 75: drop and interception rates do not move with the level'],
   // Kick-play operation (J9.4 to J9.6): values the call content will carry once it has them.
   ['kick.aimLatYd', 12, 0, 25, 'yd', A, 'J9.5.1', 'lateral aim of a directional punt or kickoff'],
   ['kick.kickoffTargetAlongYd', 62, 30, 80, 'yd', A, 'J9.6.1', 'called landing point until the kick call carries one'],
