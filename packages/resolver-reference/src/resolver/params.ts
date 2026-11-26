@@ -7,7 +7,7 @@
 // research file but not from a bible leaf are marked assumption and name the file in the comment.
 import type { ParamFile, ParamTable, RuleKeyManifest, TuningParam } from '@gm/schema';
 
-export const REFERENCE_RESOLVER_VERSION = '0.1.0';
+export const REFERENCE_RESOLVER_VERSION = '0.2.0';
 /** Parameter names are `resolverRef.<group>.<name>`. */
 export const PREFIX = 'resolverRef';
 
@@ -28,22 +28,34 @@ bible('volume.dropbackShare', 0.576, 0.4, 0.7, 'ratio', 'J15.3.2', 'play.dropbac
 bible('volume.puntsPerGame', 8.0, 4, 12, 'count', 'J15.6.1', 'kick.puntsPerGame');
 bible('volume.kickoffsPerGame', 10.1, 6, 14, 'count', 'J15.6.1', 'kick.kickoffsPerGame');
 
-// --- Runs (J15.5.1). ---
-export const RUN_QUANTILE_PROBS = [0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95, 0.99] as const;
-export const RUN_QUANTILE_NAMES = ['q05', 'q10', 'q25', 'q50', 'q75', 'q90', 'q95', 'q99'] as const;
-const RUN_Q = [-2, 0, 1, 3, 6, 11, 14, 29];
-RUN_QUANTILE_NAMES.forEach((n, i) => bible(`run.${n}`, RUN_Q[i]!, -10, 60, 'yd', 'J15.5.1', 'rush.gainQuantiles'));
-// The table gives no minimum and no shape above the 99th percentile; `floorYd` and `tailMeanYd` close it.
-// `shiftYd` moves the whole curve so that its open-field mean is the J15.5.1 "designed runs only" 4.29 yd
-// (scrambles and kneels are separate plays here): the closed curve has mean 4.62, so the shift is -0.33.
-assume('run.floorYd', -6, -15, -2, 'yd', 'J15.5.1', 'rush.gainQuantiles');
-assume('run.tailMeanYd', 12, 2, 30, 'yd', 'J15.5.1', 'rush.gainQuantiles');
-assume('run.shiftYd', -0.33, -3, 3, 'yd', 'J15.5.1', 'rush.yardsPerCarryDesigned');
-bible('run.ypcAll', 4.52, 3, 6, 'yd', 'J15.5.1', 'rush.yardsPerCarry');
+/** Box-count rows: six or fewer defenders in the box, seven, eight, nine or more. */
+export const RUN_BOX_NAMES = ['box6', 'box7', 'box8', 'box9'] as const;
+
+// --- Runs. Source: research/play-calibration/reference-resolver-gaps.md (nflverse play-by-play and
+// participation, 2022 to 2024 regular seasons, 39,801 designed runs; one collection, so 1 of 3). ---
+// The gain table is the gain of a designed run (scrambles and kneel-downs out) with the goal line taken
+// away: a touchdown run counts as "at least this far" (product-limit estimate), because the resolver cuts
+// the gain at the goal line itself. Real gains are whole yards and the game reports whole yards between
+// the nearest yard lines, so each value is the point where the whole-yard distribution, spread evenly over
+// each yard (gain g covers g - 0.5 to g + 0.5), reaches the probability. J15.5.1 prints eight whole-yard
+// quantiles of all carries; reading those as exact points put the curve half a yard low and made a quarter
+// of carries end at or behind the line (real: 18.5% of designed runs).
+export const RUN_QUANTILE_PROBS = [0.01, 0.025, 0.05, 0.10, 0.15, 0.20, 0.25, 0.35, 0.50, 0.65, 0.75, 0.85, 0.90, 0.95, 0.975, 0.99] as const;
+export const RUN_QUANTILE_NAMES = ['q01', 'q025', 'q05', 'q10', 'q15', 'q20', 'q25', 'q35', 'q50', 'q65', 'q75', 'q85', 'q90', 'q95', 'q975', 'q99'] as const;
+const RUN_Q = [-4.27, -2.89, -1.69, -0.44, 0.11, 0.64, 1.11, 1.95, 3.16, 4.57, 5.95, 8.24, 10.38, 14.52, 20.16, 32.68];
+RUN_QUANTILE_NAMES.forEach((n, i) => assume(`run.${n}`, RUN_Q[i]!, -10, 60, 'yd', 'J15.5.1', 'rush.gainQuantiles'));
+// Below the first and above the last probability: a straight line down to `floorYd` (set so the lowest 1%
+// averages the measured -5.9 yd) and an exponential tail whose mean is the measured mean beyond the last value.
+assume('run.floorYd', -7.5, -15, -4.3, 'yd', 'J15.5.1', 'rush.gainQuantiles');
+assume('run.tailMeanYd', 16.8, 2, 30, 'yd', 'J15.5.1', 'rush.gainQuantiles');
+// Box count moves the mean by the by-box row minus the average of the by-box rows over the real mix of
+// boxes on designed runs (six or fewer, seven, eight, nine or more), so a defense that calls the real mix
+// leaves the table's mean where it is. The shares are measured; the four J15.5.1 rows are the bible's.
 bible('run.ypcBox6', 4.87, 3, 7, 'yd', 'J15.5.1', 'rush.yardsPerCarryByBox');
 bible('run.ypcBox7', 4.26, 3, 7, 'yd', 'J15.5.1', 'rush.yardsPerCarryByBox');
 bible('run.ypcBox8', 3.84, 2, 7, 'yd', 'J15.5.1', 'rush.yardsPerCarryByBox');
 bible('run.ypcBox9', 2.41, 1, 7, 'yd', 'J15.5.1', 'rush.yardsPerCarryByBox');
+[0.4666, 0.3574, 0.1389, 0.0371].forEach((v, i) => assume(`run.boxShare.${RUN_BOX_NAMES[i]!}`, v, 0, 1, 'ratio', 'J15.5.1', 'rush.yardsPerCarryByBox'));
 bible('run.fumbleLostShare', 0.0068, 0, 0.05, 'ratio', 'J15.5.1', 'rush.fumbleLostPerCarry');
 assume('run.outOfBoundsShare', 0.08, 0, 0.5, 'ratio', 'J15.3.2', 'clock.elapsedPerPlay');
 
@@ -61,23 +73,32 @@ bible('pass.scrambleMeanYd', 7.5, 2, 15, 'yd', 'J15.4.1', 'pass.scrambleYards');
 bible('pass.completionAll', 0.646, 0.4, 0.8, 'ratio', 'J15.4.1', 'pass.completionPct');
 // J15.4.2 prints 40.9%; its verification note gives 49.0% under another base (Unverified).
 bible('pass.completionUnderPressure', 0.409, 0.2, 0.7, 'ratio', 'J15.4.2', 'pass.completionUnderPressure');
-bible('pass.yacMeanYd', 5.2, 2, 10, 'yd', 'J15.4.1', 'pass.yacPerCompletion');
 bible('pass.throwawayPerDropback', 0.037, 0, 0.15, 'ratio', 'J15.4.1', 'pass.throwawayRate');
 bible('pass.dropPerDropback', 0.034, 0, 0.15, 'ratio', 'J15.4.1', 'pass.dropRate');
 bible('pass.timeToThrowS', 2.68, 1.5, 4, 's', 'J15.4.1', 'pass.timeToThrow');
 // Depth-of-target bands of J15.4.1: behind the line, 0, 1 to 5, 6 to 10, 11 to 15, 16 to 20, 21 to 30, 31 and over.
 export const DEPTH_BAND_NAMES = ['b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7'] as const;
-/** Air-yard range of each band, low edge and width; the last band is open and uses `pass.deepTailMeanYd`. */
-export const DEPTH_BAND_LOW = [-6, 0, 1, 6, 11, 16, 21, 31] as const;
+/**
+ * Air-yard range of each band, low edge and width; the last band is open and uses `pass.deepTailMeanYd`.
+ * Air yards are reported to the whole yard, so a band of whole yards a to b is drawn from a - 0.5 to b + 0.5.
+ */
+export const DEPTH_BAND_LOW = [-6.5, -0.5, 0.5, 5.5, 10.5, 15.5, 20.5, 30.5] as const;
 export const DEPTH_BAND_WIDTH = [6, 1, 5, 5, 5, 5, 10, 0] as const;
 [0.787, 0.699, 0.743, 0.628, 0.566, 0.520, 0.372, 0.291].forEach((v, i) => bible(`pass.completion.${DEPTH_BAND_NAMES[i]!}`, v, 0, 1, 'ratio', 'J15.4.1', 'pass.completionByDepth'));
 [0.007, 0.007, 0.011, 0.021, 0.034, 0.044, 0.058, 0.081].forEach((v, i) => bible(`pass.interception.${DEPTH_BAND_NAMES[i]!}`, v, 0, 0.3, 'ratio', 'J15.4.1', 'pass.interceptionByDepth'));
-// The bible gives no share of attempts by depth band. These eight shares are the solution closest to an
-// even split that satisfies five J15.4.1 rows at once: shares sum to 1, completion 64.6%, interception
-// 2.28%, 7.7 air yards per attempt, and 5.7 air yards per completion (10.9 minus 5.2 after the catch).
-// They are a fit to those rows, not a measured target-depth distribution.
-[0.2437, 0.1380, 0.1448, 0.1136, 0.1386, 0.1330, 0.0682, 0.0201].forEach((v, i) => assume(`pass.depthShare.${DEPTH_BAND_NAMES[i]!}`, v, 0, 1, 'ratio', 'J15.4.1', 'pass.airYardsPerAttempt'));
-assume('pass.deepTailMeanYd', 8, 1, 20, 'yd', 'J15.4.1', 'pass.airYardsPerAttempt');
+// Share of attempts by depth band, yards after the catch by band and the deep tail are measured, not
+// bible rows: research/play-calibration/reference-resolver-gaps.md (nflverse, 2022 to 2024, 53,994 attempts
+// with a charted depth; 1 of 3). The shares replace a fit to five J15.4.1 rows that put 24% of passes behind
+// the line (real 18%) and 14% at 1 to 5 yards (real 30%).
+[0.1796, 0.0423, 0.2998, 0.1829, 0.1159, 0.0776, 0.0623, 0.0398].forEach((v, i) => assume(`pass.depthShare.${DEPTH_BAND_NAMES[i]!}`, v, 0, 1, 'ratio', 'J15.4.1', 'pass.airYardsPerAttempt'));
+assume('pass.deepTailMeanYd', 8.7, 1, 20, 'yd', 'J15.4.1', 'pass.airYardsPerAttempt');
+// Mean yards after the catch by band with the goal line taken away (yards after the catch over the
+// completions that did not score), because the resolver cuts the run at the goal line itself. One mean for
+// every depth (the J15.4.1 5.2) gave passes behind the line 1.5 yards per attempt against 4.5 real.
+[9.24, 6.91, 4.44, 3.52, 3.71, 4.87, 7.00, 9.61].forEach((v, i) => assume(`pass.yacMeanYd.${DEPTH_BAND_NAMES[i]!}`, v, 0, 20, 'yd', 'J15.4.1', 'pass.yacPerCompletion'));
+// Number of equal exponential stages summed for the yards after the catch: 1 is an exponential, 2 has
+// fewer very short runs. Behind the line 2 gives 14% of completions a loss (real 13%); 1 gave 28%.
+[2, 1, 1, 1, 1, 1, 1, 1].forEach((v, i) => assume(`pass.yacStages.${DEPTH_BAND_NAMES[i]!}`, v, 1, 4, 'count', 'J15.4.1', 'pass.completedGainQuantiles'));
 assume('pass.breakupShare', 0.4, 0, 1, 'ratio', 'J15.4.1', 'pass.contestedTargets');
 assume('pass.outOfBoundsShare', 0.15, 0, 0.6, 'ratio', 'J15.3.2', 'clock.elapsedPerPlay');
 assume('pass.interceptionReturnMeanYd', 12, 0, 30, 'yd', 'J15.7.2', 'drive.opponentTouchdownShare');

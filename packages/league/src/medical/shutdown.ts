@@ -1,7 +1,7 @@
 // Shutting a player down and timing surgery (D11.6.3, H5.3.3). The player decides about surgery with the
 // physician; the coach decides use and may ask (asking to delay surgery is pressure, D11.3.3); the holder
 // of roster say decides any list move.
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { P } from './params.ts';
 import { surgeryOption } from './catalogue.ts';
 
@@ -31,7 +31,7 @@ export function shutdownOptions(typeId: string, today: number): ShutdownOption[]
 
 /** One game played on the non-operative path: did it worsen (then the operative timeline runs from today)? */
 export function worsensThisGame(s: RandomStream): boolean {
-  return s.chance(P('nonOpWorsenPerGame'));
+  return s.chance(possible(P('nonOpWorsenPerGame')));
 }
 
 export interface PlayerSituation {

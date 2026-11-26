@@ -1,5 +1,6 @@
 // K1 formulas as pure functions of numbers. No world, no view, no stream: the stage and the tests
 // call the same code. `m` is the engine's deterministic math; clips use plain comparisons.
+import { possible } from '@gm/schema';
 import type { PlayerAiParams } from './params.ts';
 import type { PlayerMind, StandingInstruction } from './mind.ts';
 
@@ -141,7 +142,7 @@ export function accidentChance(techZ: number, fatigue: number, rerouted: boolean
   const z = clip(techZ, -p.accidentTechClip, p.accidentTechClip);
   const c = p.accidentBase * (p.accidentTechIntercept - z / p.accidentTechDivisor) * (1 + fatigue * fatigue)
     * (1 + (rerouted ? p.accidentReroute : 0)) * (1 + p.accidentTraffic * traffic) * composure;
-  return c > p.accidentCap ? p.accidentCap : c < 0 ? 0 : c;
+  return possible(c > p.accidentCap ? p.accidentCap : c < 0 ? 0 : c);
 }
 
 // ---- K1.7.3 situational lapses ----

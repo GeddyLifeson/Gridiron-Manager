@@ -831,6 +831,206 @@
    "assumption",
    "K7.8.1 rule 3 (coarser step; X13.1.2 owns it)",
    "gm test"
+  ],
+  [
+   "needs.depthGapWeight",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "M1.4.1 (0.5 x depth gap); K7.2.1 rule 1",
+   "gm hookup test"
+  ],
+  [
+   "needs.shortfallIss",
+   10,
+   0,
+   30,
+   "ISS",
+   "assumption",
+   "M1.4.1 count shortfall penalty (same value as G-57 P-57-2); K7.2.1 rule 1",
+   "gm hookup test"
+  ],
+  [
+   "needs.futureFlagNeed",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "M1.4.3 future need; K7.2.1 time frame",
+   "gm hookup test"
+  ],
+  [
+   "draft.goneChance",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.4.3 rule 3 (will not last); M3.4.1 chance gone",
+   "gm hookup test"
+  ],
+  [
+   "roster.highGuaranteeShare",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "M6.4.1 inputs (a contract whose release costs too much cap: K7 marks it)",
+   "gm hookup test"
+  ],
+  [
+   "roster.bubbleSize",
+   5,
+   0,
+   15,
+   "count",
+   "assumption",
+   "M6.4.1 columns (bubble)",
+   "gm hookup test"
+  ],
+  [
+   "college.boardProjectionWeight",
+   0.6,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 1 (projection weighted heavily)",
+   "gm college test"
+  ],
+  [
+   "college.marketProjectionWeight",
+   0.15,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.5.2 (more weight on current grade, less on projection)",
+   "gm college test"
+  ],
+  [
+   "college.developLean",
+   0.4,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.2 developVsBuy",
+   "gm college test"
+  ],
+  [
+   "college.regionBonus",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.1.2 regionalFocus",
+   "gm college test"
+  ],
+  [
+   "college.needWeight",
+   0.5,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 1 (need term); K7.5.2 (by need and surplus)",
+   "gm college test"
+  ],
+  [
+   "college.evenBattleShare",
+   0.5,
+   0.1,
+   0.9,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 2 (head-to-head battles)",
+   "gm college test"
+  ],
+  [
+   "college.offerLossSpread",
+   0.8,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 2 (more for programs that lose more head-to-head battles)",
+   "gm college test"
+  ],
+  [
+   "college.offerMultipleMin",
+   3,
+   1,
+   10,
+   "ratio",
+   "bible",
+   "K7.5.1 rule 2 (spread by program of about 3 to 20)",
+   "gm college test"
+  ],
+  [
+   "college.offerMultipleMax",
+   20,
+   10,
+   40,
+   "ratio",
+   "bible",
+   "K7.5.1 rule 2 (spread by program of about 3 to 20)",
+   "gm college test"
+  ],
+  [
+   "college.committablePerPlace",
+   2,
+   1,
+   10,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 2 (many offers are not committable); T4.4.5",
+   "gm college test"
+  ],
+  [
+   "college.flipFloor",
+   0.1,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K7.5.1 rule 5 (chance above a floor)",
+   "gm college test"
+  ],
+  [
+   "college.lowerSourceWeight",
+   0.5,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "K7.5.2 (two-year and lower-division players by highSchoolVsTransfer and need); T6.3.2",
+   "gm college test"
+  ],
+  [
+   "college.buyoutShareMax",
+   1,
+   0,
+   3,
+   "ratio",
+   "assumption",
+   "K7.1.2 lockIn; T7.3.2 (exit clauses)",
+   "gm college test"
+  ],
+  [
+   "violation.winsForFullGain",
+   1,
+   0.1,
+   5,
+   "wins",
+   "assumption",
+   "K7.7.1 (estimated gain from K7.2.2 on the K2.8.2 scale)",
+   "gm violations test"
   ]
  ]
 }

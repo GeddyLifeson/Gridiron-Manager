@@ -1,6 +1,6 @@
 // Academic standing (T5.3.1), class load (T8.3.1), and the academic shortcuts (T5.3.2). The checks read
 // the year-stamped `academic.*` rule values; how a term goes is a tuned model (params.json).
-import type { PersonOrigin } from '@gm/schema';
+import { possible, type PersonOrigin } from '@gm/schema';
 import type { CollegeRules } from './keys.ts';
 import { clamp01, param, U } from './params.ts';
 import { mayCarryPersonalEvent, type Stream } from './types.ts';
@@ -74,7 +74,7 @@ export interface TermInput {
 export function expectedPassShare(i: TermInput): number {
   const study = Math.min(i.studyHoursWeek, param('termStudyHoursCap'));
   const overload = i.overloadHoursWeek > 0 ? param('termOverloadPenalty') * i.gradesPriorityShare * Math.min(1, i.overloadHoursWeek / param('loadLimitHoursWeek')) : 0;
-  return clamp01(param('termPassBase') + param('termPassAptitude') * i.aptitude + param('termPassDiligence') * i.diligence
+  return possible(param('termPassBase') + param('termPassAptitude') * i.aptitude + param('termPassDiligence') * i.diligence
     + param('termPassPerStudyHour') * study + param('termPassSupport') * i.support - overload);
 }
 

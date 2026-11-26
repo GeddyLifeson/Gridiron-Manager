@@ -8,6 +8,7 @@ Module: `packages/coach-ai/src/calling/`. Tests: `packages/coach-ai/test/calling
 - Draws come from the `coachAI` stream keyed by game, play, team and decision type (J13.2.1). The caller asks for a kind (`call`, `tempo`, `script`, `timing`, `booth`, `disguise`, `adjust`) and takes a fixed number of draws from each, so no outcome moves another draw.
 - Information limit (K9.1.1, K4.4.1): `CallRequest` has no field for the opponent's call, formation, motion, plan or sheet. On defense the caller is told only whether the offense is at tempo. A test pins the field list.
 - The matrix game is solved by simplex at plan lock (`lockSheet`) and again only when a candidate list changes in game; solved lists are cached, so there is no solve per snap.
+- `preview(request)` (for K6 `suggest`, G-75 CallerPort): the candidates, `mix4` and a best-first ranking for the snap, plus the scripted or queued call he would send. It takes no draws (tempo is given, offense defaults to huddle) and moves no state: script, sequence windows, self-scout counts, last call and late reports stay as they were, so a `call` after any number of previews is unchanged (tested). The solved-mix cache may fill, which changes no answer. `mix4` equals what the next `call` draws from on the mix path.
 - For K3 plan lock (G-74): `solveMix(a, planned?)` returns one probability per candidate with the 5% floor of the K4.3.1 edge case. G-74 keeps its own sheet shape and converts it to `CallingSheet` for the caller.
 
 ## Deviations from the K4 text, with reasons

@@ -1,0 +1,1332 @@
+{
+ "version": "1",
+ "note": "Press question catalogue. code = research code (research/press/taxonomy.md) the topic is counted under. level both|pro|college. evergreen 1 = can be asked with no triggering event (subject 'general' or the next opponent). triggers = PressEvent types that create a subject for it. harm = X2.1.2 harm class of the question. n = neutral and soft wordings, p = probing and hostile wordings. Placeholders: {player} {opponent} {staff} {detail} {stat} {team} {record}. Wording is design (Assumption); the topics come from real transcripts.",
+ "topics": [
+  {
+   "id": "game_overall",
+   "code": "result_overall",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "game_result"
+   ],
+   "n": [
+    "What was your overall read on the game?",
+    "Walk us through what you saw out there today."
+   ],
+   "p": [
+    "How do you explain a performance like that?",
+    "What went wrong today?"
+   ]
+  },
+  {
+   "id": "game_turning_point",
+   "code": "specific_play",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "big_play",
+    "turnover",
+    "game_result"
+   ],
+   "n": [
+    "Take us through {detail}.",
+    "What did you see on {detail}?",
+    "What was the turning point of the game?"
+   ],
+   "p": [
+    "Was {detail} the moment the game got away from you?",
+    "Who was responsible on {detail}?",
+    "Where did the game turn against you?"
+   ]
+  },
+  {
+   "id": "final_drive",
+   "code": "specific_play",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "final_drive"
+   ],
+   "n": [
+    "Walk us through the final drive.",
+    "What was the thinking on that last series?"
+   ],
+   "p": [
+    "What broke down on the final drive?",
+    "Why couldn't you close it out at the end?"
+   ]
+  },
+  {
+   "id": "fourth_down",
+   "code": "decision_call",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "fourth_down_decision"
+   ],
+   "n": [
+    "What went into the decision on fourth down {detail}?",
+    "Talk about the fourth-down call {detail}.",
+    "Talk about the fourth-down decision."
+   ],
+   "p": [
+    "Do you regret going for it {detail}?",
+    "Why not take the points {detail}?",
+    "Do you regret the fourth-down call?"
+   ]
+  },
+  {
+   "id": "two_point",
+   "code": "decision_call",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "two_point_decision"
+   ],
+   "n": [
+    "What was the thinking on the two-point try?"
+   ],
+   "p": [
+    "Was going for two the right call there?"
+   ]
+  },
+  {
+   "id": "clock_timeouts",
+   "code": "decision_call",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "clock_decision",
+    "timeout_decision"
+   ],
+   "n": [
+    "How did you see the clock management at the end of the half?",
+    "Talk about your timeout usage late."
+   ],
+   "p": [
+    "Did you mismanage the clock at the end?",
+    "Why hold on to your timeouts there?"
+   ]
+  },
+  {
+   "id": "challenge_call",
+   "code": "decision_call",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "challenge"
+   ],
+   "n": [
+    "What did you see that made you throw the challenge flag?"
+   ],
+   "p": [
+    "Was that challenge worth the timeout?"
+   ]
+  },
+  {
+   "id": "kick_choice",
+   "code": "decision_call",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "kick_decision",
+    "onside_decision",
+    "punt_decision"
+   ],
+   "n": [
+    "Talk about the choice to {detail}.",
+    "What went into the kicking decision {detail}?",
+    "Talk about the kicking decision there."
+   ],
+   "p": [
+    "Why {detail} there?",
+    "Second thoughts on the decision to {detail}?",
+    "Second thoughts on the kicking decision?"
+   ]
+  },
+  {
+   "id": "play_call",
+   "code": "decision_call",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "play_call_decision",
+    "late_game_decision"
+   ],
+   "n": [
+    "What were you looking for on the call {detail}?",
+    "What were you looking for on that play call?"
+   ],
+   "p": [
+    "Why that call {detail}?",
+    "Would you call that play again?",
+    "Why that play call?"
+   ]
+  },
+  {
+   "id": "play_caller",
+   "code": "play_calling_role",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "play_caller_change"
+   ],
+   "n": [
+    "How is the play-calling split working between you and your staff?",
+    "Who is calling plays this week?"
+   ],
+   "p": [
+    "Is it time for a change in who calls plays?",
+    "Do you need to take over the play calling?"
+   ]
+  },
+  {
+   "id": "unit_play",
+   "code": "unit_performance",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "unit_struggle",
+    "unit_success",
+    "game_result"
+   ],
+   "n": [
+    "How do you assess {detail} right now?",
+    "What are you seeing from {detail}?",
+    "How do you assess the offensive line right now?",
+    "What are you seeing from the secondary?",
+    "How is the run game coming along?"
+   ],
+   "p": [
+    "What has to change with {detail}?",
+    "Is {detail} a personnel problem or a scheme problem?",
+    "What has to change on defense?",
+    "Is the offense a personnel problem or a scheme problem?"
+   ]
+  },
+  {
+   "id": "red_zone_third",
+   "code": "unit_performance",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "situational_trend"
+   ],
+   "n": [
+    "Talk about the third-down and red-zone work.",
+    "How do you finish more drives with touchdowns?"
+   ],
+   "p": [
+    "Why do drives keep stalling in the red zone?"
+   ]
+  },
+  {
+   "id": "special_teams",
+   "code": "unit_performance",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "special_teams_play",
+    "blocked_kick",
+    "missed_kick"
+   ],
+   "n": [
+    "What did you think of the special teams?",
+    "Talk about the kicking game."
+   ],
+   "p": [
+    "How concerned are you about special teams after {detail}?",
+    "How concerned are you about the special teams?"
+   ]
+  },
+  {
+   "id": "player_play",
+   "code": "player_performance",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "player_standout",
+    "player_struggle",
+    "game_result",
+    "depth_change"
+   ],
+   "n": [
+    "What have you seen from {player}?",
+    "Talk about {player}'s growth."
+   ],
+   "p": [
+    "Is {player} playing up to the level you need?",
+    "How much longer can you live with {player}'s mistakes?"
+   ]
+  },
+  {
+   "id": "rookie_development",
+   "code": "player_performance",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "rookie_snaps",
+    "player_standout"
+   ],
+   "n": [
+    "How is {player} handling the jump this year?"
+   ],
+   "p": [
+    "Is {player} ready for this role?"
+   ]
+  },
+  {
+   "id": "qb_play",
+   "code": "qb_performance",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "qb_game",
+    "game_result"
+   ],
+   "n": [
+    "How did {player} play today?",
+    "What's your assessment of {player} so far?",
+    "How do you assess the quarterback play?",
+    "Where is your quarterback in his development?"
+   ],
+   "p": [
+    "Is {player} the answer at quarterback?",
+    "Is too much being put on {player}'s plate?",
+    "Is your quarterback the answer?",
+    "Is the quarterback holding this offense back?"
+   ]
+  },
+  {
+   "id": "qb_starter",
+   "code": "qb_change",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "qb_change",
+    "benching",
+    "qb_competition",
+    "qb_injury"
+   ],
+   "n": [
+    "Who will start at quarterback this week?",
+    "Where does the quarterback competition stand?"
+   ],
+   "p": [
+    "Have you lost confidence in {player}?",
+    "Why make the quarterback change now?"
+   ]
+  },
+  {
+   "id": "lineup_role",
+   "code": "depth_chart",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "depth_change",
+    "snap_share",
+    "position_change",
+    "benching"
+   ],
+   "n": [
+    "How do you see the snaps splitting at {detail}?",
+    "Who steps up with {player} out?",
+    "How do you see the snaps splitting this week?",
+    "Any changes to the lineup this week?"
+   ],
+   "p": [
+    "Why was {player} on the bench?",
+    "Why was {player} inactive?",
+    "Why not make lineup changes after that?"
+   ]
+  },
+  {
+   "id": "competition",
+   "code": "depth_chart",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "position_battle"
+   ],
+   "n": [
+    "Where does the competition at {detail} stand?",
+    "Which position battles are still open?"
+   ],
+   "p": [
+    "Why hasn't anyone taken the job at {detail}?",
+    "Why haven't the open jobs been won yet?"
+   ]
+  },
+  {
+   "id": "injury_update",
+   "code": "injury_status",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "injury",
+    "injury_report",
+    "practice_absence"
+   ],
+   "n": [
+    "Any update on {player}?",
+    "Where is {player} in his recovery?"
+   ],
+   "p": [
+    "Was {player} rushed back?",
+    "Are you being straight with us about {player}'s injury?"
+   ]
+  },
+  {
+   "id": "injury_return",
+   "code": "injury_status",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "injury_return",
+    "injured_reserve"
+   ],
+   "n": [
+    "Is there a timeline for {player} to return?",
+    "Will {player} practice this week?"
+   ],
+   "p": [
+    "Should {player} be shut down for the year?"
+   ]
+  },
+  {
+   "id": "concussion_care",
+   "code": "player_safety_health",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "concussion",
+    "player_welfare"
+   ],
+   "n": [
+    "Where is {player} in the concussion protocol?",
+    "How do you manage players' bodies this late in the season?"
+   ],
+   "p": [
+    "Should {player} have been on the field after that hit?"
+   ]
+  },
+  {
+   "id": "load_rest",
+   "code": "player_safety_health",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "rest_decision"
+   ],
+   "n": [
+    "How are you managing the workload at this point of the season?"
+   ],
+   "p": [
+    "Will you rest starters with so much at stake?"
+   ]
+  },
+  {
+   "id": "roster_moves",
+   "code": "roster_move",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "signing",
+    "release",
+    "waiver_claim",
+    "practice_squad_move",
+    "cut_down",
+    "roster_departure"
+   ],
+   "n": [
+    "What led to the move with {player}?",
+    "What does {player} bring?"
+   ],
+   "p": [
+    "Was releasing {player} a mistake?",
+    "Why move on from {player} now?"
+   ]
+  },
+  {
+   "id": "cut_down",
+   "code": "roster_move",
+   "level": "pro",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "cut_down"
+   ],
+   "n": [
+    "How hard were the final roster decisions?",
+    "What can players still do to make the roster?"
+   ],
+   "p": [
+    "Did you keep the wrong guys?"
+   ]
+  },
+  {
+   "id": "trade_made",
+   "code": "trade",
+   "level": "pro",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "trade"
+   ],
+   "n": [
+    "What does the trade for {player} do for you?",
+    "How did the deal for {player} come together?"
+   ],
+   "p": [
+    "Did you give up too much for {player}?",
+    "Are you sending the locker room a message with that trade?"
+   ]
+  },
+  {
+   "id": "trade_deadline",
+   "code": "trade",
+   "level": "pro",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "trade_deadline",
+    "trade_rumor",
+    "trade_request"
+   ],
+   "n": [
+    "What's the approach heading into the trade deadline?",
+    "Have you had talks about {player}?"
+   ],
+   "p": [
+    "Are you buyers or sellers?",
+    "Has {player} asked to be traded?"
+   ]
+  },
+  {
+   "id": "extension",
+   "code": "contract",
+   "level": "pro",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "contract_extension",
+    "contract_talks",
+    "franchise_tag",
+    "contract_year"
+   ],
+   "n": [
+    "Any update on {player}'s contract?",
+    "How important is it to get {player} signed long term?"
+   ],
+   "p": [
+    "Can you afford to keep {player}?",
+    "Is the contract affecting {player}'s play?"
+   ]
+  },
+  {
+   "id": "holdout",
+   "code": "contract",
+   "level": "pro",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "holdout",
+    "hold_in"
+   ],
+   "n": [
+    "Have you talked with {player} during his absence?",
+    "Where do things stand with {player}?"
+   ],
+   "p": [
+    "Is {player}'s holdout hurting the team?",
+    "Will {player} be fined for missing camp?"
+   ]
+  },
+  {
+   "id": "cap_spending",
+   "code": "contract",
+   "level": "pro",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "cap_move",
+    "restructure"
+   ],
+   "n": [
+    "How does the cap situation shape your plans?"
+   ],
+   "p": [
+    "Did the front office leave you short of talent?"
+   ]
+  },
+  {
+   "id": "draft_class",
+   "code": "draft_free_agency",
+   "level": "pro",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "draft_pick",
+    "draft_upcoming",
+    "free_agent_signing",
+    "free_agent_loss"
+   ],
+   "n": [
+    "What did you like about {player} in the draft process?",
+    "What are your needs going into the draft?"
+   ],
+   "p": [
+    "Why pass on a need position?",
+    "Did you lose too many players in free agency?"
+   ]
+  },
+  {
+   "id": "opponent_preview",
+   "code": "opponent_team",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "opponent_trend"
+   ],
+   "n": [
+    "What stands out about {opponent}?",
+    "What challenges does {opponent} present?"
+   ],
+   "p": [
+    "Is {opponent} a must-win?"
+   ]
+  },
+  {
+   "id": "opponent_star",
+   "code": "opponent_player",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "opponent_star",
+    "opponent_qb_change"
+   ],
+   "n": [
+    "How do you prepare for {player}?",
+    "What makes {player} so hard to stop?",
+    "Which {opponent} player worries you most?"
+   ],
+   "p": [
+    "Do you have anyone who can cover {player}?",
+    "Do you have anyone who can match up with their best player?"
+   ]
+  },
+  {
+   "id": "opponent_coach",
+   "code": "opponent_coach",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "opponent_coach_tie",
+    "opponent_coach_comment",
+    "opponent_coach_new"
+   ],
+   "n": [
+    "What's your history with {staff}?",
+    "What do you expect from {staff}'s staff?",
+    "What do you expect from their staff?"
+   ],
+   "p": [
+    "Did {staff}'s comments this week bother you?",
+    "Did the other coach's comments this week bother you?"
+   ]
+  },
+  {
+   "id": "rivalry",
+   "code": "rivalry_history",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "rivalry_game",
+    "former_team_game",
+    "series_history"
+   ],
+   "n": [
+    "What does this rivalry mean to you?",
+    "What's it like going back to face {opponent}?"
+   ],
+   "p": [
+    "Is this a revenge game for you?",
+    "How do you explain the losing run against {opponent}?"
+   ]
+  },
+  {
+   "id": "identity",
+   "code": "scheme_philosophy",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "scheme_change"
+   ],
+   "n": [
+    "What is the identity of this team?",
+    "How does that fit what you want to be schematically?"
+   ],
+   "p": [
+    "Is your scheme the problem?",
+    "Are you too stubborn with the system?"
+   ]
+  },
+  {
+   "id": "this_week_plan",
+   "code": "game_plan",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "opponent_trend"
+   ],
+   "n": [
+    "How do you attack {opponent} this week?",
+    "What is the key to the matchup?"
+   ],
+   "p": [
+    "Do you have to open the playbook this week?"
+   ]
+  },
+  {
+   "id": "practice_week",
+   "code": "practice_prep",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "short_week",
+    "practice_change",
+    "joint_practice",
+    "bye"
+   ],
+   "n": [
+    "How was practice today?",
+    "What did the team get out of the bye week?"
+   ],
+   "p": [
+    "Are practices tough enough?"
+   ]
+  },
+  {
+   "id": "morale",
+   "code": "culture_leadership",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "losing_streak",
+    "winning_streak",
+    "game_result",
+    "locker_room_incident"
+   ],
+   "n": [
+    "How does the team bounce back from this?",
+    "What's the mood in the locker room?"
+   ],
+   "p": [
+    "Are you worried you're losing the locker room?",
+    "Is this team quitting?"
+   ]
+  },
+  {
+   "id": "leadership",
+   "code": "culture_leadership",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "captain_vote",
+    "player_criticism_public"
+   ],
+   "n": [
+    "Who are the leaders on this team?",
+    "What has {player} meant as a leader?"
+   ],
+   "p": [
+    "Did {player}'s comments this week cross a line?",
+    "Does this team have enough leaders?"
+   ]
+  },
+  {
+   "id": "discipline",
+   "code": "discipline_conduct",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "professional_negative",
+   "triggers": [
+    "suspension",
+    "team_discipline",
+    "ejection",
+    "fine",
+    "missed_meeting"
+   ],
+   "n": [
+    "Can you address the situation with {player}?",
+    "Will {player} be available after the {detail}?",
+    "Can you address the discipline situation?"
+   ],
+   "p": [
+    "Why didn't you discipline {player} sooner?",
+    "Is there a discipline problem on this team?"
+   ]
+  },
+  {
+   "id": "player_legal",
+   "code": "off_field_player",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "harmful",
+   "triggers": [
+    "arrest",
+    "player_legal"
+   ],
+   "n": [
+    "Can you speak to the report about {player}?",
+    "Have you talked to {player} since the incident?"
+   ],
+   "p": [
+    "Will {player} play while this is pending?",
+    "What does this say about the culture you've built?"
+   ]
+  },
+  {
+   "id": "player_life",
+   "code": "off_field_player",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "personal",
+   "triggers": [
+    "player_personal_public",
+    "academic_issue"
+   ],
+   "n": [
+    "How is {player} doing with everything going on away from football?"
+   ],
+   "p": [
+    "Is {player}'s situation away from football affecting the team?"
+   ]
+  },
+  {
+   "id": "officials",
+   "code": "officiating_rules",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "officiating_controversy",
+    "penalty_call"
+   ],
+   "n": [
+    "What explanation did you get on the {detail}?",
+    "How did you see the call on {detail}?",
+    "What explanation did you get from the officials?"
+   ],
+   "p": [
+    "Did the officials cost you the game?",
+    "Will you send that call to the league?"
+   ]
+  },
+  {
+   "id": "rules_policy",
+   "code": "officiating_rules",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "rule_change",
+    "league_policy"
+   ],
+   "n": [
+    "How has the {detail} rule change affected you?",
+    "What's your view of the new {detail} rule?",
+    "How have this year's rule changes affected you?"
+   ],
+   "p": [
+    "Is the league getting the {detail} rule wrong?",
+    "Is the league getting the new rules wrong?"
+   ]
+  },
+  {
+   "id": "penalty_trouble",
+   "code": "penalties",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "penalty_trouble"
+   ],
+   "n": [
+    "How do you clean up the penalties?"
+   ],
+   "p": [
+    "Why does this team keep beating itself with penalties?"
+   ]
+  },
+  {
+   "id": "hot_seat",
+   "code": "job_security",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "professional_negative",
+   "triggers": [
+    "hot_seat",
+    "owner_comment",
+    "fan_protest",
+    "losing_streak"
+   ],
+   "n": [
+    "Have you talked with {staff} about your future?",
+    "How do you handle the outside noise about your job?",
+    "Have you talked with ownership about your future?"
+   ],
+   "p": [
+    "Do you believe you'll be here next season?",
+    "Are you worried about your job?"
+   ]
+  },
+  {
+   "id": "job_rumor",
+   "code": "coach_career_self",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "coach_job_rumor",
+    "coach_interview"
+   ],
+   "n": [
+    "Have you been contacted about the {detail} opening?",
+    "Have you been contacted about other openings?"
+   ],
+   "p": [
+    "Can you promise you'll be here next year?",
+    "Why not rule out the {detail} job?",
+    "Why not rule out other jobs?"
+   ]
+  },
+  {
+   "id": "coach_growth",
+   "code": "coach_career_self",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "coach_milestone",
+    "coach_first_year"
+   ],
+   "n": [
+    "What have you learned about yourself as a head coach this year?",
+    "How has your approach changed since you arrived?"
+   ],
+   "p": [
+    "Were you ready for this job?"
+   ]
+  },
+  {
+   "id": "staff_work",
+   "code": "staff",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "staff_hire",
+    "staff_fire",
+    "coordinator_change",
+    "staff_standout"
+   ],
+   "n": [
+    "What has {staff} brought to the staff?",
+    "How is {staff} handling the new role?",
+    "How has the staff come together this year?",
+    "What have your coordinators brought this season?"
+   ],
+   "p": [
+    "Is {staff} the right person for the job?",
+    "Will there be staff changes?"
+   ]
+  },
+  {
+   "id": "stakes",
+   "code": "standings_stakes",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "clinch",
+    "elimination",
+    "standings_race",
+    "ranking_change"
+   ],
+   "n": [
+    "How much do you look at the standings now?",
+    "What does {detail} mean for this group?",
+    "What's at stake for this group now?"
+   ],
+   "p": [
+    "Is the season slipping away?",
+    "Is {record} good enough for this program?"
+   ]
+  },
+  {
+   "id": "streak",
+   "code": "standings_stakes",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "losing_streak",
+    "winning_streak"
+   ],
+   "n": [
+    "What has driven this run?",
+    "How do you stop the slide?"
+   ],
+   "p": [
+    "How do you explain {stat} straight losses?",
+    "How do you explain this losing streak?"
+   ]
+  },
+  {
+   "id": "logistics",
+   "code": "schedule_travel_weather",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "short_week",
+    "travel",
+    "weather_game",
+    "bye",
+    "schedule_quirk"
+   ],
+   "n": [
+    "How do you handle the short week?",
+    "How will the weather change your plan?"
+   ],
+   "p": [
+    "Is the schedule an excuse?"
+   ]
+  },
+  {
+   "id": "crowd",
+   "code": "fans_crowd",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "fan_protest",
+    "home_crowd",
+    "crowd_noise",
+    "fans_booing"
+   ],
+   "n": [
+    "What did the crowd mean to you today?"
+   ],
+   "p": [
+    "What do you say to the fans who were booing?",
+    "Do the fans have a right to be frustrated?"
+   ]
+  },
+  {
+   "id": "media_report",
+   "code": "media_reports",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "media_report",
+    "leak",
+    "player_criticism_public",
+    "owner_comment",
+    "analyst_comment"
+   ],
+   "n": [
+    "Have you seen the report that {detail}?",
+    "What did you make of {detail}?",
+    "Have you seen the report out this week?"
+   ],
+   "p": [
+    "Is the report that {detail} true?",
+    "Who is leaking from your building?",
+    "Is the report this week true?"
+   ]
+  },
+  {
+   "id": "recruiting_class",
+   "code": "recruiting",
+   "level": "college",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "commit",
+    "decommit",
+    "signing_day",
+    "official_visit"
+   ],
+   "n": [
+    "How is the recruiting class shaping up?",
+    "What does winning do for recruiting?"
+   ],
+   "p": [
+    "Why are recruits choosing other schools?",
+    "Is the losing hurting recruiting?"
+   ]
+  },
+  {
+   "id": "portal",
+   "code": "transfer_nil",
+   "level": "college",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "transfer_in",
+    "transfer_out",
+    "portal_window",
+    "eligibility"
+   ],
+   "n": [
+    "How do you approach the portal window?",
+    "Where does {player}'s eligibility stand?"
+   ],
+   "p": [
+    "Why are so many players leaving through the portal?"
+   ]
+  },
+  {
+   "id": "redshirt",
+   "code": "transfer_nil",
+   "level": "college",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "redshirt_decision"
+   ],
+   "n": [
+    "How are you handling redshirt decisions with the freshmen?"
+   ],
+   "p": [
+    "Are you burning {player}'s redshirt too early?",
+    "Are you burning redshirts too early?"
+   ]
+  },
+  {
+   "id": "nil_pay",
+   "code": "transfer_nil",
+   "level": "college",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "nil_deal",
+    "revenue_share"
+   ],
+   "n": [
+    "How has revenue sharing changed roster building?"
+   ],
+   "p": [
+    "Are you being outspent for players?"
+   ]
+  },
+  {
+   "id": "coach_family",
+   "code": "personal_family",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "personal",
+   "triggers": [
+    "coach_personal_public",
+    "family_event_public",
+    "coach_health_public"
+   ],
+   "n": [
+    "How are you and your family doing?",
+    "How are you feeling physically?"
+   ],
+   "p": [
+    "Is everything at home affecting your coaching?"
+   ]
+  },
+  {
+   "id": "light_personal",
+   "code": "personal_family",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [],
+   "n": [
+    "Any plans for the holiday with your family?",
+    "What did you do on your day off?"
+   ],
+   "p": [
+    "Do you ever switch off from football?"
+   ]
+  },
+  {
+   "id": "community",
+   "code": "social_issue",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "community_event",
+    "social_issue_public",
+    "charity_event"
+   ],
+   "n": [
+    "What did the {detail} mean to the team?",
+    "Can you speak to {detail}?",
+    "What did the community event mean to the team?"
+   ],
+   "p": [
+    "Should the team have taken a stand on {detail}?",
+    "Should the team have taken a stand on this?"
+   ]
+  },
+  {
+   "id": "numbers",
+   "code": "analytics_stats",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "analytics_note",
+    "stat_trend"
+   ],
+   "n": [
+    "You're {stat}; what's behind that?",
+    "What's behind the numbers lately?"
+   ],
+   "p": [
+    "You've been outscored {stat}; why does this keep happening?",
+    "Why do the same numbers keep showing up against you?"
+   ]
+  },
+  {
+   "id": "milestone",
+   "code": "milestone_record",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "record_milestone",
+    "award",
+    "award_watch",
+    "coach_milestone"
+   ],
+   "n": [
+    "What does {detail} mean for {player}?",
+    "How do you handle award talk with {player}?",
+    "What does the milestone mean to you?"
+   ],
+   "p": [
+    "Does chasing {detail} distract the team?",
+    "Does the record chase distract the team?"
+   ]
+  },
+  {
+   "id": "facilities_program",
+   "code": "other",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [
+    "facility_project"
+   ],
+   "n": [
+    "Where does the program stand on facilities and support?"
+   ],
+   "p": [
+    "Does the program give you what you need to win?"
+   ]
+  },
+  {
+   "id": "off_topic",
+   "code": "other",
+   "level": "both",
+   "evergreen": 1,
+   "harm": "none",
+   "triggers": [],
+   "n": [
+    "What's on the playlist at practice these days?",
+    "Fun one: who's the best dancer in the locker room?"
+   ],
+   "p": [
+    "Fun one: who wins a race between you and your coordinators?"
+   ]
+  },
+  {
+   "id": "contradiction",
+   "code": "media_reports",
+   "level": "both",
+   "evergreen": 0,
+   "harm": "none",
+   "triggers": [
+    "statement_contradiction"
+   ],
+   "n": [
+    "Earlier you said {detail}; what changed?",
+    "Earlier you told us something different; what changed?"
+   ],
+   "p": [
+    "You told us {detail}. Were you being straight with us?",
+    "Why should anyone believe what you say after {detail}?",
+    "What you told us before doesn't match what happened. Were you being straight with us?"
+   ]
+  }
+ ],
+ "hostileLeads": [
+  "With respect, coach, ",
+  "People are asking: ",
+  "Fans want to know: ",
+  "Bluntly, "
+ ],
+ "followUps": {
+  "evasive": [
+   "You didn't really answer that. {again}",
+   "Let me try it another way: {again}",
+   "To follow up on that: {again}"
+  ],
+  "decline": [
+   "Why won't you talk about it?",
+   "Is there a reason you can't answer that?"
+  ],
+  "combative": [
+   "Why are you so defensive about that?",
+   "Do you think that question was unfair?"
+  ],
+  "direct": [
+   "Follow-up: what specifically has to change?",
+   "And how does that affect this week?"
+  ]
+ }
+}
