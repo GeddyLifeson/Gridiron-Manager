@@ -13,8 +13,9 @@ import { drawTeam, type TeamDraws } from './draws.ts';
 import {
   audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
   disguiseQualityOf, falseStartChance, holdEndS, huddleDeliveryChance, offenseStartS, protectionRecognitionChance,
-  readCorrectChance, runOnS, snapMotionSdS, substitutionErrorChance, targetClockAtSnapS, tightenSplit, unblockedAfterSet,
+  readCorrectChance, runOnS, unitLateS, unitSetS, snapMotionSdS, substitutionErrorChance, targetClockAtSnapS, tightenSplit, unblockedAfterSet,
   type DefensiveForm, type Tempo, type Venue,
+  type UnitChange,
 } from './formulas.ts';
 import { presnapParams, type PresnapFoulId, type PresnapParams } from './params.ts';
 
@@ -89,6 +90,8 @@ export interface PresnapInput {
   readonly snapFoulPhase: FoulPhase;
   readonly offense: PresnapOffense;
   readonly defense: PresnapDefense;
+  /** I4.1.1 a kicking unit comes on for this snap: its time to set is charged and a change of mind raises the substitution hazard. Null or absent: no unit change. */
+  readonly unitChange?: UnitChange | null;
   /** Test switch for J5.4.2 acceptance 1 ("errors disabled"): every recognition and delivery succeeds. Draws are still taken. */
   readonly errorsDisabled?: boolean;
 }
@@ -226,7 +229,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   let offenseExtra = false, defenseExtra = false;
   const subDur = [0, 0];
   for (const [side, S, dr] of [[0, O, dO], [1, D, dD]] as const) {
-    const pErr = substitutionErrorChance(input.tempo, S.callLateS, S.packageReadiness, p);
+    const pErr = substitutionErrorChance(input.tempo, S.callLateS + (side === 0 ? unitLateS(input.unitChange, p) : 0), S.packageReadiness, p);
     for (const ts of S.substituted) {
       const slot = side * SLOTS_PER_TEAM + ts, a = S.assignments[ts]!;
       const sidelinePy = a.preSnap.align.py >= 0 ? hiPy : loPy;
@@ -271,6 +274,12 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     const dx = spot[s]!.px - (w.players.posX[s]! - w.frame.originX) * w.frame.attackDir;
     const dy = spot[s]!.py - (w.players.posY[s]! - w.frame.originY) * w.frame.attackDir;
     alignDur = Math.max(alignDur, math.sqrt(dx * dx + dy * dy) / jog);
+  }
+  // I4.1.1 a kicking unit is set no sooner than its dead-ball-to-set time (it is "set" after the set period).
+  const unitS = input.unitChange ? unitSetS(input.unitChange, p) : 0;
+  if (input.unitChange) {
+    alignDur = Math.max(alignDur, unitS - setPeriod - breakS);
+    log.push({ side: 0, action: 'align_and_set', name: input.unitChange.reversed ? 'kicking_unit_on_after_reversal' : input.unitChange.alerted ? 'kicking_unit_on' : 'kicking_unit_on_not_alerted', startS: 0, endS: unitS, status: unitS <= clockStartS ? 'done' : 'unfinished' });
   }
   const alignEnd = breakS + alignDur;
   const readyS = alignEnd + setPeriod;

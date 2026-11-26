@@ -260,6 +260,8 @@ export function createCarrier(options: CarrierOptions): Carrier {
   };
   const steerable = (w: TickWorld, s: number): boolean => ran[s] === 1 || !NOT_RUNNERS.has(w.players.behavior[s]!);
   const isKicker = (s: number): boolean => s < SLOTS_PER_TEAM;
+  /** Inside the sidelines and end lines. A man out of bounds cannot take a kicked or loose ball, and an out-of-bounds ball is not takeable. */
+  const inField = (w: TickWorld, x: number, y: number): boolean => x > 0 && x < w.geometry.lengthYd && y > 0 && y < w.geometry.widthYd;
 
   function begin(w: TickWorld): void {
     p = carrierParams(w.params); kp = kinParams(w.params); bp = ballParams(w.params); contests = contestsOf();
@@ -801,7 +803,8 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const gd = goalDir(w, c), cx = px(w, c);
     contactNumbers(pl.posX[c]!, pl.posY[c]!, pl.velX[c]!, pl.velY[c]!, cInfo.player.weightLb, pl.gazeRad[c]!,
       pl.posX[s]!, pl.posY[s]!, pl.velX[s]!, pl.velY[s]!, sInfo.player.weightLb, kp!, contact);
-    const energyRel = clip(contact.hitEnergy / q['secure.typicalHitEnergy'], 0, q['secure.maxHitEnergyRel']);
+    // contactNumbers already reports hit energy in typical open-field tackles (J2.6.1, kinematics.typical*).
+    const energyRel = clip(contact.hitEnergy, 0, q['secure.maxHitEnergyRel']);
     const covered = traffic(w, c);
     const tacklers = n + arrivingSoon(w, c);
     const losDist = (cx < 0 ? -cx : cx);
@@ -908,10 +911,10 @@ export function createCarrier(options: CarrierOptions): Carrier {
 
   function kickRun(w: TickWorld): void {
     const q = P(), b = w.ball, pl = w.players;
-    if (!(b.velHeight < 0) || b.heightYd > q['ret.catchHeightYd']) return;
+    if (!(b.velHeight < 0) || b.heightYd > q['ret.catchHeightYd'] || !inField(w, b.x, b.y)) return;
     let best = -1, bestD = Infinity;
     for (let s = 0; s < SLOT_COUNT; s++) {
-      if (isDown(w, s) || pl.engagement[s]! >= 0 || w.tick < rearm[s]!) continue;
+      if (isDown(w, s) || pl.engagement[s]! >= 0 || w.tick < rearm[s]! || !inField(w, pl.posX[s]!, pl.posY[s]!)) continue;
       const d = hyp(pl.posX[s]! - b.x, pl.posY[s]! - b.y);
       if (d <= w.slots[s]!.movement.bodyRadiusYd + q['ret.touchGapYd'] && d < bestD) { best = s; bestD = d; }
     }
@@ -959,11 +962,11 @@ export function createCarrier(options: CarrierOptions): Carrier {
   const contender = new Int16Array(SLOT_COUNT);
   function looseRun(w: TickWorld): void {
     const q = P(), b = w.ball, pl = w.players, bs = contests.ballSecurity;
-    if (b.heightYd > q['recover.heightYd']) return;
+    if (b.heightYd > q['recover.heightYd'] || !inField(w, b.x, b.y)) return;
     const reach = bs.recoveryReachYd();
     let n = 0;
     for (let s = 0; s < SLOT_COUNT; s++) {
-      if (isDown(w, s) || pl.engagement[s]! >= 0 || w.tick < rearm[s]!) continue;
+      if (isDown(w, s) || pl.engagement[s]! >= 0 || w.tick < rearm[s]! || !inField(w, pl.posX[s]!, pl.posY[s]!)) continue;
       const d = hyp(pl.posX[s]! - b.x, pl.posY[s]! - b.y) - w.slots[s]!.movement.bodyRadiusYd;
       if (d <= reach) contender[n++] = s;
     }

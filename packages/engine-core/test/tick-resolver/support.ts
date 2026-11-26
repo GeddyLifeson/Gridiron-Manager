@@ -8,6 +8,8 @@ import {
 import { lang } from '@gm/football-lang';
 import { DMATH, seedFromNumber, streamSource } from '../../src/index.ts';
 import { PARAMS as BALL_PARAMS } from '../../src/ball/index.ts';
+import { PARAMS as CARRIER_PARAMS } from '../../src/carrier/index.ts';
+import { PARAMS as FI_PARAMS, LIVE_FOULS } from '../../src/fouls-injuries/index.ts';
 import { PARAMS as CONTEST_PARAMS } from '../../src/contest/index.ts';
 import { PARAMS as FIELD_PARAMS, fieldGeometry } from '../../src/field/index.ts';
 import { PARAMS as KIN_PARAMS } from '../../src/kinematics/index.ts';
@@ -28,6 +30,24 @@ export const RULES: RuleSet = ruleSet({
   ...FIXTURE_VALUES, 'score.touchdown': 6, 'try.two_point_points': 2, 'pass.spike_requires_under_center': true,
   'foul.intentional_grounding.exists': true, 'catch.feet_required': 2,
 });
+
+/** The table a resolver on all three real modules needs: the fixture table plus the carrier's and the fouls-and-injuries rows. */
+export const ALL_TABLE: ParamTable = paramTableFromFiles([
+  FIELD_PARAMS, KIN_PARAMS, PERCEPTION_PARAMS, PRESNAP_PARAMS, AI_PARAMS, BALL_PARAMS, CONTEST_PARAMS, QB_PARAMS, PARAMS, CARRIER_PARAMS, FI_PARAMS, ...lang.PARAM_FILES,
+]);
+/** FIXTURE: the fixture rules plus every foul the fouls-and-injuries module commits and the keys it and the player AI read. Not rule data. */
+const FOUL_KEYS: Record<string, number | boolean | string> = {
+  'foul.ineligible_downfield.yards': 1, 'foul.low_block.rule': 'tight_end_box_only',
+  'foul.offensive_holding.yards': 10, 'foul.dpi.spot_foul': true, 'foul.dpi.yards': 0, 'foul.dpi.max_yards': 0, 'foul.dpi.afd': true,
+};
+for (const id of LIVE_FOULS) if (!(`foul.${id}.exists` in FOUL_KEYS)) FOUL_KEYS[`foul.${id}.exists`] = id !== 'targeting';
+export const ALL_RULES: RuleSet = {
+  ...RULES, id: 'fixture_all_plugs',
+  num: (k) => (k in FOUL_KEYS ? (FOUL_KEYS[k] as number) : RULES.num(k)),
+  bool: (k) => (k in FOUL_KEYS ? (FOUL_KEYS[k] as boolean) : RULES.bool(k)),
+  opt: (k) => (k in FOUL_KEYS ? (FOUL_KEYS[k] as string) : RULES.opt(k)),
+  keys: () => [...RULES.keys(), ...Object.keys(FOUL_KEYS)],
+};
 
 /** A table with some rows replaced, for forcing an event in a test. */
 export function tableWith(over: Record<string, number>): ParamTable {

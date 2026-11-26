@@ -41,6 +41,8 @@ export interface KickOp {
   readonly stage: PlayStage;
   /** Call before the loop's `begin`. `assignments` are the kicking team's, team-slot order; `pressure` is D4's pressure of the moment. */
   setPlay(input: PlayInput, assignments: readonly Assignment[], pressure: number, snap: () => SnapResult | null): void;
+  /** The slot this operation still owns (punter before the punt, holder before the place kick), or -1. */
+  owner(): number;
 }
 
 const CLEAN: Operation = { timeS: 0, quality: 'clean', errorMult: 1 };
@@ -155,6 +157,10 @@ export function createKickOp(perception: Perception): KickOp {
 
   return {
     stage,
+    owner(): number {
+      if (kind === null || kicked || FREE_KICKS.includes(kind)) return -1;
+      return kind === 'punt' ? kicker : holder;
+    },
     setPlay(input, assignments, pressureOfMoment, snap) {
       const c = input.calls.snapping;
       kind = c.unit === 'kick' ? c.kickKind : null;

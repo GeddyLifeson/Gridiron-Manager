@@ -27,7 +27,7 @@ import { createFinish } from './finish.ts';
 import { createInteract } from './interact.ts';
 import { createKickOp, isFreeKick } from './kick-op.ts';
 import { tickResolverParams } from './params.ts';
-import { PLUG_IDS, type PlayServices, type PlaySetup, type PlugId, type PlugStages, type StagePlug, type TickResolverOptions, type TickResolverReport } from './ports.ts';
+import { PLUG_IDS, type RunnerHooks, type PlayServices, type PlaySetup, type PlugId, type PlugStages, type StagePlug, type TickResolverOptions, type TickResolverReport } from './ports.ts';
 import { standInPlug } from './stand-ins.ts';
 
 export const TICK_RESOLVER_VERSION = '0.1.0';
@@ -96,7 +96,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   // Per-play state the services expose.
   let plan: PresnapPlan | null = null, presnap: PresnapStages | null = null, setup: PlaySetup | null = null, current: PlayInput | null = null;
   let contests: Contests | null = null, contestsOf: ParamTable | null = null;
-  let passerNow: (() => number) | null = null;
+  let passerNow: (() => number) | null = null, runnerHooks: RunnerHooks | null = null;
   const services: PlayServices = {
     perception, movement, playerAi, ball,
     contests: () => { if (contests === null) throw new Error('no play is being resolved'); return contests; },
@@ -106,8 +106,16 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     input: () => { if (current === null) throw new Error('no play is being resolved'); return current; },
     protectedPasser: () => (passerNow === null ? -1 : passerNow()),
     claimPasser: (f) => { passerNow = f; },
+    kickOwner: () => kickOp.owner(),
+    runner: () => runnerHooks,
+    claimRunner: (hooks) => { runnerHooks = hooks; },
   };
   const built: PlugStages[] = plugs.map((plug) => plug.create(services));
+  // J10.6.2 hit load has one ledger. The fouls-and-injuries module sees every hit (tackles, hits on the
+  // passer, late hits, blocks) and draws its injuries from the same numbers, so when it keeps a ledger
+  // that is the play's hit load. Only without one is what the other modules saw summed.
+  const injuriesAt = PLUG_IDS.indexOf('foulsInjuries');
+  const hitSources: readonly PlugStages[] = built[injuriesAt]!.hitLoad ? [built[injuriesAt]!] : built;
 
   // The pre-snap stages own the negative ticks (J1.3.2). Player AI decides from the snap on; perception
   // starts a little before it so its delayed views have history at tick 0 (J3.1.1).
@@ -272,7 +280,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     const deltas: PlayerDelta[] = [];
     for (let s = 0; s < SLOT_COUNT; s++) {
       let hit = 0;
-      for (const b of built) if (b.hitLoad) hit += b.hitLoad(s);
+      for (const b of hitSources) if (b.hitLoad) hit += b.hitLoad(s);
       const cost = energyTaken ? energyAtWhistle[s]! : movement.energyCost(s);
       deltas.push({ playerId: slots[s]!.playerId, energyCost: cost < 0 ? 0 : cost > 1 ? 1 : cost, hitLoad: hit < 0 ? 0 : hit, onField: true });
     }

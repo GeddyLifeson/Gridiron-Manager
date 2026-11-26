@@ -16,9 +16,10 @@ const QB_ID = 109;
 describe('tick resolver with the real quarterback: honesty', () => {
   it('names only the modules still missing and may not produce saved results yet', () => {
     const r = createTickResolver({ content: CONTENT, plugs: availablePlugs() });
-    expect(r.report.standIns).toEqual(['carrier', 'foulsInjuries']);
+    expect(createTickResolver({ content: CONTENT, plugs: [quarterbackPlug()] }).report.standIns).toEqual(['carrier', 'foulsInjuries']);
+    expect(r.report.standIns).toEqual([]);
     expect(r.report.moduleVersions['qb']).toBe(QB_PLUG_VERSION);
-    expect(r.mayProduceSavedResults).toBe(false);
+    expect(r.mayProduceSavedResults).toBe(true);
   });
   it('builds a quarterback target from a drawn route', () => {
     const O = unitsOf('pass').O;
