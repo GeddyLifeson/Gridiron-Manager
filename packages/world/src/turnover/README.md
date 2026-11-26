@@ -48,15 +48,16 @@ Fixes the PR 168 drift failure: before this, ages rose exactly one year per seas
   (`recruit.prestigeNoiseSd`) that still has a place. This stands in for the full T4 week (`league.recruiting.aiProgramWeek`), which
   needs a RecruitingState, prospects with circles and preferences, and a calendar held in the world (owed, see the handoff).
 - TO-09. Recruits carry no home region or sign chance off-screen yet, so `regionalFocus` and `hoursSplit` do not act.
-- TO-10. `gm.raise` (K7.7.1) is not called: no owning procedure runs off-screen with a person who can act. Pro clubs have no general
-  manager person in the world (no `pos:general_manager` holder), and the opportunities need a market window (early contact), contracts
-  (cap), recruiting contacts or medical reports. The world also holds no compliance state and the loop has no step for
-  `compliance.complianceWeek`. K7.6.1 staff searches (`career.staff.runSearch`) wait on coach turnover off-screen.
+- TO-10. `gm.raise` (K7.7.1) runs for `early_contact_player` before free agency (`RosterPolicy.earlyContact`, see
+  `src/compliance/README.md`). The world now holds general managers (off-ladder seats), compliance state and a weekly compliance step.
+  Other opportunities wait on their owning procedures off-screen: contracts and the cap (pay above cap, undisclosed terms, camp
+  fines), medical reports (hidden injury), recruiting contacts and transfers (college). K7.6.1 staff searches
+  (`career.staff.runSearch`) wait on coach turnover off-screen.
 
 ## Acceptance runs (K7, 10/30/50 seasons)
 
 `test/turnover/acceptance.test.ts`, skipped unless `GM_WORLD_ACCEPTANCE=10,30,50`. Results on the trimmed test world are in the PR.
-Not measurable yet: cap legality, contract sizes, trade counts (TO-04) and violations detected (TO-10). The undrafted share of pro
+Not measurable yet: cap legality, contract sizes, trade counts (TO-04). Violations detected are now counted in the compliance state (TO-10), with no researched target. The undrafted share of pro
 rosters depends on the size of the college world: the trimmed world sends too few players to the entry pool, so the number must be
 read from a full-world run.
 
