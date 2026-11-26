@@ -25,6 +25,8 @@ export interface LiveWorldMeta {
 }
 
 const PARTS = ['meta', 'world', 'season', 'injected'] as const;
+/** Desk parts (practice, the staff's eye, the user's recruiting): written always, optional on read for saves written before them. */
+const DESK_PARTS = ['practice', 'scouting', 'recruiting'] as const;
 
 /** Writes the career year into the save database, replacing the previous copy. */
 export async function writeCareerYear(driver: SqlDriver, y: CareerYear): Promise<LiveWorldMeta> {
@@ -34,8 +36,10 @@ export async function writeCareerYear(driver: SqlDriver, y: CareerYear): Promise
   const meta: LiveWorldMeta = {
     version: LIVE_WORLD_SAVE_VERSION, seatTeamId: s.seatTeamId, seasonYear: v.seasonYear, worldWeek: v.worldWeek, seasons: v.seasons, worldHash: v.worldHash,
   };
-  const body: Record<(typeof PARTS)[number], unknown> = { meta, world: s.world, season: s.season, injected: s.injected };
-  await driver.transaction(PARTS.map((part) => ({
+  const body: Record<(typeof PARTS)[number] | (typeof DESK_PARTS)[number], unknown> = {
+    meta, world: s.world, season: s.season, injected: s.injected, practice: s.practice, scouting: s.scouting, recruiting: s.recruiting,
+  };
+  await driver.transaction([...PARTS, ...DESK_PARTS].map((part) => ({
     sql: `INSERT INTO ${LIVE_WORLD_TABLE} (part, json) VALUES (?, ?) ON CONFLICT(part) DO UPDATE SET json = excluded.json`,
     params: [part, JSON.stringify(body[part])],
   })));
@@ -69,6 +73,7 @@ export async function readCareerYear(driver: SqlDriver, o: Omit<CareerYearOption
   const save: CareerYearSave = {
     version: 1, seatTeamId: meta.seatTeamId,
     world: JSON.parse(p.get('world')!), season: JSON.parse(p.get('season')!), injected: JSON.parse(p.get('injected')!) as number[],
+    ...Object.fromEntries(DESK_PARTS.filter((d) => p.has(d)).map((d) => [d, JSON.parse(p.get(d)!)])),
   };
   const y = CareerYear.restore(o, save);
   const hash = y.view().worldHash;

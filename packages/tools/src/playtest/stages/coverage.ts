@@ -5,9 +5,6 @@
 import * as appServices from '@gm/app-services';
 import * as career from '@gm/career';
 import * as headless from '@gm/headless';
-import * as league from '@gm/league';
-import * as people from '@gm/people';
-import * as world from '@gm/world';
 import { OWNERS } from '../owners.ts';
 import type { Recorder } from '../recorder.ts';
 import type { Area } from '../types.ts';
@@ -27,18 +24,6 @@ const has = (mod: object, key: string): boolean => key in mod;
 
 export const PROBES: readonly Probe[] = [
   {
-    area: 'practice', code: 'practice.not_in_barrel', owner: `${OWNERS.practice}; barrel via ${OWNERS.exportsIntegrator}`,
-    exported: () => has(league, 'practice'),
-    missing: 'Practice planning (league/src/practice: validatePractice, resolvePractice, writeReport, practiceView) is not in the @gm/league barrel, and app-services has no practice read model; the planner screen imports no service.',
-    blocker: 'no app-services practice read model or command, and no host stores the week\'s practice plan',
-  },
-  {
-    area: 'recruiting', code: 'recruiting.no_context', owner: `${OWNERS.recruiting}; barrel via ${OWNERS.exportsIntegrator}`,
-    exported: () => has(world, 'recruiting'),
-    missing: 'Recruiting: the off-screen T4 week (world/src/recruiting) is not in the @gm/world barrel, and the user-side acts (league recruiting takeAct, recruitingWeek) need a RecruitingContext whose rule values exist only in test fixtures (not in rules-data), so no host can run a recruiting week for the user.',
-    blocker: 'RecruitingContext rule values are test fixtures, not rule rows',
-  },
-  {
     area: 'evaluations', code: 'evaluations.not_in_barrel', owner: `${OWNERS.evaluations}; barrel via ${OWNERS.exportsIntegrator}`,
     exported: () => has(appServices, 'people') || has(appServices, 'peopleView'),
     missing: 'Player evaluations: the people read models (buildPlayerCard, buildRosterTable) and commands (RequestEvaluation, WriteNote) are not in the @gm/app-services barrel, and RequestEvaluation has no WorldService handler; D6 scouting (people.scouting) runs only from tests.',
@@ -55,12 +40,6 @@ export const PROBES: readonly Probe[] = [
     exported: () => has(career, 'market') && has(headless, 'careerRun'),
     missing: 'The coach job market is not in the barrels.',
     blocker: 'the career run still answers offers through standInMarket (a copy of the G-80 formulas) although career.market is now exported; the user cannot apply for or accept a job through any command',
-  },
-  {
-    area: 'evaluations', code: 'scouting.exported', owner: OWNERS.evaluations,
-    exported: () => has(people, 'scouting'),
-    missing: 'D6 scouting (observe, update, band) is not in the @gm/people barrel.',
-    blocker: 'nothing turns a game or practice into observations for the user\'s staff',
   },
 ];
 
