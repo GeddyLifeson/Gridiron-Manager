@@ -1678,6 +1678,14 @@
      "howRead": "dataset computed",
      "independenceGroup": "espn-pbp-sportsdataverse",
      "primary": false
+    },
+    {
+     "citation": "TeamRankings.com team tables, fourth downs per game and fourth-down conversion percent, regular season 2022 to 2024 (end-of-season dates 2023-01-09, 2024-01-08, 2025-01-06), summed over 32 teams: 1220 conversions on 2301 attempts = 0.5302 against the stored 0.532, within the 0.01 tolerance so counted as agreeing",
+     "locator": "research/sources/teamrankings-raw-2022-2024.json (raw tables); scripts/research/apply-teamrankings.py",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "teamrankings",
+     "primary": false
     }
    ],
    "status": "Verified",
@@ -1692,6 +1700,11 @@
      "date": "2026-11-26",
      "status": "Verified",
      "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.5378 against the stored 0.532."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Source added: TeamRankings team tables read in the PC browser (1220 of 2301, 0.5302)."
     }
    ]
   },
@@ -1720,9 +1733,17 @@
      "howRead": "dataset computed",
      "independenceGroup": "espn-pbp-sportsdataverse",
      "primary": false
+    },
+    {
+     "citation": "TeamRankings.com team tables, fourth downs per game and fourth-down conversion percent, regular season 2022 (end-of-season dates 2023-01-09, 2024-01-08, 2025-01-06), summed over 32 teams: 373 conversions on 736 attempts = 0.5068 against the stored 0.508, within the 0.01 tolerance so counted as agreeing",
+     "locator": "research/sources/teamrankings-raw-2022-2024.json (raw tables); scripts/research/apply-teamrankings.py",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "teamrankings",
+     "primary": false
     }
    ],
-   "status": "2 of 3",
+   "status": "Verified",
    "usedBy": [],
    "statusHistory": [
     {
@@ -1734,6 +1755,11 @@
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.5172 against the stored 0.508."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Source added: TeamRankings team tables read in the PC browser (373 of 736, 0.5068)."
     }
    ]
   },
@@ -1770,6 +1796,14 @@
      "howRead": "dataset computed",
      "independenceGroup": "espn-pbp-sportsdataverse",
      "primary": false
+    },
+    {
+     "citation": "TeamRankings.com team tables, fourth downs per game and fourth-down conversion percent, regular season 2023 (end-of-season dates 2023-01-09, 2024-01-08, 2025-01-06), summed over 32 teams: 412 conversions on 799 attempts = 0.5156 against the stored 0.52, within the 0.01 tolerance so counted as agreeing",
+     "locator": "research/sources/teamrankings-raw-2022-2024.json (raw tables); scripts/research/apply-teamrankings.py",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "teamrankings",
+     "primary": false
     }
    ],
    "status": "Verified",
@@ -1784,6 +1818,11 @@
      "date": "2026-11-26",
      "status": "Verified",
      "reason": "Second independent source added: ESPN play-by-play (a different feed from the NFL data nflverse uses). ESPN gives 0.5256 against the stored 0.52."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Source added: TeamRankings team tables read in the PC browser (412 of 799, 0.5156)."
     }
    ]
   },
@@ -1821,6 +1860,14 @@
      "howRead": "secondary summary",
      "independenceGroup": "fox-sports",
      "primary": false
+    },
+    {
+     "citation": "TeamRankings.com team tables, fourth downs per game and fourth-down conversion percent, regular season 2024 (end-of-season dates 2023-01-09, 2024-01-08, 2025-01-06), summed over 32 teams: 435 conversions on 766 attempts = 0.5679 against the stored 0.568, within the 0.01 tolerance so counted as agreeing",
+     "locator": "research/sources/teamrankings-raw-2022-2024.json (raw tables); scripts/research/apply-teamrankings.py",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "teamrankings",
+     "primary": false
     }
    ],
    "status": "Verified",
@@ -1830,6 +1877,11 @@
      "date": "2026-11-26",
      "status": "Verified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Source added: TeamRankings team tables read in the PC browser (435 of 766, 0.5679)."
     }
    ]
   },
