@@ -26,6 +26,8 @@ const ROWS: readonly ParamRow[] = [
   ['keyDelayPrepCut', 0.20, 0, 0.4, 'ratio', 'bible', 'J3.2.1', READ],
   ['keyDelayFatigueS', 0.03, 0, 0.1, 's', 'bible', 'J3.2.1', READ],
   ['keyDelayFloorS', 0.10, 0.05, 0.2, 's', 'bible', 'J3.2.1', READ],
+  // D3.6 against D3.4: seconds of key delay per z of route grades over coverage grades (0.08 s is about two thirds of a yard of a break at 8 yd/s). Assumption, sized to the real spread of completion allowed per coverage player (logit sd 0.20, PFR charting, 1 of 3).
+  ['coverLagPerZS', 0.08, 0, 0.2, 's', 'assumption', 'J3.2.1', READ],
   ['evidenceGainBase', 1.0, 0.5, 1.5, 'ratio', 'bible', 'J3.2.2', READ],
   ['evidenceGainPerZ', 0.25, 0, 0.5, 'ratio', 'bible', 'J3.2.2', READ],
   // Bible start 0.5. One draw of 0.5 a tick is a random walk that crosses the read threshold (1.5) on its own inside a
