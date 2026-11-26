@@ -16,3 +16,4 @@ export { seatDelegation, seatDelegationInputs, saveSeatDelegation, awakeWeekHour
 export { seatCapView, ruleSetOf, provenanceFrom } from './team-cap.ts';
 export { liveWorldTables, seatObserver, seatObservedWorld, teamCircle, rosterLimits, WORLD_ROSTER_LIST } from './team-world.ts';
 export { FootballDesk, bookContent, installUnits, normalPracticeDays, type FootballDeskOptions, type DeskResult, type DeskSide, type InstallMode } from './football-desk.ts';
+export { PlayDesignerDesk, type PlayDesignerDeskOptions, type PublishedPlay } from './play-designer-desk.ts';

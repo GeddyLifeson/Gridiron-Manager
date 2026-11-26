@@ -58,7 +58,9 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const changed = () => { for (const f of redraws) f(); };
   // The hubs' route sources, built once: the new-game seat hands over the generated world (its history).
   const world = s.live?.world ?? ('world' in s.seat && isStartedWorld(s.seat.world) ? s.seat.world : null);
-  const sources = hubSources({ season: sp, content, world, football, changed, print: () => globalThis.print?.() });
+  // The play designer draws against the season's rule set; a published version is dated by the season (G-90).
+  const designer = new play.PlayDesignerDesk({ ruleSetId: s.ruleSetId, calendarLabel: () => `${s.seasonYear}, ${port.today().stageLabel}` });
+  const sources = hubSources({ season: sp, content, world, football, designer, changed, print: () => globalThis.print?.() });
   const hub = { ...port, sources: () => sources, subscribe: (f: () => void) => { redraws.add(f); return () => { redraws.delete(f); }; } };
   const live = s.live;
   if (!live || !('world' in s.seat)) return hub;

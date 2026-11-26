@@ -71,13 +71,16 @@ describe('football sources', () => {
         { resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings });
       const today = port.today();
       // The football screens come through the port's hub sources (one spread in the career root).
-      const sources = port.sources!() as ReturnType<typeof footballSources>;
+      const sources = port.sources!() as ReturnType<typeof footballSources> & Partial<import('../../src/routes.ts').RouteSources>;
       const routes = buildRoutes(sources);
-      for (const id of ['football.game_plan', 'football.call_sheet', 'football.print', 'football.playbook', 'football.install', 'football.defense_designer']) {
+      for (const id of ['football.game_plan', 'football.call_sheet', 'football.print', 'football.playbook', 'football.install', 'football.defense_designer', 'football.play_designer', 'football.self_scout', 'week.scouting_report']) {
         expect(routes[id], id).toBeDefined();
         const html = renderToStaticMarkup(routes[id]!.render(props(id)) as never);
         expect(html.length, id).toBeGreaterThan(200);
       }
+      // The scouting report reads the next opponent's charted film; self-scout has none before the first game.
+      expect(sources.scouting!('week.scouting_report', 'season')!.teamName).toBe(today.nextGame!.opponent);
+      expect(sources.scouting!('football.self_scout', 'season')!.windowGames).toBe(0);
       const OPTS = { situation: null, paper: 'letter' as const, keyHints: true };
       const sheet = sources.gameplan.view('offense', OPTS)!.sheet;
       expect(sheet.gameId).not.toBe('next');
@@ -100,4 +103,15 @@ describe('football sources', () => {
       expect(consoleSheet.boxes.find((b) => b.id === box.id)!.entries.length).toBe(box.entries.length - 1);
     });
   }
+
+  it("self-scout reads the seat's own charted film once a game is played", async () => {
+    const port = startCareerSeason(CONTENT, { level: 'pro', ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '00000000000000a7', seat: { key: firstTeamKey(CONTENT, 'pro') } },
+      { resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings });
+    port.today();
+    await port.delegateGame();
+    const v = (port.sources!() as Partial<import('../../src/routes.ts').RouteSources>).scouting!('football.self_scout', 'season')!;
+    expect(v.subject).toBe('self');
+    expect(v.windowGames).toBe(1);
+    expect(v.cells.length).toBeGreaterThan(0);
+  }, 300_000);
 });
