@@ -33,7 +33,7 @@ function tables(): Record<string, unknown[]> {
     finalSay: { roster: null, contracts: null, draft: null, staffHiring: null }, resourceBand: 'middle', facilities: {}, rivalTeamIds: id === 1 ? [2] : [], prestige: 0.5,
   });
   const div = (id: number) => (id <= 16 ? 10 : 20) + Math.floor(((id - 1) % 16) / 4) + 1;
-  const teams = [];
+  const teams: ReturnType<typeof team>[] = [];
   for (let id = 1; id <= 32; id++) teams.push(team(id, PRO, div(id)));
   for (let id = 101; id <= 104; id++) teams.push(team(id, COLLEGE, 30));
   const conferences = [
@@ -280,7 +280,8 @@ describe('registry and crawler (P1.3.2, Q1.4.2)', () => {
   });
   const registryFor = (t = tables()) => () => {
     const r = new ReadModelRegistry();
-    for (const spec of Object.values(leagueSpecs(LEAGUE_DATA, sources(t)))) r.register(spec);
+    const specs = leagueSpecs(LEAGUE_DATA, sources(t));
+    r.register(specs.standings).register(specs.schedule).register(specs.team).register(specs.transactions).register(specs.news).register(specs.records);
     return r;
   };
   it('every model registers, builds and matches its schema', () => {
