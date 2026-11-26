@@ -151,7 +151,8 @@ describe('college calendar files load both T3.2.1 columns with no code change', 
     expect(win(c26, 'playoff_sf')).toBe('2027-01-14..2027-01-15');
     expect(iso(c26.anchors.get('playoff_final')!.day)).toBe('2027-01-25');
     expect(win(c26, 'early_signing')).toBe('2026-12-02..2026-12-04');
-    expect(c26.windows.filter((w) => w.def.period).length).toBe(11);
+    // 2026 recruiting periods follow the official calendar: Jan. 11 quiet, Jan. 12-14 dead and Feb. 1 quiet split the contact and dead runs (15 windows).
+    expect(c26.windows.filter((w) => w.def.period).length).toBe(15);
   });
   it('2027 column', () => {
     expect(win(c27, 'transfer_window')).toBe('2027-01-04..2027-01-13');

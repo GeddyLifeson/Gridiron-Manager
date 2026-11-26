@@ -75,8 +75,8 @@ export function poolFor(ctx: RecruitingContext, kind: ActionKind, day: number): 
   const period = periodOn(ctx, day);
   const y = civil(day).y;
   if (isFall(day) && period === 'evaluation') return { pool: 'eval_fall', size: num(rules, KEY.evalDaysFall), season: y };
-  if (model === 'opps_2027' && isSpring(day) && period === 'contact') return { pool: 'person_spring', size: num(rules, KEY.personDaysSpring), season: y };
-  if (model === 'days_2025' && isSpring(day) && period === 'evaluation') return { pool: 'person_spring', size: num(rules, KEY.personDaysSpring), season: y };
+  // Both models spend the spring pool in the contact period (2025-26 official calendar: April 15 to May 23, 140 recruiting-person days).
+  if (model !== null && isSpring(day) && period === 'contact') return { pool: 'person_spring', size: num(rules, KEY.personDaysSpring), season: y };
   return null;
 }
 
