@@ -45,6 +45,7 @@
     "people.meeting": { "kind": "staff" },
     "people.owner": { "kind": "staff", "minBand": "7" },
     "people.media": { "kind": "staff" },
+    "people.player_designer": { "kind": "self" },
     "league.standings": { "kind": "public" },
     "league.schedule": { "kind": "public" },
     "league.team": { "kind": "public" },
@@ -61,6 +62,7 @@
     "school.lessons": { "kind": "self" },
     "school.glossary": { "kind": "self" },
     "school.drills": { "kind": "self" },
+    "school.mods": { "kind": "self" },
     "school.settings": { "kind": "self" }
   },
   "dutyScreens": {

@@ -193,8 +193,11 @@ export class RecordingContext implements Canvas2DLike {
   save() { this.calls++; } restore() { this.calls++; } beginPath() { this.calls++; } closePath() { this.calls++; }
   moveTo() { this.calls++; } lineTo() { this.calls++; }
   arc(x: number, y: number, r: number) { this.calls++; if (this.record) this.arcs.push({ x, y, r }); }
-  fill() { this.calls++; } stroke() { this.calls++; } fillRect() { this.calls++; }
+  rects: { x: number; y: number; w: number; h: number; fill: string }[] = [];
+  fills: string[] = [];
+  fill() { this.calls++; if (this.record) this.fills.push(String(this.fillStyle)); } stroke() { this.calls++; }
+  fillRect(x: number, y: number, w: number, h: number) { this.calls++; if (this.record) this.rects.push({ x, y, w, h, fill: String(this.fillStyle) }); }
   fillText(text: string, x: number, y: number) { this.calls++; if (this.record) this.texts.push({ text, x, y, font: this.font, fill: String(this.fillStyle) }); }
   setLineDash() { this.calls++; } translate() { this.calls++; } rotate() { this.calls++; } scale() { this.calls++; }
-  clear() { this.texts = []; this.arcs = []; this.calls = 0; }
+  clear() { this.texts = []; this.arcs = []; this.rects = []; this.fills = []; this.calls = 0; }
 }

@@ -6,6 +6,7 @@ import { createWriteStream, existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Worker } from 'node:worker_threads';
+import { spawnSync } from 'node:child_process';
 import { cpus, platform as osPlatform, arch } from 'node:os';
 import {
   runGolden, compareGolden, seasonFixtures, summariseSeason, playGame, dummyTeams,
@@ -161,9 +162,19 @@ async function calibrate(): Promise<number> {
 }
 
 const later: Record<string, string> = {
-  seasons: 'phase 4 (R1.2.5)', careers: 'phase 6 (Q1.6.1)', bench: 'phase 2 (R1.2.3)', sweep: 'phase 2 (Q1.7.3)',
-  search: 'phase 8 (Q4)', diff: 'phase 1 (Q1.3.2)',
+  seasons: 'phase 4 (R1.2.5)', careers: 'phase 6 (Q1.6.1)', sweep: 'phase 2 (Q1.7.3)',
 };
+
+/** Subcommands whose module has its own command line; run in a child with the same loader (tsx). */
+const delegated: Record<string, string> = {
+  bench: './bench/cli.ts', batch: './batch/cli.ts', diff: './diff/cli.ts', search: './exploit/cli.ts',
+};
+
+function delegate(rel: string): number {
+  const file = fileURLToPath(new URL(rel, import.meta.url));
+  const r = spawnSync(process.execPath, [...process.execArgv, file, ...process.argv.slice(3)], { stdio: 'inherit' });
+  return r.status ?? 1;
+}
 
 async function main(): Promise<number> {
   const sub = process.argv[2];
@@ -174,8 +185,10 @@ async function main(): Promise<number> {
     case 'replay': return replay();
     case 'validate': return validate();
     default:
+      if (sub && delegated[sub]) return delegate(delegated[sub]);
       if (sub && later[sub]) { console.error(`'${sub}' is built in ${later[sub]}.`); return 2; }
       console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate, calibrate [--rules id --games n --groups n --seed 16hex --out f]');
+      console.error(`also: ${Object.keys(delegated).join(', ')} (each takes --help or see its cli.ts header)`);
       console.error(`later: ${Object.keys(later).join(', ')}`);
       return 2;
   }

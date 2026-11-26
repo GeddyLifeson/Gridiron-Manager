@@ -109,26 +109,26 @@ export function pairSet<T>(pair: readonly [T, T], side: Side, value: T): [T, T] 
 }
 
 /**
- * What a decider may be shown of the last ruling (Q1.4.1): called values only. Uncalled fouls are
- * dropped (foul indexes are renumbered) and every field of class truth is overwritten with its called counterpart.
+ * What a decider may be shown of the last ruling (Q1.4.1, EX-0001): called values only. Uncalled fouls are
+ * dropped (foul indexes are renumbered) and every field of class truth is left out, so the object holds no key
+ * a decider could read the truth from.
  */
-export function publicCalled(called: Contract.CalledPlay): Contract.CalledPlay {
+export function publicCalled(called: Contract.CalledPlay): Contract.ObservedCalledPlay {
   const index = new Map<number, number>();
-  const fouls: Contract.FoulRecord[] = [];
+  const fouls: Contract.ObservedFoul[] = [];
   called.fouls.forEach((f, i) => {
     if (!f.called) return;
     index.set(i, fouls.length);
-    fouls.push({ ...f, eventIndex: null, sameAct: null, correct: true });
+    const { eventIndex: _e, correct: _c, ...seen } = f;
+    fouls.push({ ...seen, sameAct: null });
   });
   const remap = (list: readonly number[]) => list.filter((i) => index.has(i)).map((i) => index.get(i)!);
   const outcome = (o: Contract.PlayOutcome): Contract.PlayOutcome => (o.enforcement === null ? o
     : { ...o, enforcement: { ...o.enforcement, enforced: remap(o.enforcement.enforced), declined: remap(o.enforcement.declined) } });
-  const calledOutcome = outcome(called.calledOutcome);
   return {
-    rulings: called.rulings.map((r) => ({ ...r, eventIndex: 0, trueValue: r.calledValue, marginYd: null, marginS: null, visibility: 'open' as const })),
+    rulings: called.rulings.map(({ aspect, calledValue, official, reviewable }) => ({ aspect, calledValue, official, reviewable })),
     fouls,
-    trueOutcome: calledOutcome,
-    calledOutcome,
+    calledOutcome: outcome(called.calledOutcome),
     options: called.options.map((o) => ({ ...o, outcome: outcome(o.outcome) })),
     defaultOptionId: called.defaultOptionId,
   };

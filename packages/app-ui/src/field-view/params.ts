@@ -20,7 +20,7 @@ const row = (name: string, value: number, min: number, max: number, unit: string
 
 export const PARAMS = {
   module: 'app-ui.field-view',
-  version: 'g03.1',
+  version: 'pv03.1',
   params: [
     row('markerDiameterYd', 1.0, 0.5, 2, 'yd', 'bible', 'I9.1.1'),
     row('markerMinPx', 14, 8, 32, 'px', 'bible', 'O2.3.2'),
@@ -42,6 +42,24 @@ export const PARAMS = {
     row('ballShadowPerYd', 0.3, 0, 2, 'ratio', 'assumption', 'O2.3.2'),
     row('facingTickYd', 0.8, 0.2, 2, 'yd', 'assumption', 'O2.3.2'),
     row('replaysPerPlay', 1, 0, 3, 'count', 'bible', 'I9.3.1'),
+    // PV-03 field art (plans/presentation-build-plan.md 2.1, 3.1; MB-3, MB-4).
+    row('stripeMix', 0.05, 0, 0.2, 'ratio', 'assumption', 'O2.3.1'),
+    row('fieldTextPx', 16, 10, 32, 'px', 'assumption', 'O2.3.5'),
+    row('fieldTextGapPx', 3, 0, 12, 'px', 'assumption', 'O2.3.5'),
+    row('endZoneTextFrac', 0.55, 0.2, 1, 'ratio', 'assumption', 'O2.3.1'),
+    row('rainLightCount', 60, 0, 400, 'count', 'assumption', 'J12.2'),
+    row('rainCount', 125, 0, 400, 'count', 'assumption', 'J12.2'),
+    row('rainHeavyCount', 200, 0, 400, 'count', 'assumption', 'J12.2'),
+    row('snowCount', 80, 0, 400, 'count', 'assumption', 'J12.2'),
+    row('snowHeavyCount', 150, 0, 400, 'count', 'assumption', 'J12.2'),
+    row('wetTintLight', 0.05, 0, 0.3, 'ratio', 'assumption', 'J12.2'),
+    row('wetTint', 0.08, 0, 0.3, 'ratio', 'assumption', 'J12.2'),
+    row('wetTintHeavy', 0.12, 0, 0.3, 'ratio', 'assumption', 'J12.2'),
+    row('weatherAlpha', 0.3, 0.05, 1, 'ratio', 'assumption', 'J12.2'),
+    row('rainFallPerS', 0.9, 0, 5, 'ratio', 'assumption', 'J12.2'),
+    row('snowFallPerS', 0.12, 0, 5, 'ratio', 'assumption', 'J12.2'),
+    row('windDriftPerMph', 0.02, 0, 0.2, 'ratio', 'assumption', 'J12.3'),
+    row('streakPx', 9, 2, 30, 'px', 'assumption', 'J12.2'),
   ],
 } as const;
 

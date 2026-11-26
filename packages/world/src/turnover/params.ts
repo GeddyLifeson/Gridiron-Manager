@@ -18,6 +18,14 @@ const ROWS: readonly Row[] = [
   ['need.weight', 4, 0, 20, 'iss', 'assumption', 'K7.2.1', 'Need bonus on the board until front-office gm.needs is bound. No source read'],
   // M2: players at a position up to its mix count are starters for the development reps (D7.7.1 role).
   ['role.starterShareOfMix', 0.5, 0, 1, 'ratio', 'assumption', 'D7.7.1', 'Top half of each position by grade counts as starters. No source read'],
+  // TO-06: the front office AI's contribution table until the J14.6.1 engine batch runs exist.
+  ['gm.winsPerIss', 0.05, 0, 1, 'wins per iss-season', 'assumption', 'K7.2.2', 'One rate for every position until J14.6.1 runs; general managers spread it by their own position values. No source read'],
+  ['gm.replacementQuantile', 0.1, 0, 0.5, 'quantile', 'assumption', 'K7.2.2', "Replacement level is this quantile of the club's own observed grades at the position. No source read"],
+  ['gm.depthSlotWeight', 0.25, 0, 1, 'ratio', 'assumption', 'K7.2.2', 'Lineup weight of each depth slot past the starters. No source read'],
+  // TO-08: K7.5.1 gives 8 to 9 offers per expected signee at power programs (status 2 of 3, front-office README). No source for other tiers: the same multiple for all.
+  ['college.offersPerSignee', 8.5, 3, 20, 'offers per place', 'bible', 'K7.5.1', '8 to 9 at power programs (2 of 3); other tiers have no source and use the same value'],
+  // TO-08: a recruit takes the offer from the program with the highest prestige plus his own noise, until the T4 recruiting week is bound.
+  ['recruit.prestigeNoiseSd', 0.15, 0, 1, 'prestige units', 'assumption', 'T4.4', 'Stand-in for T4 prospect preferences (distance, playing time, relationships). No source read'],
 ];
 
 export const PARAMS: ParamFile = {
