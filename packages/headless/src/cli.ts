@@ -211,9 +211,10 @@ async function main(): Promise<number> {
     default:
       if (sub && delegated[sub]) return delegate(delegated[sub]);
       if (sub && later[sub]) { console.error(`'${sub}' is built in ${later[sub]}.`); return 2; }
-      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave|file.gmbug>, replay-bundle <file.gmbug> [--json f], bundle <file.gmsave> [--out f.gmbug --at seq --names-replaced], validate, calibrate [--rules id --games n --groups n --seed 16hex --out f]');
+      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate, calibrate [--rules id --games n --groups n --seed 16hex --out f]');
       console.error(`also: ${Object.keys(delegated).join(', ')} (each takes --help or see its cli.ts header)`);
       console.error(`later: ${Object.keys(later).join(', ')}`);
+      console.error('bug bundles: replay-bundle <file.gmbug> [--json f] (replay also takes a .gmbug), bundle <file.gmsave> [--out f.gmbug --at seq --names-replaced]');
       return 2;
   }
 }
