@@ -7,7 +7,8 @@ import {
   ATTRIBUTE_IDS, NEUTRAL_ENVIRONMENT,
   type GameDeps, type GameInput, type ParamFile, type ParamTable, type RuleSet, type Side, type SimPlayer, type SimTeam,
 } from '@gm/schema';
-import { DMATH, field, seedFromHex, streamSource } from '@gm/engine-core';
+import { DMATH, ball, carrier, contest, field, foulsInjuries, kinematics, perception, playerAi, presnap, qb, seedFromHex, streamSource, tickResolver } from '@gm/engine-core';
+import { lang } from '@gm/football-lang';
 import { flow, stats } from '@gm/engine-game';
 import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
@@ -15,12 +16,30 @@ import { resolveRuleSet } from '@gm/rules-data';
 import { PARAMS as CHART_PARAMS, createChartCaller, depthRoster, runBatch, type BatchResult } from '../calibration/index.ts';
 import { chartOverrides } from '../calibration/params.ts';
 
+/**
+ * Every parameter file the tick path reads (J1 to J10): field, kinematics, perception, pre-snap, player AI,
+ * ball, contest, quarterback, tick resolver (with the kick look and its trigger read), ball carrier, fouls and
+ * injuries, and the rule language. Integrator-owned: a module that adds a parameter file lists it here.
+ */
+export const TICK_PARAM_FILES: readonly ParamFile[] = [
+  field.PARAMS, kinematics.PARAMS, perception.PARAMS, presnap.PARAMS, playerAi.PARAMS, ball.PARAMS, contest.PARAMS,
+  qb.PARAMS, tickResolver.PARAMS, carrier.PARAMS, foulsInjuries.PARAMS, ...lang.PARAM_FILES,
+];
+
 /** Every parameter file of the modules a phase 1 game runs. A name defined twice is an error. */
 export const ENGINE_PARAM_FILES: readonly ParamFile[] = [
   officiating.clock.PARAMS, officiating.series.PARAMS, officiating.scrimmage.PARAMS, officiating.fouls.PARAMS,
   officiating.crew.PARAMS, officiating.replay.PARAMS, officiating.kick.PARAMS, officiating.restart.PARAMS,
   officiating.overtime.PARAMS, resolver.PARAMS, flow.PARAMS, stats.PARAMS, CHART_PARAMS,
 ];
+
+/** The game modules' files and the tick path's together: what a game with the tick resolver reads. */
+export const ALL_ENGINE_PARAM_FILES: readonly ParamFile[] = [...ENGINE_PARAM_FILES, ...TICK_PARAM_FILES];
+
+/** The merged table for the tick path (one name, one row; a duplicate or unknown override throws). */
+export function tickParamTable(overrides: Readonly<Record<string, number>> = {}): ParamTable {
+  return engineParamTable(ALL_ENGINE_PARAM_FILES, overrides);
+}
 
 export function engineParamTable(files: readonly ParamFile[] = ENGINE_PARAM_FILES, overrides: Readonly<Record<string, number>> = {}): ParamTable {
   const map = new Map<string, number>();

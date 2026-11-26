@@ -95,7 +95,8 @@ describe('damage is detected at the next load (P5.3.2 acceptance)', () => {
     const save = await SaveFile.open(d, deps());
     const forged = { ...save.state(), rng: 1 };
     const { replaceStateStatements } = await import('../../src/snapshot/state-tables.ts');
-    const r = replaceStateStatements(deps().bytesHash, forged);
+    const { RAW_CODEC } = await import('../../src/snapshot/codec.ts');
+    const r = await replaceStateStatements(deps().bytesHash, forged, RAW_CODEC);
     await d.transaction([...r.statements, { sql: 'UPDATE command_log SET digest_after = ? WHERE seq = ?', params: [r.digest, save.lastSeq()] }]);
     expect(codes(await damage(d))).toContain('state_differs_from_chain');
   });

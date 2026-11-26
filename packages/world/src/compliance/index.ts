@@ -8,3 +8,7 @@ export {
   type RuleValue, type ComplianceBinding,
 } from './binding.ts';
 export { OFFICE_RULE_KEY, complianceBindingFrom } from './from-turnover.ts';
+export {
+  PENALTIES_KEY, emptyPenalties, penaltiesOf, teamOfPerson, isSuspended, finesOf, applyPenalties, applyForfeits,
+  type PendingForfeit, type FineEntry, type Suspension, type RecordedOrder, type PenaltyState,
+} from './penalties.ts';
