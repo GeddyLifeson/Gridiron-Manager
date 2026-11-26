@@ -21,9 +21,11 @@ import { liveSlots } from '../presentation/live/index.ts';
 import type { GameCallingSession } from '../commands/game-calling/index.ts';
 import { P } from './params.ts';
 
-/** One finished console game: the session, its input and the trajectory of each play the resolver drew. */
+/** One finished game the user called: its play records, field, params, input and each play's drawn path. */
 export interface CalledGame {
-  readonly session: GameCallingSession;
+  readonly records: readonly PlayRecord[];
+  readonly geometry: GameCallingSession['geometry'];
+  readonly params: GameCallingSession['params'];
   readonly input: GameInput;
   trajectory(playNumber: number): TrajectoryRecord | null;
 }
@@ -40,16 +42,16 @@ export class SeatFilmRoom {
 
   /** Game ids filed, oldest first. */
   get gameIds(): readonly number[] { return this.games; }
+  /** Plays on film: zero when the games filed drew no paths (the reference resolver draws none). */
+  get plays(): number { return this.room.library.size; }
 
   /** Files every play of a finished console game that has a trajectory; returns the plays filed. */
   file(g: CalledGame): number {
-    const s = g.session;
-    const records: PlayRecord[] = [];
-    for (const e of s.events) if (e.type === 'play_resolved') records.push(e.record);
+    const records = g.records;
     if (!records.length) return 0;
     const gameId = records[0]!.gameId;
     if (this.games.includes(gameId)) return 0;
-    const deps = { geometry: s.geometry, params: s.params };
+    const deps = { geometry: g.geometry, params: g.params };
     const teams = g.input.teams;
     const charter = { personId: 0, accuracy: tendencies.tagAccuracy(P('staff.taggerSkill'), P('staff.disguise')) };
     let n = 0;
@@ -60,7 +62,7 @@ export class SeatFilmRoom {
       const src: FilmSource = {
         gameId: r.gameId, playNumber: r.index, kind: 'game', teams: [teams[0].teamId, teams[1].teamId], ticksPerSecond: TICKS_PER_SECOND,
         trajectory, slots: liveSlots(r, teams), row: stats.playByPlay(r, records[i + 1] ?? null, deps), calls: r.calls, truth: r.truth,
-        hash: tendencies.hashOf(sit.ballY, sit.attackDir === 1 ? 1 : -1, s.geometry),
+        hash: tendencies.hashOf(sit.ballY, sit.attackDir === 1 ? 1 : -1, g.geometry),
         lineOfScrimmageX: sit.ballX, lineToGainX: sit.lineToGainX ?? null, assignments: [], callValue: null,
       };
       this.room.library.add(filmRecord(src, { viewerTeamId: this.teamId, seed: this.seed, charter, charted: true }), this.games.length + 1);
@@ -72,7 +74,10 @@ export class SeatFilmRoom {
 
   // ---- what the film screens read and send (the five G-63 read models, built on this room) ----
 
-  private readonly models = (() => {
+  private modelsMade: ReturnType<SeatFilmRoom['makeModels']> | null = null;
+  private get models() { return (this.modelsMade ??= this.makeModels()); }
+  private makeModels() {
+    return (() => {
     const [play, list, sheet, corrections, cutups] = filmReadModels(this.room, NO_SCHEMAS);
     const read = (m: (typeof filmReadModels extends (...a: never[]) => infer R ? R : never)[number] | undefined, p: object) => m!.build(null as never, p as never).data;
     return {
@@ -82,7 +87,8 @@ export class SeatFilmRoom {
       corrections: (gameId: number) => read(corrections, { gameId }),
       cutups: () => read(cutups, {}),
     };
-  })();
+    })();
+  }
 
   play(playId: string) { return this.models.play(playId); }
   list(filterJson: string) { return this.models.list(filterJson); }

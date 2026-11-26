@@ -175,7 +175,8 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       const input = sp.gameInput;
       const t = filmTap;
       if (input && t && session.final) {
-        film.file({ session, input, trajectory: (n) => t.trajectory(n) });
+        const records = session.events.flatMap((e) => (e.type === 'play_resolved' ? [e.record] : []));
+        film.file({ records, geometry: session.geometry, params: session.params, input, trajectory: (n) => t.trajectory(n) });
         const own = host.colours?.(sp.keyOf(sp.seatTeamId)) ?? TOKEN_TEAMS[0];
         filmView = { geometry: session.geometry, home: own, away: TOKEN_TEAMS[1] };
       }
