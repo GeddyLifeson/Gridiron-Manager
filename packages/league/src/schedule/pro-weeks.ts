@@ -243,7 +243,7 @@ export function evaluate(s: State, ctx: CostContext): CostBreakdown {
     for (let w = 0; w < W; w++) {
       const e = tw[base + w]!;
       if (e === NONE) continue;
-      const site = s.hu[e] === t ? 0 : 1;
+      const site = s.hu[e] === t && s.isIntl[e] === 0 ? 0 : 1;
       if (site === runSite) run++;
       else {
         if (runSite === 1 && run === ctx.maxConsecutive) had3Road = true;
@@ -313,6 +313,8 @@ export function evaluate(s: State, ctx: CostContext): CostBreakdown {
     }
   }
   soft += Math.abs(road3 - ctx.road3Target) * S.road3Weight;
+  if (road3 > P.soft.road3TargetMaxClubs) hard += (road3 - P.soft.road3TargetMaxClubs) * S.hardWeight;
+  if (road3 < P.soft.road3TargetMinClubs) hard += (P.soft.road3TargetMinClubs - road3) * S.hardWeight;
   return { hard, soft, road3Clubs: road3 };
 }
 

@@ -44,7 +44,12 @@ export function assignSlots(input: SlotInput, rng: RandomStream, cfg: ScheduleCo
   const attr = new Map(input.clubs.map((c) => [c.id,
     A.winWeight * (input.priorWins?.[c.id] ?? 0) / maxWins + A.marketWeight * c.marketTier / maxMarket + A.starWeight * (input.stars?.[c.id] ?? 0)] as const));
 
+  // The least attractive clubs are kept off night slots (see config noPrimeTimeStatus).
+  const noNight = new Set(input.clubs.slice().sort((a, b) => (attr.get(a.id) ?? 0) - (attr.get(b.id) ?? 0) || (a.id < b.id ? -1 : 1))
+    .slice(0, S.noPrimeTimeLeastAttractive).map((c) => c.id));
   const national = new Map<TeamId, number>();
+  // International games are national and fixed; count them first so the cap of 7 includes them.
+  for (const g of input.intl) for (const t of [input.pairings[g.pairing]!.home, input.pairings[g.pairing]!.away]) national.set(t, (national.get(t) ?? 0) + 1);
   const shortThu = new Map<TeamId, number>();
   const last = new Map<TeamId, { week: number; off: number }>();
   const byWeek = new Map<number, number[]>();
@@ -71,7 +76,7 @@ export function assignSlots(input: SlotInput, rng: RandomStream, cfg: ScheduleCo
   const record = (g: ScheduledGame) => {
     for (const t of [g.home, g.away]) {
       last.set(t, { week: g.week, off: g.dayOffset });
-      if (g.national) national.set(t, (national.get(t) ?? 0) + 1);
+      if (g.national && !g.international) national.set(t, (national.get(t) ?? 0) + 1);
     }
   };
 
@@ -116,6 +121,7 @@ export function assignSlots(input: SlotInput, rng: RandomStream, cfg: ScheduleCo
         let weight = ipow((attr.get(p.home) ?? 0) + (attr.get(p.away) ?? 0), A.pickPower);
         for (const t of [p.home, p.away]) {
           if ((national.get(t) ?? 0) >= S.maxNationalGames) { ok = false; break; }
+          if (NIGHT_SLOTS.has(sp.slot) && noNight.has(t)) { ok = false; break; }
           const prev = last.get(t);
           if (prev) {
             const rest = daysBetween(prev.week, prev.off, w, off, cfg);

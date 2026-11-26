@@ -108,7 +108,7 @@
       "lateAcceptanceLength": 60,
       "maxIterations": 60000,
       "restarts": 50,
-      "$basis": "assumption: search weights and budgets (C2.2.1 method: randomised construction, swap moves, restart with the next sub-seed, relax rule 3 after 50 failures)"
+      "$basis": "assumption: search weights and budgets (C2.2.1 method: randomised construction, swap moves, restart with the next sub-seed, relax rule 3 after 50 failures) A three-game-road-trip count outside the 2 to 4 band is scored as hard, inside it the solver aims at a target drawn in the band."
     }
   },
   "slots": {
@@ -248,12 +248,14 @@
       "starWeight": 1,
       "usagePenalty": 0.25,
       "pickPower": 10,
-      "$basis": "assumption: C2.3.1 names the inputs (last season's wins, market tier, stars) and the 0 to 7 range, not a formula. pickPower 10 and usagePenalty 0.25 were tuned so generated seasons show 2 to 5 clubs with no night game and 5 to 9 with six or more, against 2026's five and eight (2 of 3)."
+      "$basis": "assumption: C2.3.1 names the inputs (last season's wins, market tier, stars) and the 0 to 7 range, not a formula. pickPower 10 and usagePenalty 0.25, with the two least attractive clubs kept off night slots, were tuned so generated seasons show 2 to 8 clubs with no night game (mean about 4) and 5 to 10 with six or more, against 2026's five and eight (2 of 3)."
     },
     "saturdayWeeksStatus": "Saturday games in late-season weeks: C2.3.1 slot table; the per-week counts are an assumption. 2026 week 1 (Wednesday opener, Friday game in Australia): 2 of 3. 2026 holiday games (Thanksgiving eve, tripleheader, Black Friday in week 12; two Christmas Day games in week 16, a Friday): 1 of 3. Short-week Thursday cap 2: Verified. National cap 7, floor 0: 2 of 3. Thursday within two time zones: 1 of 3. Pacific home games never early: C2.3.1 rule.",
     "mondayRoadNextWeight": 5,
     "thursdayZoneWeight": 3,
-    "kickoffStatus": "Slot times: Unverified (general knowledge, C2.3.1 says all are starting values). sunday_late uses 4:25 p.m. The international morning time (9:30 a.m. ET) is an assumption."
+    "kickoffStatus": "Slot times: Unverified (general knowledge, C2.3.1 says all are starting values). sunday_late uses 4:25 p.m. The international morning time (9:30 a.m. ET) is an assumption.",
+    "noPrimeTimeLeastAttractive": 2,
+    "noPrimeTimeStatus": "The two least attractive clubs get no night game: the C2.3.1 acceptance wants 2 to 8 clubs a season with none (2026 had five, 2 of 3); the weighted draw alone sometimes left only one. Assumption."
   },
   "zones": {
     "$leaf": "C2.3.2",
