@@ -171,10 +171,12 @@ const flightTables = new WeakMap<BallParams, Map<string, FlightTable>>();
 function flightTable(vBallYps: number, k: number, maxRangeYd: number, bp: BallParams): FlightTable {
   let byArm = flightTables.get(bp);
   if (byArm === undefined) { byArm = new Map(); flightTables.set(bp, byArm); }
-  const key = `${vBallYps}|${k}`;
+  // The row count is part of the key: a table first built for a shorter field must not answer a longer
+  // one, or a throw's flight would depend on which plays came before it (and on garbage collection).
+  const n = Math.floor(maxRangeYd / FLIGHT_STEP_YD) + 2;
+  const key = `${vBallYps}|${k}|${n}`;
   const hit = byArm.get(key);
   if (hit !== undefined) return hit;
-  const n = Math.floor(maxRangeYd / FLIGHT_STEP_YD) + 2;
   const row = (): FlightRow => ({ timeS: new Float64Array(n), tan: new Float64Array(n) });
   const made: FlightTable = { n, releaseH: bp['pass.releaseHeightYd']!, catchH: bp['pass.catchHeightYd']!, firm: row(), drive: row(), touch: row() };
   for (let i = 1; i < n; i++) {

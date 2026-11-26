@@ -2,7 +2,7 @@
 // A factory turns the clause's arguments into a closure over the player's perceived view. Every
 // reading goes through `PerceivedView`; a condition whose entity is not perceived is "unknown".
 import { SLOTS_PER_TEAM, type Assignment, type DeterministicMath, type PerceivedEntity } from '@gm/schema';
-import { F, T, U, dist, eachOf, nearestOf, sideSign, speed, tri, type Ctx, type Sel, type Tri } from './runtime.ts';
+import { F, T, U, dist, eachOf, nearestOf, seenCarrier, sideSign, speed, tri, type Ctx, type Sel, type Tri } from './runtime.ts';
 
 export type Args = Readonly<Record<string, string | number | boolean>>;
 export type CondFn = (c: Ctx) => Tri;
@@ -271,7 +271,9 @@ export const CONDITIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => C
   ballCarrierDeclared: () => (c) => {
     const s = c.view.believedCarrierSlot();
     if (s === -1 || c.view.ballKind() !== 'held') return F;
-    const e = s === c.slot ? c.self : c.view.entity(s);
+    // The ball is in his hands, so where the ball is seen is where he is: a defender tracking the ball but
+    // not the carrier himself still knows the run has declared (J3.5.3).
+    const e = seenCarrier(c);
     if (e === null) return U;
     return tri(c.view.playRead().read === 'run' || e.px > 0);
   },

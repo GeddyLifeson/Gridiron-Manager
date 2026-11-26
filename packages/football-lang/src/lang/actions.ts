@@ -4,7 +4,7 @@
 // (J3.6). It reads the perceived view only. A fired action persists tick after tick until another
 // rule fires or it reports that it is complete (J4.4.1 rule 3).
 import { SLOTS_PER_TEAM, type PerceivedEntity } from '@gm/schema';
-import { aim, dist, eachOf, face, faceBall, nearestOf, speed, type ActivePoint, type Ctx, type Sel } from './runtime.ts';
+import { aim, dist, eachOf, face, faceBall, nearestOf, seenCarrier, speed, type ActivePoint, type Ctx, type Sel } from './runtime.ts';
 import type { Args, CompileEnv } from './conditions.ts';
 import { isBehavior } from './vocabulary.ts';
 
@@ -57,9 +57,7 @@ function followPath(c: Ctx): boolean {
 }
 
 function carrierOrBall(c: Ctx): PerceivedEntity | null {
-  const s = c.view.believedCarrierSlot();
-  const e = s === -1 ? null : s === c.slot ? c.self : c.view.entity(s);
-  return e ?? c.view.ball();
+  return seenCarrier(c) ?? c.view.ball();
 }
 
 /** The playside sign from the behavior's `playside` parameter: +1 left, -1 right, 0 when the play names none. */
