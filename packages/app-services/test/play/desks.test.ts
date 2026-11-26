@@ -9,7 +9,7 @@ import { describe, it, expect } from 'vitest';
 import { practice as pr, recruiting as lrec } from '@gm/league';
 import { generation, loop, recruiting as wrec, season as seasons, turnover } from '@gm/world';
 import { CareerYear, STAFF_WEEK, type PracticePlan } from '../../src/play/index.ts';
-import { appWorldContent } from '../../src/newgame/content.ts';
+import { appWorldContent, type AppWorldContent } from '../../src/newgame/content.ts';
 import { bindSystems } from '../../src/newgame/binding.ts';
 
 const ROOT = resolvePath(import.meta.dirname, '../../../..');
@@ -25,13 +25,33 @@ const CONTENT: seasons.LeagueContent = {
 /** TEST DOUBLE for the world's own games (not a result model): home wins by a point, so the loop has rows. */
 const doubleGames: loop.GamePort = () => ({ homePoints: 1, awayPoints: 0, passPlays: 0, runPlays: 0 });
 
+const setupOf = () => generation.createSetup({
+  seedHex: '00000000c0ffee01', size: 'small', historySeasons: 1, packs: [], careerCurveDial: null, rulebookEra: 'era:2026',
+  eraProgression: false, firstSeasonYear: 2026,
+});
+
 function freshWorld(): loop.LiveWorld {
   const app = appWorldContent();
-  const setup = generation.createSetup({
-    seedHex: '00000000c0ffee01', size: 'small', historySeasons: 1, packs: [], careerCurveDial: null, rulebookEra: 'era:2026',
-    eraProgression: false, firstSeasonYear: 2026,
-  });
-  return loop.createWorld({ setup, content: app.content, names: app.names, eventTypes: turnover.TURNOVER_EVENT_TYPES });
+  return loop.createWorld({ setup: setupOf(), content: app.content, names: app.names, eventTypes: turnover.TURNOVER_EVENT_TYPES });
+}
+
+/** The app's content cut to 8 pro clubs and 6 schools of one conference (the world tests' `trimmed`). */
+function trimmedApp(): AppWorldContent {
+  const app = appWorldContent();
+  const c = app.content;
+  const clubs = c.pro.league.clubs.slice(0, 8);
+  const clubIds = new Set(clubs.map((x) => x.id));
+  const conf = c.college.conferences[0]!;
+  const schoolIds = new Set(conf.memberIds.slice(0, 6));
+  return {
+    ...app,
+    content: {
+      ...c,
+      pro: { league: { ...c.pro.league, clubs }, stadiums: c.pro.stadiums.filter((s) => clubIds.has(s.clubId)), rivalries: c.pro.rivalries.filter((r) => clubIds.has(r.a) && clubIds.has(r.b)) },
+      college: { ...c.college, conferences: [{ ...conf, memberIds: [...schoolIds] }], independents: [], schools: c.college.schools.filter((s) => schoolIds.has(s.id)), rivalries: c.college.rivalries.filter((r) => schoolIds.has(r.a) && schoolIds.has(r.b)) },
+      collegeLevelsBySize: { full: ['college_top'], standard: ['college_top'], small: ['college_top'] },
+    },
+  };
 }
 
 const teamAt = (w: loop.LiveWorld, level: string): number => w.teams.find((t) => turnover.levelOfTeam(w, t.id) === level)!.id;
@@ -96,13 +116,15 @@ describe('career desks', () => {
   }, 600_000);
 
   it('takes a college career program out of the AI programs and takes the acts the user queues', () => {
-    // A world made without its history has no recruit pool yet: one season point brings the classes in.
-    const world = freshWorld();
-    const pre = bindSystems(world, { games: doubleGames, recruiting: true });
+    // A small world (8 clubs, 6 schools) so a college season runs in the test's time. It is made without its
+    // history, so it has no recruit pool yet: one season point brings the classes in.
+    const app = trimmedApp();
+    const world = loop.createWorld({ setup: setupOf(), content: app.content, names: app.names, eventTypes: turnover.TURNOVER_EVENT_TYPES });
+    const pre = bindSystems(world, { games: doubleGames, recruiting: true, content: app });
     while (world.week < pre.schedule.weeksInSeason(world)) loop.runWeek(world, pre.systems);
     loop.runSeasonPoint(world, pre.systems);
     const seat = teamAt(world, 'college');
-    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames });
+    const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames, worldContent: app });
     expect(y.level).toBe('college');
     let r = wrec.recruitingOf(world);
     const openNow = () => Object.values(r.state.prospects).filter((p) => r.classes.includes(p.classYear) && r.state.status[p.personId]?.status === 'open');
@@ -116,7 +138,8 @@ describe('career desks', () => {
     y.recruiting.queueAct({ type: 'look', kind: 'full_film', prospectId: target });
     y.recruiting.queueAct({ type: 'offer', prospectId: target, committable: false });
     y.recruiting.queueAct({ type: 'act', kind: 'call', prospectId: target });
-    for (let i = 0; i < 3 && y.recruiting.queued.length > 0; i++) y.delegateWeek();
+    // The world's recruiting Wednesdays resume once its calendar passes the February signing day it ran ahead to at week 0.
+    for (let i = 0; i < 20 && y.recruiting.queued.length > 0; i++) y.delegateWeek();
     expect(y.recruiting.queued).toHaveLength(0);
     const log = y.recruiting.record;
     expect(log.map((l) => l.act.type)).toEqual(['look', 'offer', 'act']);
@@ -125,7 +148,7 @@ describe('career desks', () => {
     expect(lrec.gradeOf(r.state, seat, target).looks.full_film).toBe(1);
     expect(lrec.activeOffer(r.state, target, seat)).toBeDefined();
 
-    const back = CareerYear.restore({ content: CONTENT, games: doubleGames }, JSON.parse(JSON.stringify(y.save())));
+    const back = CareerYear.restore({ content: CONTENT, games: doubleGames, worldContent: app }, JSON.parse(JSON.stringify(y.save())));
     expect(back.recruiting.record).toEqual(log);
     expect(back.view().worldHash).toBe(y.view().worldHash);
   }, 600_000);
