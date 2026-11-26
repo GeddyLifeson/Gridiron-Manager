@@ -46,5 +46,13 @@
     "stateHashAfterWeek": "f782d1d80cd2ae6e",
     "certified": true,
     "seasonYear": 2026
+  },
+  "f3-season1": {
+    "format": 3,
+    "kind": "season1",
+    "stateHash": "c1b9089d716634a1",
+    "stateHashAfterWeek": "f782d1d80cd2ae6e",
+    "certified": false,
+    "seasonYear": 2026
   }
 }

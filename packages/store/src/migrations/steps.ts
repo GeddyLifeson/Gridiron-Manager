@@ -5,10 +5,12 @@
 // SAVE_CORE_FORMAT_VERSION, and add a fixture save of format n+1 to test/migrations/fixtures (Q1.2.3).
 // `validateSteps` refuses a registry with a gap, so a step removed on purpose fails the suite.
 import { SaveHeader } from '@gm/schema';
-import type { SqlDriver } from '../driver.ts';
+import type { SqlDriver, SqlStatement } from '../driver.ts';
 import { SaveFile } from '../save/save-file.ts';
 import type { SaveCoreDeps, SaveVersions } from '../save/types.ts';
-import type { BlobCodec } from '../snapshot/codec.ts';
+import { defaultCodec, type BlobCodec } from '../snapshot/codec.ts';
+import { DEFAULT_PACKED_TABLES, PACKED_ROWS_DDL } from '../snapshot/packed-rows.ts';
+import { StateTracker, encodeStateWrites, readStateRows, type PackSpec } from '../snapshot/state-tables.ts';
 
 export interface MigrationContext<S> {
   /** The scratch copy being migrated. Never the user's file. */
@@ -18,6 +20,16 @@ export interface MigrationContext<S> {
   versions: SaveVersions;
   appVersion?: string;
   codec?: BlobCodec;
+  /** Tables to pack in the format 3 step. Default DEFAULT_PACKED_TABLES. */
+  packedTables?: readonly PackSpec[];
+}
+
+/** Sets the save format in both places the header keeps it: the column and the header JSON. */
+async function setFormat(d: SqlDriver, version: number, extra: SqlStatement[] = []): Promise<void> {
+  const h = (await d.all<{ json: string }>('SELECT json FROM header WHERE id = 1'))[0];
+  if (!h) throw new MigrationError('the save has no header');
+  const json = { ...(JSON.parse(h.json) as Record<string, unknown>), saveFormatVersion: version };
+  await d.transaction([...extra, { sql: 'UPDATE header SET save_format_version = ?, json = ? WHERE id = 1', params: [version, JSON.stringify(json)] }]);
 }
 
 export interface StepResult {
@@ -100,16 +112,59 @@ export const STEP_1_TO_2: MigrationStep = {
       header: rest,
       state: world,
       versions: { engineVersion: header.engineVersion, parameterSetVersion: header.parameterSetVersion },
-    }, { codec: ctx.codec, appVersion: ctx.appVersion, databaseCheck: false });
+    }, { codec: ctx.codec, appVersion: ctx.appVersion, databaseCheck: false, packedTables: [] });
     void save;
+    // SaveFile.create writes the newest layout; with no packed tables that is the format 2 layout plus
+    // an empty packed table, so the file is marked format 2 and later steps run on it as on any other.
+    await setFormat(d, 2);
     const legacy = { chainHead: chain.length ? head : null, chainRows: chain.length, lastSeq, commands };
     await d.transaction([{ sql: 'INSERT OR REPLACE INTO save_meta (key, value) VALUES (?, ?)', params: [META_LEGACY_FORMAT1, JSON.stringify(legacy)] }]);
     return { stateHashBefore, notes: { legacyChainHead: legacy.chainHead, legacyLastSeq: lastSeq } };
   },
 };
 
+// ------------------------------------------------------------------ format 2 -> 3
+
+/**
+ * Format 3 stores the play-row tables packed: one compressed blob per game (packed-rows.ts). The step
+ * reads the world from the plain rows, writes the packed groups, removes the plain rows of the packed
+ * tables and changes nothing else. The world, its digest, every hash and the log stay as they were;
+ * the step checks that the digest read back equals the one the log recorded.
+ */
+export const STEP_2_TO_3: MigrationStep = {
+  from: 2,
+  to: 3,
+  id: 'm0002-pack-play-rows',
+  title: 'Play-row tables compressed per game',
+  changesOutcomes: null,
+  async run<S>(ctx: MigrationContext<S>): Promise<StepResult> {
+    const d = ctx.driver;
+    await d.exec(PACKED_ROWS_DDL);
+    const { fields, rows, packed } = await readStateRows((sql) => d.all(sql), ctx.deps.bytesHash);
+    const packing = ctx.packedTables ?? DEFAULT_PACKED_TABLES;
+    let loaded;
+    try { loaded = StateTracker.load(ctx.deps.bytesHash, fields, rows, packed, packing); } catch (e) {
+      throw new MigrationError(`the world tables are not readable: ${e instanceof Error ? e.message : String(e)}`, this.id);
+    }
+    const before = loaded.tracker.digest();
+    const last = (await d.all<{ digest_after: string }>('SELECT digest_after FROM command_log ORDER BY seq DESC LIMIT 1'))[0];
+    const base = (await d.all<{ value: string }>("SELECT value FROM save_meta WHERE key = 'base_digest'"))[0];
+    // With no live log row the world must equal the career's starting state, unless older seasons were archived.
+    const archived = Number((await d.all<{ n: number }>('SELECT COUNT(*) AS n FROM command_log_archive'))[0]?.n ?? 0);
+    const recorded = last?.digest_after ?? (archived === 0 ? base?.value : undefined);
+    if (recorded !== undefined && recorded !== before) throw new MigrationError('the world tables differ from the state the command log recorded', this.id);
+    const plan = loaded.tracker.plan(loaded.state, true);
+    if (plan.digest !== before) throw new MigrationError('packing would change the world digest', this.id);
+    const statements = await encodeStateWrites(plan.writes, ctx.codec ?? defaultCodec(), ctx.deps.bytesHash);
+    const packedTables = [...new Set(plan.writes.filter((w) => w.op === 'gput').map((w) => (w as { table: string }).table))].sort();
+    const groups = plan.writes.filter((w) => w.op === 'gput').length;
+    await setFormat(d, 3, statements);
+    return { stateHashBefore: ctx.deps.stateHash(loaded.state as S), notes: { packedTables, groups } };
+  },
+};
+
 /** Every migration step, oldest first. */
-export const MIGRATION_STEPS: readonly MigrationStep[] = [STEP_1_TO_2];
+export const MIGRATION_STEPS: readonly MigrationStep[] = [STEP_1_TO_2, STEP_2_TO_3];
 
 /** The oldest format this build can still migrate. */
 export const OLDEST_MIGRATABLE_FORMAT = 1;
