@@ -159,6 +159,11 @@ export const PlayOutcome = z.object({
   endedOutOfBounds: pub(z.boolean()),
   incomplete: pub(z.boolean()),
   runnerDownInBounds: pub(z.boolean()),
+  /**
+   * A fumble or backward pass went out of bounds, as opposed to a runner (B1.2.3 exception 5; CR-02-2).
+   * Set by the officiating facade from the same truth record the ruling used; absent means false.
+   */
+  looseBallOutOfBounds: pub(z.boolean()).optional(),
   /** Net yards for the team that snapped, along its attack direction, before any penalty. */
   yardsGained: pub(z.number(), 'yd'),
   /** A live-ball injury that stops the clock by rule (B1.5): player ids. */

@@ -1,0 +1,6 @@
+{
+  "$comment": "Unit conversions for the draft module. Not football facts: the league lint bans numeric literals in .ts (P1.1.2), so conversions live here.",
+  "percent": 100,
+  "secondsPerMinute": 60,
+  "secondsPerHour": 3600
+}

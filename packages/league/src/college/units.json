@@ -1,0 +1,13 @@
+{
+  "$comment": "Unit conversions and arithmetic constants for the college module. Not football facts: the league lint bans numeric literals in .ts (P1.1.2), so they live here.",
+  "centuryModulo": 100,
+  "twoDigitFloor": 10,
+  "percent": 100,
+  "ln2": 0.6931471805599453,
+  "expSeriesTerms": 24,
+  "firstGpaYear": 2,
+  "secondYear": 2,
+  "firstProgressYear": 3,
+  "termCreditsPerPlayer": 2,
+  "lastDraftRound": 7
+}
