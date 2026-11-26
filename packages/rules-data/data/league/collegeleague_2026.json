@@ -347,7 +347,7 @@
    "value": 2500000,
    "unit": "USD",
    "factId": "F-college-keys-0030",
-   "note": "PROVISIONAL: status Conflict (Q6.3.1); value from the College Sports Commission primary text"
+   "note": "PROVISIONAL: Rulebook only (CSC primary text), open conflict with a news report (Q6.3.1)"
   },
   {
    "key": "pay.multi_year",

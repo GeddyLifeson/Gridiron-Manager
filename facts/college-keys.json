@@ -1410,16 +1410,6 @@
    "validFor": "2026-27",
    "sources": [
     {
-     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (undated, https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
-     "locator": "Article text",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "columbus-dispatch",
-     "primary": false,
-     "quote": "But the new scholarships do not apply toward the revenue sharing limits next year",
-     "value": 0
-    },
-    {
      "citation": "College Sports Commission, Revenue Sharing (https://www.collegesportscommission.org/focus-areas/revenue-sharing/)",
      "locator": "Revenue sharing page, cap counting and 2026-27 scholarship overage",
      "dateRead": "2026-11-26",
@@ -1431,8 +1421,8 @@
     }
    ],
    "usedBy": [],
-   "notes": "Integrator ruling 2026-11-26: the primary source (College Sports Commission) governs. It lists athletically related aid above the 2024-25 team limit as counting against the cap, applies a $0.20 per $1 fine in 2026-27 to cap overages caused by new scholarships (up to $2.5M), and stops counting them only from 2027-28. So 2026-27 keeps the $2.5M figure; the Columbus Dispatch line (value 0) disagrees and stays as a source, so the row computes Conflict. Reading of the CSC page as returned by the PC browser on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Needs a second primary read (CSC FAQ or settlement text) to settle. Earlier note: one source (R18 flagged SI calling the change \"proposed\").",
-   "status": "Conflict",
+   "notes": "Integrator ruling 2026-11-26: the primary source (College Sports Commission) governs. It lists athletically related aid above the 2024-25 team limit as counting against the cap, applies a $0.20 per $1 fine in 2026-27 to cap overages caused by new scholarships (up to $2.5M), and stops counting them only from 2027-28. So 2026-27 keeps the $2.5M figure; the Columbus Dispatch article (via AOL, https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html, read 2026-11-26: \"But the new scholarships do not apply toward the revenue sharing limits next year\") disagrees. It is kept here, not as a source, because a G-10 row carries one value and a valueless disagreeing source would compute as a cross-check. OPEN CONFLICT: flagged, not verified. Reading of the CSC page as returned by the PC browser on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Needs a second primary read (CSC FAQ or settlement text) to settle. Earlier note: one source (R18 flagged SI calling the change \"proposed\").",
+   "status": "Rulebook only",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -1441,8 +1431,8 @@
     },
     {
      "date": "2026-11-26",
-     "status": "Conflict",
-     "reason": "Added the College Sports Commission primary text (value 2,500,000), which disagrees with the secondary source (0)."
+     "status": "Rulebook only",
+     "reason": "Replaced the secondary source (0) with the College Sports Commission primary text (2,500,000); the disagreement stays in notes as an open conflict."
     }
    ]
   },
