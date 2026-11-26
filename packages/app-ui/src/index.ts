@@ -23,3 +23,4 @@ export * as seats from './screens/seats/index.ts';
 export * as playerDesigner from './screens/player-designer/index.ts';
 export * as settings from './screens/settings/index.ts';
 export * as gameplan from './screens/gameplan/index.ts';
+export * as soundStage from './audio/stage/index.ts';
