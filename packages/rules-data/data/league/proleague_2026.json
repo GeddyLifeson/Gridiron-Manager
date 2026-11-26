@@ -1,0 +1,741 @@
+{
+ "ruleset_id": "proleague_2026",
+ "level": "pro",
+ "season_year": 2026,
+ "source": {
+  "document": "Fact register rows F-league, F-cap, F-college",
+  "date": "2026"
+ },
+ "schema_version": 1,
+ "values": [
+  {
+   "key": "roster.active_limit",
+   "value": 48,
+   "unit": "count",
+   "factId": "F-league-0001"
+  },
+  {
+   "key": "roster.active_limit_short_line",
+   "value": 47,
+   "unit": "count",
+   "factId": "F-league-0002"
+  },
+  {
+   "key": "roster.active_min_linemen",
+   "value": 8,
+   "unit": "count",
+   "factId": "F-league-0003"
+  },
+  {
+   "key": "roster.active_floor",
+   "value": 44,
+   "unit": "count",
+   "factId": "F-league-0004"
+  },
+  {
+   "key": "roster.active_inactive_limit",
+   "value": 53,
+   "unit": "count",
+   "factId": "F-league-0005"
+  },
+  {
+   "key": "roster.elevations_max_per_game",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-league-0006"
+  },
+  {
+   "key": "service.accrued_games",
+   "value": 6,
+   "unit": "games",
+   "factId": "F-league-0007"
+  },
+  {
+   "key": "fa.ufa_min_accrued",
+   "value": 4,
+   "unit": "seasons",
+   "factId": "F-league-0008"
+  },
+  {
+   "key": "fa.rfa_accrued",
+   "value": 3,
+   "unit": "seasons",
+   "factId": "F-league-0009"
+  },
+  {
+   "key": "fa.erfa_below_accrued",
+   "value": 3,
+   "unit": "seasons",
+   "factId": "F-league-0010"
+  },
+  {
+   "key": "tag.window_opens_days_before",
+   "value": 22,
+   "unit": "days",
+   "factId": "F-league-0011"
+  },
+  {
+   "key": "tag.window_closes_days_before",
+   "value": 8,
+   "unit": "days",
+   "factId": "F-league-0012"
+  },
+  {
+   "key": "tag.franchise_top_n",
+   "value": 5,
+   "unit": "count",
+   "factId": "F-league-0013"
+  },
+  {
+   "key": "tag.prior_salary_pct",
+   "value": 120,
+   "unit": "percent",
+   "factId": "F-league-0014"
+  },
+  {
+   "key": "tag.nonexclusive_first_round_picks",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-league-0015"
+  },
+  {
+   "key": "tag.third_prior_salary_pct",
+   "value": 144,
+   "unit": "percent",
+   "factId": "F-league-0016"
+  },
+  {
+   "key": "tag.transition_top_n",
+   "value": 10,
+   "unit": "count",
+   "factId": "F-league-0017"
+  },
+  {
+   "key": "tag.multiyear_deadline_july_day",
+   "value": 15,
+   "unit": "day of July",
+   "factId": "F-league-0018"
+  },
+  {
+   "key": "work.offseason_weeks",
+   "value": 9,
+   "unit": "weeks",
+   "factId": "F-league-0019"
+  },
+  {
+   "key": "work.workouts_per_week",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0020"
+  },
+  {
+   "key": "work.phase1_weeks",
+   "value": 2,
+   "unit": "weeks",
+   "factId": "F-league-0021"
+  },
+  {
+   "key": "work.phase2_weeks",
+   "value": 3,
+   "unit": "weeks",
+   "factId": "F-league-0022"
+  },
+  {
+   "key": "work.phase3_weeks",
+   "value": 4,
+   "unit": "weeks",
+   "factId": "F-league-0023"
+  },
+  {
+   "key": "work.ota_days",
+   "value": 10,
+   "unit": "days",
+   "factId": "F-league-0024"
+  },
+  {
+   "key": "work.ota_max_week_3_or_4",
+   "value": 4,
+   "unit": "days",
+   "factId": "F-league-0025"
+  },
+  {
+   "key": "work.start_monday_of_april",
+   "value": 3,
+   "unit": "Monday of April",
+   "factId": "F-league-0026"
+  },
+  {
+   "key": "roster.practice_squad_size",
+   "value": 16,
+   "unit": "count",
+   "factId": "F-league-0027",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.practice_squad_international_slot",
+   "value": 1,
+   "unit": "count",
+   "factId": "F-league-0028",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.practice_squad_young_min",
+   "value": 10,
+   "unit": "count",
+   "factId": "F-league-0029",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.practice_squad_veteran_slots",
+   "value": 6,
+   "unit": "count",
+   "factId": "F-league-0030",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.elevations_max_per_player_season",
+   "value": 3,
+   "unit": "count",
+   "factId": "F-league-0031",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.ir_min_games",
+   "value": 4,
+   "unit": "games",
+   "factId": "F-league-0032",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.ir_return_designations",
+   "value": 8,
+   "unit": "count",
+   "factId": "F-league-0033",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.ir_return_designations_postseason",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-league-0034",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.ir_returns_per_player",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-league-0035",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.ir_practice_window_days",
+   "value": 21,
+   "unit": "days",
+   "factId": "F-league-0036",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.pup_min_games",
+   "value": 4,
+   "unit": "games",
+   "factId": "F-league-0037",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "roster.nfi_min_games",
+   "value": 4,
+   "unit": "games",
+   "factId": "F-league-0038",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "waivers.claim_period_hours",
+   "value": 24,
+   "unit": "hours",
+   "factId": "F-league-0039",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "waivers.vested_min_seasons",
+   "value": 4,
+   "unit": "seasons",
+   "factId": "F-league-0040",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "trade.deadline_after_week",
+   "value": 9,
+   "unit": "week",
+   "factId": "F-league-0041"
+  },
+  {
+   "key": "calendar.league_year_start_march_day",
+   "value": 11,
+   "unit": "day of March",
+   "factId": "F-league-0042"
+  },
+  {
+   "key": "calendar.negotiating_window_start_march_day",
+   "value": 9,
+   "unit": "day of March",
+   "factId": "F-league-0043"
+  },
+  {
+   "key": "calendar.tag_window_opens_feb_day",
+   "value": 17,
+   "unit": "day of February",
+   "factId": "F-league-0044"
+  },
+  {
+   "key": "league_rules.draft.rounds",
+   "value": 7,
+   "unit": "rounds",
+   "factId": "F-league-0045"
+  },
+  {
+   "key": "league_rules.draft.clock.r1_min",
+   "value": 8,
+   "unit": "min",
+   "factId": "F-league-0046",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "league_rules.draft.clock.r2_min",
+   "value": 7,
+   "unit": "min",
+   "factId": "F-league-0047",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "league_rules.draft.clock.r3_6_min",
+   "value": 5,
+   "unit": "min",
+   "factId": "F-league-0048",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "league_rules.draft.clock.r7_min",
+   "value": 4,
+   "unit": "min",
+   "factId": "F-league-0049",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "league_rules.draft.comp_max_per_club",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0050"
+  },
+  {
+   "key": "league_rules.draft.comp_max_formula",
+   "value": 32,
+   "unit": "count",
+   "factId": "F-league-0051"
+  },
+  {
+   "key": "league_rules.free_agency.window_calls",
+   "value": 5,
+   "unit": "count",
+   "factId": "F-league-0052"
+  },
+  {
+   "key": "fa.rfa_tender_2026_rofr",
+   "value": 3520000,
+   "unit": "USD",
+   "factId": "F-league-0053"
+  },
+  {
+   "key": "fa.rfa_tender_2026_original_round",
+   "value": 3674000,
+   "unit": "USD",
+   "factId": "F-league-0054"
+  },
+  {
+   "key": "fa.rfa_tender_2026_second_round",
+   "value": 5767000,
+   "unit": "USD",
+   "factId": "F-league-0055"
+  },
+  {
+   "key": "fa.rfa_tender_2026_first_round",
+   "value": 8046000,
+   "unit": "USD",
+   "factId": "F-league-0056"
+  },
+  {
+   "key": "fa.rfa_tender_2026_first_round_waived",
+   "value": 8546000,
+   "unit": "USD",
+   "factId": "F-league-0057"
+  },
+  {
+   "key": "service.credited_games",
+   "value": 3,
+   "unit": "games",
+   "factId": "F-league-0058",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "league_rules.draft.eligibility_seasons",
+   "value": 3,
+   "unit": "seasons",
+   "factId": "F-league-0059"
+  },
+  {
+   "key": "work.minicamp_days",
+   "value": 3,
+   "unit": "days",
+   "factId": "F-league-0060"
+  },
+  {
+   "key": "work.rookie_minicamp_days",
+   "value": 3,
+   "unit": "days",
+   "factId": "F-league-0061"
+  },
+  {
+   "key": "work.camp_field_hours",
+   "value": 4,
+   "unit": "hours",
+   "factId": "F-league-0062"
+  },
+  {
+   "key": "work.padded_practice_hours",
+   "value": 2.5,
+   "unit": "hours",
+   "factId": "F-league-0063"
+  },
+  {
+   "key": "work.bye_days_off",
+   "value": 4,
+   "unit": "days",
+   "factId": "F-league-0064"
+  },
+  {
+   "key": "discipline.club_fine_max_usd",
+   "value": 6500000,
+   "unit": "USD",
+   "factId": "F-league-0065"
+  },
+  {
+   "key": "discipline.pick_forfeit_max",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-league-0066"
+  },
+  {
+   "key": "discipline.executive_fine_max_usd",
+   "value": 500000,
+   "unit": "USD",
+   "factId": "F-league-0067"
+  },
+  {
+   "key": "cap.min_cash_spend_pct",
+   "value": 90,
+   "unit": "percent",
+   "factId": "F-cap-0001"
+  },
+  {
+   "key": "cap.top_n_contracts",
+   "value": 51,
+   "unit": "count",
+   "factId": "F-cap-0002"
+  },
+  {
+   "key": "cap.proration_max_years",
+   "value": 5,
+   "unit": "years",
+   "factId": "F-cap-0003"
+  },
+  {
+   "key": "cap.june1_designations",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-cap-0004"
+  },
+  {
+   "key": "cap.conform_days",
+   "value": 7,
+   "unit": "days",
+   "factId": "F-cap-0005"
+  },
+  {
+   "key": "rookie.length_round_1",
+   "value": 4,
+   "unit": "years",
+   "factId": "F-cap-0006"
+  },
+  {
+   "key": "rookie.length_later_rounds",
+   "value": 4,
+   "unit": "years",
+   "factId": "F-cap-0007"
+  },
+  {
+   "key": "rookie.length_undrafted",
+   "value": 3,
+   "unit": "years",
+   "factId": "F-cap-0008"
+  },
+  {
+   "key": "rookie.max_annual_increase_pct",
+   "value": 25,
+   "unit": "percent",
+   "factId": "F-cap-0009"
+  },
+  {
+   "key": "rookie.undrafted_pool_2021_usd",
+   "value": 160000,
+   "unit": "USD",
+   "factId": "F-cap-0010"
+  },
+  {
+   "key": "rookie.option_deadline_before_may_day",
+   "value": 3,
+   "unit": "day of May",
+   "factId": "F-cap-0011"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs0",
+   "value": 885000,
+   "unit": "USD",
+   "factId": "F-cap-0012"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs0",
+   "value": 930000,
+   "unit": "USD",
+   "factId": "F-cap-0013"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs0",
+   "value": 975000,
+   "unit": "USD",
+   "factId": "F-cap-0014"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs0",
+   "value": 1020000,
+   "unit": "USD",
+   "factId": "F-cap-0015"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs0",
+   "value": 1065000,
+   "unit": "USD",
+   "factId": "F-cap-0016"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs1",
+   "value": 1005000,
+   "unit": "USD",
+   "factId": "F-cap-0017"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs1",
+   "value": 1050000,
+   "unit": "USD",
+   "factId": "F-cap-0018"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs1",
+   "value": 1095000,
+   "unit": "USD",
+   "factId": "F-cap-0019"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs1",
+   "value": 1140000,
+   "unit": "USD",
+   "factId": "F-cap-0020"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs1",
+   "value": 1185000,
+   "unit": "USD",
+   "factId": "F-cap-0021"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs2",
+   "value": 1075000,
+   "unit": "USD",
+   "factId": "F-cap-0022"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs2",
+   "value": 1120000,
+   "unit": "USD",
+   "factId": "F-cap-0023"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs2",
+   "value": 1165000,
+   "unit": "USD",
+   "factId": "F-cap-0024"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs2",
+   "value": 1210000,
+   "unit": "USD",
+   "factId": "F-cap-0025"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs2",
+   "value": 1255000,
+   "unit": "USD",
+   "factId": "F-cap-0026"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs3",
+   "value": 1145000,
+   "unit": "USD",
+   "factId": "F-cap-0027"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs3",
+   "value": 1190000,
+   "unit": "USD",
+   "factId": "F-cap-0028"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs3",
+   "value": 1235000,
+   "unit": "USD",
+   "factId": "F-cap-0029"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs3",
+   "value": 1280000,
+   "unit": "USD",
+   "factId": "F-cap-0030"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs3",
+   "value": 1325000,
+   "unit": "USD",
+   "factId": "F-cap-0031"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs4_6",
+   "value": 1215000,
+   "unit": "USD",
+   "factId": "F-cap-0032"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs4_6",
+   "value": 1260000,
+   "unit": "USD",
+   "factId": "F-cap-0033"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs4_6",
+   "value": 1305000,
+   "unit": "USD",
+   "factId": "F-cap-0034"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs4_6",
+   "value": 1350000,
+   "unit": "USD",
+   "factId": "F-cap-0035"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs4_6",
+   "value": 1395000,
+   "unit": "USD",
+   "factId": "F-cap-0036"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs7_plus",
+   "value": 1300000,
+   "unit": "USD",
+   "factId": "F-cap-0037"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs7_plus",
+   "value": 1345000,
+   "unit": "USD",
+   "factId": "F-cap-0038"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs7_plus",
+   "value": 1390000,
+   "unit": "USD",
+   "factId": "F-cap-0039"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs7_plus",
+   "value": 1435000,
+   "unit": "USD",
+   "factId": "F-cap-0040"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs7_plus",
+   "value": 1480000,
+   "unit": "USD",
+   "factId": "F-cap-0041"
+  },
+  {
+   "key": "cap.amount_2026",
+   "value": 301200000,
+   "unit": "USD",
+   "factId": "F-cap-0042"
+  },
+  {
+   "key": "cap.amount_2021",
+   "value": 182500000,
+   "unit": "USD",
+   "factId": "F-cap-0043",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cap.amount_2022",
+   "value": 208200000,
+   "unit": "USD",
+   "factId": "F-cap-0044",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cap.amount_2023",
+   "value": 224800000,
+   "unit": "USD",
+   "factId": "F-cap-0045",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cap.amount_2024",
+   "value": 255400000,
+   "unit": "USD",
+   "factId": "F-cap-0046",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cap.veteran_benefit_2026",
+   "value": 187500,
+   "unit": "USD",
+   "factId": "F-cap-0047",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cap.four_year_qualifying_2026",
+   "value": 1550000,
+   "unit": "USD",
+   "factId": "F-cap-0048",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "rookie.undrafted_pool_2024_usd",
+   "value": 172337,
+   "unit": "USD",
+   "factId": "F-cap-0049",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "rookie.option_tiers",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-cap-0050",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  }
+ ]
+}

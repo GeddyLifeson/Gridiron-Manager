@@ -1,0 +1,1174 @@
+{
+ "keys": [
+  {
+   "key": "roster.active_limit",
+   "type": "number",
+   "meaning": "Game-day Active List limit",
+   "ownerLeaf": "C5.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.active_limit_short_line",
+   "type": "number",
+   "meaning": "Active List limit with fewer than the required linemen",
+   "ownerLeaf": "C5.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.active_min_linemen",
+   "type": "number",
+   "meaning": "Offensive linemen required for the full Active List",
+   "ownerLeaf": "C5.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.active_floor",
+   "type": "number",
+   "meaning": "Smallest legal Active List",
+   "ownerLeaf": "C5.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.active_inactive_limit",
+   "type": "number",
+   "meaning": "Active/Inactive List limit",
+   "ownerLeaf": "C5.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.elevations_max_per_game",
+   "type": "number",
+   "meaning": "Practice squad elevations per club per game",
+   "ownerLeaf": "C5.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "service.accrued_games",
+   "type": "number",
+   "meaning": "Games for an accrued season",
+   "ownerLeaf": "C5.1.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "games"
+  },
+  {
+   "key": "fa.ufa_min_accrued",
+   "type": "number",
+   "meaning": "Accrued seasons for unrestricted status",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "fa.rfa_accrued",
+   "type": "number",
+   "meaning": "Accrued seasons for restricted status",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "fa.erfa_below_accrued",
+   "type": "number",
+   "meaning": "Exclusive rights below this many accrued seasons",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "tag.window_opens_days_before",
+   "type": "number",
+   "meaning": "Tag window opens this many days before the league year",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "tag.window_closes_days_before",
+   "type": "number",
+   "meaning": "Tag window closes this many days before the league year",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "tag.franchise_top_n",
+   "type": "number",
+   "meaning": "Salaries averaged for the franchise tag",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "tag.prior_salary_pct",
+   "type": "number",
+   "meaning": "Tender as percent of prior-year salary",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "tag.nonexclusive_first_round_picks",
+   "type": "number",
+   "meaning": "First-round picks owed for a nonexclusive tag",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "tag.third_prior_salary_pct",
+   "type": "number",
+   "meaning": "Third-tag floor as percent of prior salary",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "tag.transition_top_n",
+   "type": "number",
+   "meaning": "Salaries averaged for the transition tag",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "tag.multiyear_deadline_july_day",
+   "type": "number",
+   "meaning": "Day of July after which only a one-year deal is allowed",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day of July"
+  },
+  {
+   "key": "work.offseason_weeks",
+   "type": "number",
+   "meaning": "Length of the offseason program",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "weeks"
+  },
+  {
+   "key": "work.workouts_per_week",
+   "type": "number",
+   "meaning": "Workouts per player per week",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "work.phase1_weeks",
+   "type": "number",
+   "meaning": "Phase one length",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "weeks"
+  },
+  {
+   "key": "work.phase2_weeks",
+   "type": "number",
+   "meaning": "Phase two length",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "weeks"
+  },
+  {
+   "key": "work.phase3_weeks",
+   "type": "number",
+   "meaning": "Phase three length",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "weeks"
+  },
+  {
+   "key": "work.ota_days",
+   "type": "number",
+   "meaning": "OTA days",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "work.ota_max_week_3_or_4",
+   "type": "number",
+   "meaning": "Most OTA days in the week that holds no minicamp",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "work.start_monday_of_april",
+   "type": "number",
+   "meaning": "Earliest start Monday in April",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "Monday of April"
+  },
+  {
+   "key": "roster.practice_squad_size",
+   "type": "number",
+   "meaning": "Practice squad places, not counting the international slot",
+   "ownerLeaf": "C5.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.practice_squad_international_slot",
+   "type": "number",
+   "meaning": "International pathway practice squad places",
+   "ownerLeaf": "C5.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.practice_squad_young_min",
+   "type": "number",
+   "meaning": "Places that must go to players with at most two accrued seasons",
+   "ownerLeaf": "C5.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.practice_squad_veteran_slots",
+   "type": "number",
+   "meaning": "Practice squad places open to any veteran",
+   "ownerLeaf": "C5.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.elevations_max_per_player_season",
+   "type": "number",
+   "meaning": "Elevations per player per regular season",
+   "ownerLeaf": "C5.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.ir_min_games",
+   "type": "number",
+   "meaning": "Least games missed on injured reserve",
+   "ownerLeaf": "C5.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "games"
+  },
+  {
+   "key": "roster.ir_return_designations",
+   "type": "number",
+   "meaning": "IR return designations per club in the regular season",
+   "ownerLeaf": "C5.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.ir_return_designations_postseason",
+   "type": "number",
+   "meaning": "Extra IR return designations in the postseason",
+   "ownerLeaf": "C5.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.ir_returns_per_player",
+   "type": "number",
+   "meaning": "Times one player may return from IR in a season",
+   "ownerLeaf": "C5.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.ir_practice_window_days",
+   "type": "number",
+   "meaning": "IR practice window length",
+   "ownerLeaf": "C5.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "roster.pup_min_games",
+   "type": "number",
+   "meaning": "Games missed on reserve/PUP",
+   "ownerLeaf": "C5.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "games"
+  },
+  {
+   "key": "roster.nfi_min_games",
+   "type": "number",
+   "meaning": "Games missed on reserve/NFI",
+   "ownerLeaf": "C5.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "games"
+  },
+  {
+   "key": "waivers.claim_period_hours",
+   "type": "number",
+   "meaning": "In-season waiver claim period",
+   "ownerLeaf": "C5.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "hours"
+  },
+  {
+   "key": "waivers.vested_min_seasons",
+   "type": "number",
+   "meaning": "Seasons that make a vested veteran",
+   "ownerLeaf": "C5.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "trade.deadline_after_week",
+   "type": "number",
+   "meaning": "Trade deadline falls after this week",
+   "ownerLeaf": "C5.5.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "week"
+  },
+  {
+   "key": "calendar.league_year_start_march_day",
+   "type": "number",
+   "meaning": "Day of March the league year opens",
+   "ownerLeaf": "C4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day of March"
+  },
+  {
+   "key": "calendar.negotiating_window_start_march_day",
+   "type": "number",
+   "meaning": "Day of March the negotiating window opens",
+   "ownerLeaf": "C8.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day of March"
+  },
+  {
+   "key": "calendar.tag_window_opens_feb_day",
+   "type": "number",
+   "meaning": "Day of February the tag window opens in 2026",
+   "ownerLeaf": "C6.4.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day of February"
+  },
+  {
+   "key": "league_rules.draft.rounds",
+   "type": "number",
+   "meaning": "Rounds in the draft",
+   "ownerLeaf": "C7.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "rounds"
+  },
+  {
+   "key": "league_rules.draft.clock.r1_min",
+   "type": "number",
+   "meaning": "Round 1 pick clock",
+   "ownerLeaf": "C7.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "min"
+  },
+  {
+   "key": "league_rules.draft.clock.r2_min",
+   "type": "number",
+   "meaning": "Round 2 pick clock",
+   "ownerLeaf": "C7.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "min"
+  },
+  {
+   "key": "league_rules.draft.clock.r3_6_min",
+   "type": "number",
+   "meaning": "Rounds 3 to 6 pick clock",
+   "ownerLeaf": "C7.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "min"
+  },
+  {
+   "key": "league_rules.draft.clock.r7_min",
+   "type": "number",
+   "meaning": "Round 7 pick clock",
+   "ownerLeaf": "C7.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "min"
+  },
+  {
+   "key": "league_rules.draft.comp_max_per_club",
+   "type": "number",
+   "meaning": "Compensatory picks per club",
+   "ownerLeaf": "C7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "league_rules.draft.comp_max_formula",
+   "type": "number",
+   "meaning": "Formula compensatory picks league-wide",
+   "ownerLeaf": "C7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "league_rules.free_agency.window_calls",
+   "type": "number",
+   "meaning": "Prospective free agents per club in the window call",
+   "ownerLeaf": "C8.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "fa.rfa_tender_2026_rofr",
+   "type": "number",
+   "meaning": "RFA tender amount, rofr",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "fa.rfa_tender_2026_original_round",
+   "type": "number",
+   "meaning": "RFA tender amount, original round",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "fa.rfa_tender_2026_second_round",
+   "type": "number",
+   "meaning": "RFA tender amount, second round",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "fa.rfa_tender_2026_first_round",
+   "type": "number",
+   "meaning": "RFA tender amount, first round",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "fa.rfa_tender_2026_first_round_waived",
+   "type": "number",
+   "meaning": "RFA tender amount, first round waived",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "service.credited_games",
+   "type": "number",
+   "meaning": "Games for a credited season",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "games"
+  },
+  {
+   "key": "league_rules.draft.eligibility_seasons",
+   "type": "number",
+   "meaning": "Seasons after high school before draft eligibility",
+   "ownerLeaf": "C7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "work.minicamp_days",
+   "type": "number",
+   "meaning": "Mandatory minicamp practice days",
+   "ownerLeaf": "C11.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "work.rookie_minicamp_days",
+   "type": "number",
+   "meaning": "Rookie minicamp days",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "work.camp_field_hours",
+   "type": "number",
+   "meaning": "Camp on-field hours per day",
+   "ownerLeaf": "C11.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "hours"
+  },
+  {
+   "key": "work.padded_practice_hours",
+   "type": "number",
+   "meaning": "Padded practice on-field hours",
+   "ownerLeaf": "C11.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "hours"
+  },
+  {
+   "key": "work.bye_days_off",
+   "type": "number",
+   "meaning": "Consecutive days off in a bye week",
+   "ownerLeaf": "C11.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "discipline.club_fine_max_usd",
+   "type": "number",
+   "meaning": "Largest club fine for a cap violation",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "discipline.pick_forfeit_max",
+   "type": "number",
+   "meaning": "Most draft choices forfeited for a cap violation",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "discipline.executive_fine_max_usd",
+   "type": "number",
+   "meaning": "Largest executive fine for a cap violation",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_cash_spend_pct",
+   "type": "number",
+   "meaning": "Minimum cash spending as percent of cap",
+   "ownerLeaf": "C6.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.top_n_contracts",
+   "type": "number",
+   "meaning": "Contracts counted in full in the offseason",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "cap.proration_max_years",
+   "type": "number",
+   "meaning": "Longest signing-bonus proration",
+   "ownerLeaf": "C6.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "cap.june1_designations",
+   "type": "number",
+   "meaning": "Post-June 1 designations per club per year",
+   "ownerLeaf": "C6.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "cap.conform_days",
+   "type": "number",
+   "meaning": "Days to get under the cap after acceleration",
+   "ownerLeaf": "C6.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "rookie.length_round_1",
+   "type": "number",
+   "meaning": "First-round rookie contract years",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "rookie.length_later_rounds",
+   "type": "number",
+   "meaning": "Rounds 2 to 7 rookie contract years",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "rookie.length_undrafted",
+   "type": "number",
+   "meaning": "Undrafted rookie contract years",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "rookie.max_annual_increase_pct",
+   "type": "number",
+   "meaning": "Largest yearly rise as percent of year-one salary",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "rookie.undrafted_pool_2021_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2021",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.option_deadline_before_may_day",
+   "type": "number",
+   "meaning": "Fifth-year option notice must come before this day of May",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day of May"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs0",
+   "type": "number",
+   "meaning": "Minimum salary 2026 at 0 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs0",
+   "type": "number",
+   "meaning": "Minimum salary 2027 at 0 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs0",
+   "type": "number",
+   "meaning": "Minimum salary 2028 at 0 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs0",
+   "type": "number",
+   "meaning": "Minimum salary 2029 at 0 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs0",
+   "type": "number",
+   "meaning": "Minimum salary 2030 at 0 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs1",
+   "type": "number",
+   "meaning": "Minimum salary 2026 at 1 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs1",
+   "type": "number",
+   "meaning": "Minimum salary 2027 at 1 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs1",
+   "type": "number",
+   "meaning": "Minimum salary 2028 at 1 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs1",
+   "type": "number",
+   "meaning": "Minimum salary 2029 at 1 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs1",
+   "type": "number",
+   "meaning": "Minimum salary 2030 at 1 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs2",
+   "type": "number",
+   "meaning": "Minimum salary 2026 at 2 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs2",
+   "type": "number",
+   "meaning": "Minimum salary 2027 at 2 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs2",
+   "type": "number",
+   "meaning": "Minimum salary 2028 at 2 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs2",
+   "type": "number",
+   "meaning": "Minimum salary 2029 at 2 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs2",
+   "type": "number",
+   "meaning": "Minimum salary 2030 at 2 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs3",
+   "type": "number",
+   "meaning": "Minimum salary 2026 at 3 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs3",
+   "type": "number",
+   "meaning": "Minimum salary 2027 at 3 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs3",
+   "type": "number",
+   "meaning": "Minimum salary 2028 at 3 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs3",
+   "type": "number",
+   "meaning": "Minimum salary 2029 at 3 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs3",
+   "type": "number",
+   "meaning": "Minimum salary 2030 at 3 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs4_6",
+   "type": "number",
+   "meaning": "Minimum salary 2026 at 4-6 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs4_6",
+   "type": "number",
+   "meaning": "Minimum salary 2027 at 4-6 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs4_6",
+   "type": "number",
+   "meaning": "Minimum salary 2028 at 4-6 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs4_6",
+   "type": "number",
+   "meaning": "Minimum salary 2029 at 4-6 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs4_6",
+   "type": "number",
+   "meaning": "Minimum salary 2030 at 4-6 credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2026_cs7_plus",
+   "type": "number",
+   "meaning": "Minimum salary 2026 at 7+ credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2027_cs7_plus",
+   "type": "number",
+   "meaning": "Minimum salary 2027 at 7+ credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2028_cs7_plus",
+   "type": "number",
+   "meaning": "Minimum salary 2028 at 7+ credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2029_cs7_plus",
+   "type": "number",
+   "meaning": "Minimum salary 2029 at 7+ credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.min_salary_y2030_cs7_plus",
+   "type": "number",
+   "meaning": "Minimum salary 2030 at 7+ credited seasons",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.amount_2026",
+   "type": "number",
+   "meaning": "Salary cap per club, 2026",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.amount_2021",
+   "type": "number",
+   "meaning": "Salary cap per club, 2021",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.amount_2022",
+   "type": "number",
+   "meaning": "Salary cap per club, 2022",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.amount_2023",
+   "type": "number",
+   "meaning": "Salary cap per club, 2023",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.amount_2024",
+   "type": "number",
+   "meaning": "Salary cap per club, 2024",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.veteran_benefit_2026",
+   "type": "number",
+   "meaning": "Veteran salary benefit extra compensation, 2026",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.four_year_qualifying_2026",
+   "type": "number",
+   "meaning": "Four-year player qualifying excess, 2026",
+   "ownerLeaf": "C6.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2024_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2024",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.option_tiers",
+   "type": "number",
+   "meaning": "Fifth-year option salary tiers",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  }
+ ]
+}
