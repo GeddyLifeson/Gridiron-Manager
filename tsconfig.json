@@ -17,5 +17,5 @@
     "verbatimModuleSyntax": true,
     "types": ["node"]
   },
-  "include": ["packages/*/src/**/*", "packages/*/test/**/*", "shells/browser/src/**/*", "scripts/**/*"]
+  "include": ["packages/*/src/**/*", "packages/*/test/**/*", "shells/browser/src/**/*", "shells/desktop/bridge/**/*", "scripts/**/*"]
 }
