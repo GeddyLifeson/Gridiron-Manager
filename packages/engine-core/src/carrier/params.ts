@@ -96,7 +96,9 @@ const ROWS = [
   ['move.windowMaxS', 0.5, 0.4, 0.7, 's', 'bible', 'J8.3.1', MOVES],
   ['move.tempYd', 0.5, 0.2, 1.0, 'yd', 'bible', 'J8.3.1', MOVES],
   ['move.beta0', 0.0, -1, 1, 'logit', 'assumption', 'J8.3.1', MOVES],
-  ['move.beta1', 0.6, 0.2, 1.2, 'logit/z', 'assumption', 'J8.3.1', MOVES],
+  // Moved with contest.tackle.beta1 (0.6 * 0.35 / 0.5): the move contest and the tackle read the same pair of
+  // players, and together they are fitted to the real spread of missed and broken tackle rates (see that row).
+  ['move.beta1', 0.42, 0.2, 1.2, 'logit/z', 'assumption', 'J8.3.1', MOVES],
   ['move.brokeDown', -0.8, -2, 0, 'logit', 'assumption', 'J8.3.1', MOVES],
   ['move.room', 0.6, 0, 1.5, 'logit', 'assumption', 'J8.3.1', MOVES],
   ['move.winYd', 3.0, 1, 6, 'yd', 'assumption', 'J8.3.1', MOVES],
