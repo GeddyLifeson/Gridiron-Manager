@@ -101,7 +101,12 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
     const w = y.world;
     const seatRows = w.results.filter((r) => r.competitionId === y.seatCompetitionId).length;
     const played = y.season.state.games.length;
-    if (seatRows !== played) rec.add('invalid', 'offseason', 'results.not_carried', `The world holds ${seatRows} results of the seat's competition; the season session played ${played}.`, OWNERS.careerYear, { year });
+    const games = y.season.state.games;
+    const carried = games.filter((g) => y.worldTeamOf(g.fixture.home) !== null && y.worldTeamOf(g.fixture.away) !== null).length;
+    const seatId = y.season.seatTeamId;
+    const seatLost = games.filter((g) => (g.fixture.home === seatId || g.fixture.away === seatId) && (y.worldTeamOf(g.fixture.home) === null || y.worldTeamOf(g.fixture.away) === null)).length;
+    if (seatRows !== carried) rec.add('invalid', 'offseason', 'results.not_carried', `The world holds ${seatRows} results of the seat's competition; the season session played ${carried} between teams the world has.`, OWNERS.careerYear, { year });
+    if (carried < played) rec.add('missing', 'offseason', 'results.team_not_in_world', `${played - carried} of ${played} season-session games had a team the world does not have (a small world holds fewer schools than the content), ${seatLost} of them the seat's, so the world's record of those teams is short.`, OWNERS.careerYear, { year, seatLost });
     const mine = y.season.summary().teams.find((t) => t.teamId === y.season.seatTeamId);
 
     const firstEvent = w.log.nextId;
@@ -116,7 +121,7 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
 
     if (sum.seasonYear !== year) rec.add('invalid', 'offseason', 'summary.year', `The season point closed ${sum.seasonYear}, not ${year}.`, OWNERS.worldLoop);
     const line = sum.records[y.seatTeamId];
-    if (mine && line && (line.wins !== mine.wins || line.losses !== mine.losses || line.ties !== mine.ties)) {
+    if (seatLost === 0 && mine && line && (line.wins !== mine.wins || line.losses !== mine.losses || line.ties !== mine.ties)) {
       rec.add('invalid', 'offseason', 'record.mismatch', `The world records the seat ${line.wins}-${line.losses}-${line.ties}; the season session ${mine.wins}-${mine.losses}-${mine.ties}.`, OWNERS.careerYear, { year });
     }
     if (sum.champions[y.seatCompetitionId] === undefined) rec.add('invalid', 'offseason', 'champion.missing', `The seat's competition has no champion for ${year}.`, OWNERS.careerYear, { year });

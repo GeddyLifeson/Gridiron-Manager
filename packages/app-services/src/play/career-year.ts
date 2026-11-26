@@ -124,10 +124,16 @@ export class CareerYear {
   }
 
   private mapTeams(): void {
+    // Every world team, not only the seat's competition: a college season has guests from lower levels
+    // (playtest results.not_carried), and their games with the seat's league are results too.
     const comp = this.world.competitions.find((c) => c.id === this.seatCompetitionId)!;
+    const inSeat = new Set(comp.teamIds);
+    const ids = [...comp.teamIds, ...this.world.teams.map((t) => t.id).filter((id) => !inSeat.has(id))];
     const byKey = new Map<string, number>();
-    for (const id of comp.teamIds) {
-      try { byKey.set(contentKeyOfWorldTeam(this.content, this.world, id), id); } catch { /* a team with no content row plays no season-session game */ }
+    for (const id of ids) {
+      let key: string;
+      try { key = contentKeyOfWorldTeam(this.content, this.world, id); } catch { continue; /* a team with no content row plays no season-session game */ }
+      if (!byKey.has(key)) byKey.set(key, id);
     }
     this.teamMap = new Map();
     for (const t of this.season.built.spec.teams) {
