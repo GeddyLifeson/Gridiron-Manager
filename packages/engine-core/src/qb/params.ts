@@ -12,7 +12,7 @@
 // layer. The caller passes its own value function when it has one; these rows only keep the module
 // runnable on its own.
 import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const TTT = 'J15 time to throw 2.68 s (1 of 3); J7.1.1 acceptance';
 const PROG = 'J7.2.1 acceptance (read 3 at tSet + 1.1 s for grade 50)';
@@ -264,11 +264,17 @@ export type QbParams = Readonly<Record<QbParamName, number>>;
 
 export const PARAMS: ParamFile = defineParams('qb', '0.1.0', ROWS);
 
+const RESOLVED = new WeakMap<ParamTable, QbParams>();
 /** Resolve once per play, never inside the tick. */
 export function qbParams(t: ParamTable): QbParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`qb.${row[0]}`);
-  return out as QbParams;
+  const fast = fastParams(out) as QbParams;
+  RESOLVED.set(t, fast);
+  return fast;
 }
 
 const READ_BY = ['engine-core/qb'];

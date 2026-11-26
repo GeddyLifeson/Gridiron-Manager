@@ -34,3 +34,13 @@ export function paramTableFromFiles(files: readonly ParamFile[]): ParamTable {
     },
   };
 }
+
+/**
+ * A module's resolved parameters are read by name inside the tick. An object filled one computed key at
+ * a time is kept by the JavaScript engine as a hash table once it has more than a dozen keys, which
+ * makes every read in the tick a hash lookup. A copy made in one go has the plain fixed layout. Same
+ * keys, same values, same key order (G-97).
+ */
+export function fastParams(out: Readonly<Record<string, number>>): Record<string, number> {
+  return { ...out };
+}

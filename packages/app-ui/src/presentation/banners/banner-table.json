@@ -1,0 +1,24 @@
+{
+  "$comment": "PV-05 banner kinds (plan 3.4, O2.1.3, MB-14). One bar at a time; lower rank wins. rank, durationMs and maxWaitMs are Assumptions (presentation tuning, no football fact): durations sized so a two-line caption can be read once at a normal pace; maxWait is how long a banner may wait for its turn before it is stale and dropped. cueRow names the PV-02 cue-table row the banner draws for (null where the cue table has no row yet; reported to the PV-02 owner). Text is uppercase character-generator caption text in the Classic skin; {team}, {away}, {home}, {as}, {hs}, {detail} are filled by the caller. No real league, team, broadcast or sponsor words.",
+  "formatVersion": 1,
+  "kinds": {
+    "touchdown":        { "rank": 1, "durationMs": 4000, "maxWaitMs": 30000, "title": "TOUCHDOWN {team}", "line2": "{away} {as}   {home} {hs}", "cueRow": "ruling_touchdown" },
+    "review_reversed":  { "rank": 1, "durationMs": 4000, "maxWaitMs": 30000, "title": "AFTER REVIEW: REVERSED", "line2": "{detail}", "cueRow": "ruling_review_reversed" },
+    "review_upheld":    { "rank": 1, "durationMs": 3500, "maxWaitMs": 30000, "title": "AFTER REVIEW: RULING STANDS", "line2": "{detail}", "cueRow": "ruling_review_upheld" },
+    "field_goal_good":  { "rank": 2, "durationMs": 3500, "maxWaitMs": 30000, "title": "FIELD GOAL {team}", "line2": "{away} {as}   {home} {hs}", "cueRow": "ruling_field_goal_good" },
+    "safety":           { "rank": 2, "durationMs": 3500, "maxWaitMs": 30000, "title": "SAFETY {team}", "line2": "{away} {as}   {home} {hs}", "cueRow": "ruling_safety" },
+    "turnover":         { "rank": 2, "durationMs": 3000, "maxWaitMs": 20000, "title": "TURNOVER", "line2": "{detail}", "cueRow": "ruling_interception" },
+    "penalty":          { "rank": 3, "durationMs": 4500, "maxWaitMs": 20000, "title": "FLAG: {detail}", "line2": "{line2}", "cueRow": "ruling_penalty" },
+    "try_good":         { "rank": 3, "durationMs": 3000, "maxWaitMs": 20000, "title": "TRY GOOD {team}", "line2": "{away} {as}   {home} {hs}", "cueRow": "ruling_try_good" },
+    "try_failed":       { "rank": 3, "durationMs": 3000, "maxWaitMs": 20000, "title": "TRY NO GOOD", "line2": "{away} {as}   {home} {hs}", "cueRow": "ruling_try_failed" },
+    "field_goal_missed":{ "rank": 3, "durationMs": 3000, "maxWaitMs": 20000, "title": "FIELD GOAL NO GOOD", "line2": "{detail}", "cueRow": "ruling_field_goal_missed" },
+    "injury":           { "rank": 4, "durationMs": 3500, "maxWaitMs": 30000, "title": "INJURY TIMEOUT", "line2": "{detail}", "cueRow": "alert_injury" },
+    "challenge":        { "rank": 4, "durationMs": 3500, "maxWaitMs": 20000, "title": "CHALLENGE", "line2": "{detail}", "cueRow": "alert_challenge_window" },
+    "two_minute":       { "rank": 5, "durationMs": 3000, "maxWaitMs": 30000, "title": "TWO-MINUTE WARNING", "line2": "{away} {as}   {home} {hs}", "cueRow": "alert_two_minute" },
+    "quarter_end":      { "rank": 5, "durationMs": 3500, "maxWaitMs": 30000, "title": "END OF {detail}", "line2": "{away} {as}   {home} {hs}", "cueRow": null },
+    "timeout":          { "rank": 6, "durationMs": 3000, "maxWaitMs": 20000, "title": "TIMEOUT {team}", "line2": "{detail}", "cueRow": "alert_timeout_called" },
+    "kickoff":          { "rank": 6, "durationMs": 3000, "maxWaitMs": 30000, "title": "KICKOFF", "line2": "{away} AT {home}", "cueRow": null },
+    "sack":             { "rank": 7, "durationMs": 2500, "maxWaitMs": 8000, "title": "SACK", "line2": "{detail}", "cueRow": "ruling_sack" },
+    "touchback":        { "rank": 7, "durationMs": 2500, "maxWaitMs": 8000, "title": "TOUCHBACK", "line2": "{detail}", "cueRow": "ruling_touchback" }
+  }
+}

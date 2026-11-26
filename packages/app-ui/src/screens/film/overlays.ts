@@ -5,16 +5,19 @@
 import type { Canvas2DLike } from '../../field-view/index.ts';
 import type { FilmFrames } from '../../field-view/index.ts';
 import type { AnnotationLike, FilmEventLike, OverlayLineLike, PointLike } from './types.ts';
+import { asRunMisses } from './presentation/as-run.ts';
+import { guessLabel } from './presentation/inference.ts';
 
-export const OVERLAY_LAYERS = ['assignments', 'paths', 'guesses', 'telestration', 'throwClock'] as const;
+export const OVERLAY_LAYERS = ['assignments', 'paths', 'asRun', 'guesses', 'telestration', 'throwClock'] as const;
 export type OverlayLayer = (typeof OVERLAY_LAYERS)[number];
 
 /** Toggle keys (O2.6.2 "toggle keys"); free letters next to the O2.6.1 transport keys. */
-export const OVERLAY_KEYS: Readonly<Record<string, OverlayLayer>> = { a: 'assignments', p: 'paths', g: 'guesses', t: 'telestration', c: 'throwClock' };
+export const OVERLAY_KEYS: Readonly<Record<string, OverlayLayer>> = { a: 'assignments', p: 'paths', x: 'asRun', g: 'guesses', t: 'telestration', c: 'throwClock' };
 
 export const LEGEND: Readonly<Record<OverlayLayer, string>> = {
   assignments: 'Solid line: the assignment as called',
   paths: 'Thin line: where the player actually went',
+  asRun: 'Cross line: where a player ran furthest off the drawn line, in yards (our film only)',
   guesses: 'Dashed line: a guess, labelled with who drew it',
   telestration: 'Your drawing on this play',
   throwClock: 'Time from the snap to the throw',
@@ -55,7 +58,7 @@ export function buildOverlays(on: ReadonlySet<OverlayLayer>, inp: OverlayInput):
   }
   if (on.has('guesses')) for (const g of inp.guesses) {
     if (g.author === 'call') continue; // a guess is never drawn as the call
-    out.push({ layer: 'guesses', kind: 'line', points: g.points, dashed: true, role: 'coverage', label: `${g.words} (${g.author === 'user' ? 'your guess' : `drawn by ${g.author.replace('staff:', 'staff #')}`})` });
+    out.push({ layer: 'guesses', kind: 'line', points: g.points, dashed: true, role: 'coverage', label: guessLabel(g) });
   }
   if (on.has('paths')) {
     const f = inp.frames;
@@ -65,6 +68,11 @@ export function buildOverlays(on: ReadonlySet<OverlayLayer>, inp: OverlayInput):
       for (let i = 0; i <= lastI; i++) pts.push({ x: f.x[i * f.slotCount + s]!, y: f.y[i * f.slotCount + s]! });
       if (pts.length > 1) out.push({ layer: 'paths', kind: 'line', points: pts, dashed: false, role: 'route' });
     }
+  }
+  // As run against as drawn (PV-12): our own call lines only, so opponent film draws nothing here.
+  if (on.has('asRun')) for (const m of asRunMisses(inp.frames, inp.events, inp.assignments)) {
+    out.push({ layer: 'asRun', kind: 'line', points: [m.drawn, m.ran], dashed: false, role: 'route', label: `${m.offYd.toFixed(1)} yd off: ${m.words}` });
+    out.push({ layer: 'asRun', kind: 'text', points: [m.ran], dashed: false, role: 'route', label: `${m.offYd.toFixed(1)} yd off` });
   }
   if (on.has('telestration') && inp.annotation) for (const d of inp.annotation.drawings) {
     out.push({ layer: 'telestration', kind: d.shape, points: d.points, dashed: false, role: 'eyeLine' });

@@ -37,7 +37,7 @@ Marlon: "use stuff authentic to classic 70s/80s NFL". The look and sound take th
 | Coaches studied 16mm film in the 1970s; the NFL moved coaching film to videotape in 1986 | 16mm: Verified; 1986: 2 of 3 | NFL.com film study article; Athletic Business, January 1992; Chiefs "Hank Stram's 16mm projector" (16mm only) |
 | Officials used pea whistles before the pealess Fox 40, first used professionally at the 1987 Pan Am Games | 1987: Verified; pea whistles before: 2 of 3 | Fox 40 company history; Sportskeeda whistle history; Refereeing World blog |
 | Stadium scoreboards were large lamp (light-bulb) boards; the first big video board (Diamond Vision) arrived in 1980 | Lamp boards: 1 of 3; 1980: 2 of 3 | Mental Floss "100 years of scoreboard watching"; Wikipedia "Jumbotron"; Daktronics company history |
-| Stadium organs and marching bands played during stoppages in the period | Assumption (not researched yet; PV-10 checks it before use) | none |
+| Stadium organs and marching bands played during stoppages in the period | Assumption (PV-10 checked 2026-11-26: Redskins band timeout music documented only for 1937 to about 1947; nothing found for the 1970s or 1980s; organ and band stay gated) | Wikipedia "Redskins Band"; Wikipedia "Stadium organist"; SI Colts band drum (none covers the period) |
 
 **What the era look means for each part:**
 - **Score strip.** No broadcast score box existed in the period, but the game needs the score always visible (O2.1). So the strip is drawn as a stadium **lamp scoreboard**: a grid of round lamps in amber or white on a dark panel, with segmented clock digits. Everything on it is the same public game state as 3.4.

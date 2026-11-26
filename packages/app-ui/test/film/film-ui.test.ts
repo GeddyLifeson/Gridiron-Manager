@@ -119,7 +119,8 @@ describe('film wire', () => {
 describe('film screens hold no truth', () => {
   it('no truth symbol appears in the film screen source', () => {
     const dir = join(import.meta.dirname, '../../src/screens/film');
-    for (const f of readdirSync(dir)) {
+    for (const f of readdirSync(dir, { recursive: true }) as string[]) {
+      if (!/\.tsx?$/.test(f)) continue;
       const src = readFileSync(join(dir, f), 'utf8');
       expect(src, f).not.toMatch(/PlayTruth|truthMark|trueBust|\.truth\b|@gm\/engine/);
     }
