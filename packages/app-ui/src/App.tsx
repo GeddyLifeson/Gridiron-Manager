@@ -1,10 +1,10 @@
 // The front door: the new-game flow and the load list, both opening the career root. The phase 0
 // developer panels (empty world, world summary, determinism check) show only with `devTools`.
 // Screens hold no football logic and import only the public interface of app-services (P1.2.2, P1.3.2).
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   WorldService, runGolden, compareGolden, goldenInputs, VERSIONS,
-  type Platform, type WorldSummaryModel, type GoldenReport, newgame,
+  type Platform, type WorldSummaryModel, type GoldenReport, newgame, type play,
 } from '@gm/app-services';
 import { NewGameFlow } from './screens/new-game/index.ts';
 import { SoundStageCaptions, type SoundStage } from './audio/stage/index.ts';
@@ -92,13 +92,23 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     try { await open(await WorldService.newCareer(platform, { saveName: name, masterSeedHex: seed.padStart(16, '0'), startSeasonYear: 2026 })); }
     catch (e) { setMsg((e as Error).message); }
   };
+  // The open career save: the season is written into it after every step (week, results, seat outcomes).
+  const careerSave = useRef<WorldService | null>(null);
+  const [saveError, setSaveError] = useState('');
+  const writes = useRef<Promise<void>>(Promise.resolve());
+  const saveSeason = (s: WorldService, save: play.SeasonPlaySave) => {
+    const json = JSON.stringify(save);
+    // One write at a time, in step order; a failure shows over the career and the next step tries again.
+    writes.current = writes.current.then(() => s.saveSeason(json)).then(() => setSaveError(''), (e: unknown) => setSaveError(`The season could not be saved: ${(e as Error).message}`));
+  };
   // The career root: the season of the seat's level from the generated world, on the office and the console.
-  const enterCareer = (start: newgame.CareerStart, world: newgame.StartedWorld) => {
+  const enterCareer = (start: newgame.CareerStart, world: newgame.StartedWorld, save: WorldService | null, restore?: play.SeasonPlaySave) => {
     if (!leagueContent) { setMsg('This build has no league content, so the career cannot open.'); return; }
     const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
     try {
-      setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId } },
-        { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings) }));
+      careerSave.current = save;
+      setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId }, ...(restore ? { restore } : {}) },
+        { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings), ...(save ? { onSeasonChange: (sv: play.SeasonPlaySave) => saveSeason(save, sv) } : {}) }));
     } catch (e) { setMsg((e as Error).message); }
   };
   const startFromNewGame = async (start: newgame.CareerStart, world: newgame.StartedWorld) => {
@@ -108,15 +118,15 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     // the coach are pure functions of it). A taken name moves to the next free one.
     const saveName = freeSaveName(start.saveName, (await platform.listSaves()).map((x) => x.name));
     const who = `${start.coach.name.first} ${start.coach.name.last}`;
+    let s: WorldService;
     try {
-      const s = await WorldService.newCareer(platform, {
+      s = await WorldService.newCareer(platform, {
         saveName, masterSeedHex: start.seedHex, startSeasonYear: start.careerStartYear,
         career: { recipeJson: JSON.stringify(start.recipe), userPersonId: start.coach.personId, userJob: start.seatKind === 'entry' ? 'entry' : start.coach.start, summary: `${who}, ${start.seatTeamName}, ${start.careerStartYear}` },
       });
-      await s.close();
     } catch (e) { setMsg(`The career could not be saved: ${(e as Error).message}`); return; }
     await refresh();
-    enterCareer({ ...start, saveName }, world);
+    enterCareer({ ...start, saveName }, world, s);
   };
   const load = async (n: string) => {
     setMsg('');
@@ -130,16 +140,17 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
         setMsg(`${n} is a phase 0 developer world, not a career. Open the page with ?dev=1 to look at it.`);
         return;
       }
-      await s.close();
-      if (!newGame) { setMsg('This build has no new-game service, so a career save cannot be rebuilt.'); return; }
+      if (!newGame) { await s.close(); setMsg('This build has no new-game service, so a career save cannot be rebuilt.'); return; }
+      const seasonJson = await s.loadSeason();
       // Rebuild the start from the recipe: the world's past is played again, then the coach is created.
       const r = JSON.parse(recipe) as newgame.CareerRecipe;
       setMsg(`Opening ${n}: playing the world's past again.`);
       await newGame.client.run(r.choice, r.rerun, (p) => setMsg(`Opening ${n}: season ${p.seasonYear}, ${p.done} of ${p.of} seasons played.`));
       const out = await newGame.client.start(r.choices, n);
-      if (!out.ok) { setMsg(`${n} could not be rebuilt: ${out.problems.map((p) => p.key).join(', ')}`); return; }
+      if (!out.ok) { await s.close(); setMsg(`${n} could not be rebuilt: ${out.problems.map((p) => p.key).join(', ')}`); return; }
       setMsg('');
-      enterCareer(out.start, out.world);
+      // The season goes on from where it was saved (week, results, the seat's games); none saved: a fresh season.
+      enterCareer(out.start, out.world, s, seasonJson === null ? undefined : JSON.parse(seasonJson) as play.SeasonPlaySave);
     } catch (e) { setMsg((e as Error).message); }
   };
   const advance = async () => {
@@ -164,7 +175,10 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
   };
 
   const s = summary?.data;
-  if (career) return <CareerRoot port={career} soundStage={soundStage} />;
+  if (career) return (<>
+    {saveError && <p role="alert" style={{ ...box, margin: 8, borderColor: 'var(--accent)' }}>{saveError}</p>}
+    <CareerRoot port={career} soundStage={soundStage} />
+  </>);
   return (
     <main style={{ maxWidth: 860, margin: '0 auto', padding: '16px' }}>
       <h1 style={{ fontSize: 22 }}>Gridiron Manager</h1>

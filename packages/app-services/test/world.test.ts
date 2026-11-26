@@ -88,3 +88,16 @@ describe('career save header', () => {
     expect(back.saveHeader().summary).toBe('Pat Doe, Harbor State, 2026');
   });
 });
+
+describe('career season in the save', () => {
+  it('writes the season over the last one and reads it back after a reload', async () => {
+    const p = new MemoryPlatform();
+    const svc = await WorldService.newCareer(p, { saveName: 'c', masterSeedHex: '00000000000000ac', startSeasonYear: 2026 });
+    expect(await svc.loadSeason()).toBeNull();
+    await svc.saveSeason('{"week":1}');
+    await svc.saveSeason('{"week":2}');
+    await svc.close();
+    const back = await WorldService.load(p, 'c');
+    expect(await back.loadSeason()).toBe('{"week":2}');
+  });
+});
