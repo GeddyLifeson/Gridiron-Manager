@@ -1,0 +1,155 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-model-0001",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Average points of a try (kick and two-point attempts together), 2022 and 2023 NFL regular seasons.",
+   "value": 0.9593,
+   "unit": "points",
+   "validFor": "2022-2023 regular seasons",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play (github.com/nflverse/nflverse-data, release 'pbp'), columns extra_point_result and two_point_conv_result",
+     "locator": "play_by_play_2022.csv.gz and play_by_play_2023.csv.gz, season_type REG, extra_point_attempt or two_point_attempt rows: (kicks good + 2 x two-point good) / attempts; computed by packages/models/test/nflverse/prepare.py and fit.ts (report.json)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pbp",
+     "primary": false,
+     "value": 0.9593
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Used as the bootstrap model's own try value (N2.2.1 rule 2). Comparison only for engine fits, which measure their own.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-07 from one dataset; needs two independent sources (Q6.1.2)."
+    }
+   ]
+  },
+  {
+   "id": "F-model-0002",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "nflfastR expected points of first and 10 at 75 yards from the goal, mean over 2024 NFL regular-season plays with more than 10 minutes left in the half (121 plays).",
+   "value": 0.8765,
+   "unit": "points",
+   "validFor": "2024 regular season",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play (github.com/nflverse/nflverse-data, release 'pbp'), column ep",
+     "locator": "play_by_play_2024.csv.gz, season_type REG, down 1, ydstogo 10, yardline_100 75, half_seconds_remaining > 600, not a kickoff; computed by packages/models/test/nflverse/prepare.py and fit.ts (report.json)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pbp",
+     "primary": false,
+     "value": 0.8765
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Comparison number for the G-07 report (N2.2.1 acceptance is checked on simulated games; real values only test the shape, N2.2.1 rule 1). nflfastR is a model, so this is a published model value, not an observed rate.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-07 from one dataset; needs two independent sources (Q6.1.2)."
+    }
+   ]
+  },
+  {
+   "id": "F-model-0003",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "nflfastR expected points of first and 10 at 50 yards from the goal, mean over 2024 NFL regular-season plays with more than 10 minutes left in the half (97 plays).",
+   "value": 2.1418,
+   "unit": "points",
+   "validFor": "2024 regular season",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play (github.com/nflverse/nflverse-data, release 'pbp'), column ep",
+     "locator": "play_by_play_2024.csv.gz, season_type REG, down 1, ydstogo 10, yardline_100 50, half_seconds_remaining > 600, not a kickoff; computed by packages/models/test/nflverse/prepare.py and fit.ts (report.json)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pbp",
+     "primary": false,
+     "value": 2.1418
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Comparison number for the G-07 report (N2.2.1 acceptance is checked on simulated games; real values only test the shape, N2.2.1 rule 1). nflfastR is a model, so this is a published model value, not an observed rate.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-07 from one dataset; needs two independent sources (Q6.1.2)."
+    }
+   ]
+  },
+  {
+   "id": "F-model-0004",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "nflfastR expected points of first and 10 at 25 yards from the goal, mean over 2024 NFL regular-season plays with more than 10 minutes left in the half (67 plays).",
+   "value": 3.3886,
+   "unit": "points",
+   "validFor": "2024 regular season",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play (github.com/nflverse/nflverse-data, release 'pbp'), column ep",
+     "locator": "play_by_play_2024.csv.gz, season_type REG, down 1, ydstogo 10, yardline_100 25, half_seconds_remaining > 600, not a kickoff; computed by packages/models/test/nflverse/prepare.py and fit.ts (report.json)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pbp",
+     "primary": false,
+     "value": 3.3886
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Comparison number for the G-07 report (N2.2.1 acceptance is checked on simulated games; real values only test the shape, N2.2.1 rule 1). nflfastR is a model, so this is a published model value, not an observed rate.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-07 from one dataset; needs two independent sources (Q6.1.2)."
+    }
+   ]
+  },
+  {
+   "id": "F-model-0005",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Brier score of the nflfastR win probability (column wp) against the final result on 2024 NFL regular-season plays (42460 plays, ties as 0.5).",
+   "value": 0.1595,
+   "unit": "ratio",
+   "validFor": "2024 regular season",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play (github.com/nflverse/nflverse-data, release 'pbp'), columns wp and result",
+     "locator": "play_by_play_2024.csv.gz, season_type REG, the plays prepare.py keeps; computed by packages/models/test/nflverse/prepare.py and fit.ts (report.json)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-pbp",
+     "primary": false,
+     "value": 0.1595
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Comparison number for the G-07 report. The nflfastR wp column has no pregame spread term (nflfastR also publishes vegas_wp), so it is not a like-for-like benchmark for a model with the spread prior.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-07 from one dataset; needs two independent sources (Q6.1.2)."
+    }
+   ]
+  }
+ ]
+}
