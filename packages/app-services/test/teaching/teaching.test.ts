@@ -7,7 +7,7 @@ import {
   CURRICULUM, GLOSSARY_SNAPSHOT, PATTERN_LESSONS, DUTY_LESSONS, PARAMS, RULE_KEYS, askWhy, callDeadline, clipTruth, courseState, curriculumMap, drawAttempt,
   dutyMapProblems, dutyOffers, gradingPattern, groupByCourse, improvement, isLate, kneelOut, lessonClip, lessonState, nextMix, packProblems, patternMapProblems,
   placementKnown, scoreAnswer, scoreAttempt, scoreClip, scoreLook, summarizeCallSession, teachingRulesFrom, usableProblems, validateCurriculum, workOnCard,
-  SchoolFilmError, type AttemptResult, type LessonRecord, type PatternLike, type ScenarioPack, type SolvedSituation, type TeachingRules,
+  SchoolFilmError, type AttemptResult, type LessonRecord, type PatternLike, type ScenarioPack, type SolvedSituation, type TeachingRules, type AiCallRecord,
 } from '../../src/teaching/index.ts';
 import { HOME, SEED, makeSource } from '../read-models/film/fixtures.ts';
 
@@ -227,7 +227,7 @@ describe('lesson picker, offers, why (N5.4 to N5.6)', () => {
     expect(groupByCourse(CURRICULUM, many).map((g) => g.course)).toEqual(['plan', 'calling', 'situations', 'analytics']);
   });
   it('why: own staff only, limited per review, stored reasons only', () => {
-    const call = { callId: 'c1', teamId: HOME, coachId: 9, reasons: [{ code: 'shell_tendency', slots: { shown: 9, of: 11 } }, { code: 'b', slots: {} }, { code: 'c', slots: {} }, { code: 'd', slots: {} }] };
+    const call: AiCallRecord = { callId: 'c1', teamId: HOME, coachId: 9, reasons: [{ code: 'shell_tendency', slots: { shown: 9, of: 11 } }, { code: 'b', slots: {} }, { code: 'c', slots: {} }, { code: 'd', slots: {} }] };
     const ctx = { userTeamId: HOME, askedThisReview: 0, lowOpenness: false, declines: false };
     const a = askWhy(call, ctx);
     expect(a.kind === 'answer' && a.reasons.map((r) => r.code)).toEqual(['shell_tendency', 'b', 'c']);
