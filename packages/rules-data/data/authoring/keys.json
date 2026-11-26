@@ -2404,6 +2404,374 @@
     ]
    },
    "unit": "yd"
+  },
+  {
+   "key": "foul.roughing_kicker.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Roughing the kicker: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.running_into_kicker.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Running into the kicker: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.roughing_holder.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Roughing the holder: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.kick_block_leverage.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Leverage to block a kick: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.kick_block_leaping.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Leaping to block a kick: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.pushing_teammates_formation.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the formation: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "Inert value: the college book has no such foul."
+   }
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.foul_against_official.separate",
+   "type": "boolean",
+   "meaning": "Unnecessary contact with an official: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 1, Article 2, Item 4, Exception",
+      "q": "Exception: A foul against an official, a team initiating a challenge when it has exhausted its timeouts, and a fifth and subsequent excess timeout for injury, regardless of when they occur, are always treated as a foul between downs.",
+      "line": 3603
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 9, Section 2, Article 4",
+      "q": "PENALTY—Unsportsmanlike conduct. Administer as a dead-ball foul. 15 yards from the succeeding spot and automatic ejection. Automatic first down for fouls by Team B if not in conflict with other rules. [S7, S27 and S47].",
+      "line": 4571
+     }
+    ],
+    "note": "College treats it as an ordinary dead-ball foul, or has no such foul."
+   }
+  },
+  {
+   "key": "foul.challenge_without_timeout.separate",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 1, Article 2, Item 4, Exception",
+      "q": "Exception: A foul against an official, a team initiating a challenge when it has exhausted its timeouts, and a fifth and subsequent excess timeout for injury, regardless of when they occur, are always treated as a foul between downs.",
+      "line": 3603
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-6",
+      "absent": "No such foul in the NCAA book; see foul.challenge_without_timeout.exists."
+     }
+    ],
+    "note": "College treats it as an ordinary dead-ball foul, or has no such foul."
+   }
+  },
+  {
+   "key": "foul.excess_injury_timeout.separate",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 1, Article 2, Item 4, Exception",
+      "q": "Exception: A foul against an official, a team initiating a challenge when it has exhausted its timeouts, and a fifth and subsequent excess timeout for injury, regardless of when they occur, are always treated as a foul between downs.",
+      "line": 3603
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 6",
+      "absent": "No such foul in the NCAA book; see foul.excess_injury_timeout.exists."
+     }
+    ],
+    "note": "College treats it as an ordinary dead-ball foul, or has no such foul."
+   }
+  },
+  {
+   "key": "foul.palpably_unfair.enforcement",
+   "type": "option",
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ],
+   "meaning": "Palpably unfair act: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": "equitable",
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 4",
+      "q": "enforces any such distance penalty as they consider equitable and irrespective of any other specified code penalty.",
+      "line": 3465
+     }
+    ]
+   },
+   "college": {
+    "v": "equitable",
+    "src": [
+     {
+      "cite": "Rule 9, Section 2, Article 3",
+      "q": "The referee may take any action they consider equitable, which includes directing that the down be repeated, including assessing a 15-yard penalty, awarding a score, or suspending or forfeiting the game [S27].",
+      "line": 4516
+     }
+    ]
+   }
+  },
+  {
+   "key": "foul.dpi.enforcement",
+   "type": "option",
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ],
+   "meaning": "Defensive pass interference: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": "interference_spot",
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Article 1",
+      "q": "Penalty: For pass interference by the defense: First down for the offensive team at the spot of the foul.",
+      "line": 2373
+     }
+    ]
+   },
+   "college": {
+    "v": "interference_spot",
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8-c",
+      "q": "PENALTY—Team A’s ball at the spot of the foul, first down, if the foul occurs fewer than 15 yards beyond the previous spot.",
+      "line": 3761
+     }
+    ]
+   }
   }
  ]
 }
