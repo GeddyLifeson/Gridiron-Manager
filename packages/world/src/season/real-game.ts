@@ -136,7 +136,7 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   const overrides = chart.chartOverrides(rules.level, opts.paramOverrides);
   // On the tick engine both staffs call from the level's starter book (G3), so every call kind has a real mix of
   // concepts under it. The reference resolver reads no content, so it runs without one (and its results do not move).
-  const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level === 'college' ? 'college' : 'pro') : null;
+  const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level) : null;
   const input = (gameIndex: number, seedHex: string): GameInput => ({
     gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
     teams: [placeholderTeam(0, iss, jerseys), placeholderTeam(1, iss, jerseys)],

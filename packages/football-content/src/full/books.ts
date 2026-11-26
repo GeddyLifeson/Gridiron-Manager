@@ -119,8 +119,9 @@ export const COLLEGE_BOOK: StarterBook = {
 
 export const STARTER_BOOKS: readonly StarterBook[] = [PRO_BOOK, COLLEGE_BOOK];
 
-/** The book for a rule set's level: college rule sets get the college book, everything else the pro book. */
-export function starterBookFor(level: 'pro' | 'college'): StarterBook { return level === 'college' ? COLLEGE_BOOK : PRO_BOOK; }
+/** The starter book by the rule set's level name (a lookup, not a branch: P1.3.3). Unknown levels get the pro book. */
+export const STARTER_BOOK_BY_LEVEL: Readonly<Record<string, StarterBook>> = Object.fromEntries(STARTER_BOOKS.map((b) => [b.id, b]));
+export function starterBookFor(level: string): StarterBook { return STARTER_BOOK_BY_LEVEL[level] ?? PRO_BOOK; }
 
 /** The entries of a menu that may be called in `situation`: its situational entries there, else the `any` ones. */
 export function menuFor(entries: readonly BookEntry[], situation: BookSituation): readonly BookEntry[] {
