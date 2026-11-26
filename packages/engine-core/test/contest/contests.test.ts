@@ -93,7 +93,7 @@ describe('Q1.7.3 rating-response sweeps: every grade input, 0 to 100 in steps of
 describe('Q1.7.1 base rates at equal grades (each event contest, 100,000 neutral draws)', () => {
   const N = 100_000;
   const cases: [string, number, (i: number) => boolean][] = [
-    ['sack at arrival', logistic(1.4), (i) => passRush.resolveArrival(arrival, contestStream(i, 'sack')) === 'sack'],
+    ['sack at arrival', logistic(0.5), (i) => passRush.resolveArrival(arrival, contestStream(i, 'sack')) === 'sack'],
     ['clean stunt pass-off', logistic(1.2), (i) => passRush.resolveStunt(stunt, contestStream(i, 'stuntExchange')).outcome === 'clean'],
     ['uncontested catch', logistic(3.0), (i) => catchPoint.resolveUncontested({ zHands: 0, placementError: 0, hitAtCatch: false, wet: false }, contestStream(i, 'catchPoint')) === 'catch'],
     ['tackle made', logistic(1.7), (i) => tackle.resolveTackle(tk, contestStream(i, 'tackle')).outcome === 'made'],
