@@ -5,6 +5,7 @@
 import { deriveSeed, seedToHex, stream } from '@gm/engine-core';
 import { history } from '@gm/league';
 import type { WorldTier } from '@gm/schema';
+import { isActive } from './lifecycle.ts';
 import { param } from './params.ts';
 import {
   SEASON_POINT_ORDER, WEEKLY_ORDER,
@@ -102,6 +103,7 @@ export function recordStaffSeason(world: LiveWorld): void {
     byTeam.set(j.teamId, e);
   }
   for (const t of world.teams) {
+    if (!isActive(world, t.id)) continue;
     const e = byTeam.get(t.id);
     if (e) world.staffSeasons.push({ seasonYear: world.date.seasonYear, teamId: t.id, headCoachId: e.head, staffIds: e.staff });
     world.rosterSeasons.set(`${world.date.seasonYear}:${t.id}`, [...(world.rosters.get(t.id) ?? [])]);
@@ -140,6 +142,7 @@ export function gamesStep(schedule: SchedulePort, play: GamePort): StepHandler {
     for (const game of games) {
       const comp = world.competitions.find((c) => c.id === game.competitionId);
       if (!comp) throw new Error(`game ${game.gameId}: no competition ${game.competitionId}`);
+      for (const id of [game.homeTeamId, game.awayTeamId]) if (!isActive(world, id)) throw new Error(`game ${game.gameId}: team ${id} does not exist in ${world.date.seasonYear}`);
       const tier = Math.min(ctx.tierOfTeam(game.homeTeamId), ctx.tierOfTeam(game.awayTeamId)) as WorldTier;
       const seedHex = seedToHex(deriveSeed(world.seed, 'game', [world.date.seasonYear, game.gameId]));
       const r = play({ game, seasonYear: world.date.seasonYear, week: world.week, seedHex, ruleSetId: comp.ruleSetId, tier, world });

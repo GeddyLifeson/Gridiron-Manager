@@ -229,4 +229,4 @@ Columns: **Bible** = leaves it implements; **Owns** = paths (tests in the matchi
 
 ## 8. Presentation packages (graphics and sound)
 
-Graphics and sound have their own plan: `plans/presentation-build-plan.md`, packages PV-00 to PV-17 in three waves (PW1 starts now). They extend this file and follow its sections 0 and 2. Models: 14 Opus, 4 Sonnet, no Fable.
+Graphics and sound have their own plan: `plans/presentation-build-plan.md`, packages PV-00 to PV-18 in three waves (PW1 starts now), with a classic 1970s and 1980s look. They extend this file and follow its sections 0 and 2. Models: 15 Opus, 4 Sonnet, no Fable.

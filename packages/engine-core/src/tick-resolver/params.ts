@@ -18,6 +18,14 @@ const ROWS: readonly ParamRow[] = [
   ['interact.wonRecoveryS', 1.5, 0.5, 4, 's', A, 'J6.1.2', 'defender out of the play after A = +1 (pancake or locked out)'],
   ['interact.shedFreeS', 0.6, 0.1, 2, 's', A, 'J6.1.2', 'no blocker can pick him up again this soon after a shed'],
   ['interact.interiorHalfWidthYd', 2.5, 1, 5, 'yd', A, 'J6.2.1', 'rushers inside this lateral distance use the interior row'],
+  // The catch point as bodies (J6.5.1). The chances themselves are the contest file's rows.
+  ['catch.reachPerHeight', 1.3, 1.1, 1.5, 'ratio', A, 'J6.5.1', 'standing reach as a share of height; a ball above it cannot be played'],
+  ['catch.leapPerZYd', 0.1, 0, 0.3, 'yd/z', A, 'J6.5.1', 'reach height gained per z of explosiveness'],
+  ['catch.boundaryRoomYd', 1.5, 0.5, 4, 'yd', A, 'J6.5.1', 'closer to a sideline or end line than this, the feet-in-bounds draw is taken'],
+  ['catch.hitGapYd', 0.2, 0, 1, 'yd', A, 'J6.5.1', 'a defender this close to the receiver, and closing, hits him as the ball arrives'],
+  ['catch.hitClosingYps', 3, 0.5, 8, 'yd/s', A, 'J6.5.1', 'closing speed that makes the contact a hit'],
+  ['catch.movingYps', 2, 0.5, 5, 'yd/s', A, 'J6.5.1', 'receiver faster than this has a direction a defender can trail'],
+  ['catch.knockDownKeep', 0.25, 0, 1, 'ratio', A, 'J6.5.1', 'share of its pace a dropped or broken-up ball keeps'],
   // Kick-play operation (J9.4 to J9.6): values the call content will carry once it has them.
   ['kick.aimLatYd', 12, 0, 25, 'yd', A, 'J9.5.1', 'lateral aim of a directional punt or kickoff'],
   ['kick.kickoffTargetAlongYd', 62, 30, 80, 'yd', A, 'J9.6.1', 'called landing point until the kick call carries one'],
