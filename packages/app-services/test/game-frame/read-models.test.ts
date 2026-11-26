@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest';
 import { readModelSchemaProblems } from '../../src/observer/index.ts';
 import { pregameView, halftimeView, postgameView, type PregameStateInput } from '../../src/read-models/game-frame/index.ts';
 import { isGameFrameCommand, needsWarning } from '../../src/commands/game-frame/index.ts';
-import { GAME_FRAME_SCHEMAS, PregameViewSchema, HalftimeViewSchema, PostgameViewSchema } from './proposed-schemas.ts';
+import { GAME_FRAME_SCHEMAS, PregameViewSchema, HalftimeViewSchema, PostgameViewSchema } from '@gm/schema';
 
 const def = (id: string, opensAt: number, deadline: number, costMin = 1) => ({ id, leaf: 'I1', opensAt, deadline, costMin });
 const pregame: PregameStateInput = {

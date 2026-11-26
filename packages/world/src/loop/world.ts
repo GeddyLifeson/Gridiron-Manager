@@ -2,7 +2,7 @@
 import { seedFromHex, seedToHex, type WorldSeed } from '@gm/engine-core';
 import { awards, compliance, history } from '@gm/league';
 import { cohorts } from '@gm/people';
-import type { EventTypeDef } from '@gm/schema';
+import type { EventTypeDef, PersonRecord } from '@gm/schema';
 import type { PersonNameSource, WorldContent } from '../generation/content.ts';
 import { foundPeople, foundingProblems } from '../generation/founding.ts';
 import { addLostClubs, lostClubCount } from '../generation/lost-clubs.ts';
@@ -64,18 +64,8 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   const fProblems = foundingProblems(setup, content, built, founding, fOpts);
   if (fProblems.length > 0) throw new Error(`founding people are not legal on day one: ${fProblems.slice(0, 5).join('; ')}`);
 
-  // The cohort step emits G-44's types and the compliance step L8.2.5's, so they are added here when the
-  // caller's registry lacks them.
-  const base = input.eventTypes ?? [];
-  const baseIds = new Set(base.map((t) => t.id));
-  // The hall step emits league awards' honour types; they are added the same way.
-  const given = [...base, ...[...cohorts.COHORT_EVENT_TYPES, ...compliance.COMPLIANCE_EVENT_TYPES, ...awards.HONOUR_EVENT_TYPES].filter((t) => !baseIds.has(t.id))];
-  const reg = history.buildTypeRegistry([...given, ...worldEventTypes(given.map((t) => t.id))]);
-  if (!reg.ok) throw new Error(`event types refused: ${reg.problems.join('; ')}`);
   const people = new Map(founding.people.map((p) => [p.id, p]));
-  const logOptions: history.EventLogOptions = {
-    registry: reg.registry, originOf: (id) => people.get(id)?.origin, labelIds: input.labelIds, notabilityOf: input.notabilityOf,
-  };
+  const logOptions = worldLogOptions(people, input);
   const world: LiveWorld = {
     setup, seed, seedStep,
     date: { seasonYear: setup.firstSeasonYear, dayIndex: 0 }, week: 0, dayInWeek: 0,
@@ -97,4 +87,23 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   });
   if (!r.ok) throw new Error(`world_founded refused: ${r.reason}`);
   return world;
+}
+
+/**
+ * The event log options of a world: every bound system's types plus the cohort, compliance, honour and
+ * world types, and the origin lookup over the world's people. Also used to revive a world that crossed a
+ * thread boundary (transfer.ts), so both sides read the log through the same registry.
+ */
+export function worldLogOptions(
+  people: ReadonlyMap<number, PersonRecord>, input: Pick<CreateWorldInput, 'eventTypes' | 'labelIds' | 'notabilityOf'> = {},
+): history.EventLogOptions {
+  // The cohort step emits G-44's types and the compliance step L8.2.5's, so they are added here when the
+  // caller's registry lacks them.
+  const base = input.eventTypes ?? [];
+  const baseIds = new Set(base.map((t) => t.id));
+  // The hall step emits league awards' honour types; they are added the same way.
+  const given = [...base, ...[...cohorts.COHORT_EVENT_TYPES, ...compliance.COMPLIANCE_EVENT_TYPES, ...awards.HONOUR_EVENT_TYPES].filter((t) => !baseIds.has(t.id))];
+  const reg = history.buildTypeRegistry([...given, ...worldEventTypes(given.map((t) => t.id))]);
+  if (!reg.ok) throw new Error(`event types refused: ${reg.problems.join('; ')}`);
+  return { registry: reg.registry, originOf: (id) => people.get(id)?.origin, labelIds: input.labelIds, notabilityOf: input.notabilityOf };
 }

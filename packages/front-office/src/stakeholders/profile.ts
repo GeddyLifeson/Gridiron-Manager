@@ -16,6 +16,7 @@ export function deciderModel(id: string): DeciderModel {
     boosterPerPoint: P(`ownerModel.${id}.boosterPerPoint`),
     presidentChain: P(`ownerModel.${id}.presidentChain`) > 0,
     hazardScale: P(`ownerModel.${id}.hazardScale`),
+    inSeasonScale: P(`ownerModel.${id}.inSeasonScale`),
   };
 }
 

@@ -1483,14 +1483,30 @@
    "value": 0.481,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "regular seasons, 1st and 10, plays of type pass or run (no kneels or spikes)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; pass share 0.481 on 39,645 plays.",
+     "value": 0.481
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -1502,14 +1518,30 @@
    "value": 0.504,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "regular seasons, 1st and 10, dropbacks (pass attempts, sacks, scrambles) over those plus runs",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; dropback share 0.504.",
+     "value": 0.504
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -2047,16 +2079,33 @@
    "value": 26.6,
    "unit": "seconds",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "game-clock seconds from one scrimmage play to the next, quarters 1 to 3, gaps 0 to 80 s, after a pass",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; mean 25.6 s after a pass on the same definition as research/nflverse_baselines.py. The row value 26.6 is NOT reproduced.",
+     "value": 25.6
+    }
+   ],
+   "status": "Conflict",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
-   ]
+   ],
+   "notes": "Conflict entered 2026-11-26: recomputation gives 25.6 s (quarters 1-3) or 24.4 s (all quarters), not 26.6. Pass rate-of-play values 0066/0067 need the schema integrator to re-set the value or name the original definition; the bible figure has no recorded method."
   },
   {
    "id": "F-measured-rate-0067",
@@ -2066,16 +2115,33 @@
    "value": 36.6,
    "unit": "seconds",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "game-clock seconds from one scrimmage play to the next, quarters 1 to 3, gaps 0 to 80 s, after a run",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; mean 35.9 s after a run on the same definition. The row value 36.6 is NOT reproduced.",
+     "value": 35.9
+    }
+   ],
+   "status": "Conflict",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
-   ]
+   ],
+   "notes": "Conflict entered 2026-11-26: recomputation gives 35.9 s (quarters 1-3) or 34.8 s (all quarters), not 36.6. See F-measured-rate-0066."
   },
   {
    "id": "F-measured-rate-0068",
@@ -3388,39 +3454,83 @@
    "id": "F-measured-rate-0111",
    "level": "pro",
    "domain": "measured-rate",
-   "statement": "Completion percentage under pressure: 0.409 (pro, 2022-2024).",
-   "value": 0.409,
+   "statement": "Completion percentage under pressure: 0.481 of attempts (pro, 2023-2024; participation pressure flag, throwaways in).",
+   "value": 0.481,
    "unit": "share",
-   "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "validFor": "2023-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2023 and 2024, github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with research/tuning/trace-tools/real-under-pressure.py (thread \"Tune pressured throws and interceptions\")",
+     "locator": "participation was_pressure true, pass attempts (no sacks, no spikes)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files: completion 48.1% of pressured attempts (clean 70.5%).",
+     "value": 0.481
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Value recomputed on the feed pressure flag over attempts (2023-2024); one source group."
     }
-   ]
+   ],
+   "notes": "2026-11-26: value replaced from 0.409 (base not stated; 40.8% is the completion rate when the quarterback is hit on the play, which may be its origin). The bible's verification pass got 49.0% and 5.93 from the same feed over 2022-2024 (same group, so not a second source). Opta Analyst 2024 (57.3% on adjusted attempts, own flag) uses another definition."
   },
   {
    "id": "F-measured-rate-0112",
    "level": "pro",
    "domain": "measured-rate",
-   "statement": "Yards per attempt under pressure: 3.87 (pro, 2022-2024).",
-   "value": 3.87,
+   "statement": "Yards per attempt under pressure: 5.76 (pro, 2023-2024; participation pressure flag, over attempts, throwaways in).",
+   "value": 5.76,
    "unit": "yards",
-   "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "validFor": "2023-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2023 and 2024, github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with research/tuning/trace-tools/real-under-pressure.py (thread \"Tune pressured throws and interceptions\")",
+     "locator": "participation was_pressure true, pass attempts (no sacks, no spikes)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files: 5.76 yards per pressured attempt (clean 7.53).",
+     "value": 5.76
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Value recomputed on the feed pressure flag over attempts (2023-2024); one source group."
     }
-   ]
+   ],
+   "notes": "2026-11-26: value replaced from 3.87 (not reproduced; 5.93 over 2022-2024 in the verification pass). The bible's verification pass got 49.0% and 5.93 from the same feed over 2022-2024 (same group, so not a second source). Opta Analyst 2024 (57.3% on adjusted attempts, own flag) uses another definition."
   },
   {
    "id": "F-measured-rate-0113",
@@ -3575,14 +3685,30 @@
    "value": 0.045,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "sack share by number_of_pass_rushers",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; 3 rushers 0.045 on 2,812 dropbacks.",
+     "value": 0.045
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -3623,14 +3749,30 @@
    "value": 0.064,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "sack share by number_of_pass_rushers",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; 4 rushers 0.064 on 39,136 dropbacks.",
+     "value": 0.064
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -3671,14 +3813,30 @@
    "value": 0.085,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "sack share by number_of_pass_rushers",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; 5 rushers 0.085 on 11,759 dropbacks.",
+     "value": 0.085
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -3719,14 +3877,30 @@
    "value": 0.1,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "sack share by number_of_pass_rushers",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; 6 rushers 0.100 on 3,068 dropbacks.",
+     "value": 0.1
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -3767,14 +3941,30 @@
    "value": 0.084,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "sack share by number_of_pass_rushers",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; 7 or more rushers 0.084 on 644 dropbacks.",
+     "value": 0.084
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -5393,14 +5583,30 @@
    "value": 0.207,
    "unit": "share",
    "validFor": "2025",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "2025 regular season, kickoff_attempt = 1, touchback share",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; touchbacks 0.207 on 2,785 kickoffs.",
+     "value": 0.207
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
    ]
   },
@@ -8101,16 +8307,33 @@
    "value": 0.3,
    "unit": "per 100 snaps",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
+     "locator": "defensive pre-snap fouls per 100 scrimmage plays, standard deviation over 32 teams",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "quote": "Recomputed 2026-11-26 from the nflverse files; defense mean 0.983, SD 0.293 (rounds to 0.3). Offense side: mean 2.74, SD 0.462.",
+     "value": 0.3
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
     }
-   ]
+   ],
+   "notes": "The row does not say offense or defense; the defense-side SD (0.293) matches 0.3, the offense side (0.462) does not. Row wording should name the side."
   },
   {
    "id": "F-measured-rate-0271",
@@ -8463,9 +8686,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Checked, no source added: official counts include kneel-downs."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Added the NCAA game-level reading to the note; no source attached because kneel-downs cannot be separated."
     }
    ],
-   "notes": "Not confirmed. ESPN box scores (same 5,996 team-games) give 67.24 plays per team-game and NCAA.com season totals (all FBS games) give 66.85, both counting rushing attempts plus pass attempts with kneel-downs. The same definition recomputed from cfbfastR gives 66.0 to 66.2 per season for 2023-2025, so the play-by-play is about 0.5 to 0.9 plays per game short of both publishers. Excluding kneel-downs and spikes (about 0.5 per team game) gives 65.4 to 65.7. Neither publisher separates kneel-downs, so the 66.10 value has no independent source."
+   "notes": "Not confirmed. ESPN box scores (same 5,996 team-games) give 67.24 plays per team-game and NCAA.com season totals (all FBS games) give 66.85, both counting rushing attempts plus pass attempts with kneel-downs. The same definition recomputed from cfbfastR gives 66.0 to 66.2 per season for 2023-2025, so the play-by-play is about 0.5 to 0.9 plays per game short of both publishers. Excluding kneel-downs and spikes (about 0.5 per team game) gives 65.4 to 65.7. Neither publisher separates kneel-downs, so the 66.10 value has no independent source. Update: the NCAA game feed for the same FBS-against-FBS games reads 68.62 (2022) and 66.87 (2023) plays per team game, equal to the ESPN box scores; the 2024 feed has unusable rushing attempts. cfbfastR on the same definition reads 67.65 and 66.00."
   },
   {
    "id": "F-measured-rate-0283",
@@ -9534,7 +9762,7 @@
      "locator": "research/college/verify-targets-2026-11-26/results.md, espn_boxscore_pull.js; 5,996 team-games (same count as the baseline); completions 113,977 over attempts 186,561 = 0.6109 against 0.6097 here, within the 3 percent tolerance, so no value is attached. Independence from the cfbfastR play-by-play not proven (both pass through ESPN game ids)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "espn-box-scores",
+     "independenceGroup": "ncaa-stat-feed",
      "primary": false
     }
    ],
@@ -9550,6 +9778,11 @@
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "ESPN box scores for the same 5,996 team-games give 61.09 percent completion against 60.97 here. Second publisher; a third (NCAA game-level) was not reachable."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Regrouped: NCAA.com game statistics and ESPN box scores carry the same numbers (plays per game 68.616 against 68.616 for 2022), so they are one independence group, not two."
     }
    ]
   },
@@ -9663,9 +9896,18 @@
      "independenceGroup": "cfbfastr-pbp",
      "primary": false,
      "value": 0.0602
+    },
+    {
+     "citation": "NCAA.com game centre team statistics (NCAA_GetGamecenterTeamStatsFootballById_web), every FBS against FBS regular-season game 2022 to 2024, read in the PC browser; computed by the project",
+     "locator": "research/college/verify-targets-2026-11-26/results.md, ncaa_gamelevel_pull.js; 9,521 sacks over 139,883 attempts plus sacks = 6.37 percent (6.35, 6.45, 6.32 by season) against 6.05 percent for the baseline on 2022-2024; 2025 has no NCAA game ids",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ncaa-stat-feed",
+     "primary": false,
+     "value": 0.0637
     }
    ],
-   "status": "1 of 3",
+   "status": "Conflict",
    "usedBy": [],
    "statusHistory": [
     {
@@ -9677,9 +9919,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Checked, no source added: scope differs."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "NCAA game-level sacks over attempts plus sacks read 6.37 percent over the same games; the play-by-play baseline reads about 6.0, 5 percent lower."
     }
    ],
-   "notes": "NCAA.com all-FBS season totals (sacks over attempts plus sacks) give 6.35, 6.16 and 5.92 percent for 2023-2025; ESPN season totals 6.31, 6.16 and 5.97. cfbfastR at that scope gives 5.99, 5.83 and 5.80, about 0.2 to 0.4 points lower (the play-by-play counts about 6 percent fewer sacks). No publisher gives an FBS-against-FBS figure."
+   "notes": "NCAA.com all-FBS season totals (sacks over attempts plus sacks) give 6.35, 6.16 and 5.92 percent for 2023-2025; ESPN season totals 6.31, 6.16 and 5.97. cfbfastR at that scope gives 5.99, 5.83 and 5.80, about 0.2 to 0.4 points lower (the play-by-play counts about 6 percent fewer sacks). No publisher gives an FBS-against-FBS figure. The NCAA game feed (same games, 2022-2024) reads 6.37 percent; NCAA.com and ESPN season totals read 5.9 to 6.4. The baseline sits low because the play-by-play counts about 6 percent fewer sacks."
   },
   {
    "id": "F-measured-rate-0324",
@@ -9712,9 +9959,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Checked, no source added: definition and scope differ."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Added the NCAA game-level reading to the note; no source attached because the definition differs."
     }
    ],
-   "notes": "Publishers count sacks as rushes. NCAA.com all-FBS 2023-2025 gives 4.39 per carry with sacks in and 5.04 with sacks taken out (kneel-downs still in); ESPN FBS-against-FBS box scores give 4.28 with sacks in. cfbfastR with sacks in gives 4.37 to 4.50. The publishers sit 3 to 5 percent below the play-by-play on the same definition, and none excludes kneel-downs, so 5.1491 has no independent source."
+   "notes": "Publishers count sacks as rushes. NCAA.com all-FBS 2023-2025 gives 4.39 per carry with sacks in and 5.04 with sacks taken out (kneel-downs still in); ESPN FBS-against-FBS box scores give 4.28 with sacks in. cfbfastR with sacks in gives 4.37 to 4.50. The publishers sit 3 to 5 percent below the play-by-play on the same definition, and none excludes kneel-downs, so 5.1491 has no independent source. Update: the NCAA game feed for the same games (sacks counted as rushes) reads 4.254 (2022) and 4.236 (2023) yards per rush; cfbfastR on that definition reads 4.480 and 4.461, about 5 percent higher."
   },
   {
    "id": "F-measured-rate-0325",
@@ -10416,26 +10668,17 @@
    "id": "F-measured-rate-0349",
    "level": "college",
    "domain": "measured-rate",
-   "statement": "Accepted fouls per team per game: 5.1785 (college, 2022-2025).",
-   "value": 5.1785,
+   "statement": "Accepted fouls per team per game: 5.9571 (college, publishers' box-score count, FBS against FBS regular season 2022-2025).",
+   "value": 5.9571,
    "unit": "count",
    "validFor": "2022-2025",
    "sources": [
-    {
-     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
-     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
-     "dateRead": "2026-11-25",
-     "howRead": "dataset computed",
-     "independenceGroup": "cfbfastr-pbp",
-     "primary": false,
-     "value": 5.1785
-    },
     {
      "citation": "ESPN college football game box scores (summary pages), every FBS against FBS regular-season game 2022 to 2025, read in the PC browser; computed by the project",
      "locator": "research/college/verify-targets-2026-11-26/results.md; 35,719 penalties over 5,996 team-games = 5.957 per team-game (6.01, 5.84, 5.97, 6.01 by season)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "espn-box-scores",
+     "independenceGroup": "ncaa-stat-feed",
      "primary": false,
      "value": 5.9571
     },
@@ -10444,12 +10687,11 @@
      "locator": "research/college/verify-targets-2026-11-26/results.md; 30,223 penalties over 5,083 team-games = 5.946 per team-game; scope is all FBS games including FCS opponents and bowls, 2023-2025",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "ncaa-team-stats",
-     "primary": false,
-     "value": 5.9462
+     "independenceGroup": "ncaa-stat-feed",
+     "primary": false
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
@@ -10461,34 +10703,40 @@
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "Two publishers agree with each other near 5.95 per team-game; the cfbfastR count (5.18) is 13 percent lower. Cause not diagnosed (offsetting or no-play fouls missing from the play-by-play is the first suspect)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Regrouped: NCAA.com game statistics and ESPN box scores carry the same numbers (plays per game 68.616 against 68.616 for 2022), so they are one independence group, not two. The Conflict stands."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Diagnosis added: the baseline filter explains about 0.4 of the 0.7 gap."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Integrator, per the standing ruling to use the publishers' count (5.95) for the college penalty target: the row now holds the ESPN box-score value. The cfbfastR play-by-play figure (5.1785) measures a filtered subset and is kept in the notes, not as a source; NCAA.com is the same independence group and a wider scope, so it carries no value. One independent group."
     }
    ],
-   "notes": "Two independent publishers read 5.95 to 5.96 accepted penalties per team game; the cfbfastR play-by-play count is 13 percent lower. Do not certify until the cause is found."
+   "notes": "Two independent publishers read 5.95 to 5.96 accepted penalties per team game; the cfbfastR play-by-play count is 13 percent lower. Do not certify until the cause is found. Recounting the baseline play-by-play (2024): the baseline filter gives 5.27; every flagged play 5.69; every foul mention on accepted-flag plays 5.65; the publishers 5.98. About 0.4 of the gap is the baseline's own filter, about 5 percent is fouls the play-by-play never records. Integrator 2026-11-26: the cfbfastR play-by-play figure 5.1785 (bible/_sources/calibration.college_top.v1.json, research/college/college_baselines.py) undercounts; it is no longer a source of this row."
   },
   {
    "id": "F-measured-rate-0350",
    "level": "college",
    "domain": "measured-rate",
-   "statement": "Foul yards per team per game: 42.7185 (college, 2022-2025).",
-   "value": 42.7185,
+   "statement": "Foul yards per team per game: 52.221 (college, publishers' box-score count, FBS against FBS regular season 2022-2025).",
+   "value": 52.221,
    "unit": "yards",
    "validFor": "2022-2025",
    "sources": [
-    {
-     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
-     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
-     "dateRead": "2026-11-25",
-     "howRead": "dataset computed",
-     "independenceGroup": "cfbfastr-pbp",
-     "primary": false,
-     "value": 42.7185
-    },
     {
      "citation": "ESPN college football game box scores (summary pages), every FBS against FBS regular-season game 2022 to 2025, read in the PC browser; computed by the project",
      "locator": "research/college/verify-targets-2026-11-26/results.md; 313,117 penalty yards over 5,996 team-games = 52.22 per team-game",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "espn-box-scores",
+     "independenceGroup": "ncaa-stat-feed",
      "primary": false,
      "value": 52.221
     },
@@ -10497,12 +10745,11 @@
      "locator": "research/college/verify-targets-2026-11-26/results.md; 265,780 yards over 5,083 team-games = 52.29 per team-game; scope is all FBS games including FCS opponents and bowls, 2023-2025",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "ncaa-team-stats",
-     "primary": false,
-     "value": 52.2899
+     "independenceGroup": "ncaa-stat-feed",
+     "primary": false
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
@@ -10514,9 +10761,19 @@
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "ESPN and NCAA.com agree near 52.2 yards per team-game; the cfbfastR sum (42.72) is 18 percent lower."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Regrouped: NCAA.com game statistics and ESPN box scores carry the same numbers (plays per game 68.616 against 68.616 for 2022), so they are one independence group, not two. The Conflict stands."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Integrator, per the standing ruling to use the publishers' count (52.2) for the college penalty target: the row now holds the ESPN box-score value. The cfbfastR play-by-play figure (42.7185) measures a filtered subset and is kept in the notes, not as a source; NCAA.com is the same independence group and a wider scope, so it carries no value. One independent group."
     }
    ],
-   "notes": "Two independent publishers read 52.2 to 52.3 penalty yards per team game; the cfbfastR play-by-play sum is 18 percent lower. Do not certify until the cause is found."
+   "notes": "Two independent publishers read 52.2 to 52.3 penalty yards per team game; the cfbfastR play-by-play sum is 18 percent lower. Do not certify until the cause is found. Integrator 2026-11-26: the cfbfastR play-by-play figure 42.7185 (bible/_sources/calibration.college_top.v1.json, research/college/college_baselines.py) undercounts; it is no longer a source of this row."
   },
   {
    "id": "F-measured-rate-0351",
