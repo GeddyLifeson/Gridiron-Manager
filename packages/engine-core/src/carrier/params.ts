@@ -124,7 +124,9 @@ const ROWS = [
   // Covering the ball costs him the speed of a two-hand carry.
   ['secure.instructionSpeed', 0.97, 0.9, 1, 'share of speed', 'assumption', 'J8.4.1', SECURE],
   // A hit counts as the "typical" hit of J2.6.1 at this energy (reduced mass in lb times closing speed squared).
-  ['secure.typicalHitEnergy', 4000, 1000, 10000, 'lb yd2/s2', 'assumption', 'J6.7.1', SECURE],
+  // Typical hit = typical reduced mass x typical closing speed squared x kinematics.hitEnergyScale (same rule and values as WP-22's energy.typical*).
+  ['secure.typicalReducedLb', 102, 60, 160, 'lb', 'assumption', 'J2.6.1', SECURE],
+  ['secure.typicalClosingYps', 5, 3, 8, 'yd/s', 'assumption', 'J2.6.1', SECURE],
   ['secure.maxHitEnergyRel', 4, 2, 8, 'ratio', 'assumption', 'J6.7.1', SECURE],
 
   // J8.4.2 situation rules
