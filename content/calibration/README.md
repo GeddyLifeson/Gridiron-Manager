@@ -2,7 +2,7 @@
 
 Files:
 - `targets.pro_2026.json`: 287 rows from bible J15 and Q2.1.1. Certify tier only on the Verified rows: points per team, total points, and the three rusher-count orderings.
-- `targets.college_2026.json`: 86 rows from T12 (`bible/_sources/calibration.college_top.v1.json` and the T12 tables). No college row is filled from a pro value and none is certify. The 11 open rows of T12.7.1 have no fact row and print MISSING SOURCE.
+- `targets.college_2026.json`: 87 rows (86 from T12, plus `score.homeMargin.equalStrength`, 2026-11-26) (`bible/_sources/calibration.college_top.v1.json` and the T12 tables). No college row is filled from a pro value and none is certify. The 11 open rows of T12.7.1 have no fact row and print MISSING SOURCE.
 - `facts/measured-rate.json` (repo root): the fact rows behind both files; status is computed from sources (Q6.1.2).
 - `authoring/`: the script that wrote all three files. Regenerate with `python3 content/calibration/authoring/college.py` (it also rewrites the pro file from `pro.py`); it asserts each row's expected status.
 
