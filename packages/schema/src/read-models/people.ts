@@ -1,12 +1,12 @@
-// DRAFT for @gm/schema (CR-G72-1): the zod schemas of the people and office read models, with a visibility
-// class on every field. app-services may not import zod (P1.2.2), so the specs take these as parameters;
-// the integrator moves this file into @gm/schema unchanged. Classes:
+// The zod schemas of the people and office read models (G-72), with a visibility class on every field.
+// Moved here unchanged from app-services/test/read-models/people/data-schema.ts (CR-G72-1); registered in
+// READ_MODELS as playerCard, rosterTable, staff, coachCard, lockerRoom, ownerView and home. Classes:
 //  public            names, positions, roster lists, report designations, measured values, seats
 //  own_team          the club's contract lines, notes, inbox, requests to the general manager
 //  observer_estimate a grade a staff member assigned, a staff read in words (it can be wrong)
 // Nothing is truth: the registry refuses a schema with a truth field.
 import { z } from 'zod';
-import { pub, own, est } from '@gm/schema';
+import { pub, own, est } from '../field.ts';
 
 const id = () => pub(z.number().int(), 'id');
 const int = () => z.number().int();

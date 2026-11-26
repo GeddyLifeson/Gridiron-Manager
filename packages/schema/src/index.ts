@@ -12,6 +12,7 @@ export * from './sim/index.ts';
 export * from './probability.ts';
 // Read-model data schemas moved in from app-services (CR-G68-S1 and later).
 export * from './read-models/gameplan.ts';
+export * from './read-models/people.ts';
 // World contract for the game build (plans/game-build-plan.md, G-00). Decisions: src/world/DECISIONS.md.
 export * from './world/index.ts';
 // zod for packages that may import only this entry point (app-services read-model and command schemas, CR-G63-0).

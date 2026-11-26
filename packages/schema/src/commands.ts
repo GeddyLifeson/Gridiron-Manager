@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { pub, own } from './field.ts';
 import { Calendar, Level } from './entities.ts';
 import { GameplanData } from './read-models/gameplan.ts';
+import { PlayerCardData, RosterTableData, StaffData, CoachCardData, LockerRoomData, OwnerViewData, HomeData } from './read-models/people.ts';
 
 export const Actor = z.object({
   personId: pub(z.number().int().positive(), 'id').nullable(),
@@ -32,6 +33,28 @@ export const AdvanceDayPayload = z.object({ days: pub(z.number().int().min(1).ma
 
 export const RenameCompetitionPayload = z.object({ competitionId: pub(z.number().int().positive(), 'id'), name: pub(z.string().min(1).max(60)) }).strict();
 
+// Office and people screen commands (G-72, CR-G72-3). app-services builds the requests
+// (commands/home, commands/people); these are their payloads. An inbox answer uses the command type the
+// item names (InboxItem.answerCommand), registered by the system that owns the item.
+const zPersonId = () => pub(z.number().int().positive(), 'id');
+const zDay = () => pub(z.object({ seasonYear: pub(z.number().int(), 'season_year'), dayIndex: pub(z.number().int().min(0), 'day_index') }).strict());
+
+/** Advance the calendar to a moment the office screen offered (O1.2.3). Refused past a must deadline. */
+export const AdvanceTimePayload = z.object({
+  to: pub(z.object({ date: zDay(), minute: pub(z.number().int().min(0).max(1439), 'min') }).strict()),
+  target: pub(z.enum(['next_block', 'end_of_day', 'next_must', 'game_day'])),
+}).strict();
+/** Mark an inbox note read (O1.2.2). */
+export const MarkInboxReadPayload = z.object({ itemId: pub(z.number().int().positive(), 'id') }).strict();
+/** Spend staff hours re-evaluating a player, one attribute group or all (O4.1.2; M3, E7). */
+export const RequestEvaluationPayload = z.object({ personId: zPersonId(), clubId: zPersonId(), group: pub(z.string().min(1)).nullable() }).strict();
+/** A note on a player card (O4.1.1). */
+export const WriteNotePayload = z.object({ personId: zPersonId(), text: own(z.string().min(1).max(2000)) }).strict();
+/** Ask for a meeting with a person (O4.1.5, O4.3.1, O4.4.1, O4.5.1; L1). */
+export const RequestMeetingPayload = z.object({ personId: zPersonId(), subjectKey: pub(z.string().min(1)) }).strict();
+/** A request to the general manager for a move he holds (O4.5.1; L5.2.1). */
+export const GmRequestPayload = z.object({ moveKey: pub(z.string().min(1)), personId: zPersonId().nullable(), toPersonId: zPersonId() }).strict();
+
 export interface CommandSpec {
   type: string;
   payload: z.ZodType;
@@ -46,6 +69,12 @@ export const COMMANDS: readonly CommandSpec[] = [
   { type: 'CreateWorld', payload: CreateWorldPayload, task: 'system.create_world', undoable: false, allowedInCertified: true },
   { type: 'AdvanceDay', payload: AdvanceDayPayload, task: 'system.advance_time', undoable: false, allowedInCertified: true },
   { type: 'RenameCompetition', payload: RenameCompetitionPayload, task: 'system.edit_world', undoable: true, allowedInCertified: false },
+  { type: 'AdvanceTime', payload: AdvanceTimePayload, task: 'system.advance_time', undoable: false, allowedInCertified: true },
+  { type: 'MarkInboxRead', payload: MarkInboxReadPayload, task: 'office.inbox', undoable: true, allowedInCertified: true },
+  { type: 'RequestEvaluation', payload: RequestEvaluationPayload, task: 'evaluation.reevaluate', undoable: false, allowedInCertified: true },
+  { type: 'WriteNote', payload: WriteNotePayload, task: 'evaluation.notes', undoable: true, allowedInCertified: true },
+  { type: 'RequestMeeting', payload: RequestMeetingPayload, task: 'meeting.request', undoable: false, allowedInCertified: true },
+  { type: 'GmRequest', payload: GmRequestPayload, task: 'boss.request', undoable: false, allowedInCertified: true },
 ];
 
 export function commandSpec(type: string): CommandSpec | undefined {
@@ -92,4 +121,11 @@ export type WorldSummaryModel = z.infer<typeof WorldSummaryModel>;
 export const READ_MODELS: Record<string, z.ZodType> = {
   worldSummary: WorldSummaryModel,
   gameplan: readModelOf(GameplanData),
+  playerCard: readModelOf(PlayerCardData),
+  rosterTable: readModelOf(RosterTableData),
+  staff: readModelOf(StaffData),
+  coachCard: readModelOf(CoachCardData),
+  lockerRoom: readModelOf(LockerRoomData),
+  ownerView: readModelOf(OwnerViewData),
+  home: readModelOf(HomeData),
 };
