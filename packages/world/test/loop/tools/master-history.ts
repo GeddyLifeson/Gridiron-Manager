@@ -10,9 +10,10 @@
 // in the TEST DOUBLE game port for a quick dry run of the whole pipeline; every output then says so, and
 // such a run must never be baked. --seasons shortens the span (it always ends the season before today).
 //
-// Output folder (one file per kind, written as the run goes, so a stopped run keeps what it reached):
+// Output folder (one file per kind, all rewritten after every season, so a stopped run keeps what it reached):
 //   progress.jsonl  one line per season: summary, step times, heap, people, active teams, hall members
-//   run.json        setup, seed, world code, steps left unbound, validation, final world hash, totals
+//   run.json        setup, seed, world code, steps left unbound, validation, world hash, totals, status
+//                   (running with seasonsRun after each season; stopped or finished at the end)
 //   teams.json      every team: identity, competition, founded, folded
 //   hall.json       hall members and every ballot
 //   tenures.json    completed head coach tenures, and staff seasons per team
@@ -111,8 +112,29 @@ const head = {
 write('run.json', { ...head, status: 'running' });
 console.log(JSON.stringify(head));
 
-// ---------- the run ----------
+// ---------- the outputs ----------
+// Every file is rewritten after each season, so a run stopped at any point (Ctrl+C, a crash, a power cut
+// between seasons) leaves a complete folder for the seasons it reached: run.json then says "running" with
+// seasonsRun, and the bake treats it as provisional.
 const t0 = performance.now();
+const nameOf = (id: number): string => { const p = w.people.get(id); return p ? `${p.name.first} ${p.name.last}` : `#${id}`; };
+function snapshot(status: 'running' | 'stopped' | 'finished', seasonsRun: number): { worldHash: string; failures: readonly string[] } {
+  write('teams.json', w.teams.map((t) => ({
+    id: t.id, name: t.identity.name, abbreviation: t.identity.abbreviation, competitionId: t.competitionId,
+    founded: w.teamSpans.get(t.id)?.founded ?? s.firstSeasonYear, folded: w.teamSpans.get(t.id)?.folded ?? null,
+  })));
+  write('hall.json', { members: w.hall.members.map((m) => ({ ...m, name: nameOf(m.personId) })), ballots: w.hall.ballots });
+  write('tenures.json', { completedHeadCoachTenures: loop.headCoachTenures(w.staffSeasons), staffSeasons: w.staffSeasons.length });
+  const validation = loop.validateHistory(w);
+  const worldHash = loop.worldHash(w);
+  write('run.json', {
+    ...head, status, seasonsRun, totalSeconds: Math.round((performance.now() - t0) / 1000),
+    validation, worldHash, peopleAtEnd: w.people.size, hallMembers: w.hall.members.length,
+  });
+  return { worldHash, failures: validation.failures };
+}
+
+// ---------- the run ----------
 let last = t0;
 const report = loop.runHistory(w, systems, {
   seasons: SEASONS, schedule,
@@ -127,24 +149,14 @@ const report = loop.runHistory(w, systems, {
     };
     appendFileSync(join(OUT, 'progress.jsonl'), `${JSON.stringify(row)}\n`);
     if (done % 5 === 0 || done === SEASONS) console.log(JSON.stringify({ season: row.season, done, ms: row.ms, heapMB: row.heapMB, people: row.people, hall: row.hallMembers }));
+    snapshot('running', done);
     for (const k of Object.keys(timing)) timing[k] = 0;
-    last = now;
+    last = performance.now();
   },
 });
 const totalS = (performance.now() - t0) / 1000;
 
-// ---------- the outputs ----------
-write('teams.json', w.teams.map((t) => ({
-  id: t.id, name: t.identity.name, abbreviation: t.identity.abbreviation, competitionId: t.competitionId,
-  founded: w.teamSpans.get(t.id)?.founded ?? s.firstSeasonYear, folded: w.teamSpans.get(t.id)?.folded ?? null,
-})));
-const nameOf = (id: number): string => { const p = w.people.get(id); return p ? `${p.name.first} ${p.name.last}` : `#${id}`; };
-write('hall.json', { members: w.hall.members.map((m) => ({ ...m, name: nameOf(m.personId) })), ballots: w.hall.ballots });
-write('tenures.json', { completedHeadCoachTenures: loop.headCoachTenures(w.staffSeasons), staffSeasons: w.staffSeasons.length });
-const validation = loop.validateHistory(w);
-write('run.json', {
-  ...head, status: report.stoppedEarly ? 'stopped' : 'finished', seasonsRun: report.seasonsRun, totalSeconds: Math.round(totalS),
-  validation, worldHash: loop.worldHash(w), peopleAtEnd: w.people.size, hallMembers: w.hall.members.length,
-});
-console.log(JSON.stringify({ finished: report.seasonsRun, totalS: Math.round(totalS), worldHash: loop.worldHash(w), failures: validation.failures.slice(0, 5) }));
+// ---------- the end ----------
+const final = snapshot(report.stoppedEarly ? 'stopped' : 'finished', report.seasonsRun);
+console.log(JSON.stringify({ finished: report.seasonsRun, totalS: Math.round(totalS), worldHash: final.worldHash, failures: final.failures.slice(0, 5) }));
 if (pool) await pool.close();
