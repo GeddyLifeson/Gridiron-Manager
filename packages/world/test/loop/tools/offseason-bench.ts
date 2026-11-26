@@ -6,6 +6,9 @@
 // --workers=N runs the development years on N worker threads plus this one (the headless pool); the hashes
 // must not change.
 // --recruiting=1 adds the off-screen T4 recruiting weeks (and its signed letters) to the moves step.
+// --sizes=1 adds the entry count of each part of the recruiting state per season (to see what grows).
+// --hash=0 skips the deep hash (timings only). If the hash cannot be built, the line names the parts of the
+// world that are largest instead, so the cause shows.
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort, testSchedule } from '../../fixtures.ts';
 import { calendar } from '@gm/league';
 import * as turnover from '../../../src/turnover/index.ts';
@@ -17,6 +20,8 @@ const SIZE = arg('size', 'small') as generation.SizePreset;
 const SEED = arg('seed', '0000000000001869');
 const RECRUITING = arg('recruiting', '0') === '1';
 const WORKERS = Number(arg('workers', '0'));
+const HASH = arg('hash', '1') === '1';
+const SIZES = arg('sizes', '0') === '1';
 
 // The pool lives in @gm/headless, which the world may not import: loaded by path, as master-history.ts does.
 type Pool = { run(jobs: readonly unknown[]): unknown[]; close(): Promise<void> };
@@ -65,6 +70,25 @@ const systems = loop.systemsFrom({
     : timed('rosterMoves', turnover.rosterMovesStep(binding)))),
 }, 'offseason bench: not bound');
 
+/** The deep hash, or the sizes of the world's largest parts when the canonical text is too long to build. */
+function safeHash(): string {
+  try { return loop.worldHash(w); } catch (e) {
+    if (!(e instanceof RangeError)) throw e;
+    const size = (v: unknown): number => { try { return JSON.stringify(v, (_k, x) => (x instanceof Map ? [...x] : x instanceof Set ? [...x] : x))?.length ?? 0; } catch { return -1; } };
+    const parts: Record<string, number> = {};
+    for (const [k, v] of w.systemState) parts[`systemState.${k}`] = size(v);
+    for (const k of ['rosters', 'pools', 'status', 'tiers', 'nextIds'] as const) parts[k] = size(w[k]);
+    return `too long to hash; sizes ${JSON.stringify(parts)}`;
+  }
+}
+
+/** Entry count of each part of the recruiting state (arrays by length, records by key count). */
+function recruitingCounts(): Record<string, number> {
+  const st = (w.systemState.get(rec.RECRUITING_KEY) as rec.WorldRecruiting | undefined)?.state;
+  if (!st) return {};
+  return Object.fromEntries(Object.entries(st).map(([k, v]) => [k, Array.isArray(v) ? v.length : v !== null && typeof v === 'object' ? Object.keys(v).length : 1]));
+}
+
 let last = performance.now();
 loop.runHistory(w, systems, {
   seasons: SEASONS, schedule: testSchedule,
@@ -72,7 +96,7 @@ loop.runHistory(w, systems, {
     const now = performance.now();
     console.log(JSON.stringify({
       season: summary.seasonYear, done, ms: Math.round(now - last), steps: Object.fromEntries(Object.entries(timing).map(([k, v]) => [k, Math.round(v)])),
-      people: w.people.size, hash: loop.worldHash(w),
+      people: w.people.size, hash: HASH ? safeHash() : 'off', ...(SIZES ? { recruitingCounts: recruitingCounts() } : {}),
     }));
     for (const k of Object.keys(timing)) timing[k] = 0;
     last = performance.now();
