@@ -26,17 +26,6 @@ const ROWS: readonly Row[] = [
   ['college.offersPerSignee', 8.5, 3, 20, 'offers per place', 'bible', 'K7.5.1', '8 to 9 at power programs (2 of 3); other tiers have no source and use the same value'],
   // TO-08: a recruit takes the offer from the program with the highest prestige plus his own noise, until the T4 recruiting week is bound.
   ['recruit.prestigeNoiseSd', 0.15, 0, 1, 'prestige units', 'assumption', 'T4.4', 'Stand-in for T4 prospect preferences (distance, playing time, relationships). No source read'],
-  // TO-11 to TO-16: off-screen coach turnover (E2.3.4, E4.3, K7.6.1, K8.4.2). All Assumptions: no source read.
-  ['coach.recordSeasons', 3, 1, 10, 'seasons', 'assumption', 'K8.4.2', "Seasons of a coach's public record (his teams' win share) a hiring side reads. No source read"],
-  ['coach.tieSeasons', 5, 1, 20, 'seasons', 'assumption', 'K7.6.1', 'Seasons back a shared staff still counts as working together (familiarity, followers). No source read'],
-  ['coach.tiePerSeason', 25, 1, 100, 'edge points', 'assumption', 'K7.6.1', 'Tie strength per season on the same staff, capped at 100, until X7 edges are bound. No source read'],
-  ['coach.headMinRung', 6, 0, 9, 'rung', 'assumption', 'K8.4.2', 'Lowest rung on the head coach long list (assistant head coach and up). No source read'],
-  ['coach.stepsBelow', 2, 0, 5, 'rungs', 'assumption', 'K7.6.1', 'An assistant opening considers people whose last rung is at most this far below it (market value paths, E2.4.1). No source read'],
-  ['coach.followMinRung', 5, 0, 9, 'rung', 'assumption', 'E2.3.4', 'A new head coach offers chairs from this rung up to former colleagues (rule 2). No source read'],
-  ['coach.unitBelowPoints', 3, 0, 14, 'points per game', 'assumption', 'K7.6.1', "A coordinator's unit is below the AI head coach's standard when it is this far worse than the competition's mean (points scored or allowed). No source read"],
-  ['coach.aliveWinShare', 0.5, 0, 1, 'win share', 'assumption', 'E4.3.3', 'A team that can still finish at this win share is alive for the postseason. No source read'],
-  ['coach.formerPlayerMaxAge', 35, 22, 60, 'years', 'assumption', 'E2.1.1', 'Oldest former player who starts at rungs 0 to 2 when the coach pools run dry. No source read'],
-  ['coach.needsMiddle', 0.5, 0, 1, 'weight', 'assumption', 'L4.2.3', 'X5 need weights of an off-screen candidate until needs are bound (every need at the middle). No source read'],
 ];
 
 export const PARAMS: ParamFile = {

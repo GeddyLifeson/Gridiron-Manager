@@ -44,32 +44,6 @@ export interface ProgramFacts {
   headCoachOn(teamId: number, day: number): number;
   /** Losses in a row now (T4.5.2 multiplier). */
   lossStreak(teamId: number): number;
-  /**
-   * The roster limit the program's class must fit under (T5.1.1), or undefined for none. When given, the
-   * default class plan scales the T4.8.1 shape to it and never plans more places than the limit less the
-   * returning players (T4.8.1: programs sign within their roster room).
-   */
-  rosterLimit?(teamId: number): number | undefined;
-}
-
-/** What a school is to one prospect on the facts alone: every preference score but the relationship (T4.1.1). */
-export interface FitScores {
-  readonly distance: number; readonly playingTime: number; readonly prestige: number; readonly academics: number;
-  readonly money: number; readonly schemeFit: number; readonly favourite: number;
-}
-
-/**
- * Fact scores already worked out, by school tie. Valid only while `ProgramFacts` gives the same answers, so
- * it lives for one call of `recruitingWeek` (nothing else runs inside it) and is never saved.
- */
-export interface FactsMemo {
-  readonly scores: Map<object, FitScores>;
-  /** True interest by school tie, with what it was worked out from (interest.ts checks it before use). */
-  readonly interest: Map<object, InterestMemo>;
-}
-export interface InterestMemo {
-  impression: number; recruiterId: number | null; hcInvolvement: number; headCoachId: number;
-  recruiterStamp: number; headCoachStamp: number; value: number;
 }
 
 /** Everything a recruiting step needs besides the state. */
@@ -80,8 +54,6 @@ export interface RecruitingContext {
   readonly programs: ProgramFacts;
   /** Stream `recruiting` (J13 scope stream). */
   readonly rng: StreamFor;
-  /** Set by `recruitingWeek` for its own run. A caller leaves it out. */
-  readonly memo?: FactsMemo;
 }
 
 export function key2(a: number, b: number): string { return `${a}:${b}`; }

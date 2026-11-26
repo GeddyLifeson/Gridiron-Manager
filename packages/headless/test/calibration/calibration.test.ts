@@ -51,12 +51,12 @@ describe('target files (J15.1.1, Q2.1.1, Q6)', () => {
       'pressure.byRushers.sackRate.order3to5', 'pressure.byRushers.sackRate.order4to6']);
   });
 
-  it('no college row is filled from a pro value and only Verified rows certify', () => {
+  it('no college row is filled from a pro value and none is certify', () => {
     const l = loadTargets(ROOT, 'college_2026');
     const byId = new Map(facts.map((f) => [f.id, f]));
     for (const t of l.file.targets) {
       expect(t.ruleSetId).toBe('college_2026');
-      if (t.tier === 'certify') expect(byId.get(t.factId!)!.status, t.id).toBe('Verified');
+      expect(t.tier).not.toBe('certify');
       if (t.factId) expect(byId.get(t.factId)!.level).toBe('college');
       else { expect(t.value).toEqual([]); expect(t.tier).toBe('watch'); }
     }
@@ -234,7 +234,7 @@ describe('report and gate (J15.10.1, Q1.7.2 on fixture summaries)', () => {
       expect(rep.rows.length).toBe(rep.counts.rows);
       expect(rep.counts.measured + rep.counts.notMeasurable + rep.counts.missingSource + rep.rows.filter((r) => r.state === 'no_events').length).toBe(rep.counts.rows);
       for (const r of rep.rows) if (r.status !== 'Verified') expect(r.provisional).toBe(true);
-      if (id === 'college_2026') expect(rep.gate).not.toBe('no_certify_rows');
+      if (id === 'college_2026') expect(rep.gate).toBe('no_certify_rows');
     }
   });
 });

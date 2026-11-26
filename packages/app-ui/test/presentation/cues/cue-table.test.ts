@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  CUE_TABLE, FEED_CADENCE_COUNTS, FEED_CAMERA_KINDS, FEED_KICK_KINDS, FEED_CONTACT_TIERS, FEED_RELAY_OUTCOMES, FEED_RULINGS,
+  CUE_TABLE, FEED_CADENCE_COUNTS, FEED_CAMERA_KINDS, FEED_CONTACT_TIERS, FEED_RELAY_OUTCOMES, FEED_RULINGS,
   cueRow, cueRowId, scheduleLane, type CueRow, type CueSound,
 } from '../../../src/presentation/cues/cue-table.ts';
 
@@ -17,13 +17,12 @@ describe('cue table shape (PV-02)', () => {
   it('has one row for every presentation feed cue kind', () => {
     const want = [
       ...FEED_CAMERA_KINDS.map((k) => cueRowId(k)),
-      ...FEED_KICK_KINDS.map((k) => cueRowId(k)),
       ...FEED_CONTACT_TIERS.map((t) => cueRowId('contact', t)),
       ...FEED_CADENCE_COUNTS.map((c) => cueRowId('cadence', c)),
       ...FEED_RELAY_OUTCOMES.map((o) => cueRowId('relay', o)),
       ...FEED_RULINGS.map((g) => cueRowId('ruling', g)),
     ];
-    expect(want).toHaveLength(37);
+    expect(want).toHaveLength(35);
     for (const id of want) expect(cueRow(id), id).toBeDefined();
   });
   it('has unique row ids and unique sound ids', () => {

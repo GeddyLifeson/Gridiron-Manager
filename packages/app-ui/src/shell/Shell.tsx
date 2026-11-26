@@ -12,7 +12,6 @@ import { alertLine, officeMarked, type Alert } from './alerts.ts';
 import { availability } from './phase.ts';
 import { t } from './text.ts';
 import { tokenVariables, v, type ThemeId, type ColourVisionId } from '../tokens/index.ts';
-import { SoundStageCaptions, placeFromNav, settingsGetter, unlockOnFirstInput, type SoundStage } from '../audio/stage/index.ts';
 
 /** O1.5.1: the minimum supported window. */
 export const MIN_WINDOW_PX = { width: 1280, height: 720 } as const;
@@ -83,12 +82,6 @@ export interface ShellProps {
   now?: () => number;
   /** Test hook: the navigation state after each change. */
   onNavChange?: (s: NavState) => void;
-  /** The sound stage (audio engine, drivers, menu music, captions); null or absent runs silent. */
-  soundStage?: SoundStage | null;
-  /** Current settings values (`SettingsStore.all()`), re-read by the sound stage on change. */
-  audioSettings?: Readonly<Record<string, unknown>>;
-  /** The calendar is in the offseason (menu music picks the offseason loop). */
-  offseason?: boolean;
 }
 
 const DEFAULT_DISPLAY: ShellDisplay = { theme: 'system', colourVision: 'none', interfaceScalePct: 100, textScalePct: 100, reducedMotion: false };
@@ -160,8 +153,6 @@ const css = `
 .gm-status { grid-area: status; display: flex; gap: calc(var(--gm-space) * 6); padding: var(--gm-space) calc(var(--gm-space) * 3); font-size: var(--gm-type-sm);
   background: ${v('surface.panel')}; border-top: var(--gm-line-weight-hair) solid ${v('line.default')}; color: ${v('text.muted')}; }
 .gm-status .gm-notice { color: ${v('state.caution')}; }
-/* PV-14 captions strip: over the screen, above the status line, out of the grid flow; never takes focus or clicks. */
-.gm-captions { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(var(--gm-space) * 10); max-width: 60%; z-index: 5; pointer-events: none; }
 .gm-overlay { position: absolute; inset: 0; z-index: 5; display: flex; justify-content: center; align-items: flex-start; padding-top: calc(var(--gm-space) * 20); }
 .gm-dialog { background: ${v('surface.panel')}; color: ${v('text.ink')}; border: var(--gm-line-weight-medium) solid ${v('line.strong')}; border-radius: calc(var(--gm-space) * 2);
   width: calc(var(--gm-space) * 160); max-height: 70%; overflow: auto; padding: calc(var(--gm-space) * 4); }
@@ -281,12 +272,6 @@ export function Shell(props: ShellProps) {
   // Game-day mode follows the game state (O1.4.2).
   useEffect(() => { dispatch({ type: ctx.gameDay ? 'startGame' : 'endGame' }); }, [ctx.gameDay]);
   useEffect(() => { props.onNavChange?.(nav); }, [nav, props.onNavChange]);
-
-  // Sound: settings, then the place (menu music, game start and end), and the first-input unlock.
-  const stage = props.soundStage ?? null;
-  useEffect(() => { if (stage && props.audioSettings) stage.applySettings(settingsGetter(props.audioSettings)); }, [stage, props.audioSettings]);
-  useEffect(() => { stage?.setPlace(placeFromNav(nav, screens, props.offseason ?? false)); }, [stage, nav.location.screenId, nav.mode, props.offseason, screens]);
-  useEffect(() => (stage && typeof window !== 'undefined' ? unlockOnFirstInput(stage) : undefined), [stage]);
 
   // Address bar (browser build).
   const pushing = useRef(false);
@@ -421,8 +406,6 @@ export function Shell(props: ShellProps) {
           {panelScreen ? render(panelScreen, { path: panelScreen.route, screenId: panelScreen.id, params: {}, view: {} }, false) : props.sidePanel}
         </aside>
       )}
-
-      {stage && <div className="gm-captions"><SoundStageCaptions stage={stage} /></div>}
 
       <footer className="gm-status" aria-label={t('shell.status')}>
         {ctx.saveState && <span>{t('shell.saveState', { state: ctx.saveState })}</span>}

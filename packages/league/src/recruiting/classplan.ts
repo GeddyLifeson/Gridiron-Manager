@@ -13,37 +13,13 @@ import { POSITION_GROUPS, type ClassPlanRow, type PositionGroup, type Recruiting
 export function defaultPlan(ctx: RecruitingContext, teamId: number, mix: { highSchool: number; transfer: number; juco: number } = {
   highSchool: P('mix.highSchool'), transfer: P('mix.transfer'), juco: P('mix.juco'),
 }): ClassPlanRow[] {
-  const targets = planTargets(ctx, teamId);
-  return POSITION_GROUPS.map((position, i) => {
-    const target = targets[i]!;
+  return POSITION_GROUPS.map((position) => {
+    const target = Math.max(0, ROSTER_SHAPE[position] - ctx.programs.returning(teamId, position));
     const hs = Math.round(target * mix.highSchool);
     const juco = Math.round(target * mix.juco);
     const transfer = Math.max(0, target - hs - juco);
     return { position, target, split: { highSchool: hs, transfer, juco }, heldForTransfer: transfer };
   });
-}
-
-/**
- * Places by position: the T4.8.1 shape less returning players. Under a roster limit the shape is scaled to
- * the limit and the total is cut to the room the limit leaves (largest remainders first, ties in position
- * order), so the plan never asks for more players than the roster can take.
- */
-function planTargets(ctx: RecruitingContext, teamId: number): number[] {
-  const limit = ctx.programs.rosterLimit?.(teamId);
-  const returning = POSITION_GROUPS.map((g) => ctx.programs.returning(teamId, g));
-  if (limit === undefined) return POSITION_GROUPS.map((g, i) => Math.max(0, ROSTER_SHAPE[g] - returning[i]!));
-  const shape = POSITION_GROUPS.reduce((a, g) => a + ROSTER_SHAPE[g], 0);
-  const raw = POSITION_GROUPS.map((g, i) => Math.max(0, ROSTER_SHAPE[g] * limit / shape - returning[i]!));
-  const want = raw.reduce((a, x) => a + x, 0);
-  const room = Math.max(0, limit - returning.reduce((a, x) => a + x, 0));
-  const total = Math.min(room, Math.round(want));
-  if (want <= 0 || total <= 0) return POSITION_GROUPS.map(() => 0);
-  const exact = raw.map((x) => x * total / want);
-  const out = exact.map((x) => Math.floor(x));
-  let left = total - out.reduce((a, x) => a + x, 0);
-  const order = exact.map((x, i) => ({ i, r: x - out[i]! })).sort((a, b) => b.r - a.r || a.i - b.i);
-  for (const o of order) { if (left <= 0) break; out[o.i] = out[o.i]! + 1; left -= 1; }
-  return out;
 }
 
 export interface NumbersRow {

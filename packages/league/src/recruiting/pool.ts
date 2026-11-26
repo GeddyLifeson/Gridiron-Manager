@@ -6,11 +6,10 @@ import regionsJson from './data/regions.json' with { type: 'json' };
 import shapeJson from './data/roster-shape.json' with { type: 'json' };
 import { clamp, type ProspectFactory, type StreamFor } from './context.ts';
 import { P } from './params.ts';
-import { prospectsChanged } from './indexes.ts';
 import {
   POSITION_GROUPS, PREFERENCE_KEYS,
-  type CircleMember, type CircleRelation, type Edge, type PositionGroup, type Preferences, type Prospect, type ProspectSource,
-  type ProspectStatus, type RecruitingState, type SchoolTie,
+  type CircleMember, type CircleRelation, type PositionGroup, type Preferences, type Prospect, type ProspectSource,
+  type ProspectStatus, type RecruitingState,
 } from './types.ts';
 
 const REGIONS = regionsJson as unknown as { states: string[]; share: Record<string, Record<string, number>> };
@@ -184,7 +183,6 @@ export function addProspect(state: RecruitingState, p: Prospect): void {
   state.prospects[p.personId] = p;
   const st: ProspectStatus = { status: 'open', teamId: null, sinceDay: null, decommits: 0, droppedBy: [], signedDay: null, signedEarly: false, waitsForFebruary: null };
   state.status[p.personId] = st;
-  prospectsChanged(state);
 }
 
 /**
@@ -230,99 +228,4 @@ export function toJucoPool(state: RecruitingState, prospectId: number, nextClass
   };
   addProspect(state, moved);
   return moved;
-}
-
-/** A person who already exists in the world, as recruiting reads him (the body `ProspectFactory` would make). */
-export interface ProspectBody {
-  readonly personId: number;
-  readonly origin: Prospect['origin'];
-  readonly position: PositionGroup;
-  readonly region: string;
-  readonly heightIn: number;
-  readonly weightLb: number;
-  /** Overall true quality on the internal skill scale (D6.1). Truth. */
-  readonly trueQuality: number;
-  readonly fortyS: number;
-}
-
-/**
- * T4.1.1 for a world that makes its people elsewhere (the X11 cohort pass): one high school class from
- * people who already exist. The true percentile is each body's rank in the class by true quality, ties by
- * person id; preferences, the circle, the academic record and the star rating are drawn as in
- * `generateClass`, from each prospect's own keyed stream.
- */
-export function classFromBodies(state: RecruitingState, req: ClassRequest, bodies: readonly ProspectBody[], ids: CircleIds, rng: StreamFor): Prospect[] {
-  const ranked = [...bodies].sort((a, b) => a.trueQuality - b.trueQuality || a.personId - b.personId);
-  const n = ranked.length;
-  const made = ranked.map((body, i) => buildProspect(
-    { personId: body.personId, origin: body.origin, heightIn: body.heightIn, weightLb: body.weightLb, trueQuality: body.trueQuality, fortyS: body.fortyS },
-    req, body.position, body.region, n <= 1 ? P('half') : i / (n - 1), 'high_school', ids, rng,
-  ));
-  assignStars(made, req.topPrograms, rng(['class', req.classYear]));
-  for (const p of made) addProspect(state, p);
-  return made;
-}
-
-/**
- * Close a class once it has enrolled (the world keeps one cycle of state, not every class ever recruited):
- * remove its prospects and everything that names them or their circles (statuses, ties, offers, board rows,
- * reads, claims, promises, memory, violations). High school coaches stay, with their edges and memory, because
- * they are shared across years (T4.4.2). Class plans are cleared so the next class plans against the roster
- * as it now stands. Containers are replaced, so the derived look-up tables rebuild.
- */
-export function dropClass(state: RecruitingState, classYear: number, keepUsageFromDay?: number): number {
-  const gone = new Set<number>();
-  const keepCoaches = new Set<number>();
-  for (const p of Object.values(state.prospects)) {
-    if (p.classYear !== classYear) {
-      for (const m of p.circle) if (m.relation === 'hs_coach') keepCoaches.add(m.memberId);
-      continue;
-    }
-    gone.add(p.personId);
-    for (const m of p.circle) if (m.relation === 'hs_coach') keepCoaches.add(m.memberId); else gone.add(m.memberId);
-  }
-  for (const id of keepCoaches) gone.delete(id);
-  const keepRec = <V>(rec: Record<number, V>): Record<number, V> => {
-    const out: Record<number, V> = {};
-    for (const k of Object.keys(rec)) if (!gone.has(Number(k))) out[Number(k)] = rec[Number(k)]!;
-    return out;
-  };
-  const prospects = keepRec(state.prospects);
-  const dropped = Object.keys(state.prospects).length - Object.keys(prospects).length;
-  state.prospects = prospects;
-  state.status = keepRec(state.status);
-  const ties: Record<string, SchoolTie> = {};
-  for (const [k, t] of Object.entries(state.ties)) if (!gone.has(t.prospectId)) ties[k] = t;
-  state.ties = ties;
-  state.tieTeams = keepRec(state.tieTeams);
-  const edges: Record<string, Edge> = {};
-  for (const [k, e] of Object.entries(state.edges)) if (!gone.has(e.fromId) && !gone.has(e.toId)) edges[k] = e;
-  state.edges = edges;
-  state.offers = state.offers.filter((o) => !gone.has(o.prospectId));
-  for (const b of Object.values(state.boards)) {
-    b.grades = keepRec(b.grades);
-    b.reads = keepRec(b.reads);
-    b.circles = keepRec(b.circles);
-    b.firmness = keepRec(b.firmness);
-    b.academics = keepRec(b.academics);
-    b.queue = b.queue.filter((id) => !gone.has(id));
-    b.builtClasses = b.builtClasses.filter((y) => y !== classYear);
-  }
-  state.plans = {};
-  state.named = {};
-  // Day-pool usage before the given day can no longer count against any pool still open.
-  if (keepUsageFromDay !== undefined) {
-    const used: Record<string, string[]> = {};
-    for (const [k, list] of Object.entries(state.daysUsed)) {
-      const kept = list.filter((x) => Number(x.slice(x.indexOf('@') + 1)) >= keepUsageFromDay);
-      if (kept.length > 0) used[k] = kept;
-    }
-    state.daysUsed = used;
-  }
-  state.violations = state.violations.filter((v) => v.prospectId === null || !gone.has(v.prospectId));
-  state.memory = state.memory.filter((m) => !gone.has(m.holderId));
-  state.promises = state.promises.filter((p) => !gone.has(p.prospectId));
-  state.claims = state.claims.filter((c) => !gone.has(c.prospectId));
-  prospectsChanged(state);
-  return dropped;
 }

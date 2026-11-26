@@ -5,7 +5,6 @@ import { dayNumber } from '../calendar/date.ts';
 import { clamp, type RecruitingContext } from './context.ts';
 import { P } from './params.ts';
 import { addEvidence, boardOf, interestTable } from './interest.ts';
-import { prospectsOfClass } from './indexes.ts';
 import { tieOf, tiesOfProspect } from './limits.ts';
 import { activeOffer, refuseCommitment, setCommittable } from './offers.ts';
 import { rivalVisitThisWeek } from './visits.ts';
@@ -83,8 +82,10 @@ export function prospectWeek(state: RecruitingState, ctx: RecruitingContext, cla
   const afterFeb = dates.february !== null && day >= dates.february;
   const afterEarly = dates.earlyClose !== null && day > dates.earlyClose;
   const week = P('daysPerWeek');
-  for (const p of prospectsOfClass(state, classYear)) {
-    const id = p.personId;
+  const ids = Object.keys(state.prospects).map(Number).sort((a, b) => a - b);
+  for (const id of ids) {
+    const p = state.prospects[id]!;
+    if (p.classYear !== classYear) continue;
     const st = state.status[id]!;
     if (st.status === 'signed' || st.status === 'enrolled' || st.status === 'not_qualified') continue;
     const r = ctx.rng(['week', id, day]);

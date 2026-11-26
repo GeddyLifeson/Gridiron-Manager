@@ -10,7 +10,3 @@ export {
 export { STREAM_DEVELOPMENT, advanceCounters, hasEligibility, developmentStep } from './development.ts';
 export { POOL, FREE_AGENT_PREFIX, STREAM_MOVES, ruleSetOf, rosterMovesStep } from './moves.ts';
 export { STREAM_GM, STREAM_DRAW, ageCurve, gmPolicy } from './front-office.ts';
-export {
-  COACH_STATE, STREAM_COACHES, ENTRY_POOL, COACH_EVENT_TYPES, coachState, coachEntrants, coachOpenings, coachMovesStep, movesStep,
-  type CoachState,
-} from './coaches.ts';

@@ -5,7 +5,7 @@
 //    could know. No contest winner, no fault, no true coverage, no truth value of a ruling.
 //  - Timing is the engine's: every cue sits on the trajectory's tick (tick 0 is the snap or the kick,
 //    negative before it). Nothing is placed by a script's idea of drama (plan rule 3, MB-1).
-//  - Sources still owed by the engine or officiating (change requests CR-PV00-1 to CR-PV00-5, CR-PV00-7) are
+//  - Sources still owed by the engine or officiating (change requests CR-PV00-1 to CR-PV00-5) are
 //    optional on the input; the feed lists each one it lacked in `missing`, so consumers degrade
 //    instead of guessing.
 // Plain types only: app-services does not import zod (the integrator owns @gm/schema, CR-PV00-6).
@@ -16,7 +16,7 @@ export type FeedSide = 0 | 1;
 export const FEED_FORMAT_VERSION = 1 as const;
 
 /** Sources the feed can be missing until the change requests land (CR-PV00-1 to CR-PV00-5). */
-export const FEED_SOURCES = ['noise', 'playWind', 'contactTier', 'cadence', 'relay', 'rulingTicks', 'postHit'] as const;
+export const FEED_SOURCES = ['noise', 'playWind', 'contactTier', 'cadence', 'relay', 'rulingTicks'] as const;
 export type FeedSource = (typeof FEED_SOURCES)[number];
 
 /** Camera events, the same list and the same rules as the film filter (G-63 `publicEvents`). */
@@ -34,16 +34,8 @@ export const RULING_KINDS = [
 ] as const;
 export type RulingKind = (typeof RULING_KINDS)[number];
 
-/**
- * Kicked-ball events (J9, B6): the foot meeting the ball, and the ball striking an upright or the
- * crossbar. Both are what the stands and a camera see and hear. Not in the film filter's list, so the
- * film chart stays as G-63 defined it.
- */
-export const KICK_CUE_KINDS = ['kick', 'postHit'] as const;
-export type KickCueKind = (typeof KICK_CUE_KINDS)[number];
-
 /** Every cue kind. PV-02's cue table has one row per kind (visual, sound, bus, caption, switch, information). */
-export const FEED_CUE_KINDS = [...CAMERA_CUE_KINDS, ...KICK_CUE_KINDS, 'contact', 'cadence', 'relay', 'ruling'] as const;
+export const FEED_CUE_KINDS = [...CAMERA_CUE_KINDS, 'contact', 'cadence', 'relay', 'ruling'] as const;
 export type FeedCueKind = (typeof FEED_CUE_KINDS)[number];
 
 interface CueBase {
@@ -76,22 +68,6 @@ export interface ContactCue extends CueBase {
   readonly slots: readonly number[];
 }
 
-/** The foot met the ball at this spot (J9 kick event): kicker's slot, when he is on the field list. */
-export interface KickCue extends CueBase {
-  readonly kind: 'kick';
-  readonly x: number;
-  readonly y: number;
-  readonly slots: readonly number[];
-}
-
-/** The kicked ball struck the goal (J9.4.2): `part` is the upright or the crossbar. Where it hit, in field yards. */
-export interface PostHitCue extends CueBase {
-  readonly kind: 'postHit';
-  readonly x: number;
-  readonly y: number;
-  readonly part: 'upright' | 'crossbar';
-}
-
 /**
  * The quarterback's count (J5.6.1, A-5): `voiced` is a heard count, `hard` a hard count meant to draw
  * the defense, `silent` a silent or visual count, which makes no sound by design.
@@ -117,7 +93,7 @@ export interface RulingCue extends CueBase {
   readonly favours: FeedSide | null;
 }
 
-export type FeedCue = CameraCue | KickCue | PostHitCue | ContactCue | CadenceCue | RelayCue | RulingCue;
+export type FeedCue = CameraCue | ContactCue | CadenceCue | RelayCue | RulingCue;
 
 /** Conditions for the play. `noise` is the J12.6.1 value the engine used for this play (MB-6). */
 export interface FeedConditions {

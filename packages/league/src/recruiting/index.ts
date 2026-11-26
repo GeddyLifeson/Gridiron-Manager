@@ -6,7 +6,6 @@ export * from './params.ts';
 export * from './keys.ts';
 export * from './context.ts';
 export * from './pool.ts';
-export * from './indexes.ts';
 export * from './limits.ts';
 export * from './interest.ts';
 export * from './actions.ts';

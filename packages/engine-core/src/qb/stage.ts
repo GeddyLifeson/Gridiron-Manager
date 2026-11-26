@@ -18,15 +18,14 @@ import {
 } from '@gm/schema';
 import { GRAVITY_YPS2, airDrag, airState, ballParams, ballStream, batChance, batLane, beginLoose, deflect, handsUpChance, setFlightVelocity, gustAimMultiplier, launchPass, passLaunch, solvePassFrom, windFromEnvironment, NO_WIND, type BallParams } from '../ball/index.ts';
 import { pickOutcome, type Contests } from '../contest/index.ts';
-import { PI, dAtan2, dCos, dSqrt } from '../dmath.ts';
-import { cutMultiplier, kinParams } from '../kinematics/index.ts';
+import { dAtan2, dCos, dSqrt } from '../dmath.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import {
   accuracySdYd, anticipationEarlyS, blindsideFeelChance, clip, depthBand, dropDepthYd, eyesDownfieldChance, falsePressureChance, freePlaySeenChance,
   hotSeenChance, interceptionCeiling, keyReadChance, knowsGroundingChance, maxBallSpeedYps, meshFumbleChance, meshReadChance, platformMultiplier, pumpFakeChance, readTimeS, releaseTimeS,
   riskOffsetEp, riskyDumpChance, scrambleChance, separationSdYd, setTimeS, throwThresholdEp, type Platform,
 } from './formulas.ts';
-import { TRAJECTORIES, judgeTarget, newEstimate, standInValue, walkRoute, type Estimate, type JudgeContext, type Trajectory } from './judge.ts';
+import { judgeTarget, newEstimate, standInValue, type Estimate, type JudgeContext, type Trajectory } from './judge.ts';
 import { qbParams, type QbParams } from './params.ts';
 import { qbPlayProblems, type QbPlay, type QbRead, type QbTarget } from './play.ts';
 
@@ -133,8 +132,6 @@ export interface QbPlayRecord {
   readonly everOutsidePocket: boolean;
   readonly response: PressureResponse | null;
   readonly mesh: { readonly decision: 'give' | 'keep' | 'throw'; readonly correct: boolean; readonly ambiguous: boolean; readonly late: boolean; readonly fumbled: boolean } | null;
-  /** A designed handoff (kind `handoff`): when it ended, and how. Null on every other play and until it ends. */
-  readonly handoff: { readonly tick: number; readonly given: boolean; readonly fumbled: boolean } | null;
   /** Pump fakes this play: when, and at whom. */
   readonly pumps: readonly { readonly tick: number; readonly targetSlot: number }[];
   /** Ticks at which he first looked at each read of the first pass through the progression. */
@@ -157,56 +154,6 @@ export interface Quarterback {
 }
 
 function hyp(x: number, y: number): number { return dSqrt(x * x + y * y); }
-
-/**
- * Flight times from the J9 solver in still air, by distance and trajectory, for one arm in one air
- * (J7.6.1: "flight time comes from J9 and was already used in the estimate"). Solving is slow, so a
- * table is built once per (ball speed, drag, ball parameters) and read by straight-line interpolation.
- * A pure function of its inputs: the cache changes speed only, never a result.
- */
-const FLIGHT_STEP_YD = 2.5;
-interface FlightRow { readonly timeS: Float64Array; readonly tan: Float64Array }
-interface FlightTable { readonly n: number; readonly releaseH: number; readonly catchH: number; readonly firm: FlightRow; readonly drive: FlightRow; readonly touch: FlightRow }
-const flightTables = new WeakMap<BallParams, Map<string, FlightTable>>();
-function flightTable(vBallYps: number, k: number, maxRangeYd: number, bp: BallParams): FlightTable {
-  let byArm = flightTables.get(bp);
-  if (byArm === undefined) { byArm = new Map(); flightTables.set(bp, byArm); }
-  const key = `${vBallYps}|${k}`;
-  const hit = byArm.get(key);
-  if (hit !== undefined) return hit;
-  const n = Math.floor(maxRangeYd / FLIGHT_STEP_YD) + 2;
-  const row = (): FlightRow => ({ timeS: new Float64Array(n), tan: new Float64Array(n) });
-  const made: FlightTable = { n, releaseH: bp['pass.releaseHeightYd']!, catchH: bp['pass.catchHeightYd']!, firm: row(), drive: row(), touch: row() };
-  for (let i = 1; i < n; i++) {
-    const d = i * FLIGHT_STEP_YD;
-    for (const type of TRAJECTORIES) {
-      const sol = solvePassFrom(0, 0, d, 0, vBallYps, type, k, NO_WIND, bp), r = made[type];
-      const along = dSqrt(sol.vx * sol.vx + sol.vy * sol.vy);
-      r.timeS[i] = sol.flightTimeS;
-      r.tan[i] = along > 0 ? sol.vh / along : 0;
-    }
-  }
-  if (byArm.size >= 256) byArm.clear();
-  byArm.set(key, made);
-  return made;
-}
-function flightFrom(t: FlightTable, distYd: number, trajectory: Trajectory): number {
-  if (distYd <= 0) return 0;
-  const row = t[trajectory].timeS, at = distYd / FLIGHT_STEP_YD, i = Math.floor(at);
-  if (i >= t.n - 1) return row[t.n - 1]! * (distYd / ((t.n - 1) * FLIGHT_STEP_YD));
-  return row[i]! + (row[i + 1]! - row[i]!) * (at - i);
-}
-/** Height of the ball `alongYd` into a throw of `distYd`, from the nearest table row at or past the distance. */
-function heightFrom(t: FlightTable, distYd: number, alongYd: number, trajectory: Trajectory): number {
-  let i = Math.ceil(distYd / FLIGHT_STEP_YD);
-  if (i < 1) i = 1; else if (i > t.n - 1) i = t.n - 1;
-  // A parabola that leaves his hand on the solved launch slope and comes down on the catch height at the
-  // catch (J9.1.1). Drag is in the slope the solver chose and in the end point; the middle is within a hand.
-  const tan = t[trajectory].tan[i]!;
-  if (distYd <= 0) return t.releaseH;
-  const drop = (t.releaseH + distYd * tan - t.catchH) / (distYd * distYd);
-  return t.releaseH + alongYd * tan - drop * alongYd * alongYd;
-}
 
 export function createQuarterback(options: QuarterbackOptions): Quarterback {
   const contests = options.contests, catchPoint = contests.catchPoint;
@@ -240,7 +187,6 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   let meshSum = 0, meshN = 0, meshDecided = false, meshLate = false, pitchDone = false;
   let throwRecord: ThrowRecord | null = null, sack: QbPlayRecord['sack'] = null, kneel: QbPlayRecord['kneel'] = null, ran: QbPlayRecord['ran'] = null;
   let hazard: QbPlayRecord['groundingHazard'] = null, mesh: QbPlayRecord['mesh'] = null;
-  let handoff: QbPlayRecord['handoff'] = null;
   let ticksTracked = 0, pumpUntil = 0, pumpFrom = POCKET, pumped = false;
 
   const note = (w: TickWorld, text: string, slot = -1, value = 0): void => { noteLog.push({ tick: w.tick, note: text, slot, value }); };
@@ -268,7 +214,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     hotDone = false; falseDone = false; threat = -1; respondedTo = -1; takeSack = false; dodge = false; response = null; extendSide = 0; everOutside = false;
     scrambleDraw = 0; keyDraw = 0; relTarget = null; underPressureNow = false; carrierOwns = false; stumbleUntil = 0;
     meshSum = 0; meshN = 0; meshDecided = false; meshLate = false; pitchDone = false;
-    throwRecord = null; sack = null; kneel = null; ran = null; hazard = null; mesh = null; handoff = null;
+    throwRecord = null; sack = null; kneel = null; ran = null; hazard = null; mesh = null;
     noteLog.length = 0; readTicks.length = 0; pumps.length = 0; pumped = false;
     felt.fill(0); sensed.fill(0); pressured.fill(0); hitDone.fill(0); rearm.fill(-2147483648);
     const play = cur;
@@ -321,15 +267,10 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     }
     const k = airDrag(bp['pass.dragPerYd']!, w.environment);
     const far = solvePassFrom(0, 0, 300, 0, vBall, 'drive', k, NO_WIND, bp);
-    const table = flightTable(vBall, k, far.arrival.x, bp);
-    const kp = kinParams(w.params);
     ctx = {
       p, catchPoint, math: w.math, value: play.value ?? standInValue(p, sit.down, sit.distanceYd),
       releaseS, vBallYps: vBall, dragPerYd: k, maxRangeYd: far.arrival.x, wet, allowOutOfRange: play.kind === 'hailMary',
       accuracySdYd: (airYd) => errorSd(airYd, platformNow(false, false)),
-      flightS: (distYd, trajectory) => flightFrom(table, distYd, trajectory),
-      heightYd: (distYd, alongYd, trajectory) => heightFrom(table, distYd, alongYd, trajectory),
-      cutShare: (angleRad) => cutMultiplier(angleRad, 0, kp, PI),
     };
   }
 
@@ -361,26 +302,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   function lookAtSlot(w: TickWorld, slot: number): void {
     look = slot;
     const s = cur!.qbSlot;
-    if (!options.gaze) { w.players.gazeRad[s] = dAtan2(w.players.posY[slot]! - w.players.posY[s]!, w.players.posX[slot]! - w.players.posX[s]!); return; }
-    options.gaze.gazeAtSlot(s, slot);
-    // The eyes follow a man only once he is seen (J3.4.1). Until then he looks where the man should be:
-    // down the drawn route for a receiver (J7.3.1 step 1), straight downfield for anyone else.
-    const v = options.view(s);
-    if (v.entity(slot) !== null) return;
-    const t = knownTarget(slot);
-    if (t !== null && t.route.length >= 2 && ctx !== null) {
-      walkRoute(t, ctx, t.route[0]!.px, t.route[0]!.py, 0, v.tSinceSnapS > 0 ? v.tSinceSnapS : 0, lookBuf);
-      options.gaze.gazeAtPoint(s, lookBuf[0]!, lookBuf[1]!);
-    } else options.gaze.gazeAtPoint(s, v.self.px + P!['look.downfieldYd'], v.self.py);
-  }
-  const lookBuf = new Float64Array(4);
-  /** The target the play gives for a slot, from the reads he is working, or null. */
-  function knownTarget(slot: number): QbTarget | null {
-    for (let i = 0; i < seq.length; i++) { const r = seq[i]!; if (r.target.slot === slot) return r.target; if (r.ifDrives && r.ifDrives.slot === slot) return r.ifDrives; }
-    const play = cur!;
-    if (play.hot && play.hot.target.slot === slot) return play.hot.target;
-    if (play.mesh && play.mesh.throwTarget && play.mesh.throwTarget.slot === slot) return play.mesh.throwTarget;
-    return null;
+    if (options.gaze) options.gaze.gazeAtSlot(s, slot);
+    else w.players.gazeRad[s] = dAtan2(w.players.posY[slot]! - w.players.posY[s]!, w.players.posX[slot]! - w.players.posX[s]!);
   }
   function lookAtPoint(w: TickWorld, px: number, py: number): void {
     look = -1;
@@ -570,8 +493,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     let aimPx = awayPx, aimPy = awayPy, trajectory: Trajectory = 'firm', sd = 0, along = 0, across = 0, height = 0;
     if (relTarget !== null && relKind === 'pass') {
       // He aims where his eyes put the receiver at arrival, led away from the nearest defender (J7.6.2).
-      // The ball leaves now: no release time is left to add.
-      judgeTarget(v, relTarget, ctx!, 0, false, estThrow, 0);
+      judgeTarget(v, relTarget, ctx!, 0, false, estThrow);
       aimPx = estThrow.aimPx; aimPy = estThrow.aimPy; trajectory = estThrow.trajectory;
       if (play.kind === 'hailMary' && play.landmark) { aimPx = play.landmark.px; aimPy = play.landmark.py; trajectory = 'touch'; }
       else if (estThrow.nearestDefender >= 0 && catchPoint.isContested(estThrow.sepYd)) {
@@ -847,40 +769,6 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     phase = OVER;
   }
 
-  /**
-   * A designed handoff (F4): no key and no window. He carries the ball to the meeting point, the ball
-   * changes hands when the back is inside the handoff range (J9.1.2), and the exchange takes the same
-   * one fumble draw every exchange takes (J6.7). If the back never gets there he keeps it and runs.
-   */
-  function handoffStep(w: TickWorld, v: PerceivedView, t: number): void {
-    const p = P!, bp = BP!, play = cur!, h = play.handoff!, s = play.qbSlot, pl = w.players;
-    lookAtSlot(w, h.backSlot);
-    if (h.meet !== null) move(w, h.meet.px, h.meet.py, 'run', 1, 'arrive'); else stay(w, v);
-    if (handGap(w, s, h.backSlot) > bp['exchange.handoffRangeYd']!) {
-      if (t - gotBallT >= p['handoff.giveUpS']) { handoff = { tick: w.tick, given: false, fumbled: false }; detail(w, 'qb.handoff.missed'); note(w, 'handoff missed', h.backSlot); startRun(w, v, 'keep'); }
-      return;
-    }
-    const spot = { x: roundYd(pl.posX[s]!), y: roundYd(pl.posY[s]!) };
-    const qbId = w.slots[s]!.playerId, backId = w.slots[h.backSlot]!.playerId;
-    if (uBegin[U_MESH_FUMBLE]! < meshFumbleChance(zHandling, false, wet, p, w.math)) {
-      handoff = { tick: w.tick, given: false, fumbled: true };
-      w.emit({ type: 'fumble', t: roundSimS(t), marginYd: null, marginS: null, visibility: 'crowded', kind: 'fumble', playerId: qbId, side: w.slots[s]!.side, forcedById: null, spot });
-      detail(w, 'qb.handoff.fumble');
-      beginLoose(w, s, { x: pl.posX[s]!, y: pl.posY[s]!, h: bp['snap.handHeightYd']!, vx: pl.velX[s]! / 2, vy: pl.velY[s]! / 2, vh: 0 }, bp);
-      phase = OVER;
-      return;
-    }
-    const b = w.ball;
-    pl.hasBall[s] = 0; pl.hasBall[h.backSlot] = 1; b.carrierSlot = h.backSlot; b.lastPossessorSlot = s;
-    b.x = pl.posX[h.backSlot]!; b.y = pl.posY[h.backSlot]!;
-    w.emit({ type: 'exchange', t: roundSimS(t), kind: 'handoff', fromId: qbId, toId: backId, spot });
-    w.emit({ type: 'possession', t: roundSimS(t), side: w.slots[s]!.side, playerId: backId, spot, how: 'exchange' });
-    handoff = { tick: w.tick, given: true, fumbled: false };
-    detail(w, 'qb.handoff.give');
-    note(w, 'handoff', h.backSlot);
-    phase = OVER;
-  }
-
   /** Option pitch after a keep: the pitch key commits to him and the ball goes to the pitch man, backward. */
   function pitchStep(w: TickWorld, v: PerceivedView, t: number): void {
     const p = P!, bp = BP!, play = cur!, pitch = play.mesh?.pitch, s = play.qbSlot;
@@ -956,7 +844,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     if (play.kind === 'kneel') { launchPx = v.self.px - p['kneel.lossYd']; launchPy = v.self.py; phase = SCRIPTED; }
     else if (play.kind === 'spike') phase = SCRIPTED;
     else if (play.kind === 'sneak') { startRun(w, v, 'sneak'); runPy = v.self.py; }
-    else if (play.kind === 'mesh' || play.kind === 'handoff') phase = MESH;
+    else if (play.kind === 'mesh') phase = MESH;
     else phase = DROP;
   }
 
@@ -1030,7 +918,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     if (w.tick < stumbleUntil) { stay(w, v); track(w); return; }
 
     if (phase === SCRIPTED) { scriptedStep(w, v, t); track(w); return; }
-    if (phase === MESH) { if (play.kind === 'handoff') handoffStep(w, v, t); else meshStep(w, v, t); track(w); return; }
+    if (phase === MESH) { meshStep(w, v, t); track(w); return; }
     if (phase === RUN) {
       pitchStep(w, v, t);
       if (phase === RUN && !carrierOwns) move(w, v.self.px + p['scramble.runAheadYd'], play.kind === 'sneak' ? runPy : v.self.py, 'sprint', 1, 'through');
@@ -1194,7 +1082,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     currentRead: () => (phase === POCKET || phase === EXTEND) && idx < seq.length ? idx : -1,
     record: () => ({
       tSetS: tSet, launchPx, launchPy, setPx, setPy, throwRecord, sack, kneel, ran, groundingHazard: hazard, restarted, hotSeen, falsePressure: falseDone,
-      freePlaySeen: freeSeen, everOutsidePocket: everOutside, response, mesh, handoff, readTicks: readTicks.slice(), pumps: pumps.slice(),
+      freePlaySeen: freeSeen, everOutsidePocket: everOutside, response, mesh, readTicks: readTicks.slice(), pumps: pumps.slice(),
     }),
     notes: () => noteLog,
     track: () => ({ phase: trackPhase, look: trackLook, pressure: trackPressure, ticks: ticksTracked }),

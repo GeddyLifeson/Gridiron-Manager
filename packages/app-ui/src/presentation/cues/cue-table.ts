@@ -72,8 +72,6 @@ export const CUE_TABLE = table as unknown as CueTable;
 
 /** The cue kinds the PV-00 feed emits (`FEED_CUE_KINDS`), split by how a row id is made. */
 export const FEED_CAMERA_KINDS = ['snap', 'throw', 'catch', 'drop', 'tackle', 'fumble', 'flag', 'whistle', 'outOfBounds', 'kickLanding'] as const;
-/** Kicked-ball kinds (PV-00 `KICK_CUE_KINDS`): the foot meeting the ball and a goal-post strike. */
-export const FEED_KICK_KINDS = ['kick', 'postHit'] as const;
 export const FEED_CONTACT_TIERS = [1, 2, 3, 4] as const;
 export const FEED_CADENCE_COUNTS = ['voiced', 'hard', 'silent'] as const;
 export const FEED_RELAY_OUTCOMES = ['clean', 'garbled'] as const;
@@ -85,7 +83,6 @@ export function cueRowId(kind: string, detail?: string | number): string {
   if (kind === 'cadence') return `cadence_${detail}`;
   if (kind === 'relay') return `relay_${detail}`;
   if (kind === 'ruling') return `ruling_${detail}`;
-  if (kind === 'postHit') return 'post_hit';
   return kind;
 }
 

@@ -53,9 +53,9 @@ describe('revenue-sharing cap by year (T7.1.1)', () => {
   it('rule sets before 2025 have no school pool', () => {
     expect(revenueShareCapFor(ruleSet(), 2024)).toBe(0);
   });
-  it('scholarship cost counts toward the cap in 2025-26 and 2026-27 (CSC primary; not from 2027-28)', () => {
+  it('scholarship cost counts toward the cap in 2025-26 and not from 2026-27', () => {
     expect(collegeRules(ruleSet({}, 2025)).pay!.scholarshipCredit).toBe(2500000);
-    expect(RULES.pay!.scholarshipCredit).toBe(2500000);
+    expect(RULES.pay!.scholarshipCredit).toBe(0);
   });
 });
 

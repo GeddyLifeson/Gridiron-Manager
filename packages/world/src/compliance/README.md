@@ -41,20 +41,10 @@ detects or punishes on its own.
   the pipeline's state, is detected and punished there, and leaves no history row. The log row's `eventId` is then 0.
 - CO-06. Pressure (E4 job security, X5 needs) is 0 for every general manager: neither is bound off-screen (as TO-07).
 - CO-07. `ruleRespectZ` is the person's `rule_respect` facet over its X1.2.1 side sd (50 / people `traitSideSdDivisor`).
-- CO-08. Penalty orders are carried to the world once each, after the week's pipeline run (`penalties.ts`, state under
-  `systemState.penalties`). A forfeited pick (C7.2.1 rule 5) comes off the club's own pick of that round at its next draft
-  (`draft.forfeitPick` on the year's ledger); a club without that pick keeps the forfeit for a later draft. A fine is entered on the
-  books for the club or the person (`finesOf`) and paid at once through `world.money` (MO-01): a club's from its owner's cash
-  budget, a person's from his own pocket. A suspension counts down by the games his club plays; while it runs, a suspended general manager
-  does not act (his club's acting front office keeps the default board, and he raises nothing). Probation, show-cause, practice
-  cancellations, rules education and warnings are recorded with no off-screen effect yet. An order with no published amount (null
-  cents, games or round: "league default") is recorded with no cost; no figure is invented.
+- CO-08. Penalty orders stay in `ComplianceState.orders`: fines (E6), forfeited picks (C7), suspensions (E2, E3, E4) have no
+  off-screen owner yet, so a punished club loses nothing in the world beyond its public record.
 - CO-09. Front offices do not turn over off-screen: a general manager holds his seat until his club folds (K7.6.1 and K8 searches
   are owed, as are coach searches).
-
-With the pro rule set, a detected tampering case costs the club its first-round pick (`compliance.tampering_players.pick_round_first`)
-and fines the general manager (`compliance.tampering_players.fine_executive_first_cents`): both are sourced rule values (fact rows
-F-league-0213 and F-league-0212), read through `league.compliance`, not restated here.
 
 ## Findings
 

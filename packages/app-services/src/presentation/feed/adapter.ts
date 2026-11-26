@@ -11,7 +11,7 @@ import { registerBridge } from '../../observer/index.ts';
 import { publicEvents } from '../../read-models/film/chart.ts';
 import type { FilmSource, FilmSourceSlot } from '../../read-models/film/types.ts';
 import {
-  FEED_FORMAT_VERSION, type CameraCue, type FeedCue, type KickCue, type PostHitCue, type FeedSide, type FeedSource, type PresentationFeed, type RulingCue, type RulingKind,
+  FEED_FORMAT_VERSION, type CameraCue, type FeedCue, type FeedSide, type FeedSource, type PresentationFeed, type RulingCue, type RulingKind,
 } from './types.ts';
 
 registerBridge({
@@ -30,14 +30,7 @@ export interface ExtraPresnap {
   readonly kind: 'cadence_voiced' | 'cadence_hard' | 'cadence_silent' | 'relay_clean' | 'relay_garbled';
 }
 
-/**
- * A goal-post strike as CR-PV00-7 asks the kick resolver to publish it. The resolver already computes
- * `hit: 'upright' | 'crossbar'` (engine-core ball/kicks.ts); the request is to put it, with the time and
- * the spot, on the play record. Public: everyone in the stadium hears and sees the ball ring off the post.
- */
-export interface ExtraPostHit { readonly t: number; readonly x: number; readonly y: number; readonly part: 'upright' | 'crossbar' }
-
-/** The fields CR-PV00-1 to CR-PV00-4 and CR-PV00-7 add to the play record, all public. Absent until each lands. */
+/** The fields CR-PV00-1 to CR-PV00-4 add to the play record, all public. Absent until each lands. */
 export interface PresentationExtras {
   /** CR-PV00-1: the J12.6.1 `noise` the engine used for this play. */
   readonly noise?: number;
@@ -49,8 +42,6 @@ export interface PresentationExtras {
   readonly presnap?: readonly ExtraPresnap[];
   /** CR-PV00-4: when each called flag was thrown, by index into `called.fouls`. */
   readonly flagsThrown?: readonly { readonly foulIndex: number; readonly t: number }[];
-  /** CR-PV00-7: the kicked ball struck an upright or the crossbar. An empty list once it lands means no strike. */
-  readonly postHits?: readonly ExtraPostHit[];
 }
 
 /** The parts of a play record the adapter reads. A full `PlayRecord` fits. */
@@ -86,7 +77,7 @@ const other = (s: FeedSide): FeedSide => (s === 0 ? 1 : 0);
 
 /** Kind order inside one tick: pre-snap talk, camera events, contact, rulings last (a ruling follows the whistle). */
 const ORDER: Readonly<Record<FeedCue['kind'], number>> = {
-  relay: 0, cadence: 1, snap: 2, kick: 3, throw: 3, postHit: 4, kickLanding: 4, catch: 4, drop: 4, contact: 5, tackle: 6, fumble: 6,
+  relay: 0, cadence: 1, snap: 2, throw: 3, kickLanding: 3, catch: 4, drop: 4, contact: 5, tackle: 6, fumble: 6,
   outOfBounds: 6, flag: 7, whistle: 8, ruling: 9,
 };
 
@@ -145,20 +136,6 @@ export function presentationFeed(input: FeedInput): PresentationFeed {
     cues.push(cue);
   }
 
-  // The kick: the foot meeting the ball. Read from the truth record's kick event, public fields only
-  // (time, kick spot, kicker), the same things the film camera shows.
-  const slotOfPerson = new Map(input.slots.map((s) => [s.personId, s.slot]));
-  for (const e of rec.truth.events) {
-    if (e.type !== 'kick') continue;
-    const kicker = slotOfPerson.get(e.kickerId);
-    cues.push({ kind: 'kick', tick: tk(e.t), x: e.kickSpot.x, y: e.kickSpot.y, slots: kicker === undefined ? [] : [kicker] } satisfies Unnumbered<KickCue>);
-  }
-
-  // Goal-post strikes (CR-PV00-7).
-  if (extras?.postHits) {
-    for (const h of extras.postHits) cues.push({ kind: 'postHit', tick: tk(h.t), x: h.x, y: h.y, part: h.part } satisfies Unnumbered<PostHitCue>);
-  } else missing.push('postHit');
-
   // Flags as the officials threw them: called fouls only (B11.2.1 rule 5).
   const thrown = new Map((extras?.flagsThrown ?? []).map((f) => [f.foulIndex, f.t]));
   if (!extras?.flagsThrown) missing.push('rulingTicks');
@@ -171,7 +148,7 @@ export function presentationFeed(input: FeedInput): PresentationFeed {
 
   // Contact tiers (CR-PV00-2).
   if (extras?.contacts) {
-    const slotOf = slotOfPerson;
+    const slotOf = new Map(input.slots.map((s) => [s.personId, s.slot]));
     for (const c of extras.contacts) {
       cues.push({ kind: 'contact', tick: tk(c.t), x: c.x, y: c.y, tier: c.tier, slots: c.playerIds.map((id) => slotOf.get(id)).filter((s): s is number => s !== undefined) });
     }

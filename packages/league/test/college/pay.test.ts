@@ -9,12 +9,12 @@ import { COLLEGE_VALUES, MemorySink, emptyCompliance, party, ruleSet as complian
 import { RULES, ruleSet, stream } from './helpers.ts';
 
 describe('budget division (T7.1.1)', () => {
-  it('a top-tier school in 2026-27: 21.3 million cap, 2.5 million scholarship credit (CSC primary), football 65 percent', () => {
+  it('a top-tier school in 2026-27: 21.3 million cap, no scholarship credit, football 65 percent', () => {
     const b = footballBudget(RULES, 'top', 0);
     expect(b.cap).toBe(21300000);
-    expect(b.paymentRoom).toBe(18800000);
-    expect(b.schoolPool).toBe(18800000);
-    expect(b.football).toBe(Math.round(18800000 * 0.65));
+    expect(b.paymentRoom).toBe(21300000);
+    expect(b.schoolPool).toBe(21300000);
+    expect(b.football).toBe(Math.round(21300000 * 0.65));
   });
   it('in 2025-26 up to 2.5 million of scholarship cost counted against the cap', () => {
     const b = footballBudget(collegeRules(ruleSet({}, 2025)), 'top', 0);
@@ -27,7 +27,7 @@ describe('budget division (T7.1.1)', () => {
     expect(s.football + s.mensBasketball + s.womensBasketball + s.other + s.reserve).toBeCloseTo(1, 12);
     expect(startingSplit(0.5).reserve).toBe(0.1);
     const withReserve = footballBudget(RULES, 'top', 0, startingSplit(0.1));
-    expect(withReserve.reserve).toBe(1880000);
+    expect(withReserve.reserve).toBe(2130000);
   });
   it('football budgets across a generated top subdivision span at least a tenfold range', () => {
     const top = footballBudget(RULES, 'top', 1).football;

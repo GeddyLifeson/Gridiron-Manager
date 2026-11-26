@@ -179,8 +179,7 @@ export function runScene(spec: SceneSpec): SceneResult {
 
 /** A receiver target whose designed route is the script the body runs. */
 export function target(slot: number, route: readonly { px: number; py: number }[], breakIndex = -1, settles = false): qb.QbTarget {
-  // The scripted bodies of these scenes turn on the spot at a constant pace, and he knows it: no speed is lost at a point.
-  return { slot, route, breakIndex, settles, cutShare: route.map(() => 1) };
+  return { slot, route, breakIndex, settles };
 }
 export function read(t: qb.QbTarget, priorValue = 0.3): qb.QbRead { return { kind: 'receiver', target: t, priorValue }; }
 

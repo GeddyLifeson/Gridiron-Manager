@@ -88,12 +88,3 @@ export function parseInput(def: SettingDef, raw: string | boolean): SettingValue
     default: return undefined;
   }
 }
-
-/**
- * The token theme a `display.theme` value draws with (O6.2.1, plan 2.1). `system` follows the platform's
- * light or dark preference; `classic` is the PV-18 Classic era skin. An unknown value falls back to system.
- */
-export function themeForSetting(value: SettingValue | undefined, systemPrefersDark: boolean): 'light' | 'dark' | 'high-contrast' | 'classic' {
-  if (value === 'light' || value === 'dark' || value === 'high-contrast' || value === 'classic') return value;
-  return systemPrefersDark ? 'dark' : 'light';
-}

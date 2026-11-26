@@ -25,11 +25,6 @@ export interface RosterPolicy {
   /** K7.5.1: a college program's offers to ready recruits, best first, for `openPlaces` places; null for the default signing order. */
   readonly recruitOffers?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], openPlaces: number) => readonly number[] | null;
   /**
-   * T4.5.2: letters already signed through the recruiting system, person id to team id. Ready recruits with a
-   * letter sign there first while the team has a place; the rest go to `recruitOffers` or the default fill.
-   */
-  readonly recruitSignings?: (ctx: PolicyContext) => ReadonlyMap<number, number> | null;
-  /**
    * K7.7.1 `early_contact_player` (C8, C11.6.2): before free agency opens, the free agent this team reaches ahead
    * of the order, or null. `slot` is the team's place in the signing order (0 picks first). The policy raises
    * the act itself through the L8.2.5 pipeline; a returned id is the illegal effect: the team signs him first.

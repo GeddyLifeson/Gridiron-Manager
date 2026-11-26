@@ -1,45 +1,6 @@
 {
  "keys": [
   {
-   "key": "playoff.reseed",
-   "type": "boolean",
-   "meaning": "Playoffs reseed after each round",
-   "ownerLeaf": "C3.3.1",
-   "readBy": [
-    "league (G-10 data)"
-   ]
-  },
-  {
-   "key": "cfp.at_large_pool_rank",
-   "type": "number",
-   "meaning": "At-large teams come from the committee top this many; 0 means any ranked position",
-   "ownerLeaf": "T3.5.1",
-   "readBy": [
-    "league (G-10 data)"
-   ],
-   "unit": "rank"
-  },
-  {
-   "key": "ranking.schedule_standard_games",
-   "type": "number",
-   "meaning": "Games against the top subdivision below which the resume is penalised; 0 switches it off",
-   "ownerLeaf": "T3.4.1",
-   "readBy": [
-    "league (G-10 data)"
-   ],
-   "unit": "games"
-  },
-  {
-   "key": "standings.tie_win_value",
-   "type": "number",
-   "meaning": "Share of a win a tied game counts as in winning percentage",
-   "ownerLeaf": "C3.1.1",
-   "readBy": [
-    "league (G-10 data)"
-   ],
-   "unit": "ratio"
-  },
-  {
    "key": "league.roster_limit",
    "type": "number",
    "meaning": "Football roster limit at opted-in schools",

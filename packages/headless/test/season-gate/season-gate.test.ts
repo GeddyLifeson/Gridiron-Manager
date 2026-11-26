@@ -42,12 +42,8 @@ describe('G-87 season specs from the shipped files', () => {
     // Guests from outside the competition appear in fixtures and never in the team list.
     expect(b.spec.fixtures.some((f) => !inside.has(f.home) || !inside.has(f.away))).toBe(true);
     expect(b.powerTeamIds.length).toBeGreaterThan(0);
-    // PR 216 filled four of the five league keys in collegeleague_2026.json; the fifth is still provisional.
-    for (const key of ['ranking.lower_division_wins_credited']) {
+    for (const key of ['standings.tie_win_value', 'playoff.reseed', 'cfp.at_large_pool_rank', 'ranking.lower_division_wins_credited', 'ranking.schedule_standard_games']) {
       expect(b.provisional.some((p) => p.includes(key))).toBe(true);
-    }
-    for (const key of ['standings.tie_win_value', 'playoff.reseed', 'cfp.at_large_pool_rank', 'ranking.schedule_standard_games']) {
-      expect(b.provisional.some((p) => p.includes(`league rule ${key} `))).toBe(false);
     }
     expect(b.provisional.some((p) => p.startsWith('conference title games'))).toBe(true);
     expect(b.provisional.some((p) => p.startsWith('bowls'))).toBe(true);

@@ -7,7 +7,6 @@ import type { PersonRecord, RuleSet } from '@gm/schema';
 import { isActive } from '../loop/lifecycle.ts';
 import type { LiveWorld, StepContext, StepHandler } from '../loop/types.ts';
 import { param } from './params.ts';
-import { applyPenalties } from './penalties.ts';
 
 /** `LiveWorld.systemState` key of the pipeline's state. */
 export const COMPLIANCE_KEY = 'compliance';
@@ -154,8 +153,8 @@ export function complianceContext(ctx: StepContext, b: ComplianceBinding): compl
 
 /**
  * The weekly compliance step (L8.2.5): detection draws over every logged act, false accusations over the
- * teams in the world this season, then cases that fall due are resolved. New penalty orders are then carried
- * to the world (penalties.ts): forfeited picks to the next draft, fines to the books, suspensions counted in games.
+ * teams in the world this season, then cases that fall due are resolved. Penalty orders stay in the state
+ * for their owning systems (E6 fines, C7 picks, E2/E3/E4 suspensions), none of which is bound off-screen yet.
  */
 export function complianceStep(b: ComplianceBinding): StepHandler {
   return (ctx) => {
@@ -164,9 +163,7 @@ export function complianceStep(b: ComplianceBinding): StepHandler {
     const teamIds = world.teams.filter((t) => isActive(world, t.id)).map((t) => t.id).sort((x, y) => x - y);
     const after = compliance.complianceWeek(before, world.date, teamIds, complianceContext(ctx, b), sinkFor(ctx), { tier: 3, source: ctx.source });
     setCompliance(world, after);
-    const p = applyPenalties(world);
     return {
-      applied: p.applied, suspended: p.suspended, forfeitsPending: p.forfeitsPending,
       acts: after.log.length, cases: after.cases.length, open: after.cases.filter((c) => c.status === 'open').length,
       orders: after.orders.length, record: after.record.length,
     };

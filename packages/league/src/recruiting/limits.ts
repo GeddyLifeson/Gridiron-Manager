@@ -6,7 +6,6 @@ import type { RuleSet } from '@gm/schema';
 import { civil, dayNumber } from '../calendar/date.ts';
 import unitsJson from './data/units.json' with { type: 'json' };
 import { key2, weekStartOf, type RecruitingContext } from './context.ts';
-import { findTie, noteTie, tiesOf } from './indexes.ts';
 import { KEY, bool, num, opt } from './keys.ts';
 import {
   IN_PERSON_OFF_CAMPUS, IN_PERSON_ON_CAMPUS,
@@ -38,17 +37,6 @@ export function breach(rule: BreachRule): Breach { return { rule, classId: BREAC
  * day (T4.2.1: the 2027 labels after January are not loaded); nothing is marked then.
  */
 export function periodOn(ctx: RecruitingContext, day: number): Period | null {
-  let days = PERIODS.get(ctx.calendar);
-  if (!days) { days = new Map(); PERIODS.set(ctx.calendar, days); }
-  let hit = days.get(day);
-  if (hit === undefined) { hit = periodFromCalendar(ctx, day); days.set(day, hit); }
-  return hit;
-}
-
-/** A calendar's files are fixed when it is built, so the period of a day is worked out once per calendar. */
-const PERIODS = new WeakMap<object, Map<number, Period | null>>();
-
-function periodFromCalendar(ctx: RecruitingContext, day: number): Period | null {
   let out: Period | null = null;
   for (const w of ctx.calendar.windowsOn('college', day, 'window')) {
     const p = w.def.period;
@@ -96,24 +84,23 @@ function startDay(rules: RuleSet, classYear: number, m: string, d: string, yb: s
 }
 
 export function tieOf(state: RecruitingState, prospectId: number, teamId: number): SchoolTie {
-  let t = findTie(state, prospectId, teamId);
+  const k = key2(prospectId, teamId);
+  let t = state.ties[k];
   if (!t) {
     t = {
       prospectId, teamId, impression: 0, recruiterId: null, hcInvolvement: 0, officialVisits: [], unofficialVisits: [],
       officialVisitHeadCoach: null, offCampusContacts: 0, oppsSpring: 0, oppsFall: 0, lastContactDay: null,
       weekStart: 0, contactsThisWeek: 0, inPersonThisWeek: 0, callsThisWeek: 0, oppsThisWeek: 0, recruiterLeftDay: null, decommitDay: null,
     };
-    // The table is brought up to date before the state changes, so a first build never lists the new tie twice.
-    noteTie(state, t);
-    state.ties[key2(prospectId, teamId)] = t;
+    state.ties[k] = t;
     (state.tieTeams[prospectId] ??= []).push(teamId);
   }
   return t;
 }
 
 /** Every school tie of one prospect, in the order the schools first touched him. */
-export function tiesOfProspect(state: RecruitingState, prospectId: number): readonly SchoolTie[] {
-  return tiesOf(state, prospectId);
+export function tiesOfProspect(state: RecruitingState, prospectId: number): SchoolTie[] {
+  return (state.tieTeams[prospectId] ?? []).map((teamId) => state.ties[key2(prospectId, teamId)]!);
 }
 
 function rollWeek(t: SchoolTie, day: number): void {

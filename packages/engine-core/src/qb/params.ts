@@ -74,16 +74,11 @@ const ROWS = [
   ['judge.defenderReactS', 0.25, 0.1, 0.5, 's', 'assumption', 'J7.3.1', EST],
   ['judge.accelLagS', 0.35, 0, 0.8, 's', 'assumption', 'J7.3.1', EST],
   ['judge.routeSpeedYps', 7, 5, 9, 'yd/s', 'assumption', 'J7.3.1', EST],
-  // Where his eyes go for a man he has not picked up yet and has no drawn route for (J3.4.1).
-  ['look.downfieldYd', 10, 5, 20, 'yd', 'assumption', 'J7.2.1', STRUCT],
   ['judge.movingYps', 2, 0.5, 4, 'yd/s', 'assumption', 'J7.3.1', STRUCT],
-  // League-typical receiver legs for walking a route through its break (J2.1.3, J2.2), used when the
-  // play gives him no numbers for his own receiver. The brake value is J2.2.2's base.
-  ['judge.routeTauS', 0.9, 0.5, 1.5, 's', 'assumption', 'J7.3.1', EST],
-  ['judge.routeBrakeYps2', 8, 6, 11, 'yd/s^2', 'assumption', 'J7.3.1', EST],
-  ['judge.breakHorizonS', 4, 2, 6, 's', 'assumption', 'J7.1.2', STRUCT],
-  // Height a lane defender gets a hand to: standing reach of a 6 ft 2 in man (catch.reachPerHeight 1.3) plus a small jump.
-  ['judge.laneReachHeightYd', 2.8, 2.2, 3.4, 'yd', 'assumption', 'J7.6.1', EST],
+  // Share of release speed a firm throw keeps along the ground on average (quick flight-time estimate).
+  ['judge.flightSpeedShare', 0.85, 0.7, 0.95, 'ratio', 'assumption', 'J7.3.1', 'test: estimate within 0.15 s of the J9 solver'],
+  ['judge.driveSpeedShare', 0.95, 0.85, 1, 'ratio', 'assumption', 'J7.6.1', 'test: estimate within 0.15 s of the J9 solver'],
+  ['judge.touchTimeMult', 1.25, 1.05, 1.6, 'ratio', 'assumption', 'J7.6.1', 'test: estimate within 0.3 s of the J9 solver'],
   ['judge.laneRadiusYd', 1.0, 0.5, 2, 'yd', 'assumption', 'J7.3.1', EST],
   ['judge.laneReachYps', 3, 1, 6, 'yd/s', 'assumption', 'J7.3.1', EST],
   ['judge.laneNearYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.3.1', STRUCT],
@@ -235,8 +230,6 @@ const ROWS = [
   // Mean closing speed on the mesh below which the key is "feathering": the read is then a draw.
   ['mesh.ambiguousYps', 1.5, 0.5, 3, 'yd/s', 'assumption', 'J7.7.1', MESH],
   ['mesh.lateS', 0.15, 0, 0.4, 's', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
-  // A designed handoff the back never arrives for: after this long with the ball he keeps it and runs.
-  ['handoff.giveUpS', 1.5, 0.8, 3, 's', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
   // J7.7.1 edge case: the ball on the ground at the exchange. No measured rate in project research.
   ['mesh.fumbleBeta0', -6.0, -9, -3, 'logit', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],
   ['mesh.fumblePerZ', 0.5, 0, 1.5, 'logit/z', 'assumption', 'J7.7.1', 'J6.7 fumbled exchange rate'],

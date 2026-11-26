@@ -7,7 +7,6 @@ import { describe, expect, it } from 'vitest';
 import { TICK_S } from '@gm/schema';
 import { DMATH } from '../../src/index.ts';
 import * as ball from '../../src/ball/index.ts';
-import * as kin from '../../src/kinematics/index.ts';
 import * as qb from '../../src/qb/index.ts';
 import { FakeView } from '../player-ai/helpers.ts';
 import { CONTESTS, P, QB, TABLE, alongRoute, catchChance, line, mean, read, rules, runScene, share, still, target, type SceneSpec } from './helpers.ts';
@@ -87,13 +86,17 @@ describe('J7.2.1 the progression', () => {
 describe('J7.3 judging open and deciding', () => {
   const ctx = (over: Partial<qb.JudgeContext> = {}): qb.JudgeContext => ({
     p: P, catchPoint: CONTESTS.catchPoint, math: DMATH, value: qb.standInValue(P, 1, 10), releaseS: 0.4, vBallYps: 26, dragPerYd: BP['pass.dragPerYd']!,
-    maxRangeYd: 60, accuracySdYd: () => 1, wet: false, allowOutOfRange: false,
-    flightS: (d, type) => (d <= 0 ? 0 : ball.solvePassFrom(0, 0, d, 0, 26, type, BP['pass.dragPerYd']!, ball.NO_WIND, BP).flightTimeS),
-    heightYd: (d, along, type) => { const sol = ball.solvePassFrom(0, 0, d, 0, 26, type, BP['pass.dragPerYd']!, ball.NO_WIND, BP), v = Math.hypot(sol.vx, sol.vy); const tan = sol.vh / v, h0 = BP['pass.releaseHeightYd']!; return h0 + along * tan - ((h0 + d * tan - BP['pass.catchHeightYd']!) / (d * d)) * along * along; },
-    cutShare: (angle) => kin.cutMultiplier(angle, 0, kin.kinParams(TABLE), Math.PI), ...over,
+    maxRangeYd: 60, accuracySdYd: () => 1, wet: false, allowOutOfRange: false, ...over,
   });
   const t1 = target(1, [{ px: 0, py: 10 }, { px: 30, py: 10 }]);
 
+  it('his flight-time estimate is close to the J9 solver for a firm throw', () => {
+    for (const d of [8, 15, 25, 40]) {
+      const sol = ball.solvePassFrom(0, 0, d, 0, 26 * P['judge.flightSpeedShare'], 'drive', BP['pass.dragPerYd']!, ball.NO_WIND, BP);
+      const est = qb.flightTimeEstimateS(d, 26 * P['judge.flightSpeedShare'], BP['pass.dragPerYd']!, DMATH);
+      expect(Math.abs(est - sol.flightTimeS) / sol.flightTimeS, `at ${d} yd`).toBeLessThan(d <= 25 ? 0.25 : 0.35);
+    }
+  });
   it('a closer defender lowers the completion estimate and raises the interception estimate', () => {
     const e = (gap: number): qb.Estimate => {
       const v = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0).see(11, 10 - gap, 10.5, 7, 0);
@@ -112,9 +115,9 @@ describe('J7.3 judging open and deciding', () => {
     expect(a.pHat).toBeGreaterThan(b.pHat);
     expect(a.iHat).toBeLessThan(b.iHat);
   });
-  it('an underneath defender who can meet a firm throw as it comes down blocks it; with room behind him he puts touch on it', () => {
+  it('an underneath defender in the lane blocks a firm throw; with room behind him he puts touch on it', () => {
     const far = target(1, [{ px: 0, py: 0.5 }, { px: 40, py: 0.5 }]);
-    const lane = new FakeView(QB).at(-7, 0).see(1, 20, 0.5, 0, 0).see(11, 15, 0.3, 0, 0);
+    const lane = new FakeView(QB).at(-7, 0).see(1, 20, 0.5, 0, 0).see(11, 8, 0.3, 0, 0);
     const clear = new FakeView(QB).at(-7, 0).see(1, 20, 0.5, 0, 0).see(11, 8, 9, 0, 0);
     const a = qb.judgeTarget(lane, { ...far, route: [] }, ctx(), 0, false, qb.newEstimate());
     expect(a.trajectory).toBe('touch');
@@ -124,32 +127,6 @@ describe('J7.3 judging open and deciding', () => {
     const c = qb.judgeTarget(tight, { ...far, route: [] }, ctx(), 0, false, qb.newEstimate());
     expect(c.trajectory).toBe('firm');
     expect(c.pHat).toBeLessThan(b.pHat);
-  });
-  it('he knows his own receiver brakes into a planted cut and needs time to get going again out of it', () => {
-    // A dig: 12 yd up, a square cut in. The legs are the receiver's own numbers (QbTarget), not opponent truth.
-    const route = [{ px: 0, py: 10 }, { px: 12, py: 10 }, { px: 12, py: -10 }];
-    const legs = { topSpeedYps: 9, accelTauS: 0.9, brakeYps2: 8 };
-    const dig = { ...target(1, route, 1), ...legs, cutShare: [1, 0.55, 1] }, rounded = { ...dig, cutShare: [1, 1, 1] };
-    const out = new Float64Array(4), at = (t: qb.QbTarget, timeS: number): [number, number] => { qb.walkRoute(t, ctx(), 4, 10, 9, timeS, out); return [out[0]!, out[1]!]; };
-    // Before the break both are on the stem, and the man who must plant is already slowing down.
-    expect(at(dig, 0.8)[0]).toBeLessThan(at(rounded, 0.8)[0]);
-    // After it he is on the new line, behind the man who is imagined turning at full speed.
-    const a = at(dig, 2), b = at(rounded, 2);
-    expect(a[0]).toBeCloseTo(12, 6); expect(b[0]).toBeCloseTo(12, 6);
-    expect(a[1]).toBeGreaterThan(b[1] + 1.5);
-    expect(a[1]).toBeLessThan(10);
-    // He never leaves the drawn path.
-    for (let t = 0; t <= 3; t += 0.25) { const [x, y] = at(dig, t); expect(Math.min(Math.abs(y - 10), Math.abs(x - 12))).toBeLessThan(1e-6); }
-  });
-  it('the flight time he judges with is the time the ball really takes on that trajectory (J9.1.1)', () => {
-    const c = ctx();
-    for (const d of [8, 18, 30]) {
-      expect(c.flightS(d, 'drive')).toBeLessThan(c.flightS(d, 'firm'));
-      expect(c.flightS(d, 'firm')).toBeLessThan(c.flightS(d, 'touch'));
-      // The ball leaves his hand at release height and comes down on the catch height.
-      for (const type of qb.TRAJECTORIES) { expect(c.heightYd(d, 0, type)).toBeCloseTo(BP['pass.releaseHeightYd']!, 9); expect(c.heightYd(d, d, type)).toBeCloseTo(BP['pass.catchHeightYd']!, 9); }
-      expect(c.heightYd(d, d / 2, 'touch')).toBeGreaterThan(c.heightYd(d, d / 2, 'firm'));
-    }
   });
   it('a throw past his arm is not on', () => {
     const v = new FakeView(QB).at(-7, 0).see(1, 50, 0, 0, 0);
@@ -409,11 +386,10 @@ describe('J7.6 the throw', () => {
 });
 
 describe('J7.6 edge cases: the pump fake and the ball batted at the line', () => {
-  // A defender sits under the out where the ball comes down, so the throw is not on; nothing else to look at.
-  // (A man who stands 12 yd short of the catch is no longer "on the throw": a firm ball is far over his head there.)
+  // A defender sits under the out, so the throw is not on; nothing else to look at.
   const sat = (seed: number, attrs: Record<string, number>, over: Partial<SceneSpec> = {}) => runScene({
     seed, attrs, play: qb.basePlay(QB, 'gun3', [read(target(1, OUT, 1), 0.3), read(target(2, R2, 1, true), 0.9)]), maxTicks: 40, noThrow: true,
-    scripts: { 1: alongRoute(OUT, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(10.5, 21) }, ...over,
+    scripts: { 1: alongRoute(OUT, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(6, 11) }, ...over,
   });
   it('he pump-fakes a defender sitting on the throw at most once a play, and a better ball handler does it more', () => {
     const used = (g: number): number => share(N, (seed) => {
@@ -525,56 +501,6 @@ describe('J7.7.1 the mesh read', () => {
   });
 });
 
-describe('the designed handoff (kind `handoff`): no read, he meets the back and gives', () => {
-  const give = (over: Partial<qb.Handoff> = {}): qb.QbPlay => ({ ...qb.basePlay(QB, 'gunQuick', []), kind: 'handoff', eligible: [3], handoff: { backSlot: 5, meet: null, ...over } });
-  const back = { 5: line(-5, 1.5, 0, -1.2, 0, 1) };
-  it('a handoff play needs its handoff, to a teammate who is not himself', () => {
-    expect(qb.qbPlayProblems({ ...give(), handoff: null })).toContain('a handoff play needs its handoff');
-    expect(qb.qbPlayProblems({ ...give(), handoff: { backSlot: QB, meet: null } })).toContain('handoff: the back must be a teammate');
-    expect(qb.qbPlayProblems(give())).toEqual([]);
-  });
-  it('he gives whatever the end does: a crashing end changes nothing, and no mesh read is on the record', () => {
-    for (const end of [line(1, -6, -5, 4), line(1, -6, 0, -3), line(1, -6, -0.3, 0.2)]) {
-      const r = runScene({ play: give(), scripts: { ...back, 15: end }, maxTicks: 20 });
-      expect(r.record.handoff).toMatchObject({ given: true, fumbled: false });
-      expect(r.record.mesh).toBeNull();
-      expect(r.record.ran).toBeNull();
-      expect(r.world.ball.carrierSlot).toBe(5);
-      expect(r.world.players.hasBall[5]).toBe(1);
-      expect(r.world.players.hasBall[QB]).toBe(0);
-      expect(r.events.filter((e) => e.type === 'exchange').map((e) => (e as { kind: string }).kind)).toEqual(['handoff']);
-      expect(r.events.some((e) => e.type === 'possession')).toBe(true);
-    }
-  });
-  it('he goes to a drawn meeting point to give it', () => {
-    const r = runScene({ play: give({ meet: { px: -3, py: 2 } }), scripts: { 5: still(-3, 2.6) }, maxTicks: 30 });
-    expect(r.record.handoff?.given).toBe(true);
-    expect(r.record.handoff!.tick).toBeGreaterThan(1);
-  });
-  it('a poor ball handler sometimes puts it on the ground, and the ball is then loose', () => {
-    const fumbles = (g: number): number => share(5 * N, (seed) => runScene({ seed, attrs: { play_fake_and_ball_handling: g }, play: give(), scripts: back, maxTicks: 20 }).record.handoff?.fumbled === true);
-    expect(fumbles(15)).toBeGreaterThan(0);
-    expect(fumbles(15)).toBeGreaterThan(fumbles(85));
-    for (let seed = 1; seed <= 2000; seed++) {
-      const r = runScene({ seed, attrs: { play_fake_and_ball_handling: 15 }, play: give(), scripts: back, maxTicks: 20 });
-      if (!r.record.handoff?.fumbled) continue;
-      expect(r.record.handoff.given).toBe(false);
-      expect(r.events.some((e) => e.type === 'fumble')).toBe(true);
-      expect(r.world.ball.kind).toBe('loose');
-      expect(r.world.players.hasBall[QB]).toBe(0);
-      return;
-    }
-    throw new Error('no fumbled handoff in 2000 plays');
-  });
-  it('a back who never arrives: after the give-up time he keeps it and runs', () => {
-    const r = runScene({ play: give(), scripts: { 5: still(-5, 12) }, maxTicks: 40 });
-    expect(r.record.handoff).toMatchObject({ given: false, fumbled: false });
-    expect(r.record.handoff!.tick * TICK_S).toBeGreaterThanOrEqual(P['handoff.giveUpS']);
-    expect(r.record.ran?.why).toBe('keep');
-    expect(r.world.players.hasBall[QB]).toBe(1);
-  });
-});
-
 describe('J7.8 clock plays and free plays', () => {
   it('kneel: the ball is live 2.0 s and he ends 1 yard behind where he took the snap', () => {
     const r = runScene({ play: { ...qb.basePlay(QB, 'uc3', []), kind: 'kneel', underCenter: true }, maxTicks: 40 });
@@ -671,7 +597,7 @@ describe('determinism and what he may read', () => {
     const stage = readFileSync(join(dir, 'stage.ts'), 'utf8');
     const fns = stage.split(/\n  function /).slice(1).map((b) => ({ name: b.slice(0, b.indexOf('(')), body: b }));
     const truthReaders = fns.filter((f) => /playX\(w, (?!s\b)|playY\(w, (?!s\b)|pl\.(posX|posY|velX|velY)\[(?!s\])/.test(f.body)).map((f) => f.name).sort();
-    expect(truthReaders).toEqual(['batAtLine', 'doThrow', 'handoffStep', 'interactRun', 'meshStep', 'pitchStep', 'pocketMove', 'respond', 'sense']);
+    expect(truthReaders).toEqual(['batAtLine', 'doThrow', 'interactRun', 'meshStep', 'pitchStep', 'pocketMove', 'respond', 'sense']);
   });
   it('refuses a play it cannot run', () => {
     const q = qb.createQuarterback({ view: () => new FakeView(QB), contests: CONTESTS });

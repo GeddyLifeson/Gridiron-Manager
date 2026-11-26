@@ -10,5 +10,3 @@ export * as save from './save/index.ts';
 export * as log from './log/index.ts';
 export * as snapshot from './snapshot/index.ts';
 export * as certified from './certified/index.ts';
-export * as retention from './retention/index.ts';
-export * as migrations from './migrations/index.ts';

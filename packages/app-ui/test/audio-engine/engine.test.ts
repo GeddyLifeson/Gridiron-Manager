@@ -199,35 +199,6 @@ describe('ducking (MB-10)', () => {
     d.trigger(1.9, 3.5);
     expect(d.window!.holdUntil).toBe(DUCK_MAX_HOLD);
   });
-
-  it('a chain of back-to-back alerts, each starting after the last ended, still frees the crowd by 2.5 s + 1 s', () => {
-    const { ctx, engine } = setup();
-    engine.register({ id: 'crowd.probe', bus: 'crowd', recipe: crowdBed });
-    engine.play('crowd.probe', { when: 9 });
-    const probe = ctx.sources().at(-1)!;
-    const duckNode = busOf(ctx, probe).at(-2)!;
-    for (let i = 0; i < 8; i++) engine.play('ui.alert', { when: 10 + i * 0.45 });
-    expect(engine.crowdDuckAt(10 + DUCK_MAX_HOLD + DUCK_RELEASE + 0.01)).toBe(1);
-    for (let t = 10; t < 15; t += 0.05) {
-      expect(engine.crowdDuckAt(t)).toBeGreaterThanOrEqual(DUCK_LEVEL - 1e-9);
-      expect(duckNode.gain.valueAt(t)).toBeCloseTo(engine.crowdDuckAt(t), 5);
-    }
-    // Total time held at the dip level is at most 2.5 s.
-    let held = 0;
-    for (let t = 9; t < 16; t += 0.01) if (engine.crowdDuckAt(t) <= DUCK_LEVEL + 1e-9) held += 0.01;
-    expect(held).toBeLessThanOrEqual(DUCK_MAX_HOLD + 0.02);
-  });
-});
-
-describe('cut short by the lane plan (MB-7)', () => {
-  it('stopAt ends the sound there with a short fade; a stopAt after the natural end changes nothing', () => {
-    const { engine } = setup();
-    const full = engine.play('ui.alert', { when: 1 });
-    const cut = engine.play('ui.alert', { when: 3, stopAt: 3.1 });
-    const late = engine.play('ui.alert', { when: 5, stopAt: 99 });
-    expect(cut.played && cut.endsAt).toBeCloseTo(3.1, 9);
-    expect(full.played && late.played && late.endsAt - 5).toBeCloseTo(full.played ? full.endsAt - 1 : 0, 9);
-  });
 });
 
 describe('synthesized fallback (MB-18)', () => {

@@ -36,9 +36,9 @@ describe('college targets (G-41, T12)', () => {
     expect(new Set(coverage.rows.map((r) => r.leaf))).toEqual(new Set(['T12.1.1', 'T12.2.1', 'T12.2.2', 'T12.3.1', 'T12.4.1', 'T12.5.1', 'T12.6.1', 'T12.7.1']));
   });
 
-  it('only a Verified college target is certify, and status is computed from sources', () => {
+  it('no college target is certify (no row is Verified) and status is computed from sources', () => {
     for (const t of merged.targets) {
-      if (t.tier === 'certify') expect(factById.get(t.factId!)?.status, t.id).toBe('Verified');
+      expect(t.tier, t.id).not.toBe('certify');
       if (t.factId) {
         const f = factById.get(t.factId)!;
         expect(f, t.id).toBeDefined();

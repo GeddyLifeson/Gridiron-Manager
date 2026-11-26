@@ -9,11 +9,11 @@ export {
   WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER,
   type WeeklyStep, type SeasonStep, type StepId, type PersonStatus, type Scalar, type GameResult, type StaffSeason, type SeasonSummary, type TeamRecordLine,
   type LiveWorld, type StepContext, type StepDigest, type StepHandler, type WorldSystems, type SchedulePort, type ScheduledGame,
-  type GameRequest, type GamePlayed, type GamePort, type GameBatchPort,
+  type GameRequest, type GamePlayed, type GamePort,
 } from './types.ts';
 export { createWorld, steppedSeed, type CreateWorldInput } from './world.ts';
 export {
-  unbound, unboundSteps, systemsFrom, runWeek, runSeasonPoint, runSeason, summarizeSeason, recordStaffSeason, gamesStep, gamesStepBatch, batchOf, compactionStep, worldHash,
+  unbound, unboundSteps, systemsFrom, runWeek, runSeasonPoint, runSeason, summarizeSeason, recordStaffSeason, gamesStep, compactionStep, worldHash,
   type PassOptions,
 } from './order.ts';
 export { STREAM_LEAVING, yearlyDeathChance, deathTableProblems, employedIds, ageOf, leavingStep, reactivate, searchable, type LeavingPorts } from './leaving.ts';

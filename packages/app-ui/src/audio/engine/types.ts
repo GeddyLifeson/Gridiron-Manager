@@ -171,11 +171,6 @@ export interface PlayOptions {
   gain?: number;
   /** A draw in [0, 1) from `cosmetic.audio`, picks the pitch variant. Default: first variant. */
   variantDraw?: number;
-  /**
-   * Audio-clock time to cut the sound short (the lane plan's `endMs` when a better-ranked stinger cuts in,
-   * MB-7). The sound fades out over a few ms ending here. Ignored if it is after the sound's own end.
-   */
-  stopAt?: number;
 }
 
 /** Why a request made no sound. Tests and the captions strip read this. */

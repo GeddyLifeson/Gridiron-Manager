@@ -5,4 +5,3 @@ export * from './state-tables.ts';
 export * from './chain.ts';
 export * from './snapshots.ts';
 export * from './params.ts';
-export * from './packed-rows.ts';

@@ -1,7 +1,7 @@
 // The special-teams call menu (F12, I4, G7.7.2) for every rule set. Calls carry no outcome numbers: what a
 // kick does is decided by J9 and the contests, from the players. Rule-dependent calls name the rule value they
 // need (`when`), so one menu serves the pro dynamic kickoff and the college traditional kickoff alike.
-import type { Basis, FakeLookTerm, FakeRole, KickDef, ReturnDef, RuleCond, ScrimmageDef, SpecialCallDef } from './types.ts';
+import type { Basis, KickDef, ReturnDef, RuleCond, ScrimmageDef, SpecialCallDef } from './types.ts';
 
 const b = (claim: string, status: Basis['status'], sources: readonly string[]): Basis => ({ claim, status, sources });
 const NFL = 'st-nfl-rules-2026';
@@ -44,14 +44,6 @@ const FG_FAKES = b('Field goal teams fake out of the kick look, including the sw
 // ---------------------------------------------------------------- builders
 const kick = (d: Omit<KickDef, 'unit'>): KickDef => ({ unit: 'kick', ...d });
 const ret = (d: Omit<ReturnDef, 'unit'>): ReturnDef => ({ unit: 'return', ...d });
-// The looks as terms the engine checks (I4.6.1). The thresholds are design values (FAKE_LOOK, Assumption): "uncovered"
-// is nobody within 2 yd across him and 7 yd off the ball; an open edge is nobody more than 1 yd outside the wing
-// within 5 yd (on a field goal, nobody outside the wing at all); an unmatched gate is fewer defenders than
-// offensive men beyond 3 yd on the gate side.
-const UNCOVERED = (who: FakeRole[]): FakeLookTerm[] => [{ kind: 'uncovered', who, lateralYd: 2, depthYd: 7 }];
-const EDGE_OPEN: FakeLookTerm[] = [{ kind: 'edgeOpen', outsideOf: 'wing', marginYd: 1, depthYd: 5 }];
-const EDGE_INSIDE_WING: FakeLookTerm[] = [{ kind: 'edgeOpen', outsideOf: 'wing', marginYd: 0, depthYd: 5 }];
-const GATE_UNMATCHED: FakeLookTerm[] = [{ kind: 'outnumbered', gapYd: 3, depthYd: 7 }];
 const scrim = (d: Omit<ScrimmageDef, 'unit'>): ScrimmageDef => ({ unit: 'offense', ...d });
 const SIDES = ['left', 'right'] as const;
 const word = (side: string): string => side[0]!.toUpperCase() + side.slice(1);
@@ -79,14 +71,14 @@ const PUNTS: SpecialCallDef[] = [
   ...SIDES.map((side) => kick({ id: `st.punt.coffin_${side}`, name: `Coffin corner ${side}`, sheetKind: 'punt', kickKind: 'punt', direction: side, trajectory: 'line', protection: 'spread', when: [], ruleFacts: ['F-rule-0129'],
     summary: `Plus-territory punt driven toward the ${side} corner to go out of bounds or be downed short of the goal line.`,
     basis: [b('A coffin corner punt is placed to go out of bounds or be downed near the corner, avoiding a touchback', '2 of 3', ['st-guy-punting', 'st-hewitt-punt']), PUNT_FORMATION, DESIGN] })),
-  scrim({ id: 'st.punt.fake_pp_pass', name: 'Fake punt: protector pass', sheetKind: 'punt', from: 'punt', fake: true, playKind: 'quick_pass', requiredLook: 'wing released uncovered', look: UNCOVERED(['wing']), fakeShare: 0.01, when: [], ruleFacts: [],
+  scrim({ id: 'st.punt.fake_pp_pass', name: 'Fake punt: protector pass', sheetKind: 'punt', from: 'punt', fake: true, playKind: 'quick_pass', requiredLook: 'wing released uncovered', fakeShare: 0.01, when: [], ruleFacts: [],
     summary: 'Direct snap to the personal protector, who runs at the line and passes to the released wing.',
     basis: [b('Direct snap to the personal protector, a run fake, then a short pass to the released wingback', '1 of 3', ['st-loebach-fake']), FAKES_EXIST, FAKE_LOOK, FAKE_SHARE] }),
-  scrim({ id: 'st.punt.fake_punter_pass', name: 'Fake punt: punter pass', sheetKind: 'punt', from: 'punt', fake: true, playKind: 'dropback_pass', requiredLook: 'gunner or slot uncovered', look: UNCOVERED(['gunner', 'slot']), fakeShare: 0.01, when: [], ruleFacts: [],
+  scrim({ id: 'st.punt.fake_punter_pass', name: 'Fake punt: punter pass', sheetKind: 'punt', from: 'punt', fake: true, playKind: 'dropback_pass', requiredLook: 'gunner or slot uncovered', fakeShare: 0.01, when: [], ruleFacts: [],
     summary: 'The punter takes the snap as on a punt and throws to an uncovered gunner or slot.',
     basis: [b('Punt teams pass out of the punt look, including a hot throw to an uncovered slot', 'Verified', ['st-stgeorge-spread', 'st-accorsi-spread', 'st-haddad-punt']),
       b('The punter is the passer', '1 of 3', ['st-haddad-punt']), FAKE_LOOK, FAKE_SHARE] }),
-  scrim({ id: 'st.punt.fake_run', name: 'Fake punt: run', sheetKind: 'punt', from: 'punt', fake: true, playKind: 'run', requiredLook: 'rush leaves the edge open', look: EDGE_OPEN, fakeShare: 0.01, when: [], ruleFacts: [],
+  scrim({ id: 'st.punt.fake_run', name: 'Fake punt: run', sheetKind: 'punt', from: 'punt', fake: true, playKind: 'run', requiredLook: 'rush leaves the edge open', fakeShare: 0.01, when: [], ruleFacts: [],
     summary: 'A run out of the punt look by the punter or a back, against a return that rushes and leaves the edge.',
     basis: [b('Punt teams run out of the punt look', '2 of 3', ['st-accorsi-spread', 'st-haddad-punt']),
       b('Who carries (punter, protector or wing) is set by the design; one source names the punter', '1 of 3', ['st-haddad-punt']), FAKE_LOOK, FAKE_SHARE] }),
@@ -122,35 +114,35 @@ const FIELD_GOALS: SpecialCallDef[] = [
   kick({ id: 'st.fg.fair_catch_kick', name: 'Fair catch kick', sheetKind: 'field_goal', kickKind: 'fair_catch_kick', direction: null, trajectory: null, protection: null, when: [{ key: 'fg.fair_catch_kick', is: true }], ruleFacts: ['F-rule-0125', 'F-rule-0126'],
     summary: 'After a fair catch the team may try a free place kick or drop kick for a field goal from the spot, with no rush.',
     basis: [b('A free kick for a field goal after a fair catch is legal at both levels', 'Rulebook only', [NFL, NCAA])] }),
-  scrim({ id: 'st.fg.fake_holder_run', name: 'Fake field goal: holder run', sheetKind: 'field_goal', from: 'field_goal', fake: true, playKind: 'run', requiredLook: 'edge rushers inside the wing', look: EDGE_INSIDE_WING, fakeShare: 0.01, when: [], ruleFacts: [],
+  scrim({ id: 'st.fg.fake_holder_run', name: 'Fake field goal: holder run', sheetKind: 'field_goal', from: 'field_goal', fake: true, playKind: 'run', requiredLook: 'edge rushers inside the wing', fakeShare: 0.01, when: [], ruleFacts: [],
     summary: 'The holder takes the snap and runs for the edge the block unit leaves.',
     basis: [FG_FAKES, b('The holder as the runner', 'Assumption', []), FAKE_LOOK, FAKE_SHARE] }),
-  scrim({ id: 'st.fg.fake_holder_pass', name: 'Fake field goal: holder pass', sheetKind: 'field_goal', from: 'field_goal', fake: true, playKind: 'movement_pass', requiredLook: 'wing or end released uncovered', look: UNCOVERED(['wing', 'end']), fakeShare: 0.01, when: [], ruleFacts: [],
+  scrim({ id: 'st.fg.fake_holder_pass', name: 'Fake field goal: holder pass', sheetKind: 'field_goal', from: 'field_goal', fake: true, playKind: 'movement_pass', requiredLook: 'wing or end released uncovered', fakeShare: 0.01, when: [], ruleFacts: [],
     summary: 'The holder rises and throws to the wing or end who releases.',
     basis: [FG_FAKES, b('The holder as the passer and the wing or end as the target', 'Assumption', []), FAKE_LOOK, FAKE_SHARE] }),
-  scrim({ id: 'st.fg.swinging_gate', name: 'Swinging gate', sheetKind: 'field_goal', from: 'field_goal', fake: true, playKind: 'trick', requiredLook: 'defense does not match the gate', look: GATE_UNMATCHED, fakeShare: 0.01, when: [], ruleFacts: [],
+  scrim({ id: 'st.fg.swinging_gate', name: 'Swinging gate', sheetKind: 'field_goal', from: 'field_goal', fake: true, playKind: 'trick', requiredLook: 'defense does not match the gate', fakeShare: 0.01, when: [], ruleFacts: [],
     summary: 'The line and backs set wide to one side of a lone snapper; the snap goes to whoever the defense leaves unmatched, or the unit shifts back to kick.',
     basis: [FG_FAKES, b('The swinging gate is a named field goal fake', '1 of 3', ['st-erb-fgblock']), b('Its alignment and options are design values', 'Assumption', []), FAKE_SHARE] }),
 ];
 
 const TWO_POINT_SPOT = b('Two-point snap spot and points are rule values (pro the 2, college the 3)', 'Rulebook only', [NFL, NCAA]);
 const TWO_POINT: SpecialCallDef[] = [
-  scrim({ id: 'st.two.pick', name: 'Two-point pick', sheetKind: 'try', from: 'try', fake: false, playKind: 'quick_pass', requiredLook: null, look: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
+  scrim({ id: 'st.two.pick', name: 'Two-point pick', sheetKind: 'try', from: 'try', fake: false, playKind: 'quick_pass', requiredLook: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
     summary: 'A rub or pick route combination that frees a quick target to the flat against tight man coverage.',
     basis: [b('Pick or rub routes give quick open targets to the flat and beat tight man coverage near the goal line', '2 of 3', ['st-bowen-2pt', 'st-leister-goalline']), TWO_POINT_SPOT] }),
-  scrim({ id: 'st.two.sprint_out', name: 'Two-point sprint out', sheetKind: 'try', from: 'try', fake: false, playKind: 'movement_pass', requiredLook: null, look: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
+  scrim({ id: 'st.two.sprint_out', name: 'Two-point sprint out', sheetKind: 'try', from: 'try', fake: false, playKind: 'movement_pass', requiredLook: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
     summary: 'The quarterback sprints or boots out to create a throwing lane and reads a quick out to a corner route.',
     basis: [b('Moving the quarterback (sprint or boot) creates throwing lanes; a sprint-out reads quick out to corner', '2 of 3', ['st-bowen-2pt', 'st-leister-goalline']), TWO_POINT_SPOT] }),
-  scrim({ id: 'st.two.fade', name: 'Two-point fade', sheetKind: 'try', from: 'try', fake: false, playKind: 'quick_pass', requiredLook: null, look: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
+  scrim({ id: 'st.two.fade', name: 'Two-point fade', sheetKind: 'try', from: 'try', fake: false, playKind: 'quick_pass', requiredLook: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
     summary: 'A fade to the best outside receiver isolated on one side.',
     basis: [b('A fade is a two-point play when an elite receiver is isolated', '1 of 3', ['st-bowen-2pt']), TWO_POINT_SPOT] }),
-  scrim({ id: 'st.two.jumbo_play_action', name: 'Two-point jumbo play action', sheetKind: 'try', from: 'try', fake: false, playKind: 'play_action', requiredLook: null, look: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
+  scrim({ id: 'st.two.jumbo_play_action', name: 'Two-point jumbo play action', sheetKind: 'try', from: 'try', fake: false, playKind: 'play_action', requiredLook: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
     summary: 'Heavy personnel shows the run and throws behind the defenders who bite, often to a tight end.',
     basis: [b('Jumbo play action and tight end isolation as two-point plays', '1 of 3', ['st-bowen-2pt']), TWO_POINT_SPOT] }),
-  scrim({ id: 'st.two.qb_power', name: 'Two-point quarterback power or option', sheetKind: 'try', from: 'try', fake: false, playKind: 'qb_run', requiredLook: null, look: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
+  scrim({ id: 'st.two.qb_power', name: 'Two-point quarterback power or option', sheetKind: 'try', from: 'try', fake: false, playKind: 'qb_run', requiredLook: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
     summary: 'The quarterback is a runner: quarterback power or a read option, adding a blocker or a read to the count.',
     basis: [b('The option series and quarterback power as two-point plays', '1 of 3', ['st-bowen-2pt']), TWO_POINT_SPOT] }),
-  scrim({ id: 'st.two.power', name: 'Two-point power run', sheetKind: 'try', from: 'try', fake: false, playKind: 'run', requiredLook: null, look: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
+  scrim({ id: 'st.two.power', name: 'Two-point power run', sheetKind: 'try', from: 'try', fake: false, playKind: 'run', requiredLook: null, fakeShare: null, when: [], ruleFacts: ['F-rule-0035', 'F-rule-0036'],
     summary: 'Base power game with two backs: power, counter or lead.',
     basis: [b('The base power game (power, counter, lead) with two backs on the field', '1 of 3', ['st-bowen-2pt']), TWO_POINT_SPOT] }),
 ];

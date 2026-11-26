@@ -77,9 +77,9 @@ export interface TakeResult {
 export function takeAct(
   state: RecruitingState, ctx: RecruitingContext, hook: ComplianceHook,
   act: ActRef & { readonly withMemberId?: number | undefined },
-  opts: { readonly reach?: number; readonly aiJudgementError?: number; readonly gain?: number; /** The act's breaches when the caller has just listed them (nothing may have changed since). */ readonly breaches?: readonly Breach[] } = {},
+  opts: { readonly reach?: number; readonly aiJudgementError?: number; readonly gain?: number } = {},
 ): TakeResult {
-  const breaches = opts.breaches ?? breachesOf(state, ctx, act);
+  const breaches = breachesOf(state, ctx, act);
   recordUsage(state, ctx, act);
   applyContact(state, ctx, act, { reach: opts.reach ?? 1, aiJudgementError: opts.aiJudgementError ?? 0 });
   const p = state.prospects[act.prospectId];

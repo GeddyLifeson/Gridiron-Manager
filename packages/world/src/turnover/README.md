@@ -54,47 +54,6 @@ Fixes the PR 168 drift failure: before this, ages rose exactly one year per seas
   fines), medical reports (hidden injury), recruiting contacts and transfers (college). K7.6.1 staff searches
   (`career.staff.runSearch`) wait on coach turnover off-screen.
 
-## Coach turnover (coaches.ts)
-
-`coachMovesStep(b)` is the coach half of the K7 `moves` step; `movesStep(b, rosterMovesStep(b))` runs it first, then the roster
-cycle (C4: coaching changes come before free agency and the draft).
-
-- Every pass: each AI head coach's decider (`stakeholders.generateDecisionMaker`, from the seed, the team and its owner, or its
-  athletic director at a college) updates confidence from the week's games (`stakeholders.updateConfidence`, K8.3.1), with the
-  public pregame chance from the N2.6.1 strength fit (`models.strength`). A game that leaves confidence below 30 brings an
-  emergency review (`stakeholders.review`, E4.3.1, E4.3.3). A firing names the senior assistant interim (`interim_named`).
-- First pass of a season (the loop's results array has turned over): the season-end reading and the main review (E4.3.1);
-  coordinators whose unit was below standard for `fire.seasonsBelowStandard` seasons are let go (`staff.aiFiresAssistant`,
-  K7.6.1 rule 5); chair holders and pool coaches retire by `market.retireHazard` (E2.3.4 rule 4), pool coaches unsigned for
-  `career.jobCyclesBeforeLeaving` cycles leave; deals that ran out renew. Head chairs are searched worst record first by the
-  owner (`stakeholders.rankCandidates`/`runSearch`, K8.4.2); a hire who held a head chair elsewhere opens that one in turn. The
-  new head coach offers chairs to former colleagues (`positions.decideFollow`, E2.3.4 rule 2) and reviews the staff he inherits
-  (`positions.firingCascade`, X8.4.1). Every open chair is filled inside first or from the pool by his own ranking
-  (`staff.rankCandidates`/`runSearch`, then `positions.fillVacancy`, K7.6.1, X8.4.2).
-- Openings are counted by season, level, rung and reason (`coachOpenings`, E2.3.4 acceptance 1, 2 and 4). `coachEntrants(world)`
-  sizes the `coach_staff_entry` cohort (E2.3.4 rule 5).
-- State lives in `LiveWorld.systemState` under `world.turnover.coaches`; the step digest carries the head count and the sum of
-  confidence so the pass hash covers it.
-
-Decisions:
-
-- TO-11. Candidates are seen through the public record only: the win share of the teams they served over `coach.recordSeasons`
-  seasons, their rung and side, and seasons on the same staff (`coach.tieSeasons`, `coach.tiePerSeason`) standing in for X7 edges.
-  No labels, references, interviews or scheme families yet (X2.2, X7, E2.4.3 and K2.5.2 are unbound off-screen).
-- TO-12. No contracts or cap (TO-04): firing costs nothing (money factor 1), offers carry no pay, deals are lengths only
-  (`contract.staffMaxYears`). Every head coach counts as hired by his general manager (GMs are never turned over, TO-06).
-- TO-13. No health (E8) or wealth (E6.9.2) state off-screen: those retirement terms are 0. Imported people use age and years out only.
-- TO-14. Not yet: lateral moves (E2.3.4 rule 1, needs the E2.5.2 situation judgment and pay), permission windows and tampering
-  (C11, `early_contact_coach`), position coach grading below coordinators, the president forcing a college firing (K8.5.1).
-- TO-15. The cohort runs at the season point, before the offseason's exits are known, so `coachEntrants` reads the larger of last
-  offseason's exits, its bottom-rung demand, and the retirements the coming offseason expects. Players who left football in the
-  last two seasons (up to `coach.formerPlayerMaxAge`) can start at rungs 0 to 2 (catalogue `job:outside.former_player`).
-- TO-16. The user's own team and seat are left to the career module: the step never reviews, retires or fills for the user.
-- TO-17. The career event types (market `coach_fired`, `coach_retired`; staff `staff_hired`, `staff_fired`; positions
-  `interim_named`, `staff_released`, `staff_followed`, `job_opened`, `promoted_within`) are marked compactable, which the world
-  registry refuses (X2.4.1 rule 4: career is never compacted). `COACH_EVENT_TYPES` registers them with `compactable: false`;
-  the fix belongs in the career modules. They have min tier 1, so tier 2 and 3 teams record nothing (X13.1.1).
-
 ## Acceptance runs (K7, 10/30/50 seasons)
 
 `test/turnover/acceptance.test.ts`, skipped unless `GM_WORLD_ACCEPTANCE=10,30,50`. Results on the trimmed test world are in the PR.
@@ -108,11 +67,6 @@ All tuning rows in `params.ts` except `college.offersPerSignee` (bible K7.5.1, 2
 it needs checking against a sourced D8 age band before calibration.
 
 ## For the integrator
-
-- Coach turnover: bind `moves: turnover.movesStep(b, turnover.rosterMovesStep(b))`, pass `turnover.COACH_EVENT_TYPES` to
-  `createWorld` beside `TURNOVER_EVENT_TYPES`, and size the `coach_staff_entry` cohort with
-  `openEntryChairs: turnover.coachEntrants(world)`. New stream names `world.turnover.coaches`, `world.turnover.coaches.decider`
-  and `world.turnover.coaches.cascade` (J13.2.1). Saves must carry `LiveWorld.systemState` (G-83).
 
 - World barrel: `export * as turnover from './turnover/index.ts';`, register `turnover.PARAMS`, pass `TURNOVER_EVENT_TYPES` to `createWorld`.
 - Composition root: bind `development: turnover.developmentStep(b)` and `moves: turnover.rosterMovesStep(b)` with

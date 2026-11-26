@@ -3,32 +3,27 @@
 // shifted by relationships with the main recruiter, the head coach's involvement, and the impression
 // visits and offers leave. A staff learns only from evidence events, written as words with a basis.
 import unitsJson from './data/units.json' with { type: 'json' };
-import { clamp, key2, powInt, type FitScores, type RecruitingContext } from './context.ts';
+import { clamp, key2, powInt, type RecruitingContext } from './context.ts';
 import { P } from './params.ts';
-import { edgeStamp, edgesDecayed, edgesFrom, edgesTouched, findEdge, findTie, noteEdge } from './indexes.ts';
 import { tieOf, tiesOfProspect } from './limits.ts';
 import {
   PREFERENCE_KEYS, STANDING_WORDS,
   type ActionKind, type Board, type CircleMember, type CircleRead, type Edge, type Evidence, type EvidenceKind, type InfluenceWord,
-  type PreferenceKey, type Prospect, type RecruitingState, type SchoolTie, type StaffRead, type StandingWord,
+  type PreferenceKey, type Prospect, type RecruitingState, type StaffRead, type StandingWord,
 } from './types.ts';
 
 const SCALE = unitsJson.scaleMax;
 
 export function edgeOf(state: RecruitingState, fromId: number, toId: number): number {
-  return findEdge(state, fromId, toId)?.strength ?? 0;
+  return state.edges[key2(fromId, toId)]?.strength ?? 0;
 }
 
 export function bumpEdge(state: RecruitingState, fromId: number, toId: number, delta: number, day: number): void {
-  let e = findEdge(state, fromId, toId);
-  if (!e) {
-    e = { fromId, toId, strength: 0, lastDay: day };
-    state.edges[key2(fromId, toId)] = e;
-    noteEdge(state, e);
-  }
+  const k = key2(fromId, toId);
+  const e: Edge = state.edges[k] ?? { fromId, toId, strength: 0, lastDay: day };
   e.strength = clamp(e.strength + delta, 0, SCALE);
   e.lastDay = day;
-  edgesTouched(state, fromId);
+  state.edges[k] = e;
 }
 
 /** Score of one preference at one school for one member of the circle, 0 to 1 (T4.1.1 preferences). */
@@ -52,103 +47,36 @@ export function preferenceScore(state: RecruitingState, ctx: RecruitingContext, 
   }
 }
 
-const FIT_HC_EDGE_SHARE = P('fit.headCoachEdgeShare');
-const FIT_HC_INVOLVEMENT = P('fit.hcInvolvementWeight');
-const FIT_DISTANCE_AWAY = P('fit.distanceAway');
-const INTEREST_FIT_WEIGHT = P('interest.fitWeight');
-
-/**
- * Fit of a school for the whole circle, weighted by true influence (T4.4.2 rule 1). 0 to 1. The same sum as
- * `preferenceScore` over every member and key, in the same order; only the relationship score differs
- * between members, so the others are worked out once.
- */
-export function fitOf(state: RecruitingState, ctx: RecruitingContext, p: Prospect, teamId: number, tie: SchoolTie | undefined = findTie(state, p.personId, teamId)): number {
-  const prog = ctx.programs.program(teamId);
-  let f = tie && ctx.memo ? ctx.memo.scores.get(tie) : undefined;
-  if (!f) {
-    f = factScores(ctx, p, teamId);
-    if (tie && ctx.memo) ctx.memo.scores.set(tie, f);
-  }
-  const { distance, playingTime, prestige, academics, money, schemeFit, favourite } = f;
-  const rec = tie?.recruiterId ?? null;
-  const recEdges = rec === null ? undefined : edgesFrom(state, rec);
-  const hcEdges = edgesFrom(state, prog.headCoachId);
-  const involvement = FIT_HC_INVOLVEMENT * (tie?.hcInvolvement ?? 0);
+/** Fit of a school for the whole circle, weighted by true influence (T4.4.2 rule 1). 0 to 1. */
+export function fitOf(state: RecruitingState, ctx: RecruitingContext, p: Prospect, teamId: number): number {
   let fit = 0;
   for (const m of p.circle) {
-    const edge = rec === null ? 0 : (recEdges?.get(m.memberId)?.strength ?? 0) / SCALE;
-    const hc = (hcEdges?.get(m.memberId)?.strength ?? 0) / SCALE;
-    const relationship = clamp(edge + FIT_HC_EDGE_SHARE * hc + involvement, 0, 1);
-    const w = m.prefs;
-    // PREFERENCE_KEYS order: the sum must add in the order `preferenceScore` is listed in.
     let s = 0;
-    s += w.distance * distance;
-    s += w.playingTime * playingTime;
-    s += w.prestige * prestige;
-    s += w.relationship * relationship;
-    s += w.academics * academics;
-    s += w.money * money;
-    s += w.schemeFit * schemeFit;
-    s += w.favourite * favourite;
+    for (const key of PREFERENCE_KEYS) s += m.prefs[key] * preferenceScore(state, ctx, p, teamId, m, key);
     fit += m.influence * s;
   }
   return fit;
-}
-
-function factScores(ctx: RecruitingContext, p: Prospect, teamId: number): FitScores {
-  const prog = ctx.programs.program(teamId);
-  return {
-    distance: p.region === prog.region ? 1 : FIT_DISTANCE_AWAY,
-    playingTime: clamp(ctx.programs.opportunity(teamId, p.position), 0, 1),
-    prestige: clamp(prog.prestige / SCALE, 0, 1),
-    academics: clamp(prog.academics / SCALE, 0, 1),
-    money: clamp(prog.money / SCALE, 0, 1),
-    schemeFit: clamp(ctx.programs.schemeFit(teamId, p.personId), 0, 1),
-    favourite: p.favouriteTeamId === teamId ? 1 : 0,
-  };
-}
-
-/**
- * True interest of one prospect in one school. Inside a week (`ctx.memo`) the value is kept by tie and used
- * again only when everything it was worked out from is unchanged: the tie's impression, recruiter and head
- * coach involvement, and every edge starting at that recruiter or that head coach (their stamps). Program
- * facts stand still for the life of the memo.
- */
-function interestOf(state: RecruitingState, ctx: RecruitingContext, p: Prospect, teamId: number, t: SchoolTie | undefined): number {
-  const memo = ctx.memo;
-  if (!t || !memo) return clamp(SCALE * (INTEREST_FIT_WEIGHT * fitOf(state, ctx, p, teamId, t) + (t?.impression ?? 0)), 0, SCALE);
-  const c = memo.interest.get(t);
-  if (c && c.impression === t.impression && c.recruiterId === t.recruiterId && c.hcInvolvement === t.hcInvolvement
-    && c.headCoachStamp === edgeStamp(state, c.headCoachId) && (c.recruiterId === null || c.recruiterStamp === edgeStamp(state, c.recruiterId))) return c.value;
-  const headCoachId = ctx.programs.program(teamId).headCoachId;
-  const value = clamp(SCALE * (INTEREST_FIT_WEIGHT * fitOf(state, ctx, p, teamId, t) + t.impression), 0, SCALE);
-  const row = {
-    impression: t.impression, recruiterId: t.recruiterId, hcInvolvement: t.hcInvolvement, headCoachId,
-    recruiterStamp: t.recruiterId === null ? 0 : edgeStamp(state, t.recruiterId), headCoachStamp: edgeStamp(state, headCoachId), value,
-  };
-  if (c) Object.assign(c, row); else memo.interest.set(t, row);
-  return value;
 }
 
 /** True interest, 0 to 100 (ProspectTeamState.interest). Truth: never shown (K9.1.1). */
 export function trueInterest(state: RecruitingState, ctx: RecruitingContext, prospectId: number, teamId: number): number {
   const p = state.prospects[prospectId];
   if (!p) return 0;
-  return interestOf(state, ctx, p, teamId, findTie(state, prospectId, teamId));
+  const t = state.ties[key2(prospectId, teamId)];
+  const fit = fitOf(state, ctx, p, teamId);
+  return clamp(SCALE * (P('interest.fitWeight') * fit + (t?.impression ?? 0)), 0, SCALE);
 }
 
-export type InterestRow = { teamId: number; interest: number };
-
 /** Schools that have touched the prospect this cycle (a tie exists), with true interest, best first. */
-export function interestTable(state: RecruitingState, ctx: RecruitingContext, prospectId: number): InterestRow[] {
-  const out: InterestRow[] = [];
-  const p = state.prospects[prospectId];
-  for (const t of tiesOfProspect(state, prospectId)) out.push({ teamId: t.teamId, interest: p ? interestOf(state, ctx, p, t.teamId, t) : 0 });
+export function interestTable(state: RecruitingState, ctx: RecruitingContext, prospectId: number): { teamId: number; interest: number }[] {
+  const out: { teamId: number; interest: number }[] = [];
+  for (const t of tiesOfProspect(state, prospectId)) out.push({ teamId: t.teamId, interest: trueInterest(state, ctx, prospectId, t.teamId) });
   return out.sort((a, b) => b.interest - a.interest || a.teamId - b.teamId);
 }
 
 /** Where a school truly stands, in the staff's words (T4.4.1). Used to draw evidence, never shown. */
-export function trueStanding(state: RecruitingState, ctx: RecruitingContext, prospectId: number, teamId: number, table: readonly InterestRow[] = interestTable(state, ctx, prospectId)): StandingWord {
+export function trueStanding(state: RecruitingState, ctx: RecruitingContext, prospectId: number, teamId: number): StandingWord {
+  const table = interestTable(state, ctx, prospectId);
   const i = table.findIndex((r) => r.teamId === teamId);
   if (i < 0) return 'no_real_chance';
   const lead = table[0]!.interest;
@@ -203,9 +131,7 @@ export function addEvidence(state: RecruitingState, teamId: number, prospectId: 
 export function statement(state: RecruitingState, ctx: RecruitingContext, prospectId: number, teamId: number, listenerId: number, speakerId: number, kind: EvidenceKind, day: number, aiJudgementError: number): Evidence {
   const p = state.prospects[prospectId]!;
   const r = ctx.rng(['read', prospectId, teamId, listenerId, day, speakerId]);
-  // Nothing between here and the rival below changes interest, so one table serves both.
-  const table = interestTable(state, ctx, prospectId);
-  const truth = trueStanding(state, ctx, prospectId, teamId, table);
+  const truth = trueStanding(state, ctx, prospectId, teamId);
   const familiarity = edgeOf(state, listenerId, speakerId) / SCALE;
   const openness = speakerId === prospectId ? p.openness : P('read.circleOpenness');
   const honest = r.chance(clamp(openness * (P('read.opennessFloor') + (1 - P('read.opennessFloor')) * familiarity), 0, 1));
@@ -217,22 +143,14 @@ export function statement(state: RecruitingState, ctx: RecruitingContext, prospe
   let rival: number | null = null;
   const member = p.circle.find((m) => m.memberId === speakerId) ?? p.circle[0]!;
   if (r.chance(P('read.reasonShare'))) {
-    const top = prefsInOrder(member)[r.int(0, 1)]!;
+    const top = [...PREFERENCE_KEYS].sort((a, b) => member.prefs[b] - member.prefs[a])[r.int(0, 1)]!;
     reason = { key: top, positive: preferenceScore(state, ctx, p, teamId, member, top) >= P('half') };
   }
   if (r.chance(openness * P('read.rivalShare'))) {
-    const leader = table.find((x) => x.teamId !== teamId);
+    const leader = interestTable(state, ctx, prospectId).find((x) => x.teamId !== teamId);
     if (leader) rival = leader.teamId;
   }
   return { kind, day, byStaffId: listenerId, signal: word, rivalTeamId: rival, reason };
-}
-
-/** A member's preference keys, the one he weighs most first. His weights never change, so the order is kept. */
-const PREF_ORDER = new WeakMap<CircleMember, readonly PreferenceKey[]>();
-function prefsInOrder(m: CircleMember): readonly PreferenceKey[] {
-  let o = PREF_ORDER.get(m);
-  if (!o) { o = [...PREFERENCE_KEYS].sort((a, b) => m.prefs[b] - m.prefs[a]); PREF_ORDER.set(m, o); }
-  return o;
 }
 
 /** Influence in words from evidence (T4.4.2); a trusting high school coach gives an honest picture. */
@@ -241,7 +159,7 @@ export function readInfluence(state: RecruitingState, ctx: RecruitingContext, p:
   const words: InfluenceWord[] = ['decides', 'strong_say', 'some_say', 'little_say'];
   let i = m.influence >= P('circle.decidesLine') ? 0 : m.influence >= P('circle.strongLine') ? words.indexOf('strong_say') : m.influence >= P('circle.someLine') ? words.indexOf('some_say') : words.indexOf('little_say');
   if (!honest && r.chance(P('circle.misreadShare'))) i = clamp(i + (r.chance(P('half')) ? 1 : -1), 0, words.length - 1);
-  const cares = prefsInOrder(m).slice(0, Math.round(P('circle.caresShown')));
+  const cares = [...PREFERENCE_KEYS].sort((a, b) => m.prefs[b] - m.prefs[a]).slice(0, Math.round(P('circle.caresShown')));
   return { memberId: m.memberId, relation: m.relation, influence: words[i]!, caresAbout: cares, basis: 'family_says', asOf: day };
 }
 
@@ -302,7 +220,6 @@ export function applyContact(
 export function decayWeek(state: RecruitingState): void {
   for (const t of Object.values(state.ties)) t.impression *= P('impression.weeklyRetain');
   for (const e of Object.values(state.edges)) e.strength *= P('edge.weeklyRetain');
-  edgesDecayed(state);
 }
 
 /** The prospect's circle as the staff knows it. Empty for a staff that has made no contact (T4.4.2 acceptance 3). */

@@ -4,4 +4,4 @@ export { SPECIAL_CALLS, MENU_CONDITIONS } from './menu.ts';
 export { ST_SOURCES, ST_SOURCE_BY_ID } from './sources.ts';
 export { SPECIAL_CALL_BY_ID, ruleHolds, availableUnder, menuFor, contentHash, toKickCall, toReturnCall, specialOptions, sheetKindFor, type SpecialMenuOption } from './calls.ts';
 export { GROUP_TITLES, menuGroups, templateOf, type CallTemplate, type MenuGroup, type MenuItem } from './console.ts';
-export type { Basis, FakeLookTerm, FakeRole, KickDef, ReturnDef, ReturnKind, RuleCond, ScrimmageDef, SheetKind, SpecialCallDef, Trajectory } from './types.ts';
+export type { Basis, KickDef, ReturnDef, ReturnKind, RuleCond, ScrimmageDef, SheetKind, SpecialCallDef, Trajectory } from './types.ts';

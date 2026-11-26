@@ -4,7 +4,7 @@
 // own ports, so neither imports this package (P1.2.1); data/special-teams/*.json is the committed copy.
 import type { KickCall, OffenseCall, ReturnCall, RuleSet } from '@gm/schema';
 import { contentHash, menuFor, toKickCall, toReturnCall } from './calls.ts';
-import type { FakeLookTerm, ScrimmageDef, SheetKind, SpecialCallDef } from './types.ts';
+import type { ScrimmageDef, SheetKind, SpecialCallDef } from './types.ts';
 
 export type CallTemplate = Omit<KickCall, 'players'> | Omit<ReturnCall, 'players'> | Omit<OffenseCall, 'players'>;
 
@@ -16,8 +16,6 @@ export interface MenuItem {
   /** Coordinator floor share for a fake; null otherwise. */
   readonly fakeShare: number | null;
   readonly requiredLook: string | null;
-  /** The required look as terms the engine checks (I4.6.1); null for anything but a fake. */
-  readonly look: readonly FakeLookTerm[] | null;
 }
 
 export interface MenuGroup { readonly kind: SheetKind; readonly title: string; readonly items: readonly MenuItem[] }
@@ -48,7 +46,7 @@ export function menuGroups(rules: Pick<RuleSet, 'keys' | 'bool' | 'opt'>, person
     kind, title: GROUP_TITLES[kind],
     items: menuFor(rules, kind).map((d) => ({
       id: d.id, label: d.name, call: templateOf(d, personnelOf(d)),
-      fake: d.unit === 'offense' && d.fake, fakeShare: d.unit === 'offense' ? d.fakeShare : null, requiredLook: d.unit === 'offense' ? d.requiredLook : null, look: d.unit === 'offense' ? d.look : null,
+      fake: d.unit === 'offense' && d.fake, fakeShare: d.unit === 'offense' ? d.fakeShare : null, requiredLook: d.unit === 'offense' ? d.requiredLook : null,
     })),
   })).filter((g) => g.items.length > 0);
 }

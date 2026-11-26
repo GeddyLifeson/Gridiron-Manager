@@ -52,33 +52,3 @@ describe('G-60 console screen', () => {
     expect(missingConsoleText([...ids, ...notices])).toEqual([]);
   });
 });
-
-describe('G-60 console with the PV-05 score strip and banners', () => {
-  const pres = async (look: 'classic' | 'plain') => {
-    const { BannerQueue } = await import('../../../src/presentation/banners/index.ts');
-    return {
-      teams: [{ short: 'Harbor', primary: '#1d4f91', secondary: '#ffffff' }, { short: 'Ridge', primary: '#9b2226', secondary: '#ffffff' }] as const,
-      possession: 0 as const, timeoutsPerHalf: 3, live: false,
-      conditions: { noise: 0.4, noiseBase: 0.3, windMph: 8, gustMph: 12, windDirDeg: 90, indoors: false },
-      look, banners: { queue: new BannerQueue(), gate: { playClockTenths: 392, live: false, reducedMotion: false }, now: () => 0 },
-    };
-  };
-  it('draws every strip item in the strip region, keeps the coach clock line, and is routed through the source', async () => {
-    const { STRIP_ITEMS } = await import('../../../src/presentation/strip/index.ts');
-    for (const look of ['classic', 'plain'] as const) {
-      const p = await pres(look);
-      const routes = gameCallingRoutes({ view, presentation: () => p });
-      const html = renderToStaticMarkup(createElement(() => routes['game.console']!.render({} as never)));
-      const strip = html.slice(html.indexOf('data-region="strip"'), html.indexOf('data-region="field"'));
-      for (const item of STRIP_ITEMS) expect(strip, `${look} ${item}`).toContain(`data-item="${item}"`);
-      expect(strip).toContain(`data-look="${look}"`);
-      expect(strip).toContain('data-part="clock-line"');
-      expect(strip).toContain('18.0');
-    }
-  });
-  it('without presentation the strip region keeps the plain console line', () => {
-    const html = renderToStaticMarkup(createElement(GameConsole, { view: view() }));
-    expect(html).not.toContain('data-look=');
-    expect(html).toContain('Q1 15:00');
-  });
-});

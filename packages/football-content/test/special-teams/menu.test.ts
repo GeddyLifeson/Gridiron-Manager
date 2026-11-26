@@ -100,7 +100,7 @@ describe('calls the engine, console and coordinator receive', () => {
     expect(opts.some((o) => o.fake)).toBe(true);
   });
   it('fakes and two-point plays name a play kind; fakes name the look they need', () => {
-    for (const d of SPECIAL_CALLS) if (d.unit === 'offense') { expect(d.playKind.length).toBeGreaterThan(0); if (d.fake) { expect(d.requiredLook, d.id).not.toBeNull(); expect(d.look?.length ?? 0, d.id).toBeGreaterThan(0); } else expect(d.look, d.id).toBeNull(); }
+    for (const d of SPECIAL_CALLS) if (d.unit === 'offense') { expect(d.playKind.length).toBeGreaterThan(0); if (d.fake) expect(d.requiredLook, d.id).not.toBeNull(); }
   });
 });
 

@@ -5,8 +5,6 @@
 // The view type is structural until app-services exports the game-calling barrel (integrator request).
 import type { ReactNode } from 'react';
 import TEXT from './text.json';
-import { Strip as ScoreStrip, stripModel, type StripLook, type StripTeam } from '../../presentation/strip/index.ts';
-import { BannerBar, type BannerQueue, type BannerGate } from '../../presentation/banners/index.ts';
 
 const STRINGS = TEXT as Record<string, string>;
 
@@ -51,28 +49,12 @@ const GRID = {
   gridTemplateAreas: '"strip strip" "field field" "sheet side" "hint hint"',
 } as const;
 
-/**
- * The PV-05 score strip and banner bar (plan 3.4, O2.1.3, MB-14), drawn in the strip region when the host
- * supplies what the console view does not hold: the generated teams, possession, the timeouts per half
- * (a rule value) and the play's public conditions from the presentation feed (PV-00).
- */
-export interface ConsolePresentation {
-  readonly teams: readonly [StripTeam, StripTeam];
-  readonly possession: 0 | 1 | null;
-  readonly timeoutsPerHalf: number;
-  /** True from the snap to the whistle. */
-  readonly live: boolean;
-  readonly conditions: { readonly noise: number | null; readonly noiseBase: number; readonly windMph: number; readonly gustMph: number; readonly windDirDeg: number; readonly indoors: boolean };
-  /** Classic lamp board or plain text (`stripLook(theme)`: high contrast is always plain). */
-  readonly look: StripLook;
-  /** The banner queue and its gate (nothing shows with the play clock under 10 s). */
-  readonly banners?: { readonly queue: BannerQueue; readonly gate: BannerGate; readonly now?: () => number };
-}
-
-/** The coach's own clock line (latest snap, radio cut-off, short clock, late), which no stadium board shows. */
-function ClockLine({ s }: { s: ConsoleViewModel['strip'] }): ReactNode {
+function Strip({ v }: { v: ConsoleViewModel }): ReactNode {
+  const s = v.strip;
   return (
-    <>
+    <div role="region" aria-label={ct('console.situation')} style={{ gridArea: 'strip', whiteSpace: 'nowrap', overflow: 'hidden' }} data-region="strip">
+      <span>Q{s.quarter} {s.clock}</span> <span>{s.score[0]}-{s.score[1]}</span> <span>{s.downDistance ?? ''}</span> <span>{s.spot} {s.hash}</span>{' '}
+      <span>TO {s.timeouts[0]}/{s.timeouts[1]}</span>{' '}
       <span aria-label={ct('console.playClock')} data-late={s.late ? 'true' : 'false'}>
         {sec(s.playClockTenths)}
         {s.latestTenths !== null && <span> | {ct('console.latest')} {sec(s.latestTenths)}</span>}
@@ -80,31 +62,6 @@ function ClockLine({ s }: { s: ConsoleViewModel['strip'] }): ReactNode {
       </span>
       {s.shortClock && <span> {ct('console.shortClock', { len: s.playClockLengthTenths / 10 })}</span>}
       {s.late && <strong> {ct('console.late')}</strong>}
-    </>
-  );
-}
-
-function Strip({ v, p }: { v: ConsoleViewModel; p?: ConsolePresentation | undefined }): ReactNode {
-  const s = v.strip;
-  if (p) {
-    const model = stripModel({
-      teams: p.teams, possession: p.possession, quarter: s.quarter, clock: s.clock, clockRunning: s.clockRunning, score: s.score,
-      downDistance: s.downDistance, spot: s.spot, timeouts: s.timeouts, timeoutsPerHalf: p.timeoutsPerHalf,
-      playClockTenths: p.live ? null : s.playClockTenths, live: p.live, ...p.conditions,
-    });
-    return (
-      <div role="region" aria-label={ct('console.situation')} style={{ gridArea: 'strip', overflow: 'hidden' }} data-region="strip">
-        <ScoreStrip model={model} look={p.look} />
-        <div style={{ whiteSpace: 'nowrap', overflow: 'hidden' }} data-part="clock-line"><ClockLine s={s} /></div>
-        {p.banners && <BannerBar queue={p.banners.queue} gate={p.banners.gate} look={p.look} {...(p.banners.now ? { now: p.banners.now } : {})} />}
-      </div>
-    );
-  }
-  return (
-    <div role="region" aria-label={ct('console.situation')} style={{ gridArea: 'strip', whiteSpace: 'nowrap', overflow: 'hidden' }} data-region="strip">
-      <span>Q{s.quarter} {s.clock}</span> <span>{s.score[0]}-{s.score[1]}</span> <span>{s.downDistance ?? ''}</span> <span>{s.spot} {s.hash}</span>{' '}
-      <span>TO {s.timeouts[0]}/{s.timeouts[1]}</span>{' '}
-      <ClockLine s={s} />
     </div>
   );
 }
@@ -189,15 +146,13 @@ export interface GameConsoleProps {
    * timeout and challenge rows; the console's keys still answer them.
    */
   sideline?: ReactNode;
-  /** PV-05 score strip and banners. Without it the strip region shows the console's plain text line. */
-  presentation?: ConsolePresentation;
 }
 
-export function GameConsole({ view, field, sideline, presentation }: GameConsoleProps): ReactNode {
+export function GameConsole({ view, field, sideline }: GameConsoleProps): ReactNode {
   if (!view) return <div role="main" aria-label={ct('console.title')}><p>{ct('console.waiting')}</p></div>;
   return (
     <div role="main" aria-label={ct('console.title')} style={GRID}>
-      <Strip v={view} p={presentation} />
+      <Strip v={view} />
       <div role="region" aria-label={ct('console.field')} style={{ gridArea: 'field' }} data-region="field">{field ?? null}</div>
       <Sheet v={view} />
       <Sideline v={view} panel={sideline} />
