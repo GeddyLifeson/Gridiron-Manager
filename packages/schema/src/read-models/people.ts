@@ -27,7 +27,9 @@ const Grade = z.union([
     state: est(z.literal('graded')), attribute: text(), text: est(z.string()), label: est(z.string()), confidence: est(z.string()), bandText: est(z.string()),
     grader: est(z.string()), n: est(int(), 'count'), asOf: est(z.object({ seasonYear: est(int(), 'season_year'), dayIndex: est(int(), 'day_index') }).strict()),
   }).strict(),
-  z.object({ state: pub(z.literal('unwatched')), attribute: text(), text: text() }).strict(),
+  // Same classes as the graded option for the shared keys: the observer walk reads a key's class from the
+  // first option, so a public 'state' or 'text' here would let a graded cell's estimate through.
+  z.object({ state: est(z.literal('unwatched')), attribute: text(), text: est(z.string()) }).strict(),
 ]);
 
 const HealthRow = z.object({
