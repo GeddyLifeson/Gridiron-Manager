@@ -89,6 +89,23 @@ describe('keeping and cutting veterans over offseasons', () => {
     expect(checked).toBeGreaterThan(0);
   });
 
+  it('lets some expiring players walk to free agency instead of re-signing every one (TO-30)', () => {
+    const walked = w.log.rows().filter((e) => e.type === 'released' && e.payload.reason === 'contract_expired');
+    expect(walked.length).toBeGreaterThan(0);
+    for (const e of walked.slice(0, 20)) expect(w.status.get(e.subjects[0]!.id)).toBeDefined();
+  });
+
+  it('front-loads new multi-year veteran deals rather than paying above the market (PC-15)', () => {
+    const fresh = st.active.filter((c) => c.signed.seasonYear === last && c.terms.form === 'veteran' && c.terms.years.length >= 2);
+    expect(fresh.length).toBeGreaterThan(0);
+    for (const c of fresh) {
+      const [y0, ...later] = c.terms.years.map((y) => y.baseSalary.amountCents);
+      for (const x of later) expect(y0!).toBeGreaterThanOrEqual(x);
+    }
+    const scale = st.lastMarket?.signings ?? [];
+    for (const m of scale) expect(m.apyCents).toBeLessThanOrEqual(capCents);
+  });
+
   it('grades a veteran more surely than a first-year player (pooled film, TO-21) and pulls a look toward the prior (TO-22)', () => {
     const g = turnover.gradeContext(w, turnover.rosteredSet(w));
     const team = proTeams[0]!;

@@ -115,44 +115,82 @@ cash at $375.8M against the $301.2M cap once the accelerated guarantees landed. 
 - TO-20. After the cutdown the players just cut are free at once (C8.3.2; vested veterans in the real league, waiver claims for
   the rest, not split here). Clubs in the waiver order (worst record first, C5.5.1) sign one who beats the lowest-scored player
   they kept at his position by `roster.claimMargin` (K7.3.1 rule 3), priced at his market line, with cap room after the swap,
-  and release that player. One signing per club per pass, at most `street.signingsPerClub` (2, Assumption) a club; a club
-  that passes is done. He signs as a `free_agent`, so the contracts step counts his suitors and prices him by PC-12. The kept
-  players and the new man are scored as at the cutdown (TO-19). Before this, every player cut waited a full year for the next
-  market. Without the per-club limit clubs made about 20 such swaps each, which pushed one-season releases from 43 to 75 percent.
+  and release that player. One signing per club per pass; a club that passes is done. He signs as a `free_agent`, so the
+  contracts step counts his suitors and prices him by PC-12. The kept players and the new man are scored as at the cutdown
+  (TO-19). Before this, every player cut waited a full year for the next market. The first version needed a limit of 2 a club
+  (`street.signingsPerClub`); TO-31 removed it.
 - TO-21 (Assumption: the cap of 4). A look at a rostered player, or at a veteran out of work, pools his seasons of film
-  (`season_stats` units times his credited seasons plus one, up to `grade.pooledSeasonsMax`), by the D6.1.1 precision-weighted
+  (one season's look for each of his credited seasons plus one, up to `grade.pooledSeasonsMax`), by the D6.1.1 precision-weighted
   update. At 4 the look's sd is half a one-season look's, about D6.4.1's prior sd of 6 for an established starter. Before this,
   each season was one fresh look with sd about 11, so a veteran rated a star one year looked ordinary the next.
 - TO-22. A club's look updates the D6.4.1 prior instead of replacing it: prior mean the census mean at the position among the
-  players rostered at the club's level (D6.4.1 `positionLevelMean`, a population average, never one player's value), prior sd
+  players rostered at the club's level (D6.4.1 `positionLevelMean`, a population average, never one player's value; split by
+  TO-24), prior sd
   12, 8 or 6 by film (none, some, established). Lucky looks at undrafted players no longer beat known veterans by chance. The
   public look keeps no prior (it sets pay rank within a position, where a common prior would not reorder anyone of the same
   information).
 
-Measured on the trimmed test world (8 pro clubs, founding and six offseasons,
-`RELEASE_RATES=1 npx vitest run packages/world/test/contracts/tools/release-rates.test.ts`), against OverTheCap 2011-2021
-veteran deals of two or more years (facts/release-rates.json, F-release-0001..0006, 1 of 3):
+### Second pass: clubs value, sign and re-sign on their own numbers (TO-23 to TO-31)
 
-| | Before (PR 291) | After | Real |
-|---|---|---|---|
-| Club-years over the cap | 1 of 48 (to $375.8M) | 0 of 48 | 0 (K7.4.1 acceptance) |
-| Gone one season in, pay tier 0-0.5 | 50.3% of 155 | 37.1% of 116 | 28.2% |
-| 0.5-0.8 | 55.6% of 99 | 55.6% of 90 | 15.2% |
-| 0.8-0.9 | 75.0% of 20 | 45.5% of 11 | 8.2% |
-| 0.9-1 | 60.7% of 84 | 61.4% of 70 | 5.7% |
-| All tiers | 55.6% | 49.1% | 19.4% |
-| Top tier gone, signed again within the run | 28 of 49 (next year's market) | 22 of 42 (most the same offseason) | 77.3% within a year |
+Tracing the veterans still cut showed that most were better than the players kept, both truly and by the club's own grade,
+and lost on cost: the club had paid them far above its own value of them. Causes found and fixed, in the order found:
 
-What each piece did, measured the same way with the others in place: without the street market's per-club limit the all-tier
-rate was 75 percent; without pooled film 76; without the D6 prior 79; without TO-19's later-years cost 77; without the position
-weights the top tier went 87 percent instead of 82 (those four runs had no street limit yet).
+- TO-23 (D6.1.1). Pooled film is the same film: each season's look at a player is drawn once (its stream keyed by that season)
+  and a pooled look is the mean of the seasons in the window, so next year's grade shares all but one season with this year's.
+  TO-21 drew the whole pool afresh each year, which reshuffled near-equal players at every cutdown.
+- TO-24 (D6.4.1, "unbiased across the population"). The prior mean is the position and level average of the population the
+  public facts place a player in: a player with no credited pro season against the rostered players with none (the camp's
+  rookies), anyone else against the rostered veterans. TO-22's single census graded every undrafted rookie near an average
+  veteran.
+- TO-25 (D6.4.2; Assumption: `grade.filmSnapsPerSeason` 300). A filmed player is graded snap by snap: his own club from its game
+  film (`game_film`), another club from opponent film (`opponent_film`), the public from a charting service
+  (`grading_service`), each over 300 snaps a season. It replaces the season-stats look (`grade.rosteredUnits`, removed), whose sd
+  of 11 a season left a veteran's public percentile, and so his C8.3.1 price, mostly noise, and left clubs not knowing their own
+  players.
+- TO-26 (GM-18; Assumption: the reading). A player's wins above replacement follow the sourced pay scale's shape (PC-11): the cap
+  share at his public percentile less the share at replacement, at the same average rate per ISS point between the 10th and 90th
+  percentiles as the linear table (`ContributionTable.winsAbove`). One rate per point valued a star like two average players,
+  so every contract on the real, steeper scale looked overpaid a year later.
+- TO-27 (K7.2.2 rule 5). The going rate reads each signing with the league's estimate (the public grade), not the signing club's:
+  the club that wins a player rates him highest, so its own estimate made every market contract look fair on the day it was
+  signed. Cost and the rate are pay above the minimum for his credited seasons, the price of a player worth zero wins above
+  replacement (TO-26 measures value from the same floor). The walk-away number is then pay above the minimum.
+- TO-28 (Assumption: the reading). Replacement level is the `gm.replacementQuantile` of every rostered player at the position
+  in the league, as the club grades them. Read from the club's own few players, the lowest-graded at each position was
+  replacement by definition, worth nothing, and any pay made him a cut.
+- TO-29 (K7.4.2 rule 1, bible). A club signs a free agent only if his market price (PC-11, before suitors) is within its
+  walk-away number. Signing the most valuable player at any price paid stars whatever the market asked.
+- TO-30 (K7.4.1 rule 3, bible). Before the market opens each club decides on its players whose contracts ran out: one whose
+  re-signing price (the scale share, PC-13) is above its walk-away number goes to free agency (`released`, reason
+  `contract_expired`). Before this every expiring player stayed at the price the contracts step set, whatever the club thought.
+- TO-31. No count limits street signings: each must beat the kept player by `roster.claimMargin` after dead money, at the market
+  price within the cap (TO-20). With TO-23 to TO-30 in place, lifting the limit moved the all-tier rate from 32.0 to 30.7 percent.
+- PC-15 (contracts README). After founding, new money is not scaled up to the owner's budget; a club with room front-loads its new
+  multi-year deals, so later years cost less to keep.
 
-The release rate is still far from real, above all for the best-paid. With every cost taken out of the cutdown the rate barely
-moves, so what is left is not money: by the clubs' own grades the veterans cut are no better than the rookies and free agents they
-keep. Two owners hold the rest, with these numbers as the target: free agent volume (K7.4.2: each club fills to the offseason limit
-less the draft rounds from free agency before the draft, about 30 free agents a club, because almost anyone beats a replacement
-level at the 10th percentile of the club's own 90-man roster, `gm.replacementQuantile`), and the entry pool's and free agents'
-talent against veterans' (D13 generation, D8 aging). Nothing here is tuned to hit the targets.
+Measured on the trimmed test world (8 pro clubs, eight offseasons,
+`RELEASE_RATES=1 RELEASE_SEASONS=8 npx vitest run packages/world/test/contracts/tools/release-rates.test.ts`), against
+OverTheCap 2011-2021 veteran deals of two or more years (facts/release-rates.json, F-release-0001..0006, 1 of 3). The cohort
+is now each offseason's new deals; founding contracts (invented terms part way through) are left out.
+
+| | PR 291 | First pass (TO-18 to TO-22) | Second pass | Real |
+|---|---|---|---|---|
+| Club-years over the cap | 1 of 48 | 0 | 0 of 64 | 0 |
+| Gone one season in, pay tier 0-0.5 | 50.3% | 37.1% | 32.4% of 105 | 28.2% |
+| 0.5-0.8 | 55.6% | 55.6% | 29.1% of 86 | 15.2% |
+| 0.8-0.9 | 75.0% | 45.5% | 71.4% of 7 | 8.2% |
+| 0.9-1 | 60.7% | 61.4% | 20.3% of 69 | 5.7% |
+| All tiers | 55.6% | 49.1% | 29.2% | 19.4% |
+| Top tier gone, signed again within the run | 28 of 49 | 22 of 42 | 9 of 14 | 77.3% within a year |
+
+The first two columns used six offseasons with founding contracts in the cohort. The 0.8-0.9 tier holds a handful of deals in an
+8-club world. Spotrac's count (The Ringer, free-agent deals 2011-2015, F-release-0007..0010) is higher than OverTheCap's because it
+counts full seasons served (a player cut during his second season served one); the world, with no in-season cuts of veterans,
+matches OverTheCap's count.
+
+Still above real, most in the middle tier. What is left: low-paid veterans near replacement lose to young players whose projected
+growth (D7 expectations in the horizon) outweighs a small salary, and the 8-club world prices the best of a handful of players at a
+position as the league's best. Nothing here is tuned to hit the targets.
 
 ## Acceptance runs (K7, 10/30/50 seasons)
 
@@ -163,7 +201,7 @@ read from a full-world run.
 
 ## Flagged (not triple verified)
 
-All tuning rows in `params.ts` except `college.offersPerSignee` (bible K7.5.1, 2 of 3) are Assumptions (no source read), `grade.pooledSeasonsMax` included. TO-18 reads the market pay scale (1 of 3) as position value: an Assumption. The release targets (F-release-*) are 1 of 3. The pro mean roster age settles near 28 in the trimmed test world;
+All tuning rows in `params.ts` except `college.offersPerSignee` (bible K7.5.1, 2 of 3) are Assumptions (no source read), `grade.pooledSeasonsMax` and `grade.filmSnapsPerSeason` included. TO-26 and TO-28 read the pay scale and the league's rostered players as value shape and replacement: Assumptions. TO-18 reads the market pay scale (1 of 3) as position value: an Assumption. The release targets (F-release-*) are 1 of 3 each: OverTheCap and Spotrac disagree by definition (see above), PFF agrees in shape. The pro mean roster age settles near 28 in the trimmed test world;
 it needs checking against a sourced D8 age band before calibration.
 
 ## For the integrator

@@ -62,7 +62,7 @@ def main(path, date):
     def fact(n, statement, value, unit, locator):
         facts.append({'id': f'F-release-{n:04d}', 'level': 'pro', 'domain': 'measured-rate', 'statement': statement, 'value': value, 'unit': unit,
                       'validFor': f'veteran contracts of 2+ years signed {FIRST}-{LAST}', 'sources': [src(value, locator)], 'status': '1 of 3', 'usedBy': [],
-                      'notes': 'One dataset. Cross-checks owed: Spotrac transaction lists (release dates) and a second contract history.',
+                      'notes': 'Cross-checked against Spotrac via The Ringer (F-release-0007..0010, facts/release-rates-spotrac.json): free-agent deals only, 2011-2015, counted by full seasons, so higher (2-year deals 54% vs 32% here). Both sources fall with contract length. PFF (2022, 2013-2021 UFA signings) reports completion near 1/length, consistent with both. Status stays 1 of 3 per value: the definitions differ.',
                       'statusHistory': [{'date': date, 'status': '1 of 3', 'reason': 'First load (facts/release-build/build.py).'}]})
 
     n = 1
