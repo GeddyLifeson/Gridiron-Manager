@@ -155,7 +155,10 @@ describe('G2.4.2 match rules', () => {
     expect(dd.matchConsistency(broken, r).length).toBeGreaterThan(0);
   });
   it('the divider moves with the ball from the near hash to the far hash (off when the rule set has no numbers keys)', () => {
-    expect(dd.dividerYd(PRO, MID, 'right')).toBeNull();
+    expect(dd.dividerYd({ ...PRO, numbersTopYd: null, numbersBottomYd: null }, MID, 'right')).toBeNull();
+    // The 2026 rule sets carry the numbers keys (NFL Rule 1-4-4 Item 1; NCAA 1-2-1-h): 12 and 14 yd pro, 7 and 9 yd college.
+    expect([PRO.numbersBottomYd, PRO.numbersTopYd]).toEqual([12, 14]);
+    expect([COL.numbersBottomYd, COL.numbersTopYd]).toEqual([7, 9]);
     const f = { ...PRO, numbersTopYd: 9, numbersBottomYd: 7 };
     const near = dd.dividerYd(f, { ballYd: f.hashYd, qbArm: 'right' }, 'right')!;
     const far = dd.dividerYd(f, { ballYd: -f.hashYd, qbArm: 'right' }, 'right')!;
