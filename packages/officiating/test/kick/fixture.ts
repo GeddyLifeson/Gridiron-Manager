@@ -73,7 +73,7 @@ export const PRO_VALUES: Record<string, Value> = {
   'overtime.regular.period_length_s': 600, 'overtime.postseason.period_length_s': 900,
   'overtime.regular.max_periods': 1, 'overtime.postseason.max_periods': 0,
   'overtime.regular.timeouts': 2, 'overtime.postseason.timeouts': 3,
-  'overtime.regular.periods_per_timeout_grant': 1, 'overtime.postseason.periods_per_timeout_grant': 2,
+  'overtime.regular.periods_per_half': 1, 'overtime.postseason.periods_per_half': 2,
   'overtime.regular.new_toss_after_periods': 0, 'overtime.postseason.new_toss_after_periods': 4,
   'overtime.regular.loser_chooses_at_period': 0, 'overtime.postseason.loser_chooses_at_period': 3,
   'overtime.intermission_s': 180,
@@ -128,7 +128,7 @@ export const COLLEGE_VALUES: Record<string, Value> = {
   'overtime.two_point_required_from_period': 2,
   'overtime.try_only_from_period': 3,
   'overtime.regular.timeouts': 1, 'overtime.postseason.timeouts': 1,
-  'overtime.regular.periods_per_timeout_grant': 1, 'overtime.postseason.periods_per_timeout_grant': 1,
+  'overtime.regular.periods_per_half': 1, 'overtime.postseason.periods_per_half': 1,
   // inert at this level (B10)
   'overtime.regular.period_length_s': 0, 'overtime.postseason.period_length_s': 0,
   'overtime.regular.max_periods': 0, 'overtime.postseason.max_periods': 0,
