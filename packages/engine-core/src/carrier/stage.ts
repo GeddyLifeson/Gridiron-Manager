@@ -803,8 +803,8 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const gd = goalDir(w, c), cx = px(w, c);
     contactNumbers(pl.posX[c]!, pl.posY[c]!, pl.velX[c]!, pl.velY[c]!, cInfo.player.weightLb, pl.gazeRad[c]!,
       pl.posX[s]!, pl.posY[s]!, pl.velX[s]!, pl.velY[s]!, sInfo.player.weightLb, kp!, contact);
-    const typical = q['secure.typicalReducedLb'] * q['secure.typicalClosingYps'] * q['secure.typicalClosingYps'] * kp!.hitEnergyScale!;
-    const energyRel = clip(contact.hitEnergy / typical, 0, q['secure.maxHitEnergyRel']);
+    // contactNumbers already reports hit energy in typical open-field tackles (J2.6.1, kinematics.typical*).
+    const energyRel = clip(contact.hitEnergy, 0, q['secure.maxHitEnergyRel']);
     const covered = traffic(w, c);
     const tacklers = n + arrivingSoon(w, c);
     const losDist = (cx < 0 ? -cx : cx);
