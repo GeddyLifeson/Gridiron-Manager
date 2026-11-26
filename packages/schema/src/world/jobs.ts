@@ -107,11 +107,18 @@ export const DepthChartRecord = z.object({
 }).strict();
 export type DepthChartRecord = z.infer<typeof DepthChartRecord>;
 
-/** What a person knows of one football element (P3.2.4 Knowledge, D9, G5). True value; staff see estimates. */
+/**
+ * What a person knows of one football element (P3.2.4 Knowledge, D9, G5). True value; staff see estimates.
+ * The G-64 knowledge book (league/knowledge) saves {player, item, value, peak, touched}: player -> personId,
+ * item -> elementId, touched (absolute calendar day) -> lastPractised (its calendar date). `value` is the
+ * knowledge at that touch; decay to any later day is a closed form of the days since, floored by `peak`.
+ */
 export const KnowledgeRow = z.object({
   personId: zId(),
   elementId: zContentRef(),
   value: truth(z.number().min(0).max(100), 'iss'),
+  /** Highest value reached: sets the decay floor and the camp relearn region (D9.3.1). */
+  peak: truth(z.number().min(0).max(100), 'iss'),
   lastPractised: zWorldDate().nullable(),
 }).strict();
 export type KnowledgeRow = z.infer<typeof KnowledgeRow>;

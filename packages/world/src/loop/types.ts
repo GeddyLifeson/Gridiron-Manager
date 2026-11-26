@@ -9,6 +9,7 @@ import type {
 import type { OffLadderSeat } from '../generation/founding.ts';
 import type { SetupRecord } from '../generation/setup.ts';
 import type { PlaceRecord } from '../generation/structures.ts';
+import type { HallState } from './hall.ts';
 import type { TeamSpan } from './lifecycle.ts';
 
 /** X12.1.1 weekly order, with `compliance` after `moves` (CO-01, bible amendment requested). Fixed: the order is part of state (the pass hash folds each step id in turn). */
@@ -21,12 +22,12 @@ export type StepId = WeeklyStep | SeasonStep;
 
 export const STEP_OWNER: Readonly<Record<StepId, string>> = {
   lifecycle: 'Teams founded and folded in the past (Marlon 2026-11-26; loop/lifecycle.ts)',
-  games: 'X13.1.2 games by tier (engine-game through the game port)', health: 'D11 injuries and health', statistics: 'X3.4.1 statistics and records',
+  games: 'X13.1.2 games by tier (engine-game through the game port)', health: 'D11 injuries and health (world/health: league.medical cases from the injuries the games step reports)', statistics: 'X3.4.1 statistics and records',
   notability: 'X4 notability', memory: 'X6 memory', edges: 'X7 edges', needs: 'X5 needs and stress', moves: 'K7 job and roster moves',
   compliance: 'L8.2.5 detection, false accusations and due cases (league.compliance.complianceWeek; world/compliance). After moves so a week\'s acts can be found that week; before labels and news so its public events are labelled and routed',
   labels: 'X2.2.2 labels touched by new events', news: 'X12.2.1 news routing', cohorts: 'X11 cohorts', development: 'D7, D8 development and aging',
   culture: 'X9 culture',
-  hall: 'E5.6.3 Hall of Fame ballots (career.reputation runBallot for coaches; player case owed)', leaving: 'X12.1.3 inactive and deceased', compaction: 'X2.4.1 compaction',
+  hall: 'C9.3.1, E5.6.3 Hall of Fame elections (loop/hall.ts over league awards runElection; player honours wait on the statistics step)', leaving: 'X12.1.3 inactive and deceased', compaction: 'X2.4.1 compaction',
 };
 
 export type PersonStatus = 'active' | 'inactive' | 'deceased';
@@ -122,6 +123,8 @@ export interface LiveWorld {
   readonly staffSeasons: StaffSeason[];
   /** `season:teamId` to the players on that roster at the season point, for teammates of the past (X10.4.2). */
   readonly rosterSeasons: Map<string, readonly number[]>;
+  /** Hall of Fame records and members (loop/hall.ts), kept one season at a time. */
+  readonly hall: HallState;
   /** Chained hash over every step of every pass (X12.1.1 acceptance). */
   passHash: string;
   passes: number;
@@ -175,7 +178,34 @@ export interface GameRequest {
   readonly tier: WorldTier;
   readonly world: LiveWorld;
 }
-export interface GamePlayed { readonly homePoints: number; readonly awayPoints: number; readonly passPlays: number; readonly runPlays: number }
+export interface GamePlayed {
+  readonly homePoints: number; readonly awayPoints: number; readonly passPlays: number; readonly runPlays: number;
+  /**
+   * Injuries from play (J10.6.1), mapped to world people. Absent means this port does not report injuries
+   * (the placeholder rosters and the reference resolver make none); an empty list means none happened.
+   */
+  readonly injuries?: readonly GameInjury[];
+}
+
+/** One J10.6.1 injury event of a game, with the engine's player id mapped to the world person (D11 input). */
+export interface GameInjury {
+  readonly personId: number;
+  readonly teamId: number;
+  /** J10 mechanism (contact_lower, head_impact, noncontact_sprint ...). */
+  readonly mechanism: string;
+  /** J10 region, which names a report-level row of the D11.2.1 catalogue (knee, ankle, concussion ...). */
+  readonly region: string;
+  /** J10.6.1 severity seed, 0 to 1: D11 maps it to the catalogue grade. */
+  readonly severitySeed: number;
+  readonly headImpact: boolean;
+  /** J10.7.2: a true concussion the in-game evaluation did not find (D11.4.1 rule 6). */
+  readonly evaluationMissed: boolean;
+}
+
+/** `LiveWorld.systemState` key where the games step leaves the week's injury reports for the health step. */
+export const GAME_INJURIES_KEY = 'games.injuries';
+/** The week's reports: games whose port reported injuries, and the injuries, in game id order. */
+export interface WeekInjuries { readonly seasonYear: number; readonly week: number; readonly reportedGames: number; readonly injuries: readonly (GameInjury & { readonly gameId: number })[] }
 export type GamePort = (req: GameRequest) => GamePlayed;
 /**
  * A week's games at once (G-97). One result per request, in request order. The port may play them in any

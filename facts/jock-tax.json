@@ -1,0 +1,987 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-tax-jock-0001",
+   "level": "both",
+   "domain": "career",
+   "statement": "Most states allocate a nonresident team member's pay by duty days: state-source income = total compensation x (duty days in the state / total duty days in the season).",
+   "value": "total compensation x (in-state duty days / total duty days)",
+   "unit": "formula",
+   "validFor": "2026 (regs in force: MA 2001, AZ 2001, MO current to 2025)",
+   "sources": [
+    {
+     "citation": "Commonwealth of Massachusetts (DOR regulation 830 CMR 62.5A.2): 830 CMR 62.5A.2: Compensation received by non-resident professional team athletes (https://www.mass.gov/regulations/830-CMR-625a2-compensation-received-by-non-resident-professional-team-athletes; 2001-12-21)",
+     "locator": "https://www.mass.gov/regulations/830-CMR-625a2-compensation-received-by-non-resident-professional-team-athletes",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mass-gov",
+     "primary": false,
+     "quote": "the number of duty days spent within Massachusetts rendering services for the team in any manner during the taxable year"
+    },
+    {
+     "citation": "Arizona Department of Revenue rule (via Cornell LII): Ariz. Admin. Code R15-2C-604 - Nonresident Members of Professional Athletic Teams (https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R15-2C-604; effective 2001-01-01)",
+     "locator": "https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R15-2C-604",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cornell-edu",
+     "primary": false,
+     "quote": "the total number of duty days spent both within and without Arizona"
+    },
+    {
+     "citation": "Missouri Department of Revenue rule 12 CSR 10-2.225 (via Justia): 12 CSR 10-2.225 (https://regulations.justia.com/states/missouri/title-12/division-10/chapter-2/section-12-csr-10-2-225; current through Register Vol. 50 No. 12, 2025-06-16)",
+     "locator": "https://regulations.justia.com/states/missouri/title-12/division-10/chapter-2/section-12-csr-10-2-225",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "justia-com",
+     "primary": false,
+     "quote": "the numerator of which shall be the number of duty days in the tax year which the member of the professional athletic team spent in Missouri."
+    },
+    {
+     "citation": "Legal 500 (article by Rotfleisch & Samulovitch P.C.; also on Mondaq): How American 'Jock Tax' And State Income Tax Affect NFL Players & Other Professional Athletes: The Sam Darnold Super Bowl Example (https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example; 2026-02-16)",
+     "locator": "https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "legal500-com",
+     "primary": false,
+     "quote": "The numerator equals duty days spent performing services in the taxing state"
+    },
+    {
+     "citation": "California Office of Tax Appeals: Appeal of N. Carroll (opinion) (https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf; 2025-07-30)",
+     "locator": "https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "Appellant has not established that FTB erred in its application of the duty days formula."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-duty-day-method. All WebFetch results are model excerpts; quotes are the fragments the tool returned inside quotation marks. Sources: 3 state regulations (primary) + 1 law firm explainer + 1 California OTA opinion. Status: 5 independent sources. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0002",
+   "level": "both",
+   "domain": "career",
+   "statement": "Duty days for a team member generally run from the start of official pre-season training (training camp) through the team's last game, and include game days, practice days, team meetings, promotional events and post-season games; team travel days count in the total. States differ in detail.",
+   "value": "training camp + practices + meetings + games + postseason (travel days in the denominator)",
+   "unit": "definition",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Commonwealth of Massachusetts: 830 CMR 62.5A.2 (https://www.mass.gov/regulations/830-CMR-625a2-compensation-received-by-non-resident-professional-team-athletes; 2001-12-21)",
+     "locator": "https://www.mass.gov/regulations/830-CMR-625a2-compensation-received-by-non-resident-professional-team-athletes",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mass-gov",
+     "primary": false,
+     "quote": "game days, practice days, days spent at team meetings"
+    },
+    {
+     "citation": "Missouri Department of Revenue (via Justia): 12 CSR 10-2.225 (https://regulations.justia.com/states/missouri/title-12/division-10/chapter-2/section-12-csr-10-2-225; 2025-06-16)",
+     "locator": "https://regulations.justia.com/states/missouri/title-12/division-10/chapter-2/section-12-csr-10-2-225",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "justia-com",
+     "primary": false,
+     "quote": "after the commencement of team activities and begins with the first day s/he reports to the professional athletic team."
+    },
+    {
+     "citation": "Arizona Department of Revenue (via Cornell LII): Ariz. Admin. Code R15-2C-604 (https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R15-2C-604; effective 2001-01-01)",
+     "locator": "https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R15-2C-604",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cornell-edu",
+     "primary": false,
+     "quote": "All days during a taxable year from the beginning of a professional athletic team's 1st regular game of the season"
+    },
+    {
+     "citation": "California Office of Tax Appeals: Appeal of N. Carroll (https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf; 2025-07-30)",
+     "locator": "https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "A duty day includes any day where the player's team travels, practices, or plays."
+    },
+    {
+     "citation": "The Tax Adviser (AICPA): Ohio Supreme Court Rules in Favor of Nonresident Athletes Against City of Cleveland (https://www.thetaxadviser.com/issues/2015/aug/ohio-supreme-court-rules-in-favor-of-nonresident-athletes-against-cleveland/; 2015-08-01)",
+     "locator": "https://www.thetaxadviser.com/issues/2015/aug/ohio-supreme-court-rules-in-favor-of-nonresident-athletes-against-cleveland/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thetaxadviser-com",
+     "primary": false,
+     "quote": "Duty days include games, practices, training camp, and other team activities."
+    },
+    {
+     "citation": "National Taxpayers Union Foundation: Jock Taxes: Juice That Isn't Worth the Squeeze? (https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf; 2024-08-15)",
+     "locator": "https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ntu-org",
+     "primary": false,
+     "quote": "essentially the entire NFL calendar, including training camp and practices"
+    },
+    {
+     "citation": "Kiplinger: The NBA Finals and the 'Jock Tax'? What You Need to Know (https://www.kiplinger.com/taxes/what-is-the-jock-tax; last updated 2026-06-04)",
+     "locator": "https://www.kiplinger.com/taxes/what-is-the-jock-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger-com",
+     "primary": false,
+     "quote": "which includes training camps, practices, regular-season games, and postseason travel"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-duty-day-what-counts. CONFLICT/VARIATION: Arizona's rule starts duty days at the team's 1st regular-season game (pre-season training not listed as a duty-day category), while Massachusetts starts at the beginning of the official pre-season training period and Missouri expressly includes training camps. MA and AZ: travel days with no in-state game/practice/meeting are not in-state duty days but count in the total. MA excludes unpaid suspension days and presumes disabled-list days are not in-state unless rehab is done at the team's in-state facility. Tax Foundation 2003 report (older) said most states count only game days; superseded by current regs. Status: 6 independent sources (3 primary). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0003",
+   "level": "both",
+   "domain": "career",
+   "statement": "An NFL player's total duty days in a season are roughly 150-180, depending on training camp, playoffs and Super Bowl.",
+   "value": "150-180",
+   "unit": "days per season",
+   "validFor": "2026 (examples 2004-2026)",
+   "sources": [
+    {
+     "citation": "Legal 500 / Rotfleisch & Samulovitch: How American 'Jock Tax' ... The Sam Darnold Super Bowl Example (https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example; 2026-02-16)",
+     "locator": "https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "legal500-com",
+     "primary": false,
+     "quote": "often approximate 160 to 180 days per season"
+    },
+    {
+     "citation": "Tax Foundation (Jared Walczak): The Tax Problem You, Me, and Patrick Mahomes Have in Common (https://taxfoundation.org/blog/common-tax-problem-you-me-patrick-mahomes/; 2026-09-09)",
+     "locator": "https://taxfoundation.org/blog/common-tax-problem-you-me-patrick-mahomes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "If an NFL player is presumed to have 170 duty days spread across the season, and he spends three days in another state to play an away game..."
+    },
+    {
+     "citation": "California Office of Tax Appeals: Appeal of N. Carroll (https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf; 2025-07-30)",
+     "locator": "https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "Appellant has not established that FTB erred in its application of the duty days formula."
+    },
+    {
+     "citation": "Court News Ohio (Supreme Court of Ohio): Hillenmeyer v. Cleveland Bd. of Review case summary (https://www.courtnewsohio.gov/cases/2015/SCO/0430/140235.asp; 2015-04-30)",
+     "locator": "https://www.courtnewsohio.gov/cases/2015/SCO/0430/140235.asp",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "courtnewsohio-gov",
+     "primary": false,
+     "quote": "Due process requires an allocation that reasonably associates the amount of compensation taxed with work"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-nfl-total-duty-days. Range assembled from sources: Legal 500 says 160-180; Tax Foundation example uses 170; OTA Carroll case used 150 (2017); Hillenmeyer (Chicago Bears) worked 154/165/168 days in 2004/2005/2006. Status: 4 independent sources. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0004",
+   "level": "both",
+   "domain": "career",
+   "statement": "Coaches, managers, trainers and other staff who regularly travel with and perform services for the team are covered by the same nonresident team-member (duty-day) rules as players.",
+   "value": "yes",
+   "unit": "boolean",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Commonwealth of Massachusetts: 830 CMR 62.5A.2 (https://www.mass.gov/regulations/830-CMR-625a2-compensation-received-by-non-resident-professional-team-athletes; 2001-12-21)",
+     "locator": "https://www.mass.gov/regulations/830-CMR-625a2-compensation-received-by-non-resident-professional-team-athletes",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mass-gov",
+     "primary": false,
+     "quote": "including coaches, managers, and trainers"
+    },
+    {
+     "citation": "Arizona Department of Revenue (via Cornell LII): Ariz. Admin. Code R15-2C-604 (https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R15-2C-604; effective 2001-01-01)",
+     "locator": "https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R15-2C-604",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cornell-edu",
+     "primary": false,
+     "quote": "This includes, but is not limited to, coaches, managers, trainers, and broadcasters."
+    },
+    {
+     "citation": "Missouri Department of Revenue (via Justia): 12 CSR 10-2.225 (https://regulations.justia.com/states/missouri/title-12/division-10/chapter-2/section-12-csr-10-2-225; 2025-06-16)",
+     "locator": "https://regulations.justia.com/states/missouri/title-12/division-10/chapter-2/section-12-csr-10-2-225",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "justia-com",
+     "primary": false,
+     "quote": "Members of professional athletic teams shall include players, managers, coaches, trainers, travelling secretaries,"
+    },
+    {
+     "citation": "Tax Foundation (David K. Hoffman), Special Report 123: State Tax Policy Special Report No. 123 (jock taxes) (https://files.taxfoundation.org/legacy/docs/sr123.pdf; July 2003)",
+     "locator": "https://files.taxfoundation.org/legacy/docs/sr123.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "The tax is actually levied on every single player, coach, scout or trainer traveling with the team."
+    },
+    {
+     "citation": "National Taxpayers Union Foundation: Jock Taxes: Juice That Isn't Worth the Squeeze? (https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf; 2024-08-15)",
+     "locator": "https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ntu-org",
+     "primary": false,
+     "quote": "extend to members of a sports team's staff, such as coaches, trainers, assistants"
+    },
+    {
+     "citation": "Kiplinger: The NBA Finals and the 'Jock Tax'? (https://www.kiplinger.com/taxes/what-is-the-jock-tax; 2026-06-04)",
+     "locator": "https://www.kiplinger.com/taxes/what-is-the-jock-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger-com",
+     "primary": false,
+     "quote": "that would include trainers, coaches, physicians, etc."
+    },
+    {
+     "citation": "Intuit TurboTax blog: Jock tax and sports support staff (https://blog.turbotax.intuit.com/work/jock-tax-sports-support-staff-151966/; 2026-06-25 (modified 2026-07-10))",
+     "locator": "https://blog.turbotax.intuit.com/work/jock-tax-sports-support-staff-151966/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "intuit-com",
+     "primary": false,
+     "quote": "Coaches, trainers, and sports support staff owe taxes in every city they work."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-coaches-staff-covered. Primary: MA, AZ (adds broadcasters), MO (adds travelling secretaries). Status: 7 independent sources (3 primary). A front-office GM who does not travel with the team is not clearly covered by the team-member definitions (they key on regular travel with the team); not verified for GMs specifically. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0005",
+   "level": "both",
+   "domain": "career",
+   "statement": "The player's (or coach's) home state generally gives a credit for income tax paid to other states on the same income, capped at the home state's own tax on that income; a home state with no income tax gives no offsetting credit.",
+   "value": "credit up to home-state tax on that income",
+   "unit": "rule",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: The Tax Problem You, Me, and Patrick Mahomes Have in Common (https://taxfoundation.org/blog/common-tax-problem-you-me-patrick-mahomes/; 2026-09-09)",
+     "locator": "https://taxfoundation.org/blog/common-tax-problem-you-me-patrick-mahomes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Your home state provides a credit for taxes paid to other states, but only up to the amount owed in your home state on that income."
+    },
+    {
+     "citation": "Legal 500 / Rotfleisch & Samulovitch: How American 'Jock Tax' ... The Sam Darnold Super Bowl Example (https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example; 2026-02-16)",
+     "locator": "https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "legal500-com",
+     "primary": false,
+     "quote": "The credit is limited to the tax otherwise payable in the home state."
+    },
+    {
+     "citation": "California Franchise Tax Board: FTB Publication 1031 (2025) Guidelines for Determining Resident Status (https://www.ftb.ca.gov/forms/2025/2025-1031-publication.pdf; 2025)",
+     "locator": "https://www.ftb.ca.gov/forms/2025/2025-1031-publication.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "a tax credit for taxes paid to another state"
+    },
+    {
+     "citation": "Tax Foundation (Hoffman), Special Report 123: Special Report No. 123 (https://files.taxfoundation.org/legacy/docs/sr123.pdf; July 2003)",
+     "locator": "https://files.taxfoundation.org/legacy/docs/sr123.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "one state, Illinois, does not give credits"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-home-state-credit. California primary source names the credit (Schedule S, Other State Tax Credit). Tax Foundation 2003 reported Illinois as an exception that did not give credits; this is 2003 data and was NOT re-verified for 2026 - treat as historical. Status: 4 independent sources. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0006",
+   "level": "both",
+   "domain": "career",
+   "statement": "Hillenmeyer v. Cleveland Bd. of Review (Ohio Supreme Court, 2015): allocating an NFL player's pay by games played (games in city / total games) violates due process; the duty-days method is acceptable. For two days in Cleveland the games-played method taxed about 5% of pay vs about 1.25% under duty days.",
+   "value": "5 vs 1.25",
+   "unit": "percent of salary",
+   "validFor": "2015 ruling (precedent)",
+   "sources": [
+    {
+     "citation": "Court News Ohio (Supreme Court of Ohio Office of Public Information): Hillenmeyer v. Cleveland Bd. of Review (https://www.courtnewsohio.gov/cases/2015/SCO/0430/140235.asp; 2015-04-30)",
+     "locator": "https://www.courtnewsohio.gov/cases/2015/SCO/0430/140235.asp",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "courtnewsohio-gov",
+     "primary": false,
+     "quote": "Due process requires an allocation that reasonably associates the amount of compensation taxed with work"
+    },
+    {
+     "citation": "The Tax Adviser (AICPA): Ohio Supreme Court Rules in Favor of Nonresident Athletes Against City of Cleveland (https://www.thetaxadviser.com/issues/2015/aug/ohio-supreme-court-rules-in-favor-of-nonresident-athletes-against-cleveland/; 2015-08-01)",
+     "locator": "https://www.thetaxadviser.com/issues/2015/aug/ohio-supreme-court-rules-in-favor-of-nonresident-athletes-against-cleveland/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thetaxadviser-com",
+     "primary": false,
+     "quote": "this equated to 5% of his total wages"
+    },
+    {
+     "citation": "Tax Foundation (Alan Cole): Cleveland's Taxes on NFL Players Ruled Unconstitutional (https://taxfoundation.org/clevelands-taxes-nfl-players-ruled-unconstitutional/; 2015-04-30 (modified 2023-07-24))",
+     "locator": "https://taxfoundation.org/clevelands-taxes-nfl-players-ruled-unconstitutional/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "By using the duty-days method, however, Cleveland is allocated approximately 1.25 percent based on the same two days."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-games-played-method-unconstitutional. 2015-Ohio-1623. The Tax Adviser also reports Cleveland gave visiting athletes a 12-day grace period rising to 20 days in 2016 (single source, not counted). Status: 3 independent sources. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0007",
+   "level": "both",
+   "domain": "career",
+   "statement": "The modern jock tax began when California taxed the Chicago Bulls after the 1991 NBA Finals; Illinois retaliated with its own tax ('Michael Jordan's Revenge') aimed at athletes from states that tax Illinois players.",
+   "value": 1991,
+   "unit": "year",
+   "validFor": "historical",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Special Report No. 123 (https://files.taxfoundation.org/legacy/docs/sr123.pdf; July 2003)",
+     "locator": "https://files.taxfoundation.org/legacy/docs/sr123.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Illinois retaliated the following year by levying a jock tax of its own.",
+     "value": 1991
+    },
+    {
+     "citation": "National Taxpayers Union Foundation: Jock Taxes: Juice That Isn't Worth the Squeeze? (https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf; 2024-08-15)",
+     "locator": "https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ntu-org",
+     "primary": false,
+     "quote": "Michael Jordan's Revenge",
+     "value": 1991
+    },
+    {
+     "citation": "Kiplinger: The NBA Finals and the 'Jock Tax'? (https://www.kiplinger.com/taxes/what-is-the-jock-tax; 2026-06-04)",
+     "locator": "https://www.kiplinger.com/taxes/what-is-the-jock-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger-com",
+     "primary": false,
+     "quote": "California assessed state income taxes against the Chicago Bulls (including Michael Jordan)",
+     "value": 1991
+    },
+    {
+     "citation": "Wikipedia: Jock tax (https://en.wikipedia.org/wiki/Jock_tax; undated)",
+     "locator": "https://en.wikipedia.org/wiki/Jock_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "Illinois' tax is only imposed on athletes from jurisdictions that impose jock taxes on Illinois-based players."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-california-origin-1991. Status: 4 independent sources (Tax Foundation, NTUF, Kiplinger, Wikipedia). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0008",
+   "level": "both",
+   "domain": "career",
+   "statement": "California's top personal income tax rate is 13.3% (12.3% top bracket plus a 1% Mental Health Services Tax on income over $1 million), applied to nonresident athletes' California-source duty-day income.",
+   "value": 13.3,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Legal 500 / Rotfleisch & Samulovitch: How American 'Jock Tax' ... The Sam Darnold Super Bowl Example (https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example; 2026-02-16)",
+     "locator": "https://www.legal500.com/intelligence/united-states/tax/how-american-'jock-tax'-and-state-income-tax-affect-nfl-players-other-professional-athletes-the-sam-darnold-super-bowl-example",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "legal500-com",
+     "primary": false,
+     "quote": "13.3% for high-income earners",
+     "value": 13.3
+    },
+    {
+     "citation": "NerdWallet: California State Income Tax Guide for 2026 (https://www.nerdwallet.com/taxes/learn/california-state-tax; updated 2026-11-10)",
+     "locator": "https://www.nerdwallet.com/taxes/learn/california-state-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nerdwallet-com",
+     "primary": false,
+     "quote": "people with incomes over $1 million pay an additional 1% tax that helps to fund mental health services throughout the state"
+    },
+    {
+     "citation": "California Chamber of Commerce: Income Taxes (https://advocacy.calchamber.com/policy/issues/income-taxes/; undated)",
+     "locator": "https://advocacy.calchamber.com/policy/issues/income-taxes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "calchamber-com",
+     "primary": false,
+     "quote": "have long paid the country's highest state income tax rate of 13.3%"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-california-top-rate. CONFLICT: CalChamber says the top rate rose to 14.4% from 2024-01-01 (this appears to add the uncapped state disability insurance payroll withholding to the 13.3% income tax; not verified here). Income-tax-only figure 13.3% has 3 sources. FTB rate schedule not fetched (not primary-verified). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0009",
+   "level": "both",
+   "domain": "career",
+   "statement": "California taxes nonresidents on income from services performed in California and applies the duty-day formula to NFL players even for a couple of days (e.g. 2 of 150 duty days upheld); it is noted for aggressive enforcement, including training-camp days.",
+   "value": "no day threshold for athletes (taxed from first duty day)",
+   "unit": "rule",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "California Franchise Tax Board: Part-year resident and nonresident (https://ftb.ca.gov/file/personal/residency-status/part-year-and-nonresident.html; last updated 2026-06-11)",
+     "locator": "https://ftb.ca.gov/file/personal/residency-status/part-year-and-nonresident.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "As a nonresident, you pay tax on your taxable income from California sources."
+    },
+    {
+     "citation": "California Office of Tax Appeals: Appeal of N. Carroll (https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf; 2025-07-30)",
+     "locator": "https://ota.ca.gov/wp-content/uploads/sites/54/2026/02/N.-Carroll.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "Appellant has not established that FTB erred in its application of the duty days formula."
+    },
+    {
+     "citation": "Sports Illustrated (Jacob Feldman): The Taxing World of NFL Players' Finances (https://www.si.com/nfl/2018/04/17/nfl-players-tax-filings-athletes-salaries; 2018-04-17)",
+     "locator": "https://www.si.com/nfl/2018/04/17/nfl-players-tax-filings-athletes-salaries",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-com",
+     "primary": false,
+     "quote": "If you're off a slight bit, they'll send you a notice."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-california-aggressive. No FTB page explicitly stating 'no minimum day threshold for athletes' was found; California's general rule taxes all CA-source services income subject to the income filing threshold. FTB RSTM sections 3980/3985 (Professional Athletes / Duty Day Allocations) are listed in the Jan 2026 manual TOC but were not readable in the public disclosure PDF. SI reports CA collected $58M from visiting NFL players in 2015 (single source). Status: 3 sources (2 primary). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0010",
+   "level": "both",
+   "domain": "career",
+   "statement": "A few states give nonresident employees a filing/withholding grace period: Illinois, Indiana and Montana allow 30 days; Louisiana, North Dakota, Utah and West Virginia offer limited reciprocal day-based relief that expressly excludes professional athletes and entertainers; Connecticut and Maine use combined day-and-income tests; nine states use dollar thresholds. Roughly 22 states (nearly half) require filing from the first day. Illinois handles pro team members under a separate duty-day rule rather than the 30-day rule.",
+   "value": "30",
+   "unit": "days (IL/IN/MT grace period)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Nonresident Income Tax Filing Laws by State (https://taxfoundation.org/data/all/state/nonresident-income-tax-filing-laws/; 2024-04-16 (modified 2025-06-04))",
+     "locator": "https://taxfoundation.org/data/all/state/nonresident-income-tax-filing-laws/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "certain high-income and/or high-profile individuals are not eligible for filing and payment relief, including professional athletes and professional entertainers"
+    },
+    {
+     "citation": "Illinois Department of Revenue: Pub-130, Withholding Illinois Income Tax for My Employees (https://tax.illinois.gov/research/publications/pubs/who-is-required-to-withhold-illinois-income-tax/withholding-illinois-income-tax-for-my-employees.html; undated (footer 2026))",
+     "locator": "https://tax.illinois.gov/research/publications/pubs/who-is-required-to-withhold-illinois-income-tax/withholding-illinois-income-tax-for-my-employees.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "illinois-gov",
+     "primary": false,
+     "quote": "the employee performs significant service within Illinois for more than 30 working days"
+    },
+    {
+     "citation": "Tax Foundation: The Tax Problem You, Me, and Patrick Mahomes Have in Common (https://taxfoundation.org/blog/common-tax-problem-you-me-patrick-mahomes/; 2026-09-09)",
+     "locator": "https://taxfoundation.org/blog/common-tax-problem-you-me-patrick-mahomes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Other states have filing thresholds, based on the number of days spent in the state or the amount earned there."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-de-minimis-thresholds. Only Tax Foundation (2 pages) + Illinois DOR found; the two Tax Foundation pages are one publisher, so this is 2 independent publishers - FLAG as under-verified. Dollar-threshold states per Tax Foundation: GA, ID, IA, MN, MO, OK, OR, PA, WI (amounts not captured). Whether IN/MT 30-day rules exclude athletes not verified. For game design: treat athletes/coaches as taxed from day one in nearly all income-tax states. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0011",
+   "level": "both",
+   "domain": "career",
+   "statement": "States with NFL teams but no wage income tax (no jock tax): Florida, Texas, Tennessee, Nevada and Washington.",
+   "value": "FL, TX, TN, NV, WA",
+   "unit": "list",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Kiplinger: The NBA Finals and the 'Jock Tax'? (https://www.kiplinger.com/taxes/what-is-the-jock-tax; 2026-06-04)",
+     "locator": "https://www.kiplinger.com/taxes/what-is-the-jock-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger-com",
+     "primary": false,
+     "quote": "Those are five of nine states with no personal income tax."
+    },
+    {
+     "citation": "Tax Foundation: Special Report No. 123 (https://files.taxfoundation.org/legacy/docs/sr123.pdf; July 2003)",
+     "locator": "https://files.taxfoundation.org/legacy/docs/sr123.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Texas, Florida, Tennessee, and Washington State"
+    },
+    {
+     "citation": "Wikipedia: Jock tax (https://en.wikipedia.org/wiki/Jock_tax; undated)",
+     "locator": "https://en.wikipedia.org/wiki/Jock_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "a flat-rate tax of $2,500 per game"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-no-income-tax-states. Kiplinger (2026) lists all five; Tax Foundation 2003 lists TX, FL, TN, WA (Nevada had no team then); Wikipedia lists FL, TX, WA. Tennessee formerly levied a $2,500/game privilege tax (max 3 games/yr) per Wikipedia - single source, historical. Status: 3 sources. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0012",
+   "level": "both",
+   "domain": "career",
+   "statement": "Pittsburgh charged a 3% fee on nonresident performers' income from events at publicly funded venues (residents 1%); Pennsylvania courts struck it down (Pennsylvania Supreme Court, 2025).",
+   "value": 3,
+   "unit": "percent",
+   "validFor": "historical (struck down 2025)",
+   "sources": [
+    {
+     "citation": "Wikipedia: Jock tax (https://en.wikipedia.org/wiki/Jock_tax; undated)",
+     "locator": "https://en.wikipedia.org/wiki/Jock_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "a 3% tax on income derived from an individual's participation in any paid-admission event in a publicly funded venue",
+     "value": 3
+    },
+    {
+     "citation": "National Taxpayers Union Foundation: Jock Taxes: Juice That Isn't Worth the Squeeze? (https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf; 2024-08-15)",
+     "locator": "https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ntu-org",
+     "primary": false,
+     "quote": "reasonable safe harbors"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-pittsburgh-facility-fee. Only 2 sources; FLAG. NTUF describes the strike-down as county court upheld on appeal; Wikipedia says 2025 PA Supreme Court ruling. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0013",
+   "level": "both",
+   "domain": "career",
+   "statement": "No provision on state income taxes / jock tax was found in the NFL-NFLPA CBA; reporting says the NFLPA is hands-off and the NFL has not taken an advocacy role.",
+   "value": "NOT FOUND",
+   "unit": "n/a",
+   "validFor": "2020-2030 CBA",
+   "sources": [
+    {
+     "citation": "Sports Illustrated: The Taxing World of NFL Players' Finances (https://www.si.com/nfl/2018/04/17/nfl-players-tax-filings-athletes-salaries; 2018-04-17)",
+     "locator": "https://www.si.com/nfl/2018/04/17/nfl-players-tax-filings-athletes-salaries",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-com",
+     "primary": false,
+     "quote": "The NFLPA plays this all fairly hands-off, too."
+    },
+    {
+     "citation": "Over The Cap: Article 4 | NFL Collective Bargaining Agreement (CBA) (https://overthecap.com/collective-bargaining-agreement/article/4; undated)",
+     "locator": "https://overthecap.com/collective-bargaining-agreement/article/4",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "overthecap-com",
+     "primary": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key jock-tax-nfl-cba-guidance. Tried: OverTheCap CBA Article 4 (no tax text), NFL Football Operations '2020 NFL-NFLPA CBA: Need to know' (no tax text), web searches for CBA tax clauses. Full CBA text not searched end to end. Only 1 source for the 'hands-off' claim. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0014",
+   "level": "both",
+   "domain": "career",
+   "statement": "2026 top federal income tax rate is 37% for single filers with taxable income over $640,600 (Rev. Proc. 2025-32).",
+   "value": 640600,
+   "unit": "usd (threshold for 37% rate)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "IRS: IRS releases tax inflation adjustments for tax year 2026, including amendments from the One, Big, Beautiful Bill (IR-2025-103) (https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill; 2025-10-09)",
+     "locator": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "irs-gov",
+     "primary": false,
+     "quote": "the top tax rate remains 37% for individual single taxpayers with incomes greater than $640,600",
+     "value": 640600
+    },
+    {
+     "citation": "KPMG: Rev. Proc. 2025-32: Inflation adjustments for 2026 individual taxpayers (https://kpmg.com/us/en/taxnewsflash/news/2025/10/tnf-rev-proc-2025-32-inflation-adjustments-for-2026-individual-taxpayers.html; 2025-10-09)",
+     "locator": "https://kpmg.com/us/en/taxnewsflash/news/2025/10/tnf-rev-proc-2025-32-inflation-adjustments-for-2026-individual-taxpayers.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kpmg-com",
+     "primary": false,
+     "quote": "The top income tax rate remains 37% for individual single taxpayers with incomes greater than $640,600",
+     "value": 640600
+    },
+    {
+     "citation": "Tax Foundation: 2026 Tax Brackets (https://taxfoundation.org/data/all/federal/2026-tax-brackets/; 2026-01-01 (modified 2026-11-06))",
+     "locator": "https://taxfoundation.org/data/all/federal/2026-tax-brackets/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "$640,601 or more",
+     "value": 640600
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key fed-2026-top-rate-single. Rate 37%. Tax Foundation table shows $640,601 or more (same boundary). Status: 3 independent sources incl. IRS primary. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0015",
+   "level": "both",
+   "domain": "career",
+   "statement": "2026 37% bracket threshold for married filing jointly is taxable income over $768,700.",
+   "value": 768700,
+   "unit": "usd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "IRS: IR-2025-103 (https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill; 2025-10-09)",
+     "locator": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "irs-gov",
+     "primary": false,
+     "quote": "($768,700 for married couples filing jointly)",
+     "value": 768700
+    },
+    {
+     "citation": "KPMG: Rev. Proc. 2025-32 (https://kpmg.com/us/en/taxnewsflash/news/2025/10/tnf-rev-proc-2025-32-inflation-adjustments-for-2026-individual-taxpayers.html; 2025-10-09)",
+     "locator": "https://kpmg.com/us/en/taxnewsflash/news/2025/10/tnf-rev-proc-2025-32-inflation-adjustments-for-2026-individual-taxpayers.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kpmg-com",
+     "primary": false,
+     "quote": "($768,700 for married couples filing jointly)",
+     "value": 768700
+    },
+    {
+     "citation": "Tax Foundation: 2026 Tax Brackets (https://taxfoundation.org/data/all/federal/2026-tax-brackets/; 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/federal/2026-tax-brackets/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "$768,701 or more",
+     "value": 768700
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key fed-2026-top-rate-mfj. Status: 3 independent sources incl. IRS. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0016",
+   "level": "both",
+   "domain": "career",
+   "statement": "2026 Social Security (OASDI) taxable wage base is $184,500 (up from $176,100 in 2025); OASDI rate 6.2% each for employee and employer.",
+   "value": 184500,
+   "unit": "usd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Social Security Administration: Contribution and Benefit Base (https://www.ssa.gov/oact/cola/cbb.html; undated (shows 2027 figures))",
+     "locator": "https://www.ssa.gov/oact/cola/cbb.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ssa-gov",
+     "primary": false,
+     "quote": "2026 | 184,500",
+     "value": 184500
+    },
+    {
+     "citation": "Journal of Accountancy (AICPA): Social Security wage base and COLA announced for 2026 (https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/; 2025-10-24)",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journalofaccountancy-com",
+     "primary": false,
+     "quote": "Individual taxable earnings of up to $184,500 annually will be subject to Social Security tax in 2026",
+     "value": 184500
+    },
+    {
+     "citation": "Thomson Reuters: SSA announces Social Security taxable wage base for 2026 (https://tax.thomsonreuters.com/news/ssa-announces-social-security-taxable-wage-base-for-2026/; 2025-10-29)",
+     "locator": "https://tax.thomsonreuters.com/news/ssa-announces-social-security-taxable-wage-base-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thomsonreuters-com",
+     "primary": false,
+     "quote": "For 2026, that amount will be $184,500 (up from $176,100 for 2025).",
+     "value": 184500
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key fed-2026-social-security-wage-base. 6.2% rate: SSA page states it for 2027 wages 'set by statute' (single primary statement; rate unchanged). SSA page now also shows 2027 base $192,300. Status: 3 independent sources for wage base. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0017",
+   "level": "both",
+   "domain": "career",
+   "statement": "Medicare (HI) tax is 1.45% each for employees and employers on all wages (no wage cap), unchanged for 2026.",
+   "value": 1.45,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Social Security Administration: Contribution and Benefit Base (https://www.ssa.gov/oact/cola/cbb.html; undated)",
+     "locator": "https://www.ssa.gov/oact/cola/cbb.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ssa-gov",
+     "primary": false,
+     "quote": "Tax rates under the HI program are 1.45 percent for employees and employers, each.",
+     "value": 1.45
+    },
+    {
+     "citation": "Journal of Accountancy: Social Security wage base and COLA announced for 2026 (https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/; 2025-10-24)",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journalofaccountancy-com",
+     "primary": false,
+     "quote": "The Medicare hospital insurance tax of 1.45% each for employees and employers remains unchanged for 2026",
+     "value": 1.45
+    },
+    {
+     "citation": "IRS: Questions and Answers for the Additional Medicare Tax (https://www.irs.gov/ADMTfaqs; last reviewed 2026-10-25)",
+     "locator": "https://www.irs.gov/ADMTfaqs",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "irs-gov",
+     "primary": false,
+     "quote": "Unlike the uncollected portion of the regular (1.45%) Medicare tax",
+     "value": 1.45
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key fed-2026-medicare-rate. Status: 3 independent sources incl. SSA and IRS. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-jock-0018",
+   "level": "both",
+   "domain": "career",
+   "statement": "Additional Medicare Tax is 0.9% on wages above $200,000 (single), $250,000 (married filing jointly), $125,000 (married filing separately); employers must withhold it on wages over $200,000 in a year. Thresholds are not inflation-indexed.",
+   "value": 0.9,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "IRS: Questions and Answers for the Additional Medicare Tax (https://www.irs.gov/ADMTfaqs; last reviewed 2026-10-25)",
+     "locator": "https://www.irs.gov/ADMTfaqs",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "irs-gov",
+     "primary": false,
+     "quote": "An employer must withhold Additional Medicare Tax from wages it pays to an individual in excess of $200,000",
+     "value": 0.9
+    },
+    {
+     "citation": "Journal of Accountancy: Social Security wage base and COLA announced for 2026 (https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/; 2025-10-24)",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journalofaccountancy-com",
+     "primary": false,
+     "quote": "an additional hospital insurance tax under Sec. 3103(b)(2) of 0.9% of wages",
+     "value": 0.9
+    },
+    {
+     "citation": "Paychex: What is the Additional Medicare Tax? (https://www.paychex.com/glossary/what-is-the-additional-medicare-tax; last updated 2026-11-12)",
+     "locator": "https://www.paychex.com/glossary/what-is-the-additional-medicare-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychex-com",
+     "primary": false,
+     "quote": "Employers must withhold it once an employee's wages pass $200,000 in a calendar year.",
+     "value": 0.9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key fed-2026-additional-medicare-tax. Thresholds: 200000/250000/125000 usd. 'Not indexed' is not quoted from a fetched page - background only. Status: 3 independent sources (IRS, Journal of Accountancy, Paychex). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  }
+ ]
+}

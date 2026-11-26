@@ -7,7 +7,7 @@ import {
 import * as ball from '../../src/ball/index.ts';
 import { PARAMS as CONTEST_PARAMS, createContests } from '../../src/contest/index.ts';
 import { DMATH } from '../../src/index.ts';
-import { PARAMS as FIELD_PARAMS } from '../../src/field/index.ts';
+import { PARAMS as FIELD_PARAMS, fieldGeometry } from '../../src/field/index.ts';
 import { PARAMS as KIN_PARAMS, createMovement } from '../../src/kinematics/index.ts';
 import { PARAMS as PERCEPTION_PARAMS } from '../../src/perception/index.ts';
 import * as qb from '../../src/qb/index.ts';
@@ -110,7 +110,8 @@ export interface SceneResult {
 export function runScene(spec: SceneSpec): SceneResult {
   const scripts = spec.scripts ?? {};
   const w = fixtureWorld({
-    seed: spec.seed ?? 1, params: TABLE, rules: spec.rules ?? rules(), ballX: 50,
+    // The ball is on the low hash, so routes drawn to the wide side (positive py, up to about 27 yd) stay in bounds.
+    seed: spec.seed ?? 1, params: TABLE, rules: spec.rules ?? rules(), ballX: 50, ballY: fieldGeometry(spec.rules ?? rules()).hashSouthY,
     players: (s) => (s === QB ? { ...(spec.qbSpec ?? {}), attributes: { ...(spec.qbSpec?.attributes ?? {}), ...(spec.attrs ?? {}) } } : spec.players?.(s) ?? {}),
   });
   const events: TruthEvent[] = [];

@@ -46,16 +46,18 @@ value, A = assumption) and its bible leaf. Calibrated with `test/recruiting/tool
 
 | Target (bible) | Result |
 | --- | --- |
-| Flips 15 to 23 percent of commitments (T4.5.2) | 16.7 percent |
-| School drops 2 to 6 percent (T4.5.2) | 4.0 percent |
-| Early signing about 85 percent or more of high school signees | 85.8 percent |
-| Offers per signee at top programs 6 to 10 | 9.3 |
-| Junior college share of signees 5 to 15 percent (T4.8.2) | 12.2 percent |
-| Published list committed by August 85 percent (T4.1.1) | **77 percent (gap; 67 to 82 across seeds)** |
+| Flips 15 to 23 percent of commitments (T4.5.2) | 16.3 percent |
+| School drops 2 to 6 percent (T4.5.2) | 6.1 percent (edge of the band; test allows 8) |
+| Early signing about 85 percent or more of high school signees | 85.7 percent |
+| Offers per signee at top programs 6 to 10 | 8.4 |
+| Junior college share of signees 5 to 15 percent (T4.8.2) | 13.0 percent |
+| Published list committed by August 85 percent (T4.1.1) | **79.5 percent (77 to 82 across seeds 7 to 10; gap of a few points)** |
 
-The August share is the one target not met. Raising the weekly commit pace lowers it (the best
-prospects wait for more offers), so it needs a model change (earlier offers to the top of the list,
-or a per-prospect timing trait), not a constant. The world test checks it at 70 percent or more.
+Calibrated under the official 2025-26 and 2026-27 recruiting calendars (spring contact period, August
+dead). The binding constraint on the best prospects was the lead over the next school needed to commit
+(`commit.marginMean`): they hold about nine close offers, so a 3 point lead rarely appeared. It is now 1,
+and `commit.thresholdMean` 46 (was 50). Raising the weekly commit pace instead lowers the share (the best
+prospects wait for more offers). The world test checks the share at 70 percent or more.
 
 ## Data
 

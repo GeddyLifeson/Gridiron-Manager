@@ -3,7 +3,7 @@
 // of rushers and its box count. Coverage family has no outcome row in J15, so it changes nothing here.
 import { roundSimS, roundYd, type DefenseCall, type OffenseCall } from '@gm/schema';
 import type { Ctx } from './context.ts';
-import { runQuantile } from './config.ts';
+import { goalBand, runQuantile } from './config.ts';
 import { DEPTH_BAND_LOW, DEPTH_BAND_WIDTH } from './params.ts';
 
 const QB_ROLES = ['QB'];
@@ -73,7 +73,9 @@ function run(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: number)
     const box = defense.boxCount;
     boxShift = cfg.run.boxShift[box <= 6 ? 0 : box >= 9 ? 3 : box - 6]!;
   }
-  const gain = runQuantile(cfg.run, c.rng.uniform(), c.math) + boxShift + c.edge * cfg.run.sd;
+  // Near the goal line the defense has less field to defend: a gain forward is scaled by the band's factor.
+  const open = runQuantile(cfg.run, c.rng.uniform(), c.math) + boxShift + c.edge * cfg.run.sd;
+  const gain = open > 0 ? open * cfg.run.goalScale[goalBand(c.goalAhead)]! : open;
   const lane = call.runDirection ?? (['left', 'middle', 'right'] as const)[c.rng.int(0, 2)]!;
   const py = (lane === 'left' ? 1 : lane === 'right' ? -1 : 0) * cfg.geom.runLateral * c.rng.uniform();
   c.carry({ team: 'snapping', carrierId: carrier, fromPx: -depth, toPx: gain, py, t0, oobShare: cfg.run.oob, fumbleShare: cfg.run.fumbleLost, ownEndZoneImpetus: c.sideSnap });
@@ -90,7 +92,10 @@ function dropback(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: nu
   const rushers = defense ? defense.rushers : 4;
   const r = rushers <= 3 ? 0 : rushers >= 7 ? 4 : rushers - 3;
   const pPressure = c.shifted(P.pressure[r]!, -c.edge);
-  const pSack = Math.min(c.shifted(P.sack[r]!, -c.edge), pPressure);
+  // Down of the play (0 is first down); a try or a kick formation takes no down factor.
+  const downNo = c.input.situation.down;
+  const d = downNo === null ? -1 : Math.min(downNo, P.downSack.length) - 1;
+  const pSack = Math.min(c.shifted(Math.min(1, P.sack[r]! * (d >= 0 ? P.downSack[d]! : 1)), -c.edge), pPressure);
   const pressured = c.rng.chance(pPressure);
   const rusher = c.pickId('opposing');
   if (pressured) {
@@ -109,9 +114,17 @@ function dropback(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: nu
 
   // A forward pass. Depth band, then the result at that depth.
   c.facts.passAttempt = true;
-  const band = c.rng.pick(P.depthShare);
+  // A screen is thrown behind the line; the other passes take the depth mix that is left.
+  const screen = call.kind === 'screen';
+  let band = screen ? 0 : c.rng.pick(d >= 0 ? P.downDepthShare[d]! : P.depthShareNoScreen);
   const back = c.goalAhead + c.ezAhead / 2;
   let air = band < DEPTH_BAND_LOW.length - 1 ? DEPTH_BAND_LOW[band]! + DEPTH_BAND_WIDTH[band]! * c.rng.uniform() : DEPTH_BAND_LOW[band]! + c.expo(P.deepTailMean);
+  // Third and fourth down: a share of passes go to the line to gain, and take the rates of the depth they reach.
+  if (!screen && d >= 2 && c.ltgPx !== null && c.ltgPx >= P.sticksMin && c.ltgPx <= P.sticksMax && c.rng.chance(P.sticksShare)) {
+    air = c.ltgPx + P.sticksPast * c.rng.uniform();
+    band = 0;
+    while (band < DEPTH_BAND_LOW.length - 1 && air >= DEPTH_BAND_LOW[band + 1]!) band++;
+  }
   if (air > back) air = back;
   const py = c.inBoundsPy((c.rng.uniform() - 0.5) * 2 * cfg.geom.passLateral);
   const targets = c.snapPlayers.filter((p) => p.playerId !== qb && TARGET_ROLES.includes(p.role.toUpperCase()));
@@ -120,7 +133,10 @@ function dropback(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: nu
   const defender = c.pickId('opposing');
   const pInt = c.shifted(P.interception[band]!, -c.edge);
   const factor = pressured ? P.pressuredFactor : P.cleanFactor[r]!;
-  const pComplete = Math.min(c.shifted(Math.min(1, P.completion[band]! * factor), c.edge), 1 - pInt);
+  const baseCompletion = screen ? P.screenCompletion : band === 0 ? P.behindLineCompletionNoScreen : P.completion[band]!;
+  const family = defense ? defense.coverageFamily : null;
+  const coverage = family !== null ? P.coverageCompletion[family] ?? 1 : 1;
+  const pComplete = Math.min(c.shifted(Math.min(1, baseCompletion * factor * P.goalCompletion[goalBand(c.goalAhead)]! * coverage * (d >= 0 ? P.downCompletion[d]! : 1)), c.edge), 1 - pInt);
   const u = c.rng.uniform();
   const tRelease = P.timeToThrow;
   const tArrive = tRelease + cfg.time.flightBase + cfg.time.flightPerYard * Math.abs(air + depth);
@@ -145,10 +161,14 @@ function dropback(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: nu
     c.push({ type: 'catch_point', t: roundSimS(tArrive), marginYd: null, marginS: null, visibility: 'open', outcome: 'catch', spot: arrive, intendedId: target, catcherId: target, defenderIds: [defender], feetInBounds: 2, contested: false });
     c.push({ type: 'possession', t: roundSimS(tArrive), side: c.sideSnap, playerId: target, spot: arrive, how: 'catch' });
     // Yards after the catch depend on the depth of the catch: far more behind the line than at 6 to 15 yards.
-    const yacMean = P.yacMean[band]!;
+    const yacMean = P.yacMean[band]! * (call.kind === 'play_action' ? P.playActionYac : P.noPlayActionYac) * (family !== null ? P.coverageYac[family] ?? 1 : 1);
     const stages = P.yacStages[band]!;
     let run = 0;
-    for (let i = 0; i < stages; i++) run += c.expo(yacMean / stages);
+    if (c.rng.chance(P.yacBreakaway)) run = c.expo(P.yacBreakawayMean);
+    else {
+      const rest = Math.max(0, (yacMean - P.yacBreakaway * P.yacBreakawayMean) / (1 - P.yacBreakaway));
+      for (let i = 0; i < stages; i++) run += c.expo(rest / stages);
+    }
     const yac = Math.max(0, run + c.edge * yacMean);
     c.carry({ team: 'snapping', carrierId: target, fromPx: air, toPx: air + yac, py, t0: tArrive, oobShare: P.oob, fumbleShare: 0, ownEndZoneImpetus: c.sideSnap });
     return;
@@ -157,7 +177,9 @@ function dropback(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: nu
     c.push({ type: 'catch_point', t: roundSimS(tArrive), marginYd: null, marginS: null, visibility: 'open', outcome: 'interception', spot: arrive, intendedId: target, catcherId: defender, defenderIds: [defender], feetInBounds: 2, contested: false });
     c.push({ type: 'possession', t: roundSimS(tArrive), side: c.sideOpp, playerId: defender, spot: arrive, how: 'interception' });
     // Caught in the end zone: he stays there, and the pass put the ball there (B7.7.1 impetus).
-    const ret = air >= c.goalAhead ? 0 : Math.max(0, c.expo(P.intReturnMean) - c.edge * P.intReturnMean);
+    // A share of interceptions go all the way; the rest are returned a short distance.
+    const allTheWay = air < c.goalAhead && c.rng.chance(P.intReturnTd);
+    const ret = air >= c.goalAhead ? 0 : allTheWay ? air - c.goalBehind + 1 : Math.max(0, c.expo(P.intReturnMean) - c.edge * P.intReturnMean);
     c.carry({ team: 'opposing', carrierId: defender, fromPx: air, toPx: air - ret, py, t0: tArrive, oobShare: 0, fumbleShare: 0, ownEndZoneImpetus: c.sideSnap });
     return;
   }
@@ -184,7 +206,8 @@ function sack(c: Ctx, qb: number, rusher: number): void {
     c.push({ type: 'fumble', t: roundSimS(t), marginYd: null, marginS: null, visibility: 'open', kind: 'fumble', playerId: qb, side: c.sideSnap, forcedById: rusher, spot: c.spot(px, 0) });
     const tr = t + c.cfg.time.carryBase;
     c.push({ type: 'possession', t: roundSimS(tr), side: c.sideOpp, playerId: recoverer, spot: c.spot(px, 0), how: 'fumble_recovery' });
-    c.dead(tr, 'down_by_contact', px, 0, 'opposing', recoverer);
+    if (c.rng.chance(c.cfg.fumbleReturnTd)) c.carry({ team: 'opposing', carrierId: recoverer, fromPx: px, toPx: c.goalBehind - 1, py: 0, t0: tr, oobShare: 0, fumbleShare: 0, ownEndZoneImpetus: c.sideSnap });
+    else c.dead(tr, 'down_by_contact', px, 0, 'opposing', recoverer);
     return;
   }
   const margin = c.ltgPx !== null ? roundYd(Math.abs(px - c.ltgPx)) : null;

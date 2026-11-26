@@ -30,6 +30,8 @@ export interface SeasonPlayOptions {
   readonly seedHex: string;
   /** World-data key of the team the user coaches. */
   readonly seatTeamKey: string;
+  /** Play resolver of every game: the tick engine by default (world season real game); `reference` for fast harnesses. */
+  readonly resolver?: seasons.RealResolver;
 }
 
 /** What the host supplies to put the seat's game on the console: the console setup and the key map. */
@@ -114,6 +116,7 @@ export interface WorldSeasonOptions {
   readonly seedHex: string;
   /** Team id in the world's team table. */
   readonly seatTeamId: number;
+  readonly resolver?: seasons.RealResolver;
 }
 
 /**
@@ -153,7 +156,7 @@ export class SeasonPlay {
     this.built = seasons.buildSeason(content, options.ruleSetId, { season: options.seasonYear, seedHex: options.seedHex, seatTeamKey: options.seatTeamKey });
     if (this.built.spec.seatTeamId === null) throw new Error(`season session: no seat team for ${options.seatTeamKey}`);
     this.seatTeamId = this.built.spec.seatTeamId;
-    this.port = seasons.realGamePort({ ruleSetId: options.ruleSetId });
+    this.port = seasons.realGamePort({ ruleSetId: options.ruleSetId, ...(options.resolver ? { resolver: options.resolver } : {}) });
     this.state = state ?? seasons.createSeason(this.built.spec);
   }
 
@@ -168,7 +171,7 @@ export class SeasonPlay {
    * not reach the games yet (placeholder rosters, see the file header).
    */
   static fromWorld(content: seasons.LeagueContent, world: WorldTeams, o: WorldSeasonOptions): SeasonPlay {
-    return new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId) });
+    return new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId), ...(o.resolver ? { resolver: o.resolver } : {}) });
   }
 
   /** A saved season, continued from its saved state. */
@@ -192,6 +195,9 @@ export class SeasonPlay {
     if (play.state.chain !== save.state.chain) throw new Error(`season session: replay reached chain ${play.state.chain}, the save has ${save.state.chain}`);
     return play;
   }
+
+  /** The play resolver the games run on. */
+  get resolverId(): seasons.RealResolver { return this.port.game.resolverId; }
 
   get stage(): seasons.SeasonStage { return this.state.stage; }
   get champion(): number | null { return this.state.champion; }

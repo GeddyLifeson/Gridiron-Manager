@@ -195,6 +195,22 @@ describe('J5.2 alignment', () => {
   });
 });
 
+describe('J5.1 squaring up at the spot', () => {
+  it('has every man who is set at his spot facing the line of scrimmage at the snap, defenders included', () => {
+    const r = run();
+    let checked = 0;
+    for (let s = 0; s < 2 * SLOTS_PER_TEAM; s++) {
+      if (Math.hypot(r.w.players.velX[s]!, r.w.players.velY[s]!) > 0.05) continue; // a man in motion faces where he runs
+      // Heading in the play frame: 0 is toward the defense's goal line, pi is back toward the offense's.
+      const h = r.w.frame.attackDir === 1 ? r.w.players.headingRad[s]! : r.w.players.headingRad[s]! + Math.PI;
+      const cos = Math.cos(h);
+      if (s < SLOTS_PER_TEAM) expect(cos, `offense slot ${s}`).toBeGreaterThan(0.9); else expect(cos, `defense slot ${s}`).toBeLessThan(-0.9);
+      checked++;
+    }
+    expect(checked).toBeGreaterThanOrEqual(20);
+  });
+});
+
 describe('J5.3 shifts and motion', () => {
   const motionInput = (over: Partial<Parameters<typeof defenseInput>[0]> = {}) => input({ offense: offenseInput({ motion: { teamSlot: 7, leadS: 1.2 } }), defense: defenseInput(over) });
   it('J5.3.1 acceptance: the motion runs legally with full time and the motion man has a running start at the snap', () => {

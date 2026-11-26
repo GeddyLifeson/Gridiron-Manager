@@ -39,11 +39,14 @@ describe('P5.4.1 planning arithmetic', () => {
     expect(s30.withinTarget).toBe(true);
     expect(s30.target).toBe(SIZE_TARGETS.standardSeason30);
   });
-  it('shows the compact target is out of reach by the leaf\'s own log and summary figures (flagged for Marlon)', () => {
+  it('shows why the leaf\'s 300 MB compact target was out of reach, and meets Marlon\'s 600 MB (2026-11-26)', () => {
     const c = projectSize(m, 'compact', 30);
-    report('planning compact season 30', { totalMB: Math.round(c.total / MB), logMB: Math.round(c.parts.log / MB), summariesMB: Math.round(c.parts.summaries / MB), targetMB: 300 });
-    // Log (180 MB) plus summaries (100 MB) plus live state (60 MB) alone pass 300 MB.
-    expect(c.parts.log + c.parts.summaries + c.parts.liveState).toBeGreaterThan(SIZE_TARGETS.compactSeason30);
+    report('planning compact season 30', { totalMB: Math.round(c.total / MB), logMB: Math.round(c.parts.log / MB), summariesMB: Math.round(c.parts.summaries / MB), targetMB: SIZE_TARGETS.compactSeason30 / MB });
+    // Log (180 MB) plus summaries (100 MB) plus live state (60 MB) alone pass the leaf's 300 MB.
+    expect(c.parts.log + c.parts.summaries + c.parts.liveState).toBeGreaterThan(300 * MB);
+    expect(SIZE_TARGETS.compactSeason30).toBe(600 * MB);
+    // With the leaf's uncompressed 600 B play rows the projection is 617 MB; with play rows packed per
+    // game, as measured below, compact meets 600 MB.
     expect(c.withinTarget).toBe(false);
   });
 });
@@ -82,7 +85,9 @@ describe('30 seasons through the archive step', () => {
 
 describe('measured row sizes from the phase 1 engine game', () => {
   it('measures real play rows and game inputs, stored and compressed, and projects season 30', async () => {
-    const g = realGame.createRealGame('pro_2026');
+    // Reference resolver: the untuned tick engine plays about 155 pro plays a game (real: 124), which would
+    // overstate the rows. Retake this on the tick path once the stat gate passes.
+    const g = realGame.createRealGame('pro_2026', { resolver: 'reference' });
     const games = 3;
     let plays = 0; let rawPlayBytes = 0; let zPlayBytes = 0; let rawInput = 0; let zInput = 0;
     const records: unknown[] = [];
@@ -103,9 +108,19 @@ describe('measured row sizes from the phase 1 engine game', () => {
       apply: () => ({ ok: false as const, reason: 'read only' }), stateHash, bytesHash, eventsHash: (e: readonly unknown[]) => bytesHash(text.encode(JSON.stringify(e))), chainNext, genesis: CHAIN_GENESIS,
     };
     const header = { ...VERSIONS, masterSeed: '00000000000000e4', generatorOptions: {}, contentManifest: [], ruleSets: [], settings: { worldSize: 'small' as const, retentionProfile: 'standard' as const }, certified: false, calendar: { seasonYear: 2026, dayIndex: 0 }, userPersonId: null, userJob: null, summary: '', createdWith: 't', lastWrittenWith: 't' };
-    const save = await SaveFile.create(driver, deps, { header, state: { plays: records }, versions: VERSIONS });
+    const save = await SaveFile.create(driver, deps, { header, state: { plays: records }, versions: VERSIONS }, { packedTables: [] });
     const stored = (await measureSave(driver)).world.plays!;
     await save.close();
+    // The same rows as format 3 stores them: one compressed blob per game.
+    const packedDriver = await memoryDb();
+    const packedSave = await SaveFile.create(packedDriver, deps, { header, state: { plays: records }, versions: VERSIONS });
+    const packedSize = await measureSave(packedDriver);
+    const packedStored = packedSize.world.plays!;
+    const groups = (await packedDriver.all<{ n: number }>("SELECT COUNT(*) AS n FROM packed_rows WHERE tbl = 'plays'"))[0]!.n;
+    expect(groups).toBe(games);
+    expect(packedSize.packedRaw).toBeGreaterThan(stored * 0.9);
+    expect(JSON.stringify((await SaveFile.open(packedDriver, deps)).state())).toBe(JSON.stringify({ plays: records }));
+    await packedSave.close();
 
     const perGame = plays / games;
     const m = {
@@ -113,6 +128,7 @@ describe('measured row sizes from the phase 1 engine game', () => {
       storedBytesPerPlay: stored / plays,
       rawBytesPerPlay: rawPlayBytes / plays,
       deflatedBytesPerPlay: zPlayBytes / plays,
+      packedBytesPerPlay: packedStored / plays,
       rawInputBytes: rawInput / games,
       deflatedInputBytes: zInput / games,
     };
@@ -127,9 +143,9 @@ describe('measured row sizes from the phase 1 engine game', () => {
       gameInputsPerSeason: PLANNING.gamesPerSeason * inputBytes,
     });
     const asStored = withRows(m.storedBytesPerPlay, m.rawInputBytes);
-    const compressed = withRows(m.deflatedBytesPerPlay, m.deflatedInputBytes);
+    const compressed = withRows(m.packedBytesPerPlay, m.deflatedInputBytes);
     const out: Record<string, unknown> = {};
-    for (const [name, model] of [['rows as stored today', asStored], ['rows compressed per game', compressed]] as const) {
+    for (const [name, model] of [['rows as stored today', asStored], ['rows packed per game (format 3, measured in the save)', compressed]] as const) {
       for (const [profile, season] of [['standard', 1], ['standard', 30], ['compact', 30]] as const) {
         const p = projectSize(model, profile, season);
         out[`${name} / ${profile} s${season}`] = { totalMB: Math.round(p.total / MB), playRowsMB: Math.round((p.parts.playRows + p.parts.userPlayRows) / MB), targetMB: p.target === null ? null : p.target / MB, within: p.withinTarget };
@@ -139,5 +155,8 @@ describe('measured row sizes from the phase 1 engine game', () => {
     // Compressed per game, the measured rows fit the standard targets.
     expect(projectSize(compressed, 'standard', 30).withinTarget).toBe(true);
     expect(projectSize(compressed, 'standard', 1).withinTarget).toBe(true);
+    expect(projectSize(compressed, 'compact', 30).withinTarget).toBe(true);
+    // The save's packed bytes match an independent deflate of the same rows within 5 %.
+    expect(Math.abs(m.packedBytesPerPlay - m.deflatedBytesPerPlay) / m.deflatedBytesPerPlay).toBeLessThan(0.05);
   }, 240_000);
 });
