@@ -2,6 +2,7 @@
 // season session to this port, so the screens never hold football logic (P1.2.2) and tests can drive the
 // root with a scripted season.
 import type { gameCallingCommands, presentationLive } from '@gm/app-services';
+import type { RouteSources } from '../routes.ts';
 
 export type GameSession = gameCallingCommands.GameCallingSession;
 
@@ -51,4 +52,6 @@ export interface CareerPort {
   liveField(session: GameSession): LiveField | null;
   /** Player and team names for the play log (observed names only). */
   names(session: GameSession): { playerName(id: number): string; teamName(side: 0 | 1): string };
+  /** Route sources of the hubs (app-root/sources), fed from the running season; none for a scripted season. */
+  sources?(): Partial<RouteSources>;
 }

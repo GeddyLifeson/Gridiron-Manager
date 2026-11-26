@@ -100,6 +100,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
 
   const routes: RouteTable = useMemo(() => {
     const t = buildRoutes({
+      ...port.sources?.(),
       home: { view: () => homeFromSeason(port.today()), dispatch: (i) => { if (i.kind === 'advance') advance(); } },
     });
     t['game.console'] = {

@@ -43,6 +43,7 @@ export * as presentationLive from './presentation/live/index.ts';
 export * as coachCalling from './coach-calling/index.ts';
 export * as sheetBridge from './sheet-bridge/index.ts';
 export * as legends from './read-models/legends/index.ts';
+export * as leaguePages from './read-models/league/index.ts';
 export * as legendsCommands from './commands/legends/index.ts';
 export * as home from './read-models/home/index.ts';
 export * as homeCommands from './commands/home/index.ts';
