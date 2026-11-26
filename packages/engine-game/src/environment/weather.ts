@@ -81,8 +81,12 @@ const RAIN: readonly Precip[] = ['light_rain', 'rain', 'heavy_rain'];
 const isRain = (x: Precip) => RAIN.includes(x);
 const isSnow = (x: Precip) => x === 'snow' || x === 'heavy_snow';
 
-function snowPossible(c: ClimateAt, tempF: number, p: Contract.ParamTable): boolean {
-  return c.snowIn > 0 && tempF <= p.num('environment.precip.snowMaxTempF');
+function snowPossible(c: ClimateAt, tempF: number, snowU: number, p: Contract.ParamTable): boolean {
+  if (tempF > p.num('environment.precip.snowMaxTempF')) return false;
+  if (c.snowIn > 0) return true;
+  // A3.1 ruling 22: snow at a venue whose normals record none is rare, not impossible, so it keeps the
+  // floor chance. It reuses the top of the snow-strength uniform (no new draw), which then reads as light snow.
+  return snowU >= 1 - Contract.PROB_FLOOR;
 }
 
 /** Rain intensity pick and snow-strength uniform, turned into a precipitation state. */
@@ -168,7 +172,7 @@ export function pregameOutdoor(input: GameEnvironmentInput, d: EnvironmentDeps):
 
   const anomalyF = zTemp * p.num('environment.weather.tempSdF');
   const tempF = c.tempMeanF + diurnalOffsetF(localHourOf(input, 1, p), p, d.math) + anomalyF;
-  const precip: Precip = uPrecip < precipChance(c, p) ? precipKind(intensity, uHeavySnow, snowPossible(c, tempF, p), p) : 'none';
+  const precip: Precip = uPrecip < precipChance(c, p) ? precipKind(intensity, uHeavySnow, snowPossible(c, tempF, uHeavySnow, p), p) : 'none';
   const unsettled = precip !== 'none' || uUnsettled < p.num('environment.precip.unsettledWhenDry');
   const windMph = Math.max(0, p.num('environment.wind.meanMph') + zWind * p.num('environment.wind.sdMph'));
   const humidityDry = clamp(p.num('environment.humidity.mean') + zHum * p.num('environment.humidity.sd'), 0.05, 1);
@@ -197,7 +201,7 @@ export function stepOutdoor(prev: OutdoorState, input: GameEnvironmentInput, per
   const tempF = c.tempMeanF + diurnalOffsetF(localHourOf(input, period, p), p, d.math) + anomalyF;
   const windMph = Math.max(0, prev.windMph + zWind * p.num('environment.change.windStepSdMph'));
   const windTowardBearingDeg = wrapDeg(prev.windTowardBearingDeg + zDir * p.num('environment.change.windDirStepSdDeg'));
-  const snow = snowPossible(c, tempF, p);
+  const snow = snowPossible(c, tempF, uHeavySnow, p);
   let precip: Precip;
   if (prev.precip === 'none') {
     const start = prev.unsettled ? p.num('environment.precip.startUnsettled') : p.num('environment.precip.startSettled');
