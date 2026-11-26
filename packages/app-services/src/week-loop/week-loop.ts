@@ -70,6 +70,11 @@ export interface WeekLoopOptions {
   readonly breakdownGames?: number;
   /** Extra pending items of the week (H5 injury calls, H6 roster deadlines, L9 events). */
   readonly items?: readonly weekly.PendingItem[];
+  /**
+   * Runs one practice or walkthrough block for real (G-65, the career's practice desk) and returns its record,
+   * kept on the block's report. Without it the week counts the block's exposures and team reps only.
+   */
+  readonly runPractice?: (block: Block, info: { readonly gMinus: number; readonly delegated: boolean }) => unknown;
 }
 
 export type WeekReport =
@@ -78,8 +83,8 @@ export type WeekReport =
   | { readonly kind: 'sheets'; readonly blockId: string; readonly delegated: boolean; readonly boxes: Readonly<Record<DraftUnit, number>>; readonly entries: Readonly<Record<DraftUnit, number>> }
   | { readonly kind: 'film_review' | 'plan_review'; readonly blockId: string; readonly delegated: boolean }
   | { readonly kind: 'meeting'; readonly blockId: string; readonly delegated: boolean; readonly type: string; readonly gMinus: number }
-  | { readonly kind: 'walkthrough'; readonly blockId: string; readonly delegated: boolean; readonly gMinus: number }
-  | { readonly kind: 'practice'; readonly blockId: string; readonly delegated: boolean; readonly gMinus: number; readonly minutes: number; readonly teamReps: number }
+  | { readonly kind: 'walkthrough'; readonly blockId: string; readonly delegated: boolean; readonly gMinus: number; readonly record?: unknown }
+  | { readonly kind: 'practice'; readonly blockId: string; readonly delegated: boolean; readonly gMinus: number; readonly minutes: number; readonly teamReps: number; readonly record?: unknown }
   | { readonly kind: 'media'; readonly blockId: string; readonly delegated: boolean; readonly session: string | null; readonly gMinus: number }
   | { readonly kind: 'travel'; readonly blockId: string; readonly delegated: boolean; readonly gMinus: number; readonly minutes: number }
   | { readonly kind: 'block'; readonly blockId: string; readonly delegated: boolean; readonly type: string };
@@ -166,6 +171,18 @@ export class SeatWeekLoop {
   }
 
   get week(): weekly.Week { return this.run.week; }
+  get isFinished(): boolean { return this.finished; }
+  /** Kickoff of the week's game. */
+  get kickoff(): calendar.Instant {
+    const g = weekly.allBlocks(this.run.week).find((b) => b.type === 'game');
+    if (!g) throw new Error('week loop: the week has no game block');
+    return g.start;
+  }
+  /** Where the week's clock stands: the start of the next block to run (the kickoff at game day). */
+  now(): calendar.Instant {
+    const done = new Set(this.run.week.completed);
+    return weekly.allBlocks(this.run.week).find((b) => !done.has(b.id))?.start ?? this.kickoff;
+  }
   get weekRun(): weekly.WeekRun { return this.run; }
   get atGameDay(): boolean { return this.stop === 'game_day'; }
   get reports(): readonly WeekReport[] { return this.run.reports as readonly WeekReport[]; }
@@ -239,11 +256,15 @@ export class SeatWeekLoop {
         }
         return { kind: 'plan_review', ...base };
       }
-      case 'walkthrough': return { kind: 'walkthrough', ...base, gMinus };
+      case 'walkthrough': {
+        const record = this.o.runPractice?.(b, { gMinus, delegated });
+        return { kind: 'walkthrough', ...base, gMinus, ...(record === undefined ? {} : { record }) };
+      }
       case 'practice': {
         const tempo = PRACTICE_TEMPO[b.contact ?? 'none'];
         const teamReps = Math.floor(b.minutes * P('install.teamMinuteShare') * practice.P(`rate_${tempo}`));
-        return { kind: 'practice', ...base, gMinus, minutes: b.minutes, teamReps };
+        const record = this.o.runPractice?.(b, { gMinus, delegated });
+        return { kind: 'practice', ...base, gMinus, minutes: b.minutes, teamReps, ...(record === undefined ? {} : { record }) };
       }
       case 'media': return { kind: 'media', ...base, session: b.session ?? null, gMinus };
       case 'travel': return { kind: 'travel', ...base, gMinus, minutes: b.minutes };

@@ -157,6 +157,18 @@ describe('seat week loop', () => {
     expect(new Set(study.report.plays.map((p) => `${p.gameId}|${p.side}`)).size).toBe(1);
   });
 
+  it('a practice runner hook gets every practice and walkthrough block, and its records stay on the reports', () => {
+    const sp = proSeason();
+    sp.advanceToGame();
+    const seen: string[] = [];
+    const loop = SeatWeekLoop.open(sp, { runPractice: (b, info) => { seen.push(b.id); return { id: b.id, gMinus: info.gMinus }; } })!;
+    loop.toGameDay();
+    const ran = loop.reports.filter((r) => r.kind === 'practice' || r.kind === 'walkthrough');
+    expect(ran.length).toBeGreaterThan(0);
+    expect(seen).toEqual(ran.map((r) => r.blockId));
+    expect(ran.every((r) => (r as { record?: { id: string } }).record?.id === r.blockId)).toBe(true);
+  });
+
   it('guards: no game before the week, no finish before game day, the week record goes to its own step', () => {
     const sp = proSeason();
     const loop = toNextSeatWeek(sp);

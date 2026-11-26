@@ -138,3 +138,35 @@ describe('a game on the staff sheets through the career port', () => {
     }, 300_000);
   }
 });
+
+describe('the seat week through the career port (H1.1.3)', () => {
+  const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+  it('pro: Today steps the week by block and by day, game day plays on the week\'s sheets, the season keeps the week', () => {
+    const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: CONTENT.proLeague.league.clubs[2].id });
+    const port = careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, bindings: DEFAULT_KEYMAP.bindings, consoleConfig: () => { throw new Error('the week supplies the console'); } });
+    expect(port.week!()).toBeNull();
+    port.advance!('next_block');
+    const w0 = port.week!()!;
+    expect(w0.blocks.length).toBeGreaterThan(0);
+    expect(w0.blocks.some((b) => b.done)).toBe(true);
+    expect(w0.minutesLeftThisWeek).toBeGreaterThan(0);
+    const home0 = homeFromSeason(port.today(), 0, w0);
+    expect(home0.today.mode).toBe('normal');
+    expect(home0.advance.map((a) => a.target)).toEqual(['next_block', 'end_of_day', 'game_day']);
+    const d0 = port.today().nextGame!.daysToGame;
+    port.advance!('end_of_day');
+    port.advance!('end_of_day');
+    expect(port.today().nextGame!.daysToGame).toBeLessThan(d0);
+    port.advance!('game_day');
+    expect(port.today().nextGame!.daysToGame).toBe(0);
+    const session = port.startGame();
+    expect(playByKeys(session)).toBeGreaterThan(100);
+    const week = sp.stepWeek();
+    port.finishGame(session);
+    const rec = sp.state.seat.find((s) => s.week === week)!;
+    expect(rec.reachedGameDay).toBe(true);
+    expect(rec.blocksRun).toBeGreaterThan(10);
+    expect(port.week!()).toBeNull();
+    expect(port.today().record.w + port.today().record.l + port.today().record.t).toBe(1);
+  }, 300_000);
+});

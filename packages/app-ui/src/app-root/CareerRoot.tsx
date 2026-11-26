@@ -14,6 +14,7 @@ import { FinalPanel, PlayLog, keyForIn, useLiveSession } from './ConsoleHost.tsx
 import { rt } from './text.ts';
 import type { CareerPort, GameSession, SeasonToday } from './port.ts';
 import type { SoundStage } from '../audio/stage/index.ts';
+import type { AdvanceTarget } from '../screens/home/view.ts';
 
 export interface CareerRootProps {
   readonly port: CareerPort;
@@ -88,6 +89,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
   }, [gameDay, session, port]);
 
   const advance = useCallback(() => { port.advanceToGameDay(); bump(); }, [port]);
+  const step = useCallback((target: AdvanceTarget) => { if (port.advance) port.advance(target); else port.advanceToGameDay(); bump(); }, [port]);
   const done = useCallback(() => {
     if (session) port.finishGame(session);
     setSession(null);
@@ -97,13 +99,13 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
 
   const routes: RouteTable = useMemo(() => {
     const t = buildRoutes({
-      home: { view: () => homeFromSeason(port.today()), dispatch: (i) => { if (i.kind === 'advance') advance(); } },
+      home: { view: () => homeFromSeason(port.today(), 0, port.week?.() ?? null), dispatch: (i) => { if (i.kind === 'advance') step(i.target); } },
     });
     t['game.console'] = {
       render: () => (session ? createElement(LiveConsole, { port, session, bindings, now, soundStage, onDone: done }) : createElement(GameConsole, { view: null })),
     };
     return t;
-  }, [port, session, bindings, now, soundStage, advance, done, version]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [port, session, bindings, now, soundStage, step, done, version]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const context: ShellContext = {
     teamName: today.teamName, record: recordText(today.record), phaseLabel: today.stageLabel,
