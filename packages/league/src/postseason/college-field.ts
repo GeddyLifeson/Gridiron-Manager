@@ -27,7 +27,7 @@ export interface CollegeField {
   readonly seeds: readonly TeamId[];
   readonly automatic: readonly TeamId[];
   readonly atLarge: readonly TeamId[];
-  /** Why each team is in: 'power_champion', 'other_best', 'independent', 'at_large'. */
+  /** Why each team is in: 'power_champion', 'other_best', 'champion', 'independent', 'at_large'. */
   readonly reason: ReadonlyMap<TeamId, string>;
 }
 
@@ -39,6 +39,12 @@ export function selectCollegeField(input: FieldInput, rules: RuleValues): Colleg
 
   if (flag(rules, KEY.powerChampionsAuto)) {
     for (const c of input.conferences) if (c.power && c.champion !== null) reason.set(c.champion, 'power_champion');
+  }
+  // 2024 and 2025 (T3.5.1 eras): the highest-ranked conference champions, from any conference.
+  const champAuto = num(rules, KEY.championAutoBids);
+  if (champAuto > 0) {
+    const champs = input.conferences.map((c) => c.champion).filter((t): t is TeamId => t !== null && !reason.has(t)).sort((a, b) => rank(a) - rank(b));
+    for (const t of champs.slice(0, champAuto)) reason.set(t, 'champion');
   }
   const otherTeams = input.conferences.filter((c) => !c.power).flatMap((c) => c.teamIds).filter((t) => !reason.has(t)).sort((a, b) => rank(a) - rank(b));
   for (const t of otherTeams.slice(0, num(rules, KEY.otherAutoBids))) reason.set(t, 'other_best');
@@ -56,6 +62,12 @@ export function selectCollegeField(input: FieldInput, rules: RuleValues): Colleg
     atLarge.push(t); reason.set(t, 'at_large');
   }
   if (automatic.length + atLarge.length < size) throw new Error('not enough eligible teams to fill the field');
-  const seeds = [...automatic, ...atLarge].sort((a, b) => rank(a) - rank(b));
+  let seeds = [...automatic, ...atLarge].sort((a, b) => rank(a) - rank(b));
+  // 2024 (T3.5.1 eras): the bye seeds go to the highest-ranked conference champions; everyone else follows by ranking.
+  if (flag(rules, KEY.byesChampionsOnly)) {
+    const champions = new Set(input.conferences.map((c) => c.champion).filter((t): t is TeamId => t !== null));
+    const top = seeds.filter((t) => champions.has(t)).slice(0, num(rules, KEY.byes));
+    seeds = [...top, ...seeds.filter((t) => !top.includes(t))];
+  }
   return { seeds, automatic, atLarge, reason };
 }
