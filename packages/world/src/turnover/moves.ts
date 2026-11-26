@@ -232,6 +232,21 @@ function cutdown(c: Cycle, teamId: number): void {
   for (const id of ids) if (!kept.has(id)) release(c, teamId, id);
 }
 
+/** K7.7.1 early contact, in signing order: each team the policy says reached a free agent early signs him now. */
+function earlyContacts(c: Cycle, order: readonly number[], upTo: number): void {
+  const hook = c.b.policy?.earlyContact;
+  if (!hook) return;
+  order.forEach((teamId, slot) => {
+    if ((c.world.rosters.get(teamId) ?? []).length >= upTo) return;
+    const pool = freeAgents(c);
+    const id = hook(c, teamId, pool, slot);
+    if (id === null || !pool.includes(id)) return;
+    dropFromPools(c.world, id);
+    sign(c, teamId, id, 'free_agent');
+    bump(c, 'early_contact');
+  });
+}
+
 /** C7: this year's draft over the pro entry pool, in the C7.2.1 selection order from last season's records. */
 function runDraft(c: Cycle, level: Level, order: readonly number[], shares: Map<number, number>): number[] {
   const rules = ruleSetOf(c.b, level, c.season);
@@ -268,6 +283,9 @@ function proOffseason(c: Cycle, level: Level): void {
   retirements(c, teams);
   const rounds = c.b.rule(level, RULE_KEY.draftRounds) ?? 0;
   const offseason = c.b.rule(level, RULE_KEY.offseasonLimit) ?? specOf(c.b, c.world, teams[0]!).rosterLimit;
+  // K7.7.1: a general manager may reach a free agent before the market opens (C11.6.2 tampering) and sign him
+  // ahead of the order. The act, its detection and its penalty are the L8.2.5 pipeline's.
+  earlyContacts(c, order, offseason - rounds);
   // C8 free agency before the draft, leaving room for the year's picks.
   fill(c, order, freeAgents(c), () => offseason - rounds, 'free_agent', (id) => dropFromPools(c.world, id));
   const undrafted = rounds > 0 ? runDraft(c, level, order, shares) : take(c.world, POOL.proEntry);

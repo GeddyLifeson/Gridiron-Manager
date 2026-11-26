@@ -7,6 +7,7 @@ import { FieldRenderer, type RenderOptions, type EndZoneMark } from './renderer.
 import { markingsFor } from './markings.ts';
 import type { FieldNote } from './fieldText.ts';
 import type { CosmeticDraw, FieldWeather } from './weather.ts';
+import type { CueSwitches, FieldContact } from './cues.ts';
 import { Playback, ReplayAllowance, SPEEDS, stills } from './playback.ts';
 import { resolveTeamColours, fieldPalette } from './colours.ts';
 import type { ThemeId, ColourVisionId } from '../tokens/index.ts';
@@ -38,6 +39,10 @@ export interface FieldViewProps {
   readonly weather?: FieldWeather;
   /** The play's cosmetic display stream: the only source of rain and snow spots. */
   readonly cosmetic?: CosmeticDraw;
+  /** The feed's tiered contact cues; leave out when the feed lists `contactTier` as missing. */
+  readonly contacts?: readonly FieldContact[];
+  /** Per-cue display switches from the settings, by cue-table key (MB-17). */
+  readonly cueSwitches?: CueSwitches;
   /** Shared across plays of one game so only the last play can be replayed (I9.3.1). */
   readonly replays?: ReplayAllowance;
   readonly width?: number;
@@ -68,9 +73,11 @@ export function FieldView(props: FieldViewProps) {
     markings: markingsFor(props.level ?? 'pro'), stripes: !plain, weatherParticles: !plain,
     ...(props.endZones ? { endZones: props.endZones } : {}), ...(props.notes ? { notes: props.notes } : {}),
     ...(props.weather ? { weather: props.weather } : {}), ...(props.cosmetic ? { cosmetic: props.cosmetic } : {}),
+    ...(props.contacts ? { contacts: props.contacts } : {}), ...(props.cueSwitches ? { cueSwitches: props.cueSwitches } : {}),
+    speed: props.speed ?? 1,
   };
   const renderer = useMemo(() => new FieldRenderer(play, geometry, options),
-    [play, geometry, colours, palette, mode, userSide, props.showPositionLetters, props.level, props.endZones, props.notes, props.weather, props.cosmetic, plain]);
+    [play, geometry, colours, palette, mode, userSide, props.showPositionLetters, props.level, props.endZones, props.notes, props.weather, props.cosmetic, props.contacts, props.cueSwitches, plain]);
   const replays = useMemo(() => props.replays ?? new ReplayAllowance(), [props.replays]);
   const pbRef = useRef<Playback | null>(null);
 
@@ -121,6 +128,7 @@ export function FieldView(props: FieldViewProps) {
       const rp = replays.take(play.playId, renderer.frames, play.ticksPerSecond);
       renderer.reframe(renderer.frames.firstTick);
       pbRef.current = rp;
+      renderer.setSpeed(rp.speed);
       props.onReplayed?.(play.playId);
     } else if (k === 'Escape' && pb.mode === 'replay') pb.stop();
     else if (study && k === ' ') { if (pb.playing) pb.pause(); else pb.play(); }
@@ -129,6 +137,7 @@ export function FieldView(props: FieldViewProps) {
       const list = SPEEDS[pb.mode]; const i = list.indexOf(pb.speed);
       const next = list[Math.min(list.length - 1, Math.max(0, i + (k === '.' ? 1 : -1)))]!;
       pb.setSpeed(next);
+      renderer.setSpeed(next);
     } else return;
     e.preventDefault();
     setTick((t) => t + 1);

@@ -52,10 +52,11 @@ export interface Membership {
   readonly people: ReadonlyMap<number, Placement<PersonReason>>;
 }
 
-/** Players, seat holders and the owner, athletic director and president of a team, in id order. */
+/** Players, seat holders (off-ladder seats too) and the owner, athletic director and president of a team, in id order. */
 export function teamMembers(world: LiveWorld, teamId: number): number[] {
   const ids = new Set<number>(world.rosters.get(teamId) ?? []);
   for (const j of world.jobs.values()) if (j.teamId === teamId && j.holderPersonId !== null) ids.add(j.holderPersonId);
+  for (const s of world.offLadder.values()) if (s.teamId === teamId && s.holderPersonId !== null) ids.add(s.holderPersonId);
   const t = world.teams.find((x) => x.id === teamId);
   for (const id of [t?.ownerPersonId, t?.athleticDirectorPersonId, t?.presidentPersonId]) if (id !== null && id !== undefined) ids.add(id);
   return [...ids].sort((a, b) => a - b);

@@ -195,7 +195,9 @@ export function resolvePlay(env: FlowEnv, state: GameState, record: Contract.Pla
     clockTenths: clockAfter.clockTenths,
     clockStatus: clockAfter.status,
     playClockTenths: clockAfter.playClockTenths,
-    playClockRunning: true,
+    // The full play clock starts when the play ends; a clock set to any other value starts on the referee's ready
+    // signal, after the ball is spotted (pro Rule 4-6-1 and 4-6-2, college Rule 2-2-4).
+    playClockRunning: clockAfter.playClockTenths === env.rules.num('clock.play_clock_s') * TENTHS_PER_S,
     elapsedTenths: state.elapsedTenths + record.truth.liveDurationTenths,
     score: [record.scoreAfter[0], record.scoreAfter[1]],
     scoreByPeriod: state.scoreByPeriod.map((row, i) => (i === periodRow ? [row[0] + gained[0], row[1] + gained[1]] as [number, number] : row)),

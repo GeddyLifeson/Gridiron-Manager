@@ -8,19 +8,19 @@
 // Honesty rule: a stage module that is not plugged in is replaced by its stand-in (stand-ins.ts), the
 // stand-in is named in `report.standIns`, and `mayProduceSavedResults` is false until none is left.
 import {
-  SLOT_COUNT, SLOTS_PER_TEAM, TICK_S,
+  SLOT_COUNT, SLOTS_PER_TEAM, TICK_S, issToZ,
   type Assignment, type MovementParams, type ParamTable, type PlayInput, type PlayResult, type PlayTruth, type PlayerDelta,
   type Resolver, type SimPlayer, type SimTeam, type SlotInfo, type TickWorld, type TruthEvent,
 } from '@gm/schema';
 import { lang } from '@gm/football-lang';
-import { createBallStages } from '../ball/index.ts';
+import { ballParams, createBallStages } from '../ball/index.ts';
 import { createContests, type Contests } from '../contest/index.ts';
 import { PI } from '../dmath.ts';
 import { createBoundaryWatcher, createHeldBallStage, fieldParams, playFrame } from '../field/index.ts';
 import { createMovement, kinParams, movementParams } from '../kinematics/index.ts';
 import { createPerception } from '../perception/index.ts';
 import { NEUTRAL_MIND, createPlayerAi, type SlotPlay } from '../player-ai/index.ts';
-import { createPresnapStages, planPresnap, presnapParams, startingAdvantage, type PresnapPlan, type PresnapStages } from '../presnap/index.ts';
+import { createPresnapStages, planPresnap, presnapParams, snapperOf, startingAdvantage, type PresnapInput, type PresnapPlan, type PresnapStages } from '../presnap/index.ts';
 import { createTickLoop, createTickWorld, createTrajectoryRecorder, type PlayStage, type TrajectoryRecorder } from '../tick/index.ts';
 import { createCatchPointStage } from './catch-point.ts';
 import { createFinish } from './finish.ts';
@@ -28,7 +28,7 @@ import { createRouteCuts } from './route-cuts.ts';
 import { createInteract } from './interact.ts';
 import { createKickOp, isFreeKick } from './kick-op.ts';
 import { tickResolverParams } from './params.ts';
-import { PLUG_IDS, type RunnerHooks, type PlayServices, type PlaySetup, type PlugId, type PlugStages, type StagePlug, type TickResolverOptions, type TickResolverReport } from './ports.ts';
+import { PLUG_IDS, type KickLook, type RunnerHooks, type PlayServices, type PlaySetup, type PlugId, type PlugStages, type StagePlug, type TickResolverOptions, type TickResolverReport } from './ports.ts';
 import { standInPlug } from './stand-ins.ts';
 
 export const TICK_RESOLVER_VERSION = '0.1.0';
@@ -107,6 +107,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     snap: () => (presnap === null ? null : presnap.snap()),
     setup: () => { if (setup === null) throw new Error('no play is being resolved'); return setup; },
     input: () => { if (current === null) throw new Error('no play is being resolved'); return current; },
+    kickLook: () => (setup === null ? null : setup.kickLook ?? null),
     protectedPasser: () => (passerNow === null ? -1 : passerNow()),
     claimPasser: (f) => { passerNow = f; },
     kickOwner: () => kickOp.owner(),
@@ -205,6 +206,8 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     });
 
     const O = s0.presnap.offense.assignments, D = s0.presnap.defense.assignments;
+    const look = s0.kickLook ?? null;
+    const presnapInput = look === null ? s0.presnap : longSnapInput(input, s0.presnap, look, slots);
     const assignmentOf = (s: number): Assignment | undefined => (s < SLOTS_PER_TEAM ? O[s] : D[s - SLOTS_PER_TEAM]);
     const free = isFreeKick(input), pl = world.players, f = world.frame;
     const facing = (s: number): number => ((s < SLOTS_PER_TEAM) === (f.attackDir === 1) ? 0 : PI);
@@ -244,14 +247,14 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
       plan = null; presnap = null; perceptionFrom = 0;
       interact.setPlay(contests!, null);
     } else {
-      const thePlan = planPresnap(world, s0.presnap), pp = presnapParams(params);
-      plan = thePlan; presnap = createPresnapStages(thePlan, s0.presnap);
+      const thePlan = planPresnap(world, presnapInput), pp = presnapParams(params);
+      plan = thePlan; presnap = createPresnapStages(thePlan, presnapInput);
       perceptionFrom = -q['setup.perceptionLeadTicks']!;
       interact.setPlay(contests!, (blocker, defender) => startingAdvantage(thePlan.startS[blocker]!, thePlan.startS[defender]!, pp));
       loop = createTickLoop([...presnap.stages, ...fixedStages]);
     }
     const snapOf = (): ReturnType<PlayServices['snap']> => (presnap === null ? null : presnap.snap());
-    kickOp.setPlay(input, O, s0.context.pressure ?? 0, snapOf);
+    kickOp.setPlay(input, O, s0.context.pressure ?? 0, snapOf, look);
     catchPoint.setPlay(contests!);
     routeCuts.setPlay(world, assignmentOf);
     for (const b of built) b.setPlay?.(world);
@@ -296,6 +299,24 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     setup = null; current = null;
     return result;
   }
+
+  /**
+   * The pre-snap input of a play from a kicking look (F12.7.1): the long snapper snaps to the man the
+   * look names, and the ball flies there at the speed J9.4.3 gives a punt snap (0.75 s to a punter at
+   * 14 to 15 yd at grade 50, each z of long snapping taking its 0.03 s off), so the snap of a fake takes
+   * what the snap of the kick takes. A content error throws: a saved game can never hold such a play.
+   */
+  const longSnapInput = (input: PlayInput, base: PresnapInput, look: KickLook, slots: readonly SlotInfo[]): PresnapInput => {
+    const where = `game ${input.situation.gameId} play ${input.situation.playNumber}`;
+    if (input.calls.snapping.unit !== 'offense') throw new Error(`tick resolver: ${where} has a kicking look on a kick call; the look is for an offensive call snapped from a kicking formation`);
+    const O = base.offense.assignments, snapper = snapperOf(O), to = look.snapTo;
+    if (!Number.isInteger(to) || to < 0 || to >= SLOTS_PER_TEAM || O[to] === undefined) throw new Error(`tick resolver: ${where}: the kicking look snaps to team slot ${String(to)}, which is not one of the eleven`);
+    if (to === snapper) throw new Error(`tick resolver: ${where}: the kicking look snaps the ball to the snapper`);
+    const bp = ballParams(input.params), q = tickResolverParams(input.params);
+    const zSnap = issToZ(snapper >= 0 ? (slots[snapper]!.player.attributes['long_snap'] ?? 50) : 50);
+    const flightYps = q['kickLook.puntSnapDepthYd']! / (bp['block.puntSnapS']! - bp['block.puntPerZS']! * zSnap);
+    return { ...base, snap: { toTeamSlot: to, long: true, flightYps } };
+  };
 
   const content = (input: PlayInput): PlaySetup => {
     const s = options.content.setup(input);

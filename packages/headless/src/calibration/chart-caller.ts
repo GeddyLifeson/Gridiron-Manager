@@ -64,7 +64,7 @@ function pick<T>(r: number, items: readonly (readonly [T, number])[]): T {
   return items[items.length - 1]![0];
 }
 
-const SALT = { kind: 1, family: 2, personnel: 3, dir: 4, shotgun: 5, tempo: 6, fourth: 7, cover: 8, rush: 9, two: 10 } as const;
+const SALT = { kind: 1, family: 2, personnel: 3, dir: 4, shotgun: 5, tempo: 6, fourth: 7, cover: 8, rush: 9, two: 10, box: 11, hurry: 12, timeout: 13 } as const;
 
 export function createChartCaller(opts: ChartCallerOptions): Decider {
   const P = chartParams(opts.overrides);
@@ -98,6 +98,33 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
     }
   }
 
+  /** The last period of a half in regulation, with no more than `tenths` on the clock. */
+  const halfEnding = (s: GameSituation, tenths: number): boolean =>
+    !s.overtime && (s.period === opts.regulationPeriods || s.period + s.period === opts.regulationPeriods) && s.clockTenths <= tenths;
+
+  /** Tempo: hurry-up with the clock running at the end of a half (in the last period only when not ahead), more no-huddle when far behind late. */
+  function tempoOf(s: GameSituation, req: DecisionRequest): OffenseCall['tempo'] {
+    const m = margin(s, side);
+    const last = !s.overtime && s.period === opts.regulationPeriods;
+    if (s.clockStatus === 'running' && halfEnding(s, P('chart.hurry.clockTenths')) && (!last || m <= 0) && r(s, req, SALT.hurry) < P('chart.hurry.share')) return 'hurry_up';
+    const share = last && m <= -P('chart.noHuddle.trailingLateMargin') ? P('chart.noHuddle.trailingLateShare') : P('chart.noHuddleShare');
+    return r(s, req, SALT.tempo) < share ? 'no_huddle' : 'huddle';
+  }
+
+  /** A charged timeout with the clock running late in a half: the offense that hurries, the defense that needs the ball. */
+  function wantsTimeout(s: GameSituation, req: DecisionRequest): boolean {
+    // The chart takes its timeout as soon as the ball is dead (the request open to the end of the play clock), never
+    // in the later window between the calls and the snap, whose deadline is the snap.
+    if (req.deadlinePlayClockTenths !== 0) return false;
+    if (s.clockStatus !== 'running' || !halfEnding(s, P('chart.timeout.clockTenths'))) return false;
+    const m = margin(s, side);
+    const last = s.period === opts.regulationPeriods;
+    let share: number;
+    if (s.offense === side) share = !last || m <= 0 ? P('chart.timeout.offenseShare') : 0;
+    else share = last ? (m < 0 ? P('chart.timeout.defenseTrailingShare') : 0) : P('chart.timeout.defenseFirstHalfShare');
+    return r(s, req, SALT.timeout) < share;
+  }
+
   function offenseCall(s: GameSituation, req: DecisionRequest): OffenseCall {
     const leadingLate = margin(s, side) > 0 && lastPeriodLate(s, P('chart.kneel.clockTenths'));
     const personnel = pick(r(s, req, SALT.personnel), [['12', P('chart.personnel.p12')], ['21', P('chart.personnel.p21')], ['13', P('chart.personnel.p13')], ['22', P('chart.personnel.p22')], ['10', P('chart.personnel.p10')],
@@ -113,7 +140,7 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
     return {
       unit: 'offense', playContentId: null, contentHash: null, kind, personnelCode: personnel, formationId: null, strength: null, motionId: null,
       protectionId: null, tags: [], runDirection: dir, shotgun: kind === 'kneel' ? false : (!isRun || kind === 'run') && r(s, req, SALT.shotgun) < P('chart.shotgunShare'),
-      tempo: r(s, req, SALT.tempo) < P('chart.noHuddleShare') ? 'no_huddle' : 'huddle', players: opts.roster('offense', personnel),
+      tempo: kind === 'kneel' ? 'huddle' : tempoOf(s, req), players: opts.roster('offense', personnel),
     };
   }
 
@@ -150,7 +177,9 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
       [4, Math.max(0, 1 - P('chart.rush.three') - P('chart.rush.five') - P('chart.rush.six') - P('chart.rush.seven'))]] as const);
     return {
       unit: 'defense', callContentId: null, contentHash: null, packageId: null, frontId: null, coverageId: null, pressureId: null,
-      coverageFamily: fam, rushers, boxCount: P('chart.box.base'), players: opts.roster('defense', null),
+      coverageFamily: fam, rushers, players: opts.roster('defense', null),
+      boxCount: pick(r(s, req, SALT.box), [[6, P('chart.box.six')], [8, P('chart.box.eight')], [9, P('chart.box.nine')],
+        [7, Math.max(0, 1 - P('chart.box.six') - P('chart.box.eight') - P('chart.box.nine'))]] as const),
     };
   }
 
@@ -190,7 +219,13 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
       switch (req.type) {
         case 'snapping_call': return answer(req, { snappingCall: snappingCall(s, req) });
         case 'opposing_call': return answer(req, { opposingCall: opposingCall(s, req) });
-        // Every other prompt (toss, penalty, timeout, challenge, runoff, overtime, try choice) takes the
+        case 'timeout': {
+          // The option that is not the default is the timeout; its id belongs to the flow, not to the chart.
+          const take = req.options.find((o) => o.optionId !== req.defaultOptionId);
+          if (take && wantsTimeout(s, req)) return answer(req, { optionId: take.optionId });
+          return req.defaultOptionId === null ? null : answer(req, { optionId: req.defaultOptionId });
+        }
+        // Every other prompt (toss, penalty, challenge, runoff, overtime, try choice) takes the
         // rule set's default option: the chart has no opinion, and the option ids belong to the rule set.
         default: return req.defaultOptionId === null ? null : answer(req, { optionId: req.defaultOptionId });
       }

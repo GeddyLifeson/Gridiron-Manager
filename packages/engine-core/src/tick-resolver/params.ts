@@ -36,6 +36,9 @@ const ROWS: readonly ParamRow[] = [
   ['kick.aimLatYd', 12, 0, 25, 'yd', A, 'J9.5.1', 'lateral aim of a directional punt or kickoff'],
   ['kick.kickoffTargetAlongYd', 62, 30, 80, 'yd', A, 'J9.6.1', 'called landing point until the kick call carries one'],
   ['kick.pressureRangeYd', 5, 1, 10, 'yd', A, 'J9.5.1', 'free rusher inside this range is full pressure on the punter'],
+  // A play from a kicking look (F12.7.1): the long snap flies at the speed the punt operation gives it,
+  // `this depth / (ball.block.puntSnapS - ball.block.puntPerZS * z_longSnap)`, to whoever takes it.
+  ['kickLook.puntSnapDepthYd', 14.5, 13, 16, 'yd', 'bible', 'J9.4.3', 'J9.4.3: a long snap of 0.75 s to a punter at 14 to 15 yd'],
   // Stand-ins. Not football: they only let a play end while the real modules are missing.
   ['standIn.qbHoldS', 6, 2, 20, 's', A, 'J7', 'stand-in only'],
   ['standIn.touchGapYd', 0.1, 0, 1, 'yd', A, 'J8', 'stand-in only'],

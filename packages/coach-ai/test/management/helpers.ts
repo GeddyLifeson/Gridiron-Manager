@@ -74,8 +74,7 @@ export function sit(p: Partial<Situation> = {}): Situation {
   };
 }
 
-const T0 = { fourthDownOffset: 0, twoPointOffset: 0, endOfHalfAggression: 0, leadProtection: 0, deficitUrgency: 0, lateDefenseRisk: 0, starterRestBias: 0, analyticsTrust: 1, challengeEagerness: 0, iceKicker: 0.35,
-  veteranBias: 0, backupRepShare: 0, emphasis: { takeaway: 0, tackleAttack: 0, rushLanes: 0, cornerJump: 0 } };
+const T0 = { fourthDownOffset: 0, twoPointOffset: 0, endOfHalfAggression: 0, leadProtection: 0, deficitUrgency: 0, lateDefenseRisk: 0, starterRestBias: 0, analyticsTrust: 1, challengeEagerness: 0, iceKicker: 0.35, veteranBias: 0, backupRepShare: 0.2, emphasis: { takeaway: 0, tackleAttack: 0, rushLanes: 0, cornerJump: 0 } };
 
 export function coach(t: Partial<CoachInputs['tendencies']> = {}, b: Partial<CoachInputs['behavior']> = {}, advisor = true): CoachInputs {
   return { tendencies: { ...T0, ...t }, behavior: { clockManagement: 0, evaluation: 0, ...b }, advisor };

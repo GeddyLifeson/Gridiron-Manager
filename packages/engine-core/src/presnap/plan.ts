@@ -92,8 +92,28 @@ export interface PresnapInput {
   readonly defense: PresnapDefense;
   /** I4.1.1 a kicking unit comes on for this snap: its time to set is charged and a change of mind raises the substitution hazard. Null or absent: no unit change. */
   readonly unitChange?: UnitChange | null;
+  /**
+   * Who takes the snap and how it gets there, when the play says so (F12.7.1: a scrimmage play out of a
+   * kicking formation; a direct snap). Null or absent: the quarterback, else the holder, else the punter,
+   * and the ball is in his hands at tick 0.
+   */
+  readonly snap?: SnapSpec | null;
   /** Test switch for J5.4.2 acceptance 1 ("errors disabled"): every recognition and delivery succeeds. Draws are still taken. */
   readonly errorsDisabled?: boolean;
+}
+
+/** The snap of a play that names its own (J5.6.2, J9.1.2). */
+export interface SnapSpec {
+  /** Team slot the ball is snapped to. */
+  readonly toTeamSlot: number;
+  /** A long snap: the long snapper's grade against the receiver's hands (the holder's holding), at the shotgun and kick base rates. */
+  readonly long: boolean;
+  /**
+   * Speed of the ball through the air, yards per second. The receiver has it when it has covered the
+   * distance, and an off-target snap arrives later by its extra time (a slow, high ball). Null: the
+   * ball is in his hands at tick 0, as on every other snap.
+   */
+  readonly flightYps: number | null;
 }
 
 // -------------------------------------------------------------------------------------------- plan
@@ -178,8 +198,9 @@ const HALF = 0.5;
 
 function roleIs(a: Assignment, type: string): boolean { return a.behavior.type === type; }
 
-/** Snap receiver: the quarterback, else the holder or kicker (punter), else -1. Team slot. */
-export function snapReceiverOf(as: readonly Assignment[]): number {
+/** Snap receiver: the man the play names, else the quarterback, else the holder or kicker (punter), else -1. Team slot. */
+export function snapReceiverOf(as: readonly Assignment[], spec: SnapSpec | null = null): number {
+  if (spec !== null && Number.isInteger(spec.toTeamSlot) && spec.toTeamSlot >= 0 && spec.toTeamSlot < as.length) return spec.toTeamSlot;
   for (const t of ['quarterback', 'holder', 'kicker']) { const i = as.findIndex((a) => roleIs(a, t)); if (i >= 0) return i; }
   return -1;
 }
