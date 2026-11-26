@@ -34,8 +34,12 @@ const RUN_BLOCKERS = new Set([code('runBlock'), code('pull'), code('returnBlock'
 // D3 grades behind each side of a block (J6.2.1, J6.3.1 inputs). Equal weights until the technique matrix exists.
 const PASS_BLOCK_ATTRS = ['pass_set', 'anchor', 'mirror', 'hand_use_in_protection'] as const;
 const PASS_RUSH_ATTRS = ['get_off', 'power_rush', 'hand_moves', 'speed_rush_and_bend'] as const;
-const RUN_BLOCK_ATTRS = ['zone_run_blocking', 'gap_run_blocking', 'play_strength'] as const;
-const RUN_DEFENSE_ATTRS = ['block_shedding', 'taking_on_blocks', 'play_strength'] as const;
+// Pad level is the leverage term of a run block (D3 universal attribute, J6.1.1 mLeverage: "the low man wins"). It
+// enters as an equal-weight attribute of the mix, so a player strong everywhere answers exactly as before and pad
+// level alone moves a run block a quarter of the way a whole run-block skill does. The weight is an Assumption:
+// no public source grades pad level per player (research/tuning/dead-skills.md).
+const RUN_BLOCK_ATTRS = ['zone_run_blocking', 'gap_run_blocking', 'play_strength', 'pad_level'] as const;
+const RUN_DEFENSE_ATTRS = ['block_shedding', 'taking_on_blocks', 'play_strength', 'pad_level'] as const;
 const COUNTER_ATTR = 'inside_counter';
 
 export interface Interact {

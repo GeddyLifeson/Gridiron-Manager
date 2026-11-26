@@ -369,11 +369,24 @@ describe('J5.6 cadence and the snap', () => {
   });
   it('J5.6.2 acceptance: bad snaps rise in rain, fall with a better pairing; an average dry shotgun pair matches the starting rates', () => {
     const [l0, o0] = badSnapChances(0, false, false, true, P, DMATH);
-    expect(l0).toBeCloseTo(0.0015, 9); expect(o0).toBeCloseTo(0.015, 9);
+    expect(l0).toBeCloseTo(0.0025, 9); expect(o0).toBeCloseTo(0.015, 9);
     const [l1, o1] = badSnapChances(0, true, false, true, P, DMATH);
     expect(l1).toBeGreaterThan(l0); expect(o1).toBeGreaterThan(o0);
     expect(badSnapChances(1.5, false, false, true, P, DMATH)[1]).toBeLessThan(o0);
     expect(badSnapChances(0, false, false, false, P, DMATH)[1]).toBeLessThan(o0);
+  });
+});
+
+describe('J5.6.2 snap exchange fitted to real aborted snaps (nflverse 2018-2025, 1 of 3)', () => {
+  const logit = (q: number) => Math.log(q / (1 - q));
+  it('an average pair aborts 0.25% of shotgun snaps and 0.40% under center', () => {
+    expect(badSnapChances(0, false, false, true, P, DMATH)[0]).toBeCloseTo(0.0025, 6);
+    expect(badSnapChances(0, false, false, false, P, DMATH)[0]).toBeCloseTo(0.004, 6);
+  });
+  it('one sd of the centre and quarterback pair (dz 0.707) moves the aborted rate about 0.5 logit (real 0.61 shotgun, 0.39 under center)', () => {
+    const pairSd = Math.SQRT1_2;
+    const shift = logit(badSnapChances(-pairSd, false, false, true, P, DMATH)[0]) - logit(badSnapChances(0, false, false, true, P, DMATH)[0]);
+    expect(shift).toBeGreaterThan(0.39); expect(shift).toBeLessThan(0.61);
   });
 });
 

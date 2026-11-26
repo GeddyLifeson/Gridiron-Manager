@@ -13,6 +13,7 @@ const SUB = 'J15.7 defensive too many men 0.15 per game (1 of 3)';
 const READ = 'J5.4.1 acceptance (read accuracy test)';
 const PROT = 'J5.4.2 acceptance 2';
 const DOG = 'J12.6.1 acceptance 2: delay of game 0.34 home, 0.47 road per 100 snaps (1 of 3)';
+const SNAP = 'aborted snaps per scrimmage snap: shotgun 0.247%, under center 0.403%; team-season (centre and QB pair) true sd 0.61 / 0.39 logit (nflverse play-by-play 2018-2025, 1 of 3; research/tuning/dead-skills.md)';
 const SCHED = 'J5.8.1 acceptance 1 and 3 (play-clock-at-snap data not yet sourced)';
 
 const ROWS: readonly ParamRow[] = [
@@ -140,10 +141,10 @@ const ROWS: readonly ParamRow[] = [
   ['getoff.a0Min', -0.3, -0.5, -0.1, 'ratio', 'bible', 'J5.6.1', 'J5.6.1 acceptance'],
   // J5.6.2 snap exchange (event contest, J6.1.3).
   ['snap.offTargetShotgun', 0.015, 0.005, 0.04, 'probability', 'bible', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
-  ['snap.looseShotgun', 0.0015, 0.0005, 0.005, 'probability', 'bible', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
+  ['snap.looseShotgun', 0.0025, 0.0005, 0.005, 'probability', 'bible', 'J5.6.2', SNAP],
   ['snap.underCenterOffTargetMult', 0.3, 0.1, 1, 'ratio', 'assumption', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
-  ['snap.underCenterLooseMult', 1, 0.5, 2, 'ratio', 'assumption', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
-  ['snap.beta1', 0.3, 0, 0.8, 'per z', 'assumption', 'J5.6.2', 'J5.6.2 acceptance (rate unmeasured, R3)'],
+  ['snap.underCenterLooseMult', 1.6, 0.5, 2, 'ratio', 'assumption', 'J5.6.2', SNAP],
+  ['snap.beta1', 0.7, 0, 1.2, 'per z', 'assumption', 'J5.6.2', SNAP],
   ['snap.wetGamma', 0.5, 0, 1.5, 'ratio', 'assumption', 'J5.6.2', 'J5.6.2 acceptance: rate rises in rain'],
   ['snap.silentGamma', 0.2, 0, 1, 'ratio', 'assumption', 'J5.6.2', NONE],
   ['snap.offTargetMinS', 0.2, 0.1, 0.4, 's', 'bible', 'J5.6.2', NONE],
