@@ -8,3 +8,6 @@ export { SqlJsDriver, readHeader, type SqlDriver, type SqlStatement, type SqlPar
 // Contract names the field view needs (CR-G03-1); app-ui may import only this entry point.
 export type { TrajectoryRecord, FieldGeometry, MoveMode, BallStateKind } from '@gm/schema';
 export { TICKS_PER_SECOND, MOVE_MODES, BALL_STATES } from '@gm/schema';
+// Modules are re-exported under a namespace (modules export PARAMS). Integrator-owned.
+export * as settings from './settings/index.ts';
+export * as observer from './observer/index.ts';

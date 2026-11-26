@@ -5,6 +5,7 @@ import golden from '../../../golden/golden.json';
 import { BrowserPlatform } from './platform-browser.ts';
 import { registerOffline } from './offline.ts';
 import { DesktopPlatform, isDesktop } from './platform-desktop.ts';
+import { captureWebViewErrors } from '../../desktop/bridge/desktop-shell.ts';
 
 declare global { interface Window { __GATE_RESULT__?: unknown } }
 
@@ -58,6 +59,7 @@ async function gateMode(platform: Platform): Promise<boolean> {
 
 async function main() {
   if (!isDesktop()) void registerOffline();
+  else captureWebViewErrors();
   const platform: Platform = isDesktop() ? new DesktopPlatform() : await BrowserPlatform.create();
   if (await gateMode(platform)) return;
   createRoot(document.getElementById('root')!).render(<App platform={platform} golden={golden as GoldenReport} />);

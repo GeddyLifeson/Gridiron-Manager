@@ -1,7 +1,8 @@
 // Desktop platform (P2.3.1): native SQLite in the Tauri shell. The Rust side owns the database file
 // in the app data folder; every store transaction runs as one native transaction.
 import { invoke } from '@tauri-apps/api/core';
-import type { Platform, SaveListing, SqlDriver, SqlParam, SqlStatement } from '@gm/app-services';
+import type { DesktopExtras, Platform, SaveListing, SqlDriver, SqlParam, SqlStatement } from '@gm/app-services';
+import { desktopShell, windowRole } from '../../desktop/bridge/desktop-shell.ts';
 
 const enc = (p: readonly SqlParam[] = []) => p.map((x) => (x instanceof Uint8Array ? { bytes: Array.from(x) } : x));
 
@@ -28,4 +29,12 @@ export class DesktopPlatform implements Platform {
   async exportSave(name: string) { return new Uint8Array(await invoke<number[]>('saves_read', { name })); }
   importSave(name: string, bytes: Uint8Array) { return invoke<void>('saves_write', { name, bytes: Array.from(bytes) }); }
   appVersion() { return 'desktop (Tauri)'; }
+  readonly desktop: DesktopExtras = {
+    copySave: desktopShell.copySave,
+    exportSaveWithDialog: desktopShell.exportSaveWithDialog,
+    importSaveWithDialog: desktopShell.importSaveWithDialog,
+    poolSize: async () => (await desktopShell.info()).poolSize,
+    openSecondWindow: desktopShell.openSecondWindow,
+    windowRole,
+  };
 }
