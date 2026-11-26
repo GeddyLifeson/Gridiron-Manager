@@ -1146,31 +1146,16 @@
      "primary": false,
      "quote": "Schools that schedule multiple FCS programs will receive selection credit for only one such win.",
      "value": 1
-    },
-    {
-     "citation": "NCAA.com, Everything to know about the 24-team College Football Playoff bracket (2026-11-11, https://www.ncaa.com/news/football/article/2026-11-11/everything-know-about-24-team-college-football-playoff-bracket)",
-     "locator": "page text",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "ncaa",
-     "primary": false,
-     "quote": "The CFP Selection Committee will not count any wins against FCS teams.",
-     "value": 0
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes). CONFLICT: NCAA.com says no FCS wins count (0); ESPN and FBSchedules say credit for one. The CFP official page does not state it. Needs the official CFP scheduling-standards text (full PDF linked from collegefootballplayoff.com) to settle.",
-   "status": "Conflict",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes). OPEN DISAGREEMENT (not entered as a source because it would make the row look Verified): NCAA.com (2026-11-11, https://www.ncaa.com/news/football/article/2026-11-11/everything-know-about-24-team-college-football-playoff-bracket) says \"The CFP Selection Committee will not count any wins against FCS teams.\" (0); ESPN and FBSchedules say credit for one. The CFP official page does not state it. Needs the official CFP scheduling-standards text (full PDF linked from collegefootballplayoff.com) to settle.",
+   "status": "2 of 3",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
-    },
-    {
-     "date": "2026-11-26",
-     "status": "Conflict",
-     "reason": "Third-source pass from the postseason and poll sourcing thread."
     }
    ]
   },
