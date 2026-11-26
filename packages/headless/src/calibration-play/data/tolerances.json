@@ -1,0 +1,10 @@
+{
+  "source": "Bible J15.1.2 starting tolerances (owned by Q2; final values are an open question there)",
+  "status": "Assumption",
+  "core": { "rel": 0.03 },
+  "rare": { "rel": 0.1 },
+  "shape": { "absYd": 1, "absThroughPct": 75, "rel": 0.1, "relFromPct": 90 },
+  "standardErrors": 2,
+  "minRealEvents": 200,
+  "minRealEventsNote": "Cut-off below which a real cell is printed THIN and not judged. A harness setting chosen in WP-26, not a football fact."
+}
