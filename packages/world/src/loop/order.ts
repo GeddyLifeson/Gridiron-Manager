@@ -5,6 +5,7 @@
 import { deriveSeed, seedToHex, stream } from '@gm/engine-core';
 import { history } from '@gm/league';
 import type { WorldTier } from '@gm/schema';
+import { TITLE_WON } from './events.ts';
 import { isActive } from './lifecycle.ts';
 import { param } from './params.ts';
 import {
@@ -180,6 +181,13 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
       };
       world.results.push(row);
       points += r.homePoints + r.awayPoints;
+      if (game.title && r.homePoints !== r.awayPoints) {
+        const [winner, loser, wp, lp] = r.homePoints > r.awayPoints ? [game.homeTeamId, game.awayTeamId, r.homePoints, r.awayPoints] : [game.awayTeamId, game.homeTeamId, r.awayPoints, r.homePoints];
+        ctx.emit({
+          type: TITLE_WON, date: world.date, competitionId: game.competitionId, teamId: winner, witnesses: { kind: 'public' }, tier: req.tier,
+          subjects: [{ kind: 'team', id: winner }, { kind: 'team', id: loser }], payload: { season: world.date.seasonYear, opponent: loser, points: wp, opponent_points: lp },
+        });
+      }
     });
     return { games: games.length, points };
   };
