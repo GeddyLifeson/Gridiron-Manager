@@ -1,7 +1,7 @@
 import json, sys, glob, importlib, os
 sys.path.insert(0, os.path.dirname(__file__))
 from core import *
-mods = ['rows_cba','rows_web','rows_more','rows_inj','rows_g10b','rows_g45','rows_college_keys']
+mods = ['rows_cba','rows_web','rows_more','rows_inj','rows_g10b','rows_g45','rows_g35_g49','rows_college_keys']
 
 regs = {}
 for m in mods:
