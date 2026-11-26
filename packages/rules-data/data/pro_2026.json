@@ -4948,6 +4948,297 @@
    "key": "foul.intentional_grounding.enforcement",
    "value": "previous_or_spot_worse",
    "factId": "F-rule-1905"
+  },
+  {
+   "key": "replay.reviewable.catch",
+   "value": true,
+   "factId": "F-rule-1907"
+  },
+  {
+   "key": "replay.reviewable.down_by_contact",
+   "value": true,
+   "factId": "F-rule-1909"
+  },
+  {
+   "key": "replay.reviewable.spot",
+   "value": true,
+   "factId": "F-rule-1911"
+  },
+  {
+   "key": "replay.reviewable.forward_or_backward_pass",
+   "value": true,
+   "factId": "F-rule-1913"
+  },
+  {
+   "key": "replay.reviewable.in_bounds",
+   "value": true,
+   "factId": "F-rule-1915"
+  },
+  {
+   "key": "replay.reviewable.score",
+   "value": true,
+   "factId": "F-rule-1917"
+  },
+  {
+   "key": "replay.reviewable.possession",
+   "value": true,
+   "factId": "F-rule-1919"
+  },
+  {
+   "key": "replay.reviewable.fumble_before_down",
+   "value": true,
+   "factId": "F-rule-1921"
+  },
+  {
+   "key": "replay.reviewable.kick_good",
+   "value": true,
+   "factId": "F-rule-1923"
+  },
+  {
+   "key": "replay.reviewable.touching",
+   "value": true,
+   "factId": "F-rule-1925"
+  },
+  {
+   "key": "replay.reviewable.foul",
+   "value": false,
+   "factId": "F-rule-1927"
+  },
+  {
+   "key": "replay.booth_only.after_two_minute",
+   "value": true,
+   "factId": "F-rule-1929"
+  },
+  {
+   "key": "replay.booth_only.overtime",
+   "value": true,
+   "factId": "F-rule-1931"
+  },
+  {
+   "key": "replay.booth_only.scoring_play",
+   "value": true,
+   "factId": "F-rule-1933"
+  },
+  {
+   "key": "replay.booth_only.try",
+   "value": true,
+   "factId": "F-rule-1935"
+  },
+  {
+   "key": "replay.booth_only.turnover",
+   "value": true,
+   "factId": "F-rule-1937"
+  },
+  {
+   "key": "replay.booth_only.failed_fourth_down",
+   "value": true,
+   "factId": "F-rule-1939"
+  },
+  {
+   "key": "replay.booth_only.kick_possession",
+   "value": true,
+   "factId": "F-rule-1941"
+  },
+  {
+   "key": "replay.booth_only.disqualification",
+   "value": true,
+   "factId": "F-rule-1943"
+  },
+  {
+   "key": "replay.assist.catch",
+   "value": true,
+   "factId": "F-rule-1945"
+  },
+  {
+   "key": "replay.assist.down_by_contact",
+   "value": true,
+   "factId": "F-rule-1947"
+  },
+  {
+   "key": "replay.assist.spot",
+   "value": true,
+   "factId": "F-rule-1949"
+  },
+  {
+   "key": "replay.assist.forward_or_backward_pass",
+   "value": true,
+   "factId": "F-rule-1951"
+  },
+  {
+   "key": "replay.assist.in_bounds",
+   "value": true,
+   "factId": "F-rule-1953"
+  },
+  {
+   "key": "replay.assist.score",
+   "value": true,
+   "factId": "F-rule-1955"
+  },
+  {
+   "key": "replay.assist.possession",
+   "value": true,
+   "factId": "F-rule-1957"
+  },
+  {
+   "key": "replay.assist.fumble_before_down",
+   "value": true,
+   "factId": "F-rule-1959"
+  },
+  {
+   "key": "replay.assist.kick_good",
+   "value": false,
+   "factId": "F-rule-1961"
+  },
+  {
+   "key": "replay.assist.touching",
+   "value": true,
+   "factId": "F-rule-1963"
+  },
+  {
+   "key": "replay.assist.foul",
+   "value": false,
+   "factId": "F-rule-1965"
+  },
+  {
+   "key": "replay.no_recovery_end_zone_yardline",
+   "value": 1,
+   "factId": "F-rule-1967",
+   "unit": "yd"
+  },
+  {
+   "key": "overtime.regular.max_periods",
+   "value": 1,
+   "factId": "F-rule-1969",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.timeouts",
+   "value": 2,
+   "factId": "F-rule-1971",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.periods_per_half",
+   "value": 1,
+   "factId": "F-rule-1973",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.new_toss_after_periods",
+   "value": 0,
+   "factId": "F-rule-1975",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.loser_chooses_at_period",
+   "value": 0,
+   "factId": "F-rule-1977",
+   "unit": "index"
+  },
+  {
+   "key": "overtime.postseason.max_periods",
+   "value": 0,
+   "factId": "F-rule-1979",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.timeouts",
+   "value": 3,
+   "factId": "F-rule-1981",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.periods_per_half",
+   "value": 2,
+   "factId": "F-rule-1983",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.new_toss_after_periods",
+   "value": 4,
+   "factId": "F-rule-1985",
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.loser_chooses_at_period",
+   "value": 3,
+   "factId": "F-rule-1987",
+   "unit": "index"
+  },
+  {
+   "key": "overtime.intermission_s",
+   "value": 180,
+   "factId": "F-rule-1989",
+   "unit": "s"
+  },
+  {
+   "key": "overtime.period_break_s",
+   "value": 120,
+   "factId": "F-rule-1991",
+   "unit": "s"
+  },
+  {
+   "key": "overtime.two_minute_warning",
+   "value": true,
+   "factId": "F-rule-1993"
+  },
+  {
+   "key": "overtime.toss_defer_allowed",
+   "value": true,
+   "factId": "F-rule-1995"
+  },
+  {
+   "key": "field.end_zone_depth_ft",
+   "value": 30,
+   "factId": "F-rule-1997",
+   "unit": "ft"
+  },
+  {
+   "key": "field.numbers_bottom_from_sideline_ft",
+   "value": 36,
+   "factId": "F-rule-1999",
+   "unit": "ft"
+  },
+  {
+   "key": "field.numbers_top_from_sideline_ft",
+   "value": 42,
+   "factId": "F-rule-2001",
+   "unit": "ft"
+  },
+  {
+   "key": "formation.neither_behind_snapper_max",
+   "value": 1,
+   "factId": "F-rule-2003",
+   "unit": "count"
+  },
+  {
+   "key": "formation.t_quarterback_depth_yd",
+   "value": 1,
+   "factId": "F-rule-2005",
+   "unit": "yd"
+  },
+  {
+   "key": "numbering.eligible_low_max",
+   "value": 49,
+   "factId": "F-rule-2007",
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_min",
+   "value": 80,
+   "factId": "F-rule-2009",
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_max",
+   "value": 89,
+   "factId": "F-rule-2011",
+   "unit": "index"
+  },
+  {
+   "key": "clock.foul_restart_offended_option_late",
+   "value": false,
+   "factId": "F-rule-2013"
   }
  ]
 }

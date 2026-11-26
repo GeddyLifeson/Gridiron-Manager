@@ -9883,6 +9883,524 @@
     "previous_or_spot_worse",
     "equitable"
    ]
+  },
+  {
+   "key": "replay.reviewable.catch",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: complete, incomplete or intercepted pass",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.down_by_contact",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: runner down by contact (a whistle that stopped a live play is never reviewable)",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.spot",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: the dead-ball spot against the line to gain",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.forward_or_backward_pass",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: pass forward or backward",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.in_bounds",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: runner or receiver in or out of bounds",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.score",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: ball breaking the plane of the goal line in possession",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.possession",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: recovery of a loose ball",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.fumble_before_down",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: fumble before the runner was down",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.kick_good",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: field goal or try good or no good",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.touching",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: touching of a kick or a loose ball",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.reviewable.foul",
+   "type": "boolean",
+   "meaning": "Replay may change a ruling of: a foul call (a single foul may be opened to review by its own switch)",
+   "ownerLeaf": "B9.3.1",
+   "readBy": [
+    "officiating/crew (the `reviewable` field of each ruling)",
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.after_two_minute",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a play that begins after the two-minute warning of either half",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.overtime",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a play in overtime",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.scoring_play",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a play ruled a score",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.try",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a try, good or no good",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.turnover",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: an interception, or a fumble or backward pass ruled recovered by the opponent",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.failed_fourth_down",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: the offense ruled short of the line to gain on the last down of a series",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.kick_possession",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: the kicking team ruled in possession at the end of a kick down",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.booth_only.disqualification",
+   "type": "boolean",
+   "meaning": "Under replay.model challenge_plus_booth, only the booth may review: a player disqualification",
+   "ownerLeaf": "B9.1.2",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.catch",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect catch without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.down_by_contact",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect down_by_contact without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.spot",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect spot without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.forward_or_backward_pass",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect forward_or_backward_pass without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.in_bounds",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect in_bounds without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.score",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect score without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.possession",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect possession without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.fumble_before_down",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect fumble_before_down without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.kick_good",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect kick_good without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.touching",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect touching without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.assist.foul",
+   "type": "boolean",
+   "meaning": "Replay assist may correct a ruling of aspect foul without a review",
+   "ownerLeaf": "B9.5.1",
+   "readBy": [
+    "officiating/replay"
+   ]
+  },
+  {
+   "key": "replay.no_recovery_end_zone_yardline",
+   "type": "number",
+   "meaning": "Yard line the ball goes to when replay shows it was lost in a team's own end zone and nobody clearly recovered it",
+   "ownerLeaf": "B9.4.1",
+   "readBy": [
+    "officiating/replay"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "overtime.regular.max_periods",
+   "type": "number",
+   "meaning": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.timeouts",
+   "type": "number",
+   "meaning": "Timeouts per team for each overtime half. None carry over",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.periods_per_half",
+   "type": "number",
+   "meaning": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each",
+   "ownerLeaf": "B10.5.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.new_toss_after_periods",
+   "type": "number",
+   "meaning": "A new coin toss is held after this many overtime periods. 0 means never",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.regular.loser_chooses_at_period",
+   "type": "number",
+   "meaning": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "overtime.postseason.max_periods",
+   "type": "number",
+   "meaning": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.timeouts",
+   "type": "number",
+   "meaning": "Timeouts per team for each overtime half. None carry over",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.periods_per_half",
+   "type": "number",
+   "meaning": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.new_toss_after_periods",
+   "type": "number",
+   "meaning": "A new coin toss is held after this many overtime periods. 0 means never",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "overtime.postseason.loser_chooses_at_period",
+   "type": "number",
+   "meaning": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "overtime.intermission_s",
+   "type": "number",
+   "meaning": "Intermission before overtime begins",
+   "ownerLeaf": "B10.1.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "s"
+  },
+  {
+   "key": "overtime.period_break_s",
+   "type": "number",
+   "meaning": "Intermission between overtime periods",
+   "ownerLeaf": "B10.3.1",
+   "readBy": [
+    "officiating/overtime"
+   ],
+   "unit": "s"
+  },
+  {
+   "key": "overtime.two_minute_warning",
+   "type": "boolean",
+   "meaning": "A timed overtime period has a two-minute warning, and with it the two-minute fumble limit",
+   "ownerLeaf": "B10.2.1",
+   "readBy": [
+    "officiating/overtime"
+   ]
+  },
+  {
+   "key": "overtime.toss_defer_allowed",
+   "type": "boolean",
+   "meaning": "The winner of the overtime toss may defer",
+   "ownerLeaf": "B10.1.1",
+   "readBy": [
+    "officiating/restart"
+   ]
+  },
+  {
+   "key": "field.end_zone_depth_ft",
+   "type": "number",
+   "meaning": "Depth of each end zone, goal line to end line",
+   "ownerLeaf": "J1.1.1",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "unit": "ft"
+  },
+  {
+   "key": "field.numbers_bottom_from_sideline_ft",
+   "type": "number",
+   "meaning": "Distance from each sideline to the bottom of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram)",
+   "ownerLeaf": "J1.1.3",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "unit": "ft"
+  },
+  {
+   "key": "field.numbers_top_from_sideline_ft",
+   "type": "number",
+   "meaning": "Distance from each sideline to the top of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram)",
+   "ownerLeaf": "J1.1.3",
+   "readBy": [
+    "engine-core/field"
+   ],
+   "unit": "ft"
+  },
+  {
+   "key": "formation.neither_behind_snapper_max",
+   "type": "number",
+   "meaning": "Players allowed neither on nor off the line when directly behind the snapper",
+   "ownerLeaf": "B4.2.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "formation.t_quarterback_depth_yd",
+   "type": "number",
+   "meaning": "A player this close or closer behind the snapper is the player under center",
+   "ownerLeaf": "B4.1.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "numbering.eligible_low_max",
+   "type": "number",
+   "meaning": "Top of the lower band of eligible jersey numbers (the band starts at 0)",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_min",
+   "type": "number",
+   "meaning": "Bottom of the upper band of eligible jersey numbers",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_max",
+   "type": "number",
+   "meaning": "Top of the upper band of eligible jersey numbers",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "clock.foul_restart_offended_option_late",
+   "type": "boolean",
+   "meaning": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (NCAA 3-4-3-b).",
+   "ownerLeaf": "B13.3.2",
+   "readBy": [
+    "officiating/clock"
+   ]
   }
  ]
 }
