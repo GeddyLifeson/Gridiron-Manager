@@ -598,6 +598,8 @@ export interface FakeGameOptions {
   numbers?: FakeNumbers;
   deciders?: (env: FlowEnv, input: Contract.GameInput) => readonly [Contract.Decider, Contract.Decider];
   policy?: ChartPolicy;
+  /** Replaces parts of the fake officiating, for example with a real rules module. */
+  officiating?: (fake: Contract.Officiating) => Contract.Officiating;
 }
 
 /** A whole fake game: fixture rules, fake resolver, fake officiating and chart deciders on a seeded stream source. */
@@ -606,7 +608,8 @@ export function fakeGame(o: FakeGameOptions = {}): FakeGame {
   const rules = fixtureRules(base, o.format ?? (base === 'pro_2026' ? 'timed_period' : 'alternating_series_25'), o.rulesOver);
   const input = fakeInput(rules, o.seed ?? 1, o.gameType);
   const geometry = fixtureGeometry(rules);
-  const env: FlowEnv = { rules, params: paramTable([PARAMS], o.paramsOver), geometry, streams: streamSource(seedFromHex(input.seedHex)), math: DMATH, officiating: fakeOfficiating(geometry) };
+  const fake = fakeOfficiating(geometry);
+  const env: FlowEnv = { rules, params: paramTable([PARAMS], o.paramsOver), geometry, streams: streamSource(seedFromHex(input.seedHex)), math: DMATH, officiating: o.officiating?.(fake) ?? fake };
   const deciders = o.deciders?.(env, input) ?? [chartDecider(0, env, input, o.policy), chartDecider(1, env, input, o.policy)];
   return { rules, input, deps: { ...env, resolver: fakeResolver({ script: o.script, numbers: o.numbers }), deciders } };
 }
