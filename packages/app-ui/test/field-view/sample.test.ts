@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { decodeTrajectory, sampleFrames, newSample, lastTick, facingToRad, encodeLayout0 } from '../../src/field-view/index.ts';
+import { decodeTrajectory, sampleFrames, newSample, lastTick, encodeLayout0 } from '../../src/field-view/index.ts';
 import { fixturePlay } from './fixtures.ts';
 
 describe('sampling between ticks (I9.1.2, O2.3.4, O6.4.1)', () => {
@@ -13,7 +13,8 @@ describe('sampling between ticks (I9.1.2, O2.3.4, O6.4.1)', () => {
       for (let k = 0; k < f.slotCount; k++) {
         expect(s.x[k]).toBe(f.x[base + k]);
         expect(s.y[k]).toBe(f.y[base + k]);
-        expect(s.facingRad[k]).toBe(facingToRad(f.facing[base + k]!));
+        expect(s.headingRad[k]).toBe(f.headingRad[base + k]);
+        expect(s.gazeRad[k]).toBe(f.gazeRad[base + k]);
         expect(s.state[k]).toBe(f.state[base + k]);
       }
       expect(s.ballX).toBe(f.ballX[t - f.firstTick]);
@@ -48,6 +49,7 @@ describe('sampling between ticks (I9.1.2, O2.3.4, O6.4.1)', () => {
     const g = decodeTrajectory(encodeLayout0(0, [{ players: p(250), ball }, { players: p(6), ball }]));
     sampleFrames(g, 0.5, s);
     // From step 250 to step 6 goes forward 12 steps through 0, so halfway is step 256 = 0.
-    expect(s.facingRad[0]! % (2 * Math.PI)).toBeCloseTo(0, 9);
+    expect(Math.abs(Math.sin(s.headingRad[0]!))).toBeLessThan(1e-9);
+    expect(Math.cos(s.headingRad[0]!)).toBeCloseTo(1, 9);
   });
 });

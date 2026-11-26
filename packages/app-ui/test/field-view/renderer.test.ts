@@ -19,6 +19,24 @@ describe('field renderer (I9.1, O2.3, O6.4.1)', () => {
     }
   });
 
+  it('plays the engine layout (1) the same way and draws the officials', () => {
+    for (const layout of [0, 1] as const) {
+      const r = new FieldRenderer(fixturePlay({ layout }), PRO, opts);
+      r.resize(1920, 1080);
+      const f = r.frames;
+      expect(f.officialCount).toBe(layout === 1 ? 3 : 0);
+      for (let t = f.firstTick; t <= lastTick(f); t++) {
+        r.update(t, 0.1);
+        for (let s = 0; s < 22; s++) expect(r.markerWorld(s)).toEqual({ x: f.x[(t - f.firstTick) * 22 + s], y: f.y[(t - f.firstTick) * 22 + s] });
+      }
+      const ctx = new RecordingContext();
+      expect(() => r.draw(ctx)).not.toThrow();
+    }
+    const a = new FieldRenderer(fixturePlay({ layout: 0 }), PRO, opts).frames, b = new FieldRenderer(fixturePlay({ layout: 1 }), PRO, opts).frames;
+    expect(Array.from(b.x)).toEqual(Array.from(a.x));
+    expect(Array.from(b.ballX)).toEqual(Array.from(a.ballX));
+  });
+
   it('draws all 22 numbers, inside markers at the default view and as larger labels when markers are small', () => {
     const r = new FieldRenderer(fixturePlay(), PRO, opts);
     r.resize(1920, 1080, 0);
