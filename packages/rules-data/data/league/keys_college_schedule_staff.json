@@ -1,0 +1,114 @@
+{
+ "keys": [
+  {
+   "key": "schedule.regular_season_games",
+   "type": "number",
+   "meaning": "Regular-season games per team (top subdivision).",
+   "ownerLeaf": "T3.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.weeks",
+   "type": "number",
+   "meaning": "Regular-season weeks (college).",
+   "ownerLeaf": "T3.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.conference_games",
+   "type": "number",
+   "meaning": "Conference games per team (set per conference).",
+   "ownerLeaf": "T3.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.power_opponents_min",
+   "type": "number",
+   "meaning": "Games against power opponents required by the conference.",
+   "ownerLeaf": "T3.1.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.playoff_qualifying_games_min",
+   "type": "number",
+   "meaning": "Qualifying games for the playoff standard from 2027.",
+   "ownerLeaf": "T3.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "staff.graduate_assistant_limit",
+   "type": "number",
+   "meaning": "Graduate assistant (graduate student coach) seats per program (S1.2.2).",
+   "ownerLeaf": "S1.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "staff.off_campus_recruiter_limit",
+   "type": "number",
+   "meaning": "Staff who may recruit off campus at one time, head coach included (S1.2.2).",
+   "ownerLeaf": "S1.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "staff.strength_staff_limit",
+   "type": "number",
+   "meaning": "Strength and conditioning staff per program (S1.2.2).",
+   "ownerLeaf": "S1.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "staff.student_assistant_limit",
+   "type": "number",
+   "meaning": "Student assistant seats per program (S1.2.2).",
+   "ownerLeaf": "S1.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "staff.ga_max_seasons",
+   "type": "number",
+   "meaning": "Most seasons a person may serve as a graduate assistant coach (S3.3.4 rule 3).",
+   "ownerLeaf": "S3.3.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "staff.ga_degree_window_years",
+   "type": "number",
+   "meaning": "A graduate assistant must have finished a bachelor's degree or used up eligibility within this many years (S3.3.4 rule 1).",
+   "ownerLeaf": "S3.3.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  }
+ ]
+}
