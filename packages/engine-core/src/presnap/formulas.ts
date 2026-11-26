@@ -1,7 +1,7 @@
 // J5 formulas that are pure functions of attributes, settings and draws. The phase planner uses them;
 // tests and later modules (J6 line contests, J7 quarterback) may call them directly. Starting values
 // live in params.ts; nothing here holds a football number.
-import { issToZ, type DeterministicMath } from '@gm/schema';
+import { possible, issToZ, type DeterministicMath } from '@gm/schema';
 import type { PresnapParams } from './params.ts';
 
 const clip = (v: number, lo: number, hi: number) => (v < lo ? lo : v > hi ? hi : v);
@@ -22,7 +22,7 @@ export function substitutionErrorChance(tempo: Tempo, callLateS: number, readine
   const hurry = tempo === 'huddle' ? 1 : p['sub.errorHurryMult']!;
   const late = 1 + p['sub.errorLatePerS']! * (callLateS > 0 ? callLateS : 0);
   const ready = Math.max(p['sub.readinessFloor']!, p['sub.readinessIntercept']! - readiness / p['sub.readinessDivisor']!);
-  return clip(p['sub.errorBasePerPlayer']! * hurry * late * ready, 0, 1);
+  return possible(clip(p['sub.errorBasePerPlayer']! * hurry * late * ready, 0, 1));
 }
 
 /**
@@ -39,7 +39,7 @@ export function holdEndS(offenseSubbed: boolean, matchWindow: boolean, insideTwo
 export function huddleDeliveryChance(callWords: number, orderInCall: number, clockCommandIss: number, p: PresnapParams): number {
   const over = callWords - p['huddle.longCallWords']!;
   const longCut = over > 0 ? p['huddle.longCallPerWord']! * over * clip(orderInCall, 0, 1) : 0;
-  return clip(p['huddle.deliveryBase']! - longCut + p['huddle.clockCommandPerZ']! * issToZ(clockCommandIss), 0, 1);
+  return possible(clip(p['huddle.deliveryBase']! - longCut + p['huddle.clockCommandPerZ']! * issToZ(clockCommandIss), 0, 1));
 }
 
 // ---------------------------------------------------------------------------------------------- J5.2

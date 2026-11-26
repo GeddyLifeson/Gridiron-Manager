@@ -3,7 +3,7 @@
 // Every effect is small by design (H8.1.1 facts: rest and travel add nothing beyond noise to margins).
 import TRV from './data/travel.json' with { type: 'json' };
 import { addMinutes, instantValue, parseTime, MINUTES_PER_DAY, type Instant } from '../calendar/date.ts';
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { blockEnd, clashAtom, overlaps } from './atoms.ts';
 import { allBlocks, withBlocks } from './build.ts';
 import { P } from './params.ts';
@@ -159,7 +159,7 @@ export function altitudeFlag(homeAltitudeM: number, siteAltitudeM: number): bool
 export function curfewChance(discipline: number, cultureFactor: number, cityFactor: number, bedCheck: boolean): number {
   const city = Math.min(P('curfew_city_max'), Math.max(P('curfew_city_min'), cityFactor));
   const p = P('curfew_base') * (1 - Math.min(1, Math.max(0, discipline))) * Math.max(0, cultureFactor) * city * (bedCheck ? P('curfew_check_factor') : 1);
-  return Math.min(1, p);
+  return possible(Math.min(1, p));
 }
 
 export interface CurfewPlayer { readonly id: number; readonly discipline: number; readonly realPerson: boolean }

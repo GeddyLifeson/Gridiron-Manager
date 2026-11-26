@@ -15,7 +15,7 @@
 //   in bounds                recorded, never wrong (a missed step out of bounds needs continuing action)
 //   possession of a loose ball  not ruled: the possession event carries no margin
 import {
-  roundYd, yardsToGoal,
+  possible, roundYd, yardsToGoal,
   type OfficialPosition, type PlayTruth, type RandomStream, type Ruling, type RulingAspect, type RulingContext, type TruthEventOf,
 } from '@gm/schema';
 import { CREW, errorScaleSParam, errorScaleYdParam, reviewableKey, type MarginAspect } from './params.ts';
@@ -50,9 +50,9 @@ export function rulingErrorChance(aspect: MarginAspect, j: Judged, ctx: RulingCo
     const s = j.marginS / ctx.params.num(errorScaleSParam(aspect));
     if (m === null || s < m) m = s;
   }
-  if (m === null) return 0;
+  if (m === null) return possible(0);
   const top = ctx.params.num(CREW.errorAtBoundary);
-  return min(top, top * ctx.math.exp(-m) * errorSight(j.visibility, ctx) * ctx.crew.accuracy);
+  return possible(min(top, top * ctx.math.exp(-m) * errorSight(j.visibility, ctx) * ctx.crew.accuracy));
 }
 
 /** Standard deviation of the spotting error in yards (B11.3.2 rule 3), scaled by crew accuracy. */
