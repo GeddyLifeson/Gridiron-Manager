@@ -143,7 +143,7 @@ function defenderKeys(a: Assignment, O: readonly Assignment[], qbSlot: number): 
       let best = Infinity;
       for (const r of rec) {
         if (!r.eligible) continue;
-        const d = (r.py - a.preSnap.align.py) ** 2 + (r.px + a.preSnap.align.px) ** 2;
+        const dy = r.py - a.preSnap.align.py, dx = r.px + a.preSnap.align.px, d = dx * dx + dy * dy;
         if (d < best) { best = d; s = r.i; }
       }
     } else {

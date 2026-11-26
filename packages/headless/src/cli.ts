@@ -155,7 +155,7 @@ async function calibrate(): Promise<number> {
   if (which !== 'tick' && which !== 'reference') { console.error(`--resolver must be tick or reference, not ${which}`); return 2; }
   const batch = createRealGame(rulesId, { resolver: which }).batch(games, groups, seed, (i) => { if (i > 0 && i % 500 === 0) console.error(`  ${i} of ${games} games`); });
   const report = buildReport(loadTargets(ROOT, rulesId), batch.groups, {
-    build: 'working tree', paramsHash: 'engineParamTable defaults', resolverId: which === 'tick' ? `tick ${tickResolver.TICK_RESOLVER_VERSION} (all three real modules, starter content port)` : `reference ${resolver.REFERENCE_RESOLVER_VERSION}`, seeds: `master ${seed}`, games, seedGroups: groups,
+    build: 'working tree', paramsHash: which === 'tick' ? 'tickParamTable defaults' : 'engineParamTable defaults', resolverId: which === 'tick' ? `tick ${tickResolver.TICK_RESOLVER_VERSION} (all three real modules, starter content port)` : `reference ${resolver.REFERENCE_RESOLVER_VERSION}`, seeds: `master ${seed}`, games, seedGroups: groups,
   });
   const text = formatReport(report) + `\n(${((Date.now() - started) / 1000).toFixed(0)} s)\n`;
   const out = arg('out');
