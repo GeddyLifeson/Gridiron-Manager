@@ -154,4 +154,83 @@ function prevent(): DefenseDef {
       NOBODY_HELPS]);
 }
 
-export const MORE_DEFENSE: readonly DefenseDef[] = [cover3Sky(), cover3Cloud(), cover3Match(), goalLine65(), prevent()];
+// ---- Short-yardage bear, Cover 0 -----------------------------------------------------------------
+function shortYardageBear(): DefenseDef {
+  const c = 'shortYardageBear';
+  const manUp = (role: string, target: string, at: [number, number], rule: string, stance = 'press'): Slot => mk(c)({ role, behavior: 'manCover', params: { man: target, technique: 'press' }, at, rule, stance, gaze: 'man', keys: [target], technique: { coverage: 'pressInside' },
+    rules: [clause('Receiver crosses my face: stay with him', test('crossesFace', { target: 'man' }), [act('trail', { target: 'man' })]), BREAK] });
+  const force = (role: string, side: 'left' | 'right', at: [number, number], rule: string): Slot => mk(c)({ role, behavior: 'blitz', params: { gap: 'force', side: 'mine' }, at, rule, onLine: true, stance: 'twoPoint', gaze: 'key', keys: ['nearestThreat'],
+    rules: [clause('Force: keep outside leverage and turn the ball inside', test('read', { kind: 'run', dir: 'any' }), [act('fit', { gap: 'force', side: 'mine', shoulder: 'outside' })]), clause('Pass: rush and contain', test('read', { kind: 'pass', dir: 'any' }), [act('rush', { track: 'outside' }), act('contain')])] });
+  return call('def_short_yardage_bear', 'Short Yardage Bear, Cover 0', 'cover0', '46 bear: nose two-gap, both guards covered by 3 techniques, outside linebackers walked up as force, man behind with no deep safety', 5, 9, 'uc_i_form_21',
+    'Third or fourth and two or less: cover both guards and the centre so nobody can climb, walk the outside linebackers up as force players and play man with everyone. Weak spot: no deep help, so a play-action shot or a pick beats it.', [
+      lineman(c, 'LDT', '3', 'left', [1, -1.5], 'B'),
+      mk(c)({ role: 'NT', behavior: 'passRush', params: { track: 'twoGap' }, at: [1, 0], onLine: true, stance: 'fourPoint', gaze: 'key', keys: ['role:C'], technique: { rushMove: 'bullRush', rushCounter: 'rip' }, rules: [RUN_FIT('A')] }),
+      lineman(c, 'RDT', '3', 'right', [1, 1.5], 'B'),
+      force('LOLB', 'left', [1, -3], 'lineTech:5:left'),
+      force('ROLB', 'right', [1, 4], 'lineTech:9:right'),
+      mk(c)({ role: 'SAM', behavior: 'runFit', params: { gap: 'C', side: 'mine' }, at: [3, 2.5], rule: 'lb:gap:rightC', stance: 'twoPoint', gaze: 'key', keys: ['role:R'], rules: [clause('Run: fit the C gap', test('read', { kind: 'run', dir: 'any' }), [act('fit', { gap: 'C', side: 'mine', shoulder: 'inside' })])] }),
+      manUp('MIKE', 'role:F', [4, 0.5], 'lb:over:center', 'twoPoint'),
+      manUp('WILL', 'role:R', [4, -2], 'lb:over:left', 'twoPoint'),
+      manUp('LCB', 'role:X', [1, -17], 'rcv:1:left:1:inside'),
+      manUp('RCB', 'role:Z', [1, 16], 'rcv:1:right:1:inside'),
+      manUp('FS', 'role:Y', [3, 3.5], 'rcv:2:right:3:outside', 'twoPoint'),
+    ], [
+      { claim: 'Short yardage: defenses load the box (eight, nine or more) with run-stopping linemen against heavy sets', status: 'Verified', sources: ['smalley-bear', 'coiner-oregon', 'davidson-shortyardage'] },
+      { claim: 'The bear front is a preferred goal-line and short-yardage defense', status: '2 of 3', sources: ['long-bear', 'smalley-bear'] },
+      { claim: 'Short yardage (third or fourth and two or less) is a separate situation from goal line (inside the two regardless of down)', status: '1 of 3', sources: ['davidson-shortyardage'] },
+      { claim: '46 bear: the nose two-gaps off the centre; tackle and end are heavy 3 techniques keying the guard; outside linebackers walk up outside the weak tackle and the tight end as force players; the Sam is a C-gap player; Mike takes number three strong and Will number two weak; Cover 0 with corners in tight man and the free safety close on the tight end', status: '1 of 3', sources: ['smalley-bear'] },
+      { claim: 'Who the Mike and Will man up on against an I-formation (fullback and tailback) and all depths are design values', status: 'Assumption', sources: [] },
+      NOBODY_HELPS]);
+}
+
+// ---- Cover 4 MEG ---------------------------------------------------------------------------------
+function cover4Meg(): DefenseDef {
+  const c = 'cover4Meg';
+  const corner = (role: string, side: 'left' | 'right'): Slot => mk(c)({ role, behavior: 'manCover', params: { man: `#1:${side}`, technique: 'off', call: 'meg' }, at: [7.5, side === 'left' ? -17 : 17], rule: `rcv:1:${side}:7.5:outside`, stance: 'backpedal', gaze: 'man', keys: [`#1:${side}`], technique: { coverage: 'offInside' },
+    rules: [clause('Man everywhere he goes: stay on number one', test('crossesFace', { target: 'man' }), [act('trail', { target: 'man' })]), BREAK] });
+  const safety = (role: string, side: 'left' | 'right'): Slot => mk(c)({ role, behavior: 'deepZone', params: { zone: `insideQuarter${side === 'left' ? 'Left' : 'Right'}`, match: 'no2' }, at: [11, side === 'left' ? -5 : 5], rule: `rcv:2:${side}:11:inside`, stance: 'flatFoot', gaze: 'key', keys: [`#2:${side}`], technique: { coverage: 'flatFootRead' },
+    rules: [clause('Number two goes vertical: take him', test('release', { target: `#2:${side}`, is: 'vertical' }), [act('trail', { target: `#2:${side}` })]), clause('Number two stays short: double number one over the top', not(test('release', { target: `#2:${side}`, is: 'vertical' })), [act('squeeze', { yd: 3 })]), BREAK] });
+  return call('def_cover4_meg', 'Cover 4 MEG', 'cover4', '4-3 base, quarters with the corners locked in man', 4, 7, 'gun_2x2_11',
+    'Quarters where the corners take number one everywhere he goes; the safeties take number two if he goes vertical and otherwise double number one. Weak spot: a corner beaten one on one when number two holds the safety.', [
+      ...fourMan(c),
+      corner('LCB', 'left'), corner('RCB', 'right'), safety('FS', 'left'), safety('SS', 'right'),
+      zone(c, 'WILL', [4.5, -4.5], 'lb:over:leftCurlFlat', 'zoneDrop', { zone: 'curlFlatLeft', depth: 8, wall: '#2' }),
+      zone(c, 'MIKE', [4.5, 0], 'lb:over:center', 'zoneDrop', { zone: 'hookMiddle', depth: 10 }),
+      zone(c, 'SAM', [4.5, 4.5], 'lb:over:rightCurlFlat', 'zoneDrop', { zone: 'curlFlatRight', depth: 8, wall: '#2' }),
+    ], [
+      { claim: 'Quarters: corners take the outside quarter over number one, safeties read number two', status: 'Verified', sources: ['bowen-cover4', 'haddad-cover4', 'bullock-quarters', 'coyote-cover4'] },
+      { claim: 'MEG: the corner takes number one in man everywhere he goes', status: '2 of 3', sources: ['cason-quarters', 'coyote-cover4'] },
+      { claim: 'In MEG the safeties take number two vertical (5-7 yd) and otherwise double number one', status: '1 of 3', sources: ['coyote-cover4'] },
+      { claim: 'Corners 7-8 yd and safeties 10-12 yd off the ball', status: '2 of 3', sources: ['bowen-cover4', 'bullock-quarters'] },
+      { claim: 'The linebackers\' underneath zones are design values', status: 'Assumption', sources: [] },
+      NOBODY_HELPS]);
+}
+
+// ---- Cover 4 Solo (3x1) --------------------------------------------------------------------------
+function cover4Solo(): DefenseDef {
+  const c = 'cover4Solo';
+  return call('def_cover4_solo', 'Cover 4 Solo (vs trips)', 'cover4', '4-3 base, quarters against 3x1 with the back-side corner alone on the single receiver', 4, 7, 'gun_trips_right_11',
+    'Against trips the back-side corner is left alone on the single receiver, the free safety slides over to take number three to the trips side, and the strong safety widens over number two. Weak spot: the single receiver one on one, and number three crossing under the safety.', [
+      ...fourMan(c),
+      mk(c)({ role: 'LCB', behavior: 'manCover', params: { man: '#1:left', technique: 'off', call: 'solo' }, at: [7.5, -17], rule: 'rcv:1:left:7.5:outside', stance: 'backpedal', gaze: 'man', keys: ['#1:left'], technique: { coverage: 'offInside' },
+        rules: [clause('Solo: man on the single receiver with no help', test('crossesFace', { target: 'man' }), [act('trail', { target: 'man' })]), BREAK] }),
+      mk(c)({ role: 'RCB', behavior: 'deepZone', params: { zone: 'deepQuarterRight', match: 'mod' }, at: [7.5, 17], rule: 'rcv:1:right:7.5:outside', stance: 'backpedal', gaze: 'key', keys: ['#1:right'], technique: { coverage: 'patternMatch' },
+        rules: [clause('Number one goes vertical: cover him', test('release', { target: '#1:right', is: 'vertical' }), [act('trail', { target: '#1:right' })]), clause('Number one goes short or inside: sink to my quarter', not(test('release', { target: '#1:right', is: 'vertical' })), [act('sink', { yd: 3 })])] }),
+      mk(c)({ role: 'SS', behavior: 'deepZone', params: { zone: 'insideQuarterRight', match: 'no2' }, at: [11, 11], rule: 'rcv:2:right:11:inside', stance: 'flatFoot', gaze: 'key', keys: ['#2:right'], technique: { coverage: 'flatFootRead' },
+        rules: [clause('Number two goes vertical: take him', test('release', { target: '#2:right', is: 'vertical' }), [act('trail', { target: '#2:right' })]), BREAK] }),
+      mk(c)({ role: 'FS', behavior: 'deepZone', params: { zone: 'deepMiddle', match: 'no3' }, at: [11, 3], rule: 'rcv:3:right:11:inside', stance: 'flatFoot', gaze: 'key', keys: ['#3:right'], technique: { coverage: 'flatFootRead' },
+        rules: [clause('Number three goes vertical: take him', test('release', { target: '#3:right', is: 'vertical' }), [act('trail', { target: '#3:right' })]), BREAK] }),
+      zone(c, 'SAM', [4.5, 9], 'rcv:2:right:4.5:inside', 'zoneDrop', { zone: 'curlFlatRight', depth: 8, wall: '#2' }),
+      zone(c, 'MIKE', [4.5, 2.5], 'lb:over:rightHook', 'zoneDrop', { zone: 'hookRight', depth: 10, relate: '#3' }),
+      zone(c, 'WILL', [4.5, -2.5], 'lb:over:leftHook', 'zoneDrop', { zone: 'hookLeft', depth: 10 }),
+    ], [
+      { claim: 'Quarters: corners take the outside quarter over number one, safeties read number two', status: 'Verified', sources: ['bowen-cover4', 'haddad-cover4', 'bullock-quarters', 'coyote-cover4'] },
+      { claim: 'Against 3x1 the back-side corner plays the single receiver in man without help', status: '2 of 3', sources: ['bowen-cover4', 'kou-trips'] },
+      { claim: 'Solo: the free safety overlaps number three to the closed side and the strong safety widens over number two', status: '1 of 3', sources: ['bowen-cover4'] },
+      { claim: 'What "Solo" means: the back-side corner alone (Bowen) or the boundary safety freed from number three for the run fit (Lehigh)', status: 'Conflict', sources: ['bowen-cover4', 'kuchar-solo'] },
+      { claim: 'The trips-side Mike relates to number three', status: '1 of 3', sources: ['cason-quarters'] },
+      { claim: 'The Sam\'s wall on number two, the Will\'s hook and all depths are design values', status: 'Assumption', sources: [] },
+      NOBODY_HELPS]);
+}
+
+export const MORE_DEFENSE: readonly DefenseDef[] = [cover3Sky(), cover3Cloud(), cover3Match(), goalLine65(), prevent(), shortYardageBear(), cover4Meg(), cover4Solo()];
