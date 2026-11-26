@@ -3990,6 +3990,48 @@
      }
     ]
    }
+  },
+  {
+   "key": "foul.intentional_grounding.enforcement",
+   "type": "option",
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ],
+   "meaning": "Intentional grounding: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": "previous_or_spot_worse",
+    "src": [
+     {
+      "cite": "Rule 8, Section 2, Article 1, Penalty (a)",
+      "q": "Loss of down and 10 yards from the previous spot; or",
+      "line": 2253
+     },
+     {
+      "cite": "Rule 8, Section 2, Article 1, Penalty (b)",
+      "q": "Loss of down at the spot of the pass if the spot is more than 10 yards from the previous spot or more than half the",
+      "line": 2254
+     }
+    ],
+    "note": "Ten yards from the previous spot, or the spot of the pass when that is worse for the passer; the profile is not limited by half the distance."
+   },
+   "college": {
+    "v": "standard",
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 2, Penalty [f-h]",
+      "q": "Loss of down at the spot of the foul",
+      "line": 3673
+     }
+    ],
+    "note": "No yardage: loss of down at the spot of the foul. This fits the standard procedure with the foul row spot_foul true and yards 0 (foul.intentional_grounding.spot_foul and .yards), so no new profile is needed."
+   }
   }
  ]
 }
