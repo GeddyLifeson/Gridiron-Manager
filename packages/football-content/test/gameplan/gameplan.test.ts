@@ -136,6 +136,7 @@ describe('G7.2.2 catalogue', () => {
     const rows = gp.catalogueEntries(t);
     expect(rows.find((r) => r.id === 'third_medium')!.expectedSnaps).toBeCloseTo(3.2, 1);
     expect(rows.find((r) => r.id === 'two_minute')!.clock).toBe('two_minute');
+    expect(rows.find((r) => r.id === 'second_short')!.tier).toBe(1);
     expect(gp.downDistanceId({ ...gp.NEUTRAL_STATE, down: 3, distanceYd: 8 })).toBe('third_long');
     expect(gp.downDistanceId({ ...gp.NEUTRAL_STATE, down: 1, distanceYd: 5, yardsToGoalYd: 5 })).toBe('first_other');
   });
