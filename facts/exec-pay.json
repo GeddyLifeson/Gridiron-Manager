@@ -141,26 +141,6 @@
    "id": "F-pay-exec-0004",
    "level": "pro",
    "domain": "career",
-   "statement": "Pay of non-owner NFL team presidents/CEOs (e.g. Packers' Mark Murphy).",
-   "value": "NOT FOUND",
-   "unit": "usd per year",
-   "validFor": "",
-   "sources": [],
-   "usedBy": [],
-   "notes": "Key pay-nfl-team-president. NOT FOUND. Searched Packers/Mark Murphy compensation (Form 990/annual report, Journal Sentinel, Press-Gazette), Sportico/Front Office Sports team-exec pay. Only content-farm and Comparably pages appear; no reputable figure. Teams are private and do not disclose. Bleacher Report's 2013 front-office pay article does not cover presidents. Context only (league, not team): NFL commissioner Goodell $63,900,050 in each of 2019-20 and 2020-21, per NYT (row pay-nfl-commissioner-context). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
-   "status": "Unverified",
-   "statusHistory": [
-    {
-     "date": "2026-11-26",
-     "status": "Unverified",
-     "reason": "First load from sources read this session (cloud web fetch)."
-    }
-   ]
-  },
-  {
-   "id": "F-pay-exec-0005",
-   "level": "pro",
-   "domain": "career",
    "statement": "Context ceiling for NFL executive pay: Commissioner Roger Goodell was paid $63,900,050 in each of fiscal 2019-20 and 2020-21 (~$128M over two years), mostly bonus.",
    "value": 63900050,
    "unit": "usd per year",
@@ -199,7 +179,7 @@
    ]
   },
   {
-   "id": "F-pay-exec-0006",
+   "id": "F-pay-exec-0005",
    "level": "college",
    "domain": "career",
    "statement": "Highest-paid FBS athletic directors 2024-25: Chris Del Conte (Texas) $2.9M base in FY2025-26 under a deal averaging ~$3.53M/yr; Danny White (Tennessee) $2.75M/yr after Aug 2024 extension, total compensation $3.35M in the last fiscal year (per FOS).",
@@ -256,7 +236,7 @@
    ]
   },
   {
-   "id": "F-pay-exec-0007",
+   "id": "F-pay-exec-0006",
    "level": "college",
    "domain": "career",
    "statement": "Typical Power-conference AD pay: Power 5 ADs averaged about $1.1M fixed compensation in 2020-21; 25 of 58 surveyed had contracts of at least $1M; every P5 AD had at least $500K. Top-10 in 2025 ranged $1.5M-$2.8M.",
@@ -296,7 +276,7 @@
    ]
   },
   {
-   "id": "F-pay-exec-0008",
+   "id": "F-pay-exec-0007",
    "level": "college",
    "domain": "career",
    "statement": "Older USA Today/AthleticDirectorU FBS AD database (c.2016-17): 115 of 130 FBS ADs; 17 at $1M+; top Jack Swarbrick (Notre Dame) $3.05M total. Average bonus available to an FBS AD $134,409.",
@@ -336,7 +316,7 @@
    ]
   },
   {
-   "id": "F-pay-exec-0009",
+   "id": "F-pay-exec-0008",
    "level": "college",
    "domain": "career",
    "statement": "Group of Five AD pay: Mountain West ADs in 2024 earned about $410K-$550K (Fresno State Garrett Klassy $410K, mid-conference; Utah State Diana Sabau $550K; Nevada Stephanie Rempe $505K; New Mexico Eddie Nunez $432K; UNLV Erick Harper $420K; Boise State Jeremiah Dickey $418K).",
@@ -366,7 +346,7 @@
    ]
   },
   {
-   "id": "F-pay-exec-0010",
+   "id": "F-pay-exec-0009",
    "level": "college",
    "domain": "career",
    "statement": "FCS AD pay example: Montana State AD Leon Costello annual base salary $265,513.69, maximum $320,514 for 2024-25 with incentives.",
@@ -397,7 +377,7 @@
    ]
   },
   {
-   "id": "F-pay-exec-0011",
+   "id": "F-pay-exec-0010",
    "level": "college",
    "domain": "career",
    "statement": "PROXY ONLY (university presidents, not team presidents): highest-paid public university presidents. 2024 (Chronicle data): Renu Khator (Houston) $3,168,955 total; E. Gordon Gee (WVU) $2,006,180. 2025 calendar year (Chronicle): Mark Welsh III (Texas A&M, ousted) $4.7M; Ana Mari Cauce (Washington) $2.3M; Tedd Mitchell (Texas Tech system) $2.2M; Eli Capilouto (Kentucky) $2.1M; Khator cut to $1.6M.",
@@ -445,7 +425,7 @@
    ]
   },
   {
-   "id": "F-pay-exec-0012",
+   "id": "F-pay-exec-0011",
    "level": "college",
    "domain": "career",
    "statement": "PROXY ONLY: median university president pay 2024-25 ranged from about $268,000 (public associate's colleges) to over $900,000 (private-independent doctoral universities), per AAUP. Penn State's Bendapudi was 7th among publics in 2024 at $1,667,421 total.",

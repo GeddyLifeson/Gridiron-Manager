@@ -227,26 +227,6 @@
    "id": "F-pay-college-second-0006",
    "level": "college",
    "domain": "career",
-   "statement": "FCS-wide median head coach salary: NOT FOUND.",
-   "value": "NOT FOUND",
-   "unit": "usd per year",
-   "validFor": "n/a",
-   "sources": [],
-   "usedBy": [],
-   "notes": "Key pay-fcs-head-coach-median. Tried: USA Today (FBS only), the Knight-Newhouse findings (FBS), the NCAA Division I revenues and expenses reports for FY2023 and FY2024 (they give FCS coach pay only as a share of department spending, with no head coach figure), GAO-26-108640 (all coaches combined), and EADA (reports head coach pay averaged across all men's teams, not football alone). Best proxies are the Big Sky median ($268,679 base in 2025) and MEAC bases ($274k-$400k). A 2016 fan-blog compilation (aSeaOfRed) averaged about $240k excluding Liberty; it is too old and secondary to use. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
-   "status": "Unverified",
-   "statusHistory": [
-    {
-     "date": "2026-11-26",
-     "status": "Unverified",
-     "reason": "First load from sources read this session (cloud web fetch)."
-    }
-   ]
-  },
-  {
-   "id": "F-pay-college-second-0007",
-   "level": "college",
-   "domain": "career",
    "statement": "FCS-wide lowest head coach salary: NOT FOUND. The lowest found in a conference list is a $175,000 base (Idaho's Thomas Ford, Big Sky, 2025), and Montana's new coach Bobby Kennedy also starts at $175,000 (2026).",
    "value": "NOT FOUND",
    "unit": "usd per year",
@@ -274,7 +254,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0008",
+   "id": "F-pay-college-second-0007",
    "level": "college",
    "domain": "career",
    "statement": "Montana's new head coach Bobby Kennedy earns a $175,000 base salary in his first year (2026). His four-year deal rises $10,000 a year to $205,000.",
@@ -315,7 +295,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0009",
+   "id": "F-pay-college-second-0008",
    "level": "college",
    "domain": "career",
    "statement": "CONFLICT: Montana head coach Bobby Hauck's pay is reported as a $265,000 base in his final contract (press, 2025). The university payroll file lists $282,490 as of July 1, 2025.",
@@ -363,7 +343,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0010",
+   "id": "F-pay-college-second-0009",
    "level": "college",
    "domain": "career",
    "statement": "MEAC (HBCU, FCS) head coach base salaries: Norfolk State $400,000; South Carolina State $300,000; North Carolina Central $289,224; Morgan State $274,000.",
@@ -393,7 +373,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0011",
+   "id": "F-pay-college-second-0010",
    "level": "college",
    "domain": "career",
    "statement": "Montana State (2025 FCS champion) coordinator salaries for April 2026 to March 2027: offensive coordinator/QB coach $177,904.65 and defensive coordinator $170,654.07, excluding bonuses.",
@@ -423,7 +403,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0012",
+   "id": "F-pay-college-second-0011",
    "level": "college",
    "domain": "career",
    "statement": "Long Island University (NEC, FCS) advertised a co-offensive coordinator job at $85,000-$90,000 a year.",
@@ -453,7 +433,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0013",
+   "id": "F-pay-college-second-0012",
    "level": "college",
    "domain": "career",
    "statement": "Montana State full-time position coaches earn $83,319 to $128,618 for 2026-27 (cornerbacks and wide receivers $83,319; running backs $90,447; tight ends $93,734; defensive line $105,655; linebackers/associate head coach $115,910; offensive line $128,618).",
@@ -483,7 +463,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0014",
+   "id": "F-pay-college-second-0013",
    "level": "college",
    "domain": "career",
    "statement": "Advertised FCS assistant (position) coach pay at mid-tier public schools runs about $40,000 to $65,000 a year: Eastern Washington $45,000-$65,000 (2026), Northern Colorado $55,068-$58,422 (2026), UC Davis $40,000 (2025).",
@@ -540,7 +520,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0015",
+   "id": "F-pay-college-second-0014",
    "level": "college",
    "domain": "career",
    "statement": "FCS football strength coach pay found: Montana State strength and conditioning coach $52,961 (2026-27), and an Eastern Washington associate director of football athletic performance posting at $44,224 (2026).",
@@ -579,7 +559,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0016",
+   "id": "F-pay-college-second-0015",
    "level": "college",
    "domain": "career",
    "statement": "FCS graduate assistant or quality-control pay: NOT FOUND. Closest FCS figure: Montana State pays two assistant line coaches $18,645 each (2026-27). Non-FCS GA postings for context: Upper Iowa (DII) $10,000 a year, Waldorf (NAIA) $10,350 a year, Wayne State NE (DII) $6,000 a semester, each plus tuition support.",
@@ -627,7 +607,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0017",
+   "id": "F-pay-college-second-0016",
    "level": "college",
    "domain": "career",
    "statement": "FCS athletic director salaries found range from about $214,000 to $331,000: Montana $255,840 (July 2025), Stephen F. Austin $250,000 base / $253,375 total (FY2026), Morgan State $331,000, Norfolk State $259,772, North Carolina Central $213,977.",
@@ -675,7 +655,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0018",
+   "id": "F-pay-college-second-0017",
    "level": "college",
    "domain": "career",
    "statement": "The median FCS athletics department spent $25.48 million in total in FY2024 (2023-24), with a range of $5.8M to $77.1M.",
@@ -726,7 +706,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0019",
+   "id": "F-pay-college-second-0018",
    "level": "college",
    "domain": "career",
    "statement": "FCS athletics departments spend 19% of total expenses on coach compensation (all sports) and 14% on administrative compensation.",
@@ -777,7 +757,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0020",
+   "id": "F-pay-college-second-0019",
    "level": "college",
    "domain": "career",
    "statement": "The median FCS ('Championship') college spent $4.7 million on coaching compensation (all sports, including bonuses and benefits) and $3.3 million on support staff compensation in 2023-24.",
@@ -808,7 +788,7 @@
    ]
   },
   {
-   "id": "F-pay-college-second-0021",
+   "id": "F-pay-college-second-0020",
    "level": "college",
    "domain": "career",
    "statement": "FCS football budget: an FCS-wide median was NOT FOUND. Top-end example: North Dakota State reported $8.4 million in football operating expenses in FY2025, up from $6.5 million in FY2024.",

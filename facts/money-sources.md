@@ -18,3 +18,5 @@ Every web page was read through the cloud web fetch, which returns an extractor-
 - Local tax: Birmingham rate lacks an official 2026 page; Mobile "none" and the 20 "no local tax" cities are inferred from lists.
 - Jock tax: de minimis thresholds only 2 sources; no NFL CBA tax clause found; California's own athlete rules not on a readable page.
 - State tax: Arkansas new-bracket threshold not found; CO, ID, OH, TX, UT, AR have no revenue-department text for 2026.
+
+Two NOT FOUND placeholder rows (NFL team president pay, FCS-wide median head coach pay) are not in the files: a row needs at least one source and a computed status.
