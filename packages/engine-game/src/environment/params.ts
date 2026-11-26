@@ -108,6 +108,14 @@ const rows: Row[] = [
   { name: 'environment.noise.blowoutMargin', value: 21, min: 14, max: 28, unit: 'points', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.6.1 acceptance 1' },
   { name: 'environment.noise.moodDeficit', value: 14, min: 7, max: 21, unit: 'points', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.6.1 acceptance 1' },
   { name: 'environment.noise.moodFactor', value: 0.7, min: 0.3, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.6.1 acceptance 1' },
+  // J12.8.1 composition of the home edge, consumed through crowd.ts
+  { name: 'environment.noise.homeUnitShare', value: 0.25, min: 0, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.6.1 acceptance 1 and 2 (noise attacks the visiting units; the home crowd goes quiet for its own offense)' },
+  { name: 'environment.noise.silentCountAt', value: 0.6, min: 0.3, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J5.6.1', constrainedBy: 'J5.6.1 acceptance; I2.5.3 "silent count on the road"' },
+  { name: 'environment.noise.roadKnowledgeErrorPerNoise', value: 0.5, min: 0, max: 1.5, unit: 'ratio', basis: 'assumption', leaf: 'D9.4.1', constrainedBy: 'D9.4.1 "noise factor for the offense on the road"; J12.8.1 acceptance 1' },
+  { name: 'environment.home.familiarityZ', value: 0.05, min: 0, max: 0.5, unit: 'z', basis: 'bible', leaf: 'J12.8.1', constrainedBy: 'J12.8.1 "starting 0.05 z", raised only until the home margin meets J15/T12; residual under 50% of the effect' },
+  // Calibration games (J15, T12) are played at a home venue with this noiseBase. World venues read theirs from the stadium record.
+  { name: 'environment.gate.noiseBase.pro', value: 0.85, min: 0, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.8.1 acceptance 1 (pro home margin); generated stadium noiseFactor 0.8 to 1.2 clamped to 1' },
+  { name: 'environment.gate.noiseBase.college', value: 0.9, min: 0, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.6.1 "college venues can carry higher noiseBase"; T12 home margin' },
 ];
 
 export const PARAMS: Contract.ParamFile = {

@@ -116,6 +116,8 @@ export const RULE_KEYS: RuleKeyManifest = [
   { key: 'foul.offensive_holding.yards', type: 'number', unit: 'yd', meaning: 'Offensive holding distance', ownerLeaf: 'B8', readBy: ['engine-core.playerAi'] },
   { key: 'score.touchdown', type: 'number', unit: 'points', meaning: 'Points for a touchdown', ownerLeaf: 'B7', readBy: ['engine-core.playerAi'] },
 ];
+/** Internal skill scale points per standard deviation (schema `issToZ`). */
+const ISS_PER_Z = 10;
 const DPI = 'dpi', HOLD = 'offensive_holding';
 
 /** `detail` event codes this module emits (contract decision D-16). */
@@ -208,8 +210,11 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
   const sideIndex = (s: number): 0 | 1 => (s < SLOTS_PER_TEAM ? 0 : 1);
   const now = (world: TickWorld): number => roundSimS(world.tick * TICK_S);
   const knowledgeOf = (world: TickWorld, s: number, sp: SlotPlay): number => world.slots[s]!.player.gameDay.knowledge[sp.conceptId] ?? KNOWLEDGE_FULL;
+  // J12.8.1 familiarity: a z bonus on composure and communication for the side at its home venue.
+  const famIss = (s: number): number => (context.familiarityZ?.[sideIndex(s)] ?? 0) * ISS_PER_Z;
+  const composureAttr = (world: TickWorld, s: number): number => attr(world, s, 'composure') + famIss(s);
   const composureOf = (world: TickWorld, s: number, sp: SlotPlay): number =>
-    composureMult(context.pressure ?? 0, attr(world, s, 'composure'), sp.mind.highLeverageSnaps, p!);
+    composureMult(context.pressure ?? 0, composureAttr(world, s), sp.mind.highLeverageSnaps, p!);
 
   function record(world: TickWorld, s: number, kind: DeviationKind, motive: Motive, form: string, leaf: string, teamValueEst: number, selfValueEst: number, known: boolean): void {
     const playerId = world.slots[s]!.playerId;
@@ -259,7 +264,7 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
       for (const m of unit.members) unitOf[m] = i;
       unitOf[c] = i;
       const talk = side === 0 ? 'protection_calls' : 'front_and_coverage_checks';
-      unitQuality.push(plays[c] ? commQuality(attr(world, c, talk), attr(world, c, 'play_recognition'), context.noise?.[side] ?? 0, context.tempo ?? 0, q) : 0);
+      unitQuality.push(plays[c] ? commQuality(attr(world, c, talk) + famIss(c), attr(world, c, 'play_recognition'), context.noise?.[side] ?? 0, context.tempo ?? 0, q) : 0);
     }
   }
 
@@ -334,7 +339,7 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
       knowledge: knowledgeOf(world, s, sp), difficulty: sp.difficulty ?? 1, changedAtLine: sp.jobChangedAtLine === true,
       noiseFactor: context.noiseFactor?.[sideIndex(s)] ?? 1, assignmentDiscipline: attr(world, s, 'assignment_discipline'), temptation: tempt,
       buyIn: sp.mind.buyIn, complexity: sp.complexity ?? 0, fatigue: world.players.fatigueNow[s]!, footballIntelligence: attr(world, s, 'football_intelligence'),
-      composure: attr(world, s, 'composure'), pressure: context.pressure ?? 0, highLeverageSnaps: sp.mind.highLeverageSnaps,
+      composure: composureAttr(world, s), pressure: context.pressure ?? 0, highLeverageSnaps: sp.mind.highLeverageSnaps,
     }, q, chances);
     const u = uni[s * U_COUNT + U_ERR]!, pK = chances[0]!, pD = chances[1]!;
     if (u < pK) {

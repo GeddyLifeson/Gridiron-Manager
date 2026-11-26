@@ -10,6 +10,9 @@ import {
 import { callDeliveryChance, perceptionParams, type PerceptionParams } from '../perception/index.ts';
 type FoulPhase = TruthEventOf<'foul_committed'>['phase'];
 import { drawTeam, type TeamDraws } from './draws.ts';
+
+/** Internal skill scale points per standard deviation (schema `issToZ`). */
+const ISS_PER_Z = 10;
 import {
   audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
   disguiseQualityOf, falseStartChance, holdEndS, huddleDeliveryChance, offenseStartS, protectionRecognitionChance,
@@ -44,6 +47,8 @@ export interface PresnapSide {
   readonly signalCaller: number;
   /** Crowd noise this side's players hear, 0 to 1 (J12.6.1). */
   readonly noise: number;
+  /** J12.8.1 residual familiarity: a z bonus to this side's communication at its home venue. Absent: 0. */
+  readonly familiarityZ?: number;
 }
 
 export interface PresnapDefense extends PresnapSide {
@@ -448,7 +453,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   let rL = 0, rR = 0, sL = 0, sR = 0;
   for (const s of rushers) { if (spot[s]!.py >= 0) rL++; else rR++; }
   for (const s of defSlots) if (shownDepth(s) <= p['prot.rusherDepthYd']!) { if (shownPy(s) >= 0) sL++; else sR++; }
-  const pRec = protectionRecognitionChance(iss(w, identifier, 'protection_calls'), disguiseQuality, D.simulatedPressure ? 1 : 0, O.noise, math, p);
+  const pRec = protectionRecognitionChance(iss(w, identifier, 'protection_calls') + (O.familiarityZ ?? 0) * ISS_PER_Z, disguiseQuality, D.simulatedPressure ? 1 : 0, O.noise, math, p);
   const recognized = ok || dO.get('protection', identifier) < pRec;
   const protDropped = !kept.has('protection');
   // The spare (centre) goes to the side the identifier believes is heavier.
@@ -468,7 +473,8 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     const side = s < SLOTS_PER_TEAM ? 0 : 1, ts = s % SLOTS_PER_TEAM, S = side === 0 ? O : D, dr = side === 0 ? dO : dD;
     const caller = side * SLOTS_PER_TEAM + S.signalCaller;
     const dist = Math.abs(spot[s]!.py - spot[caller]!.py) + Math.abs(spot[s]!.px - spot[caller]!.px);
-    const live = callDeliveryChance(S.noise, dist, issToZ(iss(w, caller, 'football_intelligence')), issToZ(iss(w, s, 'football_intelligence')), 0, pp);
+    const fam = S.familiarityZ ?? 0;
+    const live = callDeliveryChance(S.noise, dist, issToZ(iss(w, caller, 'football_intelligence')) + fam, issToZ(iss(w, s, 'football_intelligence')) + fam, 0, pp);
     const hud = input.tempo === 'huddle'
       ? huddleDeliveryChance(input.callWords, ts / (SLOTS_PER_TEAM - 1), iss(w, caller, 'clock_and_situation_command'), p) : live;
     // The signal caller hears the sideline on his helmet radio until it cuts off (B2.5.1); after that he reads signals.
@@ -578,7 +584,8 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       const interior = a.preSnap.onLine && spot[s]!.py > lineMinPy && spot[s]!.py < lineMaxPy;
       const base = interior ? p['foul.baseFalseStartLine']! : p['foul.baseFalseStartOther']!;
       const pr = falseStartChance(base, iss(w, s, 'foul_discipline'), input.venue, {
-        noise: O.noise, hardCountOwn: input.hardCount, defensiveMovement: stemming, rushedSnap: input.tempo === 'hurry_up',
+        // I2.5.3: a silent count removes the crowd from the line's false-start risk (they move on the centre, not a voice).
+        noise: input.silentCount ? 0 : O.noise, hardCountOwn: input.hardCount, defensiveMovement: stemming, rushedSnap: input.tempo === 'hurry_up',
         longCount: input.longCount, fatigue: w.players.fatigueNow[s]!,
       }, math, p);
       const u = w.streams('foul', [sit.gameId, sit.playNumber, w.slots[s]!.playerId, 'false_start']).uniform();
