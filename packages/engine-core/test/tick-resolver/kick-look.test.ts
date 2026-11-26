@@ -9,7 +9,7 @@ import {
 } from '@gm/schema';
 import { canonicalBytes } from '../../src/canonical.ts';
 import { basePlay, type QbPlay } from '../../src/qb/index.ts';
-import { availablePlugs, createTickResolver, qbTargetOf, type KickLook, type PlayContentPort, type PlaySetup } from '../../src/tick-resolver/index.ts';
+import { availablePlugs, createTickResolver, qbTargetOf, type KickLook, type KickLookCheck, type LookCondition, type PlayContentPort, type PlaySetup } from '../../src/tick-resolver/index.ts';
 import { asg as presnapAsg, defenseInput, input as presnapInput, offenseInput } from '../presnap/support.ts';
 import { ALL_RULES, ALL_TABLE, CONTENT, playInput, unitsOf } from './support.ts';
 
@@ -306,5 +306,108 @@ describe('a play from a kicking look: determinism and honesty', () => {
     const plain = createTickResolver({ content: contentWith(() => null), plugs: availablePlugs() });
     const r = plain.simulatePlay(fakeInput('punt_punter_run', { seed: 2 }));
     expect(eventsOf(r.truth, 'possession')[0]!.t).toBe(0);
+  });
+});
+
+// ---------------------------------------------------------------------------------------------------
+// I4.6.1 the fake called with its trigger: the designated player reads the look and runs the fake or the kick.
+
+/** FIXTURE: the kick itself from the same alignment as the fake (same spots, the kicking unit's own jobs). */
+function kickUnitLike(f: Fake): Assignment[] {
+  return unitOf(f).map((a, i) => {
+    const type = i === LS ? 'snapper' : a.role === 'P' || a.role === 'K' ? 'kicker' : a.role === 'H' ? 'holder' : 'protectKick';
+    return { ...a, behavior: { type, params: {}, path: [] } };
+  });
+}
+const KICKS = new Map<Fake, PlaySetup>();
+function kickSetupOf(f: Fake): PlaySetup {
+  let k = KICKS.get(f);
+  if (!k) {
+    k = {
+      presnap: presnapInput({
+        shotgun: true, snapFoulPhase: 'scrimmage_kick',
+        offense: offenseInput({ assignments: kickUnitLike(f), signalCaller: LS }), defense: defenseInput({ assignments: unitsOf(fromPunt(f) ? 'punt' : 'field_goal').D, manMatch: {} }),
+      }),
+      slots: Array.from({ length: SLOT_COUNT }, () => ({ conceptId: 'fixture.kick' })), context: {}, qb: null,
+      perception: Array.from({ length: SLOT_COUNT }, (_, s) => (s >= SLOTS_PER_TEAM ? { readsKeys: true, boxDefender: s < SLOTS_PER_TEAM + 6 } : {})),
+    };
+    KICKS.set(f, k);
+  }
+  return k;
+}
+/** The fixture kick rush is ten across the front inside 6.3 yd: the edge outside 7 yd is open, and the box holds ten. */
+const THERE: LookCondition[] = [{ kind: 'edgeOpen', side: 1, outsidePy: 7, depthYd: 5 }];
+const NOT_THERE: LookCondition[] = [{ kind: 'boxAtMost', count: 6, halfWidthYd: 8, depthYd: 5 }];
+const checked = (look: LookCondition[], over: Partial<KickLookCheck> = {}) =>
+  createTickResolver({ content: contentWith((f) => ({ ...lookOf(f), check: { readerSlot: UP, look, repped: true, kick: kickSetupOf(f), ...over } })), plugs: availablePlugs() });
+const N = 60;
+interface Split { fake: number; kick: number }
+function split(r: ReturnType<typeof checked>, f: Fake, spec: Spec = {}): Split {
+  const out = { fake: 0, kick: 0 };
+  for (let seed = 1; seed <= N; seed++) {
+    const res = r.simulatePlay(fakeInput(f, { ...spec, seed })), where = `${f} seed ${seed}`;
+    expect(playTruthProblems(res.truth), where).toEqual([]);
+    expect(deadBallOf(res.truth).reason, where).not.toBe('engine_fault');
+    const notes = eventsOf(res.truth, 'detail').filter((d) => d.code.startsWith('kickOp.check.'));
+    expect(notes, where).toHaveLength(1);
+    expect(notes[0]!.playerIds, where).toEqual([ID(UP)]);
+    const ranFake = notes[0]!.code === 'kickOp.check.fake';
+    if (ranFake) out.fake++; else out.kick++;
+    if (!snapped(res)) continue;
+    const looks = eventsOf(res.truth, 'detail').filter((d) => d.code.startsWith('kickOp.look.'));
+    expect(looks, where).toHaveLength(ranFake ? 1 : 0);
+    if (ranFake) { expect(eventsOf(res.truth, 'kick'), where).toHaveLength(0); continue; }
+    // The kick: an ordinary snap to the punter or holder at tick 0, and the ball is kicked unless the operation failed.
+    expect(eventsOf(res.truth, 'snap')[0]!.toPlayerId, where).toBe(ID(fromPunt(f) ? DEEP : UP));
+    for (const k of eventsOf(res.truth, 'kick')) { expect(k.kickKind, where).toBe(fromPunt(f) ? 'punt' : 'field_goal'); expect(k.kickerId, where).toBe(ID(DEEP)); }
+  }
+  return out;
+}
+
+describe('a fake called with its trigger (I4.6.1)', () => {
+  it('runs the fake when the look is there and he reads it, about 85% of the time when repped', () => {
+    for (const f of ['punt_protector_run', 'fg_holder_pass'] as const) {
+      const s = split(checked(THERE), f);
+      expect(s.fake, f).toBeGreaterThanOrEqual(42); expect(s.fake, f).toBeLessThanOrEqual(58);
+    }
+  }, 240_000);
+  it('becomes the normal kick when the look is absent and he reads it absent, and the kick is really kicked', () => {
+    for (const f of ['punt_protector_run', 'fg_holder_pass'] as const) {
+      const r = checked(NOT_THERE), s = split(r, f);
+      expect(s.kick, f).toBeGreaterThanOrEqual(42); expect(s.kick, f).toBeLessThanOrEqual(58);
+      let kicks = 0;
+      for (let seed = 1; seed <= 20; seed++) kicks += eventsOf(r.simulatePlay(fakeInput(f, { seed })).truth, 'kick').length;
+      expect(kicks, f).toBeGreaterThan(8);
+    }
+  }, 240_000);
+  it('a fake not repped this week is read right less often, and a sharper reader more often', () => {
+    const right = (over: Partial<KickLookCheck>, spec: Spec = {}): number => split(checked(THERE, over), 'punt_protector_run', spec).fake;
+    expect(right({ repped: true })).toBeGreaterThan(right({ repped: false }));
+    const grade = (g: number) => (slot: number): Record<string, number> => (slot === UP ? { play_recognition: g } : {});
+    expect(right({ repped: false }, { grade: grade(95) })).toBeGreaterThan(right({ repped: false }, { grade: grade(5) }));
+  }, 240_000);
+  it('the reader is whoever the play names: the punter with a green light reads it himself', () => {
+    const r = createTickResolver({ content: contentWith((f) => ({ ...lookOf(f), check: { readerSlot: DEEP, look: THERE, repped: true, kick: kickSetupOf(f) } })), plugs: availablePlugs() });
+    const res = r.simulatePlay(fakeInput('punt_punter_run', { seed: 4 }));
+    expect(eventsOf(res.truth, 'detail').filter((d) => d.code.startsWith('kickOp.check.'))[0]!.playerIds).toEqual([ID(DEEP)]);
+  });
+  it('is deterministic, and the read does not disturb the play: a fake that runs after the read is the unchecked fake plus the note', () => {
+    const a = checked(THERE), b = checked(THERE);
+    for (const f of ['punt_protector_run', 'punt_punter_pass', 'fg_holder_run'] as const) for (const seed of [2, 3, 5, 8]) {
+      const ra = a.simulatePlay(fakeInput(f, { seed }));
+      a.simulatePlay(playInput({ kind: 'pass', seed: 9, params: ALL_TABLE }));
+      expect(hex(b.simulatePlay(fakeInput(f, { seed }))), `${f} ${seed}`).toBe(hex(ra));
+      if (!eventsOf(ra.truth, 'detail').some((d) => d.code === 'kickOp.check.fake')) continue;
+      const plain = resolver.simulatePlay(fakeInput(f, { seed }));
+      expect(ra.truth.events.filter((e) => !(e.type === 'detail' && e.code.startsWith('kickOp.check.'))), `${f} ${seed}`).toEqual(plain.truth.events);
+      expect(ra.deltas, `${f} ${seed}`).toEqual(plain.deltas);
+    }
+  }, 240_000);
+  it('refuses a check it cannot run', () => {
+    const run = (over: Partial<KickLookCheck>, look: LookCondition[] = THERE) => () => checked(look, over).simulatePlay(fakeInput('punt_punter_run'));
+    expect(run({}, [])).toThrow(/names no look/);
+    expect(run({ readerSlot: 11 })).toThrow(/reader/);
+    expect(run({ kick: { ...kickSetupOf('punt_punter_run'), presnap: kickSetupOf('fg_holder_run').presnap } })).toThrow(/same alignment/);
+    expect(run({}, [{ kind: 'uncovered', teamSlot: 12, lateralYd: 2, depthYd: 5 }])).toThrow(/not one of the eleven/);
   });
 });

@@ -1,13 +1,12 @@
-// The zod schema of the gameplan read model, with a visibility class on every field. It belongs in
-// @gm/schema (READ_MODELS) because app-services may not import zod: CR-G68-S1 asks the integrator to move
-// this file there unchanged. The plan and sheet are the club's own (own_team); readiness is the staff's
+// The zod schema of the gameplan read model (G-68), with a visibility class on every field. Moved here
+// from app-services/test/read-models/gameplan/data-schema.ts (CR-G68-S1; units added on seven plain numbers); registered in
+// READ_MODELS as `gameplan`. The plan and sheet are the club's own (own_team); readiness is the staff's
 // estimate (observer_estimate), never truth (MA-48).
 import { z } from 'zod';
-import { own, est } from '@gm/schema';
+import { own, est } from '../field.ts';
 
 const text = () => own(z.string());
 const count = () => own(z.number().int().min(0), 'count');
-const num = () => own(z.number());
 const flag = () => own(z.boolean());
 const strs = () => own(z.array(z.string()));
 const nul = <T extends z.ZodType>(t: T) => t.nullable();
@@ -26,7 +25,7 @@ const Plan = own(z.object({
   selected: nul(text()),
   book: arr(z.object({ playId: text(), call: text(), section: text(), status: text(), inPlan: flag() }).strict()),
   summary: own(z.object({
-    total: count(), newThisWeek: count(), unitsUsed: num(), capacity: num(), repsAssigned: count(), repsAvailable: count(),
+    total: count(), newThisWeek: count(), unitsUsed: own(z.number(), 'count'), capacity: own(z.number(), 'count'), repsAssigned: count(), repsAvailable: count(),
     runPass: own(z.object({ run: count(), pass: count(), other: count() }).strict()),
   }).strict()),
   matchups: arr(z.object({ id: text(), ours: text(), theirs: text(), rule: own(z.enum(['target', 'avoid', 'double'])) }).strict()),
@@ -41,8 +40,8 @@ const Entry = z.object({
 }).strict();
 const Box = z.object({
   id: text(), title: text(), side: own(z.union([z.literal(0), z.literal(1)])), col: count(), row: count(), w: count(), h: count(),
-  situationId: nul(text()), category: nul(text()), colour: text(), key: text(), priority: num(),
-  expectedSnaps: nul(num()), expectedSource: nul(text()), expectedGames: nul(count()), depthMark: nul(own(z.enum(['deep', 'thin']))),
+  situationId: nul(text()), category: nul(text()), colour: text(), key: text(), priority: own(z.number(), 'index'),
+  expectedSnaps: nul(own(z.number(), 'count')), expectedSource: nul(text()), expectedGames: nul(count()), depthMark: nul(own(z.enum(['deep', 'thin']))),
   entries: arr(Entry),
 }).strict();
 const Sheet = own(z.object({
@@ -53,8 +52,8 @@ const Sheet = own(z.object({
   layoutProblems: arr(z.object({ kind: own(z.enum(['overlap', 'outside'])), boxes: strs() }).strict()),
   coverage: arr(z.object({ down: count(), distance: text(), zone: text(), boxId: nul(text()) }).strict()),
   unmatchedStates: count(), shadowedStates: count(),
-  catalogue: arr(z.object({ id: text(), label: text(), status: own(z.enum(['has_box', 'covered', 'partly', 'missing'])), tier: count(), expectedSnaps: nul(num()), severity: nul(own(z.enum(['warning', 'note', 'info']))) }).strict()),
-  density: own(z.object({ entriesBySide: own(z.array(z.number())), bandBySide: strs(), smallestTextPt: num(), overflow: strs() }).strict()),
+  catalogue: arr(z.object({ id: text(), label: text(), status: own(z.enum(['has_box', 'covered', 'partly', 'missing'])), tier: count(), expectedSnaps: nul(own(z.number(), 'count')), severity: nul(own(z.enum(['warning', 'note', 'info']))) }).strict()),
+  density: own(z.object({ entriesBySide: own(z.array(z.number())), bandBySide: strs(), smallestTextPt: own(z.number(), 'pt'), overflow: strs() }).strict()),
   size: own(z.object({ unique: count(), repsAvailable: count(), overReps: flag() }).strict()),
   tooLongKeys: strs(),
   warnings: arr(Warning),
@@ -92,7 +91,7 @@ const Print = own(z.object({
   paper: own(z.enum(['letter', 'legal', 'tabloid'])), keyHints: flag(), widthIn: own(z.number(), 'in'), heightIn: own(z.number(), 'in'),
   boxes: arr(z.object({
     id: text(), side: own(z.union([z.literal(0), z.literal(1)])), xIn: own(z.number(), 'in'), yIn: own(z.number(), 'in'), wIn: own(z.number(), 'in'), hIn: own(z.number(), 'in'),
-    textPt: num(), lines: strs(), overflow: flag(),
+    textPt: own(z.number(), 'pt'), lines: strs(), overflow: flag(),
   }).strict()),
   overflow: count(),
 }).strict());

@@ -173,16 +173,31 @@
      "primary": false,
      "quote": "Typically, a student's athletic eligibility in a given sport is four seasons",
      "value": 4
+    },
+    {
+     "citation": "NCAA.org, DI Board of Directors directs Cabinet to advance age-based eligibility rules (https://www.ncaa.org/news/media-center-di-board-of-directors-directs-cabinet-to-advance-age-based-eligibility-rules/)",
+     "locator": "News item, options list",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Maintain existing rules — allowing four seasons of competition in five years of eligibility — for student-athletes competing in the 2025-26 academic year",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). NCAA.org (read 2026-11-26) says the seasons-of-competition rule is among those eliminated by the age-based model from 2026-27; this row is the seasons model for athletes competing in 2025-26 and earlier (NCAA DI Board item and the Eligibility 101 page).",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -338,7 +353,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "The pending Pavia case may change this. The age model starts the clock at any full-time enrollment, two-year college included (NCAA Eligibility 101). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "notes": "The pending Pavia case may change this. The age model starts the clock at any full-time enrollment, two-year college included (NCAA Eligibility 101). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). NCAA.org Eligibility 101 (read 2026-11-26): under the age-based model the five-year period begins at the first full-time enrollment at \"any college or university, including a domestic institution, international institution or two-year college\", so two-year college time counts toward the clock there as well.",
    "status": "2 of 3",
    "statusHistory": [
     {
@@ -529,16 +544,31 @@
      "primary": false,
      "quote": "SA must complete 24 semester hours prior to the beginning of the SA's 2nd year (third semester) of full-time enrollment",
      "value": 24
+    },
+    {
+     "citation": "NCAA, Summary of NCAA Regulations, Division I 2024-25 (https://ncaaorg.s3.amazonaws.com/compliance/d1/2024-25/2024-25D1Comp_SummaryofNCAARegulations.pdf; text copy 2024-25D1Comp_SummaryofNCAARegulations.txt)",
+     "locator": "Continuing eligibility, all sports, item (a), page 6",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Having successfully completed 24 semester or 36 quarter hours of academic credit prior to the start of the institution’s third semester or fourth quarter following your initial full-time enrollment",
+     "value": 24
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1263,16 +1293,39 @@
      "primary": false,
      "quote": "Now that players are permitted unlimited transfers",
      "value": 0
+    },
+    {
+     "citation": "NCAA.org, Division I Council approves changes to transfer rules (https://www.ncaa.org/news/media-center-division-i-council-approves-changes-to-transfer-rules/)",
+     "locator": "News item, first paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "to allow transferring student-athletes who meet certain academic eligibility requirements to be immediately eligible at their new school, regardless of whether they transferred previously."
+    },
+    {
+     "citation": "NCAA, Division I Transfer FAQs (http://fs.ncaa.org.s3.amazonaws.com/Docs/eligibility_center/Transfer/TransferFAQ.pdf; text copy TransferFAQ.txt)",
+     "locator": "Q8, Multiple Transfers",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-official",
+     "primary": true,
+     "quote": "Can a student-athlete who has transferred previously out of a four-year school compete immediately at a third or fourth Division I school if they are still an undergraduate student? A8: Yes, as long as the student-athlete leaves their previous school academically eligible"
     }
    ],
    "usedBy": [],
    "notes": "The ESPN explainer and the ESPN FAQ are one independence group; the SI page is the second. Academic standing is still required (bible T6.1.1). Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (ncaa-official)."
     }
    ]
   },
@@ -1337,7 +1390,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "One source. The $2.5 million figure comes from Ohio State's plan as the article describes it; SI gives $2.5 million as a Texas Tech figure for new non-revenue-sport scholarships and does not say it counted. Treat as provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "notes": "One source. The $2.5 million figure comes from Ohio State's plan as the article describes it; SI gives $2.5 million as a Texas Tech figure for new non-revenue-sport scholarships and does not say it counted. Treat as provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Check against the College Sports Commission revenue sharing page read 2026-11-26: it speaks of the 2026-27 fine of $0.20 per $1 over the cap for new scholarships up to $2.5M; it does not describe 2025-26. See the note on F-college-keys-0030.",
    "status": "1 of 3",
    "statusHistory": [
     {
@@ -1351,30 +1404,35 @@
    "id": "F-college-keys-0030",
    "level": "college",
    "domain": "league-rule",
-   "statement": "2026-27: new scholarships do not count toward the revenue-sharing cap.",
-   "value": 0,
+   "statement": "2026-27: added scholarship cost counted toward the revenue-sharing cap (CSC primary: still counted in 2026-27, up to $2.5M fined at $0.20 per $1; not counted from 2027-28).",
+   "value": 2500000,
    "unit": "USD",
    "validFor": "2026-27",
    "sources": [
     {
-     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (undated, https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
-     "locator": "Article text",
+     "citation": "College Sports Commission, Revenue Sharing (https://www.collegesportscommission.org/focus-areas/revenue-sharing/)",
+     "locator": "Revenue sharing page, cap counting and 2026-27 scholarship overage",
      "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "columbus-dispatch",
-     "primary": false,
-     "quote": "But the new scholarships do not apply toward the revenue sharing limits next year",
-     "value": 0
+     "howRead": "primary text",
+     "independenceGroup": "csc-official",
+     "primary": true,
+     "quote": "during the 2027-28 school year and beyond",
+     "value": 2500000
     }
    ],
    "usedBy": [],
-   "notes": "One source (R18 flagged SI calling the change \"proposed\"). Provisional. Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Integrator ruling 2026-11-26: the primary source (College Sports Commission) governs. It lists athletically related aid above the 2024-25 team limit as counting against the cap, applies a $0.20 per $1 fine in 2026-27 to cap overages caused by new scholarships (up to $2.5M), and stops counting them only from 2027-28. So 2026-27 keeps the $2.5M figure; the Columbus Dispatch article (via AOL, https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html, read 2026-11-26: \"But the new scholarships do not apply toward the revenue sharing limits next year\") disagrees. It is kept here, not as a source, because a G-10 row carries one value and a valueless disagreeing source would compute as a cross-check. OPEN CONFLICT: flagged, not verified. Reading of the CSC page as returned by the PC browser on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Needs a second primary read (CSC FAQ or settlement text) to settle. Earlier note: one source (R18 flagged SI calling the change \"proposed\").",
+   "status": "Rulebook only",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "Replaced the secondary source (0) with the College Sports Commission primary text (2,500,000); the disagreement stays in notes as an open conflict."
     }
    ]
   },
