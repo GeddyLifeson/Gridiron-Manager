@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { PlayingBlock } from '@gm/schema';
 import {
   stepAttribute, developSpan, devNumbers, teachingMultiplier, userTeachingTerm, vacancyMultiplier, tendencyStep,
-  pointProcessingLoad, creditReps, ageFactor, classRate, stepForm, num, peakKey,
+  pointProcessingLoad, creditReps, ageFactor, classRate, stepForm, num, peakKey, drawSurroundings, drawDevelopmentTraits, HIDDEN,
 } from '../../src/development/index.ts';
 import { MATH, N, makePlayer, meanOf, sdOf, rng } from './helpers.ts';
 
@@ -105,17 +105,30 @@ describe('D7.3 coaching', () => {
   });
 });
 
-describe('D7.4.2 plateaus and breakthroughs', () => {
-  it('form stays within 0.5 to 1.5 and reverts with an 8-week half-life', () => {
-    expect(stepForm(N, MATH, 1.4, 8, 0)).toBeCloseTo(1.2, 9);
-    let f = 1;
+describe('D7.4.2 plateaus and breakthroughs (uncapped, ruling 2026-11-26)', () => {
+  it('form reverts in log terms with an 8-week half-life and has no bounds, only positivity', () => {
+    const centre = stepForm(N, MATH, 1, 2000, 0);
+    const d0 = Math.log(1.4) - Math.log(centre);
+    const d8 = Math.log(stepForm(N, MATH, 1.4, 8, 0)) - Math.log(centre);
+    expect(d8 / d0).toBeCloseTo(0.5, 9);
+    let f = 1, lo = 1, hi = 1;
     const s = rng(3, 'form');
-    for (let i = 0; i < 2000; i++) { f = stepForm(N, MATH, f, 1, s.normal() * 4); expect(f).toBeGreaterThanOrEqual(0.5); expect(f).toBeLessThanOrEqual(1.5); }
+    for (let i = 0; i < 5000; i++) { f = stepForm(N, MATH, f, 1, s.normal() * 3); lo = Math.min(lo, f); hi = Math.max(hi, f); expect(f).toBeGreaterThan(0); }
+    expect(hi).toBeGreaterThan(1.5);
+    expect(lo).toBeLessThan(0.5);
   });
-  // D7.4.2 asks for a CV of 0.3 to 0.5. Inside the leaf's own bounds (form 0.5 to 1.5 with an 8-week
-  // half-life, 15 percent weekly noise, development rate 0.6 to 1.5) the model reaches about 0.25, so the
-  // test checks the honest floor and the conflict is reported in the PR for the bible owner.
-  it('year-to-year gain for players of the same age and gap varies (D7.4.2; CV target conflict reported)', () => {
+  it('development rate and surroundings are mean 1 and uncapped', () => {
+    const rates: number[] = [], surr: number[] = [];
+    for (let i = 0; i < 4000; i++) {
+      rates.push(drawDevelopmentTraits(N, MATH, rng(5, 'dr', i))[HIDDEN.devRate]!);
+      surr.push(drawSurroundings(N, MATH, rng(5, 'su', i)));
+    }
+    expect(meanOf(rates)).toBeCloseTo(1, 1);
+    expect(meanOf(surr)).toBeCloseTo(1, 1);
+    expect(Math.max(...rates)).toBeGreaterThan(1.5);
+    expect(Math.max(...surr)).toBeGreaterThan(1.5);
+  });
+  it('year-to-year gain for players of the same age and gap has a CV between 0.3 and 0.5', () => {
     const gains: number[] = [];
     for (let i = 0; i < 400; i++) {
       const s = rng(4, 'cv', i);
@@ -123,7 +136,7 @@ describe('D7.4.2 plateaus and breakthroughs', () => {
       // Players carry form between years: start from the form term's spread, not all at 1.
       let fm = 1;
       for (let w = 0; w < 26; w++) fm = stepForm(N, MATH, fm, 1, s.normal());
-      const p = { ...p0, hidden: { ...p0.hidden, 'dev.form': fm } };
+      const p = { ...p0, hidden: { ...p0.hidden, [HIDDEN.form]: fm, [HIDDEN.surroundings]: drawSurroundings(N, MATH, s) } };
       const facets = { work_habits: 50 + s.normal() * 15, coachability: 50 + s.normal() * 15 };
       const p2 = { ...p, attributes: { ...p.attributes, route_running_short: 40 }, ceilings: { ...p.ceilings, route_running_short: 60 }, hidden: { ...p.hidden, [peakKey('route_running_short')]: 40 } };
       let q: PlayingBlock = p2;
@@ -131,7 +144,8 @@ describe('D7.4.2 plateaus and breakthroughs', () => {
       gains.push(q.attributes.route_running_short! - 40);
     }
     const cv = sdOf(gains) / meanOf(gains);
-    expect(cv).toBeGreaterThan(0.2);
+    console.log('D7.4.2 yearly gain CV', cv.toFixed(3));
+    expect(cv).toBeGreaterThan(0.3);
     expect(cv).toBeLessThan(0.5);
   });
 });

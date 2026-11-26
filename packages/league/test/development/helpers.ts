@@ -44,7 +44,7 @@ export function makePlayer(s: RandomStream, o: MakeOpts): PlayingBlock {
   }
   const traits = o.neutral
     ? { [HIDDEN.devRate]: 1, [HIDDEN.agingTrait]: 1, [HIDDEN.maturityOffset]: 0, [HIDDEN.growthDisposition]: 1, [HIDDEN.lateSpurtIn]: 0, [HIDDEN.form]: 1, [HIDDEN.agingIndex]: 1, [HIDDEN.agingYearDelta]: 0, [HIDDEN.heavyLoad]: 0 }
-    : drawDevelopmentTraits(N, s);
+    : drawDevelopmentTraits(N, MATH, s);
   const forty = FORTY[o.family] + s.normal() * 0.08;
   const p: PlayingBlock = {
     position: o.family,

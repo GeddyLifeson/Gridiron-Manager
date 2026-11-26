@@ -5,7 +5,8 @@ import type { AttributeId, DeterministicMath, PlayingBlock, RandomStream } from 
 import { agingRollover, applyAgingFraction } from './aging.ts';
 import { applyBody } from './body.ts';
 import { familyOf, type PositionFamily } from './classes.ts';
-import { developSpan, FACET } from './gain.ts';
+import { developSpan, drawSurroundings, FACET } from './gain.ts';
+import { HIDDEN } from './hidden.ts';
 import { growBody } from './growth.ts';
 import { num, type DevNumbers } from './params.ts';
 import { defaultWeeklyReps, WINDOWS, type Role, type Window } from './reps.ts';
@@ -20,14 +21,15 @@ export interface PersonForDevelopment {
 
 /**
  * Offseason rollover for one player: grow the body (to 23), draw and apply the rollover share of the
- * year's aging, and reapply body factors to attributes and drill results.
+ * year's aging, draw this year's surroundings multiplier, and reapply body factors.
  */
-export function rollover(n: DevNumbers, who: PersonForDevelopment, stream: RandomStream, heavyLoadLastSeason = false): PlayingBlock {
+export function rollover(n: DevNumbers, math: DeterministicMath, who: PersonForDevelopment, stream: RandomStream, heavyLoadLastSeason = false): PlayingBlock {
   const family = familyOf(who.position);
   const body = growBody(n, who.playing, who.ageYears, family);
   const grown: PlayingBlock = { ...who.playing, heightIn: body.heightIn, weightLb: body.weightLb };
   const aged = agingRollover(n, grown, family, who.ageYears, stream, heavyLoadLastSeason);
-  return applyBody(n, aged, who.ageYears, family);
+  const year: PlayingBlock = { ...aged, hidden: { ...aged.hidden, [HIDDEN.surroundings]: drawSurroundings(n, math, stream) } };
+  return applyBody(n, year, who.ageYears, family);
 }
 
 /** One in-season month of aging (D8.2.1: one eighth of the year), with body factors reapplied. */
@@ -57,7 +59,7 @@ export function defaultYearPlan(n: DevNumbers, role: Role): WindowPlan[] {
  */
 export function developYear(n: DevNumbers, math: DeterministicMath, who: PersonForDevelopment, plan: readonly WindowPlan[], streamFor: (step: number) => RandomStream, heavyLoadLastSeason = false): PlayingBlock {
   const family = familyOf(who.position);
-  let p = rollover(n, who, streamFor(0), heavyLoadLastSeason);
+  let p = rollover(n, math, who, streamFor(0), heavyLoadLastSeason);
   plan.forEach((w, i) => {
     const reps = w.reps ?? defaultWeeklyReps(n, family, w.window, w.role, who.facets[FACET.workEthic]);
     p = developSpan(n, math, p, {

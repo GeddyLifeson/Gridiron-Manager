@@ -20,7 +20,7 @@ same weekly model, so headless runs are the full model, faster (A3 row 20).
 ## Decisions
 
 - **G20-1 Hidden keys (W-10).** `dev.rate`, `dev.form`, `aging.trait`, `aging.index`, `aging.yearDelta`,
-  `aging.heavyLoad`, `growth.maturityOffset`, `growth.disposition`, `growth.lateSpurtIn`,
+  `aging.heavyLoad`, `dev.surroundings`, `growth.maturityOffset`, `growth.disposition`, `growth.lateSpurtIn`,
   `growth.adultHeightIn`, `growth.adultWeightLb`, `growth.adult.<test>`, `peak.<attribute>`,
   `body.<attribute or test>`. `drawDevelopmentTraits` draws the parameters for G-17; anything
   missing falls back to neutral values, and adult drill targets are back-solved on first use.
@@ -48,9 +48,12 @@ same weekly model, so headless runs are the full model, faster (A3 row 20).
 5. **D7.5.1 "double k" vs its acceptance.** Double k restores only about a fifth of a lost skill in
    4 weeks; the acceptance wants it back near the peak in about 4. `decay.relearnMultiplier` = 20
    (fitted to the acceptance).
-6. **D7.4.2 CV 0.3 to 0.5.** With the leaf's own bounds (form 0.5 to 1.5, 8-week half-life, 15
-   percent weekly noise, development rate 0.6 to 1.5) the model reaches a CV of about 0.25. The test
-   checks the floor 0.2; needs a ruling (wider form range, or yearly noise).
+6. **D7.4.2 CV 0.3 to 0.5. Ruled by Marlon 2026-11-26: variation is uncapped,** because improvement
+   comes down to more than the player. The form term is log-normal (mean 1, 8-week half-life, no
+   bounds), the development rate is log-normal (mean 1, no 0.6 to 1.5 clamp), and a yearly
+   surroundings multiplier (log-normal, mean 1, drawn at each rollover, hidden key
+   `dev.surroundings`) stands for scheme fit, role, health and life around the player. The test now
+   checks CV 0.3 to 0.5 (measured 0.38).
 
 ## Not here (other packages)
 
