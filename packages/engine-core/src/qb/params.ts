@@ -220,7 +220,9 @@ const ROWS = [
   // J7.6.2 accuracy
   ['acc.sdShortYd', 0.6, 0.3, 1, 'yd', 'bible', 'J7.6.2', ACC],
   ['acc.sdMidYd', 1.0, 0.6, 1.5, 'yd', 'bible', 'J7.6.2', ACC],
-  ['acc.sdDeepYd', 1.8, 1.2, 2.6, 'yd', 'bible', 'J7.6.2', ACC],
+  // Tuned from the bible's 1.8 (so an Assumption now) against J15.4.1 completion by depth: deep balls were almost never
+  // uncatchable (3 of 93 in a trace) and completed 49% at 21+ yards (real 29 to 37%, 1 of 3).
+  ['acc.sdDeepYd', 2.6, 1.2, 2.6, 'yd', 'assumption', 'J7.6.2', ACC],
   ['acc.midFromYd', 10, 10, 10, 'yd', 'bible', 'J7.6.2', STRUCT],
   ['acc.deepFromYd', 20, 20, 20, 'yd', 'bible', 'J7.6.2', STRUCT],
   ['acc.perZ', 0.12, 0, 0.25, 'share/z', 'bible', 'J7.6.2', ACC],
@@ -232,7 +234,7 @@ const ROWS = [
   ['acc.wetMult', 1.1, 1, 1.3, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.unsetMult', 1.15, 1, 1.5, 'ratio', 'assumption', 'J7.1.1', ACC],
   ['acc.multPerZ', 0.10, 0, 0.2, 'share/z', 'bible', 'J7.6.2', ACC],
-  ['acc.deepAlongRatio', 1.4, 1, 2, 'ratio', 'assumption', 'J7.6.2', ACC],
+  ['acc.deepAlongRatio', 2, 1, 2, 'ratio', 'assumption', 'J7.6.2', ACC], // tuned from 1.4 with acc.sdDeepYd: a deep ball misses long or short far more than wide
   ['acc.heightSdShare', 0.5, 0, 1, 'ratio', 'assumption', 'J7.6.2', ACC],
   ['acc.leadYd', 0.6, 0, 1.5, 'yd', 'assumption', 'J7.6.2', ACC],
   ['acc.leadPerZ', 0.15, 0, 0.4, 'share/z', 'assumption', 'J7.6.2', ACC],
