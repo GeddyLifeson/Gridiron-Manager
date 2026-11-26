@@ -22,6 +22,8 @@ export {
 } from './derive.ts';
 export { windForPlay, windBin, oneScoreMargin, noiseForPlay, slipChancePerCut, footingStream, slipOnCut, CALM } from './play.ts';
 export type { PlayWind, WindBin, NoiseSituation } from './play.ts';
+export { crowdForPlay, gateNoiseBase, QUIET } from './crowd.ts';
+export type { Site, CrowdSituation, CrowdForPlay } from './crowd.ts';
 export { forecastFor, forecastSeries } from './forecast.ts';
 export type { Forecast } from './forecast.ts';
 export { NEUTRAL_VENUE, neutralInput, heatIndexOf } from './neutral.ts';

@@ -123,6 +123,8 @@ export interface PlayContext {
   readonly noiseFactor?: readonly [number, number];
   /** Crowd noise 0 to 1 as each unit hears it (J12.6.1), same order. */
   readonly noise?: readonly [number, number];
+  /** J12.8.1 residual familiarity at the home venue: a z bonus to composure and communication, same order. Absent: 0. */
+  readonly familiarityZ?: readonly [number, number];
   /** D4.3.1 pressure of the moment, 0 to 1. */
   readonly pressure?: number;
   /** 0 huddle to 1 hurry-up: less time to talk (K1.5.1). */

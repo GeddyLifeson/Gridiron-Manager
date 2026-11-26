@@ -22,6 +22,7 @@ import {
 import { perception as perceptionModule, qb as qbModule, tickResolver } from '@gm/engine-core';
 import { full, starter } from '@gm/football-content';
 import { lang } from '@gm/football-lang';
+import { environment } from '@gm/engine-game';
 
 type PlaySetup = tickResolver.PlaySetup;
 type QbPlay = qbModule.QbPlay;
@@ -398,7 +399,13 @@ function bound(as: Assignment[]): Assignment[] {
   return lang.bindAssignments({ assignments: as, slotOfRole: SLOT_OF_ROLE, qbSlot: OFFENSE_ROLES.indexOf('Q') }).bound;
 }
 
-export function createStarterContentPort(): StarterContentPort {
+export interface StarterContentOptions {
+  /** Where the game is played (J12.8.1): at side 0's venue (the default) or at a neutral site. */
+  readonly site?: environment.Site;
+}
+
+export function createStarterContentPort(opts: StarterContentOptions = {}): StarterContentPort {
+  const site: environment.Site = opts.site ?? 'home';
   const offense = new Map<string, OffensePlay>();
   const defense = new Map<string, Assignment[]>();
   const units = new Map<string, { O: Assignment[]; D: Assignment[] }>();
@@ -533,15 +540,21 @@ export function createStarterContentPort(): StarterContentPort {
         const a = D[w - SLOTS_PER_TEAM]!;
         return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}) };
       });
+      // The crowd on this play (J12.6.1, J12.8.1): noise each unit hears, the J5.7.1 venue, the road silent count,
+      // the D9.4.1 noise factor and the residual familiarity term, all from the snapshot and the scoreboard.
+      const crowd = environment.crowdForPlay(input.environment, { offense: sit.offense, down: sit.down, score: sit.score }, site, input.rules, input.params);
       return {
         presnap: {
-          tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, callWords: 6, hardCount: false, silentCount: false, longCount: false,
-          snapsOnSameCount: 0, shotgun, venue: 'neutral', snapFoulPhase: phase,
-          offense: { assignments: O, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: qbSlot >= 0 ? qbSlot : 0, noise: 0, shift: null, motion: null, audibles: [], canRedirect: true, prepared: 0.5 },
-          defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: 0, coverage, manMatch, bluff: false, checks: [], disguise: [], simulatedPressure: false, aggressiveGetOff: false },
+          tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, callWords: 6, hardCount: false, silentCount: s.unit === 'offense' && crowd.silentCount, longCount: false,
+          snapsOnSameCount: 0, shotgun, venue: crowd.venue, snapFoulPhase: phase,
+          offense: { assignments: O, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: qbSlot >= 0 ? qbSlot : 0, noise: crowd.unitNoise[0], familiarityZ: crowd.familiarityZ[0], shift: null, motion: null, audibles: [], canRedirect: true, prepared: 0.5 },
+          defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: crowd.unitNoise[1], familiarityZ: crowd.familiarityZ[1], coverage, manMatch, bluff: false, checks: [], disguise: [], simulatedPressure: false, aggressiveGetOff: false },
         },
         slots,
-        context: { ...(qbSlot >= 0 ? { qbSlot } : {}), tempo: tempo === 'huddle' ? 0 : tempo === 'no_huddle' ? 0.5 : 1, secondHalf: sit.period > 2 },
+        context: {
+          ...(qbSlot >= 0 ? { qbSlot } : {}), tempo: tempo === 'huddle' ? 0 : tempo === 'no_huddle' ? 0.5 : 1, secondHalf: sit.period > 2,
+          noise: crowd.unitNoise, noiseFactor: crowd.noiseFactor, familiarityZ: crowd.familiarityZ,
+        },
         perception, qb, carrier,
       };
     },
