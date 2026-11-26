@@ -1,0 +1,6043 @@
+{
+ "empty": {
+  "open": true,
+  "refusal": null,
+  "hasSheet": false,
+  "entry": null,
+  "personId": null,
+  "position": null,
+  "positions": [
+   "QB",
+   "RB",
+   "WR",
+   "TE",
+   "OT",
+   "IOL",
+   "DT",
+   "EDGE",
+   "LB",
+   "CB",
+   "S",
+   "FB",
+   "K",
+   "P",
+   "LS"
+  ],
+  "archetypes": [],
+  "archetypeCatalog": {
+   "QB": [
+    {
+     "id": "qb_pocket_passer",
+     "labelId": "pd.arch.qb_pocket_passer"
+    },
+    {
+     "id": "qb_dual_threat",
+     "labelId": "pd.arch.qb_dual_threat"
+    },
+    {
+     "id": "qb_game_manager",
+     "labelId": "pd.arch.qb_game_manager"
+    }
+   ],
+   "RB": [
+    {
+     "id": "rb_power_back",
+     "labelId": "pd.arch.rb_power_back"
+    },
+    {
+     "id": "rb_scat_back",
+     "labelId": "pd.arch.rb_scat_back"
+    },
+    {
+     "id": "rb_three_down_back",
+     "labelId": "pd.arch.rb_three_down_back"
+    }
+   ],
+   "WR": [
+    {
+     "id": "wr_possession",
+     "labelId": "pd.arch.wr_possession"
+    },
+    {
+     "id": "wr_deep_threat",
+     "labelId": "pd.arch.wr_deep_threat"
+    },
+    {
+     "id": "wr_slot",
+     "labelId": "pd.arch.wr_slot"
+    }
+   ],
+   "TE": [
+    {
+     "id": "te_inline_blocker",
+     "labelId": "pd.arch.te_inline_blocker"
+    },
+    {
+     "id": "te_move_receiver",
+     "labelId": "pd.arch.te_move_receiver"
+    }
+   ],
+   "OT": [
+    {
+     "id": "ot_pass_protector",
+     "labelId": "pd.arch.ot_pass_protector"
+    },
+    {
+     "id": "ot_road_grader",
+     "labelId": "pd.arch.ot_road_grader"
+    }
+   ],
+   "IOL": [
+    {
+     "id": "iol_zone_mover",
+     "labelId": "pd.arch.iol_zone_mover"
+    },
+    {
+     "id": "iol_power_anchor",
+     "labelId": "pd.arch.iol_power_anchor"
+    },
+    {
+     "id": "iol_center",
+     "labelId": "pd.arch.iol_center"
+    }
+   ],
+   "DT": [
+    {
+     "id": "dt_nose_tackle",
+     "labelId": "pd.arch.dt_nose_tackle"
+    },
+    {
+     "id": "dt_three_technique",
+     "labelId": "pd.arch.dt_three_technique"
+    }
+   ],
+   "EDGE": [
+    {
+     "id": "edge_wide_nine_speed",
+     "labelId": "pd.arch.edge_wide_nine_speed"
+    },
+    {
+     "id": "edge_power_end",
+     "labelId": "pd.arch.edge_power_end"
+    },
+    {
+     "id": "edge_stand_up_backer",
+     "labelId": "pd.arch.edge_stand_up_backer"
+    }
+   ],
+   "LB": [
+    {
+     "id": "lb_downhill_thumper",
+     "labelId": "pd.arch.lb_downhill_thumper"
+    },
+    {
+     "id": "lb_coverage_backer",
+     "labelId": "pd.arch.lb_coverage_backer"
+    },
+    {
+     "id": "lb_signal_caller",
+     "labelId": "pd.arch.lb_signal_caller"
+    }
+   ],
+   "CB": [
+    {
+     "id": "cb_press_man",
+     "labelId": "pd.arch.cb_press_man"
+    },
+    {
+     "id": "cb_zone",
+     "labelId": "pd.arch.cb_zone"
+    },
+    {
+     "id": "cb_nickel",
+     "labelId": "pd.arch.cb_nickel"
+    }
+   ],
+   "S": [
+    {
+     "id": "s_single_high",
+     "labelId": "pd.arch.s_single_high"
+    },
+    {
+     "id": "s_box_safety",
+     "labelId": "pd.arch.s_box_safety"
+    }
+   ],
+   "FB": [
+    {
+     "id": "fb_standard",
+     "labelId": "pd.arch.fb_standard"
+    }
+   ],
+   "K": [
+    {
+     "id": "k_standard",
+     "labelId": "pd.arch.k_standard"
+    }
+   ],
+   "P": [
+    {
+     "id": "p_standard",
+     "labelId": "pd.arch.p_standard"
+    }
+   ],
+   "LS": [
+    {
+     "id": "ls_standard",
+     "labelId": "pd.arch.ls_standard"
+    }
+   ]
+  },
+  "archetypeId": null,
+  "realPerson": false,
+  "sandbox": false,
+  "marksWorldEdited": false,
+  "sections": [],
+  "derived": [],
+  "staffGrade": null,
+  "warnings": [],
+  "missing": [],
+  "blockers": [],
+  "canCommit": false,
+  "result": null
+ },
+ "closed": {
+  "open": false,
+  "refusal": {
+   "rule": "D13.1.1",
+   "message": "the designer opens in a career only before the world starts or in a sandbox world"
+  },
+  "hasSheet": false,
+  "entry": null,
+  "personId": null,
+  "position": null,
+  "positions": [
+   "QB",
+   "RB",
+   "WR",
+   "TE",
+   "OT",
+   "IOL",
+   "DT",
+   "EDGE",
+   "LB",
+   "CB",
+   "S",
+   "FB",
+   "K",
+   "P",
+   "LS"
+  ],
+  "archetypes": [],
+  "archetypeCatalog": {},
+  "archetypeId": null,
+  "realPerson": false,
+  "sandbox": false,
+  "marksWorldEdited": true,
+  "sections": [],
+  "derived": [],
+  "staffGrade": null,
+  "warnings": [],
+  "missing": [],
+  "blockers": [],
+  "canCommit": false,
+  "result": {
+   "ok": false,
+   "rule": "D13.1.1",
+   "message": "the designer opens in a career only before the world starts or in a sandbox world",
+   "problems": []
+  }
+ },
+ "archetype": {
+  "open": true,
+  "refusal": null,
+  "hasSheet": true,
+  "entry": "archetype",
+  "personId": 100,
+  "position": "CB",
+  "positions": [
+   "QB",
+   "RB",
+   "WR",
+   "TE",
+   "OT",
+   "IOL",
+   "DT",
+   "EDGE",
+   "LB",
+   "CB",
+   "S",
+   "FB",
+   "K",
+   "P",
+   "LS"
+  ],
+  "archetypes": [
+   {
+    "id": "cb_press_man",
+    "labelId": "pd.arch.cb_press_man"
+   },
+   {
+    "id": "cb_zone",
+    "labelId": "pd.arch.cb_zone"
+   },
+   {
+    "id": "cb_nickel",
+    "labelId": "pd.arch.cb_nickel"
+   }
+  ],
+  "archetypeCatalog": {
+   "QB": [
+    {
+     "id": "qb_pocket_passer",
+     "labelId": "pd.arch.qb_pocket_passer"
+    },
+    {
+     "id": "qb_dual_threat",
+     "labelId": "pd.arch.qb_dual_threat"
+    },
+    {
+     "id": "qb_game_manager",
+     "labelId": "pd.arch.qb_game_manager"
+    }
+   ],
+   "RB": [
+    {
+     "id": "rb_power_back",
+     "labelId": "pd.arch.rb_power_back"
+    },
+    {
+     "id": "rb_scat_back",
+     "labelId": "pd.arch.rb_scat_back"
+    },
+    {
+     "id": "rb_three_down_back",
+     "labelId": "pd.arch.rb_three_down_back"
+    }
+   ],
+   "WR": [
+    {
+     "id": "wr_possession",
+     "labelId": "pd.arch.wr_possession"
+    },
+    {
+     "id": "wr_deep_threat",
+     "labelId": "pd.arch.wr_deep_threat"
+    },
+    {
+     "id": "wr_slot",
+     "labelId": "pd.arch.wr_slot"
+    }
+   ],
+   "TE": [
+    {
+     "id": "te_inline_blocker",
+     "labelId": "pd.arch.te_inline_blocker"
+    },
+    {
+     "id": "te_move_receiver",
+     "labelId": "pd.arch.te_move_receiver"
+    }
+   ],
+   "OT": [
+    {
+     "id": "ot_pass_protector",
+     "labelId": "pd.arch.ot_pass_protector"
+    },
+    {
+     "id": "ot_road_grader",
+     "labelId": "pd.arch.ot_road_grader"
+    }
+   ],
+   "IOL": [
+    {
+     "id": "iol_zone_mover",
+     "labelId": "pd.arch.iol_zone_mover"
+    },
+    {
+     "id": "iol_power_anchor",
+     "labelId": "pd.arch.iol_power_anchor"
+    },
+    {
+     "id": "iol_center",
+     "labelId": "pd.arch.iol_center"
+    }
+   ],
+   "DT": [
+    {
+     "id": "dt_nose_tackle",
+     "labelId": "pd.arch.dt_nose_tackle"
+    },
+    {
+     "id": "dt_three_technique",
+     "labelId": "pd.arch.dt_three_technique"
+    }
+   ],
+   "EDGE": [
+    {
+     "id": "edge_wide_nine_speed",
+     "labelId": "pd.arch.edge_wide_nine_speed"
+    },
+    {
+     "id": "edge_power_end",
+     "labelId": "pd.arch.edge_power_end"
+    },
+    {
+     "id": "edge_stand_up_backer",
+     "labelId": "pd.arch.edge_stand_up_backer"
+    }
+   ],
+   "LB": [
+    {
+     "id": "lb_downhill_thumper",
+     "labelId": "pd.arch.lb_downhill_thumper"
+    },
+    {
+     "id": "lb_coverage_backer",
+     "labelId": "pd.arch.lb_coverage_backer"
+    },
+    {
+     "id": "lb_signal_caller",
+     "labelId": "pd.arch.lb_signal_caller"
+    }
+   ],
+   "CB": [
+    {
+     "id": "cb_press_man",
+     "labelId": "pd.arch.cb_press_man"
+    },
+    {
+     "id": "cb_zone",
+     "labelId": "pd.arch.cb_zone"
+    },
+    {
+     "id": "cb_nickel",
+     "labelId": "pd.arch.cb_nickel"
+    }
+   ],
+   "S": [
+    {
+     "id": "s_single_high",
+     "labelId": "pd.arch.s_single_high"
+    },
+    {
+     "id": "s_box_safety",
+     "labelId": "pd.arch.s_box_safety"
+    }
+   ],
+   "FB": [
+    {
+     "id": "fb_standard",
+     "labelId": "pd.arch.fb_standard"
+    }
+   ],
+   "K": [
+    {
+     "id": "k_standard",
+     "labelId": "pd.arch.k_standard"
+    }
+   ],
+   "P": [
+    {
+     "id": "p_standard",
+     "labelId": "pd.arch.p_standard"
+    }
+   ],
+   "LS": [
+    {
+     "id": "ls_standard",
+     "labelId": "pd.arch.ls_standard"
+    }
+   ]
+  },
+  "archetypeId": "cb_nickel",
+  "realPerson": false,
+  "sandbox": false,
+  "marksWorldEdited": false,
+  "sections": [
+   {
+    "id": "identity",
+    "fields": [
+     {
+      "path": "position",
+      "value": "CB",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "ageYears",
+      "value": 23,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "firstName",
+      "value": "Generated",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "lastName",
+      "value": "Player100",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "homeRegion",
+      "value": "Generated Region",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "hometown",
+      "value": null,
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "throwingHand",
+      "value": "left",
+      "kind": "side",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "kickingFoot",
+      "value": "right",
+      "kind": "side",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "body",
+    "fields": [
+     {
+      "path": "heightIn",
+      "value": 74,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "weightLb",
+      "value": 203,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "armLengthIn",
+      "value": 34.38,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "handSizeIn",
+      "value": 10.43,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "tests",
+    "fields": [
+     {
+      "path": "tests.fortyS",
+      "value": 4.47,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.tenSplitS",
+      "value": 1.55,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.threeConeS",
+      "value": 6.82,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.shuttleS",
+      "value": 4.23,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.verticalIn",
+      "value": 38.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.broadIn",
+      "value": 127,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.benchReps",
+      "value": 14.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "physical",
+    "fields": [
+     {
+      "path": "attributes.play_strength",
+      "value": 62.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.play_strength",
+      "ceiling": 63.9
+     },
+     {
+      "path": "attributes.explosiveness",
+      "value": 58.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.explosiveness",
+      "ceiling": 58.3
+     },
+     {
+      "path": "attributes.stamina",
+      "value": 39.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stamina",
+      "ceiling": 39.1
+     },
+     {
+      "path": "attributes.durability",
+      "value": 57.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.durability",
+      "ceiling": 57.3
+     }
+    ]
+   },
+   {
+    "id": "carrier_universal",
+    "fields": [
+     {
+      "path": "attributes.ball_security",
+      "value": 34,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_security",
+      "ceiling": 36.7
+     },
+     {
+      "path": "attributes.hands",
+      "value": 22.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hands",
+      "ceiling": 25.9
+     },
+     {
+      "path": "attributes.ball_tracking",
+      "value": 33.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_tracking",
+      "ceiling": 33.2
+     }
+    ]
+   },
+   {
+    "id": "defender_universal",
+    "fields": [
+     {
+      "path": "attributes.tackling",
+      "value": 37.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.tackling",
+      "ceiling": 42.7
+     },
+     {
+      "path": "attributes.block_shedding",
+      "value": 32.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.block_shedding",
+      "ceiling": 37.9
+     },
+     {
+      "path": "attributes.pursuit_angle",
+      "value": 31.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pursuit_angle",
+      "ceiling": 40.1
+     }
+    ]
+   },
+   {
+    "id": "open_field_blocking",
+    "fields": [
+     {
+      "path": "attributes.open_field_blocking",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.open_field_blocking",
+      "ceiling": 2.7
+     }
+    ]
+   },
+   {
+    "id": "line_universal",
+    "fields": [
+     {
+      "path": "attributes.snap_count_get_off",
+      "value": 3.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_count_get_off",
+      "ceiling": 11.3
+     },
+     {
+      "path": "attributes.pad_level",
+      "value": 1.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pad_level",
+      "ceiling": 2.9
+     }
+    ]
+   },
+   {
+    "id": "qb",
+    "fields": [
+     {
+      "path": "attributes.arm_strength",
+      "value": 13.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.arm_strength",
+      "ceiling": 17
+     },
+     {
+      "path": "attributes.accuracy_short",
+      "value": 18.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_short",
+      "ceiling": 27.6
+     },
+     {
+      "path": "attributes.accuracy_intermediate",
+      "value": 20.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_intermediate",
+      "ceiling": 27.2
+     },
+     {
+      "path": "attributes.accuracy_deep",
+      "value": 23.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_deep",
+      "ceiling": 26.8
+     },
+     {
+      "path": "attributes.accuracy_on_the_move",
+      "value": 22.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_on_the_move",
+      "ceiling": 26.4
+     },
+     {
+      "path": "attributes.accuracy_under_pressure",
+      "value": 16,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_under_pressure",
+      "ceiling": 25.9
+     },
+     {
+      "path": "attributes.release_time",
+      "value": 22.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.release_time",
+      "ceiling": 28.1
+     },
+     {
+      "path": "attributes.anticipation",
+      "value": 12.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.anticipation",
+      "ceiling": 22.3
+     },
+     {
+      "path": "attributes.footwork_and_drop",
+      "value": 12.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.footwork_and_drop",
+      "ceiling": 21.3
+     },
+     {
+      "path": "attributes.pocket_movement",
+      "value": 14,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pocket_movement",
+      "ceiling": 21.9
+     },
+     {
+      "path": "attributes.play_fake_and_ball_handling",
+      "value": 9.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.play_fake_and_ball_handling",
+      "ceiling": 15.7
+     },
+     {
+      "path": "attributes.scramble_and_run_skill",
+      "value": 12,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.scramble_and_run_skill",
+      "ceiling": 21.2
+     },
+     {
+      "path": "attributes.cadence",
+      "value": 14.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.cadence",
+      "ceiling": 14.7
+     },
+     {
+      "path": "attributes.snap_handling",
+      "value": 14.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_handling",
+      "ceiling": 17.8
+     }
+    ]
+   },
+   {
+    "id": "rb",
+    "fields": [
+     {
+      "path": "attributes.vision_zone",
+      "value": 30.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.vision_zone",
+      "ceiling": 30.6
+     },
+     {
+      "path": "attributes.vision_gap",
+      "value": 31.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.vision_gap",
+      "ceiling": 34.7
+     },
+     {
+      "path": "attributes.patience_and_tempo",
+      "value": 16.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.patience_and_tempo",
+      "ceiling": 29.2
+     },
+     {
+      "path": "attributes.elusiveness",
+      "value": 23.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.elusiveness",
+      "ceiling": 28.1
+     },
+     {
+      "path": "attributes.contact_balance",
+      "value": 24.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.contact_balance",
+      "ceiling": 28.2
+     },
+     {
+      "path": "attributes.power_finish",
+      "value": 32,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.power_finish",
+      "ceiling": 32.8
+     },
+     {
+      "path": "attributes.route_running_backfield",
+      "value": 19.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_backfield",
+      "ceiling": 25.7
+     },
+     {
+      "path": "attributes.pass_protection_technique",
+      "value": 20,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pass_protection_technique",
+      "ceiling": 24.2
+     }
+    ]
+   },
+   {
+    "id": "fb",
+    "fields": [
+     {
+      "path": "attributes.lead_blocking",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.lead_blocking",
+      "ceiling": 4.9
+     },
+     {
+      "path": "attributes.cut_blocking",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.cut_blocking",
+      "ceiling": 3.5
+     }
+    ]
+   },
+   {
+    "id": "receiver",
+    "fields": [
+     {
+      "path": "attributes.release_against_press",
+      "value": 26.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.release_against_press",
+      "ceiling": 30
+     },
+     {
+      "path": "attributes.route_running_short",
+      "value": 24,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_short",
+      "ceiling": 34.1
+     },
+     {
+      "path": "attributes.route_running_intermediate",
+      "value": 28,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_intermediate",
+      "ceiling": 36.6
+     },
+     {
+      "path": "attributes.route_running_deep",
+      "value": 34.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_deep",
+      "ceiling": 41.4
+     },
+     {
+      "path": "attributes.route_pace_and_stems",
+      "value": 26.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_pace_and_stems",
+      "ceiling": 38.1
+     },
+     {
+      "path": "attributes.zone_awareness",
+      "value": 30.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_awareness",
+      "ceiling": 36.9
+     },
+     {
+      "path": "attributes.contested_catch",
+      "value": 31.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.contested_catch",
+      "ceiling": 35.9
+     },
+     {
+      "path": "attributes.sideline_awareness",
+      "value": 33.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.sideline_awareness",
+      "ceiling": 35.7
+     },
+     {
+      "path": "attributes.run_after_catch",
+      "value": 32.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.run_after_catch",
+      "ceiling": 42.2
+     },
+     {
+      "path": "attributes.stalk_blocking",
+      "value": 34.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stalk_blocking",
+      "ceiling": 44
+     }
+    ]
+   },
+   {
+    "id": "te",
+    "fields": [
+     {
+      "path": "attributes.inline_run_blocking",
+      "value": 0.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.inline_run_blocking",
+      "ceiling": 5.7
+     },
+     {
+      "path": "attributes.combination_blocks",
+      "value": 3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.combination_blocks",
+      "ceiling": 6.2
+     },
+     {
+      "path": "attributes.tight_end_pass_protection",
+      "value": 0.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.tight_end_pass_protection",
+      "ceiling": 8.9
+     },
+     {
+      "path": "attributes.move_blocking",
+      "value": 1.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.move_blocking",
+      "ceiling": 7.3
+     },
+     {
+      "path": "attributes.release_from_the_line",
+      "value": 3.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.release_from_the_line",
+      "ceiling": 11.2
+     }
+    ]
+   },
+   {
+    "id": "ol_pass",
+    "fields": [
+     {
+      "path": "attributes.pass_set",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pass_set",
+      "ceiling": 0
+     },
+     {
+      "path": "attributes.anchor",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.anchor",
+      "ceiling": 1.6
+     },
+     {
+      "path": "attributes.mirror",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.mirror",
+      "ceiling": 3.1
+     },
+     {
+      "path": "attributes.hand_use_in_protection",
+      "value": 1.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hand_use_in_protection",
+      "ceiling": 4.7
+     },
+     {
+      "path": "attributes.stunt_pickup",
+      "value": 5.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stunt_pickup",
+      "ceiling": 8.3
+     }
+    ]
+   },
+   {
+    "id": "ol_run",
+    "fields": [
+     {
+      "path": "attributes.zone_run_blocking",
+      "value": 7.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_run_blocking",
+      "ceiling": 13
+     },
+     {
+      "path": "attributes.gap_run_blocking",
+      "value": 14.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.gap_run_blocking",
+      "ceiling": 24.5
+     },
+     {
+      "path": "attributes.pulling",
+      "value": 11.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pulling",
+      "ceiling": 19.8
+     },
+     {
+      "path": "attributes.second_level_blocking",
+      "value": 9.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.second_level_blocking",
+      "ceiling": 19.1
+     },
+     {
+      "path": "attributes.screen_and_space_blocking",
+      "value": 20.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.screen_and_space_blocking",
+      "ceiling": 25.3
+     },
+     {
+      "path": "attributes.finish",
+      "value": 10.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.finish",
+      "ceiling": 16.9
+     }
+    ]
+   },
+   {
+    "id": "snapping",
+    "fields": [
+     {
+      "path": "attributes.snap_under_center",
+      "value": 24.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_under_center",
+      "ceiling": 30.5
+     },
+     {
+      "path": "attributes.snap_shotgun",
+      "value": 23.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_shotgun",
+      "ceiling": 29.5
+     }
+    ]
+   },
+   {
+    "id": "idl",
+    "fields": [
+     {
+      "path": "attributes.get_off",
+      "value": 4.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.get_off",
+      "ceiling": 11.5
+     },
+     {
+      "path": "attributes.one_gap_penetration",
+      "value": 7.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.one_gap_penetration",
+      "ceiling": 13.7
+     },
+     {
+      "path": "attributes.two_gap_control",
+      "value": 2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.two_gap_control",
+      "ceiling": 9.1
+     },
+     {
+      "path": "attributes.double_team_anchor",
+      "value": 12.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.double_team_anchor",
+      "ceiling": 12.3
+     },
+     {
+      "path": "attributes.power_rush",
+      "value": 11.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.power_rush",
+      "ceiling": 14.7
+     },
+     {
+      "path": "attributes.hand_moves",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hand_moves",
+      "ceiling": 10.8
+     },
+     {
+      "path": "attributes.stunt_execution",
+      "value": 1.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stunt_execution",
+      "ceiling": 8.7
+     },
+     {
+      "path": "attributes.batting_passes",
+      "value": 13.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.batting_passes",
+      "ceiling": 17.5
+     }
+    ]
+   },
+   {
+    "id": "edge",
+    "fields": [
+     {
+      "path": "attributes.speed_rush_and_bend",
+      "value": 19.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.speed_rush_and_bend",
+      "ceiling": 25.4
+     },
+     {
+      "path": "attributes.speed_to_power",
+      "value": 22,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.speed_to_power",
+      "ceiling": 27.4
+     },
+     {
+      "path": "attributes.inside_counter",
+      "value": 12.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.inside_counter",
+      "ceiling": 20.7
+     },
+     {
+      "path": "attributes.edge_setting",
+      "value": 21.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.edge_setting",
+      "ceiling": 25.9
+     },
+     {
+      "path": "attributes.zone_drop",
+      "value": 13.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_drop",
+      "ceiling": 23.9
+     },
+     {
+      "path": "attributes.strip_technique",
+      "value": 24.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.strip_technique",
+      "ceiling": 26.8
+     }
+    ]
+   },
+   {
+    "id": "lb",
+    "fields": [
+     {
+      "path": "attributes.run_fit_technique",
+      "value": 15.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.run_fit_technique",
+      "ceiling": 19.2
+     },
+     {
+      "path": "attributes.taking_on_blocks",
+      "value": 7.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.taking_on_blocks",
+      "ceiling": 13.6
+     },
+     {
+      "path": "attributes.man_coverage_backs_and_tight_ends",
+      "value": 13.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_backs_and_tight_ends",
+      "ceiling": 16.3
+     },
+     {
+      "path": "attributes.blitz_technique",
+      "value": 5.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.blitz_technique",
+      "ceiling": 17.2
+     },
+     {
+      "path": "attributes.ball_skills",
+      "value": 16.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_skills",
+      "ceiling": 17.8
+     }
+    ]
+   },
+   {
+    "id": "coverage",
+    "fields": [
+     {
+      "path": "attributes.press_technique",
+      "value": 42.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.press_technique",
+      "ceiling": 47.6
+     },
+     {
+      "path": "attributes.backpedal_and_transition",
+      "value": 39.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.backpedal_and_transition",
+      "ceiling": 52.6
+     },
+     {
+      "path": "attributes.man_coverage_off",
+      "value": 49.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_off",
+      "ceiling": 50.2
+     },
+     {
+      "path": "attributes.man_coverage_trail",
+      "value": 44.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_trail",
+      "ceiling": 46.9
+     },
+     {
+      "path": "attributes.zone_coverage",
+      "value": 53.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_coverage",
+      "ceiling": 54
+     },
+     {
+      "path": "attributes.pattern_matching",
+      "value": 53,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pattern_matching",
+      "ceiling": 54.8
+     },
+     {
+      "path": "attributes.break_on_the_ball",
+      "value": 42.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.break_on_the_ball",
+      "ceiling": 52.8
+     },
+     {
+      "path": "attributes.slot_play",
+      "value": 44.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.slot_play",
+      "ceiling": 50
+     },
+     {
+      "path": "attributes.run_support",
+      "value": 48.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.run_support",
+      "ceiling": 53.4
+     },
+     {
+      "path": "attributes.range",
+      "value": 47.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.range",
+      "ceiling": 51
+     },
+     {
+      "path": "attributes.man_coverage_tight_ends_and_slots",
+      "value": 54.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_tight_ends_and_slots",
+      "ceiling": 57.2
+     }
+    ]
+   },
+   {
+    "id": "place_kicking",
+    "fields": [
+     {
+      "path": "attributes.leg_strength_place_kick",
+      "value": 17.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.leg_strength_place_kick",
+      "ceiling": 21.7
+     },
+     {
+      "path": "attributes.accuracy_place_kick",
+      "value": 6.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_place_kick",
+      "ceiling": 16.3
+     },
+     {
+      "path": "attributes.kickoff_placement",
+      "value": 15.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kickoff_placement",
+      "ceiling": 21.4
+     },
+     {
+      "path": "attributes.onside_and_specialty_kicks",
+      "value": 9.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.onside_and_specialty_kicks",
+      "ceiling": 18.1
+     }
+    ]
+   },
+   {
+    "id": "punting",
+    "fields": [
+     {
+      "path": "attributes.leg_strength_punt",
+      "value": 18.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.leg_strength_punt",
+      "ceiling": 18.1
+     },
+     {
+      "path": "attributes.hang_time",
+      "value": 12.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hang_time",
+      "ceiling": 21.3
+     },
+     {
+      "path": "attributes.directional_punting",
+      "value": 4.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.directional_punting",
+      "ceiling": 16.1
+     },
+     {
+      "path": "attributes.punt_get_off_time",
+      "value": 19.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.punt_get_off_time",
+      "ceiling": 23.1
+     }
+    ]
+   },
+   {
+    "id": "kicking_shared",
+    "fields": [
+     {
+      "path": "attributes.kicking_consistency",
+      "value": 18.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kicking_consistency",
+      "ceiling": 21.8
+     },
+     {
+      "path": "attributes.holding",
+      "value": 11.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.holding",
+      "ceiling": 17.3
+     }
+    ]
+   },
+   {
+    "id": "long_snapping",
+    "fields": [
+     {
+      "path": "attributes.long_snap",
+      "value": 18.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.long_snap",
+      "ceiling": 28.1
+     }
+    ]
+   },
+   {
+    "id": "returner",
+    "fields": [
+     {
+      "path": "attributes.catching_punts",
+      "value": 37,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.catching_punts",
+      "ceiling": 41.8
+     },
+     {
+      "path": "attributes.catching_kickoffs",
+      "value": 24.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.catching_kickoffs",
+      "ceiling": 32
+     },
+     {
+      "path": "attributes.return_vision",
+      "value": 39.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.return_vision",
+      "ceiling": 43.2
+     }
+    ]
+   },
+   {
+    "id": "core_special_teams",
+    "fields": [
+     {
+      "path": "attributes.coverage_lane_discipline",
+      "value": 34.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_lane_discipline",
+      "ceiling": 36.9
+     },
+     {
+      "path": "attributes.gunner_release",
+      "value": 35.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.gunner_release",
+      "ceiling": 39.2
+     },
+     {
+      "path": "attributes.jammer_technique",
+      "value": 33.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.jammer_technique",
+      "ceiling": 39.6
+     },
+     {
+      "path": "attributes.kick_return_blocking",
+      "value": 32.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kick_return_blocking",
+      "ceiling": 38.3
+     },
+     {
+      "path": "attributes.punt_protection",
+      "value": 38.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.punt_protection",
+      "ceiling": 45.4
+     },
+     {
+      "path": "attributes.kick_blocking",
+      "value": 33.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kick_blocking",
+      "ceiling": 39.3
+     }
+    ]
+   },
+   {
+    "id": "mental",
+    "fields": [
+     {
+      "path": "attributes.play_recognition",
+      "value": 50,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.play_recognition",
+      "ceiling": 56.6
+     },
+     {
+      "path": "attributes.processing_speed",
+      "value": 48.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.processing_speed",
+      "ceiling": 54.8
+     },
+     {
+      "path": "attributes.assignment_discipline",
+      "value": 47.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.assignment_discipline",
+      "ceiling": 56.8
+     },
+     {
+      "path": "attributes.foul_discipline",
+      "value": 52.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.foul_discipline",
+      "ceiling": 62.2
+     },
+     {
+      "path": "attributes.composure",
+      "value": 42.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.composure",
+      "ceiling": 50.2
+     },
+     {
+      "path": "attributes.football_intelligence",
+      "value": 49.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.football_intelligence",
+      "ceiling": 58.1
+     }
+    ]
+   },
+   {
+    "id": "signal_caller",
+    "fields": [
+     {
+      "path": "attributes.coverage_reading_pre_snap",
+      "value": 9.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_reading_pre_snap",
+      "ceiling": 23.7
+     },
+     {
+      "path": "attributes.coverage_reading_post_snap",
+      "value": 19.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_reading_post_snap",
+      "ceiling": 22.5
+     },
+     {
+      "path": "attributes.blitz_recognition",
+      "value": 15.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.blitz_recognition",
+      "ceiling": 27.2
+     },
+     {
+      "path": "attributes.decision_risk",
+      "value": 20.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.decision_risk",
+      "ceiling": 28.8
+     },
+     {
+      "path": "attributes.protection_calls",
+      "value": 21.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.protection_calls",
+      "ceiling": 25.4
+     },
+     {
+      "path": "attributes.audible_judgment",
+      "value": 18.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.audible_judgment",
+      "ceiling": 27.5
+     },
+     {
+      "path": "attributes.front_and_coverage_checks",
+      "value": 23.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.front_and_coverage_checks",
+      "ceiling": 29.4
+     },
+     {
+      "path": "attributes.disguise",
+      "value": 24.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.disguise",
+      "ceiling": 26.3
+     },
+     {
+      "path": "attributes.clock_and_situation_command",
+      "value": 17,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.clock_and_situation_command",
+      "ceiling": 23.6
+     }
+    ]
+   }
+  ],
+  "derived": [
+   {
+    "attribute": "play_strength",
+    "value": 52.8
+   },
+   {
+    "attribute": "explosiveness",
+    "value": 57.7
+   },
+   {
+    "attribute": "stamina",
+    "value": 46.6
+   },
+   {
+    "attribute": "durability",
+    "value": 50
+   }
+  ],
+  "staffGrade": {
+   "text": "6.4 (well watched), position coach, graded 300 snaps of film, last updated season 2030, day 201",
+   "sourceText": "position coach, graded 300 snaps of film, last updated season 2030, day 201"
+  },
+  "warnings": [],
+  "missing": [],
+  "blockers": [],
+  "canCommit": true,
+  "result": null
+ },
+ "warned": {
+  "open": true,
+  "refusal": null,
+  "hasSheet": true,
+  "entry": "archetype",
+  "personId": 100,
+  "position": "OT",
+  "positions": [
+   "QB",
+   "RB",
+   "WR",
+   "TE",
+   "OT",
+   "IOL",
+   "DT",
+   "EDGE",
+   "LB",
+   "CB",
+   "S",
+   "FB",
+   "K",
+   "P",
+   "LS"
+  ],
+  "archetypes": [
+   {
+    "id": "ot_pass_protector",
+    "labelId": "pd.arch.ot_pass_protector"
+   },
+   {
+    "id": "ot_road_grader",
+    "labelId": "pd.arch.ot_road_grader"
+   }
+  ],
+  "archetypeCatalog": {
+   "QB": [
+    {
+     "id": "qb_pocket_passer",
+     "labelId": "pd.arch.qb_pocket_passer"
+    },
+    {
+     "id": "qb_dual_threat",
+     "labelId": "pd.arch.qb_dual_threat"
+    },
+    {
+     "id": "qb_game_manager",
+     "labelId": "pd.arch.qb_game_manager"
+    }
+   ],
+   "RB": [
+    {
+     "id": "rb_power_back",
+     "labelId": "pd.arch.rb_power_back"
+    },
+    {
+     "id": "rb_scat_back",
+     "labelId": "pd.arch.rb_scat_back"
+    },
+    {
+     "id": "rb_three_down_back",
+     "labelId": "pd.arch.rb_three_down_back"
+    }
+   ],
+   "WR": [
+    {
+     "id": "wr_possession",
+     "labelId": "pd.arch.wr_possession"
+    },
+    {
+     "id": "wr_deep_threat",
+     "labelId": "pd.arch.wr_deep_threat"
+    },
+    {
+     "id": "wr_slot",
+     "labelId": "pd.arch.wr_slot"
+    }
+   ],
+   "TE": [
+    {
+     "id": "te_inline_blocker",
+     "labelId": "pd.arch.te_inline_blocker"
+    },
+    {
+     "id": "te_move_receiver",
+     "labelId": "pd.arch.te_move_receiver"
+    }
+   ],
+   "OT": [
+    {
+     "id": "ot_pass_protector",
+     "labelId": "pd.arch.ot_pass_protector"
+    },
+    {
+     "id": "ot_road_grader",
+     "labelId": "pd.arch.ot_road_grader"
+    }
+   ],
+   "IOL": [
+    {
+     "id": "iol_zone_mover",
+     "labelId": "pd.arch.iol_zone_mover"
+    },
+    {
+     "id": "iol_power_anchor",
+     "labelId": "pd.arch.iol_power_anchor"
+    },
+    {
+     "id": "iol_center",
+     "labelId": "pd.arch.iol_center"
+    }
+   ],
+   "DT": [
+    {
+     "id": "dt_nose_tackle",
+     "labelId": "pd.arch.dt_nose_tackle"
+    },
+    {
+     "id": "dt_three_technique",
+     "labelId": "pd.arch.dt_three_technique"
+    }
+   ],
+   "EDGE": [
+    {
+     "id": "edge_wide_nine_speed",
+     "labelId": "pd.arch.edge_wide_nine_speed"
+    },
+    {
+     "id": "edge_power_end",
+     "labelId": "pd.arch.edge_power_end"
+    },
+    {
+     "id": "edge_stand_up_backer",
+     "labelId": "pd.arch.edge_stand_up_backer"
+    }
+   ],
+   "LB": [
+    {
+     "id": "lb_downhill_thumper",
+     "labelId": "pd.arch.lb_downhill_thumper"
+    },
+    {
+     "id": "lb_coverage_backer",
+     "labelId": "pd.arch.lb_coverage_backer"
+    },
+    {
+     "id": "lb_signal_caller",
+     "labelId": "pd.arch.lb_signal_caller"
+    }
+   ],
+   "CB": [
+    {
+     "id": "cb_press_man",
+     "labelId": "pd.arch.cb_press_man"
+    },
+    {
+     "id": "cb_zone",
+     "labelId": "pd.arch.cb_zone"
+    },
+    {
+     "id": "cb_nickel",
+     "labelId": "pd.arch.cb_nickel"
+    }
+   ],
+   "S": [
+    {
+     "id": "s_single_high",
+     "labelId": "pd.arch.s_single_high"
+    },
+    {
+     "id": "s_box_safety",
+     "labelId": "pd.arch.s_box_safety"
+    }
+   ],
+   "FB": [
+    {
+     "id": "fb_standard",
+     "labelId": "pd.arch.fb_standard"
+    }
+   ],
+   "K": [
+    {
+     "id": "k_standard",
+     "labelId": "pd.arch.k_standard"
+    }
+   ],
+   "P": [
+    {
+     "id": "p_standard",
+     "labelId": "pd.arch.p_standard"
+    }
+   ],
+   "LS": [
+    {
+     "id": "ls_standard",
+     "labelId": "pd.arch.ls_standard"
+    }
+   ]
+  },
+  "archetypeId": "ot_road_grader",
+  "realPerson": false,
+  "sandbox": false,
+  "marksWorldEdited": false,
+  "sections": [
+   {
+    "id": "identity",
+    "fields": [
+     {
+      "path": "position",
+      "value": "OT",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "ageYears",
+      "value": 23,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "firstName",
+      "value": "Generated",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "lastName",
+      "value": "Player100",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "homeRegion",
+      "value": "Generated Region",
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "hometown",
+      "value": null,
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "throwingHand",
+      "value": "left",
+      "kind": "side",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "kickingFoot",
+      "value": "right",
+      "kind": "side",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "body",
+    "fields": [
+     {
+      "path": "heightIn",
+      "value": 80.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     },
+     {
+      "path": "weightLb",
+      "value": 330,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     },
+     {
+      "path": "armLengthIn",
+      "value": 36.75,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "handSizeIn",
+      "value": 11.12,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "tests",
+    "fields": [
+     {
+      "path": "tests.fortyS",
+      "value": 4.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     },
+     {
+      "path": "tests.tenSplitS",
+      "value": 1.84,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.threeConeS",
+      "value": 7.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     },
+     {
+      "path": "tests.shuttleS",
+      "value": 4.96,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     },
+     {
+      "path": "tests.verticalIn",
+      "value": 29.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     },
+     {
+      "path": "tests.broadIn",
+      "value": 103,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     },
+     {
+      "path": "tests.benchReps",
+      "value": 24.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": true
+     }
+    ]
+   },
+   {
+    "id": "physical",
+    "fields": [
+     {
+      "path": "attributes.play_strength",
+      "value": 64.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.play_strength",
+      "ceiling": 65.6
+     },
+     {
+      "path": "attributes.explosiveness",
+      "value": 50.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.explosiveness",
+      "ceiling": 50.4
+     },
+     {
+      "path": "attributes.stamina",
+      "value": 38.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stamina",
+      "ceiling": 38.4
+     },
+     {
+      "path": "attributes.durability",
+      "value": 57.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.durability",
+      "ceiling": 57.3
+     }
+    ]
+   },
+   {
+    "id": "carrier_universal",
+    "fields": [
+     {
+      "path": "attributes.ball_security",
+      "value": 14,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_security",
+      "ceiling": 16.7
+     },
+     {
+      "path": "attributes.hands",
+      "value": 2.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hands",
+      "ceiling": 5.9
+     },
+     {
+      "path": "attributes.ball_tracking",
+      "value": 13.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_tracking",
+      "ceiling": 13.2
+     }
+    ]
+   },
+   {
+    "id": "defender_universal",
+    "fields": [
+     {
+      "path": "attributes.tackling",
+      "value": 15.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.tackling",
+      "ceiling": 20
+     },
+     {
+      "path": "attributes.block_shedding",
+      "value": 10,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.block_shedding",
+      "ceiling": 15.2
+     },
+     {
+      "path": "attributes.pursuit_angle",
+      "value": 9.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pursuit_angle",
+      "ceiling": 17.4
+     }
+    ]
+   },
+   {
+    "id": "open_field_blocking",
+    "fields": [
+     {
+      "path": "attributes.open_field_blocking",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.open_field_blocking",
+      "ceiling": 2.7
+     }
+    ]
+   },
+   {
+    "id": "line_universal",
+    "fields": [
+     {
+      "path": "attributes.snap_count_get_off",
+      "value": 38.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_count_get_off",
+      "ceiling": 46.3
+     },
+     {
+      "path": "attributes.pad_level",
+      "value": 36.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pad_level",
+      "ceiling": 37.9
+     }
+    ]
+   },
+   {
+    "id": "qb",
+    "fields": [
+     {
+      "path": "attributes.arm_strength",
+      "value": 13.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.arm_strength",
+      "ceiling": 17
+     },
+     {
+      "path": "attributes.accuracy_short",
+      "value": 18.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_short",
+      "ceiling": 27.6
+     },
+     {
+      "path": "attributes.accuracy_intermediate",
+      "value": 20.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_intermediate",
+      "ceiling": 27.2
+     },
+     {
+      "path": "attributes.accuracy_deep",
+      "value": 23.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_deep",
+      "ceiling": 26.8
+     },
+     {
+      "path": "attributes.accuracy_on_the_move",
+      "value": 22.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_on_the_move",
+      "ceiling": 26.4
+     },
+     {
+      "path": "attributes.accuracy_under_pressure",
+      "value": 16,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_under_pressure",
+      "ceiling": 25.9
+     },
+     {
+      "path": "attributes.release_time",
+      "value": 22.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.release_time",
+      "ceiling": 28.1
+     },
+     {
+      "path": "attributes.anticipation",
+      "value": 12.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.anticipation",
+      "ceiling": 22.3
+     },
+     {
+      "path": "attributes.footwork_and_drop",
+      "value": 12.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.footwork_and_drop",
+      "ceiling": 21.3
+     },
+     {
+      "path": "attributes.pocket_movement",
+      "value": 14,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pocket_movement",
+      "ceiling": 21.9
+     },
+     {
+      "path": "attributes.play_fake_and_ball_handling",
+      "value": 9.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.play_fake_and_ball_handling",
+      "ceiling": 15.7
+     },
+     {
+      "path": "attributes.scramble_and_run_skill",
+      "value": 12,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.scramble_and_run_skill",
+      "ceiling": 21.2
+     },
+     {
+      "path": "attributes.cadence",
+      "value": 14.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.cadence",
+      "ceiling": 14.7
+     },
+     {
+      "path": "attributes.snap_handling",
+      "value": 14.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_handling",
+      "ceiling": 17.8
+     }
+    ]
+   },
+   {
+    "id": "rb",
+    "fields": [
+     {
+      "path": "attributes.vision_zone",
+      "value": 30.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.vision_zone",
+      "ceiling": 30.6
+     },
+     {
+      "path": "attributes.vision_gap",
+      "value": 31.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.vision_gap",
+      "ceiling": 34.7
+     },
+     {
+      "path": "attributes.patience_and_tempo",
+      "value": 16.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.patience_and_tempo",
+      "ceiling": 29.2
+     },
+     {
+      "path": "attributes.elusiveness",
+      "value": 23.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.elusiveness",
+      "ceiling": 28.1
+     },
+     {
+      "path": "attributes.contact_balance",
+      "value": 24.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.contact_balance",
+      "ceiling": 28.2
+     },
+     {
+      "path": "attributes.power_finish",
+      "value": 32,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.power_finish",
+      "ceiling": 32.8
+     },
+     {
+      "path": "attributes.route_running_backfield",
+      "value": 19.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_backfield",
+      "ceiling": 25.7
+     },
+     {
+      "path": "attributes.pass_protection_technique",
+      "value": 20,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pass_protection_technique",
+      "ceiling": 24.2
+     }
+    ]
+   },
+   {
+    "id": "fb",
+    "fields": [
+     {
+      "path": "attributes.lead_blocking",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.lead_blocking",
+      "ceiling": 4.9
+     },
+     {
+      "path": "attributes.cut_blocking",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.cut_blocking",
+      "ceiling": 3.5
+     }
+    ]
+   },
+   {
+    "id": "receiver",
+    "fields": [
+     {
+      "path": "attributes.release_against_press",
+      "value": 26.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.release_against_press",
+      "ceiling": 30
+     },
+     {
+      "path": "attributes.route_running_short",
+      "value": 24,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_short",
+      "ceiling": 34.1
+     },
+     {
+      "path": "attributes.route_running_intermediate",
+      "value": 28,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_intermediate",
+      "ceiling": 36.6
+     },
+     {
+      "path": "attributes.route_running_deep",
+      "value": 34.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_deep",
+      "ceiling": 41.4
+     },
+     {
+      "path": "attributes.route_pace_and_stems",
+      "value": 26.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.route_pace_and_stems",
+      "ceiling": 38.1
+     },
+     {
+      "path": "attributes.zone_awareness",
+      "value": 30.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_awareness",
+      "ceiling": 36.9
+     },
+     {
+      "path": "attributes.contested_catch",
+      "value": 31.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.contested_catch",
+      "ceiling": 35.9
+     },
+     {
+      "path": "attributes.sideline_awareness",
+      "value": 33.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.sideline_awareness",
+      "ceiling": 35.7
+     },
+     {
+      "path": "attributes.run_after_catch",
+      "value": 32.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.run_after_catch",
+      "ceiling": 42.2
+     },
+     {
+      "path": "attributes.stalk_blocking",
+      "value": 34.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stalk_blocking",
+      "ceiling": 44
+     }
+    ]
+   },
+   {
+    "id": "te",
+    "fields": [
+     {
+      "path": "attributes.inline_run_blocking",
+      "value": 0.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.inline_run_blocking",
+      "ceiling": 5.7
+     },
+     {
+      "path": "attributes.combination_blocks",
+      "value": 3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.combination_blocks",
+      "ceiling": 6.2
+     },
+     {
+      "path": "attributes.tight_end_pass_protection",
+      "value": 0.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.tight_end_pass_protection",
+      "ceiling": 8.9
+     },
+     {
+      "path": "attributes.move_blocking",
+      "value": 1.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.move_blocking",
+      "ceiling": 7.3
+     },
+     {
+      "path": "attributes.release_from_the_line",
+      "value": 3.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.release_from_the_line",
+      "ceiling": 11.2
+     }
+    ]
+   },
+   {
+    "id": "ol_pass",
+    "fields": [
+     {
+      "path": "attributes.pass_set",
+      "value": 29.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pass_set",
+      "ceiling": 31.4
+     },
+     {
+      "path": "attributes.anchor",
+      "value": 29.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.anchor",
+      "ceiling": 34.6
+     },
+     {
+      "path": "attributes.mirror",
+      "value": 30.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.mirror",
+      "ceiling": 36.1
+     },
+     {
+      "path": "attributes.hand_use_in_protection",
+      "value": 34.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hand_use_in_protection",
+      "ceiling": 37.7
+     },
+     {
+      "path": "attributes.stunt_pickup",
+      "value": 38.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stunt_pickup",
+      "ceiling": 41.3
+     }
+    ]
+   },
+   {
+    "id": "ol_run",
+    "fields": [
+     {
+      "path": "attributes.zone_run_blocking",
+      "value": 44.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_run_blocking",
+      "ceiling": 50
+     },
+     {
+      "path": "attributes.gap_run_blocking",
+      "value": 51.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.gap_run_blocking",
+      "ceiling": 61.5
+     },
+     {
+      "path": "attributes.pulling",
+      "value": 48.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pulling",
+      "ceiling": 56.8
+     },
+     {
+      "path": "attributes.second_level_blocking",
+      "value": 46.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.second_level_blocking",
+      "ceiling": 56.1
+     },
+     {
+      "path": "attributes.screen_and_space_blocking",
+      "value": 57.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.screen_and_space_blocking",
+      "ceiling": 62.3
+     },
+     {
+      "path": "attributes.finish",
+      "value": 47.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.finish",
+      "ceiling": 53.9
+     }
+    ]
+   },
+   {
+    "id": "snapping",
+    "fields": [
+     {
+      "path": "attributes.snap_under_center",
+      "value": 24.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_under_center",
+      "ceiling": 30.5
+     },
+     {
+      "path": "attributes.snap_shotgun",
+      "value": 23.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_shotgun",
+      "ceiling": 29.5
+     }
+    ]
+   },
+   {
+    "id": "idl",
+    "fields": [
+     {
+      "path": "attributes.get_off",
+      "value": 4.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.get_off",
+      "ceiling": 11.5
+     },
+     {
+      "path": "attributes.one_gap_penetration",
+      "value": 7.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.one_gap_penetration",
+      "ceiling": 13.7
+     },
+     {
+      "path": "attributes.two_gap_control",
+      "value": 2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.two_gap_control",
+      "ceiling": 9.1
+     },
+     {
+      "path": "attributes.double_team_anchor",
+      "value": 12.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.double_team_anchor",
+      "ceiling": 12.3
+     },
+     {
+      "path": "attributes.power_rush",
+      "value": 11.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.power_rush",
+      "ceiling": 14.7
+     },
+     {
+      "path": "attributes.hand_moves",
+      "value": 0,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hand_moves",
+      "ceiling": 10.8
+     },
+     {
+      "path": "attributes.stunt_execution",
+      "value": 1.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.stunt_execution",
+      "ceiling": 8.7
+     },
+     {
+      "path": "attributes.batting_passes",
+      "value": 13.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.batting_passes",
+      "ceiling": 17.5
+     }
+    ]
+   },
+   {
+    "id": "edge",
+    "fields": [
+     {
+      "path": "attributes.speed_rush_and_bend",
+      "value": 19.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.speed_rush_and_bend",
+      "ceiling": 25.4
+     },
+     {
+      "path": "attributes.speed_to_power",
+      "value": 22,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.speed_to_power",
+      "ceiling": 27.4
+     },
+     {
+      "path": "attributes.inside_counter",
+      "value": 12.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.inside_counter",
+      "ceiling": 20.7
+     },
+     {
+      "path": "attributes.edge_setting",
+      "value": 21.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.edge_setting",
+      "ceiling": 25.9
+     },
+     {
+      "path": "attributes.zone_drop",
+      "value": 13.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_drop",
+      "ceiling": 23.9
+     },
+     {
+      "path": "attributes.strip_technique",
+      "value": 24.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.strip_technique",
+      "ceiling": 26.8
+     }
+    ]
+   },
+   {
+    "id": "lb",
+    "fields": [
+     {
+      "path": "attributes.run_fit_technique",
+      "value": 15.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.run_fit_technique",
+      "ceiling": 19.2
+     },
+     {
+      "path": "attributes.taking_on_blocks",
+      "value": 7.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.taking_on_blocks",
+      "ceiling": 13.6
+     },
+     {
+      "path": "attributes.man_coverage_backs_and_tight_ends",
+      "value": 13.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_backs_and_tight_ends",
+      "ceiling": 16.3
+     },
+     {
+      "path": "attributes.blitz_technique",
+      "value": 5.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.blitz_technique",
+      "ceiling": 17.2
+     },
+     {
+      "path": "attributes.ball_skills",
+      "value": 16.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_skills",
+      "ceiling": 17.8
+     }
+    ]
+   },
+   {
+    "id": "coverage",
+    "fields": [
+     {
+      "path": "attributes.press_technique",
+      "value": 8.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.press_technique",
+      "ceiling": 12.9
+     },
+     {
+      "path": "attributes.backpedal_and_transition",
+      "value": 5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.backpedal_and_transition",
+      "ceiling": 17.9
+     },
+     {
+      "path": "attributes.man_coverage_off",
+      "value": 14.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_off",
+      "ceiling": 15.5
+     },
+     {
+      "path": "attributes.man_coverage_trail",
+      "value": 9.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_trail",
+      "ceiling": 12.2
+     },
+     {
+      "path": "attributes.zone_coverage",
+      "value": 18.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_coverage",
+      "ceiling": 19.3
+     },
+     {
+      "path": "attributes.pattern_matching",
+      "value": 18.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.pattern_matching",
+      "ceiling": 20.1
+     },
+     {
+      "path": "attributes.break_on_the_ball",
+      "value": 7.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.break_on_the_ball",
+      "ceiling": 18.1
+     },
+     {
+      "path": "attributes.slot_play",
+      "value": 9.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.slot_play",
+      "ceiling": 15.3
+     },
+     {
+      "path": "attributes.run_support",
+      "value": 13.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.run_support",
+      "ceiling": 18.7
+     },
+     {
+      "path": "attributes.range",
+      "value": 12.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.range",
+      "ceiling": 16.3
+     },
+     {
+      "path": "attributes.man_coverage_tight_ends_and_slots",
+      "value": 20.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_tight_ends_and_slots",
+      "ceiling": 22.5
+     }
+    ]
+   },
+   {
+    "id": "place_kicking",
+    "fields": [
+     {
+      "path": "attributes.leg_strength_place_kick",
+      "value": 17.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.leg_strength_place_kick",
+      "ceiling": 21.7
+     },
+     {
+      "path": "attributes.accuracy_place_kick",
+      "value": 6.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_place_kick",
+      "ceiling": 16.3
+     },
+     {
+      "path": "attributes.kickoff_placement",
+      "value": 15.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kickoff_placement",
+      "ceiling": 21.4
+     },
+     {
+      "path": "attributes.onside_and_specialty_kicks",
+      "value": 9.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.onside_and_specialty_kicks",
+      "ceiling": 18.1
+     }
+    ]
+   },
+   {
+    "id": "punting",
+    "fields": [
+     {
+      "path": "attributes.leg_strength_punt",
+      "value": 18.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.leg_strength_punt",
+      "ceiling": 18.1
+     },
+     {
+      "path": "attributes.hang_time",
+      "value": 12.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.hang_time",
+      "ceiling": 21.3
+     },
+     {
+      "path": "attributes.directional_punting",
+      "value": 4.2,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.directional_punting",
+      "ceiling": 16.1
+     },
+     {
+      "path": "attributes.punt_get_off_time",
+      "value": 19.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.punt_get_off_time",
+      "ceiling": 23.1
+     }
+    ]
+   },
+   {
+    "id": "kicking_shared",
+    "fields": [
+     {
+      "path": "attributes.kicking_consistency",
+      "value": 18.4,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kicking_consistency",
+      "ceiling": 21.8
+     },
+     {
+      "path": "attributes.holding",
+      "value": 11.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.holding",
+      "ceiling": 17.3
+     }
+    ]
+   },
+   {
+    "id": "long_snapping",
+    "fields": [
+     {
+      "path": "attributes.long_snap",
+      "value": 18.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.long_snap",
+      "ceiling": 28.1
+     }
+    ]
+   },
+   {
+    "id": "returner",
+    "fields": [
+     {
+      "path": "attributes.catching_punts",
+      "value": 17,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.catching_punts",
+      "ceiling": 21.8
+     },
+     {
+      "path": "attributes.catching_kickoffs",
+      "value": 4.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.catching_kickoffs",
+      "ceiling": 12
+     },
+     {
+      "path": "attributes.return_vision",
+      "value": 19.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.return_vision",
+      "ceiling": 23.2
+     }
+    ]
+   },
+   {
+    "id": "core_special_teams",
+    "fields": [
+     {
+      "path": "attributes.coverage_lane_discipline",
+      "value": 14.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_lane_discipline",
+      "ceiling": 16.9
+     },
+     {
+      "path": "attributes.gunner_release",
+      "value": 15.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.gunner_release",
+      "ceiling": 19.2
+     },
+     {
+      "path": "attributes.jammer_technique",
+      "value": 13.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.jammer_technique",
+      "ceiling": 19.6
+     },
+     {
+      "path": "attributes.kick_return_blocking",
+      "value": 12.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kick_return_blocking",
+      "ceiling": 18.3
+     },
+     {
+      "path": "attributes.punt_protection",
+      "value": 18.7,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.punt_protection",
+      "ceiling": 25.4
+     },
+     {
+      "path": "attributes.kick_blocking",
+      "value": 13.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.kick_blocking",
+      "ceiling": 19.3
+     }
+    ]
+   },
+   {
+    "id": "mental",
+    "fields": [
+     {
+      "path": "attributes.play_recognition",
+      "value": 51,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.play_recognition",
+      "ceiling": 57.6
+     },
+     {
+      "path": "attributes.processing_speed",
+      "value": 49.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.processing_speed",
+      "ceiling": 55.8
+     },
+     {
+      "path": "attributes.assignment_discipline",
+      "value": 48.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.assignment_discipline",
+      "ceiling": 57.8
+     },
+     {
+      "path": "attributes.foul_discipline",
+      "value": 53.6,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.foul_discipline",
+      "ceiling": 63.2
+     },
+     {
+      "path": "attributes.composure",
+      "value": 43.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.composure",
+      "ceiling": 51.2
+     },
+     {
+      "path": "attributes.football_intelligence",
+      "value": 50.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.football_intelligence",
+      "ceiling": 59.1
+     }
+    ]
+   },
+   {
+    "id": "signal_caller",
+    "fields": [
+     {
+      "path": "attributes.coverage_reading_pre_snap",
+      "value": 9.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_reading_pre_snap",
+      "ceiling": 23.7
+     },
+     {
+      "path": "attributes.coverage_reading_post_snap",
+      "value": 19.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_reading_post_snap",
+      "ceiling": 22.5
+     },
+     {
+      "path": "attributes.blitz_recognition",
+      "value": 15.8,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.blitz_recognition",
+      "ceiling": 27.2
+     },
+     {
+      "path": "attributes.decision_risk",
+      "value": 20.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.decision_risk",
+      "ceiling": 28.8
+     },
+     {
+      "path": "attributes.protection_calls",
+      "value": 21.3,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.protection_calls",
+      "ceiling": 25.4
+     },
+     {
+      "path": "attributes.audible_judgment",
+      "value": 18.1,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.audible_judgment",
+      "ceiling": 27.5
+     },
+     {
+      "path": "attributes.front_and_coverage_checks",
+      "value": 23.9,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.front_and_coverage_checks",
+      "ceiling": 29.4
+     },
+     {
+      "path": "attributes.disguise",
+      "value": 24.5,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.disguise",
+      "ceiling": 26.3
+     },
+     {
+      "path": "attributes.clock_and_situation_command",
+      "value": 17,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false,
+      "ceilingPath": "ceilings.clock_and_situation_command",
+      "ceiling": 23.6
+     }
+    ]
+   }
+  ],
+  "derived": [
+   {
+    "attribute": "play_strength",
+    "value": 53.6
+   },
+   {
+    "attribute": "explosiveness",
+    "value": 50
+   },
+   {
+    "attribute": "stamina",
+    "value": 46.9
+   },
+   {
+    "attribute": "durability",
+    "value": 50
+   }
+  ],
+  "staffGrade": {
+   "text": "6.3 (well watched), position coach, graded 300 snaps of film, last updated season 2030, day 201",
+   "sourceText": "position coach, graded 300 snaps of film, last updated season 2030, day 201"
+  },
+  "warnings": [
+   {
+    "fields": [
+     "tests.fortyS"
+    ],
+    "kind": "z",
+    "value": 4.3,
+    "oneIn": 1083665
+   },
+   {
+    "fields": [
+     "heightIn",
+     "tests.fortyS"
+    ],
+    "kind": "joint",
+    "value": 30.7599077957631,
+    "oneIn": 4780013
+   },
+   {
+    "fields": [
+     "weightLb",
+     "tests.fortyS"
+    ],
+    "kind": "joint",
+    "value": 34.82479520135501,
+    "oneIn": 36484483
+   },
+   {
+    "fields": [
+     "tests.fortyS",
+     "tests.verticalIn"
+    ],
+    "kind": "joint",
+    "value": 29.717330654846407,
+    "oneIn": 2838157
+   },
+   {
+    "fields": [
+     "tests.fortyS",
+     "tests.broadIn"
+    ],
+    "kind": "joint",
+    "value": 43.41939843419844,
+    "oneIn": 2681652959
+   },
+   {
+    "fields": [
+     "tests.fortyS",
+     "tests.threeConeS"
+    ],
+    "kind": "joint",
+    "value": 34.40244729943821,
+    "oneIn": 29539049
+   },
+   {
+    "fields": [
+     "tests.fortyS",
+     "tests.shuttleS"
+    ],
+    "kind": "joint",
+    "value": 39.507470496391605,
+    "oneIn": 379261026
+   },
+   {
+    "fields": [
+     "tests.fortyS",
+     "tests.benchReps"
+    ],
+    "kind": "joint",
+    "value": 25.150684989811783,
+    "oneIn": 289336
+   }
+  ],
+  "missing": [],
+  "blockers": [
+   "warnings"
+  ],
+  "canCommit": false,
+  "result": null
+ },
+ "blank": {
+  "open": true,
+  "refusal": null,
+  "hasSheet": true,
+  "entry": "blank",
+  "personId": 100,
+  "position": null,
+  "positions": [
+   "QB",
+   "RB",
+   "WR",
+   "TE",
+   "OT",
+   "IOL",
+   "DT",
+   "EDGE",
+   "LB",
+   "CB",
+   "S",
+   "FB",
+   "K",
+   "P",
+   "LS"
+  ],
+  "archetypes": [],
+  "archetypeCatalog": {
+   "QB": [
+    {
+     "id": "qb_pocket_passer",
+     "labelId": "pd.arch.qb_pocket_passer"
+    },
+    {
+     "id": "qb_dual_threat",
+     "labelId": "pd.arch.qb_dual_threat"
+    },
+    {
+     "id": "qb_game_manager",
+     "labelId": "pd.arch.qb_game_manager"
+    }
+   ],
+   "RB": [
+    {
+     "id": "rb_power_back",
+     "labelId": "pd.arch.rb_power_back"
+    },
+    {
+     "id": "rb_scat_back",
+     "labelId": "pd.arch.rb_scat_back"
+    },
+    {
+     "id": "rb_three_down_back",
+     "labelId": "pd.arch.rb_three_down_back"
+    }
+   ],
+   "WR": [
+    {
+     "id": "wr_possession",
+     "labelId": "pd.arch.wr_possession"
+    },
+    {
+     "id": "wr_deep_threat",
+     "labelId": "pd.arch.wr_deep_threat"
+    },
+    {
+     "id": "wr_slot",
+     "labelId": "pd.arch.wr_slot"
+    }
+   ],
+   "TE": [
+    {
+     "id": "te_inline_blocker",
+     "labelId": "pd.arch.te_inline_blocker"
+    },
+    {
+     "id": "te_move_receiver",
+     "labelId": "pd.arch.te_move_receiver"
+    }
+   ],
+   "OT": [
+    {
+     "id": "ot_pass_protector",
+     "labelId": "pd.arch.ot_pass_protector"
+    },
+    {
+     "id": "ot_road_grader",
+     "labelId": "pd.arch.ot_road_grader"
+    }
+   ],
+   "IOL": [
+    {
+     "id": "iol_zone_mover",
+     "labelId": "pd.arch.iol_zone_mover"
+    },
+    {
+     "id": "iol_power_anchor",
+     "labelId": "pd.arch.iol_power_anchor"
+    },
+    {
+     "id": "iol_center",
+     "labelId": "pd.arch.iol_center"
+    }
+   ],
+   "DT": [
+    {
+     "id": "dt_nose_tackle",
+     "labelId": "pd.arch.dt_nose_tackle"
+    },
+    {
+     "id": "dt_three_technique",
+     "labelId": "pd.arch.dt_three_technique"
+    }
+   ],
+   "EDGE": [
+    {
+     "id": "edge_wide_nine_speed",
+     "labelId": "pd.arch.edge_wide_nine_speed"
+    },
+    {
+     "id": "edge_power_end",
+     "labelId": "pd.arch.edge_power_end"
+    },
+    {
+     "id": "edge_stand_up_backer",
+     "labelId": "pd.arch.edge_stand_up_backer"
+    }
+   ],
+   "LB": [
+    {
+     "id": "lb_downhill_thumper",
+     "labelId": "pd.arch.lb_downhill_thumper"
+    },
+    {
+     "id": "lb_coverage_backer",
+     "labelId": "pd.arch.lb_coverage_backer"
+    },
+    {
+     "id": "lb_signal_caller",
+     "labelId": "pd.arch.lb_signal_caller"
+    }
+   ],
+   "CB": [
+    {
+     "id": "cb_press_man",
+     "labelId": "pd.arch.cb_press_man"
+    },
+    {
+     "id": "cb_zone",
+     "labelId": "pd.arch.cb_zone"
+    },
+    {
+     "id": "cb_nickel",
+     "labelId": "pd.arch.cb_nickel"
+    }
+   ],
+   "S": [
+    {
+     "id": "s_single_high",
+     "labelId": "pd.arch.s_single_high"
+    },
+    {
+     "id": "s_box_safety",
+     "labelId": "pd.arch.s_box_safety"
+    }
+   ],
+   "FB": [
+    {
+     "id": "fb_standard",
+     "labelId": "pd.arch.fb_standard"
+    }
+   ],
+   "K": [
+    {
+     "id": "k_standard",
+     "labelId": "pd.arch.k_standard"
+    }
+   ],
+   "P": [
+    {
+     "id": "p_standard",
+     "labelId": "pd.arch.p_standard"
+    }
+   ],
+   "LS": [
+    {
+     "id": "ls_standard",
+     "labelId": "pd.arch.ls_standard"
+    }
+   ]
+  },
+  "archetypeId": null,
+  "realPerson": false,
+  "sandbox": false,
+  "marksWorldEdited": true,
+  "sections": [
+   {
+    "id": "identity",
+    "fields": [
+     {
+      "path": "position",
+      "value": null,
+      "kind": "text",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "ageYears",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "firstName",
+      "value": null,
+      "kind": "text",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "lastName",
+      "value": null,
+      "kind": "text",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "homeRegion",
+      "value": null,
+      "kind": "text",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "hometown",
+      "value": null,
+      "kind": "text",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "throwingHand",
+      "value": "right",
+      "kind": "side",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "kickingFoot",
+      "value": "right",
+      "kind": "side",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "body",
+    "fields": [
+     {
+      "path": "heightIn",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "weightLb",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "armLengthIn",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "handSizeIn",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "tests",
+    "fields": [
+     {
+      "path": "tests.fortyS",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false
+     },
+     {
+      "path": "tests.tenSplitS",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.threeConeS",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.shuttleS",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.verticalIn",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.broadIn",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     },
+     {
+      "path": "tests.benchReps",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": false,
+      "warned": false
+     }
+    ]
+   },
+   {
+    "id": "physical",
+    "fields": [
+     {
+      "path": "attributes.play_strength",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.play_strength",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.explosiveness",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.explosiveness",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.stamina",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.stamina",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.durability",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.durability",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "carrier_universal",
+    "fields": [
+     {
+      "path": "attributes.ball_security",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_security",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.hands",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.hands",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.ball_tracking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_tracking",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "defender_universal",
+    "fields": [
+     {
+      "path": "attributes.tackling",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.tackling",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.block_shedding",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.block_shedding",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.pursuit_angle",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.pursuit_angle",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "open_field_blocking",
+    "fields": [
+     {
+      "path": "attributes.open_field_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.open_field_blocking",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "line_universal",
+    "fields": [
+     {
+      "path": "attributes.snap_count_get_off",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_count_get_off",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.pad_level",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.pad_level",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "qb",
+    "fields": [
+     {
+      "path": "attributes.arm_strength",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.arm_strength",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.accuracy_short",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_short",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.accuracy_intermediate",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_intermediate",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.accuracy_deep",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_deep",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.accuracy_on_the_move",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_on_the_move",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.accuracy_under_pressure",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_under_pressure",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.release_time",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.release_time",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.anticipation",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.anticipation",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.footwork_and_drop",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.footwork_and_drop",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.pocket_movement",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.pocket_movement",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.play_fake_and_ball_handling",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.play_fake_and_ball_handling",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.scramble_and_run_skill",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.scramble_and_run_skill",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.cadence",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.cadence",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.snap_handling",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_handling",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "rb",
+    "fields": [
+     {
+      "path": "attributes.vision_zone",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.vision_zone",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.vision_gap",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.vision_gap",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.patience_and_tempo",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.patience_and_tempo",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.elusiveness",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.elusiveness",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.contact_balance",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.contact_balance",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.power_finish",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.power_finish",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.route_running_backfield",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_backfield",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.pass_protection_technique",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.pass_protection_technique",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "fb",
+    "fields": [
+     {
+      "path": "attributes.lead_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.lead_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.cut_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.cut_blocking",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "receiver",
+    "fields": [
+     {
+      "path": "attributes.release_against_press",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.release_against_press",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.route_running_short",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_short",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.route_running_intermediate",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_intermediate",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.route_running_deep",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.route_running_deep",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.route_pace_and_stems",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.route_pace_and_stems",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.zone_awareness",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_awareness",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.contested_catch",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.contested_catch",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.sideline_awareness",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.sideline_awareness",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.run_after_catch",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.run_after_catch",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.stalk_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.stalk_blocking",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "te",
+    "fields": [
+     {
+      "path": "attributes.inline_run_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.inline_run_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.combination_blocks",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.combination_blocks",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.tight_end_pass_protection",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.tight_end_pass_protection",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.move_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.move_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.release_from_the_line",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.release_from_the_line",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "ol_pass",
+    "fields": [
+     {
+      "path": "attributes.pass_set",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.pass_set",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.anchor",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.anchor",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.mirror",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.mirror",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.hand_use_in_protection",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.hand_use_in_protection",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.stunt_pickup",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.stunt_pickup",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "ol_run",
+    "fields": [
+     {
+      "path": "attributes.zone_run_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_run_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.gap_run_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.gap_run_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.pulling",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.pulling",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.second_level_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.second_level_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.screen_and_space_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.screen_and_space_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.finish",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.finish",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "snapping",
+    "fields": [
+     {
+      "path": "attributes.snap_under_center",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_under_center",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.snap_shotgun",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.snap_shotgun",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "idl",
+    "fields": [
+     {
+      "path": "attributes.get_off",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.get_off",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.one_gap_penetration",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.one_gap_penetration",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.two_gap_control",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.two_gap_control",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.double_team_anchor",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.double_team_anchor",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.power_rush",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.power_rush",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.hand_moves",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.hand_moves",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.stunt_execution",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.stunt_execution",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.batting_passes",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.batting_passes",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "edge",
+    "fields": [
+     {
+      "path": "attributes.speed_rush_and_bend",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.speed_rush_and_bend",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.speed_to_power",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.speed_to_power",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.inside_counter",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.inside_counter",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.edge_setting",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.edge_setting",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.zone_drop",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_drop",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.strip_technique",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.strip_technique",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "lb",
+    "fields": [
+     {
+      "path": "attributes.run_fit_technique",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.run_fit_technique",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.taking_on_blocks",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.taking_on_blocks",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.man_coverage_backs_and_tight_ends",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_backs_and_tight_ends",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.blitz_technique",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.blitz_technique",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.ball_skills",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.ball_skills",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "coverage",
+    "fields": [
+     {
+      "path": "attributes.press_technique",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.press_technique",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.backpedal_and_transition",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.backpedal_and_transition",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.man_coverage_off",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_off",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.man_coverage_trail",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_trail",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.zone_coverage",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.zone_coverage",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.pattern_matching",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.pattern_matching",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.break_on_the_ball",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.break_on_the_ball",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.slot_play",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.slot_play",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.run_support",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.run_support",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.range",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.range",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.man_coverage_tight_ends_and_slots",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.man_coverage_tight_ends_and_slots",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "place_kicking",
+    "fields": [
+     {
+      "path": "attributes.leg_strength_place_kick",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.leg_strength_place_kick",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.accuracy_place_kick",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.accuracy_place_kick",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.kickoff_placement",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.kickoff_placement",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.onside_and_specialty_kicks",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.onside_and_specialty_kicks",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "punting",
+    "fields": [
+     {
+      "path": "attributes.leg_strength_punt",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.leg_strength_punt",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.hang_time",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.hang_time",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.directional_punting",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.directional_punting",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.punt_get_off_time",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.punt_get_off_time",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "kicking_shared",
+    "fields": [
+     {
+      "path": "attributes.kicking_consistency",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.kicking_consistency",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.holding",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.holding",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "long_snapping",
+    "fields": [
+     {
+      "path": "attributes.long_snap",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.long_snap",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "returner",
+    "fields": [
+     {
+      "path": "attributes.catching_punts",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.catching_punts",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.catching_kickoffs",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.catching_kickoffs",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.return_vision",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.return_vision",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "core_special_teams",
+    "fields": [
+     {
+      "path": "attributes.coverage_lane_discipline",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_lane_discipline",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.gunner_release",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.gunner_release",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.jammer_technique",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.jammer_technique",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.kick_return_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.kick_return_blocking",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.punt_protection",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.punt_protection",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.kick_blocking",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.kick_blocking",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "mental",
+    "fields": [
+     {
+      "path": "attributes.play_recognition",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.play_recognition",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.processing_speed",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.processing_speed",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.assignment_discipline",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.assignment_discipline",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.foul_discipline",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.foul_discipline",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.composure",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.composure",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.football_intelligence",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.football_intelligence",
+      "ceiling": null
+     }
+    ]
+   },
+   {
+    "id": "signal_caller",
+    "fields": [
+     {
+      "path": "attributes.coverage_reading_pre_snap",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_reading_pre_snap",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.coverage_reading_post_snap",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.coverage_reading_post_snap",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.blitz_recognition",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.blitz_recognition",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.decision_risk",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.decision_risk",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.protection_calls",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.protection_calls",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.audible_judgment",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.audible_judgment",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.front_and_coverage_checks",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.front_and_coverage_checks",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.disguise",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.disguise",
+      "ceiling": null
+     },
+     {
+      "path": "attributes.clock_and_situation_command",
+      "value": null,
+      "kind": "number",
+      "locked": false,
+      "missing": true,
+      "warned": false,
+      "ceilingPath": "ceilings.clock_and_situation_command",
+      "ceiling": null
+     }
+    ]
+   }
+  ],
+  "derived": [],
+  "staffGrade": null,
+  "warnings": [],
+  "missing": [
+   "position",
+   "ageYears",
+   "firstName",
+   "lastName",
+   "homeRegion",
+   "heightIn",
+   "weightLb",
+   "tests.fortyS",
+   "attributes.play_strength",
+   "attributes.explosiveness",
+   "attributes.stamina",
+   "attributes.durability",
+   "attributes.tackling",
+   "attributes.block_shedding",
+   "attributes.ball_security",
+   "attributes.hands",
+   "attributes.ball_tracking",
+   "attributes.open_field_blocking",
+   "attributes.pursuit_angle",
+   "attributes.snap_count_get_off",
+   "attributes.pad_level",
+   "attributes.arm_strength",
+   "attributes.accuracy_short",
+   "attributes.accuracy_intermediate",
+   "attributes.accuracy_deep",
+   "attributes.accuracy_on_the_move",
+   "attributes.accuracy_under_pressure",
+   "attributes.release_time",
+   "attributes.anticipation",
+   "attributes.footwork_and_drop",
+   "attributes.pocket_movement",
+   "attributes.play_fake_and_ball_handling",
+   "attributes.scramble_and_run_skill",
+   "attributes.cadence",
+   "attributes.snap_handling",
+   "attributes.vision_zone",
+   "attributes.vision_gap",
+   "attributes.patience_and_tempo",
+   "attributes.elusiveness",
+   "attributes.contact_balance",
+   "attributes.power_finish",
+   "attributes.route_running_backfield",
+   "attributes.pass_protection_technique",
+   "attributes.lead_blocking",
+   "attributes.cut_blocking",
+   "attributes.release_against_press",
+   "attributes.route_running_short",
+   "attributes.route_running_intermediate",
+   "attributes.route_running_deep",
+   "attributes.route_pace_and_stems",
+   "attributes.zone_awareness",
+   "attributes.contested_catch",
+   "attributes.sideline_awareness",
+   "attributes.run_after_catch",
+   "attributes.stalk_blocking",
+   "attributes.inline_run_blocking",
+   "attributes.combination_blocks",
+   "attributes.tight_end_pass_protection",
+   "attributes.move_blocking",
+   "attributes.release_from_the_line",
+   "attributes.pass_set",
+   "attributes.anchor",
+   "attributes.mirror",
+   "attributes.hand_use_in_protection",
+   "attributes.stunt_pickup",
+   "attributes.zone_run_blocking",
+   "attributes.gap_run_blocking",
+   "attributes.pulling",
+   "attributes.second_level_blocking",
+   "attributes.screen_and_space_blocking",
+   "attributes.finish",
+   "attributes.snap_under_center",
+   "attributes.snap_shotgun",
+   "attributes.get_off",
+   "attributes.one_gap_penetration",
+   "attributes.two_gap_control",
+   "attributes.double_team_anchor",
+   "attributes.power_rush",
+   "attributes.hand_moves",
+   "attributes.stunt_execution",
+   "attributes.batting_passes",
+   "attributes.speed_rush_and_bend",
+   "attributes.speed_to_power",
+   "attributes.inside_counter",
+   "attributes.edge_setting",
+   "attributes.zone_drop",
+   "attributes.strip_technique",
+   "attributes.run_fit_technique",
+   "attributes.taking_on_blocks",
+   "attributes.man_coverage_backs_and_tight_ends",
+   "attributes.blitz_technique",
+   "attributes.ball_skills",
+   "attributes.press_technique",
+   "attributes.backpedal_and_transition",
+   "attributes.man_coverage_off",
+   "attributes.man_coverage_trail",
+   "attributes.zone_coverage",
+   "attributes.pattern_matching",
+   "attributes.break_on_the_ball",
+   "attributes.slot_play",
+   "attributes.run_support",
+   "attributes.range",
+   "attributes.man_coverage_tight_ends_and_slots",
+   "attributes.leg_strength_place_kick",
+   "attributes.accuracy_place_kick",
+   "attributes.kickoff_placement",
+   "attributes.onside_and_specialty_kicks",
+   "attributes.leg_strength_punt",
+   "attributes.hang_time",
+   "attributes.directional_punting",
+   "attributes.punt_get_off_time",
+   "attributes.kicking_consistency",
+   "attributes.long_snap",
+   "attributes.holding",
+   "attributes.catching_punts",
+   "attributes.catching_kickoffs",
+   "attributes.return_vision",
+   "attributes.coverage_lane_discipline",
+   "attributes.gunner_release",
+   "attributes.jammer_technique",
+   "attributes.kick_return_blocking",
+   "attributes.punt_protection",
+   "attributes.kick_blocking",
+   "attributes.play_recognition",
+   "attributes.processing_speed",
+   "attributes.assignment_discipline",
+   "attributes.foul_discipline",
+   "attributes.composure",
+   "attributes.football_intelligence",
+   "attributes.coverage_reading_pre_snap",
+   "attributes.coverage_reading_post_snap",
+   "attributes.blitz_recognition",
+   "attributes.decision_risk",
+   "attributes.protection_calls",
+   "attributes.audible_judgment",
+   "attributes.front_and_coverage_checks",
+   "attributes.disguise",
+   "attributes.clock_and_situation_command",
+   "ceilings.play_strength",
+   "ceilings.explosiveness",
+   "ceilings.stamina",
+   "ceilings.durability",
+   "ceilings.tackling",
+   "ceilings.block_shedding",
+   "ceilings.ball_security",
+   "ceilings.hands",
+   "ceilings.ball_tracking",
+   "ceilings.open_field_blocking",
+   "ceilings.pursuit_angle",
+   "ceilings.snap_count_get_off",
+   "ceilings.pad_level",
+   "ceilings.arm_strength",
+   "ceilings.accuracy_short",
+   "ceilings.accuracy_intermediate",
+   "ceilings.accuracy_deep",
+   "ceilings.accuracy_on_the_move",
+   "ceilings.accuracy_under_pressure",
+   "ceilings.release_time",
+   "ceilings.anticipation",
+   "ceilings.footwork_and_drop",
+   "ceilings.pocket_movement",
+   "ceilings.play_fake_and_ball_handling",
+   "ceilings.scramble_and_run_skill",
+   "ceilings.cadence",
+   "ceilings.snap_handling",
+   "ceilings.vision_zone",
+   "ceilings.vision_gap",
+   "ceilings.patience_and_tempo",
+   "ceilings.elusiveness",
+   "ceilings.contact_balance",
+   "ceilings.power_finish",
+   "ceilings.route_running_backfield",
+   "ceilings.pass_protection_technique",
+   "ceilings.lead_blocking",
+   "ceilings.cut_blocking",
+   "ceilings.release_against_press",
+   "ceilings.route_running_short",
+   "ceilings.route_running_intermediate",
+   "ceilings.route_running_deep",
+   "ceilings.route_pace_and_stems",
+   "ceilings.zone_awareness",
+   "ceilings.contested_catch",
+   "ceilings.sideline_awareness",
+   "ceilings.run_after_catch",
+   "ceilings.stalk_blocking",
+   "ceilings.inline_run_blocking",
+   "ceilings.combination_blocks",
+   "ceilings.tight_end_pass_protection",
+   "ceilings.move_blocking",
+   "ceilings.release_from_the_line",
+   "ceilings.pass_set",
+   "ceilings.anchor",
+   "ceilings.mirror",
+   "ceilings.hand_use_in_protection",
+   "ceilings.stunt_pickup",
+   "ceilings.zone_run_blocking",
+   "ceilings.gap_run_blocking",
+   "ceilings.pulling",
+   "ceilings.second_level_blocking",
+   "ceilings.screen_and_space_blocking",
+   "ceilings.finish",
+   "ceilings.snap_under_center",
+   "ceilings.snap_shotgun",
+   "ceilings.get_off",
+   "ceilings.one_gap_penetration",
+   "ceilings.two_gap_control",
+   "ceilings.double_team_anchor",
+   "ceilings.power_rush",
+   "ceilings.hand_moves",
+   "ceilings.stunt_execution",
+   "ceilings.batting_passes",
+   "ceilings.speed_rush_and_bend",
+   "ceilings.speed_to_power",
+   "ceilings.inside_counter",
+   "ceilings.edge_setting",
+   "ceilings.zone_drop",
+   "ceilings.strip_technique",
+   "ceilings.run_fit_technique",
+   "ceilings.taking_on_blocks",
+   "ceilings.man_coverage_backs_and_tight_ends",
+   "ceilings.blitz_technique",
+   "ceilings.ball_skills",
+   "ceilings.press_technique",
+   "ceilings.backpedal_and_transition",
+   "ceilings.man_coverage_off",
+   "ceilings.man_coverage_trail",
+   "ceilings.zone_coverage",
+   "ceilings.pattern_matching",
+   "ceilings.break_on_the_ball",
+   "ceilings.slot_play",
+   "ceilings.run_support",
+   "ceilings.range",
+   "ceilings.man_coverage_tight_ends_and_slots",
+   "ceilings.leg_strength_place_kick",
+   "ceilings.accuracy_place_kick",
+   "ceilings.kickoff_placement",
+   "ceilings.onside_and_specialty_kicks",
+   "ceilings.leg_strength_punt",
+   "ceilings.hang_time",
+   "ceilings.directional_punting",
+   "ceilings.punt_get_off_time",
+   "ceilings.kicking_consistency",
+   "ceilings.long_snap",
+   "ceilings.holding",
+   "ceilings.catching_punts",
+   "ceilings.catching_kickoffs",
+   "ceilings.return_vision",
+   "ceilings.coverage_lane_discipline",
+   "ceilings.gunner_release",
+   "ceilings.jammer_technique",
+   "ceilings.kick_return_blocking",
+   "ceilings.punt_protection",
+   "ceilings.kick_blocking",
+   "ceilings.play_recognition",
+   "ceilings.processing_speed",
+   "ceilings.assignment_discipline",
+   "ceilings.foul_discipline",
+   "ceilings.composure",
+   "ceilings.football_intelligence",
+   "ceilings.coverage_reading_pre_snap",
+   "ceilings.coverage_reading_post_snap",
+   "ceilings.blitz_recognition",
+   "ceilings.decision_risk",
+   "ceilings.protection_calls",
+   "ceilings.audible_judgment",
+   "ceilings.front_and_coverage_checks",
+   "ceilings.disguise",
+   "ceilings.clock_and_situation_command"
+  ],
+  "blockers": [
+   "missing"
+  ],
+  "canCommit": false,
+  "result": null
+ }
+}

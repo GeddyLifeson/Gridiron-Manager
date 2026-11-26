@@ -16,3 +16,5 @@ export * as rosterMovesCommands from './commands/roster-moves/index.ts';
 export * as gameFrame from './read-models/game-frame/index.ts';
 export * as gameFrameCommands from './commands/game-frame/index.ts';
 export * as analytics from './read-models/analytics/index.ts';
+export * as film from './read-models/film/index.ts';
+export * as filmCommands from './commands/film/index.ts';

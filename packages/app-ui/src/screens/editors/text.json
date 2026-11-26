@@ -1,0 +1,31 @@
+{
+  "$comment": "Mods and editors screen strings (O6.6.1, G-96). Every user-facing string comes from here by id with named slots.",
+  "strings": {
+    "ed.title": "Mods and editors",
+    "ed.packs.title": "User content",
+    "ed.packs.none": "No packs found. Put a pack folder or zipped pack in the user content folder, then scan again.",
+    "ed.packs.rescan": "Scan again",
+    "ed.packs.import": "Import a pack file",
+    "ed.packs.folder": "Folder: {folder}",
+    "ed.col.pack": "Pack",
+    "ed.col.version": "Version",
+    "ed.col.author": "Author",
+    "ed.col.kinds": "Kinds",
+    "ed.col.signature": "Signature",
+    "ed.col.status": "Status",
+    "ed.status.ok": "Can be selected",
+    "ed.status.refused": "Cannot be selected",
+    "ed.signature.unsigned": "Unsigned",
+    "ed.signature.signature_not_checked": "Signed, not yet checked",
+    "ed.problems.show": "Show problems",
+    "ed.problems.hide": "Hide problems",
+    "ed.problems.count": "{errors} errors, {warnings} warnings",
+    "ed.problems.export": "Save error report",
+    "ed.problems.ignored": "Not loaded: {file} ({reason})",
+    "ed.problems.neutralised": "Shown as plain text: {count} strings",
+    "ed.editors.title": "Editors",
+    "ed.editors.open": "Open",
+    "ed.editors.certified": "Not available in a certified career",
+    "ed.editors.note": "Editors save ordinary packs to the user content folder. Inside a career, playbook edits are logged as commands."
+  }
+}
