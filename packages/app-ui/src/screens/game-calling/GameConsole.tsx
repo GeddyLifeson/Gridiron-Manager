@@ -109,7 +109,7 @@ function Control({ id, c, command }: { id: string; c: ConsoleControlVM; command:
   );
 }
 
-function Sideline({ v }: { v: ConsoleViewModel }): ReactNode {
+function Sideline({ v, panel }: { v: ConsoleViewModel; panel?: ReactNode }): ReactNode {
   const s = v.sideline;
   return (
     <div role="region" aria-label={ct('console.sideline')} style={{ gridArea: 'side', overflow: 'hidden' }} data-region="sideline">
@@ -118,8 +118,10 @@ function Sideline({ v }: { v: ConsoleViewModel }): ReactNode {
       <div>{ct('console.booth')}: {s.booth ? `${s.booth.role}: ${s.booth.text.slice(0, 60)}` : '-'}</div>
       <div>{ct('console.tendency')}: {s.tendency ? `${s.tendency.text} (${ct('console.sample', { n: s.tendency.sample })})` : '-'}</div>
       <div>{ct('console.tempo')}: {s.tempo} | {ct('console.relay')}: {s.relay}{s.cadence ? ` | ${ct('console.cadence')}: ${s.cadence}` : ''}</div>
-      <Control id="console.timeout" c={s.timeout} command="game.timeout" />
-      <Control id="console.challenge" c={s.challenge} command="game.challenge" />
+      {panel ?? (<>
+        <Control id="console.timeout" c={s.timeout} command="game.timeout" />
+        <Control id="console.challenge" c={s.challenge} command="game.challenge" />
+      </>)}
     </div>
   );
 }
@@ -128,16 +130,22 @@ export interface GameConsoleProps {
   view: ConsoleViewModel | null;
   /** The 2D field view (G-03) drawn by the host for the current snap. */
   field?: ReactNode;
+  /**
+   * The game management panel (G-61 `GameManagementPanel`: decision bar, clock arithmetic, timeout and challenge
+   * controls, sideline feed), drawn in the sideline region (O2.1.2). When present it replaces the console's own
+   * timeout and challenge rows; the console's keys still answer them.
+   */
+  sideline?: ReactNode;
 }
 
-export function GameConsole({ view, field }: GameConsoleProps): ReactNode {
+export function GameConsole({ view, field, sideline }: GameConsoleProps): ReactNode {
   if (!view) return <div role="main" aria-label={ct('console.title')}><p>{ct('console.waiting')}</p></div>;
   return (
     <div role="main" aria-label={ct('console.title')} style={GRID}>
       <Strip v={view} />
       <div role="region" aria-label={ct('console.field')} style={{ gridArea: 'field' }} data-region="field">{field ?? null}</div>
       <Sheet v={view} />
-      <Sideline v={view} />
+      <Sideline v={view} panel={sideline} />
       <div role="region" aria-label={ct('console.hints')} style={{ gridArea: 'hint', whiteSpace: 'nowrap', overflow: 'hidden' }} data-region="hint">
         {view.hint.map((h) => `${h.key} ${h.action}`).join('  ')}
         {view.notice && <span> | {ct(view.notice)}</span>}

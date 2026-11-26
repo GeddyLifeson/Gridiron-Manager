@@ -11,8 +11,10 @@ export interface GameCallingSource {
   view(): ConsoleViewModel | null;
   /** The field view (G-03) for the current snap. */
   field?(): ReactNode;
+  /** The G-61 game management panel for the sideline region (CR-G61-3: the integrator binds it). */
+  sideline?(): ReactNode;
 }
 
 export function gameCallingRoutes(source: GameCallingSource): RouteTable {
-  return { 'game.console': { render: () => createElement(GameConsole, { view: source.view(), field: source.field?.() }) } };
+  return { 'game.console': { render: () => createElement(GameConsole, { view: source.view(), field: source.field?.(), sideline: source.sideline?.() }) } };
 }
