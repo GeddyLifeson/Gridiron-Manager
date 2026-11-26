@@ -2,7 +2,7 @@
 // Nothing here alters an officiating parameter, a practice result or a contest: clip answers are
 // information, the camera flag changes only routing and reach, and the rule-awareness term is read
 // only by the hazards of the changed or stressed fouls (J10 applies it).
-import type { RuleSet } from '@gm/schema';
+import type { RuleKeyManifest, RuleSet } from '@gm/schema';
 import { compliance } from '@gm/league';
 import type { Order } from '../crisis/orders.ts';
 import type { StreamFor } from '../crisis/events.ts';
@@ -127,6 +127,13 @@ export const CONFERENCE_KEYS = {
   fineCents: 'conference_discipline.fine_cents',
   suspensionGames: 'conference_discipline.suspension_games',
 } as const;
+
+/** Rule keys this module reads (requested from the integrator, CR-G50-3). Every conference value ships empty (L8.4.1). */
+export const RULE_KEYS: RuleKeyManifest = [
+  { key: CONFERENCE_KEYS.body, type: 'option', options: ['league', 'conference'], meaning: 'Body that disciplines a head coach for public conduct (L8.4.1). Absent = league.', ownerLeaf: 'L8.4.1', readBy: ['career.community'] },
+  { key: CONFERENCE_KEYS.fineCents, type: 'number', unit: 'cents', meaning: 'Conference fine on a second public-conduct finding (L8.4.1; Unverified, ships empty).', ownerLeaf: 'L8.4.1', readBy: ['career.community'] },
+  { key: CONFERENCE_KEYS.suspensionGames, type: 'number', unit: 'count', meaning: 'Conference suspension on a third finding (L8.4.1; Unverified, ships empty, default one game).', ownerLeaf: 'L8.4.1', readBy: ['career.community'] },
+];
 
 /** Which body disciplines the coach for public conduct, from the rule set (option key; absent = league). */
 export function disciplineBody(rules: Pick<RuleSet, 'keys' | 'opt'>): Body {
