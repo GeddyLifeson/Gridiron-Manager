@@ -1,0 +1,89 @@
+{
+ "$comment": "O7.2.2 default route per hub by rung band: hubs lead with what the seat owns (position coach: Team opens on his group, Football on his drills and install, Week on his meetings; Coach on money at low pay, S9). If a band's screen is not listed for the seat, the first listed screen of the hub is used. Starting values (Assumption).",
+ "bands": {
+  "1": {
+   "office": "office.today",
+   "team": "team.roster",
+   "football": "football.playbook",
+   "week": "week.practice",
+   "game": "game.console",
+   "film": "film.tagging",
+   "people": "people.staff",
+   "league": "league.standings",
+   "coach": "coach.finance",
+   "school": "school.lessons"
+  },
+  "2": {
+   "office": "office.today",
+   "team": "team.roster",
+   "football": "football.play_designer",
+   "week": "week.schedule",
+   "game": "game.console",
+   "film": "film.tagging",
+   "people": "people.staff",
+   "league": "league.standings",
+   "coach": "coach.finance",
+   "school": "school.lessons"
+  },
+  "3": {
+   "office": "office.today",
+   "team": "team.roster",
+   "football": "football.self_scout",
+   "week": "week.scouting_report",
+   "game": "game.console",
+   "film": "film.cutups",
+   "people": "people.staff",
+   "league": "league.standings",
+   "coach": "coach.finance",
+   "school": "school.lessons"
+  },
+  "4-5": {
+   "office": "office.today",
+   "team": "team.depth_chart",
+   "football": "football.install",
+   "week": "week.meetings",
+   "game": "game.console",
+   "film": "film.grades",
+   "people": "people.locker_room",
+   "league": "league.standings",
+   "coach": "coach.finance",
+   "school": "school.lessons"
+  },
+  "6": {
+   "office": "office.today",
+   "team": "team.depth_chart",
+   "football": "football.game_plan",
+   "week": "week.meetings",
+   "game": "game.console",
+   "film": "film.grades",
+   "people": "people.locker_room",
+   "league": "league.standings",
+   "coach": "coach.career",
+   "school": "school.lessons"
+  },
+  "7": {
+   "office": "office.today",
+   "team": "team.roster",
+   "football": "football.game_plan",
+   "week": "week.schedule",
+   "game": "game.console",
+   "film": "film.viewer",
+   "people": "people.staff",
+   "league": "league.standings",
+   "coach": "coach.job_market",
+   "school": "school.lessons"
+  },
+  "8-9": {
+   "office": "office.today",
+   "team": "team.roster",
+   "football": "football.game_plan",
+   "week": "week.schedule",
+   "game": "game.console",
+   "film": "film.viewer",
+   "people": "people.staff",
+   "league": "league.standings",
+   "coach": "coach.record",
+   "school": "school.lessons"
+  }
+ }
+}
