@@ -8,6 +8,11 @@
 //      receiver, and any man who has located the ball (J3.5.1), is granted the same adjustment to the
 //      ball in flight that the quarterback's own estimate assumes (`qb.judge.reachAdjustYd`), because
 //      the player AI does not yet steer a man to a ball in the air.
+//      The intended receiver of an aimed pass is also held to the throw's miss from its aim point: he can make up
+//      his catch radius plus `qb.judge.airReachPerYd` for each yard the throw travels beyond
+//      `qb.judge.airReachFromYd`, whatever his legs did and however the ball was thrown (a lofted ball earns him no
+//      more than a driven one to the same spot). A miss beyond that is uncatchable for him; inside it, the miss as a
+//      share of that reach is the placement error.
 //   2. A man of the passing team in reach: uncontested (step 2) when no defender is within the
 //      contested distance of him, else the contested softmax (step 3) against the nearest defender.
 //   3. Only a defender in reach: he is alone at the ball (step 4).
@@ -46,6 +51,9 @@ export function createCatchPointStage(perception: Perception): CatchPointStage {
   let cursor = 0;
   // The flight being watched.
   let passer = -1, intended = -1, forward = true, throwaway = false, watching = false, settled = false, tipped = false;
+  // The aimed throw's miss from its aim point and its length from the passer to the aim point, in yards; the miss is
+  // -1 when the rule does not apply.
+  let missYd = -1, throwYd = 0;
   // Where the ball was when this stage last ran.
   let prevX = 0, prevY = 0, prevH = 0, prevInAir = false;
   const reachOf = new Float64Array(SLOT_COUNT), distOf = new Float64Array(SLOT_COUNT), fracOf = new Float64Array(SLOT_COUNT);
@@ -96,6 +104,10 @@ export function createCatchPointStage(perception: Perception): CatchPointStage {
       if (e.type !== 'pass_release') continue;
       passer = slotOfId(w, e.passerId); intended = slotOfId(w, e.targetId); forward = e.forward; throwaway = e.throwaway || e.spike;
       watching = true; settled = false; tipped = false; prevInAir = false;
+      if (intended >= 0 && passer >= 0 && !throwaway) {
+        const mx = e.landingSpot.x - e.aimSpot.x, my = e.landingSpot.y - e.aimSpot.y; missYd = dSqrt(mx * mx + my * my);
+        const tx = e.aimSpot.x - w.players.posX[passer]!, ty = e.aimSpot.y - w.players.posY[passer]!; throwYd = dSqrt(tx * tx + ty * ty);
+      } else missYd = -1;
     }
     if (!watching) return;
     const f = ballFlight(w);
@@ -111,7 +123,12 @@ export function createCatchPointStage(perception: Perception): CatchPointStage {
     if (settled) return;
 
     const q = tickResolverParams(w.params), cp = contests!.catchPoint, pl = w.players;
-    const adjust = qbParams(w.params)['judge.reachAdjustYd'];
+    const adjust = qbParams(w.params)['judge.reachAdjustYd'], airReach = qbParams(w.params)['judge.airReachPerYd'], airFrom = qbParams(w.params)['judge.airReachFromYd'];
+    let missShare = -1;
+    // What a man can make up on the ball while it is in the air grows with the length of the throw, for a defender as
+    // for the receiver: on a short throw a defender gets his own reach and no more.
+    const madeUp = throwYd > airFrom ? airReach * (throwYd - airFrom) : 0;
+    const defAdjust = missYd >= 0 && !tipped && madeUp < adjust ? madeUp : adjust;
     const sx = x1 - x0, sy = y1 - y0, len2 = sx * sx + sy * sy;
     const offenseSide = passer >= 0 ? w.slots[passer]!.side : w.slots[0]!.side;
 
@@ -131,8 +148,13 @@ export function createCatchPointStage(perception: Perception): CatchPointStage {
       const dx = pl.posX[s]! - cx, dy = pl.posY[s]! - cy, d = dSqrt(dx * dx + dy * dy);
       const zLeap = z(w, s, 'explosiveness'), tall = w.slots[s]!.player.heightIn / 36;
       if (ch < 0 || ch > tall * q['catch.reachPerHeight']! + q['catch.leapPerZYd']! * zLeap) continue;
-      const radius = cp.catchRadiusYd(zLeap, ch > tall) + (saw ? adjust : 0);
+      const radius = cp.catchRadiusYd(zLeap, ch > tall) + (saw ? (mine ? adjust : defAdjust) : 0);
       if (d > radius) continue;
+      if (s === intended && missYd >= 0 && !tipped) {
+        const canMakeUp = cp.catchRadiusYd(zLeap, ch > tall) + madeUp;
+        if (missYd > canMakeUp) continue;
+        missShare = missYd / canMakeUp;
+      }
       reachOf[s] = radius; distOf[s] = d; fracOf[s] = u;
       if (mine) { if (receiver < 0 || (s === intended) || (receiver !== intended && d < distOf[receiver]!)) receiver = s; }
       else if (saw && (defender < 0 || d < distOf[defender]!)) defender = s;
@@ -193,7 +215,7 @@ export function createCatchPointStage(perception: Perception): CatchPointStage {
       const closing = dist > 0 ? -((pl.velX[d]! - pl.velX[receiver]!) * dx + (pl.velY[d]! - pl.velY[receiver]!) * dy) / dist : 0;
       if (gap <= q['catch.hitGapYd']! && closing >= q['catch.hitClosingYps']!) hit = true;
     }
-    const placementError = distOf[receiver]! / reachOf[receiver]!;
+    const placementError = receiver === intended && missShare >= 0 ? missShare : distOf[receiver]! / reachOf[receiver]!;
     const how = forward ? 'catch' as const : 'backward_pass' as const;
     const complete = (rng: ReturnType<typeof stream>, defs: readonly number[], contested: boolean): void => {
       const got = feet(receiver, rng);

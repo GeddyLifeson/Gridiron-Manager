@@ -103,14 +103,28 @@ const ROWS = [
   ['judge.lanePickShare', 0.35, 0.1, 0.7, 'probability', 'assumption', 'J7.3.1', RATES],
   // J6.5 reach test "given where he can get to": how far he expects the receiver to adjust to the ball in flight.
   ['judge.reachAdjustYd', 1.0, 0, 2.5, 'yd', 'assumption', 'J7.3.1', 'J7.3.1 acceptance; J15 completion by depth (DP-1)'],
+  // A long ball hangs, and help he never looked at gets there: the share of throws he reads as open that he expects to
+  // be contested when the ball comes down, per air yard beyond acc.midFromYd. Without it he rated open-looking deep
+  // balls 0.5 to 0.7 to complete, they were caught 0.22 to 0.26, and he threw deep on a quarter of his attempts.
+  // 0.035 matches the share of his own open-looking throws that were contested in a trace (0.21 at 11 to 20 yd, 0.57 deeper).
+  ['judge.lateHelpPerYd', 0.035, 0, 0.08, 'probability/yd', 'assumption', 'J7.3.1', 'J15.4.1 completion by depth; pass.airYardsPerAttempt; contested share of aimed throws by depth (FTN charting, 1 of 3)'],
+  // What the intended receiver can make up on a ball that misses its aim point: his reach is his catch radius plus
+  // airReachPerYd for each yard of throw (passer to aim point) beyond airReachFromYd. A miss beyond that reach is
+  // uncatchable for him. Keyed on the length of the throw, not its hang time: a lofted ball to the same spot is no more
+  // catchable than a driven one. Set from the charted catchable share of aimed throws by depth from a clean pocket
+  // (FTN 2023 to 2024: 85% short, 67% intermediate, 46% deep; 1 of 3) and the J7.6.2 spreads.
+  ['judge.airReachFromYd', 10, 0, 20, 'yd', 'assumption', 'J7.3.1', 'catchable share of aimed throws by depth and pressure (FTN charting, 1 of 3); J15.4.1 completion by depth'],
+  ['judge.airReachPerYd', 0.04, 0, 0.2, 'yd/yd', 'assumption', 'J7.3.1', 'catchable share of aimed throws by depth and pressure (FTN charting, 1 of 3); J15.4.1 completion by depth'],
   // A receiver running at the sideline turns up it this far inside (football-lang `route.sidelineRoomYd`).
   ['judge.sidelineRoomYd', 2, 0.5, 5, 'yd', 'assumption', 'J7.3.1', STRUCT],
   // Tuned from 0.10 (Assumption) against J15.4.1 interceptions by depth: an off-target ball into coverage is picked far
   // more often than one on target, and at 0.10 a covered deep throw still rated above his threshold.
   ['judge.missPickContested', 0.25, 0, 0.3, 'probability', 'assumption', 'J7.3.1', RATES],
-  ['judge.missPickOpen', 0.02, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
+  // 0.04 from 0.02 with value.incompleteCostEp 0.2: his picked share of off-target balls to open receivers was half
+  // what happened (clean throws believed 0.009, picked 0.017 in a 24-game trace).
+  ['judge.missPickOpen', 0.04, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
   // Added share of off-target balls picked per yard of air beyond the short band, receiver judged open (J15 interceptions by depth).
-  ['judge.missPickOpenPerYd', 0.002, 0, 0.01, 'probability/yd', 'assumption', 'J7.3.1', RATES],
+  ['judge.missPickOpenPerYd', 0.008, 0, 0.01, 'probability/yd', 'assumption', 'J7.3.1', RATES],
   ['judge.positionTolYd', 0.5, 0.2, 1.5, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.undercutLateralYd', 2, 1, 4, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.yacBaseYd', 2, 0, 5, 'yd', 'assumption', 'J7.3.1', 'J15 yards after catch (N2)'],
@@ -124,14 +138,20 @@ const ROWS = [
   ['value.turnoverCostEp', 4, 2, 6, 'EP', 'assumption', 'J7.3.1', N2],
   // What the lost down costs when a throw is neither caught nor intercepted. At 0 a covered deep throw (one chance
   // in four for 25 yards) rated above his threshold; tuned against J15.4.1 air yards per attempt and completion (1 of 3, 2 of 3).
-  ['value.incompleteCostEp', 0.3, 0, 0.8, 'EP', 'assumption', 'J7.3.1', N2],
+  // 0.2 from 0.3 once the throw's miss was held against the receiver's reach: his short estimates fell to what was
+  // caught, every look rated lower against the same thresholds, and he held the ball (sacks 10.1% against main's 9.3%
+  // over 192 games). At 0.2, with judge.missPickOpen 0.04, sacks 9.3% and interceptions 2.55% (main 9.3%, 2.60%).
+  ['value.incompleteCostEp', 0.2, 0, 0.8, 'EP', 'assumption', 'J7.3.1', N2],
   ['value.conversionBonusEp', 0.9, 0, 2, 'EP', 'assumption', 'J7.3.2', N2],
   ['value.conversionDownFrom', 3, 2, 4, 'down', 'assumption', 'J7.3.2', N2],
 
   // J7.3.2 throw threshold
   ['risk.offsetPer10', 0.04, 0, 0.1, 'EP per 10 grade', 'bible', 'J7.3.2', RATES],
   ['risk.instructionOffsetEp', 0.08, 0, 0.2, 'EP', 'bible', 'J7.3.2', RATES],
-  ['risk.timeDecayEpPerS', 0.05, 0, 0.2, 'EP/s', 'bible', 'J7.3.2', RATES],
+  // The bible's 0.05 (so an Assumption now). With the throw's miss held against the receiver's reach his estimates
+  // fell about 0.1 EP on the same looks and he held the ball: sacks rose 1.8 points in a 24-game trace. At 0.10 he
+  // lets it go as early as he did before.
+  ['risk.timeDecayEpPerS', 0.10, 0, 0.2, 'EP/s', 'assumption', 'J7.3.2', RATES],
   ['risk.pressureDropEp', 0.15, 0, 0.4, 'EP', 'bible', 'J7.3.2', RATES],
   ['risk.pressureWindowS', 1.0, 0.5, 1.5, 's', 'bible', 'J7.3.2', RATES],
   ['risk.intCeiling', 0.25, 0.1, 0.4, 'probability', 'bible', 'J7.3.2', RATES],
@@ -241,9 +261,9 @@ const ROWS = [
   // J7.6.2 accuracy
   ['acc.sdShortYd', 0.6, 0.3, 1, 'yd', 'bible', 'J7.6.2', ACC],
   ['acc.sdMidYd', 1.0, 0.6, 1.5, 'yd', 'bible', 'J7.6.2', ACC],
-  // Tuned from the bible's 1.8 (so an Assumption now) against J15.4.1 completion by depth: deep balls were almost never
-  // uncatchable (3 of 93 in a trace) and completed 49% at 21+ yards (real 29 to 37%, 1 of 3).
-  ['acc.sdDeepYd', 2.6, 1.2, 2.6, 'yd', 'assumption', 'J7.6.2', ACC],
+  // The bible's 1.8. It was raised to 2.6 while the catch ignored the throw's miss (deep balls were almost never
+  // uncatchable); with the miss held against the receiver's reach (judge.airReachPerYd) 1.8 gives the charted share.
+  ['acc.sdDeepYd', 1.8, 1.2, 2.6, 'yd', 'bible', 'J7.6.2', ACC],
   ['acc.midFromYd', 10, 10, 10, 'yd', 'bible', 'J7.6.2', STRUCT],
   ['acc.deepFromYd', 20, 20, 20, 'yd', 'bible', 'J7.6.2', STRUCT],
   ['acc.perZ', 0.12, 0, 0.25, 'share/z', 'bible', 'J7.6.2', ACC],
@@ -255,7 +275,7 @@ const ROWS = [
   ['acc.wetMult', 1.1, 1, 1.3, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.unsetMult', 1.15, 1, 1.5, 'ratio', 'assumption', 'J7.1.1', ACC],
   ['acc.multPerZ', 0.10, 0, 0.2, 'share/z', 'bible', 'J7.6.2', ACC],
-  ['acc.deepAlongRatio', 2, 1, 2, 'ratio', 'assumption', 'J7.6.2', ACC], // tuned from 1.4 with acc.sdDeepYd: a deep ball misses long or short far more than wide
+  ['acc.deepAlongRatio', 1.4, 1, 2, 'ratio', 'assumption', 'J7.6.2', ACC], // a deep ball misses long or short more than wide; back from 2 with acc.sdDeepYd
   ['acc.heightSdShare', 0.5, 0, 1, 'ratio', 'assumption', 'J7.6.2', ACC],
   ['acc.leadYd', 0.6, 0, 1.5, 'yd', 'assumption', 'J7.6.2', ACC],
   ['acc.leadPerZ', 0.15, 0, 0.4, 'share/z', 'assumption', 'J7.6.2', ACC],
