@@ -91,7 +91,7 @@ describe('C6.2.2 signing bonus proration', () => {
     const c = contract(5, [M(1), M(1), M(1)], 2026, 1000);
     expect([...prorationSchedule(c, R).values()]).toEqual([334, 333, 333]);
   });
-  it('2026 first overall pick: $38,111,344 signing bonus is $9,527,836 a year over four years (bible C6.4.2)', () => {
+  it('a $38,111,344 bonus over four years is $9,527,836 a year (figure from bible C6.4.2; no fact row yet, used as arithmetic only)', () => {
     const c = contract(6, [M(1), M(1), M(1), M(1)], 2026, $(38111344));
     expect([...prorationSchedule(c, R).values()]).toEqual(Array(4).fill($(9527836)));
   });
