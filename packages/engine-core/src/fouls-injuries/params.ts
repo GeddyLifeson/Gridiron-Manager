@@ -14,7 +14,7 @@
 // Rule values (which fouls exist, the ineligible-downfield limit, the low-block zone) are read from
 // the rule set by key only (RULE_KEYS below). No rule number appears in this module.
 import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const HOLD = 'J15 offensive holding 2.25 flags per game (2 of 3); J10.2.1 acceptance';
 const FACE = 'J15 illegal use of hands to the face 0.22 per game (2 of 3)';
@@ -203,11 +203,17 @@ export type FoulsInjuriesParams = Readonly<Record<FoulsInjuriesParamName, number
 export const MODULE = 'foulsInjuries';
 export const PARAMS: ParamFile = defineParams(MODULE, '0.1.0', ROWS);
 
+const RESOLVED = new WeakMap<ParamTable, FoulsInjuriesParams>();
 /** Resolve once per play, never inside the tick. */
 export function foulsInjuriesParams(t: ParamTable): FoulsInjuriesParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`${MODULE}.${row[0]}`);
-  return out as FoulsInjuriesParams;
+  const fast = fastParams(out) as FoulsInjuriesParams;
+  RESOLVED.set(t, fast);
+  return fast;
 }
 
 /** The fouls this module commits (J10.2 to J10.5). Each one's hazard is disabled when `foul.<id>.exists` is false. */

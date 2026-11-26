@@ -7,7 +7,7 @@
 // run rates, yards after catch, screen gains) are TARGETS that constrain these rows through
 // calibration (J15, Q2); they are named in `constrainedBy` and never typed into the model as outputs.
 import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const VISION = 'J8.1.1 acceptance (vision 70 takes the cutback at least twice as often as vision 30)';
 const READ = 'J8.2.1 acceptance (85% correct read at vision 60); rushing direction 38/26/36 (1 of 3)';
@@ -189,11 +189,17 @@ export type CarrierParams = Readonly<Record<CarrierParamName, number>>;
 
 export const PARAMS: ParamFile = defineParams('carrier', '0.1.0', ROWS);
 
+const RESOLVED = new WeakMap<ParamTable, CarrierParams>();
 /** Resolve once per play, never inside the tick. */
 export function carrierParams(t: ParamTable): CarrierParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`carrier.${row[0]}`);
-  return out as CarrierParams;
+  const fast = fastParams(out) as CarrierParams;
+  RESOLVED.set(t, fast);
+  return fast;
 }
 
 /** Rule keys read. None yet: the dead-ball rules for slides and contact are applied by B3 to the events this module emits. */
