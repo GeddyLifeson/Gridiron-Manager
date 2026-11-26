@@ -45,3 +45,34 @@ describe('headless career playtest', () => {
     }
   });
 });
+
+describe('the game checks catch planted faults', () => {
+  it('flags an illegal score step, a fourth timeout in a half, a college tie and a wrong final score', async () => {
+    const { checkGame } = await import('../../src/playtest/stages/game-day.ts');
+    const rec = new Recorder('00000000000000a1');
+    playGameDay(rec, 'college_2026', '00000000000000a1', 0, DEFAULT_OPTIONS.maxStepsPerGame);
+    expect(rec.findings.filter((f) => BAD.has(f.kind))).toEqual([]);
+    // A clean replay of a real game, then the same events with faults planted.
+    const { realGame } = await import('@gm/headless');
+    const rg = realGame.createRealGame('college_2026');
+    const res = rg.simulate(rg.input(0, '00000000000000b2'));
+    const clean = new Recorder('00000000000000b2');
+    checkGame(clean, { game: res.final, events: res.events, final: true }, 'college_2026', 0, 3);
+    expect(clean.findings.filter((f) => BAD.has(f.kind) && !f.code.startsWith('console.'))).toEqual([]); // no console in a chart-called game
+    const first = res.events.findIndex((e) => e.type === 'play_resolved');
+    const bad = [
+      ...res.events.slice(0, first),
+      ...[1, 2, 3, 4].map(() => ({ type: 'timeout_charged', side: 0, kind: 'team' })), // four in the first half
+      ...res.events.slice(first).filter((e) => e.type !== 'game_final'),
+      { type: 'score_changed', score: (res.events.find((e) => e.type === 'score_changed') as { score: unknown }).score, scoreAfter: [99, 99] },
+      { type: 'game_final', score: [7, 7], tie: true },
+    ] as typeof res.events;
+    const r = new Recorder('00000000000000b2');
+    checkGame(r, { game: res.final, events: bad, final: true }, 'college_2026', 0, 3);
+    const codes = r.findings.map((f) => f.code);
+    expect(codes.some((c) => c.startsWith('score.illegal_step'))).toBe(true);
+    expect(codes).toContain('timeouts.over_half_limit');
+    expect(codes).toContain('college.tie');
+    expect(codes).toContain('final.score_mismatch');
+  });
+});
