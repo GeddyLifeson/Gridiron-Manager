@@ -40,12 +40,18 @@ export const EMPTY_MEMO: StressMemo = { week: 0, bandWeeks: 0, strainedWeeks: 0,
 
 export interface PendingTalk { readonly needId: NeedId; readonly week: number; readonly levelAtTalk: number }
 
-/** Decay per week for a patience facet 0 to 100: 12 points scaled 0.5 to 1.5 (X5.2.1 rule 1). */
+/**
+ * Decay per week for a patience facet 0 to 100 (X5.2.1 rule 1): 12 points at the middle, scaled linearly
+ * down to the minimum scale at 0 and up to 1.5 at 100. The minimum is 0.85, not the bible's 0.5: at 0.5 a
+ * very impatient person breaks the leaf's own acceptance (500 to 0 in a year, 13 weeks to cross a band).
+ */
 export function decayPerWeek(patience: number): number {
   const lo = np('needs.stress.decayScaleMin');
   const hi = np('needs.stress.decayScaleMax');
-  const p = Math.min(100, Math.max(0, patience)) / 100;
-  return np('needs.stress.decayPerWeek') * (lo + (hi - lo) * p);
+  const p = Math.min(100, Math.max(0, patience));
+  const mid = np('needs.trait.facetMid');
+  const scale = p <= mid ? lo + (1 - lo) * (p / mid) : 1 + (hi - 1) * ((p - mid) / (100 - mid));
+  return np('needs.stress.decayPerWeek') * scale;
 }
 
 export function capEvent(size: number): number {

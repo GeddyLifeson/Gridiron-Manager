@@ -121,12 +121,11 @@ function runStress(start: number, weeks: number, levels: Record<string, number>,
 }
 
 describe('X5.2.1 stress (acceptance)', () => {
-  it('with every need met, stress falls from 500 to 0 within one calendar year (neutral and high patience)', () => {
-    expect(runStress(500, 52, { pay: 0 }, { pay: 1 }, 50).s).toBe(0);
-    expect(runStress(500, 52, { pay: 0 }, { pay: 1 }, 100).s).toBe(0);
+  it('with every need met, stress falls from 500 to 0 within one calendar year at every patience', () => {
+    for (const patience of [0, 25, 50, 100]) expect(runStress(500, 52, { pay: 0 }, { pay: 1 }, patience).s, String(patience)).toBe(0);
   });
-  it('one fully unmet need at weight 1 takes at least 13 weeks to cross a 250-point band (neutral and high patience)', () => {
-    for (const patience of [50, 100]) {
+  it('one fully unmet need at weight 1 takes at least 13 weeks to cross a 250-point band at every patience', () => {
+    for (const patience of [0, 25, 50, 75, 100]) {
       const { trace } = runStress(0, 40, { pay: 100 }, { pay: 1 }, patience);
       expect(trace.findIndex((x) => x >= 250) + 1).toBeGreaterThanOrEqual(13);
     }
@@ -138,8 +137,8 @@ describe('X5.2.1 stress (acceptance)', () => {
     expect(droppedGoalHit(80).size).toBe(48);
     expect(droppedGoalHit(100).size).toBe(60);
   });
-  it('patience scales decay 0.5 to 1.5 of 12 points a week', () => {
-    expect(decayPerWeek(0)).toBe(6);
+  it('patience scales decay around 12 points a week, up to 1.5 times', () => {
+    expect(decayPerWeek(0)).toBeCloseTo(10.2);
     expect(decayPerWeek(50)).toBe(12);
     expect(decayPerWeek(100)).toBe(18);
   });

@@ -25,7 +25,7 @@ const ROWS: Row[] = [
   ['needs.stress.max', 1000, 1000, 1000, 'index', 'bible', 'X5.2.1', 'needs test "stress bounds"'],
   ['needs.stress.inflowFactor', 0.3, 0.3, 0.3, 'ratio', 'bible', 'X5.2.1 rule 1', 'needs test "X5.2.1 acceptance"'],
   ['needs.stress.decayPerWeek', 12, 12, 12, 'index/week', 'bible', 'X5.2.1 rule 1', 'needs test "X5.2.1 acceptance"'],
-  ['needs.stress.decayScaleMin', 0.5, 0.5, 0.5, 'ratio', 'bible', 'X5.2.1 rule 1', 'needs test "patience scales decay"'],
+  ['needs.stress.decayScaleMin', 0.85, 0.81, 1, 'ratio', 'assumption', 'X5.2.1 rule 1 (bible says 0.5; raised so the X5.2.1 acceptance holds at patience 0, coordinator ruling 2026-11-26, bible amendment requested)', 'needs test "X5.2.1 acceptance"'],
   ['needs.stress.decayScaleMax', 1.5, 1.5, 1.5, 'ratio', 'bible', 'X5.2.1 rule 1', 'needs test "patience scales decay"'],
   ['needs.stress.eventCap', 60, 60, 60, 'index', 'bible', 'X5.2.1 rule 2', 'needs test "one maximal event moves stress by no more than 60"'],
   ['needs.stress.droppedGoalFactor', 0.6, 0.6, 0.6, 'ratio', 'bible', 'X5.2.1 rule 3', 'needs test "dropped goal"'],
