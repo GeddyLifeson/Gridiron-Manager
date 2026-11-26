@@ -1,0 +1,62 @@
+{
+ "note": "Position mix of real rosters, as counts. World generation scales a mix to the roster limit read from the league rules.",
+ "status": "Primary source read (1 of 3)",
+ "mixes": {
+  "pro": {
+   "source": "project data nfl_rosters_2025_2026.csv (nflverse rosters), season 2025, status ACT, depth_chart_position",
+   "rows": 1537,
+   "teams": 32,
+   "counts": {
+    "C": 57,
+    "CB": 160,
+    "DE": 101,
+    "DT": 107,
+    "FB": 12,
+    "FS": 65,
+    "G": 95,
+    "ILB": 78,
+    "K": 33,
+    "LS": 32,
+    "MLB": 44,
+    "NT": 17,
+    "OLB": 110,
+    "P": 32,
+    "QB": 64,
+    "RB": 100,
+    "SS": 63,
+    "T": 105,
+    "TE": 99,
+    "WR": 163
+   }
+  },
+  "college": {
+   "source": "project data college_roster_seasons_2010_2026.csv (cfbfastR, ESPN-derived), season 2025, position",
+   "assumption": "Group codes OL, DL, DB, LB and S are split by the pro within-group shares; blank, ATH, KR and ? rows are left out.",
+   "rows": 30072,
+   "leftOut": 883,
+   "teams": 315,
+   "counts": {
+    "C": 1054.2,
+    "CB": 2763.8,
+    "DE": 2252.4,
+    "DT": 2043.1,
+    "FB": 37,
+    "FS": 1359,
+    "G": 1769.7,
+    "ILB": 1144.4,
+    "K": 804,
+    "LS": 544,
+    "MLB": 645.6,
+    "NT": 243.5,
+    "OLB": 1614,
+    "P": 448,
+    "QB": 1395,
+    "RB": 2041,
+    "SS": 1317.2,
+    "T": 1963.1,
+    "TE": 1796,
+    "WR": 3954
+   }
+  }
+ }
+}
