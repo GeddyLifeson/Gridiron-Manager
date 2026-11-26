@@ -8,7 +8,10 @@ export type Visibility = 'public' | 'own_team' | 'observer_estimate' | 'truth';
 /** Units from J1 and P3.1.2. 'count', 'id', 'index' and 'ratio' are scale names for plain numbers. */
 export type Unit =
   | 'yd' | 's' | 'yd_per_s' | 'lb' | 'in' | 'ft' | 'min' | 'cents' | 'points'
-  | 'count' | 'id' | 'index' | 'ratio' | 'day_index' | 'season_year' | 'version' | 'ms_epoch';
+  | 'count' | 'id' | 'index' | 'ratio' | 'day_index' | 'season_year' | 'version' | 'ms_epoch'
+  // Simulation contract units (J1.2.1, J11.1.1): integer tenths of a second for clocks, ticks of 0.1 s,
+  // radians, acceleration, the internal skill scale (ISS 0 to 100) and its z form, and J12 weather units.
+  | 'tenths_s' | 'tick' | 'rad' | 'yd_per_s2' | 'iss' | 'z' | 'mph' | 'deg_f' | 'deg';
 
 export interface FieldMeta {
   vis: Visibility;
