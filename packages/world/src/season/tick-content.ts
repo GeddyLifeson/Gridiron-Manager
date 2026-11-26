@@ -467,6 +467,8 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
   const playById = new Map(full.FULL_PLAYS.map((p) => [p.id, p]));
   const defenseByFamily = new Map(starter.DEFENSE.map((d) => [d.coverageFamily as string, d]));
   const defenseById = new Map(full.FULL_DEFENSE.map((d) => [d.id, d]));
+  // F11: creepers and simulated pressures, read off the call's own assignments (a lineman drops, a backer or back rushes).
+  const simulatedIds = new Set(full.FULL_DEFENSE.filter(full.isSimulatedPressure).map((d) => d.id));
   const defenseSlotOf = (role: string): number => SLOTS_PER_TEAM + DEFENSE_ROLES.indexOf(role as (typeof DEFENSE_ROLES)[number]);
   // J5.5 the defense's checks and disguise, from the designer call of the coverage family (presnap-calls.ts).
   let keysFor: { O: readonly Assignment[]; qbSlot: number } = { O: [], qbSlot: -1 };
@@ -624,7 +626,7 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
           tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, relay, callWords: CALL_WORDS, hardCount: false, silentCount: s.unit === 'offense' && crowd.silentCount, longCount: false,
           snapsOnSameCount: 0, shotgun, venue: crowd.venue, snapFoulPhase: phase,
           offense: { assignments: O, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: qbSlot >= 0 ? qbSlot : 0, noise: crowd.unitNoise[0], familiarityZ: crowd.familiarityZ[0], shift: null, motion: null, audibles: [], canRedirect: true, prepared: 0.5, protection },
-          defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: crowd.unitNoise[1], familiarityZ: crowd.familiarityZ[1], coverage, manMatch, bluff: false, checks: defCalls?.checks ?? [], disguise: defCalls?.disguise ?? [], simulatedPressure: false, aggressiveGetOff: false },
+          defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: crowd.unitNoise[1], familiarityZ: crowd.familiarityZ[1], coverage, manMatch, bluff: false, checks: defCalls?.checks ?? [], disguise: defCalls?.disguise ?? [], simulatedPressure: s.unit === 'offense' && o.unit === 'defense' && simulatedIds.has(o.callContentId ?? ''), aggressiveGetOff: false },
         },
         slots,
         context: {

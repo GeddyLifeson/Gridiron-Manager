@@ -63,6 +63,12 @@ const PRO_GAP: Basis = { claim: 'Pro book: power, counter and wham as complement
 const COLLEGE_AIR_RAID: Basis = { claim: 'College book: the Air Raid core concepts (mesh, shallow cross, Y-cross, four verticals, stick, screens) are in the pass menus', status: 'Verified', sources: ['qfb-airraid', 'ringer-airraid', 'rivals-airraid'] };
 const LEVEL_SHARES: Basis = { claim: 'Which families each level leans on (pro zone and play action, college spread, zone read and RPO) and how heavily: family shares by level are not researched', status: 'Assumption', sources: [] };
 
+// Pressure entries shared by both books. Their weights are set so the game's rusher mix on pass plays lands on the
+// measured league mix (facts F-measured-rate-0477 to 0480: five or more rushers on about 29% of pass plays, six or
+// more on about 7%, a simulated pressure on about 7.5%); the weights themselves are design values (Assumption).
+const PRESSURE_COVER3: readonly BookEntry[] = [d('def_cover3_fire_zone', 5), d('def_cover3_fire_zone_weak', 5), d('def_cover3_fire3_sim', 1), d('def_creeper_field_edge', 3), d('def_creeper_boundary', 2), d('def_sim_mug_cover3', 3)];
+const PRESSURE_COVER1: readonly BookEntry[] = [d('def_cover1_five_man', 8), d('def_sim_mug_cover1_rat', 2)];
+
 /** Pro starter book: an under-centre and gun book on zone, gap and play action with a full quick and dropback menu. */
 export const PRO_BOOK: StarterBook = {
   id: 'pro',
@@ -79,8 +85,8 @@ export const PRO_BOOK: StarterBook = {
   },
   runMiddle: [p('draw_rb', undefined, 3), p('run_trap_right', undefined, 1)],
   defense: {
-    cover3: [d('def_cover3_sky'), d('def_nickel_cover3'), d('def_cover3_match'), d('def_cover3_cloud', 2), d('def_cover3_sky_flat', 2), d('def_cover3_flip', 1), d('def_34_cover3', 2), d('def_cover3_fire_zone', 1), d('def_cover3_fire3_sim', 1)],
-    cover1: [d('def_cover1_man_free'), d('def_nickel_cover1'), d('def_cover1_robber', 2)],
+    cover3: [d('def_cover3_sky'), d('def_nickel_cover3'), d('def_cover3_match'), d('def_cover3_cloud', 2), d('def_cover3_sky_flat', 2), d('def_cover3_flip', 1), d('def_34_cover3', 2), ...PRESSURE_COVER3],
+    cover1: [d('def_cover1_man_free'), d('def_nickel_cover1'), d('def_cover1_robber', 2), ...PRESSURE_COVER1],
     cover2: [d('def_cover2_zone'), d('def_tampa2', 2), d('def_dime_cover2', 1)],
     cover4: [d('def_cover4_quarters'), d('def_nickel_cover4'), d('def_cover4_palms', 2), d('def_cover4_meg', 1), d('def_cover4_solo', 1)],
     cover6: [d('def_cover6_qqh')],
@@ -106,8 +112,8 @@ export const COLLEGE_BOOK: StarterBook = {
   },
   runMiddle: [p('draw_rb', undefined, 3), p('run_trap_right', undefined, 1)],
   defense: {
-    cover3: [d('def_cover3_sky'), d('def_nickel_cover3'), d('def_cover3_match'), d('def_cover3_cloud', 2), d('def_cover3_sky_flat', 2), d('def_cover3_fire_zone', 2), d('def_cover3_fire3_sim', 1), d('def_34_cover3', 1)],
-    cover1: [d('def_cover1_man_free'), d('def_nickel_cover1'), d('def_cover1_robber', 1)],
+    cover3: [d('def_cover3_sky'), d('def_nickel_cover3'), d('def_cover3_match'), d('def_cover3_cloud', 2), d('def_cover3_sky_flat', 2), d('def_34_cover3', 1), ...PRESSURE_COVER3],
+    cover1: [d('def_cover1_man_free'), d('def_nickel_cover1'), d('def_cover1_robber', 1), ...PRESSURE_COVER1],
     cover2: [d('def_cover2_zone'), d('def_tampa2', 1), d('def_dime_cover2', 1)],
     cover4: [d('def_cover4_quarters'), d('def_nickel_cover4'), d('def_cover4_palms', 2), d('def_cover4_meg', 1), d('def_cover4_solo', 2)],
     cover6: [d('def_cover6_qqh')],

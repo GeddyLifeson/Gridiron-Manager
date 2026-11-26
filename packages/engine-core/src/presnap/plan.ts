@@ -194,6 +194,10 @@ export interface ProtectionResult {
   readonly free: readonly number[];
   /** Side of the first declared hot rusher of the binding: +1 left, -1 right, 0 none declared. */
   readonly hotSide: number;
+  /** How many defenders truly rush on this play. */
+  readonly rushers: number;
+  /** The defense's call is a simulated pressure or creeper (a second- or third-level rusher for a dropping lineman). */
+  readonly simulated: boolean;
 }
 
 /** `patched`: defensive team slots that play the check's patch (completed, and the check reached them). */
@@ -527,7 +531,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
     uL = 0; uR = 0;
     for (const s of free) { if (spot[s]!.py >= 0) uL++; else uR++; }
   }
-  const protection: ProtectionResult = { identifierSlot: identifier, recognized, unblockedLeft: uL, unblockedRight: uR, hot: recognized && (binding === null ? uL + uR > 0 : binding.hot.length > 0), dropped: protDropped, binding, free, hotSide: binding === null || binding.hot.length === 0 ? 0 : spot[binding.hot[0]!]!.py >= 0 ? 1 : -1 };
+  const protection: ProtectionResult = { identifierSlot: identifier, rushers: rushers.length, simulated: D.simulatedPressure, recognized, unblockedLeft: uL, unblockedRight: uR, hot: recognized && (binding === null ? uL + uR > 0 : binding.hot.length > 0), dropped: protDropped, binding, free, hotSide: binding === null || binding.hot.length === 0 ? 0 : spot[binding.hot[0]!]!.py >= 0 ? 1 : -1 };
 
   // --- Delivery (J5.1.3, J3.6.1) for every slot: huddle call, check, audible.
   const received: [boolean, boolean, boolean][] = [];

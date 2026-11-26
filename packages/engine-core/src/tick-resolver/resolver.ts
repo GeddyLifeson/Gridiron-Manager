@@ -308,6 +308,8 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
       interact.setProtection(bound, bound === null ? null : () => services.protectedPasser());
       if (bound !== null) {
         world.emit({ type: 'detail', t: thePlan.firstTick * TICK_S, code: thePlan.protection.recognized && !thePlan.protection.dropped ? 'presnap.protection_set' : 'presnap.protection_misset', playerIds: [slots[thePlan.protection.identifierSlot]!.playerId], spot: null, value: thePlan.protection.free.length });
+        const n = thePlan.protection.rushers;
+        world.emit({ type: 'detail', t: thePlan.firstTick * TICK_S, code: thePlan.protection.simulated ? 'presnap.protection_vs_sim' : n >= 6 ? 'presnap.protection_vs_6' : n === 5 ? 'presnap.protection_vs_5' : n === 4 ? 'presnap.protection_vs_4' : 'presnap.protection_vs_3', playerIds: [], spot: null, value: n });
       }
       for (let s = 0; s < SLOTS_PER_TEAM; s++) {
         const compiled = blockers[s]!;

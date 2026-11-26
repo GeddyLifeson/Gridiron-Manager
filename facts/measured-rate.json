@@ -10749,6 +10749,238 @@
      "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
     }
    ]
+  },
+  {
+   "id": "F-measured-rate-0477",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with five or more pass rushers, league-wide: 28.9% (pro, 2025; 5,390 plays).",
+   "value": 28.9,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 28.9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0478",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with five or more pass rushers, league-wide: 29.1% (pro, 2026 through early November).",
+   "value": 29.1,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Matt Becker, \"How the Vikings Are Leading the NFL's Disruption of Long-Held Blitzing Conventions,\" Opta Analyst, 2026-11-11, theanalyst.com/articles/nfl-blitz-rate-minnesota-vikings-brian-flores",
+     "locator": "research/tuning/pass-protection.md section 6, row P2",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "opta",
+     "primary": false,
+     "value": 29.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0479",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with exactly four pass rushers, league-wide: 70.6% (pro, 2025).",
+   "value": 70.6,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Matt Becker, \"How the Vikings Are Leading the NFL's Disruption of Long-Held Blitzing Conventions,\" Opta Analyst, 2026-11-11, theanalyst.com/articles/nfl-blitz-rate-minnesota-vikings-brian-flores",
+     "locator": "research/tuning/pass-protection.md section 6, row P3",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "opta",
+     "primary": false,
+     "value": 70.6
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0480",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with exactly five pass rushers, league-wide: 19.8% (pro, 2025).",
+   "value": 19.8,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Matt Becker, \"How the Vikings Are Leading the NFL's Disruption of Long-Held Blitzing Conventions,\" Opta Analyst, 2026-11-11, theanalyst.com/articles/nfl-blitz-rate-minnesota-vikings-brian-flores",
+     "locator": "research/tuning/pass-protection.md section 6, row P4",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "opta",
+     "primary": false,
+     "value": 19.8
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0481",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with six or more pass rushers: mean of the 32 team rates 6.9% (pro, 2025; team range 2.2% to 15.1%).",
+   "value": 6.9,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P5",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 6.9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0482",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Simulated pressures (a linebacker or defensive back rushes and an edge or interior lineman drops): mean of the 32 team rates 7.5% of pass plays (pro, 2025; team range 1.4% to 12.4%).",
+   "value": 7.5,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P6",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 7.5
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0483",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Simulated pressures on first and second down, mean of defensive systems as charted by MatchQuarters: 18.60% (pro, 2025). A wider definition than F-measured-rate-0482.",
+   "value": 18.6,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Cody Alexander, \"Early-Down Run Pressures: Building System Rules,\" MatchQuarters, 2026-06-22 (free part), matchquarters.com/p/early-down-run-pressures-simulated-blitz-thresholds-saints-buccaneers-patriots",
+     "locator": "research/tuning/pass-protection.md section 6, row P7",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "alexander",
+     "primary": false,
+     "value": 18.6
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0484",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pass plays with three or fewer pass rushers: mean of the 32 team rates 3.4% (pro, 2025; team range 0.7% to 9.2%).",
+   "value": 3.4,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Bryan Knowles, \"2025 Defense by Number of Pass Rushers: The Vikings Go Nuts,\" FTN Fantasy, 2026-05-19, ftnfantasy.com/nfl/2025-defense-by-number-of-pass-rushers-the-vikings-go-nuts",
+     "locator": "research/tuning/pass-protection.md section 6, row P8",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ftn",
+     "primary": false,
+     "value": 3.4
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pressure usage research (thread Add pass protection schemes): one provider per cut; the other providers publish other seasons or other definitions."
+    }
+   ]
   }
  ]
 }

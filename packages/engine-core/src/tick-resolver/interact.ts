@@ -226,8 +226,9 @@ export function createInteract(): Interact {
     const idB = w.slots[b]!.playerId, idD = w.slots[best]!.playerId, sit = w.situation;
     const first = everEngaged[best] === 0;
     everEngaged[best] = 1;
-    // J6.2.4: a blocker who finds a rusher that was not his gets a piece of him, late.
-    const late = bound && best !== mine && RUSHERS.has(pl.behavior[best]!) && !binding!.expected.includes(best);
+    // J6.2.4: a rusher the protection did not expect (not a line threat, the Mike or on a scan list when it was set)
+    // is picked up late, whether he lands in a slider's gap or on a man looking for work.
+    const late = bound && RUSHERS.has(pl.behavior[best]!) && !binding!.expected.includes(best);
     const index = w.contests.length;
     w.contests.push({
       type, offenseSlot: b, defenseSlot: best, advantage: late ? contests!.passRush.startAdvantage('lateRecognition') : first && startAdvantage !== null ? startAdvantage(b, best) : 0, startedTick: w.tick, helperSlots: [],
