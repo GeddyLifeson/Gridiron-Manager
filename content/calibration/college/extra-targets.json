@@ -1,0 +1,79 @@
+{
+ "ruleSetId": "college_2026",
+ "version": 1,
+ "source": "G-41",
+ "targets": [
+  {
+   "ruleSetId": "college_2026",
+   "unit": "share",
+   "value": 0.0151,
+   "tolerance": {
+    "type": "poisson",
+    "value": 0.1,
+    "low": null,
+    "high": null
+   },
+   "tier": "watch",
+   "ruleSetDependent": false,
+   "kind": "rate",
+   "id": "spread.unbeatenShare",
+   "leaf": "T12.2.1",
+   "layer": "season",
+   "quantity": "Unbeaten FBS regular seasons, share of team-seasons",
+   "filter": "none",
+   "n": 531,
+   "seasons": "2022-2025",
+   "factId": "F-college-targets-0001",
+   "definition": "FBS team-seasons with no loss in FBS-against-FBS regular-season games, over all 531 team-seasons. T12.2.1 prints 8 in four seasons. Season-level row: needs league mode with team ratings.",
+   "note": "A count of 8; judged by the Poisson rule, so the band is wide. Pro has no comparable row."
+  },
+  {
+   "ruleSetId": "college_2026",
+   "unit": "share",
+   "value": 0.0038,
+   "tolerance": {
+    "type": "poisson",
+    "value": 0.1,
+    "low": null,
+    "high": null
+   },
+   "tier": "watch",
+   "ruleSetDependent": false,
+   "kind": "rate",
+   "id": "spread.winlessShare",
+   "leaf": "T12.2.1",
+   "layer": "season",
+   "quantity": "Winless FBS regular seasons, share of team-seasons",
+   "filter": "none",
+   "n": 531,
+   "seasons": "2022-2025",
+   "factId": "F-college-targets-0002",
+   "definition": "FBS team-seasons with no win in FBS-against-FBS regular-season games, over all 531 team-seasons. T12.2.1 prints 2 in four seasons.",
+   "note": "A count of 2; the band is wide. Pro has no comparable row."
+  },
+  {
+   "ruleSetId": "college_2026",
+   "unit": "points",
+   "value": 2.1756,
+   "tolerance": {
+    "type": "rel",
+    "value": 0.04,
+    "low": null,
+    "high": null
+   },
+   "tier": "watch",
+   "ruleSetDependent": false,
+   "kind": "rate",
+   "id": "drive.pointsPerDrive",
+   "leaf": "T12.5.1",
+   "layer": "game",
+   "quantity": "Points per drive, offense only",
+   "filter": "none",
+   "n": 2998,
+   "seasons": "2022-2025",
+   "factId": "F-college-targets-0003",
+   "definition": "Points scored by the offense on a drive (touchdown, field goal, safety conceded excluded) over drives. T12.5.1 prints 2.18; the script value is 2.1756. Power tier 2.2988, other tier 2.0438 (by the offense's conference).",
+   "note": "The pro column in T12.5.1 says not comparable (pro value from the same script 2.0382 is not used). Filter is none until the drive measure exists in the harness."
+  }
+ ]
+}

@@ -1,67 +1,70 @@
-// Team colours on the field (I9.1.1, O2.3.2, O5). Contrast is the WCAG 2 contrast ratio of relative
-// luminances; the 3:1 threshold is the I9.1.1 starting value. When the home and away colours fail
-// against the field or each other, the away team's alternate is tried (O2.3.2), then the home
-// alternate, then the colour-blind-safe pair.
+// Field and team colours on the field view (I9.1.1, O2.3.2, O5, O6.2.1). Every colour comes from the
+// design token file (`tokens/tokens.json`), by theme and colour-vision palette; this file holds none.
+// Contrast is the WCAG ratio from the token module. The 3:1 threshold is the I9.1.1 starting value.
+// When the home and away colours fail against the turf or each other, the away alternate is tried
+// (O2.3.2), then the home alternate, then the theme's colour-blind-safe pair (one dark, one light,
+// told apart by lightness alone).
+import { resolveColours, contrastRatio, relativeLuminance, type ThemeId, type ColourVisionId } from '../tokens/index.ts';
 import { param } from './params.ts';
 import type { TeamColours } from './types.ts';
 
-/** Field colours (display choice, Assumption). */
-export const FIELD_COLOURS = { grass: '#3f7f3a', endZone: '#36702f', line: '#f4f4f0', surround: '#2c5a29' } as const;
+export { contrastRatio, relativeLuminance };
 
-/**
- * Colour-blind-safe pair (Assumption, design): one very dark and one very light colour, so the pair
- * is told apart by lightness alone, whatever the viewer's colour vision. Checked against the grass.
- */
-export const COLOUR_BLIND_SAFE: readonly [string, string] = ['#101010', '#f0e442'];
-
-/** Line of scrimmage and line to gain (display choice, Assumption). */
-export const LINE_COLOURS = { lineOfScrimmage: '#2f6fd6', lineToGain: '#f2c230' } as const;
-
-function channel(c: number): number {
-  const s = c / 255;
-  return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+/** The token colours the field view draws with. */
+export interface FieldPalette {
+  readonly turf: string; readonly endZone: string; readonly surround: string;
+  readonly lines: string; readonly numbers: string; readonly scrimmage: string; readonly lineToGain: string;
+  readonly ball: string; readonly ballEdge: string; readonly flag: string; readonly cue: string; readonly shadow: string;
+  readonly inkDark: string; readonly inkLight: string; readonly officialLight: string; readonly officialDark: string;
+  /** Colour-blind-safe team pair (team.safeDark, team.safeLight). */
+  readonly safeDark: string; readonly safeLight: string;
 }
 
-export function parseHex(hex: string): [number, number, number] {
-  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
-  if (!m) throw new Error(`colour ${hex} is not #rrggbb`);
-  const v = parseInt(m[1]!, 16);
-  return [(v >> 16) & 255, (v >> 8) & 255, v & 255];
-}
+const FIELD_KEYS = ['turf', 'endZone', 'surround', 'lines', 'numbers', 'scrimmage', 'lineToGain', 'ball', 'ballEdge', 'flag', 'cue', 'shadow', 'inkDark', 'inkLight', 'officialLight', 'officialDark'] as const;
 
-export function relativeLuminance(hex: string): number {
-  const [r, g, b] = parseHex(hex);
-  return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
-}
-
-export function contrastRatio(a: string, b: string): number {
-  const la = relativeLuminance(a), lb = relativeLuminance(b);
-  const hi = Math.max(la, lb), lo = Math.min(la, lb);
-  return (hi + 0.05) / (lo + 0.05);
+export function fieldPalette(theme: ThemeId = 'light', vision: ColourVisionId = 'none'): FieldPalette {
+  const block = resolveColours(theme, vision);
+  const out: Record<string, string> = {};
+  for (const k of FIELD_KEYS) {
+    const v = block.field[k];
+    if (v === undefined) throw new Error(`token field.${k} is missing from theme ${theme}`);
+    out[k] = v;
+  }
+  const sd = block.team.safeDark, sl = block.team.safeLight;
+  if (sd === undefined || sl === undefined) throw new Error(`tokens team.safeDark and team.safeLight are missing from theme ${theme}`);
+  out.safeDark = sd; out.safeLight = sl;
+  return out as unknown as FieldPalette;
 }
 
 export interface ResolvedColours {
   /** Indexed by side: 0 home, 1 visitor. */
   readonly sides: readonly [string, string];
   readonly source: 'primary' | 'awayAlternate' | 'homeAlternate' | 'colourBlindSafe';
+  /**
+   * Per side: the colour is under 3:1 against the turf even after the fallbacks (a dark colour on a
+   * dark turf cannot reach it). The renderer then outlines that side's markers in the line colour.
+   */
+  readonly outlined: readonly [boolean, boolean];
 }
 
-function passes(a: string, b: string, field: string, min: number): boolean {
-  return contrastRatio(a, field) >= min && contrastRatio(b, field) >= min && contrastRatio(a, b) >= min;
+function passes(a: string, b: string, turf: string, min: number): boolean {
+  return contrastRatio(a, turf) >= min && contrastRatio(b, turf) >= min && contrastRatio(a, b) >= min;
 }
 
-export function resolveTeamColours(home: TeamColours, away: TeamColours, opts: { colourBlindSafe?: boolean; field?: string } = {}): ResolvedColours {
-  const field = opts.field ?? FIELD_COLOURS.grass;
+export function resolveTeamColours(home: TeamColours, away: TeamColours, opts: { colourBlindSafe?: boolean; palette?: FieldPalette } = {}): ResolvedColours {
+  const pal = opts.palette ?? fieldPalette();
   const min = param('minContrast');
+  const done = (a: string, b: string, source: ResolvedColours['source']): ResolvedColours =>
+    ({ sides: [a, b], source, outlined: [contrastRatio(a, pal.turf) < min, contrastRatio(b, pal.turf) < min] });
   if (!opts.colourBlindSafe) {
-    if (passes(home.primary, away.primary, field, min)) return { sides: [home.primary, away.primary], source: 'primary' };
-    if (passes(home.primary, away.alternate, field, min)) return { sides: [home.primary, away.alternate], source: 'awayAlternate' };
-    if (passes(home.alternate, away.alternate, field, min)) return { sides: [home.alternate, away.alternate], source: 'homeAlternate' };
+    if (passes(home.primary, away.primary, pal.turf, min)) return done(home.primary, away.primary, 'primary');
+    if (passes(home.primary, away.alternate, pal.turf, min)) return done(home.primary, away.alternate, 'awayAlternate');
+    if (passes(home.alternate, away.alternate, pal.turf, min)) return done(home.alternate, away.alternate, 'homeAlternate');
   }
-  return { sides: [COLOUR_BLIND_SAFE[0], COLOUR_BLIND_SAFE[1]], source: 'colourBlindSafe' };
+  return done(pal.safeDark, pal.safeLight, 'colourBlindSafe');
 }
 
-/** Black or white, whichever reads better on the marker fill. */
-export function inkOn(fill: string): string {
-  return contrastRatio(fill, '#000000') >= contrastRatio(fill, '#ffffff') ? '#000000' : '#ffffff';
+/** The ink (dark or light) that reads better on a marker fill. */
+export function inkOn(fill: string, pal: FieldPalette): string {
+  return contrastRatio(fill, pal.inkDark) >= contrastRatio(fill, pal.inkLight) ? pal.inkDark : pal.inkLight;
 }

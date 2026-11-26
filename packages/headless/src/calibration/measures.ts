@@ -9,6 +9,7 @@
 // same columns the real-data scripts read. Where the row or summary has no field for a measure, the
 // measure returns null and the report prints NOT MEASURABLE; it never guesses.
 import type { GameSummary, PlayByPlayRow, DriveRecord } from '@gm/schema';
+import { foulStatLabel } from '@gm/rules-data';
 
 /** What the harness measures: finished games of one rule set (J14.6.1 league mode). */
 export interface CalibrationSample {
@@ -283,7 +284,14 @@ const M: Record<string, MeasureFn> = {
   'kick.twoPointConversionPct': (x) => obsOf(x.s.plays, isTwoPointTry, (r) => bit(r.resultType === 'try_good')),
 
   // Fouls (J15.7.1). Accepted penalties from the play-by-play, no-play rows included.
-  'foul.typePerGame': (x, a) => { const id = a[0]; return perGame(x, (_g, p) => { let n = 0; for (const r of p) for (const f of r.penalties) if (f.foulId === id) n++; return n; }); },
+  'foul.typePerGame': (x, a) => {
+    const label = foulStatLabel(a[0] ?? ''), ids = new Set(label.ids);
+    return perGame(x, (_g, p) => {
+      let n = 0;
+      for (const r of p) for (const f of r.penalties) if (ids.has(f.foulId) && (label.role === undefined || (f.side === r.offense) === (label.role === 'offense'))) n++;
+      return n;
+    });
+  },
   'foul.presnapPer100': (x, a) => {
     const role = a[0], venue = a[1], ids = new Set((a[2] ?? '').split('+'));
     if ((role !== 'offense' && role !== 'defense') || (venue !== 'home' && venue !== 'road')) throw new Error(`foul.presnapPer100: bad role or venue ${role}, ${venue}`);

@@ -1,0 +1,4783 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-pipeline-0001",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 1 picks, share primary starter in at least 3 seasons: 0.781 (n = 636).",
+   "value": 0.781,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.781
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0002",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 1 picks, share primary starter in at least 5 seasons: 0.618 (n = 636).",
+   "value": 0.618,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.618
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0003",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 1 picks, share at least one Pro Bowl: 0.448 (n = 636).",
+   "value": 0.448,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.448
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0004",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 1 picks, share never played a game: 0.0 (n = 636).",
+   "value": 0.0,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.0
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0005",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 1 picks: 636.",
+   "value": 636,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 636
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0006",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 2 picks, share primary starter in at least 3 seasons: 0.581 (n = 635).",
+   "value": 0.581,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.581
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0007",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 2 picks, share primary starter in at least 5 seasons: 0.397 (n = 635).",
+   "value": 0.397,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.397
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0008",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 2 picks, share at least one Pro Bowl: 0.209 (n = 635).",
+   "value": 0.209,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.209
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0009",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 2 picks, share never played a game: 0.011 (n = 635).",
+   "value": 0.011,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.011
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0010",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 2 picks: 635.",
+   "value": 635,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 635
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0011",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 3 picks, share primary starter in at least 3 seasons: 0.384 (n = 698).",
+   "value": 0.384,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.384
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0012",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 3 picks, share primary starter in at least 5 seasons: 0.252 (n = 698).",
+   "value": 0.252,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.252
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0013",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 3 picks, share at least one Pro Bowl: 0.115 (n = 698).",
+   "value": 0.115,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.115
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0014",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 3 picks, share never played a game: 0.026 (n = 698).",
+   "value": 0.026,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.026
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0015",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 3 picks: 698.",
+   "value": 698,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 698
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0016",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 4 picks, share primary starter in at least 3 seasons: 0.253 (n = 734).",
+   "value": 0.253,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.253
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0017",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 4 picks, share primary starter in at least 5 seasons: 0.158 (n = 734).",
+   "value": 0.158,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.158
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0018",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 4 picks, share at least one Pro Bowl: 0.075 (n = 734).",
+   "value": 0.075,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.075
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0019",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 4 picks, share never played a game: 0.052 (n = 734).",
+   "value": 0.052,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.052
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0020",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 4 picks: 734.",
+   "value": 734,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 734
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0021",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 5 picks, share primary starter in at least 3 seasons: 0.206 (n = 722).",
+   "value": 0.206,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.206
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0022",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 5 picks, share primary starter in at least 5 seasons: 0.111 (n = 722).",
+   "value": 0.111,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.111
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0023",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 5 picks, share at least one Pro Bowl: 0.068 (n = 722).",
+   "value": 0.068,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.068
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0024",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 5 picks, share never played a game: 0.114 (n = 722).",
+   "value": 0.114,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.114
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0025",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 5 picks: 722.",
+   "value": 722,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 722
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0026",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 6 picks, share primary starter in at least 3 seasons: 0.118 (n = 781).",
+   "value": 0.118,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.118
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0027",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 6 picks, share primary starter in at least 5 seasons: 0.061 (n = 781).",
+   "value": 0.061,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.061
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0028",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 6 picks, share at least one Pro Bowl: 0.04 (n = 781).",
+   "value": 0.04,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.04
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0029",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 6 picks, share never played a game: 0.179 (n = 781).",
+   "value": 0.179,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.179
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0030",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 6 picks: 781.",
+   "value": 781,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 781
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0031",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 7 picks, share primary starter in at least 3 seasons: 0.084 (n = 889).",
+   "value": 0.084,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.084
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0032",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 7 picks, share primary starter in at least 5 seasons: 0.043 (n = 889).",
+   "value": 0.043,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.043
+    },
+    {
+     "citation": "nflverse snap_counts 2012 to 2025 (game-level snaps), starter season = 8 or more regular-season games at 50 percent or more of team offense or defense snaps; classes 2012 to 2019; within 3.3 points of the PFR field in every round",
+     "locator": "research/college/draft_translation_snap_check.py; results/draft_translation_snap_check_2012_2019.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Cross-check: an independent starter definition from game snap counts agrees within 3.3 points by round (2012 to 2019 classes). Same upstream publisher (Pro Football Reference via nflverse), so it is not counted as an independent source."
+  },
+  {
+   "id": "F-pipeline-0033",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 7 picks, share at least one Pro Bowl: 0.021 (n = 889).",
+   "value": 0.021,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.021
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0034",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 7 picks, share never played a game: 0.247 (n = 889).",
+   "value": 0.247,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.247
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0035",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Round 7 picks: 889.",
+   "value": 889,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 889
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0036",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r1, share starter3: 0.75 (n = 56).",
+   "value": 0.75,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.75
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0037",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r1, share starter5: 0.554 (n = 56).",
+   "value": 0.554,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.554
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0038",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r1, share neverStarted: 0.054 (n = 56).",
+   "value": 0.054,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.054
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0039",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r1: 56.",
+   "value": 56,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 56
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0040",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r2_3, share starter3: 0.255 (n = 47).",
+   "value": 0.255,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.255
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0041",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r2_3, share starter5: 0.149 (n = 47).",
+   "value": 0.149,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.149
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0042",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r2_3, share neverStarted: 0.383 (n = 47).",
+   "value": 0.383,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.383
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0043",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r2_3: 47.",
+   "value": 47,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 47
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0044",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r4_7, share starter3: 0.083 (n = 144).",
+   "value": 0.083,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.083
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0045",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r4_7, share starter5: 0.056 (n = 144).",
+   "value": 0.056,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.056
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0046",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r4_7, share neverStarted: 0.806 (n = 144).",
+   "value": 0.806,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.806
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0047",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "QB picks in r4_7: 144.",
+   "value": 144,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 144
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0048",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r1, share starter3: 0.75 (n = 48).",
+   "value": 0.75,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.75
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0049",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r1, share starter5: 0.5 (n = 48).",
+   "value": 0.5,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.5
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0050",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r1, share neverStarted: 0.083 (n = 48).",
+   "value": 0.083,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.083
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0051",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r1: 48.",
+   "value": 48,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 48
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0052",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r2_3, share starter3: 0.301 (n = 103).",
+   "value": 0.301,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.301
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0053",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r2_3, share starter5: 0.175 (n = 103).",
+   "value": 0.175,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.175
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0054",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r2_3, share neverStarted: 0.359 (n = 103).",
+   "value": 0.359,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.359
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0055",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r2_3: 103.",
+   "value": 103,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 103
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0056",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r4_7, share starter3: 0.106 (n = 312).",
+   "value": 0.106,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.106
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0057",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r4_7, share starter5: 0.035 (n = 312).",
+   "value": 0.035,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.035
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0058",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r4_7, share neverStarted: 0.731 (n = 312).",
+   "value": 0.731,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.731
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0059",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "RB picks in r4_7: 312.",
+   "value": 312,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 312
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0060",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r1, share starter3: 0.701 (n = 77).",
+   "value": 0.701,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.701
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0061",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r1, share starter5: 0.468 (n = 77).",
+   "value": 0.468,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.468
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0062",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r1, share neverStarted: 0.091 (n = 77).",
+   "value": 0.091,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.091
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0063",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r1: 77.",
+   "value": 77,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 77
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0064",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r2_3, share starter3: 0.423 (n = 182).",
+   "value": 0.423,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.423
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0065",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r2_3, share starter5: 0.264 (n = 182).",
+   "value": 0.264,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.264
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0066",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r2_3, share neverStarted: 0.357 (n = 182).",
+   "value": 0.357,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.357
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0067",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r2_3: 182.",
+   "value": 182,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 182
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0068",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r4_7, share starter3: 0.1 (n = 389).",
+   "value": 0.1,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0069",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r4_7, share starter5: 0.051 (n = 389).",
+   "value": 0.051,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.051
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0070",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r4_7, share neverStarted: 0.781 (n = 389).",
+   "value": 0.781,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.781
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0071",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "WR picks in r4_7: 389.",
+   "value": 389,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 389
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0072",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r1, share starter3: 0.875 (n = 24).",
+   "value": 0.875,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.875
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0073",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r1, share starter5: 0.708 (n = 24).",
+   "value": 0.708,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.708
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0074",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r1, share neverStarted: 0.0 (n = 24).",
+   "value": 0.0,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.0
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0075",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r1: 24.",
+   "value": 24,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 24
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0076",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r2_3, share starter3: 0.544 (n = 79).",
+   "value": 0.544,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.544
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0077",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r2_3, share starter5: 0.316 (n = 79).",
+   "value": 0.316,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.316
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0078",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r2_3, share neverStarted: 0.203 (n = 79).",
+   "value": 0.203,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.203
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0079",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r2_3: 79.",
+   "value": 79,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 79
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0080",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r4_7, share starter3: 0.21 (n = 195).",
+   "value": 0.21,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.21
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0081",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r4_7, share starter5: 0.103 (n = 195).",
+   "value": 0.103,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.103
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0082",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r4_7, share neverStarted: 0.549 (n = 195).",
+   "value": 0.549,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.549
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0083",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "TE picks in r4_7: 195.",
+   "value": 195,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 195
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0084",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r1, share starter3: 0.904 (n = 104).",
+   "value": 0.904,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.904
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0085",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r1, share starter5: 0.76 (n = 104).",
+   "value": 0.76,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.76
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0086",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r1, share neverStarted: 0.01 (n = 104).",
+   "value": 0.01,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.01
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0087",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r1: 104.",
+   "value": 104,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 104
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0088",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r2_3, share starter3: 0.66 (n = 212).",
+   "value": 0.66,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.66
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0089",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r2_3, share starter5: 0.509 (n = 212).",
+   "value": 0.509,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.509
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0090",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r2_3, share neverStarted: 0.16 (n = 212).",
+   "value": 0.16,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.16
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0091",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r2_3: 212.",
+   "value": 212,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 212
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0092",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r4_7, share starter3: 0.216 (n = 510).",
+   "value": 0.216,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.216
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0093",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r4_7, share starter5: 0.137 (n = 510).",
+   "value": 0.137,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.137
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0094",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r4_7, share neverStarted: 0.584 (n = 510).",
+   "value": 0.584,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.584
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0095",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "OL picks in r4_7: 510.",
+   "value": 510,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 510
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0096",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r1, share starter3: 0.769 (n = 65).",
+   "value": 0.769,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.769
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0097",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r1, share starter5: 0.662 (n = 65).",
+   "value": 0.662,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.662
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0098",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r1, share neverStarted: 0.077 (n = 65).",
+   "value": 0.077,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.077
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0099",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r1: 65.",
+   "value": 65,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 65
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0100",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r2_3, share starter3: 0.464 (n = 112).",
+   "value": 0.464,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.464
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0101",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r2_3, share starter5: 0.295 (n = 112).",
+   "value": 0.295,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.295
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0102",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r2_3, share neverStarted: 0.286 (n = 112).",
+   "value": 0.286,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.286
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0103",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r2_3: 112.",
+   "value": 112,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 112
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0104",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r4_7, share starter3: 0.192 (n = 239).",
+   "value": 0.192,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.192
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0105",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r4_7, share starter5: 0.109 (n = 239).",
+   "value": 0.109,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.109
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0106",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r4_7, share neverStarted: 0.582 (n = 239).",
+   "value": 0.582,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.582
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0107",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "IDL picks in r4_7: 239.",
+   "value": 239,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 239
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0108",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r1, share starter3: 0.72 (n = 82).",
+   "value": 0.72,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.72
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0109",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r1, share starter5: 0.573 (n = 82).",
+   "value": 0.573,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.573
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0110",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r1, share neverStarted: 0.122 (n = 82).",
+   "value": 0.122,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.122
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0111",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r1: 82.",
+   "value": 82,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 82
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0112",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r2_3, share starter3: 0.427 (n = 117).",
+   "value": 0.427,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.427
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0113",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r2_3, share starter5: 0.308 (n = 117).",
+   "value": 0.308,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.308
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0114",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r2_3, share neverStarted: 0.359 (n = 117).",
+   "value": 0.359,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.359
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0115",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r2_3: 117.",
+   "value": 117,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 117
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0116",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r4_7, share starter3: 0.189 (n = 254).",
+   "value": 0.189,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.189
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0117",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r4_7, share starter5: 0.13 (n = 254).",
+   "value": 0.13,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.13
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0118",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r4_7, share neverStarted: 0.65 (n = 254).",
+   "value": 0.65,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.65
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0119",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "EDGE picks in r4_7: 254.",
+   "value": 254,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 254
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0120",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r1, share starter3: 0.833 (n = 66).",
+   "value": 0.833,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.833
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0121",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r1, share starter5: 0.667 (n = 66).",
+   "value": 0.667,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.667
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0122",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r1, share neverStarted: 0.045 (n = 66).",
+   "value": 0.045,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.045
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0123",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r1: 66.",
+   "value": 66,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 66
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0124",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r2_3, share starter3: 0.529 (n = 187).",
+   "value": 0.529,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.529
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0125",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r2_3, share starter5: 0.358 (n = 187).",
+   "value": 0.358,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.358
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0126",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r2_3, share neverStarted: 0.294 (n = 187).",
+   "value": 0.294,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.294
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0127",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r2_3: 187.",
+   "value": 187,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 187
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0128",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r4_7, share starter3: 0.166 (n = 391).",
+   "value": 0.166,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.166
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0129",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r4_7, share starter5: 0.102 (n = 391).",
+   "value": 0.102,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.102
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0130",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r4_7, share neverStarted: 0.619 (n = 391).",
+   "value": 0.619,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.619
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0131",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "LB picks in r4_7: 391.",
+   "value": 391,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 391
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0132",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r1, share starter3: 0.761 (n = 113).",
+   "value": 0.761,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.761
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0133",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r1, share starter5: 0.637 (n = 113).",
+   "value": 0.637,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.637
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0134",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r1, share neverStarted: 0.062 (n = 113).",
+   "value": 0.062,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.062
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0135",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r1: 113.",
+   "value": 113,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 113
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0136",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r2_3, share starter3: 0.458 (n = 288).",
+   "value": 0.458,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.458
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0137",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r2_3, share starter5: 0.299 (n = 288).",
+   "value": 0.299,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.299
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0138",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r2_3, share neverStarted: 0.326 (n = 288).",
+   "value": 0.326,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.326
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0139",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r2_3: 288.",
+   "value": 288,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 288
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0140",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r4_7, share starter3: 0.155 (n = 606).",
+   "value": 0.155,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.155
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0141",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r4_7, share starter5: 0.089 (n = 606).",
+   "value": 0.089,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.089
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0142",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r4_7, share neverStarted: 0.67 (n = 606).",
+   "value": 0.67,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.67
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0143",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "DB picks in r4_7: 606.",
+   "value": 606,
+   "unit": "picks",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 606
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0144",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at WR (source labels WR), mean of 2016 to 2025: 32.2.",
+   "value": 32.2,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 32.2
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0145",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at DB (source labels CB/S/DB/SAF/FS/SS), mean of 2016 to 2025: 53.2.",
+   "value": 53.2,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 53.2
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0146",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at RB (source labels RB/FB), mean of 2016 to 2025: 22.2.",
+   "value": 22.2,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 22.2
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0147",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at LB (source labels LB/ILB/OLB), mean of 2016 to 2025: 29.0.",
+   "value": 29.0,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 29.0
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0148",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at EDGE (source labels DE/EDGE), mean of 2016 to 2025: 20.4.",
+   "value": 20.4,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 20.4
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0149",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at IDL (source labels DT/DL/NT), mean of 2016 to 2025: 25.1.",
+   "value": 25.1,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 25.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0150",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at OL (source labels OT/G/C/OL/T/OG), mean of 2016 to 2025: 43.3.",
+   "value": 43.3,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 43.3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0151",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at TE (source labels TE), mean of 2016 to 2025: 14.1.",
+   "value": 14.1,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 14.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0152",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at QB (source labels QB), mean of 2016 to 2025: 12.0.",
+   "value": 12.0,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 12.0
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0153",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at K (source labels K), mean of 2016 to 2025: 2.1.",
+   "value": 2.1,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 2.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0154",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Picks per draft at P (source labels P), mean of 2016 to 2025: 2.1.",
+   "value": 2.1,
+   "unit": "picks per draft",
+   "validFor": "drafts 2016-2025",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2016 to 2025, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 2.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "Position labels in the source overlap; starting value for class generation (T11.4.1)."
+  },
+  {
+   "id": "F-pipeline-0155",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "First-round quarterbacks never three-year starters: 0.25 (n = 56).",
+   "value": 0.25,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.25
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0156",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "First-round quarterbacks never five-year starters: 0.446 (n = 56).",
+   "value": 0.446,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.446
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0157",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Share of picks from the 20 colleges with most picks: 0.362.",
+   "value": 0.362,
+   "unit": "share",
+   "validFor": "draft classes 2000-2019",
+   "sources": [
+    {
+     "citation": "nflverse draft_picks (Pro Football Reference fields: seasons as primary starter, Pro Bowls, games), classes 2000 to 2019, as data/people/nfl_draft_history.csv; computed by the project",
+     "locator": "research/college/draft_translation.py and make_pipeline_facts.py; bible T11.4.1",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "pro-football-reference",
+     "primary": false,
+     "value": 0.362
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ],
+   "notes": "A prior on where talent is, not a bonus for the school name (T11.3.1)."
+  },
+  {
+   "id": "F-pipeline-0158",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Share of draft-eligible NCAA football players drafted in 2019: 0.016 (254 of about 16,380).",
+   "value": 0.016,
+   "unit": "share",
+   "validFor": "2019 draft",
+   "sources": [
+    {
+     "citation": "NCAA Research, \"Estimated probability of competing in professional athletics\" (football row)",
+     "locator": "bible T11.4.1 football facts; research/college",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa-research",
+     "primary": false,
+     "value": 0.016
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0159",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "College coaches who left for pro staffs in 2024-25: 32.",
+   "value": 32,
+   "unit": "coaches per year",
+   "validFor": "2024-25",
+   "sources": [
+    {
+     "citation": "CBS Sports coaching carousel audit, 2025-05-27",
+     "locator": "research/college/R21-R25-coach-pay-and-career-start.md line 143",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "value": 32
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0160",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Pro coaches who moved to top-subdivision college staffs in 2024-25: 18.",
+   "value": 18,
+   "unit": "coaches per year",
+   "validFor": "2024-25",
+   "sources": [
+    {
+     "citation": "CBS Sports coaching carousel audit, 2025-05-27",
+     "locator": "research/college/R21-R25-coach-pay-and-career-start.md line 143",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "value": 18
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-39 load: recomputed from the draft history file; matches bible T11.4.1."
+    }
+   ]
+  }
+ ]
+}

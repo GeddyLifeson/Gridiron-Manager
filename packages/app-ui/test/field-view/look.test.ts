@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { ParamFile } from '@gm/schema';
 import {
   buildMarkings, markingStatus, PRO_MARKINGS, DEFAULT_MARKERS, markerFor, contrastRatio, resolveTeamColours,
-  COLOUR_BLIND_SAFE, FIELD_COLOURS, PARAMS,
+  fieldPalette, PARAMS,
 } from '../../src/field-view/index.ts';
 import { PRO } from './fixtures.ts';
 
@@ -59,10 +59,12 @@ describe('team colours (I9.1.1)', () => {
   it('keeps colours that pass 3:1, else swaps to the away alternate, else the colour-blind-safe pair', () => {
     expect(resolveTeamColours({ primary: '#ffffff', alternate: '#000000' }, { primary: '#000000', alternate: '#ffffff' }).source).toBe('primary');
     expect(resolveTeamColours({ primary: '#ffffff', alternate: '#000000' }, { primary: '#eeeeee', alternate: '#000000' }).source).toBe('awayAlternate');
-    const bad = resolveTeamColours({ primary: '#3f7f3a', alternate: '#3f7f3a' }, { primary: '#3f7f3a', alternate: '#3f7f3a' });
+    const pal = fieldPalette('light');
+    const bad = resolveTeamColours({ primary: pal.turf, alternate: pal.turf }, { primary: pal.turf, alternate: pal.turf });
     expect(bad.source).toBe('colourBlindSafe');
-    for (const c of COLOUR_BLIND_SAFE) expect(contrastRatio(c, FIELD_COLOURS.grass)).toBeGreaterThanOrEqual(3);
-    expect(contrastRatio(COLOUR_BLIND_SAFE[0], COLOUR_BLIND_SAFE[1])).toBeGreaterThanOrEqual(3);
+    expect(bad.sides).toEqual([pal.safeDark, pal.safeLight]);
+    expect(contrastRatio(pal.safeLight, pal.turf)).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(pal.safeDark, pal.safeLight)).toBeGreaterThanOrEqual(3);
     expect(resolveTeamColours({ primary: '#ffffff', alternate: '#000000' }, { primary: '#000000', alternate: '#ffffff' }, { colourBlindSafe: true }).source).toBe('colourBlindSafe');
   });
 });
@@ -72,5 +74,20 @@ describe('tuning constants', () => {
     const parsed = ParamFile.parse(JSON.parse(JSON.stringify(PARAMS)));
     expect(parsed.params.every((p) => p.basis === 'assumption' || /^[A-Z]\d/.test(p.leaf))).toBe(true);
     for (const p of parsed.params) expect(p.value >= p.min && p.value <= p.max, p.name).toBe(true);
+  });
+});
+
+describe('colours come from the token file (O6.2.1)', () => {
+  it('builds a palette for every theme and colour-vision setting', () => {
+    for (const theme of ['light', 'dark', 'high-contrast'] as const) for (const v of ['none', 'protan', 'deutan', 'tritan'] as const) {
+      const pal = fieldPalette(theme, v);
+      for (const [k, c] of Object.entries(pal)) expect(c, `${theme} ${v} ${k}`).toMatch(/^#[0-9a-f]{6}$/i);
+    }
+  });
+  it('outlines a side that cannot reach 3:1 on the turf', () => {
+    const pal = fieldPalette('high-contrast');
+    const r = resolveTeamColours({ primary: pal.turf, alternate: pal.turf }, { primary: pal.turf, alternate: pal.turf }, { palette: pal });
+    expect(r.outlined[0]).toBe(contrastRatio(pal.safeDark, pal.turf) < 3);
+    expect(r.outlined[1]).toBe(false);
   });
 });

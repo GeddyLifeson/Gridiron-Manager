@@ -1,0 +1,216 @@
+{
+ "$comment": "X2.1.2 event-type rows for C9 honours. Football honours land on everyone (harm class none). minTier: weekly honours from tier 2, season honours and halls at every tier (X13). The honors family is never compacted (X2.4.1 rule 4).",
+ "types": [
+  {
+   "id": "weekly_honour",
+   "family": "honors",
+   "payloadSchema": {
+    "category": "string",
+    "groupId": "id",
+    "week": "number",
+    "score": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.weekly",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 2,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "season_award",
+   "family": "honors",
+   "payloadSchema": {
+    "award": "string",
+    "place": "number",
+    "points": "number",
+    "firstPlaceVotes": "number",
+    "voters": "number",
+    "shared": "boolean"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.award",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "all_league_selection",
+   "family": "honors",
+   "payloadSchema": {
+    "slot": "string",
+    "team": "number",
+    "points": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.all_league",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "all_star_selection",
+   "family": "honors",
+   "payloadSchema": {
+    "slot": "string",
+    "share": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.all_star",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "record_set",
+   "family": "honors",
+   "payloadSchema": {
+    "recordId": "string",
+    "value": "number",
+    "previous": "number",
+    "seasonGames": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.record",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "career_milestone",
+   "family": "honors",
+   "payloadSchema": {
+    "statistic": "string",
+    "value": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.milestone",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "hall_nominated",
+   "family": "honors",
+   "payloadSchema": {
+    "hall": "string",
+    "caseScore": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.hall_nominated",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "hall_finalist",
+   "family": "honors",
+   "payloadSchema": {
+    "hall": "string",
+    "caseScore": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.hall_finalist",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "hall_elected",
+   "family": "honors",
+   "payloadSchema": {
+    "hall": "string",
+    "yesShare": "number",
+    "ballot": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.hall_elected",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  },
+  {
+   "id": "hall_passed_over",
+   "family": "honors",
+   "payloadSchema": {
+    "hall": "string",
+    "yesShare": "number",
+    "ballot": "number"
+   },
+   "witnessRule": "public",
+   "lineTemplate": "awards.line.hall_passed_over",
+   "harmClass": "none",
+   "importedAllowed": true,
+   "minTier": 3,
+   "consumers": [
+    "league.awards",
+    "career.reputation",
+    "league.news",
+    "people.morale"
+   ],
+   "compactable": false
+  }
+ ]
+}

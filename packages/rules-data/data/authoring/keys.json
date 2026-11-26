@@ -1434,6 +1434,1224 @@
    }
   },
   {
+   "key": "clock.periods_per_half",
+   "type": "number",
+   "unit": "count",
+   "meaning": "periods in a half, to tell the last period of a half",
+   "ownerLeaf": "B8.5.6",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 4, Section 1, Article 2",
+      "q": "There will be intervals of at least two minutes between the first and second periods (first half) and between the third and fourth periods (second half).",
+      "line": 935
+     },
+     {
+      "cite": "Rule 4, Section 1, Article 3",
+      "q": "Between the second and third periods, there shall be an intermission of 13 minutes.",
+      "line": 941
+     }
+    ],
+    "note": "Four periods (clock.periods) and the halftime between the second and third make two periods per half."
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 3, Section 2, Article 1",
+      "q": "with one-minute intermissions between the first and second periods (first half) and between the third and fourth periods (second half)",
+      "line": 2201
+     }
+    ],
+    "note": "Four periods (clock.periods) make two periods per half."
+   }
+  },
+  {
+   "key": "enforce.half_distance.applies",
+   "type": "boolean",
+   "meaning": "a distance penalty is limited to a fraction of the distance to the offender's goal line",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 2, Article 1",
+      "q": "the penalty shall be half the distance from the spot of enforcement to its goal line",
+      "line": 3641
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 6",
+      "q": "shall exceed half the distance from the enforcement spot to the offending team’s goal line",
+      "line": 4971
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.half_distance.fraction",
+   "type": "number",
+   "unit": "ratio",
+   "meaning": "the fraction of the distance to the goal line that limits a penalty",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 0.5,
+    "src": [
+     {
+      "cite": "Rule 14, Section 2, Article 1",
+      "q": "the penalty shall be half the distance from the spot of enforcement to its goal line",
+      "line": 3641
+     }
+    ],
+    "note": "Half."
+   },
+   "college": {
+    "v": 0.5,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 6",
+      "q": "shall exceed half the distance from the enforcement spot to the offending team’s goal line",
+      "line": 4971
+     }
+    ],
+    "note": "Half."
+   }
+  },
+  {
+   "key": "enforce.half_distance_divisor",
+   "type": "number",
+   "unit": "ratio",
+   "meaning": "A distance penalty may not exceed the distance from the enforcement spot to the offender goal line divided by this. Shared with the foul module, which owns it",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 14, Section 2, Article 1",
+      "q": "the penalty shall be half the distance from the spot of enforcement to its goal line",
+      "line": 3641
+     }
+    ],
+    "note": "The same rule as enforce.half_distance.fraction written as a divisor: half is divided by 2."
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 6",
+      "q": "shall exceed half the distance from the enforcement spot to the offending team’s goal line",
+      "line": 4971
+     }
+    ],
+    "note": "The same rule as enforce.half_distance.fraction written as a divisor: half is divided by 2."
+   }
+  },
+  {
+   "key": "enforce.five_fifteen.applies",
+   "type": "boolean",
+   "meaning": "a major foul against a simple minor foul is enforced instead of offsetting",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 5, Article 1, Exception 1",
+      "q": "the 15-yard penalty is enforced from the previous spot, and the five-yard penalty is disregarded",
+      "line": 3916
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 1, Article 4",
+      "q": "If live-ball fouls by both teams are reported to the referee, the fouls offset and the down is repeated",
+      "line": 4818
+     },
+     {
+      "cite": "Whole book",
+      "absent": "The text was searched for \"versus\", \"five-yard penalt\" and \"15-yard penalt\": no rule lets a 15-yard foul cancel a smaller foul by the other team. Live-ball fouls by both teams offset (10-1-4); the only exceptions concern a change of possession."
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.five_fifteen.minor_yards",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "yardage of the minor foul in the major against minor rule",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 5,
+    "src": [
+     {
+      "cite": "Rule 14, Section 5, Article 1, Exception 1",
+      "q": "is for a five-yard penalty without an automatic first down, a loss of down, or a 10-second runoff (15 yards versus five yards)",
+      "line": 3915
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 10, Section 1, Article 4",
+      "absent": "The college book has no five against fifteen rule, so enforce.five_fifteen.applies is false and this value is never read."
+     }
+    ],
+    "note": "Inert value: never read while enforce.five_fifteen.applies is false."
+   }
+  },
+  {
+   "key": "enforce.five_fifteen.major_yards",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "yardage of the major foul in the major against minor rule",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 14, Section 5, Article 1, Exception 1",
+      "q": "If one or more fouls by one team includes a 15-yard penalty",
+      "line": 3914
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 10, Section 1, Article 4",
+      "absent": "The college book has no five against fifteen rule, so enforce.five_fifteen.applies is false and this value is never read."
+     }
+    ],
+    "note": "Inert value: never read while enforce.five_fifteen.applies is false."
+   }
+  },
+  {
+   "key": "enforce.interference.capped",
+   "type": "boolean",
+   "meaning": "defensive pass interference is limited to a distance from the previous spot",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Penalty",
+      "q": "First down for the offensive team at the spot of the foul.",
+      "line": 2373
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8, Penalty",
+      "q": "If the foul occurs 15 or more yards beyond the previous spot, Team A’s ball, first down, 15 yards from the previous spot",
+      "line": 3762
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.interference.max_yards",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "the limit, read only when capped",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Penalty",
+      "q": "First down for the offensive team at the spot of the foul.",
+      "line": 2373
+     }
+    ],
+    "note": "Inert value: the pro penalty has no distance limit, so enforce.interference.capped is false and this is never read."
+   },
+   "college": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8, Penalty",
+      "q": "If the foul occurs 15 or more yards beyond the previous spot, Team A’s ball, first down, 15 yards from the previous spot",
+      "line": 3762
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.interference.floor_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "yard line the ball is placed on when the floor rule applies",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Penalty",
+      "q": "first down for the offensive team on the defense’s one-yard line at the inbounds spot corresponding to the spot of the interference",
+      "line": 2376
+     }
+    ]
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8, Penalty",
+      "q": "the penalty from the previous spot shall place the ball at the two-yard line, first down",
+      "line": 3767
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.interference.floor_rule",
+   "type": "option",
+   "options": [
+    "end_zone_only",
+    "inside_floor"
+   ],
+   "meaning": "when the floor yard line applies: a foul in the end zone, or any result inside the floor",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": "end_zone_only",
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Penalty",
+      "q": "If the spot of the interference is behind the defensive team’s goal line and the previous spot was on or outside the defense’s two-yard line",
+      "line": 2375
+     }
+    ],
+    "note": "Pro: the one-yard line applies only when the spot of the interference is behind the goal line (in the end zone)."
+   },
+   "college": {
+    "v": "inside_floor",
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8, Penalty",
+      "q": "No penalty enforced from outside the two-yard line may place the ball inside the two-yard line",
+      "line": 3770
+     }
+    ],
+    "note": "College: the ball may never be placed inside the two-yard line from outside it, so any result inside the floor is moved to the floor."
+   }
+  },
+  {
+   "key": "enforce.interference.half_inside_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "a previous spot inside this yard line gives half the distance instead of the floor",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Penalty",
+      "q": "or, if the previous spot was inside the defense’s two-yard line, the penalty shall be halfway between the previous spot and the goal line",
+      "line": 2377
+     }
+    ]
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8, Penalty",
+      "q": "If the previous spot was on or inside the two-yard line, first down halfway between the previous spot and the goal line",
+      "line": 3774
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.interference.half_inclusive",
+   "type": "boolean",
+   "meaning": "a previous spot exactly on that yard line counts as inside it",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Penalty",
+      "q": "the previous spot was on or outside the defense’s two-yard line, then it is first down for the offensive team on the defense’s one-yard line",
+      "line": 2392
+     }
+    ],
+    "note": "A previous spot exactly on the two-yard line gets the one-yard-line spot, so it does not count as inside."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8, Penalty",
+      "q": "If the previous spot was on or inside the two-yard line, first down halfway between the previous spot and the goal line",
+      "line": 3774
+     }
+    ],
+    "note": "A previous spot exactly on the two-yard line gets half the distance, so it counts as inside."
+   }
+  },
+  {
+   "key": "enforce.end_zone_foul_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "yard line a post-possession foul in the end zone is treated as being on",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8 (4)",
+      "q": "If the foul occurs in the end zone, it is deemed to have occurred at the 20-yard line, unless enforcement results in a safety",
+      "line": 2708
+     }
+    ]
+   },
+   "college": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 2, Section 25, Article 11-b",
+      "q": "When the kick ends in Team B’s end zone, the postscrimmage kick spot is Team B’s 20-yard line.",
+      "line": 1841
+     }
+    ],
+    "note": "The college book gives this through the postscrimmage kick spot, the basic spot for fouls by Team B on a scrimmage kick (10-2-3)."
+   }
+  },
+  {
+   "key": "enforce.double_foul_safety_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "yard line the ball goes to when an offsetting foul after a change would have been a safety",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 14, Section 5, Article 3, Item 1",
+      "q": "If it is normally a safety, the ball is placed on the one-yard line.",
+      "line": 3945
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 10, Section 1, Article 4",
+      "absent": "Offsetting live-ball fouls repeat the down (10-1-4); the text was read and has no rule that places the ball on a yard line when an offsetting foul after a change of possession would have been a safety."
+     }
+    ],
+    "note": "Inert value. The college book has no double foul after a change of possession rule of the pro kind, so this module cannot apply it at college; see the pull request note on the college double foul procedure."
+   }
+  },
+  {
+   "key": "enforce.clean_hands.personal_offsets",
+   "type": "boolean",
+   "meaning": "a personal or unsportsmanlike foul before the change offsets a foul after it",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 5, Article 2, Item 1, Exception 3",
+      "q": "the penalties offset, and the team last in possession shall retain the ball at the spot where its foul would be enforced if it was the only foul",
+      "line": 3935
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 1, Article 4, Exception 1",
+      "q": "the team last gaining possession had not fouled before last gaining possession, it may refuse offsetting fouls and thereby retain possession after completion of the penalty for its foul",
+      "line": 4822
+     },
+     {
+      "cite": "Rule 10, Section 1, Article 4",
+      "absent": "The exceptions of 10-1-4 were read: none makes a personal or unsportsmanlike foul by the other team before the change offset the clean hands team. That rule is the NFL 2024 rule only."
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.spike_delay_foul",
+   "type": "option",
+   "options": [
+    "none",
+    "false_start",
+    "encroachment",
+    "neutral_zone_infraction",
+    "offside",
+    "illegal_shift",
+    "illegal_motion",
+    "illegal_formation",
+    "illegal_snap",
+    "snap_to_ineligible",
+    "delay_of_game",
+    "delay_of_game_spike",
+    "excess_timeout",
+    "illegal_substitution",
+    "too_many_men",
+    "too_many_men_formation",
+    "illegal_forward_pass_beyond_line",
+    "second_forward_pass",
+    "forward_pass_after_change",
+    "illegal_touching_ineligible",
+    "illegal_touching_after_oob",
+    "grounding",
+    "ineligible_downfield",
+    "illegal_contact",
+    "illegal_cut_block",
+    "def_holding",
+    "dpi",
+    "opi",
+    "backward_pass_oob",
+    "illegal_handoff_forward",
+    "holding_offense",
+    "illegal_hands_offense",
+    "block_in_back",
+    "assist_runner",
+    "illegal_hands_defense",
+    "clipping",
+    "peel_back",
+    "low_block",
+    "chop_block",
+    "crackback",
+    "blindside_block",
+    "unnecessary_roughness",
+    "defenseless_player",
+    "helmet_use",
+    "roughing_passer",
+    "roughing_kicker",
+    "running_into_kicker",
+    "roughing_holder",
+    "striking",
+    "face_mask",
+    "horse_collar",
+    "helmet_weapon",
+    "hip_drop",
+    "targeting",
+    "unsportsmanlike",
+    "taunting",
+    "kick_block_leverage",
+    "kick_block_leaping",
+    "clock_manipulation",
+    "palpably_unfair",
+    "league_dq",
+    "illegal_bat",
+    "illegal_kick",
+    "non_player_unsportsmanlike",
+    "foul_against_official",
+    "challenge_without_timeout",
+    "excess_injury_timeout",
+    "free_kick_offside",
+    "free_kick_illegal_formation",
+    "free_kick_early_movement",
+    "illegal_free_kick",
+    "free_kick_illegal_block",
+    "wedge",
+    "illegal_double_team",
+    "onside_untouched_past_zone",
+    "free_kick_illegal_touching",
+    "free_kick_voluntary_oob",
+    "running_into_free_kicker",
+    "illegal_scrimmage_kick",
+    "ineligible_downfield_kick",
+    "kick_voluntary_oob",
+    "def_illegal_formation_kick",
+    "pushing_teammates_formation",
+    "pull_and_shoot_holding",
+    "kick_holding",
+    "kick_illegal_touching_after_oob",
+    "kick_catch_interference",
+    "fair_catch_interference",
+    "invalid_fair_catch_signal",
+    "muff_opportunity_interference",
+    "block_after_fair_catch_signal",
+    "contact_with_fair_catcher"
+   ],
+   "meaning": "id of the dead-ball delay foul for spiking that the spiking team may take instead of an offset",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": "delay_of_game_spike",
+    "src": [
+     {
+      "cite": "Rule 14, Section 5, Article 1, Exception 3",
+      "q": "If one of the fouls is a dead ball foul for delay of game for spiking the ball and the opponent’s foul is a live ball foul",
+      "line": 3920
+     }
+    ]
+   },
+   "college": {
+    "v": "none",
+    "src": [
+     {
+      "cite": "Rule 10, Section 1, Article 6",
+      "q": "Live-ball fouls do not offset dead-ball fouls.",
+      "line": 4844
+     },
+     {
+      "cite": "Rule 3, Section 2, Article 5",
+      "absent": "Spiking (A.R. 3-2-5) is a legal act with its own minimum time for the next play; the text has no delay foul for spiking and no spike option in double fouls."
+     }
+    ]
+   }
+  },
+  {
+   "key": "enforce.defensive_foul_extends_period",
+   "type": "boolean",
+   "meaning": "an accepted live-ball defensive foul on the last timed down lets the offense extend the period",
+   "ownerLeaf": "B1.7.2",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 4, Section 8, Article 2 (a)",
+      "q": "If there is a live ball foul by the defensive team that is accepted, the offensive team may choose to extend the period by an untimed down after enforcement of the penalty.",
+      "line": 1230
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 2, Article 3-a-1",
+      "q": "A penalty is accepted for a live-ball foul(s) (Exception: Rule 10-2-5-a).",
+      "line": 2259
+     }
+    ],
+    "note": "College: the period is extended by rule in the 2nd or 4th quarter, with an option not to extend only when the foul is by the team in possession and the penalty includes loss of down."
+   }
+  },
+  {
+   "key": "enforce.touchdown_foul_to_kickoff",
+   "type": "boolean",
+   "meaning": "the scoring team may carry an opponent's foul on a touchdown to the kickoff instead of the try",
+   "ownerLeaf": "B8.5.7",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "pro": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 14, Section 2, Article 3",
+      "q": "On a touchdown, the penalty, whether a live ball or dead ball foul or a foul between downs, is enforced on the Try.",
+      "line": 3658
+     }
+    ],
+    "note": "The pro book moves a foul on a touchdown to the kickoff only when the foul prevents the Try attempt (11-3-3 Item 2), which the module rules as a foul during a try."
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 5-a-1",
+      "q": "Fifteen-yard penalties for personal fouls and for unsportsmanlike conduct fouls are enforced on the try, the succeeding kickoff or from the succeeding spot in extra periods at the option of the scoring team.",
+      "line": 4940
+     }
+    ],
+    "note": "College: only 15-yard personal and unsportsmanlike fouls may go to the kickoff; five and ten yard penalties are declined by rule (10-2-5-a-2)."
+   }
+  },
+  {
+   "key": "kickoff.landing_zone_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Receiving team yard line where the landing zone begins (see officiating/kick)",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 2 (e)",
+      "q": "The “landing zone” shall be the area from the receiving team’s 20-yard line extending to its goal line.",
+      "line": 1680
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Sections 1 to 3",
+      "absent": "Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1."
+     }
+    ],
+    "note": "Inert value: kickoff.format is traditional, so this is never read."
+   }
+  },
+  {
+   "key": "kickoff.kicking_team_line_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Receiving team yard line where the ten non-kickers line up in the dynamic format. Not read in the traditional format",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 40,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 2 (b)",
+      "q": "the restraining line for the remaining 10 players of the kicking team shall be the receiving team’s 40-yard line",
+      "line": 1675
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Sections 1 to 3",
+      "absent": "Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1."
+     }
+    ],
+    "note": "Inert value: kickoff.format is traditional. At college the kicking team line is its own restraining line (kickoff.spot_yardline)."
+   }
+  },
+  {
+   "key": "kickoff.receiving_line_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Receiving team yard line of its restraining line in the dynamic format. Not read in the traditional format",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 35,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 2 (c)",
+      "q": "the restraining line for the receiving team shall be the receiving team’s 35-yard line",
+      "line": 1677
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Sections 1 to 3",
+      "absent": "Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1."
+     }
+    ],
+    "note": "Inert value: kickoff.format is traditional. At college the receiving restraining line is onside.min_distance_yd beyond the kicker (6-1-1)."
+   }
+  },
+  {
+   "key": "kickoff.setup_zone_back_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Receiving team yard line of the back of the setup zone in the dynamic format. Not read in the traditional format",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 2 (d)",
+      "q": "The “setup zone” for the receiving team is the 5-yard area between the receiving team’s 35-yard line and its 30-yard line.",
+      "line": 1678
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Sections 1 to 3",
+      "absent": "Free kicks were read in full: the college book has no landing zone, setup zone or kickers restraining line other than the ten-yard free kick of 6-1-1."
+     }
+    ],
+    "note": "Inert value: kickoff.format is traditional, so this is never read."
+   }
+  },
+  {
+   "key": "kickoff.touchback_reduced_kick_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "A kickoff made from this yard line of the kicking team, or beyond it, takes the reduced touchback spot",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 50,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 5",
+      "q": "In either case, if the kickoff is from the 50-yard line and the play results in a touchback, then the dead ball spot is the 20-yard line.",
+      "line": 1748
+     }
+    ]
+   },
+   "college": {
+    "v": 50,
+    "src": [
+     {
+      "cite": "Rule 8, Section 6, Article 2",
+      "absent": "The college touchback spot after a free kick is the 25-yard line wherever the kick was made; there is no reduced spot."
+     }
+    ],
+    "note": "Inert value: kickoff.touchback_reduced_yardline equals kickoff.touchback_yardline at college, so the kick yard line makes no difference."
+   }
+  },
+  {
+   "key": "kickoff.touchback_reduced_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Receiving team yard line of a touchback on a kickoff made from kickoff.touchback_reduced_kick_yardline or beyond. Equal to kickoff.touchback_yardline where the level has no such rule",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 5",
+      "q": "In either case, if the kickoff is from the 50-yard line and the play results in a touchback, then the dead ball spot is the 20-yard line.",
+      "line": 1748
+     }
+    ]
+   },
+   "college": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 8, Section 6, Article 2",
+      "q": "unless the touchback results from a free kick, in which case the ball belongs to Team B at its 25-yard line",
+      "line": 4051
+     }
+    ],
+    "note": "No reduced touchback at college: equal to kickoff.touchback_yardline, as the key meaning says."
+   }
+  },
+  {
+   "key": "kickoff.short_spot_yd_from_kick",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Kickoff short of the landing zone: receivers take the ball this many yards from the spot of the kick, or at the spot of the first touch if that is nearer the kick. Read only when the format is dynamic",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 6, Section 2, Article 4",
+      "q": "The receiving team may elect to take possession of the ball 25 yards (or 30 yards in the event of a safety kick) from the spot of the kick at the inbounds line on the side of the field where the ball went out of bounds or lands or is touched short of the landing zone",
+      "line": 1863
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 3 and Section 2",
+      "absent": "No landing zone: a free kick that does not reach the receiving restraining line is a live ball with the touching rules of 6-1-3, and the book has no short-kick spot."
+     }
+    ],
+    "note": "Inert value: no landing zone at college, so a kick is never short of it."
+   }
+  },
+  {
+   "key": "kickoff.safety_kick_short_spot_yd_from_kick",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "The same distance for a safety kick",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 6, Section 2, Article 4",
+      "q": "The receiving team may elect to take possession of the ball 25 yards (or 30 yards in the event of a safety kick) from the spot of the kick at the inbounds line on the side of the field where the ball went out of bounds or lands or is touched short of the landing zone",
+      "line": 1863
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 3 and Section 2",
+      "absent": "No landing zone: a free kick that does not reach the receiving restraining line is a live ball with the touching rules of 6-1-3, and the book has no short-kick spot."
+     }
+    ],
+    "note": "Inert value: no landing zone at college, so a kick is never short of it."
+   }
+  },
+  {
+   "key": "kickoff.safety_kick_out_of_bounds_yd_from_kick",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "The same distance for a safety kick",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 6, Section 2, Article 4",
+      "q": "The receiving team may elect to take possession of the ball 25 yards (or 30 yards in the event of a safety kick) from the spot of the kick at the inbounds line on the side of the field where the ball went out of bounds or lands or is touched short of the landing zone",
+      "line": 1863
+     }
+    ]
+   },
+   "college": {
+    "v": 30,
+    "src": [
+     {
+      "cite": "Rule 6, Section 2, Article 1, Penalty",
+      "q": "the receiving team may put the ball in play 30 yards beyond Team A’s restraining line at the hash mark",
+      "line": 3183
+     }
+    ],
+    "note": "College measures the 30 yards from the kicking team restraining line, which is the kick spot of a safety kick unless relocated by a penalty; the same distance applies to a kickoff (kickoff.out_of_bounds_spot_yards)."
+   }
+  },
+  {
+   "key": "onside.min_distance_yd",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Distance from the kick to the receiving team restraining line on a ten-yard free kick (see officiating/kick)",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 6 (g)",
+      "q": "The restraining line for the receiving team shall be the yard line 10 yards in advance of the kicking team’s restraining line.",
+      "line": 1773
+     }
+    ]
+   },
+   "college": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 1",
+      "q": "the receiving team’s restraining line shall be the yard line 10 yards beyond that point",
+      "line": 3039
+     },
+     {
+      "cite": "Rule 6, Section 1, Article 3-a-2",
+      "q": "It breaks the plane of and remains beyond Team B’s restraining line",
+      "line": 3091
+     }
+    ]
+   }
+  },
+  {
+   "key": "onside.setup_zone_depth_yd",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Depth of the onside kick setup zone behind the receiving team restraining line. 0 where there is no such zone",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 6 (h)",
+      "q": "a spot 15 yards behind their restraining line (the “onside kick setup zone”)",
+      "line": 1775
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Articles 1 to 3",
+      "absent": "The college book has no onside kick setup zone and no onside declaration (kickoff.onside_must_declare is false)."
+     }
+    ],
+    "note": "Inert value: no setup zone at college."
+   }
+  },
+  {
+   "key": "onside.untouched_dead_beyond_yd",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "A declared onside kick untouched beyond this distance from the kick is dead and belongs to the receivers. 0 switches the rule off",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 25,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 6 (k)",
+      "q": "If the onside kick goes untouched beyond the onside kick setup zone, the ball becomes dead and belongs to the receiving team.",
+      "line": 1780
+     },
+     {
+      "cite": "Rule 6, Section 1, Article 6 (h)",
+      "q": "a spot 15 yards behind their restraining line (the “onside kick setup zone”)",
+      "line": 1775
+     }
+    ],
+    "note": "Derived: the setup zone ends 15 yards behind the receiving restraining line (6-1-6-h), and that line is 10 yards from the kicking line (6-1-6-g); 10 + 15 = 25 yards from the kick."
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Articles 1 to 3",
+      "absent": "The college book has no onside kick setup zone, so no kick is dead untouched beyond one. 0 switches the rule off, as the key meaning says."
+     }
+    ],
+    "note": "Inert value: rule off."
+   }
+  },
+  {
+   "key": "onside.untouched_beyond_penalty_yd",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Yards walked off from the kicking team restraining line when a declared onside kick is dead untouched beyond the setup zone",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Article 6, Penalty",
+      "q": "Loss of 15 yards from the kicking team’s restraining line and the receiving team takes possession.",
+      "line": 1794
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Section 1, Articles 1 to 3",
+      "absent": "The college book has no onside kick setup zone, so the foul does not exist."
+     }
+    ],
+    "note": "Inert value: rule off."
+   }
+  },
+  {
+   "key": "punt.first_touch_min_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "A first-touch spot is never nearer the receivers goal line than this yard line",
+   "ownerLeaf": "B6.3.3",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 1,
+    "src": [
+     {
+      "cite": "Rule 11, Section 4, Article 1, Note 4",
+      "q": "but in no event inside the receiving team’s one-yard line",
+      "line": 2597
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 6, Section 3, Articles 2 and 11",
+      "absent": "The illegal touching spot is the spot of the violation; the only yard line the college text names is the touch of a ball batted in the end zone, whose spot is Team B’s 20-yard line (6-3-11), a case that is not a clamp on field of play touches. No minimum is stated, so 0 (the goal line) means no limit."
+     }
+    ],
+    "note": "The module clamps every first touch spot to this yard line, so the 20-yard line of 6-3-11 cannot be written here without moving legal touches inside the 20. Open model gap for the integrator."
+   }
+  },
+  {
+   "key": "fg.miss_spot_min_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Receiving team yard line used when the missed field goal spot would be nearer the goal line",
+   "ownerLeaf": "B6.5.2",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 11, Section 4, Article 2 (a)",
+      "q": "If the spot of the kick was inside the receivers’ 20-yard line, it is the receivers’ ball at the 20-yard line",
+      "line": 2903
+     }
+    ]
+   },
+   "college": {
+    "v": 20,
+    "src": [
+     {
+      "cite": "Rule 8, Section 4, Article 2-b-1",
+      "q": "unless the previous spot was between its 20-yard line and its goal line. In that case Team B will next snap the ball at its 20-yard line.",
+      "line": 3993
+     }
+    ]
+   }
+  },
+  {
+   "key": "try.defense_return_points",
+   "type": "number",
+   "unit": "points",
+   "meaning": "Try returned by the defense to the other end zone",
+   "ownerLeaf": "B7.3.2",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "pro": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 11, Section 3, Article 2 (b)",
+      "q": "If a Try results in a touchdown by either team, two points are awarded.",
+      "line": 2841
+     }
+    ]
+   },
+   "college": {
+    "v": 2,
+    "src": [
+     {
+      "cite": "Rule 8, Section 1, Article 1",
+      "q": "Successful Try: Touchdown — 2 Points",
+      "line": 3850
+     },
+     {
+      "cite": "Rule 8, Section 3, Article 2",
+      "q": "A try is an opportunity for either team to score one or two points",
+      "line": 3885
+     }
+    ]
+   }
+  },
+  {
+   "key": "toss.defer_allowed",
+   "type": "boolean",
+   "meaning": "The winner of the opening toss may defer its choice to the second half",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 4, Section 2, Article 2",
+      "q": "Unless the winner of the toss defers his choice to the second half, he must choose one of two privileges",
+      "line": 962
+     }
+    ]
+   },
+   "college": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 1-g-3",
+      "q": "To defer their team’s selection to the second half.",
+      "line": 2111
+     }
+    ]
+   }
+  },
+  {
    "key": "fg.miss_spot",
    "type": "option",
    "options": [
@@ -2404,6 +3622,416 @@
     ]
    },
    "unit": "yd"
+  },
+  {
+   "key": "foul.roughing_kicker.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Roughing the kicker: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.running_into_kicker.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Running into the kicker: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.roughing_holder.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Roughing the holder: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.kick_block_leverage.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Leverage to block a kick: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.kick_block_leaping.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Leaping to block a kick: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.pushing_teammates_formation.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the formation: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "Inert value: the college book has no such foul."
+   }
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 4, Article 8, Exception (4)",
+      "q": "Except for fouls that are committed in an attempt to block the kick (such as running into or roughing the kicker, defensive holding (pull-and-shoot), leverage, leaping, and pushing teammate(s) into the offensive formation)",
+      "line": 2694
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 10, Section 2, Article 3-b",
+      "q": "Postscrimmage kick enforcement applies only to fouls by Team B during a scrimmage kick and only under the following conditions:",
+      "line": 4916
+     }
+    ],
+    "note": "The NCAA postscrimmage kick rule (10-2-3-b) lists conditions and names no exception for fouls in an attempt to block the kick, so the value is false."
+   }
+  },
+  {
+   "key": "foul.foul_against_official.separate",
+   "type": "boolean",
+   "meaning": "Unnecessary contact with an official: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 1, Article 2, Item 4, Exception",
+      "q": "Exception: A foul against an official, a team initiating a challenge when it has exhausted its timeouts, and a fifth and subsequent excess timeout for injury, regardless of when they occur, are always treated as a foul between downs.",
+      "line": 3603
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 9, Section 2, Article 4",
+      "q": "PENALTY—Unsportsmanlike conduct. Administer as a dead-ball foul. 15 yards from the succeeding spot and automatic ejection. Automatic first down for fouls by Team B if not in conflict with other rules. [S7, S27 and S47].",
+      "line": 4571
+     }
+    ],
+    "note": "College treats it as an ordinary dead-ball foul, or has no such foul."
+   }
+  },
+  {
+   "key": "foul.challenge_without_timeout.separate",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 1, Article 2, Item 4, Exception",
+      "q": "Exception: A foul against an official, a team initiating a challenge when it has exhausted its timeouts, and a fifth and subsequent excess timeout for injury, regardless of when they occur, are always treated as a foul between downs.",
+      "line": 3603
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5, Article 1-b-6",
+      "absent": "No such foul in the NCAA book; see foul.challenge_without_timeout.exists."
+     }
+    ],
+    "note": "College treats it as an ordinary dead-ball foul, or has no such foul."
+   }
+  },
+  {
+   "key": "foul.excess_injury_timeout.separate",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 14, Section 1, Article 2, Item 4, Exception",
+      "q": "Exception: A foul against an official, a team initiating a challenge when it has exhausted its timeouts, and a fifth and subsequent excess timeout for injury, regardless of when they occur, are always treated as a foul between downs.",
+      "line": 3603
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 3, Section 3, Article 6",
+      "absent": "No such foul in the NCAA book; see foul.excess_injury_timeout.exists."
+     }
+    ],
+    "note": "College treats it as an ordinary dead-ball foul, or has no such foul."
+   }
+  },
+  {
+   "key": "foul.palpably_unfair.enforcement",
+   "type": "option",
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ],
+   "meaning": "Palpably unfair act: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": "equitable",
+    "src": [
+     {
+      "cite": "Rule 12, Section 3, Article 4",
+      "q": "enforces any such distance penalty as they consider equitable and irrespective of any other specified code penalty.",
+      "line": 3465
+     }
+    ]
+   },
+   "college": {
+    "v": "equitable",
+    "src": [
+     {
+      "cite": "Rule 9, Section 2, Article 3",
+      "q": "The referee may take any action they consider equitable, which includes directing that the down be repeated, including assessing a 15-yard penalty, awarding a score, or suspending or forfeiting the game [S27].",
+      "line": 4516
+     }
+    ]
+   }
+  },
+  {
+   "key": "foul.dpi.enforcement",
+   "type": "option",
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ],
+   "meaning": "Defensive pass interference: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": "interference_spot",
+    "src": [
+     {
+      "cite": "Rule 8, Section 5, Article 1",
+      "q": "Penalty: For pass interference by the defense: First down for the offensive team at the spot of the foul.",
+      "line": 2373
+     }
+    ]
+   },
+   "college": {
+    "v": "interference_spot",
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 8-c",
+      "q": "PENALTY—Team A’s ball at the spot of the foul, first down, if the foul occurs fewer than 15 yards beyond the previous spot.",
+      "line": 3761
+     }
+    ]
+   }
+  },
+  {
+   "key": "foul.intentional_grounding.enforcement",
+   "type": "option",
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ],
+   "meaning": "Intentional grounding: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "pro": {
+    "v": "previous_or_spot_worse",
+    "src": [
+     {
+      "cite": "Rule 8, Section 2, Article 1, Penalty (a)",
+      "q": "Loss of down and 10 yards from the previous spot; or",
+      "line": 2253
+     },
+     {
+      "cite": "Rule 8, Section 2, Article 1, Penalty (b)",
+      "q": "Loss of down at the spot of the pass if the spot is more than 10 yards from the previous spot or more than half the",
+      "line": 2254
+     }
+    ],
+    "note": "Ten yards from the previous spot, or the spot of the pass when that is worse for the passer; the profile is not limited by half the distance."
+   },
+   "college": {
+    "v": "standard",
+    "src": [
+     {
+      "cite": "Rule 7, Section 3, Article 2, Penalty [f-h]",
+      "q": "Loss of down at the spot of the foul",
+      "line": 3673
+     }
+    ],
+    "note": "No yardage: loss of down at the spot of the foul. This fits the standard procedure with the foul row spot_foul true and yards 0 (foul.intentional_grounding.spot_foul and .yards), so no new profile is needed."
+   }
   }
  ]
 }

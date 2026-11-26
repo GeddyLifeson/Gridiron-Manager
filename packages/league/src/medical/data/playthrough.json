@@ -1,0 +1,26 @@
+{
+ "$comment": "Play-through penalties by catalogue row and grade (D11.6.2): share lost per performance channel while a player plays through it. Only the grade 1 ankle row is a bible starting value (change of direction -4 percent, top speed -2 percent); every other number is this module's Assumption (D11.6.2: penalty sizes are design tuning). A null grade cannot be played through. Rows the catalogue lists and this table does not are `cannotPlayThrough`. The engine contract carries one z scale per region (GameDayState.playingHurt.dInjury); the channel-to-z mapping is requested from the engine-game owner.",
+ "channels": ["top_speed", "acceleration", "change_of_direction", "strength", "throwing", "catching", "ball_security", "tackling", "kicking"],
+ "rows": {
+  "ankle": [{ "change_of_direction": 0.04, "top_speed": 0.02 }, { "change_of_direction": 0.08, "top_speed": 0.05, "acceleration": 0.04 }, null],
+  "high_ankle_sprain": [{ "change_of_direction": 0.08, "top_speed": 0.04, "acceleration": 0.04 }, null, null],
+  "knee": [{ "change_of_direction": 0.04, "acceleration": 0.03 }, { "change_of_direction": 0.08, "acceleration": 0.06, "top_speed": 0.04 }, null],
+  "mcl_sprain": [{ "change_of_direction": 0.06, "acceleration": 0.04 }, null, null],
+  "hamstring": [{ "top_speed": 0.04, "acceleration": 0.04 }, null, null],
+  "groin": [{ "change_of_direction": 0.05, "acceleration": 0.03, "kicking": 0.05 }, null, null],
+  "calf": [{ "acceleration": 0.04, "top_speed": 0.03 }, null, null],
+  "quadriceps": [{ "acceleration": 0.04, "kicking": 0.06 }, null, null],
+  "hip": [{ "change_of_direction": 0.04, "acceleration": 0.03 }, { "change_of_direction": 0.08, "acceleration": 0.06 }, null],
+  "foot": [{ "acceleration": 0.04, "change_of_direction": 0.04 }, null, null],
+  "toe": [{ "acceleration": 0.03, "change_of_direction": 0.03 }, { "acceleration": 0.06, "change_of_direction": 0.06 }, null],
+  "turf_toe": [{ "acceleration": 0.05, "change_of_direction": 0.05 }, null, null],
+  "shoulder": [{ "strength": 0.05, "tackling": 0.05, "throwing": 0.05 }, { "strength": 0.1, "tackling": 0.1, "throwing": 0.1 }, null],
+  "elbow": [{ "throwing": 0.05, "strength": 0.03 }, null, null],
+  "hand": [{ "catching": 0.06, "ball_security": 0.05, "throwing": 0.06 }, { "catching": 0.12, "ball_security": 0.1, "throwing": 0.12 }, null],
+  "ribs": [{ "strength": 0.03, "throwing": 0.03, "tackling": 0.03 }, { "strength": 0.06, "throwing": 0.06, "tackling": 0.06 }, null],
+  "back": [{ "strength": 0.04, "change_of_direction": 0.03 }, null, null],
+  "neck": [{ "tackling": 0.05, "strength": 0.03 }, null, null],
+  "illness": [{ "top_speed": 0.02, "acceleration": 0.02 }, null, null],
+  "all_other": [{ "change_of_direction": 0.02, "strength": 0.02 }, null, null]
+ }
+}

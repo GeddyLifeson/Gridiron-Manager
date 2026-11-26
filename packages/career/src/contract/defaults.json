@@ -1,0 +1,117 @@
+{
+ "_about": "contract_defaults.<tier>.<seat> (E3.1.1, E3.3, E3.8.1) and pay_bands.<tier> (E3.2.1). Every cell carries its basis: fact (a row in facts.json), bible (a starting value the bible states, short of three sources) or assumption (a design knob). Money in whole USD of the league year signed; the code converts to cents.",
+ "blocks": {
+  "pro.head_coach": {
+   "termYears": { "v": { "min": 4, "default": 5, "max": 6 }, "basis": "bible", "leaf": "E3.1.1", "note": "4 to 6 is 1 of 3 (S13); 5 is the bible default" },
+   "guarantee": { "v": { "form": "share_of_remaining", "min": 1, "median": 1, "max": 1, "months": 0 }, "basis": "fact", "leaf": "E3.3.1", "facts": ["F-contract-0001"] },
+   "offset": { "v": { "onShare": 1, "footballRelatedShare": 0.6, "marketFloor": "arbitration" }, "basis": "fact", "leaf": "E3.3.2", "facts": ["F-contract-0002"], "note": "footballRelatedShare and the arbitration floor are Assumption (E3.3.2 rules 2 and 4)" },
+   "buyout": { "v": { "forms": { "none": 1 }, "shareOfFiredAmount": { "min": 0, "max": 0 }, "releaseHeldByClub": true }, "basis": "bible", "leaf": "E3.3.4", "note": "no buyout; a move under contract is a trade between clubs (L5.2.5)" },
+   "resignationWindow": { "v": "none", "basis": "bible", "leaf": "E3.3.4" },
+   "bonus": { "v": { "form": "share_of_pay", "ladder": "pro_head_coach", "capShare": 0.4, "capUsd": 0 }, "basis": "assumption", "leaf": "E3.2.2" },
+   "cureDays": { "v": 5, "basis": "assumption", "leaf": "E3.3.3", "note": "college value F-contract-0011 applied by analogy" },
+   "maxUnpaidSuspensionDays": { "v": 0, "basis": "bible", "leaf": "E3.3.3" },
+   "reportNewJobDays": { "v": 14, "basis": "assumption", "leaf": "E3.3.2" },
+   "maxUnexpiredYears": { "v": null, "basis": "bible", "leaf": "E3.7.1" },
+   "payPeriods": { "v": [24], "basis": "bible", "leaf": "E3.2.3", "note": "professional pay periods are an open question; 24 is the starting value" },
+   "agentFeeShare": { "v": { "min": 0.03, "default": 0.04, "max": 0.05 }, "basis": "fact", "leaf": "E3.6.1", "facts": ["F-contract-0015"], "note": "3 percent floor is from sample agreements (1 of 3)" }
+  },
+  "pro.assistant": {
+   "termYears": { "v": { "min": 1, "default": 2, "max": 3 }, "basis": "bible", "leaf": "E3.4.2", "note": "professional assistant length is Unverified; starting value 2" },
+   "guarantee": { "v": { "form": "current_year", "min": 1, "median": 1, "max": 1, "months": 0 }, "basis": "bible", "leaf": "E3.4.2", "note": "starting value: remaining salary of the current year" },
+   "offset": { "v": { "onShare": 1, "footballRelatedShare": 0.6, "marketFloor": "arbitration" }, "basis": "assumption", "leaf": "E3.3.2" },
+   "buyout": { "v": { "forms": { "none": 1 }, "shareOfFiredAmount": { "min": 0, "max": 0 }, "releaseHeldByClub": true }, "basis": "bible", "leaf": "E3.3.4" },
+   "resignationWindow": { "v": "none", "basis": "bible", "leaf": "E3.3.4" },
+   "bonus": { "v": { "form": "none", "ladder": null, "capShare": 0, "capUsd": 0 }, "basis": "assumption", "leaf": "E3.2.2", "note": "professional incentive sizes are an open question" },
+   "cureDays": { "v": 5, "basis": "assumption", "leaf": "E3.3.3" },
+   "maxUnpaidSuspensionDays": { "v": 0, "basis": "bible", "leaf": "E3.3.3" },
+   "reportNewJobDays": { "v": 14, "basis": "assumption", "leaf": "E3.3.2" },
+   "maxUnexpiredYears": { "v": null, "basis": "bible", "leaf": "E3.7.1" },
+   "payPeriods": { "v": [24], "basis": "bible", "leaf": "E3.2.3" },
+   "agentFeeShare": { "v": { "min": 0.03, "default": 0.04, "max": 0.05 }, "basis": "fact", "leaf": "E3.6.1", "facts": ["F-contract-0015"] }
+  },
+  "power_four.head_coach": {
+   "termYears": { "v": { "min": 5, "default": 6, "max": 8 }, "basis": "bible", "leaf": "E3.8.1" },
+   "guarantee": { "v": { "form": "share_of_remaining", "min": 0.7, "median": 0.85, "max": 1, "months": 0 }, "basis": "fact", "leaf": "E3.3.1", "facts": ["F-contract-0003", "F-contract-0006"], "note": "draw edges from the facts; the median 0.85 is Assumption" },
+   "offset": { "v": { "onShare": 0.6, "footballRelatedShare": 0.6, "marketFloor": "in_contract" }, "basis": "assumption", "leaf": "E3.3.2", "note": "60% on is from about 12 to 15 of 22 to 23 contracts (Greenberg, count inconsistent)" },
+   "buyout": { "v": { "forms": { "pct_remaining": 0.4, "fixed_by_year": 0.35, "per_remaining_year": 0.25 }, "shareOfFiredAmount": { "min": 0.2, "max": 0.4 }, "releaseHeldByClub": false }, "basis": "fact", "leaf": "E3.3.4", "facts": ["F-contract-0008", "F-contract-0019", "F-contract-0020"], "note": "each form is real; the form shares and the 20% to 40% level are Assumption" },
+   "resignationWindow": { "v": "season", "basis": "bible", "leaf": "E3.3.4" },
+   "bonus": { "v": { "form": "share_of_pay", "ladder": "college_head_coach", "capShare": 0.4, "capUsd": 0 }, "basis": "fact", "leaf": "E3.2.2", "facts": ["F-contract-0021"], "note": "trigger shares and the cap share are Assumption anchored on two contracts" },
+   "cureDays": { "v": 5, "basis": "fact", "leaf": "E3.3.3", "facts": ["F-contract-0011"] },
+   "maxUnpaidSuspensionDays": { "v": 90, "basis": "fact", "leaf": "E3.3.3", "facts": ["F-contract-0012"] },
+   "reportNewJobDays": { "v": 14, "basis": "fact", "leaf": "E3.3.2", "facts": ["F-contract-0014"] },
+   "maxUnexpiredYears": { "v": 5, "basis": "fact", "leaf": "E3.7.1", "facts": ["F-contract-0013"] },
+   "payPeriods": { "v": [12, 24, 26], "basis": "bible", "leaf": "E3.2.3" },
+   "agentFeeShare": { "v": { "min": 0.03, "default": 0.04, "max": 0.05 }, "basis": "fact", "leaf": "E3.6.1", "facts": ["F-contract-0015"] }
+  },
+  "power_four.assistant": {
+   "termYears": { "v": { "min": 2, "default": 2, "max": 3 }, "basis": "bible", "leaf": "E3.4.2" },
+   "guarantee": { "v": { "form": "share_of_remaining", "min": 0.7, "median": 0.85, "max": 1, "months": 0 }, "basis": "fact", "leaf": "E3.3.1", "facts": ["F-contract-0004", "F-contract-0005"], "note": "median is Assumption" },
+   "offset": { "v": { "onShare": 1, "footballRelatedShare": 0.6, "marketFloor": "in_contract" }, "basis": "bible", "leaf": "E3.3.2", "note": "on in both Oregon agreements" },
+   "buyout": { "v": { "forms": { "assistant_ladder": 1 }, "shareOfFiredAmount": { "min": 0, "max": 0 }, "releaseHeldByClub": false }, "basis": "fact", "leaf": "E3.3.4", "facts": ["F-contract-0009", "F-contract-0018"] },
+   "resignationWindow": { "v": "august_to_last_game", "basis": "bible", "leaf": "E3.3.4" },
+   "bonus": { "v": { "form": "flat_ladder", "ladder": "power_four_staff", "capShare": 0, "capUsd": 155000 }, "basis": "fact", "leaf": "E3.2.2", "facts": ["F-contract-0010"] },
+   "cureDays": { "v": 5, "basis": "assumption", "leaf": "E3.3.3" },
+   "maxUnpaidSuspensionDays": { "v": 90, "basis": "assumption", "leaf": "E3.3.3" },
+   "reportNewJobDays": { "v": 14, "basis": "assumption", "leaf": "E3.3.2" },
+   "maxUnexpiredYears": { "v": null, "basis": "bible", "leaf": "E3.7.1" },
+   "payPeriods": { "v": [12, 24, 26], "basis": "bible", "leaf": "E3.2.3" },
+   "agentFeeShare": { "v": { "min": 0.03, "default": 0.04, "max": 0.05 }, "basis": "fact", "leaf": "E3.6.1", "facts": ["F-contract-0015"] }
+  },
+  "group_of_six.head_coach": {
+   "termYears": { "v": { "min": 4, "default": 4, "max": 5 }, "basis": "bible", "leaf": "E3.8.1" },
+   "guarantee": { "v": { "form": "share_of_remaining", "min": 0.5, "median": 0.75, "max": 1, "months": 0 }, "basis": "bible", "leaf": "E3.3.1", "note": "New Mexico 100/80/65/50 by year via Greenberg; median Assumption" },
+   "offset": { "v": { "onShare": 0.6, "footballRelatedShare": 0.6, "marketFloor": "in_contract" }, "basis": "assumption", "leaf": "E3.3.2" },
+   "buyout": { "v": { "forms": { "fixed_by_year": 1 }, "shareOfFiredAmount": { "min": 0.2, "max": 0.4 }, "releaseHeldByClub": false }, "basis": "fact", "leaf": "E3.3.4", "facts": ["F-contract-0020"], "note": "form share is Assumption" },
+   "resignationWindow": { "v": "season", "basis": "bible", "leaf": "E3.3.4" },
+   "bonus": { "v": { "form": "share_of_pay", "ladder": "college_head_coach", "capShare": 0.3, "capUsd": 0 }, "basis": "assumption", "leaf": "E3.2.2" },
+   "cureDays": { "v": 5, "basis": "assumption", "leaf": "E3.3.3" },
+   "maxUnpaidSuspensionDays": { "v": 90, "basis": "assumption", "leaf": "E3.3.3" },
+   "reportNewJobDays": { "v": 14, "basis": "assumption", "leaf": "E3.3.2" },
+   "maxUnexpiredYears": { "v": null, "basis": "bible", "leaf": "E3.7.1" },
+   "payPeriods": { "v": [12, 24, 26], "basis": "bible", "leaf": "E3.2.3" },
+   "agentFeeShare": { "v": { "min": 0.03, "default": 0.04, "max": 0.05 }, "basis": "fact", "leaf": "E3.6.1", "facts": ["F-contract-0015"] }
+  },
+  "group_of_six.assistant": {
+   "termYears": { "v": { "min": 1, "default": 1, "max": 1 }, "basis": "bible", "leaf": "E3.4.2", "note": "one-year appointment renewed each February 1" },
+   "guarantee": { "v": { "form": "head_coach_change_months", "min": 0, "median": 0, "max": 0, "months": 2 }, "basis": "fact", "leaf": "E3.3.1", "facts": ["F-contract-0007"] },
+   "offset": { "v": { "onShare": 0, "footballRelatedShare": 0, "marketFloor": "none" }, "basis": "bible", "leaf": "E3.8.1" },
+   "buyout": { "v": { "forms": { "none": 1 }, "shareOfFiredAmount": { "min": 0, "max": 0 }, "releaseHeldByClub": false }, "basis": "bible", "leaf": "E3.3.4" },
+   "resignationWindow": { "v": "none", "basis": "bible", "leaf": "E3.3.4" },
+   "bonus": { "v": { "form": "none", "ladder": null, "capShare": 0, "capUsd": 0 }, "basis": "bible", "leaf": "E3.2.2", "note": "none in the two letters read" },
+   "cureDays": { "v": 5, "basis": "assumption", "leaf": "E3.3.3" },
+   "maxUnpaidSuspensionDays": { "v": 0, "basis": "assumption", "leaf": "E3.3.3" },
+   "reportNewJobDays": { "v": 14, "basis": "assumption", "leaf": "E3.3.2" },
+   "maxUnexpiredYears": { "v": null, "basis": "bible", "leaf": "E3.7.1" },
+   "payPeriods": { "v": [12, 24, 26], "basis": "bible", "leaf": "E3.2.3" },
+   "agentFeeShare": { "v": { "min": 0.03, "default": 0.04, "max": 0.05 }, "basis": "fact", "leaf": "E3.6.1", "facts": ["F-contract-0015"] }
+  }
+ },
+ "ladders": {
+  "pro_head_coach": { "basis": "assumption", "leaf": "E3.2.2", "unit": "share_of_pay", "triggers": { "playoff_berth": 0.03, "playoff_win": 0.03, "conference_title": 0.05, "league_title": 0.1, "coach_of_year": 0.02 } },
+  "college_head_coach": { "basis": "assumption", "leaf": "E3.2.2", "unit": "share_of_pay", "note": "shares anchored on the Texas 2016 and Kentucky 2025 contracts", "triggers": { "conference_title_game": 0.02, "conference_title": 0.025, "playoff_berth": 0.035, "title_game": 0.07, "coach_of_year": 0.015, "win_threshold": 0.03 }, "winThresholdFrom": 7 },
+  "power_four_staff": { "basis": "bible", "leaf": "E3.2.2", "unit": "usd", "note": "starting ladder the bible takes from the two Oregon 2025 agreements; playoff round 20000 is the middle of 15000 to 25000", "triggers": { "conference_title_game": 10000, "conference_title": 20000, "playoff_win": 20000, "league_title": 50000, "academic_target": 5000 } }
+ },
+ "payBands": {
+  "pro": {
+   "9": { "low": 3500000, "typicalLow": 5000000, "typicalHigh": 8000000, "high": 20000000, "basis": "bible", "leaf": "E3.2.1", "note": "low and high 1 of 3; typical Assumption" },
+   "7": { "low": 1000000, "typicalLow": 1500000, "typicalHigh": 2500000, "high": 6000000, "basis": "bible", "leaf": "E3.2.1" },
+   "5": { "low": 300000, "typicalLow": 450000, "typicalHigh": 750000, "high": 1000000, "basis": "assumption", "leaf": "E3.2.1", "note": "no sourced figure; placeholder 300K to 1M" },
+   "3": { "low": 90000, "typicalLow": 100000, "typicalHigh": 150000, "high": 160000, "basis": "fact", "leaf": "E3.2.1", "facts": ["F-contract-0022"], "note": "edges Assumption anchored on one 2018 estimate" },
+   "1": { "low": 0, "typicalLow": 20000, "typicalHigh": 40000, "high": 60000, "basis": "assumption", "leaf": "E3.2.1", "note": "entry stipend" }
+  },
+  "power_four": {
+   "9": { "low": 3000000, "typicalLow": 4500000, "typicalHigh": 8000000, "high": 13000000, "basis": "assumption", "leaf": "E3.2.1", "note": "Kentucky 2025 total about 5.5M sits inside; edges Assumption until the R21 table is loaded" },
+   "7": { "low": 900000, "typicalLow": 1200000, "typicalHigh": 2000000, "high": 2500000, "basis": "fact", "leaf": "E3.2.1", "facts": ["F-contract-0024"], "note": "one primary example; edges Assumption" },
+   "5": { "low": 250000, "typicalLow": 350000, "typicalHigh": 700000, "high": 1200000, "basis": "fact", "leaf": "E3.2.1", "facts": ["F-contract-0023"], "note": "one primary example; edges Assumption" },
+   "3": { "low": 40000, "typicalLow": 60000, "typicalHigh": 100000, "high": 150000, "basis": "assumption", "leaf": "E3.2.1" },
+   "1": { "low": 0, "typicalLow": 10000, "typicalHigh": 18000, "high": 30000, "basis": "assumption", "leaf": "E3.2.1", "note": "graduate assistant stipend 800 to 1500 a month (1 of 3) plus tuition" }
+  },
+  "group_of_six": {
+   "9": { "low": 500000, "typicalLow": 800000, "typicalHigh": 1500000, "high": 3000000, "basis": "assumption", "leaf": "E3.2.1" },
+   "7": { "low": 150000, "typicalLow": 200000, "typicalHigh": 350000, "high": 500000, "basis": "assumption", "leaf": "E3.2.1" },
+   "5": { "low": 70000, "typicalLow": 90000, "typicalHigh": 180000, "high": 250000, "basis": "fact", "leaf": "E3.2.1", "facts": ["F-contract-0025"], "note": "two primary letters; edges Assumption" },
+   "3": { "low": 30000, "typicalLow": 40000, "typicalHigh": 60000, "high": 80000, "basis": "assumption", "leaf": "E3.2.1" },
+   "1": { "low": 0, "typicalLow": 10000, "typicalHigh": 18000, "high": 30000, "basis": "assumption", "leaf": "E3.2.1" }
+  }
+ }
+}

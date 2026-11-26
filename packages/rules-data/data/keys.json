@@ -8,7 +8,9 @@
    "meaning": "Periods in regulation",
    "ownerLeaf": "B1",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
+    "engine-game (phase 0 dummy game)",
+    "models.ep",
+    "models.wp"
    ]
   },
   {
@@ -18,7 +20,9 @@
    "meaning": "Length of one period",
    "ownerLeaf": "B1",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
+    "engine-game (phase 0 dummy game)",
+    "models.ep",
+    "models.wp"
    ]
   },
   {
@@ -38,7 +42,9 @@
    "meaning": "Play clock after a dead ball",
    "ownerLeaf": "B1",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
+    "engine-game (phase 0 dummy game)",
+    "models.ep",
+    "models.wp"
    ]
   },
   {
@@ -68,7 +74,9 @@
    "meaning": "Downs in a series",
    "ownerLeaf": "B3",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
+    "engine-game (phase 0 dummy game)",
+    "models.ep",
+    "models.wp"
    ]
   },
   {
@@ -108,7 +116,8 @@
    "meaning": "Players per team on the field",
    "ownerLeaf": "B2",
    "readBy": [
-    "officiating (phase 1)"
+    "officiating (phase 1)",
+    "engine-game.bench"
    ]
   },
   {
@@ -118,7 +127,9 @@
    "meaning": "Points for a touchdown",
    "ownerLeaf": "B7",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
+    "engine-game (phase 0 dummy game)",
+    "models.ep",
+    "models.wp"
    ]
   },
   {
@@ -128,7 +139,9 @@
    "meaning": "Points for a field goal",
    "ownerLeaf": "B7",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
+    "engine-game (phase 0 dummy game)",
+    "models.ep",
+    "models.wp"
    ]
   },
   {
@@ -138,7 +151,9 @@
    "meaning": "Points for a safety",
    "ownerLeaf": "B7",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
+    "engine-game (phase 0 dummy game)",
+    "models.ep",
+    "models.wp"
    ]
   },
   {
@@ -5973,6 +5988,3901 @@
     "officiating/series"
    ],
    "unit": "yd"
+  },
+  {
+   "key": "clock.periods_per_half",
+   "type": "number",
+   "meaning": "periods in a half, to tell the last period of a half",
+   "ownerLeaf": "B8.5.6",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "enforce.half_distance.applies",
+   "type": "boolean",
+   "meaning": "a distance penalty is limited to a fraction of the distance to the offender's goal line",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "key": "enforce.half_distance.fraction",
+   "type": "number",
+   "meaning": "the fraction of the distance to the goal line that limits a penalty",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "key": "enforce.half_distance_divisor",
+   "type": "number",
+   "meaning": "A distance penalty may not exceed the distance from the enforcement spot to the offender goal line divided by this. Shared with the foul module, which owns it",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "key": "enforce.five_fifteen.applies",
+   "type": "boolean",
+   "meaning": "a major foul against a simple minor foul is enforced instead of offsetting",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "key": "enforce.five_fifteen.minor_yards",
+   "type": "number",
+   "meaning": "yardage of the minor foul in the major against minor rule",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.five_fifteen.major_yards",
+   "type": "number",
+   "meaning": "yardage of the major foul in the major against minor rule",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.capped",
+   "type": "boolean",
+   "meaning": "defensive pass interference is limited to a distance from the previous spot",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "key": "enforce.interference.max_yards",
+   "type": "number",
+   "meaning": "the limit, read only when capped",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.floor_yardline",
+   "type": "number",
+   "meaning": "yard line the ball is placed on when the floor rule applies",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.floor_rule",
+   "type": "option",
+   "meaning": "when the floor yard line applies: a foul in the end zone, or any result inside the floor",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "options": [
+    "end_zone_only",
+    "inside_floor"
+   ]
+  },
+  {
+   "key": "enforce.interference.half_inside_yardline",
+   "type": "number",
+   "meaning": "a previous spot inside this yard line gives half the distance instead of the floor",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.half_inclusive",
+   "type": "boolean",
+   "meaning": "a previous spot exactly on that yard line counts as inside it",
+   "ownerLeaf": "B13.5.1",
+   "readBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "key": "enforce.end_zone_foul_yardline",
+   "type": "number",
+   "meaning": "yard line a post-possession foul in the end zone is treated as being on",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.double_foul_safety_yardline",
+   "type": "number",
+   "meaning": "yard line the ball goes to when an offsetting foul after a change would have been a safety",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.clean_hands.personal_offsets",
+   "type": "boolean",
+   "meaning": "a personal or unsportsmanlike foul before the change offsets a foul after it",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "key": "enforce.spike_delay_foul",
+   "type": "option",
+   "meaning": "id of the dead-ball delay foul for spiking that the spiking team may take instead of an offset",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating.fouls"
+   ],
+   "options": [
+    "none",
+    "false_start",
+    "encroachment",
+    "neutral_zone_infraction",
+    "offside",
+    "illegal_shift",
+    "illegal_motion",
+    "illegal_formation",
+    "illegal_snap",
+    "snap_to_ineligible",
+    "delay_of_game",
+    "delay_of_game_spike",
+    "excess_timeout",
+    "illegal_substitution",
+    "too_many_men",
+    "too_many_men_formation",
+    "illegal_forward_pass_beyond_line",
+    "second_forward_pass",
+    "forward_pass_after_change",
+    "illegal_touching_ineligible",
+    "illegal_touching_after_oob",
+    "grounding",
+    "ineligible_downfield",
+    "illegal_contact",
+    "illegal_cut_block",
+    "def_holding",
+    "dpi",
+    "opi",
+    "backward_pass_oob",
+    "illegal_handoff_forward",
+    "holding_offense",
+    "illegal_hands_offense",
+    "block_in_back",
+    "assist_runner",
+    "illegal_hands_defense",
+    "clipping",
+    "peel_back",
+    "low_block",
+    "chop_block",
+    "crackback",
+    "blindside_block",
+    "unnecessary_roughness",
+    "defenseless_player",
+    "helmet_use",
+    "roughing_passer",
+    "roughing_kicker",
+    "running_into_kicker",
+    "roughing_holder",
+    "striking",
+    "face_mask",
+    "horse_collar",
+    "helmet_weapon",
+    "hip_drop",
+    "targeting",
+    "unsportsmanlike",
+    "taunting",
+    "kick_block_leverage",
+    "kick_block_leaping",
+    "clock_manipulation",
+    "palpably_unfair",
+    "league_dq",
+    "illegal_bat",
+    "illegal_kick",
+    "non_player_unsportsmanlike",
+    "foul_against_official",
+    "challenge_without_timeout",
+    "excess_injury_timeout",
+    "free_kick_offside",
+    "free_kick_illegal_formation",
+    "free_kick_early_movement",
+    "illegal_free_kick",
+    "free_kick_illegal_block",
+    "wedge",
+    "illegal_double_team",
+    "onside_untouched_past_zone",
+    "free_kick_illegal_touching",
+    "free_kick_voluntary_oob",
+    "running_into_free_kicker",
+    "illegal_scrimmage_kick",
+    "ineligible_downfield_kick",
+    "kick_voluntary_oob",
+    "def_illegal_formation_kick",
+    "pushing_teammates_formation",
+    "pull_and_shoot_holding",
+    "kick_holding",
+    "kick_illegal_touching_after_oob",
+    "kick_catch_interference",
+    "fair_catch_interference",
+    "invalid_fair_catch_signal",
+    "muff_opportunity_interference",
+    "block_after_fair_catch_signal",
+    "contact_with_fair_catcher"
+   ]
+  },
+  {
+   "key": "enforce.defensive_foul_extends_period",
+   "type": "boolean",
+   "meaning": "an accepted live-ball defensive foul on the last timed down lets the offense extend the period",
+   "ownerLeaf": "B1.7.2",
+   "readBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "key": "enforce.touchdown_foul_to_kickoff",
+   "type": "boolean",
+   "meaning": "the scoring team may carry an opponent's foul on a touchdown to the kickoff instead of the try",
+   "ownerLeaf": "B8.5.7",
+   "readBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "key": "kickoff.landing_zone_yardline",
+   "type": "number",
+   "meaning": "Receiving team yard line where the landing zone begins (see officiating/kick)",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.kicking_team_line_yardline",
+   "type": "number",
+   "meaning": "Receiving team yard line where the ten non-kickers line up in the dynamic format. Not read in the traditional format",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.receiving_line_yardline",
+   "type": "number",
+   "meaning": "Receiving team yard line of its restraining line in the dynamic format. Not read in the traditional format",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.setup_zone_back_yardline",
+   "type": "number",
+   "meaning": "Receiving team yard line of the back of the setup zone in the dynamic format. Not read in the traditional format",
+   "ownerLeaf": "B6.1.2",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.touchback_reduced_kick_yardline",
+   "type": "number",
+   "meaning": "A kickoff made from this yard line of the kicking team, or beyond it, takes the reduced touchback spot",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.touchback_reduced_yardline",
+   "type": "number",
+   "meaning": "Receiving team yard line of a touchback on a kickoff made from kickoff.touchback_reduced_kick_yardline or beyond. Equal to kickoff.touchback_yardline where the level has no such rule",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.short_spot_yd_from_kick",
+   "type": "number",
+   "meaning": "Kickoff short of the landing zone: receivers take the ball this many yards from the spot of the kick, or at the spot of the first touch if that is nearer the kick. Read only when the format is dynamic",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.safety_kick_short_spot_yd_from_kick",
+   "type": "number",
+   "meaning": "The same distance for a safety kick",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.safety_kick_out_of_bounds_yd_from_kick",
+   "type": "number",
+   "meaning": "The same distance for a safety kick",
+   "ownerLeaf": "B6.1.4",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "onside.min_distance_yd",
+   "type": "number",
+   "meaning": "Distance from the kick to the receiving team restraining line on a ten-yard free kick (see officiating/kick)",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "onside.setup_zone_depth_yd",
+   "type": "number",
+   "meaning": "Depth of the onside kick setup zone behind the receiving team restraining line. 0 where there is no such zone",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/restart"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "onside.untouched_dead_beyond_yd",
+   "type": "number",
+   "meaning": "A declared onside kick untouched beyond this distance from the kick is dead and belongs to the receivers. 0 switches the rule off",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "onside.untouched_beyond_penalty_yd",
+   "type": "number",
+   "meaning": "Yards walked off from the kicking team restraining line when a declared onside kick is dead untouched beyond the setup zone",
+   "ownerLeaf": "B6.2.1",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "punt.first_touch_min_yardline",
+   "type": "number",
+   "meaning": "A first-touch spot is never nearer the receivers goal line than this yard line",
+   "ownerLeaf": "B6.3.3",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "fg.miss_spot_min_yardline",
+   "type": "number",
+   "meaning": "Receiving team yard line used when the missed field goal spot would be nearer the goal line",
+   "ownerLeaf": "B6.5.2",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "try.defense_return_points",
+   "type": "number",
+   "meaning": "Try returned by the defense to the other end zone",
+   "ownerLeaf": "B7.3.2",
+   "readBy": [
+    "officiating/kick"
+   ],
+   "unit": "points"
+  },
+  {
+   "key": "toss.defer_allowed",
+   "type": "boolean",
+   "meaning": "The winner of the opening toss may defer its choice to the second half",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "officiating/restart"
+   ]
+  },
+  {
+   "key": "foul.roughing_kicker.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Roughing the kicker: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.running_into_kicker.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Running into the kicker: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Roughing the holder: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Leverage to block a kick: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Leaping to block a kick: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the formation: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.kick_block_attempt",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding: a foul in an attempt to block a scrimmage kick, so never a post-possession foul",
+   "ownerLeaf": "B6.6.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.separate",
+   "type": "boolean",
+   "meaning": "Unnecessary contact with an official: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.separate",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.separate",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: always a foul between downs, enforced on its own",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.enforcement",
+   "type": "option",
+   "meaning": "Palpably unfair act: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ]
+  },
+  {
+   "key": "foul.dpi.enforcement",
+   "type": "option",
+   "meaning": "Defensive pass interference: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.exists",
+   "type": "boolean",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: the foul exists in this rule set",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.yards",
+   "type": "number",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.delay_of_game_spike.afd",
+   "type": "boolean",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.lod",
+   "type": "boolean",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: loss of down when the offense commits it",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.spot_foul",
+   "type": "boolean",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.dead_ball",
+   "type": "boolean",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.class",
+   "type": "option",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: foul class for enforcement",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.delay_of_game_spike.dq",
+   "type": "option",
+   "meaning": "Delay of game for spiking or throwing the ball after the down: disqualification",
+   "ownerLeaf": "B8.5.5",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.exists",
+   "type": "boolean",
+   "meaning": "Excess team timeout after the two-minute warning: the foul exists in this rule set",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.yards",
+   "type": "number",
+   "meaning": "Excess team timeout after the two-minute warning: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.excess_timeout.afd",
+   "type": "boolean",
+   "meaning": "Excess team timeout after the two-minute warning: automatic first down when the defense commits it",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.lod",
+   "type": "boolean",
+   "meaning": "Excess team timeout after the two-minute warning: loss of down when the offense commits it",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.spot_foul",
+   "type": "boolean",
+   "meaning": "Excess team timeout after the two-minute warning: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.dead_ball",
+   "type": "boolean",
+   "meaning": "Excess team timeout after the two-minute warning: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Excess team timeout after the two-minute warning: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.class",
+   "type": "option",
+   "meaning": "Excess team timeout after the two-minute warning: foul class for enforcement",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.excess_timeout.dq",
+   "type": "option",
+   "meaning": "Excess team timeout after the two-minute warning: disqualification",
+   "ownerLeaf": "B1.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.exists",
+   "type": "boolean",
+   "meaning": "Illegal substitution (substitute enters during a live ball): the foul exists in this rule set",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.yards",
+   "type": "number",
+   "meaning": "Illegal substitution (substitute enters during a live ball): distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_substitution.afd",
+   "type": "boolean",
+   "meaning": "Illegal substitution (substitute enters during a live ball): automatic first down when the defense commits it",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.lod",
+   "type": "boolean",
+   "meaning": "Illegal substitution (substitute enters during a live ball): loss of down when the offense commits it",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal substitution (substitute enters during a live ball): the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal substitution (substitute enters during a live ball): ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal substitution (substitute enters during a live ball): can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.class",
+   "type": "option",
+   "meaning": "Illegal substitution (substitute enters during a live ball): foul class for enforcement",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.illegal_substitution.dq",
+   "type": "option",
+   "meaning": "Illegal substitution (substitute enters during a live ball): disqualification",
+   "ownerLeaf": "B2.4",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.exists",
+   "type": "boolean",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.yards",
+   "type": "number",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.second_forward_pass.afd",
+   "type": "boolean",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.lod",
+   "type": "boolean",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.spot_foul",
+   "type": "boolean",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.dead_ball",
+   "type": "boolean",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.class",
+   "type": "option",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.second_forward_pass.dq",
+   "type": "option",
+   "meaning": "Second forward pass or pass after the ball returned behind the line: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.exists",
+   "type": "boolean",
+   "meaning": "Forward pass after a change of possession: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.yards",
+   "type": "number",
+   "meaning": "Forward pass after a change of possession: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.forward_pass_after_change.afd",
+   "type": "boolean",
+   "meaning": "Forward pass after a change of possession: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.lod",
+   "type": "boolean",
+   "meaning": "Forward pass after a change of possession: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.spot_foul",
+   "type": "boolean",
+   "meaning": "Forward pass after a change of possession: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.dead_ball",
+   "type": "boolean",
+   "meaning": "Forward pass after a change of possession: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Forward pass after a change of possession: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.class",
+   "type": "option",
+   "meaning": "Forward pass after a change of possession: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.forward_pass_after_change.dq",
+   "type": "option",
+   "meaning": "Forward pass after a change of possession: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.exists",
+   "type": "boolean",
+   "meaning": "Illegal cut block against an eligible receiver: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.yards",
+   "type": "number",
+   "meaning": "Illegal cut block against an eligible receiver: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_cut_block.afd",
+   "type": "boolean",
+   "meaning": "Illegal cut block against an eligible receiver: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.lod",
+   "type": "boolean",
+   "meaning": "Illegal cut block against an eligible receiver: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal cut block against an eligible receiver: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal cut block against an eligible receiver: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal cut block against an eligible receiver: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.class",
+   "type": "option",
+   "meaning": "Illegal cut block against an eligible receiver: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.illegal_cut_block.dq",
+   "type": "option",
+   "meaning": "Illegal cut block against an eligible receiver: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.peel_back.exists",
+   "type": "boolean",
+   "meaning": "Peel back block: the foul exists in this rule set",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.peel_back.yards",
+   "type": "number",
+   "meaning": "Peel back block: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.peel_back.afd",
+   "type": "boolean",
+   "meaning": "Peel back block: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.peel_back.lod",
+   "type": "boolean",
+   "meaning": "Peel back block: loss of down when the offense commits it",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.peel_back.spot_foul",
+   "type": "boolean",
+   "meaning": "Peel back block: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.peel_back.dead_ball",
+   "type": "boolean",
+   "meaning": "Peel back block: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.peel_back.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Peel back block: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.peel_back.class",
+   "type": "option",
+   "meaning": "Peel back block: foul class for enforcement",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.peel_back.dq",
+   "type": "option",
+   "meaning": "Peel back block: disqualification",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.crackback.exists",
+   "type": "boolean",
+   "meaning": "Illegal crackback block: the foul exists in this rule set",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.crackback.yards",
+   "type": "number",
+   "meaning": "Illegal crackback block: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.crackback.afd",
+   "type": "boolean",
+   "meaning": "Illegal crackback block: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.crackback.lod",
+   "type": "boolean",
+   "meaning": "Illegal crackback block: loss of down when the offense commits it",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.crackback.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal crackback block: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.crackback.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal crackback block: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.crackback.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal crackback block: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.crackback.class",
+   "type": "option",
+   "meaning": "Illegal crackback block: foul class for enforcement",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.crackback.dq",
+   "type": "option",
+   "meaning": "Illegal crackback block: disqualification",
+   "ownerLeaf": "B8.2.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.exists",
+   "type": "boolean",
+   "meaning": "Roughing the holder: the foul exists in this rule set",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.yards",
+   "type": "number",
+   "meaning": "Roughing the holder: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.roughing_holder.afd",
+   "type": "boolean",
+   "meaning": "Roughing the holder: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.lod",
+   "type": "boolean",
+   "meaning": "Roughing the holder: loss of down when the offense commits it",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.spot_foul",
+   "type": "boolean",
+   "meaning": "Roughing the holder: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.dead_ball",
+   "type": "boolean",
+   "meaning": "Roughing the holder: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Roughing the holder: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.class",
+   "type": "option",
+   "meaning": "Roughing the holder: foul class for enforcement",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.roughing_holder.dq",
+   "type": "option",
+   "meaning": "Roughing the holder: disqualification",
+   "ownerLeaf": "B8.3.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.taunting.exists",
+   "type": "boolean",
+   "meaning": "Taunting (baiting or taunting acts or words): the foul exists in this rule set",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.taunting.yards",
+   "type": "number",
+   "meaning": "Taunting (baiting or taunting acts or words): distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.taunting.afd",
+   "type": "boolean",
+   "meaning": "Taunting (baiting or taunting acts or words): automatic first down when the defense commits it",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.taunting.lod",
+   "type": "boolean",
+   "meaning": "Taunting (baiting or taunting acts or words): loss of down when the offense commits it",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.taunting.spot_foul",
+   "type": "boolean",
+   "meaning": "Taunting (baiting or taunting acts or words): the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.taunting.dead_ball",
+   "type": "boolean",
+   "meaning": "Taunting (baiting or taunting acts or words): ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.taunting.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Taunting (baiting or taunting acts or words): can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.taunting.class",
+   "type": "option",
+   "meaning": "Taunting (baiting or taunting acts or words): foul class for enforcement",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.taunting.dq",
+   "type": "option",
+   "meaning": "Taunting (baiting or taunting acts or words): disqualification",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.exists",
+   "type": "boolean",
+   "meaning": "Leverage used to block a kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.yards",
+   "type": "number",
+   "meaning": "Leverage used to block a kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_block_leverage.afd",
+   "type": "boolean",
+   "meaning": "Leverage used to block a kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.lod",
+   "type": "boolean",
+   "meaning": "Leverage used to block a kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.spot_foul",
+   "type": "boolean",
+   "meaning": "Leverage used to block a kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.dead_ball",
+   "type": "boolean",
+   "meaning": "Leverage used to block a kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Leverage used to block a kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.class",
+   "type": "option",
+   "meaning": "Leverage used to block a kick: foul class for enforcement",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leverage.dq",
+   "type": "option",
+   "meaning": "Leverage used to block a kick: disqualification",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.exists",
+   "type": "boolean",
+   "meaning": "Leaping to block a field goal or try: the foul exists in this rule set",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.yards",
+   "type": "number",
+   "meaning": "Leaping to block a field goal or try: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_block_leaping.afd",
+   "type": "boolean",
+   "meaning": "Leaping to block a field goal or try: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.lod",
+   "type": "boolean",
+   "meaning": "Leaping to block a field goal or try: loss of down when the offense commits it",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.spot_foul",
+   "type": "boolean",
+   "meaning": "Leaping to block a field goal or try: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.dead_ball",
+   "type": "boolean",
+   "meaning": "Leaping to block a field goal or try: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Leaping to block a field goal or try: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.class",
+   "type": "option",
+   "meaning": "Leaping to block a field goal or try: foul class for enforcement",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.kick_block_leaping.dq",
+   "type": "option",
+   "meaning": "Leaping to block a field goal or try: disqualification",
+   "ownerLeaf": "B8.4.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.exists",
+   "type": "boolean",
+   "meaning": "Multiple fouls to manipulate the game clock: the foul exists in this rule set",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.yards",
+   "type": "number",
+   "meaning": "Multiple fouls to manipulate the game clock: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.clock_manipulation.afd",
+   "type": "boolean",
+   "meaning": "Multiple fouls to manipulate the game clock: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.lod",
+   "type": "boolean",
+   "meaning": "Multiple fouls to manipulate the game clock: loss of down when the offense commits it",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.spot_foul",
+   "type": "boolean",
+   "meaning": "Multiple fouls to manipulate the game clock: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.dead_ball",
+   "type": "boolean",
+   "meaning": "Multiple fouls to manipulate the game clock: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Multiple fouls to manipulate the game clock: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.class",
+   "type": "option",
+   "meaning": "Multiple fouls to manipulate the game clock: foul class for enforcement",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.clock_manipulation.dq",
+   "type": "option",
+   "meaning": "Multiple fouls to manipulate the game clock: disqualification",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.exists",
+   "type": "boolean",
+   "meaning": "Palpably unfair act (referee equitable penalty): the foul exists in this rule set",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.yards",
+   "type": "number",
+   "meaning": "Palpably unfair act (referee equitable penalty): distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.palpably_unfair.afd",
+   "type": "boolean",
+   "meaning": "Palpably unfair act (referee equitable penalty): automatic first down when the defense commits it",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.lod",
+   "type": "boolean",
+   "meaning": "Palpably unfair act (referee equitable penalty): loss of down when the offense commits it",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.spot_foul",
+   "type": "boolean",
+   "meaning": "Palpably unfair act (referee equitable penalty): the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.dead_ball",
+   "type": "boolean",
+   "meaning": "Palpably unfair act (referee equitable penalty): ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Palpably unfair act (referee equitable penalty): can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.class",
+   "type": "option",
+   "meaning": "Palpably unfair act (referee equitable penalty): foul class for enforcement",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.palpably_unfair.dq",
+   "type": "option",
+   "meaning": "Palpably unfair act (referee equitable penalty): disqualification",
+   "ownerLeaf": "B8.4.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.league_dq.exists",
+   "type": "boolean",
+   "meaning": "League-office disqualification for a flagrant act: the foul exists in this rule set",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.league_dq.yards",
+   "type": "number",
+   "meaning": "League-office disqualification for a flagrant act: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.league_dq.afd",
+   "type": "boolean",
+   "meaning": "League-office disqualification for a flagrant act: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.league_dq.lod",
+   "type": "boolean",
+   "meaning": "League-office disqualification for a flagrant act: loss of down when the offense commits it",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.league_dq.spot_foul",
+   "type": "boolean",
+   "meaning": "League-office disqualification for a flagrant act: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.league_dq.dead_ball",
+   "type": "boolean",
+   "meaning": "League-office disqualification for a flagrant act: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.league_dq.runoff_eligible",
+   "type": "boolean",
+   "meaning": "League-office disqualification for a flagrant act: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.league_dq.class",
+   "type": "option",
+   "meaning": "League-office disqualification for a flagrant act: foul class for enforcement",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.league_dq.dq",
+   "type": "option",
+   "meaning": "League-office disqualification for a flagrant act: disqualification",
+   "ownerLeaf": "B8.4.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.exists",
+   "type": "boolean",
+   "meaning": "Unsportsmanlike conduct by a non-player: the foul exists in this rule set",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.yards",
+   "type": "number",
+   "meaning": "Unsportsmanlike conduct by a non-player: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.afd",
+   "type": "boolean",
+   "meaning": "Unsportsmanlike conduct by a non-player: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.lod",
+   "type": "boolean",
+   "meaning": "Unsportsmanlike conduct by a non-player: loss of down when the offense commits it",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.spot_foul",
+   "type": "boolean",
+   "meaning": "Unsportsmanlike conduct by a non-player: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.dead_ball",
+   "type": "boolean",
+   "meaning": "Unsportsmanlike conduct by a non-player: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Unsportsmanlike conduct by a non-player: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.class",
+   "type": "option",
+   "meaning": "Unsportsmanlike conduct by a non-player: foul class for enforcement",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.non_player_unsportsmanlike.dq",
+   "type": "option",
+   "meaning": "Unsportsmanlike conduct by a non-player: disqualification",
+   "ownerLeaf": "B8.4.5",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.exists",
+   "type": "boolean",
+   "meaning": "Unnecessary physical contact with a game official: the foul exists in this rule set",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.yards",
+   "type": "number",
+   "meaning": "Unnecessary physical contact with a game official: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.foul_against_official.afd",
+   "type": "boolean",
+   "meaning": "Unnecessary physical contact with a game official: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.lod",
+   "type": "boolean",
+   "meaning": "Unnecessary physical contact with a game official: loss of down when the offense commits it",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.spot_foul",
+   "type": "boolean",
+   "meaning": "Unnecessary physical contact with a game official: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.dead_ball",
+   "type": "boolean",
+   "meaning": "Unnecessary physical contact with a game official: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Unnecessary physical contact with a game official: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.class",
+   "type": "option",
+   "meaning": "Unnecessary physical contact with a game official: foul class for enforcement",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.foul_against_official.dq",
+   "type": "option",
+   "meaning": "Unnecessary physical contact with a game official: disqualification",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.exists",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: the foul exists in this rule set",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.yards",
+   "type": "number",
+   "meaning": "Challenge with no timeout left: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.challenge_without_timeout.afd",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: automatic first down when the defense commits it",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.lod",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: loss of down when the offense commits it",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.spot_foul",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.dead_ball",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Challenge with no timeout left: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.class",
+   "type": "option",
+   "meaning": "Challenge with no timeout left: foul class for enforcement",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.challenge_without_timeout.dq",
+   "type": "option",
+   "meaning": "Challenge with no timeout left: disqualification",
+   "ownerLeaf": "B9.1.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.exists",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: the foul exists in this rule set",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.yards",
+   "type": "number",
+   "meaning": "Fifth and later excess timeout for injury: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.excess_injury_timeout.afd",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.lod",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: loss of down when the offense commits it",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.spot_foul",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.dead_ball",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Fifth and later excess timeout for injury: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.class",
+   "type": "option",
+   "meaning": "Fifth and later excess timeout for injury: foul class for enforcement",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.excess_injury_timeout.dq",
+   "type": "option",
+   "meaning": "Fifth and later excess timeout for injury: disqualification",
+   "ownerLeaf": "B8.5.1",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.exists",
+   "type": "boolean",
+   "meaning": "Free kick: kicking team player not set on the line: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.yards",
+   "type": "number",
+   "meaning": "Free kick: kicking team player not set on the line: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_early_movement.afd",
+   "type": "boolean",
+   "meaning": "Free kick: kicking team player not set on the line: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.lod",
+   "type": "boolean",
+   "meaning": "Free kick: kicking team player not set on the line: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.spot_foul",
+   "type": "boolean",
+   "meaning": "Free kick: kicking team player not set on the line: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.dead_ball",
+   "type": "boolean",
+   "meaning": "Free kick: kicking team player not set on the line: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Free kick: kicking team player not set on the line: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.class",
+   "type": "option",
+   "meaning": "Free kick: kicking team player not set on the line: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.free_kick_early_movement.dq",
+   "type": "option",
+   "meaning": "Free kick: kicking team player not set on the line: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.exists",
+   "type": "boolean",
+   "meaning": "Illegal free kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.yards",
+   "type": "number",
+   "meaning": "Illegal free kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_free_kick.afd",
+   "type": "boolean",
+   "meaning": "Illegal free kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.lod",
+   "type": "boolean",
+   "meaning": "Illegal free kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal free kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal free kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal free kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.class",
+   "type": "option",
+   "meaning": "Illegal free kick: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.illegal_free_kick.dq",
+   "type": "option",
+   "meaning": "Illegal free kick: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.exists",
+   "type": "boolean",
+   "meaning": "Illegal blocking or use of hands on a free kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.yards",
+   "type": "number",
+   "meaning": "Illegal blocking or use of hands on a free kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_illegal_block.afd",
+   "type": "boolean",
+   "meaning": "Illegal blocking or use of hands on a free kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.lod",
+   "type": "boolean",
+   "meaning": "Illegal blocking or use of hands on a free kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal blocking or use of hands on a free kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal blocking or use of hands on a free kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal blocking or use of hands on a free kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.class",
+   "type": "option",
+   "meaning": "Illegal blocking or use of hands on a free kick: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_block.dq",
+   "type": "option",
+   "meaning": "Illegal blocking or use of hands on a free kick: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.exists",
+   "type": "boolean",
+   "meaning": "Illegal double team block on a free kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.yards",
+   "type": "number",
+   "meaning": "Illegal double team block on a free kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.illegal_double_team.afd",
+   "type": "boolean",
+   "meaning": "Illegal double team block on a free kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.lod",
+   "type": "boolean",
+   "meaning": "Illegal double team block on a free kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal double team block on a free kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal double team block on a free kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal double team block on a free kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.class",
+   "type": "option",
+   "meaning": "Illegal double team block on a free kick: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.illegal_double_team.dq",
+   "type": "option",
+   "meaning": "Illegal double team block on a free kick: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.exists",
+   "type": "boolean",
+   "meaning": "Onside kick untouched beyond the setup zone: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.yards",
+   "type": "number",
+   "meaning": "Onside kick untouched beyond the setup zone: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.afd",
+   "type": "boolean",
+   "meaning": "Onside kick untouched beyond the setup zone: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.lod",
+   "type": "boolean",
+   "meaning": "Onside kick untouched beyond the setup zone: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.spot_foul",
+   "type": "boolean",
+   "meaning": "Onside kick untouched beyond the setup zone: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.dead_ball",
+   "type": "boolean",
+   "meaning": "Onside kick untouched beyond the setup zone: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Onside kick untouched beyond the setup zone: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.class",
+   "type": "option",
+   "meaning": "Onside kick untouched beyond the setup zone: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.onside_untouched_past_zone.dq",
+   "type": "option",
+   "meaning": "Onside kick untouched beyond the setup zone: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.exists",
+   "type": "boolean",
+   "meaning": "Illegal touching of a free kick by the kicking team: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.yards",
+   "type": "number",
+   "meaning": "Illegal touching of a free kick by the kicking team: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.afd",
+   "type": "boolean",
+   "meaning": "Illegal touching of a free kick by the kicking team: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.lod",
+   "type": "boolean",
+   "meaning": "Illegal touching of a free kick by the kicking team: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal touching of a free kick by the kicking team: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal touching of a free kick by the kicking team: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal touching of a free kick by the kicking team: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.class",
+   "type": "option",
+   "meaning": "Illegal touching of a free kick by the kicking team: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.free_kick_illegal_touching.dq",
+   "type": "option",
+   "meaning": "Illegal touching of a free kick by the kicking team: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.exists",
+   "type": "boolean",
+   "meaning": "Kicking team player out of bounds on a free kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.yards",
+   "type": "number",
+   "meaning": "Kicking team player out of bounds on a free kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.afd",
+   "type": "boolean",
+   "meaning": "Kicking team player out of bounds on a free kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.lod",
+   "type": "boolean",
+   "meaning": "Kicking team player out of bounds on a free kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.spot_foul",
+   "type": "boolean",
+   "meaning": "Kicking team player out of bounds on a free kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.dead_ball",
+   "type": "boolean",
+   "meaning": "Kicking team player out of bounds on a free kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Kicking team player out of bounds on a free kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.class",
+   "type": "option",
+   "meaning": "Kicking team player out of bounds on a free kick: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.free_kick_voluntary_oob.dq",
+   "type": "option",
+   "meaning": "Kicking team player out of bounds on a free kick: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.exists",
+   "type": "boolean",
+   "meaning": "Running into the free kicker: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.yards",
+   "type": "number",
+   "meaning": "Running into the free kicker: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.running_into_free_kicker.afd",
+   "type": "boolean",
+   "meaning": "Running into the free kicker: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.lod",
+   "type": "boolean",
+   "meaning": "Running into the free kicker: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.spot_foul",
+   "type": "boolean",
+   "meaning": "Running into the free kicker: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.dead_ball",
+   "type": "boolean",
+   "meaning": "Running into the free kicker: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Running into the free kicker: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.class",
+   "type": "option",
+   "meaning": "Running into the free kicker: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.running_into_free_kicker.dq",
+   "type": "option",
+   "meaning": "Running into the free kicker: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.exists",
+   "type": "boolean",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.yards",
+   "type": "number",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_voluntary_oob.afd",
+   "type": "boolean",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.lod",
+   "type": "boolean",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.spot_foul",
+   "type": "boolean",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.dead_ball",
+   "type": "boolean",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.class",
+   "type": "option",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.kick_voluntary_oob.dq",
+   "type": "option",
+   "meaning": "Kicking team player voluntarily out of bounds on a scrimmage kick: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.exists",
+   "type": "boolean",
+   "meaning": "Defensive illegal formation against a scrimmage kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.yards",
+   "type": "number",
+   "meaning": "Defensive illegal formation against a scrimmage kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.afd",
+   "type": "boolean",
+   "meaning": "Defensive illegal formation against a scrimmage kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.lod",
+   "type": "boolean",
+   "meaning": "Defensive illegal formation against a scrimmage kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.spot_foul",
+   "type": "boolean",
+   "meaning": "Defensive illegal formation against a scrimmage kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.dead_ball",
+   "type": "boolean",
+   "meaning": "Defensive illegal formation against a scrimmage kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Defensive illegal formation against a scrimmage kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.class",
+   "type": "option",
+   "meaning": "Defensive illegal formation against a scrimmage kick: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.def_illegal_formation_kick.dq",
+   "type": "option",
+   "meaning": "Defensive illegal formation against a scrimmage kick: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.exists",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the offensive formation: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.yards",
+   "type": "number",
+   "meaning": "Pushing teammates into the offensive formation: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.pushing_teammates_formation.afd",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the offensive formation: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.lod",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the offensive formation: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.spot_foul",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the offensive formation: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.dead_ball",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the offensive formation: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Pushing teammates into the offensive formation: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.class",
+   "type": "option",
+   "meaning": "Pushing teammates into the offensive formation: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.pushing_teammates_formation.dq",
+   "type": "option",
+   "meaning": "Pushing teammates into the offensive formation: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.exists",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding to block a kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.yards",
+   "type": "number",
+   "meaning": "Pull-and-shoot holding to block a kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.afd",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding to block a kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.lod",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding to block a kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.spot_foul",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding to block a kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.dead_ball",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding to block a kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Pull-and-shoot holding to block a kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.class",
+   "type": "option",
+   "meaning": "Pull-and-shoot holding to block a kick: foul class for enforcement",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.pull_and_shoot_holding.dq",
+   "type": "option",
+   "meaning": "Pull-and-shoot holding to block a kick: disqualification",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.exists",
+   "type": "boolean",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): the foul exists in this rule set",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.yards",
+   "type": "number",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_holding.afd",
+   "type": "boolean",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): automatic first down when the defense commits it",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.lod",
+   "type": "boolean",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): loss of down when the offense commits it",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.spot_foul",
+   "type": "boolean",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.dead_ball",
+   "type": "boolean",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.class",
+   "type": "option",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): foul class for enforcement",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.kick_holding.dq",
+   "type": "option",
+   "meaning": "Holding or illegal hands during a scrimmage kick (not a block attempt): disqualification",
+   "ownerLeaf": "B8.2.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.exists",
+   "type": "boolean",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.yards",
+   "type": "number",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.afd",
+   "type": "boolean",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.lod",
+   "type": "boolean",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.class",
+   "type": "option",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.kick_illegal_touching_after_oob.dq",
+   "type": "option",
+   "meaning": "Illegal touching of a scrimmage kick after going out of bounds: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.exists",
+   "type": "boolean",
+   "meaning": "Interference with a fair catch after a signal: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.yards",
+   "type": "number",
+   "meaning": "Interference with a fair catch after a signal: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.fair_catch_interference.afd",
+   "type": "boolean",
+   "meaning": "Interference with a fair catch after a signal: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.lod",
+   "type": "boolean",
+   "meaning": "Interference with a fair catch after a signal: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.spot_foul",
+   "type": "boolean",
+   "meaning": "Interference with a fair catch after a signal: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.dead_ball",
+   "type": "boolean",
+   "meaning": "Interference with a fair catch after a signal: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Interference with a fair catch after a signal: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.class",
+   "type": "option",
+   "meaning": "Interference with a fair catch after a signal: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.fair_catch_interference.dq",
+   "type": "option",
+   "meaning": "Interference with a fair catch after a signal: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.exists",
+   "type": "boolean",
+   "meaning": "Interference with the opportunity to catch a muffed kick: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.yards",
+   "type": "number",
+   "meaning": "Interference with the opportunity to catch a muffed kick: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.muff_opportunity_interference.afd",
+   "type": "boolean",
+   "meaning": "Interference with the opportunity to catch a muffed kick: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.lod",
+   "type": "boolean",
+   "meaning": "Interference with the opportunity to catch a muffed kick: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.spot_foul",
+   "type": "boolean",
+   "meaning": "Interference with the opportunity to catch a muffed kick: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.dead_ball",
+   "type": "boolean",
+   "meaning": "Interference with the opportunity to catch a muffed kick: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Interference with the opportunity to catch a muffed kick: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.class",
+   "type": "option",
+   "meaning": "Interference with the opportunity to catch a muffed kick: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.muff_opportunity_interference.dq",
+   "type": "option",
+   "meaning": "Interference with the opportunity to catch a muffed kick: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.exists",
+   "type": "boolean",
+   "meaning": "Illegal block after a fair catch signal: the foul exists in this rule set",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.yards",
+   "type": "number",
+   "meaning": "Illegal block after a fair catch signal: distance penalty (0 when the penalty names no distance)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.afd",
+   "type": "boolean",
+   "meaning": "Illegal block after a fair catch signal: automatic first down when the defense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.lod",
+   "type": "boolean",
+   "meaning": "Illegal block after a fair catch signal: loss of down when the offense commits it",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.spot_foul",
+   "type": "boolean",
+   "meaning": "Illegal block after a fair catch signal: the penalty statement fixes enforcement at the spot of the foul",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.dead_ball",
+   "type": "boolean",
+   "meaning": "Illegal block after a fair catch signal: ruled with the ball dead (the down does not start, or the penalty is administered as a dead-ball foul)",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.runoff_eligible",
+   "type": "boolean",
+   "meaning": "Illegal block after a fair catch signal: can bring the 10-second clock subtraction late in a half",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.class",
+   "type": "option",
+   "meaning": "Illegal block after a fair catch signal: foul class for enforcement",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "personal",
+    "unsportsmanlike",
+    "other"
+   ]
+  },
+  {
+   "key": "foul.block_after_fair_catch_signal.dq",
+   "type": "option",
+   "meaning": "Illegal block after a fair catch signal: disqualification",
+   "ownerLeaf": "B8.1.2",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "none",
+    "if_flagrant",
+    "automatic"
+   ]
+  },
+  {
+   "key": "foul.intentional_grounding.enforcement",
+   "type": "option",
+   "meaning": "Intentional grounding: enforcement procedure of B8.5",
+   "ownerLeaf": "B8.5.3",
+   "readBy": [
+    "officiating/fouls"
+   ],
+   "options": [
+    "standard",
+    "interference_spot",
+    "previous_or_spot_worse",
+    "equitable"
+   ]
   }
  ]
 }

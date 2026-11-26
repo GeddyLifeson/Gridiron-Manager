@@ -1,0 +1,7 @@
+{
+  "$comment": "Unit conversions for the market module. League source holds no number but 0 and 1 (P1.1.2).",
+  "percent": 100,
+  "minutesPerHour": 60,
+  "reasonsPerSigning": 2,
+  "$reasonsPerSigning": "C8.3.2 acceptance: every signing stores its top two reasons"
+}

@@ -56,6 +56,46 @@ export interface PlayOpts {
   readonly liveTicks?: number;
   readonly geometry?: FieldGeometryLike;
   readonly kick?: boolean;
+  /** Trajectory layout: 0 (P2.2.2 fixed) or 1 (the engine record, with three officials). Default 0. */
+  readonly layout?: 0 | 1;
+}
+
+export interface V1Tick {
+  readonly players: readonly { x: number; y: number; heading: number; gaze: number; mode: number; advantage: number | null }[];
+  readonly ball: { kind: number; x: number; y: number; height: number; carrier: number };
+  readonly officials: readonly { x: number; y: number; gaze: number }[];
+}
+
+/**
+ * Writes layout 1 exactly as the engine recorder does (WP-09, engine-core src/tick/trajectory.ts):
+ * zigzag LEB128 deltas, 1/4096-turn angles, a signed advantage byte (-128 none), carrier 255 none.
+ */
+export function encodeLayout1(firstTick: number, officials: number, ticks: readonly V1Tick[]): { formatVersion: number; firstTick: number; tickCount: number; buffer: Uint8Array } {
+  const out: number[] = [officials];
+  const put = (d: number) => { let v = d < 0 ? -2 * d - 1 : 2 * d; while (v >= 128) { out.push((v % 128) + 128); v = Math.floor(v / 128); } out.push(v); };
+  const q = (rad: number) => { const a = Math.round((rad / (2 * Math.PI)) * 4096) % 4096; return a < 0 ? a + 4096 : a; };
+  const lx = new Array(22).fill(0), ly = new Array(22).fill(0), lh = new Array(22).fill(0), lg = new Array(22).fill(0);
+  const ox = new Array(officials).fill(0), oy = new Array(officials).fill(0), og = new Array(officials).fill(0);
+  let bx = 0, by = 0, bh = 0;
+  for (const t of ticks) {
+    t.players.forEach((p, s) => {
+      const x = Math.round(p.x * 100), y = Math.round(p.y * 100), h = q(p.heading), g = q(p.gaze);
+      put(x - lx[s]); put(y - ly[s]); put(h - lh[s]); put(g - lg[s]);
+      lx[s] = x; ly[s] = y; lh[s] = h; lg[s] = g;
+      out.push(p.mode);
+      const adv = p.advantage === null ? -128 : Math.round(p.advantage * 100);
+      out.push(adv < 0 ? adv + 256 : adv);
+    });
+    out.push(t.ball.kind);
+    const x = Math.round(t.ball.x * 100), y = Math.round(t.ball.y * 100), h = Math.round(t.ball.height * 100);
+    put(x - bx); put(y - by); put(h - bh); bx = x; by = y; bh = h;
+    out.push(t.ball.carrier < 0 ? 255 : t.ball.carrier);
+    t.officials.forEach((o, i) => {
+      const x2 = Math.round(o.x * 100), y2 = Math.round(o.y * 100), g = q(o.gaze);
+      put(x2 - ox[i]); put(y2 - oy[i]); put(g - og[i]); ox[i] = x2; oy[i] = y2; og[i] = g;
+    });
+  }
+  return { formatVersion: 1, firstTick, tickCount: ticks.length, buffer: Uint8Array.from(out) };
 }
 
 /**
@@ -125,11 +165,20 @@ export function fixturePlay(o: PlayOpts = {}): FilmPlay {
     playId: `fixture-${f.name}-${losX}-${dir}`,
     visibility: 'user-visible',
     ticksPerSecond: 10,
-    trajectory: encodeLayout0(-pre, ticks),
+    trajectory: o.layout === 1 ? toLayout1(-pre, ticks, losX, by) : encodeLayout0(-pre, ticks),
     slots: SLOTS_OF(f, offenseSide),
     events,
     situation: { lineOfScrimmageX: losX, lineToGainX: o.kick ? null : losX + dir * 10, attackDir: dir, offenseSide },
   };
+}
+
+function toLayout1(first: number, ticks: TickSample[], losX: number, by: number) {
+  const turn = (code: number) => (code / 256) * 2 * Math.PI;
+  return encodeLayout1(first, 3, ticks.map((t, i) => ({
+    players: t.players.map((p) => ({ x: p.x, y: p.y, heading: turn(p.facing), gaze: turn(p.facing), mode: p.state, advantage: p.state === FILM_MOVE_MODES.indexOf('engaged') ? 0.25 : null })),
+    ball: { kind: t.ball.kind, x: t.ball.x, y: t.ball.y, height: t.ball.z, carrier: t.ball.carrier },
+    officials: [{ x: losX + 12, y: by, gaze: 0 }, { x: losX - 8 + i * 0.05, y: 2, gaze: 1 }, { x: losX - 8, y: 51, gaze: 2 }],
+  })));
 }
 
 /** Records the calls made on a 2D context. */

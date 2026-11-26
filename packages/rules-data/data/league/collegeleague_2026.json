@@ -1,0 +1,150 @@
+{
+ "ruleset_id": "collegeleague_2026",
+ "level": "college",
+ "season_year": 2026,
+ "source": {
+  "document": "Fact register rows F-league, F-cap, F-college",
+  "date": "2026"
+ },
+ "schema_version": 1,
+ "values": [
+  {
+   "key": "league.roster_limit",
+   "value": 105,
+   "unit": "count",
+   "factId": "F-college-0001"
+  },
+  {
+   "key": "league.aid_limit",
+   "value": 105,
+   "unit": "count",
+   "factId": "F-college-0002",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.revenue_share_cap_2025_26",
+   "value": 20500000,
+   "unit": "USD",
+   "factId": "F-college-0003"
+  },
+  {
+   "key": "pay.revenue_share_cap_2026_27",
+   "value": 21300000,
+   "unit": "USD",
+   "factId": "F-college-0004",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.revenue_share_growth_pct",
+   "value": 4,
+   "unit": "percent",
+   "factId": "F-college-0005",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.nil_report_threshold_usd",
+   "value": 600,
+   "unit": "USD",
+   "factId": "F-college-0006",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.opted_in_schools",
+   "value": 319,
+   "unit": "count",
+   "factId": "F-college-0007",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "eligibility.window_years",
+   "value": 5,
+   "unit": "years",
+   "factId": "F-college-0010"
+  },
+  {
+   "key": "eligibility.age_trigger",
+   "value": 19,
+   "unit": "age",
+   "factId": "F-college-0011"
+  },
+  {
+   "key": "eligibility.model",
+   "value": "age_based_five_year",
+   "factId": "F-college-0012"
+  },
+  {
+   "key": "league.preseason_roster_limit",
+   "value": 110,
+   "unit": "count",
+   "factId": "F-college-0013"
+  },
+  {
+   "key": "playoff.field_size",
+   "value": 12,
+   "unit": "count",
+   "factId": "F-college-0014",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "playoff.grouping",
+   "value": "national",
+   "factId": "F-college-0015",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "playoff.byes",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-college-0016",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "playoff.campus_rounds",
+   "value": 1,
+   "unit": "count",
+   "factId": "F-college-0017",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cfp.power_champions_auto",
+   "value": true,
+   "factId": "F-college-0018",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cfp.other_auto_bids",
+   "value": 1,
+   "unit": "count",
+   "factId": "F-college-0019",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cfp.independent_auto_rank",
+   "value": 12,
+   "unit": "rank",
+   "factId": "F-college-0020",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "bowl.eligibility_wins",
+   "value": 6,
+   "unit": "wins",
+   "factId": "F-college-0021",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "bowl.lower_division_wins_counted",
+   "value": 1,
+   "unit": "wins",
+   "factId": "F-college-0022",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "bowl.fill_min_wins",
+   "value": 5,
+   "unit": "wins",
+   "factId": "F-college-0023",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  }
+ ]
+}

@@ -1,2 +1,3 @@
-// @gm/coach-ai: placeholder until its phase (R1.2). See README.md.
-export const PACKAGE = 'coach-ai';
+// @gm/coach-ai: coach profiles, preparation, play calling and game management for AI coaches (K2 to K6).
+// Modules are re-exported under a namespace (modules export PARAMS). Integrator-owned.
+export * as profile from './profile/index.ts';

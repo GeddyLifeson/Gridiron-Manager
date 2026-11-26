@@ -1,0 +1,717 @@
+{
+ "contentSchemaVersion": 1,
+ "language": "en",
+ "templates": [
+  {
+   "key": "news.crisis.off_field_incident",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "Reports say {subject} of {team} was involved in an incident away from the building.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "Campus reports say {subject} of {team} was involved in an off-campus incident."
+    },
+    {
+     "level": "pro",
+     "text": "Reports say {subject} of {team} was involved in an off-field incident."
+    }
+   ],
+   "note": "guard=personal; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.league_suspension",
+   "params": {
+    "games": {
+     "type": "number",
+     "unit": "games"
+    },
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{subject} of {team} has been suspended for {games|# game|# games}.",
+   "variants": [
+    {
+     "level": "pro",
+     "text": "The league has suspended {subject} of {team} for {games|# game|# games}."
+    }
+   ],
+   "note": "guard=personal; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.injury_to_star",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{subject} of {team} is out for the season.",
+   "note": "guard=football; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.losing_streak",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} have now lost {n|# straight game|# straight games}.",
+   "note": "guard=football; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.public_dispute",
+   "params": {
+    "other": {
+     "type": "person"
+    },
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{subject} and {other} of {team} were seen arguing in public.",
+   "note": "guard=football; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.hazing",
+   "params": {
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} are looking into reports of hazing.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "The school is looking into reports of hazing in the {team} program."
+    }
+   ],
+   "note": "guard=personal; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.holdout",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{subject} of {team} remains away from practice.",
+   "note": "guard=football; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.family_emergency",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{subject} of {team} will be away from the team for a family matter.",
+   "note": "guard=personal; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.team_illness",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} have {n|# player|# players} out with illness this week.",
+   "note": "guard=football; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.staff_crisis",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} will be without {subject} this week.",
+   "note": "guard=personal; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.academic_ineligibility",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{subject} of {team} has been ruled academically ineligible.",
+   "note": "guard=personal; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.investigation",
+   "params": {
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "The school has confirmed an investigation into {team} football.",
+   "note": "guard=personal; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.booster_revolt",
+   "params": {
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "Donors are reported to be unhappy with the {team} program.",
+   "note": "guard=football; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.boss_fired",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} have parted with their head coach. {subject} will lead the team for now.",
+   "note": "guard=football; no quotation; public wording only"
+  },
+  {
+   "key": "news.crisis.portal_exodus",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{n|# player|# players} from {team} have entered the transfer portal.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "news.person_died",
+   "params": {
+    "age": {
+     "type": "number",
+     "unit": "yr"
+    },
+    "subject": {
+     "type": "person"
+    },
+    "years": {
+     "type": "number",
+     "unit": "yr"
+    }
+   },
+   "default": "{subject} has died at the age of {age}. {subject} lived {years|# year|# years}.",
+   "note": "guard=none; retired generated person; deaths show years of life only, never a cause"
+  },
+  {
+   "key": "news.person_died.coach",
+   "params": {
+    "age": {
+     "type": "number",
+     "unit": "yr"
+    },
+    "subject": {
+     "type": "person"
+    },
+    "years": {
+     "type": "number",
+     "unit": "yr"
+    }
+   },
+   "default": "{subject}, who coached for {years|# year|# years}, has died at the age of {age}.",
+   "note": "guard=none; retired generated person; years of life only, never a cause"
+  },
+  {
+   "key": "media.topic.qb_change",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "Why did you change quarterbacks, and when was {subject} told?",
+   "note": "guard=football; reporter question; no quotation attributed to a person"
+  },
+  {
+   "key": "media.topic.late_decision",
+   "params": {
+    "rival": {
+     "type": "team"
+    }
+   },
+   "default": "What went into the late-game decision against {rival}?",
+   "note": "guard=football; reporter question; no quotation attributed to a person"
+  },
+  {
+   "key": "media.topic.star_injury",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "What is the outlook for {subject}, and who steps in?",
+   "note": "guard=football; reporter question; no quotation attributed to a person"
+  },
+  {
+   "key": "media.topic.discipline_starter",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "How did you handle the discipline of {subject}, and what does it mean for the lineup?",
+   "note": "guard=football; reporter question; no quotation attributed to a person"
+  },
+  {
+   "key": "media.topic.losing_streak",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} have lost {n|# straight game|# straight games}. What has to change?",
+   "note": "guard=football; reporter question; no quotation attributed to a person"
+  },
+  {
+   "key": "media.topic.job_security",
+   "params": {
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "Does the way {team} have played put your job in question?",
+   "note": "guard=football; reporter question; no quotation attributed to a person"
+  },
+  {
+   "key": "media.topic.game_review",
+   "params": {
+    "rival": {
+     "type": "team"
+    }
+   },
+   "default": "What did you see on film from the game against {rival}?",
+   "note": "guard=football; reporter question; no quotation attributed to a person"
+  },
+  {
+   "key": "media.stance.take_blame",
+   "params": {},
+   "default": "Take the blame yourself",
+   "note": "guard=football; stance label, not a script"
+  },
+  {
+   "key": "media.stance.blame_player",
+   "params": {},
+   "default": "Name the player who failed",
+   "note": "guard=football; stance label, not a script"
+  },
+  {
+   "key": "media.stance.blame_unit",
+   "params": {},
+   "default": "Name the unit that failed",
+   "note": "guard=football; stance label, not a script"
+  },
+  {
+   "key": "media.stance.protect_player",
+   "params": {},
+   "default": "Protect the player",
+   "note": "guard=football; stance label, not a script"
+  },
+  {
+   "key": "media.stance.bland",
+   "params": {},
+   "default": "Say nothing useful",
+   "note": "guard=football; stance label, not a script"
+  },
+  {
+   "key": "media.stance.honest_detail",
+   "params": {},
+   "default": "Give honest detail on the plan",
+   "note": "guard=football; stance label, not a script"
+  },
+  {
+   "key": "media.stance.shot_at_opponent",
+   "params": {},
+   "default": "Aim a jab at the opponent",
+   "note": "guard=football; stance label, not a script"
+  },
+  {
+   "key": "media.stance.shot_at_front_office",
+   "params": {},
+   "default": "Aim a jab at the front office",
+   "variants": [
+    {
+     "level": "college",
+     "text": "Aim a jab at the athletic department"
+    }
+   ],
+   "note": "guard=football; stance label, not a script; level wording"
+  },
+  {
+   "key": "media.digest.take_blame",
+   "params": {
+    "rival": {
+     "type": "team"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} coach takes the blame after {rival}.",
+   "note": "guard=football; headline built from stance and public facts only; no invented quote"
+  },
+  {
+   "key": "media.digest.blame_player",
+   "params": {
+    "rival": {
+     "type": "team"
+    },
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} coach points at {subject} after {rival}.",
+   "note": "guard=football; headline built from stance and public facts only; no invented quote"
+  },
+  {
+   "key": "media.digest.blame_unit",
+   "params": {
+    "rival": {
+     "type": "team"
+    },
+    "team": {
+     "type": "team"
+    },
+    "unit": {
+     "type": "text"
+    }
+   },
+   "default": "{team} coach points to the {unit} after {rival}.",
+   "note": "guard=football; headline built from stance and public facts only; no invented quote"
+  },
+  {
+   "key": "media.digest.protect_player",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} coach stands by {subject}.",
+   "note": "guard=football; headline built from stance and public facts only; no invented quote"
+  },
+  {
+   "key": "media.digest.bland",
+   "params": {
+    "rival": {
+     "type": "team"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} coach offers little after {rival}.",
+   "note": "guard=football; headline built from stance and public facts only; no invented quote"
+  },
+  {
+   "key": "media.digest.honest_detail",
+   "params": {
+    "rival": {
+     "type": "team"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} coach lays out the plan against {rival}.",
+   "note": "guard=football; headline built from stance and public facts only; no invented quote"
+  },
+  {
+   "key": "media.digest.shot_at_opponent",
+   "params": {
+    "rival": {
+     "type": "team"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} coach has a word for {rival}.",
+   "note": "guard=football; headline built from stance and public facts only; no invented quote"
+  },
+  {
+   "key": "media.digest.shot_at_front_office",
+   "params": {
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} coach aims at the front office.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "{team} coach aims at the athletic department."
+    }
+   ],
+   "note": "guard=football; level wording"
+  },
+  {
+   "key": "media.injury.refer_report",
+   "params": {},
+   "default": "Refer to the injury report",
+   "note": "guard=football; never any statement of mental health"
+  },
+  {
+   "key": "media.injury.honest_outlook",
+   "params": {},
+   "default": "Give the honest outlook",
+   "note": "guard=football; never any statement of mental health"
+  },
+  {
+   "key": "media.injury.day_to_day",
+   "params": {},
+   "default": "Say he is day to day",
+   "note": "guard=football; never any statement of mental health"
+  },
+  {
+   "key": "media.injury.decline",
+   "params": {},
+   "default": "Decline to answer",
+   "note": "guard=football; never any statement of mental health"
+  },
+  {
+   "key": "media.injury.conflict_flag",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "This answer conflicts with the filed report for {subject}.",
+   "note": "guard=football; flag text"
+  },
+  {
+   "key": "media.listening.header",
+   "params": {},
+   "default": "Who is listening",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.listening.named",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject}",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.listening.unit",
+   "params": {
+    "room": {
+     "type": "text"
+    }
+   },
+   "default": "The {room} room",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.listening.upstairs",
+   "params": {},
+   "default": "The owner and the general manager",
+   "variants": [
+    {
+     "level": "college",
+     "text": "The athletic director and the president"
+    }
+   ],
+   "note": "guard=football; level wording"
+  },
+  {
+   "key": "media.listening.opponent",
+   "params": {
+    "rival": {
+     "type": "team"
+    }
+   },
+   "default": "{rival}",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.reaction.player_memory",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} heard your answer and will remember it.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "media.reaction.upstairs",
+   "params": {},
+   "default": "The owner has noted your comments.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "The athletic director has noted your comments."
+    }
+   ],
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "media.reaction.opponent",
+   "params": {
+    "rival": {
+     "type": "team"
+    }
+   },
+   "default": "{rival} are using your words.",
+   "note": "guard=football; bulletin-board material only; no quotation"
+  },
+  {
+   "key": "media.background.nothing",
+   "params": {},
+   "default": "Say nothing",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.background.true_context",
+   "params": {},
+   "default": "Give true context",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.background.slanted",
+   "params": {},
+   "default": "Give a slanted version",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.background.leak_warning",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "What you pass on about {subject} that is private is a leak, and it can be traced to you.",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.announce.schedule",
+   "params": {
+    "topic": {
+     "type": "text"
+    }
+   },
+   "default": "Announce {topic} at the next session",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.announce.hold",
+   "params": {
+    "topic": {
+     "type": "text"
+    }
+   },
+   "default": "Hold {topic}. Each day it is known and unannounced it can leak.",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.announce.leaked",
+   "params": {
+    "topic": {
+     "type": "text"
+    }
+   },
+   "default": "The story about {topic} got out before you announced it.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "media.session.default_bland",
+   "params": {},
+   "default": "Answer everything in standard coach-speak",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.session.suppressed_fault",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "No questions about fault after the injury to {subject}.",
+   "note": "guard=football"
+  },
+  {
+   "key": "media.session.invitation",
+   "params": {
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "The media block for {team} is on your calendar.",
+   "variants": [
+    {
+     "rung": 2,
+     "text": "You are not scheduled to speak this week. The head coach handles the media for {team}."
+    },
+    {
+     "rung": 5,
+     "text": "The position-coach session for {team} is open to you this week."
+    },
+    {
+     "rung": 7,
+     "text": "The coordinator session for {team} is yours this week."
+    },
+    {
+     "rung": 9,
+     "text": "You run the full media week for {team}."
+    }
+   ],
+   "note": "guard=football; rung wording"
+  }
+ ]
+}

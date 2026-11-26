@@ -78,7 +78,7 @@ describe('foul catalogue (B8.1.2, B13.12)', () => {
 
   it('the manifest check finds every field of every foul', () => {
     expect(checkFoulCatalogue()).toEqual([]);
-    expect(FOUL_IDS.length).toBe(54);
+    expect(FOUL_IDS.length).toBe(90);
     for (const id of FOUL_IDS) for (const f of FOUL_FIELDS) expect(KEY_DICTIONARY.some((d) => d.key === foulKey(id, f))).toBe(true);
   });
 

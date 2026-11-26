@@ -1,0 +1,545 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-crisis-0001",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "NFL player arrests ran about 50 a year from 2000 to 2014, about 2.9 percent of active roster spots a season.",
+   "value": 0.029,
+   "unit": "per player-season",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Deadspin, 2013-07-11 (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 5: 666 arrest incidents January 2000 to mid-2013 in the San Diego Union-Tribune database over 1,696 roster spots a season",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "sdut-database",
+     "primary": false,
+     "value": 0.029
+    },
+    {
+     "citation": "Sports Illustrated, 2014-10-01, FindTheBest on the USA Today database (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 5: 2009 to 2013 average 51 a year, high of 67 in 2006",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "usa-today-database",
+     "primary": false
+    },
+    {
+     "citation": "UT Dallas, 2016-02-03 (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 5: 774 arrests among 573 players 2000 to 2014, about 52 a year; draws on the Union-Tribune and USA Today databases, so it is not independent of either",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "sdut-database",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "crises.off_field_incident.yearly_arrest_rate"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "notes": "The research file calls this 3 of 3; the register counts independence groups and two sources draw on the same database, so it computes 2 of 3. Arrests are not convictions. Data stop in 2014; recent counts were not found. The Deadspin source value is a derived rate (666 incidents over about 13.5 years and 1,696 spots)."
+  },
+  {
+   "id": "F-crisis-0002",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "27 percent of the NFL player arrests of 2000 to 2014 were for violent offences.",
+   "value": 0.27,
+   "unit": "share of arrests",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "UT Dallas, 2016-02-03 (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 5: 774 arrests among 573 players; 27 percent violent",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "utd-2016",
+     "primary": false,
+     "value": 0.27
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "crises.off_field_incident.severity.minor"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "notes": "Minor share in the catalogue is derived as 1 minus this. The bible calls this 3 of 3; only one source is on file in the research file."
+  },
+  {
+   "id": "F-crisis-0003",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "The split of violent arrests into serious (24 percent of all) and grave (3 percent of all) is a design value.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.1 (project design)",
+     "locator": "L9.2.1 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.off_field_incident.severity.serious",
+    "crises.off_field_incident.severity.grave"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (L9.2.1: the split of violent into serious and grave is Assumption)."
+  },
+  {
+   "id": "F-crisis-0004",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Level I or II infractions cases are decided against D-I football programs in about 2 to 4 percent of program-years; the catalogue uses 3 percent.",
+   "value": 0.03,
+   "unit": "per program-year",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "NCAA Infractions Annual Reports 2023-24 and 2024-25 (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 1: about 5 or 6 football decisions a year over about 134 FBS and about 260 D-I football programs (denominator not read from a primary source)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa-annual-reports",
+     "primary": false
+    },
+    {
+     "citation": "Walker et al. 2021 (via research/audit-r31-r34.md R36, cited in research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 1: 148 punished cases in 3,832 university-years, 2003 to 2015, about 4 percent across all sports",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "walker-2021",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "crises.investigation.major_case_rate_per_program_year"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "notes": "Range 2 to 4 percent; 3 percent is the midpoint, a named choice. Denominators unverified."
+  },
+  {
+   "id": "F-crisis-0005",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "A case sent to the NCAA infractions committee takes about 12 months on average.",
+   "value": 12,
+   "unit": "months",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "NCAA Infractions Annual Report 2024-25 (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 1: average investigation 12 months for cases submitted to the Committee",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa-annual-reports",
+     "primary": false,
+     "value": 12
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "crises.investigation.case_length_months"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-32)."
+    }
+   ]
+  },
+  {
+   "id": "F-crisis-0006",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "NFL assistant coaches are disciplined for drunk driving about 1 or 2 times a year league-wide in recent years; the catalogue uses 1.5.",
+   "value": 1.5,
+   "unit": "per year across the league",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Fox News Digital, 2026-07-30 (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 4: 21 driving incidents involving NFL people since 2024",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-news-2026",
+     "primary": false
+    },
+    {
+     "citation": "AP via Southeast Missourian, 2024-11-11 (via research/audit-r-historical-rates.md (project research file, 2026-11-25))",
+     "locator": "section 4: one named case",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-2024",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.staff_crisis.league_wide_coach_dui_per_year"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption: the research file reads 1 to 2 a year as a floor from case lists with no denominator (1 of 3). The per-person rate is computed by the game from the staff count."
+  },
+  {
+   "id": "F-crisis-0007",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Pacing and severity: at most one new crisis per team per week, two open at once (three when the room is lost), queued up to four weeks; severity is 1 to 5; off-field hazard is multiplied by (1 + stress / 200); the early-warning lead is 2 to 10 days.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.1.1 (project design)",
+     "locator": "L9.1.1 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.pacing",
+    "crises.*.severity.range",
+    "crises.off_field_incident.stress_divisor"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.1.1: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0008",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "First reports misjudge the severity of an off-field incident 30 percent of the time; 10 percent of early warnings are false alarms.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.1.1 and L9.1.3 (project design)",
+     "locator": "L9.1.1 and L9.1.3 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.off_field_incident.first_report_error_share",
+    "crises.warning.false_alarm_share"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.1.1 and L9.1.3: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0009",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Public dispute: captains resolve a player-player dispute 60 percent of the time when their trust in the coach is above 50; a private talk within two days halves the memory strengths.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.5 (project design)",
+     "locator": "L9.2.5 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.public_dispute.captains_resolve_share",
+    "crises.public_dispute.captain_trust_floor",
+    "crises.public_dispute.private_talk_window_days"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.2.5: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0010",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Hazing hazard: 0.2 percent a week in camp, 0.05 percent in season, divided by (1 - culture / 150), halved again by a published ban that was enforced; severity 85, 13 and 2 percent.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.6 (project design)",
+     "locator": "L9.2.6 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.hazing.base_weekly_camp",
+    "crises.hazing.base_weekly_season",
+    "crises.hazing.culture_divisor",
+    "crises.hazing.published_ban_factor",
+    "crises.hazing.severity"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.2.6: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0011",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Family emergency hazard is 0.1 percent a week per person with a family object.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.8 (project design)",
+     "locator": "L9.2.8 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.family_emergency.base_weekly"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.2.8: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0012",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Trigger thresholds: a star has influence of at least 70; a losing streak whose probability under preseason expectation is under 10 percent; expected portal departures above 10 percent of the roster; booster mood under 25 for four weeks; buy_in falls by up to 5.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.3, L9.2.4, L9.4.1 and L9.4.4 (project design)",
+     "locator": "L9.2.3, L9.2.4, L9.4.1 and L9.4.4 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.injury_to_star.influence_floor",
+    "crises.injury_to_star.belief_drop_max",
+    "crises.losing_streak.streak_probability_ceiling",
+    "crises.portal_exodus.expected_departures_share_of_roster",
+    "crises.booster_revolt.booster_mood_floor",
+    "crises.booster_revolt.weeks_below_floor"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.2.3, L9.2.4, L9.4.1 and L9.4.4: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0013",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "League suspension lengths by class are 2, 4, 6 or 17 games.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.2 (project design)",
+     "locator": "L9.2.2 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.league_suspension.suspension_lengths_games"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.2.2: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0014",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Stage clocks (days from one stage to the next) for every crisis type are design values.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.1 to L9.5.2 (project design)",
+     "locator": "L9.2.1 to L9.5.2 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.*.stages.clock"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.2.1 to L9.5.2: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0015",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Team illness: an outbreak starts in 4 percent of team-seasons; a well person in a room with a sick one has an 8 percent daily chance of falling ill (3 percent with split rooms or remote meetings); outbreaks last 5 to 9 days; each case is out 2 to 4 days; playing while ill costs 10 percent of endurance.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L9.2.9 (project design)",
+     "locator": "L9.2.9 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.team_illness.outbreak_per_season",
+    "crises.team_illness.daily_spread_shared_room",
+    "crises.team_illness.daily_spread_split_rooms",
+    "crises.team_illness.outbreak_days",
+    "crises.team_illness.days_out",
+    "crises.team_illness.play_while_ill_endurance_penalty"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L9.2.9: starting values, Assumption)."
+  },
+  {
+   "id": "F-crisis-0016",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "A background talk with one reporter costs a 15-minute block.",
+   "validFor": "all seasons observed",
+   "sources": [
+    {
+     "citation": "Bible L6.2.2 (project design)",
+     "locator": "L6.2.2 \"Football facts used\": all sizes are Assumption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "usedBy": [
+    "crises.acts.background_reporter.minutes"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load (G-32)."
+    }
+   ],
+   "assumption": true,
+   "notes": "Named assumption (bible L6.2.2: starting values, Assumption)."
+  }
+ ]
+}

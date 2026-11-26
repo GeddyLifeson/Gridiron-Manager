@@ -9,7 +9,7 @@ import { buildMarkings, PRO_MARKINGS, type FieldMarkings, type MarkingSet } from
 import { markerFor, positionLetter, DEFAULT_MARKERS, type MarkerStyle, type MarkerTable } from './markers.ts';
 import { param } from './params.ts';
 import { newSample, sampleFrames, type FrameSample } from './sample.ts';
-import { FIELD_COLOURS, LINE_COLOURS, inkOn, type ResolvedColours } from './colours.ts';
+import { fieldPalette, inkOn, type FieldPalette, type ResolvedColours } from './colours.ts';
 import type { FieldGeometryLike, FilmPlay, FilmSide, Orientation, PlaybackMode, Zoom } from './types.ts';
 
 /** The subset of CanvasRenderingContext2D the renderer uses, so tests can record the calls. */
@@ -44,6 +44,8 @@ export interface RenderOptions {
   readonly zoom: Zoom;
   readonly userSide: FilmSide;
   readonly colours: ResolvedColours;
+  /** Token colours for the theme and colour-vision setting (O5, O6.2.1). Default: light theme. */
+  readonly palette?: FieldPalette;
   readonly showPositionLetters?: boolean;
   readonly markers?: MarkerTable;
   readonly markings?: MarkingSet;
@@ -55,8 +57,6 @@ const ENGAGED = FILM_MOVE_MODES.indexOf('engaged');
 const DOWN = FILM_MOVE_MODES.indexOf('down');
 const TWO_PI = 2 * Math.PI;
 const TRAIL_GHOSTS = 2;
-const BALL_COLOUR = '#7a4a1e';
-const FLAG_COLOUR = '#ffd400';
 const SHADOW_ALPHA = 0.35;
 const GHOST_ALPHA = 0.3;
 const LABEL_GAP_PX = 2;
@@ -75,7 +75,8 @@ export class FieldRenderer {
   private readonly labelLift: Float64Array;
   private readonly passTargets = new Map<Cue, { x: number; y: number }>();
   private opts: RenderOptions;
-  private ink: [string, string] = ['#000000', '#000000'];
+  private pal: FieldPalette;
+  private ink: [string, string];
   private viewW = 1; private viewH = 1;
 
   constructor(readonly play: FilmPlay, readonly geometry: FieldGeometryLike, opts: RenderOptions) {
@@ -85,10 +86,11 @@ export class FieldRenderer {
       throw new OverlaySourceError(`play ${play.playId} is not tagged user-visible; the field view refuses it during a game`);
     }
     this.opts = opts;
-    this.ink = [inkOn(opts.colours.sides[0]), inkOn(opts.colours.sides[1])];
+    this.pal = opts.palette ?? fieldPalette();
+    this.ink = [inkOn(opts.colours.sides[0], this.pal), inkOn(opts.colours.sides[1], this.pal)];
     this.frames = decodeTrajectory(play.trajectory);
     if (play.slots.length !== this.frames.slotCount) throw new Error(`play ${play.playId} lists ${play.slots.length} slots, the trajectory has ${this.frames.slotCount}`);
-    this.sample = newSample(this.frames.slotCount);
+    this.sample = newSample(this.frames.slotCount, this.frames.officialCount);
     this.labelLift = new Float64Array(this.frames.slotCount);
     this.cues = buildCues(play.events, play.ticksPerSecond);
     this.markings = buildMarkings(geometry, opts.markings ?? PRO_MARKINGS);
@@ -150,7 +152,7 @@ export class FieldRenderer {
     ctx.save();
     ctx.globalAlpha = 1;
     ctx.setLineDash([]);
-    ctx.fillStyle = FIELD_COLOURS.surround;
+    ctx.fillStyle = this.pal.surround;
     ctx.fillRect(0, 0, this.viewW, this.viewH);
     this.drawField(ctx);
     this.drawSituationLines(ctx);
@@ -158,6 +160,7 @@ export class FieldRenderer {
     const r = (d / 2) * cam.scale;
     this.drawEngagements(ctx, r);
     this.drawTrails(ctx, r);
+    this.drawOfficials(ctx, r);
     for (let s = 0; s < this.looks.length; s++) this.drawMarker(ctx, s, r);
     this.drawBall(ctx, r);
     this.drawCues(ctx, r);
@@ -204,11 +207,11 @@ export class FieldRenderer {
 
   private drawField(ctx: Canvas2DLike): void {
     const g = this.geometry, mk = this.markings, s = this.camera.scale;
-    ctx.fillStyle = FIELD_COLOURS.grass;
+    ctx.fillStyle = this.pal.turf;
     ctx.beginPath(); this.polygon(ctx, [0, 0, g.lengthYd, 0, g.lengthYd, g.widthYd, 0, g.widthYd]); ctx.fill();
-    ctx.fillStyle = FIELD_COLOURS.endZone;
+    ctx.fillStyle = this.pal.endZone;
     for (const [x0, x1] of mk.endZones) { ctx.beginPath(); this.polygon(ctx, [x0, 0, x1, 0, x1, g.widthYd, x0, g.widthYd]); ctx.fill(); }
-    ctx.strokeStyle = FIELD_COLOURS.line;
+    ctx.strokeStyle = this.pal.lines;
     // Lines are drawn about 4 inches wide (Rule 1-2-1) but never thinner than one pixel.
     ctx.lineWidth = Math.max(1, s / 9);
     ctx.beginPath();
@@ -219,7 +222,7 @@ export class FieldRenderer {
     for (let i = 0; i < mk.ticks.length; i += 4) this.line(ctx, mk.ticks[i]!, mk.ticks[i + 1]!, mk.ticks[i + 2]!, mk.ticks[i + 3]!);
     ctx.stroke();
     // Goal posts from above: the crossbar in the plane of the end line.
-    ctx.strokeStyle = FLAG_COLOUR;
+    ctx.strokeStyle = this.pal.flag;
     ctx.lineWidth = Math.max(2, s / 4);
     ctx.beginPath();
     for (const [x, y0, y1] of mk.posts) this.line(ctx, x, y0, x, y1);
@@ -227,7 +230,7 @@ export class FieldRenderer {
     // Yard numbers, bottoms toward the near sideline, 2 yd tall.
     const px = mk.numeralLengthYd * s;
     if (px >= 6) {
-      ctx.fillStyle = FIELD_COLOURS.line;
+      ctx.fillStyle = this.pal.numbers;
       ctx.font = `bold ${Math.round(px)}px sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -247,10 +250,10 @@ export class FieldRenderer {
   private drawSituationLines(ctx: Canvas2DLike): void {
     const g = this.geometry, st = this.play.situation;
     ctx.lineWidth = Math.max(2, this.camera.scale / 4);
-    ctx.strokeStyle = LINE_COLOURS.lineOfScrimmage;
+    ctx.strokeStyle = this.pal.scrimmage;
     ctx.beginPath(); this.line(ctx, st.lineOfScrimmageX, 0, st.lineOfScrimmageX, g.widthYd); ctx.stroke();
     if (st.lineToGainX !== null) {
-      ctx.strokeStyle = LINE_COLOURS.lineToGain;
+      ctx.strokeStyle = this.pal.lineToGain;
       ctx.beginPath(); this.line(ctx, st.lineToGainX, 0, st.lineToGainX, g.widthYd); ctx.stroke();
     }
   }
@@ -258,7 +261,7 @@ export class FieldRenderer {
   /** Contact bar between two engaged opponents whose markers touch (O2.3.2). Both must be reported engaged. */
   private drawEngagements(ctx: Canvas2DLike, r: number): void {
     const s = this.sample, cam = this.camera, reach = param('engageContactYd');
-    ctx.strokeStyle = '#ffffff';
+    ctx.strokeStyle = this.pal.cue;
     ctx.lineWidth = Math.max(2, r * 0.5);
     ctx.beginPath();
     for (let i = 0; i < this.looks.length; i++) {
@@ -300,13 +303,15 @@ export class FieldRenderer {
     const sx = cam.sx(s.x[slot]!, s.y[slot]!), sy = cam.sy(s.x[slot]!, s.y[slot]!);
     const colour = this.opts.colours.sides[look.side];
     const st = look.style;
-    const facing = s.facingRad[slot]!;
-    const fdx = cam.dirX(facing), fdy = cam.dirY(facing);
+    // Hips for the body (lying down), eyes for the facing tick: film shows the helmet (J1.6.2).
+    const heading = s.headingRad[slot]!, gaze = s.gazeRad[slot]!;
+    const hdx = cam.dirX(heading), hdy = cam.dirY(heading);
+    const fdx = cam.dirX(gaze), fdy = cam.dirY(gaze);
     ctx.save();
     ctx.translate(sx, sy);
     if (s.state[slot] === DOWN) {
       // Flatten across the facing direction: the marker lies down.
-      const a = Math.atan2(fdy, fdx);
+      const a = Math.atan2(hdy, hdx);
       ctx.rotate(a); ctx.scale(param('downFlatten'), 1); ctx.rotate(-a);
     }
     const rr = st.shape === 'smallSquare' ? r * 0.7 : r;
@@ -324,9 +329,10 @@ export class FieldRenderer {
       ctx.lineTo(-tx * rr * 0.7 - nx * rr * 0.9, -ty * rr * 0.7 - ny * rr * 0.9);
       ctx.closePath();
     }
-    ctx.fillStyle = st.fill === 'filled' ? colour : FIELD_COLOURS.grass;
+    ctx.fillStyle = st.fill === 'filled' ? colour : this.pal.turf;
     ctx.fill();
-    ctx.strokeStyle = colour;
+    // A side whose colour cannot reach 3:1 on this turf is outlined in the line colour (I9.1.1).
+    ctx.strokeStyle = this.opts.colours.outlined[look.side] ? this.pal.lines : colour;
     ctx.lineWidth = Math.max(1.5, r * (st.outline === 'heavy' ? 0.45 : 0.2));
     ctx.stroke();
     ctx.strokeStyle = colour;
@@ -340,11 +346,21 @@ export class FieldRenderer {
     ctx.restore();
   }
 
+  /** Officials as small striped squares (they are on film; J1.6.2 records them). */
+  private drawOfficials(ctx: Canvas2DLike, r: number): void {
+    const s = this.sample, cam = this.camera, h = r * 0.6;
+    for (let k = 0; k < s.officialX.length; k++) {
+      const x = cam.sx(s.officialX[k]!, s.officialY[k]!), y = cam.sy(s.officialX[k]!, s.officialY[k]!);
+      ctx.fillStyle = this.pal.officialLight; ctx.fillRect(x - h, y - h, 2 * h, 2 * h);
+      ctx.fillStyle = this.pal.officialDark; ctx.fillRect(x - h / 3, y - h, (2 * h) / 3, 2 * h);
+    }
+  }
+
   private drawBall(ctx: Canvas2DLike, r: number): void {
     const s = this.sample, cam = this.camera;
     if (s.ballCarrier >= 0) {
       const c = s.ballCarrier;
-      ctx.strokeStyle = FLAG_COLOUR;
+      ctx.strokeStyle = this.pal.flag;
       ctx.lineWidth = Math.max(1.5, r * 0.2);
       ctx.beginPath(); ctx.arc(cam.sx(s.x[c]!, s.y[c]!), cam.sy(s.x[c]!, s.y[c]!), r * 1.45, 0, TWO_PI); ctx.stroke();
     }
@@ -353,11 +369,11 @@ export class FieldRenderer {
     const bx = cam.sx(s.ballX, s.ballY), by = cam.sy(s.ballX, s.ballY);
     if (z > 0) {
       const off = z * param('ballShadowPerYd') * cam.scale;
-      ctx.globalAlpha = SHADOW_ALPHA; ctx.fillStyle = '#000000';
+      ctx.globalAlpha = SHADOW_ALPHA; ctx.fillStyle = this.pal.shadow;
       ctx.beginPath(); ctx.arc(bx + off, by + off, br, 0, TWO_PI); ctx.fill();
       ctx.globalAlpha = 1;
     }
-    ctx.fillStyle = BALL_COLOUR; ctx.strokeStyle = '#f4f4f0'; ctx.lineWidth = 1;
+    ctx.fillStyle = this.pal.ball; ctx.strokeStyle = this.pal.ballEdge; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(bx, by, Math.max(2, br), 0, TWO_PI); ctx.fill(); ctx.stroke();
   }
 
@@ -373,26 +389,26 @@ export class FieldRenderer {
         case 'passLine': {
           const t = this.passTargets.get(c);
           if (!t) break;
-          ctx.strokeStyle = '#ffffff'; ctx.setLineDash([2, 4]);
+          ctx.strokeStyle = this.pal.cue; ctx.setLineDash([2, 4]);
           ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(cam.sx(t.x, t.y), cam.sy(t.x, t.y)); ctx.stroke();
           ctx.setLineDash([]);
           break;
         }
-        case 'ring': ctx.strokeStyle = '#ffffff'; ctx.beginPath(); ctx.arc(x, y, r * 1.8, 0, TWO_PI); ctx.stroke(); break;
+        case 'ring': ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.arc(x, y, r * 1.8, 0, TWO_PI); ctx.stroke(); break;
         case 'cross':
-          ctx.strokeStyle = '#ffffff'; ctx.beginPath();
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath();
           ctx.moveTo(x - r, y - r); ctx.lineTo(x + r, y + r); ctx.moveTo(x + r, y - r); ctx.lineTo(x - r, y + r); ctx.stroke(); break;
         case 'flash':
-          ctx.globalAlpha = Math.max(0, fade); ctx.fillStyle = '#ffffff';
+          ctx.globalAlpha = Math.max(0, fade); ctx.fillStyle = this.pal.cue;
           ctx.beginPath(); ctx.arc(x, y, r * 2, 0, TWO_PI); ctx.fill(); ctx.globalAlpha = 1; break;
         case 'flag':
           // The flag at its spot, with no name until the announcement (I7.1.2).
-          ctx.fillStyle = FLAG_COLOUR; ctx.beginPath(); ctx.moveTo(x, y - r); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r); ctx.lineTo(x - r, y); ctx.closePath(); ctx.fill(); break;
+          ctx.fillStyle = this.pal.flag; ctx.beginPath(); ctx.moveTo(x, y - r); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r); ctx.lineTo(x - r, y); ctx.closePath(); ctx.fill(); break;
         case 'whistle':
-          ctx.strokeStyle = '#ffffff'; ctx.beginPath(); ctx.arc(x, y, r * 2.2, 0, TWO_PI); ctx.stroke();
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.arc(x, y, r * 2.2, 0, TWO_PI); ctx.stroke();
           ctx.beginPath(); ctx.arc(x, y, r * 2.8, 0, TWO_PI); ctx.stroke(); break;
         case 'boundary':
-          ctx.strokeStyle = '#ffffff'; ctx.beginPath(); ctx.moveTo(x - r * 1.5, y); ctx.lineTo(x + r * 1.5, y); ctx.stroke(); break;
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.moveTo(x - r * 1.5, y); ctx.lineTo(x + r * 1.5, y); ctx.stroke(); break;
       }
     }
   }

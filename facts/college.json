@@ -1,0 +1,980 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-college-0001",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Top subdivision schools that opt in: roster limit of 105 football players.",
+   "value": 105,
+   "unit": "count",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Ropes & Gray, House v. NCAA Settlement Approved (2025-06-20, https://www.ropesgray.com/en/insights/alerts/2025/06/house-v-ncaa-settlement-approved-era-of-direct-payments-to-college-athletes-begins)",
+     "locator": "Alert text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ropes-gray",
+     "primary": false,
+     "quote": "a school football team that opts in can only have 105 players on the roster; however, all of them may receive scholarships.",
+     "value": 105
+    },
+    {
+     "citation": "NCAA LSDBi proposal 108635 (Bylaw 17, House implementation; Adopted Final 2025-06-06, effective 2025-07-01, https://web3.ncaa.org/lsdbi/search/proposalView?id=108635)",
+     "locator": "Bylaw 17.2 table",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Football | 105",
+     "value": 105
+    },
+    {
+     "citation": "On3, NCAA expected to approve increased scholarships across multiple sports, 105 roster limit for football (https://www.on3.com/news/ncaa-approves-new-roster-size-limits-paving-way-for-additional-scholarships)",
+     "locator": "roster article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "Football will have a roster limit of 105, up from the 85-man NCAA scholarship limit that currently exists.",
+     "value": 105
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Ropes & Gray only; the 110 preseason limit was not found on any page read.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0002",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "No limit on scholarship athletes at schools that opt in (all 105 may receive aid); the 85-scholarship limit is gone.",
+   "value": 105,
+   "unit": "count",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Ropes & Gray, House v. NCAA Settlement Approved (2025-06-20, https://www.ropesgray.com/en/insights/alerts/2025/06/house-v-ncaa-settlement-approved-era-of-direct-payments-to-college-athletes-begins)",
+     "locator": "Alert text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ropes-gray",
+     "primary": false,
+     "quote": "there are no longer limits to the amount of scholarship athletes a school that opts in can have on a team.",
+     "value": 105
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). A conference may set a lower number (SEC 85 inside the 105 for 2025, bible T5.1.1).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0003",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Revenue-sharing cap per school in 2025-26: $20.5 million.",
+   "value": 20500000,
+   "unit": "USD",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Inside the Loud House, Syracuse will pay its athletes the maximum amount allowed (2026-04-26, https://insidetheloudhouse.com/syracuse-will-pay-its-athletes-the-maximum-amount-allowed-21-3-million-next-season)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "insidetheloudhouse",
+     "primary": false,
+     "quote": "In 2025-26, the cap was set at $20.5 million, and the Orange shared this maximum amount with its players.",
+     "value": 20500000
+    },
+    {
+     "citation": "Bleacher Report, College Athletes Earned $1.77B from Schools in 2025-26 (2026-10-01, https://bleacherreport.com/articles/25505747-college-athletes-earned-177b-schools-2025-26-additional-500m-nil-contracts)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "Schools were capped at $20.5 million in direct payments",
+     "value": 20500000
+    },
+    {
+     "citation": "NPR, With $2.7 billion settlement approved (2025-06-06, https://www.npr.org/2025/06/06/nx-s1-5426123/ncaa-settlement-deal-athlete-compensation-judge)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "a cap initially set at $20.5 million and that could rise as high as $33 million in 2035.",
+     "value": 20500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Ropes & Gray also prints \"$20 million as the cap for the first year\" once, and $20.5 million elsewhere on the same page.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0004",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Revenue-sharing cap per school in 2026-27: about $21.3 million.",
+   "value": 21300000,
+   "unit": "USD",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "Inside the Loud House, Syracuse will pay its athletes the maximum amount allowed (2026-04-26, https://insidetheloudhouse.com/syracuse-will-pay-its-athletes-the-maximum-amount-allowed-21-3-million-next-season)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "insidetheloudhouse",
+     "primary": false,
+     "quote": "In 2026-27, the cap is approximately $21.3 million",
+     "value": 21300000
+    },
+    {
+     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-dispatch",
+     "primary": false,
+     "quote": "the school will be allowed to share $21.3 million with athletes over 2026-27",
+     "value": 21300000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0005",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The cap rose 4 percent for 2026-27.",
+   "value": 4,
+   "unit": "percent",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-dispatch",
+     "primary": false,
+     "quote": "a 4% increase in the maximum allowable revenue for disbursement",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0006",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Third-party NIL deals of $600 or more must be reported (NIL Go).",
+   "value": 600,
+   "unit": "USD",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Ropes & Gray, House v. NCAA Settlement Approved (2025-06-20, https://www.ropesgray.com/en/insights/alerts/2025/06/house-v-ncaa-settlement-approved-era-of-direct-payments-to-college-athletes-begins)",
+     "locator": "Alert text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ropes-gray",
+     "primary": false,
+     "quote": "All NIL transactions with a total value of $600 or more must be reported by student-athletes and member institutions",
+     "value": 600
+    },
+    {
+     "citation": "Bleacher Report, College Athletes Earned $1.77B from Schools in 2025-26 (2026-10-01, https://bleacherreport.com/articles/25505747-college-athletes-earned-177b-schools-2025-26-additional-500m-nil-contracts)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "All deals with third parties worth more than $600 must be reported to the CSC through the online platform NIL Go.",
+     "value": 600
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The two sources differ on whether exactly $600 is reported (\"or more\" against \"more than\").",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0007",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "319 Division I schools opted into revenue sharing.",
+   "value": 319,
+   "unit": "count",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Bleacher Report, College Athletes Earned $1.77B from Schools in 2025-26 (2026-10-01, https://bleacherreport.com/articles/25505747-college-athletes-earned-177b-schools-2025-26-additional-500m-nil-contracts)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "Out of the 319 Division I schools that opted into revenue sharing",
+     "value": 319
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0008",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Clearinghouse deals cleared through October 31, 2026: 56,570 worth $775.11 million.",
+   "value": 775110000,
+   "unit": "USD",
+   "validFor": "through 2026-10-31",
+   "sources": [
+    {
+     "citation": "College Sports Commission, NIL Data Report Sept 1 to Oct 31 2026 (https://www.collegesportscommission.org/nil-data-report/nil-data-report-september-1-october-31-2026/)",
+     "locator": "Data report",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "college-sports-commission",
+     "primary": true,
+     "quote": "56,570 NIL deals have been cleared with an aggregate value of $775.11M",
+     "value": 775110000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0009",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Clearinghouse deals not cleared through October 31, 2026: 2,877 worth $177.14 million (resubmitted deals excluded).",
+   "value": 177140000,
+   "unit": "USD",
+   "validFor": "through 2026-10-31",
+   "sources": [
+    {
+     "citation": "College Sports Commission, NIL Data Report Sept 1 to Oct 31 2026 (https://www.collegesportscommission.org/nil-data-report/nil-data-report-september-1-october-31-2026/)",
+     "locator": "Data report",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "college-sports-commission",
+     "primary": true,
+     "quote": "2,877 NIL deals have been not cleared with an aggregate value of $177.14M",
+     "value": 177140000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0010",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Age-based eligibility: up to five years of eligibility for athletes entering by the year after their 19th birthday.",
+   "value": 5,
+   "unit": "years",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules (saved page copy)",
+     "locator": "Eligibility 101 (text copy ncaa--age-based-eligibility.txt, line 14)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "will have up to five years of eligibility",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary NCAA page, saved copy re-found by the lint-style test.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0011",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The age trigger is the academic year after the 19th birthday.",
+   "value": 19,
+   "unit": "age",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules (saved page copy)",
+     "locator": "Eligibility 101 (text copy ncaa--age-based-eligibility.txt, line 14)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "no later than the academic year after their 19th birthday",
+     "value": 19
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary NCAA page. The clock starts at the earlier of full-time enrolment and this trigger (bible T5.2.1 key eligibility.clock_start).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0012",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Divisions I and II move to age-based eligibility starting with the 2026-27 academic year.",
+   "value": "age_based_five_year",
+   "unit": "option",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules (saved page copy)",
+     "locator": "Eligibility 101 (text copy ncaa--age-based-eligibility.txt, line 9)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "NCAA Divisions I and II eligibility rules are changing starting with the 2026-27 academic year.",
+     "value": "age_based_five_year"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary NCAA page. Old rules (four seasons, redshirt) apply to athletes under the transition.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0013",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Football preseason practice: at most 110 student-athletes may practice before the first day of classes or the seventh day before the first contest, whichever is earlier.",
+   "value": 110,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA LSDBi proposal 108635 (Bylaw 17, House implementation; Adopted Final 2025-06-06, effective 2025-07-01, https://web3.ncaa.org/lsdbi/search/proposalView?id=108635)",
+     "locator": "Bylaw 17.11.3.1.2 (Football)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "There is limit of 110 student-athletes who may engage in practice activities prior to the institution's first day of classes",
+     "value": 110
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). This is a practice-participant limit, not a roster cap; the 105 roster limit is in the same proposal's Bylaw 17.2 table and is also carried by On3. One primary source.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0014",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 2026 College Football Playoff stays a 12-team field.",
+   "value": 12,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, New Pac-12, Group of Six will have harder road to College Football Playoff in 2026 (2026-01-23, https://www.si.com/college/boise-state/football/new-pac-12-group-of-six-will-have-harder-road-to-college-football-playoff-in-2026)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "the CFP will remain a 12-team field in 2026",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). 2027 is 24 (rows below, keyless; a college_2027 rule set is needed).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0015",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The playoff bracket is national, not per conference.",
+   "value": "national",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, New Pac-12, Group of Six will have harder road to College Football Playoff in 2026 (2026-01-23, https://www.si.com/college/boise-state/football/new-pac-12-group-of-six-will-have-harder-road-to-college-football-playoff-in-2026)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "the CFP will remain a 12-team field in 2026",
+     "value": "national"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Derived: a single 12-team field.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0016",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The four highest-seeded teams get byes: the opening round features seeds 5 through 12, on campus.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "FOX Sports/AP, College Football Playoff Stays at 12 Teams; How Does it Impact Notre Dame? (2026-01-23, https://www.foxsports.com/stories/college-football/college-football-playoff-stays-12-teams-how-does-impact-notre-dame)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "The opening round of games, featuring the fifth through 12th seeds, will be played on campus",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Bye count implied (seeds 1-4), not stated.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0017",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Only the opening round is on campus; the final three rounds go to bowl sites.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "FOX Sports/AP, College Football Playoff Stays at 12 Teams; How Does it Impact Notre Dame? (2026-01-23, https://www.foxsports.com/stories/college-football/college-football-playoff-stays-12-teams-how-does-impact-notre-dame)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "with the final three rounds going to traditional bowl sites",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0018",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Winners of the Big Ten, SEC, ACC and Big 12 are guaranteed playoff spots.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, New Pac-12, Group of Six will have harder road to College Football Playoff in 2026 (2026-01-23, https://www.si.com/college/boise-state/football/new-pac-12-group-of-six-will-have-harder-road-to-college-football-playoff-in-2026)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "automatic bids guaranteed to the winners of the Big Ten, SEC, ACC and Big 12",
+     "value": true
+    },
+    {
+     "citation": "FOX Sports/AP, College Football Playoff Stays at 12 Teams; How Does it Impact Notre Dame? (2026-01-23, https://www.foxsports.com/stories/college-football/college-football-playoff-stays-12-teams-how-does-impact-notre-dame)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "holding automatic spots to the champions of the Power Four conferences",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0019",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "One more automatic bid goes to the highest-ranked Group of Six / non-Power-Four team.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, New Pac-12, Group of Six will have harder road to College Football Playoff in 2026 (2026-01-23, https://www.si.com/college/boise-state/football/new-pac-12-group-of-six-will-have-harder-road-to-college-football-playoff-in-2026)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "the highest-rated Group of Six — now including the new Pac-12 — conference champion",
+     "value": 1
+    },
+    {
+     "citation": "USA Today via AOL, CFP makes previously unknown change with 12-team Group of 6 bids (2026-01, https://www.aol.com/articles/cfp-makes-previously-unknown-change-160422050.html)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday",
+     "primary": false,
+     "quote": "will rather go to the highest-ranked non-Power Four program",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The two pages disagree on whether that team must be a conference champion (SI: champion; USA Today: \"no longer has to be a conference champion\"); the count of one bid agrees.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0020",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Notre Dame (independent) is guaranteed a spot with a top-12 final ranking.",
+   "value": 12,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, New Pac-12, Group of Six will have harder road to College Football Playoff in 2026 (2026-01-23, https://www.si.com/college/boise-state/football/new-pac-12-group-of-six-will-have-harder-road-to-college-football-playoff-in-2026)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Notre Dame will also be guaranteed a playoff spot with a top-12 finish in the final CFP rankings.",
+     "value": 12
+    },
+    {
+     "citation": "USA Today via AOL, CFP makes previously unknown change with 12-team Group of 6 bids (2026-01, https://www.aol.com/articles/cfp-makes-previously-unknown-change-160422050.html)",
+     "locator": "CFP 2026 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday",
+     "primary": false,
+     "quote": "granting Notre Dame a spot if it is anywhere in the top 12",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0021",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Bowl eligibility: at least as many wins as losses (six wins in a 12-game season).",
+   "value": 6,
+   "unit": "wins",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, Bowl eligibility (rules text dated 2018-19; https://en.wikipedia.org/wiki/Bowl_eligibility)",
+     "locator": "rules section (2018-19 text)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The team must have at least as many wins as overall losses.",
+     "value": 6
+    },
+    {
+     "citation": "AP via CBS Minnesota, FBS newcomers James Madison and Jacksonville State along with 5-7 Minnesota get last 3 bowl slots (2023-11-26, https://www.cbsnews.com/amp/minnesota/news/fbs-newcomers-james-madison-and-jacksonville-state-along-with-5-7-minnesota-get-last-3-bowl-slots)",
+     "locator": "2023 season report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "only 79 teams achieved the six wins necessary for bowl eligibility",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0022",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "At most one win over a lower-division (FCS) team counts toward bowl eligibility.",
+   "value": 1,
+   "unit": "wins",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, Bowl eligibility (rules text dated 2018-19; https://en.wikipedia.org/wiki/Bowl_eligibility)",
+     "locator": "rules section (2018-19 text)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "No more than one win against a Football Championship Subdivision(FCS) team may count.",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The same page also carries a scholarship test the page does not reconcile; wording is from a 2018-19 text.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0023",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "When spots go unfilled, teams with five wins (5-7) may fill them.",
+   "value": 5,
+   "unit": "wins",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, Bowl eligibility (rules text dated 2018-19; https://en.wikipedia.org/wiki/Bowl_eligibility)",
+     "locator": "rules section (2018-19 text)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "Teams with at least 5 wins and no more than 7 losses",
+     "value": 5
+    },
+    {
+     "citation": "AP via CBS Minnesota, FBS newcomers James Madison and Jacksonville State along with 5-7 Minnesota get last 3 bowl slots (2023-11-26, https://www.cbsnews.com/amp/minnesota/news/fbs-newcomers-james-madison-and-jacksonville-state-along-with-5-7-minnesota-get-last-3-bowl-slots)",
+     "locator": "2023 season report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap",
+     "primary": false,
+     "quote": "NCAA rules allow five-win teams to fill spots",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0024",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2027 playoff field: 24 teams (four conference champions, the best Group of Six team and 19 at-large).",
+   "value": 24,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "format article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "will consist of the Power 4 conference champions -- ACC, Big 12, Big Ten, SEC -- plus the highest-ranked Group of 6 team and 19 at-large selections",
+     "value": 24
+    },
+    {
+     "citation": "FBSchedules, College Football Playoff officially expanding to 24 teams in 2027 (2026-11-09, https://fbschedules.com/college-football-playoff-officially-expanding-to-24-teams-in-2027/)",
+     "locator": "format article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "19 at-large selections, the four champions of the Autonomy Four (A4) conferences",
+     "value": 24
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). A top-25 pool for at-large teams is not stated by either page (the committee ranking could extend beyond 25).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0025",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2027 playoff: seeds 1-8 get a bye and a home game; seeds 9-16 host 17-24 on campus.",
+   "value": 8,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "format article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "Teams seeded Nos. 1-8 earn a first-round bye followed by a home game.",
+     "value": 8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Reseeding is not stated.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0026",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2027: lower-division wins get ranking credit for only one FCS win per season.",
+   "value": 1,
+   "unit": "wins",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "format article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "won't give any weight to a win over more than one FCS opponent per season",
+     "value": 1
+    },
+    {
+     "citation": "FBSchedules, College Football Playoff officially expanding to 24 teams in 2027 (2026-11-09, https://fbschedules.com/college-football-playoff-officially-expanding-to-24-teams-in-2027/)",
+     "locator": "format article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "Schools that schedule multiple FCS programs will receive selection credit for only one such win.",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0027",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2027: schools are expected to play at least ten qualifying regular-season games.",
+   "value": 10,
+   "unit": "games",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "format article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "Each Power 4 school will be expected to play at least 10 qualifying regular-season games.",
+     "value": 10
+    },
+    {
+     "citation": "FBSchedules, College Football Playoff officially expanding to 24 teams in 2027 (2026-11-09, https://fbschedules.com/college-football-playoff-officially-expanding-to-24-teams-in-2027/)",
+     "locator": "format article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "G6 institutions will likewise be required to play at least 10 qualifying regular-season games.",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  }
+ ]
+}

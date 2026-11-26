@@ -1,1 +1,16 @@
 export * from './world.ts';
+// Modules are re-exported under a namespace (modules export PARAMS). Integrator-owned.
+export * as compliance from './compliance/index.ts';
+export * as cap from './cap/index.ts';
+export * as roster from './roster/index.ts';
+export * as calendar from './calendar/index.ts';
+export * as standings from './standings/index.ts';
+export * as postseason from './postseason/index.ts';
+export * as history from './history/index.ts';
+export * as development from './development/index.ts';
+export * as draft from './draft/index.ts';
+export * as college from './college/index.ts';
+export * as awards from './awards/index.ts';
+export * as news from './news/index.ts';
+export * as medical from './medical/index.ts';
+export * as market from './market/index.ts';

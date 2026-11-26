@@ -2,8 +2,8 @@
   "ok": true,
   "problems": [],
   "factNotes": [
-    "quotes re-found in rule book texts: 1376/1376",
-    "PROVISIONAL rows (not Verified): 1160 of 1160",
+    "quotes checked 1381/1684 (rule book texts not found locally for the rest; set GM_NFL_RULEBOOK_TXT and GM_NCAA_RULEBOOK_TXT to check them)",
+    "PROVISIONAL rows (not Verified): 1725 of 1764",
     "rule keys in the dictionary: 580"
   ],
   "ruleValueStatus": {

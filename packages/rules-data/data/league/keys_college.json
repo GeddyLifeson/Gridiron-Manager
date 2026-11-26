@@ -1,0 +1,219 @@
+{
+ "keys": [
+  {
+   "key": "league.roster_limit",
+   "type": "number",
+   "meaning": "Football roster limit at opted-in schools",
+   "ownerLeaf": "T5.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "league.aid_limit",
+   "type": "number",
+   "meaning": "Football aid limit at opted-in schools (equals the roster limit)",
+   "ownerLeaf": "T5.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "pay.revenue_share_cap_2025_26",
+   "type": "number",
+   "meaning": "Revenue-sharing cap per school, 2025-26",
+   "ownerLeaf": "T7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "pay.revenue_share_cap_2026_27",
+   "type": "number",
+   "meaning": "Revenue-sharing cap per school, 2026-27",
+   "ownerLeaf": "T7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "pay.revenue_share_growth_pct",
+   "type": "number",
+   "meaning": "Yearly cap growth, latest year",
+   "ownerLeaf": "T7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "pay.nil_report_threshold_usd",
+   "type": "number",
+   "meaning": "NIL reporting threshold",
+   "ownerLeaf": "T7.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "pay.opted_in_schools",
+   "type": "number",
+   "meaning": "Schools opted into revenue sharing",
+   "ownerLeaf": "T7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "eligibility.window_years",
+   "type": "number",
+   "meaning": "Years in the continuous eligibility period",
+   "ownerLeaf": "T5.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "eligibility.age_trigger",
+   "type": "number",
+   "meaning": "Age whose following academic year starts the clock",
+   "ownerLeaf": "T5.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "age"
+  },
+  {
+   "key": "eligibility.model",
+   "type": "option",
+   "meaning": "Eligibility model",
+   "ownerLeaf": "T5.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "age_based_five_year",
+    "seasons_four_year"
+   ]
+  },
+  {
+   "key": "league.preseason_roster_limit",
+   "type": "number",
+   "meaning": "Camp participant limit before the declaration date",
+   "ownerLeaf": "T5.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.field_size",
+   "type": "number",
+   "meaning": "Playoff clubs per bracket group",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.grouping",
+   "type": "option",
+   "meaning": "Whether the bracket is per conference or national",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "conference",
+    "national"
+   ]
+  },
+  {
+   "key": "playoff.byes",
+   "type": "number",
+   "meaning": "First-round byes per bracket group",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.campus_rounds",
+   "type": "number",
+   "meaning": "Rounds hosted by the higher seed",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "cfp.power_champions_auto",
+   "type": "boolean",
+   "meaning": "Power conference champions get automatic bids",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "cfp.other_auto_bids",
+   "type": "number",
+   "meaning": "Automatic bids for the best team outside the power conferences",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "cfp.independent_auto_rank",
+   "type": "number",
+   "meaning": "Independent automatic bid rank",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "rank"
+  },
+  {
+   "key": "bowl.eligibility_wins",
+   "type": "number",
+   "meaning": "Wins for bowl eligibility",
+   "ownerLeaf": "T3.5.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "wins"
+  },
+  {
+   "key": "bowl.lower_division_wins_counted",
+   "type": "number",
+   "meaning": "Lower-division wins counted for bowl eligibility",
+   "ownerLeaf": "T3.5.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "wins"
+  },
+  {
+   "key": "bowl.fill_min_wins",
+   "type": "number",
+   "meaning": "Fewest wins for a team that fills an open bowl spot",
+   "ownerLeaf": "T3.5.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "wins"
+  }
+ ]
+}

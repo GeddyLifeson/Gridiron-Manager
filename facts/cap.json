@@ -1,0 +1,2089 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-cap-0001",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum team cash spending: 90 percent of the caps for 2024 to 2026 (and 2021 to 2023 and 2027 to 2030).",
+   "value": 90,
+   "unit": "percent",
+   "validFor": "2024-2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 9(b) (text copy cba_2020.txt, line 5300)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "there shall be a guaranteed Minimum Team Cash Spending of 90% of the Salary Caps for such",
+     "value": 90
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0002",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "From the league year start to the first regular-season day only the 51 highest-valued contracts count in full.",
+   "value": 51,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 13 Section 6(a)(i) (text copy cba_2020.txt, line 5700)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "among the Team’s 51 highest valued Player Contracts, tenders and Offer Sheets",
+     "value": 51
+    },
+    {
+     "citation": "Sports Illustrated, How Rookie Contracts Work (2026-04-23, https://www.si.com/nfl/draft/how-rookie-contracts-work-nfl-salary-length)",
+     "locator": "Rookie contracts page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "It only counts the 51 highest-paid players against a team's salary cap from the start of the new league year until September",
+     "value": 51
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0003",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Signing bonus proration: straight line, at most 5 years.",
+   "value": 5,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 13 Section 6(b)(i) (text copy cba_2020.txt, line 5715)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "with a maximum proration of five years, in determining Team Salary and Salary",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0004",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Each club may designate up to two releases made on or before June 1 to be treated as June 2.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 13 Section 6(b)(ii)(1) (text copy cba_2020.txt, line 5759)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "each Club may designate up to two Player Contracts",
+     "value": 2
+    },
+    {
+     "citation": "Pro Football Rumors, The NFL's Post-June 1 Cuts, Explained (2022-04-10, https://www.profootballrumors.com/2022/04/the-nfls-post-june-1-cuts-explained-6)",
+     "locator": "Post-June 1 explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "quote": "teams are allowed to designate up to two players as post-June 1 cuts even if those players are released before June",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0005",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A club put over the cap by acceleration has seven days to conform and may sign no one until it has room.",
+   "value": 7,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 13 Section 6(b)(ii)(1) (text copy cba_2020.txt, line 5767)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the Team will have seven days to conform with the Salary Cap, but may not sign any players",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0006",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Rookie contract: 4 years for first-round picks (club option for a fifth).",
+   "value": 4,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 3(a) (text copy cba_2020.txt, line 1836)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "four years for Rookies selected in the first round of the Draft, with a Club option for a fifth year",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0007",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Rookie contract: 4 years for rounds two through seven.",
+   "value": 4,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 3(a) (text copy cba_2020.txt, line 1837)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "four years for Rookies selected in rounds two through seven of the Draft",
+     "value": 4
+    },
+    {
+     "citation": "Sports Illustrated, How Rookie Contracts Work (2026-04-23, https://www.si.com/nfl/draft/how-rookie-contracts-work-nfl-salary-length)",
+     "locator": "Rookie contracts page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Under the active collective bargaining agreement, all drafted rookies receive four-year contracts.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0008",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Rookie contract: 3 years for undrafted rookies.",
+   "value": 3,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 3(a) (text copy cba_2020.txt, line 1839)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "three years for Undrafted Rookies",
+     "value": 3
+    },
+    {
+     "citation": "Pro Football Network, How Much Will 2026 NFL UDFAs Earn (2026-04-26, https://www.profootballnetwork.com/how-much-will-2026-nfl-undrafted-free-agents-earn-details-udfa-contracts-salaries/)",
+     "locator": "Undrafted free agents page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfn",
+     "primary": false,
+     "quote": "every NFL undrafted free agent is required to sign a three-year contract with league-minimum salaries in each season",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0009",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "No rookie contract may rise by more than 25 percent of year-one salary in a year.",
+   "value": 25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 3(e) (text copy cba_2020.txt, line 2038)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "annual increase of more than 25% of the player’s Year-One Rookie Salary",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0010",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Undrafted rookie signing-bonus pool per club: $160,000 in 2021, then rising with the rookie pool.",
+   "value": 160000,
+   "unit": "USD",
+   "validFor": "2021",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 1(i) (text copy cba_2020.txt, line 1688)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a maximum of $160,000 per Club may be paid to Undrafted Rookies as signing bonus",
+     "value": 160000
+    }
+   ],
+   "usedBy": [],
+   "notes": "2026 amount not found in any source read; it rises each year by the percent rise in the Total Rookie Compensation Pool.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0011",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Fifth-year option notice is due before May 3 of year four (CBA text); the league calendar date can differ.",
+   "value": 3,
+   "unit": "day of May",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(a) (text copy cba_2020.txt, line 2467)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "prior to May 3 of the following League Year",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Conflict with May 1 on the 2026 league calendar (bible C6.4.2); the calendar date is data per year.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0012",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2026, active/inactive list, 0 credited seasons: $885,000.",
+   "value": 885000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8452)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "0 $610 $660 $705 $750 $795 $840 $885 $930 $975 $1,020 $1,065",
+     "value": 885000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0013",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2027, active/inactive list, 0 credited seasons: $930,000.",
+   "value": 930000,
+   "unit": "USD",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8452)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "0 $610 $660 $705 $750 $795 $840 $885 $930 $975 $1,020 $1,065",
+     "value": 930000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0014",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2028, active/inactive list, 0 credited seasons: $975,000.",
+   "value": 975000,
+   "unit": "USD",
+   "validFor": "2028",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8452)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "0 $610 $660 $705 $750 $795 $840 $885 $930 $975 $1,020 $1,065",
+     "value": 975000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0015",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2029, active/inactive list, 0 credited seasons: $1,020,000.",
+   "value": 1020000,
+   "unit": "USD",
+   "validFor": "2029",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8452)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "0 $610 $660 $705 $750 $795 $840 $885 $930 $975 $1,020 $1,065",
+     "value": 1020000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0016",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2030, active/inactive list, 0 credited seasons: $1,065,000.",
+   "value": 1065000,
+   "unit": "USD",
+   "validFor": "2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8452)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "0 $610 $660 $705 $750 $795 $840 $885 $930 $975 $1,020 $1,065",
+     "value": 1065000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0017",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2026, active/inactive list, 1 credited seasons: $1,005,000.",
+   "value": 1005000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8453)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 $675 $780 $825 $870 $915 $960 $1,005 $1,050 $1,095 $1,140 $1,185",
+     "value": 1005000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0018",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2027, active/inactive list, 1 credited seasons: $1,050,000.",
+   "value": 1050000,
+   "unit": "USD",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8453)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 $675 $780 $825 $870 $915 $960 $1,005 $1,050 $1,095 $1,140 $1,185",
+     "value": 1050000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0019",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2028, active/inactive list, 1 credited seasons: $1,095,000.",
+   "value": 1095000,
+   "unit": "USD",
+   "validFor": "2028",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8453)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 $675 $780 $825 $870 $915 $960 $1,005 $1,050 $1,095 $1,140 $1,185",
+     "value": 1095000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0020",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2029, active/inactive list, 1 credited seasons: $1,140,000.",
+   "value": 1140000,
+   "unit": "USD",
+   "validFor": "2029",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8453)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 $675 $780 $825 $870 $915 $960 $1,005 $1,050 $1,095 $1,140 $1,185",
+     "value": 1140000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0021",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2030, active/inactive list, 1 credited seasons: $1,185,000.",
+   "value": 1185000,
+   "unit": "USD",
+   "validFor": "2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8453)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "1 $675 $780 $825 $870 $915 $960 $1,005 $1,050 $1,095 $1,140 $1,185",
+     "value": 1185000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0022",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2026, active/inactive list, 2 credited seasons: $1,075,000.",
+   "value": 1075000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8454)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "2 $750 $850 $895 $940 $985 $1,030 $1,075 $1,120 $1,165 $1,210 $1,255",
+     "value": 1075000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0023",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2027, active/inactive list, 2 credited seasons: $1,120,000.",
+   "value": 1120000,
+   "unit": "USD",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8454)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "2 $750 $850 $895 $940 $985 $1,030 $1,075 $1,120 $1,165 $1,210 $1,255",
+     "value": 1120000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0024",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2028, active/inactive list, 2 credited seasons: $1,165,000.",
+   "value": 1165000,
+   "unit": "USD",
+   "validFor": "2028",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8454)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "2 $750 $850 $895 $940 $985 $1,030 $1,075 $1,120 $1,165 $1,210 $1,255",
+     "value": 1165000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0025",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2029, active/inactive list, 2 credited seasons: $1,210,000.",
+   "value": 1210000,
+   "unit": "USD",
+   "validFor": "2029",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8454)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "2 $750 $850 $895 $940 $985 $1,030 $1,075 $1,120 $1,165 $1,210 $1,255",
+     "value": 1210000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0026",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2030, active/inactive list, 2 credited seasons: $1,255,000.",
+   "value": 1255000,
+   "unit": "USD",
+   "validFor": "2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8454)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "2 $750 $850 $895 $940 $985 $1,030 $1,075 $1,120 $1,165 $1,210 $1,255",
+     "value": 1255000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0027",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2026, active/inactive list, 3 credited seasons: $1,145,000.",
+   "value": 1145000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8455)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "3 $825 $920 $965 $1,010 $1,055 $1,100 $1,145 $1,190 $1,235 $1,280 $1,325",
+     "value": 1145000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0028",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2027, active/inactive list, 3 credited seasons: $1,190,000.",
+   "value": 1190000,
+   "unit": "USD",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8455)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "3 $825 $920 $965 $1,010 $1,055 $1,100 $1,145 $1,190 $1,235 $1,280 $1,325",
+     "value": 1190000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0029",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2028, active/inactive list, 3 credited seasons: $1,235,000.",
+   "value": 1235000,
+   "unit": "USD",
+   "validFor": "2028",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8455)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "3 $825 $920 $965 $1,010 $1,055 $1,100 $1,145 $1,190 $1,235 $1,280 $1,325",
+     "value": 1235000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0030",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2029, active/inactive list, 3 credited seasons: $1,280,000.",
+   "value": 1280000,
+   "unit": "USD",
+   "validFor": "2029",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8455)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "3 $825 $920 $965 $1,010 $1,055 $1,100 $1,145 $1,190 $1,235 $1,280 $1,325",
+     "value": 1280000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0031",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2030, active/inactive list, 3 credited seasons: $1,325,000.",
+   "value": 1325000,
+   "unit": "USD",
+   "validFor": "2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8455)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "3 $825 $920 $965 $1,010 $1,055 $1,100 $1,145 $1,190 $1,235 $1,280 $1,325",
+     "value": 1325000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0032",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2026, active/inactive list, 4-6 credited seasons: $1,215,000.",
+   "value": 1215000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8456)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "4-6 $910 $990 $1,035 $1,080 $1,125 $1,170 $1,215 $1,260 $1,305 $1,350 $1,395",
+     "value": 1215000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0033",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2027, active/inactive list, 4-6 credited seasons: $1,260,000.",
+   "value": 1260000,
+   "unit": "USD",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8456)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "4-6 $910 $990 $1,035 $1,080 $1,125 $1,170 $1,215 $1,260 $1,305 $1,350 $1,395",
+     "value": 1260000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0034",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2028, active/inactive list, 4-6 credited seasons: $1,305,000.",
+   "value": 1305000,
+   "unit": "USD",
+   "validFor": "2028",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8456)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "4-6 $910 $990 $1,035 $1,080 $1,125 $1,170 $1,215 $1,260 $1,305 $1,350 $1,395",
+     "value": 1305000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0035",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2029, active/inactive list, 4-6 credited seasons: $1,350,000.",
+   "value": 1350000,
+   "unit": "USD",
+   "validFor": "2029",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8456)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "4-6 $910 $990 $1,035 $1,080 $1,125 $1,170 $1,215 $1,260 $1,305 $1,350 $1,395",
+     "value": 1350000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0036",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2030, active/inactive list, 4-6 credited seasons: $1,395,000.",
+   "value": 1395000,
+   "unit": "USD",
+   "validFor": "2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8456)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "4-6 $910 $990 $1,035 $1,080 $1,125 $1,170 $1,215 $1,260 $1,305 $1,350 $1,395",
+     "value": 1395000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0037",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2026, active/inactive list, 7+ credited seasons: $1,300,000.",
+   "value": 1300000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8457)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "7+ $1,050 $1,075 $1,120 $1,165 $1,210 $1,255 $1,300 $1,345 $1,390 $1,435 $1,480",
+     "value": 1300000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0038",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2027, active/inactive list, 7+ credited seasons: $1,345,000.",
+   "value": 1345000,
+   "unit": "USD",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8457)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "7+ $1,050 $1,075 $1,120 $1,165 $1,210 $1,255 $1,300 $1,345 $1,390 $1,435 $1,480",
+     "value": 1345000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0039",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2028, active/inactive list, 7+ credited seasons: $1,390,000.",
+   "value": 1390000,
+   "unit": "USD",
+   "validFor": "2028",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8457)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "7+ $1,050 $1,075 $1,120 $1,165 $1,210 $1,255 $1,300 $1,345 $1,390 $1,435 $1,480",
+     "value": 1390000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0040",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2029, active/inactive list, 7+ credited seasons: $1,435,000.",
+   "value": 1435000,
+   "unit": "USD",
+   "validFor": "2029",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8457)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "7+ $1,050 $1,075 $1,120 $1,165 $1,210 $1,255 $1,300 $1,345 $1,390 $1,435 $1,480",
+     "value": 1435000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0041",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum salary in 2030, active/inactive list, 7+ credited seasons: $1,480,000.",
+   "value": 1480000,
+   "unit": "USD",
+   "validFor": "2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 1(a) table (amounts in thousands) (text copy cba_2020.txt, line 8457)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "7+ $1,050 $1,075 $1,120 $1,165 $1,210 $1,255 $1,300 $1,345 $1,390 $1,435 $1,480",
+     "value": 1480000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0042",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 salary cap per club: $301,200,000.",
+   "value": 301200000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The salary cap is $301,200,000 per club.",
+     "value": 301200000
+    },
+    {
+     "citation": "Football Nation USA, How the NFL Veteran Salary Benefit Works (2026-10-28, https://www.footballnationusa.com/post/how-the-nfl-veteran-salary-benefit-works)",
+     "locator": "Veteran benefit article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "savings are small beside a $301.2 million 2026 salary cap.",
+     "value": 301200000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0043",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2021 salary cap per club: $182,500,000.",
+   "value": 182500000,
+   "unit": "USD",
+   "validFor": "2021",
+   "sources": [
+    {
+     "citation": "Spotrac, 2024 NFL Official League Financials (https://www.spotrac.com/news/2024-nfl-official-league-financials-2201/)",
+     "locator": "League financials cap table",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "Cap Maximum 2021",
+     "value": 182500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0044",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2022 salary cap per club: $208,200,000.",
+   "value": 208200000,
+   "unit": "USD",
+   "validFor": "2022",
+   "sources": [
+    {
+     "citation": "Spotrac, 2024 NFL Official League Financials (https://www.spotrac.com/news/2024-nfl-official-league-financials-2201/)",
+     "locator": "League financials cap table",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "Cap Maximum 2022",
+     "value": 208200000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0045",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2023 salary cap per club: $224,800,000.",
+   "value": 224800000,
+   "unit": "USD",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "Spotrac, 2024 NFL Official League Financials (https://www.spotrac.com/news/2024-nfl-official-league-financials-2201/)",
+     "locator": "League financials cap table",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "Cap Maximum 2023",
+     "value": 224800000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0046",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2024 salary cap per club: $255,400,000.",
+   "value": 255400000,
+   "unit": "USD",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "Spotrac, 2024 NFL Official League Financials (https://www.spotrac.com/news/2024-nfl-official-league-financials-2201/)",
+     "locator": "League financials cap table",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "spotrac",
+     "primary": false,
+     "quote": "Cap Maximum 2024",
+     "value": 255400000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0047",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Veteran salary benefit: $187,500 additional compensation in 2026.",
+   "value": 187500,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Football Nation USA, How the NFL Veteran Salary Benefit Works (2026-10-28, https://www.footballnationusa.com/post/how-the-nfl-veteran-salary-benefit-works)",
+     "locator": "Veteran benefit article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "The 2026 additional compensation ceiling is $187,500.",
+     "value": 187500
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0048",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Four-year player qualifying contract: up to $1,550,000 above the minimum in 2026, shared by at most two players.",
+   "value": 1550000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Football Nation USA, How Four Year Player Qualifying Contracts Work (2026-10-28, https://www.footballnationusa.com/post/how-four-year-player-qualifying-contracts-work-in-the-nfl)",
+     "locator": "Qualifying contracts article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "For 2026, one eligible player can receive a base salary as much as $1.55 million above his minimum.",
+     "value": 1550000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0049",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Undrafted rookie signing bonus pool per club in 2024: $172,337 (reported).",
+   "value": 172337,
+   "unit": "USD",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "Pro Football Network, How Much Will 2026 NFL UDFAs Earn (2026-04-26, https://www.profootballnetwork.com/how-much-will-2026-nfl-undrafted-free-agents-earn-details-udfa-contracts-salaries/)",
+     "locator": "Undrafted free agents page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfn",
+     "primary": false,
+     "quote": "In 2024, that figure was reportedly $172,337.",
+     "value": 172337
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). 2026 amount not found.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0050",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Fifth-year option salary has four tiers.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, How Rookie Contracts Work (2026-04-23, https://www.si.com/nfl/draft/how-rookie-contracts-work-nfl-salary-length)",
+     "locator": "Rookie contracts page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "There are four tiers of salary for fifth-year options: multiple Pro Bowls, one Pro Bowl, significant playtime and basic",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0051",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Outside the top 51, only the amount above twice the minimum salary counts for other players.",
+   "value": 2,
+   "unit": "multiple",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 13 Section 6(a)(i)(2) (text copy cba_2020.txt, line 5704)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "exceeds twice the applicable Minimum Active/Inactive List Salary for all other players",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0052",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Veteran salary benefit needs four or more credited seasons.",
+   "value": 4,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 Section 1 (text copy cba_2020.txt, line 8759)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a player with four or more Credited Seasons",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0053",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The benefit contract counts against the cap at the minimum for two credited seasons.",
+   "value": 2,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 (text copy cba_2020.txt, line 8769)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "up to the Minimum Salary for a player with two Credited Seasons",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0054",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Basic fifth-year option: average of the third through twenty-fifth highest salaries (from rank 3).",
+   "value": 3,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i) (text copy cba_2020.txt, line 2550)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "third through twenty-fifth",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0055",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Basic fifth-year option: average of the third through twenty-fifth highest salaries (to rank 25).",
+   "value": 25,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i) (text copy cba_2020.txt, line 2550)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "third through twenty-fifth",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0056",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Playing-time fifth-year option: average of the third through twentieth highest salaries.",
+   "value": 20,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(ii) (text copy cba_2020.txt, line 2601)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "third through twentieth",
+     "value": 20
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0057",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Option playing-time test: at least 75 percent of plays in any two of the first three seasons.",
+   "value": 75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)(1) (text copy cba_2020.txt, line 2571)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 75% of his Club’s offensive or defensive plays in any two of his first three regular seasons",
+     "value": 75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0058",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Option playing-time test: cumulative average of at least 75 percent.",
+   "value": 75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)(2) (text copy cba_2020.txt, line 2572)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a “cumulative average” of at least 75%",
+     "value": 75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0059",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Option playing-time test: at least 50 percent of plays in each of the first three seasons.",
+   "value": 50,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(i)(3) (text copy cba_2020.txt, line 2574)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 50% of his Club’s offensive or defensive plays in each of his first three regular seasons",
+     "value": 50
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0060",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Top option tier: two or more Pro Bowls on the original ballot.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(g)(iv) (text copy cba_2020.txt, line 2622)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "selected to two or more Pro Bowls on the original ballot",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0061",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Proven performance escalator, round 2: at least 60 percent of plays in two of the first three seasons.",
+   "value": 60,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(d)(i) (text copy cba_2020.txt, line 2192)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 60% of his Club’s offensive or defensive plays in any two of his first three regular seasons",
+     "value": 60
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0062",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Proven performance escalator, later rounds: at least 35 percent of plays.",
+   "value": 35,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(d)(ii) (text copy cba_2020.txt, line 2208)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 35%",
+     "value": 35
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0063",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Escalator higher level: at least 55 percent of plays in each of the first three seasons.",
+   "value": 55,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(d)(iii) (text copy cba_2020.txt, line 2219)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of 55%",
+     "value": 55
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0064",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Escalator higher level adds $250,000.",
+   "value": 250000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 4(e)(iii) (text copy cba_2020.txt, line 2267)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "plus $250,000",
+     "value": 250000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0065",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 first overall pick (Fernando Mendoza, Raiders): signing bonus $38.1 million of a four-year $57.27 million fully guaranteed deal.",
+   "value": 38100000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "theScore, Raiders sign No. 1 pick Mendoza to 4-year, $57M rookie deal (2026-07, https://thescore.com/nfl/news/3569729)",
+     "locator": "contract article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "It also includes a $38.1-million signing bonus, according to Spotrac.",
+     "value": 38100000
+    },
+    {
+     "citation": "FanSided, Every first-round signing bonus from the 2026 NFL Draft (2026-04-24, projected figures, https://fansided.com/nfl/every-first-round-signing-bonus-from-the-2026-nfl-draft)",
+     "locator": "first-round table, pick 1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fansided",
+     "primary": false,
+     "quote": "$38.1 million",
+     "value": 38100000
+    },
+    {
+     "citation": "ESPN, Raiders sign No. 1 pick Fernando Mendoza to rookie contract (2026-07-23, https://www.espn.com/nfl/story/_/id/49433918/raiders-sign-no-1-pick-fernando-mendoza-rookie-contract)",
+     "locator": "signing report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "Mendoza signed a four-year, $57.27 million fully guaranteed deal with a fifth-year option."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The signing bonus comes from Spotrac via theScore and a pre-signing FanSided projection that agrees; ESPN gives the total only. Slot values for other picks (FanSided/SI, April projections): pick 2 $36.2M, pick 3 $35M, pick 32 $8.7M signing bonus; no slot value is stated in any page, so only the first pick is entered.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  }
+ ]
+}

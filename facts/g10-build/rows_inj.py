@@ -1,0 +1,21 @@
+import json
+from core import *
+RS='/mnt/project-files/research/glossary/sources/'
+INJ=Reg('medical','injury')
+source('nfl_phs','NFL Player Health and Safety, Concussion Protocol & Return-to-Participation Protocol (saved page copy)','nfl-health-safety',True,'primary text',RS+'nfl-health-safety--concussion-protocol.txt','nfl-health-safety--concussion-protocol.txt')
+source('nbc_conc','NBC Sports, NFL concussion protocol explained (saved page copy)','nbc-sports-concussion',False,'secondary summary',RS+'nbcsports--concussion-protocol-explained.txt','nbcsports--concussion-protocol-explained.txt')
+source('cc_ankle','Cleveland Clinic, High ankle sprain (saved page copy)','cleveland-clinic',False,'secondary summary',RS+'clevelandclinic--high-ankle-sprain.txt','clevelandclinic--high-ankle-sprain.txt')
+source('aaos_toe','AAOS OrthoInfo, Turf toe (saved page copy)','aaos',False,'secondary summary',RS+'aaos-orthoinfo--turf-toe.txt','aaos-orthoinfo--turf-toe.txt')
+source('webmd','WebMD, NFL injury report explained (saved page copy)','webmd',False,'secondary summary',RS+'webmd--nfl-injury-report-explained.txt','webmd--nfl-injury-report-explained.txt')
+source('nflverse','nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)','nflverse-injuries-computed',False,'dataset computed')
+INJ.row('both','Every player diagnosed with a concussion follows a five-step return process.',5,'steps','2026',[S('nfl_phs','Concussion protocol fact sheet','Every NFL player diagnosed with a concussion must follow a five-step process before being cleared',5),S('nbc_conc','Protocol explainer','Generally, the protocol outlines five phases',5)],notes='Primary league page plus an independent explainer.')
+INJ.row('both','Three unaffiliated neurotrauma consultants are assigned to each game (two sideline, one booth).',3,'count','2026',[S('nfl_phs','Concussion protocol fact sheet','Added a third UNC who will monitor the broadcast video and audio feeds of each game',3),S('nbc_conc','Protocol explainer','Three medical experts, known as unaffiliated neurotrauma consultants (UNCs), are assigned to each game',3)],notes='The sideline/booth split of 2 and 1 is from the bible; this pass confirms the third consultant in the booth and the total of three.')
+INJ.row('pro','The NFL removed the "Probable" game status in 2016; Questionable and Doubtful remain.',2016,'year','2016',[S('webmd','Injury report explainer','In 2016, the NFL eliminated the category.',2016)])
+INJ.row('both','High ankle sprain recovery: six to eight weeks (general population guidance; athletes may take longer).','6-8','weeks','general',[S('cc_ankle','High ankle sprain page','It might take six to eight weeks to recover from a high ankle sprain.','6-8')],notes='Clinical page, not NFL data. The bible row (about 3 games, 4 weeks) is lower; both are kept as separate facts.')
+INJ.row('both','Turf toe grade 2: 3 to 14 days of rest before return to play in most cases.','3-14','days','general',[S('aaos_toe','Turf toe page','In most cases, an athlete with a Grade 2 injury needs 3 to 14 days of rest before returning to play.','3-14')])
+res=json.load(open(__import__('os').path.join(__import__('os').path.dirname(__file__),'injury_out.json')+''))
+for g,d in sorted(res['groups'].items()):
+    base=f"{g}: {d['episodes']} episodes of consecutive weekly Out report listings, regular seasons 2012-2025"
+    for k,lab,unit,m in [('median','median report listings per episode','listings',None),('mean','mean report listings per episode','listings',None),('share_one','share of episodes with one report listing','ratio',None)]:
+        v=d[k]
+        INJ.row('pro',f"{g} injury, {lab}: {v} ({d['episodes']} episodes).",v,unit if unit!='ratio' else 'ratio','2012-2025',[S('nflverse','injury_compute.py over nflverse injuries_2012..2025.csv',f"{base}; {lab} {v}",v)],notes='Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).')
