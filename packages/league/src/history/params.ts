@@ -15,6 +15,8 @@ export const RETAIN_PLAY_SEASONS: number = raw.retainPlaySeasons;
  */
 export const FNV64_OFFSET_BASIS = BigInt(raw.fnv64OffsetBasis);
 export const FNV64_PRIME = BigInt(raw.fnv64Prime);
+/** FNV-1a 64 prime is 2^40 + 435; the fast path multiplies four 16-bit limbs (same result as BigInt). */
+export const FNV_LIMB = raw.fnv64Limb;
 export const HEX_RADIX: number = raw.hexRadix;
 export const HASH_HEX_WIDTH: number = raw.hashHexWidth;
 export const BITS_PER_HEX_DIGIT: number = raw.bitsPerHexDigit;

@@ -8,5 +8,12 @@
   "seasonsInSizeBudget": 30,
   "sizeBudgetBytesAtSeason30": 100000000,
   "bitsPerHexDigit": 4,
-  "lowestTier": 3
+  "lowestTier": 3,
+  "fnv64Limb": {
+    "bits": 16,
+    "mask": 65535,
+    "primeLow": 435,
+    "primeShiftBits": 8,
+    "byteMask": 255
+  }
 }

@@ -1,7 +1,7 @@
 // league/src/history (G-22): the X2 event log helpers. Row types live in @gm/schema (world/events.ts).
 // The integrator adds the namespace re-export to the package barrel.
 export { HISTORY_MODULE, PARAMS, RETAIN_PLAY_SEASONS } from './params.ts';
-export { canonicalJson, chainHash, fnv64, toHex, utf8Length, EMPTY_SEASON_HASH } from './hash.ts';
+export { canonicalJson, chainHash, fnv64, fnv64Hex, toHex, utf8Length, EMPTY_SEASON_HASH } from './hash.ts';
 export {
   HISTORY_SUMMARY_TYPE, HISTORY_SUMMARY_DEF, REVERSAL_TYPES, NEVER_COMPACTED_FAMILIES, REVERSAL_FAMILIES,
   buildTypeRegistry, typeRegistry, isProtectedHarm, type TypeRegistry, type RegistryResult,
