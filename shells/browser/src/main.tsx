@@ -91,10 +91,14 @@ async function main() {
     now: () => performance.now(),
   };
   // ?quick=pro|college: a season with the level's first team, straight to the office (a check entry).
-  const quick = new URLSearchParams(location.search).get('quick');
+  // ?saves=1: the plain save-file start (save name and world seed) without the new-game history, for the
+  // browser gate's save round trip and the offline check (R1.2.1 item 2, P2.3.2); a check entry like ?quick.
+  const query = new URLSearchParams(location.search);
+  const quick = query.get('quick');
+  const savesOnly = query.get('saves') === '1';
   const leagueContent = { proLeague, college, proLeagueRules, collegeLeagueRules };
   createRoot(document.getElementById('root')!).render(
-    <App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} newGame={newGame} leagueContent={leagueContent}
+    <App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} {...(savesOnly ? {} : { newGame })} leagueContent={leagueContent}
       quickCareer={quick === 'pro' || quick === 'college' ? quick : null} />,
   );
 }
