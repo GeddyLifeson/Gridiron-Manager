@@ -4,11 +4,11 @@
  "growth": {
   "basis": "bible",
   "leaf": "D8.1.1",
-  "note": "Share of the adult value reached at each age (effective age = age minus maturity offset). Height and the under-18 columns are the D8.1.1 table. Weight from 18 follows T8.1.1 and D8.1.1's own acceptance band (4 to 7 percent gain 18 to 22) instead of the table's 91 to 99 percent. Speed from 18 follows T8.1.1 (40-yard change 0 to 0.05 s over college) instead of the table's 97 percent. strengthRel is the share relative to the age-18 strength share; from 18 the T8.1.1 per-group gains apply.",
+  "note": "Share of the adult value reached at each age (effective age = age minus maturity offset). Height and the under-18 columns are the D8.1.1 table. Weight from 18 follows T8.1.1 and D8.1.1's own acceptance band (4 to 7 percent gain 18 to 22) instead of the table's 91 to 99 percent. Speed follows T8.1.1 (40-yard change 0 to 0.05 s over college) instead of the table's 93 percent at 16 and 97 at 18, so late maturers (effective age near 17 at enrolment) also stay inside the college band; 14 is raised to keep the curve smooth. strengthRel is the share relative to the age-18 strength share; from 18 the T8.1.1 per-group gains apply.",
   "ages":        [14,    16,    18,    20,    22,    23],
   "height":      [0.95,  0.985, 0.997, 1,     1,     1],
   "weight":      [0.72,  0.84,  0.945, 0.975, 1,     1],
-  "speed":       [0.86,  0.93,  0.992, 0.997, 1,     1],
+  "speed":       [0.9,   0.975, 0.992, 0.997, 1,     1],
   "strengthRel": [0.655, 0.857, 1,     1,     1,     1]
  },
  "collegeYearShare": {

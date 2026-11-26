@@ -376,15 +376,15 @@
   },
   {
    "name": "league.development.devRate.sd",
-   "value": 0.2,
+   "value": 0.25,
    "min": 0,
    "max": 1,
    "unit": "ratio",
    "belongsTo": "league.development",
    "basis": "assumption",
    "leaf": "D7.4.1",
-   "constrainedBy": "D7.4.2 acceptance (yearly gain CV) and D7.4.1 late-bloomer criterion",
-   "status": "starting"
+   "constrainedBy": "D7.4.2 acceptance (yearly gain CV); near the sd of a uniform draw over the leaf range 0.6 to 1.5",
+   "status": "fitted"
   },
   {
    "name": "league.development.teaching.swing",
@@ -640,14 +640,14 @@
   },
   {
    "name": "league.development.form.weeklySd",
-   "value": 0.07,
+   "value": 0.13,
    "min": 0,
    "max": 1,
    "unit": "ratio",
    "belongsTo": "league.development",
    "basis": "assumption",
    "leaf": "D7.4.2",
-   "constrainedBy": "D7.4.2 acceptance: yearly gain CV 0.3 to 0.5 for same age and gap",
+   "constrainedBy": "D7.4.2 acceptance: yearly gain CV 0.3 to 0.5 for same age and gap (reaches about 0.25 inside the leaf bounds; conflict reported)",
    "status": "fitted"
   },
   {
