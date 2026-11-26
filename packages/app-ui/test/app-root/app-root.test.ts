@@ -28,6 +28,11 @@ const base: SeasonToday = {
   lastResult: null, standings: [{ teamId: 1, name: 'Harbor City Gulls', w: 0, l: 0, t: 0, pf: 0, pa: 0, seat: true }], seasonOver: false, champion: null,
 };
 
+// These tests check the wiring (port, record, table, console), not the play engine. A season week on the tick
+// engine (the app's default) plays every game of the week in full and takes minutes for the college level, so
+// they run on the reference resolver; the tick engine has its own gate and tests.
+const WIRING_RESOLVER = 'reference' as const;
+
 describe('Today from the season', () => {
   it('a week out: the next game and one advance target to game day', () => {
     const h = homeFromSeason(base);
@@ -64,7 +69,7 @@ describe('season session adapter', () => {
     it(`${level}: advance to game day, the staff coaches it, the result reaches the record and the table`, () => {
       const teams = level === 'pro' ? CONTENT.proLeague.league.clubs : CONTENT.college.schools;
       const seatTeamKey: string = key ?? teams[0].id;
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '0f1e2d3c4b5a6978', seatTeamKey });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '0f1e2d3c4b5a6978', seatTeamKey, resolver: WIRING_RESOLVER });
       const port = careerPortFromSeason(sp, { level, seasonYear: 2026, resolve, consoleConfig: () => { throw new Error('no console in this test'); } });
       const t0 = port.today();
       expect(t0.record).toEqual({ w: 0, l: 0, t: 0 });
@@ -117,7 +122,7 @@ describe('a game on the staff sheets through the career port', () => {
   for (const [level, ruleSetId] of [['pro', 'pro_2026'], ['college', 'college_2026']] as const) {
     it(`${level}: game day opens the console, keys play it to the final, the score lands in the record`, () => {
       const teams = level === 'pro' ? CONTENT.proLeague.league.clubs : CONTENT.college.schools;
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[1].id });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[1].id, resolver: WIRING_RESOLVER });
       const port = careerPortFromSeason(sp, { level, seasonYear: 2026, resolve, consoleConfig: (gameId) => gameCalling.staffConsoleConfig(ruleSetId, gameId, DEFAULT_KEYMAP.bindings) });
       port.advanceToGameDay();
       const session = port.startGame();
