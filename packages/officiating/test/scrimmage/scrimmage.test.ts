@@ -182,6 +182,12 @@ describe('B5.6.3 fumble out of bounds and into the end zone', () => {
     expect(run({ ballOn: 10 }, rest(-3)).outcome).toMatchObject({ spotX: xOn(1), possessionAfter: 0, score: null });
     expect(run({ rules: B, ballOn: 10 }, rest(-3)).outcome.spotX).toBe(xOn(2));
   });
+  it('a rule set that states no placement (value zero) rules the ball at rest behind a goal line by impetus', () => {
+    const none = fixtureRules('fixture_a', { 'deadball.loose_at_rest_yardline': 0 });
+    const rest = (c: RulingContext) => [...runTo(0)(c).slice(0, 3), ev.fumble(3, 0, RB, xOn(8)), ev.dead(6, 'loose_ball_at_rest', xOn(-3), null)];
+    expect(run({ rules: none, ballOn: 10 }, rest, 0).outcome.score).toMatchObject({ type: 'safety', side: 1 });
+    expect(run({ rules: none, ballOn: 10 }, rest, 1).outcome).toMatchObject({ score: null, touchback: true, possessionAfter: 0 });
+  });
 });
 
 describe('B7.1.1 and B7.2.1 touchdown', () => {
@@ -257,6 +263,12 @@ describe('B7.5.1 safety', () => {
   it('forward progress stopped with the tip of the ball in the field but part of the ball still on the goal line: safety', () => {
     expect(run({ ballOn: 3 }, runTo(0.3, 'forward_progress_stopped')).outcome.score?.type).toBe('safety');
   });
+  it('a rule set with no ball length yet decides by the forward point of the ball alone, and a zero momentum limit spots the ball where possession began', () => {
+    const base = fixtureRules('fixture_a');
+    const bare = { ...base, num: (k: string) => { if (k === 'field.ball_length_yd') throw new Error('missing'); return base.num(k); }, keys: () => base.keys().filter((k) => k !== 'field.ball_length_yd') };
+    expect(run({ rules: bare, ballOn: 3 }, runTo(0.3, 'forward_progress_stopped')).outcome.score).toBeNull();
+    expect(run({ rules: bare, ballOn: 3 }, runTo(0, 'forward_progress_stopped')).outcome.score?.type).toBe('safety');
+  });
   it('the entire ball in the field of play is not a safety', () => {
     expect(run({ ballOn: 3 }, runTo(0.4, 'forward_progress_stopped')).outcome).toMatchObject({ score: null, spotX: xOn(0.4) });
   });
@@ -279,6 +291,7 @@ describe('B7.5.2 momentum exception (through the local type alias of change requ
   it('same at the half-yard line: ball at the 1', () => {
     expect(rule({ ballOn: 80 }, pick(99.5, true)).spotX).toBe(xOn(99));
     expect(rule({ rules: B, ballOn: 80 }, pick(99.5, true)).spotX).toBe(xOn(97));
+    expect(rule({ rules: fixtureRules('fixture_a', { 'touchback.momentum_min_yardline': 0 }), ballOn: 80 }, pick(99.5, true)).spotX).toBe(xOn(99.5));
   });
   it('possession established in the end zone: touchback', () => {
     expect(rule({ ballOn: 80 }, pick(101, true))).toMatchObject({ touchback: true, spotX: xOn(80) });

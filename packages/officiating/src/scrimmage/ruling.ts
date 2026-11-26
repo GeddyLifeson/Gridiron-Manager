@@ -140,6 +140,15 @@ type GoalLine =
   | { kind: 'touchback'; side: Side }
   | { kind: 'spot'; side: Side; x: number; y: number };
 
+/**
+ * Length of the ball (B7.5.1: the ball is in the end zone until all of it is in the field of play).
+ * WP-01 could not yet source `field.ball_length_yd` for both levels, so a rule set may lack the key.
+ * Without it the forward point of the ball alone decides, which is the stricter reading for a safety.
+ */
+function ballLengthYd(ctx: RulingContext): number {
+  return ctx.rules.keys().includes('field.ball_length_yd') ? ctx.rules.num('field.ball_length_yd') : 0;
+}
+
 /** B7.2.1, B7.5.1, B7.5.2, B7.6.1, B7.7.1, B5.6.3: what a ball dead on or behind a goal line means. */
 function goalLine(truth: PlayTruth, w: Walk, end: Ending, ctx: RulingContext): GoalLine {
   const g = ctx.geometry;
@@ -149,10 +158,11 @@ function goalLine(truth: PlayTruth, w: Walk, end: Ending, ctx: RulingContext): G
   if (end.looseBall) {
     const owner = endZoneOwner(g, end.ballX, ctx);
     if (owner === null) return { kind: 'none' };
-    if (dead.reason === 'loose_ball_at_rest') {
+    const restYardline = rules.num('deadball.loose_at_rest_yardline');
+    if (dead.reason === 'loose_ball_at_rest' && restYardline > 0) {
       // B3.2.1 i: a ball at rest that would be awarded behind a goal line is placed on the yard line the rule names.
-      const x = xAtYardsFromOwnGoal(g, rules.num('deadball.loose_at_rest_yardline'), attackDirOf(ctx, owner));
-      return { kind: 'spot', side: end.side, x, y: end.y };
+      // A rule set that states no placement gives the value zero, and the ball is then ruled by impetus like any other.
+      return { kind: 'spot', side: end.side, x: xAtYardsFromOwnGoal(g, restYardline, attackDirOf(ctx, owner)), y: end.y };
     }
     // Out of bounds behind a goal line: a safety when the defending team gave the impetus, else a touchback.
     const impetus = truth.endZoneImpetus ?? w.last;
@@ -160,7 +170,7 @@ function goalLine(truth: PlayTruth, w: Walk, end: Ending, ctx: RulingContext): G
   }
   const dir = attackDirOf(ctx, end.side);
   if (reachedAttackedGoal(g, end.x, dir)) return { kind: 'touchdown', side: end.side };
-  if (!inOwnEndZone(g, end.x, dir, rules.num('field.ball_length_yd'))) return { kind: 'none' };
+  if (!inOwnEndZone(g, end.x, dir, ballLengthYd(ctx))) return { kind: 'none' };
   // The ball is dead in the end zone its holder defends. A team that carried it there gave the impetus itself.
   const impetus = truth.endZoneImpetus ?? end.side;
   if (impetus !== end.side) return { kind: 'touchback', side: end.side };
