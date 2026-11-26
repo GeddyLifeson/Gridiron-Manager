@@ -44,8 +44,8 @@ detects or punishes on its own.
 - CO-08. Penalty orders are carried to the world once each, after the week's pipeline run (`penalties.ts`, state under
   `systemState.penalties`). A forfeited pick (C7.2.1 rule 5) comes off the club's own pick of that round at its next draft
   (`draft.forfeitPick` on the year's ledger); a club without that pick keeps the forfeit for a later draft. A fine is entered on the
-  books for the club or the person (`finesOf`); no club budget or E6 wealth is held off-screen yet, so the books are where club
-  finances and E6 will read it. A suspension counts down by the games his club plays; while it runs, a suspended general manager
+  books for the club or the person (`finesOf`) and paid at once through `world.money` (MO-01): a club's from its owner's cash
+  budget, a person's from his own pocket. A suspension counts down by the games his club plays; while it runs, a suspended general manager
   does not act (his club's acting front office keeps the default board, and he raises nothing). Probation, show-cause, practice
   cancellations, rules education and warnings are recorded with no off-screen effect yet. An order with no published amount (null
   cents, games or round: "league default") is recorded with no cost; no figure is invented.
