@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { SCREENS } from '../../src/shell/registry.ts';
 import { COMPOSITIONS, checkComposition, loopSeconds, midiOf, pitchOf } from '../../src/audio/music/compositions.ts';
@@ -101,5 +103,14 @@ describe('menu loops', () => {
   it('refuses a bar of the wrong length', () => {
     const bad = { ...COMPOSITIONS[0]!, parts: [{ ...COMPOSITIONS[0]!.parts[0]!, bars: ['C4:q'] }] };
     expect(() => toMusicXml(bad)).toThrow(/units, expected 16/);
+  });
+
+  it('has a rendered file for every loop, each listed in the licence register with its hash', () => {
+    const reg = JSON.parse(readFileSync('assets/LICENSES.json', 'utf8')) as { assets: Array<{ path: string; sha256: string }> };
+    for (const t of MENU_TRACKS) {
+      const row = reg.assets.find((r) => r.path === t.file);
+      expect(row, t.file).toBeDefined();
+      expect(createHash('sha256').update(readFileSync(t.file)).digest('hex')).toBe(row!.sha256);
+    }
   });
 });

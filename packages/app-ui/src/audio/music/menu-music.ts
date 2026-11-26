@@ -13,15 +13,26 @@ export interface MenuTrack {
   file: string;
   /** Loop point in seconds from the start (whole bars), so the render's tail never doubles up. */
   loopSeconds: number;
+  /** Gain in dB that brings the render to about -16 dBFS RMS, so the loops sit at one level. */
+  gainDb: number;
 }
 
 export const MUSIC_DIR = 'assets/music';
+
+/**
+ * Level match. RMS measured on the MuseScore renders of 2026-11-26 (soundfile + numpy): title
+ * -14.93, weekHub -18.00, career -20.87, offseason -15.50 dBFS; peaks -0.45, -1.48, -7.09, -1.02.
+ * Gain = -16 - RMS, rounded to 0.5 dB, capped so the peak stays at or below -0.9 dBFS (weekHub is
+ * capped at +0.5 instead of +2).
+ */
+export const LEVEL_MATCH_DB: Readonly<Record<MusicTrackId, number>> = { title: -1, weekHub: 0.5, career: 5, offseason: -0.5 };
 
 export const MENU_TRACKS: readonly MenuTrack[] = COMPOSITIONS.map((c) => ({
   id: c.id,
   title: c.title,
   file: `${MUSIC_DIR}/${c.id}.ogg`,
   loopSeconds: loopSeconds(c),
+  gainDb: LEVEL_MATCH_DB[c.id],
 }));
 
 /** Hubs where music never plays: the game itself and the film room. */

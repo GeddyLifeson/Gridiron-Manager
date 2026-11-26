@@ -6,6 +6,9 @@
 //
 // Render (Windows, MuseScore Studio 4):
 //   "C:\Program Files\MuseScore 4\bin\MuseScore4.exe" -j assets\music\scores\render-job.json --sound-profile "MuseScore Basic"
+// MuseScore 4.7.5 crashed after the first entry of a four-entry job on 2026-11-26; a job file with
+// one entry per score worked for each. Renders are Ogg Opus, 48 kHz stereo, loop length + 3 s tail.
+// After a re-render, update the sha256 rows in assets/LICENSES.json and LEVEL_MATCH_DB.
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { COMPOSITIONS } from '../../packages/app-ui/src/audio/music/compositions.ts';
