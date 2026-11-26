@@ -27,7 +27,7 @@
      "howRead": "secondary summary",
      "independenceGroup": "si",
      "primary": false,
-     "quote": "From 1990\u20132019, 12 teams made the playoffs, six from each conference.",
+     "quote": "From 1990–2019, 12 teams made the playoffs, six from each conference.",
      "value": 6
     },
     {
@@ -37,7 +37,7 @@
      "howRead": "secondary summary",
      "independenceGroup": "wikipedia",
      "primary": false,
-     "quote": "the four division winners and two wild cards in both conferences are seeded 1\u20136, respectively,",
+     "quote": "the four division winners and two wild cards in both conferences are seeded 1–6, respectively,",
      "value": 6
     },
     {
@@ -89,16 +89,41 @@
      "primary": false,
      "quote": "with the top two seeds receiving byes",
      "value": 2
+    },
+    {
+     "citation": "Pro Football Hall of Fame, NFL Enters 90th Postseason with Wild Card Weekend (2022-01-18, https://profootballhof.com/blogs/2022/01/nfl-enters-90th-postseason-with-wild-card-weekend)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfhof",
+     "primary": false,
+     "quote": "The two top-seeded division winners from each conference received a bye.",
+     "value": 2
+    },
+    {
+     "citation": "Unbalanced on Vocal.media, History of the NFL Playoffs Part V: Wild Card Weekend 1990-present (Clyde E. Dawkins, https://vocal.media/unbalanced/history-of-the-nfl-playoffs-part-v-wild-card-weekend-1990-present)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vocal-unbalanced",
+     "primary": false,
+     "quote": "The top two teams had byes to the Divisional Playoff, and their opponents depended on the winners of the Wild Card games.",
+     "value": 2
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia states the byes only for the 2002-2019 format; the 1990-2001 byes rest on the Bears page alone. A third source is owed.",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia states the byes only for the 2002-2019 format; the 1990-2001 byes rest on the Bears page alone. A third source is owed. Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes). Era coverage: 2002-2019 is stated by Wikipedia and the Hall of Fame page (ESPN, Barnwell 2025-01-16, also says the No. 2 seed earned a bye and calls it the two-bye system); 1990-2001 is stated by the Bears page and a Vocal.media blog (a weak source, a blog).",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Third-source pass from the postseason and poll sourcing thread."
     }
    ]
   },
@@ -405,16 +430,31 @@
      "independenceGroup": "wikipedia",
      "primary": false,
      "quote": "was a separate game from the 2006 to 2013 seasons"
+    },
+    {
+     "citation": "Encyclopaedia Britannica, Bowl Championship Series (https://www.britannica.com/sports/BCS)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "britannica",
+     "primary": false,
+     "quote": "which rotated its location between the sites of the four bowls",
+     "value": 0
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia pages count as one independence group.",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia pages count as one independence group. Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes).",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Third-source pass from the postseason and poll sourcing thread."
     }
    ]
   },
@@ -524,16 +564,30 @@
      "independenceGroup": "nbc",
      "primary": false,
      "quote": "The winners of the two semifinals would then match up in the CFP National Championship."
+    },
+    {
+     "citation": "ESPN, College Football Playoff 101 (2014-05-19, https://www.espn.com/college-football/story/_/id/10767521/a-primer-new-college-football-playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "Beginning this season, the top four teams in the country will play in two semifinal games (1 vs. 4 and 2 vs. 3)"
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes). No source uses the word bye; all four teams playing the semifinals is the statement.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Third-source pass from the postseason and poll sourcing thread."
     }
    ]
   },
@@ -610,16 +664,40 @@
      "independenceGroup": "britannica",
      "primary": false,
      "quote": "The national championship game is held at a predetermined site that is chosen from bids"
+    },
+    {
+     "citation": "ESPN, College Football Playoff 101 (2014-05-19, https://www.espn.com/college-football/story/_/id/10767521/a-primer-new-college-football-playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "The National Championship Game will then be played at an independent site at least one week after the semifinals.",
+     "value": 0
+    },
+    {
+     "citation": "WBUR Only A Game, Goodbye, BCS. Hello, College Football Playoff. (Doug Tribou, 2014-01-11, https://www.wbur.org/onlyagame/2014/01/11/college-football-playoff-explained)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wbur",
+     "primary": false,
+     "quote": "The Rose, Sugar, Orange, Fiesta, Cotton, and Chick-fil-A bowls will rotate to host the semifinals."
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes). No page says campus rounds were absent in those words; semifinals at bowls and the title game at a bid-for independent site is the statement.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Third-source pass from the postseason and poll sourcing thread."
     }
    ]
   },
@@ -659,7 +737,7 @@
      "howRead": "secondary summary",
      "independenceGroup": "britannica",
      "primary": false,
-     "quote": "The original format featured 4 teams, but it expanded to 12 teams with the 2024\u201325 season.",
+     "quote": "The original format featured 4 teams, but it expanded to 12 teams with the 2024–25 season.",
      "value": 12
     }
    ],
@@ -1123,10 +1201,28 @@
      "independenceGroup": "cfp-official",
      "primary": true,
      "quote": "1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt"
+    },
+    {
+     "citation": "NCAA.com, Everything to know about the 24-team College Football Playoff bracket (2026-11-11, https://www.ncaa.com/news/football/article/2026-11-11/everything-know-about-24-team-college-football-playoff-bracket)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "The 19 highest-ranked remaining teams in the CFP Selection Committee's final top 25 rankings will qualify."
+    },
+    {
+     "citation": "FBSchedules, College Football Playoff sets scheduling standards for 24-team era (Kevin Kelley, 2026-11-09, https://fbschedules.com/college-football-playoff-sets-scheduling-standards-for-24-team-era/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "The remaining 19 spots will be filled by the highest-ranked teams in the CFP Selection Committee's final rankings."
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). F-college-0024 notes that neither page states a top-25 pool; the bible T3.5.1 table says \"from the committee's top 25\". Kept at 0 (any position) until a source states the pool.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). F-college-0024 notes that neither page states a top-25 pool; the bible T3.5.1 table says \"from the committee's top 25\". Kept at 0 (any position) until a source states the pool. Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes). NEW: NCAA.com is the only page that ties the 19 to the final top 25 (which would make value 25, not 0); FBSchedules, ESPN/ABC7 and the AP (WBTV) say only highest-ranked or committee-decided, with no cutoff. The official CFP page text lacks the list in the cloud fetch, so the full PDF is still needed. Kept as Assumption, value unchanged.",
    "assumption": true,
    "status": "Assumption",
    "statusHistory": [
@@ -1155,16 +1251,41 @@
      "primary": false,
      "quote": "In recent years, the number of voters has been around 63, and they come from all over the country.",
      "value": 63
+    },
+    {
+     "citation": "Sports Illustrated, What Every AP Poll Voter's Final Top 25 Was for the 2022 CFB Season (Madison Williams, 2023-01-10, https://www.si.com/college/2023/01/10/what-every-ap-poll-voter-final-top-25-2022-cfb-season-georgia-tcu-rece-davis)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "In fact, 16 out of 63 voters ranked another program in the second spot rather than TCU.",
+     "value": 63
+    },
+    {
+     "citation": "AP via KSL.com, Even with due diligence, AP Top 25 voters know preseason ballot is an educated-guessing game (Eric Olson, 2023-08-10, https://www.ksl.com/article/50707389)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "when the panel of 63 writers and broadcasters from around the country judge teams on week-to-week performances and bodies of work",
+     "value": 63
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Third-source pass 2026-11-26 (cloud web fetch; page text not saved locally, so the quote lint cannot re-find quotes). KSL's page meta description says 62, its body text says 63. SI covers the 2022 final poll; the AP preseason 2023 article (also on News4JAX) is one AP article, and counts as one group with the FOX/AP piece, so it adds no third group. A third independent source (AP poll page, an ESPN or NCAA page) is still owed.",
+   "status": "2 of 3",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Third-source pass from the postseason and poll sourcing thread."
     }
    ]
   },
