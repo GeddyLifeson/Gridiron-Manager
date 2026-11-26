@@ -178,5 +178,7 @@ export function routeTo(world: LiveWorld, seatId: number, season: number, player
     if (own !== null) return { route: 'own', via: own };
     if (rec !== null) return { route: 'recommended', via: rec };
   }
-  return stream(world.seed, STREAM_PIPELINE, ['cold', seatId, playerId, season]).chance(param('pipeline.coldConsidered')) ? { route: 'cold', via: null } : null;
+  const p = world.people.get(playerId);
+  const chance = param(p && playedPro(p) ? 'pipeline.coldConsideredPro' : 'pipeline.coldConsidered');
+  return stream(world.seed, STREAM_PIPELINE, ['cold', seatId, playerId, season]).chance(chance) ? { route: 'cold', via: null } : null;
 }

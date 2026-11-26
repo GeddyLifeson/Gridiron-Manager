@@ -35,12 +35,12 @@ const ROWS: readonly Row[] = [
   ['coach.followMinRung', 5, 0, 9, 'rung', 'assumption', 'E2.3.4', 'A new head coach offers chairs from this rung up to former colleagues (rule 2). No source read'],
   ['coach.unitBelowPoints', 3, 0, 14, 'points per game', 'assumption', 'K7.6.1', "A coordinator's unit is below the AI head coach's standard when it is this far worse than the competition's mean (points scored or allowed). No source read"],
   ['coach.aliveWinShare', 0.5, 0, 1, 'win share', 'assumption', 'E4.3.3', 'A team that can still finish at this win share is alive for the postseason. No source read'],
-  ['coach.formerPlayerMaxAge', 35, 22, 60, 'years', 'assumption', 'E2.1.1', 'Oldest former player who starts at rungs 0 to 2 when the coach pools run dry. No source read'],
+  ['coach.formerPlayerMaxAge', 45, 22, 60, 'years', 'assumption', 'E2.1.1', 'Oldest former player who starts at the bottom rungs (pipeline.ts). World pro retirements run 31 to 42 (full-world calibration, 2026-11-26); ex-NFL players start coaching into their late 30s (ESPN 2019, Lions ground-floor piece). No rate source read'],
   ['coach.needsMiddle', 0.5, 0, 1, 'weight', 'assumption', 'L4.2.3', 'X5 need weights of an off-screen candidate until needs are bound (every need at the middle). No source read'],
   // Player-to-coach pipeline (D13.3.5 rules 3a and 4, pipeline.ts). Facts: F-pipeline-0001 (a quarter to a third of NFL head
   // coaches played in the NFL, Verified), F-pipeline-0002 (position shares of head coaches who played, Verified),
   // F-pipeline-0003 (9 percent of ex-NFL players coach at any level, 1 of 3). No source gives an entry rate by level.
-  ['pipeline.proBase', 0.06, 0, 0.5, 'chance', 'bible', 'D13.3.5', 'D13.3.5 starting value 6 percent; under the 9 percent of ex-NFL players coaching at any level (F-pipeline-0003, 1 of 3); fitted toward F-pipeline-0001 by the calibration run'],
+  ['pipeline.proBase', 0.09, 0, 0.5, 'chance', 'bible', 'D13.3.5', 'The 9 percent of ex-NFL players coaching at any level (F-pipeline-0003, 1 of 3), the upper end: at the D13.3.5 starting 6 percent the full world gave 4 percent former pros among new pro coaches against the 25 to 33 percent of F-pipeline-0001'],
   ['pipeline.collegeBase', 0.03, 0, 0.5, 'chance', 'bible', 'D13.3.5', 'D13.3.5 starting value 3 percent. No source read for finishing college players'],
   ['pipeline.pos.QB', 5.6, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002: share of head coaches who played QB over the QB roster share (Sickos 2025, SI 2024 agrees)'],
   ['pipeline.pos.RB', 0.82, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002 (RB and FB)'],
@@ -63,6 +63,7 @@ const ROWS: readonly Row[] = [
   ['pipeline.veteranSeasons', 8, 1, 20, 'seasons', 'assumption', 'E1.2.1', 'A pro career this long can start at assistant position coach (E1 former_pro_player origin plays 2 to 10 seasons). No source read'],
   ['pipeline.veteranEntryRung', 4, 0, 9, 'rung', 'assumption', 'E2.1.1', 'Assistant position coach (catalogue rung 4)'],
   ['pipeline.playedUnderTiePerSeason', 15, 0, 100, 'edge points', 'assumption', 'D13.3.5', 'Rule 4: a coach knows the players he coached; per season together, capped at 100. Below a staff season (coach.tiePerSeason 25). No source read'],
+  ['pipeline.coldConsideredPro', 0.1, 0, 1, 'chance per opening', 'assumption', 'D13.3.5', 'A former pro player is a known name: his cold application is read more often (former athletes enjoy an advantage, Coaching Portfolio 2023). No rate found'],
   ['pipeline.coldConsidered', 0.02, 0, 1, 'chance per opening', 'assumption', 'D13.3.5', 'A former player with no coach to vouch for him is read for an opening with this chance (cold application). Real entry jobs go mostly to people the coach knows or who are referred (Coaching Portfolio 2023, EYES UP 2026); no rate found'],
 ];
 

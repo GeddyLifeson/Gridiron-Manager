@@ -91,8 +91,10 @@ describe('player-to-coach pipeline: who hears of a former player (D13.3.5 rule 4
     let cold = 0;
     const n = 4000;
     for (let i = 0; i < n; i++) if (turnover.routeTo(w, i, 2000, 5, coached, new Set([50]), 50, noTie) !== null) cold++;
-    expect(cold / n).toBeGreaterThan(turnover.param('pipeline.coldConsidered') * 0.5);
-    expect(cold / n).toBeLessThan(turnover.param('pipeline.coldConsidered') * 1.6);
+    const p5 = w.people.get(5);
+    const expected = turnover.param(p5 && turnover.playedPro(p5) ? 'pipeline.coldConsideredPro' : 'pipeline.coldConsidered');
+    expect(cold / n).toBeGreaterThan(expected * 0.5);
+    expect(cold / n).toBeLessThan(expected * 1.6);
   });
 });
 

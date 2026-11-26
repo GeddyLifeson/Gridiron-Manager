@@ -145,6 +145,9 @@ describe.skipIf(!SEASONS)(`coach firing rates on the full world over ${SEASONS} 
         e.all++;
         if (played === 'pro') e.formerPro++; else if (played === 'college') e.formerCollege++;
       }
+      const waiting = turnover.waitingFormerPlayers(w, w.date.seasonYear + 1);
+      const outPlayers = [...w.outOfFootballSince].filter(([id]) => w.people.get(id)?.playing);
+      process.stderr.write(`waiting ${waiting.length}; out-of-football players ${outPlayers.length}; by level ${JSON.stringify(outPlayers.reduce((a: Record<string, number>, [id]) => { const k = String(turnover.levelPlayed(w.people.get(id)!)); a[k] = (a[k] ?? 0) + 1; return a; }, {}))}; ages ${JSON.stringify(outPlayers.slice(0, 5).map(([id]) => w.date.seasonYear - w.people.get(id)!.birthDate.seasonYear))}\n`);
       process.stderr.write(`pipeline after season ${i + 1}: ${JSON.stringify(entrants)}; pro chairs now held by former pro players ${JSON.stringify(turnover.formerProShare(w, (t) => turnover.levelOfTeam(w, t), 'pro', 0))}\n`);
       const fired = (lvl: 'pro' | 'college') => turnover.coachOpenings(w).filter((r) => r.level === lvl && r.reason === 'fired' && r.rung === 9).reduce((a, r) => a + r.count, 0);
       process.stderr.write(`season ${i + 1} done at ${Math.round((Date.now() - t0) / 1000)} s; head coaches fired so far: pro ${fired('pro')} (${inSeasonFired.pro} in season), college ${fired('college')} (${inSeasonFired.college} in season)\n`);
