@@ -42,7 +42,8 @@ export function delegatingDriver(role: weekly.LeaderRole): SeatDriver {
 
 /** True when the team had no game in the league week before this one (the schedule's bye, C2). */
 export function comingOffBye(ctx: PrepContext): boolean {
-  return ctx.week > 1 && !ctx.results.some((r) => r.week === ctx.week - 1 && r.teams.includes(ctx.teamId));
+  const mine = ctx.results.filter((r) => r.teams.includes(ctx.teamId));
+  return mine.length > 0 && !mine.some((r) => r.week === ctx.week - 1);
 }
 
 export function runSeatWeek(ctx: PrepContext, source: SeatWeekSource, driver: SeatDriver): SeatWeekRecord {

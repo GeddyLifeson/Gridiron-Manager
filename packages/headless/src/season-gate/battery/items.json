@@ -1,0 +1,582 @@
+{
+ "source": "Bible Q3.2 tables (Q3-decision-response-battery.md), transcribed by script; claim and basisText are the bible's words. basisStatus is read from basisText. PA-1 claims every coverage family and its text gives 2 of 3 for Cover 3 only and 1 of 3 otherwise, so the row carries the weaker 1 of 3. SC-1 and CR-2 say 2 of 3. GM-2, GM-4 and GM-5 are arithmetic from rule values and the engine's own rates.",
+ "items": [
+  {
+   "id": "PA-1",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Play action raises expected points per dropback against every coverage family",
+   "kind": "sign",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Measured +0.07 to +0.13 in one dataset; one outside source agrees on direction for Cover 3 only. Direction 2 of 3 (Cover 3), 1 of 3 otherwise. Size not asserted",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "PA-2",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Play action's gain does not depend on a high run rate beforehand by more than a small band",
+   "kind": "band",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Active. No measurable dependence on earlier run rate or run success: interaction no larger than about 0.04 expected points, not distinguishable from zero (J15 item 3, `research/audit-r-pa-definitions.md` R28). 1 of 3 for the size: published work read second-hand",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "QK-1",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Against five or more rushers, quick game gains value relative to its own value against four, and slow-developing concepts lose value",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "SC-1",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Screens are not a general answer to pressure: against five or more rushers a screen does not beat the average dropback",
+   "kind": "sign",
+   "basis": "data",
+   "basisStatus": "2 of 3",
+   "basisText": "Two charting sources agree on direction, disagree on size (about -0.15 and about 0.00 expected points). 2 of 3",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "SC-2",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "A screen beats a pressure when the rush vacates the screen side",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "CV-1",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Four verticals stresses three-deep coverage at the seams more than two-deep man",
+   "kind": "ordering",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "CV-2",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Two-deep zone is stressed in the deep middle and the holes outside; flood stresses the flat defender in three-deep",
+   "kind": "ordering",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "CV-3",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Mesh and crossers gain against man relative to zone",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based. Targeted-route data may order only",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "DP-1",
+   "leaf": "Q3.2.1",
+   "topic": "Pass game items",
+   "claim": "Deeper throws have lower completion rate and higher yards per completion, monotonic by depth band",
+   "kind": "ordering",
+   "basis": "data",
+   "basisStatus": "Unverified",
+   "basisText": "Unverified general knowledge. To be measured from the project's nflverse play-by-play (R3.2.1) before it counts",
+   "coachReviewed": false,
+   "state": "pending_measurement",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ],
+   "stateReason": "Q3.2.1: to be measured from the project play-by-play (R3.2.1) before it counts"
+  },
+  {
+   "id": "RU-1",
+   "leaf": "Q3.2.2",
+   "topic": "Pressure and protection items",
+   "claim": "Pressure rate rises with each added rusher from four to six",
+   "kind": "ordering",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Measured 27% with four to 44% with six in one dataset; no outside source by rusher count. 1 of 3",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "RU-2",
+   "leaf": "Q3.2.2",
+   "topic": "Pressure and protection items",
+   "claim": "Expected points allowed when sending six stays inside a band around neutral against four",
+   "kind": "band",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Same dataset. 1 of 3. Band tunable",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "PR-1",
+   "leaf": "Q3.2.2",
+   "topic": "Pressure and protection items",
+   "claim": "A rusher the protection rules did not account for arrives sooner than any blocked rusher",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based (and near certain by geometry)",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "PR-2",
+   "leaf": "Q3.2.2",
+   "topic": "Pressure and protection items",
+   "claim": "Keeping an extra blocker in lowers pressure rate and lowers the number of receivers out",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "PR-3",
+   "leaf": "Q3.2.2",
+   "topic": "Pressure and protection items",
+   "claim": "Time to throw longer than the protection's hold raises sack and pressure rate monotonically",
+   "kind": "ordering",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "BX-1",
+   "leaf": "Q3.2.3",
+   "topic": "Run game items",
+   "claim": "Yards per carry falls as the box goes from six to seven to eight",
+   "kind": "ordering",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Measured 4.64, 4.20, 3.80 in one dataset. 1 of 3",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "BX-2",
+   "leaf": "Q3.2.3",
+   "topic": "Run game items",
+   "claim": "A loaded box raises the value of play action and outside throws",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "BX-3",
+   "leaf": "Q3.2.3",
+   "topic": "Run game items",
+   "claim": "An unblocked defender at the point of attack lowers the run's success rate more than one away from it",
+   "kind": "ordering",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "RN-1",
+   "leaf": "Q3.2.3",
+   "topic": "Run game items",
+   "claim": "A double team at the point of attack moves the down lineman more than a single block of equal grades",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "RN-2",
+   "leaf": "Q3.2.3",
+   "topic": "Run game items",
+   "claim": "Spreading the formation lightens the box when the defence matches receivers",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "OP-1",
+   "leaf": "Q3.2.3",
+   "topic": "Run game items",
+   "claim": "A correctly read option beats the same run without the read against the same front",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based. Run-pass option passing samples are not used",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "GM-1",
+   "leaf": "Q3.2.4",
+   "topic": "Game management items",
+   "claim": "Going for it on fourth and short near midfield raises win probability relative to punting",
+   "kind": "sign",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Romer 2006 (primary paper, partly read; 1998 to 2000 data). 1 of 3. Public fourth-down models agree by general knowledge but none was read: Unverified. Size tunable",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "GM-2",
+   "leaf": "Q3.2.4",
+   "topic": "Game management items",
+   "claim": "Two-point and extra-point choices follow the standard score-differential logic given the engine's own conversion rates",
+   "kind": "ordering",
+   "basis": "data",
+   "basisStatus": "rule arithmetic",
+   "basisText": "Arithmetic from measured rates. Rates carry their own statuses (B7)",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "GM-3",
+   "leaf": "Q3.2.4",
+   "topic": "Game management items",
+   "claim": "A timeout kept for the end of a half is worth more than one spent early for a non-critical reason",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "GM-4",
+   "leaf": "Q3.2.4",
+   "topic": "Game management items",
+   "claim": "Kneeling when the clock can be run out never loses to running a play",
+   "kind": "sign",
+   "basis": "data",
+   "basisStatus": "rule arithmetic",
+   "basisText": "Arithmetic from the rule set's clock rules",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "GM-5",
+   "leaf": "Q3.2.4",
+   "topic": "Game management items",
+   "claim": "Spiking costs a down and saves the time the rule set says it saves; hurrying to the line without a spike saves a down at a time cost",
+   "kind": "band",
+   "basis": "data",
+   "basisStatus": "rule arithmetic",
+   "basisText": "Rule-based, per rule set (the college clock stops differ: B13)",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "GM-6",
+   "leaf": "Q3.2.4",
+   "topic": "Game management items",
+   "claim": "A higher pass rate on early downs does not lower expected points for an average offense",
+   "kind": "sign",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Kovash and Levitt 2009, old sample. 1 of 3. Marked provisional",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "IN-1",
+   "leaf": "Q3.2.5",
+   "topic": "Preparation and tendency items",
+   "claim": "Low install readiness produces more mental errors and pre-snap penalties than high readiness",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "IN-2",
+   "leaf": "Q3.2.5",
+   "topic": "Preparation and tendency items",
+   "claim": "Installing more than the team can absorb in a week lowers execution of the whole plan",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "TD-1",
+   "leaf": "Q3.2.5",
+   "topic": "Preparation and tendency items",
+   "claim": "A repeated tendency loses value over a game against an opponent who has scouted it",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "TD-2",
+   "leaf": "Q3.2.5",
+   "topic": "Preparation and tendency items",
+   "claim": "Breaking a strong tendency once it is established gains value relative to the same call with no tendency",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "DG-1",
+   "leaf": "Q3.2.5",
+   "topic": "Preparation and tendency items",
+   "claim": "A disguised coverage raises the quarterback's error rate relative to the same coverage shown early, more for a less experienced quarterback",
+   "kind": "ordering",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "FT-1",
+   "leaf": "Q3.2.5",
+   "topic": "Preparation and tendency items",
+   "claim": "Fatigue from long drives and tempo lowers the defensive front's contest results",
+   "kind": "sign",
+   "basis": "convention",
+   "basisStatus": "convention",
+   "basisText": "Convention-based",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "CR-1",
+   "leaf": "Q3.2.6",
+   "topic": "Career-scale items",
+   "claim": "The spread of results between better and worse AI coaches is wider on weak rosters than on strong ones",
+   "kind": "sign",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Holcomb, Holmes, Connelly 2009 by secondary summary. 1 of 3",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "CR-2",
+   "leaf": "Q3.2.6",
+   "topic": "Career-scale items",
+   "claim": "Replacing a coach in mid-season gives no reliable lasting gain in win rate",
+   "kind": "band",
+   "basis": "data",
+   "basisStatus": "2 of 3",
+   "basisText": "Two soccer studies; NFL descriptive only. 2 of 3 soccer, 1 of 3 weak NFL",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "CR-3",
+   "leaf": "Q3.2.6",
+   "topic": "Career-scale items",
+   "claim": "Teams whose coaches commit fewer penalties and fumbles by policy win more with equal talent",
+   "kind": "sign",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Berry and Fowler 2019. 1 of 3",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  },
+  {
+   "id": "CR-4",
+   "leaf": "Q3.2.6",
+   "topic": "Career-scale items",
+   "claim": "The coach share of variance is at or above the pro value at the college level",
+   "kind": "ordering",
+   "basis": "data",
+   "basisStatus": "1 of 3",
+   "basisText": "Same study. 1 of 3",
+   "coachReviewed": false,
+   "state": "active",
+   "ruleSets": [
+    "pro_2026",
+    "college_2026"
+   ]
+  }
+ ]
+}

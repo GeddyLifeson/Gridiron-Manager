@@ -14,6 +14,9 @@ export interface TeamSeasonLine {
   /** Regular-season games against teams of the competition and against guests from outside it. */
   readonly gamesInside: number;
   readonly gamesOutside: number;
+  /** Wins and ties in the games against teams of the competition only. */
+  readonly winsInside: number;
+  readonly tiesInside: number;
 }
 
 export interface PlayerSeasonTotal { readonly playerId: number; readonly teamId: TeamId; readonly statId: string; readonly value: number }
@@ -41,8 +44,8 @@ export interface SeasonSummary {
 }
 
 export function summariseSeason(spec: SeasonSpec, state: SeasonState): SeasonSummary {
-  const lines = new Map<TeamId, { wins: number; losses: number; ties: number; pointsFor: number; pointsAgainst: number; gamesInside: number; gamesOutside: number }>(
-    spec.teams.map((t) => [t.id, { wins: 0, losses: 0, ties: 0, pointsFor: 0, pointsAgainst: 0, gamesInside: 0, gamesOutside: 0 }]));
+  const lines = new Map<TeamId, { wins: number; losses: number; ties: number; pointsFor: number; pointsAgainst: number; gamesInside: number; gamesOutside: number; winsInside: number; tiesInside: number }>(
+    spec.teams.map((t) => [t.id, { wins: 0, losses: 0, ties: 0, pointsFor: 0, pointsAgainst: 0, gamesInside: 0, gamesOutside: 0, winsInside: 0, tiesInside: 0 }]));
   const totals = new Map<string, PlayerSeasonTotal>();
   let regularGames = 0, postseasonGames = 0, conferenceGames = 0, neutralSiteGames = 0, overtimeGames = 0, tiedGames = 0, plays = 0;
   for (const g of state.games) {
@@ -61,7 +64,10 @@ export function summariseSeason(spec: SeasonSpec, state: SeasonState): SeasonSum
       const pf = g.outcome.points[side]!, pa = g.outcome.points[other]!;
       line.pointsFor += pf; line.pointsAgainst += pa;
       if (pf > pa) line.wins++; else if (pf < pa) line.losses++; else line.ties++;
-      if (lines.has(sides[other]!)) line.gamesInside++; else line.gamesOutside++;
+      if (lines.has(sides[other]!)) {
+        line.gamesInside++;
+        if (pf > pa) line.winsInside++; else if (pf === pa) line.tiesInside++;
+      } else line.gamesOutside++;
     });
     for (const l of g.outcome.lines) {
       const key = `${l.statId}|${l.playerId}`;

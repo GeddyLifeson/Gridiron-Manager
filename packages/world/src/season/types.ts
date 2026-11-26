@@ -19,7 +19,7 @@ export interface SeasonTeam {
 /** One scheduled game. Index 0 of every pair downstream is the home team (first listed at a neutral site). */
 export interface Fixture {
   readonly gameId: number;
-  /** League week, 1 first. Postseason rounds continue the count. */
+  /** League week as the schedule numbers it (the college schedule opens with a week 0). Postseason rounds continue the count. */
   readonly week: number;
   readonly phase: 'regular' | 'postseason';
   readonly home: TeamId;
@@ -28,6 +28,8 @@ export interface Fixture {
   readonly conferenceGame: boolean;
   /** Absolute world day of kickoff when the schedule carries one. */
   readonly dayIndex: number | null;
+  /** Kickoff in minutes after midnight, eastern time, when the schedule sets one (C2.3.1). */
+  readonly kickoffMinute: number | null;
   /** Postseason only: the plan's key for the game (bracket slot, title game, bowl). */
   readonly postKey: string | null;
 }

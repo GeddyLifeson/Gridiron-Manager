@@ -38,7 +38,7 @@ export function roundRobin(teamIds: readonly number[], rounds: number, opts: { f
       const a = rot[k]!, b = rot[n - 1 - k]!;
       if (a === skip || b === skip) continue;
       const [home, away] = (r + k) % 2 === 0 ? [a, b] : [b, a];
-      out.push({ gameId: gameId++, week, phase: 'regular', home, away, neutralSite: false, conferenceGame: opts.conference?.(a, b) ?? false, dayIndex: null, postKey: null });
+      out.push({ gameId: gameId++, week, phase: 'regular', home, away, neutralSite: false, conferenceGame: opts.conference?.(a, b) ?? false, dayIndex: null, kickoffMinute: null, postKey: null });
     }
   }
   return out;

@@ -27,7 +27,7 @@ function collegeSpec(over: Partial<SeasonSpec> = {}): SeasonSpec {
   const teams = ids.map((id) => ({ id, key: `school.${id}`, conferenceId: conf(id), divisionId: conf(id) }));
   const fixtures = roundRobin(ids, 11, { conference: (a, b) => conf(a) !== 0 && conf(a) === conf(b) });
   // One guest from outside the competition (a lower-subdivision opponent, T3.1.1): team 900 visits team 1 in week 12.
-  fixtures.push({ gameId: fixtures.length + 1, week: 12, phase: 'regular', home: 1, away: 900, neutralSite: false, conferenceGame: false, dayIndex: null, postKey: null });
+  fixtures.push({ gameId: fixtures.length + 1, week: 12, phase: 'regular', home: 1, away: 900, neutralSite: false, conferenceGame: false, dayIndex: null, kickoffMinute: null, postKey: null });
   const postseason = selectionPlan({
     conferences: [
       { conferenceId: 1, power: true, teamIds: ids.filter((i) => conf(i) === 1), titleMethod: 'standings' },

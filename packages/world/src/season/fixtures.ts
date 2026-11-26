@@ -9,6 +9,6 @@ export function fixturesFromSchedule(games: readonly schedule.ScheduledGame[], i
     .sort((a, b) => a.week - b.week || a.dayOffset - b.dayOffset || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   return ordered.map((g, i) => ({
     gameId: firstGameId + i, week: g.week, phase: 'regular', home: idOf(g.home), away: idOf(g.away),
-    neutralSite: g.neutral, conferenceGame: g.conferenceGame, dayIndex: g.dayIndex, postKey: null,
+    neutralSite: g.neutral, conferenceGame: g.conferenceGame, dayIndex: g.dayIndex, kickoffMinute: g.kickoffEtMinutes, postKey: null,
   }));
 }

@@ -24,7 +24,7 @@ export function seasonProblems(spec: SeasonSpec): string[] {
     if (gameIds.has(f.gameId)) out.push(`game ${f.gameId}: id used twice`);
     gameIds.add(f.gameId);
     if (f.phase !== 'regular') out.push(`game ${f.gameId}: the fixture list holds regular-season games only`);
-    if (f.week < 1) out.push(`game ${f.gameId}: week ${f.week}`);
+    if (!Number.isInteger(f.week) || f.week < 0) out.push(`game ${f.gameId}: week ${f.week}`);
     if (f.home === f.away) out.push(`game ${f.gameId}: a team plays itself`);
     for (const t of [f.home, f.away]) {
       // An opponent outside the competition (a lower-subdivision guest, T3.1.1) is allowed; it has no row.
@@ -42,8 +42,10 @@ export function createSeason(spec: SeasonSpec): SeasonState {
   const problems = seasonProblems(spec);
   if (problems.length) throw new SeasonInvariantError(`season ${spec.season} cannot start: ${problems.join('; ')}`);
   const lastRegularWeek = spec.fixtures.reduce((m, f) => Math.max(m, f.week), 0);
+  // The first week is the schedule's own: a competition may open a week early (the college week 0, T3.2).
+  const firstWeek = spec.fixtures.reduce((m, f) => Math.min(m, f.week), lastRegularWeek);
   return {
-    stage: 'regular', week: 1, lastRegularWeek, round: 0, games: [], results: [], post: null, champion: null,
+    stage: 'regular', week: firstWeek, lastRegularWeek, round: 0, games: [], results: [], post: null, champion: null,
     seat: [], preparations: 0, chain: chainHash('', { season: spec.season, seed: spec.seedHex, ruleSetId: spec.ruleSetId }),
   };
 }
@@ -141,7 +143,7 @@ export function stepSeason(spec: SeasonSpec, state: SeasonState, ports: SeasonPo
   const fixtures: Fixture[] = [...pending].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0)).map((p) => {
     const home = p.host !== null && p.host === p.teams[1] ? p.teams[1] : p.teams[0];
     const away = home === p.teams[0] ? p.teams[1] : p.teams[0];
-    return { gameId: nextId++, week, phase: 'postseason', home, away, neutralSite: p.host === null, conferenceGame: false, dayIndex: null, postKey: p.key };
+    return { gameId: nextId++, week, phase: 'postseason', home, away, neutralSite: p.host === null, conferenceGame: false, dayIndex: null, kickoffMinute: null, postKey: p.key };
   });
   const out = playFixtures(spec, state, ports, week, fixtures);
   let next = merge(state, out);
