@@ -30,6 +30,10 @@ export const PARAMS: ParamFile = {
     P('guardMinClockTenths', 30, 0, 100, 'tenths_s', 'bible', 'O2.5.3', 'O2.5.3 no guard under 3 s'),
     P('twoMinuteTenths', 1200, 0, 3000, 'tenths_s', 'assumption', 'O2.5.3', 'O2.5.3 timeout guard in the last two minutes'),
     P('queueMax', 4, 1, 10, 'count', 'bible', 'I2.3.6', 'I2.3.6 queue size'),
+    P('puntUnitTenths', 80, 50, 120, 'tenths_s', 'bible', 'I4.1.1', 'I4.1.1 kicking unit set with 10 s left in 95% when alerted'),
+    P('fieldGoalUnitTenths', 90, 50, 130, 'tenths_s', 'bible', 'I4.1.1', 'I4.1.1 kicking unit set with 10 s left in 95% when alerted'),
+    P('unalertedUnitTenths', 50, 0, 100, 'tenths_s', 'bible', 'I4.1.1', 'I4.1.1 add 5 s when not alerted'),
+    P('reversalTenths', 100, 50, 150, 'tenths_s', 'bible', 'I4.1.1', 'I4.1.1 reversal leaves under 8 s in a share of trials'),
     P('boxWarnEntries', 10, 4, 20, 'count', 'bible', 'I3.2.2', 'I3.2.2 box with more than 10 calls warns'),
   ],
 };
@@ -37,7 +41,8 @@ export const PARAMS: ParamFile = {
 export type ConsoleParam =
   | 'chordTimeoutTenths' | 'radioBaseTenths' | 'wristbandBaseTenths' | 'wristbandReadTenths' | 'signalTenths' | 'messengerTenths'
   | 'huddleBaseTenths' | 'alignTenths' | 'substitutionTenths' | 'minPresnapTenths' | 'defIdentifyTenths' | 'defSubTenths'
-  | 'defTellTenths' | 'defAlignTenths' | 'guardHoldTenths' | 'guardMinClockTenths' | 'twoMinuteTenths' | 'queueMax' | 'boxWarnEntries';
+  | 'defTellTenths' | 'defAlignTenths' | 'guardHoldTenths' | 'guardMinClockTenths' | 'twoMinuteTenths' | 'queueMax' | 'boxWarnEntries'
+  | 'puntUnitTenths' | 'fieldGoalUnitTenths' | 'unalertedUnitTenths' | 'reversalTenths';
 
 const BY_NAME = new Map(PARAMS.params.map((p) => [p.name, p.value]));
 
