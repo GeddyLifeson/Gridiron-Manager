@@ -115,6 +115,7 @@ export function gmPolicy(): RosterPolicy {
     }
     const all = [...own.values()].flat();
     const replacement = new Map<string, number>();
+    const weights = new Map<string, readonly number[]>();
     const table: gm.ContributionTable = {
       winsPerIss: () => param('gm.winsPerIss'),
       replacementIss: (position) => {
@@ -123,9 +124,14 @@ export function gmPolicy(): RosterPolicy {
         return r;
       },
       slotWeights: (position) => {
-        const t = targets[position] ?? 0;
-        const starters = Math.max(1, Math.round(t * param('role.starterShareOfMix')));
-        return Array.from({ length: Math.max(starters, t) }, (_, i) => (i < starters ? 1 : param('gm.depthSlotWeight')));
+        let w = weights.get(position);
+        if (w === undefined) {
+          const t = targets[position] ?? 0;
+          const starters = Math.max(1, Math.round(t * param('role.starterShareOfMix')));
+          w = Object.freeze(Array.from({ length: Math.max(starters, t) }, (_, i) => (i < starters ? 1 : param('gm.depthSlotWeight'))));
+          weights.set(position, w);
+        }
+        return w;
       },
     };
     const draw: gm.PersistentDraw = (kind, gmPerson, key) => {
@@ -306,7 +312,16 @@ export function gmPolicy(): RosterPolicy {
       const byPos = new Map<string, number[]>();
       for (const v of pool) byPos.set(v.position, [...(byPos.get(v.position) ?? []), v.grade.mean]);
       const allGrades = pool.map((v) => v.grade.mean);
-      const table: gm.ContributionTable = { ...t.ctx.table, replacementIss: (pos) => quantile(byPos.get(pos) ?? allGrades, param('gm.replacementQuantile')) };
+      // The quantile is a pure function of the class, so each position's is computed once per board.
+      const replacement = new Map<string, number>();
+      const table: gm.ContributionTable = {
+        ...t.ctx.table,
+        replacementIss: (pos) => {
+          let r = replacement.get(pos);
+          if (r === undefined) { r = quantile(byPos.get(pos) ?? allGrades, param('gm.replacementQuantile')); replacement.set(pos, r); }
+          return r;
+        },
+      };
       const board = gm.recruitBoard(b, pool, gm.placeNeeds(b, places), new Set(), { ...t.ctx, table });
       return board.slice(0, gm.offersWanted(openPlaces, param('college.offersPerSignee'), gm.P('college.evenBattleShare'))).map((r) => r.personId);
     },
