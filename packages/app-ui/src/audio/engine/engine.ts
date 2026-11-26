@@ -19,6 +19,8 @@ import {
 
 /** A request more than this many seconds behind the audio clock is dropped, not played late. */
 export const LATE_DROP_SECONDS = 0.25;
+/** Fade when a one-shot is cut short by a better-ranked stinger, seconds (a click guard, not a bible number). */
+const CUT_FADE_SECONDS = 0.008;
 /** Default fade for loops and beds on stop or switch, seconds (PV-11 asked for a short fade). */
 export const DEFAULT_FADE_SECONDS = 0.6;
 
@@ -213,6 +215,14 @@ export class AudioEngine {
       endsAt = v.endsAt;
       sources = v.sources;
       source = 'synth';
+    }
+    if (opts.stopAt !== undefined && opts.stopAt < endsAt) {
+      // Cut short: a click-free fade ending at stopAt, then silence; the sources run out on their own.
+      const cut = Math.max(start, opts.stopAt);
+      const g0 = Math.max(0, Math.min(1, opts.gain ?? 1));
+      level.gain.setValueAtTime(g0, Math.max(start, cut - CUT_FADE_SECONDS));
+      level.gain.linearRampToValueAtTime(0, cut);
+      endsAt = cut;
     }
     const last = sources[sources.length - 1];
     if (last) last.onended = () => { level.disconnect(); panner.disconnect(); };

@@ -219,6 +219,17 @@ describe('ducking (MB-10)', () => {
   });
 });
 
+describe('cut short by the lane plan (MB-7)', () => {
+  it('stopAt ends the sound there with a short fade; a stopAt after the natural end changes nothing', () => {
+    const { engine } = setup();
+    const full = engine.play('ui.alert', { when: 1 });
+    const cut = engine.play('ui.alert', { when: 3, stopAt: 3.1 });
+    const late = engine.play('ui.alert', { when: 5, stopAt: 99 });
+    expect(cut.played && cut.endsAt).toBeCloseTo(3.1, 9);
+    expect(full.played && late.played && late.endsAt - 5).toBeCloseTo(full.played ? full.endsAt - 1 : 0, 9);
+  });
+});
+
 describe('synthesized fallback (MB-18)', () => {
   it('plays the recipe when no file is loaded, the file once decoded, the recipe again if the decode fails', async () => {
     const { engine } = setup();
