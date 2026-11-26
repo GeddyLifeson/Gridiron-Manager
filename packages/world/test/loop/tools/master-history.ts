@@ -16,6 +16,7 @@
 //   teams.json      every team: identity, competition, founded, folded
 //   hall.json       hall members and every ballot
 //   tenures.json    completed head coach tenures, and staff seasons per team
+// Field names are a contract with the bake (run.json formatVersion); change them only with a version bump.
 // The run is deterministic: the same seed, size and seasons give the same world hash on any machine and
 // any worker count (G-97: results are placed by game index).
 import { mkdirSync, writeFileSync, appendFileSync } from 'node:fs';
@@ -100,6 +101,8 @@ const systems = loop.systemsFrom({
 
 const unbound = loop.unboundSteps(systems);
 const head = {
+  // Output format of this folder. The bake refuses a format it does not know: bump on any field change.
+  formatVersion: 1,
   kind: GAMES === 'real' ? 'MASTER DATA RUN' : 'DRY RUN WITH THE TEST DOUBLE GAME PORT: NOT FOR BAKING',
   seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, workers: GAMES === 'real' ? WORKERS : 0,
   lostClubsFraction: LOST, worldCode: generation.worldCode(s, 'gridiron-manager', content.contentVersion), teams: w.teams.length, proClubsWithLost: proClubs,
