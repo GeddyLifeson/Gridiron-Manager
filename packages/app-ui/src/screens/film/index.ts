@@ -18,6 +18,7 @@ export { FilmTransport, ReelCursor, markers, FILM_SPEEDS, type Marker, type Mark
 export { VIEW_FRAMING, ViewMemory, FILM_VIEWS, type FilmView } from './views.ts';
 export { buildOverlays, drawOverlays, OVERLAY_LAYERS, OVERLAY_KEYS, LEGEND, type OverlayLayer, type OverlayShape, type OverlayInput } from './overlays.ts';
 export { toFilmPlay, fromBase64 } from './wire.ts';
+export * from './presentation/index.ts';
 
 export interface FilmRouteContext {
   readonly source: FilmScreenSource;
