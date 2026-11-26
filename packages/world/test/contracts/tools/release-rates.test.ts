@@ -59,7 +59,8 @@ it.runIf(process.env.RELEASE_RATES === '1')('release rates of veteran deals agai
       sorted.forEach((c, i) => cohort.set(c.personId, { tier: tierOf(sorted.length === 1 ? 0.5 : i / (sorted.length - 1)), year: y }));
     }
   };
-  addCohort();
+  // Founding contracts are part way through invented terms, not signings in a market: the first cohort is the
+  // first offseason's deals.
   for (let s = 0; s < SEASONS; s++) {
     loop.runSeason(w, sys, testSchedule);
     const rows = w.log.rows().slice(seen);

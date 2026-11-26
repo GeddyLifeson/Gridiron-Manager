@@ -15,13 +15,13 @@
 // - job pressure (K8.3.1): 0; the power arrangement (L5.2.1): `split` for every club.
 import { stream } from '@gm/engine-core';
 import { gm } from '@gm/front-office';
-import { cap, development } from '@gm/league';
+import { cap, development, market } from '@gm/league';
 import { isSuspended } from '../compliance/penalties.ts';
 import { complianceOf, complianceRules, dispositionOf, generalManagerOf, partyOf, publicBelief, setCompliance, sinkFor, STREAM_CONDUCT, streamFor } from '../compliance/binding.ts';
 import { ageIn, levelOfTeam, positionTargets, specOf, type Level, type PolicyContext, type Phase, type RosterPolicy } from './binding.ts';
 import { POOL, ruleSetOf } from './moves.ts';
 import { ruleSetFor, type ContractsBinding } from '../contracts/binding.ts';
-import { marketPrice, positionValueWeights, publicPercentiles } from '../contracts/scale.ts';
+import { marketPrice, positionValueWeights, publicPercentiles, sourcedScale } from '../contracts/scale.ts';
 import { contractsOf, lastYear, salaryIn, type PlayerContract } from '../contracts/state.ts';
 import { capFromRules } from '../money/club.ts';
 import { param } from './params.ts';
@@ -48,6 +48,17 @@ export function ageCurve(): gm.AgeCurve {
   };
 }
 
+/** Where `x` falls in `sorted` (low to high) as a percentile, 0 at or below the lowest and 1 at or above the highest, interpolated (TO-26). */
+const percentileIn = (sorted: readonly number[], x: number): number => {
+  const n = sorted.length;
+  if (n < 2 || x <= sorted[0]!) return 0;
+  if (x >= sorted[n - 1]!) return 1;
+  let lo = 0, hi = n - 1;
+  while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (sorted[mid]! <= x) lo = mid; else hi = mid; }
+  const a = sorted[lo]!, b = sorted[hi]!;
+  return (lo + (b > a ? (x - a) / (b - a) : 0)) / (n - 1);
+};
+
 const quantile = (xs: readonly number[], q: number): number => {
   if (xs.length === 0) return 0;
   const s = [...xs].sort((a, b) => a - b);
@@ -71,11 +82,13 @@ interface CycleState {
   /** The going rate per win this cycle (TO-07), once computed. */
   centsPerWin: number | null;
   /** The C8.3.1 market line of each free agent this cycle (PC-11): team independent. */
-  readonly market: Map<number, { readonly years: number; readonly guaranteeShare: number; readonly minimumCents: number; readonly apyCents: number }>;
+  readonly market: Map<number, { readonly years: number; readonly guaranteeShare: number; readonly minimumCents: number; readonly apyCents: number; readonly scaleCents: number }>;
   /** Active contracts by player, read once per cycle. */
   contracts: Map<number, PlayerContract> | null;
   /** Street signings' market price above the minimum, by club, this cycle (capState counts them at the minimum). */
   readonly street: Map<number, number>;
+  /** Public grades of the rostered players at each level and position at the start of the cycle, low to high (TO-26). */
+  readonly census: Map<string, readonly number[]>;
 }
 
 /** What the front office reads from the contracts module, when the world holds contracts. */
@@ -94,7 +107,24 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
 
   const cycleOf = (pc: PolicyContext): CycleState => {
     let c = cycles.get(pc);
-    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map(), views: new Map(), bases: new Map(), centsPerWin: null, market: new Map(), contracts: null, street: new Map() }; cycles.set(pc, c); }
+    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map(), views: new Map(), bases: new Map(), centsPerWin: null, market: new Map(), contracts: null, street: new Map(), census: new Map() }; cycles.set(pc, c); }
+    return c;
+  };
+
+  // TO-26: the league's rostered players at a position by public grade, as the market prices them (PC-11).
+  const censusOf = (pc: PolicyContext, level: Level, position: string): readonly number[] => {
+    const cyc = cycleOf(pc);
+    const k = `${level}:${position}`;
+    let c = cyc.census.get(k);
+    if (!c) {
+      const gs: number[] = [];
+      for (const t of pc.world.teams) {
+        if (levelOfTeam(pc.world, t.id) !== level) continue;
+        for (const id of pc.world.rosters.get(t.id) ?? []) if (pc.world.people.get(id)?.playing?.position === position) gs.push(pc.grades.publicGrade(id));
+      }
+      c = gs.sort((a, b) => a - b);
+      cyc.census.set(k, c);
+    }
     return c;
   };
 
@@ -105,10 +135,20 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
   };
   // TO-07: a player's cost to his own club is his contract's salary for each league year from this one; a
   // player under contract elsewhere, out of contract, or in a world without contracts costs nothing yet.
+  // TO-27: cost is pay above the league minimum for his credited seasons. The minimum buys a replacement
+  // player, worth zero wins above replacement, so value (TO-26: the pay scale above its replacement share) and
+  // cost are measured from the same floor. Full pay against value above replacement made every middle-of-the-
+  // scale contract look several times its worth.
+  const minimumFor = (pc: PolicyContext, teamId: number, id: number, k: number): number => {
+    const cb = opts.contracts;
+    const p = pc.world.people.get(id)?.playing;
+    if (!cb || !p) return 0;
+    return cap.minimumSalary(ruleSetFor(cb, levelOfTeam(pc.world, teamId)), cb.rulesYear, p.eligibility.pro.creditedSeasons + k);
+  };
   const costOf = (pc: PolicyContext, teamId: number, id: number): readonly number[] => {
     const c = contractMap(pc).get(id);
     if (!c || c.teamId !== teamId) return [];
-    return c.terms.years.filter((y) => y.leagueYear >= pc.season).map((y) => salaryIn(c, y.leagueYear));
+    return c.terms.years.filter((y) => y.leagueYear >= pc.season).map((y, k) => Math.max(0, salaryIn(c, y.leagueYear) - minimumFor(pc, teamId, id, k)));
   };
 
   // One view per team and player per cycle: its inputs (the cached look, the position, the age) do not move
@@ -141,7 +181,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const p = pc.world.people.get(id)!;
     const capCents = cb ? capFromRules(cb.rule, cb.rulesYear)(pc.world, teamId, pc.season) : undefined;
     if (!cb || capCents === undefined || contractMap(pc).size === 0) {
-      const none = { years: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, apyCents: 0 };
+      const none = { years: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, apyCents: 0, scaleCents: 0 };
       cyc.market.set(id, none);
       return none;
     }
@@ -154,7 +194,9 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const minimumCents = cap.minimumSalary(rules, cb.rulesYear, p.playing!.eligibility.pro.creditedSeasons);
     const age = ageIn(p, pc.season);
     const line = marketPrice({ position, percentile: pct, suitors: 0, age, primeEndAge: curve.primeEndAge(position), capCents, minimumCents, time: 1 });
-    const out = { years: line.years, guaranteeShare: line.guaranteeShare, minimumCents, apyCents: line.apyCents.mid };
+    // TO-30: a re-signing veteran's price is the scale share itself, demand and time neutral (PC-13, contracts step).
+    const scaleCents = Math.max(minimumCents, Math.round(market.shareAt(sourcedScale(position), pct) * capCents));
+    const out = { years: line.years, guaranteeShare: line.guaranteeShare, minimumCents, apyCents: line.apyCents.mid, scaleCents };
     cyc.market.set(id, out);
     return out;
   };
@@ -193,13 +235,50 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const weights = new Map<string, readonly number[]>();
     // TO-18: the market's price of being better at each position sets its wins per ISS point.
     const posWeight = positionValueWeights(spec.rosterMix);
+    const winsPerIss = (position: string) => param('gm.winsPerIss') * (posWeight[position] ?? 1);
+    // TO-28: replacement is the league's, not the club's: the quantile of every rostered player at the position
+    // in the league, as this club grades them. Read from the club's own few players at a position, the
+    // lowest-graded of them was replacement by definition and worth nothing, so any pay made him a cut.
+    const league = new Map<string, number[]>();
+    for (const tm of pc.world.teams) {
+      if (levelOfTeam(pc.world, tm.id) !== levelOfTeam(pc.world, teamId)) continue;
+      for (const id of pc.world.rosters.get(tm.id) ?? []) {
+        const pos = pc.world.people.get(id)?.playing?.position;
+        if (pos) league.set(pos, [...(league.get(pos) ?? []), pc.grades.grade(teamId, id)]);
+      }
+    }
+    const replacementIss = (position: string) => {
+      let r = replacement.get(position);
+      if (r === undefined) { r = quantile(league.get(position) ?? own.get(position) ?? all, param('gm.replacementQuantile')); replacement.set(position, r); }
+      return r;
+    };
+    // TO-26: the shape of a player's contribution follows what the market pays across the position's talent
+    // (the sourced pay scale, PC-11), at the same average rate per ISS point between the 10th and 90th
+    // percentiles as the linear table. One rate per point valued a star like two average players, so every
+    // contract priced on the real, steeper scale looked overpaid a year later and was cut.
+    const level = levelOfTeam(pc.world, teamId);
+    const curves = new Map<string, ((iss: number) => number) | null>();
+    const curveOf = (position: string): ((iss: number) => number) | null => {
+      if (curves.has(position)) return curves.get(position)!;
+      const census = censusOf(pc, level, position);
+      let f: ((iss: number) => number) | null = null;
+      if (census.length >= 2) {
+        const scale = sourcedScale(position);
+        const pct = (iss: number) => percentileIn(census, iss);
+        const g10 = quantile(census, 0.1), g90 = quantile(census, 0.9);
+        const slope = g90 > g10 ? (market.shareAt(scale, 0.9) - market.shareAt(scale, 0.1)) / (g90 - g10) : 0;
+        if (slope > 0) {
+          const r = replacementIss(position), sr = market.shareAt(scale, pct(r));
+          f = (iss) => (iss <= r ? 0 : ((market.shareAt(scale, pct(iss)) - sr) / slope) * winsPerIss(position));
+        }
+      }
+      curves.set(position, f);
+      return f;
+    };
     const table: gm.ContributionTable = {
-      winsPerIss: (position) => param('gm.winsPerIss') * (posWeight[position] ?? 1),
-      replacementIss: (position) => {
-        let r = replacement.get(position);
-        if (r === undefined) { r = quantile(own.get(position) ?? all, param('gm.replacementQuantile')); replacement.set(position, r); }
-        return r;
-      },
+      winsAbove: (position, iss) => { const f = curveOf(position); return f ? f(iss) : Math.max(0, iss - replacementIss(position)) * winsPerIss(position); },
+      winsPerIss,
+      replacementIss,
       slotWeights: (position) => {
         let w = weights.get(position);
         if (w === undefined) {
@@ -238,12 +317,19 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const st = contractsOf(pc.world);
     const winsOf = (teamId: number, personId: number): number => {
       if (!pc.world.people.get(personId)?.playing || !isPro(pc, teamId)) return 0;
+      // TO-27: the league's going rate reads the league's estimate of each signing (the public grade), not the
+      // signing club's: the club that wins a player is the one that rates him highest (the winner's curse), so
+      // a rate over its own estimate made every market contract look fair the day it was signed and overpaid
+      // once the grade settled.
       const b = baseOf(pc, teamId);
-      return gm.winsByYear(b.profile, view(pc, teamId, personId), b.ctx, 1)[0] ?? 0;
+      const v = view(pc, teamId, personId);
+      return gm.winsByYear(b.profile, { ...v, grade: { mean: pc.grades.publicGrade(personId), variance: v.grade.variance } }, b.ctx, 1)[0] ?? 0;
     };
-    const signed = (st.lastMarket?.signings ?? []).map((x) => ({ apyCents: x.apyCents, wins: winsOf(x.teamId, x.personId) }));
+    // TO-27: pay above the minimum over wins above replacement.
+    const above = (teamId: number, personId: number, cents: number) => Math.max(0, cents - minimumFor(pc, teamId, personId, 0));
+    const signed = (st.lastMarket?.signings ?? []).map((x) => ({ apyCents: above(x.teamId, x.personId, x.apyCents), wins: winsOf(x.teamId, x.personId) }));
     const founding = st.active.filter((c) => c.terms.form === 'veteran')
-      .map((c) => ({ apyCents: salaryIn(c, c.terms.years[0]!.leagueYear), wins: winsOf(c.teamId, c.personId) }));
+      .map((c) => ({ apyCents: above(c.teamId, c.personId, salaryIn(c, c.terms.years[0]!.leagueYear)), wins: winsOf(c.teamId, c.personId) }));
     const rate = st.active.length === 0 ? 1 : gm.goingRateCentsPerWin(signed, gm.goingRateCentsPerWin(founding, 1));
     cyc.centsPerWin = rate;
     return rate;
@@ -356,6 +442,12 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     return { ctx, byId: new Map(fas.map((v) => [v.personId, v])), ranked: gm.targets(t.profile, fas, needs, ctx) };
   };
 
+  // TO-29, K7.4.2 rule 1: targets whose market price (PC-11, before suitors are counted) is within his walk-away
+  // number (wins at the going rate, which TO-27 reads above the minimum, so the minimum is added back). Signing the most valuable player at any price paid stars what the market asked whatever the club
+  // thought of them, and a year later the same club cut them. Without contracts every price is 0.
+  const affordable = <T extends { readonly personId: number; readonly walkAwayApyCents: number }>(pc: PolicyContext, teamId: number, ranked: readonly T[]): T[] =>
+    ranked.filter((x) => { const m = marketLine(pc, teamId, x.personId); return x.walkAwayApyCents + m.minimumCents >= m.apyCents; });
+
   /** A suspended general manager may not act (L8.2.5 order): his club's acting front office keeps the default board. */
   const gmOut = (pc: PolicyContext, teamId: number): boolean => {
     const id = generalManagerOf(pc.world, teamId);
@@ -424,9 +516,10 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const credited = p.eligibility.pro.creditedSeasons;
     const min = (k: number) => cap.minimumSalary(rules, cb.rulesYear, credited + k);
     const round = pc.draftedRound.get(id);
-    if (round !== undefined || credited === 0) return Array.from({ length: rookieYears(pc, level, round ?? null) }, (_, k) => min(k));
+    // TO-27: above the minimum, so a rookie at the minimum costs nothing over the player he displaces.
+    if (round !== undefined || credited === 0) return Array.from({ length: rookieYears(pc, level, round ?? null) }, () => 0);
     const m = marketLine(pc, teamId, id);
-    return Array.from({ length: Math.max(1, m.years) }, (_, k) => Math.max(m.apyCents, min(k)));
+    return Array.from({ length: Math.max(1, m.years) }, (_, k) => Math.max(0, m.apyCents - min(k)));
   };
 
   // TO-19: at and after the cutdown this season's pay is spent whether a player stays or goes. The market has
@@ -462,8 +555,10 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
         return gm.buildBoard(t.profile, prospects, needs, t.ctx, phase.round ?? 1, phase.rounds ?? 1, rookieYears(pc, level, phase.round ?? 1))[0]?.personId ?? null;
       }
       if (phase.kind === 'undrafted') return gm.undraftedBoard(t.profile, pool, needs, t.ctx)[0] ?? null;
-      // K7.4.2: he targets only players worth more than replacement; with none left he signs nobody.
-      return faBoard(pc, teamId, pool, needs, t).ranked[0]?.personId ?? 'pass';
+      // K7.4.2: he targets only players worth more than replacement, and (rule 1) offers no more than his
+      // walk-away number: a player whose C8.3.1 market price is above it signs elsewhere or waits (TO-29).
+      // With none left he signs nobody.
+      return affordable(pc, teamId, faBoard(pc, teamId, pool, needs, t).ranked)[0]?.personId ?? 'pass';
     },
     earlyContact(pc, teamId, candidates, slot) {
       if (!isPro(pc, teamId) || candidates.length === 0 || gmOut(pc, teamId)) return null;
@@ -473,11 +568,12 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
       const t = teamOf(pc, teamId);
       const pool = candidates.map((id) => view(pc, teamId, id));
       const board = faBoard(pc, teamId, pool, needsOf(pc, teamId, t), t);
-      const top = board.ranked[0];
+      const ranked = affordable(pc, teamId, board.ranked);
+      const top = ranked[0];
       if (!top) return null;
       // K7.2.2 gain: the worth of his top target over the one he expects to land from his place in the order.
       const worth = (id: number): number => gm.playerWorth(t.profile, board.byId.get(id)!, board.ctx, gm.P('value.horizonYears')).value;
-      const expected = board.ranked[Math.min(slot, board.ranked.length - 1)]!;
+      const expected = ranked[Math.min(slot, ranked.length - 1)]!;
       const gainWins = Math.max(0, worth(top.personId) - worth(expected.personId));
       const level = levelOfTeam(pc.world, teamId);
       const team = pc.world.teams.find((x) => x.id === teamId)!;
@@ -533,6 +629,20 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
       }, t.ctx);
       return result.keep;
     },
+    letWalk(pc, teamId) {
+      if (!isPro(pc, teamId) || gmOut(pc, teamId) || contractMap(pc).size === 0) return null;
+      const t = teamOf(pc, teamId);
+      const out: number[] = [];
+      for (const id of pc.world.rosters.get(teamId) ?? []) {
+        const c = contractMap(pc).get(id);
+        if (!c || c.teamId !== teamId || lastYear(c) >= pc.season || !pc.world.people.get(id)?.playing) continue;
+        // K7.4.1 rule 3: he re-signs up to his walk-away number (TO-27: wins at the going rate above the minimum).
+        const m = marketLine(pc, teamId, id);
+        const walk = gm.walkAwayCents(t.profile, view(pc, teamId, id), t.ctx, Math.max(1, m.years)) + m.minimumCents;
+        if (walk < m.scaleCents) out.push(id);
+      }
+      return out;
+    },
     streetSign(pc, teamId, candidates) {
       if (!isPro(pc, teamId) || candidates.length === 0 || gmOut(pc, teamId)) return null;
       const t = teamOf(pc, teamId);
@@ -555,7 +665,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
         const m = marketLine(pc, teamId, id);
         const price = Math.max(m.apyCents, m.minimumCents);
         if (cs && cs.roomCents - (cs.deltaIfCutCents.get(w.v.personId) ?? 0) - price < 0) continue;
-        const fa: View = { ...view(pc, teamId, id), costCentsByYear: laterOnly(Array.from({ length: Math.max(1, m.years) }, () => price)) };
+        const fa: View = { ...view(pc, teamId, id), costCentsByYear: laterOnly(Array.from({ length: Math.max(1, m.years) }, () => price - m.minimumCents)) };
         if (gm.playerWorth(t.profile, fa, t.ctx).surplus <= w.s) continue;
         const gain = gm.rosterDelta(t.profile, roster, [fa], [w.v.personId], t.ctx) - gm.costWins(t.profile, dead.get(w.v.personId) ?? [], t.ctx);
         if (gain > gm.P('roster.claimMargin') && (!best || gain > best.gain)) best = { sign: id, drop: w.v.personId, gain, extra: price - m.minimumCents };

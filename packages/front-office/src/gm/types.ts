@@ -37,6 +37,11 @@ export interface ContributionTable {
   replacementIss(position: string): number;
   /** Share of a position's value each depth rank carries, best first (starter slots at 1, then depth). */
   slotWeights(position: string): readonly number[];
+  /**
+   * Wins per season above replacement of a player graded `iss` at the position, when the contribution is not
+   * one rate per ISS point (GM-18). Absent: `winsPerIss` times the grade above `replacementIss`, floored at 0.
+   */
+  winsAbove?(position: string, iss: number): number;
 }
 
 /** Development and aging as the league expects them (D7, D8). Each general manager bends the decline by his own belief. */

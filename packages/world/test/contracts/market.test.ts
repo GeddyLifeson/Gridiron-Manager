@@ -114,7 +114,11 @@ describe('free agents and front offices in the world (C8.3.1, K7.2.2 rule 5, TO-
       const c = st.active.find((x) => x.personId === s.personId);
       if (!c) continue;
       expect(c.teamId).toBe(s.teamId);
-      expect(contracts.salaryIn(c, m.seasonYear)).toBe(s.apyCents);
+      // PC-15: the record is the deal's average per year; a club with room front-loads it, so the first year pays
+      // at least that and the deal's total is the average times its years.
+      expect(contracts.salaryIn(c, m.seasonYear)).toBeGreaterThanOrEqual(s.apyCents);
+      const total = c.terms.years.reduce((a, y) => a + y.baseSalary.amountCents, 0);
+      expect(total).toBeGreaterThanOrEqual(s.apyCents * c.terms.years.length - c.terms.years.length);
       // His credited seasons have grown since he signed, so the check is the lowest band's minimum.
       expect(s.apyCents).toBeGreaterThanOrEqual(capRules.minimumSalary(proRules, RULES_YEAR, 0));
       expect(s.apyCents).toBeLessThanOrEqual(capCents);

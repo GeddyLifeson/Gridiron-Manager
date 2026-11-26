@@ -57,10 +57,12 @@ export function winsByYear(gm: GmProfile, v: PlayerView, ctx: ValueContext, year
 const WINS = new WeakMap<ValueContext, WeakMap<GmProfile, WeakMap<PlayerView, Map<number, readonly number[]>>>>();
 
 function computeWinsByYear(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number): number[] {
-  const perIss = ctx.table.winsPerIss(v.position) * (gm.philosophy.positionValues[v.position] ?? 1) * v.fit;
+  const own = (gm.philosophy.positionValues[v.position] ?? 1) * v.fit;
   const flags = Math.max(0, 1 - P('value.flagDiscount') * v.flags);
+  const t = ctx.table;
+  const above = (iss: number) => (t.winsAbove ? Math.max(0, t.winsAbove(v.position, iss)) : Math.max(0, iss - t.replacementIss(v.position)) * t.winsPerIss(v.position));
   const out: number[] = [];
-  for (let y = 0; y < years; y++) out.push(Math.max(0, expectedGrade(gm, v, ctx, y) - ctx.table.replacementIss(v.position)) * perIss * flags);
+  for (let y = 0; y < years; y++) out.push(above(expectedGrade(gm, v, ctx, y)) * own * flags);
   return out;
 }
 

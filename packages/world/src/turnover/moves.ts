@@ -123,11 +123,11 @@ function sign(c: Cycle, teamId: number, id: number, kind: string): void {
   bump(c, `signed_${kind}`);
 }
 
-function release(c: Cycle, teamId: number, id: number): void {
+function release(c: Cycle, teamId: number, id: number, reason: 'cutdown' | 'contract_expired' = 'cutdown'): void {
   c.world.rosters.set(teamId, (c.world.rosters.get(teamId) ?? []).filter((x) => x !== id));
   addFreeAgent(c.world, c.season, id);
-  c.ctx.emit({ type: RELEASED, date: c.world.date, subjects: [pid(id)], payload: { reason: 'cutdown' }, witnesses: { kind: 'public' }, tier: c.ctx.tierOfTeam(teamId) });
-  bump(c, 'released');
+  c.ctx.emit({ type: RELEASED, date: c.world.date, subjects: [pid(id)], payload: { reason }, witnesses: { kind: 'public' }, tier: c.ctx.tierOfTeam(teamId) });
+  bump(c, reason === 'cutdown' ? 'released' : 'let_walk');
 }
 
 function leaveFootball(c: Cycle, id: number): void {
@@ -257,26 +257,25 @@ function cutdown(c: Cycle, teamId: number): number[] {
  * After the cutdown (M6, C8.3.2): the players just cut are free at once, and clubs in the waiver order (worst
  * record first, C5.5.1) sign one who beats a player they kept, releasing that player (K7.3.1 rule 3). Each
  * pass gives every club one chance; a club that passes is done. A player released here joins next year's market.
+ * No count limits it (TO-31): the street signing must beat the kept player by the claim margin after dead money,
+ * at the market price within the cap, the same K7.3.1 test a waiver claim meets.
  */
 function streetMarket(c: Cycle, order: readonly number[], cut: readonly number[]): void {
   const hook = c.b.policy?.streetSign;
   if (!hook) return;
   let left = cut.filter((id) => available(c.world, id));
   const done = new Set<number>();
-  const signedBy = new Map<number, number>();
   let moved = true;
   while (moved && left.length > 0) {
     moved = false;
     for (const teamId of order) {
       if (done.has(teamId) || left.length === 0) continue;
-      if ((signedBy.get(teamId) ?? 0) >= param('street.signingsPerClub')) { done.add(teamId); continue; }
       const r = hook(c, teamId, left);
       if (r === null || !left.includes(r.sign) || !(c.world.rosters.get(teamId) ?? []).includes(r.drop)) { done.add(teamId); continue; }
       left = left.filter((x) => x !== r.sign);
       dropFromPools(c.world, r.sign);
       release(c, teamId, r.drop);
       sign(c, teamId, r.sign, 'free_agent');
-      signedBy.set(teamId, (signedBy.get(teamId) ?? 0) + 1);
       bump(c, 'street_signed');
       moved = true;
     }
@@ -335,6 +334,12 @@ function proOffseason(c: Cycle, level: Level): void {
   // Worst record first for every choice (C7.2.1, and the waiver order C5 uses), ties by id.
   const order = [...teams].sort((x, y) => shares.get(x)! - shares.get(y)! || x - y);
   retirements(c, teams);
+  // TO-30, K7.4.1 rule 3: each club decides on its players whose contracts ran out before the market opens; the
+  // ones it will not pay go to free agency with everyone else.
+  for (const teamId of order) {
+    const roster = new Set(c.world.rosters.get(teamId) ?? []);
+    for (const id of c.b.policy?.letWalk?.(c, teamId) ?? []) if (roster.has(id)) release(c, teamId, id, 'contract_expired');
+  }
   const rounds = c.b.rule(level, RULE_KEY.draftRounds) ?? 0;
   const offseason = c.b.rule(level, RULE_KEY.offseasonLimit) ?? specOf(c.b, c.world, teams[0]!).rosterLimit;
   // K7.7.1: a general manager may reach a free agent before the market opens (C11.6.2 tampering) and sign him
