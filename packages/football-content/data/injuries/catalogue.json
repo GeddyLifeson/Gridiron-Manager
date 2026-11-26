@@ -1,0 +1,1030 @@
+{
+ "schemaVersion": 1,
+ "rows": [
+  {
+   "id": "knee",
+   "name": "Knee (report level, all diagnoses)",
+   "region": "report-level",
+   "bodyPart": "knee",
+   "mechanisms": [
+    "contact",
+    "non-contact cut",
+    "pile-up"
+   ],
+   "severityClass": "medium to season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 3.0,
+    "mean": 4.27,
+    "high": 5.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.279,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0002"
+   ],
+   "lastingEffects": "see ACL, MCL rows for specific diagnoses",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "ankle",
+   "name": "Ankle (report level)",
+   "region": "report-level",
+   "bodyPart": "ankle",
+   "mechanisms": [
+    "contact",
+    "roll on turf",
+    "pile-up"
+   ],
+   "severityClass": "short to medium",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 3.0,
+    "mean": 3.39,
+    "high": 4.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.19,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0003"
+   ],
+   "lastingEffects": "none unless high ankle (own row)",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "hamstring",
+   "name": "Hamstring strain",
+   "region": "report-level",
+   "bodyPart": "hamstring",
+   "mechanisms": [
+    "sprint",
+    "non-contact stretch"
+   ],
+   "severityClass": "short to medium",
+   "grades": [
+    {
+     "grade": 2,
+     "days": {
+      "low": null,
+      "mean": 25.7,
+      "high": null
+     },
+     "games": {
+      "mean": 2.9
+     },
+     "factId": "F-injury-cat-0024"
+    }
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 2.0,
+    "mean": 3.12,
+    "high": 4.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.118,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0004",
+    "F-injury-cat-0024"
+   ],
+   "lastingEffects": "re-strain risk (D11.6)",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "concussion",
+   "name": "Concussion",
+   "region": "report-level",
+   "bodyPart": "head",
+   "mechanisms": [
+    "helmet contact",
+    "ground contact"
+   ],
+   "severityClass": "day to day to medium",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 1.0,
+    "mean": 2.42,
+    "high": 3.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.148,
+    "days": {
+     "low": null,
+     "median": 9,
+     "mean": 19,
+     "high": null
+    }
+   },
+   "factIds": [
+    "F-injury-cat-0005",
+    "F-injury-cat-0025"
+   ],
+   "lastingEffects": "protocol steps in D11.4",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "Bible D11.2.1 also cites median 9 days, mean 15 to 19 days (two studies); only the 19-day mean is re-sourced here."
+  },
+  {
+   "id": "shoulder",
+   "name": "Shoulder",
+   "region": "report-level",
+   "bodyPart": "shoulder",
+   "mechanisms": [
+    "tackle",
+    "fall"
+   ],
+   "severityClass": "short to season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 3.0,
+    "mean": 4.28,
+    "high": 6.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.335,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0006"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "foot",
+   "name": "Foot (report level)",
+   "region": "report-level",
+   "bodyPart": "foot",
+   "mechanisms": [
+    "stepped on",
+    "twist",
+    "turf"
+   ],
+   "severityClass": "short to season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 4.0,
+    "mean": 5.13,
+    "high": 7.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.382,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0007"
+   ],
+   "lastingEffects": "see Lisfranc and turf toe rows",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "groin",
+   "name": "Groin",
+   "region": "report-level",
+   "bodyPart": "hip and groin",
+   "mechanisms": [
+    "sprint",
+    "cut"
+   ],
+   "severityClass": "short",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 2.0,
+    "mean": 3.26,
+    "high": 4.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.16,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0008"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "calf",
+   "name": "Calf",
+   "region": "report-level",
+   "bodyPart": "lower leg",
+   "mechanisms": [
+    "sprint",
+    "push-off"
+   ],
+   "severityClass": "short",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 3.0,
+    "mean": 3.39,
+    "high": 4.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.156,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0009"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "back",
+   "name": "Back",
+   "region": "report-level",
+   "bodyPart": "spine",
+   "mechanisms": [
+    "contact",
+    "twist"
+   ],
+   "severityClass": "short to season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 3.0,
+    "mean": 4.83,
+    "high": 7.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.441,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0010"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "neck",
+   "name": "Neck",
+   "region": "report-level",
+   "bodyPart": "spine",
+   "mechanisms": [
+    "contact"
+   ],
+   "severityClass": "short to season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 4.0,
+    "mean": 5.06,
+    "high": 7.75,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.473,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0011"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "quadriceps",
+   "name": "Quadriceps",
+   "region": "report-level",
+   "bodyPart": "thigh",
+   "mechanisms": [
+    "sprint",
+    "direct blow"
+   ],
+   "severityClass": "short",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 2.0,
+    "mean": 3.13,
+    "high": 4.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.126,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0012"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "hip",
+   "name": "Hip",
+   "region": "report-level",
+   "bodyPart": "hip and groin",
+   "mechanisms": [
+    "contact",
+    "fall"
+   ],
+   "severityClass": "short to medium",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 3.0,
+    "mean": 3.93,
+    "high": 4.75,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.254,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0013"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "ribs",
+   "name": "Ribs",
+   "region": "report-level",
+   "bodyPart": "torso",
+   "mechanisms": [
+    "direct blow"
+   ],
+   "severityClass": "short",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 2.0,
+    "mean": 3.03,
+    "high": 4.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.169,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0014"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "elbow",
+   "name": "Elbow",
+   "region": "report-level",
+   "bodyPart": "arm",
+   "mechanisms": [
+    "fall",
+    "contact"
+   ],
+   "severityClass": "short to medium",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1.75,
+    "median": 3.0,
+    "mean": 4.29,
+    "high": 6.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.286,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0015"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "hand",
+   "name": "Hand (report level)",
+   "region": "report-level",
+   "bodyPart": "hand",
+   "mechanisms": [
+    "contact",
+    "trapped by player"
+   ],
+   "severityClass": "short",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 2.0,
+    "mean": 2.98,
+    "high": 4.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.111,
+    "days": {
+     "low": 0,
+     "median": 2.5,
+     "mean": 12.3,
+     "high": 148
+    }
+   },
+   "factIds": [
+    "F-injury-cat-0016",
+    "F-injury-cat-0032"
+   ],
+   "lastingEffects": "see hand and wrist fracture row",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "Days column is NCAA metacarpal fracture (Bartels 2019), not NFL."
+  },
+  {
+   "id": "toe",
+   "name": "Toe (report level)",
+   "region": "report-level",
+   "bodyPart": "foot",
+   "mechanisms": [
+    "hyperextension",
+    "stepped on"
+   ],
+   "severityClass": "short to medium",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 2.0,
+    "median": 3.0,
+    "mean": 3.86,
+    "high": 5.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.204,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0017"
+   ],
+   "lastingEffects": "see turf toe row",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "illness",
+   "name": "Illness (report listed)",
+   "region": "illness",
+   "bodyPart": "whole body",
+   "mechanisms": [
+    "contagious illness"
+   ],
+   "severityClass": "day to day to short",
+   "grades": [],
+   "recovery": {
+    "unit": "games",
+    "low": 1.0,
+    "median": 2.0,
+    "mean": 3.66,
+    "high": 5.0,
+    "basis": "p25 and p75 of games missed (interquartile range)",
+    "notReturnShare": 0.301,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0018"
+   ],
+   "lastingEffects": "none",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "Report-listed illness. D11.7 team-level rates stay assumptions."
+  },
+  {
+   "id": "all_other",
+   "name": "All other injuries (fallback)",
+   "region": "any",
+   "bodyPart": "any",
+   "mechanisms": [
+    "any"
+   ],
+   "severityClass": "short to season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 1,
+    "median": 3,
+    "mean": 3.7,
+    "high": null,
+    "basis": "fallback row; no p75 published for the pooled set, so high is open (rest of season)",
+    "notReturnShare": 0.226,
+    "days": null
+   },
+   "factIds": [
+    "F-injury-cat-0019"
+   ],
+   "lastingEffects": "depends on type",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "D11.2.1: used for types not listed until sourced."
+  },
+  {
+   "id": "high_ankle_sprain",
+   "name": "High ankle sprain",
+   "region": "ankle",
+   "bodyPart": "ankle",
+   "mechanisms": [
+    "external rotation"
+   ],
+   "severityClass": "short to medium",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "games",
+    "low": 0,
+    "median": 3,
+    "mean": 3.34,
+    "high": 7,
+    "basis": "range 0 to 7+ games (FantasyPoints 62 players); days 8 to 90 (PMC3497951)",
+    "notReturnShare": null,
+    "days": {
+     "low": 8,
+     "median": null,
+     "mean": 30.1,
+     "high": 90
+    }
+   },
+   "factIds": [
+    "F-injury-cat-0020"
+   ],
+   "lastingEffects": "none stated",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "mcl_sprain",
+   "name": "MCL sprain",
+   "region": "knee",
+   "bodyPart": "knee",
+   "mechanisms": [
+    "valgus blow to the outside of the knee"
+   ],
+   "severityClass": "short to medium",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "days",
+    "low": 10,
+    "median": null,
+    "mean": null,
+    "high": 35,
+    "basis": "grade I mean 10 days, grade II mean 35 days (NCAA football); games 2 to 3 (media)",
+    "notReturnShare": null,
+    "days": {
+     "low": 10,
+     "median": null,
+     "mean": null,
+     "high": 35
+    },
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0021",
+    "F-injury-cat-0022",
+    "F-injury-cat-0023"
+   ],
+   "lastingEffects": "none stated for grade I and II",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "acl_tear",
+   "name": "ACL tear",
+   "region": "knee",
+   "bodyPart": "knee",
+   "mechanisms": [
+    "non-contact plant and cut",
+    "valgus blow"
+   ],
+   "severityClass": "season-ending",
+   "grades": [
+    3
+   ],
+   "recovery": {
+    "unit": "months",
+    "low": 10.7,
+    "median": null,
+    "mean": 13.6,
+    "high": null,
+    "basis": "bible D11.2.1 10.7 to 13.6 months; high open",
+    "notReturnShare": 0.382,
+    "days": null,
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0026"
+   ],
+   "lastingEffects": "graft and contralateral risk (D11.6)",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "Return rate 61.8 percent in this source; bible range 55 to 65."
+  },
+  {
+   "id": "achilles_rupture",
+   "name": "Achilles rupture",
+   "region": "lower leg",
+   "bodyPart": "Achilles tendon",
+   "mechanisms": [
+    "push-off",
+    "non-contact"
+   ],
+   "severityClass": "season-ending",
+   "grades": [
+    3
+   ],
+   "recovery": {
+    "unit": "days",
+    "low": null,
+    "median": null,
+    "mean": 273,
+    "high": null,
+    "basis": "bible D11.2.1 6 to 12 months; mean 273 days (small series)",
+    "notReturnShare": 0.416,
+    "days": {
+     "low": null,
+     "median": null,
+     "mean": 273,
+     "high": null
+    },
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0027"
+   ],
+   "lastingEffects": "performance loss (D8.3.2)",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "patellar_tendon_rupture",
+   "name": "Patellar tendon rupture",
+   "region": "knee",
+   "bodyPart": "knee",
+   "mechanisms": [
+    "jump landing",
+    "non-contact"
+   ],
+   "severityClass": "season-ending",
+   "grades": [
+    3
+   ],
+   "recovery": {
+    "unit": "seasons",
+    "low": 1,
+    "median": 1,
+    "mean": null,
+    "high": 1,
+    "basis": "returns the following season (bible D11.2.1 design statement); no months-to-return figure was read, so no finer range is given",
+    "notReturnShare": null,
+    "days": null,
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0028"
+   ],
+   "lastingEffects": "unknown",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "notReturnShare left null: sources give 50 to 79 percent return. Replace when a months-to-return source is read."
+  },
+  {
+   "id": "lisfranc",
+   "name": "Lisfranc injury",
+   "region": "foot",
+   "bodyPart": "midfoot",
+   "mechanisms": [
+    "axial load on planted foot"
+   ],
+   "severityClass": "season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "months",
+    "low": 10.2,
+    "median": 11.0,
+    "mean": null,
+    "high": 11.8,
+    "basis": "IQR 10.2 to 11.8 months (Kentucky series)",
+    "notReturnShare": null,
+    "days": null,
+    "games": {
+     "low": null,
+     "median": 8.5,
+     "mean": null,
+     "high": null
+    }
+   },
+   "factIds": [
+    "F-injury-cat-0029"
+   ],
+   "lastingEffects": "performance loss (D8.3.2)",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "turf_toe",
+   "name": "Turf toe",
+   "region": "foot",
+   "bodyPart": "big toe joint",
+   "mechanisms": [
+    "hyperextension on turf"
+   ],
+   "severityClass": "short to long",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "days",
+    "low": null,
+    "median": null,
+    "mean": 36.7,
+    "high": 221.4,
+    "basis": "mean 36.7 days same-season returners; 221.4 days surgical high grade",
+    "notReturnShare": null,
+    "days": {
+     "low": null,
+     "median": null,
+     "mean": 36.7,
+     "high": 221.4
+    },
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0030"
+   ],
+   "lastingEffects": "chronic stiffness (unknown)",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  },
+  {
+   "id": "pectoral",
+   "name": "Pectoralis major tear",
+   "region": "chest",
+   "bodyPart": "pectoral",
+   "mechanisms": [
+    "bench-press-like load",
+    "tackle"
+   ],
+   "severityClass": "medium to season-ending",
+   "grades": [
+    1,
+    2,
+    3
+   ],
+   "recovery": {
+    "unit": "days",
+    "low": 2,
+    "median": null,
+    "mean": 165.8,
+    "high": 668,
+    "basis": "range 2 to 668 days (258 injuries)",
+    "notReturnShare": 0.147,
+    "days": {
+     "low": 2,
+     "median": null,
+     "mean": 165.8,
+     "high": 668
+    },
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0031"
+   ],
+   "lastingEffects": "none stated",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "Grade means: I 30.4, II 117.4, III 297.5 days."
+  },
+  {
+   "id": "cramp",
+   "name": "Cramp (in game)",
+   "region": "whole body",
+   "bodyPart": "muscle",
+   "mechanisms": [
+    "heat",
+    "snap load"
+   ],
+   "severityClass": "in game only",
+   "grades": [],
+   "recovery": {
+    "unit": "plays",
+    "low": 3,
+    "median": null,
+    "mean": null,
+    "high": 12,
+    "basis": "assumption: a few plays to a series (D11.7.1)",
+    "notReturnShare": 0,
+    "days": null,
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0033"
+   ],
+   "lastingEffects": "none",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": "Duration is a named assumption."
+  },
+  {
+   "id": "heat_illness",
+   "name": "Heat illness",
+   "region": "whole body",
+   "bodyPart": "whole body",
+   "mechanisms": [
+    "heat",
+    "humidity"
+   ],
+   "severityClass": "in game only",
+   "grades": [],
+   "recovery": {
+    "unit": "days",
+    "low": 0,
+    "median": null,
+    "mean": null,
+    "high": 1,
+    "basis": "assumption: out for the day (D11.7.1)",
+    "notReturnShare": 0,
+    "days": {
+     "low": 0,
+     "median": null,
+     "mean": null,
+     "high": 1
+    },
+    "games": null
+   },
+   "factIds": [
+    "F-injury-cat-0034"
+   ],
+   "lastingEffects": "none",
+   "reinjury": {
+    "value": null,
+    "factId": "F-injury-cat-0001"
+   },
+   "notes": null
+  }
+ ]
+}
