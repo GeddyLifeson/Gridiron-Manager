@@ -20,7 +20,7 @@ const row = (name: string, value: number, min: number, max: number, unit: string
 
 export const PARAMS = {
   module: 'app-ui.field-view',
-  version: 'pv03.1',
+  version: 'pv04.1',
   params: [
     row('markerDiameterYd', 1.0, 0.5, 2, 'yd', 'bible', 'I9.1.1'),
     row('markerMinPx', 14, 8, 32, 'px', 'bible', 'O2.3.2'),
@@ -60,6 +60,8 @@ export const PARAMS = {
     row('snowFallPerS', 0.12, 0, 5, 'ratio', 'assumption', 'J12.2'),
     row('windDriftPerMph', 0.02, 0, 0.2, 'ratio', 'assumption', 'J12.3'),
     row('streakPx', 9, 2, 30, 'px', 'assumption', 'J12.2'),
+    // PV-04 cues by contact tier (MB-2).
+    row('contactBarPerTier', 0.18, 0.05, 0.5, 'ratio', 'assumption', 'O6.4.1'),
   ],
 } as const;
 
