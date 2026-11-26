@@ -1,9 +1,14 @@
 // Legends views (G-84, bible X3): the acceptance checks of X3.1 to X3.4 over a generated 10-season world.
 import { describe, it, expect } from 'vitest';
 import { history } from '@gm/league';
+import { FactFile, computeStatus } from '@gm/schema';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const factsJson: unknown = JSON.parse(readFileSync(join(import.meta.dirname, '../../../../..', 'facts', 'legends.json'), 'utf8'));
 import {
   buildPage, pageLinks, visibleEvents, buildChronicle, eraBlocks, teamSeasonRows, coachingTree, staffSeasonsFrom, rivalryPage, seriesGames,
-  recordList, rankRows, RECORD_CATEGORIES, PAGE_CONTENT, factStatus, isProvisional, LEGENDS_FACTS, lastTitleFrom, scoreOf,
+  recordList, rankRows, RECORD_CATEGORIES, PAGE_CONTENT, lastTitleFrom, scoreOf,
   type PageContext, type TypeInfo, type StaffSeason, type VisibleEvent,
 } from '../../../src/read-models/legends/index.ts';
 import { tenSeasons, calendar, ev, game, line, headOf, TYPE_DEFS, TEAMS, FIRST, COMP, resetIds } from './fixture.ts';
@@ -35,7 +40,7 @@ describe('X3.1.1 pages', () => {
     const games = new Set(w.rows.flatMap((e) => e.subjects.filter((s) => s.kind === 'game').map((s) => s.id)));
     const exists = (k: { kind: string; id: number }) =>
       k.kind === 'person' ? people.has(k.id) : k.kind === 'team' ? TEAMS.includes(k.id) : k.kind === 'game' ? games.has(k.id) : k.kind === 'competition_season' ? k.id === COMP : k.kind === 'record' ? k.id === 1 : false;
-    const queue = [{ kind: 'team' as const, id: 1 }];
+    const queue: { kind: string; id: number }[] = [{ kind: 'team', id: 1 }];
     const seen = new Set<string>();
     let dead = 0;
     while (queue.length) {
@@ -44,9 +49,9 @@ describe('X3.1.1 pages', () => {
       if (seen.has(key)) continue;
       seen.add(key);
       if (!exists(q)) { dead++; continue; }
-      const page = buildPage(q.kind === 'competition_season' ? { kind: q.kind, id: q.id, seasonYear: FIRST } : q, vis, ctx());
+      const page = buildPage({ kind: q.kind as never, id: q.id, ...(q.kind === 'competition_season' ? { seasonYear: FIRST } : {}) }, vis, ctx());
       expect(page.empty && q.kind !== 'competition_season').toBe(false);
-      for (const l of pageLinks(page)) queue.push(l as never);
+      for (const l of pageLinks(page)) queue.push(l);
     }
     expect(dead).toBe(0);
     expect(seen.size).toBeGreaterThan(TEAMS.length);
@@ -323,13 +328,16 @@ describe('X3.4.1 record book', () => {
     expect(new Set(r.map((x) => x.rank))).toEqual(new Set([1]));
   });
 
-  it('qualifier facts compute their status from sources and print PROVISIONAL short of three', () => {
-    expect(factStatus('F-legends-0001')).toBe('1 of 3');
-    expect(factStatus('F-legends-0006')).toBe('2 of 3');
-    expect(factStatus('F-legends-0011')).toBe('Assumption');
-    for (const r of LEGENDS_FACTS) {
-      expect(r.status).toBe(factStatus(r.id));
-      expect(isProvisional(r.id)).toBe(true);
+  it('qualifier values match their fact rows; status is computed from sources and prints PROVISIONAL short of three', () => {
+    const rows = FactFile.parse(factsJson).rows;
+    const byId = new Map(rows.map((r) => [r.id, r] as const));
+    for (const c of RECORD_CATEGORIES) for (const q of [c.seasonMinimum, c.careerMinimum]) if (q) expect(byId.get(q.factId)!.value).toBe(q.value);
+    expect(computeStatus(byId.get('F-legends-0001')!)).toBe('1 of 3');
+    expect(computeStatus(byId.get('F-legends-0006')!)).toBe('2 of 3');
+    expect(computeStatus(byId.get('F-legends-0011')!)).toBe('Assumption');
+    for (const r of rows) {
+      expect(r.status).toBe(computeStatus(r));
+      expect(computeStatus(r)).not.toBe('Verified');
     }
   });
 });

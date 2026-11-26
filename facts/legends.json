@@ -21,10 +21,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -53,10 +51,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -85,10 +81,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -117,10 +111,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -149,10 +141,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -190,10 +180,8 @@
     }
    ],
    "status": "2 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -222,10 +210,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -254,10 +240,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -286,10 +270,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -318,10 +300,8 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL.",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",
@@ -339,10 +319,8 @@
    "sources": [],
    "status": "Assumption",
    "assumption": true,
-   "usedBy": [
-    "app-services/read-models/legends/records"
-   ],
-   "notes": "Research owed: college records book qualification minimums.",
+   "usedBy": [],
+   "notes": "Research owed: college records book qualification minimums. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
    "statusHistory": [
     {
      "date": "2026-11-26",

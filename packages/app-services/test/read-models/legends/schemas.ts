@@ -9,7 +9,7 @@ const id = () => pub(z.number().int(), 'id');
 const year = () => pub(z.number().int(), 'season_year');
 const day = () => pub(z.number().int().min(0), 'day_index');
 const count = () => pub(z.number().int().min(0), 'count');
-const score = () => pub(z.number().min(0).max(100), 'X4.1.1 notability').nullable();
+const score = () => pub(z.number().min(0).max(100), 'scale').nullable();
 const scalar = z.union([z.string(), z.number(), z.boolean(), z.null()]);
 const PageKind = z.enum(['person', 'team', 'game', 'competition_season', 'trophy', 'record', 'position']);
 const Link = z.object({ kind: pub(PageKind), id: id() }).strict();
@@ -42,7 +42,7 @@ export const LegendsChronicleData = z.object({
 }).strict();
 
 const Rates = z.object({
-  teamGames: count(), pointsPerTeamGame: pub(z.number(), 'points'), passShare: pub(z.number(), 'ratio'), yardsPerPlay: pub(z.number(), 'yards'),
+  teamGames: count(), pointsPerTeamGame: pub(z.number(), 'points'), passShare: pub(z.number(), 'ratio'), yardsPerPlay: pub(z.number(), 'yd'),
   turnoversPerTeamGame: pub(z.number(), 'ratio'), penaltiesPerTeamGame: pub(z.number(), 'ratio'),
 }).strict();
 export const LegendsEraData = z.object({

@@ -1,5 +1,5 @@
 // Tuning constants of the legends read models (G-84, bible X3). Every value is a starting value an X3
-// leaf states, or a named assumption. Real-world numbers (record minimums) live in facts.json.
+// leaf states, or a named assumption. Real-world numbers (record minimums) live in records.json, citing facts/legends.json.
 import type { ParamFile } from '@gm/schema';
 
 export const PARAMS: ParamFile = {

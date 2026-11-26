@@ -1,28 +1,28 @@
 // X3.4.1 record book view. Game, season and career records, individual and team, per competition and
 // team, regular season and postseason kept apart. Counting records need no minimum. Rate records need a
 // qualifying minimum stated per team game for a season (so seasons of different length compare fairly)
-// and a total for a career; the values cite fact rows (facts.json). Each list shows the top entries with
-// ties sharing a rank. Two tabs per X14.2.2: "This world" and "All time including imported careers".
+// and a total for a career. Each list shows the top entries with
+// ties sharing a rank. Qualifier values sit in records.json and cite facts/legends.json. Two tabs per X14.2.2: "This world" and "All time including imported careers".
 // Vacated results stay visible in a footnote but leave the "This world" ranking. Reversals apply at read
 // time. Record-set events are emitted by the awards module (G-43); this view only reads.
 import type { awards } from '@gm/league';
 import recordsJson from './records.json' with { type: 'json' };
-import { factValue } from './facts.ts';
 import { param } from './params.ts';
 
 type GameLine = awards.GameLine;
 
 export type RecordScope = 'game' | 'season' | 'career';
+export interface Qualifier { readonly value: number; readonly factId: string }
 export interface RecordCategory {
   readonly id: string;
   readonly label: string;
   readonly statistic: string;
   readonly per?: string;
   readonly holder: 'player' | 'team';
-  /** Fact row giving the season minimum per team game (rate records). */
-  readonly seasonFact?: string;
-  /** Fact row giving the career minimum total (rate records). */
-  readonly careerFact?: string;
+  /** Season minimum per team game (rate records), citing its row in facts/legends.json. */
+  readonly seasonMinimum?: Qualifier;
+  /** Career minimum total (rate records), citing its row in facts/legends.json. */
+  readonly careerMinimum?: Qualifier;
 }
 export const RECORD_CATEGORIES: readonly RecordCategory[] = (recordsJson as unknown as { categories: RecordCategory[] }).categories;
 
@@ -107,8 +107,8 @@ export function recordList(cat: RecordCategory, scope: RecordScope, lines: reado
   }
 
   let minimum: RecordList['minimum'] = null;
-  if (cat.per && scope === 'season' && cat.seasonFact) minimum = { per: cat.per, value: factValue(cat.seasonFact), perTeamGame: true, factId: cat.seasonFact };
-  if (cat.per && scope === 'career' && cat.careerFact) minimum = { per: cat.per, value: factValue(cat.careerFact), perTeamGame: false, factId: cat.careerFact };
+  if (cat.per && scope === 'season' && cat.seasonMinimum) minimum = { per: cat.per, value: cat.seasonMinimum.value, perTeamGame: true, factId: cat.seasonMinimum.factId };
+  if (cat.per && scope === 'career' && cat.careerMinimum) minimum = { per: cat.per, value: cat.careerMinimum.value, perTeamGame: false, factId: cat.careerMinimum.factId };
 
   const clean: Omit<RecordRow, 'rank'>[] = [], tainted: Omit<RecordRow, 'rank'>[] = [];
   for (const a of acc.values()) {

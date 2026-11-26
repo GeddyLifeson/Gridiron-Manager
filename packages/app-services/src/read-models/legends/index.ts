@@ -25,14 +25,13 @@ import { visibleEvents, type Reach } from './visibility.ts';
 
 export * from './types.ts';
 export { PARAMS, param } from './params.ts';
-export { LEGENDS_FACTS, fact, factStatus, factValue, isProvisional } from './facts.ts';
 export { visibleEvents, publicOnly, type Reach, type SourceMark, type VisibleEvent } from './visibility.ts';
 export { PAGE_CONTENT, buildPage, linksOf, pageLinks, type PageQuery, type PageContext, type PageModel, type PageLine, type PageSeason, type TypeInfo, type PageKindContent } from './pages.ts';
 export { buildChronicle, isGuaranteed, summaryOf, lastTitleFrom, type Chronicle, type ChronicleEntry, type ChronicleSection, type ChronicleOptions, type ChronicleSummary } from './chronicle.ts';
 export { eraBlocks, teamSeasonRows, blockOf, type EraBlock, type EraInput, type LeagueRates, type RuleMarker, type TeamBlockRow, type TeamSeasonRow } from './era.ts';
 export { coachingTree, flattenTree, staffSeasonsFrom, type FlatCoachingTree, type FlatTreeNode, type CoachingTree, type TreeNode, type TreeFilter, type StaffSeason, type Chair, type Side } from './trees.ts';
 export { rivalryPage, seriesGames, type RivalryPage, type RivalryOptions, type Streak, type Margin } from './rivalry.ts';
-export { RECORD_CATEGORIES, recordList, recordBook, rankRows, type RecordCategory, type RecordList, type RecordRow, type RecordScope, type RecordFilter, type PriorMark } from './records.ts';
+export { RECORD_CATEGORIES, recordList, recordBook, rankRows, type RecordCategory, type RecordList, type RecordRow, type RecordScope, type RecordFilter, type Qualifier, type PriorMark } from './records.ts';
 export { SearchIndex, FILTER_KEYS, tokensOf, editDistance, passes, type IndexEntry, type EntryKind, type SearchFilter, type SearchRow, type MatchClass, type FilterKey } from './search.ts';
 export { buildExport, publicEvent, truthKeys, EXPORT_KINDS, EXPORT_SCHEMA_VERSION, type ExportInput, type ExportResult, type ExportProblem, type ExportKind } from './export.ts';
 
