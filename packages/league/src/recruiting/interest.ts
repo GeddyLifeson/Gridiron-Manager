@@ -225,7 +225,13 @@ export function addEvidence(state: RecruitingState, teamId: number, prospectId: 
     r.reasons = r.reasons.filter((x) => x.key !== ev.reason!.key);
     r.reasons.push({ key: ev.reason.key, positive: ev.reason.positive, basis: ev.kind, day: ev.day });
   }
-  if (ev.rivalTeamId !== null && !r.rivals.some((x) => x.teamId === ev.rivalTeamId)) r.rivals.push({ teamId: ev.rivalTeamId, basis: ev.kind, day: ev.day });
+  // Rivals: the schools last named, newest last, a short list as a staff keeps it (bounds the saved state).
+  if (ev.rivalTeamId !== null) {
+    const i = r.rivals.findIndex((x) => x.teamId === ev.rivalTeamId);
+    if (i >= 0) r.rivals.splice(i, 1);
+    r.rivals.push({ teamId: ev.rivalTeamId, basis: ev.kind, day: ev.day });
+    if (r.rivals.length > P('read.rivalsKept')) r.rivals.splice(0, r.rivals.length - P('read.rivalsKept'));
+  }
 }
 
 /**
