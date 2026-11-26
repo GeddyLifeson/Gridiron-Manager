@@ -79,3 +79,6 @@ export function ruleSetValues(id: string): readonly RuleSetFile['values'][number
 /** League-rules files arrive with C5 and T5 (phase 4 and later). Phase 0 names the ids only. */
 export const LEAGUE_RULES_IDS = ['pro_league_2026', 'college_league_2026'] as const;
 
+
+// Foul catalogue loader (WP-01, D-06): FOUL_IDS, checkFoulCatalogue, foulRow, foulCatalogue.
+export * from './catalogue/index.ts';

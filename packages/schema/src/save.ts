@@ -7,8 +7,8 @@ export const SAVE_FORMAT_VERSION = 1;
 
 export const SaveSettings = z.object({
   worldSize: pub(z.enum(['small', 'standard', 'large'])),
-  retentionProfile: pub(z.enum(['standard', 'full'])),
-}).strict(); // No difficulty and no pacing mode exist (P5.1.1, ruling of 2026-11-25).
+  retentionProfile: pub(z.enum(['full', 'standard', 'compact'])),
+}).strict(); // Retention profiles: P5.4.1 (compact is the browser default, P5.6.1). No difficulty and no pacing mode exist (P5.1.1, ruling of 2026-11-25).
 
 export const SaveHeader = z.object({
   saveFormatVersion: pub(z.number().int().positive(), 'version'),
