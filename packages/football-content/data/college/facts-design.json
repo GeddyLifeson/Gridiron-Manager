@@ -1,0 +1,305 @@
+{
+ "domain": "coaching-convention",
+ "rows": [
+  {
+   "id": "F-college-design-0001",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Personnel starting shares for top-subdivision programs: 11 personnel 55%, 10 personnel 15%, 12 personnel 15%, 20 and 21 together 8%, other 7%.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "personnel_priors.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "No dataset with formation or personnel labels for college was found (R24 gap)."
+  },
+  {
+   "id": "F-college-design-0002",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "No-huddle share of snaps 35% league-wide, system range 5% to 80%.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "tempo_priors.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "Pro measured value is about one pass play in nine; no college tempo measurement."
+  },
+  {
+   "id": "F-college-design-0003",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Designed quarterback runs 8% of plays league-wide, system range 1% to 35%.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "qb_run_priors.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "Play-by-play does not label designed quarterback runs apart from scrambles."
+  },
+  {
+   "id": "F-college-design-0004",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Run-pass option share 12% of plays, system range 0% to 30%.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "rpo_share.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "No source labels run-pass options."
+  },
+  {
+   "id": "F-college-design-0005",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Strength is declared to the field or boundary by default in college systems (pro: formation strength).",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "strength_call.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "Default key. The bible lists it as general coaching knowledge; no source read."
+  },
+  {
+   "id": "F-college-design-0006",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Install size is 70% of a pro install by concept count.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "install_size.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "Hours rule (T5.4) is the cause; the ratio is a design value."
+  },
+  {
+   "id": "F-college-design-0007",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Offensive family shares: spread with RPO and tempo 45%, pro-style 25%, pass-first spread 10%, power spread and quarterback run 12%, triple option and flexbone 3%, other 5%.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "system_priors.college.offense"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "No charting source for college systems."
+  },
+  {
+   "id": "F-college-design-0008",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Defensive family shares: quarters-based five-back 35%, odd front with three safeties 25%, multiple odd front 25%, pressure-heavy man 10%, option-specialist rules 5% of game plans.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "system_priors.college.defense"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "No charting source for college fronts or coverages."
+  },
+  {
+   "id": "F-college-design-0009",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Second subdivision and below: pass rate 47% of plays.",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "levelOverrides.second_subdivision_and_below.pass_rate.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "Starting override named in T10.5.1; not measured."
+  },
+  {
+   "id": "F-college-design-0010",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Second subdivision and below: 10 points of offensive share move from the spread-with-RPO row to the last three rows. Split between those three is this file's own choice, proportional to their current shares (12:3:5).",
+   "validFor": "v1 starting value",
+   "sources": [
+    {
+     "citation": "Bible T10 (project design), starting values marked Assumption until a college charting source is found",
+     "locator": "T10.2.1, T10.3.1 or T10.5.1 table row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bible-design",
+     "primary": false
+    }
+   ],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "levelOverrides.second_subdivision_and_below.system_priors.offense"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "Design value named in T10; no college dataset carries formation, tempo or system labels (R24 gap)."
+    }
+   ],
+   "notes": "T10.2.1 rule 4 gives the 10 points and not the split; proportional split is a G-40 assumption."
+  }
+ ]
+}
