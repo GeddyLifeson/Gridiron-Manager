@@ -29,15 +29,13 @@ export function murmur3x86_128(data: Uint8Array, seed = 0): [number, number, num
   let h3 = seed >>> 0;
   let h4 = seed >>> 0;
 
-  const word = (i: number): number =>
-    ((data[i]! | (data[i + 1]! << 8) | (data[i + 2]! << 16) | (data[i + 3]! << 24)) >>> 0);
-
+  // Words are read byte by byte (little-endian by definition, whatever the platform), inline for speed (G-97).
   for (let b = 0; b < nblocks; b++) {
     const i = b * 16;
-    let k1 = word(i);
-    let k2 = word(i + 4);
-    let k3 = word(i + 8);
-    let k4 = word(i + 12);
+    let k1 = data[i]! | (data[i + 1]! << 8) | (data[i + 2]! << 16) | (data[i + 3]! << 24);
+    let k2 = data[i + 4]! | (data[i + 5]! << 8) | (data[i + 6]! << 16) | (data[i + 7]! << 24);
+    let k3 = data[i + 8]! | (data[i + 9]! << 8) | (data[i + 10]! << 16) | (data[i + 11]! << 24);
+    let k4 = data[i + 12]! | (data[i + 13]! << 8) | (data[i + 14]! << 16) | (data[i + 15]! << 24);
 
     k1 = Math.imul(k1, C1); k1 = rotl(k1, 15); k1 = Math.imul(k1, C2); h1 = (h1 ^ k1) >>> 0;
     h1 = rotl(h1, 19); h1 = (h1 + h2) >>> 0; h1 = (Math.imul(h1, 5) + 0x561ccd1b) >>> 0;

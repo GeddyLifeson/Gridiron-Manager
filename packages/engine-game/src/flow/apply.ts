@@ -130,22 +130,35 @@ function onTimeoutCharged(env: FlowEnv, state: GameState, e: EventOf<'timeout_ch
   return next;
 }
 
-/** Bench bookkeeping the flow owns until the bench module (WP-18) takes it: snaps, required absences, ejections (J11.5.1 steps 3 and 6). */
+/**
+ * Bench bookkeeping the flow owns until the bench module (WP-18) takes it: snaps, required absences, ejections (J11.5.1 steps 3 and 6).
+ * Speed (G-97): only rows that can change are visited (players on the field, players ejected on this play,
+ * and, when the down counts, players still sitting out downs), and each new row is worked out from the old
+ * row, so a player named twice is counted once. A side with no changed row keeps its object; a changed side
+ * is a copy with the same key order, as before.
+ */
 function benchAfterPlay(state: GameState, record: Contract.PlayRecord): GameState['gameDay'] {
-  const onField = new Set(record.deltas.filter((d) => d.onField).map((d) => String(d.playerId)));
-  const ejected = new Set((record.final.enforcement?.disqualified ?? []).map(String));
   const counts = !record.final.noPlay;
+  const onFieldIds: string[] = [];
+  if (counts) for (const d of record.deltas) if (d.onField) onFieldIds.push(String(d.playerId));
+  const onField = new Set(onFieldIds);
+  const ejectedIds = (record.final.enforcement?.disqualified ?? []).map(String);
+  const ejected = new Set(ejectedIds);
   const side = (bench: GameState['gameDay'][0]) => {
     let out = bench;
-    for (const id of Object.keys(bench)) {
-      const p = bench[id]!;
-      const snaps = counts && onField.has(id) ? p.snapsThisGame + 1 : p.snapsThisGame;
+    const visit = (id: string): void => {
+      const p = bench[id];
+      if (p === undefined) return;
+      const snaps = onField.has(id) ? p.snapsThisGame + 1 : p.snapsThisGame;
       const absence = counts && p.requiredAbsenceDowns > 0 ? p.requiredAbsenceDowns - 1 : p.requiredAbsenceDowns;
       const out2 = p.ejected || ejected.has(id);
-      if (snaps === p.snapsThisGame && absence === p.requiredAbsenceDowns && out2 === p.ejected) continue;
+      if (snaps === p.snapsThisGame && absence === p.requiredAbsenceDowns && out2 === p.ejected) return;
       if (out === bench) out = { ...bench };
       out[id] = { ...p, snapsThisGame: snaps, requiredAbsenceDowns: absence, ejected: out2 };
-    }
+    };
+    for (const id of onFieldIds) visit(id);
+    for (const id of ejectedIds) visit(id);
+    if (counts) for (const id in bench) if (bench[id]!.requiredAbsenceDowns > 0) visit(id);
     return out;
   };
   const a = side(state.gameDay[0]), b = side(state.gameDay[1]);
@@ -168,6 +181,20 @@ export interface PlayResolution {
   readonly state: GameState;
   /** What the overtime rule said after this play, or null in regulation. */
   readonly overtimeStep: Contract.OvertimeStep | null;
+}
+
+/**
+ * States the driver already worked out for a play record (to hash it into the record), kept so the
+ * `play_resolved` event that carries the record does not work the same state out again (G-97). Used only
+ * for the same record object, the same env and the same state before; `resolvePlay` is pure and does not
+ * read the record's `stateHash`, so the kept state is the one it would return. Replays of saved events
+ * carry other record objects and resolve as before.
+ */
+const resolvedPlays = new WeakMap<Contract.PlayRecord, { readonly env: FlowEnv; readonly before: GameState; readonly state: GameState }>();
+
+/** Keeps `state` as what `record` leads to from `before` under `env` (see `resolvedPlays`). Not part of the package entry. */
+export function keepResolvedPlay(env: FlowEnv, before: GameState, record: Contract.PlayRecord, state: GameState): void {
+  resolvedPlays.set(record, { env, before, state });
 }
 
 /** The state after a play record, and the overtime step that came with it. `apply` uses the state; the driver also reads the step. */
@@ -325,9 +352,12 @@ function reduce(env: FlowEnv, state: GameState, e: GameEvent): GameState {
       return state;
     case 'clock_advanced': return onClockAdvanced(state, e);
     case 'timeout_charged': return onTimeoutCharged(env, state, e);
-    case 'play_resolved':
+    case 'play_resolved': {
       if (e.record.index !== state.playCounter + 1) fail(state, e, `record ${e.record.index} after play ${state.playCounter}`);
+      const kept = resolvedPlays.get(e.record);
+      if (kept !== undefined && kept.env === env && kept.before === state) return kept.state;
       return resolvePlay(env, state, e.record).state;
+    }
     case 'review_resolved': return onReviewResolved(state, e);
     case 'score_changed':
       if (e.scoreAfter[0] !== state.score[0] || e.scoreAfter[1] !== state.score[1]) fail(state, e, 'disagrees with the play record');
