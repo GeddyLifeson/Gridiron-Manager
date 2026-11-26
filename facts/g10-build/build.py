@@ -1,15 +1,15 @@
 import json, sys, glob, importlib, os
 sys.path.insert(0, os.path.dirname(__file__))
 from core import *
-mods = ['rows_cba','rows_web','rows_more','rows_inj','rows_g10b','rows_g45','rows_g35_g49']
+mods = ['rows_cba','rows_web','rows_more','rows_inj','rows_g10b','rows_g45','rows_g35_g49','rows_college_keys','rows_recruiting','rows_g10c','rows_g10d','rows_g10e']
 
 regs = {}
 for m in mods:
     mod = importlib.import_module(m)
-    for name in ('LG','CAP','COL','INJ'):
+    for name in ('LG','CAP','COL','COLK','COLR','INJ'):
         if hasattr(mod, name): regs[name] = getattr(mod, name)
 root = os.path.join(os.path.dirname(__file__), '..')
-files = {'LG':'league.json','CAP':'cap.json','COL':'college.json','INJ':'injury.json'}
+files = {'LG':'league.json','CAP':'cap.json','COL':'college.json','COLK':'college-keys.json','COLR':'college-recruiting.json','INJ':'injury.json'}
 keys = {'pro':{}, 'college':{}}; vals = {'pro':[], 'college':[]}
 for n, reg in regs.items():
     for r in reg.rows:

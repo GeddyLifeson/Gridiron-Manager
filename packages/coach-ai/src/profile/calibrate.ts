@@ -5,7 +5,7 @@
 // 2. Outcome calibration, owed: J15.1.3 orders engine contests first, then the coach population, so
 //    the batch harness (J14.6.1) with K4 and K5 must measure the simulated league and move the file's
 //    means. `tuneMeans` is that loop; the engine work packages G-58 and G-59 pass it a batch measure.
-import { BEHAVIOR_KEYS, DEFENSE_RATE_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, ROLE_USES, TENDENCY_KEYS, CALLER_FIELDS, type BehaviorKey } from './keys.ts';
+import { BEHAVIOR_KEYS, DEFENSE_RATE_KEYS, EMPHASIS_KEYS, type EmphasisKey, type TendencyKey, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, ROLE_USES, TENDENCY_KEYS, CALLER_FIELDS, type BehaviorKey } from './keys.ts';
 import type { CoachPopulation, FieldSpec } from './population.ts';
 import { COACH_EFFECT, DECISION_TARGETS_OWED, type SourceStatus } from './sources.ts';
 import type { CoachProfile, PersonnelKey } from './types.ts';
@@ -42,14 +42,14 @@ export interface CalibrationReport {
 }
 
 function valueAt(p: CoachProfile, path: string): number {
-  const [block, key] = path.split('.') as [string, string];
+  const [block, key, sub] = path.split('.') as [string, string, string | undefined];
   switch (block) {
     case 'offenseRates': return p.system.offenseRates[key as keyof CoachProfile['system']['offenseRates']];
     case 'defenseRates': return p.system.defenseRates[key as keyof CoachProfile['system']['defenseRates']];
     case 'personnel': return p.system.personnelWeights[key as PersonnelKey];
     case 'tempo': return key === 'noHuddleShare' ? p.system.tempoBase.noHuddleShare : p.system.tempoBase.snapAtPlayClockS;
     case 'sheet': return key === 'offenseCalls' ? p.system.sheetSize.offenseCalls : p.system.sheetSize.defenseCalls;
-    case 'tendencies': return p.tendencies[key as keyof CoachProfile['tendencies']];
+    case 'tendencies': return key === 'emphasis' ? p.tendencies.emphasis[sub as EmphasisKey] : p.tendencies[key as TendencyKey];
     case 'behavior': return p.behavior[key as BehaviorKey];
     default: throw new Error(`unknown path ${path}`);
   }
@@ -69,7 +69,9 @@ export function moments(profiles: readonly CoachProfile[], path: string): Moment
   return { mean, sd: Math.sqrt(v / n) };
 }
 
-const isZField = (spec: FieldSpec) => spec.min < 0 && Math.abs(spec.mean) < 0.5 && spec.sd >= 0.5;
+// A zero-centred dial (the K2.1.3 rule 4 emphasis dials, sd 0.35) has the same problem as a z field: 3% of a
+// mean of 0 is 0, which would leave only the sampling bound and fail by chance across hundreds of rows.
+const isZField = (spec: FieldSpec) => spec.min < 0 && Math.abs(spec.mean) < 0.5 && (spec.sd >= 0.5 || spec.mean === 0);
 
 /**
  * Paths checked for a population: every system rate and tempo share, every tendency, personnel shares,
@@ -85,6 +87,7 @@ export function calibrationPaths(pop: CoachPopulation, headCoachCalls = false): 
     'tempo.noHuddleShare',
     ...PERSONNEL_KEYS.map((k) => `personnel.${k}`),
     ...TENDENCY_KEYS.map((k) => `tendencies.${k}`),
+    ...EMPHASIS_KEYS.map((k) => `tendencies.emphasis.${k}`),
     ...BEHAVIOR_KEYS.filter((k) => used.has(k)).map((k) => `behavior.${k}`),
   ];
 }

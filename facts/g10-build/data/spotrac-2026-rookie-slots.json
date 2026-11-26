@@ -1,0 +1,1034 @@
+{
+"source": "Spotrac, 2026 NFL Draft Tracker (https://www.spotrac.com/nfl/draft/_/year/2026), read 2026-11-26 through the built-in browser",
+"note": "Observed four-year rookie contracts by overall pick: total value and signing bonus in USD. A mix of signed contracts and Spotrac estimates (page says estimates use 12.7 percent of the $301,200,000 cap); equal values across a run of picks are estimates. One source group only.",
+"picks": {
+"1": {
+"total": 57270598,
+"signing_bonus": 38111344
+},
+"2": {
+"total": 54674726,
+"signing_bonus": 36223436
+},
+"3": {
+"total": 53022816,
+"signing_bonus": 35022048
+},
+"4": {
+"total": 51134912,
+"signing_bonus": 33649028
+},
+"5": {
+"total": 47831062,
+"signing_bonus": 31246228
+},
+"6": {
+"total": 41931362,
+"signing_bonus": 26955536
+},
+"7": {
+"total": 37211592,
+"signing_bonus": 23522976
+},
+"8": {
+"total": 32491822,
+"signing_bonus": 20090416
+},
+"9": {
+"total": 32255828,
+"signing_bonus": 19918784
+},
+"10": {
+"total": 30957894,
+"signing_bonus": 18974832
+},
+"11": {
+"total": 28951992,
+"signing_bonus": 17515992
+},
+"12": {
+"total": 26120116,
+"signing_bonus": 15456448
+},
+"13": {
+"total": 25412156,
+"signing_bonus": 14941568
+},
+"14": {
+"total": 24232770,
+"signing_bonus": 14083440
+},
+"15": {
+"total": 23760242,
+"signing_bonus": 13740176
+},
+"16": {
+"total": 22344304,
+"signing_bonus": 12710404
+},
+"17": {
+"total": 21872316,
+"signing_bonus": 12367140
+},
+"18": {
+"total": 21282378,
+"signing_bonus": 11938092
+},
+"19": {
+"total": 20928362,
+"signing_bonus": 11680628
+},
+"20": {
+"total": 20810386,
+"signing_bonus": 11594824
+},
+"21": {
+"total": 20692386,
+"signing_bonus": 11509008
+},
+"22": {
+"total": 20456392,
+"signing_bonus": 11337376
+},
+"23": {
+"total": 20220416,
+"signing_bonus": 11165756
+},
+"24": {
+"total": 19748429,
+"signing_bonus": 10822492
+},
+"25": {
+"total": 19512460,
+"signing_bonus": 10650880
+},
+"26": {
+"total": 19276448,
+"signing_bonus": 10479236
+},
+"27": {
+"total": 19040469,
+"signing_bonus": 10307612
+},
+"28": {
+"total": 18922478,
+"signing_bonus": 10221800
+},
+"29": {
+"total": 17975610,
+"signing_bonus": 9533172
+},
+"30": {
+"total": 17474196,
+"signing_bonus": 9168504
+},
+"31": {
+"total": 17054202,
+"signing_bonus": 8863056
+},
+"32": {
+"total": 16783748,
+"signing_bonus": 8666360
+},
+"33": {
+"total": 13376740,
+"signing_bonus": 6188536
+},
+"34": {
+"total": 13258732,
+"signing_bonus": 6102712
+},
+"35": {
+"total": 13140746,
+"signing_bonus": 6016904
+},
+"36": {
+"total": 12904752,
+"signing_bonus": 5845272
+},
+"37": {
+"total": 12810362,
+"signing_bonus": 5776628
+},
+"38": {
+"total": 12597988,
+"signing_bonus": 5622172
+},
+"39": {
+"total": 12385596,
+"signing_bonus": 5467704
+},
+"40": {
+"total": 12196804,
+"signing_bonus": 5330404
+},
+"41": {
+"total": 12008000,
+"signing_bonus": 5193092
+},
+"42": {
+"total": 11795622,
+"signing_bonus": 5038632
+},
+"43": {
+"total": 11606848,
+"signing_bonus": 4901344
+},
+"44": {
+"total": 11426946,
+"signing_bonus": 4770504
+},
+"45": {
+"total": 11174966,
+"signing_bonus": 4587248
+},
+"46": {
+"total": 10903592,
+"signing_bonus": 4389884
+},
+"47": {
+"total": 10544878,
+"signing_bonus": 4129000
+},
+"48": {
+"total": 10308896,
+"signing_bonus": 3957380
+},
+"49": {
+"total": 10072894,
+"signing_bonus": 3785740
+},
+"50": {
+"total": 9836918,
+"signing_bonus": 3614120
+},
+"51": {
+"total": 9600932,
+"signing_bonus": 3442496
+},
+"52": {
+"total": 9364942,
+"signing_bonus": 3270868
+},
+"53": {
+"total": 9128944,
+"signing_bonus": 3099232
+},
+"54": {
+"total": 8892964,
+"signing_bonus": 2927608
+},
+"55": {
+"total": 8656976,
+"signing_bonus": 2755976
+},
+"56": {
+"total": 8538996,
+"signing_bonus": 2670180
+},
+"57": {
+"total": 8468178,
+"signing_bonus": 2618676
+},
+"58": {
+"total": 8350192,
+"signing_bonus": 2532868
+},
+"59": {
+"total": 8184982,
+"signing_bonus": 2412712
+},
+"60": {
+"total": 8114190,
+"signing_bonus": 2361228
+},
+"61": {
+"total": 8019796,
+"signing_bonus": 2292580
+},
+"62": {
+"total": 7949010,
+"signing_bonus": 2241096
+},
+"63": {
+"total": 7925412,
+"signing_bonus": 2223936
+},
+"64": {
+"total": 7878200,
+"signing_bonus": 2189600
+},
+"65": {
+"total": 7405992,
+"signing_bonus": 1846176
+},
+"66": {
+"total": 7385316,
+"signing_bonus": 1831140
+},
+"67": {
+"total": 7383258,
+"signing_bonus": 1829640
+},
+"68": {
+"total": 7360894,
+"signing_bonus": 1813444
+},
+"69": {
+"total": 7336666,
+"signing_bonus": 1795756
+},
+"70": {
+"total": 7290296,
+"signing_bonus": 1762040
+},
+"71": {
+"total": 7258720,
+"signing_bonus": 1739068
+},
+"72": {
+"total": 7236420,
+"signing_bonus": 1722852
+},
+"73": {
+"total": 7206404,
+"signing_bonus": 1701020
+},
+"74": {
+"total": 7191510,
+"signing_bonus": 1690188
+},
+"75": {
+"total": 7168498,
+"signing_bonus": 1673452
+},
+"76": {
+"total": 7103408,
+"signing_bonus": 1626116
+},
+"77": {
+"total": 7096070,
+"signing_bonus": 1620776
+},
+"78": {
+"total": 7082948,
+"signing_bonus": 1611236
+},
+"79": {
+"total": 7056144,
+"signing_bonus": 1591740
+},
+"80": {
+"total": 7029080,
+"signing_bonus": 1572056
+},
+"81": {
+"total": 7002010,
+"signing_bonus": 1552372
+},
+"82": {
+"total": 6982836,
+"signing_bonus": 1538424
+},
+"83": {
+"total": 6943812,
+"signing_bonus": 1510044
+},
+"84": {
+"total": 6916056,
+"signing_bonus": 1489860
+},
+"85": {
+"total": 6900494,
+"signing_bonus": 1478540
+},
+"86": {
+"total": 6874124,
+"signing_bonus": 1459364
+},
+"87": {
+"total": 6849462,
+"signing_bonus": 1441428
+},
+"88": {
+"total": 6835986,
+"signing_bonus": 1431624
+},
+"89": {
+"total": 6831510,
+"signing_bonus": 1428372
+},
+"90": {
+"total": 6829276,
+"signing_bonus": 1426744
+},
+"91": {
+"total": 6827032,
+"signing_bonus": 1425112
+},
+"92": {
+"total": 6815846,
+"signing_bonus": 1416980
+},
+"93": {
+"total": 6793468,
+"signing_bonus": 1400704
+},
+"94": {
+"total": 6771094,
+"signing_bonus": 1384432
+},
+"95": {
+"total": 6748712,
+"signing_bonus": 1368152
+},
+"96": {
+"total": 6726342,
+"signing_bonus": 1351884
+},
+"97": {
+"total": 6693900,
+"signing_bonus": 1328292
+},
+"98": {
+"total": 6693900,
+"signing_bonus": 1328292
+},
+"99": {
+"total": 6693900,
+"signing_bonus": 1328292
+},
+"100": {
+"total": 6693900,
+"signing_bonus": 1328292
+},
+"101": {
+"total": 5684700,
+"signing_bonus": 1304700
+},
+"102": {
+"total": 5720744,
+"signing_bonus": 1275744
+},
+"103": {
+"total": 5651620,
+"signing_bonus": 1271620
+},
+"104": {
+"total": 5643820,
+"signing_bonus": 1263820
+},
+"105": {
+"total": 5632136,
+"signing_bonus": 1252136
+},
+"106": {
+"total": 5625384,
+"signing_bonus": 1245384
+},
+"107": {
+"total": 5620824,
+"signing_bonus": 1240824
+},
+"108": {
+"total": 5614424,
+"signing_bonus": 1234424
+},
+"109": {
+"total": 5607332,
+"signing_bonus": 1227332
+},
+"110": {
+"total": 5598676,
+"signing_bonus": 1218676
+},
+"111": {
+"total": 5578208,
+"signing_bonus": 1198208
+},
+"112": {
+"total": 5575428,
+"signing_bonus": 1195428
+},
+"113": {
+"total": 5570704,
+"signing_bonus": 1190704
+},
+"114": {
+"total": 5569532,
+"signing_bonus": 1189532
+},
+"115": {
+"total": 5563620,
+"signing_bonus": 1183620
+},
+"116": {
+"total": 5548656,
+"signing_bonus": 1168656
+},
+"117": {
+"total": 5543872,
+"signing_bonus": 1163872
+},
+"118": {
+"total": 5532960,
+"signing_bonus": 1152960
+},
+"119": {
+"total": 5521520,
+"signing_bonus": 1141520
+},
+"120": {
+"total": 5514244,
+"signing_bonus": 1134244
+},
+"121": {
+"total": 5506916,
+"signing_bonus": 1126916
+},
+"122": {
+"total": 5496156,
+"signing_bonus": 1116156
+},
+"123": {
+"total": 5482780,
+"signing_bonus": 1102780
+},
+"124": {
+"total": 5482780,
+"signing_bonus": 1102780
+},
+"125": {
+"total": 5471764,
+"signing_bonus": 1091764
+},
+"126": {
+"total": 5462980,
+"signing_bonus": 1082960
+},
+"127": {
+"total": 5449992,
+"signing_bonus": 1069992
+},
+"128": {
+"total": 5444356,
+"signing_bonus": 1064356
+},
+"129": {
+"total": 5431432,
+"signing_bonus": 1051432
+},
+"130": {
+"total": 5422360,
+"signing_bonus": 1042360
+},
+"131": {
+"total": 5407688,
+"signing_bonus": 1027688
+},
+"132": {
+"total": 5392348,
+"signing_bonus": 1012348
+},
+"133": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"134": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"135": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"136": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"137": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"138": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"139": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"140": {
+"total": 5169036,
+"signing_bonus": 789036
+},
+"141": {
+"total": 4945720,
+"signing_bonus": 565720
+},
+"142": {
+"total": 4940720,
+"signing_bonus": 560720
+},
+"143": {
+"total": 4936500,
+"signing_bonus": 556500
+},
+"144": {
+"total": 4934016,
+"signing_bonus": 554016
+},
+"145": {
+"total": 4923120,
+"signing_bonus": 543120
+},
+"146": {
+"total": 4910176,
+"signing_bonus": 530176
+},
+"147": {
+"total": 4906312,
+"signing_bonus": 526312
+},
+"148": {
+"total": 4902372,
+"signing_bonus": 522372
+},
+"149": {
+"total": 4901056,
+"signing_bonus": 521056
+},
+"150": {
+"total": 4899756,
+"signing_bonus": 519756
+},
+"151": {
+"total": 4890452,
+"signing_bonus": 510452
+},
+"152": {
+"total": 4886104,
+"signing_bonus": 506104
+},
+"153": {
+"total": 4884000,
+"signing_bonus": 504000
+},
+"154": {
+"total": 4883348,
+"signing_bonus": 503348
+},
+"155": {
+"total": 4882160,
+"signing_bonus": 502160
+},
+"156": {
+"total": 4881800,
+"signing_bonus": 501800
+},
+"157": {
+"total": 4878888,
+"signing_bonus": 498888
+},
+"158": {
+"total": 4875812,
+"signing_bonus": 495812
+},
+"159": {
+"total": 4871544,
+"signing_bonus": 491544
+},
+"160": {
+"total": 4870204,
+"signing_bonus": 490204
+},
+"161": {
+"total": 4865636,
+"signing_bonus": 485636
+},
+"162": {
+"total": 4863512,
+"signing_bonus": 483512
+},
+"163": {
+"total": 4858864,
+"signing_bonus": 478864
+},
+"164": {
+"total": 4856840,
+"signing_bonus": 476840
+},
+"165": {
+"total": 4848644,
+"signing_bonus": 468644
+},
+"166": {
+"total": 4847540,
+"signing_bonus": 467540
+},
+"167": {
+"total": 4843324,
+"signing_bonus": 463324
+},
+"168": {
+"total": 4830136,
+"signing_bonus": 450136
+},
+"169": {
+"total": 4823260,
+"signing_bonus": 443260
+},
+"170": {
+"total": 4812596,
+"signing_bonus": 432596
+},
+"171": {
+"total": 4672348,
+"signing_bonus": 427348
+},
+"172": {
+"total": 4800788,
+"signing_bonus": 420788
+},
+"173": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"174": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"175": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"176": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"177": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"178": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"179": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"180": {
+"total": 4759472,
+"signing_bonus": 379472
+},
+"181": {
+"total": 4759476,
+"signing_bonus": 379476
+},
+"182": {
+"total": 4718164,
+"signing_bonus": 338164
+},
+"183": {
+"total": 4708432,
+"signing_bonus": 328432
+},
+"184": {
+"total": 4703124,
+"signing_bonus": 323124
+},
+"185": {
+"total": 4696580,
+"signing_bonus": 316580
+},
+"186": {
+"total": 4689576,
+"signing_bonus": 309576
+},
+"187": {
+"total": 4683952,
+"signing_bonus": 303952
+},
+"188": {
+"total": 4679840,
+"signing_bonus": 299840
+},
+"189": {
+"total": 4677820,
+"signing_bonus": 297820
+},
+"190": {
+"total": 4674016,
+"signing_bonus": 294016
+},
+"191": {
+"total": 4670072,
+"signing_bonus": 290072
+},
+"192": {
+"total": 4668920,
+"signing_bonus": 288920
+},
+"193": {
+"total": 4662648,
+"signing_bonus": 282648
+},
+"194": {
+"total": 4658780,
+"signing_bonus": 278780
+},
+"195": {
+"total": 4657732,
+"signing_bonus": 277732
+},
+"196": {
+"total": 4656432,
+"signing_bonus": 276432
+},
+"197": {
+"total": 4655240,
+"signing_bonus": 275240
+},
+"198": {
+"total": 4653580,
+"signing_bonus": 273580
+},
+"199": {
+"total": 4653192,
+"signing_bonus": 273192
+},
+"200": {
+"total": 4652636,
+"signing_bonus": 272636
+},
+"201": {
+"total": 4652436,
+"signing_bonus": 272436
+},
+"202": {
+"total": 4650768,
+"signing_bonus": 270768
+},
+"203": {
+"total": 4648280,
+"signing_bonus": 268280
+},
+"204": {
+"total": 4646892,
+"signing_bonus": 266892
+},
+"205": {
+"total": 4643288,
+"signing_bonus": 263288
+},
+"206": {
+"total": 4639608,
+"signing_bonus": 259608
+},
+"207": {
+"total": 4635764,
+"signing_bonus": 255764
+},
+"208": {
+"total": 4634628,
+"signing_bonus": 254628
+},
+"209": {
+"total": 4633576,
+"signing_bonus": 253576
+},
+"210": {
+"total": 4626888,
+"signing_bonus": 246888
+},
+"211": {
+"total": 4622848,
+"signing_bonus": 242848
+},
+"212": {
+"total": 4618872,
+"signing_bonus": 238872
+},
+"213": {
+"total": 4611608,
+"signing_bonus": 231608
+},
+"214": {
+"total": 4586532,
+"signing_bonus": 206532
+},
+"215": {
+"total": 4586532,
+"signing_bonus": 206532
+},
+"216": {
+"total": 4586532,
+"signing_bonus": 206532
+},
+"217": {
+"total": 4561452,
+"signing_bonus": 181452
+},
+"218": {
+"total": 4560860,
+"signing_bonus": 180860
+},
+"219": {
+"total": 4557188,
+"signing_bonus": 177188
+},
+"220": {
+"total": 4555780,
+"signing_bonus": 175780
+},
+"221": {
+"total": 4551016,
+"signing_bonus": 171016
+},
+"222": {
+"total": 4547296,
+"signing_bonus": 167296
+},
+"223": {
+"total": 4544656,
+"signing_bonus": 164656
+},
+"224": {
+"total": 4543928,
+"signing_bonus": 163928
+},
+"225": {
+"total": 4543412,
+"signing_bonus": 163412
+},
+"226": {
+"total": 4542284,
+"signing_bonus": 162284
+},
+"227": {
+"total": 4539080,
+"signing_bonus": 159080
+},
+"228": {
+"total": 4538176,
+"signing_bonus": 158176
+},
+"229": {
+"total": 4538148,
+"signing_bonus": 158148
+},
+"230": {
+"total": 4535988,
+"signing_bonus": 155988
+},
+"231": {
+"total": 4535928,
+"signing_bonus": 155928
+},
+"232": {
+"total": 4535340,
+"signing_bonus": 155340
+},
+"233": {
+"total": 4531856,
+"signing_bonus": 151856
+},
+"234": {
+"total": 4529228,
+"signing_bonus": 149228
+},
+"235": {
+"total": 4526876,
+"signing_bonus": 146876
+},
+"236": {
+"total": 4520732,
+"signing_bonus": 140732
+},
+"237": {
+"total": 4514908,
+"signing_bonus": 134908
+},
+"238": {
+"total": 4513556,
+"signing_bonus": 133556
+},
+"239": {
+"total": 4512172,
+"signing_bonus": 132172
+},
+"240": {
+"total": 4510792,
+"signing_bonus": 130792
+},
+"241": {
+"total": 4509752,
+"signing_bonus": 129752
+},
+"242": {
+"total": 4508624,
+"signing_bonus": 128624
+},
+"243": {
+"total": 4507576,
+"signing_bonus": 127576
+},
+"244": {
+"total": 4506532,
+"signing_bonus": 126532
+},
+"245": {
+"total": 4504940,
+"signing_bonus": 124940
+},
+"246": {
+"total": 4503768,
+"signing_bonus": 123768
+},
+"247": {
+"total": 4502096,
+"signing_bonus": 122096
+},
+"248": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"249": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"250": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"251": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"252": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"253": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"254": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"255": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"256": {
+"total": 4500488,
+"signing_bonus": 120488
+},
+"257": {
+"total": 4500488,
+"signing_bonus": 120488
+}
+}
+}

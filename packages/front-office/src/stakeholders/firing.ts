@@ -10,12 +10,13 @@ import { P } from './params.ts';
 import { clamp } from './mathx.ts';
 import type { DeciderModel, DecisionMakerProfile } from './types.ts';
 
-/** E4.3.1 rule 3: 0 at 55 or above, linear to 0.25 at 40, 0.60 at 30, 0.90 at 15 or below. */
+/** E4.3.1 rule 3 (with MA-52): the 0.002 floor at 55 or above, linear to 0.25 at 40, 0.60 at 30, 0.90 at 15 or below. */
 export function baseHazard(confidence: number): number {
   const c0 = P('fire.base.c0'), c1 = P('fire.base.c1'), c2 = P('fire.base.c2'), c3 = P('fire.base.c3');
   const p1 = P('fire.base.p1'), p2 = P('fire.base.p2'), p3 = P('fire.base.p3');
-  if (confidence >= c0) return 0;
-  if (confidence >= c1) return p1 * (c0 - confidence) / (c0 - c1);
+  const floor = P('fire.base.floor');
+  if (confidence >= c0) return floor;
+  if (confidence >= c1) return Math.max(floor, p1 * (c0 - confidence) / (c0 - c1));
   if (confidence >= c2) return p1 + (p2 - p1) * (c1 - confidence) / (c1 - c2);
   if (confidence > c3) return p2 + (p3 - p2) * (c2 - confidence) / (c2 - c3);
   return p3;
@@ -125,29 +126,39 @@ export interface InSeasonContext {
   /** Games played this season so far (the review follows game number `gamesPlayed`). */
   readonly gamesPlayed: number;
   readonly gamesInSeason: number;
-  /** Games this coach has coached on this job (no in-season firing in the first 8). */
+  /** Games this coach has coached on this job (the first 8 run at a small chance). */
   readonly gamesOnJob: number;
   readonly interimWithHeadCoachExperience: boolean;
-  /** Still alive for the postseason: no in-season firing unless conduct forces it. */
+  /** Still alive for the postseason: a reduced chance, never zero. */
   readonly aliveForPostseason: boolean;
-}
-
-/** E4.3.3: the in-season factor, 0 when an in-season firing is ruled out. */
-export function inSeasonFactor(c: InSeasonContext): number {
-  if (c.gamesOnJob < P('conf.floor.games') || c.aliveForPostseason) return 0;
-  const left = c.gamesInSeason - c.gamesPlayed;
-  const base = left < P('fire.inSeason.finalWeeks') ? P('fire.inSeason.final')
-    : c.gamesPlayed * 2 < c.gamesInSeason ? P('fire.inSeason.early') : P('fire.inSeason.late');
-  return base + (c.interimWithHeadCoachExperience ? P('fire.inSeason.interimBonus') : 0);
+  /** Kept at an earlier emergency review this season ("keep until the main review"): a reduced chance. */
+  readonly keptAtEmergencyThisSeason: boolean;
 }
 
 /**
- * E4.3.1 rule 1 and E4.3.3: an emergency review follows an in-season game that leaves confidence below 30.
- * Its outputs are "fire, or keep until the main review", so a coach kept at one is not reviewed again in
- * season unless a conduct event forces it.
+ * E4.3.3: the in-season factor. 0.25 before the midpoint, 0.4 after, 0.15 in the last two weeks, +0.1
+ * with an experienced interim on staff. The E4.3.3 edge cases (first 8 games, still alive, kept until the
+ * main review) multiply it down instead of ruling a firing out, so no timing has a zero chance. Those
+ * three multipliers are fitted to the in-season share (F-stakeholders-0005, 36% at the professional level).
  */
-export function needsEmergencyReview(confidenceAfterGame: number, keptAtEmergencyThisSeason: boolean): boolean {
-  return !keptAtEmergencyThisSeason && confidenceAfterGame < P('fire.emergencyBelow');
+export function inSeasonFactor(c: InSeasonContext): number {
+  const left = c.gamesInSeason - c.gamesPlayed;
+  let f = left < P('fire.inSeason.finalWeeks') ? P('fire.inSeason.final')
+    : c.gamesPlayed * 2 < c.gamesInSeason ? P('fire.inSeason.early') : P('fire.inSeason.late');
+  f += c.interimWithHeadCoachExperience ? P('fire.inSeason.interimBonus') : 0;
+  if (c.gamesOnJob < P('conf.floor.games')) f *= P('fire.inSeason.firstGames');
+  if (c.aliveForPostseason) f *= P('fire.inSeason.alive');
+  if (c.keptAtEmergencyThisSeason) f *= P('fire.inSeason.afterKept');
+  return f;
+}
+
+/**
+ * E4.3.1 rule 1: an emergency review follows any in-season game that leaves confidence below 30. A coach
+ * kept at an earlier emergency review is reviewed again at a reduced chance (`InSeasonContext`), so every
+ * firing timing keeps a nonzero chance (standing rule, 2026-11-26).
+ */
+export function needsEmergencyReview(confidenceAfterGame: number): boolean {
+  return confidenceAfterGame < P('fire.emergencyBelow');
 }
 
 export interface HazardBreakdown {

@@ -2,7 +2,7 @@
 // Nothing here alters an officiating parameter, a practice result or a contest: clip answers are
 // information, the camera flag changes only routing and reach, and the rule-awareness term is read
 // only by the hazards of the changed or stressed fouls (J10 applies it).
-import type { RuleKeyManifest, RuleSet } from '@gm/schema';
+import { possible, type RuleKeyManifest, type RuleSet } from '@gm/schema';
 import { compliance } from '@gm/league';
 import type { Order } from '../crisis/orders.ts';
 import type { StreamFor } from '../crisis/events.ts';
@@ -85,7 +85,7 @@ export function emphasisFactor(weekOfSeason: number): number {
 
 /** Chance a staff recommendation under a strategy-altering change is wrong (I4, I5 advice). */
 export function staffAdviceErrorChance(gameIndex: number, skippedStaffSession: boolean, strategic: boolean): number {
-  return skippedStaffSession && strategic && gameIndex < param('rules.skippedStaffAdviceGames') ? param('rules.skippedStaffAdviceError') : 0;
+  return possible(skippedStaffSession && strategic && gameIndex < param('rules.skippedStaffAdviceGames') ? param('rules.skippedStaffAdviceError') : 0);
 }
 
 // ---- L8.3.3 league assignments ----

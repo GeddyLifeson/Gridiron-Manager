@@ -1,0 +1,91 @@
+{
+ "ruleset_id": "proschedstaff_2026",
+ "level": "pro",
+ "season_year": 2026,
+ "source": {
+  "document": "Fact register rows F-sched (facts/schedule-staff.json)",
+  "date": "2026"
+ },
+ "schema_version": 1,
+ "values": [
+  {
+   "key": "schedule.regular_season_games",
+   "value": 17,
+   "unit": "count",
+   "factId": "F-sched-0001"
+  },
+  {
+   "key": "schedule.weeks",
+   "value": 18,
+   "unit": "count",
+   "factId": "F-sched-0002"
+  },
+  {
+   "key": "schedule.bye_window_first_week",
+   "value": 5,
+   "unit": "week",
+   "factId": "F-sched-0003"
+  },
+  {
+   "key": "schedule.bye_window_last_week",
+   "value": 14,
+   "unit": "week",
+   "factId": "F-sched-0004"
+  },
+  {
+   "key": "schedule.no_bye_week",
+   "value": 12,
+   "unit": "week",
+   "factId": "F-sched-0005",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "schedule.final_week_division_only",
+   "value": true,
+   "factId": "F-sched-0006"
+  },
+  {
+   "key": "schedule.max_short_week_thursdays",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-sched-0007",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "schedule.flex_sunday_night_limited_max",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-sched-0008"
+  },
+  {
+   "key": "schedule.flex_thursday_max",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-sched-0009"
+  },
+  {
+   "key": "schedule.flex_thursday_notice_days",
+   "value": 21,
+   "unit": "day",
+   "factId": "F-sched-0010"
+  },
+  {
+   "key": "schedule.week18_saturday_games",
+   "value": 3,
+   "unit": "count",
+   "factId": "F-sched-0011"
+  },
+  {
+   "key": "schedule.international_games",
+   "value": 9,
+   "unit": "count",
+   "factId": "F-sched-0012"
+  },
+  {
+   "key": "schedule.preseason_games",
+   "value": 3,
+   "unit": "count",
+   "factId": "F-sched-0013"
+  }
+ ]
+}
