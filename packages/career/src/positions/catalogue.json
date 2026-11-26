@@ -1,0 +1,2268 @@
+{
+ "version": "g25.1",
+ "leaf": "S1.1.1, S1.1.2, S1.1.3, E2.1.1",
+ "jobs": [
+  {
+   "id": "job:outside.student",
+   "title": "Student",
+   "rung": 0,
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": null,
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    0
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": false,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "A student, not yet on any staff",
+   "leaf": "E2.1.1"
+  },
+  {
+   "id": "job:outside.former_player",
+   "title": "Former player",
+   "rung": 0,
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": null,
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    0
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": false,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Finished playing; not yet coaching",
+   "leaf": "E2.1.1"
+  },
+  {
+   "id": "job:outside.high_school_coach",
+   "title": "High school coach",
+   "rung": 0,
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": null,
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    0
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": false,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Coaches a high school team, outside the ladder",
+   "leaf": "E2.1.1"
+  },
+  {
+   "id": "job:outside.other_career",
+   "title": "Other career",
+   "rung": 0,
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": null,
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    0
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": false,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Works outside football",
+   "leaf": "E2.1.1"
+  },
+  {
+   "id": "job:college.student_manager",
+   "title": "Student manager",
+   "rung": 1,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:student_manager",
+   "dutyIds": [
+    "duty:S3.2.1",
+    "duty:S3.2.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    8,
+    15
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Equipment, practice setup, clock and down markers at practice",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.student_assistant",
+   "title": "Student assistant coach",
+   "rung": 1,
+   "levels": [
+    "college"
+   ],
+   "side": "by_seat",
+   "positionGroup": "by_seat",
+   "positionId": "pos:student_assistant",
+   "dutyIds": [
+    "duty:S3.2.1",
+    "duty:S3.2.2"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    11
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": "staff.student_assistants_max",
+   "whatTheyDo": "Undergraduate helping a position coach: cards, charts, signals",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.student_video",
+   "title": "Student video assistant",
+   "rung": 1,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:student_video",
+   "dutyIds": [
+    "duty:S3.2.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    4,
+    8
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Films practice and games, cuts and labels clips",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.recruiting_student",
+   "title": "Recruiting student worker",
+   "rung": 1,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:recruiting_student",
+   "dutyIds": [
+    "duty:S3.2.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    5,
+    15
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Hosts visits, logs prospect film",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.graduate_assistant",
+   "title": "Graduate assistant",
+   "rung": 2,
+   "levels": [
+    "college"
+   ],
+   "side": "by_seat",
+   "positionGroup": "by_seat",
+   "positionId": "pos:graduate_assistant",
+   "dutyIds": [
+    "duty:S3.3.1",
+    "duty:S3.3.2",
+    "duty:S3.3.3",
+    "duty:S3.3.4"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "stipend",
+   "termLimitYears": 2,
+   "seats": [
+    1,
+    4
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": "staff.grad_assistants_max",
+   "whatTheyDo": "Enrolled graduate student who coaches. Runs the scout team, draws cards, breaks down film, assists one position",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.quality_control.offense",
+   "title": "Quality control coach (offense)",
+   "rung": 3,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:quality_control.offense",
+   "dutyIds": [
+    "duty:S3.4.1",
+    "duty:S3.4.2",
+    "duty:S3.4.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    2
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Opponent breakdown and reports, self-scout",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.quality_control.defense",
+   "title": "Quality control coach (defense)",
+   "rung": 3,
+   "levels": [
+    "college"
+   ],
+   "side": "defense",
+   "positionGroup": "none",
+   "positionId": "pos:quality_control.defense",
+   "dutyIds": [
+    "duty:S3.4.1",
+    "duty:S3.4.2",
+    "duty:S3.4.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    2
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Opponent breakdown and reports, self-scout",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.quality_control.special_teams",
+   "title": "Quality control coach (special teams)",
+   "rung": 3,
+   "levels": [
+    "college"
+   ],
+   "side": "special_teams",
+   "positionGroup": "none",
+   "positionId": "pos:quality_control.special_teams",
+   "dutyIds": [
+    "duty:S3.4.1",
+    "duty:S3.4.2",
+    "duty:S3.4.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    2
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Opponent breakdown and reports, self-scout",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.analyst",
+   "title": "Analyst",
+   "rung": 3,
+   "levels": [
+    "college"
+   ],
+   "side": "by_seat",
+   "positionGroup": "none",
+   "positionId": "pos:analyst",
+   "dutyIds": [
+    "duty:S3.4.1",
+    "duty:S3.4.2",
+    "duty:S3.4.4"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    4,
+    15
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Same family of work, often a former coach or a data specialist. Since 2024 may coach on the field",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.recruiting_assistant",
+   "title": "Recruiting or personnel assistant",
+   "rung": 3,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:recruiting_assistant",
+   "dutyIds": [
+    "duty:S3.5.5"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    3,
+    10
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Evaluates prospect and transfer film, keeps the board",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.assistant_position_coach",
+   "title": "Assistant position coach",
+   "rung": 4,
+   "levels": [
+    "college"
+   ],
+   "side": "by_seat",
+   "positionGroup": "by_seat",
+   "positionId": "pos:assistant_position_coach",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    5
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Half a room under a position coach",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.qb",
+   "title": "QB coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "QB",
+   "positionId": "pos:position_coach.qb",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.rb",
+   "title": "RB coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "RB",
+   "positionId": "pos:position_coach.rb",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.wr",
+   "title": "WR coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "WR",
+   "positionId": "pos:position_coach.wr",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.te",
+   "title": "TE coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "TE",
+   "positionId": "pos:position_coach.te",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.ol",
+   "title": "OL coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "OL",
+   "positionId": "pos:position_coach.ol",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.dl",
+   "title": "DL coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "defense",
+   "positionGroup": "DL",
+   "positionId": "pos:position_coach.dl",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.lb",
+   "title": "LB coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "defense",
+   "positionGroup": "LB",
+   "positionId": "pos:position_coach.lb",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.position_coach.db",
+   "title": "DB coach",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "defense",
+   "positionGroup": "DB",
+   "positionId": "pos:position_coach.db",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.5",
+    "duty:S3.5.6"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.special_teams_assistant",
+   "title": "Special teams assistant",
+   "rung": 5,
+   "levels": [
+    "college"
+   ],
+   "side": "special_teams",
+   "positionGroup": "specialists",
+   "positionId": "pos:special_teams_assistant",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns the specialists and a recruiting area",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.assistant_head_coach",
+   "title": "Associate or assistant head coach",
+   "rung": 6,
+   "levels": [
+    "college"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:assistant_head_coach",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Position coach with a slice of the plan",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.pass_game_coordinator.offense",
+   "title": "Pass game coordinator",
+   "rung": 6,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:pass_game_coordinator.offense",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Position coach with a slice of the plan",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.run_game_coordinator.offense",
+   "title": "Run game coordinator",
+   "rung": 6,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:run_game_coordinator.offense",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Position coach with a slice of the plan",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.co_coordinator.defense",
+   "title": "Co-defensive coordinator",
+   "rung": 6,
+   "levels": [
+    "college"
+   ],
+   "side": "defense",
+   "positionGroup": "none",
+   "positionId": "pos:co_coordinator.defense",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Position coach with a slice of the plan",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.coordinator.offense",
+   "title": "Offensive coordinator",
+   "rung": 7,
+   "levels": [
+    "college"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:offensive_coordinator",
+   "dutyIds": [
+    "duty:S3.6.2",
+    "duty:S3.6.3"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "One side of the ball",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.coordinator.defense",
+   "title": "Defensive coordinator",
+   "rung": 7,
+   "levels": [
+    "college"
+   ],
+   "side": "defense",
+   "positionGroup": "none",
+   "positionId": "pos:defensive_coordinator",
+   "dutyIds": [
+    "duty:S3.6.2",
+    "duty:S3.6.3"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "One side of the ball",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.coordinator.special_teams",
+   "title": "Special teams coordinator",
+   "rung": 7,
+   "levels": [
+    "college"
+   ],
+   "side": "special_teams",
+   "positionGroup": "specialists",
+   "positionId": "pos:special_teams_coordinator",
+   "dutyIds": [
+    "duty:S3.6.2",
+    "duty:S3.6.3"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "One side of the ball",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.general_manager",
+   "title": "General manager or director of player personnel",
+   "rung": 7,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:general_manager_college",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "Roster, transfers, player pay budget (T7). Not a coaching rung",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.head_coach_lower",
+   "title": "Head coach, below the top subdivision",
+   "rung": 8,
+   "levels": [
+    "college"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:head_coach",
+   "dutyIds": [
+    "duty:S3.7.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Everything",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.head_coach_top",
+   "title": "Head coach, top subdivision",
+   "rung": 9,
+   "levels": [
+    "college"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:head_coach",
+   "dutyIds": [
+    "duty:S3.7.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": true,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Everything",
+   "leaf": "S1.1.2"
+  },
+  {
+   "id": "job:college.strength_head",
+   "title": "Head strength and conditioning coach",
+   "rung": null,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:strength_head",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": "staff.strength_staff_max",
+   "whatTheyDo": "Runs the strength program",
+   "leaf": "S1.2.2"
+  },
+  {
+   "id": "job:college.strength_assistant",
+   "title": "Strength and conditioning assistant",
+   "rung": null,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:strength_assistant",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    4
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": "staff.strength_staff_max",
+   "whatTheyDo": "Assists the strength program",
+   "leaf": "S1.2.2"
+  },
+  {
+   "id": "job:college.athletic_director",
+   "title": "Athletic director",
+   "rung": null,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:athletic_director",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "The head coach's boss at a school (E2.1.1 rung 8, 9 \"reports to\")",
+   "leaf": "E2.1.1"
+  },
+  {
+   "id": "job:college.president",
+   "title": "President",
+   "rung": null,
+   "levels": [
+    "college"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:president",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "Appoints the athletic director",
+   "leaf": "L5.4"
+  },
+  {
+   "id": "job:pro.camp_intern",
+   "title": "Training-camp intern or fellowship coach",
+   "rung": 1,
+   "levels": [
+    "pro"
+   ],
+   "side": "by_seat",
+   "positionGroup": "by_seat",
+   "positionId": "pos:camp_intern",
+   "dutyIds": [
+    "duty:S3.2.1",
+    "duty:S3.2.2"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "stipend",
+   "termLimitYears": null,
+   "seats": [
+    4,
+    8
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Camp-only helper attached to a position coach",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.coaching_assistant",
+   "title": "Coaching assistant or assistant to the head coach",
+   "rung": 2,
+   "levels": [
+    "pro"
+   ],
+   "side": "by_seat",
+   "positionGroup": "by_seat",
+   "positionId": "pos:coaching_assistant",
+   "dutyIds": [
+    "duty:S3.3.1",
+    "duty:S3.3.2",
+    "duty:S3.3.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    3
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Film, cards, scout team, projects for the head coach",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.quality_control.offense",
+   "title": "Quality control coach (offense)",
+   "rung": 3,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:quality_control.offense",
+   "dutyIds": [
+    "duty:S3.4.1",
+    "duty:S3.4.2",
+    "duty:S3.4.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Opponent breakdown, tendency reports, cut-ups, scout cards",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.quality_control.defense",
+   "title": "Quality control coach (defense)",
+   "rung": 3,
+   "levels": [
+    "pro"
+   ],
+   "side": "defense",
+   "positionGroup": "none",
+   "positionId": "pos:quality_control.defense",
+   "dutyIds": [
+    "duty:S3.4.1",
+    "duty:S3.4.2",
+    "duty:S3.4.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Opponent breakdown, tendency reports, cut-ups, scout cards",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.quality_control.special_teams",
+   "title": "Quality control coach (special teams)",
+   "rung": 3,
+   "levels": [
+    "pro"
+   ],
+   "side": "special_teams",
+   "positionGroup": "none",
+   "positionId": "pos:quality_control.special_teams",
+   "dutyIds": [
+    "duty:S3.4.1",
+    "duty:S3.4.2",
+    "duty:S3.4.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Opponent breakdown, tendency reports, cut-ups, scout cards",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.analyst",
+   "title": "Football analyst or game-management assistant",
+   "rung": 3,
+   "levels": [
+    "pro"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:analyst",
+   "dutyIds": [
+    "duty:S3.4.4"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    3
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Models, fourth-down and timeout advice on game day",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.scouting_assistant",
+   "title": "Scouting assistant, pro or college scout",
+   "rung": 3,
+   "levels": [
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:scouting_assistant",
+   "dutyIds": [
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    6,
+    12
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "The personnel track. A side door into coaching",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.assistant_position_coach",
+   "title": "Assistant position coach",
+   "rung": 4,
+   "levels": [
+    "pro"
+   ],
+   "side": "by_seat",
+   "positionGroup": "by_seat",
+   "positionId": "pos:assistant_position_coach",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    4,
+    8
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Half a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.qb",
+   "title": "QB coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "QB",
+   "positionId": "pos:position_coach.qb",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.rb",
+   "title": "RB coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "RB",
+   "positionId": "pos:position_coach.rb",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.wr",
+   "title": "WR coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "WR",
+   "positionId": "pos:position_coach.wr",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.te",
+   "title": "TE coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "TE",
+   "positionId": "pos:position_coach.te",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.ol",
+   "title": "OL coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "OL",
+   "positionId": "pos:position_coach.ol",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.dl",
+   "title": "DL coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "defense",
+   "positionGroup": "DL",
+   "positionId": "pos:position_coach.dl",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.lb",
+   "title": "LB coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "defense",
+   "positionGroup": "LB",
+   "positionId": "pos:position_coach.lb",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.position_coach.db",
+   "title": "DB coach",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "defense",
+   "positionGroup": "DB",
+   "positionId": "pos:position_coach.db",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3",
+    "duty:S3.5.4",
+    "duty:S3.5.7"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns a room",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.special_teams_assistant",
+   "title": "Special teams assistant",
+   "rung": 5,
+   "levels": [
+    "pro"
+   ],
+   "side": "special_teams",
+   "positionGroup": "specialists",
+   "positionId": "pos:special_teams_assistant",
+   "dutyIds": [
+    "duty:S3.5.1",
+    "duty:S3.5.2",
+    "duty:S3.5.3"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    2
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Owns the specialists",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.assistant_head_coach",
+   "title": "Assistant head coach",
+   "rung": 6,
+   "levels": [
+    "pro"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:assistant_head_coach",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "A slice of the plan",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.pass_game_coordinator.offense",
+   "title": "Pass game coordinator",
+   "rung": 6,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:pass_game_coordinator.offense",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "A slice of the plan",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.run_game_coordinator.offense",
+   "title": "Run game coordinator",
+   "rung": 6,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:run_game_coordinator.offense",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "A slice of the plan",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.senior_assistant",
+   "title": "Senior assistant",
+   "rung": 6,
+   "levels": [
+    "pro"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:senior_assistant",
+   "dutyIds": [
+    "duty:S3.6.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": true,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "A slice of the plan",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.coordinator.offense",
+   "title": "Offensive coordinator",
+   "rung": 7,
+   "levels": [
+    "pro"
+   ],
+   "side": "offense",
+   "positionGroup": "none",
+   "positionId": "pos:offensive_coordinator",
+   "dutyIds": [
+    "duty:S3.6.2",
+    "duty:S3.6.3"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "One side",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.coordinator.defense",
+   "title": "Defensive coordinator",
+   "rung": 7,
+   "levels": [
+    "pro"
+   ],
+   "side": "defense",
+   "positionGroup": "none",
+   "positionId": "pos:defensive_coordinator",
+   "dutyIds": [
+    "duty:S3.6.2",
+    "duty:S3.6.3"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "One side",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.coordinator.special_teams",
+   "title": "Special teams coordinator",
+   "rung": 7,
+   "levels": [
+    "pro"
+   ],
+   "side": "special_teams",
+   "positionGroup": "specialists",
+   "positionId": "pos:special_teams_coordinator",
+   "dutyIds": [
+    "duty:S3.6.2",
+    "duty:S3.6.3"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "One side",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.head_coach",
+   "title": "Head coach",
+   "rung": 9,
+   "levels": [
+    "pro"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:head_coach",
+   "dutyIds": [
+    "duty:S3.7.1"
+   ],
+   "callsPlaysEligible": true,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": true,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": true,
+   "limitKey": null,
+   "whatTheyDo": "Everything",
+   "leaf": "S1.1.3"
+  },
+  {
+   "id": "job:pro.strength_head",
+   "title": "Head strength and conditioning coach",
+   "rung": null,
+   "levels": [
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:strength_head",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "Runs the strength program",
+   "leaf": "L4.1.1"
+  },
+  {
+   "id": "job:pro.strength_assistant",
+   "title": "Strength and conditioning assistant",
+   "rung": null,
+   "levels": [
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:strength_assistant",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "sideline",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    3
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "Assists the strength program",
+   "leaf": "L4.1.1"
+  },
+  {
+   "id": "job:pro.game_management",
+   "title": "Game management coach",
+   "rung": null,
+   "levels": [
+    "pro"
+   ],
+   "side": "whole_team",
+   "positionGroup": "none",
+   "positionId": "pos:game_management",
+   "dutyIds": [
+    "duty:S3.4.4"
+   ],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "booth",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    0,
+    1
+   ],
+   "pooled": true,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "Game management on the headset (L4.1.1, 1 of 3)",
+   "leaf": "L4.1.1"
+  },
+  {
+   "id": "job:pro.general_manager",
+   "title": "General manager",
+   "rung": null,
+   "levels": [
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:general_manager",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "salary",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "Runs the front office; the head coach's boss with the owner (E2.1.1)",
+   "leaf": "E2.1.1"
+  },
+  {
+   "id": "job:pro.owner",
+   "title": "Owner",
+   "rung": null,
+   "levels": [
+    "pro"
+   ],
+   "side": "support",
+   "positionGroup": "none",
+   "positionId": "pos:owner",
+   "dutyIds": [],
+   "callsPlaysEligible": false,
+   "recruitsOffCampus": false,
+   "gamedaySeat": "none",
+   "paid": "none",
+   "termLimitYears": null,
+   "seats": [
+    1,
+    1
+   ],
+   "pooled": false,
+   "perSide": false,
+   "userHoldable": false,
+   "onStaff": true,
+   "titleOnTop": false,
+   "onLadder": false,
+   "limitKey": null,
+   "whatTheyDo": "Owns the club",
+   "leaf": "C10"
+  }
+ ]
+}
