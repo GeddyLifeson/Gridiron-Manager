@@ -41,6 +41,38 @@ export function historyPresets(): readonly number[] {
   return [param('history.blank'), param('history.short'), param('history.default'), param('history.long')];
 }
 
+/** The first season football was played anywhere in the world's past (F-history-0001). */
+export function footballStartYear(): number {
+  return param('history.footballStartYear');
+}
+
+/**
+ * Seasons from football's first season up to the season before the career starts: the longest history a
+ * player may choose (Marlon 2026-11-26, the Dwarf Fortress-style choice of how long to run the past).
+ */
+export function fullHistorySeasons(careerStartYear: number): number {
+  return Math.max(0, careerStartYear - footballStartYear());
+}
+
+/** The presets offered for a career start, the full span last. Any whole number from 0 to the span is allowed. */
+export function historyPresetsFor(careerStartYear: number): readonly number[] {
+  const full = fullHistorySeasons(careerStartYear);
+  return [...new Set([...historyPresets().filter((n) => n < full), full])];
+}
+
+/** First season of a world whose career starts in `careerStartYear` after `historySeasons` of history. */
+export function firstSeasonFor(careerStartYear: number, historySeasons: number): number {
+  return careerStartYear - historySeasons;
+}
+
+/** Problems with a chosen history length. Empty when the choice is allowed. */
+export function historyChoiceProblems(careerStartYear: number, historySeasons: number): string[] {
+  const full = fullHistorySeasons(careerStartYear);
+  if (!Number.isInteger(historySeasons) || historySeasons < 0) return ['history length: a whole number of seasons, 0 or more'];
+  if (historySeasons > full) return [`history length: at most ${full} seasons, back to ${footballStartYear()} when football began`];
+  return [];
+}
+
 /** A seed from text (X10.1.1 "seed (text or random)"). A random seed is drawn by the shell, never in core. */
 export function seedHexFromText(text: string): string {
   return hash64Hex(utf8(text));
@@ -69,6 +101,10 @@ export function setupProblems(s: SetupRecord): string[] {
   if (s.packs.length === 0 && s.careerCurveDial !== null) out.push('careerCurveDial: hidden when no pack is loaded (X10.1.1 edge case)');
   if (s.careerCurveDial !== null && !(s.careerCurveDial >= 0 && s.careerCurveDial <= 1)) out.push('careerCurveDial: 0 to 1 (X14.3.1)');
   if (s.rulebookEra.length === 0) out.push('rulebookEra: a B12 era id');
+  // Marlon 2026-11-26: "the rules have always been the rules". The fictional past is played under the
+  // career's rule set from its first season; there is no era progression through the history run.
+  if (s.eraProgression) out.push('eraProgression: the history is played under today\'s rules throughout (ruling 2026-11-26)');
+  if (s.historySeasons > 0 && s.firstSeasonYear < footballStartYear()) out.push(`firstSeasonYear: no football before ${footballStartYear()}`);
   return out;
 }
 

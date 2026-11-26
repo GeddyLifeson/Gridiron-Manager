@@ -3,7 +3,7 @@
 export { MODULE, PARAMS, param } from './params.ts';
 export {
   WORLD_FOUNDED, HISTORY_RUN_ENDED, WENT_INACTIVE, RETURNED_ACTIVE, DIED, DEADLINE_LAPSED, IMPORT_PLACED, RELEASED, USER_BACKGROUND,
-  WORLD_EVENT_TYPES, RELEASED_FALLBACK, worldEventTypes,
+  TEAM_FOUNDED, TEAM_FOLDED, WORLD_EVENT_TYPES, RELEASED_FALLBACK, worldEventTypes,
 } from './events.ts';
 export {
   WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER,
@@ -24,6 +24,10 @@ export {
 } from './stops.ts';
 export {
   importedPeople, runHistory, historyRunScan, headCoachTenures, coachingTreeDepth, validateHistory, buildWithHistory,
-  historySeconds, gameMsForTarget, scaledEstimate, estimateWithinTolerance, gamesInSeason,
-  type HistoryPlan, type HistoryRunReport, type ValidatorBands, type ValidationResult, type BuiltHistory, type BudgetInput,
+  rerunSeedHex, draftHistory, historySeconds, gameMsForTarget, scaledEstimate, estimateWithinTolerance, gamesInSeason,
+  type HistoryPlan, type HistoryRunReport, type ValidatorBands, type ValidationResult, type BuiltHistory, type BudgetInput, type HistoryDraft,
 } from './history.ts';
+export {
+  STREAM_LIFECYCLE, curveFor, curveProblems, foundingYear, planTeamSpans, isActive, activeTeamIds, awaitingFounding, lifecycleStep,
+  type TeamSpan, type FoundingCurve, type LifecycleBinding,
+} from './lifecycle.ts';

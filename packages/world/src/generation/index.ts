@@ -2,9 +2,11 @@
 // founding people and cultures, and placing imported people and the user after the history run.
 export { MODULE, PARAMS, param } from './params.ts';
 export { sha256, bytesToHex } from './sha256.ts';
+export { foundingCurveRows, defaultFoundingCurves, type FoundingCurveRow } from './founding-curves.ts';
 export {
   SIZE_PRESETS, SETUP_FIELDS, FORBIDDEN_SETUP_WORDS, historyPresets, seedHexFromText, setupFieldProblems, setupProblems, createSetup,
   canonicalSetup, setupHashHex, setupSeed, setupAsGeneratorOptions, type SizePreset, type PackRef, type SetupRecord,
+  footballStartYear, fullHistorySeasons, historyPresetsFor, firstSeasonFor, historyChoiceProblems,
 } from './setup.ts';
 export { worldCodeFields, encodeWorldCode, worldCode, decodeWorldCode, worldCodeMismatches, type WorldCodeFields, type DecodeResult } from './code.ts';
 export type {
