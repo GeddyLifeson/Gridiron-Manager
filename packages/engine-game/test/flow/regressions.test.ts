@@ -224,6 +224,12 @@ describe('deciders cannot learn the truth of the last play (EX-0001, exploit sea
     return {
       ...fake,
       rulePlay: (truth, ctx) => scramble(fake.rulePlay(truth, ctx)),
+      // The replay rules are handed their own objects too: a booth stop is public, and the game must not change.
+      replay: {
+        ...fake.replay,
+        challengeable: (called, side, ctx) => fake.replay.challengeable(original.get(called) ?? called, side, ctx),
+        boothReview: (called, ctx) => fake.replay.boothReview(original.get(called) ?? called, ctx),
+      },
       review: (called, truth, request, ctx) => {
         const r = fake.review(original.get(called) ?? called, truth, request, ctx);
         return { ...r, called: scramble(r.called) };
@@ -294,10 +300,25 @@ describe('a coach with no timeout left may still throw the challenge flag (break
     expect(r.result.final.challengesUsed).toEqual([0, 0]);
   });
 
-  it('with timeouts left the flag is never offered: a coach who may challenge names a ruling', () => {
+  it('with no challenge left but a timeout, the refused flag costs that timeout (rule 4a)', () => {
+    const charging: FakeGameOptions['officiating'] = (fake) => ({
+      ...fake,
+      review: (called, truth, request, ctx) => (request.source === 'coach_challenge'
+        ? { allowed: false, refusedKey: 'replay.refused.no_challenges', reversed: [], called, timeoutCharged: true, challengeLost: true }
+        : fake.review(called, truth, request, ctx)),
+    });
+    const r = runChecked(fakeGame({ seed: 3, script: QUIET_3, policy: flagOn3, officiating: charging, rulesOver: { 'fixture.challenges': 0 } }));
+    expect(r.problems).toEqual([]);
+    const rec = r.result.records[2]!;
+    const offered = eventsOfType(r.result.events, 'decision_requested').filter((e) => e.request.type === 'challenge');
+    for (const e of offered) expect(e.request.options.map((o) => o.optionId)).toEqual([OPT.none, OPT.challengeFlag]);
+    expect(eventsOfType(r.result.events, 'timeout_charged').filter((e) => e.kind === 'team')).toEqual([{ type: 'timeout_charged', side: rec.situation.offense, kind: 'team' }]);
+    expect(r.result.final.challengesUsed).toEqual([0, 0]);
+  });
+
+  it('a coach who may challenge names a ruling; the flag option is only for a refused throw', () => {
     const r = runChecked(fakeGame({ seed: 3, script: QUIET_3 }));
-    for (const e of eventsOfType(r.result.events, 'decision_requested')) {
-      if (e.request.type === 'challenge') expect(e.request.options.map((o) => o.optionId)).not.toContain(OPT.challengeFlag);
-    }
+    const first = eventsOfType(r.result.events, 'decision_requested').find((e) => e.request.type === 'challenge')!;
+    expect(first.request.options.map((o) => o.optionId)).toEqual([OPT.none, 'spot']);
   });
 });

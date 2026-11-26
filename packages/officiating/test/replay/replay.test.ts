@@ -535,6 +535,38 @@ describe('B9.1.1 rule 5: a challenge with no timeouts left, on the real rule set
     expect(res.called).toEqual(called);
   });
 
+  /** A flag thrown at a run with timeouts left, in a situation where the coach may not challenge. */
+  const refused = (level: 'pro_2026' | 'college_2026', o: CtxOptions) => {
+    const c = { ...ctx(o), rules: resolveRuleSet(level) };
+    const truth = plays.run(44);
+    const called = off.rulePlay(truth, c);
+    return { called, res: off.review(called, truth, challenge(['spot'], 0), c) };
+  };
+
+  it('pro, a flag with no challenge left, after the two-minute warning or in overtime: no review, a timeout, no foul (15-1-1(d), 15-1-2)', () => {
+    for (const [o, key] of [
+      [{ before: { challengesUsed: [2, 0], challengesWon: [0, 0] } }, REFUSED.noChallenges],
+      [{ situation: { insideTwoMinute: true } }, REFUSED.boothOnly],
+      [{ situation: { overtime: true } }, REFUSED.overtime],
+    ] as const) {
+      const { called, res } = refused('pro_2026', o as CtxOptions);
+      expect(res, key).toMatchObject({ allowed: false, refusedKey: key, reversed: [], timeoutCharged: true, challengeLost: true });
+      expect(res.called, key).toEqual(called);
+    }
+  });
+
+  it('pro, no challenge and no timeout left: the 15 yards still apply (the penalty is for exhausted timeouts)', () => {
+    const { res } = refused('pro_2026', { situation: { timeoutsLeft: [0, 3] }, before: { challengesUsed: [2, 0], challengesWon: [0, 0], timeoutsLeft: [0, 3] } });
+    expect(res).toMatchObject({ allowed: false, refusedKey: REFUSED.noChallenges, timeoutCharged: false });
+    expect(res.called.fouls.filter((f) => f.called).map((f) => f.foulId)).toEqual([NO_TIMEOUT_FOUL]);
+  });
+
+  it('college, no challenge left: the timeout the coach called is spent and nothing is reviewed (12-5-1-b-1, b-5 read alike)', () => {
+    const { called, res } = refused('college_2026', { before: { challengesUsed: [2, 0], challengesWon: [0, 0] } });
+    expect(res).toMatchObject({ allowed: false, refusedKey: REFUSED.noChallenges, timeoutCharged: true });
+    expect(res.called).toEqual(called);
+  });
+
   it('both levels say a challenge needs a timeout; only the pro book has the foul', () => {
     for (const level of ['pro_2026', 'college_2026'] as const) expect(challengeRefusal(null, 0, at(level, [0, 3]))).toBe(REFUSED.noTimeout);
     expect(challengeFoul(challenge([], 1), thrown('pro_2026', [0, 3]).called, 0, at('pro_2026', [0, 3]))).toBeNull(); // side 1 has timeouts

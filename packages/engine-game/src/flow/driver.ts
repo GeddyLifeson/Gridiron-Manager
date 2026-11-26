@@ -371,12 +371,10 @@ function unitPlay(r: Run): void {
   else {
     for (const side of [offense, other(offense)]) {
       const aspects = off.replay.challengeable(called, side, ctx);
-      // The throw is never blocked (B9.1.1 rule 4a): a coach with no timeout left may still throw the flag at a
-      // reviewable ruling. It names nothing and gets no review; the officiating charges what the level says
-      // (pro: 15 yards, rule 5; college: the request is not acknowledged). Other refused throws (no challenge
-      // left, booth-only plays) are not offered yet.
-      const outOfTimeouts = r.deps.rules.bool('challenge.needs_available_timeout') && r.state.timeoutsLeft[side] === 0;
-      const options = aspects.length > 0 ? aspects : outOfTimeouts && called.rulings.some((x) => x.reviewable) ? [OPT.challengeFlag] : [];
+      // The throw is never blocked (B9.1.1 rule 4a): a coach who may not challenge a reviewable ruling (no timeout
+      // or no challenge left, a booth-only play) may still throw the flag. It names nothing and gets no review; the
+      // officiating charges what the level says (a timeout, or with none left the pro 15 yards of rule 5).
+      const options = aspects.length > 0 ? aspects : called.rulings.some((x) => x.reviewable) ? [OPT.challengeFlag] : [];
       if (options.length === 0) continue;
       const d = r.ask({ type: 'challenge', side, options: [OPT.none, ...options], defaultOptionId: OPT.none });
       if (d.optionId === null || d.optionId === OPT.none) continue;
