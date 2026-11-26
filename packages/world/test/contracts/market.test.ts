@@ -121,6 +121,17 @@ describe('free agents and front offices in the world (C8.3.1, K7.2.2 rule 5, TO-
     }
   });
 
+  it('signs veterans for real lengths: about four in five veteran deals are one year (PC-14, F-aging-0023)', () => {
+    const year = st.lastMarket!.seasonYear;
+    const lens = st.active.filter((c) => c.terms.kind === 'player' && c.terms.form !== 'rookie' && c.terms.years[0]!.leagueYear === year)
+      .map((c) => (c.terms.kind === 'player' ? c.terms.years.length : 0));
+    const one = lens.filter((n) => n === 1).length / lens.length;
+    console.log(`veteran deals signed ${year}: ${lens.length}, one year ${(100 * one).toFixed(1)} percent, mean ${(lens.reduce((a, b) => a + b, 0) / lens.length).toFixed(2)} years`);
+    expect(lens.some((n) => n > 1)).toBe(true);
+    expect(one).toBeGreaterThan(0.6);
+    expect(one).toBeLessThan(0.95);
+  });
+
   it('counts at least one suitor for any free agent who signs', () => {
     const fa = priced.w.log.rows().filter((e) => e.type === turnover.PLAYER_SIGNED && e.payload.kind === 'free_agent').at(-1);
     if (!fa) return;

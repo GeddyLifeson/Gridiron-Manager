@@ -4,9 +4,9 @@
 // position keeps its best players by role grade. Counts and supply are fixture choices.
 import type { PlayingBlock } from '@gm/schema';
 import {
-  developYear, defaultYearPlan, retirementChance, WORKED, HIDDEN, adultTestKey, hiddenNum, type DevNumbers, type PositionFamily,
+  developYear, defaultYearPlan, retirementChance, wholePlayerValue, WORKED, HIDDEN, adultTestKey, hiddenNum, type DevNumbers, type PositionFamily,
 } from '../../src/development/index.ts';
-import { MATH, makePlayer, meanOf, rng } from './helpers.ts';
+import { MATH, N, makePlayer, meanOf, rng } from './helpers.ts';
 
 const TEAMS = 32;
 export const SLOTS: Record<PositionFamily, number> = { QB: 3, RB: 4, WR: 6, TE: 3, OL: 9, DL: 6, EDGE: 4, LB: 5, CB: 6, S: 4, K: 1, P: 1, LS: 1 };
@@ -24,12 +24,9 @@ export interface Pro {
   drafted: boolean;
 }
 
-/** Role grade: mean of the worked attributes plus a speed term against the player's own adult forty. */
+/** Role grade: the whole-player value the world's looks read (development value.ts). */
 export function roleGrade(p: Pro): number {
-  const a = WORKED[p.family].map((x) => p.playing.attributes[x] ?? 0);
-  const adult = hiddenNum(p.playing, adultTestKey('fortyS'), p.playing.tests.fortyS);
-  const speedTerm = -(p.playing.tests.fortyS / adult - 1) * 100 * 4.5;
-  return meanOf(a) + speedTerm;
+  return wholePlayerValue(N, p.playing, p.family);
 }
 
 /** World-contract position groups (PositionGroup): the Q1.6.4 series are kept per group. */

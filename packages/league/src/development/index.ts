@@ -14,6 +14,7 @@ export { teachingMultiplier, vacancyMultiplier, userTeachingTerm, traitMultiplie
 export { ageFactor, classRate, stepAttribute, stepForm, resetForm, meanOneLogNormal, drawSurroundings, developSpan, effectiveCeiling, FACET, type AttributeStep, type SpanInputs } from './gain.ts';
 export { ACTIVITIES, WINDOWS, repWeight, creditReps, defaultWeeklyReps, type Activity, type ActivityLine, type Window, type Role } from './reps.ts';
 export { measuredExitRate, retireShare, retirementChance, midSeasonRetirementChance, comebackChance, type RetireInput } from './exit.ts';
+export { speedTerm, workedMean, wholePlayerValue } from './value.ts';
 export { agingOutlook, type OutlookInput, type OutlookLabel } from './outlook.ts';
 export { rollover, agingMonth, defaultYearPlan, developYear, type PersonForDevelopment, type WindowPlan } from './season.ts';
 export { deltaByAge, mean, sd, slope, driftTest, type SeasonRow, type DeltaCell, type DriftResult } from './calibration.ts';

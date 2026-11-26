@@ -30,6 +30,13 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
   end of the position (turnover `ageCurve`), from 1 up to the market ceiling (`league.market.maxContractYears`,
   an Assumption in the market module). A founding contract is part way through its term: its remaining years are drawn from 1 to that
   length on stream `world.contracts.founding`, so the founding contracts do not all end in one year.
+- **PC-14** (supersedes PC-03's years) Veteran contract years come from the real league: `sourcedYears` reads
+  `length-scale.json` (OverTheCap veteran signings 2011-2025, built by `facts/aging-build/build.py`, fact rows
+  F-aging-0023..0029, status 1 of 3). The cell is the pay tier (the public percentile, read as the percentile of
+  cap share at the position) by age band; the player's place within his tier picks the quantile of that cell's
+  years, so the better-paid in a tier sign longer. The market ceiling still applies. Real flow: 78.9 percent of
+  veteran signings are one year, mean 1.40 years. (PR 286's 57 percent was over active contracts only, which keeps
+  long deals and drops expired one-year deals.)
 - **PC-04** Floor periods and their percents are the league-rules keys `cap.min_cash_period_<from>_<to>_pct`:
   2017 to 2020 at 89, then 2021 to 2023, 2024 to 2026 and 2027 to 2030 at 90 (CBA Art. 12 s.9(a), (b);
   keys from PR 282). Each named period is checked at its own percent. Outside them, periods are
@@ -43,9 +50,21 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
   rule 3, 2 of 3). The fifth-year option year and the undrafted bonus pool split are not modelled yet.
   Founding players sign as veterans whatever their service, because the world holds no draft record for them.
 - **PC-06** A contract ends when it runs out, when the club no longer rosters the player, or when he leaves
-  football. A release before the last year pays the guaranteed salary still owed, all at once, as player pay.
-  This is a simplification: the CBA pays on schedule, and offset is not modelled. Retirement ends the contract
-  outright, where the CBA would toll it on the reserve/retired list.
+  football. A release before the last year keeps the guaranteed salary still owed on the old club, and cash and
+  cap treat it differently (status: Rulebook only, CBA primary text; an OverTheCap or Spotrac cross-check is owed,
+  the cloud cannot reach either):
+  - Cash follows the contract's own years. Salary is a yearly amount paid in weekly or bi-weekly installments
+    over the regular season (CBA Art. 26 s.5(a)(i); Standard Player Contract para. 5), and a released player
+    "shall continue to receive the guaranteed portion of the contract and that money shall continue to count
+    against the Salary Cap" (Art. 27 s.16). Each later year's guarantee is paid by the old club in that year
+    (`releasedOwed` in state).
+  - The cap charge of all of it falls in the release year (C6.3.2 rule 1, league `cap.releaseCharges`). The
+    June 1 split (Art. 13 s.6(b)(ii)) moves only signing bonus proration to the next league year; the world's
+    contracts carry no signing bonus, and the world releases at the league year's opening (before June 1), so
+    nothing defers. `teamSalary` in state records each club's Team Salary (kept salaries plus dead money) by
+    year, and the cutdown keeps that under the cap (TO-07).
+  Offset is not modelled. Retirement ends the contract outright, where the CBA would toll it on the
+  reserve/retired list.
 - **PC-07** A league year's salaries are charged once, at the first pass of the year, after the roster cycle,
   as one `player_pay` entry per club (the same timing as staff pay, MO-07). The world's contracts carry no
   bonuses, so cash equals the cap charge.
@@ -100,7 +119,7 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 | World position to OverTheCap position mapping (PC-11) | `build.py` | Assumption |
 | Suitors: need at the median, room for the scale price (PC-12) | this module | Assumption (C8.3.1 rule 2 names need and room, not the tests) |
 | Club spends its owner budget, prices move in proportion (PC-13) | this module | Assumption |
-| Years to the D8 prime end, market ceiling 5 (PC-03) | C8.3.1 rule 3, market params | Bible rule; ceiling Assumption |
+| Veteran years by pay tier and age from OverTheCap signings, market ceiling 5 (PC-14) | length-scale.json, F-aging-0023..0029 | 1 of 3; ceiling Assumption |
 | Four-year periods outside the CBA (PC-04) | C6.2.3 edge case | Assumption (bible) |
 | Equal shortfall shares (PC-08) | this module | Assumption |
 

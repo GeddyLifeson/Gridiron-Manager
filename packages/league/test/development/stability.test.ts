@@ -8,10 +8,11 @@ import { MATH, meanOf } from './helpers.ts';
 
 /**
  * The fixture's first league is artificial (everyone near his ceiling, ages spread evenly), so it
- * runs a 10-season history first, as the real world does before a career starts (X10). The Q1.6.4
- * window is then seasons 5 to 30 of the career: run seasons 15 to 40.
+ * runs a 20-season history first (the world runs one before a career starts, X10; slower aging since the
+ * measured-curve fit needs the longer warm-up to reach its age mix). The Q1.6.4
+ * window is then seasons 5 to 30 of the career: run seasons 25 to 50.
  */
-const HISTORY = 10;
+const HISTORY = 20;
 const FROM = HISTORY + 5;
 const SEASONS = HISTORY + 31;
 /** D8.2.1 acceptance: no position's mean roster age drifts more than 0.5 years over 30 years. */

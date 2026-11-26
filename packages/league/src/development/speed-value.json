@@ -1,0 +1,35 @@
+{
+ "basis": "bible",
+ "leaf": "D8.2.1",
+ "note": "Speed term of the whole-player value (value.ts): fortySdPercent is the combine forty standard deviation as percent of the mean by family (facts/aging.json, F-aging-0001..0011; K and LS read P); weight is the share of a standard deviation of forty that counts as one ISS standard deviation (1 for every non-specialist, 0.25 for kickers, punters and snappers for coverage duty: Assumption).",
+ "fortySdPercent": {
+  "QB": 3.688,
+  "RB": 2.479,
+  "WR": 2.269,
+  "TE": 3.009,
+  "OL": 3.451,
+  "DL": 3.414,
+  "EDGE": 2.764,
+  "LB": 2.779,
+  "CB": 2.068,
+  "S": 2.203,
+  "K": 3.276,
+  "P": 3.276,
+  "LS": 3.276
+ },
+ "weight": {
+  "QB": 1,
+  "RB": 1,
+  "WR": 1,
+  "TE": 1,
+  "OL": 1,
+  "DL": 1,
+  "EDGE": 1,
+  "LB": 1,
+  "CB": 1,
+  "S": 1,
+  "K": 0.25,
+  "P": 0.25,
+  "LS": 0.25
+ }
+}

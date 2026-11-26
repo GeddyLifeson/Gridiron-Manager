@@ -1,4 +1,5 @@
 // What the turnover steps need from the composition root, and the shared readers over the live world.
+import { development } from '@gm/league';
 import { scouting } from '@gm/people';
 import { stream } from '@gm/engine-core';
 import type { PersonRecord, PlayingBlock } from '@gm/schema';
@@ -6,6 +7,8 @@ import type { LevelSpec, WorldContent } from '../generation/content.ts';
 import { scaleMix } from '../generation/founding.ts';
 import type { LiveWorld, StepContext } from '../loop/types.ts';
 import { param } from './params.ts';
+
+const DEV = development.devNumbers();
 
 export type Level = keyof WorldContent['levels'];
 /** A league rule value by key (rules-data: the league rules file, then the rule set). Undefined when the league has none. */
@@ -138,11 +141,16 @@ const mean = (xs: readonly number[]): number => (xs.length === 0 ? 0 : xs.reduce
 
 /** The whole-player value the evaluator looks at: the mean of the true attributes, read only inside `observe`. */
 function lookValue(p: PersonRecord, memo?: WeakMap<object, number>): number {
-  const attrs = p.playing?.attributes;
-  if (!attrs || !memo) return mean(Object.values(attrs ?? {}));
-  // Within one grade context no attribute map changes in place, so the mean is kept per map.
-  let v = memo.get(attrs);
-  if (v === undefined) { v = mean(Object.values(attrs)); memo.set(attrs, v); }
+  const playing = p.playing;
+  if (!playing) return 0;
+  // The whole-player value (development value.ts): worked attributes plus the speed term, so a player who
+  // loses a step is seen to (D8.2.1). Within one grade context no playing block changes in place.
+  if (memo) {
+    const v = memo.get(playing);
+    if (v !== undefined) return v;
+  }
+  const v = development.wholePlayerValue(DEV, playing, development.familyOf(playing.position));
+  memo?.set(playing, v);
   return v;
 }
 

@@ -1549,6 +1549,54 @@
    "leaf": "D7.7.1",
    "constrainedBy": "Default yearly window lengths for headless runs; C4 and T3.2 own the real calendar",
    "status": "starting"
+  },
+  {
+   "name": "league.development.value.issPerSd",
+   "value": 10,
+   "min": 10,
+   "max": 10,
+   "unit": "iss",
+   "belongsTo": "league.development",
+   "basis": "bible",
+   "leaf": "D2",
+   "constrainedBy": "ISS: 10 points = one standard deviation among pro starters (D2, D3, D4, D6, D13 scale lines)",
+   "status": "starting"
+  },
+  {
+   "name": "league.development.value.primeBandIss",
+   "value": 2,
+   "min": 0,
+   "max": 10,
+   "unit": "iss",
+   "belongsTo": "league.development",
+   "basis": "assumption",
+   "leaf": "D8.2.1",
+   "constrainedBy": "Prime ends at the last age whose expected whole-player value is within this many ISS (0.2 sd) of the peak; read by fit-aging.ts for curves.primeEnd",
+   "status": "starting"
+  },
+  {
+   "name": "league.development.value.productionSpanIss",
+   "value": 15,
+   "min": 1,
+   "max": 50,
+   "unit": "iss",
+   "belongsTo": "league.development",
+   "basis": "assumption",
+   "leaf": "D8.2.1",
+   "constrainedBy": "Fit mapping (fit-aging.ts): production is read as proportional to whole-player value above a floor this many ISS below the peak (1.5 sd: a peak starter versus a fringe roster player)",
+   "status": "starting"
+  },
+  {
+   "name": "league.development.value.survivorLateFactor",
+   "value": 2,
+   "min": 1,
+   "max": 4,
+   "unit": "iss",
+   "belongsTo": "league.development",
+   "basis": "assumption",
+   "leaf": "D8.2.1",
+   "constrainedBy": "Fit (fit-aging.ts): the measured 31-33 band is multiplied by this before fitting, because both seasons of a pair must qualify and the players who fell off are missing, so late declines are understated (research section 1; D8.2.1 football facts). The size of the bias is not measured: Assumption, chosen so the closed-league roster ages hold (Q1.6.4 fixture)",
+   "status": "starting"
   }
  ]
 }

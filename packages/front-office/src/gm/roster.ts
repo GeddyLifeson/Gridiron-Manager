@@ -95,9 +95,32 @@ export interface CutdownInput {
   /** Cap charge by year the club keeps if it cuts him (C6.3.2). */
   readonly deadCentsByYear: ReadonlyMap<PersonId, readonly number[]>;
   readonly rounds: number;
+  /** The cap this league year, when the club must fit under it (C6.2.1, K7.4.5 rule 3). Without it the cutdown ignores the cap. */
+  readonly cap?: CutdownCap;
 }
 
-export interface Cutdown { readonly keep: readonly PersonId[]; readonly cut: readonly PersonId[]; readonly shortAt: readonly string[] }
+/**
+ * This league year's cap arithmetic of a cutdown (C6.3.2): what each player charges if kept and if cut.
+ * A player with no entry in `keptCents` charges `minimumCents` if kept (he has no contract yet), and nothing
+ * if cut; a cut player charges his `deadNowCents` entry.
+ */
+export interface CutdownCap {
+  readonly capCents: number;
+  /** Charges already on the books that no cutdown choice changes (players released earlier this year). */
+  readonly committedCents: number;
+  readonly keptCents: ReadonlyMap<PersonId, number>;
+  /** This year's charge if cut: the dead money that accelerates into this year. */
+  readonly deadNowCents: ReadonlyMap<PersonId, number>;
+  readonly minimumCents: number;
+}
+
+export interface Cutdown {
+  readonly keep: readonly PersonId[];
+  readonly cut: readonly PersonId[];
+  readonly shortAt: readonly string[];
+  /** This year's cap charge of the choice (kept players plus dead money), when a cap was given. */
+  readonly capChargeCents?: number;
+}
 
 /**
  * K7.4.5 rule 3: rank by surplus over the horizon with the dead-money arithmetic of K7.4.1, hold his own
@@ -117,14 +140,32 @@ export function cutdown(gm: GmProfile, input: CutdownInput, ctx: ValueContext, w
     .sort((a, b) => a.blended - b.blended || a.own - b.own);
   const keep = new Set<PersonId>();
   const shortAt: string[] = [];
+  const c = input.cap;
+  // C6.3.2 with K7.4.5 rule 3: keeping a player moves this year's charge from his dead money to his salary.
+  const net = (id: PersonId) => (c ? (c.keptCents.get(id) ?? c.minimumCents) - (c.deadNowCents.get(id) ?? 0) : 0);
+  const slots = Math.min(input.limit, input.roster.length);
+  let used = c ? c.committedCents + input.roster.reduce((s, v) => s + (c.deadNowCents.get(v.personId) ?? 0), 0) : 0;
+  // He keeps a player only while the rest of the roster still fits at the cheapest charge a slot can have.
+  const reserve = c ? Math.max(0, Math.min(c.minimumCents, ...input.roster.map((v) => net(v.personId)))) : 0;
+  const fits = (id: PersonId) => !c || used + net(id) + reserve * Math.max(0, slots - keep.size - 1) <= c.capCents;
+  const add = (id: PersonId) => { keep.add(id); used += net(id); };
   for (const position of Object.keys(input.minByPosition).sort()) {
-    const best = ranked.filter((x) => x.v.position === position).slice(0, input.minByPosition[position]!);
-    if (best.length < input.minByPosition[position]!) shortAt.push(position);
-    for (const x of best) if (keep.size < input.limit) keep.add(x.v.personId);
+    const at = ranked.filter((x) => x.v.position === position);
+    const want = input.minByPosition[position]!;
+    if (at.length < want) shortAt.push(position);
+    let n = 0;
+    for (const x of at) if (n < want && keep.size < input.limit && fits(x.v.personId)) { add(x.v.personId); n++; }
+    // The position minimum is legality (C5): with no one left who fits, the cheapest fill it.
+    for (const x of [...at].sort((a, b) => net(a.v.personId) - net(b.v.personId) || a.own - b.own)) {
+      if (n >= want || keep.size >= input.limit) break;
+      if (!keep.has(x.v.personId)) { add(x.v.personId); n++; }
+    }
   }
-  for (const x of ranked) if (keep.size < input.limit) keep.add(x.v.personId);
+  for (const x of ranked) if (keep.size < input.limit && !keep.has(x.v.personId) && fits(x.v.personId)) add(x.v.personId);
+  // The roster is filled to the limit; past what fits, the cheapest charges fill the last places.
+  for (const x of [...ranked].sort((a, b) => net(a.v.personId) - net(b.v.personId) || a.own - b.own)) if (keep.size < slots && !keep.has(x.v.personId)) add(x.v.personId);
   const order = ranked.map((x) => x.v.personId);
-  return { keep: order.filter((id) => keep.has(id)), cut: order.filter((id) => !keep.has(id)), shortAt };
+  return { keep: order.filter((id) => keep.has(id)), cut: order.filter((id) => !keep.has(id)), shortAt, ...(c ? { capChargeCents: used } : {}) };
 }
 
 /**

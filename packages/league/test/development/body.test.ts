@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { PlayingBlock } from '@gm/schema';
 import {
   rollover, curvePercent, applyInjuryLoss, HIDDEN, hiddenNum, growthShares, POSITION_FAMILIES, issPerPercent, num, developYear, defaultYearPlan,
-  type PositionFamily,
+  CURVE_GROUP, type PositionFamily,
 } from '../../src/development/index.ts';
 import { MATH, N, makePlayer, meanOf, rng } from './helpers.ts';
 
@@ -77,13 +77,14 @@ describe('D8.2.1 prime and decline by position', () => {
       }
     }
   });
-  it('shape: no decline before 26; running backs fall first and fastest; kickers last (D8.2.1 cross-checks)', () => {
-    for (const f of POSITION_FAMILIES) expect(curvePercent(N, f, 24)).toBe(0);
-    for (const age of [27, 29, 31, 33]) {
-      expect(curvePercent(N, 'RB', age)).toBeLessThan(curvePercent(N, 'WR', age));
-      expect(curvePercent(N, 'QB', age)).toBeGreaterThan(curvePercent(N, 'WR', age));
-      expect(curvePercent(N, 'K', age)).toBeGreaterThanOrEqual(curvePercent(N, 'QB', age));
-    }
+  it('shape (fitted to measured curves, F-aging-0012..0022): backs and receivers leave their prime first, quarterbacks late, kickers last', () => {
+    const pe = (f: (typeof POSITION_FAMILIES)[number]) => N.tables.curves.primeEnd[CURVE_GROUP[f]]!;
+    for (const f of POSITION_FAMILIES) for (let age = 23; age < 40; age++) expect(curvePercent(N, f, age + 1)).toBeLessThanOrEqual(curvePercent(N, f, age));
+    expect(pe('RB')).toBeLessThanOrEqual(pe('TE'));
+    expect(pe('WR')).toBeLessThan(pe('QB'));
+    expect(pe('OL')).toBeGreaterThan(pe('RB'));
+    expect(pe('K')).toBeGreaterThanOrEqual(pe('QB'));
+    expect(curvePercent(N, 'RB', 31)).toBeLessThan(curvePercent(N, 'QB', 31));
   });
   it('a heavy-load season adds 0.1 to next year\'s multiplier', () => {
     const p = makePlayer(rng(13, 'h'), { family: 'RB', ageYears: 29, neutral: true });

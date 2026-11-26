@@ -21,7 +21,7 @@ import { ageIn, levelOfTeam, positionTargets, specOf, type Level, type PolicyCon
 import { POOL, ruleSetOf } from './moves.ts';
 import { ruleSetFor, type ContractsBinding } from '../contracts/binding.ts';
 import { marketPrice, publicPercentiles } from '../contracts/scale.ts';
-import { contractsOf, salaryIn, type PlayerContract } from '../contracts/state.ts';
+import { contractsOf, deadNowCents, lastYear, salaryIn, type PlayerContract } from '../contracts/state.ts';
 import { capFromRules } from '../money/club.ts';
 import { param } from './params.ts';
 
@@ -30,38 +30,20 @@ export const STREAM_DRAW = 'world.frontoffice.draw';
 
 type View = gm.PlayerView;
 
-/** D8.2.1 curve read as K7's linear age curve: prime ends at the last flat band, decline is the mean of the next four years. */
+/**
+ * D8.2.1 curve read as K7's linear age curve. Prime end and decline come from the fitted curve
+ * (development tables `curves.primeEnd` and `curves.declineIssPerYear`, fit-aging.ts): the last age whose
+ * expected whole-player value is within `value.primeBandIss` of the peak, and the mean yearly ISS loss
+ * over the four years after it. The peak age read here is the prime end (K7 projects growth to it).
+ */
 export function ageCurve(): gm.AgeCurve {
-  const n = development.devNumbers();
-  const fam = (position: string) => development.familyOf(position);
-  const primeEnd = (position: string): number => {
-    let a = 18;
-    while (a < 45 && development.curvePercent(n, fam(position), a + 1) >= 0) a++;
-    return a;
-  };
-  const issPerPercent = (position: string): number => {
-    // The whole-player look is the mean over attributes; only body-moved attributes age (D8.2.1, body.ts).
-    const worked = development.WORKED[fam(position)];
-    const moved = worked.filter((a) => (development.BODY_MOVED as readonly string[]).includes(a));
-    return moved.reduce((s, a) => s + development.issPerPercent(n, a), 0) / Math.max(1, worked.length);
-  };
-  const cache = new Map<string, { peak: number; end: number; decline: number }>();
-  const of = (position: string) => {
-    let c = cache.get(position);
-    if (!c) {
-      const end = primeEnd(position);
-      let pct = 0;
-      for (let y = 1; y <= 4; y++) pct += development.curvePercent(n, fam(position), end + y);
-      c = { peak: end, end, decline: Math.max(0, -pct / 4) * issPerPercent(position) };
-      cache.set(position, c);
-    }
-    return c;
-  };
+  const c = development.devNumbers().tables.curves;
+  const group = (position: string) => development.CURVE_GROUP[development.familyOf(position)];
   return {
-    group: (position) => development.CURVE_GROUP[fam(position)],
-    peakAge: (position) => of(position).peak,
-    primeEndAge: (position) => of(position).end,
-    declineIssPerYear: (position) => of(position).decline,
+    group,
+    peakAge: (position) => c.primeEnd[group(position)]!,
+    primeEndAge: (position) => c.primeEnd[group(position)]!,
+    declineIssPerYear: (position) => c.declineIssPerYear[group(position)]!,
   };
 }
 
@@ -388,6 +370,37 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     return out;
   };
 
+  // C6.2.1 and C6.3.2 at the cutdown (K7.4.5 rule 3): the club keeps a roster whose Team Salary fits under
+  // this year's cap. A kept player under contract charges his salary; one without a current contract charges
+  // at least his minimum (PC-13 can price him no lower). A cut player charges his guaranteed salary left, and
+  // so do players already released this year.
+  const capOf = (pc: PolicyContext, teamId: number, roster: readonly number[]): gm.CutdownCap | undefined => {
+    const cb = opts.contracts;
+    if (!cb || contractMap(pc).size === 0) return undefined;
+    const capCents = capFromRules(cb.rule, cb.rulesYear)(pc.world, teamId, pc.season);
+    if (capCents === undefined) return undefined;
+    const rules = ruleSetFor(cb, levelOfTeam(pc.world, teamId));
+    const on = new Set(roster);
+    const keptCents = new Map<number, number>();
+    const deadNow = new Map<number, number>();
+    let lowest = Infinity;
+    for (const id of roster) {
+      const p = pc.world.people.get(id)?.playing;
+      if (!p) continue;
+      const min = cap.minimumSalary(rules, cb.rulesYear, p.eligibility.pro.creditedSeasons);
+      lowest = Math.min(lowest, min);
+      const c = contractMap(pc).get(id);
+      const current = c && c.teamId === teamId && lastYear(c) >= pc.season;
+      keptCents.set(id, current ? salaryIn(c, pc.season) : min);
+      if (current) deadNow.set(id, deadNowCents(c, pc.season));
+    }
+    let committedCents = 0;
+    for (const c of contractsOf(pc.world).active) {
+      if (c.teamId === teamId && !on.has(c.personId) && lastYear(c) >= pc.season && pc.world.status.get(c.personId) === 'active') committedCents += deadNowCents(c, pc.season);
+    }
+    return { capCents, committedCents, keptCents, deadNowCents: deadNow, minimumCents: Number.isFinite(lowest) ? lowest : 0 };
+  };
+
   const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
 
   const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
@@ -473,7 +486,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
       const result = gm.cutdown(t.profile, {
         roster: roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => view(pc, teamId, id)),
         limit, minByPosition, coachRank: new Map(), draftedRound: pc.draftedRound, deadCentsByYear: deadOf(pc, teamId, roster),
-        rounds: pc.b.rule(levelOfTeam(pc.world, teamId), 'league_rules.draft.rounds') ?? 0,
+        rounds: pc.b.rule(levelOfTeam(pc.world, teamId), 'league_rules.draft.rounds') ?? 0, cap: capOf(pc, teamId, roster),
       }, t.ctx);
       return result.keep;
     },
