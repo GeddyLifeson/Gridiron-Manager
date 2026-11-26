@@ -179,11 +179,11 @@
    "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
   },
   {
-   "key": "roster.practice_squad_young_min",
+   "key": "roster.practice_squad_group_b_max",
    "value": 10,
    "unit": "count",
    "factId": "F-league-0029",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
   },
   {
    "key": "roster.practice_squad_veteran_slots",
@@ -440,6 +440,131 @@
    "value": 120,
    "unit": "percent",
    "factId": "F-league-0069"
+  },
+  {
+   "key": "roster.offseason_limit",
+   "value": 90,
+   "unit": "count",
+   "factId": "F-league-0070"
+  },
+  {
+   "key": "roster.inactives_due_minutes_before_kickoff",
+   "value": 90,
+   "unit": "min",
+   "factId": "F-league-0071"
+  },
+  {
+   "key": "roster.emergency_qb_active_qbs",
+   "value": 2,
+   "unit": "count",
+   "factId": "F-league-0072"
+  },
+  {
+   "key": "roster.emergency_qb_from_practice_squad",
+   "value": false,
+   "factId": "F-league-0073"
+  },
+  {
+   "key": "roster.practice_squad_group_a_max_accrued",
+   "value": 1,
+   "unit": "seasons",
+   "factId": "F-league-0074"
+  },
+  {
+   "key": "roster.practice_squad_group_a_active_games_below",
+   "value": 9,
+   "unit": "games",
+   "factId": "F-league-0075"
+  },
+  {
+   "key": "roster.practice_squad_group_b_max_accrued",
+   "value": 2,
+   "unit": "seasons",
+   "factId": "F-league-0076"
+  },
+  {
+   "key": "roster.practice_squad_next_opponent_days",
+   "value": 6,
+   "unit": "days",
+   "factId": "F-league-0077"
+  },
+  {
+   "key": "roster.practice_squad_protections_per_week",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0078",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "waivers.vested_measure",
+   "value": "pension_credited",
+   "factId": "F-league-0079"
+  },
+  {
+   "key": "numbering.eligible_low_max",
+   "value": 49,
+   "unit": "index",
+   "factId": "F-league-0080"
+  },
+  {
+   "key": "numbering.eligible_high_min",
+   "value": 80,
+   "unit": "index",
+   "factId": "F-league-0081"
+  },
+  {
+   "key": "numbering.eligible_high_max",
+   "value": 89,
+   "unit": "index",
+   "factId": "F-league-0082"
+  },
+  {
+   "key": "formation.t_quarterback_depth_yd",
+   "value": 1,
+   "unit": "yd",
+   "factId": "F-league-0083"
+  },
+  {
+   "key": "formation.neither_behind_snapper_max",
+   "value": 1,
+   "unit": "count",
+   "factId": "F-league-0084"
+  },
+  {
+   "key": "work.camp_padded_practices_max",
+   "value": 16,
+   "unit": "count",
+   "factId": "F-league-0085"
+  },
+  {
+   "key": "work.camp_padded_streak_days",
+   "value": 3,
+   "unit": "days",
+   "factId": "F-league-0086"
+  },
+  {
+   "key": "work.season_padded_practices_max",
+   "value": 14,
+   "unit": "count",
+   "factId": "F-league-0087"
+  },
+  {
+   "key": "work.season_padded_first_weeks",
+   "value": 11,
+   "unit": "count",
+   "factId": "F-league-0088"
+  },
+  {
+   "key": "work.camp_days_off_min",
+   "value": 6,
+   "unit": "days",
+   "factId": "F-league-0089"
+  },
+  {
+   "key": "work.season_day_off_per_week",
+   "value": 1,
+   "unit": "days",
+   "factId": "F-league-0090"
   },
   {
    "key": "cap.min_cash_spend_pct",
@@ -832,6 +957,12 @@
    "value": 250000,
    "unit": "USD",
    "factId": "F-cap-0064"
+  },
+  {
+   "key": "rookie.first_pick_signing_bonus_2026",
+   "value": 38100000,
+   "unit": "USD",
+   "factId": "F-cap-0065"
   }
  ]
 }

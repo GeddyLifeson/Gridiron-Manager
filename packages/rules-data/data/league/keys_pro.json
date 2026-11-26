@@ -281,9 +281,9 @@
    "unit": "count"
   },
   {
-   "key": "roster.practice_squad_young_min",
+   "key": "roster.practice_squad_group_b_max",
    "type": "number",
-   "meaning": "Places that must go to players with at most two accrued seasons",
+   "meaning": "Cap on group B practice squad players (at most two accrued seasons)",
    "ownerLeaf": "C5.3.1",
    "readBy": [
     "league (G-10 data)"
@@ -689,6 +689,218 @@
     "league (G-10 data)"
    ],
    "unit": "percent"
+  },
+  {
+   "key": "roster.offseason_limit",
+   "type": "number",
+   "meaning": "Offseason and camp roster limit",
+   "ownerLeaf": "C5.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.inactives_due_minutes_before_kickoff",
+   "type": "number",
+   "meaning": "Inactive list locks this long before kickoff",
+   "ownerLeaf": "C5.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "min"
+  },
+  {
+   "key": "roster.emergency_qb_active_qbs",
+   "type": "number",
+   "meaning": "Quarterbacks the club must have active to name an emergency third quarterback",
+   "ownerLeaf": "C5.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "roster.emergency_qb_from_practice_squad",
+   "type": "boolean",
+   "meaning": "A practice squad quarterback may be elevated as the emergency third quarterback",
+   "ownerLeaf": "C5.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "roster.practice_squad_group_a_max_accrued",
+   "type": "number",
+   "meaning": "Group A: at most this many accrued seasons",
+   "ownerLeaf": "C5.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "roster.practice_squad_group_a_active_games_below",
+   "type": "number",
+   "meaning": "Group A with one accrued season: fewer than this many active games",
+   "ownerLeaf": "C5.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "games"
+  },
+  {
+   "key": "roster.practice_squad_group_b_max_accrued",
+   "type": "number",
+   "meaning": "Group B: at most this many accrued seasons",
+   "ownerLeaf": "C5.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "seasons"
+  },
+  {
+   "key": "roster.practice_squad_next_opponent_days",
+   "type": "number",
+   "meaning": "Days before a game after which a practice squad player may not sign with the next opponent",
+   "ownerLeaf": "C5.3.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "roster.practice_squad_protections_per_week",
+   "type": "number",
+   "meaning": "Practice squad players a club may protect per week",
+   "ownerLeaf": "C5.3.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "waivers.vested_measure",
+   "type": "option",
+   "meaning": "Which seasons count toward vested status for waivers",
+   "ownerLeaf": "C5.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "pension_credited",
+    "accrued"
+   ]
+  },
+  {
+   "key": "numbering.eligible_low_max",
+   "type": "number",
+   "meaning": "Top of the lower band of eligible jersey numbers (band starts at 0)",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_min",
+   "type": "number",
+   "meaning": "Bottom of the upper band of eligible jersey numbers",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "numbering.eligible_high_max",
+   "type": "number",
+   "meaning": "Top of the upper band of eligible jersey numbers",
+   "ownerLeaf": "B2.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "index"
+  },
+  {
+   "key": "formation.t_quarterback_depth_yd",
+   "type": "number",
+   "meaning": "A player this close or closer behind the snapper is the T-formation quarterback",
+   "ownerLeaf": "B4.1.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "formation.neither_behind_snapper_max",
+   "type": "number",
+   "meaning": "Players allowed neither on nor off the line when directly behind the snapper",
+   "ownerLeaf": "B4.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "work.camp_padded_practices_max",
+   "type": "number",
+   "meaning": "Padded practices allowed in camp",
+   "ownerLeaf": "C11.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "work.camp_padded_streak_days",
+   "type": "number",
+   "meaning": "Longest run of consecutive padded-practice days in camp",
+   "ownerLeaf": "C11.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "work.season_padded_practices_max",
+   "type": "number",
+   "meaning": "Padded practices allowed in the regular season",
+   "ownerLeaf": "C11.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "work.season_padded_first_weeks",
+   "type": "number",
+   "meaning": "Season padded practices that must fall in the first eleven weeks",
+   "ownerLeaf": "C11.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "work.camp_days_off_min",
+   "type": "number",
+   "meaning": "Days off in preseason training camp",
+   "ownerLeaf": "C11.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "work.season_day_off_per_week",
+   "type": "number",
+   "meaning": "Days off per calendar week in season",
+   "ownerLeaf": "C11.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
   },
   {
    "key": "cap.min_cash_spend_pct",
@@ -1324,6 +1536,16 @@
    "key": "rookie.escalator_l2_extra_usd",
    "type": "number",
    "meaning": "Escalator level two: extra dollars",
+   "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.first_pick_signing_bonus_2026",
+   "type": "number",
+   "meaning": "Signing bonus of the 2026 first overall pick",
    "ownerLeaf": "C6.4.2",
    "readBy": [
     "league (G-10 data)"

@@ -963,7 +963,7 @@
    "id": "F-league-0029",
    "level": "pro",
    "domain": "league-rule",
-   "statement": "Of the 16 regular practice squad places, 10 must go to rookies or second-year players.",
+   "statement": "Of the 16 regular practice squad places, at most 10 may go to players whose only limit is two accrued seasons (group B).",
    "value": 10,
    "unit": "count",
    "validFor": "2026",
@@ -977,15 +977,25 @@
      "primary": false,
      "quote": "Of the other 16, 10 must be rookies or second-year players, while there are no restrictions on the other six.",
      "value": 10
+    },
+    {
+     "citation": "National Football Post, NFL practice squad rules (2026-10-23), quoted verbatim in research/g15-practice-squad-eligibility.md (not re-read in this pass)",
+     "locator": "as quoted verbatim in research/g15-practice-squad-eligibility.md",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "Up to 10 players may have no more than two accrued seasons.",
+     "value": 10
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Replaces the earlier young_min key: the CBA (Article 33 Section 4) sets separate caps per category, so ten is a ceiling on group B, not a reserved allocation (research/g15-practice-squad-eligibility.md).",
+   "status": "2 of 3",
    "statusHistory": [
     {
      "date": "2026-11-26",
-     "status": "1 of 3",
+     "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
     }
    ]
@@ -2341,6 +2351,1064 @@
    ],
    "usedBy": [],
    "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0070",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Offseason, training camp and preseason roster limit: 90 players.",
+   "value": 90,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 27 Section 7(a) (Four-Year Qualifying Player) (text copy cba_2020.txt, line 8847)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "on that Club’s 90-player roster",
+     "value": 90
+    },
+    {
+     "citation": "Bleacher Report, NFL Reportedly Changes Roster Cutdown Deadline Ahead of 2026 Season (2026-05-28, https://bleacherreport.com/articles/25431904-nfl-reportedly-changes-roster-cutdown-deadline-ahead-2026-season-new-date-revealed)",
+     "locator": "cutdown article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "Teams are allowed to have a maximum of 90 players on their roster during training camp and the preseason.",
+     "value": 90
+    },
+    {
+     "citation": "NBC Sports Bay Area, When is NFL roster cutdown day? 2026 (2026-08-26, https://www.nbcsportsbayarea.com/nfl/nfl-roster-cutdown-day-deadline-date-practice-squad-rules-2026/1958772/)",
+     "locator": "cutdown article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports",
+     "primary": false,
+     "quote": "Teams are allowed to carry 90 players in the offseason",
+     "value": 90
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The CBA text names the 90-player roster but states the limit only in passing (it is the Club Roster Limit of the NFL Constitution).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0071",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The game-day Active/Inactive list must be submitted by the 90-minute meeting (about 90 minutes before kickoff).",
+   "value": 90,
+   "unit": "min",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL emergency third-quarterback rule: Questions and answers (https://www.nfl.com/news/nfl-emergency-third-quarterback-rule-questions-and-answers)",
+     "locator": "emergency QB Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The player must be listed on the Gameday Administration Report that is submitted prior to or at the 90-minute meeting.",
+     "value": 90
+    },
+    {
+     "citation": "CBS Sports, Emergency third quarterback rule explained (2023-09-05, https://www.cbssports.com/nfl/news/emergency-third-quarterback-rule-explained-things-to-know-about-nfls-new-bylaw-for-roster-management-in-2023)",
+     "locator": "emergency QB explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "quote": "that is turned in before or at the 90-minute meeting.",
+     "value": 90
+    },
+    {
+     "citation": "Sports Illustrated, What Are the NFL Practice Squad Rules? (Ryan Phillips, modified 2025-08-19, https://www.si.com/nfl/what-are-the-nfl-practice-squad-rules)",
+     "locator": "practice squad page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "seven must be declared inactive approximately 90 minutes before kickoff.",
+     "value": 90
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league page says \"the 90-minute meeting\"; only the SI line says \"before kickoff\" in so many words.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0072",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "To name an emergency third quarterback a club must have two bona fide quarterbacks on its game-day active list.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL emergency third-quarterback rule: Questions and answers (https://www.nfl.com/news/nfl-emergency-third-quarterback-rule-questions-and-answers)",
+     "locator": "emergency QB Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "A club must have two bona fide quarterbacks on its 47/48-player gameday active list",
+     "value": 2
+    },
+    {
+     "citation": "CBS Sports, Emergency third quarterback rule explained (2023-09-05, https://www.cbssports.com/nfl/news/emergency-third-quarterback-rule-explained-things-to-know-about-nfls-new-bylaw-for-roster-management-in-2023)",
+     "locator": "emergency QB explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "quote": "A club must have two bona fide quarterbacks on its 47/48-player gameday active list to have an emergency third quarterback.",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0073",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The emergency third quarterback must be on the 53-player roster; he cannot be an elevated practice squad player.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL emergency third-quarterback rule: Questions and answers (https://www.nfl.com/news/nfl-emergency-third-quarterback-rule-questions-and-answers)",
+     "locator": "emergency QB Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The Emergency Third Quarterback must be on the club's 53-player roster; the player cannot be an elevated Practice Squad player.",
+     "value": false
+    },
+    {
+     "citation": "CBS Sports, Emergency third quarterback rule explained (2023-09-05, https://www.cbssports.com/nfl/news/emergency-third-quarterback-rule-explained-things-to-know-about-nfls-new-bylaw-for-roster-management-in-2023)",
+     "locator": "emergency QB explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "quote": "The emergency third quarterback must be on the team's 53-player roster; the player cannot be an elevated practice squad player.",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). CONFLICT WITH THE BIBLE DEFAULT (C5.2.2 rule 1 says true): both pages say the player must be on the 53-player roster and cannot be an elevated practice squad player, so a practice squad quarterback is not eligible. Bible fix owed to the integrator.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0074",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Practice squad group A: players with at most one accrued season.",
+   "value": 1,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 33 Section 4 (i)-(ii) (text copy cba_2020.txt, line 9514)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "fewer than nine regular season games during their only Accrued Season(s)",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). Category (i) has no accrued season; category (ii) has one (\"their only Accrued Season\").",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0075",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Group A with one accrued season: fewer than nine regular-season games on a game-day active list in it.",
+   "value": 9,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 33 Section 4 (ii) (text copy cba_2020.txt, line 9514)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "fewer than nine regular season games during their only Accrued Season(s)",
+     "value": 9
+    },
+    {
+     "citation": "ESPN NFL Nation, A review of practice squad rules (2010-09-04, https://www.espn.com/blog/nflnation/post/_/id/27027/a-review-of-practice-squad-rules)",
+     "locator": "practice squad review",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "Free agents who were on an active roster for fewer than nine regular-season games during their accrued seasons.",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). ESPN page is from 2010 and is historical wording of the same test.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0076",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Practice squad group B: players with no more than two accrued seasons.",
+   "value": 2,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 33 Section 4 (iii) (text copy cba_2020.txt, line 9516)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "who have earned no more than two Accrued Seasons",
+     "value": 2
+    },
+    {
+     "citation": "National Football Post, NFL practice squad rules (2026-10-23), quoted verbatim in research/g15-practice-squad-eligibility.md (not re-read in this pass)",
+     "locator": "quoted in research/g15-practice-squad-eligibility.md",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfp",
+     "primary": false,
+     "quote": "Up to 10 players may have no more than two accrued seasons.",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0077",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A practice squad player may not sign with his club's next opponent later than 4 p.m. New York time on the sixth day before the game.",
+   "value": 6,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 33 Section 2(b) (text copy cba_2020.txt, line 9470)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "may not sign an NFL Player Contract with his Club’s next opponent later than 4:00pm, New York time, on the sixth day preceding the game",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). Bye weeks make it ten days (same section). Appendix J paragraph 10 repeats the rule (no second source group).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0078",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Practice squad protection: a club may protect four players per week from other clubs signing them.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Steelers Now, Steelers Protect Four Practice Squad Players (2021-09-07, https://steelersnow.com/steelers-protect-four-practice-squad-players)",
+     "locator": "protected-players article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "steelersnow",
+     "primary": false,
+     "quote": "the maximum of four protected players per week",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0079",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Waiver status turns on four credited seasons (pension credit), not accrued seasons.",
+   "value": "pension_credited",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 29 Section 1(a) (text copy cba_2020.txt, line 9117)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a player who has finished the season in which his fourth year of credited service has been earned under the Bert Bell/Pete Rozelle Plan",
+     "value": "pension_credited"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). RESOLVES the earlier Conflict: the CBA waiver article counts \"years of credited service\" under the pension plan. The AP explainer's \"accrued\" wording is a summary.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0080",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Eligible pass receivers and a T-formation quarterback must wear 0-49 or 80-89: the lower band tops out at 49.",
+   "value": 49,
+   "unit": "index",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NFL Rulebook (Football Operations, full text)",
+     "locator": "Rule 5 Section 1 Article 2 (text copy rulebook_2026.txt, line 1299)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+     "value": 49
+    }
+   ],
+   "usedBy": [],
+   "notes": "2026 rulebook read directly; one source group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0081",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Upper band of eligible jersey numbers starts at 80.",
+   "value": 80,
+   "unit": "index",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NFL Rulebook (Football Operations, full text)",
+     "locator": "Rule 5 Section 1 Article 2 (text copy rulebook_2026.txt, line 1299)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+     "value": 80
+    }
+   ],
+   "usedBy": [],
+   "notes": "2026 rulebook read directly; one source group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0082",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Upper band of eligible jersey numbers ends at 89.",
+   "value": 89,
+   "unit": "index",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NFL Rulebook (Football Operations, full text)",
+     "locator": "Rule 5 Section 1 Article 2 (text copy rulebook_2026.txt, line 1299)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+     "value": 89
+    }
+   ],
+   "usedBy": [],
+   "notes": "2026 rulebook read directly; one source group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0083",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A T-formation quarterback is a player aligned one yard or less behind the snapper.",
+   "value": 1,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NFL Rulebook (Football Operations, full text)",
+     "locator": "Rule 2 Section 42 (text copy rulebook_2026.txt, line 924)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "A T-formation quarterback is defined as a player aligned one yard or less behind the snapper.",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "2026 rulebook read directly; one source group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0084",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Only one player may be neither clearly on nor clearly off the line when directly behind the snapper.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NFL Rulebook (Football Operations, full text)",
+     "locator": "Rule 7 Section 5 Article 1(d) (text copy rulebook_2026.txt, line 2087)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Only one player may be in such a position, and he must wear an eligible number",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "2026 rulebook read directly; one source group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0085",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Preseason training camp: no more than sixteen padded practices.",
+   "value": 16,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 23 Section 5 (text copy cba_2020.txt, line 8098)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "no Club may hold more than a total of sixteen",
+     "value": 16
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0086",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp padded practices may not run more than three calendar days in a row.",
+   "value": 3,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 23 Section 5 (text copy cba_2020.txt, line 8092)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Padded practices may not be held on more than three consecutive calendar days",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0087",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Regular season: padded practices limited to fourteen in all.",
+   "value": 14,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 24 Section 1(a) (text copy cba_2020.txt, line 8334)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "padded practices for all players shall be limited to a total of fourteen",
+     "value": 14
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0088",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Eleven of the fourteen regular season padded practices must be in the first eleven weeks.",
+   "value": 11,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 24 Section 1(a) (text copy cba_2020.txt, line 8335)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "eleven of which must be held during the first eleven weeks of the regular season",
+     "value": 11
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0089",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Preseason camp: players get at least six days off.",
+   "value": 6,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 35 Section 1(a) (text copy cba_2020.txt, line 9784)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "all players will be permitted at least six days off",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0090",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Regular season: players get at least one day off each calendar week.",
+   "value": 1,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 35 Section 2 (text copy cba_2020.txt, line 9832)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "all players will be permitted at least one day off each calendar week",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0091",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 trade deadline: Tuesday November 10, 2026, 4:00 p.m. New York time (after Week 9).",
+   "value": "2026-11-10",
+   "unit": "date",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026-27 National Football League important dates (https://www.nfl.com/news/2026-27-national-football-league-important-dates)",
+     "locator": "November 10 entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "All trading ends for 2026 at 4:00 p.m., New York time.",
+     "value": "2026-11-10"
+    },
+    {
+     "citation": "Bleacher Report, NFL Trade Deadline 2026 Date, End Time (2026-11-08, https://bleacherreport.com/articles/25529935-nfl-trade-deadline-2026-date-end-time-hottest-rumors-predictions-and-more)",
+     "locator": "trade deadline article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "The 2026 NFL trade deadline will arrive at 4 p.m. ET on Tuesday, November 10.",
+     "value": "2026-11-10"
+    },
+    {
+     "citation": "PrizePicks Playbook, When Is the NFL Trade Deadline 2026? (2026-11-10, https://www.prizepicks.com/playbook-article/when-is-the-nfl-trade-deadline-2026-date-time-trade-candidates)",
+     "locator": "trade deadline article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "prizepicks",
+     "primary": false,
+     "quote": "The 2026 NFL trade deadline is Tuesday, Nov. 10, at 4 p.m. ET",
+     "value": "2026-11-10"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Anchor id trade_deadline in the pro 2026 calendar file. The league page lists the sentence under the November 10 heading.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0092",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 roster cutdown to 53: Sunday August 30, 2026, 6:00 p.m. New York time.",
+   "value": "2026-08-30",
+   "unit": "date",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026-27 National Football League important dates (https://www.nfl.com/news/2026-27-national-football-league-important-dates)",
+     "locator": "cutdown entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Prior to 6:00 p.m., New York time, clubs must reduce rosters to a maximum of 53 players on the Active/Inactive List.",
+     "value": "2026-08-30"
+    },
+    {
+     "citation": "Seahawks.com, NFL Announces Important Dates For 2026-2027 (2026-07-07, https://www.seahawks.com/news/nfl-announces-important-dates-for-2026-2027)",
+     "locator": "important dates mirror",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "seahawks-mirror",
+     "primary": false,
+     "quote": "the deadline to reduce the roster from 90 to 53 players is 3 p.m. PT on Sunday, August 30",
+     "value": "2026-08-30"
+    },
+    {
+     "citation": "Bleacher Report, NFL Reportedly Changes Roster Cutdown Deadline Ahead of 2026 Season (2026-05-28, https://bleacherreport.com/articles/25431904-nfl-reportedly-changes-roster-cutdown-deadline-ahead-2026-season-new-date-revealed)",
+     "locator": "cutdown article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "this year's date has been bumped earlier by 46 hours to Sunday, Aug. 30 at 6 p.m. ET.",
+     "value": "2026-08-30"
+    },
+    {
+     "citation": "NBC Sports Bay Area, When is NFL roster cutdown day? 2026 (2026-08-26, https://www.nbcsportsbayarea.com/nfl/nfl-roster-cutdown-day-deadline-date-practice-squad-rules-2026/1958772/)",
+     "locator": "cutdown article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports",
+     "primary": false,
+     "quote": "By 6 p.m. ET on Sunday, rosters must be in compliance with regular season rules.",
+     "value": "2026-08-30"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Earlier years used 4 p.m. ET on the Tuesday before Labor Day weekend (Bleacher Report); 2026 moved it. The league page text carries the date under its own heading; the headings are not in the quote.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0093",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 NFL Scouting Combine: February 23 to March 2, 2026, Indianapolis.",
+   "value": "2026-02-23",
+   "unit": "date",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 National Football League important dates (https://www.nfl.com/news/2026-national-football-league-important-dates)",
+     "locator": "calendar entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "February 23 - March 2: NFL Scouting Combine, Lucas Oil Stadium, Indianapolis, Indiana.",
+     "value": "2026-02-23"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Close date 2026-03-02. One source group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0094",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 East-West Shrine Bowl: January 27, 2026 (Frisco, Texas).",
+   "value": "2026-01-27",
+   "unit": "date",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 National Football League important dates (https://www.nfl.com/news/2026-national-football-league-important-dates)",
+     "locator": "calendar entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "January 27: East-West Shrine Bowl, Ford Center at The Star, Frisco, Texas.",
+     "value": "2026-01-27"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One source group; no Senior Bowl cross-check read.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0095",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 Senior Bowl: January 31, 2026 (Mobile, Alabama).",
+   "value": "2026-01-31",
+   "unit": "date",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 National Football League important dates (https://www.nfl.com/news/2026-national-football-league-important-dates)",
+     "locator": "calendar entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "January 31: Senior Bowl, Hancock Whitney Stadium, Mobile, Alabama.",
+     "value": "2026-01-31"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One source group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0096",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 underclassman special-eligibility application deadline: January 14, 2026.",
+   "value": "2026-01-14",
+   "unit": "date",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 National Football League important dates (https://www.nfl.com/news/2026-national-football-league-important-dates)",
+     "locator": "calendar entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "January 14: Deadline for college players who are underclassmen to apply for Special Eligibility.",
+     "value": "2026-01-14"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The page says \"apply for Special Eligibility\", the declaration. One source group. Anchor underclass_declaration_deadline.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0097",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2027 underclassman special-eligibility deadline: January 13, 2027 (tentative); early deadline January 6 (tentative).",
+   "value": "2027-01-13",
+   "unit": "date",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026-27 National Football League important dates (https://www.nfl.com/news/2026-27-national-football-league-important-dates)",
+     "locator": "calendar entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Deadline for college players who are underclassmen to apply for Special Eligibility.",
+     "value": "2027-01-13"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Marked tentative on the league page; January 6 (tentative) is the early deadline. The Seahawks.com copy mirrors the league page and is not an independent group.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0098",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2027 NFL Scouting Combine: March 1 to 8, 2027, Indianapolis.",
+   "value": "2027-03-01",
+   "unit": "date",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026-27 National Football League important dates (https://www.nfl.com/news/2026-27-national-football-league-important-dates)",
+     "locator": "calendar entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "March 1-8 - NFL Scouting Combine presented by Microsoft Copilot at Lucas Oil Stadium (Indianapolis, Indiana)",
+     "value": "2027-03-01"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Mirrored by Seahawks.com (same group effectively).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0099",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2027 NFL Draft: April 29 to May 1, 2027, Washington, D.C.; 2027 league year starts March 11, 2027, 4 p.m. New York time.",
+   "value": "2027-04-29",
+   "unit": "date",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026-27 National Football League important dates (https://www.nfl.com/news/2026-27-national-football-league-important-dates)",
+     "locator": "calendar entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "April 29-May 1 - NFL Draft presented by Bud Light (Washington, D.C.)",
+     "value": "2027-04-29"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). League year start: the same page says the 2027 League Year and free agency signing period begin at 4:00 p.m. on March 11.",
    "status": "Rulebook only",
    "statusHistory": [
     {
