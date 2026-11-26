@@ -11,15 +11,11 @@ const ROWS: readonly Row[] = [
   // X12.1.3 rule 1: no edge above 30 to anyone at tier 1 or 2.
   ['inactive.edgeStrength', 30, 0, 100, 'index', 'bible', 'X12.1.3', 'X12.1.3 rule 1 starting strength'],
   ['inactive.nearTier', 2, 1, 3, 'index', 'bible', 'X12.1.3', 'X12.1.3 rule 1: tier 1 or 2'],
-  // X12.1.3 rule 2: only over 65; the yearly chance must rise with age and stay low before 75.
+  // X12.1.3 rule 2: only over 65; the yearly chance is the real male period life table (data/mortality.json, facts/mortality.json).
   ['death.minAge', 65, 50, 80, 'y', 'bible', 'X12.1.3', 'X12.1.3 rule 2 starting age: only people over this age'],
   // The age table is an Assumption until sourced (X12.1.3 open question, research owed): a yearly chance
   // that starts at `base` in the first eligible year and grows by `growth` each year, capped below 1.
-  ['death.base', 0.012, 0.0001, 0.1, 'ratio', 'assumption', 'X12.1.3', 'Yearly chance in the first eligible year. No source read: Unverified, research owed'],
-  ['death.growth', 1.09, 1, 1.3, 'ratio', 'assumption', 'X12.1.3', 'Growth of the yearly chance per year of age. No source read: Unverified, research owed'],
-  ['death.cap', 0.6, 0.1, 0.99, 'ratio', 'assumption', 'X12.1.3', 'Highest yearly chance; below 1 so no age is a certain end'],
-  ['death.lowBefore', 75, 66, 90, 'y', 'bible', 'X12.1.3', 'X12.1.3 rule 2: stay low before 75'],
-  ['death.lowCeiling', 0.05, 0.001, 0.2, 'ratio', 'assumption', 'X12.1.3', 'What "low" means before 75, for the table check'],
+  ['death.cap', 0.95, 0.5, 0.99, 'ratio', 'assumption', 'X12.1.3', 'Highest yearly chance; below 1 so no age is a certain end. Above the sourced table (q110 at most 0.74), so it never bites'],
   // Hall of Fame in the world's past (loop/hall.ts; C9.3.1, E5.6.3).
   ['hall.proOpensAfterSeasons', 43, 0, 100, 'seasons', 'assumption', 'C9.3.1', 'Real pro hall first class 1963 (2 of 3) minus league formation 1920 (1 of 3): 43. Flagged until the formation year has two more sources'],
   ['hall.proCharterClassMax', 17, 3, 40, 'count', 'assumption', 'C9.3.1', 'Real charter class of 1963 had 17 members (research/history-run: 2 of 3)'],
