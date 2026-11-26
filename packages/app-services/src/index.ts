@@ -24,3 +24,6 @@ export * as gameManagementCommands from './commands/game-management/index.ts';
 export * as gameCalling from './read-models/game-calling/index.ts';
 export * as gameCallingCommands from './commands/game-calling/index.ts';
 export * as playBench from './play-bench/index.ts';
+export * as editor from './editor/index.ts';
+export * as defenseDesignerView from './read-models/defense-designer/index.ts';
+export * as playDesigner from './play-designer/index.ts';

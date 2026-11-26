@@ -13,3 +13,5 @@ export * as career from './screens/career/index.ts';
 export * as school from './screens/school/index.ts';
 export * as gameManagement from './screens/game-management/index.ts';
 export * as gameCalling from './screens/game-calling/index.ts';
+export * as defenseDesigner from './screens/defense-designer/index.ts';
+export * as playDesigner from './screens/play-designer/index.ts';
