@@ -8,3 +8,5 @@ export * as standings from './standings/index.ts';
 export * as postseason from './postseason/index.ts';
 export * as history from './history/index.ts';
 export * as development from './development/index.ts';
+export * as draft from './draft/index.ts';
+export * as college from './college/index.ts';
