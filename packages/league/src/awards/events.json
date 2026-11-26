@@ -1,5 +1,5 @@
 {
- "$comment": "X2.1.2 event-type rows for C9 honours. Football honours land on everyone (harm class none). minTier: weekly honours from tier 2, season honours and halls at every tier (X13).",
+ "$comment": "X2.1.2 event-type rows for C9 honours. Football honours land on everyone (harm class none). minTier: weekly honours from tier 2, season honours and halls at every tier (X13). The honors family is never compacted (X2.4.1 rule 4).",
  "types": [
   {
    "id": "weekly_honour",
@@ -21,7 +21,7 @@
     "league.news",
     "people.morale"
    ],
-   "compactable": true
+   "compactable": false
   },
   {
    "id": "season_award",
@@ -148,7 +148,7 @@
     "league.news",
     "people.morale"
    ],
-   "compactable": true
+   "compactable": false
   },
   {
    "id": "hall_finalist",
@@ -210,7 +210,7 @@
     "league.news",
     "people.morale"
    ],
-   "compactable": true
+   "compactable": false
   }
  ]
 }
