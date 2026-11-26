@@ -1,124 +1,137 @@
-// The career year driven end to end (PR 279 CareerYear with its desks): a small world from the app's content,
-// a college seat so recruiting runs for the user's own program, a season played week by week with the staff
-// on the console, the user's own practice plan in the first week, recruiting acts queued once a class is open,
-// the staff's eye checked after practices and games, a save round trip mid-season, and the offseason (the
-// world's season point). Each check that fails is a finding in its area: practice, evaluations, recruiting,
-// offseason or save. Slow (a full season on the real game for every world game), so it runs once per career.
+// Season to season on one live world (C4, X12.1, P5; playtest finding offseason.no_real_world). A world is
+// built from the app's own content and the seat's season is played through the career year: the season
+// session plays the seat's competition, the world plays everything else, the played games become the world's
+// results, the offseason runs the world's season point (draft, free agency, development, aging, cohorts,
+// leaving, the Hall of Fame) and the next season starts. Each season the career year is written into the
+// .gmsave, the save is closed and reopened, and the restored world must hash the same. Once, mid-season, the
+// restored copy and the original both play a week and must still agree.
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { play, newgame } from '@gm/app-services';
-import { practice as pr, recruiting as lrec } from '@gm/league';
-import { generation, loop, recruiting as wrec, season as seasons, turnover } from '@gm/world';
+import { newgame, play, WorldService } from '@gm/app-services';
+import { generation, loop, season as seasons, turnover } from '@gm/world';
 import { OWNERS } from '../owners.ts';
 import type { Recorder } from '../recorder.ts';
+import type { SaveSession } from './save.ts';
 
-const ROOT = resolve(fileURLToPath(import.meta.url), '../../../../../..');
+const ROOT = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../../../..');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const read = (...p: string[]): any => JSON.parse(readFileSync(join(ROOT, ...p), 'utf8'));
+const readJson = (...p: string[]): any => JSON.parse(readFileSync(join(ROOT, ...p), 'utf8'));
 
-function leagueContent(): seasons.LeagueContent {
-  return {
-    proLeague: read('packages', 'football-content', 'data', 'world', 'pro-league.json'),
-    college: read('packages', 'football-content', 'data', 'world', 'college.json'),
-    proLeagueRules: read('packages', 'rules-data', 'data', 'league', 'proleague_2026.json'),
-    collegeLeagueRules: read('packages', 'rules-data', 'data', 'league', 'collegeleague_2026.json'),
+let contentCache: seasons.LeagueContent | null = null;
+/** The four season files the host loads (season session README). */
+export function leagueContent(): seasons.LeagueContent {
+  contentCache ??= {
+    proLeague: readJson('packages', 'football-content', 'data', 'world', 'pro-league.json'),
+    college: readJson('packages', 'football-content', 'data', 'world', 'college.json'),
+    proLeagueRules: readJson('packages', 'rules-data', 'data', 'league', 'proleague_2026.json'),
+    collegeLeagueRules: readJson('packages', 'rules-data', 'data', 'league', 'collegeleague_2026.json'),
   };
+  return contentCache;
 }
 
-export interface CareerYearOptions {
-  /** The world's own games: the real game (default) or a stand-in for quick runs. */
-  readonly games?: loop.GamePort;
-  readonly level?: 'pro' | 'college';
-}
+export interface CareerYearRun { readonly year: play.CareerYear; readonly level: 'pro' | 'college' }
 
-/** A user practice: the staff week plus a live one-on-one period he leads himself, in full pads. */
-function userPlan(day: number): play.PracticePlan {
-  const me: pr.PeriodLeader = { staffId: 'user', role: 'head_coach', user: true };
-  const periods = [...play.STAFF_WEEK.periods, pr.newPeriod(play.STAFF_WEEK.periods.length + 1, 'one_on_one_wr_db', me, { minutes: 10, tempo: 'live', groups: ['WR', 'CB'] })];
-  return { practice: { id: `user-${day}`, blockId: `user-${day}`, blockMinutes: 150, day, pads: 'full', periods, environment: pr.NO_ENVIRONMENT, headCoachPresent: true }, scripts: {} };
-}
-
-export function careerYearStage(rec: Recorder, seedHex: string, o: CareerYearOptions = {}): string {
-  const level = o.level ?? 'college';
+/** A small world from the app's content on the career seed, the seat on a team of the given level. */
+export function startCareerYear(seedHex: string, level: 'pro' | 'college'): CareerYearRun {
   const app = newgame.appWorldContent();
   const setup = generation.createSetup({
     seedHex, size: 'small', historySeasons: 1, packs: [], careerCurveDial: null, rulebookEra: 'era:2026', eraProgression: false, firstSeasonYear: 2026,
   });
   const world = loop.createWorld({ setup, content: app.content, names: app.names, eventTypes: turnover.TURNOVER_EVENT_TYPES });
-  const seat = world.teams.find((t) => turnover.levelOfTeam(world, t.id) === level)?.id;
-  if (seat === undefined) { rec.add('invalid', 'offseason', 'career_year.no_seat', `The small world has no ${level} team.`, OWNERS.worldLoop); return 'no seat'; }
-  const content = leagueContent();
-  const games = o.games;
-  let y = play.CareerYear.start({ world, content, seatTeamId: seat, ...(games ? { games } : {}) });
+  const seat = world.teams.find((t) => turnover.levelOfTeam(world, t.id) === level);
+  if (!seat) throw new Error(`no ${level} team in the world`);
+  return { year: play.CareerYear.start({ world, content: leagueContent(), seatTeamId: seat.id }), level };
+}
 
-  // Practice: the user's plan is checked and kept, then run on the seat roster at the week's advance.
-  const checks = y.practice.plan([userPlan(wrec.dayOfWorld(world.date))]);
-  if (!checks[0]?.ok) rec.add('invalid', 'practice', 'practice.plan_refused', `The user practice plan was refused: ${[...(checks[0]?.problems ?? []).map((p) => p.message), ...(checks[0]?.findings ?? []).map((f) => f.plain)].join('; ')}`, OWNERS.practice);
-  y.delegateWeek();
-  const first = y.lastWeek.practices[0];
-  if (!first) rec.add('invalid', 'practice', 'practice.not_run', 'The week advanced with no practice run.', OWNERS.practice);
-  else {
-    if (first.by !== 'user') rec.add('invalid', 'practice', 'practice.user_plan_ignored', 'The week ran the staff practice although the user had planned one.', OWNERS.practice);
-    if (first.report.repsCompleted === 0) rec.add('invalid', 'practice', 'practice.no_reps', 'The practice report shows no completed reps.', OWNERS.practice);
-    const roster = new Set((world.rosters.get(seat) ?? []).map(String));
-    if (Object.keys(first.reps).some((id) => !roster.has(id))) rec.add('invalid', 'practice', 'practice.reps_off_roster', 'Practice reps went to players not on the seat roster.', OWNERS.practice);
+/** No player is on two rosters, and every active team has one. */
+function rosterProblems(w: loop.LiveWorld): string[] {
+  const seen = new Map<number, number>();
+  const out: string[] = [];
+  for (const [team, ids] of w.rosters) {
+    for (const id of ids) {
+      const prev = seen.get(id);
+      if (prev !== undefined && prev !== team) out.push(`person ${id} is on teams ${prev} and ${team}`);
+      seen.set(id, team);
+    }
   }
-  if (y.scouting.playersSeen === 0) rec.add('invalid', 'evaluations', 'scouting.no_observations', 'Practice gave the staff no observations of its players.', OWNERS.evaluations);
+  return out.slice(0, 5);
+}
 
-  // Recruiting (college): queue a look, an offer and a call once a class is open, and see them taken.
-  let target: number | null = null;
-  let weeks = 1, gamesSeen = 0, staffWeeks = 0, saved = false;
-  const half = Math.floor(y.schedule.weeksInSeason(world) / 2);
-  for (;;) {
-    if (level === 'college' && target === null) {
-      const r = wrec.recruitingOf(y.world);
-      const open = Object.values(r.state.prospects).find((p) => r.classes.includes(p.classYear) && r.state.status[p.personId]?.status === 'open');
-      if (open) {
-        target = open.personId;
-        y.recruiting.queueAct({ type: 'look', kind: 'full_film', prospectId: target });
-        y.recruiting.queueAct({ type: 'offer', prospectId: target, committable: false });
-        y.recruiting.queueAct({ type: 'act', kind: 'call', prospectId: target });
+async function reopen(rec: Recorder, s: SaveSession, y: play.CareerYear): Promise<{ s: SaveSession; y: play.CareerYear }> {
+  const meta = await s.svc.saveCareerYear(y);
+  await s.svc.close();
+  const svc = await WorldService.load(s.platform, s.name);
+  const back = await svc.loadCareerYear({ content: leagueContent() });
+  const next = { ...s, svc };
+  if (!back) { rec.add('invalid', 'save', 'live_world.missing', 'The reopened save holds no live world.', OWNERS.careerYear); return { s: next, y }; }
+  if (back.view().worldHash !== meta.worldHash) rec.add('invalid', 'save', 'live_world.hash_changed', 'The reopened live world hashes differently from the one written.', OWNERS.careerYear);
+  return { s: next, y: back };
+}
+
+/**
+ * Plays `seasons` seasons and offseasons on one live world, through the save each season. Returns the stage
+ * summary line. `save` is the career's open save; the returned session replaces it.
+ */
+export async function careerYears(rec: Recorder, save: SaveSession, run: CareerYearRun, seasonsToPlay: number): Promise<{ summary: string; save: SaveSession }> {
+  let y = run.year;
+  let s = save;
+  const lines: string[] = [];
+  for (let n = 0; n < seasonsToPlay; n++) {
+    const w0 = y.world;
+    const year = w0.date.seasonYear;
+    if (y.season.options.seasonYear !== year) rec.add('invalid', 'offseason', 'season.year_mismatch', `The season session plays ${y.season.options.seasonYear} while the world is in ${year}.`, OWNERS.careerYear);
+
+    // The first season: a mid-season save, then both copies play a week and must agree (save and restore keep the world).
+    let weeks = 0;
+    if (n === 0) {
+      for (let i = 0; i < 3 && y.delegateWeek(); i++) weeks++;
+      const before = y.view().worldHash;
+      const r = await reopen(rec, s, y);
+      s = r.s;
+      if (r.y !== y) {
+        y.delegateWeek(); r.y.delegateWeek(); weeks++;
+        if (r.y.view().worldHash !== y.view().worldHash) rec.add('invalid', 'save', 'live_world.diverged', 'A restored mid-season world played the next week differently from the original.', OWNERS.careerYear, { savedAt: before });
+        y = r.y;
       }
     }
-    const more = y.delegateWeek();
-    weeks++;
-    gamesSeen += y.lastWeek.gamesSeen;
-    if (y.lastWeek.practices[0]?.by === 'staff') staffWeeks++;
-    if (!saved && weeks >= half) {
-      // Save round trip mid-season: the same world hash and the same desks.
-      const before = y.view().worldHash;
-      const back = play.CareerYear.restore({ content, ...(games ? { games } : {}) }, JSON.parse(JSON.stringify(y.save())) as play.CareerYearSave);
-      if (back.view().worldHash !== before) rec.add('invalid', 'save', 'career_year.save_hash', 'A career year restored from its save has a different world hash.', OWNERS.saves);
-      if (JSON.stringify(back.scouting.save()) !== JSON.stringify(y.scouting.save())) rec.add('invalid', 'save', 'career_year.save_scouting', 'The staff belief store changed through a save.', OWNERS.saves);
-      if (back.practice.history.length !== y.practice.history.length) rec.add('invalid', 'save', 'career_year.save_practice', 'The practice history changed through a save.', OWNERS.saves);
-      y = back;
-      saved = true;
-    }
-    if (!more) break;
-    if (weeks > 80) { rec.add('stuck', 'offseason', 'career_year.season_never_ends', 'The career season ran 80 weeks without ending.', OWNERS.worldLoop); return 'stuck'; }
-  }
-  if (gamesSeen === 0) rec.add('invalid', 'evaluations', 'scouting.no_game_looks', 'The seat played no game the staff saw on film.', OWNERS.evaluations);
-  if (staffWeeks === 0) rec.add('invalid', 'practice', 'practice.no_staff_week', 'No week ran the staff practice when the user left it alone.', OWNERS.practice);
+    while (y.delegateWeek()) weeks++;
+    if (y.season.stage !== 'final') { rec.add('stuck', 'offseason', 'season.not_final', `The ${year} season stopped at stage ${y.season.stage}.`, OWNERS.careerYear); break; }
 
-  let recruitNote = 'pro: no recruiting';
-  if (level === 'college') {
-    const r = wrec.recruitingOf(y.world);
-    if (target === null) rec.add('invalid', 'recruiting', 'recruiting.no_open_class', 'No recruiting class opened during the season.', OWNERS.recruiting);
-    else {
-      const taken = y.recruiting.record.filter((a) => a.outcome === 'taken').length;
-      if (y.recruiting.queued.length > 0) rec.add('invalid', 'recruiting', 'recruiting.acts_never_taken', 'Queued recruiting acts were never taken.', OWNERS.recruiting);
-      if ((lrec.gradeOf(r.state, seat, target).looks.full_film ?? 0) === 0) rec.add('invalid', 'recruiting', 'recruiting.look_lost', 'The user\'s film look left no grade on his board.', OWNERS.recruiting);
-      if (!lrec.activeOffer(r.state, target, seat)) rec.add('invalid', 'recruiting', 'recruiting.offer_lost', 'The user\'s offer is not on the prospect\'s list.', OWNERS.recruiting);
-      recruitNote = `${taken} of ${y.recruiting.record.length} recruiting acts taken`;
-    }
-  }
+    const w = y.world;
+    const seatRows = w.results.filter((r) => r.competitionId === y.seatCompetitionId).length;
+    const played = y.season.state.games.length;
+    if (seatRows !== played) rec.add('invalid', 'offseason', 'results.not_carried', `The world holds ${seatRows} results of the seat's competition; the season session played ${played}.`, OWNERS.careerYear, { year });
+    const mine = y.season.summary().teams.find((t) => t.teamId === y.season.seatTeamId);
 
-  const people0 = y.world.people.size;
-  const year = y.world.date.seasonYear;
-  const sum = y.runOffseason();
-  if (y.world.date.seasonYear !== year + 1) rec.add('invalid', 'offseason', 'career_year.year_not_advanced', 'The offseason did not move the world to the next season.', OWNERS.worldLoop);
-  if (y.world.people.size <= people0) rec.add('invalid', 'offseason', 'career_year.no_new_class', 'The season point brought in no new people.', OWNERS.worldLoop);
-  if (!(seat in sum.records)) rec.add('invalid', 'offseason', 'career_year.seat_record_missing', 'The season summary has no record for the seat team.', OWNERS.worldLoop);
-  return `${level} career year: ${weeks} weeks, ${y.practice.history.length} practices, ${y.scouting.playersSeen} players seen in ${y.scouting.sessionCount} sessions, ${gamesSeen} seat games on film, ${recruitNote}, offseason to ${y.world.date.seasonYear}`;
+    const firstEvent = w.log.nextId;
+    const people0 = w.people.size;
+    const sum = y.runOffseason();
+    const since = (type: string) => w.log.ofType(type).filter((e) => e.id >= firstEvent).length;
+    const drafted = since(turnover.PLAYER_DRAFTED), signed = since(turnover.PLAYER_SIGNED), retired = since(turnover.PLAYER_RETIRED);
+    const newPeople = w.people.size - people0;
+
+    if (sum.seasonYear !== year) rec.add('invalid', 'offseason', 'summary.year', `The season point closed ${sum.seasonYear}, not ${year}.`, OWNERS.worldLoop);
+    const line = sum.records[y.seatTeamId];
+    if (mine && line && (line.wins !== mine.wins || line.losses !== mine.losses || line.ties !== mine.ties)) {
+      rec.add('invalid', 'offseason', 'record.mismatch', `The world records the seat ${line.wins}-${line.losses}-${line.ties}; the season session ${mine.wins}-${mine.losses}-${mine.ties}.`, OWNERS.careerYear, { year });
+    }
+    if (sum.champions[y.seatCompetitionId] === undefined) rec.add('invalid', 'offseason', 'champion.missing', `The seat's competition has no champion for ${year}.`, OWNERS.careerYear, { year });
+    if (drafted === 0) rec.add('invalid', 'offseason', 'draft.none', `No player was drafted after the ${year} season.`, OWNERS.worldLoop, { year });
+    if (signed === 0) rec.add('invalid', 'offseason', 'free_agency.none', `No player signed after the ${year} season.`, OWNERS.worldLoop, { year });
+    if (newPeople <= 0) rec.add('invalid', 'offseason', 'cohort.none', `No new people came into the world after the ${year} season.`, OWNERS.worldLoop, { year });
+    const unbound = loop.unboundSteps(y.systems).map((u) => u.step);
+    for (const step of ['development', 'moves', 'cohorts', 'leaving'] as const) {
+      if (unbound.includes(step)) rec.add('missing', 'offseason', `step.unbound:${step}`, `The career year runs the season point without the ${step} step.`, OWNERS.careerYear);
+    }
+    for (const p of rosterProblems(w)) rec.add('invalid', 'offseason', 'roster.duplicate', p, OWNERS.worldLoop, { year });
+    if (w.date.seasonYear !== year + 1 || y.season.options.seasonYear !== year + 1 || y.season.stage === 'final') {
+      rec.add('stuck', 'offseason', 'next_season.not_started', `After the ${year} offseason the world is in ${w.date.seasonYear} and the season session in ${y.season.options.seasonYear} (${y.season.stage}).`, OWNERS.careerYear);
+    }
+
+    const r = await reopen(rec, s, y);
+    s = r.s; y = r.y;
+    lines.push(`${year}: ${weeks} weeks, ${played} seat-league games, ${mine ? `${mine.wins}-${mine.losses}-${mine.ties}` : 'no record'}, ${drafted} drafted, ${signed} signed, ${retired} retired, +${newPeople} people`);
+  }
+  return { summary: `${run.level} seat, ${lines.length} seasons on one live world: ${lines.join('; ')}`, save: s };
 }
