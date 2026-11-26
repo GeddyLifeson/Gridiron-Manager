@@ -1,0 +1,195 @@
+{
+ "$comment": "Rule-key dictionary (P4.7.1): name, type, unit, meaning, owner leaf, reader. Both level files must define every key (P1.3.3).",
+ "keys": [
+  {
+   "key": "clock.periods",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Periods in regulation",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "clock.period_length_s",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Length of one period",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "clock.halftime_min",
+   "type": "number",
+   "unit": "min",
+   "meaning": "Halftime intermission length",
+   "ownerLeaf": "B13.3.3",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "clock.play_clock_s",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Play clock after a dead ball",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "clock.play_clock_after_stoppage_s",
+   "type": "number",
+   "unit": "s",
+   "meaning": "Play clock after an administrative stoppage (timeout, penalty enforcement)",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "timeout.per_half",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Charged team timeouts per half",
+   "ownerLeaf": "B1",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "series.downs",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Downs in a series",
+   "ownerLeaf": "B3",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "series.yards_to_gain",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Distance from the snap that starts a series to the line to gain",
+   "ownerLeaf": "B3",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "field.hash_from_sideline_ft",
+   "type": "number",
+   "unit": "ft",
+   "meaning": "Distance from each sideline to the inbounds lines (hash marks)",
+   "ownerLeaf": "B13.2.1",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "field.goal_to_goal_yd",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Distance between the goal lines",
+   "ownerLeaf": "B2",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "substitution.max_players",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Players per team on the field",
+   "ownerLeaf": "B2",
+   "readBy": [
+    "officiating (phase 1)"
+   ]
+  },
+  {
+   "key": "score.touchdown",
+   "type": "number",
+   "unit": "points",
+   "meaning": "Points for a touchdown",
+   "ownerLeaf": "B7",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "score.field_goal",
+   "type": "number",
+   "unit": "points",
+   "meaning": "Points for a field goal",
+   "ownerLeaf": "B7",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "score.safety",
+   "type": "number",
+   "unit": "points",
+   "meaning": "Points for a safety",
+   "ownerLeaf": "B7",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "try.kick_points",
+   "type": "number",
+   "unit": "points",
+   "meaning": "Points for a successful try by kick",
+   "ownerLeaf": "B7",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "try.two_point_points",
+   "type": "number",
+   "unit": "points",
+   "meaning": "Points for a successful try by run or pass",
+   "ownerLeaf": "B7",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "try.kick_snap_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Yards from the defense goal line where a try kick is snapped",
+   "ownerLeaf": "B13.6.3",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "try.two_point_snap_yardline",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Yards from the defense goal line where a try by run or pass is snapped",
+   "ownerLeaf": "B13.6.3",
+   "readBy": [
+    "engine-game (phase 0 dummy game)"
+   ]
+  },
+  {
+   "key": "foul.ineligible_downfield.yards",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "How far beyond the line an ineligible receiver may be before a forward pass",
+   "ownerLeaf": "B13.5.3",
+   "readBy": [
+    "officiating (phase 1)"
+   ]
+  }
+ ]
+}

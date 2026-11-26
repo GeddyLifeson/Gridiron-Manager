@@ -1,0 +1,32 @@
+{
+  "engineVersion": "engine-core 0.0.1 / dummy-game 1",
+  "parameterSetVersion": "dummy-0",
+  "contentHash": "e2963ab4426440f7",
+  "results": {
+    "math.dSin": "2db694815cc81fee",
+    "math.dCos": "9c98d23b92a92af4",
+    "math.dExp": "ec9a7d0a89eb4b36",
+    "math.dLog": "eb6d9372923b912b",
+    "math.dAtan2": "4508a94a85c5d6ec",
+    "math.dPow": "e11cd1cae1c6a6a0",
+    "math.dSqrt": "df0df2be9d849bc5",
+    "math.logistic": "ffc27f425db1c678",
+    "stream.u32": "66fb5f70a18fa55b",
+    "stream.uniformNormal": "bdf2e525eb6e9482",
+    "pro_2026.plays": "4402f9487b3098f6",
+    "pro_2026.games": "a809bf01a7e270b2",
+    "pro_2026.season": "538da6ad86c79879",
+    "college_2026.plays": "1643c475114f6b89",
+    "college_2026.games": "a6431889cf5be549",
+    "college_2026.season": "1f1feb60e8cd7330"
+  },
+  "counts": {
+    "pro_2026.plays": 200,
+    "pro_2026.gamePlays": 3744,
+    "pro_2026.seasonPlays": 5222,
+    "college_2026.plays": 200,
+    "college_2026.gamePlays": 3744,
+    "college_2026.seasonPlays": 5224
+  },
+  "digest": "c937f74b50151fce"
+}

@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "problems": [],
+  "factNotes": [
+    "quotes re-found in rule book texts: 39/39",
+    "PROVISIONAL rows (not Verified): 38 of 38",
+    "rule keys in the dictionary: 19"
+  ],
+  "ruleValueStatus": {
+    "pro_2026": {
+      "Rulebook only": 19
+    },
+    "college_2026": {
+      "Rulebook only": 19
+    }
+  }
+}

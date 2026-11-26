@@ -1,0 +1,1267 @@
+{
+ "domain": "rule",
+ "rows": [
+  {
+   "id": "F-rule-0001",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Periods in regulation: 4 count (pro, 2026 rules).",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 1, Article 1 (text copy rulebook_2026.txt, line 932)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "divided into four periods of 15 minutes each",
+     "value": 4
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.periods"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0002",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Periods in regulation: 4 count (college, 2026 rules).",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 1 (text copy ncaa-rulebook-2026.txt, line 2201)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "divided into four periods of 15 minutes each",
+     "value": 4
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.periods"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0003",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Length of one period: 900 s (pro, 2026 rules).",
+   "value": 900,
+   "unit": "s",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 1, Article 1 (text copy rulebook_2026.txt, line 932)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "divided into four periods of 15 minutes each",
+     "value": 900
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.period_length_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources. Unit conversion: 15 minutes = 900 s.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0004",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Length of one period: 900 s (college, 2026 rules).",
+   "value": 900,
+   "unit": "s",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 1 (text copy ncaa-rulebook-2026.txt, line 2201)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "divided into four periods of 15 minutes each",
+     "value": 900
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.period_length_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources. Unit conversion: 15 minutes = 900 s.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0005",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Halftime intermission length: 13 min (pro, 2026 rules).",
+   "value": 13,
+   "unit": "min",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 1, Article 3 (text copy rulebook_2026.txt, line 941)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Between the second and third periods, there shall be an intermission of 13 minutes",
+     "value": 13
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.halftime_min"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0006",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Halftime intermission length: 20 min (college, 2026 rules).",
+   "value": 20,
+   "unit": "min",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 1 (text copy ncaa-rulebook-2026.txt, line 2208)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The intermission between halves of a regular-season game shall be 20 minutes",
+     "value": 20
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.halftime_min"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0007",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Play clock after a dead ball: 40 s (pro, 2026 rules).",
+   "value": 40,
+   "unit": "s",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 6, Article 1 (text copy rulebook_2026.txt, line 1126)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "It is a delay of the game if the ball is not put in play by a snap within 40 seconds after",
+     "value": 40
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.play_clock_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0008",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Play clock after a dead ball: 40 s (college, 2026 rules).",
+   "value": 40,
+   "unit": "s",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 4 (text copy ncaa-rulebook-2026.txt, line 2288)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "When an official signals that the ball is dead, the play clock shall begin a 40-second count",
+     "value": 40
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.play_clock_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0009",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Play clock after an administrative stoppage (timeout, penalty enforcement): 25 s (pro, 2026 rules).",
+   "value": 25,
+   "unit": "s",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 6, Article 3 (text copy rulebook_2026.txt, line 1152)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "For 1-7, above, the play clock shall be reset to 25 seconds",
+     "value": 25
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.play_clock_after_stoppage_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0010",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Play clock after an administrative stoppage (timeout, penalty enforcement): 25 s (college, 2026 rules).",
+   "value": 25,
+   "unit": "s",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 2, Article 4 (text copy ncaa-rulebook-2026.txt, line 2301)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "the referee shall signal (one open palm in an over-the- head pumping motion) that the clock should be set at 25 seconds",
+     "value": 25
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.play_clock_after_stoppage_s"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0011",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Charged team timeouts per half: 3 count (pro, 2026 rules).",
+   "value": 3,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 5, Article 1 (text copy rulebook_2026.txt, line 1034)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "A team is allowed three charged team timeouts during each half",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:timeout.per_half"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0012",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Charged team timeouts per half: 3 count (college, 2026 rules).",
+   "value": 3,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 3, Article 4 (text copy ncaa-rulebook-2026.txt, line 2471)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Each team is entitled to three charged team timeouts during each half",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:timeout.per_half"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0013",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Downs in a series: 4 count (pro, 2026 rules).",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 3, Section 8, Article 2 (text copy rulebook_2026.txt, line 545)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "A series of downs is the four consecutive charged scrimmage downs",
+     "value": 4
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:series.downs"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0014",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Downs in a series: 4 count (college, 2026 rules).",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 5, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 2922)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "A series (Rule 2-24-1) of up to four consecutive scrimmage downs",
+     "value": 4
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:series.downs"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0015",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Distance from the snap that starts a series to the line to gain: 10 yd (pro, 2026 rules).",
+   "value": 10,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 3, Section 8, Article 3 (text copy rulebook_2026.txt, line 547)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The line to gain is the spot 10 yards in advance of the spot of the snap that starts a series",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:series.yards_to_gain"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0016",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Distance from the snap that starts a series to the line to gain: 10 yd (college, 2026 rules).",
+   "value": 10,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 5, Section 1, Article 2 (text copy ncaa-rulebook-2026.txt, line 2945)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The line to gain for a series shall be established 10 yards in advance of the",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:series.yards_to_gain"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0017",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Distance from each sideline to the inbounds lines (hash marks): 70.75 ft (pro, 2026 rules).",
+   "value": 70.75,
+   "unit": "ft",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 2, Article 2 (text copy rulebook_2026.txt, line 377)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The inbounds lines are hash marks on the field of play that are 70 feet, 9 inches from",
+     "value": 70.75
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.hash_from_sideline_ft"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources. 70 feet 9 inches = 70.75 ft.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0018",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Distance from each sideline to the inbounds lines (hash marks): 60 ft (college, 2026 rules).",
+   "value": 60,
+   "unit": "ft",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 2, Article 1 (text copy ncaa-rulebook-2026.txt, line 678)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The two hash marks are 60 feet from the sidelines.",
+     "value": 60
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.hash_from_sideline_ft"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0019",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Distance between the goal lines: 100 yd (pro, 2026 rules).",
+   "value": 100,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 1, Article 1 (text copy rulebook_2026.txt, line 353)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The game shall be played upon a rectangular field, 360 feet in length"
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 1, Article 1 (text copy rulebook_2026.txt, line 354)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Goal lines shall be established in the field 10 yards from and parallel to each end line"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.goal_to_goal_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources. Derived: 360 ft field = 120 yd, less two 10-yd end zones = 100 yd between goal lines (formula from the two quoted sentences).",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0020",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Distance between the goal lines: 100 yd (college, 2026 rules).",
+   "value": 100,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 2, Section 12, Article 2 (text copy ncaa-rulebook-2026.txt, line 1513)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The two goal lines are 100 yards apart.",
+     "value": 100
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.goal_to_goal_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0021",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Players per team on the field: 11 count (pro, 2026 rules).",
+   "value": 11,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 5, Section 1, Article 1 (text copy rulebook_2026.txt, line 1275)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The game is played by two teams of 11 players each.",
+     "value": 11
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:substitution.max_players"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0022",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Players per team on the field: 11 count (college, 2026 rules).",
+   "value": 11,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 596)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The game shall be played between two teams of not more than 11 players",
+     "value": 11
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:substitution.max_players"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0023",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Points for a touchdown: 6 points (pro, 2026 rules).",
+   "value": 6,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 1, Article 2 (text copy rulebook_2026.txt, line 2811)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "(a) Touchdown: 6 points",
+     "value": 6
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:score.touchdown"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0024",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Points for a touchdown: 6 points (college, 2026 rules).",
+   "value": 6,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3847)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Touchdown — 6 Points",
+     "value": 6
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:score.touchdown"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0025",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Points for a field goal: 3 points (pro, 2026 rules).",
+   "value": 3,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 1, Article 2 (text copy rulebook_2026.txt, line 2812)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "(b) Field goal: 3 points",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:score.field_goal"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0026",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Points for a field goal: 3 points (college, 2026 rules).",
+   "value": 3,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3848)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Field Goal — 3 Points",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:score.field_goal"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0027",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Points for a safety: 2 points (pro, 2026 rules).",
+   "value": 2,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 1, Article 2 (text copy rulebook_2026.txt, line 2813)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "(c) Safety: 2 points",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:score.safety"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0028",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Points for a safety: 2 points (college, 2026 rules).",
+   "value": 2,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3849)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Safety (points awarded to opponent) — 2 Points",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:score.safety"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0029",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Points for a successful try by kick: 1 points (pro, 2026 rules).",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 1, Article 2 (text copy rulebook_2026.txt, line 2814)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "(d) Try after touchdown: 1 point (field goal or safety) or 2 points (touchdown)",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:try.kick_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0030",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Points for a successful try by kick: 1 points (college, 2026 rules).",
+   "value": 1,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3852)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Field Goal or Safety — 1 Point",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:try.kick_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0031",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Points for a successful try by run or pass: 2 points (pro, 2026 rules).",
+   "value": 2,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 1, Article 2 (text copy rulebook_2026.txt, line 2814)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "(d) Try after touchdown: 1 point (field goal or safety) or 2 points (touchdown)",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:try.two_point_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0032",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Points for a successful try by run or pass: 2 points (college, 2026 rules).",
+   "value": 2,
+   "unit": "points",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 1, Article 1 (text copy ncaa-rulebook-2026.txt, line 3851)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Touchdown — 2 Points",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:try.two_point_points"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0033",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Yards from the defense goal line where a try kick is snapped: 15 yd (pro, 2026 rules).",
+   "value": 15,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 3, Article 1 (text copy rulebook_2026.txt, line 2834)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "15 yards from the defensive team’s goal line for a Try kick",
+     "value": 15
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:try.kick_snap_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0034",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Yards from the defense goal line where a try kick is snapped: 3 yd (college, 2026 rules).",
+   "value": 3,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 3, Article 2 (text copy ncaa-rulebook-2026.txt, line 3895)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The snap will be midway between the hash marks on the opponent’s three- yard line",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:try.kick_snap_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources. College has one try spot (the three-yard line) for kick and two-point tries alike.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0035",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Yards from the defense goal line where a try by run or pass is snapped: 2 yd (pro, 2026 rules).",
+   "value": 2,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 11, Section 3, Article 1 (text copy rulebook_2026.txt, line 2835)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "two yards from the defensive team’s goal line for a Try by pass or run",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:try.two_point_snap_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0036",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Yards from the defense goal line where a try by run or pass is snapped: 3 yd (college, 2026 rules).",
+   "value": 3,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 8, Section 3, Article 2 (text copy ncaa-rulebook-2026.txt, line 3895)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The snap will be midway between the hash marks on the opponent’s three- yard line",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:try.two_point_snap_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources. College has one try spot (the three-yard line) for kick and two-point tries alike.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0037",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "How far beyond the line an ineligible receiver may be before a forward pass: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 8, Section 3, Article 1 (text copy rulebook_2026.txt, line 2279)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "his entire body is more than one yard beyond the line of scrimmage without contacting an opponent",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:foul.ineligible_downfield.yards"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-0038",
+   "level": "college",
+   "domain": "rule",
+   "statement": "How far beyond the line an ineligible receiver may be before a forward pass: 3 yd (college, 2026 rules).",
+   "value": 3,
+   "unit": "yd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 10 (text copy ncaa-rulebook-2026.txt, line 3821)",
+     "dateRead": "2026-11-25",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "No originally ineligible receiver shall be or have been more than three yards beyond the neutral zone",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:foul.ineligible_downfield.yards"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2). Value agrees with bible B13.1.1 or the owning B leaf and with research/college/college-rules-vs-nfl.md, which are project summaries and do not count as independent sources.",
+   "statusHistory": [
+    {
+     "date": "2026-11-25",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (phase 0)."
+    }
+   ]
+  }
+ ]
+}
