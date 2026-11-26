@@ -92,7 +92,8 @@ async function saveRoundTrip(browser: Browser, url: string): Promise<number> {
   // Browser -> Node.
   const ctx = await browser.newContext();
   const page = await ctx.newPage();
-  await page.goto(url);
+  // The plain save-file start: the round trip checks the save format, not the new-game history (?saves=1).
+  await page.goto(`${url}?saves=1`);
   await page.getByLabel('Save name').fill('from-browser');
   await page.getByLabel('World seed').fill('00000000beef0001');
   await page.getByRole('button', { name: 'Start' }).click();
