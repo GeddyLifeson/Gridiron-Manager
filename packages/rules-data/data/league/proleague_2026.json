@@ -972,6 +972,163 @@
    "factId": "F-league-0167"
   },
   {
+   "key": "fa.rfa_prior_salary_pct",
+   "value": 110,
+   "unit": "percent",
+   "factId": "F-league-0168"
+  },
+  {
+   "key": "fa.ufa_tender_prior_salary_pct",
+   "value": 110,
+   "unit": "percent",
+   "factId": "F-league-0169"
+  },
+  {
+   "key": "fa.offer_sheet_match_days",
+   "value": 5,
+   "unit": "days",
+   "factId": "F-league-0170"
+  },
+  {
+   "key": "fa.match_cutoff_days_before_draft",
+   "value": 1,
+   "unit": "days",
+   "factId": "F-league-0171"
+  },
+  {
+   "key": "fa.comp_next_draft_within_days",
+   "value": 2,
+   "unit": "days",
+   "factId": "F-league-0172"
+  },
+  {
+   "key": "fa.unsigned_rights_end_after_week",
+   "value": 10,
+   "unit": "weeks",
+   "factId": "F-league-0173"
+  },
+  {
+   "key": "fa.offer_sheet_ltbe_max_pct",
+   "value": 15,
+   "unit": "percent",
+   "factId": "F-league-0174"
+  },
+  {
+   "key": "fa.matched_trade_back_block_years",
+   "value": 1,
+   "unit": "years",
+   "factId": "F-league-0175"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.veteran",
+   "value": 60000,
+   "unit": "USD",
+   "factId": "F-league-0176"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.ufa_signee",
+   "value": 60000,
+   "unit": "USD",
+   "factId": "F-league-0177"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.rookie",
+   "value": 45000,
+   "unit": "USD",
+   "factId": "F-league-0178"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.option_year",
+   "value": 45000,
+   "unit": "USD",
+   "factId": "F-league-0179"
+  },
+  {
+   "key": "discipline.camp_absence_fine_waivable.veteran",
+   "value": false,
+   "factId": "F-league-0180"
+  },
+  {
+   "key": "discipline.camp_absence_fine_waivable.ufa_signee",
+   "value": false,
+   "factId": "F-league-0181"
+  },
+  {
+   "key": "discipline.camp_absence_week_salary_per_preseason_game.ufa_signee",
+   "value": true,
+   "factId": "F-league-0182"
+  },
+  {
+   "key": "discipline.camp_absence_week_salary_per_preseason_game.option_year",
+   "value": true,
+   "factId": "F-league-0183"
+  },
+  {
+   "key": "discipline.minicamp_absence_fine_max_usd.day1",
+   "value": 17986,
+   "unit": "USD",
+   "factId": "F-league-0184"
+  },
+  {
+   "key": "discipline.minicamp_absence_fine_max_usd.day2",
+   "value": 35973,
+   "unit": "USD",
+   "factId": "F-league-0185"
+  },
+  {
+   "key": "discipline.minicamp_absence_fine_max_usd.day3",
+   "value": 53952,
+   "unit": "USD",
+   "factId": "F-league-0186"
+  },
+  {
+   "key": "forfeit.camp_free_days",
+   "value": 5,
+   "unit": "days",
+   "factId": "F-league-0187"
+  },
+  {
+   "key": "forfeit.camp_initial_share",
+   "value": 0.15,
+   "unit": "ratio",
+   "factId": "F-league-0188"
+  },
+  {
+   "key": "forfeit.camp_daily_share",
+   "value": 0.01,
+   "unit": "ratio",
+   "factId": "F-league-0189"
+  },
+  {
+   "key": "forfeit.camp_max_share",
+   "value": 0.25,
+   "unit": "ratio",
+   "factId": "F-league-0190"
+  },
+  {
+   "key": "forfeit.first_game_share",
+   "value": 0.25,
+   "unit": "ratio",
+   "factId": "F-league-0191"
+  },
+  {
+   "key": "forfeit.weekly_after_weeks",
+   "value": 4,
+   "unit": "weeks",
+   "factId": "F-league-0192"
+  },
+  {
+   "key": "forfeit.weekly_divisor",
+   "value": 17,
+   "unit": "count",
+   "factId": "F-league-0193"
+  },
+  {
+   "key": "service.no_accrued_if_not_reported",
+   "value": true,
+   "factId": "F-league-0194"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
