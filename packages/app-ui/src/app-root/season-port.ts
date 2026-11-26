@@ -1,9 +1,12 @@
-// Adapts the app-services season session (`play.SeasonPlay`) to the career root's port. The console setup
-// (sheets, keys, radio cutoff) comes from the host, so the sheet bridge supplies it without this file knowing.
-import { presentationLive, TICKS_PER_SECOND, type gameCallingCommands, type play } from '@gm/app-services';
+// Adapts the app-services season session (`play.SeasonPlay`) to the career root's port. The seat's game week runs
+// on the week loop (`weekLoop.SeatWeekLoop`, H1.1.3): the Today controls step it block by block, a day at a time
+// or to game day, and at kickoff the loop's sheets (the staff's draft, or the user's own) go to the console when
+// the host gives its key bindings. Without them the host's own console setup is used (the quick start's).
+import { presentationLive, TICKS_PER_SECOND, weekLoop, type gameCallingCommands, type play } from '@gm/app-services';
 import { rt } from './text.ts';
 import { resolveColours, tokenValue } from '../tokens/tokens.ts';
-import type { CareerPort, GameSession, LiveField, SeasonToday, StandingRow } from './port.ts';
+import type { AdvanceTarget } from '../screens/home/view.ts';
+import type { CareerPort, GameSession, LiveField, SeasonToday, StandingRow, WeekToday } from './port.ts';
 
 type ConsoleConfig = gameCallingCommands.ConsoleConfig;
 type Resolve = (chord: string, contexts: readonly string[]) => string | undefined;
@@ -13,6 +16,8 @@ export interface SeasonPortHost {
   readonly seasonYear: number;
   /** The console setup for the seat's game, built when the game opens (the staff's sheet or the user's own). */
   consoleConfig(gameId: string): ConsoleConfig;
+  /** Key bindings for the week's own sheets on the console; without them `consoleConfig` sets the console up. */
+  readonly bindings?: readonly { readonly context: string; readonly keys: readonly string[] }[];
   readonly resolve: Resolve;
   /** Real milliseconds a play runs on screen before the next call opens (I2.1.1); the play log shows it meanwhile. */
   liveMs?(): number;
@@ -38,14 +43,58 @@ export function epochDayOfNewYear(year: number): number {
   return 365 * (year - 1970) + (Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)) - (Math.floor(1969 / 4) - Math.floor(1969 / 100) + Math.floor(1969 / 400));
 }
 
-/** Days in a league week: the season steps a week at a time until the week loop (H1) adds the days. */
+/** Days in a league week: the season steps a week at a time; inside a game week the week loop counts the days. */
 const DAYS_PER_WEEK = 7;
+const MINUTES_PER_DAY = 24 * 60;
+
+const MODE_OF: Readonly<Record<AdvanceTarget, 'block' | 'day' | 'decision' | 'game'>> = { next_block: 'block', end_of_day: 'day', next_must: 'decision', game_day: 'game' };
 
 export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost): CareerPort {
   let sides: [string, string] = ['', ''];
   // The office reaches game day by advancing; until then the coming step's game is a week out (H1 adds the days).
   let gameDay = false;
   let field: LiveField | null = null;
+  // The seat's week for the coming step, opened when the office first advances into it.
+  let loop: weekLoop.SeatWeekLoop | null = null;
+  const openLoop = (): weekLoop.SeatWeekLoop | null => {
+    if (loop) return loop;
+    sp.advanceToGame();
+    loop = weekLoop.SeatWeekLoop.open(sp);
+    return loop;
+  };
+  /** Runs the week to kickoff and hands the season its record. */
+  const closeLoop = () => {
+    const l = openLoop();
+    if (!l) return;
+    if (!l.atGameDay) l.toGameDay();
+    if (!l.isFinished) l.finish();
+  };
+  const step = (target: AdvanceTarget) => {
+    const l = openLoop();
+    if (!l) return;
+    const r = l.step(MODE_OF[target]);
+    // No inbox answers the week's items yet (E7): the clock takes the staff default where it stopped for one.
+    if (r.stop === 'decision' && r.item) l.choose(r.item.id, r.item.defaultChoice);
+    gameDay = l.atGameDay;
+  };
+  const week = (): WeekToday | null => {
+    if (!loop || loop.isFinished) return null;
+    const now = loop.now();
+    const done = new Set(loop.week.completed);
+    const day = loop.week.days.find((d) => d.blocks.some((b) => b.start.day === now.day));
+    const all = loop.week.days.flatMap((d) => d.blocks).filter((b) => b.type !== 'game');
+    const mine = (b: (typeof all)[number]) => b.leader === loop!.role;
+    const year0 = epochDayOfNewYear(host.seasonYear);
+    const preview = new Set(loop.delegationPreview().blocks);
+    const label = (type: string) => rt(`root.block.${type}`);
+    return {
+      dayIndex: Math.max(0, now.day - year0),
+      blocks: (day?.blocks ?? []).filter((b) => b.type !== 'game' && b.start.day === now.day)
+        .map((b) => ({ blockId: b.id, label: label(b.type), startMinute: b.start.minute, minutes: b.minutes, mine: mine(b), done: done.has(b.id) })),
+      minutesLeftThisWeek: all.filter((b) => mine(b) && !done.has(b.id)).reduce((n, b) => n + b.minutes, 0),
+      runsWithout: all.filter((b) => preview.has(b.id)).map((b) => ({ blockId: b.id, label: label(b.type), dayIndex: Math.max(0, b.start.day - year0) })),
+    };
+  };
   const today = (): SeasonToday => {
     const t = sp.today();
     const seat = t.standings.find((r) => r.teamId === t.seatTeamId);
@@ -64,7 +113,9 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       lastResult = rt('root.resultLine', { result: us > them ? rt('root.won') : us < them ? rt('root.lost') : rt('root.tied'), us, them, where: home ? 'vs' : 'at', opponent: sp.nameOf(opp) });
     }
     const n = t.nextGame;
-    const daysToGame = gameDay ? 0 : ((t.weeksToGame ?? 0) + 1) * DAYS_PER_WEEK;
+    // In the game week the loop's clock counts the days to kickoff; before it, the weeks to the seat's game.
+    const inWeek = loop !== null && !loop.isFinished;
+    const daysToGame = gameDay ? 0 : inWeek ? Math.max(1, Math.ceil((loop!.kickoff.day * MINUTES_PER_DAY + loop!.kickoff.minute - loop!.now().day * MINUTES_PER_DAY - loop!.now().minute) / MINUTES_PER_DAY)) : ((t.weeksToGame ?? 0) + 1) * DAYS_PER_WEEK;
     // Fixture days count from 1970-01-01; the office date line counts days of the season year from 1 January.
     const gameDay0 = n?.dayIndex != null ? n.dayIndex - epochDayOfNewYear(host.seasonYear) : null;
     const dayIndex = gameDay0 !== null ? Math.max(0, gameDay0 - daysToGame) : Math.max(0, t.week - 1) * DAYS_PER_WEEK;
@@ -78,9 +129,19 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
   };
   return {
     today,
+    week,
+    advance: (target, onProgress) => {
+      if (!host.pool || loop) { step(target); return; }
+      return sp.advanceToGameIn(host.pool, onProgress).then(() => step(target));
+    },
     advanceToGameDay: (onProgress) => {
-      if (!host.pool) { sp.advanceToGame(); gameDay = sp.nextSeatGame() !== null; return; }
-      return sp.advanceToGameIn(host.pool, onProgress).then(() => { gameDay = sp.nextSeatGame() !== null; });
+      const toGameDay = () => {
+        const l = openLoop();
+        if (l && !l.atGameDay) l.toGameDay();
+        gameDay = sp.nextSeatGame() !== null;
+      };
+      if (!host.pool || loop) { toGameDay(); return; }
+      return sp.advanceToGameIn(host.pool, onProgress).then(toGameDay);
     },
     startGame: (): GameSession => {
       const seat = sp.nextSeatGame();
@@ -95,7 +156,10 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
         const ms = tap ? presentationLive.liveMsFrom(tap, TICKS_PER_SECOND)(rec) : 0;
         return ms > 0 ? ms : host.liveMs?.() ?? 0;
       };
-      const session = sp.openGame({ console: host.consoleConfig(String(seat.context.fixture.gameId)), resolve: host.resolve, keyIntervalMs: 0, startMs: 0, liveMs: shown, tapResolver: tapped });
+      closeLoop();
+      const gameId = String(seat.context.fixture.gameId);
+      const consoleSetup = loop && host.bindings ? loop.consoleConfig(host.bindings) : host.consoleConfig(gameId);
+      const session = sp.openGame({ console: consoleSetup, resolve: host.resolve, keyIntervalMs: 0, startMs: 0, liveMs: shown, tapResolver: tapped });
       const input = sp.gameInput!;
       const queue = new presentationLive.LivePlayQueue({ tap: tap!, teams: input.teams, ticksPerSecond: TICKS_PER_SECOND, environment: () => input.environment, userSide: seat.side, rules: session.rules });
       const col = (teamId: number, i: 0 | 1) => host.colours?.(sp.keyOf(teamId)) ?? TOKEN_TEAMS[i];
@@ -105,17 +169,19 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       return session;
     },
     finishGame: (_session, onProgress) => {
-      const done = () => { gameDay = false; field = null; };
+      const done = () => { gameDay = false; field = null; loop = null; };
       if (!host.pool) { sp.finishGame(); done(); return; }
       return sp.finishGameIn(host.pool, onProgress).then(done);
     },
     liveField: () => field,
     delegateGame: (onProgress) => {
-      if (!host.pool) { sp.advanceToGame(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; return; }
+      const done = () => { gameDay = false; loop = null; };
+      if (!host.pool) { closeLoop(); if (sp.nextSeatGame()) sp.delegateGame(); done(); return; }
       const pool = host.pool;
+      // Bye weeks first, in the pool; then the seat's week to kickoff, then its game and the rest of the step.
       return sp.advanceToGameIn(pool, onProgress)
-        .then(() => (sp.nextSeatGame() ? sp.delegateGameIn(pool, onProgress) : null))
-        .then(() => { gameDay = false; });
+        .then(() => { closeLoop(); return sp.nextSeatGame() ? sp.delegateGameIn(pool, onProgress) : null; })
+        .then(done);
     },
     // PLACEHOLDER rosters have no names yet: a player is his jersey slot until generated people play (G-17).
     names: () => ({ playerName: (id: number) => `#${id % 100}`, teamName: (side: 0 | 1) => sides[side] }),

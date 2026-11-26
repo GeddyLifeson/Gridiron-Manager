@@ -2,6 +2,7 @@
 // season session to this port, so the screens never hold football logic (P1.2.2) and tests can drive the
 // root with a scripted season.
 import type { gameCallingCommands, presentationLive } from '@gm/app-services';
+import type { AdvanceTarget } from '../screens/home/view.ts';
 
 export type GameSession = gameCallingCommands.GameCallingSession;
 
@@ -41,8 +42,30 @@ export interface LiveField {
 export interface WeekProgress { readonly done: number; readonly total: number }
 export type OnWeekProgress = (p: WeekProgress) => void;
 
+/** The seat's week as the office shows it today (H1.1.1, H1.1.3): the day's blocks, done or to come. */
+export interface WeekToday {
+  /** Day of the season from 0 that the blocks belong to. */
+  readonly dayIndex: number;
+  readonly blocks: readonly {
+    readonly blockId: string; readonly label: string; readonly startMinute: number; readonly minutes: number;
+    /** The user leads it (H1.4.2): it is his unless he hands it to staff. */
+    readonly mine: boolean; readonly done: boolean;
+  }[];
+  /** Minutes of blocks the user leads that are still to come this week. */
+  readonly minutesLeftThisWeek: number;
+  /** Blocks the user leads that "to game day" hands to staff (H1.1.3 confirmation). */
+  readonly runsWithout: readonly { readonly blockId: string; readonly label: string; readonly dayIndex: number }[];
+}
+
 export interface CareerPort {
   today(): SeasonToday;
+  /** The seat's week today, or null outside a game week (a bye, the season over). */
+  week?(): WeekToday | null;
+  /**
+   * One H1.1.3 control: next block, end of the day, next decision, or game day. Like `advanceToGameDay`, a port
+   * that plays the other games in workers returns a promise when the control first plays bye weeks.
+   */
+  advance?(target: AdvanceTarget, onProgress?: OnWeekProgress): void | Promise<void>;
   /**
    * Plays every other game up to the seat's next game day (byes included). A port that plays them in workers
    * returns a promise and reports each batch through `onProgress`; a port that plays them in place returns nothing.

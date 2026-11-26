@@ -139,6 +139,38 @@ describe('a game on the staff sheets through the career port', () => {
   }
 });
 
+describe('the seat week through the career port (H1.1.3)', () => {
+  const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+  it('pro: Today steps the week by block and by day, game day plays on the week\'s sheets, the season keeps the week', () => {
+    const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: CONTENT.proLeague.league.clubs[2].id });
+    const port = careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, bindings: DEFAULT_KEYMAP.bindings, consoleConfig: () => { throw new Error('the week supplies the console'); } });
+    expect(port.week!()).toBeNull();
+    port.advance!('next_block');
+    const w0 = port.week!()!;
+    expect(w0.blocks.length).toBeGreaterThan(0);
+    expect(w0.blocks.some((b) => b.done)).toBe(true);
+    expect(w0.minutesLeftThisWeek).toBeGreaterThan(0);
+    const home0 = homeFromSeason(port.today(), 0, w0);
+    expect(home0.today.mode).toBe('normal');
+    expect(home0.advance.map((a) => a.target)).toEqual(['next_block', 'end_of_day', 'game_day']);
+    const d0 = port.today().nextGame!.daysToGame;
+    port.advance!('end_of_day');
+    port.advance!('end_of_day');
+    expect(port.today().nextGame!.daysToGame).toBeLessThan(d0);
+    port.advance!('game_day');
+    expect(port.today().nextGame!.daysToGame).toBe(0);
+    const session = port.startGame();
+    expect(playByKeys(session)).toBeGreaterThan(100);
+    const week = sp.stepWeek();
+    port.finishGame(session);
+    const rec = sp.state.seat.find((s) => s.week === week)!;
+    expect(rec.reachedGameDay).toBe(true);
+    expect(rec.blocksRun).toBeGreaterThan(10);
+    expect(port.week!()).toBeNull();
+    expect(port.today().record.w + port.today().record.l + port.today().record.t).toBe(1);
+  }, 300_000);
+});
+
 describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
   it('pro: a pooled port answers with promises, reports progress and lands the same season as the in-place port', async () => {
     const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
@@ -193,6 +225,29 @@ describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
     expect(pooled.port.today().nextGame?.daysToGame).toBeGreaterThan(0);
     expect(pooled.port.liveField(s2)).toBeNull();
   }, 600_000);
+
+  it('college: the first week control plays the bye weeks in the pool, then opens the seat week as in place', async () => {
+    const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+    const built = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: CONTENT.college.schools[0].id }).built;
+    const first = Math.min(...built.spec.fixtures.map((x) => x.week));
+    const seat = built.spec.teams.find((t) => !built.spec.fixtures.some((x) => x.week === first && (x.home === t.id || x.away === t.id)))!;
+    const make = (pool?: play.WeekPool) => {
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: seat.key });
+      return { sp, port: careerPortFromSeason(sp, { level: 'college', seasonYear: 2026, resolve, bindings: DEFAULT_KEYMAP.bindings, consoleConfig: () => { throw new Error('the week supplies the console'); }, ...(pool ? { pool } : {}) }) };
+    };
+    const here = make();
+    expect(here.port.advance!('next_block')).toBeUndefined();
+    const pooled = make(play.inlinePool());
+    const seen: { done: number; total: number }[] = [];
+    const r = pooled.port.advance!('next_block', (p) => seen.push(p));
+    expect(r).toBeInstanceOf(Promise);
+    await r;
+    expect(seen.some((p) => p.total > 0 && p.done === p.total)).toBe(true);
+    expect(pooled.sp.state.chain).toBe(here.sp.state.chain);
+    expect(pooled.port.week!()).toEqual(here.port.week!());
+    // Once the seat week is open, the next control is in place again (no games until game day).
+    expect(pooled.port.advance!('end_of_day')).toBeUndefined();
+  }, 300_000);
 
   it('the progress line reads games done of the batch', () => {
     const html = renderToStaticMarkup(createElement(WeekProgressLine, { progress: { done: 5, total: 15 } }));

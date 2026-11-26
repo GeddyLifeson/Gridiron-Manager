@@ -60,7 +60,7 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
     const ruleSetId = RULE_SET_OF[quickCareer];
     setCareer(startCareerSeason(leagueContent, { level: quickCareer, ruleSetId, seasonYear: 2026, seedHex: randomSeedHex(), seat: { key: firstTeamKey(leagueContent, quickCareer) } },
-      { consoleConfig: (gameId) => setup(ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings), ...(weekPool ? { pool: weekPool } : {}) }));
+      { consoleConfig: (gameId) => setup(ruleSetId, gameId), ...(consoleConfig ? {} : { bindings: DEFAULT_KEYMAP.bindings }), resolve: resolverFor(DEFAULT_KEYMAP.bindings), ...(weekPool ? { pool: weekPool } : {}) }));
   }, [quickCareer, leagueContent, consoleConfig, career, weekPool]);
   const [saves, setSaves] = useState<{ name: string; sizeBytes: number }[]>([]);
   const [svc, setSvc] = useState<WorldService | null>(null);
@@ -89,7 +89,7 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
       const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
       try {
         setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId } },
-          { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings), ...(weekPool ? { pool: weekPool } : {}) }));
+          { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), ...(consoleConfig ? {} : { bindings: DEFAULT_KEYMAP.bindings }), resolve: resolverFor(DEFAULT_KEYMAP.bindings), ...(weekPool ? { pool: weekPool } : {}) }));
         return;
       } catch (e) { setMsg((e as Error).message); return; }
     }
