@@ -270,7 +270,7 @@ export function snapperOf(as: readonly Assignment[]): number {
 const iss = (w: TickWorld, slot: number, attr: string): number => w.slots[slot]!.player.attributes[attr] ?? 50;
 /** D4.2.2 foul discipline as the pre-snap fouls read it: against how sharp the other eleven is (`foul.opposedShare`). */
 const testedDiscipline = (w: TickWorld, slot: number, p: PresnapParams): number =>
-  iss(w, slot, 'foul_discipline') - p['foul.opposedShare']! * 10 * opposingElevenZ(w, slot, READING);
+  50 + p['foul.skillScale']! * (iss(w, slot, 'foul_discipline') - 50 - p['foul.opposedShare']! * 10 * opposingElevenZ(w, slot, READING));
 
 function shellOf(depths: readonly number[], highDepth: number): Shell {
   let n = 0;
