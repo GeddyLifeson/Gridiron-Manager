@@ -80,6 +80,11 @@ export interface CareerPort {
   delegateGame(onProgress?: OnWeekProgress): void | Promise<void>;
   /** The live field of the open game, or null when none is open. */
   liveField(session: GameSession): LiveField | null;
+  /**
+   * The hubs' route sources from the season (lane A item 2: app-root/sources/<hub>.ts). `redraw` asks the root
+   * to draw again after a screen's command changed the season's desk.
+   */
+  routeSources?(redraw: () => void): RouteSources;
   /** Player and team names for the play log (observed names only). */
   names(session: GameSession): { playerName(id: number): string; teamName(side: 0 | 1): string };
   /** Route sources of the hubs (app-root/sources), fed from the running season; none for a scripted season. */

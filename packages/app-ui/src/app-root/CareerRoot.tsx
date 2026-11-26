@@ -137,6 +137,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
     const t = buildRoutes({
       ...teamSources(port),
       ...port.sources?.(),
+      ...port.routeSources?.(bump),
       home: { view: () => homeFromSeason(port.today(), 0, port.week?.() ?? null), dispatch: (i) => { if (i.kind === 'advance') step(i.target); } },
     });
     t['game.console'] = {

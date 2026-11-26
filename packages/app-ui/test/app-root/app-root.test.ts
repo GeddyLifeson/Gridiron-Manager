@@ -5,7 +5,8 @@ import { join, resolve as resolvePath } from 'node:path';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, it, expect } from 'vitest';
-import { gameCalling, play } from '@gm/app-services';
+import { gameCalling, play, weekLoop } from '@gm/app-services';
+import { buildRoutes } from '../../src/routes.ts';
 import type { GameSession } from '../../src/app-root/index.ts';
 import { careerPortFromSeason, epochDayOfNewYear, homeFromSeason, rootTextIds, SeasonPanel, WeekProgressLine, type SeasonToday } from '../../src/app-root/index.ts';
 import { resolverFor } from '../../src/app-root/ConsoleHost.tsx';
@@ -169,6 +170,105 @@ describe('the seat week through the career port (H1.1.3)', () => {
     expect(port.week!()).toBeNull();
     expect(port.today().record.w + port.today().record.l + port.today().record.t).toBe(1);
   }, 300_000);
+});
+
+describe('week, film and media screens fed from the season (item 2d)', () => {
+  const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+  for (const [level, ruleSetId, rulesFile] of [['pro', 'pro_2026', CONTENT.proLeagueRules], ['college', 'college_2026', CONTENT.collegeLeagueRules]] as const) {
+    it(`${level}: the week screens read the coming week, take edits, and the called game files its film`, () => {
+      const teams = level === 'pro' ? CONTENT.proLeague.league.clubs : CONTENT.college.schools;
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId, seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: teams[3].id, resolver: 'reference' });
+      const port = careerPortFromSeason(sp, {
+        level, seasonYear: 2026, resolve, weekRules: weekLoop.weekRules(rulesFile.values, level), venues: weekLoop.venuesOf(CONTENT, level),
+        consoleConfig: (gameId) => gameCalling.staffConsoleConfig(ruleSetId, gameId, DEFAULT_KEYMAP.bindings),
+      });
+      let redraws = 0;
+      const src = port.routeSources!(() => { redraws++; });
+      const table = buildRoutes(src);
+      for (const id of ['week.schedule', 'week.meetings', 'week.travel', 'week.documents', 'people.media']) expect(table[id], id).toBeDefined();
+      expect(table['film.viewer']).toBeUndefined(); // no film before the first game
+      const p = {} as never;
+
+      // Schedule: the coming week's days and blocks, the coach's hours, no hidden values. A coming step with no
+      // seat game (an opening bye) shows no week until Today advances into the game week.
+      if (src.week!.getModel(p) === null) { expect(sp.nextSeatGame()).toBeNull(); port.advance!('next_block'); }
+      const sched = src.week!.getModel(p)!;
+      expect(sched.days.length).toBeGreaterThan(3);
+      expect(sched.days.flatMap((d) => d.blocks).some((b) => b.type === 'game')).toBe(true);
+      expect(sched.documents.length).toBeGreaterThan(0);
+      expect(JSON.stringify(sched)).not.toMatch(/quality|attention|errors/);
+
+      // Meetings: the head coach edits what he leads; a refused edit changes nothing and draws nothing.
+      const meet = src.meetings!.getModel(p)!;
+      const mine = meet.days.flatMap((d) => d.meetings).find((m) => m.editable && !m.done);
+      const theirs = meet.days.flatMap((d) => d.meetings).find((m) => !m.editable);
+      expect(mine, 'a meeting the head coach leads').toBeDefined();
+      src.meetings!.onCommand!({ kind: 'add_item', blockId: mine!.blockId, itemKind: mine!.itemKinds[0]! });
+      const after = src.meetings!.getModel(p)!.days.flatMap((d) => d.meetings).find((m) => m.blockId === mine!.blockId)!;
+      expect(after.agenda).toHaveLength(1);
+      expect(after.defaultAgenda).toBe(false);
+      expect(redraws).toBe(1);
+      expect(src.week!.getModel(p)!.days.flatMap((d) => d.blocks).find((b) => b.id === mine!.blockId)!.unplanned).toBe(false);
+      if (theirs) { src.meetings!.onCommand!({ kind: 'add_item', blockId: theirs.blockId, itemKind: theirs.itemKinds[0] ?? 'install' }); expect(redraws).toBe(1); }
+      src.meetings!.onCommand!({ kind: 'remove_item', blockId: mine!.blockId, n: 1 });
+      expect(src.meetings!.getModel(p)!.days.flatMap((d) => d.meetings).find((m) => m.blockId === mine!.blockId)!.agenda).toHaveLength(0);
+
+      // Documents: write one, send it to review, approve it; the detail switch hides what is on time.
+      const docs = src.documents!.getModel(p)!;
+      const d0 = docs.rows.find((r) => r.state === 'not_started')!;
+      src.documents!.onCommand!({ kind: 'doc_action', id: d0.id, action: 'write' });
+      src.documents!.onCommand!({ kind: 'doc_action', id: d0.id, action: 'review' });
+      src.documents!.onCommand!({ kind: 'doc_action', id: d0.id, action: 'approve' });
+      const d1 = src.documents!.getModel(p)!.rows.find((r) => r.id === d0.id)!;
+      expect(d1.state).toBe('published');
+      expect(d1.author).toBe('head_coach');
+      src.documents!.onCommand!({ kind: 'detail', detail: 'exceptions' });
+      expect(src.documents!.getModel(p)!.detail).toBe('exceptions');
+
+      // Travel: a home week lists no plans; an away week offers the H8 plans for the C1.4.1 trip, and one can be chosen.
+      const tv = src.travel!.getModel(p)!;
+      if (sched.home) expect(tv.options).toEqual([]);
+      else {
+        expect(tv.options.length).toBeGreaterThan(0);
+        const alt = tv.options.find((o) => !o.isDefault) ?? tv.options[0]!;
+        src.travel!.onChoose!(alt.plan);
+        expect(src.travel!.getModel(p)!.options.find((o) => o.chosen)!.plan).toBe(alt.plan);
+      }
+
+      // Press: a stand-in room asks the generator's questions about the season; answer one, then the bland rest.
+      const pv = src.press!.getModel(p)!;
+      expect(pv.live).toBeNull();
+      expect(pv.sessions.length).toBeGreaterThan(0);
+      src.press!.onCommand!({ kind: 'open_session', blockId: pv.sessions[0]!.blockId });
+      const live = src.press!.getModel(p)!.live!;
+      expect(live.current!.text.length).toBeGreaterThan(10);
+      expect(live.choices.length).toBeGreaterThanOrEqual(2);
+      src.press!.onCommand!({ kind: 'answer', choice: live.choices[0]!.id, timedOut: false });
+      expect(src.press!.getModel(p)!.live!.history).toHaveLength(1);
+      src.press!.onCommand!({ kind: 'bland_all' });
+      expect(src.press!.getModel(p)!.live!.done).toBe(true);
+      expect(JSON.stringify(src.press!.getModel(p))).not.toMatch(/trust|controversy|goodwill/);
+
+      // Staff write the documents the user left them: once the week runs past a due time, that document is out.
+      port.advance!('end_of_day'); port.advance!('end_of_day'); port.advance!('end_of_day');
+      src.documents!.onCommand!({ kind: 'detail', detail: 'all' });
+      const docs2 = src.documents!.getModel(p)!;
+      expect(docs2.rows.some((r) => r.state === 'published' && r.author !== 'head_coach')).toBe(true);
+
+      // The week the screens showed is the one Today runs; the called game lands in the film room.
+      port.advanceToGameDay();
+      const session = port.startGame();
+      expect(playByKeys(session)).toBeGreaterThan(100);
+      port.finishGame(session);
+      const after2 = port.routeSources!(() => undefined);
+      // The console game here runs the reference resolver, which draws no paths: nothing to watch, so the film hub
+      // stays unmounted. Drawn plays are filed in app-services week-loop/film-room.test.ts.
+      expect(after2.film).toBeUndefined();
+      // The next week opens fresh: no edits carry over.
+      const next = after2.meetings!.getModel(p);
+      if (next) expect(next.weekId).not.toBe(meet.weekId);
+    }, 300_000);
+  }
 });
 
 describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {

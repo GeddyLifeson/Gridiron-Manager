@@ -6,6 +6,8 @@ import { leagueSources, type HubSourceInput } from './league.ts';
 
 export { leagueSources, legendsQuery, type HubSourceInput } from './league.ts';
 export { sourceTextIds } from './text.ts';
+export { weekSources } from './week.ts';
+export { filmSources } from './film.ts';
 
 export function hubSources(input: HubSourceInput): Partial<RouteSources> {
   return {

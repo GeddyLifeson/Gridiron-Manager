@@ -7,6 +7,7 @@ import { rt } from './text.ts';
 import { resolveColours, tokenValue } from '../tokens/tokens.ts';
 import type { AdvanceTarget } from '../screens/home/view.ts';
 import type { CareerPort, GameSession, LiveField, SeasonToday, StandingRow, WeekToday } from './port.ts';
+import { filmSources, weekSources } from './sources/index.ts';
 
 type ConsoleConfig = gameCallingCommands.ConsoleConfig;
 type Resolve = (chord: string, contexts: readonly string[]) => string | undefined;
@@ -23,6 +24,12 @@ export interface SeasonPortHost {
   liveMs?(): number;
   /** Team colours by content key (home strip primary, away alternate); neutral greys when missing. */
   colours?(teamKey: string): { readonly primary: string; readonly alternate: string } | null;
+  /** League rules for the week checks (`weekLoop.weekRules` on the league-rules file); the week screens need them. */
+  readonly weekRules?: weekLoop.WeekDeskHost['rules'];
+  /** Home venues by team content key (`weekLoop.venuesOf`), for away-week trips (C1.4.1). */
+  readonly venues?: ReadonlyMap<string, weekLoop.Venue>;
+  /** Market size 1 to 5 by team content key (pro market tier, college size tier), for the press room (H7.2). */
+  marketOf?(teamKey: string): number | null;
   /**
    * Where the games the seat does not call are played (P2.1.2): the shell's Web Worker pool. Without one they
    * run in place, which holds the screen for the length of the week.
@@ -42,6 +49,9 @@ export function epochDayOfNewYear(year: number): number {
   const y = year - 1;
   return 365 * (year - 1970) + (Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)) - (Math.floor(1969 / 4) - Math.floor(1969 / 100) + Math.floor(1969 / 400));
 }
+
+/** Market size when the content gives none: the middle of C1's 1 to 5. */
+const MIDDLE_MARKET = 3;
 
 /** Days in a league week: the season steps a week at a time; inside a game week the week loop counts the days. */
 const DAYS_PER_WEEK = 7;
@@ -69,6 +79,27 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
     if (!l.atGameDay) l.toGameDay();
     if (!l.isFinished) l.finish();
   };
+  /** The coming game week for the week screens: opened without playing anything when the seat's game is up. */
+  const viewLoop = (): weekLoop.SeatWeekLoop | null => {
+    if (loop) return loop;
+    if (sp.nextSeatGame() === null) return null;
+    loop = weekLoop.SeatWeekLoop.open(sp);
+    return loop;
+  };
+  // An away week's trip: the seat's home venue to the home team's (a neutral site counts as the home team's venue).
+  const trip = (l: weekLoop.SeatWeekLoop) => {
+    const f = l.game.context.fixture;
+    const home = host.venues?.get(sp.keyOf(sp.seatTeamId)), site = host.venues?.get(sp.keyOf(f.home));
+    return home && site ? weekLoop.tripBetween(home, site, String(f.gameId), l.kickoff.day) : null;
+  };
+  // The media screen's room: a stand-in press corps asking about the season's own events (H7.2).
+  const pressSession = (l: weekLoop.SeatWeekLoop, blockId: string) => weekLoop.standInSession(l, blockId, {
+    level: host.level, coachId: 0, market: host.marketOf?.(sp.keyOf(sp.seatTeamId)) ?? MIDDLE_MARKET, nameOf: (id) => sp.nameOf(id),
+  });
+  const desk = host.weekRules ? new weekLoop.WeekDesk(viewLoop, { rules: host.weekRules, countable: host.level === 'college', trip, pressSession }) : null;
+  const film = new weekLoop.SeatFilmRoom(sp.seatTeamId, sp.options.seedHex);
+  let filmView: { geometry: GameSession['geometry']; home: { primary: string; alternate: string }; away: { primary: string; alternate: string } } | null = null;
+  let filmTap: presentationLive.LiveTap | null = null;
   const step = (target: AdvanceTarget) => {
     const l = openLoop();
     if (!l) return;
@@ -151,7 +182,8 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       // The live field: the resolver is tapped for each play's trajectory, and the console holds the next call
       // while the play runs on screen (I2.1.1); with no trajectory (reference resolver) the hold is the host's.
       let tap: presentationLive.LiveTap | null = null;
-      const tapped = (r: Parameters<typeof presentationLive.liveTap>[0]) => (tap = presentationLive.liveTap(r)).resolver;
+      // Two taps: the film room keeps every play's trajectory; the live field drops them once shown.
+      const tapped = (r: Parameters<typeof presentationLive.liveTap>[0]) => (tap = presentationLive.liveTap((filmTap = presentationLive.liveTap(r)).resolver)).resolver;
       const shown = (rec: Parameters<ReturnType<typeof presentationLive.liveMsFrom>>[0]) => {
         const ms = tap ? presentationLive.liveMsFrom(tap, TICKS_PER_SECOND)(rec) : 0;
         return ms > 0 ? ms : host.liveMs?.() ?? 0;
@@ -168,11 +200,20 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       field = { take: () => queue.take(session.events), geometry: session.geometry, userSide: seat.side, level: host.level, colours: [col(home, 0), col(away, 1)] };
       return session;
     },
-    finishGame: (_session, onProgress) => {
-      const done = () => { gameDay = false; field = null; loop = null; };
+    finishGame: (session, onProgress) => {
+      const input = sp.gameInput;
+      const t = filmTap;
+      if (input && t && session.final) {
+        const records = session.events.flatMap((e) => (e.type === 'play_resolved' ? [e.record] : []));
+        film.file({ records, geometry: session.geometry, params: session.params, input, trajectory: (n) => t.trajectory(n) });
+        const own = host.colours?.(sp.keyOf(sp.seatTeamId)) ?? TOKEN_TEAMS[0];
+        filmView = { geometry: session.geometry, home: own, away: TOKEN_TEAMS[1] };
+      }
+      const done = () => { gameDay = false; field = null; loop = null; filmTap = null; };
       if (!host.pool) { sp.finishGame(); done(); return; }
       return sp.finishGameIn(host.pool, onProgress).then(done);
     },
+    routeSources: (redraw) => ({ ...(desk ? weekSources(desk, redraw) : {}), ...filmSources(film, filmView) }),
     liveField: () => field,
     delegateGame: (onProgress) => {
       const done = () => { gameDay = false; loop = null; };
