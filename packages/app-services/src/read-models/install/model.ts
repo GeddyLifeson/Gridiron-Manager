@@ -64,7 +64,9 @@ export function buildInstallView(inp: InstallInput): InstallView {
   const est0 = (pl: number, items: readonly string[]) => inp.estimate(pl, items) ?? 0;
   const always = new Set(inp.alwaysUp);
 
-  const installed = (u: InstallUnitInput) => knowledge.isInstalled(n, u, groupIds, est0);
+  // A unit nobody slated holds is not installed: with no player to judge, the staff cannot call it installed (G5.1.1).
+  const judged = (u: InstallUnitInput) => Object.keys(u.items).some((g) => (groupIds[g]?.length ?? 0) > 0);
+  const installed = (u: InstallUnitInput) => judged(u) && knowledge.isInstalled(n, u, groupIds, est0);
   const card = (u: InstallUnitInput, tray: InstallCard['tray']): InstallCard => {
     const groups = Object.keys(u.items).sort().map((g) => ({ group: g, units: u.items[g]!.length }));
     const day = scheduled.get(u.id);

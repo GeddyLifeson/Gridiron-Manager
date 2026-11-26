@@ -48,6 +48,8 @@ export type DeskResult = { readonly ok: true; readonly notes: readonly string[];
 
 const DRAFT_UNITS: readonly DraftUnit[] = ['offense', 'defense'];
 const USER_ID = 'user';
+/** Sheet game id while the seat's next game is not known yet (a bye week ahead of it). */
+const NEXT_GAME = 'next';
 /** PLACEHOLDER until the depth chart feeds the special-teams unit: fakes and two-point plays use 11 personnel (as the staff console setup). */
 const PLACEHOLDER_SPECIAL_PERSONNEL = '11';
 
@@ -164,19 +166,23 @@ export class FootballDesk {
   private freshWeek(gameId: string | null): Week {
     const plan = (unit: DraftUnit): GameplanState => ({
       menu: [], approval: { state: 'draft' }, matchups: [], proposal: null,
-      sheet: gameId === null ? (unit === 'offense' ? gp.offenseTemplate() : gp.defenseTemplate()) : this.draft(unit, gameId, []),
-      card: null,
+      sheet: this.draft(unit, gameId ?? NEXT_GAME, []), card: null,
     });
     return { gameId, plans: { offense: plan('offense'), defense: plan('defense') } };
   }
 
   /**
    * Opens the game week for the seat's next game: a new game gets a new plan and the staff's sheets drafted
-   * for it; the same game keeps every edit. Null (a bye or the season's end) clears the week.
+   * for it; the same game keeps every edit. Null means the coming step has no game for the seat (a bye, or
+   * the season has not reached its first game): the staff draft for the next game they will play, and that
+   * plan, edits included, becomes the game's when it is known.
    */
   prepare(gameId: string | null): void {
     if (gameId === this.week.gameId) return;
-    this.week = this.freshWeek(gameId);
+    if (this.week.gameId === null && gameId !== null) {
+      const own = (st: GameplanState): GameplanState => ({ ...st, sheet: { ...st.sheet, gameId } });
+      this.week = { gameId, plans: { offense: own(this.week.plans.offense), defense: own(this.week.plans.defense) } };
+    } else this.week = this.freshWeek(gameId);
     this.version++;
   }
 

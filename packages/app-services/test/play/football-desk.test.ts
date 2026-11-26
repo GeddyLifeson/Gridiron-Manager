@@ -52,6 +52,17 @@ describe('football desk', () => {
     expect(d.sheets().defense.gameId).toBe('2');
   });
 
+  it('in a week with no game the staff draft for the next game, and edits carry over to it', () => {
+    const d = desk();
+    d.prepare(null);
+    const box = d.sheets().offense.boxes.find((b) => b.entries.length > 1)!;
+    expect(box.entries.length).toBeGreaterThan(1);
+    d.runGameplan('offense', { kind: 'remove_entry', boxId: box.id, entryId: box.entries[0]!.id });
+    d.prepare('9');
+    expect(d.sheets().offense.gameId).toBe('9');
+    expect(d.sheets().offense.boxes.find((b) => b.id === box.id)!.entries.length).toBe(box.entries.length - 1);
+  });
+
   it('plan commands run through the G3.4.3 access table and keep their state', () => {
     const d = desk();
     d.prepare('1');
@@ -72,6 +83,10 @@ describe('football desk', () => {
     const id = d.playbookView('offense', {}).rows[0]!.id;
     expect(d.runPlaybook('offense', { kind: 'retire', playIds: [id] }).ok).toBe(true);
     expect(d.playbookView('offense', {}).rows.some((r) => r.id === id)).toBe(false);
+    // A sheet drafted before the retirement keeps the call, marked broken (O3.4.2: the user decides).
+    expect(d.gameplanView('offense', OPTS)!.sheet.boxes.flatMap((b) => b.entries).filter((e) => e.playId === id).every((e) => e.broken)).toBe(true);
+    // The next game's staff draft leaves it out.
+    d.prepare('2');
     d.prepare('3');
     expect(entries(d, 'offense').some((e) => e.call.playId === id)).toBe(false);
   });
@@ -84,6 +99,8 @@ describe('football desk', () => {
     // G5.1.1: a play needs its parts.
     for (const p of plays) for (const r of p.requires) expect(units.some((u) => u.id === r && u.kind === 'part')).toBe(true);
     expect(d.installView('offense', 'week').days.length).toBe(normalPracticeDays(d.rules));
+    // Nobody is slated yet (placeholder rosters), so the staff call nothing installed.
+    expect(d.installView('offense', 'week').totals.installed).toBe(0);
     expect(d.runInstall('offense', 'week', { kind: 'fill' }).ok).toBe(true);
     const placed = d.installView('offense', 'week').days.reduce((n, day) => n + day.cards.length, 0);
     expect(placed).toBeGreaterThan(0);

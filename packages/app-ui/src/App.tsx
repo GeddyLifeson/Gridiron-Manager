@@ -10,7 +10,7 @@ import { NewGameFlow } from './screens/new-game/index.ts';
 import { SoundStageCaptions, type SoundStage } from './audio/stage/index.ts';
 import { CareerRoot, firstTeamKey, resolverFor, startCareerSeason, type CareerPort, type LeagueContent } from './app-root/index.ts';
 import { DEFAULT_KEYMAP } from './shell/keymap.ts';
-import { gameCalling, type gameCallingCommands } from '@gm/app-services';
+import type { gameCallingCommands } from '@gm/app-services';
 
 export interface AppProps {
   platform: Platform;
