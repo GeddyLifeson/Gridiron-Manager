@@ -9,7 +9,7 @@ import { buildMarkings, PRO_MARKINGS, type FieldMarkings, type MarkingSet } from
 import { markerFor, positionLetter, DEFAULT_MARKERS, type MarkerStyle, type MarkerTable } from './markers.ts';
 import { param } from './params.ts';
 import { newSample, sampleFrames, type FrameSample } from './sample.ts';
-import { FIELD_COLOURS, LINE_COLOURS, INK, OBJECT_COLOURS, inkOn, type ResolvedColours } from './colours.ts';
+import { FIELD_COLOURS, LINE_COLOURS, inkOn, type ResolvedColours } from './colours.ts';
 import type { FieldGeometryLike, FilmPlay, FilmSide, Orientation, PlaybackMode, Zoom } from './types.ts';
 
 /** The subset of CanvasRenderingContext2D the renderer uses, so tests can record the calls. */
@@ -55,8 +55,8 @@ const ENGAGED = FILM_MOVE_MODES.indexOf('engaged');
 const DOWN = FILM_MOVE_MODES.indexOf('down');
 const TWO_PI = 2 * Math.PI;
 const TRAIL_GHOSTS = 2;
-const BALL_COLOUR = OBJECT_COLOURS.ball;
-const FLAG_COLOUR = OBJECT_COLOURS.flag;
+const BALL_COLOUR = '#7a4a1e';
+const FLAG_COLOUR = '#ffd400';
 const SHADOW_ALPHA = 0.35;
 const GHOST_ALPHA = 0.3;
 const LABEL_GAP_PX = 2;
@@ -75,7 +75,7 @@ export class FieldRenderer {
   private readonly labelLift: Float64Array;
   private readonly passTargets = new Map<Cue, { x: number; y: number }>();
   private opts: RenderOptions;
-  private ink: [string, string] = [INK.black, INK.black];
+  private ink: [string, string] = ['#000000', '#000000'];
   private viewW = 1; private viewH = 1;
 
   constructor(readonly play: FilmPlay, readonly geometry: FieldGeometryLike, opts: RenderOptions) {
@@ -259,7 +259,7 @@ export class FieldRenderer {
   /** Contact bar between two engaged opponents whose markers touch (O2.3.2). Both must be reported engaged. */
   private drawEngagements(ctx: Canvas2DLike, r: number): void {
     const s = this.sample, cam = this.camera, reach = param('engageContactYd');
-    ctx.strokeStyle = INK.white;
+    ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = Math.max(2, r * 0.5);
     ctx.beginPath();
     for (let i = 0; i < this.looks.length; i++) {
@@ -348,8 +348,8 @@ export class FieldRenderer {
     const s = this.sample, cam = this.camera, h = r * 0.6;
     for (let k = 0; k < s.officialX.length; k++) {
       const x = cam.sx(s.officialX[k]!, s.officialY[k]!), y = cam.sy(s.officialX[k]!, s.officialY[k]!);
-      ctx.fillStyle = INK.white; ctx.fillRect(x - h, y - h, 2 * h, 2 * h);
-      ctx.fillStyle = INK.black; ctx.fillRect(x - h / 3, y - h, (2 * h) / 3, 2 * h);
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(x - h, y - h, 2 * h, 2 * h);
+      ctx.fillStyle = '#000000'; ctx.fillRect(x - h / 3, y - h, (2 * h) / 3, 2 * h);
     }
   }
 
@@ -366,11 +366,11 @@ export class FieldRenderer {
     const bx = cam.sx(s.ballX, s.ballY), by = cam.sy(s.ballX, s.ballY);
     if (z > 0) {
       const off = z * param('ballShadowPerYd') * cam.scale;
-      ctx.globalAlpha = SHADOW_ALPHA; ctx.fillStyle = INK.black;
+      ctx.globalAlpha = SHADOW_ALPHA; ctx.fillStyle = '#000000';
       ctx.beginPath(); ctx.arc(bx + off, by + off, br, 0, TWO_PI); ctx.fill();
       ctx.globalAlpha = 1;
     }
-    ctx.fillStyle = BALL_COLOUR; ctx.strokeStyle = FIELD_COLOURS.line; ctx.lineWidth = 1;
+    ctx.fillStyle = BALL_COLOUR; ctx.strokeStyle = '#f4f4f0'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(bx, by, Math.max(2, br), 0, TWO_PI); ctx.fill(); ctx.stroke();
   }
 
@@ -386,26 +386,26 @@ export class FieldRenderer {
         case 'passLine': {
           const t = this.passTargets.get(c);
           if (!t) break;
-          ctx.strokeStyle = INK.white; ctx.setLineDash([2, 4]);
+          ctx.strokeStyle = '#ffffff'; ctx.setLineDash([2, 4]);
           ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(cam.sx(t.x, t.y), cam.sy(t.x, t.y)); ctx.stroke();
           ctx.setLineDash([]);
           break;
         }
-        case 'ring': ctx.strokeStyle = INK.white; ctx.beginPath(); ctx.arc(x, y, r * 1.8, 0, TWO_PI); ctx.stroke(); break;
+        case 'ring': ctx.strokeStyle = '#ffffff'; ctx.beginPath(); ctx.arc(x, y, r * 1.8, 0, TWO_PI); ctx.stroke(); break;
         case 'cross':
-          ctx.strokeStyle = INK.white; ctx.beginPath();
+          ctx.strokeStyle = '#ffffff'; ctx.beginPath();
           ctx.moveTo(x - r, y - r); ctx.lineTo(x + r, y + r); ctx.moveTo(x + r, y - r); ctx.lineTo(x - r, y + r); ctx.stroke(); break;
         case 'flash':
-          ctx.globalAlpha = Math.max(0, fade); ctx.fillStyle = INK.white;
+          ctx.globalAlpha = Math.max(0, fade); ctx.fillStyle = '#ffffff';
           ctx.beginPath(); ctx.arc(x, y, r * 2, 0, TWO_PI); ctx.fill(); ctx.globalAlpha = 1; break;
         case 'flag':
           // The flag at its spot, with no name until the announcement (I7.1.2).
           ctx.fillStyle = FLAG_COLOUR; ctx.beginPath(); ctx.moveTo(x, y - r); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r); ctx.lineTo(x - r, y); ctx.closePath(); ctx.fill(); break;
         case 'whistle':
-          ctx.strokeStyle = INK.white; ctx.beginPath(); ctx.arc(x, y, r * 2.2, 0, TWO_PI); ctx.stroke();
+          ctx.strokeStyle = '#ffffff'; ctx.beginPath(); ctx.arc(x, y, r * 2.2, 0, TWO_PI); ctx.stroke();
           ctx.beginPath(); ctx.arc(x, y, r * 2.8, 0, TWO_PI); ctx.stroke(); break;
         case 'boundary':
-          ctx.strokeStyle = INK.white; ctx.beginPath(); ctx.moveTo(x - r * 1.5, y); ctx.lineTo(x + r * 1.5, y); ctx.stroke(); break;
+          ctx.strokeStyle = '#ffffff'; ctx.beginPath(); ctx.moveTo(x - r * 1.5, y); ctx.lineTo(x + r * 1.5, y); ctx.stroke(); break;
       }
     }
   }

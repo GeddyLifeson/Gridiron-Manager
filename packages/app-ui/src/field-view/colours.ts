@@ -3,24 +3,19 @@
 // against the field or each other, the away team's alternate is tried (O2.3.2), then the home
 // alternate, then the colour-blind-safe pair.
 import { param } from './params.ts';
-import palette from './colours.json' with { type: 'json' };
 import type { TeamColours } from './types.ts';
 
 /** Field colours (display choice, Assumption). */
-export const FIELD_COLOURS: Readonly<{ grass: string; endZone: string; line: string; surround: string }> = palette.field;
+export const FIELD_COLOURS = { grass: '#3f7f3a', endZone: '#36702f', line: '#f4f4f0', surround: '#2c5a29' } as const;
 
 /**
  * Colour-blind-safe pair (Assumption, design): one very dark and one very light colour, so the pair
  * is told apart by lightness alone, whatever the viewer's colour vision. Checked against the grass.
  */
-export const COLOUR_BLIND_SAFE: readonly [string, string] = [palette.colourBlindSafe[0]!, palette.colourBlindSafe[1]!];
+export const COLOUR_BLIND_SAFE: readonly [string, string] = ['#101010', '#f0e442'];
 
 /** Line of scrimmage and line to gain (display choice, Assumption). */
-export const LINE_COLOURS: Readonly<{ lineOfScrimmage: string; lineToGain: string }> = palette.lines;
-
-/** Plain black and white, and the ball and flag (display choices, Assumption). */
-export const INK: Readonly<{ black: string; white: string }> = palette.ink;
-export const OBJECT_COLOURS: Readonly<{ ball: string; flag: string }> = { ball: palette.ball, flag: palette.flag };
+export const LINE_COLOURS = { lineOfScrimmage: '#2f6fd6', lineToGain: '#f2c230' } as const;
 
 function channel(c: number): number {
   const s = c / 255;
@@ -68,5 +63,5 @@ export function resolveTeamColours(home: TeamColours, away: TeamColours, opts: {
 
 /** Black or white, whichever reads better on the marker fill. */
 export function inkOn(fill: string): string {
-  return contrastRatio(fill, INK.black) >= contrastRatio(fill, INK.white) ? INK.black : INK.white;
+  return contrastRatio(fill, '#000000') >= contrastRatio(fill, '#ffffff') ? '#000000' : '#ffffff';
 }
