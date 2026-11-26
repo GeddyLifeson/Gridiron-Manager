@@ -8,6 +8,7 @@ import { K, PENALTY_FIELDS, type FineGroup } from './params.ts';
 import { EVENT, draft, mayCarry } from './events.ts';
 import type { Act, ComplianceState, EventSink, ViolationLogRow } from './types.ts';
 import { groupOf } from './roles.ts';
+import { appendRow, archivedRows, retireIfGrown } from './log.ts';
 
 /** Does the class exist under this rule set (`compliance.<id>.applies`, absent means yes). Never a level word. */
 export function classApplies(rules: RuleSet, classId: string): boolean {
@@ -85,12 +86,15 @@ export function commitAct(state: ComplianceState, act: Act, rules: RuleSet, sink
     competitionId: act.competitionId, gain: act.gain, severity, certainTrace: act.certainTrace === true,
     actSourcesDrawn: false, caseId: null, eventId,
   };
-  return { ok: true, row, state: { ...state, log: [...state.log, row], nextLogId: id + 1 } };
+  // No copy when the caller holds the log (log.ts); then spent acts leave once the live log has doubled.
+  const next: ComplianceState = { ...state, log: appendRow(state.log, row), nextLogId: id + 1 };
+  return { ok: true, row, state: retireIfGrown(next, act.date, rules) };
 }
 
-/** Certified mode (N4): every logged act by a person, detected or not. */
+/** Certified mode (N4): every logged act by a person, detected or not, live or archived, in log order. */
 export function certifiedViolations(state: ComplianceState, personId: number): readonly ViolationLogRow[] {
-  return state.log.filter((r) => r.actor.personId === personId || r.orderedBy?.personId === personId);
+  const mine = (r: ViolationLogRow) => r.actor.personId === personId || r.orderedBy?.personId === personId;
+  return [...archivedRows(state).filter(mine), ...state.log.filter(mine)].sort((a, b) => a.id - b.id);
 }
 
 export { groupOf };
