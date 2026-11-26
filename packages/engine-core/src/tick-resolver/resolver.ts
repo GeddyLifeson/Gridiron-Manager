@@ -298,12 +298,19 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     for (const e of events) if (e.type === 'dead_ball') { dead = e; break; }
     const live = dead !== null && dead.reason !== 'pre_snap_foul' && dead.reason !== 'period_ended_before_snap';
     const liveDurationTenths = live ? Math.max(0, Math.round(dead!.t * 10)) : 0;
-    // B7.7.1 impetus, as far as the physical record can say it: the team that last had the ball when it
-    // became dead on or behind a goal line. Officiating may refine it from the events.
+    // B7.7.1 impetus, as far as the physical record can say it: the team whose force put the ball on or behind the
+    // goal line where it became dead. That is the last team to hold it outside that end zone, and the snapping or
+    // kicking team when nobody did (a kick that rolls in). It is not the team that held it when it died: a returner
+    // who picks a kick up in his own end zone and is tackled there has a touchback, and naming his team here made
+    // every such kickoff a safety, with a safety kick after it.
     let endZoneImpetus: 0 | 1 | null = null;
     if (dead !== null && live && (dead.spot.x <= geometry.goalLineWestX || dead.spot.x >= geometry.goalLineEastX)) {
-      const last = world.ball.carrierSlot >= 0 ? world.ball.carrierSlot : world.ball.lastPossessorSlot;
-      endZoneImpetus = last >= 0 ? slots[last]!.side : null;
+      const west = dead.spot.x <= geometry.goalLineWestX;
+      endZoneImpetus = slots[0]!.side;
+      for (const e of events) {
+        if (e.type !== 'possession' || e.t > dead.t) continue;
+        if (west ? e.spot.x > geometry.goalLineWestX : e.spot.x < geometry.goalLineEastX) endZoneImpetus = e.side;
+      }
     }
     const truth: PlayTruth = {
       resolverId: 'tick', resolverVersion: TICK_RESOLVER_VERSION, gameId: sit.gameId, playNumber: sit.playNumber,

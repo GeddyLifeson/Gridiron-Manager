@@ -129,10 +129,14 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
   convertRoute: (a) => {
     const to = str(a, 'to'), px = num(a, 'px'), py = num(a, 'py'), relative = a['relative'] === true;
     const point: ActivePoint = { px, py, kind: str(a, 'kind') as ActivePoint['kind'] };
-    const alt: readonly ActivePoint[] = [point];
+    // A conversion he runs through carries on straight upfield from its point. With the point alone the last leg was
+    // the line from his alignment to it, so a seam bent to the middle kept crossing the field at that angle.
+    const on: ActivePoint = { px, py, kind: 'through' };
+    const alt: readonly ActivePoint[] = point.kind === 'through' ? [point, on] : [point];
     return (c, first) => {
       if (first) {
         point.px = relative ? c.self.px + px : px; point.py = relative ? c.self.py + py : py;
+        on.px = point.px + (c.offense ? 1 : -1) * c.k.extend; on.py = point.py;
         c.path = alt; c.pathIndex = 0; c.atTarget = false; c.technique['conversion'] = to;
       }
       followPath(c);
@@ -471,6 +475,9 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
         aim(c, e.px + c.k.trailOffset, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
         return false;
       }
+      // Until he has picked the ball up in the air he has no landing point: a receiver keeps running his route. Aiming
+      // at the ball itself turned him back toward the passer for the first part of every deep throw.
+      if (c.offense && c.view.ballKind() === 'passInFlight' && (c.view.landingPoint?.() ?? null) === null) { followPath(c); faceBall(c); return false; }
       toBall(c); return false;
     };
   },
