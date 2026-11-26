@@ -41,6 +41,22 @@ export function expectedGrade(gm: GmProfile, v: PlayerView, ctx: ValueContext, y
 
 /** Estimated wins above replacement by season, undiscounted, for `years` seasons from this one. */
 export function winsByYear(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number = P('value.horizonYears')): number[] {
+  if (!ctx.memo) return computeWinsByYear(gm, v, ctx, years);
+  let byGm = WINS.get(ctx);
+  if (!byGm) { byGm = new WeakMap(); WINS.set(ctx, byGm); }
+  let byView = byGm.get(gm);
+  if (!byView) { byView = new WeakMap(); byGm.set(gm, byView); }
+  let byYears = byView.get(v);
+  if (!byYears) { byYears = new Map(); byView.set(v, byYears); }
+  let out = byYears.get(years);
+  if (!out) { out = computeWinsByYear(gm, v, ctx, years); byYears.set(years, out); }
+  // A fresh array each call, as without the memory, so a caller may change what it gets.
+  return [...out];
+}
+
+const WINS = new WeakMap<ValueContext, WeakMap<GmProfile, WeakMap<PlayerView, Map<number, readonly number[]>>>>();
+
+function computeWinsByYear(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number): number[] {
   const perIss = ctx.table.winsPerIss(v.position) * (gm.philosophy.positionValues[v.position] ?? 1) * v.fit;
   const flags = Math.max(0, 1 - P('value.flagDiscount') * v.flags);
   const out: number[] = [];

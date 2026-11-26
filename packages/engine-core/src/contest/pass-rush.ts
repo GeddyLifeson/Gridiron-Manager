@@ -39,6 +39,8 @@ export type ArrivalOutcome = 'sack' | 'hit' | 'escape';
 
 export interface PassRushContests {
   engagement(lane: RushLane): EngagementParams;
+  /** Share of the effective-z difference that drives the engagement (the rating response, fitted apart from the base rate). */
+  skillGain(): number;
   /** `g(A)`: the rusher's speed along his track as a share of his free speed (J6.2.1). */
   rushSpeedFactor(advantage: number): number;
   /** Starting A. `getOffDz` is the blocker's get-off z minus the rusher's and is read only for `getOff`. */
@@ -69,6 +71,7 @@ export interface PassRushContests {
 export function createPassRush(n: ContestNum, math: DeterministicMath): PassRushContests {
   const edge: EngagementParams = { kappa: n('passBlock.kappa'), lambda: n('passBlock.lambda'), sigma: n('passBlock.sigma') };
   const interior: EngagementParams = { kappa: n('passBlock.interior.kappa'), lambda: n('passBlock.interior.lambda'), sigma: n('passBlock.interior.sigma') };
+  const skillGain = n('passBlock.skillGain');
   const gLosing = n('passBlock.gLosing'), gEven = n('passBlock.gEven'), gWinning = n('passBlock.gWinning');
   const counterThreshold = n('passBlock.counterThreshold'), counterHoldS = n('passBlock.counterHoldS');
   const counterBeta0 = n('passBlock.counterBeta0'), counterBeta1 = n('passBlock.counterBeta1'), counterResidual = n('passBlock.counterResidual');
@@ -91,6 +94,7 @@ export function createPassRush(n: ContestNum, math: DeterministicMath): PassRush
 
   return {
     engagement: (lane) => (lane === 'interior' ? interior : edge),
+    skillGain: () => skillGain,
     rushSpeedFactor: (advantage) => speedFactor(advantage, gLosing, gEven, gWinning),
     startAdvantage(start, getOffDz = 0) {
       switch (start) {

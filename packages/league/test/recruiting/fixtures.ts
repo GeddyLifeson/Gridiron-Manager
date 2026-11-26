@@ -1,6 +1,10 @@
-// Test fixtures for recruiting (G-36). Rule values here are FIXTURES copied from the bible leaves (T4.2.1,
-// T4.2.2, T4.5.1, T4.5.3, T4.1.2, T5.1.1); the real values arrive from G-10 with fact rows. The 2027 values
-// are the committee's recommendation (T4.2.2, release flag until adoption). Nothing here is triple-verified.
+// Test fixtures for recruiting (G-36). The 2026 rule values are READ from the G-10 league file
+// (packages/rules-data/data/league/collegeleague_2026.json, fact rows F-recruiting-*, F-college-*), not copied.
+// Keys the file does not hold yet (REQUESTED below, asked of the schema integrator) and the 2027 opportunity
+// model (the committee's recommendation, T4.2.2, effective 2027-01-01 and not yet adopted) are fixtures here.
+// Nothing in REQUESTED or RULES_2027 is triple-verified.
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { seedFromNumber, stream } from '@gm/engine-core';
 import type { RuleSet } from '@gm/schema';
 import { CALENDAR_FILES, CalendarEngine, parseIso, iso } from '../../src/calendar/index.ts';
@@ -16,30 +20,41 @@ import {
 export const D = parseIso;
 export { iso };
 
-const BASE: Record<string, number | boolean | string> = {
-  ...COLLEGE_VALUES,
-  'recruiting.contacts_per_week': 1, 'recruiting.contacts_total': 6, 'recruiting.calls_per_week': 1,
-  'recruiting.contact_start_month': 7, 'recruiting.contact_start_day': 1, 'recruiting.contact_start_years_before_class': 1,
-  'recruiting.message_start_month': 6, 'recruiting.message_start_day': 15, 'recruiting.message_start_years_before_class': 2,
-  'recruiting.call_start_month': 9, 'recruiting.call_start_day': 1, 'recruiting.call_start_years_before_class': 1,
-  'recruiting.hc_spring_offcampus_allowed': false,
-  'visits.official_per_school': 1, 'visits.second_after_hc_change': true, 'visits.max_hours': 48, 'visits.paid_companions': 2,
-  'iawp.window_years': 2,
-  'college.initial_eligibility.core_courses': 16, 'college.initial_eligibility.core_gpa': 2.3,
-  'college.initial_eligibility.core_before_final_year': 10, 'college.initial_eligibility.core_before_final_year_ems': 7,
+const G10 = (JSON.parse(readFileSync(fileURLToPath(new URL('../../../rules-data/data/league/collegeleague_2026.json', import.meta.url)), 'utf8')) as { values: { key: string; value: number | boolean | string }[] }).values;
+const fromFile = (keys: readonly string[]): Record<string, number | boolean | string> => Object.fromEntries(keys.map((k) => {
+  const row = G10.find((v) => v.key === k);
+  if (!row) throw new Error(`rule key ${k} is not in collegeleague_2026.json`);
+  return [k, row.value];
+}));
+
+/** Rule keys the G-10 college file holds; the 2026 recruiting rule set reads them from it. */
+export const FILE_KEYS: readonly string[] = [
+  'recruiting.contacts_per_week', 'recruiting.contacts_total', 'recruiting.calls_per_week',
+  'recruiting.contact_start_month', 'recruiting.contact_start_day', 'recruiting.contact_start_years_before_class',
+  'recruiting.message_start_month', 'recruiting.message_start_day', 'recruiting.message_start_years_before_class',
+  'recruiting.call_start_month', 'recruiting.call_start_day', 'recruiting.call_start_years_before_class',
+  'recruiting.hc_spring_offcampus_allowed',
+  'visits.official_per_school', 'visits.second_after_hc_change', 'visits.max_hours', 'visits.paid_companions',
+  'iawp.window_years',
+  'college.initial_eligibility.core_courses', 'college.initial_eligibility.core_gpa',
+  'college.initial_eligibility.core_before_final_year', 'college.initial_eligibility.core_before_final_year_ems',
+  'juco.transfer_gpa', 'eligibility.juco_seasons_count', 'eligibility.window_years', 'league.roster_limit',
+  'recruiting.model', 'recruiting.eval_days_fall', 'recruiting.person_days_spring', 'recruiting.offcampus_max', 'recruiting.hc_counts_against_days',
+];
+
+/** Keys the module reads that the G-10 file lacks. FIXTURES until the schema integrator adds the rows. */
+export const REQUESTED: Record<string, number | boolean | string> = {
   'juco.nonqualifier_full_time_terms': 3, 'juco.nonqualifier_hours': 48, 'juco.nonqualifier_must_graduate': true,
-  'juco.qualifier_full_time_terms': 1, 'juco.qualifier_hours_per_term': 12, 'juco.transfer_gpa': 2.0,
-  'eligibility.juco_seasons_count': true, 'eligibility.window_years': 5, 'league.roster_limit': 105,
+  'juco.qualifier_full_time_terms': 1, 'juco.qualifier_hours_per_term': 12,
 };
 
-/** 2026 rule year: day pools, 11 seats (17 under the fall 2026 waiver, T4.2.2). */
-export const RULES_2026: Record<string, number | boolean | string> = {
-  ...BASE, 'recruiting.model': 'days_2025', 'recruiting.eval_days_fall': 33, 'recruiting.person_days_spring': 140,
-  'recruiting.offcampus_max': 11, 'recruiting.hc_counts_against_days': true,
-};
+const BASE: Record<string, number | boolean | string> = { ...COLLEGE_VALUES, ...REQUESTED };
+
+/** 2026 rule year: day pools, 11 seats (17 under the fall 2026 waiver, T4.2.2). Values from the G-10 file. */
+export const RULES_2026: Record<string, number | boolean | string> = { ...BASE, ...fromFile(FILE_KEYS) };
 /** 2027 recommended model (T4.2.2). */
 export const RULES_2027: Record<string, number | boolean | string> = {
-  ...BASE, 'recruiting.model': 'opps_2027', 'recruiting.eval_days_fall': 50, 'recruiting.person_days_spring': 300,
+  ...BASE, ...fromFile(FILE_KEYS), 'recruiting.model': 'opps_2027', 'recruiting.eval_days_fall': 50, 'recruiting.person_days_spring': 300,
   'recruiting.offcampus_max': 17, 'recruiting.hc_counts_against_days': false,
   'recruiting.opps_per_prospect_spring': 4, 'recruiting.opps_per_prospect_fall': 1, 'recruiting.opps_per_week': 1,
 };

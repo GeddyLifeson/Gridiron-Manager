@@ -34,6 +34,8 @@ export type EngagementLimit = (world: TickWorld, slot: number, out: Float64Array
 
 export interface MovementOptions {
   readonly engagementLimit?: EngagementLimit | null;
+  /** True while this player has just shed a block: opponents' bodies do not hold him up (he is past his man, J6.1.2). */
+  readonly slipping?: ((world: TickWorld, slot: number) => boolean) | null;
   /** J2.4.1 `env`: the heat and altitude factor of J12 and D10.5.1. 1 until J12 supplies it. */
   readonly fatigueEnv?: ((world: TickWorld) => number) | null;
 }
@@ -79,7 +81,8 @@ export function createMovement(options: MovementOptions = {}): Movement {
   const limit = new Float64Array(3);
   /** Per sub-step scratch for the pair sweeps: body radius as it counts now (smaller on the ground), and who is down. */
   const rEff = f(), isDown = new Uint8Array(N);
-  const engagementLimit = options.engagementLimit ?? null, fatigueEnv = options.fatigueEnv ?? null;
+  const engagementLimit = options.engagementLimit ?? null, fatigueEnv = options.fatigueEnv ?? null, slipping = options.slipping ?? null;
+  let slips: Uint8Array = new Uint8Array(0), anySlip = false;
   let P: KinParams | null = null, cosFree = 0;
 
   const begin = (w: TickWorld): void => {
@@ -274,7 +277,8 @@ export function createMovement(options: MovementOptions = {}): Movement {
       let face = pl.headingRad[s]!;
       const nsp = ns;
       const ft = intent.faceTarget;
-      if (mode === M_SPRINT || mode === M_RUN) { if (nsp > TINY_SPEED) face = dAtan2(vy, vx); }
+      // A man standing in a running mode has no velocity to follow, so he turns to his face target like anyone else.
+      if ((mode === M_SPRINT || mode === M_RUN) && nsp > TINY_SPEED) face = dAtan2(vy, vx);
       else if (ft !== null) { const fx = frame.originX + ft.px * dir - x, fy = frame.originY + ft.py * dir - y; if (fx !== 0 || fy !== 0) face = dAtan2(fy, fx); }
       else if (mode === M_BACKPEDAL && nsp > TINY_SPEED) face = dAtan2(-vy, -vx);
       let turn = face - pl.headingRad[s]!;
@@ -305,10 +309,16 @@ export function createMovement(options: MovementOptions = {}): Movement {
     const downFrac = p.downRadiusFrac!, spacingFrac = p.minSpacingFrac!;
     const engagement = pl.engagement, posX = pl.posX, posY = pl.posY;
     for (let s = 0; s < N; s++) { const down = pl.moveMode[s] === M_DOWN; isDown[s] = down ? 1 : 0; rEff[s] = radius[s]! * (down ? downFrac : 1); }
+    anySlip = false;
+    if (slipping !== null) {
+      if (slips.length !== N) slips = new Uint8Array(N);
+      for (let s = 0; s < N; s++) { slips[s] = slipping(w, s) ? 1 : 0; if (slips[s] === 1) anySlip = true; }
+    }
     for (let a = 0; a < N; a++) {
       const ea = engagement[a]!, aDown = isDown[a] === 1, ra = rEff[a]!;
       for (let b = a + 1; b < N; b++) {
         if (ea >= 0 && ea === engagement[b]) continue;
+        if (anySlip && (slips[a] === 1 || slips[b] === 1) && w.slots[a]!.side !== w.slots[b]!.side && pl.hasBall[a] !== 1 && pl.hasBall[b] !== 1) continue;
         const bDown = isDown[b] === 1;
         if (aDown && bDown) continue;
         const reach = ra + rEff[b]!;
@@ -351,6 +361,7 @@ export function createMovement(options: MovementOptions = {}): Movement {
         const ea = engagement[a]!, aDown = isDown[a] === 1, ra = rEff[a]!;
         for (let b = a + 1; b < N; b++) {
           if (ea >= 0 && ea === engagement[b]) continue;
+          if (anySlip && (slips[a] === 1 || slips[b] === 1) && w.slots[a]!.side !== w.slots[b]!.side && pl.hasBall[a] !== 1 && pl.hasBall[b] !== 1) continue;
           const bDown = isDown[b] === 1;
           if (aDown && bDown) continue;
           const floor = (ra + rEff[b]!) * spacingFrac;
