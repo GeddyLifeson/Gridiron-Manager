@@ -13,6 +13,7 @@ import type { InstallHost } from '../../screens/install/index.ts';
 import type { InstallIntent, InstallUi, Mode } from '../../screens/install/view.ts';
 import type { PrintHost } from '../../screens/print/index.ts';
 import type { DefenseDesignerView } from '../../screens/defense-designer/types.ts';
+import type { DesignerViewData } from '../../screens/play-designer/types.ts';
 
 type Desk = play.FootballDesk;
 type DeskCommand<K extends 'runGameplan' | 'runPlaybook'> = Parameters<Desk[K]>[1];
@@ -30,12 +31,25 @@ export interface FootballSourceOptions {
 export interface FootballHubInput {
   /** The seat's football desk; absent for a scripted season. */
   readonly football?: play.FootballDesk;
+  /** The seat's play designer (G-90), bound to the season's rule set. */
+  readonly designer?: play.PlayDesignerDesk;
   /** Asks the career root to redraw (the port's subscription). */
   readonly changed?: () => void;
   readonly print?: () => void;
 }
 
 export type FootballSources = Required<Pick<RouteSources, 'gameplan' | 'print' | 'playbook' | 'install' | 'defenseDesigner'>>;
+
+/** The play designer route: the screen draws the desk's view and its commands go to the desk (G-90). */
+export function playDesignerSource(desk: play.PlayDesignerDesk, onChange?: () => void): Required<Pick<RouteSources, 'playDesigner'>> {
+  return {
+    playDesigner: {
+      // The service view is the screen's view data (the screen package declares the same shape).
+      view: () => desk.view() as unknown as DesignerViewData,
+      send: (_p, cmd) => { desk.send(cmd as Parameters<play.PlayDesignerDesk['send']>[0]); onChange?.(); },
+    },
+  };
+}
 
 /** O3.4.2 "move up or down" is a reorder of the box's entries. */
 function reorder(desk: Desk, unit: 'offense' | 'defense', boxId: string, entryId: string, by: -1 | 1): DeskCommand<'runGameplan'> | null {
