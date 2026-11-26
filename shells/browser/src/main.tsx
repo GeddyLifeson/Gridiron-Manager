@@ -10,6 +10,7 @@ import { BrowserPlatform } from './platform-browser.ts';
 import { registerOffline } from './offline.ts';
 import { DesktopPlatform, isDesktop } from './platform-desktop.ts';
 import { captureWebViewErrors } from '../../desktop/bridge/desktop-shell.ts';
+import { runGateConformance } from './gate-conformance.ts';
 
 declare global { interface Window { __GATE_RESULT__?: unknown } }
 
@@ -24,6 +25,8 @@ async function gateMode(platform: Platform): Promise<boolean> {
   const t0 = performance.now();
   const r = runGolden(goldenInputs());
   const c = compareGolden(r, golden as GoldenReport);
+  // Save core conformance on this platform's own storage (Q1.3.1): browser vault or native SQLite.
+  const conformance = await runGateConformance(platform);
   // Desktop only: a native SQLite save (P5.1.1) made here, reloaded and replay-checked here; the
   // one-command check then copies it out with --copy-save and replays it in Node.
   let save: { ok: boolean; name?: string; commands?: number; state?: string; problem?: string } | undefined;
@@ -48,8 +51,9 @@ async function gateMode(platform: Platform): Promise<boolean> {
   const result = {
     suite: 'Q1.3.1 golden-seed determinism (phase 0 dummy game)',
     platform: `${platform.kind}-${navigator.userAgent}`,
-    ok: c.ok && (save?.ok ?? true), digest: r.digest, goldenDigest: (golden as GoldenReport).digest, mismatches: c.mismatches, counts: r.counts,
+    ok: c.ok && conformance.ok && (save?.ok ?? true), digest: r.digest, goldenDigest: (golden as GoldenReport).digest, mismatches: c.mismatches, counts: r.counts,
     save,
+    conformance,
     seconds: Math.round((performance.now() - t0) / 100) / 10,
   };
   window.__GATE_RESULT__ = result;

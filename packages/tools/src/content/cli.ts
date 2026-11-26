@@ -1,5 +1,6 @@
 // Content command: validate packs, print the report and hashes, optionally watch for edits (P4.2.2:
 // "Validation is the same code in the designer, the pack loader, and the headless validate command").
+//   npm run content -- validate <pack folder or .zip>... (same as tsx packages/tools/src/content/cli.ts validate ...)
 //   tsx packages/tools/src/content/cli.ts validate <pack folder or .zip>... [--certified] [--watch]
 import { resolveRuleSet, RULE_SET_FILES } from '@gm/rules-data';
 import { loadPacks } from './load.ts';
@@ -32,6 +33,7 @@ function main(argv: string[]): number {
   const certified = rest.includes('--certified');
   const watchMode = rest.includes('--watch');
   const paths = rest.filter((a) => !a.startsWith('--'));
+  if (!paths.length) { console.error('usage: content validate <pack folder or .zip>... [--certified] [--watch]'); return 2; }
   const sources = paths.map((p) => (p.endsWith('.zip') ? readPackZip(p) : readPackFolder(p)));
   const ruleSets = RULE_SET_FILES.map((f) => resolveRuleSet(f.ruleset_id));
   if (!watchMode) {

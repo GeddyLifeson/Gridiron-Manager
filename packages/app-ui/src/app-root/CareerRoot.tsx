@@ -80,6 +80,8 @@ function LiveConsole({ port, session, bindings, now, soundStage, onDone }: LiveC
 export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStage = null, now }: CareerRootProps): ReactNode {
   const [version, bump] = useReducer((n: number) => n + 1, 0);
   const [session, setSession] = useState<GameSession | null>(null);
+  // The shell is opened afresh on the office after a game, so it does not stay on the closed console.
+  const [shellKey, nextShell] = useReducer((n: number) => n + 1, 0);
   const today = useMemo(() => port.today(), [port, version]); // eslint-disable-line react-hooks/exhaustive-deps
   const gameDay = session !== null || (today.nextGame !== null && today.nextGame.daysToGame === 0);
 
@@ -94,6 +96,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
     if (session) port.finishGame(session);
     setSession(null);
     bump();
+    nextShell();
   }, [port, session]);
   const delegate = useCallback(() => { port.delegateGame(); bump(); }, [port]);
 
@@ -113,7 +116,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
   };
   return (
     <Shell
-      routes={routes} context={context} initialPath="/office/today" onAdvance={advance} soundStage={soundStage}
+      key={shellKey} routes={routes} context={context} initialPath="/office/today" onAdvance={advance} soundStage={soundStage}
       display={{ theme: 'classic' }}
       // The console takes the whole width on game day (O2.1.1 fixed layout); the season panel returns after the game.
       sidePanel={gameDay ? undefined : <SeasonPanel today={today} canDelegate={today.nextGame !== null} onDelegate={delegate} />}

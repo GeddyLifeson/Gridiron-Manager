@@ -11,7 +11,7 @@ import { assignKeys, type CallSheet, type SheetKeys, type Unit } from '../comman
 import { toConsoleSheet, type ConsoleSheetInputs } from './console.ts';
 import type { Preferences, Suggestion } from './prefs.ts';
 import { consoleSpecialSheet, type SpecialSheetOptions } from './special.ts';
-import { staffDraft, type DraftUnit, type PlanEstimates } from './staff.ts';
+import { staffDraft, type DraftUnit, type PlanEstimates, type StaffObservation } from './staff.ts';
 
 export interface ConsoleConfigInput {
   readonly rules: Pick<RuleSet, 'keys' | 'num' | 'bool' | 'opt'>;
@@ -27,6 +27,10 @@ export interface ConsoleConfigInput {
   readonly estimates?: Partial<Record<DraftUnit, PlanEstimates>>;
   readonly preferences?: Partial<Record<DraftUnit, Preferences>>;
   readonly reference?: gp.ReferenceTable | null;
+  /** Rule level: picks the league table for box sizes when `reference` is not given. Default 'pro'. */
+  readonly level?: gp.ReferenceLevel;
+  /** The staff's own charted film per side: the boxes are ranked by their estimates from it. */
+  readonly observed?: Partial<Record<DraftUnit, StaffObservation>>;
   readonly inputs?: ConsoleSheetInputs;
   readonly special: SpecialSheetOptions;
   /** Snap counts of the playbook (G4); empty: the cadence key does nothing. */
@@ -58,6 +62,8 @@ export function consoleConfigFor(inp: ConsoleConfigInput): ConsoleConfigResult {
       unit, gameId: inp.gameId, menu: inp.plan?.[unit] ?? [], preparationZ: inp.staffPreparationZ[unit],
       ...(inp.reference !== undefined ? { reference: inp.reference } : {}),
       ...(inp.estimates?.[unit] ? { estimates: inp.estimates[unit] } : {}),
+      ...(inp.level ? { level: inp.level } : {}),
+      ...(inp.observed?.[unit] ? { observed: inp.observed[unit] } : {}),
       ...(inp.preferences?.[unit] ? { preferences: inp.preferences[unit] } : {}),
     });
     suggestions[unit] = d.suggestions;

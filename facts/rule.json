@@ -70060,6 +70060,405 @@
      "reason": "First load from the 2026 rule book text (WP-01)."
     }
    ]
+  },
+  {
+   "id": "F-rule-2043",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Players a team may designate to carry a helmet radio on offense (0 means no designation limit): 3 count (pro, 2026 rules).",
+   "value": 3,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 5, Section 3, Article 3 (text copy rulebook_2026.txt, line 1426)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Each team is permitted to have a maximum of three active radio receivers to be used on offense by its quarterbacks",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:comm.c2p_designated_offense"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-2044",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Players a team may designate to carry a helmet radio on offense (0 means no designation limit): 0 count (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 4, Article 11-b, Exception. Read for absence: the exception was read in full; it limits radio players on the field to one per team at a time and names no count of designated players or receivers.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:comm.c2p_designated_offense"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-2045",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Players a team may designate to carry a helmet radio on defense (0 means no designation limit): 3 count (pro, 2026 rules).",
+   "value": 3,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 5, Section 3, Article 3 (text copy rulebook_2026.txt, line 1427)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "a maximum of three active radio receivers to be used on defense by players who have been designated as primary and backup users",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:comm.c2p_designated_defense"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-2046",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Players a team may designate to carry a helmet radio on defense (0 means no designation limit): 0 count (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 4, Article 11-b, Exception. Read for absence: the exception was read in full; it limits radio players on the field to one per team at a time and names no count of designated players or receivers.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:comm.c2p_designated_defense"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-2047",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Minutes before the scheduled kickoff of the first half when the coin is tossed: 3 min (pro, 2026 rules).",
+   "value": 3,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 2, Article 2 (text copy rulebook_2026.txt, line 959)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Not more than three minutes before the kickoff of the first half, the Referee, in the presence of",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:toss.minutes_before_kickoff"
+   ],
+   "notes": "The rule book states a limit (\"not more than three minutes\"); the toss is placed at that limit. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "min"
+  },
+  {
+   "id": "F-rule-2048",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Minutes before the scheduled kickoff of the first half when the coin is tossed: 3 min (college, 2026 rules).",
+   "value": 3,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 1-e (text copy ncaa-rulebook-2026.txt, line 2098)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Three minutes before the scheduled starting time, the referee shall toss a",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:toss.minutes_before_kickoff"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "min"
+  },
+  {
+   "id": "F-rule-2049",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Minutes before the scheduled kickoff by which both teams must be on the field (0 means no such rule): 10 min (pro, 2026 rules).",
+   "value": 10,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 2, Article 1 (text copy rulebook_2026.txt, line 952)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "both teams are required to appear on the field at least 10 minutes prior to the scheduled",
+     "value": 10
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:toss.field_presence_minutes"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "min"
+  },
+  {
+   "id": "F-rule-2050",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Minutes before the scheduled kickoff by which both teams must be on the field (0 means no such rule): 0 min (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 1. Read for absence: the article on starting each period was read in full and the text searched for 'on the field' and 'minutes'; it times the coin toss and requires a coach on the field when squad members enter, and sets no deadline for teams to appear.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:toss.field_presence_minutes"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "min"
+  },
+  {
+   "id": "F-rule-2051",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Yards from the first-half kickoff spot for a team not on the field by the field-presence deadline (it also loses its coin-toss options); 0 means no such rule: 15 yd (pro, 2026 rules).",
+   "value": 15,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 2, Article 1, Penalty (b) (text copy rulebook_2026.txt, line 958)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "toss option for both halves and overtime, and loss of 15 yards from the spot of the kickoff for the first half.",
+     "value": 15
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:toss.late_field_penalty_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2052",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Yards from the first-half kickoff spot for a team not on the field by the field-presence deadline (it also loses its coin-toss options); 0 means no such rule: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 1. Read for absence: no field-presence deadline exists (see toss.field_presence_minutes), so no penalty for missing one.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:toss.late_field_penalty_yd"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2053",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "The head coach may name a pregame challenge designee who may also throw the challenge flag: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 1 (text copy rulebook_2026.txt, line 3960)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach or head coach’s pregame challenge designee can initiate a challenge by throwing a red flag onto the field of",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.challenge_designee_allowed"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-2054",
+   "level": "college",
+   "domain": "rule",
+   "statement": "The head coach may name a pregame challenge designee who may also throw the challenge flag: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5 (text copy ncaa-rulebook-2026.txt, line 5306)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "A head coach initiates this challenge by taking a team timeout before the",
+     "value": false
+    },
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12. Read for absence: the instant replay rule was searched for 'designee'; the challenge belongs to the head coach, through a team timeout, and no designee is named.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.challenge_designee_allowed"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
   }
  ]
 }

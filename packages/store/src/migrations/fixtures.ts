@@ -32,6 +32,7 @@ export const FIXTURE_SPECS: readonly FixtureSpec[] = [
   { name: 'f2-season15', format: 2, kind: 'season15' },
   { name: 'f2-people-pack', format: 2, kind: 'people_pack' },
   { name: 'f2-certified', format: 2, kind: 'certified' },
+  { name: 'f3-season1', format: 3, kind: 'season1' },
 ];
 
 export interface FixtureExpect {
@@ -84,7 +85,8 @@ export async function writeFixture(spec: FixtureSpec, env: FixtureEnv): Promise<
   const deps = conformanceDeps(env.hashes);
   const driver = await env.open();
   if (spec.format === 1) return writeFormat1(spec, driver, deps);
-  if (spec.format === 2) return writeFormat2(spec, driver, deps, env.codec);
+  if (spec.format === 2) throw new Error('format 2 fixtures are fixed for good: this build writes format 3 and keeps the files in test/migrations/fixtures');
+  if (spec.format === 3) return writeFormat2(spec, driver, deps, env.codec);
   throw new Error(`no fixture writer for format ${spec.format}`);
 }
 
@@ -121,6 +123,7 @@ async function writeFormat1(spec: FixtureSpec, driver: SqlDriver, deps: SaveCore
   return bytes;
 }
 
+/** The save core layout: format 2 when it was written by that build, format 3 now. */
 async function writeFormat2(spec: FixtureSpec, driver: SqlDriver, deps: SaveCoreDeps<ConformanceWorld>, codec?: BlobCodec): Promise<Uint8Array> {
   const save = await SaveFile.create(driver, deps, { header: headerFor(spec.kind), state: conformanceWorld(), versions: CONFORMANCE_VERSIONS }, codec ? { codec } : {});
   await playWeeks(save, 0, weeksFor(spec.kind));

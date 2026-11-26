@@ -41,6 +41,22 @@ export function expectedGrade(gm: GmProfile, v: PlayerView, ctx: ValueContext, y
 
 /** Estimated wins above replacement by season, undiscounted, for `years` seasons from this one. */
 export function winsByYear(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number = P('value.horizonYears')): number[] {
+  if (!ctx.memo) return computeWinsByYear(gm, v, ctx, years);
+  let byGm = WINS.get(ctx);
+  if (!byGm) { byGm = new WeakMap(); WINS.set(ctx, byGm); }
+  let byView = byGm.get(gm);
+  if (!byView) { byView = new WeakMap(); byGm.set(gm, byView); }
+  let byYears = byView.get(v);
+  if (!byYears) { byYears = new Map(); byView.set(v, byYears); }
+  let out = byYears.get(years);
+  if (!out) { out = computeWinsByYear(gm, v, ctx, years); byYears.set(years, out); }
+  // A fresh array each call, as without the memory, so a caller may change what it gets.
+  return [...out];
+}
+
+const WINS = new WeakMap<ValueContext, WeakMap<GmProfile, WeakMap<PlayerView, Map<number, readonly number[]>>>>();
+
+function computeWinsByYear(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number): number[] {
   const perIss = ctx.table.winsPerIss(v.position) * (gm.philosophy.positionValues[v.position] ?? 1) * v.fit;
   const flags = Math.max(0, 1 - P('value.flagDiscount') * v.flags);
   const out: number[] = [];
@@ -52,6 +68,22 @@ export interface Worth { readonly value: number; readonly cost: number; readonly
 
 /** `value(player, team, horizon)` and `surplus = value - cost`, in wins (K7.2.2 outputs). */
 export function playerWorth(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number = P('value.horizonYears')): Worth {
+  if (!ctx.memo) return computeWorth(gm, v, ctx, years);
+  // Same keys as `winsByYear`: the boards ask again on every pick over the same views, and the answer cannot move.
+  let byGm = WORTH.get(ctx);
+  if (!byGm) { byGm = new WeakMap(); WORTH.set(ctx, byGm); }
+  let byView = byGm.get(gm);
+  if (!byView) { byView = new WeakMap(); byGm.set(gm, byView); }
+  let byYears = byView.get(v);
+  if (!byYears) { byYears = new Map(); byView.set(v, byYears); }
+  let out = byYears.get(years);
+  if (!out) { out = computeWorth(gm, v, ctx, years); byYears.set(years, out); }
+  return { ...out };
+}
+
+const WORTH = new WeakMap<ValueContext, WeakMap<GmProfile, WeakMap<PlayerView, Map<number, Worth>>>>();
+
+function computeWorth(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number): Worth {
   const value = sum(winsByYear(gm, v, ctx, years).map((w, y) => w * yearWeight(gm, ctx.pressure, y)));
   const cost = costWins(gm, v.costCentsByYear, ctx, years);
   return { value, cost, surplus: value - cost };

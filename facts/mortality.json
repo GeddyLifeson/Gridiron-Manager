@@ -1,0 +1,465 @@
+{
+ "domain": "medical",
+ "rows": [
+  {
+   "id": "F-mortality-0001",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1900: probability of dying within the year at exact age 65 is 0.04159.",
+   "value": 0.04159,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1900 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1900, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1900.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.04159
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.04159, 0.06182, 0.08945, 0.13692, 0.19707, 0.2697, 0.35212, 0.44992, 0.57423, 0.73287; male e65 11.35. Used by packages/world/src/loop/data/mortality.json. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0002",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1910: probability of dying within the year at exact age 65 is 0.04151.",
+   "value": 0.04151,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1910 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1910, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1910.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.04151
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.04151, 0.06173, 0.09027, 0.13627, 0.1885, 0.25938, 0.35123, 0.45279, 0.57789, 0.73755; male e65 11.38. Used by packages/world/src/loop/data/mortality.json. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0003",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1920: probability of dying within the year at exact age 65 is 0.03714.",
+   "value": 0.03714,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1920 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1920, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1920.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.03714
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.03714, 0.05728, 0.08558, 0.13169, 0.18477, 0.25413, 0.34109, 0.43877, 0.55999, 0.7147; male e65 11.81. Used by packages/world/src/loop/data/mortality.json. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0004",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1930: probability of dying within the year at exact age 65 is 0.03945.",
+   "value": 0.03945,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1930 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1930, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1930.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.03945
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.03945, 0.05752, 0.08509, 0.12717, 0.17388, 0.2443, 0.34368, 0.44748, 0.57111, 0.72889; male e65 11.83. Used by packages/world/src/loop/data/mortality.json. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0005",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1940: probability of dying within the year at exact age 65 is 0.03812.",
+   "value": 0.03812,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1940 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1940, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1940.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.03812
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.03812, 0.05611, 0.08449, 0.12749, 0.17798, 0.2483, 0.34128, 0.44202, 0.56414, 0.72; male e65 11.92. Used by packages/world/src/loop/data/mortality.json. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0006",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1950: probability of dying within the year at exact age 65 is 0.03487.",
+   "value": 0.03487,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1950 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1950, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1950.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.03487
+    },
+    {
+     "citation": "NCHS US Life Tables 1949-51, Vital Statistics Special Reports Vol. 41 No. 1 (1954), Table 2 total males",
+     "locator": "https://www.cdc.gov/nchs/data/lifetables/life49-51.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nchs",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.03487, 0.05046, 0.07458, 0.10761, 0.15723, 0.22159, 0.29902, 0.38649, 0.49327, 0.62955; male e65 12.81. Used by packages/world/src/loop/data/mortality.json. Cross-check, NCHS total males q(65..100 by 5): .03528 .05069 .07472 .10872 .16018 .22595 .30394 .39079; e65 12.74. Differences come from the population (Social Security area vs US resident) and the span (decennial three-year tables); q65 within 2 percent.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "SSA Study 120 Table 6 read with NCHS cross-check"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0007",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1960: probability of dying within the year at exact age 65 is 0.03515.",
+   "value": 0.03515,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1960 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1960, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1960.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.03515
+    },
+    {
+     "citation": "NCHS Life Tables 1959-61, NCHS Vol. 1 No. 1 (1964), Table 2 total males",
+     "locator": "https://stacks.cdc.gov/view/cdc/51181/cdc_51181_DS1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nchs",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.03515, 0.05019, 0.07091, 0.10835, 0.15344, 0.21529, 0.29557, 0.38224, 0.48784, 0.62263; male e65 12.91. Used by packages/world/src/loop/data/mortality.json. Cross-check, NCHS total males q(65..100 by 5): .03474 .04936 .07035 .10598 .15768 .23320 .31416 .39242; e65 12.95. Differences come from the population (Social Security area vs US resident) and the span (decennial three-year tables); q65 within 2 percent.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "SSA Study 120 Table 6 read with NCHS cross-check"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0008",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1970: probability of dying within the year at exact age 65 is 0.03416.",
+   "value": 0.03416,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1970 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1970, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1970.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.03416
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.03416, 0.04887, 0.07039, 0.10224, 0.14834, 0.20824, 0.28077, 0.36256, 0.46273, 0.59057; male e65 13.13. Used by packages/world/src/loop/data/mortality.json. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0009",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1980: probability of dying within the year at exact age 65 is 0.02881.",
+   "value": 0.02881,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1980 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1980, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1980.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.02881
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.02881, 0.04312, 0.06342, 0.09204, 0.1349, 0.19232, 0.26377, 0.34225, 0.43681, 0.55749; male e65 14.04. Used by packages/world/src/loop/data/mortality.json. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0010",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 1990: probability of dying within the year at exact age 65 is 0.02393.",
+   "value": 0.02393,
+   "unit": "probability per year",
+   "validFor": "calendar years near 1990 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 1990, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_1990.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.02393
+    },
+    {
+     "citation": "NCHS US Decennial Life Tables 1989-91, NCHS Vol. 1 No. 1 (1997), Table 2 total males",
+     "locator": "https://www.cdc.gov/nchs/data/lifetables/life89_1_1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nchs",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.02393, 0.03617, 0.05545, 0.08448, 0.12579, 0.18509, 0.26379, 0.34516, 0.44052, 0.56223; male e65 15.06. Used by packages/world/src/loop/data/mortality.json. Cross-check, NCHS total males q(65..100 by 5): .02397 .03607 .05492 .08283 .12378 .18460 .26004 .33505; e65 15.12. Differences come from the population (Social Security area vs US resident) and the span (decennial three-year tables); q65 within 2 percent.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "SSA Study 120 Table 6 read with NCHS cross-check"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0011",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 2000: probability of dying within the year at exact age 65 is 0.01977.",
+   "value": 0.01977,
+   "unit": "probability per year",
+   "validFor": "calendar years near 2000 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 2000, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_2000.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.01977
+    },
+    {
+     "citation": "NCHS United States Life Tables 2000, NVSR Vol. 51 No. 3 (2002), Table 2 total males",
+     "locator": "https://www.cdc.gov/nchs/data/nvsr/nvsr51/nvsr51_03.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nchs",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.01977, 0.03125, 0.0481, 0.07576, 0.12276, 0.19257, 0.2846, 0.37561, 0.47938, 0.61183; male e65 15.91. Used by packages/world/src/loop/data/mortality.json. Cross-check, NCHS total males q(65..100 by 5): 0.019939 0.030827 0.046467 0.071426 0.114901 0.172788 0.242816 MISSING; e65 16.3. Differences come from the population (Social Security area vs US resident) and the span (decennial three-year tables); q65 within 2 percent.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "SSA Study 120 Table 6 read with NCHS cross-check"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0012",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 2010: probability of dying within the year at exact age 65 is 0.01753.",
+   "value": 0.01753,
+   "unit": "probability per year",
+   "validFor": "calendar years near 2010 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 2010, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_2010.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.01753
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.01753, 0.02785, 0.04299, 0.06978, 0.118, 0.19307, 0.29443, 0.39134, 0.49947, 0.63746; male e65 16.55. Used by packages/world/src/loop/data/mortality.json. SSA marks period tables from 2010 on as reflecting projected mortality. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0013",
+   "level": "both",
+   "domain": "medical",
+   "statement": "US period life table, males, calendar year 2020: probability of dying within the year at exact age 65 is 0.01596.",
+   "value": 0.01596,
+   "unit": "probability per year",
+   "validFor": "calendar years near 2020 (decennial table, interpolated between decades)",
+   "sources": [
+    {
+     "citation": "SSA Office of the Chief Actuary, Actuarial Study No. 120, Life Tables for the United States Social Security Area 1900-2100 (Bell and Miller 2005), Table 6, period life table, calendar year 2020, males",
+     "locator": "https://www.ssa.gov/OACT/NOTES/as120/LifeTables_Tbl_6_2020.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa-oact",
+     "primary": true,
+     "value": 0.01596
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "notes": "Male q(x) at ages 65,70,75,80,85,90,95,100,105,110: 0.01596, 0.02548, 0.03934, 0.06369, 0.11033, 0.18289, 0.28049, 0.37351, 0.4767, 0.6084; male e65 17.18. Used by packages/world/src/loop/data/mortality.json. SSA marks period tables from 2010 on as reflecting projected mortality. Only the SSA table was read for this decade: the NCHS decennial table (or the Human Mortality Database, blocked from the cloud) is the owed cross-check.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "SSA Study 120 Table 6 read"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0014",
+   "level": "both",
+   "domain": "medical",
+   "statement": "Before 1900 (the world's seasons from 1869) the 1900 male period table is used unchanged.",
+   "validFor": "seasons 1869 to 1899",
+   "sources": [],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [],
+   "notes": "No US period life table before 1900 was read. Massachusetts and other state tables exist (research owed).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "design choice"
+    }
+   ]
+  },
+  {
+   "id": "F-mortality-0015",
+   "level": "both",
+   "domain": "medical",
+   "statement": "Former football players are given the general male population's death rates.",
+   "validFor": "all seasons",
+   "sources": [],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [],
+   "notes": "Whether a football career changes old-age mortality is not sourced (bible X12.1.3 football facts; research backlog Rx2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "design choice"
+    }
+   ]
+  }
+ ]
+}

@@ -50,6 +50,9 @@
   ["motions_factor", 1, 0.5, 1, "ratio", "bible", "K6.4.1 rule 3 (set by his recent demonstrated work grades, never above them)", "staff test 'motions'"],
   ["motions_window", 4, 1, 17, "count", "assumption", "K6.4.1 rule 3 ('recent' is not sized)", "staff test 'motions'"],
   ["proposal_base", 0.5, 0, 1, "probability", "assumption", "K6.6.1 (an assistant may propose it or do it unasked; the split is not stated)", "staff test 'violations'"],
-  ["proposal_floor", 0.02, 0.0001, 0.5, "probability", "assumption", "Marlon 2026-11-25 21:32 (both paths stay possible for every assistant)", "staff test 'violations'"]
+  ["proposal_floor", 0.02, 0.0001, 0.5, "probability", "assumption", "Marlon 2026-11-25 21:32 (both paths stay possible for every assistant)", "staff test 'violations'"],
+  ["pref_min_seen", 5, 2, 50, "count", "assumption", "Marlon 2026-11-26 07:08 (staff learn the head coach's preferences): decisions of one kind and situation a staff member must have seen before he treats a habit as a preference", "staff test 'preferences'"],
+  ["pref_min_share", 0.6, 0.5, 1, "ratio", "assumption", "Marlon 2026-11-26 07:08: share of those decisions that must go one way before he calls it a preference", "staff test 'preferences'"],
+  ["pref_suggestions_per_meeting", 3, 1, 10, "count", "assumption", "Marlon 2026-11-26 07:08 (one-on-one in game week): most suggestions he brings to one meeting, largest gap first", "staff test 'preferences'"]
  ]
 }

@@ -1,0 +1,48 @@
+{
+ "$comment": "X3.4.1 record categories and X2.2.1 label queries as content. Counting records need no minimum (X3.4.1 rule 2). Books: competition (the league), team (the club's own book, recordId gets the franchise suffix), level (coach careers across a level). The world's games carry team scores only, so these are the team and coach records; player records wait on player lines from the game port. Label thresholds, minimum samples and half-lives (4 seasons: a season record is a tendency, not in-season form) are Assumption until the Q2 calibration job (X2.2.2 rule 3).",
+ "franchiseSuffix": ".team",
+ "records": [
+  { "id": "team_points_game", "statistic": "points", "scope": "game", "books": ["competition", "team"] },
+  { "id": "team_margin_game", "statistic": "margin", "scope": "game", "books": ["competition"] },
+  { "id": "team_points_postseason_game", "statistic": "points", "scope": "postseason_game", "books": ["competition"] },
+  { "id": "team_wins_season", "statistic": "wins", "scope": "season", "books": ["competition", "team"] },
+  { "id": "team_points_season", "statistic": "points", "scope": "season", "books": ["competition"] },
+  { "id": "coach_wins_career", "statistic": "wins", "scope": "coach_career", "books": ["level"] },
+  { "id": "coach_titles_career", "statistic": "titles", "scope": "coach_career", "books": ["level"] }
+ ],
+ "coachMilestone": "coach_wins",
+ "labels": [
+  {
+   "id": "coach_wins_more_than_he_loses", "appliesTo": ["coach"], "phrase": "label.coach_winning_seasons", "kind": "performance",
+   "subjectBy": "actor", "measure": "rate",
+   "positive": { "types": ["team_season_finished"], "actorRole": "head_coach", "payloadEquals": { "winning": true } },
+   "negative": { "types": ["team_season_finished"], "actorRole": "head_coach", "payloadEquals": { "winning": false } },
+   "direction": "above", "thresholdOn": 2.0, "thresholdOff": 0.5, "minSample": 4, "halfLifeSeasons": 4, "windowSeasons": 8, "opposes": "coach_loses_more_than_he_wins",
+   "consumers": ["league.news", "career.reputation", "app.legends"]
+  },
+  {
+   "id": "coach_loses_more_than_he_wins", "appliesTo": ["coach"], "phrase": "label.coach_losing_seasons", "kind": "performance",
+   "subjectBy": "actor", "measure": "rate",
+   "positive": { "types": ["team_season_finished"], "actorRole": "head_coach", "payloadEquals": { "winning": true } },
+   "negative": { "types": ["team_season_finished"], "actorRole": "head_coach", "payloadEquals": { "winning": false } },
+   "direction": "below", "thresholdOn": 2.0, "thresholdOff": 0.5, "minSample": 4, "halfLifeSeasons": 4, "windowSeasons": 8, "opposes": "coach_wins_more_than_he_loses",
+   "consumers": ["league.news", "career.reputation", "app.legends"]
+  },
+  {
+   "id": "coach_reaches_the_postseason", "appliesTo": ["coach"], "phrase": "label.coach_postseason_regular", "kind": "performance",
+   "subjectBy": "actor", "measure": "rate",
+   "positive": { "types": ["team_season_finished"], "actorRole": "head_coach", "payloadEquals": { "postseason": true } },
+   "negative": { "types": ["team_season_finished"], "actorRole": "head_coach", "payloadEquals": { "postseason": false } },
+   "direction": "above", "thresholdOn": 2.0, "thresholdOff": 0.5, "minSample": 4, "halfLifeSeasons": 4, "windowSeasons": 8,
+   "consumers": ["league.news", "career.reputation", "app.legends"]
+  },
+  {
+   "id": "program_wins_more_than_it_loses", "appliesTo": ["team", "program"], "phrase": "label.program_winning_seasons", "kind": "performance",
+   "subjectBy": "team", "measure": "rate",
+   "positive": { "types": ["team_season_finished"], "payloadEquals": { "winning": true } },
+   "negative": { "types": ["team_season_finished"], "payloadEquals": { "winning": false } },
+   "direction": "above", "thresholdOn": 2.0, "thresholdOff": 0.5, "minSample": 4, "halfLifeSeasons": 4, "windowSeasons": 8,
+   "consumers": ["league.news", "app.legends"]
+  }
+ ]
+}

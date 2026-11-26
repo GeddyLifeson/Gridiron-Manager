@@ -5,9 +5,15 @@
 // situation, sized by expected snaps (G7.2.3). The result is a G-68 sheet the user edits with the game plan
 // commands. Learned preferences (prefs.ts) are applied on top, and what the staff still want is kept as their
 // suggestions. Nothing here reads a true rating.
+//
+// Ranking inside a box: the staff's payoff estimates (estimates.ts) from the team's own charted film, the call
+// in that situation first, shrunk toward the call overall. Box sizes follow the level's league table: pro 2024
+// or college 2024 (G7.2.3).
 import { preparation } from '@gm/coach-ai';
 import { gameplan as gp } from '@gm/football-content';
+import { tendencies } from '@gm/models';
 import { contentBook, type ContentBook } from '../coach-calling/content.ts';
+import { staffEstimates, type StaffEstimates } from './estimates.ts';
 import { applyPreferences, type Preferences, type Suggestion } from './prefs.ts';
 
 export type DraftUnit = 'offense' | 'defense';
@@ -19,6 +25,22 @@ export interface PlanEstimates {
   /** K3.3 payoff estimates of the staff for this game, when the week built them. */
   readonly table: preparation.PayoffTable;
   readonly shares: preparation.SheetInput['shares'];
+  /** The staff's estimate of each call in each situation; ranks the calls inside a box when present. */
+  readonly bySituation?: StaffEstimates['bySituation'];
+}
+
+/** What the staff have seen: the team's own charted film, from which `staffDraft` builds its estimates. */
+export interface StaffObservation {
+  readonly teamId: number;
+  /** Own charted rows (G-66, source 'own'), the film the staff charted. */
+  readonly film: readonly tendencies.ChartedPlay[];
+  /** coach-ai `payoffNoise` stream for this team and week. */
+  readonly noise: preparation.PrepStream;
+  /** The scouting report's look shares (opponent); default one 'other' look. */
+  readonly shares?: preparation.SheetInput['shares'];
+  /** Look class of an own row; default the coverage family met (offense) or the play kind met (defense). */
+  readonly lookOf?: (p: tendencies.ChartedPlay) => string | null;
+  readonly payoffOf?: (p: tendencies.ChartedPlay) => number | null;
 }
 
 export interface StaffDraftInput {
@@ -29,13 +51,17 @@ export interface StaffDraftInput {
   /** K2.1.4 preparation (and evaluation) of the coach who owns the plan, as z values. */
   readonly preparationZ: number;
   readonly evaluationZ?: number;
-  /** Expected snaps by situation (G7.2.3); default the pro 2024 table (no college table exists yet). */
+  /** Rule level of the save: picks the league table for box sizes (G7.2.3). Default 'pro'. */
+  readonly level?: gp.ReferenceLevel;
+  /** Expected snaps by situation (G7.2.3); default the level's 2024 league table. */
   readonly reference?: gp.ReferenceTable | null;
   /** Total entries the sheet aims for; default the G7.3.2 low end of the usual sheet (`size.sheetMin`). */
   readonly sizeLimit?: number;
   readonly book?: ContentBook;
-  /** The staff's K3 estimates. Without them the staff rank calls in the plan's own order. */
+  /** The staff's K3 estimates, when the week built them. Wins over `observed`. */
   readonly estimates?: PlanEstimates;
+  /** The staff's own film: estimates are built from it. With neither, calls rank in the plan's own order. */
+  readonly observed?: StaffObservation;
   /** What the staff learned from the user's past edits (prefs.ts). */
   readonly preferences?: Preferences;
 }
@@ -48,6 +74,17 @@ export interface StaffDraft {
   readonly suggestions: readonly Suggestion[];
   /** Plan entries whose call is not in the content book, and AI boxes with no sheet slot. */
   readonly skipped: readonly string[];
+  /** How the boxes were ranked: the staff's estimates (week-built or from film) or the plan's order. */
+  readonly rankedBy: 'estimates' | 'film' | 'planOrder';
+  /** Charted plays behind each call when ranked from film (shown as "seen n times"). */
+  readonly seen: ReadonlyMap<string, number>;
+}
+
+/** Default look class of an own row: the coverage met (with pressure) for offense, the play kind met for defense. */
+export function ownLookOf(unit: DraftUnit): (p: tendencies.ChartedPlay) => string | null {
+  return unit === 'offense'
+    ? (p) => (p.coverageFamily === null ? null : tendencies.isPressure(p.rushers) ? `${p.coverageFamily}+pressure` : p.coverageFamily)
+    : (p) => p.playKind;
 }
 
 /** Plan entries for a side when the user has no plan yet: every book call for the side, in book order, any situation. */
@@ -89,11 +126,34 @@ export function staffDraft(inp: StaffDraftInput): StaffDraft {
     const k = kindOf(m.call.playId);
     return { callId: m.id, unit: inp.unit, conceptFamily: k, kind: k, tags: [...m.call.tags], fits, readiness: 1, carryOver: false, pairings: [] };
   });
-  const est = inp.estimates ?? planOrderTable(inp.unit, menu.map((m) => m.id));
+  const reference = inp.reference ?? gp.leagueReference(inp.level ?? 'pro');
+  const catalogue = catalogueDefs(reference);
+  let est: PlanEstimates;
+  let rankedBy: StaffDraft['rankedBy'] = 'estimates';
+  let seen: ReadonlyMap<string, number> = new Map();
+  if (inp.estimates) est = inp.estimates;
+  else if (inp.observed && inp.observed.film.length) {
+    const o = inp.observed;
+    const shares = o.shares ?? { all: [{ look: preparation.OTHER_LOOK, share: 1, count: 0 }], byBucket: new Map() };
+    const byPlay = new Map<string, string[]>();
+    for (const m of menu) byPlay.set(m.call.playId, [...(byPlay.get(m.call.playId) ?? []), m.id]);
+    // A defensive row records its coverage and rushers, not the call: it counts for every planned call with that signature.
+    const callsOf = inp.unit === 'offense'
+      ? (p: tendencies.ChartedPlay) => (p.concept === null ? [] : byPlay.get(p.concept) ?? [])
+      : (p: tendencies.ChartedPlay) => menu.filter((m) => { const d = book.defense.get(m.call.playId)!; return d.coverageFamily === p.coverageFamily && d.rushers === p.rushers; }).map((m) => m.id);
+    const e = staffEstimates({
+      unit: inp.unit, calls, callsOf, film: o.film, teamId: o.teamId, lookOf: o.lookOf ?? ownLookOf(inp.unit),
+      looks: [...new Set([...shares.all.map((l) => l.look), ...[...shares.byBucket.values()].flatMap((b: readonly preparation.LookShare[]) => b.map((l) => l.look))])],
+      situationIds: catalogue.map((c) => c.id), preparationZ: inp.preparationZ, noise: o.noise, ...(o.payoffOf ? { payoffOf: o.payoffOf } : {}),
+    });
+    est = { table: e.table, shares, bySituation: e.bySituation };
+    rankedBy = 'film';
+    seen = e.seen;
+  } else { est = planOrderTable(inp.unit, menu.map((m) => m.id)); rankedBy = 'planOrder'; }
   const aiMenu: preparation.MenuEntry[] = menu.map((m, order) => ({ callId: m.id, source: 'standing', wrinkle: false, wrinkleTarget: null, value: -order, order, plannedSnaps: null }));
   const depth = preparation.prepDepth({ preparationZ: inp.preparationZ, evaluationZ: inp.evaluationZ ?? inp.preparationZ, tellHours: 0 });
   const ai = preparation.buildSheet({
-    unit: inp.unit, gameId: 0, menu: aiMenu, calls, table: est.table, catalogue: catalogueDefs(inp.reference ?? gp.proReference2024()),
+    unit: inp.unit, gameId: 0, menu: aiMenu, calls, table: est.table, catalogue,
     shares: est.shares, sizeLimit: inp.sizeLimit ?? gp.param('size.sheetMin'), scriptSituations: SCRIPT_SITUATIONS,
   }, depth);
 
@@ -103,7 +163,7 @@ export function staffDraft(inp: StaffDraftInput): StaffDraft {
   for (const b of ai.boxes) {
     const slot = slotOf.get(b.situationId);
     if (!slot) { skipped.push(`box:${b.situationId}`); continue; }
-    boxes.push({ ...slot, entries: [...b.entries].sort((x, y) => x.rank - y.rank).map((e, i) => ({ id: `${slot.id}.${i + 1}`, call: byId.get(e.callId)!.call })) });
+    boxes.push({ ...slot, entries: rankBox(b, calls, est.bySituation?.get(b.situationId)).map((callId, i) => ({ id: `${slot.id}.${i + 1}`, call: byId.get(callId)!.call })) });
   }
   // Category boxes (G7.2.2: shots, screens, play action ...): the plan's calls chosen for that category, in plan order.
   for (const slot of template.boxes) {
@@ -120,5 +180,17 @@ export function staffDraft(inp: StaffDraftInput): StaffDraft {
     ...gp.emptySheet(inp.unit, inp.gameId), situations: template.situations.filter((s) => used.has(s.id)), boxes: gp.withReadingOrder(boxes), script,
   };
   const { sheet, suggestions } = applyPreferences(drafted, inp.preferences ?? null);
-  return { sheet, ai, suggestions, skipped };
+  return { sheet, ai, suggestions, skipped, rankedBy, seen };
+}
+
+/**
+ * The calls of one box: as many as the K3 builder sized it for, chosen and ordered by the staff's estimate in
+ * that situation (best first; plan order on a tie). Without situational estimates, the builder's own order.
+ */
+export function rankBox(box: preparation.SheetBox, calls: readonly preparation.CallOption[], est: ReadonlyMap<string, preparation.Estimate> | undefined): string[] {
+  const own = [...box.entries].sort((x, y) => x.rank - y.rank).map((e) => e.callId);
+  if (!est) return own;
+  const order = new Map(calls.map((c, i) => [c.callId, i]));
+  const fits = calls.filter((c) => (c.fits === null || c.fits.includes(box.situationId)) && est.has(c.callId)).map((c) => c.callId);
+  return fits.sort((a, b) => est.get(b)!.mean - est.get(a)!.mean || order.get(a)! - order.get(b)!).slice(0, own.length);
 }
