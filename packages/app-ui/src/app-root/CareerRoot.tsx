@@ -12,6 +12,7 @@ import { gameCalling } from '@gm/app-services';
 import { homeFromSeason, recordText } from './today.ts';
 import { FinalPanel, PlayLog, keyForIn, useLiveSession } from './ConsoleHost.tsx';
 import { rt } from './text.ts';
+import { footballSources } from './sources/football.ts';
 import type { CareerPort, GameSession, SeasonToday } from './port.ts';
 import type { SoundStage } from '../audio/stage/index.ts';
 
@@ -101,6 +102,8 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
   const routes: RouteTable = useMemo(() => {
     const t = buildRoutes({
       home: { view: () => homeFromSeason(port.today()), dispatch: (i) => { if (i.kind === 'advance') advance(); } },
+      // Football hub: playbook, game plan, call sheet, install, print and the defensive call designer (plan item 2b).
+      ...(port.football ? footballSources(port.football, { onChange: bump, print: () => globalThis.print?.() }) : {}),
     });
     t['game.console'] = {
       render: () => (session ? createElement(LiveConsole, { port, session, bindings, now, soundStage, onDone: done }) : createElement(GameConsole, { view: null })),

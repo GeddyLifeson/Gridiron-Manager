@@ -13,6 +13,8 @@ export interface SeasonPortHost {
   readonly seasonYear: number;
   /** The console setup for the seat's game, built when the game opens (the staff's sheet or the user's own). */
   consoleConfig(gameId: string): ConsoleConfig;
+  /** The seat's football desk: its week follows the seat's next game, and the football screens read it. */
+  readonly football?: play.FootballDesk;
   readonly resolve: Resolve;
   /** Real milliseconds a play runs on screen before the next call opens (I2.1.1); the play log shows it meanwhile. */
   liveMs?(): number;
@@ -41,7 +43,10 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
   // The office reaches game day by advancing; until then the coming step's game is a week out (H1 adds the days).
   let gameDay = false;
   let field: LiveField | null = null;
+  // The desk's game week is the seat's next game: a new game gets the staff's fresh sheets, the same game keeps edits.
+  const syncDesk = () => { if (host.football) { const g = sp.nextSeatGame(); host.football.prepare(g ? String(g.context.fixture.gameId) : null); } };
   const today = (): SeasonToday => {
+    syncDesk();
     const t = sp.today();
     const seat = t.standings.find((r) => r.teamId === t.seatTeamId);
     // The seat's own table: its division in the pro league, its conference in college.
@@ -101,5 +106,6 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
     delegateGame: () => { sp.advanceToGame(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; },
     // PLACEHOLDER rosters have no names yet: a player is his jersey slot until generated people play (G-17).
     names: () => ({ playerName: (id: number) => `#${id % 100}`, teamName: (side: 0 | 1) => sides[side] }),
+    ...(host.football ? { football: host.football } : {}),
   };
 }

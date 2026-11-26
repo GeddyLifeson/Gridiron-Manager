@@ -3,6 +3,7 @@
 import { play } from '@gm/app-services';
 import { careerPortFromSeason, type SeasonPortHost } from './season-port.ts';
 import type { CareerPort } from './port.ts';
+import { DEFAULT_KEYMAP } from '../shell/keymap.ts';
 
 /** The four league files the season is built from (world season `LeagueContent`); the shell host imports them. */
 export type LeagueContent = Parameters<typeof play.SeasonPlay.start>[0];
@@ -16,7 +17,14 @@ export interface CareerSeasonStart {
   readonly seat: { readonly key: string } | { readonly world: play.WorldTeams; readonly teamId: number };
 }
 
-export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, host: Omit<SeasonPortHost, 'level' | 'seasonYear'>): CareerPort {
+/** What the shell host supplies. Without `consoleConfig` the console calls from the football desk's sheets. */
+export type CareerHost = Omit<SeasonPortHost, 'level' | 'seasonYear' | 'consoleConfig' | 'football'> & {
+  readonly consoleConfig?: SeasonPortHost['consoleConfig'];
+  /** Key bindings for the desk's console setup (sheet key hints skip the console's own keys). */
+  readonly bindings?: readonly { readonly context: string; readonly keys: readonly string[] }[];
+};
+
+export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, host: CareerHost): CareerPort {
   const base = { ruleSetId: s.ruleSetId, seasonYear: s.seasonYear, seedHex: s.seedHex };
   const sp = 'key' in s.seat
     ? play.SeasonPlay.start(content, { ...base, seatTeamKey: s.seat.key })
@@ -26,7 +34,13 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const c = content as any;
   const strips = new Map<string, { primary: string; alternate: string }>();
   for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
-  return careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...host, level: s.level, seasonYear: s.seasonYear });
+  // The seat's football desk (plan item 2b): the football screens and, unless the host overrides it, the console read it.
+  const football = new play.FootballDesk({ teamId: sp.seatTeamId, ruleSetId: s.ruleSetId, level: s.level });
+  const { bindings = DEFAULT_KEYMAP.bindings, consoleConfig, ...rest } = host;
+  return careerPortFromSeason(sp, {
+    colours: (key) => strips.get(key) ?? null, ...rest, level: s.level, seasonYear: s.seasonYear, football,
+    consoleConfig: consoleConfig ?? ((gameId) => football.consoleConfig(gameId, bindings)),
+  });
 }
 
 /** First team of the level in the content: the quick start's seat (a check entry, not a career choice). */

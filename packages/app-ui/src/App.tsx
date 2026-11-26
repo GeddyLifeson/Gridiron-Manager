@@ -55,10 +55,10 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
   const [career, setCareer] = useState<CareerPort | null>(null);
   useEffect(() => {
     if (!quickCareer || !leagueContent || career) return;
-    const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
     const ruleSetId = RULE_SET_OF[quickCareer];
+    // Without a host override the console calls from the football desk's sheets (the staff's draft, as edited).
     setCareer(startCareerSeason(leagueContent, { level: quickCareer, ruleSetId, seasonYear: 2026, seedHex: randomSeedHex(), seat: { key: firstTeamKey(leagueContent, quickCareer) } },
-      { consoleConfig: (gameId) => setup(ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings) }));
+      { ...(consoleConfig ? { consoleConfig: (gameId: string) => consoleConfig(ruleSetId, gameId) } : {}), resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings }));
   }, [quickCareer, leagueContent, consoleConfig, career]);
   const [saves, setSaves] = useState<{ name: string; sizeBytes: number }[]>([]);
   const [svc, setSvc] = useState<WorldService | null>(null);
@@ -84,10 +84,9 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     if (newGame?.onStart) { newGame.onStart(start, world); return; }
     // The career root: the season of the seat's level from the generated world, on the office and the console.
     if (leagueContent && start.seatTeamId !== null) {
-      const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
       try {
         setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId } },
-          { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings) }));
+          { ...(consoleConfig ? { consoleConfig: (gameId: string) => consoleConfig(start.ruleSetId, gameId) } : {}), resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings }));
         return;
       } catch (e) { setMsg((e as Error).message); return; }
     }
