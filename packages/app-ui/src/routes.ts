@@ -7,7 +7,8 @@ import { rosterMovesRoute, SCREEN_ID as ROSTER_MOVES_SCREEN_ID } from './screens
 import { gameFrameRoutes } from './screens/game-frame/index.ts';
 import { scoutingRoutes } from './screens/scouting/index.ts';
 import { analyticsRoute, ANALYTICS_SCREEN_ID } from './screens/analytics/index.ts';
-import { weekScheduleRoute } from './screens/week/index.ts';
+import { weekScheduleRoute, meetingsRoute, travelRoute, documentsRoute, WEEK_SCREEN_IDS } from './screens/week/index.ts';
+import { pressRoute, MEDIA_SCREEN_ID } from './screens/media/index.ts';
 import { filmRoutes } from './screens/film/index.ts';
 import { careerRoutes, assignmentsRoute } from './screens/career/index.ts';
 import { schoolRoute, SCHOOL_SCREEN_IDS } from './screens/school/index.ts';
@@ -19,13 +20,20 @@ import { playerDesignerRoute, SCREEN_ID as PLAYER_DESIGNER_SCREEN_ID } from './s
 import { editorsRoute, SCREEN_ID as EDITORS_SCREEN_ID } from './screens/editors/index.ts';
 import { practicePlannerRoute } from './screens/practice/index.ts';
 import { homeRoutes } from './screens/home/index.ts';
-import { peopleRoutes } from './screens/people/index.ts';
+import { peopleRoutes, peopleWorkRoutes } from './screens/people/index.ts';
 import { legendsRoute, LEGENDS_SCREEN_ID } from './screens/legends/index.ts';
 import { gamePlanRoute, callSheetRoute, PLAN_SCREEN_ID, SHEET_SCREEN_ID } from './screens/gameplan/index.ts';
 import { capRoute, SCREEN_ID as CAP_SCREEN_ID } from './screens/cap/index.ts';
 import { depthChartRoute, SCREEN_ID as DEPTH_CHART_SCREEN_ID } from './screens/depth-chart/index.ts';
 import { draftRoomRoute, DRAFT_ROOM_SCREEN_ID } from './screens/draft-room/index.ts';
 import { freeAgencyRoute, FREE_AGENCY_SCREEN_ID } from './screens/free-agency/index.ts';
+import { leagueRoutes } from './screens/league/index.ts';
+import { recruitingRoute, SCREEN_ID as RECRUITING_SCREEN_ID } from './screens/recruiting/index.ts';
+import { playbookRoute, SCREEN_ID as PLAYBOOK_SCREEN_ID } from './screens/playbook/index.ts';
+import { installRoute, SCREEN_ID as INSTALL_SCREEN_ID } from './screens/install/index.ts';
+import { printRoute, SCREEN_ID as PRINT_SCREEN_ID } from './screens/print/index.ts';
+import { decisionLogRoutes } from './screens/decision-log/index.ts';
+import { glossaryRoutes } from './screens/glossary/index.ts';
 
 type Args<F extends (...a: never[]) => unknown> = Parameters<F>;
 
@@ -69,6 +77,25 @@ export interface RouteSources {
   readonly draftRoom?: Args<typeof draftRoomRoute>[0];
   /** Free agency (C8, M5). */
   readonly freeAgency?: Args<typeof freeAgencyRoute>[0];
+  /** Week meetings, travel and documents (H4, H8, H9); press conference (H7). */
+  readonly meetings?: { readonly getModel: Args<typeof meetingsRoute>[0]; readonly onCommand?: Args<typeof meetingsRoute>[1] };
+  readonly travel?: { readonly getModel: Args<typeof travelRoute>[0]; readonly onChoose?: Args<typeof travelRoute>[1] };
+  readonly documents?: { readonly getModel: Args<typeof documentsRoute>[0]; readonly onCommand?: Args<typeof documentsRoute>[1] };
+  readonly press?: { readonly getModel: Args<typeof pressRoute>[0]; readonly onCommand?: Args<typeof pressRoute>[1] };
+  /** League pages: fills only the loaders the host supplies. */
+  readonly league?: Args<typeof leagueRoutes>[0];
+  /** T4 recruiting board. */
+  readonly recruiting?: Args<typeof recruitingRoute>[0];
+  /** O3.3.1 playbook, O3.3.2 install board, O3.4.3 print. */
+  readonly playbook?: Args<typeof playbookRoute>[0];
+  readonly install?: Args<typeof installRoute>[0];
+  readonly print?: Args<typeof printRoute>[0];
+  /** Delegation and one-on-one meetings (people.delegation, people.meeting). */
+  readonly peopleWork?: Args<typeof peopleWorkRoutes>[0];
+  /** N3 decision log. */
+  readonly decisionLog?: Args<typeof decisionLogRoutes>[0];
+  /** N5.2 glossary. */
+  readonly glossary?: Args<typeof glossaryRoutes>[0];
 }
 
 /** Office screen id that shows the assignment list below head coach (O1.2.1, O7.2.1). */
@@ -109,6 +136,18 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.depthChart) put(DEPTH_CHART_SCREEN_ID, depthChartRoute(s.depthChart));
   if (s.draftRoom) put(DRAFT_ROOM_SCREEN_ID, draftRoomRoute(s.draftRoom));
   if (s.freeAgency) put(FREE_AGENCY_SCREEN_ID, freeAgencyRoute(s.freeAgency));
+  if (s.meetings) put(WEEK_SCREEN_IDS.meetings, meetingsRoute(s.meetings.getModel, s.meetings.onCommand));
+  if (s.travel) put(WEEK_SCREEN_IDS.travel, travelRoute(s.travel.getModel, s.travel.onChoose));
+  if (s.documents) put(WEEK_SCREEN_IDS.documents, documentsRoute(s.documents.getModel, s.documents.onCommand));
+  if (s.press) put(MEDIA_SCREEN_ID, pressRoute(s.press.getModel, s.press.onCommand));
+  if (s.league) putAll(leagueRoutes(s.league));
+  if (s.recruiting) put(RECRUITING_SCREEN_ID, recruitingRoute(s.recruiting));
+  if (s.playbook) put(PLAYBOOK_SCREEN_ID, playbookRoute(s.playbook));
+  if (s.install) put(INSTALL_SCREEN_ID, installRoute(s.install));
+  if (s.print) put(PRINT_SCREEN_ID, printRoute(s.print));
+  if (s.peopleWork) putAll(peopleWorkRoutes(s.peopleWork));
+  if (s.decisionLog) putAll(decisionLogRoutes(s.decisionLog));
+  if (s.glossary) putAll(glossaryRoutes(s.glossary));
   if (s.gameplan) { put(PLAN_SCREEN_ID, gamePlanRoute(s.gameplan)); put(SHEET_SCREEN_ID, callSheetRoute(s.gameplan)); }
   return t;
 }
