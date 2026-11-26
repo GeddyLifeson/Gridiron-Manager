@@ -116,7 +116,7 @@ function readRules(rules: RuleSet): Exists {
 }
 
 export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsInjuries {
-  let p: FoulsInjuriesParams | null = null, kp: KinParams | null = null, ex: Exists | null = null;
+  let p: FoulsInjuriesParams | null = null, kp: KinParams | null = null, ex: Exists | null = null, typicalEnergy = 1;
   const foulStreams = new Map<string, RandomStream>(), injuryStreams = new Map<number, RandomStream>();
   const buf = new Float64Array(2);
   const cn: ContactNumbers = { closingSpeedYps: 0, momentumRatio: 0, hitEnergy: 0, blindside: false };
@@ -125,7 +125,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   const holdUntil = new Int32Array(SLOT_COUNT), holdDef = new Int16Array(SLOT_COUNT), holdDone = new Uint8Array(SLOT_COUNT);
   const faceDone = new Uint8Array(SLOT_COUNT), faceDoneDef = new Uint8Array(SLOT_COUNT), covDone = new Uint8Array(SLOT_COUNT);
   const passerHit = new Uint8Array(SLOT_COUNT), lateHit = new Uint8Array(SLOT_COUNT), kickHit = new Uint8Array(SLOT_COUNT);
-  const kciDone = new Uint8Array(SLOT_COUNT), intentDone = new Uint8Array(SLOT_COUNT), injured = new Uint8Array(SLOT_COUNT);
+  const kciDone = new Uint8Array(SLOT_COUNT), intentDone = new Uint8Array(SLOT_COUNT), injured = new Uint8Array(SLOT_COUNT), evaluated = new Uint8Array(SLOT_COUNT);
   const firstNear = new Int32Array(SLOT_COUNT), inSprint = new Uint8Array(SLOT_COUNT), cutReady = new Int32Array(SLOT_COUNT);
   const prevVx = new Float64Array(SLOT_COUNT), prevVy = new Float64Array(SLOT_COUNT), oobTick = new Int32Array(SLOT_COUNT);
   const victim = new Uint8Array(SLOT_COUNT), conductDone = new Uint8Array(SLOT_COUNT), catchTick = new Int32Array(SLOT_COUNT);
@@ -251,6 +251,8 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
 
   /** J10.7.2: a head impact above the threshold (or a true concussion) may start an evaluation. */
   const evaluate = (w: TickWorld, s: number, energy: number, t: number, concussed: boolean): void => {
+    if (evaluated[s] === 1) return;
+    evaluated[s] = 1;
     const q = p!, st = injuryStream(w, s);
     const detected = st.chance(concussionDetectChance(energy, concussed, q));
     if (detected) {
@@ -267,16 +269,13 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     const pl = w.players;
     contactNumbers(pl.posX[hit]!, pl.posY[hit]!, pl.velX[hit]!, pl.velY[hit]!, w.slots[hit]!.player.weightLb, pl.gazeRad[hit]!,
       pl.posX[by]!, pl.posY[by]!, pl.velX[by]!, pl.velY[by]!, w.slots[by]!.player.weightLb, kp!, cn);
-    const e = cn.hitEnergy;
+    const e = cn.hitEnergy / typicalEnergy;
     load[hit] = load[hit]! + e; load[by] = load[by]! + e;
     if (e > maxEnergy) maxEnergy = e;
     exposure(w, hit, MECH_CONTACT, e, t, e);
     exposure(w, by, MECH_CONTACT, e, t, e);
-    const q = p!;
-    if (e >= q['concussion.energy']) {
-      if (injured[hit] === 0) evaluate(w, hit, e, t, false);
-      if (injured[by] === 0) evaluate(w, by, e, t, false);
-    }
+    // J10.6.1: a head impact above the threshold opens an evaluation whether or not he shows symptoms.
+    if (e >= p!['concussion.energy']) { evaluate(w, hit, e, t, false); evaluate(w, by, e, t, false); }
     return e;
   };
 
@@ -399,13 +398,15 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   const blockStart = (w: TickWorld, o: number, d: number, q: FoulsInjuriesParams, t: number): void => {
     contactNumbers(w.players.posX[d]!, w.players.posY[d]!, w.players.velX[d]!, w.players.velY[d]!, w.slots[d]!.player.weightLb, w.players.gazeRad[d]!,
       w.players.posX[o]!, w.players.posY[o]!, w.players.velX[o]!, w.players.velY[o]!, w.slots[o]!.player.weightLb, kp!, cn);
-    const e = cn.hitEnergy * q['injury.blockEnergy'];
+    const e = (cn.hitEnergy / typicalEnergy) * q['injury.blockEnergy'];
     load[o] = load[o]! + e; load[d] = load[d]! + e;
     exposure(w, o, MECH_CONTACT, e, t, e); exposure(w, d, MECH_CONTACT, e, t, e);
     // J10.2.2 geometry: from behind (approach more than the bible's angle from the defender's facing).
     const toO = dAtan2(w.players.posY[o]! - w.players.posY[d]!, w.players.posX[o]! - w.players.posX[d]!);
     const behind = dCos(toO - w.players.headingRad[d]!) < dCos((q['block.behindDeg'] * PI) / 180);
-    const inSpace = w.ball.kind !== 'held' || w.ball.carrierSlot < 0 || dist(w, o, w.ball.carrierSlot) > q['block.boxHalfWidthYd'] || changed || kickKindNow !== null;
+    // In space: outside the area around the snap where close line play happens, or on a kick or after a change of possession.
+    const ay = py(w, o) < 0 ? -py(w, o) : py(w, o), ax = px(w, o) < 0 ? -px(w, o) : px(w, o);
+    const inSpace = ay > q['block.boxHalfWidthYd'] || ax > q['block.spaceDepthYd'] || changed || kickKindNow !== null;
     let illegal: LiveFoulId | null = null;
     if (behind && inSpace && ex!.on.illegal_block_in_back) illegal = 'illegal_block_in_back';
     else if (ex!.on.block_below_waist && ex!.lowBlock !== null) {
@@ -496,7 +497,8 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
       for (let d = 0; d < SLOT_COUNT; d++) {
         if (lateHit[d] === 1 || w.slots[d]!.side === w.slots[c]!.side || !touching(w, d, c, q) || isDown(w, d)) continue;
         lateHit[d] = 1;
-        if (gap <= 0) continue;
+        // Inside the could-not-stop gap a contact after the whistle or out of bounds is not a late hit (J10.4.1).
+        if (gap <= q['late.couldNotStopS']) continue;
         collision(w, c, d, t);
         const tm = teamMultiplier(team(w, d).postPlay, q['team.postPlayMin'], q['team.postPlayMax']);
         if (hazard(w, 'unnecessary_roughness', d, lateHitChance(gap, z(w, d, 'foul_discipline'), z(w, d, 'tackling'), q) * tm, gap / q['late.windowS'], t, 'dead_ball')) {
@@ -615,10 +617,11 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     name: 'interact',
     begin(w: TickWorld): void {
       p = foulsInjuriesParams(w.params); kp = kinParams(w.params);
+      typicalEnergy = p['energy.typicalReducedLb'] * p['energy.typicalClosingYps'] * p['energy.typicalClosingYps'] * kp.hitEnergyScale!;
       if (ex === null || ex.rulesId !== w.rules.id) ex = readRules(w.rules);
       foulStreams.clear(); injuryStreams.clear();
       holdUntil.fill(0); holdDef.fill(-1); holdDone.fill(0); faceDone.fill(0); faceDoneDef.fill(0); covDone.fill(0);
-      passerHit.fill(0); lateHit.fill(0); kickHit.fill(0); kciDone.fill(0); intentDone.fill(0); injured.fill(0);
+      passerHit.fill(0); lateHit.fill(0); kickHit.fill(0); kciDone.fill(0); intentDone.fill(0); injured.fill(0); evaluated.fill(0);
       firstNear.fill(NEVER); inSprint.fill(0); cutReady.fill(0); oobTick.fill(NEVER); victim.fill(0); conductDone.fill(0); catchTick.fill(-1);
       load.fill(0); soreness.fill(0); contestSeen.length = 0;
       for (let s = 0; s < SLOT_COUNT; s++) { prevVx[s] = w.players.velX[s]!; prevVy[s] = w.players.velY[s]!; }

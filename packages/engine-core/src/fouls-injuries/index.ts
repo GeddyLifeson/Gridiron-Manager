@@ -23,6 +23,8 @@ export function foulsInjuriesPlug(extras: FoulsInjuriesExtras = {}): StagePlug {
     version: FOULS_INJURIES_VERSION,
     create(services: PlayServices) {
       const m = createFoulsInjuries({
+        // L3.4.1: the team layer the contract carries on each team, unless the caller overrides it.
+        teamDiscipline: (side) => services.input().teams[side]!.teamDiscipline,
         ...extras,
         landingEstimate: (w, s, out) => services.perception.landingEstimate(w, s, out),
         foulIntent: (s) => services.playerAi.foulIntent(s),

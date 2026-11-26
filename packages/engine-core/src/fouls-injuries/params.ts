@@ -50,6 +50,12 @@ const ROWS = [
   // Borderline legal acts (B11.3.2 rule 1): within this margin of a geometric limit.
   ['borderlineYd', 0.3, 0.05, 1, 'yd', 'assumption', 'J10.2.3', 'B11.3.2 false-flag rate'],
   ['contactGapYd', 0.25, 0, 0.6, 'yd', 'assumption', 'J10.4.1', STRUCT],
+  // J2.6.1 hit energy is reduced mass times closing speed squared times kinematics.hitEnergyScale. J10 reads
+  // it with 1 = a league-typical open-field tackle; these two rows define that tackle (a 210 lb carrier met
+  // by a 200 lb tackler, reduced mass about 102 lb, closing at 5 yd/s), so the reading stays right whatever
+  // the kinematics scale is.
+  ['energy.typicalReducedLb', 102, 60, 160, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
+  ['energy.typicalClosingYps', 5, 3, 8, 'yd/s', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
 
   // J10.2.1 offensive holding: per-tick hazard while A < -0.6 and the defender is within reach.
   ['hold.aOpen', -0.6, -0.9, -0.3, 'A', 'bible', 'J10.2.1', HOLD],
@@ -70,6 +76,7 @@ const ROWS = [
   ['block.avoidPerZ', 0.5, 0, 1.5, 'logit/z', 'assumption', 'J10.2.2', BLK],
   // How far from the ball the tackle box reaches sideways and back (geometry for the low-block key).
   ['block.boxHalfWidthYd', 4, 3, 6, 'yd', 'assumption', 'J10.2.2', STRUCT],
+  ['block.spaceDepthYd', 3, 1, 6, 'yd', 'assumption', 'J10.2.2', STRUCT],
 
   // J10.3.1 coverage fouls.
   ['dpi.b0', -3.6, -7, 0, 'logit', 'assumption', 'J10.3.1', DPI],
@@ -96,9 +103,9 @@ const ROWS = [
 
   // J10.4.1 roughing the passer and late hits.
   ['late.couldNotStopS', 0.3, 0.1, 0.6, 's', 'bible', 'J10.4.1', RTP],
-  ['late.formB0', -5, -9, -1, 'logit', 'assumption', 'J10.4.1', RTP],
+  ['late.formB0', -6, -10, -2, 'logit', 'assumption', 'J10.4.1', RTP],
   ['late.formPerZ', 0.4, 0, 1, 'logit/z', 'assumption', 'J10.4.1', RTP],
-  ['late.pullB0', 1.5, -1, 4, 'logit', 'assumption', 'J10.4.1', RTP],
+  ['late.pullB0', 3, -1, 6, 'logit', 'assumption', 'J10.4.1', RTP],
   ['late.pullPerZ', 0.6, 0, 1.5, 'logit/z', 'assumption', 'J10.4.1', RTP],
   ['late.pullPerS', 3, 0, 8, 'logit/s', 'assumption', 'J10.4.1', RTP],
   ['late.windowS', 1.5, 0.5, 3, 's', 'assumption', 'J10.4.1', UNR],
