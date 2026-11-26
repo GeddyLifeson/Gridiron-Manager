@@ -4,7 +4,7 @@ export { PARAMS } from './params.ts';
 export * from './types.ts';
 export { buildPlayerCard, type CardReads, type CardOptions } from './card.ts';
 export { buildRosterTable, type RosterInputs } from './roster.ts';
-export { buildStaff, buildCoachCard, type StaffInputs, type CoachReads } from './staff.ts';
+export { buildStaff, buildCoachCard, jobTitle, type StaffInputs, type CoachReads } from './staff.ts';
 export { buildLockerRoom, buildOwnerView, type IssueInput, type LockerRoomInputs, type OwnerInputs } from './room.ts';
 export { peopleSpecs, PEOPLE_MODELS, PEOPLE_TASKS, type PeopleSources, type PeopleSchemas } from './spec.ts';
 export { displayName, ageAt, compareDate, type DateLike } from './world.ts';
