@@ -1,7 +1,7 @@
 // Leaving for the draft (T8.5.1) and bowl opt-outs (T8.5.2). Declaring is refused after the deadline
 // (the league does not accept it) and for a player with too few years since high school; a declaration
 // ends college eligibility. What a draft slot is worth comes from the caller (G-34 rookie scale, T11).
-import type { PersonOrigin } from '@gm/schema';
+import { possible, type PersonOrigin } from '@gm/schema';
 import { dayNumber } from '../calendar/date.ts';
 import type { EligibilityRecord } from './eligibility.ts';
 import type { CollegeRules } from './keys.ts';
@@ -72,13 +72,14 @@ export function declareChance(i: StayOrGoInput): number {
   const lo = param('declareRatioLow'), hi = param('declareRatioHigh');
   let p = clamp01((ratio - lo) / (hi - lo)) + param('declareInjuryRisk') * clamp01(i.injuryRisk);
   if (i.advice === 'push_to_stay') p -= param('declareCoachPull') * clamp01(i.coachTie);
-  return clamp01(p);
+  return possible(p);
 }
 
 /** T8.5.2: chance he skips a bowl. Near zero in playoff games; imported people play as the depth chart says. */
 export function optOutChance(projectedRound: number | null, playoffGame: boolean, origin: PersonOrigin): number {
   if (!mayCarryPersonalEvent(origin)) return 0;
-  if (playoffGame) return param('optOutPlayoff');
-  if (projectedRound !== null && projectedRound <= param('topRounds')) return param('optOutTopTwoRounds');
-  return projectedRound === null ? 0 : param('optOutLaterRounds');
+  // A3.1 ruling 22: an undrafted-grade player may still sit out, with the floor chance.
+  if (playoffGame) return possible(param('optOutPlayoff'));
+  if (projectedRound !== null && projectedRound <= param('topRounds')) return possible(param('optOutTopTwoRounds'));
+  return possible(projectedRound === null ? 0 : param('optOutLaterRounds'));
 }

@@ -1,6 +1,7 @@
 // The week's forecast (J12.2.1): truth plus noise that shrinks toward game day. Truth is the hidden
 // kickoff draw (period 1 outdoor weather). Noise comes from forecast[game, daysBeforeKickoff], a stream the
 // game-time draw never reads, so looking at the forecast cannot shift the weather (J13.2.1).
+import { Contract } from '@gm/engine-core';
 import type { EnvironmentDeps, GameEnvironmentInput, Precip } from './types.ts';
 import { climateAt, environmentForPeriod, precipChance } from './weather.ts';
 
@@ -16,7 +17,6 @@ export interface Forecast {
   readonly indoor: boolean;
 }
 
-const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 
 /**
  * Forecast shown `daysBeforeKickoff` days out. Temperature and wind errors have standard deviation
@@ -42,7 +42,7 @@ export function forecastFor(input: GameEnvironmentInput, d: EnvironmentDeps, day
     daysBeforeKickoff: n,
     tempF,
     windMph: Math.max(0, o.windMph + zW * p.num('environment.forecast.windSdPerDayMph') * n),
-    precipChance: clamp01(wet * (1 - w) + climate * w + zP * p.num('environment.forecast.precipSdPerDay') * n),
+    precipChance: Contract.possible(wet * (1 - w) + climate * w + zP * p.num('environment.forecast.precipSdPerDay') * n),
     precipKind: o.precip !== 'none' ? o.precip : snowish ? 'snow' : 'rain',
     indoor: truth.roofClosed,
   };

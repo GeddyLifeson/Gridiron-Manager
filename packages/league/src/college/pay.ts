@@ -3,6 +3,7 @@
 // payments above the football budget are refused because the athletic department issues them (the
 // institution rejects the act); money promised beyond it through outside deals is an act for
 // compliance, never blocked.
+import { possible } from '@gm/schema';
 import type { CollegeRules } from './keys.ts';
 import { clamp01, param, pow2, U } from './params.ts';
 import type { Stream } from './types.ts';
@@ -125,8 +126,8 @@ export function mustReport(deal: OutsideDeal, rules: CollegeRules): boolean {
 /** T7.2.1 starting review model: chance the clearinghouse does not clear a reported deal. */
 export function rejectionChance(deal: OutsideDeal): number {
   const over = deal.marketValue > 0 ? Math.max(0, deal.amount / deal.marketValue - 1) : 0;
-  if (!deal.associated) return param('rejectNonAssociated'); // brands with no tie are not tested for market value
-  return Math.min(param('rejectCap'), param('rejectAssociatedBase') + param('rejectAssociatedSlope') * over);
+  if (!deal.associated) return possible(param('rejectNonAssociated')); // brands with no tie are not tested for market value
+  return possible(Math.min(param('rejectCap'), param('rejectAssociatedBase') + param('rejectAssociatedSlope') * over));
 }
 
 export interface ReviewResult { readonly cleared: boolean; readonly days: number }

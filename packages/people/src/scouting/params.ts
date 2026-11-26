@@ -99,6 +99,24 @@ export const PARAMS: ParamFile = {
       // Age at which the expected curve reaches the ceiling when no D7 curve is supplied. Form chosen here.
       ['projection.defaultPeakAge', 27, 23, 30, 'years', 'a'],
     ]),
+    // Words shown in place of numbers (D6.1.1 confidence words, D6.5.1 potential words; MA-48). The bible
+    // names the words ("thin look", "well watched") but not where they switch, so the cut points are chosen
+    // here against D6 reference widths: one skill-50 evaluator's floor is a half-width of 4.5 ISS
+    // (D6.4.3), a no-information prior 15.4 and a public-production prior 10.2 (D6.4.1).
+    ...group('words', 'D6.1.1', 'MA-48: confidence in words by default, numeric band one tap away', [
+      ['words.wellWatchedHalfIss', 5, 2, 10, 'iss', 'a'],
+      ['words.fairLookHalfIss', 9, 5, 15, 'iss', 'a'],
+    ]),
+    ...group('potential words', 'D6.5.1', 'D6.5.1: potential is words only; hunch strength from projected minus current over the band', [
+      // Hunch strength = (projected mean - current mean) / projected sd.
+      ['words.strongHunchZ', 1, 0.3, 3, 'sd', 'a'],
+      ['words.modestHunchZ', 0.3, 0, 1, 'sd', 'a'],
+      ['words.doubtZ', -0.3, -2, 0, 'sd', 'a'],
+      // "Young players read more tentative": below this age the hunch is hedged.
+      ['words.tentativeBelowAge', 21, 17, 24, 'years', 'a'],
+      // A driver pulls into the explanation when it moves the internal projection by at least this much.
+      ['words.driverMinIss', 1, 0, 5, 'iss', 'a'],
+    ]),
     ...group('belief encoding', 'P3.2.3', 'Round trip of AttributeBelief.confidence (README decision S-02)', [
       // confidence = ref^2 / (ref^2 + variance): the no-information prior reads 0.5.
       ['belief.confidenceRefSd', 12, 1, 30, 'iss', 'a'],

@@ -10,6 +10,7 @@ import {
   PARAMS, RULE_KEYS, type GameDayPlayer, type PositionGroup, type DayDelegation,
 } from '../../src/gameday/index.ts';
 import { PRO, COLLEGE, stream } from './fixtures.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 describe('I1.1.1 pregame clock and task list', () => {
   const setup = { rules: PRO, emergencyQbPossible: true };
@@ -291,7 +292,7 @@ describe('I1.1.2 and I1.4 final plan edits', () => {
     expect(winningInstruction(r2.delegation, (i) => i.conflictKey === '4th1')!.id).toBe('i1');
     for (let k = 3; k <= 13; k++) d = addInstruction(d, { id: `i${k}`, rule: 'x', action: 'a' }).delegation;
     expect(addInstruction(d, { id: 'i14', rule: 'x', action: 'a' }).ok).toBe(false);
-    expect(instructionMissChance(8)).toBe(0);
+    expect(instructionMissChance(8)).toBe(PROB_FLOOR);
     expect(instructionMissChance(10)).toBeCloseTo(0.04);
   });
   it('I1.4.4 and I1.4.5', () => {

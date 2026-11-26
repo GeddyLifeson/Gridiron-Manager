@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { lintDependencies, lintCorePurity, lintFacts, lintPackageTable, loadFacts, lintForbiddenKeys } from '../src/lint.ts';
+import { lintDependencies, lintCorePurity, lintFacts, lintPackageTable, loadFacts, lintForbiddenKeys, lintUiProjection } from '../src/lint.ts';
 import { RULE_SET_FILES } from '@gm/rules-data';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -15,6 +15,8 @@ function fakeRepo(files: Record<string, string>): string {
     'engine-core': { kind: 'core', mayImport: ['schema'] },
     officiating: { kind: 'core', mayImport: ['schema'] },
     store: { kind: 'app', mayImport: ['schema'] },
+    'app-services': { kind: 'app', mayImport: ['schema'] },
+    'app-ui': { kind: 'app', mayImport: ['app-services'] },
     tools: { kind: 'tool', mayImport: ['@any'] },
   } };
   mkdirSync(join(root, 'packages/tools'), { recursive: true });
@@ -29,6 +31,7 @@ describe('the repository passes its own lints', () => {
     expect(lintDependencies(ROOT)).toEqual([]);
     expect(lintCorePurity(ROOT)).toEqual([]);
     expect(lintForbiddenKeys(ROOT)).toEqual([]);
+    expect(lintUiProjection(ROOT)).toEqual([]);
     expect(lintFacts(ROOT).problems).toEqual([]);
   });
 });
@@ -94,5 +97,23 @@ describe('fact links (Q6.2.1, Q1.2.1, Q6.3.1 acceptance)', () => {
     expect(rules).toContain('Q6.1.2 computed status');
     r2[i].status = 'Unverified';
     expect(lintFacts(ROOT, { rows: r2 }).problems.map((p) => p.rule)).toContain('Q6.3.1 rule status');
+  });
+});
+
+describe('UI projection lint (D6.5.1, O6.5.1 rule 2, MA-48)', () => {
+  it('flags projection internals and projected numbers in the UI layer, and nothing else', () => {
+    const root = fakeRepo({
+      'packages/app-services/src/read.ts': "import { project, gradeCells, band as b } from '@gm/people';\nexport { halfWidth } from '@gm/people';\nconst x = people.scouting.project(input);\n",
+      'packages/app-ui/src/card.ts': "const t = `${read.projection.mean}`;\nconst ok = scouting.potentialRead(i);\nconst c = row.band;\n// scouting.project( in a comment is fine\n",
+      'shells/browser/src/main.ts': "import type { Projection } from '@gm/people';\n",
+      'packages/store/src/db.ts': "import { project } from '@gm/people';\n",
+    });
+    const p = lintUiProjection(root);
+    expect(p.every((x) => x.rule === 'D6.5.1 no projected number in UI')).toBe(true);
+    const where = p.map((x) => `${x.file.replace(/\\/g, '/')}:${x.line}`).sort();
+    expect(where).toEqual([
+      'packages/app-services/src/read.ts:1', 'packages/app-services/src/read.ts:1', 'packages/app-services/src/read.ts:2', 'packages/app-services/src/read.ts:3',
+      'packages/app-ui/src/card.ts:1', 'shells/browser/src/main.ts:1',
+    ]);
   });
 });

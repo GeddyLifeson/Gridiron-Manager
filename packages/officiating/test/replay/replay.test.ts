@@ -11,6 +11,7 @@ import {
   PARAMS, REFUSED, REPLAY, RULE_KEYS, boothMayReview, challengeAccounting, challengeRefusal, challengesLeft, evidenceQuality, replayParamNames, replayRules,
 } from '../../src/replay/index.ts';
 import { candidatesOf, ctx, ev, plays, truthOf, type CtxOptions } from '../crew/helpers.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 /** Evidence so clear that every wrong reviewable ruling is changed. */
 const CLEAR = { [REPLAY.evidenceSightOpen]: 1, [REPLAY.evidenceScaleYd]: 0.01, [REPLAY.evidenceScaleS]: 0.005, [REPLAY.evidenceNoMargin]: 1 };
@@ -199,8 +200,8 @@ describe('B9.2.1 the standard and the evidence model', () => {
     expect(q({ marginS: 0.3 })).toBeCloseTo(0.95 * (1 - Math.exp(-3)), 9);
     expect(q({ marginS: 0.3, visibility: 'pile' })).toBeCloseTo(0.4 * (1 - Math.exp(-3)), 9);
     expect(q({ marginS: 0.1 }, ctx({ before: { gameType: 'postseason' } }))).toBeCloseTo(1.1 * q({ marginS: 0.1 }), 9);
-    expect(q({ marginS: 5 }, ctx({ before: { gameType: 'postseason' } }))).toBe(1);
-    expect(q({ marginS: 0 })).toBe(0);
+    expect(q({ marginS: 5 }, ctx({ before: { gameType: 'postseason' } }))).toBe(1 - PROB_FLOOR);
+    expect(q({ marginS: 0 })).toBe(PROB_FLOOR);
     // A spot is as clear as the size of the spotting error.
     expect(evidenceQuality(ruling('spot', 3, '50.4', '49.8'), c)).toBeCloseTo(0.95 * (1 - Math.exp(-2)), 6);
   });

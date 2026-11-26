@@ -1,4 +1,5 @@
 // G4.6.1 line-of-scrimmage language: checks, alerts, cadence words. Chances returned, the caller draws.
+import { possible } from '@gm/schema';
 import { param } from './params.ts';
 import type { Call } from './types.ts';
 import { norm } from './words.ts';
@@ -11,8 +12,8 @@ export interface LineWord { readonly word: string; readonly cls: LineWordClass; 
 export function hearChance(noise: number, distanceYd: number, handSignal = false, seesQb = true): number {
   const n = Math.min(1, Math.max(0, noise));
   const voice = Math.max(0, 1 - param('line.hearNoise') * n - param('line.hearPerYard') * Math.max(0, distanceYd - param('line.hearFreeYards')));
-  if (!handSignal || !seesQb) return voice;
-  return Math.max(voice, param('line.signalBase') - param('line.signalNoise') * n);
+  if (!handSignal || !seesQb) return possible(voice);
+  return possible(Math.max(voice, param('line.signalBase') - param('line.signalNoise') * n));
 }
 
 /** Reset time after a check (G4.6.1). */

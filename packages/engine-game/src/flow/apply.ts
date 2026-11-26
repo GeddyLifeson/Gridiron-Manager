@@ -98,6 +98,8 @@ function onClockAdvanced(state: GameState, e: EventOf<'clock_advanced'>): GameSt
       if (e.reason !== 'intermission' && periodExpired(next)) next.phase = 'period_end';
       return next;
     case 'pre_snap':
+      // Time that runs while a coach waits to take a timeout is not the snap (B1.4.1).
+      if (e.reason !== 'pre_snap') { if (periodExpired(next)) next.phase = 'period_end'; return next; }
       next.phase = periodExpired(next) ? 'period_end' : 'play';
       if (next.phase === 'play') next.playClockRunning = false;
       return next;
@@ -120,7 +122,7 @@ function onTimeoutCharged(env: FlowEnv, state: GameState, e: EventOf<'timeout_ch
     if (state.timeoutsLeft[e.side] > 0) next.timeoutsLeft = pairSet(state.timeoutsLeft, e.side, state.timeoutsLeft[e.side] - 1);
     if (next.clockStatus === 'running' || next.clockStatus === 'stopped_start_on_ready') next.clockStatus = 'stopped_start_on_snap';
   }
-  if (state.phase === 'call_window' || state.phase === 'kickoff_setup') {
+  if (state.phase === 'call_window' || state.phase === 'kickoff_setup' || state.phase === 'pre_snap') {
     next.phase = 'timeout';
     next.playClockTenths = env.officiating.clock.playClockTenths('administrative', env);
   }
@@ -239,7 +241,8 @@ function enterOvertimePeriod(env: FlowEnv, state: GameState, e: GameEvent): Game
   };
   const timeouts = env.officiating.overtime.timeoutsPerTeam(next, env);
   next.timeoutsLeft = [timeouts, timeouts];
-  const step = env.officiating.overtime.start(next, env);
+  // The overtime rules place a restart only when they are given a ruling context: a spot needs the field (WP-03).
+  const step = env.officiating.overtime.start(next, rulingContext(env, next));
   if (step.state !== null) next.overtime = step.state;
   if (step.next === 'toss') { next.phase = 'overtime_toss'; return next; }
   if (step.restart === null) fail(state, e, `overtime start answered ${step.next} with no restart`);
@@ -299,7 +302,7 @@ function onToss(env: FlowEnv, state: GameState, e: EventOf<'toss'>): GameState {
     return next;
   }
   next.overtime = { otPeriod: state.overtime?.otPeriod ?? 1, possessions: [], tossWinner: e.winner, firstPossession: out.receiver };
-  const step = env.officiating.overtime.start(next, env);
+  const step = env.officiating.overtime.start(next, rulingContext(env, next));
   if (step.restart === null) fail(state, e, `overtime start answered ${step.next} with no restart after the toss`);
   if (step.state !== null) next.overtime = step.state;
   next = withRestart(env, next, step.restart);

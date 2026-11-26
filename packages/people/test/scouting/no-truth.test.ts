@@ -72,8 +72,8 @@ describe('no true value reaches a read model', () => {
     const cells = gradeCells(view, { scale: DECIMAL_SCALE, asOf: D, age: 25 });
     expect(cells.map((c) => c.attribute)).toEqual(['anchor', 'pass_set']);
     for (const c of cells) {
-      expect(Object.keys(c).sort()).toEqual(['as_of', 'attribute', 'cutHigh', 'cutLow', 'high', 'label', 'legend', 'low', 'n', 'relative', 'source', 'text', 'value']);
-      expect(c.text).toMatch(/^\d\.\d \(.+ to .+\)$/);
+      expect(Object.keys(c).sort()).toEqual(['as_of', 'attribute', 'bandText', 'confidence', 'cutHigh', 'cutLow', 'grader', 'high', 'label', 'legend', 'low', 'n', 'relative', 'source', 'state', 'text', 'value', 'watched']);
+      expect(c.text).toMatch(/^\d\.\d \((thin look|fair look|well watched)\), /);
     }
   });
 });

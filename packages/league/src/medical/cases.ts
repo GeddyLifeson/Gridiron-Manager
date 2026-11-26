@@ -1,6 +1,7 @@
 // The medical process day by day (D11.3 to D11.6, H5.1). An injury event from the engine or practice opens
 // a case; each world day advances its hidden recovery, setbacks, the concussion protocol, hidden-injury
 // discovery, the physician's state and the shown range. Pure: the caller owns the streams and the store.
+import { possible } from '@gm/schema';
 import { drawRecoveryDays, isConcussion, isSoftTissue, isStructural, row, type Catalogue } from './catalogue.ts';
 import { drawSymptomDays, followUpFinds, protocolDay, startProtocol } from './concussion.ts';
 import { drawImagingFactor, drawSetback, imagingDay, severityClassOf, shownRange, sidelineRead } from './estimate.ts';
@@ -35,7 +36,7 @@ export function openCase(ev: InjuryEvent, ctx: OpenContext, streams: StreamFor):
   const setback = drawSetback(totalDays, s);
   const read = sidelineRead(totalDays, ctx.staff, s);
   const factor = drawImagingFactor(ctx.staff.diagnosticAccuracy, s);
-  const hideRoll = s.chance(hideChance(ctx.toughness));
+  const hideRoll = s.chance(possible(hideChance(ctx.toughness)));
   const hidden = !concussion && ev.hideable && severityClassOf(totalDays) === 'minor' && hideRoll;
   const missed = concussion && ctx.evaluationMissed;
   const known = !hidden && !missed;

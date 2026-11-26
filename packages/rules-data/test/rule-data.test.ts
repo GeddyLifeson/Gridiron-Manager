@@ -52,7 +52,7 @@ describe('Q6.2.1 every rule value cites a shippable fact row', () => {
     const used = new Set(RULE_SET_FILES.flatMap((f) => f.values.map((v) => v.factId)));
     for (const row of facts) {
       expect(used.has(row.id), `${row.id} is not used`).toBe(true);
-      for (const s of row.sources) expect(Boolean(s.quote) || s.locator.includes('Read for absence'), row.id).toBe(true);
+      for (const s of row.sources) expect(Boolean(s.quote) || s.locator.includes('Read for absence') || s.locator.includes('Figure read as an image'), row.id).toBe(true);
     }
   });
 });
