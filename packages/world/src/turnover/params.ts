@@ -24,6 +24,8 @@ const ROWS: readonly Row[] = [
   ['gm.depthSlotWeight', 0.25, 0, 1, 'ratio', 'assumption', 'K7.2.2', 'Lineup weight of each depth slot past the starters. No source read'],
   // TO-08: K7.5.1 gives 8 to 9 offers per expected signee at power programs (status 2 of 3, front-office README). No source for other tiers: the same multiple for all.
   ['college.offersPerSignee', 8.5, 3, 20, 'offers per place', 'bible', 'K7.5.1', '8 to 9 at power programs (2 of 3); other tiers have no source and use the same value'],
+  // Shortlists (ruling 2026-11-26): a program grades a shortlist of the late-market recruits, not every one: about two names per offer (F-recruiting-practice-0002, 1 of 3, FLAGGED; offers per class F-recruiting-practice-0001, Verified).
+  ['college.shortlistPerOffer', 2, 1, 5, 'names per offer', 'assumption', 'T4.3.1', 'About 500 board names a class against about 237 offers at Power programs (F-recruiting-practice-0001 Verified, -0002 1 of 3)'],
   // TO-08: a recruit takes the offer from the program with the highest prestige plus his own noise, until the T4 recruiting week is bound.
   ['recruit.prestigeNoiseSd', 0.15, 0, 1, 'prestige units', 'assumption', 'T4.4', 'Stand-in for T4 prospect preferences (distance, playing time, relationships). No source read'],
   // TO-11 to TO-16: off-screen coach turnover (E2.3.4, E4.3, K7.6.1, K8.4.2). All Assumptions: no source read.
