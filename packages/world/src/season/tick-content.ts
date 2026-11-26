@@ -53,6 +53,8 @@ export const PROVISIONAL: readonly string[] = [
   'RPO and the flea flicker run as their run branch and as a play-action pass',
   'off-the-line receivers drawn at 1 yd are set at 1.4 yd so the pre-snap walk tolerance cannot leave them in the neither band',
   'an under-centre quarterback is set 0.9 yd behind the ball (the bodies touch nearer than the drawn 0.6 yd)',
+  'a return or block unit sent against an offensive play (or a defense against a kick) plays the snap in its return or block alignment',
+  'J4.2.2 rally rule added to every scrimmage defender (first for those with no run read in the starter content)',
   'package readiness 70 and opponent preparation 0.5 for every unit (neutral rosters carry no knowledge)',
 ];
 
@@ -102,6 +104,21 @@ function clearOfLine(a: Assignment): Assignment {
   }
   if (a.preSnap.onLine || a.behavior.type === 'quarterback' || a.preSnap.align.px <= -OFF_LINE_DEPTH || a.preSnap.align.px >= 0) return a;
   return { ...a, preSnap: { ...a.preSnap, align: { ...a.preSnap.align, px: -OFF_LINE_DEPTH } } };
+}
+
+/**
+ * J4.2.2 universal rule "defenders rally to the ball": when the player sees who has the ball and that he is
+ * running with it, he chases him. Appended after the assignment's own rules (first match wins, J4.1.1), except
+ * for a defender whose rules have no run read at all (the starter linebackers and defensive backs): for him
+ * it goes first, or a zone defender with a receiver in his zone would never leave it for a runner.
+ */
+const RALLY: Assignment['rules'][number] = {
+  when: { op: 'test', name: 'ballCarrierDeclared', args: {} }, guard: null,
+  then: [{ name: 'pursue', args: { angle: 'intercept' } }], text: 'Ball carrier declared: rally to the ball (J4.2.2)',
+};
+const readsRun = (a: Assignment): boolean => JSON.stringify(a.rules).includes('"read"');
+function withRally(a: Assignment): Assignment {
+  return { ...a, rules: readsRun(a) ? [...a.rules, RALLY] : [RALLY, ...a.rules] };
 }
 
 interface OffensePlay { readonly def: starter.PlayDef; readonly O: Assignment[] }
@@ -300,12 +317,18 @@ export function createStarterContentPort(): StarterContentPort {
     let d = defense.get(family);
     if (d === undefined) {
       const def = defenseByFamily.get(family) ?? defenseByFamily.get('cover3')!;
-      d = inOrder(starter.assignmentsOf(def), DEFENSE_ROLES);
+      d = inOrder(starter.assignmentsOf(def).map(withRally), DEFENSE_ROLES);
       defense.set(family, d);
     }
     return d;
   };
 
+  const returnUnitsOf = (kind: 'punt' | 'field_goal'): Assignment[] => {
+    const key = `ret|${kind}`;
+    let u = units.get(key);
+    if (u === undefined) { u = { O: [], D: kind === 'punt' ? puntReturnUnit() : kickBlockUnit() }; units.set(key, u); }
+    return u.D;
+  };
   const kickUnitsOf = (input: PlayInput, kick: KickCall, ret: ReturnCall | null): { O: Assignment[]; D: Assignment[] } => {
     const rules: RuleSet = input.rules, halfWidth = input.geometry.widthYd / 2 - 3;
     const kind = kick.kickKind;
@@ -362,9 +385,12 @@ export function createStarterContentPort(): StarterContentPort {
         const ran = def.kind === 'run' || def.kind === 'draw' || def.kind === 'qb_run' || def.kind === 'rpo' || def.kind === 'kneel';
         phase = ran ? 'running_play' : 'pass_play';
         if (ran) carrier = carrierOf(def, O, runDir);
-        if (o.unit !== 'defense') return null;
-        D = defenseOf(o.coverageFamily);
-        if (MAN_FAMILIES.has(o.coverageFamily)) {
+        if (o.unit !== 'defense') {
+          // The other side read the down as a kick (the chart predicts the kick from its side) and sent its
+          // return or block unit out against an offensive play: those eleven play the snap as they stand.
+          D = o.returnKind === 'punt_return' || o.returnKind === 'punt_block' ? returnUnitsOf('punt') : returnUnitsOf('field_goal');
+        } else D = defenseOf(o.coverageFamily);
+        if (o.unit === 'defense' && MAN_FAMILIES.has(o.coverageFamily)) {
           coverage = 'man';
           D.forEach((a, i) => {
             const m = a.behavior.params['man'];
@@ -372,6 +398,8 @@ export function createStarterContentPort(): StarterContentPort {
           });
         }
       } else {
+        // A defensive call against a kick (the defense expected the offense to go for it) lines up as the
+        // kick's own return or block unit: the same men, in the alignment the kick asks of them.
         const u = kickUnitsOf(input, s, o.unit === 'return' ? o : null);
         O = u.O; D = u.D; phase = 'scrimmage_kick';
         if (o.unit === 'return') carrier = { returnPlan: { side: 'middle', fairCatchAllowed: true } };
