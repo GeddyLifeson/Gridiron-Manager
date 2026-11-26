@@ -9,3 +9,4 @@ export * as exporting from './export/index.ts';
 export * as save from './save/index.ts';
 export * as log from './log/index.ts';
 export * as snapshot from './snapshot/index.ts';
+export * as certified from './certified/index.ts';
