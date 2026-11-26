@@ -3,8 +3,7 @@
 // The world is a trimmed cut of the real content (4 clubs, 4 schools) so the real history runs in seconds.
 import { describe, expect, it } from 'vitest';
 import { newgame, people, play } from '../../src/index.ts';
-import proLeagueRules from '../../../rules-data/data/league/proleague_2026.json';
-import collegeLeagueRules from '../../../rules-data/data/league/collegeleague_2026.json';
+import { readFileSync } from 'node:fs';
 
 function trimmed(clubs: number, schools: number): newgame.AppWorldContent {
   const app = newgame.appWorldContent();
@@ -28,6 +27,10 @@ function trimmed(clubs: number, schools: number): newgame.AppWorldContent {
 }
 
 const CONTENT = trimmed(4, 4);
+// The league rules files, read from disk as the free agency fixture does (a test may not import another package's files).
+const leagueFile = (name: string) => JSON.parse(readFileSync(new URL(`../../../rules-data/data/league/${name}`, import.meta.url), 'utf8')) as { values: { key: string; value: unknown }[] };
+const proLeagueRules = leagueFile('proleague_2026.json');
+const collegeLeagueRules = leagueFile('collegeleague_2026.json');
 
 // One world and career for the file: the history is the slow part.
 let once: Promise<Extract<newgame.StartResult, { ok: true }>> | null = null;
