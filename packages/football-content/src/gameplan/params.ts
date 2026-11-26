@@ -80,6 +80,8 @@ const ROWS: readonly Row[] = [
   ['size.sheetMax', 150, 1, 1000, 'calls', 'bible', 'G7.3.2'],
   ['size.boxScanMax', 12, 1, 100, 'entries', 'bible', 'G7.3.2'],
   ['size.tier1BoxMin', 2, 0, 20, 'entries', 'bible', 'G7.3.2'],
+  ['size.cutBustShare', 0.34, 0, 1, 'ratio', 'assumption', 'G7.3.2'],
+  ['size.cutLowCompletion', 0.4, 0, 1, 'ratio', 'assumption', 'G7.3.2'],
   ['size.qbDislikePenalty', 0.03, 0, 1, 'ratio', 'bible', 'G7.3.2'],
   // G7.4 scripts.
   ['script.target', 15, 1, 60, 'calls', 'bible', 'G7.4.1'],
