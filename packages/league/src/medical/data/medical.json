@@ -1,0 +1,29 @@
+{
+ "$comment": "Who decides what (D11.3.1, H5.1.1) and the injury groups the medical process needs. Decision owners are bible rulings; the groups are this module's assumptions until the G-21 catalogue carries the flags itself (requested).",
+ "decisions": [
+  { "id": "clearance", "owner": "team_physician", "userMay": "never", "leaf": "D11.3.1", "basis": "CBA Art. 39 sec. 1(d): exclusive and final authority to clear (Verified in D11.3.1)" },
+  { "id": "concussion_clearance", "owner": "team_physician_and_independent_consultant", "userMay": "never", "leaf": "D11.4.2", "basis": "Club physician clears, Independent Neurological Consultant confirms (Verified in D11.4.2)" },
+  { "id": "return_to_game", "owner": "team_physician", "userMay": "never", "leaf": "D11.3.1", "basis": "D11.3.1 rules" },
+  { "id": "rehabilitation", "owner": "head_athletic_trainer", "userMay": "never", "leaf": "D11.3.1", "basis": "D11.3.1 rules" },
+  { "id": "surgery_and_second_opinion", "owner": "player", "userMay": "ask", "leaf": "D11.3.1", "basis": "CBA Art. 39 sec. 6 second opinion (H5.3.3, 1 of 3)" },
+  { "id": "pain_injection", "owner": "team_physician_with_player_consent", "userMay": "ask", "leaf": "D11.6.2", "basis": "D11.6.2: asking is pressure" },
+  { "id": "use_and_role", "owner": "head_coach", "userMay": "decide", "leaf": "D11.3.1", "basis": "D11.3.1: the coach decides use inside the limits; past them is the breakable act" },
+  { "id": "practice_plan", "owner": "head_coach", "userMay": "decide", "leaf": "D11.3.1", "basis": "D11.3.1" },
+  { "id": "report_filing", "owner": "head_coach", "userMay": "decide", "leaf": "D11.5.1", "basis": "Staff proposes, head coach confirms; false filing is breakable (C11.3.1)" },
+  { "id": "roster_list_move", "owner": "roster_say_holder", "userMay": "by_job", "leaf": "D11.5.2", "basis": "L5.2.1 arrangement; college head coach (T9.1.1)" }
+ ],
+ "softTissue": ["hamstring", "groin", "calf", "quadriceps", "pectoral", "cramp"],
+ "structural": ["acl_tear", "achilles_rupture", "patellar_tendon_rupture", "lisfranc", "pectoral", "mcl_sprain", "high_ankle_sprain", "turf_toe"],
+ "concussion": ["concussion"],
+ "surgeryOptional": [
+  { "id": "turf_toe", "operativeMonths": 7.3, "leaf": "D11.6.3", "factId": "F-injury-cat-0030", "note": "221.4 days surgical (2 of 3) / daysPerMonth" },
+  { "id": "high_ankle_sprain", "operativeMonths": 3, "leaf": "D11.6.3", "factId": null, "note": "Assumption: tightrope fixation path; no sourced time in the catalogue" }
+ ],
+ "rungView": [
+  { "role": "head_coach", "scope": "team", "ranges": true },
+  { "role": "coordinator", "scope": "unit", "ranges": true },
+  { "role": "position_coach", "scope": "group", "ranges": true },
+  { "role": "quality_control", "scope": "group", "ranges": false },
+  { "role": "graduate_assistant", "scope": "group", "ranges": false }
+ ]
+}

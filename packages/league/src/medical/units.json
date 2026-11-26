@@ -1,0 +1,5 @@
+{
+  "$comment": "Unit conversions for the medical module. Not football facts: kept out of .ts because league source holds no number but 0 and 1 (P1.1.2).",
+  "monthsPerYear": 12,
+  "halves": 2
+}

@@ -1,0 +1,21 @@
+{
+ "$comment": "Return, re-injury and play rates as rows (G-33 acceptance). Each row cites a register row (facts/*.json or the G-21 catalogue facts) or is a named Assumption with the leaf that asks for it. A row's status is the register row's computed status, never typed here. `targetLow`/`targetHigh` are the acceptance band the calibration tests use.",
+ "rows": [
+  { "id": "play_rate_out", "statement": "Share of players listed Out who play", "value": 0.001, "targetLow": 0, "targetHigh": 0.01, "factId": "F-measured-rate-0217", "leaf": "D11.5.1" },
+  { "id": "play_rate_doubtful", "statement": "Share of players listed Doubtful who play (carried as a range: nflverse 0.7 percent against Footballguys about 6 percent)", "value": 0.035, "targetLow": 0.007, "targetHigh": 0.069, "factId": "F-measured-rate-0218", "leaf": "D11.5.1" },
+  { "id": "play_rate_questionable", "statement": "Share of players listed Questionable who play", "value": 0.68, "targetLow": 0.657, "targetHigh": 0.71, "factId": "F-measured-rate-0219", "leaf": "D11.5.1" },
+  { "id": "play_rate_listed_no_status", "statement": "Share of listed players with no game status who play", "value": 0.928, "targetLow": 0.9, "targetHigh": 0.95, "factId": null, "requested": "G-10: nflverse 2012-2025, 27,831 listings (D11.5.1, 1 of 3)", "leaf": "D11.5.1" },
+  { "id": "out_episodes_per_team_season", "statement": "Out episodes per team per regular season", "value": 15.6, "targetLow": 14.04, "targetHigh": 17.16, "factId": "F-measured-rate-0212", "leaf": "D11.1.1" },
+  { "id": "concussion_median_days_out", "statement": "Concussion, median days out (2015 to 2020)", "value": 9, "targetLow": 7, "targetHigh": 11, "factId": null, "requested": "G-10: football-manager-reference.md 7.1 (D11.4.2, 2 of 3)", "leaf": "D11.4.2" },
+  { "id": "concussion_play_next_week", "statement": "Share of players concussed on a Sunday who play the next Sunday", "value": 0.38, "targetLow": 0.32, "targetHigh": 0.44, "factId": null, "requested": "G-10: football-manager-reference.md 7.1 (D11.4.2, 2 of 3)", "leaf": "D11.4.2" },
+  { "id": "concussion_median_games_missed", "statement": "Concussion, median games missed after the first Out", "value": 1, "targetLow": 1, "targetHigh": 1, "factId": "F-measured-rate-0216", "leaf": "D11.4.2" },
+  { "id": "concussion_min_days_to_step5", "statement": "No player reaches step 5 in fewer than 4 days after step 1 begins", "value": 4, "targetLow": 4, "targetHigh": 4, "factId": "F-injury-0001", "leaf": "D11.4.2" },
+  { "id": "hamstring_same_season_recurrence", "statement": "Same-season hamstring recurrence (tuning target; baseball study, not football)", "value": 0.15, "targetLow": 0.12, "targetHigh": 0.18, "factId": null, "requested": "Research: football-specific recurrence (D11.6.1 open question; football-manager-reference.md 7.1, 1 of 3)", "leaf": "D11.6.1" },
+  { "id": "estimate_coverage", "statement": "True return date inside the shown range", "value": 0.8, "targetLow": 0.75, "targetHigh": 0.85, "factId": null, "basis": "assumption", "leaf": "D11.3.2" },
+  { "id": "hidden_injury_found_3_weeks", "statement": "Hidden injuries revealed within 3 weeks", "value": 0.9, "targetLow": 0.9, "targetHigh": 1, "factId": null, "basis": "assumption", "leaf": "D11.6.2" },
+  { "id": "ir_min_games", "statement": "A player on injured reserve misses at least four games (value read from roster.ir_min_games)", "value": 4, "targetLow": 4, "targetHigh": 4, "factId": "F-league-0032", "leaf": "D11.5.2" },
+  { "id": "reinjury_first_day", "statement": "Same-region re-injury multiplier on the first day cleared", "value": 3, "targetLow": 3, "targetHigh": 3, "factId": "F-injury-cat-0001", "basis": "assumption", "leaf": "D11.6.1" },
+  { "id": "reinjury_six_weeks", "statement": "Same-region re-injury multiplier six weeks after clearance", "value": 1.3, "targetLow": 1.3, "targetHigh": 1.3, "factId": "F-injury-cat-0001", "basis": "assumption", "leaf": "D11.6.1" },
+  { "id": "reinjury_permanent_soft_tissue", "statement": "Permanent re-injury multiplier for soft-tissue types", "value": 1.15, "targetLow": 1.15, "targetHigh": 1.15, "factId": "F-injury-cat-0001", "basis": "assumption", "leaf": "D11.6.1" }
+ ]
+}
