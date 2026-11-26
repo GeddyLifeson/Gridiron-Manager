@@ -68,6 +68,22 @@ export interface Worth { readonly value: number; readonly cost: number; readonly
 
 /** `value(player, team, horizon)` and `surplus = value - cost`, in wins (K7.2.2 outputs). */
 export function playerWorth(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number = P('value.horizonYears')): Worth {
+  if (!ctx.memo) return computeWorth(gm, v, ctx, years);
+  // Same keys as `winsByYear`: the boards ask again on every pick over the same views, and the answer cannot move.
+  let byGm = WORTH.get(ctx);
+  if (!byGm) { byGm = new WeakMap(); WORTH.set(ctx, byGm); }
+  let byView = byGm.get(gm);
+  if (!byView) { byView = new WeakMap(); byGm.set(gm, byView); }
+  let byYears = byView.get(v);
+  if (!byYears) { byYears = new Map(); byView.set(v, byYears); }
+  let out = byYears.get(years);
+  if (!out) { out = computeWorth(gm, v, ctx, years); byYears.set(years, out); }
+  return { ...out };
+}
+
+const WORTH = new WeakMap<ValueContext, WeakMap<GmProfile, WeakMap<PlayerView, Map<number, Worth>>>>();
+
+function computeWorth(gm: GmProfile, v: PlayerView, ctx: ValueContext, years: number): Worth {
   const value = sum(winsByYear(gm, v, ctx, years).map((w, y) => w * yearWeight(gm, ctx.pressure, y)));
   const cost = costWins(gm, v.costCentsByYear, ctx, years);
   return { value, cost, surplus: value - cost };

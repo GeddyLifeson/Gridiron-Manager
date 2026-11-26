@@ -79,6 +79,12 @@ export interface PlayerAi {
   readonly stage: PlayStage;
   /** Call before the loop's `begin` for the play. `memory` is the game's K1.4.1 matchup memory. */
   setPlay(slots: readonly (SlotPlay | null)[], context?: PlayContext, memory?: MatchupMemory | null): void;
+  /**
+   * J5.1.3: slots that did not get the call before the snap (the pre-snap plan's delivery result). Each plays an
+   * "old assignment" error of J4.5.3 (cause `communication`); the pre-snap phase has already put the event on
+   * the record. Call after `setPlay` and before the loop; `setPlay` clears it.
+   */
+  setMissedCalls(slots: readonly number[]): void;
   deviations(): readonly DeviationRow[];
   loafs(): readonly LoafRow[];
   explain(): readonly ExplainEntry[];
@@ -116,6 +122,8 @@ export const RULE_KEYS: RuleKeyManifest = [
   { key: 'foul.offensive_holding.yards', type: 'number', unit: 'yd', meaning: 'Offensive holding distance', ownerLeaf: 'B8', readBy: ['engine-core.playerAi'] },
   { key: 'score.touchdown', type: 'number', unit: 'points', meaning: 'Points for a touchdown', ownerLeaf: 'B7', readBy: ['engine-core.playerAi'] },
 ];
+/** Internal skill scale points per standard deviation (schema `issToZ`). */
+const ISS_PER_Z = 10;
 const DPI = 'dpi', HOLD = 'offensive_holding';
 
 /** `detail` event codes this module emits (contract decision D-16). */
@@ -175,6 +183,7 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
   let plays: readonly (SlotPlay | null)[] = [];
   let context: PlayContext = {};
   let memory: MatchupMemory | null = null;
+  let missedCalls: readonly number[] = [];
   let p: PlayerAiParams | null = null, paramsOf: unknown = null;
   let decided = false, qbSlot = -1;
   let dpiOn = false, dpiSpot = false, dpiYards = 0, dpiMax = 0, dpiAfd = false, holdOn = false, holdYards = 0, touchdown = 0;
@@ -207,9 +216,13 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
   const attr = (world: TickWorld, s: number, id: string): number => world.slots[s]!.player.attributes[id] ?? KNOWLEDGE_MID;
   const sideIndex = (s: number): 0 | 1 => (s < SLOTS_PER_TEAM ? 0 : 1);
   const now = (world: TickWorld): number => roundSimS(world.tick * TICK_S);
-  const knowledgeOf = (world: TickWorld, s: number, sp: SlotPlay): number => world.slots[s]!.player.gameDay.knowledge[sp.conceptId] ?? KNOWLEDGE_FULL;
+  const knowledgeOf = (world: TickWorld, s: number, sp: SlotPlay): number =>
+    world.slots[s]!.player.gameDay.knowledge[sp.conceptId] ?? context.knowledgeDefault?.[sideIndex(s)] ?? KNOWLEDGE_FULL;
+  // J12.8.1 familiarity: a z bonus on composure and communication for the side at its home venue.
+  const famIss = (s: number): number => (context.familiarityZ?.[sideIndex(s)] ?? 0) * ISS_PER_Z;
+  const composureAttr = (world: TickWorld, s: number): number => attr(world, s, 'composure') + famIss(s);
   const composureOf = (world: TickWorld, s: number, sp: SlotPlay): number =>
-    composureMult(context.pressure ?? 0, attr(world, s, 'composure'), sp.mind.highLeverageSnaps, p!);
+    composureMult(context.pressure ?? 0, composureAttr(world, s), sp.mind.highLeverageSnaps, p!);
 
   function record(world: TickWorld, s: number, kind: DeviationKind, motive: Motive, form: string, leaf: string, teamValueEst: number, selfValueEst: number, known: boolean): void {
     const playerId = world.slots[s]!.playerId;
@@ -259,13 +272,13 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
       for (const m of unit.members) unitOf[m] = i;
       unitOf[c] = i;
       const talk = side === 0 ? 'protection_calls' : 'front_and_coverage_checks';
-      unitQuality.push(plays[c] ? commQuality(attr(world, c, talk), attr(world, c, 'play_recognition'), context.noise?.[side] ?? 0, context.tempo ?? 0, q) : 0);
+      unitQuality.push(plays[c] ? commQuality(attr(world, c, talk) + famIss(c), attr(world, c, 'play_recognition'), context.noise?.[side] ?? 0, context.tempo ?? 0, q) : 0);
     }
   }
 
   // ---------- J4.5.2, J4.5.3, K1.5.1, K1.7.4: the error of the play ----------
 
-  function setError(world: TickWorld, s: number, cause: 1 | 2 | 3, forced: FormDef | null): void {
+  function setError(world: TickWorld, s: number, cause: 1 | 2 | 3, forced: FormDef | null, alreadyOnRecord = false): void {
     const q = p!, sp = plays[s]!, view = viewOf(s), group = behaviorGroup(beh[s]!), base = s * U_COUNT;
     let motive: Motive, def: FormDef | null = forced, selfValue = 0;
     if (cause === 2) {
@@ -320,7 +333,7 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
     deliberate[s] = 1;
     const error: MentalError = { cause: CAUSES[cause], form: def.form, prim, motive };
     errors[s] = error;
-    world.emit({ type: 'mental_error', t: now(world), playerId: world.slots[s]!.playerId, cause: error.cause, form: def.form });
+    if (!alreadyOnRecord) world.emit({ type: 'mental_error', t: now(world), playerId: world.slots[s]!.playerId, cause: error.cause, form: def.form });
     record(world, s, MOTIVES[motive].kind, motive, def.form, cause === 2 ? 'K1.7.4' : cause === 3 ? 'K1.5.1' : 'J4.5.2', 0, selfValue, false);
     note(world, s, -1, `mental error (${error.cause}): ${def.form}`);
   }
@@ -334,7 +347,7 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
       knowledge: knowledgeOf(world, s, sp), difficulty: sp.difficulty ?? 1, changedAtLine: sp.jobChangedAtLine === true,
       noiseFactor: context.noiseFactor?.[sideIndex(s)] ?? 1, assignmentDiscipline: attr(world, s, 'assignment_discipline'), temptation: tempt,
       buyIn: sp.mind.buyIn, complexity: sp.complexity ?? 0, fatigue: world.players.fatigueNow[s]!, footballIntelligence: attr(world, s, 'football_intelligence'),
-      composure: attr(world, s, 'composure'), pressure: context.pressure ?? 0, highLeverageSnaps: sp.mind.highLeverageSnaps,
+      composure: composureAttr(world, s), pressure: context.pressure ?? 0, highLeverageSnaps: sp.mind.highLeverageSnaps,
     }, q, chances);
     const u = uni[s * U_COUNT + U_ERR]!, pK = chances[0]!, pD = chances[1]!;
     if (u < pK) {
@@ -352,6 +365,12 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
   function decideErrors(world: TickWorld): void {
     const units = context.units ?? [];
     const done = new Uint8Array(SLOT_COUNT);
+    // J5.1.3: a player the call never reached plays the old assignment or guesses (J4.5.3); he draws no other error.
+    for (const s of missedCalls) {
+      const sp = plays[s] ?? null;
+      done[s] = 1;
+      if (sp !== null && sp.compiled !== null && seen[s] !== 0) setError(world, s, 3, null, true);
+    }
     for (const unit of units) if (done[unit.communicator] === 0) { done[unit.communicator] = 1; drawError(world, unit.communicator); }
     for (let s = 0; s < SLOT_COUNT; s++) if (done[s] === 0) drawError(world, s);
     // K1.5.1 rule 3: a wrong call made confidently spreads to everyone who hears it.
@@ -692,7 +711,8 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
 
   return {
     stage: { name: 'decide', begin, run },
-    setPlay(slots, ctx, mem) { plays = slots; context = ctx ?? {}; memory = mem ?? null; },
+    setPlay(slots, ctx, mem) { plays = slots; context = ctx ?? {}; memory = mem ?? null; missedCalls = []; },
+    setMissedCalls(slots) { missedCalls = slots; },
     deviations: () => rows,
     loafs: () => loafRows,
     explain: () => explainRows,

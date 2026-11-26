@@ -3,5 +3,7 @@
 export async function registerOffline(): Promise<void> {
   if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
   if (new URLSearchParams(location.search).has('gate')) return;
+  // The dev server has no sw.js (the offline plugin writes it at build time).
+  if (import.meta.env.DEV) return;
   try { await navigator.serviceWorker.register('./sw.js'); } catch { /* the game still runs online */ }
 }

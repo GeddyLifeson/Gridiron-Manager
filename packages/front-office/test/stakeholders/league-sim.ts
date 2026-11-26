@@ -28,6 +28,7 @@ export interface SimOptions {
   readonly offseasonWeeks: number;
   /** Override the decider model's fitted hazard scale (used only by the fitting probe). */
   readonly hazardScale?: number;
+  readonly inSeasonScale?: number;
 }
 
 export interface TeamSeason {
@@ -69,7 +70,7 @@ interface Team {
 export function simulate(o: SimOptions): SimResult {
   const r = rng(o.seed, 'league');
   const draws = rng(o.seed, 'reviews');
-  const model = { ...deciderModel(o.model), ...(o.hazardScale === undefined ? {} : { hazardScale: o.hazardScale }) };
+  const model = { ...deciderModel(o.model), ...(o.hazardScale === undefined ? {} : { hazardScale: o.hazardScale }), ...(o.inSeasonScale === undefined ? {} : { inSeasonScale: o.inSeasonScale }) };
   let nextCoach = 1;
   const teams: Team[] = [];
   for (let i = 0; i < o.teams; i++) {

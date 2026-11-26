@@ -2715,10 +2715,10 @@
    "quantity": "Completion percentage under pressure",
    "unit": "share",
    "filter": "pressure.underPressure.completionPct",
-   "definition": "Completions over attempts on pressured dropbacks. The simulated pressure flag is the J6.2.5 definition, held fixed.",
-   "value": 0.409,
+   "definition": "Completions over attempts on pressured dropbacks (participation feed pressure flag; throwaways count as attempts). The simulated pressure flag is the J6.2.5 definition, held fixed.",
+   "value": 0.481,
    "n": null,
-   "seasons": "2022-2024",
+   "seasons": "2023-2024",
    "tolerance": {
     "type": "rel",
     "value": 0.03,
@@ -2728,7 +2728,7 @@
    "factId": "F-measured-rate-0111",
    "tier": "watch",
    "ruleSetDependent": false,
-   "note": "Unverified: not reproduced. The verification pass computed 49.0% over attempts; the base of the 40.9% is not stated. Opta Analyst 2024 reports 57.3% on adjusted attempts under its own flag."
+   "note": "1 of 3: recomputed from nflverse 2023-2024 (48.1%, clean 70.5%). Replaces the unverified 40.9% (which matches completion when the quarterback is hit, 40.8%)."
   },
   {
    "id": "pressure.underPressure.yardsPerAttempt",
@@ -2739,10 +2739,10 @@
    "quantity": "Yards per attempt under pressure",
    "unit": "yards",
    "filter": "pressure.underPressure.yardsPerAttempt",
-   "definition": "Yards over attempts on pressured dropbacks. The simulated pressure flag is the J6.2.5 definition, held fixed.",
-   "value": 3.87,
+   "definition": "Yards over attempts on pressured dropbacks (participation feed pressure flag; throwaways count as attempts). The simulated pressure flag is the J6.2.5 definition, held fixed.",
+   "value": 5.76,
    "n": null,
-   "seasons": "2022-2024",
+   "seasons": "2023-2024",
    "tolerance": {
     "type": "rel",
     "value": 0.03,
@@ -2752,7 +2752,7 @@
    "factId": "F-measured-rate-0112",
    "tier": "watch",
    "ruleSetDependent": false,
-   "note": "Unverified: not reproduced (5.93 computed over attempts)."
+   "note": "1 of 3: recomputed from nflverse 2023-2024 (5.76, clean 7.53). Replaces the unverified 3.87."
   },
   {
    "id": "pressure.underPressure.sackShare",

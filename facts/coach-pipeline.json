@@ -1,0 +1,159 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-pipeline-0001",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Between a quarter and a third of NFL head coaches played in the NFL before coaching.",
+   "value": "0.25-0.33",
+   "unit": "ratio",
+   "validFor": "2000-2024",
+   "sources": [
+    {
+     "citation": "ESPN, Ashley Fox, 'NFL players who could become NFL head coaches' (2015-06-04, https://www.espn.com/nfl/story/_/id/13001080/nfl-players-coaching-their-future-nfl), ESPN Stats & Information",
+     "locator": "117 head coaches since 2000, 25.6 percent played in the league",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn",
+     "primary": false,
+     "quote": "only 25.6 percent of them were players in the league before they became coaches",
+     "value": "0.25-0.33"
+    },
+    {
+     "citation": "The 33rd Team, NFL head coach hiring study (https://www.the33rdteam.com/?p=6147), via bible research log research/depth-pass/E1-log.md",
+     "locator": "130 men hired since 2002: about a third played in the NFL, averaging 7.5 NFL seasons",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "the33rdteam",
+     "primary": false,
+     "value": "0.25-0.33"
+    },
+    {
+     "citation": "Arizona State University Global Sport Institute, NFL head coach hires 2009-2019 (2020-09-24, https://live-global-sport-matter.ws.asu.edu/from-our-lab/2020/09/24/nfl), via research/depth-pass/E1-log.md",
+     "locator": "about 27 percent derived (41.7 percent of 12 coaches of color, 22.7 percent of 44 white coaches)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-gsi",
+     "primary": false,
+     "value": "0.25-0.33"
+    },
+    {
+     "citation": "Sports Illustrated, 'From College to the Pros: A Look at the CFB Careers of All 32 Current NFL Head Coaches' (2024-02-05, https://www.si.com/college/2024/02/05/college-football-careers-32-current-nfl-head-coaches-2024)",
+     "locator": "about 10 of 32 described with NFL playing time (derived by listing)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "value": "0.25-0.33"
+    }
+   ],
+   "usedBy": [],
+   "notes": "A stock share among head coaches, not an entry rate. The world's pro entry chance is fitted so former pro players make up about this share of coaches over a long run. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Four independent counts (ESPN, 33rd Team, ASU, SI) agree on a quarter to a third."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0002",
+   "level": "both",
+   "domain": "career",
+   "statement": "Among head coaches who played college football, quarterbacks are about a quarter (about 5.5 times their share of a roster); defensive backs and linebackers sit near their roster share; offensive linemen, defensive linemen, running backs, tight ends and specialists are under their share.",
+   "value": 0.26,
+   "unit": "ratio",
+   "validFor": "2024-2025",
+   "sources": [
+    {
+     "citation": "Sickos newsletter, 'From Player to Head Coach - What positions did CFB coaches play?' (2025-03-03, https://sickos-newsletter.beehiiv.com/p/from-player-to-head-coach-what-positions-did-cfb-coaches-play)",
+     "locator": "264 FBS and FCS head coaches, 2025: QB 64, DB 50, LB 35, WR 27, OL 23, DL 15, RB 10, FB 4, TE 9, K 1, LS 1, did not play 24; QB 64 of 240 who played = 0.27",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "sickos",
+     "primary": false,
+     "quote": "24 Current Division I Head Coaches did not play any level of College Football",
+     "value": 0.26
+    },
+    {
+     "citation": "Sports Illustrated, 'From College to the Pros: A Look at the CFB Careers of All 32 Current NFL Head Coaches' (2024-02-05)",
+     "locator": "32 NFL head coaches: QB 8, DB 8, WR 6, LB 4, TE 3, OL 1, DL 1, RB 0, did not play 1; QB 8 of 31 = 0.26",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "eight of the current NFL coaches were quarterbacks",
+     "value": 0.26
+    },
+    {
+     "citation": "Jay Pauley, 'Career-o-graphic data of the 2021 NFL coaches' (2022-02-03, https://jaydpauley.medium.com/career-ographic-data-of-the-2021-nfl-coaches-8a64b41975c8)",
+     "locator": "2021: half of the 6 head coaches who played in the NFL were QBs; 6 of 8 NFL-playing OCs were QBs; NFL-playing DCs split between DBs and LBs; DL under-represented",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pauley-medium",
+     "primary": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Position odds in the pipeline are each group's share of head coaches who played (Sickos, n 240) over its share of the college roster mix (generation roster-mix.json): QB 5.6, LB 1.26, DB 1.12, WR 0.83, RB 0.82, TE 0.61, OL 0.59, DL 0.40, specialists 0.14. SI's NFL sample gives the same QB ratio (5.4). Pauley agrees on direction. These are head coaches, so the ratio mixes entry and climbing; the pipeline puts all of it on entry (Assumption).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Three independent counts agree; two give the QB share 0.26."
+    }
+   ]
+  },
+  {
+   "id": "F-pipeline-0003",
+   "level": "pro",
+   "domain": "career",
+   "statement": "About 9 percent of former NFL players with LinkedIn profiles work as coaches or fitness professionals (any level, high school included).",
+   "value": 0.09,
+   "unit": "ratio",
+   "validFor": "2017",
+   "sources": [
+    {
+     "citation": "Business Insider (India edition), '9 of the most popular jobs professional football players take after retiring from the NFL', reporting a 2017 LinkedIn analysis of over 3,000 former NFL players",
+     "locator": "coaching / fitness professional 9 percent",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "linkedin-2017",
+     "primary": false,
+     "value": 0.09
+    },
+    {
+     "citation": "Statista chart 19179, 'Professions of former NFL players' (same 2017 LinkedIn analysis)",
+     "locator": "coaching/fitness, campus athletics and broadcasting each between 3 and 9 percent",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "linkedin-2017",
+     "primary": false
+    },
+    {
+     "citation": "Fortune, Christina Austin, 'Here's What NFL Players Do After They Retire' (2017-02-03), same LinkedIn data",
+     "locator": "17 percent 'something athletic, such as coaching' (wider group); newly retired men more likely to still work in sports",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "linkedin-2017",
+     "primary": false,
+     "quote": "Seventeen percent pursue something athletic, such as coaching."
+    }
+   ],
+   "usedBy": [],
+   "notes": "One study reported three times, so 1 of 3. Self-reported profiles, coding not described, all levels of coaching. An upper bound for entry into college and pro staffs. No source was found for the share of finishing college players who coach.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Only the 2017 LinkedIn analysis found."
+    }
+   ]
+  }
+ ]
+}

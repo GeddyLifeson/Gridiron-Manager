@@ -2,7 +2,7 @@
 // season session from app-services, adapted to the career root's port.
 import { play, type newgame } from '@gm/app-services';
 import { careerPortFromSeason, type SeasonPortHost } from './season-port.ts';
-import type { CareerPort } from './port.ts';
+import type { CareerPort, SeatWorld } from './port.ts';
 import { DEFAULT_KEYMAP } from '../shell/keymap.ts';
 import { hubSources } from './sources/index.ts';
 
@@ -16,6 +16,8 @@ export interface CareerSeasonStart {
   readonly seedHex: string;
   /** The seat: a content key, or a team of the generated world (the picker's LiveWorld). */
   readonly seat: { readonly key: string } | { readonly world: play.WorldTeams; readonly teamId: number };
+  /** The picker's whole world and the user's person id, for the team screens (absent on a quick start). */
+  readonly live?: { readonly world: newgame.StartedWorld; readonly userPersonId: number | null };
 }
 
 /** What the shell host supplies. Without `consoleConfig` the console calls from the football desk's sheets. */
@@ -46,9 +48,16 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const redraws = new Set<() => void>();
   const changed = () => { for (const f of redraws) f(); };
   // The hubs' route sources, built once: the new-game seat hands over the generated world (its history).
-  const world = 'world' in s.seat && isStartedWorld(s.seat.world) ? s.seat.world : null;
+  const world = s.live?.world ?? ('world' in s.seat && isStartedWorld(s.seat.world) ? s.seat.world : null);
   const sources = hubSources({ season: sp, content, world, football, changed, print: () => globalThis.print?.() });
-  return { ...port, sources: () => sources, subscribe: (f) => { redraws.add(f); return () => { redraws.delete(f); }; } };
+  const hub = { ...port, sources: () => sources, subscribe: (f: () => void) => { redraws.add(f); return () => { redraws.delete(f); }; } };
+  const live = s.live;
+  if (!live || !('world' in s.seat)) return hub;
+  const seat: SeatWorld = {
+    world: live.world, teamId: s.seat.teamId, userPersonId: live.userPersonId, level: s.level,
+    leagueRules: s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules,
+  };
+  return { ...hub, seatWorld: () => seat };
 }
 
 /** The new-game picker's seat world is the whole generated world; a bare team list is not. */

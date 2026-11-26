@@ -46,7 +46,8 @@ describe('G-10 fact rows', () => {
   it('every row has at least one source and every source value matches the row value', () => {
     for (const r of rows) {
       expect(r.sources.length, r.id).toBeGreaterThan(0);
-      for (const s of r.sources) if (s.value !== undefined && r.value !== undefined) expect(s.value, r.id).toBe(r.value);
+      // A row whose status is Conflict records a disagreement on purpose (Q6): its sources may differ from the row value.
+      if (r.status !== 'Conflict') for (const s of r.sources) if (s.value !== undefined && r.value !== undefined) expect(s.value, r.id).toBe(r.value);
     }
   });
   it('re-finds every quote in the local text copy when it is present', () => {

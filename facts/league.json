@@ -3089,7 +3089,7 @@
    "statement": "Practice squad protection: a club may protect four players per week from other clubs signing them.",
    "value": 4,
    "unit": "count",
-   "validFor": "2026",
+   "validFor": "2020-2022",
    "sources": [
     {
      "citation": "Steelers Now, Steelers Protect Four Practice Squad Players (2021-09-07, https://steelersnow.com/steelers-protect-four-practice-squad-players)",
@@ -3113,7 +3113,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found. Open (2026-11-26, PC browser): the NFL Football Operations Contract Language page lists no weekly protection, and National Football Post (2026-10-23) says the weekly protection of up to four players began in 2020 as a pandemic-era change and that published explainers disagree on whether it still applies. Treat the value as unconfirmed for 2026; the status is not raised.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found. Open (2026-11-26, PC browser): the NFL Football Operations Contract Language page lists no weekly protection, and National Football Post (2026-10-23) says the weekly protection of up to four players began in 2020 as a pandemic-era change and that published explainers disagree on whether it still applies. Treat the value as unconfirmed for 2026; the status is not raised. Re-read 2026-11-26: the 2020 CBA text (Article 33, local copy) has no weekly protection provision. National Football Post (2026-10-23) says weekly protections were pandemic-era and that published explainers disagree on whether they still apply; two 2026 explainers (Locker Room Wire, Sporting Nation search snippet) repeat the ESPN claim of four per week every Tuesday. Still unconfirmed in a league document. SUPERSEDED for 2026 by F-league-0221 (value 0, 2026-11-26): the protections were a 2020 pandemic-era change, still in use in 2022 (Mile High Report), and 2026 sources (Big Blue View, National Football Post) say they no longer exist. This row describes the 2020 to 2022 rule; the ESPN 2025 line appears stale.",
    "status": "2 of 3",
    "statusHistory": [
     {
@@ -8023,6 +8023,414 @@
      "date": "2026-11-26",
      "status": "Assumption",
      "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0218",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A head coach may submit up to nine plays each week to the league officiating department (Art McNally GameDay Central) for review.",
+   "value": 9,
+   "unit": "plays per week",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Football Operations, Performance Evaluation (https://edge-operations.nfl.com/rules-officiating/officiating/performance-evaluation; canonical https://operations.nfl.com/operations/rules-officiating/officiating/performance-evaluation; no page date, (c) 2026)",
+     "locator": "Today's Technology, Coaches' video",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Every head coach can submit up to nine plays each week for AMGC to review.",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The fetch tool rendered the page as an extracted summary, so howRead is \"secondary summary\" and the status stays 1 of 3 until the live page is read by eye. Three other NFL pages read the same pass (Art McNally GameDay Central, Preparing for Success, Behind the Stripes) state no weekly number; the ESPN story \"How NFL teams complain\" returned an empty page. NOT a per-game limit: the page says officials are graded on every play of every game. The bible key league.officiating_review.max_plays (I10.5.3) is the weekly coach cap.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0219",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Coach-to-player (C2P) equity rule: after a total system failure (complete inability to communicate from the sideline to the designated player), the opposing club hands over its C2P components to the league and both clubs use C2P again once the affected system works; a temporary disruption is not a total failure.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Football Operations, NFL Equity Rule (https://operations.nfl.com/the-rules/nfl-equity-rule; same text at https://operations.nfl.com/gameday/behind-the-scenes/nfl-equity-rule; no page date, (c) 2026)",
+     "locator": "Equity rule, C2P section",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "A total system failure will be defined as the complete inability to communicate from the sideline to the designated player on the field."
+    },
+    {
+     "citation": "NFL Football Operations, NFL Equity Rule (https://operations.nfl.com/the-rules/nfl-equity-rule; same text at https://operations.nfl.com/gameday/behind-the-scenes/nfl-equity-rule; no page date, (c) 2026)",
+     "locator": "Equity rule, C2P section",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "A disruption that results in the temporary inability to communicate play calls will not be considered a total system failure"
+    },
+    {
+     "citation": "NFL Football Operations, NFL Equity Rule (https://operations.nfl.com/the-rules/nfl-equity-rule; same text at https://operations.nfl.com/gameday/behind-the-scenes/nfl-equity-rule; no page date, (c) 2026)",
+     "locator": "Equity rule, C2P section",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Once the affected C2P system is fully functional, both clubs will be permitted to use the C2P system."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One league page (two URLs, same text). The fetched text also says the opposing club's equipment manager is instructed to \"hand over the C2P components\"; no page read states a game delay or a time limit. Part of the rule (what the league technician does) was not read in full.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0220",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Coach-to-coach equity rule: if one team has total failure of its coach-to-coach headset system, the other team must stop using its own until the problem is resolved.",
+   "validFor": "2015 report; current text not found",
+   "sources": [
+    {
+     "citation": "ESPN, Kevin Seifert, Malfunctioning headsets are common, but timing couldn't be worse (2015-09-11, https://www.espn.com/blog/nflnation/post/_/id/178579/malfunctioning-headsets-are-common-but-timing-couldnt-be-worse)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-2015",
+     "primary": false,
+     "quote": "the other team must discontinue its use, as well, until the problem is resolved."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One 2015 news article. The current NFL equity rule page covers only coach-to-player and sideline tablets, and says nothing on coach-to-coach. The article also says the rule \"doesn't apply to coach-to-player\", which the current NFL page contradicts for C2P, so the article is dated on that point. Still owed: the rulebook or Game Operations Manual text.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0221",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Practice squad protections (up to four players per week, a 2020 pandemic-era change) are not in effect in 2026: the 2020 CBA has no protection clause.",
+   "value": 0,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, Practice squad (https://en.wikipedia.org/wiki/Practice_squad; no revision date in the fetched text)",
+     "locator": "Protections paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "Practice squad protections ended after the 2021 season.",
+     "value": 0
+    },
+    {
+     "citation": "Fantasy Nerds, NFL practice squad rules, eligibility, pay and poaching explained (2026-08-31, rewrite of a Yahoo Sports article, https://fantasynerds.com/news/story/2026/08/31/nfl-practice-squad-rules-eligibility-pay-and-poaching-explained-1611683)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fantasynerds-yahoo",
+     "primary": false,
+     "quote": "are no longer in effect",
+     "value": 0
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 33 Section 2(a) (text copy cba_2020.txt, line 9462)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "shall be completely free to negotiate and sign a Player Contract with any Club at any time during the League Year",
+     "value": 0
+    },
+    {
+     "citation": "Big Blue View (SB Nation), Practice squad rules for 2026 explained (2026-08-31, syndicated at https://sports.yahoo.com/articles/practice-squad-rules-2026-explained-133000994.html)",
+     "locator": "Protections paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "sbnation-bigblueview",
+     "primary": false,
+     "quote": "no longer exist",
+     "value": 0
+    },
+    {
+     "citation": "National Football Post, practice squad protections explainer (2026-10-23)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nationalfootballpost",
+     "primary": false,
+     "quote": "The CBA itself has no provision that lets a club shield practice squad players from being signed away.",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). CONFLICT WITH F-league-0078 (value 4): ESPN (2025-08-26) says \"Every Tuesday, teams can designate four players as protected\", with no citation; the 2020 CBA text has no protection clause; no NFL page lists protections. Two of three sources say ended, so the 2026 value is most likely 0, but no league document was found either way. The key owner should decide; F-league-0078 was left unchanged. CBA CHECK (2026-11-26, local text copy): Article 33 Section 2(a) says a practice squad player is \"completely free\" to sign with any club at any time \"without penalty or restriction\", and Article 33 has no protection clause (searched \"protect\" in the article). That is the text of record and implies no protection, but it is an inference from absence: the 2020 protections were a pandemic-era change that Wikipedia and Fantasy Nerds say ended after 2021. The only source for four a week in 2025 is one uncited ESPN line (2025-08-26). Marlon/key owner still decides; F-league-0078 is unchanged. SETTLED 2026-11-26 (Marlon: look specifically for a clause; if none, so be it). Searched the full 2020 CBA text (Article 33 Sections 1 to 7, side letters, Art. 70 Sec. 16 prior side letters): no protection clause. Big Blue View 2026 and 2024 and National Football Post 2026 say the COVID-era protections no longer exist; Mile High Report (2022-08-31) shows they still ran in 2022, so the Wikipedia end date (after 2021) is likely a year early. Value 0 for 2026, with the CBA primary text plus independent groups.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "CBA Article 33 Section 2(a) added."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0222",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The pro league was founded in 1920 as the American Professional Football Association (renamed National Football League for the 1922 season).",
+   "value": 1920,
+   "unit": "year",
+   "validFor": "history",
+   "sources": [
+    {
+     "citation": "Wikipedia, National Football League (https://en.wikipedia.org/wiki/National_Football_League)",
+     "locator": "Lead",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The NFL was formed in 1920 as the American Professional Football Association (APFA)",
+     "value": 1920
+    },
+    {
+     "citation": "Wikipedia, History of the National Football League (https://en.wikipedia.org/wiki/History_of_the_National_Football_League)",
+     "locator": "Lead",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "was founded in 1920 as the American Professional Football Association (APFA)",
+     "value": 1920
+    },
+    {
+     "citation": "Pro Football Hall of Fame, Hall of Fame history (https://www.profootballhof.com/visit/hall-of-fame-history/; no page date)",
+     "locator": "Hall history text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "was founded in Canton on Sept.17, 1920.",
+     "value": 1920
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia places the Canton meeting that formed the league on 1920-08-20 and the APFA name on 1920-09-17; the Hall of Fame page gives 1920-09-17. Only the year is claimed. The two Wikipedia pages count as one independence group.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0223",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The Pro Football Hall of Fame opened to the public on September 7, 1963 (43 seasons after the league's 1920 founding).",
+   "value": 1963,
+   "unit": "year",
+   "validFor": "history",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Hall of Fame history (https://www.profootballhof.com/visit/hall-of-fame-history/; no page date)",
+     "locator": "Hall history text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "The Pro Football Hall of Fame opened to the public Sept. 7, 1963",
+     "value": 1963
+    },
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Infobox",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "Established: September 7, 1963",
+     "value": 1963
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Opening year, not necessarily the first induction year: the size of the first (charter) class, assumed 17 in the history code, was NOT found in any page read, so no row is made for it.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0224",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The Pro Football Hall of Fame Selection Committee has 28 members, of whom 25 vote in a given year (reduced from 50 ahead of the Class of 2027).",
+   "value": 28,
+   "unit": "members",
+   "validFor": "2027 election",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, selection process improvements ahead of the Class of 2027 election (2026-09-04, https://www.profootballhof.com/news/pro-football-hall-of-fame-announces-selection-process-improvements-ahead-of-class-of-2027-election)",
+     "locator": "Press release",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "reducing the Selection Committee from 50 to 28",
+     "value": 28
+    },
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Selection section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "enshrinees are selected by a 28-person panel officially known as the Selection Committee. Of this group, 25 will vote in a given year.",
+     "value": 28
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The earlier committee was 50. The history code covers a span of seasons; the 28 applies to the 2027 election onward.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0225",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A Pro Football Hall of Fame finalist needs at least 80 percent support from the Selection Committee.",
+   "value": 80,
+   "unit": "percent",
+   "validFor": "unknown",
+   "sources": [
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Selection section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "To be elected, a finalist must receive at least 80% support from the committee.",
+     "value": 80
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One source. The Hall press release of 2026-09-04 does not mention the threshold, so it is not confirmed unchanged under the 28-member panel.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0226",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The Pro Football Hall of Fame elects at least four and no more than nine candidates a year (the 2020 centennial class of 20 was a one-off).",
+   "value": 9,
+   "unit": "maximum per year",
+   "validFor": "unknown",
+   "sources": [
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Selection section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "At least four, but no more than nine, candidates are elected annually.",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One source; the minimum is 4. The per-category limits are being replaced by a single \"Players\" pool from 2027 (Hall press release and Wikipedia).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0227",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Wikipedia states 49 defunct NFL franchises, but its own club table has 48 rows (the likely cause of the 48 vs 49 conflict).",
+   "value": 49,
+   "unit": "franchises",
+   "validFor": "history",
+   "sources": [
+    {
+     "citation": "Wikipedia, List of defunct NFL franchises (https://en.wikipedia.org/wiki/List_of_defunct_NFL_franchises)",
+     "locator": "Lead sentence",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-defunct",
+     "primary": false,
+     "quote": "The NFL has had a total of 49 franchises become defunct over its history",
+     "value": 49
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). No second count source found: Pro-Football-Reference's team list returned no defunct section and Pro Football Archives' homepage has no list. Sample years in the Wikipedia table (joined/folded): Akron 1920/1926, Canton 1920/1926, Duluth 1923/1927, Frankford 1924/1931, Providence 1925/1931, Dallas Texans 1952/1952, Cincinnati Reds 1933/1934. Joined/folded years may differ from first/last game seasons; the Reds were revoked with three games left in 1934.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
     }
    ]
   }

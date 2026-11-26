@@ -1,6 +1,7 @@
 {
   "name": "gridiron-manager",
   "private": true,
+  "license": "UNLICENSED",
   "type": "module",
   "workspaces": [
     "packages/*",

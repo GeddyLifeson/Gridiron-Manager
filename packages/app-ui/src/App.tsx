@@ -85,7 +85,7 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     // The career root: the season of the seat's level from the generated world, on the office and the console.
     if (leagueContent && start.seatTeamId !== null) {
       try {
-        setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId } },
+        setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId }, live: { world, userPersonId: start.coach.personId } },
           { ...(consoleConfig ? { consoleConfig: (gameId: string) => consoleConfig(start.ruleSetId, gameId) } : {}), resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings }));
         return;
       } catch (e) { setMsg((e as Error).message); return; }
