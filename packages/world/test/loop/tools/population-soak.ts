@@ -7,6 +7,7 @@
 // --run is how many seasons to play of the full span (1869 to today), so a short soak starts in 1869 too.
 // --first=YEAR starts the world in that season instead (a modern career world: --first=1996 --run=31).
 // --baseline=1 turns off the entry-pool pruning and the archive (for before and after numbers).
+// --types=1 prints the log by event type at the end; --gzip=1 prints people and log sizes compressed in chunks.
 // --save=1 adds worldMB: the people table, systemState and the event log as JSON, a proxy for save size.
 // Games use the TEST DOUBLE port by default: this tool measures people, not football.
 import { writeFileSync, appendFileSync } from 'node:fs';
@@ -76,3 +77,29 @@ loop.runHistory(w, systems, {
     last = performance.now();
   },
 });
+if (arg('types', '0') === '1') {
+  const by = new Map<string, { n: number; bytes: number; people: number }>();
+  for (const e of w.log.rows()) {
+    const b = by.get(e.type) ?? { n: 0, bytes: 0, people: 0 };
+    b.n++; b.bytes += JSON.stringify(e).length; b.people += e.subjects.filter((x) => x.kind === 'person').length + e.actors.length;
+    by.set(e.type, b);
+  }
+  const reg = w.log.registry;
+  const rows = [...by].sort((a, b) => b[1].bytes - a[1].bytes).map(([t, b]) => ({ type: t, ...b, mb: +(b.bytes / 1e6).toFixed(1), family: reg.get(t)?.family, compactable: reg.get(t)?.compactable }));
+  console.log(JSON.stringify({ logTypes: rows.slice(0, 30) }, null, 0));
+}
+if (arg('gzip', '0') === '1') {
+  const { gzipSync } = await import('node:zlib');
+  const chunked = (items: readonly unknown[], size: number): { raw: number; gz: number } => {
+    let raw = 0, gz = 0;
+    for (let i = 0; i < items.length; i += size) {
+      const text = items.slice(i, i + size).map((x) => JSON.stringify(x)).join('\n');
+      raw += text.length; gz += gzipSync(text).length;
+    }
+    return { raw, gz };
+  };
+  const people = chunked([...w.people.values()], 1000);
+  const log = chunked(w.log.rows(), 5000);
+  const sample = Object.fromEntries([...new Set(w.log.rows().map((e) => e.type))].map((t) => [t, w.log.ofType(t)[0]]));
+  console.log(JSON.stringify({ gzipMB: { peopleRaw: people.raw / 1e6, peopleGz: people.gz / 1e6, logRaw: log.raw / 1e6, logGz: log.gz / 1e6 }, sample }));
+}
