@@ -8,6 +8,9 @@ import { InstallData } from './read-models/install.ts';
 import { PracticeDeskData } from './read-models/practice.ts';
 import { DraftRoomData, FreeAgencyData } from './read-models/draft-room.ts';
 import { RecruitingBoardData } from './read-models/recruiting.ts';
+import { SchoolData } from './read-models/school.ts';
+import { PlayerDesignerData } from './read-models/player-designer.ts';
+import { EditorsData } from './read-models/editors.ts';
 import { ScoutingTableData, ScoutingPersonnelData } from './read-models/scouting.ts';
 import { GAME_DAY_COMMAND_SPECS } from './game-day-commands.ts';
 import { GAMEPLAN_COMMAND_SPECS } from './gameplan-commands.ts';
@@ -190,4 +193,7 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   filmGradeSheet: readModelOf(FILM_MODEL_SCHEMAS.gradeSheet),
   filmCorrections: readModelOf(FILM_MODEL_SCHEMAS.corrections),
   filmCutUps: readModelOf(FILM_MODEL_SCHEMAS.cutUps),
+  school: readModelOf(SchoolData),
+  playerDesigner: readModelOf(PlayerDesignerData),
+  editors: readModelOf(EditorsData),
 };
