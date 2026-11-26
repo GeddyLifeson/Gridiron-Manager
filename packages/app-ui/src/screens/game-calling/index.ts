@@ -2,7 +2,7 @@
 // (game-build-plan section 2, "Screens"); the shell already routes `game.console` and hands it the keyboard.
 import { createElement, type ReactNode } from 'react';
 import type { RouteTable } from '../../shell/index.ts';
-import { GameConsole, type ConsoleViewModel } from './GameConsole.tsx';
+import { GameConsole, type ConsoleViewModel, type ConsolePresentation } from './GameConsole.tsx';
 
 export * from './GameConsole.tsx';
 
@@ -13,8 +13,15 @@ export interface GameCallingSource {
   field?(): ReactNode;
   /** The G-61 game management panel for the sideline region (CR-G61-3: the integrator binds it). */
   sideline?(): ReactNode;
+  /** PV-05 score strip and banners for this frame (teams, possession, conditions, look, banner queue). */
+  presentation?(): ConsolePresentation | undefined;
 }
 
 export function gameCallingRoutes(source: GameCallingSource): RouteTable {
-  return { 'game.console': { render: () => createElement(GameConsole, { view: source.view(), field: source.field?.(), sideline: source.sideline?.() }) } };
+  return { 'game.console': {
+    render: () => {
+      const presentation = source.presentation?.();
+      return createElement(GameConsole, { view: source.view(), field: source.field?.(), sideline: source.sideline?.(), ...(presentation ? { presentation } : {}) });
+    },
+  } };
 }

@@ -124,6 +124,7 @@ export function lifecycleStep(b: LifecycleBinding): StepHandler {
       if (problems.length > 0) throw new Error(`founding in ${year} is not legal: ${problems.slice(0, 5).join('; ')}`);
       for (const p of f.people) { world.people.set(p.id, p); world.status.set(p.id, 'active'); }
       for (const j of f.jobs) world.jobs.set(j.id, j);
+      for (const seat of f.offLadder) world.offLadder.set(seat.seatId, seat);
       for (const [teamId, roster] of f.rosters) world.rosters.set(teamId, roster);
       for (const c of f.cultures) world.cultures.set(c.teamId, c);
       for (const [id, y] of f.staffContractEndYear) world.staffContractEndYear.set(id, y);
@@ -147,6 +148,11 @@ export function lifecycleStep(b: LifecycleBinding): StepHandler {
         if (j.teamId !== s.teamId) continue;
         if (j.holderPersonId !== null) pool(b.staffPool ?? 'coach_pool').push(j.holderPersonId);
         world.jobs.delete(j.id);
+      }
+      for (const seat of [...world.offLadder.values()].sort((x, y) => x.seatId - y.seatId)) {
+        if (seat.teamId !== s.teamId) continue;
+        if (seat.holderPersonId !== null) pool(b.staffPool ?? 'coach_pool').push(seat.holderPersonId);
+        world.offLadder.delete(seat.seatId);
       }
       ctx.emit({
         type: TEAM_FOLDED, date: world.date, witnesses: { kind: 'public' }, tier: 3,

@@ -4,7 +4,8 @@
 // When the home and away colours fail against the turf or each other, the away alternate is tried
 // (O2.3.2), then the home alternate, then the theme's colour-blind-safe pair (one dark, one light,
 // told apart by lightness alone).
-import { resolveColours, contrastRatio, relativeLuminance, type ThemeId, type ColourVisionId } from '../tokens/index.ts';
+import { contrastRatio, relativeLuminance, type ThemeId, type ColourVisionId } from '../tokens/index.ts';
+import { resolveEraColours, type FieldSurface } from '../presentation/era/theme.ts';
 import { param } from './params.ts';
 import type { TeamColours } from './types.ts';
 
@@ -22,8 +23,13 @@ export interface FieldPalette {
 
 const FIELD_KEYS = ['turf', 'endZone', 'surround', 'lines', 'numbers', 'scrimmage', 'lineToGain', 'ball', 'ballEdge', 'flag', 'cue', 'shadow', 'inkDark', 'inkLight', 'officialLight', 'officialDark'] as const;
 
-export function fieldPalette(theme: ThemeId = 'light', vision: ColourVisionId = 'none'): FieldPalette {
-  const block = resolveColours(theme, vision);
+/**
+ * The field colours for a theme and palette. `surface` is the venue's playing surface: the Classic theme
+ * lays PV-18's flat grass or period artificial-turf colour over the turf, end zones and surround
+ * (plan 2.1); the plain themes keep their own turf whatever the surface.
+ */
+export function fieldPalette(theme: ThemeId = 'light', vision: ColourVisionId = 'none', surface: FieldSurface = 'grass'): FieldPalette {
+  const block = resolveEraColours({ theme, colourVision: vision, surface });
   const out: Record<string, string> = {};
   for (const k of FIELD_KEYS) {
     const v = block.field[k];
@@ -75,4 +81,9 @@ export function mixColour(a: string, b: string, t: number): string {
 /** The ink (dark or light) that reads better on a marker fill. */
 export function inkOn(fill: string, pal: FieldPalette): string {
   return contrastRatio(fill, pal.inkDark) >= contrastRatio(fill, pal.inkLight) ? pal.inkDark : pal.inkLight;
+}
+
+/** The venue's surface kind (engine-game venue `surfaceKind`) as the field surface the Classic theme paints. */
+export function fieldSurfaceFor(kind: 'natural' | 'artificial' | null | undefined): FieldSurface {
+  return kind === 'artificial' ? 'artificial' : 'grass';
 }

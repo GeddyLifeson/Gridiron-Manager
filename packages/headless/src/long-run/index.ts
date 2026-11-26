@@ -9,3 +9,4 @@ export {
   canonicalBytes, runLongRun, runStabilitySuite, measureAdvance, loopTarget,
   type LongRunOptions, type SeasonMeasure, type LongRunReport, type SuiteOptions, type SuiteVerdict, type AdvanceMeasure, type LoopFns,
 } from './run.ts';
+export { REAL_TOLERANCES, type RealTolerance } from './tolerances.ts';

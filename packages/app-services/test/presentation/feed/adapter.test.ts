@@ -5,7 +5,7 @@ import { NEUTRAL_ENVIRONMENT, type FoulRecord, type PlayOutcome } from '@gm/sche
 import { bridges } from '../../../src/observer/index.ts';
 import { publicEvents } from '../../../src/read-models/film/index.ts';
 import {
-  presentationFeed, FEED_CUE_KINDS, FEED_SOURCES, RULING_KINDS, type FeedInput, type PresentationExtras, type PresentationFeed,
+  presentationFeed, FEED_CUE_KINDS, FEED_SOURCES, RULING_KINDS, type FeedInput, type FeedRecord, type PresentationExtras, type PresentationFeed,
 } from '../../../src/presentation/feed/index.ts';
 import { makeSource, person, LOS, TPS, CATCH_T, TACKLE_T, WHISTLE_T } from '../../read-models/film/fixtures.ts';
 
@@ -45,6 +45,7 @@ const FULL: PresentationExtras = {
     { t: -0.05, side: 0, kind: 'cadence_silent' },
   ],
   flagsThrown: [{ foulIndex: 0, t: 1.6 }],
+  postHits: [],
 };
 
 const kinds = (f: PresentationFeed) => f.cues.map((c) => c.kind);
@@ -164,6 +165,25 @@ describe('presentation feed from a play record', () => {
     expect(o.cues.filter((c) => c.kind === 'ruling')).toMatchObject([{ ruling: 'penalty', favours: null }]);
     const rv = presentationFeed(input({ review: { reversed: true, favours: 1 }, final: { resultType: 'pass_incomplete', incomplete: true }, firstDown: false }));
     expect(rulings(rv)).toEqual(['review_reversed', 'incomplete']);
+  });
+
+  it('kick: the foot meeting the ball comes from the kick event, at its tick and spot, with the kicker slot', () => {
+    const base = input();
+    const kick = { type: 'kick', t: 1.3, kickKind: 'field_goal', kickerId: person(3), kickSpot: { x: LOS - 7, y: 26.65 }, landingSpot: { x: 110, y: 26.65 }, hangTimeS: 1.9, crossedLine: true, blockedById: null };
+    const rec = { ...base.record, truth: { ...base.record.truth, events: [...base.record.truth.events, kick] } } as FeedRecord;
+    const f = presentationFeed({ ...base, record: rec });
+    const k = f.cues.find((c) => c.kind === 'kick');
+    expect(k && k.kind === 'kick' && [k.tick, k.x, k.y, k.slots]).toEqual([Math.round(1.3 * TPS), LOS - 7, 26.65, [3]]);
+    expect(JSON.stringify(k)).not.toMatch(/landingSpot|hangTime|blocked/);
+  });
+
+  it('post hit (CR-PV00-7): placed on its tick with the part struck; missing until the engine publishes it', () => {
+    expect(presentationFeed(input()).missing).toContain('postHit');
+    const f = presentationFeed(input({ extras: { ...FULL, postHits: [{ t: 2.0, x: 110, y: 27.5, part: 'upright' }] } }));
+    const h = f.cues.find((c) => c.kind === 'postHit');
+    expect(h && h.kind === 'postHit' && [h.tick, h.x, h.y, h.part]).toEqual([Math.round(2.0 * TPS), 110, 27.5, 'upright']);
+    expect(f.missing).not.toContain('postHit');
+    expect(presentationFeed(input({ extras: FULL })).cues.some((c) => c.kind === 'postHit')).toBe(false);
   });
 
   it('is pure: the same input gives the same feed, cues sorted with seq 0..n-1', () => {
