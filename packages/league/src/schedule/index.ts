@@ -13,7 +13,7 @@ export { flexWeek, flexWindowOpen, slotWeek18, type FlexUsage, type ScheduleChan
 export { scheduleReport, winPct, type ScheduleReport, type Record3, type Place } from './report.ts';
 export { orientBalanced, type OrientEdge } from './balance.ts';
 export {
-  generateCollegeSeason, conferenceGameCounts, protectedPairs, rotatingPairs,
+  generateCollegeSeason, conferenceGameCounts, protectedPairs, rotatingPairs, rotationCycle,
   type CollegeTeam, type CollegeConference, type Rivalry, type NeutralVenue, type Meeting, type MeetingHistory,
   type Contract, type CollegeSeasonInput, type CollegeSchedule,
 } from './college.ts';

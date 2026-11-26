@@ -58,7 +58,7 @@ export interface CollegeSchedule {
   readonly log: readonly string[];
 }
 
-interface Draft { home: TeamId; away: TeamId; kind: ScheduledGame['kind']; conference: boolean; neutralVenue: string | null; lateOk: boolean }
+interface Draft { home: TeamId; away: TeamId; kind: ScheduledGame['kind']; conference: boolean; neutralVenue: string | null; lateOk: boolean; fromFill?: boolean }
 
 /** Conference games per team this season, with the parity rule for odd n times odd g. */
 export function conferenceGameCounts(conf: CollegeConference, season: number, cfg: ScheduleConfig = DEFAULT_CONFIG): Map<TeamId, number> {
@@ -116,11 +116,20 @@ export function rotatingPairs(
   const C = cfg.college;
   const ids = members.slice().sort();
   const n = ids.length;
-  const ix = new Map(ids.map((m, i) => [m, i] as const));
   const allowed: boolean[][] = ids.map((a) => ids.map((b) => a !== b && !protectedSet.has(pairKey(a, b))));
   const w: number[][] = ids.map((a) => ids.map((b) => { const s = staleness(a, b, season, history, cfg); return s * s; }));
   const r = ids.map((m) => need.get(m) ?? 0);
-  for (let attempt = 0; attempt < C.restarts; attempt++) {
+  const stale: number[][] = ids.map((x) => ids.map((y) => staleness(x, y, season, history, cfg)));
+  // Rule 3: every pair meets within the cycle, the most seasons any member needs to see all its
+  // non-protected opponents. Pairs that have gone a full cycle without meeting are forced in first;
+  // if that is impossible (first season, or after realignment) the search falls back to staleness weights.
+  const pdeg = ids.map((a) => ids.filter((b) => a !== b && protectedSet.has(pairKey(a, b))).length);
+  const cycle = rotationCycle(n, pdeg, r);
+  const overdue: boolean[][] = ids.map((_, a) => ids.map((_, b) => allowed[a]![b]! && stale[a]![b]! >= cycle));
+  const overdueDeg = ids.map((_, a) => overdue[a]!.filter(Boolean).length);
+  const canForce = overdueDeg.every((d, a) => d <= r[a]!);
+  const search = (forced: boolean[][], allowedNow: boolean[][], tries: number): [number, number][] | null => {
+  for (let attempt = 0; attempt < tries; attempt++) {
     const inS: boolean[][] = ids.map(() => ids.map(() => false));
     const deg = new Array<number>(n).fill(0);
     const nb: number[][] = ids.map(() => []);
@@ -129,9 +138,10 @@ export function rotatingPairs(
       inS[a]![b] = false; inS[b]![a] = false; deg[a]!--; deg[b]!--;
       nb[a]!.splice(nb[a]!.indexOf(b), 1); nb[b]!.splice(nb[b]!.indexOf(a), 1);
     };
+    for (let a = 0; a < n; a++) for (let b = a + 1; b < n; b++) if (forced[a]![b]) add(a, b);
     // Greedy by weight with random ties.
     const cand: [number, number][] = [];
-    for (let a = 0; a < n; a++) for (let b = a + 1; b < n; b++) if (allowed[a]![b]) cand.push([a, b]);
+    for (let a = 0; a < n; a++) for (let b = a + 1; b < n; b++) if (allowedNow[a]![b]) cand.push([a, b]);
     const order = shuffle(cand, rng).sort((x, y) => w[y[0]]![y[1]]! - w[x[0]]![x[1]]!);
     for (const [a, b] of order) if (deg[a]! < r[a]! && deg[b]! < r[b]!) add(a, b);
     // Augmenting walks for the remaining deficits.
@@ -143,13 +153,26 @@ export function rotatingPairs(
       let fixed = false;
       for (let step = 0; step < C.walkSteps; step++) {
         const opts: number[] = [];
-        for (let x = 0; x < n; x++) if (allowed[u]![x] && !inS[u]![x]) opts.push(x);
+        for (let x = 0; x < n; x++) if (allowedNow[u]![x] && !inS[u]![x]) opts.push(x);
         if (opts.length === 0) break;
-        const x = opts[rng.int(0, opts.length - 1)]!;
+        // Prefer a partner with a free slot, then one whose freshest pairing can be given up cheaply.
+        const free = opts.filter((o) => deg[o]! < r[o]!);
+        let x: number;
+        if (free.length) x = free[rng.int(0, free.length - 1)]!;
+        else {
+          const cost = (o: number) => Math.min(Number.MAX_SAFE_INTEGER, ...nb[o]!.filter((y) => y !== u && !forced[o]![y]).map((y) => w[o]![y]!));
+          const c = opts.map(cost);
+          const best = Math.min(...c);
+          const pool = rng.chance(half(1)) ? opts.filter((_, i) => c[i] === best) : opts;
+          x = pool[rng.int(0, pool.length - 1)]!;
+        }
         if (deg[x]! < r[x]!) { add(u, x); fixed = true; break; }
-        const ys = nb[x]!.filter((y) => y !== u);
+        const ys = nb[x]!.filter((y) => y !== u && !forced[x]![y]);
         if (ys.length === 0) continue;
-        const y = ys[rng.int(0, ys.length - 1)]!;
+        // Give up the freshest pairing x has, so overdue pairs are kept (rule 3).
+        const minW = Math.min(...ys.map((y) => w[x]![y]!));
+        const low = ys.filter((y) => w[x]![y] === minW);
+        const y = low[rng.int(0, low.length - 1)]!;
         del(x, y);
         add(u, x);
         u = y;
@@ -168,16 +191,48 @@ export function rotatingPairs(
       const [c, d] = list[j]!;
       if (rng.chance(half(1))) [a, b] = [b, a];
       if (a === c || a === d || b === c || b === d) continue;
+      if (forced[a]![b] || forced[c]![d]) continue;
       if (!allowed[a]![c] || !allowed[b]![d] || inS[a]![c] || inS[b]![d]) continue;
       const delta = w[a]![c]! + w[b]![d]! - w[a]![b]! - w[c]![d]!;
       if (delta < 0) continue;
       del(a, b); del(c, d); add(a, c); add(b, d);
       list = edges();
     }
-    void ix;
-    return edges().map(([a, b]) => [ids[a]!, ids[b]!]);
+    return edges();
   }
+  return null;
+  };
+  const toIds = (e: [number, number][]) => e.map(([a, b]) => [ids[a]!, ids[b]!] as [TeamId, TeamId]);
+  const none: boolean[][] = ids.map(() => ids.map(() => false));
+  if (canForce) {
+    const free = ids.map((_, a) => ids.map((_, b) => allowed[a]![b]! && !overdue[a]![b]!));
+    const hit = search(overdue, free, C.restarts);
+    if (hit) return toIds(hit);
+  }
+  // A conference's first season (no pair has met): pick one whose leftover pairs can all be played
+  // next season, so the two-season cycle closes (checked for two-season cycles; longer ones use weights).
+  const fresh = ids.every((_, a) => ids.every((_, b) => !allowed[a]![b] || stale[a]![b]! > C.rotationStaleCap));
+  if (fresh && cycle === 1 + 1) {
+    for (let attempt = 0; attempt < C.restarts; attempt++) {
+      const first = search(none, allowed, 1);
+      if (!first) continue;
+      const inFirst = ids.map(() => ids.map(() => false));
+      for (const [a, b] of first) { inFirst[a]![b] = true; inFirst[b]![a] = true; }
+      const left = ids.map((_, a) => ids.map((_, b) => allowed[a]![b]! && !inFirst[a]![b]!));
+      if (ids.some((_, a) => left[a]!.filter(Boolean).length > r[a]!)) continue;
+      if (search(left, inFirst, C.rotationLevelTries)) return toIds(first);
+    }
+  }
+  const any = search(none, allowed, C.restarts);
+  if (any) return toIds(any);
   throw new Error(`T3.1.1: could not build a conference rotation for ${ids[0]} and its conference`);
+}
+
+/** Seasons a conference needs for every member to meet every non-protected member once (T3.1.1 rule 3). */
+export function rotationCycle(n: number, protectedDegree: readonly number[], rotatingSlots: readonly number[]): number {
+  let c = 1;
+  protectedDegree.forEach((p, i) => { const r = rotatingSlots[i]!; if (r > 0) c = Math.max(c, Math.ceil((n - 1 - p) / r)); });
+  return c;
 }
 
 function prefHost(a: TeamId, b: TeamId, history: MeetingHistory): TeamId | null {
@@ -187,12 +242,13 @@ function prefHost(a: TeamId, b: TeamId, history: MeetingHistory): TeamId | null 
 }
 
 /** Orient a set of pairs with history alternation and home counts within [floor(g/2), ceil(g/2)]. */
-function orientConference(pairs: readonly [TeamId, TeamId][], counts: ReadonlyMap<TeamId, number>, history: MeetingHistory, rng: RandomStream): Map<string, TeamId> {
+function orientConference(pairs: readonly [TeamId, TeamId][], counts: ReadonlyMap<TeamId, number>, history: MeetingHistory, protectedSet: ReadonlySet<string>, rng: RandomStream, cfg: ScheduleConfig): Map<string, TeamId> {
   const ids = [...counts.keys()].sort();
   const ix = new Map(ids.map((m, i) => [m, i] as const));
   const edges: OrientEdge[] = pairs.map(([a, b]) => {
     const p = prefHost(a, b, history);
-    return { a: ix.get(a)!, b: ix.get(b)!, pref: p === null ? -1 : ix.get(p)! };
+    const weight = protectedSet.has(pairKey(a, b)) ? cfg.college.protectedAlternationWeight : 1;
+    return { a: ix.get(a)!, b: ix.get(b)!, pref: p === null ? -1 : ix.get(p)!, weight };
   });
   const lo = ids.map((m) => floorDiv(counts.get(m)!, TWO));
   const hi = ids.map((m) => Math.ceil(half(counts.get(m)!)));
@@ -235,7 +291,7 @@ export function generateCollegeSeason(input: CollegeSeasonInput): CollegeSchedul
     for (const [m, g] of counts) need.set(m, g - prot.filter(([a, b]) => a === m || b === m).length);
     const rot = rotatingPairs(conf.memberIds, need, pset, season, input.history, rng, cfg);
     const all = [...prot, ...rot];
-    const hosts = orientConference(all, counts, input.history, rng);
+    const hosts = orientConference(all, counts, input.history, pset, rng, cfg);
     for (const [a, b] of all) {
       const h = hosts.get(pairKey(a, b))!;
       addDraft({ home: h, away: h === a ? b : a, kind: pset.has(pairKey(a, b)) ? 'protected' : 'conference', conference: true, neutralVenue: null, lateOk: true });
@@ -332,13 +388,13 @@ export function generateCollegeSeason(input: CollegeSeasonInput): CollegeSchedul
         if (cands.length === 0) continue;
         const o = cands[rng.int(0, cands.length - 1)]!;
         const h = hostFor(t, o);
-        addDraft({ home: h, away: h === t ? o : t, kind, conference: false, neutralVenue: null, lateOk: false });
+        addDraft({ home: h, away: h === t ? o : t, kind, conference: false, neutralVenue: null, lateOk: false, fromFill: true });
         progress = true;
       }
       if (progress) continue;
       // Stuck: break an existing peer game between two full teams to free partners (augmenting step).
       const t = open[0]!;
-      const k = drafts.findIndex((d) => d.kind === kind && d.home !== t && d.away !== t && canPairIgnoringSlots(t, d.home) && canPairIgnoringSlots(t, d.away));
+      const k = drafts.findIndex((d) => d.fromFill === true && d.kind === kind && d.home !== t && d.away !== t && canPairIgnoringSlots(t, d.home) && canPairIgnoringSlots(t, d.away));
       if (k < 0) return;
       const d = drafts.splice(k, 1)[0]!;
       met.delete(pairKey(d.home, d.away));

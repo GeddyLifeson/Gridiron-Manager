@@ -1,13 +1,15 @@
 // Home-and-away orientation with preferences (T3.1.1 rule 5: hosts alternate within a pairing; each
 // team's conference homes stay within one of half its games). Start from each edge's preferred host,
 // then move one home at a time along a directed path, preferring paths that break no preference
-// (0-1 breadth-first search). Every step keeps all other teams' home counts unchanged.
+// (cheapest path by Dijkstra over small integer costs). Every step keeps all other teams' home counts unchanged.
 
 export interface OrientEdge {
   readonly a: number;
   readonly b: number;
   /** Preferred host (a or b), or -1 for none. */
   readonly pref: number;
+  /** Cost of breaking the preference (default 1): protected series weigh more than rotating ones. */
+  readonly weight?: number;
 }
 
 export function orientBalanced(
@@ -22,7 +24,7 @@ export function orientBalanced(
   host.forEach((h) => { homes[h]!++; });
   const adj: number[][] = Array.from({ length: n }, () => []);
   edges.forEach((e, k) => { adj[e.a]!.push(k); adj[e.b]!.push(k); });
-  const flipCost = (k: number) => (edges[k]!.pref >= 0 && host[k] === edges[k]!.pref ? 1 : 0);
+  const flipCost = (k: number) => (edges[k]!.pref >= 0 && host[k] === edges[k]!.pref ? edges[k]!.weight ?? 1 : 0);
 
   /**
    * Find a path from `start` and flip it. forward = true: start gives up a home (follow edges start
@@ -34,24 +36,21 @@ export function orientBalanced(
     const via = new Array<number>(n).fill(-1);
     const prev = new Array<number>(n).fill(-1);
     dist[start] = 0;
-    const deque: number[] = [start];
+    const done = new Array<boolean>(n).fill(false);
     let best = -1;
-    while (deque.length) {
-      const u = deque.shift()!;
-      if (u !== start && canEnd(u)) { if (best < 0 || dist[u]! < dist[best]!) best = u; continue; }
+    for (;;) {
+      let u = -1;
+      for (let i = 0; i < n; i++) if (!done[i] && dist[i]! < Number.MAX_SAFE_INTEGER && (u < 0 || dist[i]! < dist[u]!)) u = i;
+      if (u < 0) break;
+      done[u] = true;
+      if (u !== start && canEnd(u)) { best = u; break; }
       for (const k of adj[u]!) {
         const e = edges[k]!;
         const v = e.a === u ? e.b : e.a;
         const ok = forward ? host[k] === u : host[k] === v;
-        if (!ok) continue;
+        if (!ok || done[v]) continue;
         const d = dist[u]! + flipCost(k);
-        if (d < dist[v]!) {
-          dist[v] = d;
-          via[v] = k;
-          prev[v] = u;
-          if (flipCost(k) === 0) deque.unshift(v);
-          else deque.push(v);
-        }
+        if (d < dist[v]!) { dist[v] = d; via[v] = k; prev[v] = u; }
       }
     }
     if (best < 0) return false;

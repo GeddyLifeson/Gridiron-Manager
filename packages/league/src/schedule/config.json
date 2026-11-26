@@ -467,7 +467,9 @@
     "walkSteps": 2000,
     "nearestCandidates": 8,
     "secondSubdivisionMinGames": 10,
-    "powerHostsOtherShare": 0.8
+    "powerHostsOtherShare": 0.8,
+    "protectedAlternationWeight": 4,
+    "rotationLevelTries": 8
   },
   "weekTypes": {
     "$leaf": "C2.2.2",
