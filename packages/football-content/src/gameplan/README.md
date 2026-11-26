@@ -33,7 +33,7 @@ G7.2.3 expected snaps for the pro rule set: 2024 NFL regular season from the nfl
 
 - A catalogue row is covered when one box's rule matches 80% of the row's grid states; the best box below that makes it "partly covered". A two-minute box therefore covers the last-play rows.
 - First and long is first and 11 or more (the G7.2.3 table row), not the "15 or more" in the G7.2.2 list, so first and 11 to 14 is not left in a gap.
-- Second and short is tier 2 as the G7.2.2 list says, although its expected snaps (3.4) meet the tier 1 line. Sent to the bible-fixes thread.
+- Second and short is tier 1 (ruling MA-64: 3.4 expected snaps a game is above the tier 1 line).
 - Last play of a half = 5 seconds or less; ranges 10 and in, 11 to 40, 41 and more (Assumptions).
 
 Not built here: the screens (`gameplan` route, read model, commands), which follow in a separate PR.
