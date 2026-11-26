@@ -137,7 +137,7 @@ describe('J3.1.1 the perceived world', () => {
     expect(JSON.stringify(see.view(VIEWER))).toBe(before);
     // The view's methods are the contract's and no more.
     expect(Object.getOwnPropertyNames(Object.getPrototypeOf(see.view(VIEWER))).sort()).toEqual(
-      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'landingPoint', 'playRead', 'receiverNumber', 'setSide', 'sidelines'].sort());
+      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'landingPoint', 'lockedWith', 'playRead', 'receiverNumber', 'setSide', 'sidelines'].sort());
   });
   it('starts from the pre-snap picture and drops a track not refreshed for 1.5 s (edge cases)', () => {
     const { w, see } = stage();

@@ -128,7 +128,9 @@ const ZONE_EYES: ReadonlySet<string> = new Set(['zoneDrop', 'deepZone']);
  * before he drops, so a handoff does not find him backing away. The read step is a design value (Assumption).
  */
 const RUN_READ: Assignment['rules'][number] = {
-  when: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } }, guard: null,
+  // Only once a runner has declared: a quarterback still holding the ball behind the line (a mesh, a fake, a rollout)
+  // holds the defender where he is, it does not send him at the quarterback.
+  when: { op: 'all', of: [{ op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } }, { op: 'test', name: 'ballCarrierDeclared', args: {} }] }, guard: null,
   then: [{ name: 'pursue', args: { angle: 'intercept' } }], text: 'Run read: come up and play the ball',
 };
 export const READ_STEP_S = 1.0;
@@ -162,8 +164,12 @@ function withDropPath(a: Assignment): Assignment {
   const px = Math.max(depth, a.preSnap.align.px), py = side * row[1];
   if (type === 'deepZone') return { ...a, behavior: { ...a.behavior, path: [{ px, py, kind: 'settle', landmark: null }] } };
   const drop: Assignment['rules'][number] = {
-    when: { op: 'any', of: [{ op: 'test', name: 'read', args: { kind: 'pass', dir: 'any' } }, { op: 'test', name: 'timeGt', args: { s: READ_STEP_S } }] },
-    guard: { op: 'not', of: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } } },
+    // "Not a run read" is part of the condition, not a guard: a guard is asked once, when the condition turns true, and
+    // a defender fooled by a fake has to be able to drop later, when his read comes back to pass.
+    when: { op: 'all', of: [
+      { op: 'any', of: [{ op: 'test', name: 'read', args: { kind: 'pass', dir: 'any' } }, { op: 'test', name: 'timeGt', args: { s: READ_STEP_S } }] },
+      { op: 'not', of: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } } }] },
+    guard: null,
     then: [{ name: 'dropTo', args: { px, py } }], text: 'Pass read, or no read after the read step: drop to my zone',
   };
   const at = a.rules.indexOf(RUN_READ);

@@ -128,6 +128,43 @@ export function createInteract(): Interact {
       const dx = pl.posX[d]! - pl.posX[o]!, dy = pl.posY[d]! - pl.posY[o]!, len = dSqrt(dx * dx + dy * dy);
       if (len > 0) { const m = lib.runBlock.displacementYps(a) * TICK_S / len; pl.posX[d] = pl.posX[d]! + dx * m; pl.posY[d] = pl.posY[d]! + dy * m; }
     }
+    // Two men locked up are bodies (J6.1.2): a blocker does not run through his man, and a defender working
+    // through a block carries the blocker with him. The blocker is the one moved, back to contact.
+    standOff(w, o, d);
+    for (let k = 0; k < c.helperSlots.length; k++) standOff(w, c.helperSlots[k]!, d);
+  };
+
+  const standOff = (w: TickWorld, o: number, d: number): void => {
+    const pl = w.players, dx = pl.posX[o]! - pl.posX[d]!, dy = pl.posY[o]! - pl.posY[d]!, len = dSqrt(dx * dx + dy * dy);
+    const min = w.slots[o]!.movement.bodyRadiusYd + w.slots[d]!.movement.bodyRadiusYd;
+    if (len >= min) return;
+    if (len > 0) { pl.posX[o] = pl.posX[d]! + (dx / len) * min; pl.posY[o] = pl.posY[d]! + (dy / len) * min; }
+    else pl.posX[o] = pl.posX[d]! - min * pl.attackDir[o]!;
+  };
+
+  const lateral = (w: TickWorld, s: number): number => { const y = w.players.posY[s]! - w.frame.originY; return y < 0 ? -y : y; };
+  const centres = (w: TickWorld, a: number, b: number): number => {
+    const dx = w.players.posX[a]! - w.players.posX[b]!, dy = w.players.posY[a]! - w.players.posY[b]!;
+    return dSqrt(dx * dx + dy * dy);
+  };
+  /** True when no other free pass protector is nearer rusher `d` than `b` is. A tie goes to the man nearer the ball. */
+  const ownsRusher = (w: TickWorld, b: number, d: number): boolean => {
+    const pl = w.players, side = w.slots[b]!.side, mine = centres(w, b, d);
+    for (let o = 0; o < SLOT_COUNT; o++) {
+      if (o === b || w.slots[o]!.side !== side || !PASS_BLOCKERS.has(pl.behavior[o]!) || pl.engagement[o]! >= 0 || pl.hasBall[o] === 1 || isDown(w, o)) continue;
+      const his = centres(w, o, d);
+      if (his < mine || (his === mine && lateral(w, o) < lateral(w, b))) return false;
+    }
+    return true;
+  };
+  /** True when a free opponent within `rangeYd` of protector `b` is his to block. */
+  const hasOwnRusher = (w: TickWorld, b: number, rangeYd: number): boolean => {
+    const pl = w.players, side = w.slots[b]!.side;
+    for (let d = 0; d < SLOT_COUNT; d++) {
+      if (w.slots[d]!.side === side || pl.engagement[d]! >= 0 || pl.hasBall[d] === 1 || isDown(w, d)) continue;
+      if (centres(w, b, d) <= rangeYd && ownsRusher(w, b, d)) return true;
+    }
+    return false;
   };
 
   const tryOpen = (w: TickWorld, b: number, q: TickResolverParams): void => {
@@ -142,7 +179,12 @@ export function createInteract(): Interact {
       // An opponent who is himself blocking someone, or who already has two men on him, is not picked up.
       if (e >= 0 && (w.contests[e]!.defenseSlot !== d || w.contests[e]!.helperSlots.length > 0)) continue;
       const g = gap(w, b, d);
-      if (g <= bestGap) { if (g < bestGap || best < 0) { best = d; bestGap = g; } }
+      if (g > bestGap) continue;
+      // Pass protection (J6.2.1): the rusher belongs to the free protector nearest him, so two men do not
+      // take one rusher at the snap while the man beside him comes free. Help goes to a blocked rusher only
+      // from a protector who has no free rusher of his own near.
+      if (pass && (e < 0 ? !ownsRusher(w, b, d) : hasOwnRusher(w, b, q['interact.helpClearYd']!))) continue;
+      if (g < bestGap || best < 0) { best = d; bestGap = g; }
     }
     if (best < 0) return;
     const existing = pl.engagement[best]!;

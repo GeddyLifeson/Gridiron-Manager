@@ -251,6 +251,18 @@ describe('J7.4 pressure', () => {
     expect(kinds[0]).toBe('pressure');
     expect(r.record.response).not.toBeNull();
   });
+  it('a rusher still locked up at the line is not pressure until he is winning by the felt margin (J6.2.5)', () => {
+    const scene = (advantage: number) => runScene({
+      play: qb.basePlay(QB, 'uc5', threeReads()), noThrow: true, maxTicks: 4, scripts: { 12: still(0.9, 0.5) },
+      setup: (w) => {
+        w.contests.push({ type: 'passBlock', offenseSlot: 9, defenseSlot: 12, advantage, startedTick: 0, helperSlots: [], stream: w.streams('contest', [1, 1, 901, 912, 'passBlock']) });
+        const i = w.contests.length - 1; (w.players.engagement as Int16Array)[12] = i; (w.players.engagement as Int16Array)[9] = i;
+      },
+    });
+    const pressures = (advantage: number): number => scene(advantage).events.filter((e) => e.type === 'pressure').length;
+    expect(pressures(-0.2)).toBe(0);
+    expect(pressures(P['pressure.feltAdvantage'] - 0.1)).toBeGreaterThan(0);
+  });
   it('PR-3: the sack rate falls as the protection holds longer (free rusher at 0.5, 1.5, 2.5 s; a receiver comes open at 2.6 s)', () => {
     const rate = (startS: number): number => share(N, (seed) => {
       // Receiver 3 loses his man at 2.6 s.
@@ -606,6 +618,15 @@ describe('J7.8 clock plays and free plays', () => {
     expect(Math.abs(px - -2)).toBeLessThan(0.3);
     expect(r.world.deadAtTick).toBe(r.record.kneel!.tick);
     expect(r.record.groundingHazard).toBeNull();
+  });
+  it('kneel: a defender who reaches him first ends it as a kneel-down, never a sack', () => {
+    for (let seed = 1; seed <= 12; seed++) {
+      const r = runScene({ seed, play: { ...qb.basePlay(QB, 'uc3', []), kind: 'kneel', underCenter: true }, chasers: { 13: [1, 0, 8, 0] }, maxTicks: 40 });
+      expect(r.record.sack, `seed ${seed}`).toBeNull();
+      expect(r.record.kneel, `seed ${seed}`).not.toBeNull();
+      expect(r.record.kneel!.tick * TICK_S).toBeLessThan(2.0);
+      expect(r.events.some((e) => e.type === 'pressure' && e.kind === 'sack')).toBe(false);
+    }
   });
   it('spike: legal under centre and never a grounding hazard; from the shotgun under a rule that requires under centre it is a hazard', () => {
     const uc = runScene({ play: { ...qb.basePlay(QB, 'uc3', []), kind: 'spike', underCenter: true }, maxTicks: 30, stopAtThrow: false });

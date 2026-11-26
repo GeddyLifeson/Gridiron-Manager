@@ -399,14 +399,16 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
     const type = str(a, 'type'), rusher = env.sel('nearestRusher');
     return (c, first) => {
       if (first && type !== '') c.technique['passSet'] = type;
-      const k = c.k, e = (c.man === null ? null : c.man(c)) ?? rusher(c);
+      // A man already locked up with a rusher stays on him: he does not leave him for another, or give ground away from him.
+      const held = c.view.lockedWith ? c.view.lockedWith() : -1, mine = held >= 0 ? c.view.entity(held) : null;
+      const k = c.k, e = mine ?? (c.man === null ? null : c.man(c)) ?? rusher(c);
       const px = c.startPx - k.passSetDepth;
       c.intent.arrival = 'arrive'; c.intent.moveMode = 'shuffle';
       if (e === null) { aim(c, px, c.startPy); return false; }
       face(c, e.px, e.py);
       // The spot he protects: the middle of the pocket at the quarterback's depth (F6: stay between the rusher and the launch point).
       const dx = -k.passSetPocketDepth - e.px, dy = -e.py, len = dist(-k.passSetPocketDepth, 0, e.px, e.py);
-      if (e.px > px + k.passSetMirrorGap && len > 0) {
+      if (mine === null && e.px > px + k.passSetMirrorGap && len > 0) {
         // The rusher has not reached the set depth: wait at it, on his line to the pocket, no wider than a gap from the start.
         const py = e.py + dy * ((e.px - px) / (e.px + k.passSetPocketDepth));
         aim(c, px, Math.max(c.startPy - k.gap, Math.min(c.startPy + k.gap, py)));

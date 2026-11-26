@@ -109,7 +109,12 @@ describe('starter content port', () => {
       const drop = a.rules.find((r) => r.then.some((t) => t.name === 'dropTo'));
       expect(drop, a.role).toBeDefined();
       expect(JSON.stringify(drop!.when), a.role).toContain(`"s":${READ_STEP_S}`);
-      expect(JSON.stringify(drop!.guard), a.role).toContain('"kind":"run"');
+      // "Not a run read" is in the condition itself, so a defender fooled by a fake can still drop when his read comes back.
+      expect(JSON.stringify(drop!.when), a.role).toContain('{"op":"not","of":{"op":"test","name":"read","args":{"kind":"run"');
+      expect(drop!.guard, a.role).toBeNull();
+      // A run read alone does not send him anywhere: the runner has to have declared.
+      const come = a.rules.find((r) => r.text === 'Run read: come up and play the ball');
+      if (come !== undefined) expect(JSON.stringify(come.when), a.role).toContain('ballCarrierDeclared');
     }
   });
   it('lines up legally under pro rules with the placeholder jerseys', () => {

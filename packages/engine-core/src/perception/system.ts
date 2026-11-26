@@ -218,7 +218,7 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       v.read.read = 'unknown'; v.read.side = 'none'; v.read.confidence = 0;
       v.carrier = carrier; v.heardCalls.length = 0; v.ballKindCode = BALL_STATES.indexOf(w.ball.kind);
       v.tSinceSnapS = roundSimS(w.tick * TICK_S);
-      v.landOn = false;
+      v.landOn = false; v.lockedSlot = -1;
       { const south = (0 - w.frame.originY) * w.frame.attackDir, north = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
         v.bounds.lo = south < north ? south : north; v.bounds.hi = south < north ? north : south; }
       for (let e = 0; e < SLOT_COUNT; e++) {
@@ -407,6 +407,10 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
         const stale = tick - lastSeen[base + BALL_ENTITY]!;
         if (stale > staleDrop) { v.valid[BALL_ENTITY] = 0; v.ballKindCode = UNKNOWN_BALL; } else v.entities[BALL_ENTITY]!.staleTicks = stale;
       }
+
+      // The man he is locked up with in a block is known to him by touch. A helper on a double team is not locked up.
+      { const ci = w.players.engagement[s]!, k = ci >= 0 && ci < w.contests.length ? w.contests[ci]! : null;
+        v.lockedSlot = k === null ? -1 : k.defenseSlot === s ? k.offenseSlot : k.offenseSlot === s ? k.defenseSlot : -1; }
 
       // J3.5.1 landing-point error: drawn once, when he first sees the ball in the air.
       if (airActive && airDrawn[s] === 0 && tick >= airSeenAt[s]!) {

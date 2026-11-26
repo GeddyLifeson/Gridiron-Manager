@@ -246,6 +246,33 @@ describe('actions: blocking', () => {
     expect(deep[1]).toBeCloseTo(3 + (ly / len) * K.passSetMirrorGap, 9);
   });
 
+  it('passSet: a man on the line takes the rusher no teammate on the line is nearer to, and stays on the man he is locked up with', () => {
+    // Left tackle at 2, guard at 1: the defensive tackle between them is the guard's (a tie goes inside), the end is the tackle's.
+    const seen = { 1: [0, 1] as [number, number], 12: [0.9, 1.5] as [number, number], 11: [1, 2.8] as [number, number] };
+    const lt = runAction(A('passSet'), world({ self: [0, 2], seen }), 0);
+    expect(lt.intent.faceTarget).toEqual({ px: 1, py: 2.8 });
+    const lg = runAction(act('passSet'), world({ self: [0, 1], seen: { 0: [0, 2], 12: [0.9, 1.5], 11: [1, 2.8] } }), 1);
+    expect(lg.intent.faceTarget).toEqual({ px: 0.9, py: 1.5 });
+    // With no rusher of his own he helps on the nearest.
+    expect(runAction(act('passSet'), world({ self: [0, 2], seen: { 1: [0, 1], 12: [0.9, 1.5] } }), 0).intent.faceTarget).toEqual({ px: 0.9, py: 1.5 });
+    // A back sees the nearest rusher, as before.
+    expect(runAction(act('passSet'), world({ self: [-5, 2], seen }), 6).intent.faceTarget).toEqual({ px: 0.9, py: 1.5 });
+    // Locked up with the tackle, he stays between him and the pocket at arm's length, whoever else is nearer.
+    const held = target(runAction(act('passSet'), world({ self: [0, 2], seen, locked: 12 }), 0)) as [number, number];
+    const lx = -K.passSetPocketDepth - 0.9, ly = -1.5, len = Math.hypot(lx, ly);
+    expect(held[0]).toBeCloseTo(0.9 + (lx / len) * K.passSetMirrorGap, 9);
+    expect(held[1]).toBeCloseTo(1.5 + (ly / len) * K.passSetMirrorGap, 9);
+  });
+
+  it('a run blocker locked up with a defender sustains the block instead of following his rule elsewhere', () => {
+    const a = { behavior: { type: 'runBlock', params: {}, path: [pt(6, 0)] } };
+    const free = runAction(act('climb'), world({ self: [0, 1], seen: { 12: [0.9, 1.5] } }), 1, a);
+    expect(target(free)).not.toEqual([0.9, 1.5]);
+    const held = runAction(act('climb'), world({ self: [0, 1], seen: { 12: [0.9, 1.5] }, locked: 12 }), 1, a);
+    expect(target(held)).toEqual([0.9, 1.5]);
+    expect(held.intent.arrival).toBe('through');
+  });
+
   it('slide: sets toward the called side and picks up what shows there', () => {
     expect(target(runAction(A('slide', { dir: 'left' }), world({ self: [0, 1] }), O))).toEqual([-K.passSetDepth, 1 + K.gap]);
     expect(target(runAction(act('slide', { dir: 'right' }), world({ self: [0, 1] }), O))).toEqual([-K.passSetDepth, 1 - K.gap]);

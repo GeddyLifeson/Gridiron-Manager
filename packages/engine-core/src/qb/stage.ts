@@ -1124,7 +1124,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
       if (pl.moveMode[d] === M_DOWN || w.tick < pl.onGroundUntilTick[d]!) continue;
       const c = pl.engagement[d]!;
-      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < 0)) continue;
+      // Free, or winning his block by the margin the quarterback's own read uses (J7.4.1): a man still locked up
+      // a yard from an under-center quarterback at the snap is not pressure.
+      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < p['pressure.feltAdvantage'])) continue;
       const dx = pl.posX[d]! - qx, dy = pl.posY[d]! - qy, dist = hyp(dx, dy), gap = dist - rQ - w.slots[d]!.movement.bodyRadiusYd;
       const closing = dist > 0 ? -((pl.velX[d]! - pl.velX[s]!) * dx + (pl.velY[d]! - pl.velY[s]!) * dy) / dist : 0;
       const ttc = gap <= 0 ? 0 : closing > 0 ? gap / closing : Infinity;
@@ -1134,6 +1136,13 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
         if (pressured[d] === 0) { pressured[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'pressure', rusherId, passerId: qbId, spot }); }
       }
       if (gap > p['arrival.contactGapYd'] || w.tick < rearm[d]!) continue;
+      if (has && play.kind === 'kneel' && kneel === null) {
+        // A kneel-down ends when he is touched: he is going to the ground anyway (J7.8.1), so this is the kneel, not a sack.
+        kneel = { tick: w.tick, x: qx, y: qy };
+        detail(w, 'qb.kneel');
+        phase = OVER;
+        return;
+      }
       if (!has) {
         // Contact just after the release is a hit on the passer and changes nothing about the throw (J6.2.5).
         if (hitDone[d] === 0) { hitDone[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'hit', rusherId, passerId: qbId, spot }); }
@@ -1143,7 +1152,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       for (let o = SLOTS_PER_TEAM; o < SLOT_COUNT; o++) {
         if (o === d || pl.moveMode[o] === M_DOWN) continue;
         const oc = pl.engagement[o]!;
-        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < 0)) continue;
+        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < p['pressure.feltAdvantage'])) continue;
         if (hyp(pl.posX[o]! - qx, pl.posY[o]! - qy) <= p['arrival.secondRusherYd']) second = true;
       }
       const dInfo = w.slots[d]!, da = dInfo.player.attributes;
