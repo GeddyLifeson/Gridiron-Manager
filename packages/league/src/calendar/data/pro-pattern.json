@@ -1,0 +1,1372 @@
+{
+ "$comment": "Pro calendar pattern (C4). Season Y = the league year that begins in March of Y and its season. Every anchor places a date by weekday rule or offset; dated files override anchors with real published dates. Statuses are copied from the C4 and X11 leaves; 'Assumption' marks design placements and patterns with no rule source.",
+ "level": "pro",
+ "kind": "pattern",
+ "anchors": [
+  {
+   "id": "league_year_start",
+   "rule": {
+    "nth": 2,
+    "weekday": "wed",
+    "month": 3,
+    "time": "16:00"
+   },
+   "status": "Assumption",
+   "leaf": "C4.1.1",
+   "source": "C4.1.1: no later league-year start is sourced; the second Wednesday of March is the starting value (2026 real date March 11 matches it)"
+  },
+  {
+   "id": "tag_window_open",
+   "rule": {
+    "from": "league_year_start",
+    "daysKey": "tag.window_opens_days_before",
+    "keySign": -1,
+    "time": "16:00"
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: derived by rule, the 22nd day before the league year (key from G-10)"
+  },
+  {
+   "id": "tag_window_close",
+   "rule": {
+    "from": "league_year_start",
+    "daysKey": "tag.window_closes_days_before",
+    "keySign": -1,
+    "time": "16:00"
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: derived by rule, the 8th day before the league year"
+  },
+  {
+   "id": "negotiating_open",
+   "rule": {
+    "from": "league_year_start",
+    "days": -2,
+    "time": "12:00"
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: derived by rule, the two days before the league year, from noon"
+  },
+  {
+   "id": "negotiating_close",
+   "rule": {
+    "from": "league_year_start",
+    "time": "15:59"
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: closes 3:59:59 p.m. on the league-year day (minute resolution)"
+  },
+  {
+   "id": "combine_open",
+   "rule": {
+    "from": "league_year_start",
+    "days": -9
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.3",
+   "source": "Pattern from the 2027 combine (March 1 to 8) against a March 10 league year; no rule source"
+  },
+  {
+   "id": "combine_close",
+   "rule": {
+    "from": "combine_open",
+    "days": 7
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.3",
+   "source": "Eight days, as the 2027 combine"
+  },
+  {
+   "id": "rfa_offer_sheet_deadline",
+   "rule": {
+    "from": "league_year_start",
+    "days": 37
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.4",
+   "source": "Pattern from 2026 (April 17 against March 11); no rule source"
+  },
+  {
+   "id": "rfa_rofr_deadline",
+   "rule": {
+    "from": "rfa_offer_sheet_deadline",
+    "days": 5
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.4",
+   "source": "Pattern from 2026 (April 22, five days after the offer-sheet date)"
+  },
+  {
+   "id": "draft_start",
+   "rule": {
+    "nth": -1,
+    "weekday": "thu",
+    "month": 4
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.5",
+   "source": "Pattern: last Thursday of April (2027 April 29 matches; 2026 ran April 23)"
+  },
+  {
+   "id": "draft_end",
+   "rule": {
+    "from": "draft_start",
+    "daysKey": "calendar.draft_days",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.2.5",
+   "source": "Three draft days: round 1, rounds 2 and 3, rounds 4 to 7 (C4.2.5, audit-r-waivers-contracts-draft.md 8a)"
+  },
+  {
+   "id": "rookie_minicamp_start",
+   "rule": {
+    "from": "draft_end",
+    "days": 1,
+    "onOrAfter": "fri"
+   },
+   "status": "Assumption",
+   "leaf": "C4.3.1",
+   "source": "C4.3.1: one weekend after the draft; Friday start is a design placement"
+  },
+  {
+   "id": "rookie_minicamp_end",
+   "rule": {
+    "from": "rookie_minicamp_start",
+    "daysKey": "work.rookie_minicamp_days",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.3.1",
+   "source": "Length from key work.rookie_minicamp_days (G-10)"
+  },
+  {
+   "id": "schedule_release",
+   "rule": {
+    "from": "draft_end",
+    "days": 14
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.6",
+   "source": "C4.2.6: starting value 14 days after the draft; the real release is in the spring (Unverified)"
+  },
+  {
+   "id": "fifth_year_option_deadline",
+   "rule": {
+    "md": "05-01",
+    "time": "16:00"
+   },
+   "status": "Conflict",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: league calendar May 1 against CBA text 'prior to May 3'; the league calendar date wins"
+  },
+  {
+   "id": "program_start",
+   "rule": {
+    "nthKey": "work.start_monday_of_april",
+    "weekday": "mon",
+    "month": 4
+   },
+   "status": "1 of 3",
+   "leaf": "C4.3.1",
+   "source": "C4.3.1: clubs without a new head coach start the third Monday of April (2027: April 19); key from G-10 (F-league-0026)"
+  },
+  {
+   "id": "program_start_new_hc",
+   "rule": {
+    "nth": 1,
+    "weekday": "mon",
+    "month": 4
+   },
+   "status": "1 of 3",
+   "leaf": "C4.3.1",
+   "source": "C4.3.1: clubs with a new head coach start the first Monday of April (2027: April 5)"
+  },
+  {
+   "id": "program_phase2_start",
+   "rule": {
+    "from": "program_start",
+    "weeksKey": "work.phase1_weeks"
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Phase one is 2 weeks (CBA Article 21; key work.phase1_weeks)"
+  },
+  {
+   "id": "program_phase3_start",
+   "rule": {
+    "from": "program_phase2_start",
+    "weeksKey": "work.phase2_weeks"
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Phase two is 3 weeks (CBA Article 21; key work.phase2_weeks)"
+  },
+  {
+   "id": "program_end",
+   "rule": {
+    "from": "program_phase3_start",
+    "weeksKey": "work.phase3_weeks",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Phase three is 4 weeks (CBA Article 21; key work.phase3_weeks)"
+  },
+  {
+   "id": "minicamp_start",
+   "rule": {
+    "from": "program_phase3_start",
+    "weeks": 3,
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.3.1",
+   "source": "C4.3.1: the mandatory minicamp sits in the phase-three week without the 4-OTA block; placed in week four from Tuesday"
+  },
+  {
+   "id": "minicamp_end",
+   "rule": {
+    "from": "minicamp_start",
+    "daysKey": "work.minicamp_days",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Up to 3 days (key work.minicamp_days)"
+  },
+  {
+   "id": "program_phase2_start_new_hc",
+   "rule": {
+    "from": "program_start_new_hc",
+    "weeksKey": "work.phase1_weeks"
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Phase one is 2 weeks (CBA Article 21; key work.phase1_weeks)"
+  },
+  {
+   "id": "program_phase3_start_new_hc",
+   "rule": {
+    "from": "program_phase2_start_new_hc",
+    "weeksKey": "work.phase2_weeks"
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Phase two is 3 weeks (CBA Article 21; key work.phase2_weeks)"
+  },
+  {
+   "id": "program_end_new_hc",
+   "rule": {
+    "from": "program_phase3_start_new_hc",
+    "weeksKey": "work.phase3_weeks",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Phase three is 4 weeks (CBA Article 21; key work.phase3_weeks)"
+  },
+  {
+   "id": "minicamp_start_new_hc",
+   "rule": {
+    "from": "program_phase3_start_new_hc",
+    "weeks": 3,
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.3.1",
+   "source": "C4.3.1: the mandatory minicamp sits in the phase-three week without the 4-OTA block; placed in week four from Tuesday"
+  },
+  {
+   "id": "minicamp_end_new_hc",
+   "rule": {
+    "from": "minicamp_start_new_hc",
+    "daysKey": "work.minicamp_days",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "Up to 3 days (key work.minicamp_days)"
+  },
+  {
+   "id": "rfa_tender_june1",
+   "rule": {
+    "md": "06-01",
+    "time": "16:00"
+   },
+   "status": "2 of 3",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: restricted free agent June 1 tender date"
+  },
+  {
+   "id": "rfa_tender_june15",
+   "rule": {
+    "md": "06-15",
+    "time": "16:00"
+   },
+   "status": "2 of 3",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: restricted free agent June 15 tender date"
+  },
+  {
+   "id": "tag_multiyear_deadline",
+   "rule": {
+    "month": 7,
+    "dayKey": "tag.multiyear_deadline_july_day",
+    "time": "16:00"
+   },
+   "status": "1 of 3",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: multi-year deal deadline for tagged players, July 15 4:00 p.m. (key from G-10)"
+  },
+  {
+   "id": "ufa_tender_deadline",
+   "rule": {
+    "md": "07-22",
+    "time": "16:00"
+   },
+   "status": "2 of 3",
+   "leaf": "C4.2.4",
+   "source": "C4.2.4: unrestricted free agent tender date July 22"
+  },
+  {
+   "id": "labor_day",
+   "rule": {
+    "nth": 1,
+    "weekday": "mon",
+    "month": 9
+   },
+   "status": "Verified",
+   "leaf": "C4.5.1",
+   "source": "Civil holiday: first Monday of September (used only to place kickoff weekend)"
+  },
+  {
+   "id": "kickoff_sunday",
+   "rule": {
+    "from": "labor_day",
+    "days": 6
+   },
+   "status": "Assumption",
+   "leaf": "C4.5.1",
+   "source": "Pattern: the Sunday after Labor Day (2026 kickoff weekend September 9 to 14 contains September 13)"
+  },
+  {
+   "id": "season_week1_start",
+   "rule": {
+    "from": "kickoff_sunday",
+    "days": -5
+   },
+   "status": "Assumption",
+   "leaf": "C4.5.1",
+   "source": "League week runs Tuesday to Monday (design reading)"
+  },
+  {
+   "id": "veterans_report",
+   "rule": {
+    "from": "kickoff_sunday",
+    "daysKey": "calendar.veteran_report_days_before_opener",
+    "keySign": -1
+   },
+   "status": "1 of 3",
+   "leaf": "C4.4.2",
+   "source": "C4.4.2 rule 1: veterans report 47 days before the first regular-season game (CBA text). Per club: club_report() uses the club's own first game (48 days for a Monday opener)"
+  },
+  {
+   "id": "rookies_report",
+   "rule": {
+    "from": "veterans_report",
+    "daysKey": "calendar.rookie_early_report_days",
+    "keySign": -1
+   },
+   "status": "1 of 3",
+   "leaf": "C4.4.2",
+   "source": "C4.4.2 rule 1: rookies may report up to 7 days earlier"
+  },
+  {
+   "id": "cutdown",
+   "rule": {
+    "from": "kickoff_sunday",
+    "days": -12,
+    "time": "16:00"
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.4",
+   "source": "C4.4.4: default deadline 4:00 p.m. on the Tuesday before the first full regular-season weekend; read as the Tuesday of the week before kickoff week (Assumption on the reading)"
+  },
+  {
+   "id": "cutdown_claims_expire",
+   "rule": {
+    "from": "cutdown",
+    "days": 1,
+    "time": "13:00"
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.4",
+   "source": "Pattern from 2026 (claims expire 1:00 p.m. the next day)"
+  },
+  {
+   "id": "practice_squad_formation",
+   "rule": {
+    "from": "cutdown_claims_expire"
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.4",
+   "source": "Practice squads form after claims are processed"
+  },
+  {
+   "id": "preseason_end",
+   "rule": {
+    "from": "cutdown",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.3",
+   "source": "Preseason ends the day before the cutdown deadline (design placement)"
+  },
+  {
+   "id": "preseason_start",
+   "rule": {
+    "from": "preseason_end",
+    "weeksKey": "calendar.preseason_weeks",
+    "keySign": -1,
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.3",
+   "source": "Three preseason weeks (C4.4.3, 1 of 3) ending the day before cutdown"
+  },
+  {
+   "id": "last_regular_game",
+   "rule": {
+    "from": "kickoff_sunday",
+    "weeksKey": "calendar.regular_season_weeks",
+    "days": -7
+   },
+   "status": "Assumption",
+   "leaf": "C4.5.1",
+   "source": "18 weeks (C4.5.1): the last regular-season Sunday is 17 weeks after kickoff Sunday (2027-01-10 for 2026)"
+  },
+  {
+   "id": "regular_season_end",
+   "rule": {
+    "from": "last_regular_game",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.5.1",
+   "source": "End of the week-18 league week (Monday)"
+  },
+  {
+   "id": "trade_deadline",
+   "rule": {
+    "from": "kickoff_sunday",
+    "weeksKey": "trade.deadline_after_week",
+    "days": -5,
+    "time": "16:00"
+   },
+   "status": "Assumption",
+   "leaf": "C4.5.2",
+   "source": "C4.5.2: the Tuesday after week 9, 4:00 p.m. (week from key trade.deadline_after_week)"
+  },
+  {
+   "id": "vested_waivers_begin",
+   "rule": {
+    "from": "trade_deadline",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.5.2",
+   "source": "C4.5.2: the day after the trade deadline"
+  },
+  {
+   "id": "playoff_roster_freeze",
+   "rule": {
+    "from": "last_regular_game",
+    "days": 3
+   },
+   "status": "Assumption",
+   "leaf": "C4.5.2",
+   "source": "Pattern from 2027-01-13 (1 of 3)"
+  },
+  {
+   "id": "wild_card_start",
+   "rule": {
+    "from": "regular_season_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "Postseason league weeks follow week 18"
+  },
+  {
+   "id": "divisional_start",
+   "rule": {
+    "from": "wild_card_start",
+    "days": 7
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "One week per round"
+  },
+  {
+   "id": "conference_start",
+   "rule": {
+    "from": "divisional_start",
+    "days": 7
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "One week per round"
+  },
+  {
+   "id": "championship_week_start",
+   "rule": {
+    "from": "conference_start",
+    "days": 14
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "C4.6.1: a starting two-week gap before the league championship"
+  },
+  {
+   "id": "championship_game",
+   "rule": {
+    "from": "championship_week_start",
+    "days": 5
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "League championship on the Sunday of its week (2027-02-14 for 2026)"
+  },
+  {
+   "id": "postseason_end",
+   "rule": {
+    "from": "championship_week_start",
+    "days": 6
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "End of the championship league week"
+  },
+  {
+   "id": "season_review_start",
+   "rule": {
+    "from": "last_regular_game",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "C4.6.1: Season review begins the day after week 18 for clubs not in the playoffs"
+  },
+  {
+   "id": "season_review_end",
+   "rule": {
+    "from": "season_review_start",
+    "days": 6
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.1",
+   "source": "Exit meetings and season study 'in the days after the last game': seven days (design length)"
+  },
+  {
+   "id": "hiring_cycle_start",
+   "rule": {
+    "from": "last_regular_game",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.2",
+   "source": "C4.2.2: the cycle runs from the day after the regular season"
+  },
+  {
+   "id": "interviews_open",
+   "rule": {
+    "from": "hiring_cycle_start",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.2",
+   "source": "C4.2.2 starting values: interviews days 2 to 21"
+  },
+  {
+   "id": "interviews_close",
+   "rule": {
+    "from": "hiring_cycle_start",
+    "days": 20
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.2",
+   "source": "C4.2.2 starting values: interviews days 2 to 21"
+  },
+  {
+   "id": "head_coach_hires_by",
+   "rule": {
+    "from": "hiring_cycle_start",
+    "days": 27
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.2",
+   "source": "C4.2.2 starting value: most head-coach hires by day 28"
+  },
+  {
+   "id": "coordinator_hires_by",
+   "rule": {
+    "from": "hiring_cycle_start",
+    "days": 39
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.2",
+   "source": "C4.2.2 starting value: coordinator hires by day 40"
+  },
+  {
+   "id": "predraft_start",
+   "rule": {
+    "from": "postseason_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.1.1",
+   "source": "Phase order (C4.1.1 rule 2, Unverified as a whole): Pre-draft follows the postseason"
+  },
+  {
+   "id": "predraft_end",
+   "rule": {
+    "from": "next:league_year_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.1.1",
+   "source": "Pre-draft runs to the eve of the next league year"
+  },
+  {
+   "id": "underclass_declaration_deadline",
+   "rule": {
+    "md": "01-15",
+    "yearOffset": 1
+   },
+   "status": "Assumption",
+   "leaf": "X11.1.1",
+   "source": "X11.1.1: the underclassman declaration deadline is in January; the exact date is not sourced (research owed, C4 to own it)"
+  },
+  {
+   "id": "program_phase3_ota_week3",
+   "rule": {
+    "from": "program_phase3_start",
+    "weeks": 2
+   },
+   "status": "Verified",
+   "leaf": "C11.2.1",
+   "source": "Phase-three week three (for OTA spacing)"
+  },
+  {
+   "id": "draft_start_eve",
+   "rule": {
+    "from": "draft_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.1.1",
+   "source": "Free agency phase runs to the eve of the draft"
+  },
+  {
+   "id": "program_phase2_eve",
+   "rule": {
+    "from": "program_phase2_start",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "End of phase one"
+  },
+  {
+   "id": "program_phase3_eve",
+   "rule": {
+    "from": "program_phase3_start",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "End of phase two"
+  },
+  {
+   "id": "summer_break_start",
+   "rule": {
+    "from": "program_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.1",
+   "source": "Summer break follows the program"
+  },
+  {
+   "id": "program_phase2_eve_new_hc",
+   "rule": {
+    "from": "program_phase2_start_new_hc",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "End of phase one"
+  },
+  {
+   "id": "program_phase3_eve_new_hc",
+   "rule": {
+    "from": "program_phase3_start_new_hc",
+    "days": -1
+   },
+   "status": "Verified",
+   "leaf": "C4.3.1",
+   "source": "End of phase two"
+  },
+  {
+   "id": "summer_break_start_new_hc",
+   "rule": {
+    "from": "program_end_new_hc",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.1",
+   "source": "Summer break follows the program"
+  },
+  {
+   "id": "camp_eve",
+   "rule": {
+    "from": "veterans_report",
+    "days": -1
+   },
+   "status": "1 of 3",
+   "leaf": "C4.4.1",
+   "source": "Summer break ends the day before veterans report"
+  },
+  {
+   "id": "preseason_eve",
+   "rule": {
+    "from": "preseason_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.2",
+   "source": "Camp phase runs until the preseason weeks"
+  },
+  {
+   "id": "week1_eve",
+   "rule": {
+    "from": "season_week1_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.4.4",
+   "source": "Cutdown phase runs to the start of week one"
+  },
+  {
+   "id": "wild_card_end",
+   "rule": {
+    "from": "divisional_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "Round week end"
+  },
+  {
+   "id": "divisional_end",
+   "rule": {
+    "from": "conference_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "Round week end"
+  },
+  {
+   "id": "conference_end",
+   "rule": {
+    "from": "conference_start",
+    "days": 6
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "Round week end"
+  },
+  {
+   "id": "bye_week_start",
+   "rule": {
+    "from": "conference_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "Gap week before the championship"
+  },
+  {
+   "id": "bye_week_end",
+   "rule": {
+    "from": "championship_week_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.6.1",
+   "source": "Gap week before the championship"
+  },
+  {
+   "id": "staff_changes_start",
+   "rule": {
+    "from": "season_review_end",
+    "days": 1
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.2",
+   "source": "Staff changes follow the season review"
+  },
+  {
+   "id": "staff_changes_end",
+   "rule": {
+    "from": "predraft_start",
+    "days": -1
+   },
+   "status": "Assumption",
+   "leaf": "C4.2.2",
+   "source": "Staff changes run to Pre-draft"
+  }
+ ],
+ "windows": [
+  {
+   "id": "free_agency",
+   "kind": "phase",
+   "label": "Free agency",
+   "leaf": "C4.2.4",
+   "opens": "league_year_start",
+   "closes": "draft_start_eve",
+   "phase": "free_agency",
+   "order": 10
+  },
+  {
+   "id": "draft",
+   "kind": "phase",
+   "label": "Draft",
+   "leaf": "C4.2.5",
+   "opens": "draft_start",
+   "closes": "draft_end",
+   "phase": "draft",
+   "order": 40
+  },
+  {
+   "id": "program_phase1",
+   "kind": "phase",
+   "label": "Offseason program phase one",
+   "leaf": "C4.3.1",
+   "opens": "program_start",
+   "closes": "program_phase2_eve",
+   "phase": "program_phase1",
+   "order": 20,
+   "audience": "returning_head_coach"
+  },
+  {
+   "id": "program_phase2",
+   "kind": "phase",
+   "label": "Offseason program phase two",
+   "leaf": "C4.3.1",
+   "opens": "program_phase2_start",
+   "closes": "program_phase3_eve",
+   "phase": "program_phase2",
+   "order": 21,
+   "audience": "returning_head_coach"
+  },
+  {
+   "id": "program_phase3",
+   "kind": "phase",
+   "label": "Offseason program phase three",
+   "leaf": "C4.3.1",
+   "opens": "program_phase3_start",
+   "closes": "program_end",
+   "phase": "program_phase3",
+   "order": 22,
+   "audience": "returning_head_coach"
+  },
+  {
+   "id": "mandatory_minicamp",
+   "kind": "phase",
+   "label": "Mandatory minicamp",
+   "leaf": "C4.3.1",
+   "opens": "minicamp_start",
+   "closes": "minicamp_end",
+   "phase": "mandatory_minicamp",
+   "order": 23,
+   "audience": "returning_head_coach"
+  },
+  {
+   "id": "summer_break",
+   "kind": "phase",
+   "label": "Summer break",
+   "leaf": "C4.4.1",
+   "opens": "summer_break_start",
+   "closes": "camp_eve",
+   "phase": "summer_break",
+   "order": 15,
+   "audience": "returning_head_coach"
+  },
+  {
+   "id": "program_phase1_new_hc",
+   "kind": "phase",
+   "label": "Offseason program phase one",
+   "leaf": "C4.3.1",
+   "opens": "program_start_new_hc",
+   "closes": "program_phase2_eve_new_hc",
+   "phase": "program_phase1_new_hc",
+   "order": 20,
+   "audience": "new_head_coach"
+  },
+  {
+   "id": "program_phase2_new_hc",
+   "kind": "phase",
+   "label": "Offseason program phase two",
+   "leaf": "C4.3.1",
+   "opens": "program_phase2_start_new_hc",
+   "closes": "program_phase3_eve_new_hc",
+   "phase": "program_phase2_new_hc",
+   "order": 21,
+   "audience": "new_head_coach"
+  },
+  {
+   "id": "program_phase3_new_hc",
+   "kind": "phase",
+   "label": "Offseason program phase three",
+   "leaf": "C4.3.1",
+   "opens": "program_phase3_start_new_hc",
+   "closes": "program_end_new_hc",
+   "phase": "program_phase3_new_hc",
+   "order": 22,
+   "audience": "new_head_coach"
+  },
+  {
+   "id": "mandatory_minicamp_new_hc",
+   "kind": "phase",
+   "label": "Mandatory minicamp",
+   "leaf": "C4.3.1",
+   "opens": "minicamp_start_new_hc",
+   "closes": "minicamp_end_new_hc",
+   "phase": "mandatory_minicamp_new_hc",
+   "order": 23,
+   "audience": "new_head_coach"
+  },
+  {
+   "id": "summer_break_new_hc",
+   "kind": "phase",
+   "label": "Summer break",
+   "leaf": "C4.4.1",
+   "opens": "summer_break_start_new_hc",
+   "closes": "camp_eve",
+   "phase": "summer_break_new_hc",
+   "order": 15,
+   "audience": "new_head_coach"
+  },
+  {
+   "id": "training_camp",
+   "kind": "phase",
+   "label": "Training camp",
+   "leaf": "C4.4.2",
+   "opens": "veterans_report",
+   "closes": "preseason_eve",
+   "phase": "training_camp",
+   "order": 30
+  },
+  {
+   "id": "preseason",
+   "kind": "phase",
+   "label": "Preseason",
+   "leaf": "C4.4.3",
+   "opens": "preseason_start",
+   "closes": "preseason_end",
+   "phase": "preseason",
+   "order": 31
+  },
+  {
+   "id": "cutdown",
+   "kind": "phase",
+   "label": "Cutdown",
+   "leaf": "C4.4.4",
+   "opens": "cutdown",
+   "closes": "week1_eve",
+   "phase": "cutdown",
+   "order": 32
+  },
+  {
+   "id": "regular_season",
+   "kind": "phase",
+   "label": "Regular season",
+   "leaf": "C4.5.1",
+   "opens": "season_week1_start",
+   "closes": "last_regular_game",
+   "phase": "regular_season",
+   "order": 50
+  },
+  {
+   "id": "wild_card",
+   "kind": "phase",
+   "label": "Wild card",
+   "leaf": "C4.6.1",
+   "opens": "wild_card_start",
+   "closes": "wild_card_end",
+   "phase": "wild_card",
+   "order": 60,
+   "audience": "postseason"
+  },
+  {
+   "id": "divisional",
+   "kind": "phase",
+   "label": "Divisional",
+   "leaf": "C4.6.1",
+   "opens": "divisional_start",
+   "closes": "divisional_end",
+   "phase": "divisional",
+   "order": 61,
+   "audience": "postseason"
+  },
+  {
+   "id": "conference_championship",
+   "kind": "phase",
+   "label": "Conference championship",
+   "leaf": "C4.6.1",
+   "opens": "conference_start",
+   "closes": "conference_end",
+   "phase": "conference_championship",
+   "order": 62,
+   "audience": "postseason"
+  },
+  {
+   "id": "championship_preparation",
+   "kind": "phase",
+   "label": "League championship preparation",
+   "leaf": "C4.6.1",
+   "opens": "bye_week_start",
+   "closes": "bye_week_end",
+   "phase": "championship_preparation",
+   "order": 63,
+   "audience": "postseason"
+  },
+  {
+   "id": "league_championship",
+   "kind": "phase",
+   "label": "League championship",
+   "leaf": "C4.6.1",
+   "opens": "championship_week_start",
+   "closes": "postseason_end",
+   "phase": "league_championship",
+   "order": 64,
+   "audience": "postseason"
+  },
+  {
+   "id": "season_review",
+   "kind": "phase",
+   "label": "Season review",
+   "leaf": "C4.2.1",
+   "opens": "season_review_start",
+   "closes": "season_review_end",
+   "phase": "season_review",
+   "order": 8,
+   "clubExit": "review"
+  },
+  {
+   "id": "staff_changes",
+   "kind": "phase",
+   "label": "Staff changes",
+   "leaf": "C4.2.2",
+   "opens": "staff_changes_start",
+   "closes": "staff_changes_end",
+   "phase": "staff_changes",
+   "order": 7,
+   "clubExit": "after_review"
+  },
+  {
+   "id": "predraft",
+   "kind": "phase",
+   "label": "Pre-draft",
+   "leaf": "C4.2.3",
+   "opens": "predraft_start",
+   "closes": "predraft_end",
+   "phase": "predraft",
+   "order": 6
+  },
+  {
+   "id": "preseason_week",
+   "kind": "window",
+   "label": "Preseason week",
+   "leaf": "C4.4.3",
+   "opens": "preseason_start",
+   "repeat": {
+    "countKey": "calendar.preseason_weeks",
+    "stepDays": 7,
+    "lengthDays": 7
+   }
+  },
+  {
+   "id": "regular_week",
+   "kind": "window",
+   "label": "Regular-season week",
+   "leaf": "C4.5.1",
+   "opens": "season_week1_start",
+   "repeat": {
+    "countKey": "calendar.regular_season_weeks",
+    "stepDays": 7,
+    "lengthDays": 7
+   }
+  },
+  {
+   "id": "tag_window",
+   "kind": "window",
+   "label": "Franchise and transition tag window",
+   "leaf": "C4.2.4",
+   "opens": "tag_window_open",
+   "closes": "tag_window_close"
+  },
+  {
+   "id": "negotiating_window",
+   "kind": "window",
+   "label": "Negotiating window",
+   "leaf": "C4.2.4",
+   "opens": "negotiating_open",
+   "closes": "negotiating_close"
+  },
+  {
+   "id": "combine",
+   "kind": "window",
+   "label": "Scouting combine",
+   "leaf": "C4.2.3",
+   "opens": "combine_open",
+   "closes": "combine_close"
+  },
+  {
+   "id": "rookie_minicamp",
+   "kind": "window",
+   "label": "Rookie minicamp",
+   "leaf": "C4.3.1",
+   "opens": "rookie_minicamp_start",
+   "closes": "rookie_minicamp_end"
+  },
+  {
+   "id": "hiring_cycle",
+   "kind": "window",
+   "label": "Coach hiring cycle",
+   "leaf": "C4.2.2",
+   "opens": "hiring_cycle_start",
+   "closes": "coordinator_hires_by"
+  },
+  {
+   "id": "interview_window",
+   "kind": "window",
+   "label": "Assistant interview requests",
+   "leaf": "C4.2.2",
+   "opens": "interviews_open",
+   "closes": "interviews_close"
+  },
+  {
+   "id": "tradeable_regular_season",
+   "kind": "window",
+   "label": "Trades allowed in season",
+   "leaf": "C4.5.2",
+   "opens": "season_week1_start",
+   "closes": "trade_deadline"
+  },
+  {
+   "id": "tag_deadline",
+   "kind": "deadline",
+   "label": "Tag deadline",
+   "leaf": "C4.2.4",
+   "opens": "tag_window_close",
+   "check": "contract.tag_decision",
+   "stopsUser": true
+  },
+  {
+   "id": "league_year_start_deadline",
+   "kind": "deadline",
+   "label": "League year begins: rosters and cap in compliance",
+   "leaf": "C4.2.4",
+   "opens": "league_year_start",
+   "check": "cap.compliance",
+   "stopsUser": true
+  },
+  {
+   "id": "rfa_offer_sheets_due",
+   "kind": "deadline",
+   "label": "Restricted free agent offer sheets due",
+   "leaf": "C4.2.4",
+   "opens": "rfa_offer_sheet_deadline",
+   "check": "contract.rfa_offer_sheet",
+   "stopsUser": true
+  },
+  {
+   "id": "rfa_rofr_due",
+   "kind": "deadline",
+   "label": "Right of first refusal decision",
+   "leaf": "C4.2.4",
+   "opens": "rfa_rofr_deadline",
+   "check": "contract.rfa_match",
+   "stopsUser": true
+  },
+  {
+   "id": "fifth_year_option_due",
+   "kind": "deadline",
+   "label": "Fifth-year option decision",
+   "leaf": "C4.2.4",
+   "opens": "fifth_year_option_deadline",
+   "check": "contract.fifth_year_option",
+   "stopsUser": true
+  },
+  {
+   "id": "rfa_june1",
+   "kind": "deadline",
+   "label": "Restricted free agent June 1 tender date",
+   "leaf": "C4.2.4",
+   "opens": "rfa_tender_june1",
+   "check": "contract.rfa_june1",
+   "stopsUser": true
+  },
+  {
+   "id": "rfa_june15",
+   "kind": "deadline",
+   "label": "Restricted free agent June 15 tender date",
+   "leaf": "C4.2.4",
+   "opens": "rfa_tender_june15",
+   "check": "contract.rfa_june15",
+   "stopsUser": true
+  },
+  {
+   "id": "tag_multiyear_due",
+   "kind": "deadline",
+   "label": "Multi-year deadline for tagged players",
+   "leaf": "C4.2.4",
+   "opens": "tag_multiyear_deadline",
+   "check": "contract.tag_multiyear",
+   "stopsUser": true
+  },
+  {
+   "id": "ufa_tender_due",
+   "kind": "deadline",
+   "label": "Unrestricted free agent tender date",
+   "leaf": "C4.2.4",
+   "opens": "ufa_tender_deadline",
+   "check": "contract.ufa_tender",
+   "stopsUser": true
+  },
+  {
+   "id": "cutdown_deadline",
+   "kind": "deadline",
+   "label": "Roster reduction to 53",
+   "leaf": "C4.4.4",
+   "opens": "cutdown",
+   "check": "roster.cutdown",
+   "stopsUser": true
+  },
+  {
+   "id": "trade_deadline",
+   "kind": "deadline",
+   "label": "Trade deadline",
+   "leaf": "C4.5.2",
+   "opens": "trade_deadline",
+   "check": "trade.deadline",
+   "stopsUser": false
+  },
+  {
+   "id": "playoff_roster_freeze",
+   "kind": "deadline",
+   "label": "Playoff club rosters frozen",
+   "leaf": "C4.5.2",
+   "opens": "playoff_roster_freeze",
+   "check": "roster.playoff_freeze",
+   "stopsUser": false
+  },
+  {
+   "id": "head_coaches_hired",
+   "kind": "deadline",
+   "label": "Every club has a head coach",
+   "leaf": "C4.2.2",
+   "opens": "head_coach_hires_by",
+   "check": "staff.head_coach_filled",
+   "stopsUser": true
+  },
+  {
+   "id": "league_year_begins",
+   "kind": "event",
+   "label": "New league year: season number advances",
+   "leaf": "C4.7.1",
+   "opens": "league_year_start"
+  },
+  {
+   "id": "schedule_released",
+   "kind": "event",
+   "label": "Full schedule released",
+   "leaf": "C4.2.6",
+   "opens": "schedule_release"
+  },
+  {
+   "id": "claims_expire",
+   "kind": "event",
+   "label": "Claims on cutdown waivers expire",
+   "leaf": "C4.4.4",
+   "opens": "cutdown_claims_expire"
+  },
+  {
+   "id": "practice_squads_form",
+   "kind": "event",
+   "label": "Practice squads may be formed",
+   "leaf": "C4.4.4",
+   "opens": "practice_squad_formation"
+  },
+  {
+   "id": "vested_veterans_waivers",
+   "kind": "event",
+   "label": "Released vested veterans now subject to waivers",
+   "leaf": "C4.5.2",
+   "opens": "vested_waivers_begin"
+  },
+  {
+   "id": "championship_game",
+   "kind": "event",
+   "label": "League championship game",
+   "leaf": "C4.6.1",
+   "opens": "championship_game"
+  },
+  {
+   "id": "veterans_report",
+   "kind": "event",
+   "label": "Veterans report to camp",
+   "leaf": "C4.4.2",
+   "opens": "veterans_report"
+  },
+  {
+   "id": "rookies_report",
+   "kind": "event",
+   "label": "Rookies may report",
+   "leaf": "C4.4.2",
+   "opens": "rookies_report"
+  },
+  {
+   "id": "cohort_pro_entry_pool",
+   "kind": "cohort",
+   "cohort": "pro_entry_pool",
+   "label": "Pro entry pool declared",
+   "leaf": "X11.1.1",
+   "opens": "underclass_declaration_deadline"
+  },
+  {
+   "id": "cohort_undrafted_pool",
+   "kind": "cohort",
+   "cohort": "undrafted_pool",
+   "label": "Undrafted pool forms",
+   "leaf": "X11.1.1",
+   "opens": "draft_end"
+  },
+  {
+   "id": "cohort_coach_staff_entry_pro",
+   "kind": "cohort",
+   "cohort": "coach_staff_entry",
+   "label": "Coach and staff entrants (pro hiring cycle)",
+   "leaf": "X11.1.1",
+   "opens": "hiring_cycle_start"
+  }
+ ]
+}
