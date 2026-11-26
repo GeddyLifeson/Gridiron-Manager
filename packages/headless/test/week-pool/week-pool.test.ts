@@ -6,6 +6,7 @@ import {
   createSyncPool, jobOf, loadJobRunner, realWeekPort, realWeekRef, type JobModuleRef, type SyncPool, type WeekGameJob, type WeekGameOutcome,
 } from '../../src/week-pool/index.ts';
 import { measureJobs } from '../../src/week-pool/measure.ts';
+import { season } from '@gm/world';
 import type { ToyJob, ToyResult } from './toy-jobs.ts';
 
 const TOY = new URL('./toy-jobs.ts', import.meta.url).href;
@@ -82,11 +83,29 @@ describe('a week of real games on the pool (J13.3.2)', () => {
   it('maps world game requests to jobs and back, one answer per request', async () => {
     const runner = await loadJobRunner<WeekGameJob, WeekGameOutcome>(realWeekRef());
     const reqs = week.slice(0, 2).map((j) => ({ game: { gameId: j.gameId }, seedHex: j.seedHex, ruleSetId: j.ruleSetId, tier: 3 }));
-    expect(reqs.map(jobOf)).toEqual(week.slice(0, 2));
+    expect(reqs.map((r) => jobOf(r))).toEqual(week.slice(0, 2));
     const port = realWeekPort((jobs) => jobs.map(runner));
     const out = port(reqs);
     expect(out).toHaveLength(2);
     expect(out[0]!.eventsHash).toBe('');
     expect(() => realWeekPort(() => [])(reqs)).toThrow(/2 games asked, 0 answered/);
   });
+  it('plays the teams a request carries and names their people and clubs in lines and injuries', async () => {
+    const runner = await loadJobRunner<WeekGameJob, WeekGameOutcome>(realWeekRef());
+    // Two dressed teams whose engine ids stand for world people (stand-ins here: the placeholder rosters).
+    const teams = [season.placeholderTeam(0, 50, season.UNIT_JERSEYS), season.placeholderTeam(1, 50, season.UNIT_JERSEYS)] as const;
+    const req = { game: { gameId: 7, homeTeamId: 11, awayTeamId: 22, kind: 'regular' as const }, seedHex: week[0]!.seedHex, ruleSetId: 'pro_2026' };
+    const job = jobOf(req, () => teams);
+    expect(job.teamIds).toEqual([11, 22]);
+    const out = realWeekPort((jobs) => jobs.map(runner), () => teams)([req])[0]!;
+    const sideOf = new Map(teams.flatMap((t, side) => t.players.map((p) => [p.playerId, side] as const)));
+    expect(out.lines!.length).toBeGreaterThan(50);
+    for (const l of out.lines!) expect(l.teamId).toBe([11, 22][sideOf.get(l.personId)!]);
+    for (const i of out.injuries!) expect(i.teamId).toBe([11, 22][sideOf.get(i.personId)!]);
+    // Without teams nothing is reported (the placeholder game).
+    const plain = realWeekPort((jobs) => jobs.map(runner))([req])[0]!;
+    expect(plain.lines).toBeUndefined();
+    expect(plain.injuries).toBeUndefined();
+    expect(() => jobOf({ ...req, game: { gameId: 7 } }, () => teams)).toThrow(/no club ids/);
+  }, 600_000);
 });

@@ -19,16 +19,24 @@ import { chartParams, PASS_PHASE_NAMES, PASS_MARGIN_NAMES, PASS_MARGIN_UPPER, PA
 
 export type CallUnit = 'offense' | 'defense' | 'kick' | 'return';
 
-/** Who goes on the field for a unit. Phase 1 uses unit roles only (SimTeam.depth). */
-export type RosterSource = (unit: CallUnit, personnelCode: string | null) => FieldedPlayer[];
+/**
+ * Who goes on the field for a unit. Phase 1 uses unit roles only (SimTeam.depth). `detail` is the kick or
+ * return kind of a kick or return call (punt, field_goal, kick_return ...), null on offense and defense.
+ */
+export type RosterSource = (unit: CallUnit, personnelCode: string | null, detail?: string | null) => FieldedPlayer[];
 
 /**
- * Default roster source: the first eleven ids under the unit's depth-chart key (`offense`, `defense`,
- * `kick`, `return`), each given the unit name as its role. A missing key sends nobody, which the rules
- * then flag (fewer than eleven is allowed and draws a foul, never a refusal: J4.6.1).
+ * Default roster source: the first eleven ids under the unit's most specific depth-chart key, `unit:detail`
+ * (a kick or return kind: `kick:punt`), then `unit:personnel` (`offense:12`), then the unit (`offense`,
+ * `defense`, `kick`, `return`), each given the unit name as its role. Placeholder rosters carry only the unit
+ * keys; world rosters (world/gameday) carry the others too. A missing key sends nobody, which the rules then
+ * flag (fewer than eleven is allowed and draws a foul, never a refusal: J4.6.1).
  */
 export function depthRoster(depth: Readonly<Record<string, readonly number[]>>, perUnit = 11): RosterSource {
-  return (unit) => (depth[unit] ?? []).slice(0, perUnit).map((playerId) => ({ playerId, role: unit }));
+  return (unit, personnel, detail) => {
+    const ids = (detail ? depth[`${unit}:${detail}`] : undefined) ?? (personnel ? depth[`${unit}:${personnel}`] : undefined) ?? depth[unit] ?? [];
+    return ids.slice(0, perUnit).map((playerId) => ({ playerId, role: unit }));
+  };
 }
 
 export interface ChartCallerOptions {
@@ -175,7 +183,7 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
   }
 
   function kickCall(kickKind: KickCall['kickKind']): KickCall {
-    return { unit: 'kick', kickKind, callContentId: null, contentHash: null, direction: null, players: opts.roster('kick', null) };
+    return { unit: 'kick', kickKind, callContentId: null, contentHash: null, direction: null, players: opts.roster('kick', null, kickKind) };
   }
 
   function snappingCall(s: GameSituation, req: DecisionRequest): SnappingCall {
@@ -211,7 +219,7 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
   }
 
   function returnCall(kind: ReturnCall['returnKind']): ReturnCall {
-    return { unit: 'return', returnKind: kind, callContentId: null, contentHash: null, players: opts.roster('return', null) };
+    return { unit: 'return', returnKind: kind, callContentId: null, contentHash: null, players: opts.roster('return', null, kind) };
   }
 
   function opposingCall(s: GameSituation, req: DecisionRequest): OpposingCall {

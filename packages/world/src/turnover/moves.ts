@@ -43,6 +43,7 @@ interface Cycle extends PolicyContext {
   readonly grades: GradeContext;
   readonly counts: Record<string, number>;
   readonly draftedRound: Map<number, number>;
+  readonly rosterCounts: WeakMap<readonly number[], Map<string, number>>;
 }
 
 function bump(c: Cycle, k: string, by = 1): void { c.counts[k] = (c.counts[k] ?? 0) + by; }
@@ -70,9 +71,26 @@ function available(world: LiveWorld, id: number): boolean {
 function needAt(c: Cycle, teamId: number, position: string): number {
   const target = positionTargets(specOf(c.b, c.world, teamId))[position] ?? 0;
   if (target <= 0) return 0;
-  let have = 0;
-  for (const id of c.world.rosters.get(teamId) ?? []) if (c.world.people.get(id)?.playing?.position === position) have++;
+  const have = positionCounts(c, c.world.rosters.get(teamId) ?? NO_IDS).get(position) ?? 0;
   return Math.max(0, Math.min(1, (target - have) / target));
+}
+
+const NO_IDS: readonly number[] = [];
+/**
+ * Players per position on a roster. Every roster change in this step stores a new array, so the count is
+ * cached by the array for the cycle; positions do not change inside the step.
+ */
+function positionCounts(c: Cycle, roster: readonly number[]): Map<string, number> {
+  let m = c.rosterCounts.get(roster);
+  if (!m) {
+    m = new Map();
+    for (const id of roster) {
+      const pos = c.world.people.get(id)?.playing?.position;
+      if (pos !== undefined) m.set(pos, (m.get(pos) ?? 0) + 1);
+    }
+    c.rosterCounts.set(roster, m);
+  }
+  return m;
 }
 
 function score(c: Cycle, teamId: number, id: number): number {
@@ -260,11 +278,13 @@ function runDraft(c: Cycle, level: Level, order: readonly number[], shares: Map<
   const selections = draft.selectionOrder(slots, shares, ledger, rules);
   const pool = take(c.world, POOL.proEntry).filter((id) => available(c.world, id));
   const drafted: number[] = [];
+  const draftedSet = new Set<number>();
   const rounds = rules.num(RULE_KEY.draftRounds);
   for (const s of selections) {
-    const id = best(c, s.ownerClubId, pool.filter((x) => !drafted.includes(x)), { kind: 'draft', round: s.round, rounds });
+    const id = best(c, s.ownerClubId, pool.filter((x) => !draftedSet.has(x)), { kind: 'draft', round: s.round, rounds });
     if (id === null) break;
     drafted.push(id);
+    draftedSet.add(id);
     c.draftedRound.set(id, s.round);
     c.world.rosters.set(s.ownerClubId, [...(c.world.rosters.get(s.ownerClubId) ?? []), id]);
     c.ctx.emit({ type: PLAYER_DRAFTED, date: c.world.date, subjects: [pid(id)], payload: { round: s.round, overall: s.overall, team: s.ownerClubId }, witnesses: { kind: 'public' }, tier: c.ctx.tierOfTeam(s.ownerClubId) });
@@ -384,7 +404,7 @@ export function rosterMovesStep(b: TurnoverBinding): StepHandler {
   return (ctx) => {
     const { world } = ctx;
     if (world.week !== 0 || world.seasons.length === 0) return { offseason: false };
-    const c: Cycle = { ctx, world, b, season: world.date.seasonYear, grades: gradeContext(world, rosteredSet(world)), counts: {}, draftedRound: new Map() };
+    const c: Cycle = { ctx, world, b, season: world.date.seasonYear, grades: gradeContext(world, rosteredSet(world)), counts: {}, draftedRound: new Map(), rosterCounts: new WeakMap() };
     const levels = Object.keys(b.content.levels).sort() as Level[];
     for (const level of levels) endEligibility(c, level);
     for (const level of levels) if (b.rule(level, RULE_KEY.seasonsOfCompetition) === undefined) proOffseason(c, level);

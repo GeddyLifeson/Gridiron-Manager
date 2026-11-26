@@ -5,11 +5,13 @@
 import { deriveSeed, seedToHex, stream } from '@gm/engine-core';
 import { history } from '@gm/league';
 import type { WorldTier } from '@gm/schema';
+import { TITLE_WON } from './events.ts';
 import { isActive } from './lifecycle.ts';
+import { addGameLines } from './player-stats.ts';
 import { param } from './params.ts';
 import {
-  SEASON_POINT_ORDER, WEEKLY_ORDER,
-  type GameBatchPort, type GamePort, type GameRequest, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
+  GAME_INJURIES_KEY, GAME_LINES_KEY, SEASON_POINT_ORDER, WEEKLY_ORDER,
+  type GameBatchPort, type GameInjury, type GameLine, type WeekInjuries, type WeekLines, type GamePort, type GameRequest, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
 } from './types.ts';
 
 const FAR_TIER: WorldTier = 3;
@@ -171,6 +173,10 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
     const played = reqs.length === 0 ? [] : playAll(reqs);
     if (played.length !== reqs.length) throw new Error(`games step: ${reqs.length} games asked, ${played.length} answered`);
     let points = 0;
+    let reportedGames = 0;
+    const injuries: (GameInjury & { gameId: number })[] = [];
+    let linedGames = 0;
+    const lines: (GameLine & { gameId: number })[] = [];
     reqs.forEach((req, i) => {
       const game = req.game, r = played[i]!;
       const row: GameResult = {
@@ -180,8 +186,31 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
       };
       world.results.push(row);
       points += r.homePoints + r.awayPoints;
+      if (r.injuries) {
+        reportedGames++;
+        for (const inj of r.injuries) injuries.push({ ...inj, gameId: game.gameId });
+      }
+      if (r.lines) {
+        linedGames++;
+        for (const l of r.lines) lines.push({ ...l, gameId: game.gameId });
+        addGameLines(world, game.kind, r.lines);
+      }
+      if (game.title && r.homePoints !== r.awayPoints) {
+        const [winner, loser, wp, lp] = r.homePoints > r.awayPoints ? [game.homeTeamId, game.awayTeamId, r.homePoints, r.awayPoints] : [game.awayTeamId, game.homeTeamId, r.awayPoints, r.homePoints];
+        ctx.emit({
+          type: TITLE_WON, date: world.date, competitionId: game.competitionId, teamId: winner, witnesses: { kind: 'public' }, tier: req.tier,
+          subjects: [{ kind: 'team', id: winner }, { kind: 'team', id: loser }], payload: { season: world.date.seasonYear, opponent: loser, points: wp, opponent_points: lp },
+        });
+      }
     });
-    return { games: games.length, points };
+    // Left only when a port reports injuries, so a world whose games report none hashes as before.
+    if (reportedGames > 0) world.systemState.set(GAME_INJURIES_KEY, { seasonYear: world.date.seasonYear, week: world.week, reportedGames, injuries } satisfies WeekInjuries);
+    // The same for player lines: a week with none leaves the key as it was (the statistics step consumes it).
+    if (linedGames > 0) world.systemState.set(GAME_LINES_KEY, { seasonYear: world.date.seasonYear, week: world.week, reportedGames: linedGames, lines } satisfies WeekLines);
+    const digest: Record<string, number> = { games: games.length, points };
+    // Only worlds whose games report lines add these, so the pass hash of a placeholder world is unchanged.
+    if (linedGames > 0) { digest.linedGames = linedGames; digest.injuries = injuries.length; }
+    return digest;
   };
 }
 
@@ -217,6 +246,7 @@ export function worldHash(world: LiveWorld, deep = true): string {
     status: [...world.status].sort((a, b) => a[0] - b[0]), tiers: [...world.tiers].sort((a, b) => a[0] - b[0]),
     rosters: [...world.rosters].sort((a, b) => a[0] - b[0]), pools: [...world.pools].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
     systemState: plain(world.systemState),
+    hall: world.hall.members,
   };
   let h = history.chainHash(history.EMPTY_SEASON_HASH, head);
   if (deep) {

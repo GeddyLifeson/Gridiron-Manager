@@ -72,6 +72,11 @@ describe('Q1.2.2 invariants at every week boundary', () => {
     expect(r.failures.map((f) => f.invariant)).toContain('one_current_job');
   });
 
+  it('allows two titles on one staff (E2, MA-76)', () => {
+    const r = planted((w) => { const j = w.jobs.get(1)!; w.jobs.set(99, { id: 99, teamId: j.teamId, positionId: 'pos:qb', holderPersonId: j.holderPersonId }); }, false);
+    expect(r.failures.map((f) => f.invariant)).not.toContain('one_current_job');
+  });
+
   it('catches a dead person on a roster, and a dead person coming back', () => {
     const r = planted((w) => { const pid = w.rosters.get(3)![0]!; w.status.set(pid, 'deceased'); w.people.get(pid)!.diedYear = 2002; }, false);
     expect(r.failures.map((f) => f.invariant)).toContain('no_dead_or_inactive_plays');
