@@ -36,6 +36,9 @@ One AI staff's week as a pure function: scouting report, matchup table, payoff e
 - **CR-G74-3 Stream row.** J13.2.1 needs a world stream for weekly preparation (suggested name `coachPrep`, scope season, week, team, step). The tests use that name.
 - **CR-G74-4 Parameter table.** Add `coachAi.preparation` (`PARAMS`) to the merged parameter table.
 - **CR-G74-5 Wiring.** The week runner (G-87) builds `TeamWeekInput` per AI team after the weekly commit: store rows through the film exchange (H2.6.1), staff hours, D6 grades, playbook content as `CallOption`, the G7.2.2 catalogue with G7.2.3 expected snaps, the concept prior table, the scenario-mode reps runner, the K4.3.1 solver, the practice budget.
+- **CR-G74-6 Profile schema (MA-60).** The coach profile schema gains `tendencies.veteranBias`, `tendencies.backupRepShare` and `tendencies.emphasis.{takeaway,tackleAttack,rushLanes,cornerJump}`, all hidden-map keys. Code and generator are in this PR (`profile/`); the `@gm/schema` side is the integrator's.
+- **Owed after PR 138 (G-58) merges.** `toCallingSheet(aiSheet)` in this folder: the caller reads `CallingSheet`, not `AiSheet`. `MixSolver` is `(m) => solveMix(m.a)`. `BucketMatrix.counts` is the `scout` input of `createCaller`.
+- **Owed after PR 143 (G-75) merges.** An adapter from its `WorkOrder` to `PrepDepth`, plugged in at `PreparationPort.build`.
 
 ## Owed elsewhere
 
@@ -50,7 +53,5 @@ One AI staff's week as a pure function: scouting report, matchup table, payoff e
 
 ## Reported to the bible thread
 
-- K3.7.1 rule 2 names a "veteran bias by profile", but K2 has no field for it. A flat starting bias is used (0.5 ISS per accrued season, capped at 6 seasons, both Assumptions).
-- G6.4.2 says AI emphasis dials are set "by profile", but K2 has no field. Dials are left neutral.
-- K3.5.1 rule 2 says the backup share is "by `system` and by health risk"; K2's system block has nothing that speaks to backup reps. Health risk alone sets it.
+- Resolved by MA-60 (K2.1.3 rule 4, all Assumptions): `tendencies.veteranBias` (ISS per five pro years or two college years, mean 1.0, sd 1.0, -2 to +4) feeds `depthChart`; `tendencies.backupRepShare` (mean 0.18, sd 0.05, 0.05 to 0.35) is the backup share in `allocatePractice`, with the K3.5.1 health-risk term added on top; `tendencies.emphasis` (takeaway, tackleAttack, rushLanes, cornerJump; mean 0, sd 0.35, -1 to +1) is carried on the plan. The profile draws these six after every earlier draw, so profiles generated before MA-60 keep all their other values. The hidden map gains six keys; the schema side goes through the integrator (CR-G74-6).
 - K3.4.1 rule 3 gives new-call counts but no rule for how many wrinkles a staff adds at which depth. One above z = 0, two above z = 1 (Assumption).

@@ -166,6 +166,8 @@ export interface BucketMatrix {
   readonly looks: readonly string[];
   /** Scouted share of each look in the bucket; sums to 1. */
   readonly shares: readonly number[];
+  /** Charted plays behind each share (K4.2.1 shrinks the starting belief by count). */
+  readonly counts: readonly number[];
   readonly a: readonly (readonly number[])[];
   readonly uncertainty: readonly (readonly number[])[];
   /** Stored mix, one probability per candidate; null until the sheet is locked. */
@@ -173,7 +175,7 @@ export interface BucketMatrix {
 }
 
 /** Looks of a bucket after the 3% merge and the look cap. `members` lists what a merged class stands for. */
-export function mergeLooks(shares: readonly LookShare[]): { look: string; share: number; members: { look: string; share: number }[] }[] {
+export function mergeLooks(shares: readonly LookShare[]): { look: string; share: number; count: number; members: { look: string; share: number }[] }[] {
   const sorted = [...shares].filter((s) => s.share > 0).sort((a, b) => b.share - a.share || (a.look < b.look ? -1 : 1));
   const keepMax = param('matrix.lookCap') - 1;
   const kept: typeof sorted = [];
@@ -182,9 +184,9 @@ export function mergeLooks(shares: readonly LookShare[]): { look: string; share:
     if (s.look !== OTHER_LOOK && s.share >= param('matrix.mergeShare') && kept.length < keepMax) kept.push(s);
     else merged.push(s);
   }
-  const out = kept.map((s) => ({ look: s.look, share: s.share, members: [{ look: s.look, share: s.share }] }));
+  const out = kept.map((s) => ({ look: s.look, share: s.share, count: s.count, members: [{ look: s.look, share: s.share }] }));
   const mergedShare = merged.reduce((t, s) => t + s.share, 0);
-  if (merged.length || !out.length) out.push({ look: OTHER_LOOK, share: out.length ? mergedShare : 1, members: merged.map((s) => ({ look: s.look, share: s.share })) });
+  if (merged.length || !out.length) out.push({ look: OTHER_LOOK, share: out.length ? mergedShare : 1, count: merged.reduce((t, s) => t + s.count, 0), members: merged.map((s) => ({ look: s.look, share: s.share })) });
   const total = out.reduce((t, s) => t + s.share, 0);
   return out.map((s) => ({ ...s, share: total > 0 ? s.share / total : 1 / out.length }));
 }
@@ -235,7 +237,7 @@ export function buildMatrix(inp: MatrixInput): BucketMatrix {
     .slice(0, param('matrix.candidateCap'));
   return {
     bucketId: inp.situation.id, unit: inp.table.unit, payoffIn: clock ? 'winProbability' : 'expectedPoints',
-    candidates: rows.map((r) => r.callId), looks: looks.map((l) => l.look), shares: looks.map((l) => l.share),
+    candidates: rows.map((r) => r.callId), looks: looks.map((l) => l.look), shares: looks.map((l) => l.share), counts: looks.map((l) => l.count),
     a: rows.map((r) => r.cells.map((c) => c.mean)), uncertainty: rows.map((r) => r.cells.map((c) => c.sd)), sigmaStar: null,
   };
 }

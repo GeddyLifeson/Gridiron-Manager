@@ -2,6 +2,7 @@
 // protection plan, rules of the week, emphasis, special teams, contingencies) so the user-side screens
 // and K4 read an AI plan and a user plan the same way. G-68 owns the stored schema; `AiGamePlan` is this
 // module's structural copy of it and the integrator's adapter is one-to-one (DECISIONS.md, CR-G74-2).
+import type { EmphasisBlock } from '../profile/index.ts';
 import type { PrepDepth } from './depth.ts';
 import type { MatchupRow, StaffGrade } from './matchups.ts';
 import { param } from './params.ts';
@@ -63,8 +64,8 @@ export interface AiGamePlan {
     /** K3.1.1 rule 7: how often the opposing coach goes on fourth down (public record), for I2.3.7 and K5. */
     readonly opponentFourthDownGoRate: number | null;
   };
-  /** G6.4.2 dials. Left neutral (empty): K2 holds no field for them yet (DECISIONS.md, owed). */
-  readonly emphasis: Readonly<Record<string, number>>;
+  /** G6.4.2 dials as the coach sets them: his `tendencies.emphasis` (K2.1.3 rule 4), offsets from neutral in -1 to +1. */
+  readonly emphasis: EmphasisBlock;
   readonly specialTeamsMenu: readonly MenuEntry[];
   /** G6.5.1: per kicking unit, the scouted threat and the planned answer. */
   readonly specialTeamsAnswers: readonly { readonly unit: string; readonly threat: string; readonly callId: string }[];
@@ -208,6 +209,8 @@ export interface PlanInput {
   /** J12 forecast passes the G6.5.2 line for a weather plan. */
   readonly weatherPlanDue: boolean;
   readonly opponentFourthDownGoRate: number | null;
+  /** The defensive caller's `tendencies.emphasis`. */
+  readonly emphasis: EmphasisBlock;
   readonly quarterbackFreedom?: string | null;
 }
 
@@ -275,7 +278,7 @@ export function buildPlan(inp: PlanInput, depth: PrepDepth): AiGamePlan {
       namedAnswer: inp.opponentStar ? { playerId: inp.opponentStar.playerId, role: inp.opponentStar.role } : null,
       opponentFourthDownGoRate: inp.opponentFourthDownGoRate,
     },
-    emphasis: {}, specialTeamsMenu, specialTeamsAnswers,
+    emphasis: { ...inp.emphasis }, specialTeamsMenu, specialTeamsAnswers,
     contingencies: contingencies.slice(0, param('plan.contingenciesMax')), standingInstructions,
     quarterbackFreedom: inp.quarterbackFreedom ?? null,
   };

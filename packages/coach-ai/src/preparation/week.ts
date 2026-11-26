@@ -4,7 +4,7 @@
 // Inputs are the film and public facts as of the weekly commit (J14.2.1): nothing the opponent does
 // during the week is in them (rule 2).
 import { tendencies } from '@gm/models';
-import type { SystemBlock } from '../profile/index.ts';
+import type { EmphasisBlock, SystemBlock } from '../profile/index.ts';
 import { prepDepth, type PrepDepth, type PrepMethod } from './depth.ts';
 import { expectedLineup, flaggedStar, matchupTable, type DepthSighting, type InjuryListing, type LineupSlot, type MatchupInput, type MatchupRow, type PairingDef, type StaffGrade } from './matchups.ts';
 import { param } from './params.ts';
@@ -73,6 +73,8 @@ export interface TeamWeekInput {
   readonly preparationZ: number;
   readonly evaluationZ: number;
   readonly tellHours: number;
+  /** `tendencies.emphasis` of the coach who owns the defensive plan (K2.1.3 rule 4). */
+  readonly emphasis: EmphasisBlock;
   /** K3.6.1 rule 4, from the team's fidelity tier (X13). */
   readonly method: PrepMethod;
   readonly scouting: Omit<ScoutingInput, 'opponentId' | 'season'>;
@@ -170,7 +172,7 @@ export function prepareTeamWeek(inp: TeamWeekInput, streams: PrepStreams): TeamW
     ourOffenseMatchups, ourDefenseMatchups, rushContests: inp.rushContests,
     opponentStar: flaggedStar(theirOffense, grades),
     backupReadiness: inp.backupReadiness, weatherPlanDue: inp.weatherPlanDue,
-    opponentFourthDownGoRate: fourthDownGoRate(report.management), quarterbackFreedom: inp.quarterbackFreedom ?? null,
+    opponentFourthDownGoRate: fourthDownGoRate(report.management), emphasis: inp.emphasis, quarterbackFreedom: inp.quarterbackFreedom ?? null,
   }, depth);
 
   // K3.4.2 the sheets, locked with a stored mix per box.

@@ -31,7 +31,9 @@ export interface PracticeInput {
   readonly readiness: (callId: string) => number;
   /** Reps the call still needs to reach the installed line at this staff's teaching (G5.1.2, from the knowledge module). */
   readonly repsToReady: (callId: string) => number;
-  /** Health risk at the positions that matter, 0 to 1 (H5): more risk, more backup reps (rule 2). */
+  /** The head coach's `tendencies.backupRepShare` (K2.1.3 rule 4): his base share of reps for backups. */
+  readonly backupRepShare: number;
+  /** Health risk at the positions that matter, 0 to 1 (H5): more risk, more backup reps on top (rule 2). */
   readonly healthRisk: number;
   readonly budget: PracticeBudget;
   /** Padded practices the head coach wants by habit. */
@@ -64,8 +66,8 @@ export function apportion(total: number, weights: readonly number[]): number[] {
 export function allocatePractice(inp: PracticeInput): AiPracticePlan {
   const v = inp.violation ?? null;
   const teamReps = Math.max(0, Math.floor(inp.budget.teamReps + (v?.extraTeamReps ?? 0)));
-  // Rule 2: backups get 15% to 30% of team reps, more when health risk is high.
-  const share = param('practice.backupShareMin') + (param('practice.backupShareMax') - param('practice.backupShareMin')) * clamp(inp.healthRisk, 0, 1);
+  // Rule 2: the coach's own base share, plus a health-risk term as wide as the leaf's 15% to 30% span.
+  const share = clamp(inp.backupRepShare + (param('practice.backupShareMax') - param('practice.backupShareMin')) * clamp(inp.healthRisk, 0, 1), 0, 1);
   const backupReps = Math.round(teamReps * share);
   const starterReps = teamReps - backupReps;
 

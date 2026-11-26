@@ -35,26 +35,30 @@ export interface DepthCandidate {
   readonly playerId: number;
   /** Slots he can play, each with the role graded there. */
   readonly slots: readonly { readonly slot: string; readonly role: string }[];
-  /** Accrued seasons, for the veteran bias. */
-  readonly seasons: number;
+  /** Years of pro experience, or years of eligibility used in college, for the veteran bias. */
+  readonly years: number;
 }
+
+/** K2.1.3 rule 4 states the bias per five pro years and per two college years: a unit of the profile field, not a rule. */
+const VETERAN_YEARS_KEY = { pro: 'offseason.veteranYearsPro', college: 'offseason.veteranYearsCollege' } as const;
 
 export interface DepthChartRow { readonly slot: string; readonly order: readonly number[] }
 
 /**
- * Rule 2: depth chart from the staff's grades (K3.2.1) with a veteran bias. A player is listed at every
- * slot he can play, best first; the same man may be first at one slot and a backup at another.
+ * Rule 2: depth chart from the staff's grades (K3.2.1) with the coach's veteran bias
+ * (`tendencies.veteranBias`, K2.1.3 rule 4: ISS per five years of pro experience, per two years of
+ * eligibility used in college; it can be negative). A player is listed at every slot he can play, best
+ * first; the same man may be first at one slot and a backup at another.
  */
-export function depthChart(candidates: readonly DepthCandidate[], grades: readonly StaffGrade[], veteranBias = 1): DepthChartRow[] {
+export function depthChart(candidates: readonly DepthCandidate[], grades: readonly StaffGrade[], veteranBias: number, league: 'pro' | 'college'): DepthChartRow[] {
   const grade = new Map(grades.map((g) => [`${g.playerId}|${g.role}`, g.mean]));
-  const perSeason = param('offseason.veteranBiasIssPerSeason') * veteranBias;
-  const cap = param('offseason.veteranBiasCapSeasons');
+  const perYear = veteranBias / param(VETERAN_YEARS_KEY[league]);
   const slots = new Map<string, { playerId: number; score: number }[]>();
   for (const c of candidates) for (const s of c.slots) {
     const g = grade.get(`${c.playerId}|${s.role}`);
     if (g === undefined) continue;
     const list = slots.get(s.slot) ?? [];
-    list.push({ playerId: c.playerId, score: g + perSeason * Math.min(cap, Math.max(0, c.seasons)) });
+    list.push({ playerId: c.playerId, score: g + perYear * Math.max(0, c.years) });
     slots.set(s.slot, list);
   }
   return [...slots.keys()].sort().map((slot) => ({

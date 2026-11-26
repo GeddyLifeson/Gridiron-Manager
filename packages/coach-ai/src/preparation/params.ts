@@ -74,11 +74,11 @@ assume('sheet.boxMinCalls', 2, 1, 12, 'count', 'G7.3.2', 'G7.3.2 sourced 2 to 10
 
 // K3.5.1 practice.
 bible('practice.backupShareMin', 0.15, 0, 1, 'ratio', 'K3.5.1', 'K3.5.1 rule 2: backups get 15% to 30% of team reps');
-bible('practice.backupShareMax', 0.3, 0, 1, 'ratio', 'K3.5.1', 'K3.5.1 rule 2');
+bible('practice.backupShareMax', 0.3, 0, 1, 'ratio', 'K3.5.1', 'K3.5.1 rule 2; the span above the minimum is the health-risk term added to the coach\'s `backupRepShare` (K2.1.3 rule 4)');
 
 // K3.7.1 offseason.
-assume('offseason.veteranBiasIssPerSeason', 0.5, 0, 5, 'iss', 'K3.7.1', 'K3.7.1 rule 2 "veteran bias by profile": no profile field or number in K2; reported');
-assume('offseason.veteranBiasCapSeasons', 6, 0, 20, 'count', 'K3.7.1', 'K3.7.1 rule 2');
+bible('offseason.veteranYearsPro', 5, 1, 20, 'yr', 'K2.1.3', 'K2.1.3 rule 4: `veteranBias` is ISS per five years of pro experience');
+bible('offseason.veteranYearsCollege', 2, 1, 6, 'yr', 'K2.1.3', 'K2.1.3 rule 4: per two years of eligibility used in college');
 
 export const PARAMS: { module: string; version: string; params: PrepParamRow[] } = { module: 'coachAi.preparation', version: 'g74.1', params: rows };
 

@@ -115,7 +115,8 @@ function teamInput(teamId: number, z: number, over: Partial<TeamWeekInput> = {})
     defense: { calls: calls('defense', 40, 24), catalogue: CATALOGUE, sizeLimit: 24, mixGroupOf: (c) => (c.tags.includes('pressure') ? 'pressure' : 'coverage') },
     specialTeams: { calls: calls('specialTeams', 4, 4).map((c) => ({ ...c, fits: ['kickoff'] })), catalogue: [{ id: 'kickoff', parentId: null, expectedSnaps: 5, clock: false }], sizeLimit: 3 },
     prior, reps: (req, r) => ({ mean: 0.05 + 0.1 * r.normal() / Math.sqrt(req.reps), sd: 1, n: req.reps }), solver: uniform,
-    practice: { readiness: () => 0.9, repsToReady: () => 12, healthRisk: 0.2, budget: { teamReps: 400, paddedAllowed: 1 }, paddedWanted: 1 },
+    emphasis: { takeaway: 0.4, tackleAttack: -0.2, rushLanes: 0, cornerJump: 0.1 },
+    practice: { readiness: () => 0.9, repsToReady: () => 12, backupRepShare: 0.18, healthRisk: 0.2, budget: { teamReps: 400, paddedAllowed: 1 }, paddedWanted: 1 },
     practiceShare: 1, backupReadiness: (id) => (Number(id.slice(1)) % 2 === 0 ? 0.8 : 0.3), weatherPlanDue: true, lockTime: 6, ...over,
   };
 }
@@ -301,7 +302,8 @@ describe('K3.3.2 the matrix per situation bucket', () => {
     expect(merged[7]!.look).toBe(OTHER_LOOK);
     expect(merged[7]!.members.map((m) => m.look)).toEqual(['L7', 'L8', 'L9']);
     expect(merged.reduce((s, l) => s + l.share, 0)).toBeCloseTo(1, 12);
-    expect(mergeLooks([])).toEqual([{ look: OTHER_LOOK, share: 1, members: [] }]);
+    expect(mergeLooks([])).toEqual([{ look: OTHER_LOOK, share: 1, count: 0, members: [] }]);
+    expect(merged[7]!.count).toBe(6);
     const offense = calls('offense', 30, 30);
     const looks = [{ look: 'cover1', share: 0.97, count: 97 }, { look: 'cover0', share: 0.02, count: 2 }, { look: 'cover6', share: 0.01, count: 1 }];
     const table = buildPayoffs({ unit: 'offense', calls: offense, looks, prior, matchups: [], reps: null, shortList: 30 }, depthAt(0, { noiseSd: 0 }), { noise: rng('n'), reps: rng('r') });
@@ -359,6 +361,7 @@ describe('K3.4 the game plan and the call sheet', () => {
     expect(hi.plan.rulesOfWeek.namedAnswer).toEqual({ playerId: 71, role: 'wr' });
     expect(hi.plan.rulesOfWeek.opponentFourthDownGoRate).toBeCloseTo(0.3, 12);
     expect(hi.plan.rulesOfWeek.unscoutedDefault).not.toBeNull();
+    expect(hi.plan.emphasis).toEqual({ takeaway: 0.4, tackleAttack: -0.2, rushLanes: 0, cornerJump: 0.1 });
     expect(hi.plan.specialTeamsAnswers).toHaveLength(1);
     expect(hi.plan.specialTeamsAnswers[0]!.threat).toBe('kickoff:deep_middle');
     expect(hi.plan.contingencies.map((c) => [c.kind, c.full])).toEqual([['backupQuarterback', true], ['weather', true]]);
@@ -434,7 +437,7 @@ describe('K3.4 the game plan and the call sheet', () => {
 
 describe('K3.5.1 allocating practice', () => {
   const menu = Array.from({ length: 10 }, (_, i) => ({ callId: `o${i}`, source: i >= 7 ? 'new' as const : 'standing' as const, wrinkle: false, wrinkleTarget: null, value: 0, order: i, plannedSnaps: 10 - i }));
-  const base = { menu, readiness: () => 0.9, repsToReady: () => 20, healthRisk: 0, budget: { teamReps: 200, paddedAllowed: 1 }, paddedWanted: 3 };
+  const base = { menu, readiness: () => 0.9, repsToReady: () => 20, backupRepShare: 0.15, healthRisk: 0, budget: { teamReps: 200, paddedAllowed: 1 }, paddedWanted: 3 };
   it('acceptance: no week exceeds the limits unless a logged violation exists for it', () => {
     const p = allocatePractice(base);
     expect(withinLimits(p, base.budget)).toBe(true);
@@ -446,10 +449,13 @@ describe('K3.5.1 allocating practice', () => {
     expect(v.violationEventId).toBe('violation_committed:881');
     expect(v.teamReps).toBe(230); expect(v.paddedPractices).toBe(2);
   });
-  it('rules 1 and 2: new calls first, then planned usage; backups get 15% to 30% by health risk', () => {
+  it('rules 1 and 2: new calls first, then planned usage; backups get the coach\'s base share plus the health-risk term', () => {
     const p = allocatePractice(base);
     expect(p.backupReps).toBe(30);
     expect(allocatePractice({ ...base, healthRisk: 1 }).backupReps).toBe(60);
+    // K2.1.3 rule 4: a coach with a low base share gives backups fewer reps at the same health risk.
+    expect(allocatePractice({ ...base, backupRepShare: 0.05 }).backupReps).toBe(10);
+    expect(allocatePractice({ ...base, backupRepShare: 0.35, healthRisk: 1 }).backupReps).toBe(100);
     const reps = new Map(p.perCall.map((c) => [c.callId, c.starterReps]));
     for (const id of ['o7', 'o8', 'o9']) expect(reps.get(id)!).toBeGreaterThanOrEqual(20);
     expect(reps.get('o0')!).toBeGreaterThan(reps.get('o6')!);
@@ -516,10 +522,14 @@ describe('K3.7.1 offseason', () => {
   });
   it('rules 2 and 3: depth chart by grade with a veteran bias; needs ranked by shortfall and position value', () => {
     const g: StaffGrade[] = [{ playerId: 1, role: 'qb', mean: 60, sd: 3 }, { playerId: 2, role: 'qb', mean: 61, sd: 6 }, { playerId: 3, role: 'cb', mean: 45, sd: 3 }];
-    const cands = [{ playerId: 1, slots: [{ slot: 'QB', role: 'qb' }], seasons: 8 }, { playerId: 2, slots: [{ slot: 'QB', role: 'qb' }], seasons: 0 }, { playerId: 3, slots: [{ slot: 'CB1', role: 'cb' }], seasons: 2 }];
-    const chart = depthChart(cands, g);
+    const cands = [{ playerId: 1, slots: [{ slot: 'QB', role: 'qb' }], years: 10 }, { playerId: 2, slots: [{ slot: 'QB', role: 'qb' }], years: 0 }, { playerId: 3, slots: [{ slot: 'CB1', role: 'cb' }], years: 2 }];
+    // veteranBias +1 ISS per five pro years: ten years is worth 2, enough to pass a rookie graded 1 higher.
+    const chart = depthChart(cands, g, 1, 'pro');
     expect(chart).toEqual([{ slot: 'CB1', order: [3] }, { slot: 'QB', order: [1, 2] }]);
-    expect(depthChart(cands, g, 0).find((r) => r.slot === 'QB')!.order).toEqual([2, 1]);
+    expect(depthChart(cands, g, 0, 'pro').find((r) => r.slot === 'QB')!.order).toEqual([2, 1]);
+    expect(depthChart(cands, g, -2, 'pro').find((r) => r.slot === 'QB')!.order).toEqual([2, 1]);
+    // College counts per two years of eligibility used.
+    expect(depthChart(cands.map((c) => ({ ...c, years: c.years > 2 ? 3 : c.years })), g, 1, 'college').find((r) => r.slot === 'QB')!.order).toEqual([1, 2]);
     const needs = needsList(chart, g, [{ slot: 'QB', role: 'qb', starter: 58, depth: 50, value: 3 }, { slot: 'CB1', role: 'cb', starter: 55, depth: 48, value: 1.5 }]);
     expect(needs.map((n) => [n.slot, n.what])).toEqual([['CB1', 'depth'], ['CB1', 'starter']]);
     expect(needs[0]!.shortBy).toBe(48);
