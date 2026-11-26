@@ -12,6 +12,7 @@ const secs = () => own(z.number().min(0), 's');
 const Filter = own(z.object({
   text: text().optional(), formation: text().optional(), concept: text().optional(), personnel: text().optional(), role: text().optional(),
   situation: text().optional(), status: text().optional(), readinessAtLeast: own(z.number().min(0).max(1), 'ratio').optional(), includeRetired: flag().optional(),
+  folder: text().optional(),
 }).strict());
 
 const Row = z.object({
@@ -38,5 +39,6 @@ export const PlaybookData = z.object({
     view: Lock, draft_play: Lock, edit_group_coaching_points: Lock, edit_side_playbook: Lock, build_plan_and_sheet: Lock, approve: Lock, draw_scout_cards: Lock,
   }).strict()),
   filter: Filter,
+  folders: own(z.array(z.object({ id: text(), name: text(), playIds: own(z.array(z.string())) }).strict())),
   options: own(z.object({ formation: own(z.array(Option)), concept: own(z.array(Option)), personnel: own(z.array(Option)) }).strict()),
 }).strict().nullable();
