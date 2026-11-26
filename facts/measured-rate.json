@@ -3454,20 +3454,20 @@
    "id": "F-measured-rate-0111",
    "level": "pro",
    "domain": "measured-rate",
-   "statement": "Completion percentage under pressure: 0.409 (pro, 2022-2024).",
-   "value": 0.409,
+   "statement": "Completion percentage under pressure: 0.481 of attempts (pro, 2023-2024; participation pressure flag, throwaways in).",
+   "value": 0.481,
    "unit": "share",
-   "validFor": "2022-2024",
+   "validFor": "2023-2024",
    "sources": [
     {
-     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
-     "locator": "participation was_pressure true, all pass plays but spikes",
+     "citation": "nflverse play-by-play and participation files, regular seasons 2023 and 2024, github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with research/tuning/trace-tools/real-under-pressure.py (thread \"Tune pressured throws and interceptions\")",
+     "locator": "participation was_pressure true, pass attempts (no sacks, no spikes)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
      "independenceGroup": "nflverse",
      "primary": false,
-     "quote": "Recomputed 2026-11-26 from the nflverse files; completion share 0.409 on 16,628 pressured dropbacks.",
-     "value": 0.409
+     "quote": "Recomputed 2026-11-26 from the nflverse files: completion 48.1% of pressured attempts (clean 70.5%).",
+     "value": 0.481
     }
    ],
    "status": "1 of 3",
@@ -3482,27 +3482,33 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Value recomputed on the feed pressure flag over attempts (2023-2024); one source group."
     }
-   ]
+   ],
+   "notes": "2026-11-26: value replaced from 0.409 (base not stated; 40.8% is the completion rate when the quarterback is hit on the play, which may be its origin). The bible's verification pass got 49.0% and 5.93 from the same feed over 2022-2024 (same group, so not a second source). Opta Analyst 2024 (57.3% on adjusted attempts, own flag) uses another definition."
   },
   {
    "id": "F-measured-rate-0112",
    "level": "pro",
    "domain": "measured-rate",
-   "statement": "Yards per attempt under pressure: 3.87 (pro, 2022-2024).",
-   "value": 3.87,
+   "statement": "Yards per attempt under pressure: 5.76 (pro, 2023-2024; participation pressure flag, over attempts, throwaways in).",
+   "value": 5.76,
    "unit": "yards",
-   "validFor": "2022-2024",
+   "validFor": "2023-2024",
    "sources": [
     {
-     "citation": "nflverse play-by-play and participation files, regular seasons 2022 to 2024 (2025 for kickoffs), github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with the definitions in research/nflverse_baselines.py and research/nflverse_gaps.py",
-     "locator": "participation was_pressure true, all pass plays but spikes",
+     "citation": "nflverse play-by-play and participation files, regular seasons 2023 and 2024, github.com/nflverse/nflverse-data releases pbp and pbp_participation; recomputed by the project on 2026-11-26 with research/tuning/trace-tools/real-under-pressure.py (thread \"Tune pressured throws and interceptions\")",
+     "locator": "participation was_pressure true, pass attempts (no sacks, no spikes)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
      "independenceGroup": "nflverse",
      "primary": false,
-     "quote": "Recomputed 2026-11-26 from the nflverse files; yards per attempt 3.868 (rounds to 3.87).",
-     "value": 3.87
+     "quote": "Recomputed 2026-11-26 from the nflverse files: 5.76 yards per pressured attempt (clean 7.53).",
+     "value": 5.76
     }
    ],
    "status": "1 of 3",
@@ -3517,8 +3523,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nflverse)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Value recomputed on the feed pressure flag over attempts (2023-2024); one source group."
     }
-   ]
+   ],
+   "notes": "2026-11-26: value replaced from 3.87 (not reproduced; 5.93 over 2022-2024 in the verification pass). The bible's verification pass got 49.0% and 5.93 from the same feed over 2022-2024 (same group, so not a second source). Opta Analyst 2024 (57.3% on adjusted attempts, own flag) uses another definition."
   },
   {
    "id": "F-measured-rate-0113",
