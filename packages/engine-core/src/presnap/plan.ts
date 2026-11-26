@@ -584,7 +584,8 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       const interior = a.preSnap.onLine && spot[s]!.py > lineMinPy && spot[s]!.py < lineMaxPy;
       const base = interior ? p['foul.baseFalseStartLine']! : p['foul.baseFalseStartOther']!;
       const pr = falseStartChance(base, iss(w, s, 'foul_discipline'), input.venue, {
-        noise: O.noise, hardCountOwn: input.hardCount, defensiveMovement: stemming, rushedSnap: input.tempo === 'hurry_up',
+        // I2.5.3: a silent count removes the crowd from the line's false-start risk (they move on the centre, not a voice).
+        noise: input.silentCount ? 0 : O.noise, hardCountOwn: input.hardCount, defensiveMovement: stemming, rushedSnap: input.tempo === 'hurry_up',
         longCount: input.longCount, fatigue: w.players.fatigueNow[s]!,
       }, math, p);
       const u = w.streams('foul', [sit.gameId, sit.playNumber, w.slots[s]!.playerId, 'false_start']).uniform();
