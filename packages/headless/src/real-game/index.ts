@@ -13,7 +13,7 @@ import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
 import { resolveRuleSet } from '@gm/rules-data';
 import { PARAMS as CHART_PARAMS, createChartCaller, depthRoster, runBatch, type BatchResult } from '../calibration/index.ts';
-import { chartOverrides } from '../calibration/params.ts';
+import { chartOverrides } from '../calibration/index.ts';
 
 /** Every parameter file of the modules a phase 1 game runs. A name defined twice is an error. */
 export const ENGINE_PARAM_FILES: readonly ParamFile[] = [
