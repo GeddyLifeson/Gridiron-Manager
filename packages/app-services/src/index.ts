@@ -33,3 +33,4 @@ export * as seats from './read-models/seats/index.ts';
 export * as seatsCommands from './commands/seats/index.ts';
 export * as gameplan from './read-models/gameplan/index.ts';
 export * as gameplanCommands from './commands/gameplan/index.ts';
+export * as presentationLive from './presentation/live/index.ts';
