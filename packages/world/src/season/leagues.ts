@@ -11,7 +11,7 @@ import type { SeasonSpec } from './types.ts';
 import type { SeatWeekSource } from './seat.ts';
 import { fixturesFromSchedule } from './fixtures.ts';
 import { seededBracketPlan } from './postseason-bracket.ts';
-import { selectionPlan } from './postseason-selection.ts';
+import { selectionPlan, type SelectionInput } from './postseason-selection.ts';
 import provisional from './data/college-provisional.json' with { type: 'json' };
 
 /** The parsed data files a season is built from (the football-content world files and league-rules files). */
@@ -38,6 +38,10 @@ export interface BuiltSeason {
   readonly provisional: readonly string[];
   /** Notes from the schedule generator. */
   readonly scheduleLog: readonly string[];
+  /** Selection competitions only (T3.3 to T3.6): conferences, independents and bowls, for the weekly league picture. */
+  readonly selection: SelectionInput | null;
+  /** Program standing per team (school football history level), the voters' brand and preseason view (T3.4.1). Empty at the pro level. */
+  readonly prestige: ReadonlyMap<number, number>;
 }
 
 export interface BuildOptions {
@@ -114,7 +118,7 @@ export function buildProSeason(content: LeagueContent, o: BuildOptions): BuiltSe
     fixtures: fixturesFromSchedule(made.games, (k) => idOf.get(k)!),
     leagueRules: rules, postseason: seededBracketPlan(), seatTeamId: seatId(keyOf, o.seatTeamKey),
   };
-  return { spec, keyOf, powerTeamIds: [], provisional: notes, scheduleLog: made.log, seatSource: seatSource(weekly.defaultSet(weekly.weekLookup(lookup, 'pro')), false, week1, provisional.kickoffMinute.value) };
+  return { spec, keyOf, powerTeamIds: [], selection: null, prestige: new Map(), provisional: notes, scheduleLog: made.log, seatSource: seatSource(weekly.defaultSet(weekly.weekLookup(lookup, 'pro')), false, week1, provisional.kickoffMinute.value) };
 }
 
 /** The top college subdivision: selection postseason (T3), 2026 league-rules file plus the provisional rows. */
@@ -159,7 +163,7 @@ export function buildCollegeSeason(content: LeagueContent, o: BuildOptions): Bui
   const topIds = new Set(top.map((s) => s.id));
   const fixtures = fixturesFromSchedule(made.games.filter((g) => topIds.has(g.home) || topIds.has(g.away)), (k) => idOf.get(k)!);
   const independentsConf = topConfs.length + 1;
-  const plan = selectionPlan({
+  const selection: SelectionInput = {
     conferences: topConfs.map((c) => ({
       conferenceId: confId.get(c.id)!, power: c.tier === 'power', teamIds: c.memberIds.map((m) => idOf.get(m)!),
       titleMethod: (c.tier === 'power' ? provisional.titleMethod.power : provisional.titleMethod.other) as 'standings' | 'title_game',
@@ -167,7 +171,8 @@ export function buildCollegeSeason(content: LeagueContent, o: BuildOptions): Bui
     independents: (world.independents as string[]).filter((k) => topIds.has(k)).map((k) => idOf.get(k)!),
     bowls: Array.from({ length: provisional.bowls.count }, (_, i): postseason.BowlDef => ({ bowlId: i + 1, order: i + 1, slots: [null, null] })),
     academicScore: (id) => ordered[id - 1]!.academicProfile,
-  });
+  };
+  const plan = selectionPlan(selection);
   const keyOf = new Map(ordered.map((s) => [idOf.get(s.id)!, s.id]));
   const spec: SeasonSpec = {
     season: o.season, seedHex: o.seedHex, ruleSetId: 'college_2026',
@@ -175,7 +180,8 @@ export function buildCollegeSeason(content: LeagueContent, o: BuildOptions): Bui
     fixtures, leagueRules: rules, postseason: plan, seatTeamId: seatId(keyOf, o.seatTeamKey),
   };
   const powerTeamIds = topConfs.filter((c) => c.tier === 'power').flatMap((c) => c.memberIds.map((m) => idOf.get(m)!));
-  return { spec, keyOf, powerTeamIds, provisional: notes, scheduleLog: made.log, seatSource: seatSource(weekly.defaultSet(weekly.weekLookup(lookup, 'college')), true, week1, provisional.kickoffMinute.value) };
+  const prestige = new Map(ordered.map((sc, i) => [i + 1, (sc as { footballHistoryLevel?: number }).footballHistoryLevel ?? 0] as const));
+  return { spec, keyOf, powerTeamIds, selection, prestige, provisional: notes, scheduleLog: made.log, seatSource: seatSource(weekly.defaultSet(weekly.weekLookup(lookup, 'college')), true, week1, provisional.kickoffMinute.value) };
 }
 
 export const LEVEL_BUILDERS: Readonly<Record<string, (content: LeagueContent, o: BuildOptions) => BuiltSeason>> = {
