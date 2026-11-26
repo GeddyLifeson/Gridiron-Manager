@@ -4,6 +4,7 @@
 //
 // Fed now: roster and player card (people read models over the seat team's observed world). The people host
 // serves the other people screens too (staff, coach card, locker room, owner), since one source binds all six.
+// Staff job ids read as catalogue titles through the host's text lookup.
 // Not fed yet, so those screens stay placeholders: depth chart (no unit content or saved chart in the world),
 // roster moves (league roster state, G-15), cap sheet (no player contracts in the world), draft room and free
 // agency (offseason state of the career year), recruiting board (no app-services barrel line yet), health
@@ -39,6 +40,8 @@ export function peopleHostFor(seat: SeatWorld): PeopleHost {
       const p = seat.world.people.get(personId) as { name?: { first?: string; last?: string; suffix?: string | null } } | undefined;
       return peopleModels.displayName(p?.name, personId);
     },
+    // Content keys the screens show through the host: staff job ids read as their catalogue titles.
+    text: (key) => peopleModels.jobTitle(key) ?? key,
     // Re-evaluation, notes and meeting requests are world commands the career root does not run yet.
     dispatch: () => undefined,
   };
