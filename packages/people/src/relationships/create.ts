@@ -7,7 +7,8 @@ import { rp } from './params.ts';
 
 /** All ties of a world or a team, keyed by `tieKey`. Iteration order is insertion order (deterministic). */
 export class TieStore {
-  private readonly ties = new Map<string, Tie>();
+  /** Over an existing map (a world's plain state, `world.people` binding): the store reads and writes it in place. */
+  constructor(private readonly ties: Map<string, Tie> = new Map()) {}
 
   get size(): number { return this.ties.size; }
   get(key: string): Tie | undefined { return this.ties.get(key); }

@@ -8,7 +8,7 @@ import { commitAct, groupOf, warningFor, type ComplianceState, type EventSink, t
 import type { RecruitingContext } from './context.ts';
 import { applyContact } from './interest.ts';
 import { P } from './params.ts';
-import { breachesOf, recordUsage, type ActRef } from './limits.ts';
+import { breachesOf, peekBreaches, recordUsage, type ActRef } from './limits.ts';
 import type { ActionKind, Breach, RecruitingState } from './types.ts';
 
 /** How a staff member enters the compliance log (role, team, origin). */
@@ -41,6 +41,12 @@ export function warningOf(breaches: readonly Breach[], rules: RuleSet, party: Pa
 
 export function previewAct(state: RecruitingState, ctx: RecruitingContext, act: ActRef, party: PartyRef): Preview {
   const breaches = breachesOf(state, ctx, act);
+  return { breaches, warning: warningOf(breaches, ctx.rulesOn(act.day), party) };
+}
+
+/** `previewAct` without touching the state (read models): the same breaches and warning. */
+export function peekAct(state: RecruitingState, ctx: RecruitingContext, act: ActRef, party: PartyRef): Preview {
+  const breaches = peekBreaches(state, ctx, act);
   return { breaches, warning: warningOf(breaches, ctx.rulesOn(act.day), party) };
 }
 
