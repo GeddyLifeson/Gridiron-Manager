@@ -1,0 +1,53 @@
+{
+ "$comment": "Calendar values that have no league-rules key yet (requested from G-10 and the integrator). The resolver reads the league-rules file first and falls back to these rows; a test fails if both define a key with different values.",
+ "keys": [
+  {
+   "key": "calendar.veteran_report_days_before_opener",
+   "value": 47,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "C4.4.2",
+   "source": "CBA 2020 Article 23 text read directly (C4.4.2 rule 1)"
+  },
+  {
+   "key": "calendar.monday_opener_extra_report_days",
+   "value": 1,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "C4.4.2",
+   "source": "C4.4.2 rule 1: 48 days for a Monday opener (CBA text)"
+  },
+  {
+   "key": "calendar.rookie_early_report_days",
+   "value": 7,
+   "unit": "days",
+   "status": "1 of 3",
+   "leaf": "C4.4.2",
+   "source": "C4.4.2 rule 1: rookies may report up to 7 days earlier (CBA text)"
+  },
+  {
+   "key": "calendar.regular_season_weeks",
+   "value": 18,
+   "unit": "weeks",
+   "status": "Verified",
+   "leaf": "C4.5.1",
+   "source": "C4.5.1 and C1: 18 regular-season weeks"
+  },
+  {
+   "key": "calendar.preseason_weeks",
+   "value": 3,
+   "unit": "weeks",
+   "status": "1 of 3",
+   "leaf": "C4.4.3",
+   "source": "C4.4.3: three preseason games (C1.5.1)"
+  },
+  {
+   "key": "calendar.draft_days",
+   "value": 3,
+   "unit": "days",
+   "status": "Verified",
+   "leaf": "C4.2.5",
+   "source": "C4.2.5: rounds split over three days (audit-r-waivers-contracts-draft.md 8a)"
+  }
+ ]
+}
