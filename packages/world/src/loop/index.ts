@@ -31,3 +31,8 @@ export {
   STREAM_LIFECYCLE, curveFor, curveProblems, foundingYear, planTeamSpans, isActive, activeTeamIds, awaitingFounding, lifecycleStep,
   type TeamSpan, type FoundingCurve, type LifecycleBinding,
 } from './lifecycle.ts';
+export {
+  STREAM_HALL, HALL_REQUIRED_KEYS, hallRuleGaps, emptyHallState, defaultHalls, leagueFirstSeason, hallOpens, recordHallSeason, treeHeadCoachCount, hallCandidates, hallStep,
+  type CoachSeasonRow, type PlayerLine, type HallMember, type HallBallotRecord, type HallState, type HallSpec, type HallBinding,
+} from './hall.ts';
+export { STREAM_HISTORY_SCHEDULE, seasonOrder, circleRound, roundsFor, historySchedule, type HistoryScheduleBinding } from './history-schedule.ts';

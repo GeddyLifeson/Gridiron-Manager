@@ -1,6 +1,6 @@
 // Assembling the live world from the generation steps (X10.2), with its history log.
 import { seedFromHex, seedToHex, type WorldSeed } from '@gm/engine-core';
-import { history } from '@gm/league';
+import { awards, history } from '@gm/league';
 import { cohorts } from '@gm/people';
 import type { EventTypeDef } from '@gm/schema';
 import type { PersonNameSource, WorldContent } from '../generation/content.ts';
@@ -10,6 +10,7 @@ import { param as gparam } from '../generation/params.ts';
 import { setupHashHex, type SetupRecord } from '../generation/setup.ts';
 import { buildStructures, structureProblems } from '../generation/structures.ts';
 import { WORLD_FOUNDED, worldEventTypes } from './events.ts';
+import { emptyHallState } from './hall.ts';
 import { planTeamSpans, type FoundingCurve } from './lifecycle.ts';
 import type { LiveWorld } from './types.ts';
 
@@ -66,7 +67,8 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   // The cohort step emits G-44's types, so they are added here when the caller's registry lacks them.
   const base = input.eventTypes ?? [];
   const baseIds = new Set(base.map((t) => t.id));
-  const given = [...base, ...cohorts.COHORT_EVENT_TYPES.filter((t) => !baseIds.has(t.id))];
+  // The hall step emits league awards' honour types; they are added the same way.
+  const given = [...base, ...[...cohorts.COHORT_EVENT_TYPES, ...awards.HONOUR_EVENT_TYPES].filter((t) => !baseIds.has(t.id))];
   const reg = history.buildTypeRegistry([...given, ...worldEventTypes(given.map((t) => t.id))]);
   if (!reg.ok) throw new Error(`event types refused: ${reg.problems.join('; ')}`);
   const people = new Map(founding.people.map((p) => [p.id, p]));
@@ -84,7 +86,7 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
     tiers: new Map(), pendingTiers: new Map(), pools: new Map(),
     log: new history.EventLog(logOptions), logOptions,
     nextIds: { ...built.nextIds, person: founding.nextIds.person, job: founding.nextIds.job, game: 1 },
-    results: [], seasons: [], staffSeasons: [], rosterSeasons: new Map(),
+    results: [], seasons: [], staffSeasons: [], rosterSeasons: new Map(), hall: emptyHallState(),
     passHash: history.chainHash(history.EMPTY_SEASON_HASH, { seed: seedToHex(seed), setup: setupHashHex(setup), content: content.contentVersion }),
     passes: 0, userPersonId: null,
   };
