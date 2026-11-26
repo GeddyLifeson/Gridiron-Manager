@@ -25,3 +25,7 @@ export * as settings from './screens/settings/index.ts';
 export * as gameplan from './screens/gameplan/index.ts';
 export * as strip from './presentation/strip/index.ts';
 export * as banners from './presentation/banners/index.ts';
+export * as practice from './screens/practice/index.ts';
+export * as legends from './screens/legends/index.ts';
+export * as home from './screens/home/index.ts';
+export * as people from './screens/people/index.ts';

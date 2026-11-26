@@ -17,6 +17,10 @@ import { playDesignerRoute, PLAY_DESIGNER_SCREEN_ID } from './screens/play-desig
 import { settingsRoute, SETTINGS_SCREEN_ID } from './screens/settings/index.ts';
 import { playerDesignerRoute, SCREEN_ID as PLAYER_DESIGNER_SCREEN_ID } from './screens/player-designer/index.ts';
 import { editorsRoute, SCREEN_ID as EDITORS_SCREEN_ID } from './screens/editors/index.ts';
+import { practicePlannerRoute } from './screens/practice/index.ts';
+import { homeRoutes } from './screens/home/index.ts';
+import { peopleRoutes } from './screens/people/index.ts';
+import { legendsRoute, LEGENDS_SCREEN_ID } from './screens/legends/index.ts';
 import { gamePlanRoute, callSheetRoute, PLAN_SCREEN_ID, SHEET_SCREEN_ID } from './screens/gameplan/index.ts';
 
 type Args<F extends (...a: never[]) => unknown> = Parameters<F>;
@@ -45,12 +49,22 @@ export interface RouteSources {
   readonly editors?: Args<typeof editorsRoute>[0];
   /** G-68 game plan and call sheet (G6, G7); one host serves both screens. */
   readonly gameplan?: Args<typeof gamePlanRoute>[0];
+  /** G-65 practice planner, on the registry's week.practice screen (CR-G65-2 names it practice.planner). */
+  /** G-72 office screens for the head coach seat. Below head coach the assignment list takes office.today. */
+  readonly home?: Args<typeof homeRoutes>[0];
+  /** G-72 people screens. */
+  readonly people?: Args<typeof peopleRoutes>[0];
+  /** G-84 legends browser and chronicle (X3). */
+  readonly legends?: { readonly load: Args<typeof legendsRoute>[0]; readonly opts?: Args<typeof legendsRoute>[1] };
+  readonly practice?: { readonly getModel: Args<typeof practicePlannerRoute>[0]; readonly onOpen?: Args<typeof practicePlannerRoute>[1] };
 }
 
 /** Office screen id that shows the assignment list below head coach (O1.2.1, O7.2.1). */
 export const ASSIGNMENTS_SCREEN_ID = 'office.today';
 /** Registry id of the week schedule screen. */
 export const WEEK_SCHEDULE_SCREEN_ID = 'week.schedule';
+/** Registry id of the practice planner screen. */
+export const PRACTICE_SCREEN_ID = 'week.practice';
 
 /** Builds the route table from whichever sources are supplied. */
 export function buildRoutes(s: RouteSources): RouteTable {
@@ -64,6 +78,7 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.week) put(WEEK_SCHEDULE_SCREEN_ID, weekScheduleRoute(s.week.getModel, s.week.onOpen));
   if (s.film) putAll(filmRoutes(s.film));
   if (s.career) putAll(careerRoutes(s.career));
+  if (s.home) putAll(homeRoutes(s.home));
   if (s.assignments) put(ASSIGNMENTS_SCREEN_ID, assignmentsRoute(s.assignments.load, s.assignments.onOpen, s.assignments.onCommand));
   if (s.school) {
     put(SCHOOL_SCREEN_IDS.lessons, schoolRoute(s.school.load, 'lessons', s.school.openLesson));
@@ -75,6 +90,9 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.settings) put(SETTINGS_SCREEN_ID, settingsRoute(s.settings.host, s.settings.extra));
   if (s.playerDesigner) put(PLAYER_DESIGNER_SCREEN_ID, playerDesignerRoute(s.playerDesigner));
   if (s.editors) put(EDITORS_SCREEN_ID, editorsRoute(s.editors));
+  if (s.people) putAll(peopleRoutes(s.people));
+  if (s.legends) put(LEGENDS_SCREEN_ID, legendsRoute(s.legends.load, s.legends.opts));
+  if (s.practice) put(PRACTICE_SCREEN_ID, practicePlannerRoute(s.practice.getModel, s.practice.onOpen));
   if (s.gameplan) { put(PLAN_SCREEN_ID, gamePlanRoute(s.gameplan)); put(SHEET_SCREEN_ID, callSheetRoute(s.gameplan)); }
   return t;
 }

@@ -2,6 +2,7 @@ node_modules/
 dist/
 out/
 *.gmsave
+!packages/store/test/migrations/fixtures/*.gmsave
 /tmp/
 shells/desktop/src-tauri/target/
 shells/desktop/src-tauri/gen/
