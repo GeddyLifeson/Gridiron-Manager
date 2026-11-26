@@ -111,6 +111,9 @@ const ROWS = [
   // Stand-in for the N2 expected points model.
   ['value.epPerYd', 0.065, 0.03, 0.1, 'EP/yd', 'assumption', 'J7.3.1', N2],
   ['value.turnoverCostEp', 4, 2, 6, 'EP', 'assumption', 'J7.3.1', N2],
+  // What the lost down costs when a throw is neither caught nor intercepted. At 0 a covered deep throw (one chance
+  // in four for 25 yards) rated above his threshold; tuned against J15.4.1 air yards per attempt and completion (1 of 3, 2 of 3).
+  ['value.incompleteCostEp', 0.3, 0, 0.8, 'EP', 'assumption', 'J7.3.1', N2],
   ['value.conversionBonusEp', 0.9, 0, 2, 'EP', 'assumption', 'J7.3.2', N2],
   ['value.conversionDownFrom', 3, 2, 4, 'down', 'assumption', 'J7.3.2', N2],
 
@@ -175,7 +178,7 @@ const ROWS = [
 
   // J7.5.1 scramble
   // Tuned from -3.6 (Assumption) against J15.4.1 scramble share: he weighs a run only when his reads run out.
-  ['scramble.s0', -0.8, -6, 0, 'logit', 'assumption', 'J7.5.1', SCR],
+  ['scramble.s0', -2.4, -6, 0, 'logit', 'assumption', 'J7.5.1', SCR],
   ['scramble.s1', 0.5, 0, 1.5, 'logit/z', 'bible', 'J7.5.1', SCR],
   ['scramble.s2', 1.0, 0, 2, 'logit', 'bible', 'J7.5.1', SCR],
   ['scramble.s3', 0.8, 0, 2, 'logit', 'bible', 'J7.5.1', SCR],

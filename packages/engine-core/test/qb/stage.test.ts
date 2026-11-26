@@ -94,6 +94,19 @@ describe('J7.3 judging open and deciding', () => {
   });
   const t1 = target(1, [{ px: 0, py: 10 }, { px: 30, py: 10 }]);
 
+  it('a throw that may fall incomplete is worth less by the lost down, so a covered throw loses more than an open one', () => {
+    const e = (gap: number, cost: number): qb.Estimate => {
+      const v = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0).see(11, 10 - gap, 10.5, 7, 0);
+      return { ...qb.judgeTarget(v, t1, ctx({ value: { ...qb.standInValue(P, 1, 10), incompleteCost: cost } }), 0, false, qb.newEstimate()) };
+    };
+    for (const gap of [0.5, 8]) {
+      const free = e(gap, 0), paid = e(gap, 0.3);
+      expect(paid.pHat).toBe(free.pHat);
+      expect(free.v - paid.v).toBeCloseTo(0.3 * (1 - free.pHat - free.iHat), 9);
+    }
+    expect(e(0.5, 0).v - e(0.5, 0.3).v).toBeGreaterThan(e(8, 0).v - e(8, 0.3).v);
+    expect(qb.standInValue(P, 1, 10).incompleteCost).toBe(P['value.incompleteCostEp']);
+  });
   it('a closer defender lowers the completion estimate and raises the interception estimate', () => {
     const e = (gap: number): qb.Estimate => {
       const v = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0).see(11, 10 - gap, 10.5, 7, 0);

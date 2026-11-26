@@ -370,7 +370,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     let yac = p['judge.yacBaseYd'] + p['judge.yacPerSepYd'] * openYd;
     if (yac > p['judge.yacMaxYd']) yac = p['judge.yacMaxYd'];
     s.yards = ax + yac;
-    s.v = pHat * ctx.value.yards(s.yards) - iHat * ctx.value.turnoverCost;
+    // A ball that is neither caught nor intercepted costs the down. Without that cost a covered deep throw (one
+    // chance in four for 25 yards) rated above the threshold, and he threw it.
+    const pInc = 1 - pHat - iHat;
+    s.v = pHat * ctx.value.yards(s.yards) - iHat * ctx.value.turnoverCost - (pInc > 0 ? pInc : 0) * (ctx.value.incompleteCost ?? 0);
     if (alert && nearest >= 0 && ax - nearX >= p['judge.alertLeadYd']) s.v += p['judge.alertBonusEp'];
     s.ax = ax; s.ay = ay; s.dirX = dirX; s.dirY = dirY; s.dist = dist; s.flight = flight; s.arrive = arrive; s.sepEst = sepEst;
     s.minLane = minLane; s.laneAlong = laneAlong; s.blocked = blocked; s.nearest = nearest; s.nearX = nearX; s.nearY = nearY;
@@ -405,5 +408,6 @@ export function standInValue(p: QbParams, down: number | null, toGoYd: number | 
   return {
     yards: (gain) => perYd * gain + (toGoYd !== null && gain >= toGoYd ? bonus : 0),
     turnoverCost: p['value.turnoverCostEp'],
+    incompleteCost: p['value.incompleteCostEp'],
   };
 }

@@ -38,7 +38,7 @@ describe('quarterback parameter file', () => {
   it('carries the bible starting values of J7 unchanged', () => {
     expect([P['drop.gunQuick.setS'], P['drop.gun3.setS'], P['drop.uc3.setS'], P['drop.uc5.setS'], P['drop.uc7.setS']]).toEqual([0.9, 1.5, 1.6, 2.1, 2.7]);
     expect([P['read.tReadBaseS'], P['read.tReadPerZS'], P['read.tReadFloorS']]).toEqual([0.55, 0.08, 0.3]);
-    expect([P['scramble.s0'], P['scramble.s1'], P['scramble.s2'], P['scramble.s3'], P['scramble.s4'], P['scramble.s5'], P['scramble.s6']]).toEqual([-0.8, 0.5, 1.0, 0.8, 1.0, 0.5, 1.0]); // s0 is an Assumption row, tuned from -3.6 against the scramble share
+    expect([P['scramble.s0'], P['scramble.s1'], P['scramble.s2'], P['scramble.s3'], P['scramble.s4'], P['scramble.s5'], P['scramble.s6']]).toEqual([-2.4, 0.5, 1.0, 0.8, 1.0, 0.5, 1.0]); // s0 is an Assumption row, tuned from -3.6 against the scramble share
     expect([P['acc.sdShortYd'], P['acc.sdMidYd'], P['acc.sdDeepYd']]).toEqual([0.6, 1.0, 2.6]); // the deep value is tuned from the bible's 1.8 against completion by depth (an Assumption row now)
     expect([P['throw.releaseBaseS'], P['throw.vBallBaseYps'], P['kneel.liveS'], P['kneel.lossYd']]).toEqual([0.4, 26, 2, 1]);
   });

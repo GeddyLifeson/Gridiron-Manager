@@ -310,7 +310,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     intCeil = freeSeen ? 1 : interceptionCeiling(trailing, oneScore, sit.period, sit.clockTenths * TICK_S, p);
 
     seq = play.reads.slice();
-    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
     deepestRead = -1;
     if (freeSeen) {
       let deep = -Infinity;
@@ -663,7 +663,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   }
 
   function baseOf(i: number): number {
-    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'];
+    // With nobody left to look at, the other choice is throwing it away, and a throwaway is an incompletion.
+    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'] - P!['value.incompleteCostEp'];
   }
 
   function noiseOf(i: number): number { return nBegin[N_SEP + ((passes * seq.length + i) % SEP_LOOKS)]! * separationSdYd(zCov, P!); }
@@ -676,6 +677,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     // J7.1.2: he throws once the receiver has broken, or up to `earlyS` before it if he trusts the timing.
     if (!(out.broken || out.toBreakS <= earlyS)) return NaN;
     if (!out.seen && earlyS <= 0) return NaN;
+    // On a free play an incompletion costs nothing: the penalty is there to take.
+    if (freeSeen) { const inc = 1 - out.pHat - out.iHat; if (inc > 0) out.v += inc * p['value.incompleteCostEp']; }
     if (freeSeen && i === deepestRead) out.v += p['freePlay.deepBonusEp'];
     return throwThresholdEp(baseOf(i), riskOffset, t - tSet, pressureNear, p);
   }
@@ -700,7 +703,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     if (!restarted && play.correctedReads !== null && t >= tSet) {
       restarted = true;
       seq = play.correctedReads.slice();
-      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
       idx = 0; newVisit(w, t); blockUntil = t + tReadS;
       note(w, 'restart');
     }
