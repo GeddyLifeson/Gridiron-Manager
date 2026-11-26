@@ -49,12 +49,14 @@ export interface PlaytestOptions {
   readonly headSeasons: number;
   /** Guard on console steps per game before the game is called stuck. */
   readonly maxStepsPerGame: number;
+  /** Seasons and offseasons played on one live world through the career year and its save (0 skips). */
+  readonly worldSeasons: number;
 }
 
 export const SCRIPTS = ['rung0_to_pro_head', 'average_work', 'fired_and_rehired'] as const;
 export type PlaytestScript = (typeof SCRIPTS)[number];
 
-export const DEFAULT_OPTIONS: Omit<PlaytestOptions, 'saveDir'> = { seasons: 30, gamesPerSeason: 2, script: 'rung0_to_pro_head', headSeasons: 3, maxStepsPerGame: 30_000 };
+export const DEFAULT_OPTIONS: Omit<PlaytestOptions, 'saveDir'> = { seasons: 30, gamesPerSeason: 2, script: 'rung0_to_pro_head', headSeasons: 3, maxStepsPerGame: 30_000, worldSeasons: 2 };
 
 export interface CareerReport {
   readonly seedHex: string;

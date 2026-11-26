@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { ReadModelRegistry, buildReadModel, crawlReadModels, crawlPassed, observerFor, tablesOf, PUBLIC_OBSERVER } from '../../../src/observer/index.ts';
 import { installSpec, INSTALL_MODEL, type InstallSource, type InstallView } from '../../../src/read-models/install/index.ts';
 import { fixtureTables, HOME, AWAY, USER, ASSISTANT, AWAY_COACH } from '../../observer/fixture-world.ts';
-import { InstallData } from './data-schema.ts';
+import { InstallData } from '@gm/schema';
 import { input } from './fixture.ts';
 
 const source: InstallSource = (teamId, side) => (teamId === HOME && side === 'offense' ? input() : null);
