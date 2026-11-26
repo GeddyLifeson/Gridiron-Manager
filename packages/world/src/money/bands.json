@@ -2,18 +2,72 @@
   "$comment": "World pay bands that the career E3.2.1 table does not hold: the second college level's ladder and off-ladder seats (MO-11). USD per year, base pay. Each row cites fact rows; status is computed from them in the fact register, never typed here. median is the figure paid (MO-05). A seat with no row is not paid.",
   "ladder": {
     "college_second": {
-      "9": { "low": 175000, "median": 268679, "high": 400000, "facts": ["F-pay-college-second-0005", "F-pay-college-second-0007", "F-pay-college-second-0003", "F-pay-college-second-0004"], "note": "median is the computed median of 12 Big Sky bases (2025); low is the lowest base found, high Norfolk State" },
-      "7": { "low": 85000, "median": 131452, "high": 177905, "facts": ["F-pay-college-second-0010", "F-pay-college-second-0011"], "note": "two examples; median is the midpoint (Assumption)" },
-      "5": { "low": 40000, "median": 52500, "high": 128618, "facts": ["F-pay-college-second-0012", "F-pay-college-second-0013"], "note": "median is the midpoint of advertised mid-tier pay, $40K to $65K; high is the 2025 champion's top position coach" }
+      "9": {
+        "low": 175000,
+        "median": 268679,
+        "high": 400000,
+        "facts": [
+          "F-pay-college-second-0005",
+          "F-pay-college-second-0008",
+          "F-pay-college-second-0003",
+          "F-pay-college-second-0004"
+        ],
+        "note": "median is the computed median of 12 Big Sky bases (2025); low is the lowest base found, high Norfolk State"
+      },
+      "7": {
+        "low": 85000,
+        "median": 131452,
+        "high": 177905,
+        "facts": [
+          "F-pay-college-second-0011",
+          "F-pay-college-second-0012"
+        ],
+        "note": "two examples; median is the midpoint (Assumption)"
+      },
+      "5": {
+        "low": 40000,
+        "median": 52500,
+        "high": 128618,
+        "facts": [
+          "F-pay-college-second-0013",
+          "F-pay-college-second-0014"
+        ],
+        "note": "median is the midpoint of advertised mid-tier pay, $40K to $65K; high is the 2025 champion's top position coach"
+      }
     }
   },
   "offLadder": {
     "pos:general_manager": {
-      "pro": { "low": 1000000, "median": 2000000, "high": 3000000, "facts": ["F-pay-exec-0002", "F-pay-exec-0003"], "note": "median is the midpoint of the reported $1M to $3M range (c.2013 and c.2023)" }
+      "pro": {
+        "low": 1000000,
+        "median": 2000000,
+        "high": 3000000,
+        "facts": [
+          "F-pay-exec-0002",
+          "F-pay-exec-0003"
+        ],
+        "note": "median is the midpoint of the reported $1M to $3M range (c.2013 and c.2023)"
+      }
     },
     "pos:athletic_director": {
-      "group_of_six": { "low": 410000, "median": 426000, "high": 550000, "facts": ["F-pay-exec-0008"], "note": "median of six Mountain West directors, 2024" },
-      "college_second": { "low": 213977, "median": 255840, "high": 331000, "facts": ["F-pay-college-second-0016"], "note": "median of five directors found, 2025-26" }
+      "group_of_six": {
+        "low": 410000,
+        "median": 426000,
+        "high": 550000,
+        "facts": [
+          "F-pay-exec-0009"
+        ],
+        "note": "median of six Mountain West directors, 2024"
+      },
+      "college_second": {
+        "low": 213977,
+        "median": 255840,
+        "high": 331000,
+        "facts": [
+          "F-pay-college-second-0017"
+        ],
+        "note": "median of five directors found, 2025-26"
+      }
     }
   }
 }
