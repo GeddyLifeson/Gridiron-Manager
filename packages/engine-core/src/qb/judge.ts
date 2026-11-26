@@ -8,7 +8,7 @@
 import { SLOTS_PER_TEAM, SLOT_COUNT, type DeterministicMath, type PerceivedView, type PlayPoint } from '@gm/schema';
 import type { CatchPointContests, DefenderPosition } from '../contest/index.ts';
 import { dSqrt } from '../dmath.ts';
-import { clip, expectedPlacementError, insideRadiusShare } from './formulas.ts';
+import { clip, depthBand, expectedPlacementError, insideRadiusShare } from './formulas.ts';
 import type { QbParams } from './params.ts';
 import type { QbTarget, QbValueModel } from './play.ts';
 
@@ -352,7 +352,13 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     // Step 5: the catch-point model's shape.
     const air = ax > 0 ? ax : 0;
     const radius = ctx.catchPoint.catchRadiusYd(0, false) + p['judge.reachAdjustYd'], sd = ctx.accuracySdYd(air);
-    const catchable = insideRadiusShare(radius, sd, ctx.math), placement = expectedPlacementError(radius, sd);
+    // His own miss is judged against what the receiver can make up while the ball is in the air (the catch-point stage
+    // uses the same reach): a longer flight forgives a larger miss.
+    const tracked = flight > p['judge.airReachReactS'] ? flight - p['judge.airReachReactS'] : 0;
+    const reach = ctx.catchPoint.catchRadiusYd(0, false) + p['judge.airReachYdPerS2'] * tracked * tracked;
+    // A deep ball misses long or short more than wide; the round-error formula takes the geometric mean of the two spreads.
+    const sdRound = depthBand(air, p) === 'deep' ? sd * dSqrt(p['acc.deepAlongRatio']) : sd;
+    const catchable = insideRadiusShare(reach, sdRound, ctx.math), placement = expectedPlacementError(reach, sdRound);
     let pHat: number, iHat: number;
     // A defender can play any ball that comes down inside his reach (the catch-point stage gives him the same radius),
     // so that is the separation at which the throw stops being open. Judging it open down to one yard had him throw
@@ -365,6 +371,14 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
       iHat = catchable * probs[2]! + (1 - catchable) * p['judge.missPickContested'];
     } else {
       pHat = catchable * ctx.catchPoint.uncontestedCatchProbability({ zHands: target.zHands ?? 0, placementError: placement, hitAtCatch: false, wet: ctx.wet });
+      // The longer the ball hangs, the likelier a defender he did not count is there when it comes down.
+      const hang = air - p['acc.midFromYd'], late = hang > 0 ? clip(hang * p['judge.lateHelpPerYd'], 0, 1) : 0;
+      if (late > 0) {
+        const probs = ctx.catchPoint.contestedProbabilities({
+          zContestedCatch: target.zContestedCatch ?? 0, zBallSkills: 0, position: 'inPhase', ballLocated: true, placementError: placement, hitAtCatch: false, wet: ctx.wet,
+        });
+        pHat = (1 - late) * pHat + late * catchable * probs[0]!;
+      }
       // A long ball that misses hangs for defenders he never looked at (the deep safety is rarely in his view when he
       // watches the receiver). With one flat share he rated a 30 yd throw 1.4% to be picked; those throws were picked
       // 4 to 12% of the time (real 5.8% at 21 to 30 yd, 8.1% beyond), and he threw them at every chance.

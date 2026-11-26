@@ -94,6 +94,17 @@ const ROWS = [
   ['judge.lanePickShare', 0.35, 0.1, 0.7, 'probability', 'assumption', 'J7.3.1', RATES],
   // J6.5 reach test "given where he can get to": how far he expects the receiver to adjust to the ball in flight.
   ['judge.reachAdjustYd', 1.0, 0, 2.5, 'yd', 'assumption', 'J7.3.1', 'J7.3.1 acceptance; J15 completion by depth (DP-1)'],
+  // A long ball hangs, and help he never looked at gets there: the share of throws he reads as open that he expects to
+  // be contested when the ball comes down, per air yard beyond acc.midFromYd. Without it he rated open-looking deep
+  // balls 0.5 to 0.7 to complete, they were caught 0.22 to 0.26, and he threw deep on a quarter of his attempts.
+  ['judge.lateHelpPerYd', 0.05, 0, 0.08, 'probability/yd', 'assumption', 'J7.3.1', 'J15.4.1 completion by depth; pass.airYardsPerAttempt; contested share of aimed throws by depth (FTN charting, 1 of 3)'],
+  // What the intended receiver can make up on a ball that misses its aim point: his reach is his catch radius plus
+  // airReachYdPerS2 times the square of the flight time left after airReachReactS (the time it takes him to see where
+  // the ball is going). A miss beyond that reach is uncatchable for him. Fitted, with the engine's own flight times, to
+  // the charted catchable share of aimed throws by depth from a clean pocket (FTN 2023 to 2024: 85% short, 67%
+  // intermediate, 46% deep; 1 of 3).
+  ['judge.airReachReactS', 0.8, 0, 1.5, 's', 'assumption', 'J7.3.1', 'catchable share of aimed throws by depth and pressure (FTN charting, 1 of 3); J15.4.1 completion by depth'],
+  ['judge.airReachYdPerS2', 1.0, 0, 3, 'yd/s^2', 'assumption', 'J7.3.1', 'catchable share of aimed throws by depth and pressure (FTN charting, 1 of 3); J15.4.1 completion by depth'],
   // A receiver running at the sideline turns up it this far inside (football-lang `route.sidelineRoomYd`).
   ['judge.sidelineRoomYd', 2, 0.5, 5, 'yd', 'assumption', 'J7.3.1', STRUCT],
   // Tuned from 0.10 (Assumption) against J15.4.1 interceptions by depth: an off-target ball into coverage is picked far
@@ -101,7 +112,7 @@ const ROWS = [
   ['judge.missPickContested', 0.25, 0, 0.3, 'probability', 'assumption', 'J7.3.1', RATES],
   ['judge.missPickOpen', 0.02, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
   // Added share of off-target balls picked per yard of air beyond the short band, receiver judged open (J15 interceptions by depth).
-  ['judge.missPickOpenPerYd', 0.002, 0, 0.01, 'probability/yd', 'assumption', 'J7.3.1', RATES],
+  ['judge.missPickOpenPerYd', 0.008, 0, 0.01, 'probability/yd', 'assumption', 'J7.3.1', RATES],
   ['judge.positionTolYd', 0.5, 0.2, 1.5, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.undercutLateralYd', 2, 1, 4, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.yacBaseYd', 2, 0, 5, 'yd', 'assumption', 'J7.3.1', 'J15 yards after catch (N2)'],

@@ -194,7 +194,7 @@ export const PARAMS: ParamFile = {
     ]),
     // J6.5.1 step 3 names the inputs of the contested softmax and its ordering, not the weights.
     ...group('contested catch softmax', 'J6.5.1', CATCH, [
-      ['contested.catch0', 0.4, -1, 2, 'score', 'a'], // tuned from 0.6 against J15.4.1 completion by depth (1 of 3)
+      ['contested.catch0', 0.9, -1, 2, 'score', 'a'], // tuned from 0.4 with the miss-based placement error: contested targets are caught 48% short, 43% intermediate, 31% deep (FTN charting 2023 to 2024, 1 of 3)
       ['contested.catchDz', 0.5, 0.1, 1.2, 'score/z', 'a'],
       ['contested.catchPlacement', -1.0, -3.0, 0, 'score per unit error', 'a'],
       ['contested.catchHit', -0.6, -2.0, 0, 'score', 'a'],
