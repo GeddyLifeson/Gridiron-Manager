@@ -158,7 +158,10 @@ function benchAfterPlay(state: GameState, record: Contract.PlayRecord): GameStat
     };
     for (const id of onFieldIds) visit(id);
     for (const id of ejectedIds) visit(id);
-    if (counts) for (const id in bench) if (bench[id]!.requiredAbsenceDowns > 0) visit(id);
+    // Rows sitting out downs are rare: a quick look at the values first, the ids only when one is found.
+    if (counts && Object.values(bench).some((p) => p.requiredAbsenceDowns > 0)) {
+      for (const id of Object.keys(bench)) if (bench[id]!.requiredAbsenceDowns > 0) visit(id);
+    }
     return out;
   };
   const a = side(state.gameDay[0]), b = side(state.gameDay[1]);

@@ -194,7 +194,16 @@ function write(v: unknown): void {
           const kb = shape.keyBytes;
           for (let j = from; j < to; j++) buf[len++] = kb[j]!;
         }
-        write(x);
+        // Numbers and booleans inline (most fields); everything else through write.
+        if (typeof x === 'number' && x - x === 0) {
+          if (len + 9 > buf.length) grow(len + 9);
+          buf[len] = T_NUM;
+          dv.setFloat64(len + 1, x === 0 ? 0 : x, true);
+          len += 9;
+        } else if (x === true || x === false) {
+          if (len + 1 > buf.length) grow(len + 1);
+          buf[len++] = x ? T_TRUE : T_FALSE;
+        } else write(x);
         written++;
       }
       u32At(countAt, written);
