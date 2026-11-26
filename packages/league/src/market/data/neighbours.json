@@ -1,0 +1,16 @@
+{
+ "$comment": "C8.3.1 edge case: a position with too few contracts in the world prices from a pooled scale with a neighbouring position. Position groups are the cap module's tag positions (TAG_POSITIONS, CBA Art. 10). Pairings are this module's design choice (Assumption), by similar role and pay level; callers may pass their own map.",
+ "neighbours": {
+  "QB": "QB",
+  "RB": "WR",
+  "WR": "TE",
+  "TE": "WR",
+  "OL": "IDL",
+  "DE": "LB",
+  "IDL": "DE",
+  "LB": "DE",
+  "CB": "S",
+  "S": "CB",
+  "K/P": "K/P"
+ }
+}
