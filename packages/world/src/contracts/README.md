@@ -51,7 +51,10 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 - **PC-06** A contract ends when it runs out, when the club no longer rosters the player, or when he leaves
   football. A release before the last year pays the guaranteed salary still owed, all at once, as player pay.
   This is a simplification: the CBA pays on schedule, and offset is not modelled. Retirement ends the contract
-  outright, where the CBA would toll it on the reserve/retired list.
+  outright, where the CBA would toll it on the reserve/retired list. On the cap the same timing is the CBA's: future
+  guaranteed salary goes into Team Salary at the release (Art. 13 s.6(d)(iv), read in cba_2020.txt lines 6295 to 6299), so the
+  front office's cutdown counts it against this year's cap and never cuts a club over it (world turnover TO-19, front-office
+  GM-17). Players cut at the cutdown can sign with other clubs the same offseason (turnover TO-20) at the PC-12 price.
 - **PC-07** A league year's salaries are charged once, at the first pass of the year, after the roster cycle,
   as one `player_pay` entry per club (the same timing as staff pay, MO-07). The world's contracts carry no
   bonuses, so cash equals the cap charge.

@@ -399,6 +399,23 @@ describe('K7.3.1 in-season moves and K7.4.5 the cutdown', () => {
     expect(cutdown(NEUTRAL, { ...base, coachRank: new Map([[last, 1]]) }, ctx(), 0).keep).not.toContain(last);
     expect(cutdown(NEUTRAL, { ...base, minByPosition: { ...minByPosition, QB: 9 } }, ctx()).shortAt).toEqual(['QB']);
   });
+  it('the cutdown never leaves this year over the cap: a cut whose guarantees accelerate is swapped for one that saves room (K7.4.1 rule 2)', () => {
+    // The worst WR is owed guarantees that would all land this year if cut (CBA Art. 13 s.6(d)(iv)).
+    const wrs = [player('WR', 60), player('WR', 59), player('WR', 40)];
+    const input = { roster: wrs, limit: 2, minByPosition: {}, coachRank: new Map<number, number>(), draftedRound: new Map<number, number>(), deadCentsByYear: new Map<number, number[]>(), rounds: 7 };
+    expect(cutdown(NEUTRAL, input, ctx()).cut).toEqual([wrs[2]!.personId]);
+    const deltaIfCutCents = new Map([[wrs[0]!.personId, -500], [wrs[1]!.personId, -400], [wrs[2]!.personId, 2_000]]);
+    // Room for the acceleration: the cut stands.
+    expect(cutdown(NEUTRAL, { ...input, cap: { roomCents: 2_000, deltaIfCutCents } }, ctx()).cut).toEqual([wrs[2]!.personId]);
+    // No room: he is kept and the lowest-ranked player whose release saves room goes instead.
+    const tight = cutdown(NEUTRAL, { ...input, cap: { roomCents: 100, deltaIfCutCents } }, ctx());
+    expect(tight.cut).toEqual([wrs[1]!.personId]);
+    expect(tight.keep).toHaveLength(2);
+    // Across positions only when the same position cannot make the room.
+    const mixed = [player('WR', 60), player('WR', 40), player('CB', 45)];
+    const d2 = new Map([[mixed[0]!.personId, 3_000], [mixed[1]!.personId, 2_000], [mixed[2]!.personId, -10]]);
+    expect(cutdown(NEUTRAL, { ...input, roster: mixed, cap: { roomCents: 0, deltaIfCutCents: d2 } }, ctx()).cut).toEqual([mixed[2]!.personId]);
+  });
   it('practice squad, elevation, the undrafted board and hiding a player from waivers', () => {
     const young = [player('WR', 50, { age: 22, projected: { mean: 70, variance: 49 } }), player('WR', 52, { age: 27 }), player('CB', 45, { age: 22 })];
     expect(practiceSquad(NEUTRAL, young, 1, ctx())).toEqual([young[0]!.personId]);

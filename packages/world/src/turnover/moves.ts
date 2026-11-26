@@ -263,17 +263,20 @@ function streetMarket(c: Cycle, order: readonly number[], cut: readonly number[]
   if (!hook) return;
   let left = cut.filter((id) => available(c.world, id));
   const done = new Set<number>();
+  const signedBy = new Map<number, number>();
   let moved = true;
   while (moved && left.length > 0) {
     moved = false;
     for (const teamId of order) {
       if (done.has(teamId) || left.length === 0) continue;
+      if ((signedBy.get(teamId) ?? 0) >= param('street.signingsPerClub')) { done.add(teamId); continue; }
       const r = hook(c, teamId, left);
       if (r === null || !left.includes(r.sign) || !(c.world.rosters.get(teamId) ?? []).includes(r.drop)) { done.add(teamId); continue; }
       left = left.filter((x) => x !== r.sign);
       dropFromPools(c.world, r.sign);
       release(c, teamId, r.drop);
       sign(c, teamId, r.sign, 'free_agent');
+      signedBy.set(teamId, (signedBy.get(teamId) ?? 0) + 1);
       bump(c, 'street_signed');
       moved = true;
     }

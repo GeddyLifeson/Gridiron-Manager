@@ -429,6 +429,19 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     return Array.from({ length: Math.max(1, m.years) }, (_, k) => Math.max(m.apyCents, min(k)));
   };
 
+  // TO-19: at and after the cutdown this season's pay is spent whether a player stays or goes. The market has
+  // closed, and PC-13 spends the owner's budget on the players kept, so a cut buys nothing this year; only later
+  // years' pay and guarantees count. The cap still binds this year (capState and the K7.4.1 rule 2 repair pass).
+  const laterOnly = (xs: readonly number[]): number[] => xs.map((x, y) => (y === 0 ? 0 : x));
+  const cutBoard = (pc: PolicyContext, teamId: number, roster: readonly number[]) => {
+    const dead = new Map([...deadOf(pc, teamId, roster)].map(([id, d]) => [id, laterOnly(d)]));
+    const views: View[] = roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => {
+      const v = view(pc, teamId, id);
+      return { ...v, costCentsByYear: laterOnly(v.costCentsByYear.length > 0 ? v.costCentsByYear : expectedCost(pc, teamId, id)) };
+    });
+    return { views, dead };
+  };
+
   const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
 
   const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
@@ -511,15 +524,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     cutdown(pc, teamId, roster, limit, minByPosition) {
       if (!isPro(pc, teamId) || gmOut(pc, teamId)) return null;
       const t = teamOf(pc, teamId);
-      // TO-19: this season's pay is spent whether he stays or goes. The market has closed, and PC-13 spends the
-      // owner's budget on the players kept, so a cut buys nothing this year; only later years' pay is saved.
-      // The cap still binds this year (the repair pass of K7.4.1 rule 2).
-      const laterOnly = (xs: readonly number[]): number[] => xs.map((x, y) => (y === 0 ? 0 : x));
-      const dead = new Map([...deadOf(pc, teamId, roster)].map(([id, d]) => [id, laterOnly(d)]));
-      const views = roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => {
-        const v = view(pc, teamId, id);
-        return { ...v, costCentsByYear: laterOnly(v.costCentsByYear.length > 0 ? v.costCentsByYear : expectedCost(pc, teamId, id)) };
-      });
+      const { views, dead } = cutBoard(pc, teamId, roster);
       const result = gm.cutdown(t.profile, {
         roster: views,
         limit, minByPosition, coachRank: new Map(), draftedRound: pc.draftedRound, deadCentsByYear: dead,
@@ -532,9 +537,8 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
       if (!isPro(pc, teamId) || candidates.length === 0 || gmOut(pc, teamId)) return null;
       const t = teamOf(pc, teamId);
       const ids = (pc.world.rosters.get(teamId) ?? []).filter((id) => pc.world.people.get(id)?.playing);
-      const roster = ids.map((id) => view(pc, teamId, id));
+      const { views: roster, dead } = cutBoard(pc, teamId, ids);
       const cs = capState(pc, teamId, ids);
-      const dead = deadOf(pc, teamId, ids);
       // K7.4.5 rule 3 score of each kept player: surplus plus the dead money a release would still cost.
       const keepScore = (v: View) => gm.playerWorth(t.profile, v, t.ctx).surplus + gm.costWins(t.profile, dead.get(v.personId) ?? [], t.ctx);
       const worst = new Map<string, { v: View; s: number }>();
@@ -551,7 +555,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
         const m = marketLine(pc, teamId, id);
         const price = Math.max(m.apyCents, m.minimumCents);
         if (cs && cs.roomCents - (cs.deltaIfCutCents.get(w.v.personId) ?? 0) - price < 0) continue;
-        const fa: View = { ...view(pc, teamId, id), costCentsByYear: Array.from({ length: Math.max(1, m.years) }, () => price) };
+        const fa: View = { ...view(pc, teamId, id), costCentsByYear: laterOnly(Array.from({ length: Math.max(1, m.years) }, () => price)) };
         if (gm.playerWorth(t.profile, fa, t.ctx).surplus <= w.s) continue;
         const gain = gm.rosterDelta(t.profile, roster, [fa], [w.v.personId], t.ctx) - gm.costWins(t.profile, dead.get(w.v.personId) ?? [], t.ctx);
         if (gain > gm.P('roster.claimMargin') && (!best || gain > best.gain)) best = { sign: id, drop: w.v.personId, gain, extra: price - m.minimumCents };
