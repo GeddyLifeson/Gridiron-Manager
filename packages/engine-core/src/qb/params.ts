@@ -270,8 +270,8 @@ const ROWS = [
   ['acc.minShare', 0.3, 0.1, 0.6, 'share', 'assumption', 'J7.6.2', STRUCT],
   ['acc.movingMult', 1.3, 1, 1.8, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.movingThrowSideMult', 1.15, 1, 1.5, 'ratio', 'bible', 'J7.6.2', ACC],
-  ['acc.hitMult', 1.8, 1.2, 2.5, 'ratio', 'bible', 'J7.6.2', ACC],
-  ['acc.faceMult', 1.25, 1, 1.6, 'ratio', 'bible', 'J7.6.2', ACC],
+  ['acc.hitMult', 2.5, 1.2, 2.5, 'ratio', 'bible', 'J7.6.2', ACC], // tuned from 1.8: pressured completion 62% against real 48.1% (1 of 3)
+  ['acc.faceMult', 1.6, 1, 1.6, 'ratio', 'bible', 'J7.6.2', ACC], // tuned from 1.25 with acc.hitMult
   ['acc.wetMult', 1.1, 1, 1.3, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.unsetMult', 1.15, 1, 1.5, 'ratio', 'assumption', 'J7.1.1', ACC],
   ['acc.multPerZ', 0.10, 0, 0.2, 'share/z', 'bible', 'J7.6.2', ACC],

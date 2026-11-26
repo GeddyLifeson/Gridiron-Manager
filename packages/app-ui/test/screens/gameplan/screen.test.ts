@@ -148,3 +148,27 @@ describe('call sheet screen (O3.4.2, G7, O3.4.3)', () => {
     for (const html of [plan(view(), 'plan'), plan(view(), 'matchups'), plan(view(), 'review'), ...SHEET_TABS.map((t) => sheet(view(), t))]) expect(html).not.toMatch(/>gp\.[a-z]/);
   });
 });
+
+describe('cellAt (drop point to grid cell)', () => {
+  it('maps the point and keeps the box on the page', async () => {
+    const { cellAt } = await import('../../../src/screens/gameplan/view.ts');
+    expect(cellAt(50, 25, 100, 100, { cols: 24, rows: 12 }, 4, 3)).toEqual({ col: 12, row: 3 });
+    expect(cellAt(99, 99, 100, 100, { cols: 24, rows: 12 }, 4, 3)).toEqual({ col: 20, row: 9 });
+    expect(cellAt(-5, -5, 100, 100, { cols: 24, rows: 12 }, 4, 3)).toEqual({ col: 0, row: 0 });
+  });
+});
+
+describe('call sheet layout: drag, arrows and last week', () => {
+  it('an editable sheet has draggable boxes and calls, arrow buttons, and the last-week action when the host has one', () => {
+    const out = renderToStaticMarkup(createElement(CallSheetScreen, { view: view(), tab: 'layout', readOnly: false, onTab: () => {}, onIntent: () => {}, canStartFromLastWeek: true }));
+    expect(out).toContain('draggable="true"');
+    expect(out).toContain('data-drag-box=');
+    expect(out).toContain('data-start-last-week');
+    expect(out).toContain('→');
+  });
+  it('read-only shows none of it', () => {
+    const out = renderToStaticMarkup(createElement(CallSheetScreen, { view: view(), tab: 'layout', readOnly: true, onTab: () => {}, onIntent: () => {}, canStartFromLastWeek: true }));
+    expect(out).not.toContain('draggable="true"');
+    expect(out).not.toContain('data-start-last-week');
+  });
+});

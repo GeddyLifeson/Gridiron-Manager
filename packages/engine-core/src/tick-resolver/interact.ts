@@ -17,7 +17,7 @@
 // are 0), stunts, chips, blocks in space as event contests, releases and separation (J6.4), the catch
 // point (J6.5). Tackles and ball security belong to the carrier module (WP-21).
 import {
-  BEHAVIORS, MOVE_MODES, SLOT_COUNT, TICK_S, issToZ, roundSimS, roundYd,
+  BEHAVIORS, MOVE_MODES, SLOT_COUNT, SLOTS_PER_TEAM, TICK_S, issToZ, roundSimS, roundYd,
   type Behavior, type ContestInstance, type ContestType, type EngagementParams, type TickWorld,
 } from '@gm/schema';
 import { dSqrt } from '../dmath.ts';
@@ -25,10 +25,12 @@ import type { Contests } from '../contest/index.ts';
 import type { EngagementLimit } from '../kinematics/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import { tickResolverParams, type TickResolverParams } from './params.ts';
+import { NOT_IN_PROTECTION, type ProtectionBinding } from '../protection/bind.ts';
 
 const DOWN = MOVE_MODES.indexOf('down');
 const code = (b: Behavior): number => BEHAVIORS.indexOf(b);
 const PASS_BLOCKERS = new Set([code('passSet'), code('protectKick')]);
+const RUSHERS = new Set([code('passRush'), code('blitz')]);
 const RUN_BLOCKERS = new Set([code('runBlock'), code('pull'), code('returnBlock'), code('kickReturnBlock')]);
 const COVERING = new Set([code('kickCoverage'), code('gunner')]);
 
@@ -56,6 +58,15 @@ export interface Interact {
   setPlay(contests: Contests, startAdvantage: ((blocker: number, defender: number) => number) | null): void;
   /** True while contest `index` of `world.contests` is still being fought. */
   isOpen(index: number): boolean;
+  /**
+   * The play's bound protection (F5, J5.4.2), or null for none. Call after `setPlay`. With one, a pass blocker in it
+   * takes only the man, the gap or the scan list the binding gave him until he is let go to look for work
+   * (J6.2.3), and a rusher nobody has runs free unless a blocker with no work reaches him late (J6.2.4).
+   * `passer` answers the slot of the passer in the pocket, or -1: unblocked pressures are noted against him.
+   */
+  setProtection(binding: ProtectionBinding | null, passer: (() => number) | null): void;
+  /** The football-lang block target of an offensive slot under the bound protection (`Ctx.blockTarget`). */
+  blockTarget(world: TickWorld, slot: number): number;
 }
 
 export function createInteract(): Interact {
@@ -64,6 +75,9 @@ export function createInteract(): Interact {
   let p: TickResolverParams | null = null;
   const open: boolean[] = [], interior: boolean[] = [], held: number[] = [], countered: boolean[] = [];
   const freeUntil = new Int32Array(SLOT_COUNT), everEngaged = new Uint8Array(SLOT_COUNT);
+  let binding: ProtectionBinding | null = null, passer: (() => number) | null = null;
+  // Per defender: 1 once an unblocked pressure was noted for him this play.
+  const freeNoted = new Uint8Array(SLOT_COUNT);
   /** `beaten[blocker * SLOT_COUNT + coverMan]`: this blocker's hold-up of this cover man is over for the play. */
   const beaten = new Uint8Array(SLOT_COUNT * SLOT_COUNT);
 
@@ -186,15 +200,71 @@ export function createInteract(): Interact {
     return false;
   };
 
+  // ---- The bound protection (F5, J5.4.2, J6.2.4).
+  const depthOf = (w: TickWorld, d: number): number => (w.players.posX[d]! - w.frame.originX) * w.frame.attackDir;
+  const lateralOf = (w: TickWorld, d: number): number => (w.players.posY[d]! - w.frame.originY) * w.frame.attackDir;
+  /** He is rushing: across the line, or closing on it from depth. */
+  const coming = (w: TickWorld, d: number, q: TickResolverParams): boolean => {
+    if (isDown(w, d)) return false;
+    const px = depthOf(w, d), closing = -w.players.velX[d]! * w.frame.attackDir;
+    // On the line he is a rusher until he backs off it; from depth he is one when he closes on it.
+    if (px <= q['interact.onLineDepthYd']!) return closing > -q['interact.comingYps']!;
+    return px <= q['interact.comingDepthYd']! && closing > q['interact.comingYps']!;
+  };
+  const lookingForWork = (w: TickWorld): boolean => contests !== null && contests.passRush.slideHelpReady((w.tick + 1) * TICK_S);
+  /**
+   * Who blocker `b` has right now under the binding: a world slot; -1 nobody, free to help; -2 nobody yet, waiting
+   * (a back whose scan has not shown a rusher); -3 he is not in the protection.
+   */
+  const assigned = (w: TickWorld, b: number, q: TickResolverParams): number => {
+    if (binding === null || b >= binding.man.length) return NOT_IN_PROTECTION;
+    const m = binding.man[b]!;
+    if (m === NOT_IN_PROTECTION) return NOT_IN_PROTECTION;
+    const z = binding.zone[b];
+    const slides = z !== null && z !== undefined;
+    // His man, while he comes. A man blocker waits on him until the look-for-work time (J6.2.3); a slide man
+    // has the gap, not the man, so he lets a dropper go at once.
+    if (m >= 0 && !isDown(w, m) && (coming(w, m, q) || w.players.engagement[b]! >= 0 || (!slides && !lookingForWork(w)))) return m;
+    if (m >= 0 && !slides) return -1;
+    const list = binding.scan[b];
+    if (list !== null && list !== undefined) {
+      // F5.5.1: the first on his list who comes; with two coming he has the inside one.
+      for (let i = 0; i < list.length; i++) if (coming(w, list[i]!, q) && everEngaged[list[i]!] === 0) return list[i]!;
+      return lookingForWork(w) ? -1 : -2;
+    }
+    if (slides) {
+      // F5.4.1: whoever enters his gap, the nearest the line first.
+      let best = -1, bestPx = Infinity;
+      for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
+        if (!coming(w, d, q) || w.players.engagement[d]! >= 0) continue;
+        const py = lateralOf(w, d), px = depthOf(w, d);
+        if (py >= z[0] - q['interact.zoneSlackYd']! && py <= z[1] + q['interact.zoneSlackYd']! && px < bestPx) { best = d; bestPx = px; }
+      }
+      return best;
+    }
+    return -1;
+  };
+  /** Some blocker of the protection has defender `d` as his man right now. */
+  const accountedFor = (w: TickWorld, d: number, q: TickResolverParams): boolean => {
+    if (binding === null) return true;
+    for (let b = 0; b < binding.man.length; b++) if (binding.man[b] !== NOT_IN_PROTECTION && assigned(w, b, q) === d) return true;
+    return false;
+  };
+
   const tryOpen = (w: TickWorld, b: number, q: TickResolverParams): void => {
     const pl = w.players, beh = pl.behavior[b]!, pass = PASS_BLOCKERS.has(beh);
     if (!pass && !RUN_BLOCKERS.has(beh)) return;
     if (pl.engagement[b]! >= 0 || pl.hasBall[b] === 1 || isDown(w, b)) return;
     const side = w.slots[b]!.side, reach = q['interact.contactGapYd']!;
+    // Under a bound protection he takes his own man at once; anyone else only as help on a block already made, or,
+    // once he is let go to look for work, late (J6.2.3, J6.2.4).
+    const mine = pass && b < SLOTS_PER_TEAM ? assigned(w, b, q) : NOT_IN_PROTECTION;
+    const bound = mine !== NOT_IN_PROTECTION, work = bound && mine === -1 && lookingForWork(w);
     let best = -1, bestGap = reach;
     for (let d = 0; d < SLOT_COUNT; d++) {
       if (w.slots[d]!.side === side || pl.hasBall[d] === 1 || isDown(w, d) || w.tick < freeUntil[d]! || beaten[b * SLOT_COUNT + d] === 1) continue;
       const e = pl.engagement[d]!;
+      if (bound && d !== mine && (mine >= 0 || (e < 0 && (!work || accountedFor(w, d, q))))) continue;
       // An opponent who is himself blocking someone, or who already has two men on him, is not picked up.
       if (e >= 0 && (w.contests[e]!.defenseSlot !== d || w.contests[e]!.helperSlots.length > 0)) continue;
       const g = gap(w, b, d);
@@ -212,14 +282,32 @@ export function createInteract(): Interact {
     const idB = w.slots[b]!.playerId, idD = w.slots[best]!.playerId, sit = w.situation;
     const first = everEngaged[best] === 0;
     everEngaged[best] = 1;
+    // J6.2.4: a rusher the protection did not expect (not a line threat, the Mike or on a scan list when it was set)
+    // is picked up late, whether he lands in a slider's gap or on a man looking for work.
+    const late = bound && RUSHERS.has(pl.behavior[best]!) && !binding!.expected.includes(best);
     const index = w.contests.length;
     w.contests.push({
-      type, offenseSlot: b, defenseSlot: best, advantage: first && startAdvantage !== null ? startAdvantage(b, best) : 0, startedTick: w.tick, helperSlots: [],
+      type, offenseSlot: b, defenseSlot: best, advantage: late ? contests!.passRush.startAdvantage('lateRecognition') : first && startAdvantage !== null ? startAdvantage(b, best) : 0, startedTick: w.tick, helperSlots: [],
       stream: w.streams('contest', [sit.gameId, sit.playNumber, idB < idD ? idB : idD, idB < idD ? idD : idB, type]),
     });
     const py = (pl.posY[best]! - w.frame.originY) * w.frame.attackDir;
     open[index] = true; interior[index] = (py < 0 ? -py : py) <= q['interact.interiorHalfWidthYd']!; held[index] = 0; countered[index] = false;
     pl.engagement[b] = index; pl.engagement[best] = index;
+    if (late) w.emit({ type: 'detail', t: roundSimS((w.tick + 1) * TICK_S), code: 'protection.late_pickup', playerIds: [idB, idD], spot: null, value: null });
+  };
+
+  /** J6.2.4: a rusher no blocker ever touched who reaches the passer's pressure distance is an unblocked pressure. Noted once each. */
+  const noteFree = (w: TickWorld, q: TickResolverParams): void => {
+    const c = w.ball.kind === 'held' ? w.ball.carrierSlot : -1;
+    if (c < 0 || passer === null || c !== passer() || depthOf(w, c) > 0) return;
+    const pl = w.players, reach = q['interact.freePressureYd']!;
+    for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
+      if (everEngaged[d] === 1 || freeNoted[d] === 1 || isDown(w, d) || !RUSHERS.has(pl.behavior[d]!)) continue;
+      const dx = pl.posX[d]! - pl.posX[c]!, dy = pl.posY[d]! - pl.posY[c]!;
+      if (dSqrt(dx * dx + dy * dy) > reach) continue;
+      freeNoted[d] = 1;
+      w.emit({ type: 'detail', t: roundSimS((w.tick + 1) * TICK_S), code: 'protection.unblocked_pressure', playerIds: [w.slots[d]!.playerId], spot: null, value: null });
+    }
   };
 
   const stage: PlayStage = {
@@ -227,7 +315,7 @@ export function createInteract(): Interact {
     begin(w: TickWorld): void {
       p = tickResolverParams(w.params);
       open.length = 0; interior.length = 0; held.length = 0; countered.length = 0;
-      freeUntil.fill(-2147483648); everEngaged.fill(0); beaten.fill(0);
+      freeUntil.fill(-2147483648); everEngaged.fill(0); freeNoted.fill(0); beaten.fill(0);
     },
     run(w: TickWorld): void {
       if (w.tick < 0 || w.deadAtTick !== null || contests === null) return;
@@ -235,6 +323,7 @@ export function createInteract(): Interact {
       const n = w.contests.length;
       for (let i = 0; i < n; i++) if (open[i]) step(w, i, q);
       for (let b = 0; b < SLOT_COUNT; b++) tryOpen(w, b, q);
+      if (binding !== null) noteFree(w, q);
     },
   };
 
@@ -251,7 +340,9 @@ export function createInteract(): Interact {
   return {
     stage, limit,
     slipping: (w, slot) => w.tick >= 0 && w.tick < freeUntil[slot]!,
-    setPlay(c, start) { contests = c; startAdvantage = start; },
+    setPlay(c, start) { contests = c; startAdvantage = start; binding = null; passer = null; },
+    setProtection(b, who) { binding = b; passer = who; },
+    blockTarget: (w, slot) => { const t = assigned(w, slot, p ?? (p = tickResolverParams(w.params))); return t === NOT_IN_PROTECTION ? -1 : t; },
     isOpen: (index) => open[index] === true,
   };
 }

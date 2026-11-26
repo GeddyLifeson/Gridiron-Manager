@@ -92,7 +92,7 @@ describe('J7 formulas', () => {
     const moving = qb.platformMultiplier({ ...qb.SET_PLATFORM, moving: true }, 0, 0, 1, P);
     expect(moving).toBeCloseTo(1.3, 12);
     expect(qb.platformMultiplier({ ...qb.SET_PLATFORM, moving: true, toThrowingSide: true }, 0, 0, 1, P)).toBeCloseTo(1.15, 12);
-    expect(qb.platformMultiplier({ ...qb.SET_PLATFORM, moving: true, hit: true }, 0, 0, 1, P)).toBeCloseTo(1.3 * 1.8, 12);
+    expect(qb.platformMultiplier({ ...qb.SET_PLATFORM, moving: true, hit: true }, 0, 0, 1, P)).toBeCloseTo(1.3 * P['acc.hitMult'], 12);
     expect(qb.platformMultiplier({ ...qb.SET_PLATFORM, moving: true }, 30, 0, 1, P)).toBe(1);
     expect(qb.platformMultiplier(qb.SET_PLATFORM, 0, 0, 1.2, P)).toBeCloseTo(1.2, 12);
   });

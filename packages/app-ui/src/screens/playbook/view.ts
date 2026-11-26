@@ -16,6 +16,8 @@ export function pt(id: string, slots: Record<string, string | number> = {}): str
 export interface UiFilter {
   text?: string; formation?: string; concept?: string; personnel?: string; role?: string; situation?: string; status?: string;
   readinessAtLeast?: number; includeRetired?: boolean;
+  /** One of the coach's folders: only its plays, in his order. */
+  folder?: string;
 }
 export interface UiRow {
   id: string; call: string; family: string; section: string; personnel: string; formation: string; concept: string; protection: string;
@@ -26,6 +28,7 @@ export interface UiFamily { key: string; plays: readonly string[]; gaps: readonl
 export interface UiWord { partId: string; type: string; word: string; syllables: number; usedBy: number; duplicate: boolean; soundsLike: readonly string[] }
 export interface UiLock { allowed: boolean; heldBy: string | null; suggest: boolean }
 export interface UiOption { id: string; word: string }
+export interface UiFolder { id: string; name: string; playIds: readonly string[] }
 export interface PlaybookUi {
   teamId: number; side: 'offense' | 'defense' | 'special_teams';
   sections: readonly { key: string; count: number }[]; rows: readonly UiRow[]; total: number;
@@ -33,6 +36,8 @@ export interface PlaybookUi {
   size: { readinessCeiling: number; upkeep: number; capacity: number; warning: 'none' | 'amber' | 'red'; warnings: readonly string[]; sectionUpkeep: readonly { section: string; units: number; share: number }[] } | null;
   locks: Readonly<Record<'view' | 'draft_play' | 'edit_group_coaching_points' | 'edit_side_playbook' | 'build_plan_and_sheet' | 'approve' | 'draw_scout_cards', UiLock>>;
   filter: UiFilter;
+  /** The coach's own folders, in his order. */
+  folders: readonly UiFolder[];
   options: { formation: readonly UiOption[]; concept: readonly UiOption[]; personnel: readonly UiOption[] };
 }
 
@@ -49,12 +54,19 @@ export type PlaybookIntent =
   | { kind: 'add_to_install'; playIds: string[] }
   | { kind: 'add_to_plan'; playIds: string[] }
   /** Save the current filter as a named set (O3.3.1 saved filter sets); the host keeps it per user. */
-  | { kind: 'save_filter'; name: string; filter: UiFilter };
+  | { kind: 'save_filter'; name: string; filter: UiFilter }
+  /** The coach's own folders (commands/playbook folder commands). */
+  | { kind: 'create_folder'; name: string }
+  | { kind: 'rename_folder'; folderId: string; name: string }
+  | { kind: 'delete_folder'; folderId: string }
+  | { kind: 'reorder_folder'; folderId: string; index: number }
+  | { kind: 'file_plays'; folderId: string; playIds: string[]; index?: number; fromFolderId?: string }
+  | { kind: 'unfile_plays'; folderId: string; playIds: string[] };
 
 /** A saved filter set, kept by the host as a user preference (not world state). */
 export interface SavedFilter { name: string; filter: UiFilter }
 
-export const TABS = ['library', 'families', 'words', 'size'] as const;
+export const TABS = ['library', 'folders', 'families', 'words', 'size'] as const;
 export type Tab = (typeof TABS)[number];
 export const ROLES = ['base', 'complement', 'constraint', 'situational', 'shot'] as const;
 export const STATUSES = ['draft', 'valid', 'installed', 'retired'] as const;
@@ -90,7 +102,7 @@ export function sortFromView(view: Record<string, string>): UiSort | null {
   return key ? { key, dir: view.dir === 'desc' ? 'desc' : 'asc' } : null;
 }
 
-const FILTER_KEYS = ['text', 'formation', 'concept', 'personnel', 'role', 'situation', 'status'] as const;
+const FILTER_KEYS = ['text', 'formation', 'concept', 'personnel', 'role', 'situation', 'status', 'folder'] as const;
 
 /** The filter lives in the address (O1.1.3) as strings, so back and forward keep it. */
 export function filterFromView(view: Record<string, string>): UiFilter {
@@ -106,3 +118,6 @@ export function filterToView(base: Record<string, string>, f: UiFilter): Record<
   if (f.includeRetired) out.retired = '1';
   return out;
 }
+
+/** New position of an item moved one step up (-1) or down (+1) in a list of `len`, clamped. */
+export const stepIndex = (at: number, step: -1 | 1, len: number): number => Math.max(0, Math.min(len - 1, at + step));

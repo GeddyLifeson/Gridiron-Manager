@@ -49,6 +49,7 @@ export function playbookRoute(host: PlaybookHost): RouteEntry {
           p.setView(next);
         },
         savedFilters: host.savedFilters?.(side) ?? [],
+        onOpenFolder: (id) => p.setView({ ...filterToView(p.location.view, { folder: id }), tab: 'library' }),
       });
     },
   };
