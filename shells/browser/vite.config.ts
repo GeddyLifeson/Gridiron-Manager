@@ -9,5 +9,8 @@ export default defineConfig({
   // Tauri expects a fixed port in development.
   server: { port: 5173, strictPort: true, fs: { allow: ['../..'] } },
   build: { outDir: 'dist', target: 'es2022', sourcemap: true },
-  optimizeDeps: { exclude: ['sql.js'] },
+  // sql.js is CommonJS: it must be pre-bundled in dev, or its default export is undefined and the app is blank.
+  optimizeDeps: { include: ['sql.js'] },
+  // The new-game history worker imports the app's modules as ES modules.
+  worker: { format: 'es' },
 });

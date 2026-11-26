@@ -6,7 +6,9 @@ import { createRealGame } from '../../src/real-game/index.ts';
 const seedOf = (i: number) => (i + 1).toString(16).padStart(16, '0');
 
 function sample(ruleSetId: string, games: number, paramOverrides: Record<string, number> = {}) {
-  const game = createRealGame(ruleSetId, { paramOverrides });
+  // The chart and pace plumbing on the reference resolver: the tick engine's pace is the stat gate's to judge
+  // (calibrate), and is not tuned yet.
+  const game = createRealGame(ruleSetId, { paramOverrides, resolver: 'reference' });
   let plays = 0, noHuddle = 0, timeouts = 0;
   const gaps: number[] = [];
   const boxes = new Map<number, number>();

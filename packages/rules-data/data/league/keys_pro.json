@@ -2728,6 +2728,145 @@
     "league (G-10 data)"
    ],
    "unit": "USD"
+  },
+  {
+   "key": "league.officiating_review.max_plays",
+   "type": "number",
+   "meaning": "Plays a head coach may send to the league office for review per week",
+   "ownerLeaf": "I10.5.3",
+   "readBy": [
+    "career/gameday"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "comm.c2p_equity_on_failure",
+   "type": "boolean",
+   "meaning": "On a total coach-to-player radio failure the other club also loses its radio until both work (equity rule)",
+   "ownerLeaf": "G4.4.3",
+   "readBy": [
+    "football-content/playbook"
+   ]
+  },
+  {
+   "key": "cap.amount_2020",
+   "type": "number",
+   "meaning": "Salary cap per club, 2020",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "cap.player_cost_media_pct",
+   "type": "number",
+   "meaning": "Player Cost Amount: percent of projected League Media revenue",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.player_cost_ventures_pct",
+   "type": "number",
+   "meaning": "Player Cost Amount: percent of projected NFL Ventures/Postseason revenue",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.player_cost_local_pct",
+   "type": "number",
+   "meaning": "Player Cost Amount: percent of projected Local revenue",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.player_cost_joint_contribution_pct",
+   "type": "number",
+   "meaning": "Player Cost Amount: percent of the Joint Contribution Amount subtracted",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.player_cost_ceiling_pct_ar",
+   "type": "number",
+   "meaning": "Player Cost Amount is reduced to at most this percent of Projected AR (2021-2030)",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.player_cost_floor_pct_ar",
+   "type": "number",
+   "meaning": "Player Cost Amount is raised to at least this percent of Projected AR (2021-2030)",
+   "ownerLeaf": "C6.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.min_cash_period_2017_2020_pct",
+   "type": "number",
+   "meaning": "Minimum team cash spending over the 2017-2020 period, percent of that period's caps",
+   "ownerLeaf": "C6.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.min_cash_period_2021_2023_pct",
+   "type": "number",
+   "meaning": "Minimum team cash spending over the 2021-2023 period, percent of that period's caps",
+   "ownerLeaf": "C6.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.min_cash_period_2024_2026_pct",
+   "type": "number",
+   "meaning": "Minimum team cash spending over the 2024-2026 period, percent of that period's caps",
+   "ownerLeaf": "C6.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.min_cash_period_2027_2030_pct",
+   "type": "number",
+   "meaning": "Minimum team cash spending over the 2027-2030 period, percent of that period's caps",
+   "ownerLeaf": "C6.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "cap.league_wide_cash_pct",
+   "type": "number",
+   "meaning": "Guaranteed league-wide cash spending, percent of the caps times the number of clubs",
+   "ownerLeaf": "C6.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
   }
  ]
 }

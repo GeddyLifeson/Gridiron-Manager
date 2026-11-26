@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest';
 import { ReadModelRegistry, buildReadModel, PUBLIC_OBSERVER, tablesOf, type Observer } from '../../../src/observer/index.ts';
 import { legendsReadModels, LEGENDS_MODELS, SearchIndex, type LegendsSources, type PageModel, type Chronicle } from '../../../src/read-models/legends/index.ts';
 import { tenSeasons, calendar, line, TYPE_DEFS, COMP, FIRST, headOf, ev } from './fixture.ts';
-import { LEGENDS_SCHEMAS } from './schemas.ts';
+import { LEGENDS_SCHEMAS } from '@gm/schema';
 
 const w = tenSeasons();
 // History-run rows: a season before the career with a title and a room-only meeting (X3.6.2 acceptance).
