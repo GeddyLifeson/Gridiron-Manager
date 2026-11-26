@@ -23,6 +23,11 @@ function commit(state: ComplianceState, a: Parameters<typeof act>[0], sink = new
 }
 
 describe('catalogue (L8.2.5 class table, T9.5.1, I11.8.1, K7.7.1)', () => {
+  it('MA-40 inspection rates: shading 10% / 60% by mismatch type (H5.2.3), concussion breach 0.95 (D11.4.1)', () => {
+    const ins = (id: string) => CLASSES.find((c) => c.id === id)!.inspection;
+    expect(ins('injury_report_shading')).toMatchObject({ p: 0.1, pMajor: 0.6, leaf: 'H5.2.3' });
+    expect(ins('concussion_protocol')).toMatchObject({ p: 0.95, leaf: 'D11.4.1' });
+  });
   it('every row is valid and ids are unique', () => {
     expect(CLASSES.length).toBe(classesJson.classes.length);
     for (const r of classesJson.classes) expect(classProblems(r)).toEqual([]);
@@ -251,10 +256,12 @@ describe('AI decision K2.8.2 and staff requests K6.6.1', () => {
     expect(count(0.9, 0)).toBeGreaterThan(base);
     expect(base).toBeGreaterThan(0);
   });
-  it('an imported person never decides to violate; the cooldown stops repeats', () => {
+  it('an imported person never decides to violate; the cooldown stops repeats except for the floor-chance slip', () => {
     expect(decideViolation(emptyCompliance(), opp(1), disp(-3, 1, { origin: 'imported' }), D(2026, 1), always)).toMatchObject({ commit: false, reason: 'protected_person' });
     const { state } = commit(emptyCompliance(), { classId: 'recruiting_contact', actor: party(7, 'recruiter'), date: D(2026, 1) }, new MemorySink(), college);
-    expect(decideViolation(state, opp(1), disp(-3, 1), D(2026, 8), always).reason).toBe('cooldown');
+    // A3.1 ruling 22: inside the cooldown only the floor-chance slip draw remains, so a draw that misses it is a cooldown and one that hits it commits.
+    expect(decideViolation(state, opp(1), disp(-3, 1), D(2026, 8), never).reason).toBe('cooldown');
+    expect(decideViolation(state, opp(1), disp(-3, 1), D(2026, 8), always).reason).toBe('commit');
   });
   it('a request to a high-ruleRespect assistant is refused over 90 percent of the time', () => {
     let refused = 0;

@@ -1,0 +1,238 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-market-0001",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Professional head coach firings per season, 2017 to 2025 seasons, ranged five to nine (upper end).",
+   "value": 9,
+   "unit": "count",
+   "validFor": "seasons 2017-2025",
+   "sources": [
+    {
+     "citation": "SI, NFL head coach firings by year, 2026-01-06",
+     "locator": "https://www.si.com/nfl/nfl-head-coach-firings-by-year (read 2026-11-26 through a fetch agent: 7,8,5,7,8,5,9,7,8)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-firings",
+     "primary": false,
+     "value": 9
+    },
+    {
+     "citation": "research/coach-career-facts.md section 3 (same SI table)",
+     "locator": "coach-career-facts.md line 48",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-firings",
+     "primary": false,
+     "value": 9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "E2.3.4 acceptance 2 target. The offseason after the 2025 season reached a record-tying 10 head coach openings (AOL wire, F-market-0002), so openings can exceed firings.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-80 job market; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-market-0002",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Head coach openings in the offseason after the 2025 season: a record-tying 10.",
+   "value": 10,
+   "unit": "count",
+   "validFor": "offseason after the 2025 season",
+   "sources": [
+    {
+     "citation": "AOL wire, 'NFL coach vacancies hit a record-tying 10 this cycle'",
+     "locator": "https://www.aol.com/articles/four-nfl-head-coach-firings-191401106.html (read 2026-11-26 through a fetch agent; season inferred from context)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aol-wire",
+     "primary": false,
+     "value": 10
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "The article names neither the season nor the earlier record; the season is inferred. Calibration upper tail only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-80 job market; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-market-0003",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Of first-time professional head coaches who started 2000 to 2021 and whose first job ended before 2025, the share who later held another head job.",
+   "value": 0.391,
+   "unit": "ratio",
+   "validFor": "n=110",
+   "sources": [
+    {
+     "citation": "research/audit-r31-r34.md R32 (project data file)",
+     "locator": "audit-r31-r34.md line 46",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "r32-project-data",
+     "primary": false,
+     "value": 0.391
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "E2.7.2 acceptance target (33% to 46% by cohort). One project data file only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-80 job market; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-market-0004",
+   "level": "pro",
+   "domain": "career",
+   "statement": "A club acquired a head coach still under contract to another club for a first-round and a second-round pick (January 2023); the largest fully reported coach-trade price.",
+   "value": 2,
+   "unit": "picks",
+   "validFor": "2023 case; mechanism evidence only, never shown in game",
+   "sources": [
+    {
+     "citation": "NBC Sports PFT, 'Saints to receive 2023 first-round pick, 2024 second-round pick in Sean Payton deal'",
+     "locator": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/saints-to-receive-2023-first-round-pick-2024-second-round-pick-in-sean-payton-deal (read 2026-11-26 through a fetch agent)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-pft",
+     "primary": false,
+     "value": 2
+    },
+    {
+     "citation": "SI, 2023-01-31, 'Broncos Sending Saints Two High Picks in Sean Payton Deal'",
+     "locator": "https://www.si.com/nfl/2023/01/31/denver-broncos-new-orleans-saints-sean-payton-compensation-draft-picks (headline, search result 2026-11-26)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-2023",
+     "primary": false,
+     "value": 2
+    },
+    {
+     "citation": "CBS Sports, Sean Payton trade grades ('Saints land two valuable picks')",
+     "locator": "https://www.cbssports.com/nfl/news/sean-payton-trade-grades-broncos-pony-up-for-super-bowl-winning-head-coach-saints-land-two-valuable-picks (headline, search result 2026-11-26)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-2023",
+     "primary": false,
+     "value": 2
+    },
+    {
+     "citation": "research/audit-r-coach-hiring.md R9 section 2, source group S21",
+     "locator": "audit-r-coach-hiring.md",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "audit-s21",
+     "primary": false,
+     "value": 2
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Value counts the high picks to the holder. PFT (summary of the page tail) adds a 2024 third-round pick back to the pursuer; the bible lists that as a Conflict between sources, not used. E2.5.3 maximum compensation = these two picks.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-80 job market; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-market-0005",
+   "level": "college",
+   "domain": "career",
+   "statement": "Share of major college head coach openings run through a search firm in one cycle (16 of 28, the cycle CBS Sports studied).",
+   "value": 0.571,
+   "unit": "ratio",
+   "validFor": "one cycle (about 2016)",
+   "sources": [
+    {
+     "citation": "FootballScoop 2025-03-05 citing Jon Solomon, CBS Sports: 16 of 28 openings, 11 disclosed fees, average about 70,000 dollars",
+     "locator": "https://www.footballscoop.com/2025/03/05/750000-spent-on-search-firms-to-hire-new-head-football-coaches-this-off-season (read 2026-11-26 through a fetch agent)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-solomon",
+     "primary": false,
+     "value": 0.571
+    },
+    {
+     "citation": "CBS Sports, 'College football coach search firms: Are they worth the money?' (the original study)",
+     "locator": "https://www.cbssports.com/college-football/news/college-football-coach-search-firms-are-they-worth-the-money (search result 2026-11-26)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-solomon",
+     "primary": false,
+     "value": 0.571
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Both sources trace to one study, so one independence group. E2.3.5 college key value 'a little over half'. No current share exists.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-80 job market; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-market-0006",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Median length in seasons of the first head coaching job of first-time professional head coaches whose first job ended before 2025.",
+   "value": 3,
+   "unit": "seasons",
+   "validFor": "n=110 (2000-2021 starts)",
+   "sources": [
+    {
+     "citation": "research/audit-r31-r34.md R32 (project data file)",
+     "locator": "audit-r31-r34.md line 45",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "r32-project-data",
+     "primary": false,
+     "value": 3
+    },
+    {
+     "citation": "HBS essay on NFL tenure 2000-2015 (middle half just over 2 to just under 5.5 seasons), read for R32",
+     "locator": "audit-r31-r34.md line 48",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hbs-essay",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "E2.7.2 starting check for first-job length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-80 job market; status computed from sources."
+    }
+   ]
+  }
+ ]
+}

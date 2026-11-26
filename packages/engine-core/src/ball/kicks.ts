@@ -3,7 +3,7 @@
 // its fixed raw-draw count. Players' grades arrive as effective z values (J6.1.1), built by the caller
 // from TRUE attributes for the live kick and from BELIEVED grades for the I4 and K5 estimate (J9.4.2
 // item 6), which never draws.
-import type { AttackDir, Environment, FieldGeometry, RandomStream } from '@gm/schema';
+import { possible, type AttackDir, type Environment, type FieldGeometry, type RandomStream } from '@gm/schema';
 import { dAtan2, dCos, dExp, dLog, dSin, dSqrt, logistic } from '../dmath.ts';
 import {
   airDrag, airState, flyToPlaneX, gustAimMultiplier, launchForDistanceAndHang, speedForCarry,
@@ -45,8 +45,8 @@ export interface Operation {
 export function cleanOperationChance(inp: OperationInput, p: BallParams): number {
   const wet = surfaceOf(inp.environment).wet ? 1 : 0;
   const cold = inp.environment.roof === 'open' && inp.environment.tempF < p['op.coldBelowF']! ? 1 : 0;
-  return logistic(p['op.cleanBeta0']! + p['op.cleanSnap']! * inp.zSnap + p['op.cleanHold']! * inp.zHold
-    + p['op.cleanWet']! * wet + p['op.cleanCold']! * cold + (inp.hurried ? p['op.hurryPenalty']! : 0));
+  return possible(logistic(p['op.cleanBeta0']! + p['op.cleanSnap']! * inp.zSnap + p['op.cleanHold']! * inp.zHold
+    + p['op.cleanWet']! * wet + p['op.cleanCold']! * cold + (inp.hurried ? p['op.hurryPenalty']! : 0)));
 }
 
 /** Snap-to-foot time and quality (J9.4.1). Draws: normal, uniform, uniform, uniform (10 raw). */
@@ -185,7 +185,7 @@ export function estimateMakeChance(inp: PlaceKickInput, op: Omit<OperationInput,
   const pClean = cleanOperationChance({ ...op, environment: inp.environment }, p);
   const pBad = (1 - pClean) * (1 - p['op.bobbleShare']!);
   const meanBad = (p['op.badMultMin']! + p['op.badMultMax']!) / 2;
-  return pCarry * (pClean * pDir(angleSd(inp, 1, p)) + pBad * pDir(angleSd(inp, meanBad, p)));
+  return possible(pCarry * (pClean * pDir(angleSd(inp, 1, p)) + pBad * pDir(angleSd(inp, meanBad, p))));
 }
 /** Upper bound of the carry search. Structural: beyond any place kick. */
 const MAX_CARRY_YD = 120;

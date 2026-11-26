@@ -1,0 +1,158 @@
+{
+ "version": "g55.1",
+ "leaf": "S1.3.1",
+ "use": "Calibration targets for the K2 world simulation of AI coach careers. Never inputs to any draw in this module.",
+ "sourceNote": "All rows from research R21 to R25 sections 25.1 to 25.3 as cited in S1.3.1; each is 1 of 3, so every row prints Unverified and must stay tunable.",
+ "acceptance": {
+  "meanAgeFirstTopHeadToleranceYears": 3,
+  "maxShareRung2ReachRung9": 0.1,
+  "acceptanceLeaf": "S1.3.1"
+ },
+ "targets": [
+  {
+   "id": "first_job_ga_or_student",
+   "measure": "Share of eventual head coaches whose first job was graduate or student assistant",
+   "unit": "share",
+   "value": 0.4,
+   "evidence": "About 40% of pro head coaches (13 of 32, 2019 snapshot); five of six sampled college head coaches",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "age_first_job",
+   "measure": "Age at first job",
+   "unit": "years_range",
+   "value": [
+    21,
+    23
+   ],
+   "evidence": "Five named examples",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "years_as_ga",
+   "measure": "Years as graduate assistant",
+   "unit": "years_range",
+   "value": [
+    1,
+    2
+   ],
+   "evidence": "Six biographies; sometimes repeated at a second school",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "years_position_before_coordinator",
+   "measure": "Years as position coach before coordinating",
+   "unit": "years_range",
+   "value": [
+    3,
+    22
+   ],
+   "evidence": "Six biographies",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "years_coordinator_before_head",
+   "measure": "Years as coordinator before a head job",
+   "unit": "years_range",
+   "value": [
+    1,
+    8
+   ],
+   "evidence": "Six biographies",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "age_first_top_head_job",
+   "measure": "Age at first top-subdivision head job",
+   "unit": "years",
+   "value": 43.2,
+   "evidence": "One study; 16.9 years of experience on average",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "first_time_head_share_top",
+   "measure": "First-time head coaches among top-subdivision hires",
+   "unit": "share",
+   "value": 0.58,
+   "evidence": "One source",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "first_time_head_share_second",
+   "measure": "First-time head coaches among second-subdivision hires",
+   "unit": "share",
+   "value": 0.74,
+   "evidence": "One source",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "prior_job_oc",
+   "measure": "Prior job of first-time head coaches: offensive coordinator",
+   "unit": "share",
+   "value": 0.23,
+   "evidence": "One source",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "prior_job_dc",
+   "measure": "Prior job of first-time head coaches: defensive coordinator",
+   "unit": "share",
+   "value": 0.21,
+   "evidence": "One source",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "prior_job_position",
+   "measure": "Prior job of first-time head coaches: straight from position coach",
+   "unit": "share",
+   "value": 0.14,
+   "evidence": "One source",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "prior_job_stc",
+   "measure": "Prior job of first-time head coaches: special teams coordinator",
+   "unit": "share",
+   "value": 0.04,
+   "evidence": "One source",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "college_to_pro_moves",
+   "measure": "College coaches (all rungs) moving to the pros in one cycle",
+   "unit": "count",
+   "value": 32,
+   "evidence": "One cycle; 18 moved the other way",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  },
+  {
+   "id": "pro_to_college_moves",
+   "measure": "Pro coaches moving to college in one cycle",
+   "unit": "count",
+   "value": 18,
+   "evidence": "One cycle",
+   "sources": 1,
+   "status": "Unverified (1 of 3)"
+  }
+ ],
+ "shapes": [
+  "straight climb at big programs: graduate assistant, position coach, coordinator, head coach by 35 to 40",
+  "small-school route: young coordinator at a small college, low-tier head coach by 30, then up by tiers",
+  "long position-coach career reaching a head job near 50",
+  "quality control door into the pros",
+  "former head coach who drops to coordinator and returns"
+ ]
+}

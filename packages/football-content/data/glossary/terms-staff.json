@@ -1,0 +1,473 @@
+{
+ "leaf": "A4.5.8",
+ "terms": [
+  {
+   "id": "term.analyst",
+   "term": "analyst",
+   "aliases": [
+    "recruiting analyst",
+    "data analyst"
+   ],
+   "definition": "A support-staff member who studies film or data for a team; titles include recruiting analyst (college) and data analyst (NFL).",
+   "domain": "staff",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0066"
+  },
+  {
+   "id": "term.area-scout-pro",
+   "term": "area scout",
+   "aliases": [
+    "regional scout"
+   ],
+   "definition": "A scout who covers a specific geographic area of the country or specific conferences, visiting schools and writing reports on prospects.",
+   "domain": "staff",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0072",
+   "variants": "regional scout"
+  },
+  {
+   "id": "term.assistant-general-manager-pro",
+   "term": "assistant general manager",
+   "aliases": [
+    "assistant GM",
+    "AGM"
+   ],
+   "definition": "A deputy to the general manager; the NFL media policy treats the title as a 'secondary football executive' who is next in line to the top football executive and supervises player personnel.",
+   "domain": "staff",
+   "subdomain": "front-office",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0076"
+  },
+  {
+   "id": "term.coaching-staff",
+   "term": "coaching staff",
+   "aliases": [],
+   "definition": "All the coaches who work under a head coach; the typical NFL team has about 15 assistants, and a college team about 9 full-time assistants plus 2 graduate assistants.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0189"
+  },
+  {
+   "id": "term.cross-checker-pro",
+   "term": "cross-checker",
+   "aliases": [
+    "crosschecker",
+    "over-the-top scout"
+   ],
+   "definition": "A scout who adds extra looks, or exposures, at a prospect beyond the area scout's reports; ESPN equates the role with a national scout.",
+   "domain": "staff",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0241"
+  },
+  {
+   "id": "term.defensive-coordinator",
+   "term": "defensive coordinator",
+   "aliases": [
+    "DC"
+   ],
+   "definition": "The assistant coach responsible for a team's defense, usually the game-plan builder and play-caller, who oversees the defensive position coaches.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0275"
+  },
+  {
+   "id": "term.defensive-line-coach",
+   "term": "defensive line coach",
+   "aliases": [
+    "DL coach"
+   ],
+   "definition": "The assistant who works exclusively with the defensive linemen on technique such as run stopping, gap control and pass rush.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0278"
+  },
+  {
+   "id": "term.director-of-college-scouting-pro",
+   "term": "director of college scouting",
+   "aliases": [
+    "college scouting director"
+   ],
+   "definition": "The scouting executive who organizes a team's draft board, grading college players, directing the area scouts and checking background.",
+   "domain": "staff",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0299",
+   "variants": "scouting director"
+  },
+  {
+   "id": "term.director-of-player-personnel",
+   "term": "director of player personnel",
+   "aliases": [
+    "DPP",
+    "DOPP"
+   ],
+   "definition": "The executive who leads a team's player personnel department; in the NFL (Bleacher Report) he mainly handles players already in the league, while college DPPs run recruiting, roster management and portal work.",
+   "domain": "staff",
+   "subdomain": "front-office",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0300",
+   "variants": "director of pro personnel (Bleacher Report usage)"
+  },
+  {
+   "id": "term.director-of-pro-personnel-pro",
+   "term": "director of pro personnel",
+   "aliases": [
+    "director of pro scouting",
+    "pro personnel director"
+   ],
+   "definition": "The front-office executive who handles players already in the NFL: contract talks with free agents and extensions, and evaluation of other teams' rosters.",
+   "domain": "staff",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0301",
+   "variants": "director of pro scouting (draft title, not found)"
+  },
+  {
+   "id": "term.director-of-recruiting-college",
+   "term": "director of recruiting",
+   "aliases": [
+    "recruiting director"
+   ],
+   "definition": "A staff executive who leads a college program's recruiting department.",
+   "domain": "staff",
+   "subdomain": "staff",
+   "level": "college",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0302"
+  },
+  {
+   "id": "term.equipment-manager",
+   "term": "equipment manager",
+   "aliases": [
+    "equipment director"
+   ],
+   "definition": "The staff member who runs a team's equipment room.",
+   "domain": "staff",
+   "subdomain": "support",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0353",
+   "variants": "equipment director (Chiefs title)"
+  },
+  {
+   "id": "term.football-operations-college",
+   "term": "football operations",
+   "aliases": [
+    "football ops"
+   ],
+   "definition": "The department of a college football program that handles non-coaching support such as logistics; major programs typically staff 4-10 people in it (an SMWW estimate).",
+   "domain": "staff",
+   "subdomain": "staff",
+   "level": "college",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0414"
+  },
+  {
+   "id": "term.general-manager-college-college",
+   "term": "general manager (college)",
+   "aliases": [
+    "college GM",
+    "GM"
+   ],
+   "definition": "A college staff executive who runs recruiting, roster building, transfer-portal work and support staff, so the head coach can focus on coaching.",
+   "domain": "staff",
+   "subdomain": "front-office",
+   "level": "college",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0454"
+  },
+  {
+   "id": "term.general-manager-pro",
+   "term": "general manager",
+   "aliases": [
+    "GM"
+   ],
+   "definition": "The NFL executive who oversees a club's roster and contracts and answers directly to the owner (or chairman); he builds the personnel staff and hires the head coach.",
+   "domain": "staff",
+   "subdomain": "front-office",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0455",
+   "variants": "vice president of football operations (alternate title, Bleacher Report)"
+  },
+  {
+   "id": "term.graduate-assistant-college",
+   "term": "graduate assistant",
+   "aliases": [
+    "GA"
+   ],
+   "definition": "A junior college coaching or support staffer; a typical college team has about two alongside nine full-time assistants.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "college",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0466"
+  },
+  {
+   "id": "term.head-coach",
+   "term": "head coach",
+   "aliases": [],
+   "definition": "The coach at the top of a team's coaching structure, above the coordinators.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0494"
+  },
+  {
+   "id": "term.linebackers-coach",
+   "term": "linebackers coach",
+   "aliases": [
+    "LB coach"
+   ],
+   "definition": "The assistant who coaches linebackers on tackling, pass-rushing and coverage drops, ranking just below the defensive coordinator on many staffs.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0634"
+  },
+  {
+   "id": "term.national-scout-pro",
+   "term": "national scout",
+   "aliases": [
+    "over-the-top scout"
+   ],
+   "definition": "A scout who adds extra looks at top prospects across the country; ESPN says teams call this an 'over the top' scout or cross-checker.",
+   "domain": "staff",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0685"
+  },
+  {
+   "id": "term.offensive-coordinator",
+   "term": "offensive coordinator",
+   "aliases": [
+    "OC"
+   ],
+   "definition": "The assistant coach responsible for a team's offense, usually the game-plan builder and play-caller, who oversees the offensive position coaches.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0712"
+  },
+  {
+   "id": "term.offensive-line-coach",
+   "term": "offensive line coach",
+   "aliases": [
+    "OL coach",
+    "O-line coach"
+   ],
+   "definition": "The assistant who trains the offensive linemen and works with the coordinator on the running game; he sometimes also holds a run-game title.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0715"
+  },
+  {
+   "id": "term.owner-pro",
+   "term": "owner",
+   "aliases": [
+    "franchise owner"
+   ],
+   "definition": "The person or family that owns the franchise; top football executives such as the general manager report to the owner or chairman.",
+   "domain": "staff",
+   "subdomain": "front-office",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0757"
+  },
+  {
+   "id": "term.position-coach",
+   "term": "position coach",
+   "aliases": [
+    "positional coach"
+   ],
+   "definition": "An assistant coach in charge of one position group, such as quarterbacks or defensive line.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0826"
+  },
+  {
+   "id": "term.president-pro",
+   "term": "president",
+   "aliases": [
+    "team president"
+   ],
+   "definition": "The club executive over the business side: finances, marketing, ticket prices and similar; some teams combine president and CEO.",
+   "domain": "staff",
+   "subdomain": "front-office",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0844",
+   "variants": "CEO, chairman"
+  },
+  {
+   "id": "term.pro-scout-pro",
+   "term": "pro scout",
+   "aliases": [],
+   "definition": "A scout who evaluates players on other teams' rosters, used for trades and free agency.",
+   "domain": "staff",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0854"
+  },
+  {
+   "id": "term.quality-control-coach",
+   "term": "quality control coach",
+   "aliases": [
+    "QC coach",
+    "quality control"
+   ],
+   "definition": "An entry-level coach who analyzes game film for statistical breakdowns to prepare the team for upcoming opponents.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0876",
+   "variants": "offensive, defensive and special teams quality control"
+  },
+  {
+   "id": "term.quarterback-coach",
+   "term": "quarterback coach",
+   "aliases": [
+    "QB coach"
+   ],
+   "definition": "An assistant who works with the quarterback's footwork, drop and throwing motion and watches his mental and physical habits.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0879"
+  },
+  {
+   "id": "term.recruiting-coordinator-college",
+   "term": "recruiting coordinator",
+   "aliases": [],
+   "definition": "The assistant coach a program tabs to run its recruiting; at major programs this work has moved to larger recruiting departments.",
+   "domain": "staff",
+   "subdomain": "staff",
+   "level": "college",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0897"
+  },
+  {
+   "id": "term.rooney-rule-pro",
+   "term": "Rooney Rule",
+   "aliases": [],
+   "definition": "An NFL policy requiring clubs to interview at least two external candidates who are persons of color and/or women for head coach, GM and coordinator openings (and one for quarterback coach and senior executive jobs).",
+   "domain": "staff",
+   "subdomain": "hiring",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0942"
+  },
+  {
+   "id": "term.scouting-director-pro",
+   "term": "scouting director",
+   "aliases": [
+    "director of scouting"
+   ],
+   "definition": "The head of a club's scouting department, who reviews the area scouts' weekly reports and sets prospect grades.",
+   "domain": "staff",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-0980"
+  },
+  {
+   "id": "term.secondary-coach",
+   "term": "secondary coach",
+   "aliases": [
+    "defensive backs coach",
+    "DB coach"
+   ],
+   "definition": "The assistant who coaches the defensive backs (cornerbacks and safeties) on pass coverage.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-1000",
+   "variants": "defensive back coach"
+  },
+  {
+   "id": "term.special-teams-coordinator",
+   "term": "special teams coordinator",
+   "aliases": [
+    "STC",
+    "special teams coach"
+   ],
+   "definition": "The assistant coach in charge of the kicking game: kickers, punters, long snappers, returners and the coverage and return units.",
+   "domain": "staff",
+   "subdomain": "coaching",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-1057",
+   "variants": "merged draft rows: special teams coordinator (two copies)"
+  },
+  {
+   "id": "term.strength-and-conditioning-coach",
+   "term": "strength and conditioning coach",
+   "aliases": [
+    "strength coach"
+   ],
+   "definition": "The coach who runs a team's weight training and conditioning, and works with doctors on rehab.",
+   "domain": "staff",
+   "subdomain": "support",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-1087",
+   "variants": "strength coach"
+  },
+  {
+   "id": "term.team-physician-pro",
+   "term": "team physician",
+   "aliases": [
+    "team doctor"
+   ],
+   "definition": "The club doctor responsible for players' medical care; in the NFL concussion protocol the team physician evaluates the player on the sideline together with the unaffiliated neurotrauma consultant.",
+   "domain": "staff",
+   "subdomain": "medical",
+   "level": "pro",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-1127"
+  },
+  {
+   "id": "term.video-director",
+   "term": "video director",
+   "aliases": [
+    "video coordinator",
+    "director of video operations"
+   ],
+   "definition": "The staffer who runs a team's film and video operations.",
+   "domain": "staff",
+   "subdomain": "support",
+   "level": "both",
+   "ownerLeaf": "A4.5.8",
+   "factRow": "F-glossary-1215",
+   "variants": "director of video operations (Chiefs title)"
+  }
+ ]
+}

@@ -29,8 +29,8 @@ export const TRANSITION_TABLE: readonly TransitionRow[] = [
   { phase: 'pre_game', event: 'environment_updated', to: ['pre_game'], note: 'weather fixed (J12)' },
   { phase: 'pre_game', event: 'substitution', to: ['pre_game'], note: 'inactives (I1)' },
 
-  { phase: 'kickoff_setup', event: 'decision_requested', to: ['kickoff_setup'], note: 'kick call and return call' },
-  { phase: 'kickoff_setup', event: 'decision_made', to: ['kickoff_setup'], note: 'kick call and return call' },
+  { phase: 'kickoff_setup', event: 'decision_requested', to: ['kickoff_setup'], note: 'kick call, return call, timeout before the kick' },
+  { phase: 'kickoff_setup', event: 'decision_made', to: ['kickoff_setup'], note: 'kick call, return call, timeout before the kick' },
   { phase: 'kickoff_setup', event: 'deadline_missed', to: ['kickoff_setup'], note: 'the default follows as a decision' },
   { phase: 'kickoff_setup', event: 'clock_advanced', to: ['kickoff_setup', 'play'], note: 'intermission stays; lining up for the kick leads to the play' },
   { phase: 'kickoff_setup', event: 'timeout_charged', to: ['timeout'], note: 'charged timeout before a free kick' },
@@ -45,7 +45,11 @@ export const TRANSITION_TABLE: readonly TransitionRow[] = [
   { phase: 'call_window', event: 'substitution', to: ['call_window'], note: 'I6' },
   { phase: 'call_window', event: 'environment_updated', to: ['call_window'], note: 'quarter change (J12.2.2)' },
 
-  { phase: 'pre_snap', event: 'clock_advanced', to: ['play', 'period_end'], note: 'J5 uses the play clock; a running clock may expire first' },
+  { phase: 'pre_snap', event: 'decision_requested', to: ['pre_snap'], note: 'timeout after the calls and before the snap (B1.4.1, J11.6.1)' },
+  { phase: 'pre_snap', event: 'decision_made', to: ['pre_snap'], note: 'timeout or none' },
+  { phase: 'pre_snap', event: 'deadline_missed', to: ['pre_snap'], note: 'the default follows as a decision' },
+  { phase: 'pre_snap', event: 'timeout_charged', to: ['timeout'], note: 'charged team timeout before the snap; the calls are made again after it' },
+  { phase: 'pre_snap', event: 'clock_advanced', to: ['pre_snap', 'play', 'period_end'], note: 'waiting for a timeout stays; J5 uses the play clock and leads to the play; a running clock may expire first' },
   { phase: 'pre_snap', event: 'substitution', to: ['pre_snap'], note: 'I6' },
 
   { phase: 'play', event: 'decision_requested', to: ['challenge_window', 'penalty_decision'], note: 'challenge or penalty choice' },
@@ -101,7 +105,7 @@ export const REQUEST_PHASES: Readonly<Record<Contract.DecisionType, readonly Pha
   overtime_choice: ['overtime_toss'],
   snapping_call: ['kickoff_setup', 'call_window'],
   opposing_call: ['kickoff_setup', 'call_window'],
-  timeout: ['call_window'],
+  timeout: ['kickoff_setup', 'call_window', 'pre_snap'],
   challenge: ['play', 'ruling'],
   penalty_choice: ['play', 'ruling'],
   runoff_choice: ['dead_ball'],

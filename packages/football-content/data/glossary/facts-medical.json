@@ -1,0 +1,1042 @@
+{
+ "domain": "medical",
+ "rows": [
+  {
+   "id": "F-glossary-0014",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "21-day window: The three-week period a player designated to return from injured reserve has, once he begins practicing, to be activated to the roster or else stay on reserve for the season.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Once an eligible player is designated to return and begins practicing, the team has a 21-day window to activate him."
+    },
+    {
+     "citation": "NFL roster designations explained (AP via FOX Sports) (FOX Sports (Associated Press))",
+     "locator": "https://www.foxsports.com/articles/nfl/ir-pup-nfi-what-do-all-of-those-nfl-roster-designations-mean",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "it activates a 21-day window during which the player must be activated to the 53-man roster"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "term.21-day-window-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "FOX/AP (2023) says players must miss four games and up to eight can be designated; WebMD adds two more for playoff teams under the 2026 framework."
+  },
+  {
+   "id": "F-glossary-0055",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Active/Inactive list: The game-day split of a club's roster into players available to play and players not dressed; a club's active/inactive list may not exceed 53 players, and inactives are announced about 90 minutes before kickoff.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 25 (Squad Size) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "a Club's Active/Inactive List shall not exceed 53 players"
+    },
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "The inactive list is generally released 90 minutes before kickoff."
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.active-inactive-list-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "CBA active list limit is 48 players (47 if fewer than eight offensive linemen); 54 or 55 total only with practice-squad elevations."
+  },
+  {
+   "id": "F-glossary-0079",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "ATC spotter: A certified athletic trainer in a stadium booth with video access who watches the game for injuries, radios the club's medical staff and referee, and can call a medical timeout.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rulebooks",
+     "primary": true,
+     "quote": "Two certified athletic trainers will be assigned to a stadium booth with access to multiple views of video"
+    },
+    {
+     "citation": "NFL Football Operations: Football terms (NFL Football Operations)",
+     "locator": "https://operations.nfl.com/rules-officiating/nfl-football-basics/football-terms",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "rulebooks",
+     "primary": false,
+     "quote": "Independent Certified Athletic Trainers called ATC spotters can also stop the game if it appears a player is injured"
+    },
+    {
+     "citation": "Concussion Protocol & Return-to-Participation Protocol: Overview (NFL)",
+     "locator": "https://www.nfl.com/playerhealthandsafety/resources/fact-sheets/concussion-protocol-return-to-participation-protocol",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "rulebooks",
+     "primary": false,
+     "quote": "booth ATC spotter"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "term.atc-spotter-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Spotters are connected by radio to the on-field officials as well as medical staffs (CBA Appendix W). NFL fact-sheet quote is a naming reference only."
+  },
+  {
+   "id": "F-glossary-0179",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Cleared: A physician's release stating that a player may take part in practice or games; under the CBA the Head Team Physician has final authority, and a concussed player also needs the independent consultant's confirmation.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 39 (Players' Rights to Medical Care and Treatment) Sec. 1(d) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "exclusive and final authority to determine whether a player is cleared to return to participation"
+    },
+    {
+     "citation": "Concussion Protocol & Return-to-Participation Protocol: Overview (NFL)",
+     "locator": "https://www.nfl.com/playerhealthandsafety/resources/fact-sheets/concussion-protocol-return-to-participation-protocol",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "After a player has progressed through the five-step process, and is cleared for full participation by his club physician"
+    },
+    {
+     "citation": "NFL roster designations explained (AP via FOX Sports) (FOX Sports (Associated Press))",
+     "locator": "https://www.foxsports.com/articles/nfl/ir-pup-nfi-what-do-all-of-those-nfl-roster-designations-mean",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "can be activated at any point during camp when they are medically cleared"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.cleared-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ]
+  },
+  {
+   "id": "F-glossary-0208",
+   "level": "both",
+   "domain": "medical",
+   "statement": "Concussion: A traumatic brain injury caused by biomechanical forces, usually from a blow to the head or body that sends force to the head, with a brief change in brain function that often shows nothing on standard imaging.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rulebooks",
+     "primary": true,
+     "quote": "Sports related concussion (\"SRC\") is a traumatic brain injury induced by biomechanical forces."
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "term.concussion"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Only the CBA appendix (adapted by the NFL from McCrory et al., BJSM 2017) was read so far; a second and third medical publisher are still needed (see summary)."
+  },
+  {
+   "id": "F-glossary-0210",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Concussion protocol: The league-mandated steps for evaluating a possible concussion during a game (sideline and locker-room exams, with independent consultants and spotters involved) and for managing the player afterward.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "developed a comprehensive set of protocols regarding the diagnosis and management of concussions in NFL players"
+    },
+    {
+     "citation": "Concussion Protocol & Return-to-Participation Protocol: Overview (NFL)",
+     "locator": "https://www.nfl.com/playerhealthandsafety/resources/fact-sheets/concussion-protocol-return-to-participation-protocol",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "developed the NFL Game Day Concussion Diagnosis and Management Protocol in 2011"
+    },
+    {
+     "citation": "NFL concussion protocol explained: Symptoms, evaluation, return to play (NBC Sports)",
+     "locator": "https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/nfl-concussion-protocol-explained-symptoms-evaluation-return-to-play/1435631/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbcsports",
+     "primary": false,
+     "quote": "The game-day concussion protocol was first released in 2011."
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.concussion-protocol-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "NFL and NFLPA changed the checklist in 2022 to add ataxia as a 'no-go' sign (NBC; NFL fact sheet describes 2018 changes). The CBA text on file is the 2020 version of Appendix W."
+  },
+  {
+   "id": "F-glossary-0291",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Did not participate: An injury-report practice status meaning the player did not take part in practice that day.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Did Not Participate (DNP): The player did not take part in practice."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.did-not-participate-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "WebMD is the only source read for the DNP/LP/FP triplet; the NFL's own policy text was not reachable."
+  },
+  {
+   "id": "F-glossary-0318",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Doubtful: A game-status designation meaning the player is unlikely to play.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Doubtful: The player is unlikely to play."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.doubtful-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Before 2016 'doubtful' was defined as about a 25 percent chance of playing (WebMD)."
+  },
+  {
+   "id": "F-glossary-0439",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Full participation: An injury-report practice status meaning the player completed his normal practice workload.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Full Participation (FP): The player completed his normal practice workload."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.full-participation-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Single publisher so far."
+  },
+  {
+   "id": "F-glossary-0450",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Game status: The injury-report entry that tells the public whether each injured player is expected to play in the club's next game: out, doubtful or questionable.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "The Game Status Report identifies whether he is expected to play."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.game-status-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Single publisher so far."
+  },
+  {
+   "id": "F-glossary-0543",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "In-game injury reporting: The rule that clubs must promptly and accurately announce injuries during a game, naming the body part and updating the player's status.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Media Access Policy (2026), hosted by PFWA (NFL (Media Access Policy via PFWA))",
+     "locator": "https://www.profootballwriters.org/nfl-media-access-policy/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "In-game injury announcements must be specific to a body part, accurate, and updated as warranted"
+    },
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "If a player leaves the game with an injury, the team must provide accurate information about the affected body part"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "term.in-game-injury-reporting-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "PFWA text is the NFL's Media Access Policy; clubs enter in-game injuries through the league's online Injury Reporting Platform."
+  },
+  {
+   "id": "F-glossary-0551",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Independent neurological consultant: A neurology-trained physician with no team affiliation, designated by each club at the start of the league year, who must examine and confirm a concussed player's clearance before he returns to contact practice or play.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "The Independent Neurological Consultant (INC) must be impartial and independent from the player's club"
+    },
+    {
+     "citation": "Concussion Protocol & Return-to-Participation Protocol: Overview (NFL)",
+     "locator": "https://www.nfl.com/playerhealthandsafety/resources/fact-sheets/concussion-protocol-return-to-participation-protocol",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "he must be seen and separately cleared by an Independent Neurological Consultant (INC)"
+    },
+    {
+     "citation": "NFL concussion protocol explained: Symptoms, evaluation, return to play (NBC Sports)",
+     "locator": "https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/nfl-concussion-protocol-explained-symptoms-evaluation-return-to-play/1435631/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbcsports",
+     "primary": false,
+     "quote": "Every NFL team is required to have at least one INC"
+    },
+    {
+     "citation": "NFL Media Access Policy (2026), hosted by PFWA (NFL (Media Access Policy via PFWA))",
+     "locator": "https://www.profootballwriters.org/nfl-media-access-policy/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "extends until the player has been cleared by the Independent Neurological Consultant (INC)"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.independent-neurological-consultant-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "A UNC may also serve as an INC, but neither may be affiliated with an NFL team (CBA Appendix W Sec. IV). Not to be confused with UNC."
+  },
+  {
+   "id": "F-glossary-0558",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Injury report: The league's required weekly public report of injured players' practice participation and game status, submitted by clubs Wednesday through Friday for a Sunday game.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "The Practice Report tells the public how much an injured player took part during the week."
+    },
+    {
+     "citation": "NFL Media Access Policy (2026), hosted by PFWA (NFL (Media Access Policy via PFWA))",
+     "locator": "https://www.profootballwriters.org/nfl-media-access-policy/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "issue to local media the names of those players who missed any portion of 11-on-11 team or individual work"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "term.injury-report-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "WebMD says the report dates to 1947 (Bert Bell, gambling concerns). WebMD says the public gets only the body part or condition, practice participation and expected availability, not a diagnosis or timetable."
+  },
+  {
+   "id": "F-glossary-0559",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Injury settlement: An agreement under which a club releases an injured player and pays him some of his salary instead of carrying him on injured reserve.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL roster designations explained (AP via FOX Sports) (FOX Sports (Associated Press))",
+     "locator": "https://www.foxsports.com/articles/nfl/ir-pup-nfi-what-do-all-of-those-nfl-roster-designations-mean",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "release him with an injury settlement"
+    },
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 12 / Benefit Plan (Plan Sec. 2.1 coverage language) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "paid all or part of his salary for such season pursuant to an Injury Settlement Waiver or an Injury Grievance"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.injury-settlement-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Definition is inferred from how the sources use the term; no source gave a full definition in one sentence. Needs a third publisher (for example Over The Cap)."
+  },
+  {
+   "id": "F-glossary-0628",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Limited participation: An injury-report practice status meaning the player took part but fewer than all of his normal practice reps.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Limited Participation (LP): The player took fewer than 100% of his normal practice repetitions."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.limited-participation-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Single publisher so far."
+  },
+  {
+   "id": "F-glossary-0658",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Medical care and treatment: The CBA article that governs player medical care: club physician and trainer credentials, the right to a second opinion and to choose a surgeon, and concussion protocol enforcement.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 39 (Players' Rights to Medical Care and Treatment) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rulebooks",
+     "primary": true,
+     "quote": "Each Club will have a board-certified orthopedic surgeon as one of its Club physicians"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "term.medical-care-and-treatment-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Single primary text; a CBA article title rather than a football term in common use."
+  },
+  {
+   "id": "F-glossary-0659",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Medical timeout: A stoppage called through the referee at the request of the booth ATC spotter when a player who appears to need concussion evaluation is about to stay in the game without being checked.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rulebooks",
+     "primary": true,
+     "quote": "the Booth ATC Spotter is required to call a Medical Time-Out to assure the concussion evaluation occurs"
+    },
+    {
+     "citation": "NFL Football Operations: Football terms (NFL Football Operations)",
+     "locator": "https://operations.nfl.com/rules-officiating/nfl-football-basics/football-terms",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "rulebooks",
+     "primary": false,
+     "quote": "ATC spotters can also stop the game if it appears a player is injured"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "term.medical-timeout-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "The NFL's football-terms page calls these 'injury timeouts' when called by officials or spotters; a different, official-called injury timeout also exists for ordinary injuries."
+  },
+  {
+   "id": "F-glossary-0744",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Out (injury report designation): A game-status designation meaning the player will not play.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Out: The player will not play."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.out-injury-report-designation-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Not an offense term: belongs with injury reporting. Only WebMD found in this pass (the ESPN page cited by the drafting agent did not show its article text). Flag: single publisher."
+  },
+  {
+   "id": "F-glossary-0745",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Out (injury report): A game-status designation meaning the player will not play.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Out: The player will not play."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.out-injury-report-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Added: the draft listed Questionable, Doubtful and Probable but not Out, the third current game-status category."
+  },
+  {
+   "id": "F-glossary-0793",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Physical examination: The medical exam club doctors give each player on report day to camp and before minicamps; the CBA sets a standard minimum preseason exam.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix K (Standard Minimum Preseason Physical Examination) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rulebooks",
+     "primary": true,
+     "quote": "STANDARD MINIMUM PRESEASON PHYSICAL EXAMINATION"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "term.physical-examination-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Single primary text."
+  },
+  {
+   "id": "F-glossary-0856",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Probable: A former game-status designation meaning the player was likely to play (generally at least 75 percent); the NFL eliminated it in 2016.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "In 2016, the NFL eliminated the category."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.probable-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Single publisher so far."
+  },
+  {
+   "id": "F-glossary-0881",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Questionable: A game-status designation meaning it is uncertain whether the player will play.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL Injury Report Explained: History, Rules, and Designations (WebMD)",
+     "locator": "https://www.webmd.com/fitness-exercise/sports-medicine/nfl-injury-report-explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "Questionable: It is uncertain whether the player will play."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "term.questionable-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Before 2016 'questionable' meant roughly 50-50 (WebMD)."
+  },
+  {
+   "id": "F-glossary-0922",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Return-to-participation protocol: The five-step graduated program a concussed player must pass before full practice or play: rest and recovery, light aerobic exercise, continued aerobic exercise with strength training, football-specific non-contact activity, then full football activity and clearance.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "Step One: Rest and Recovery"
+    },
+    {
+     "citation": "Concussion Protocol & Return-to-Participation Protocol: Overview (NFL)",
+     "locator": "https://www.nfl.com/playerhealthandsafety/resources/fact-sheets/concussion-protocol-return-to-participation-protocol",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "must follow a five-step process before being cleared to fully practice or participate in an NFL game"
+    },
+    {
+     "citation": "NFL concussion protocol explained: Symptoms, evaluation, return to play (NBC Sports)",
+     "locator": "https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/nfl-concussion-protocol-explained-symptoms-evaluation-return-to-play/1435631/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbcsports",
+     "primary": false,
+     "quote": "the protocol outlines five phases, beginning with symptom limited activity"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.return-to-participation-protocol-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Steps in the CBA appendix: Step Two Light Aerobic Exercise; Step Three Continued Aerobic Exercise and Introduction of Strength Training; Step Four Football Specific Activities. NBC's wording of the first phase ('symptom limited activity') differs from the CBA's 'Rest and Recovery'. There is no set timeframe; the club physician decides and the INC must confirm clearance."
+  },
+  {
+   "id": "F-glossary-0923",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Return to play: The graded process, and the physician's decision, by which an injured player goes back to practice and games.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rulebooks",
+     "primary": true,
+     "quote": "remains within the professional judgment of the Head Team Physician or team physician designated for concussion evaluation"
+    },
+    {
+     "citation": "Concussion Protocol & Return-to-Participation Protocol: Overview (NFL)",
+     "locator": "https://www.nfl.com/playerhealthandsafety/resources/fact-sheets/concussion-protocol-return-to-participation-protocol",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "rulebooks",
+     "primary": false,
+     "quote": "there is no set time-frame for return to participation"
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "term.return-to-play-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Draft row had a generic definition; sources here are concussion-specific, general injury return-to-play is governed by the Head Team Physician under Art. 39 Sec. 1(d)."
+  },
+  {
+   "id": "F-glossary-0997",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Second opinion: A player's right to have another board-certified physician examine him; the club pays only if the player consults the club physician first and the second doctor reports back to him.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 39 (Players' Rights to Medical Care and Treatment) Sec. 6 (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rulebooks",
+     "primary": true,
+     "quote": "A player will have the opportunity to obtain a second medical opinion."
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "term.second-opinion-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Single primary text."
+  },
+  {
+   "id": "F-glossary-1126",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Team doctor: A physician retained by the club to treat players; each club must have a board-certified orthopedic surgeon and a primary-care sports medicine physician, one of whom is the Head Team Physician with final say on clearance.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 39 (Players' Rights to Medical Care and Treatment) Sec. 1(a) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "Each Club will have a board-certified orthopedic surgeon as one of its Club physicians"
+    },
+    {
+     "citation": "Training camp (NFL) - Wikipedia (Wikipedia)",
+     "locator": "https://en.wikipedia.org/wiki/Training_camp_(NFL)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "every team must have the team doctor and trainers on the field"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.team-doctor-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Wikipedia's field-presence sentence is tied to training-camp heat concerns after the 2001 death of Korey Stringer."
+  },
+  {
+   "id": "F-glossary-1194",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Unaffiliated neurotrauma consultant: An independent physician with no club affiliation, assigned by the league to each game to help spot and evaluate possible head injuries; two stand on the sidelines and a third watches video from the booth.",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Appendix W (NFL Head, Neck and Spine Committee's Concussion Diagnosis and Management Protocol) (NFL-NFLPA CBA)",
+     "locator": "/mnt/project-files/nfl-rules/cba_2020.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "each team will be assigned a Sideline Unaffiliated Neurotrauma Consultant"
+    },
+    {
+     "citation": "Concussion Protocol & Return-to-Participation Protocol: Overview (NFL)",
+     "locator": "https://www.nfl.com/playerhealthandsafety/resources/fact-sheets/concussion-protocol-return-to-participation-protocol",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "Added a third UNC who will monitor the broadcast video and audio feeds of each game"
+    },
+    {
+     "citation": "NFL concussion protocol explained: Symptoms, evaluation, return to play (NBC Sports)",
+     "locator": "https://www.nbcsportsbayarea.com/nfl/san-francisco-49ers/nfl-concussion-protocol-explained-symptoms-evaluation-return-to-play/1435631/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbcsports",
+     "primary": false,
+     "quote": "Three medical experts, known as unaffiliated neurotrauma consultants (UNCs), are assigned to each game"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "term.unaffiliated-neurotrauma-consultant-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "The UNC assists; the diagnosis and the return-to-game decision remain with the Head Team Physician or the physician managing traumatic brain injury (CBA Appendix W). The Booth UNC is separate from the Booth ATC Spotter. | Other batch definition: An independent physician assigned to each NFL game to help check head-injury evaluations; three per game (two on the sideline, one in the booth)."
+  },
+  {
+   "id": "F-glossary-1222",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Waived/injured: A designation on an injured player who is waived: another team may claim him, or, if unclaimed, he goes onto his original team's injured reserve (or the team releases him with an injury settlement).",
+   "validFor": "current usage, read 2026-11-26",
+   "sources": [
+    {
+     "citation": "Glossary of American football - Wikipedia (Wikipedia)",
+     "locator": "https://en.wikipedia.org/wiki/Glossary_of_American_football",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "If the waived/injured player is not claimed by another team, then they are placed on the injured reserve"
+    },
+    {
+     "citation": "NFL roster designations explained (AP via FOX Sports) (FOX Sports (Associated Press))",
+     "locator": "https://www.foxsports.com/articles/nfl/ir-pup-nfi-what-do-all-of-those-nfl-roster-designations-mean",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "waived/injured, which means the player can be claimed by another team or revert to his original team's IR list"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "term.waived-injured-pro"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-93)."
+    }
+   ],
+   "notes": "Wikipedia ties the rule to non-vested veterans before the cutdown to 53; FOX/AP describes it more generally."
+  }
+ ]
+}

@@ -18,6 +18,9 @@ import { RULE_SET_FILES, validateRuleSetFile } from '@gm/rules-data';
 import initSqlJs from 'sql.js';
 import { replayDeps } from './replay-deps.ts';
 import { goldenInputs } from './golden-inputs.ts';
+import { createRealGame } from './real-game/index.ts';
+import { buildReport, formatReport, loadTargets } from './calibration/index.ts';
+import { resolver } from '@gm/resolver-reference';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const GOLDEN_FILE = join(ROOT, 'golden', 'golden.json');
@@ -136,6 +139,27 @@ async function validate(): Promise<number> {
   return bad ? 1 : 0;
 }
 
+/**
+ * Q2 calibrate: a batch of real games (flow, reference resolver, officiating facade, chart caller) measured against
+ * the target file of the rule set. Options: --rules id --games n --groups n --seed 16hex --out file.
+ * Exit code 0 only when every certify row passes.
+ */
+async function calibrate(): Promise<number> {
+  const rulesId = arg('rules', 'pro_2026')!;
+  const games = Number(arg('games', '200')), groups = Number(arg('groups', '10'));
+  const seed = arg('seed', '0000000000000001')!;
+  const started = Date.now();
+  const batch = createRealGame(rulesId).batch(games, groups, seed, (i) => { if (i > 0 && i % 500 === 0) console.error(`  ${i} of ${games} games`); });
+  const report = buildReport(loadTargets(ROOT, rulesId), batch.groups, {
+    build: 'working tree', paramsHash: 'engineParamTable defaults', resolverId: `reference ${resolver.REFERENCE_RESOLVER_VERSION}`, seeds: `master ${seed}`, games, seedGroups: groups,
+  });
+  const text = formatReport(report) + `\n(${((Date.now() - started) / 1000).toFixed(0)} s)\n`;
+  const out = arg('out');
+  if (out) { await mkdir(dirname(resolve(out)), { recursive: true }); await writeFile(resolve(out), text); console.log(`calibration report: gate ${report.gate} -> ${out}`); }
+  else console.log(text);
+  return report.gate === 'pass' ? 0 : 1;
+}
+
 const later: Record<string, string> = {
   seasons: 'phase 4 (R1.2.5)', careers: 'phase 6 (Q1.6.1)', bench: 'phase 2 (R1.2.3)', sweep: 'phase 2 (Q1.7.3)',
   search: 'phase 8 (Q4)', diff: 'phase 1 (Q1.3.2)',
@@ -146,11 +170,12 @@ async function main(): Promise<number> {
   switch (sub) {
     case 'gate': return gate();
     case 'games': return games();
+    case 'calibrate': return calibrate();
     case 'replay': return replay();
     case 'validate': return validate();
     default:
       if (sub && later[sub]) { console.error(`'${sub}' is built in ${later[sub]}.`); return 2; }
-      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate');
+      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate, calibrate [--rules id --games n --groups n --seed 16hex --out f]');
       console.error(`later: ${Object.keys(later).join(', ')}`);
       return 2;
   }

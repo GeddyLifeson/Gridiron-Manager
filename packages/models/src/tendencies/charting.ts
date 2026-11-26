@@ -2,7 +2,7 @@
 // (coverage after the snap, protection, run concept, pressure design) are right with probability
 // p = base + skill term - disguise term; a wrong tag is drawn from the confusable set for the value.
 // The true record is never part of the output: the charted row holds only tags.
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { param } from './params.ts';
 import type { ChartedPlay } from './types.ts';
 
@@ -34,7 +34,8 @@ export interface ChartingInputs {
 export function tagAccuracy(skill: number, disguise: number): number {
   const s = Math.min(1, Math.max(0, skill));
   const d = Math.min(1, Math.max(0, disguise));
-  return Math.min(1, Math.max(0, param('tag.base') + s * param('tag.skillMax') - d * param('tag.disguiseMax')));
+  // A3.1 ruling 22: a charter is never certainly right or certainly wrong.
+  return possible(param('tag.base') + s * param('tag.skillMax') - d * param('tag.disguiseMax'));
 }
 
 /** H2.1.2 acceptance 3: a perfect tagger facing no disguise is always right. */

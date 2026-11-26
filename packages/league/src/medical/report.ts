@@ -2,7 +2,7 @@
 // coach files. Labels come from data/designations.json under `medical.injury_report_rule` (W-13), so
 // a level with no report rule files nothing. Filing away from the truth is the G-28 class
 // `injury_report_shading` (C11.3.1); this file raises the flags and builds the act, G-28 detects.
-import type { WorldDate, WorldTier } from '@gm/schema';
+import { possible, type WorldDate, type WorldTier } from '@gm/schema';
 import type { Act, PartyRef } from '../compliance/index.ts';
 import designations from './data/designations.json' with { type: 'json' };
 import rates from './data/rates.json' with { type: 'json' };
@@ -111,16 +111,16 @@ export function statusForChance(chance: number, mr: MedicalRules): GameStatusId 
  * the shown range that falls before the game; a concussion by steps left against days left.
  */
 export function staffPlayChance(c: MedicalCase, daysToGame: number, mr: MedicalRules): number {
-  if (!c.shown.known || c.shown.state === 'cleared') return playRateOf(null, mr);
+  if (!c.shown.known || c.shown.state === 'cleared') return possible(playRateOf(null, mr));
   if (c.protocol) {
     const left = protocolDef(c.protocol.protocol).steps.length - c.protocol.step + 1;
-    if (left < daysToGame) return rate('play_rate_questionable').value;
-    if (left === daysToGame) return rate('play_rate_doubtful').value;
-    return rate('play_rate_out').value;
+    if (left < daysToGame) return possible(rate('play_rate_questionable').value);
+    if (left === daysToGame) return possible(rate('play_rate_doubtful').value);
+    return possible(rate('play_rate_out').value);
   }
   const r = c.shown.rangeDays;
   const fromRange = r ? Math.min(1, Math.max(0, (daysToGame - r[0]) / (r[1] - r[0] + 1))) : 0;
-  return c.shown.state === 'cleared_with_limits' ? Math.max(fromRange, rate('play_rate_questionable').value) : fromRange;
+  return possible(c.shown.state === 'cleared_with_limits' ? Math.max(fromRange, rate('play_rate_questionable').value) : fromRange);
 }
 
 /** The staff warns when the filed status is far from the medical outlook (D11.5.1 last rule). */
@@ -173,5 +173,7 @@ export interface ShadingContext {
 /** The act for a filed report that differs from the truth, or null for a truthful one (never an inquiry). */
 export function shadingAct(flags: readonly ReportFlag[], ctx: ShadingContext): Act | null {
   if (flags.length === 0) return null;
-  return { classId: 'injury_report_shading', actor: ctx.actor, orderedBy: ctx.orderedBy, knew: ctx.knew, date: ctx.date, competitionId: ctx.competitionId, gain: ctx.gain, tier: ctx.tier, source: ctx.source };
+  // H5.2.3 rule 2 (MA-40): a label shade alone is detected at 10% (minor); an unlisted or no-status mismatch at 60% (major).
+  const severity = flags.every((f) => f.kind === 'wrong_participation') ? 'minor' : 'major';
+  return { classId: 'injury_report_shading', severity, actor: ctx.actor, orderedBy: ctx.orderedBy, knew: ctx.knew, date: ctx.date, competitionId: ctx.competitionId, gain: ctx.gain, tier: ctx.tier, source: ctx.source };
 }

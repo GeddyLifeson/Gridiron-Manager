@@ -1,0 +1,18 @@
+{
+  "$comment": "O5.5.2 acceptance: every audio cue has a visual cue listed in a data table. Sounds from O5.3.2 and amendment MB-6 to MB-19; visual twins from O5.5.2 (play clock pulse) and I9.1.2 (event cue marks). switch = the setting that turns the sound off; field-cue switches of MB-17 not yet in the schema are requested from the integrator (CR-G98-1) and listed under pendingSwitch.",
+  "cues": [
+    { "id": "whistle", "sound": "Referee's whistle at the dead ball", "visual": "Whistle mark at the dead-ball spot (I9.1.2)", "switch": "audio.whistleCrowdOn", "pendingSwitch": "accessibility.cue.whistleRing", "bible": ["O5.3.2", "I9.1.2"] },
+    { "id": "snap", "sound": "Snap cue", "visual": "Ball marker leaves the line and the play clock clears", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2"] },
+    { "id": "playClockTick", "sound": "Tick each second under 10 s on the play clock", "visual": "Play clock pulses each second under 10 s", "switch": "audio.playClockTickOn", "bible": ["O5.3.2", "O5.5.2"] },
+    { "id": "alert", "sound": "Alert sound", "visual": "Alert badge and banner in the top bar (O1.4)", "switch": "audio.alertsOn", "bible": ["O5.3.2", "O1.4.3"] },
+    { "id": "crowdBed", "sound": "Crowd bed at the play's noise level", "visual": "Noise meter on the game frame", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2"] },
+    { "id": "crowd.touchdown", "sound": "Crowd reaction: touchdown", "visual": "Result line names the touchdown", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2"] },
+    { "id": "crowd.turnover", "sound": "Crowd reaction: turnover", "visual": "Flash at the fumble or ring at the interception, and the result line", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2", "I9.1.2"] },
+    { "id": "crowd.bigGain", "sound": "Crowd reaction: big gain", "visual": "Result line with the gain", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2"] },
+    { "id": "crowd.sack", "sound": "Crowd reaction: sack", "visual": "Cross at the tackle and the result line", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2", "I9.1.2"] },
+    { "id": "crowd.flagAgainstHome", "sound": "Crowd reaction: flag against the home team", "visual": "Yellow flag marker at the foul spot", "switch": "audio.whistleCrowdOn", "pendingSwitch": "accessibility.cue.flagIcon", "bible": ["O5.3.2", "I9.1.2"] },
+    { "id": "crowd.reviewReversal", "sound": "Crowd reaction: review reversal", "visual": "Ruling card shows the reversal", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2"] },
+    { "id": "contact", "sound": "Contact sound in tiers", "visual": "Contact bar weight at the contact", "switch": "audio.whistleCrowdOn", "pendingSwitch": "accessibility.cue.contactBar", "bible": ["O5.3.2", "O5.5.2"] },
+    { "id": "refereeAnnouncement", "sound": "Referee's announcement", "visual": "Announcement text in the result line (I7.1.2)", "switch": "audio.whistleCrowdOn", "bible": ["O5.3.2", "I7.1.2"] }
+  ]
+}

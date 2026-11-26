@@ -2,7 +2,7 @@
 // clearance while `medical.independent_authority` holds. Using a player past his clearance is never
 // greyed out: it is a breakable act, warned, logged and detected through the G-28 pipeline (L8.2.5),
 // with the physician's written objection (L8.2.2) as its trace, the same for the user and AI.
-import type { RandomStream, WorldDate, WorldTier } from '@gm/schema';
+import { possible, type RandomStream, type WorldDate, type WorldTier } from '@gm/schema';
 import { groupOf, warningFor, type Act, type PartyRef, type Warning } from '../compliance/index.ts';
 import type { RuleSet } from '@gm/schema';
 import data from './data/medical.json' with { type: 'json' };
@@ -130,7 +130,7 @@ export interface BreakableUse {
 
 /** Chance the player refuses to be used past his clearance: higher with low toughness and low trust. */
 export function refusalChance(toughness: number, trust: number): number {
-  return clamp01(P('refusalBase') + (1 - clamp01(toughness)) * P('refusalCautionWeight') + (1 - clamp01(trust)) * P('refusalDistrustWeight'));
+  return possible(P('refusalBase') + (1 - clamp01(toughness)) * P('refusalCautionWeight') + (1 - clamp01(trust)) * P('refusalDistrustWeight'));
 }
 
 /**
@@ -139,9 +139,9 @@ export function refusalChance(toughness: number, trust: number): number {
  */
 export function useAgainstClearance(c: MedicalCase, breach: UseBreach, ctx: UseContext, s: RandomStream): BreakableUse {
   const classId = breachClass(breach);
-  const objectionDraw = s.chance(breach === 'past_limits' ? P('objectionWithLimits') : P('objectionNotCleared'));
+  const objectionDraw = s.chance(possible(breach === 'past_limits' ? P('objectionWithLimits') : P('objectionNotCleared')));
   const objection = breach === 'concussion_protocol' || objectionDraw;
-  const refused = s.chance(refusalChance(ctx.toughness, ctx.trust));
+  const refused = s.chance(possible(refusalChance(ctx.toughness, ctx.trust)));
   const knew = [ctx.staff.physicianId, ctx.staff.trainerId, ...(breach === 'concussion_protocol' ? ctx.staff.consultantIds : []), c.personId];
   const act: Act = {
     classId, actor: ctx.actor, orderedBy: ctx.orderedBy, knew, date: ctx.date, competitionId: ctx.competitionId,

@@ -1,0 +1,68 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-history-0001",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The first intercollegiate football game was played on 6 November 1869 in New Brunswick, New Jersey (Rutgers 6, Princeton 4). The world's past may start no earlier than this season.",
+   "value": 1869,
+   "unit": "year",
+   "validFor": "history",
+   "sources": [
+    {
+     "citation": "Rutgers University, 'In the first collegiate football game 150 years ago, Rutgers beat Princeton' (David W. Major, 2019-11-06)",
+     "locator": "https://www.rutgers.edu/news/birthplace-college-football",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rutgers",
+     "primary": true,
+     "quote": "to play the first collegiate football game, on November 6, 1869.",
+     "value": 1869
+    },
+    {
+     "citation": "Princeton Alumni Weekly, 'Chronicling Football's First Games' (Brett Tomlinson, 2019-11-04; reprint of Parke H. Davis, 1909)",
+     "locator": "https://paw.princeton.edu/article/chronicling-footballs-first-games",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "princeton",
+     "primary": true,
+     "quote": "The contest was between Princeton and Rutgers at New Brunswick, November 6, 1869.",
+     "value": 1869
+    },
+    {
+     "citation": "History.com, 'Rutgers beats Princeton in the first college football game' (History.com Staff, updated 2025-05-27)",
+     "locator": "https://www.history.com/this-day-in-history/november-6/first-college-football-game-rutgers-princeton",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "history-com",
+     "primary": false,
+     "quote": "On November 6, 1869, Rutgers beats Princeton, 6-4, in the first college football game.",
+     "value": 1869
+    },
+    {
+     "citation": "Rutgers Athletics archive, 'The First Game: Nov. 6, 1869'",
+     "locator": "https://scarletknights.com/sports/2022/7/25/sports-m-footbl-archive-first-game-html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "rutgers",
+     "primary": true,
+     "quote": "played the first game of intercollegiate football on Nov. 6, 1869.",
+     "value": 1869
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "world.generation.history.footballStartYear"
+   ],
+   "notes": "Four pages read 2026-11-26 by fetch; Sports Illustrated (Patrick Andres, 2025-08-28) also agrees on Nov. 6 in New Brunswick. The rutgers.edu and scarletknights.com pages share one independence group. Real teams are calibration only; world teams are fictional.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Two primary institutional sources (Rutgers, Princeton) plus History.com agree."
+    }
+   ]
+  }
+ ]
+}

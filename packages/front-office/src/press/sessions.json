@@ -1,0 +1,251 @@
+{
+ "version": "1",
+ "note": "Per session kind: question count by level (realistic counts come from research.json when a 'research' key is set, else 'questions' here, an Assumption), and multipliers on question codes. Codes not listed count 1. 'only' limits the codes (narrow sessions). gameDay 1 = the game's own events are 0 days old.",
+ "sessions": {
+  "postgame": {
+   "research": "postgame",
+   "questions": {
+    "pro": 10,
+    "college": 9
+   },
+   "gameDay": 1,
+   "mult": {
+    "result_overall": 3,
+    "specific_play": 3,
+    "decision_call": 3,
+    "officiating_rules": 1.5,
+    "opponent_team": 0.3,
+    "game_plan": 0.1,
+    "practice_prep": 0.1,
+    "recruiting": 0.2,
+    "other": 0.3,
+    "personal_family": 0.3,
+    "draft_free_agency": 0.2
+   }
+  },
+  "day_after": {
+   "research": "day_after",
+   "questions": {
+    "pro": 15,
+    "college": 14
+   },
+   "mult": {
+    "result_overall": 1,
+    "specific_play": 1.5,
+    "decision_call": 1.5
+   }
+  },
+  "midweek": {
+   "research": "midweek",
+   "questions": {
+    "pro": 13,
+    "college": 13
+   },
+   "mult": {
+    "result_overall": 0.3,
+    "specific_play": 0.5,
+    "decision_call": 0.6,
+    "opponent_team": 2,
+    "opponent_player": 1.5,
+    "game_plan": 2,
+    "practice_prep": 1.5
+   }
+  },
+  "weekly": {
+   "research": "weekly",
+   "questions": {
+    "pro": 13,
+    "college": 16
+   },
+   "mult": {
+    "opponent_team": 1.5,
+    "game_plan": 1.5
+   }
+  },
+  "training_camp": {
+   "research": "training_camp",
+   "questions": {
+    "pro": 18,
+    "college": 15
+   },
+   "mult": {
+    "depth_chart": 2,
+    "roster_move": 2,
+    "contract": 2,
+    "practice_prep": 2,
+    "result_overall": 0,
+    "specific_play": 0,
+    "decision_call": 0.3,
+    "officiating_rules": 0.5,
+    "opponent_team": 0.3,
+    "standings_stakes": 0.3
+   }
+  },
+  "end_of_season": {
+   "questions": {
+    "pro": 20,
+    "college": 16
+   },
+   "mult": {
+    "job_security": 3,
+    "staff": 3,
+    "contract": 2,
+    "draft_free_agency": 3,
+    "coach_career_self": 2,
+    "qb_change": 2,
+    "scheme_philosophy": 2,
+    "opponent_team": 0,
+    "opponent_player": 0,
+    "game_plan": 0,
+    "practice_prep": 0.2,
+    "recruiting": 2,
+    "transfer_nil": 3
+   },
+   "research": "end_of_season"
+  },
+  "pre_draft": {
+   "questions": {
+    "pro": 18,
+    "college": 0
+   },
+   "mult": {
+    "draft_free_agency": 8,
+    "qb_change": 2,
+    "contract": 2,
+    "roster_move": 2,
+    "opponent_team": 0,
+    "opponent_player": 0,
+    "game_plan": 0,
+    "result_overall": 0,
+    "specific_play": 0,
+    "decision_call": 0
+   }
+  },
+  "introductory": {
+   "questions": {
+    "pro": 18,
+    "college": 16
+   },
+   "mult": {
+    "scheme_philosophy": 5,
+    "coach_career_self": 5,
+    "staff": 4,
+    "culture_leadership": 3,
+    "qb_performance": 2,
+    "recruiting": 3,
+    "personal_family": 2,
+    "result_overall": 0,
+    "specific_play": 0,
+    "decision_call": 0,
+    "opponent_team": 0,
+    "opponent_player": 0,
+    "game_plan": 0,
+    "injury_status": 0.2
+   },
+   "research": "introductory"
+  },
+  "coordinator": {
+   "questions": {
+    "pro": 10,
+    "college": 6
+   },
+   "only": [
+    "unit_performance",
+    "player_performance",
+    "qb_performance",
+    "specific_play",
+    "decision_call",
+    "play_calling_role",
+    "scheme_philosophy",
+    "game_plan",
+    "opponent_team",
+    "opponent_player",
+    "depth_chart",
+    "coach_career_self",
+    "practice_prep",
+    "staff",
+    "injury_status",
+    "analytics_stats",
+    "penalties"
+   ]
+  },
+  "position_coach": {
+   "questions": {
+    "pro": 6,
+    "college": 4
+   },
+   "only": [
+    "unit_performance",
+    "player_performance",
+    "qb_performance",
+    "depth_chart",
+    "practice_prep",
+    "coach_career_self",
+    "opponent_player",
+    "injury_status"
+   ]
+  },
+  "halftime_interview": {
+   "questions": {
+    "pro": 2,
+    "college": 2
+   },
+   "gameDay": 1,
+   "only": [
+    "result_overall",
+    "specific_play",
+    "unit_performance",
+    "qb_performance",
+    "injury_status",
+    "decision_call",
+    "game_plan"
+   ]
+  },
+  "coach_show": {
+   "questions": {
+    "pro": 4,
+    "college": 4
+   },
+   "toneShift": -1.5,
+   "mult": {
+    "personal_family": 2,
+    "culture_leadership": 2,
+    "player_performance": 2,
+    "job_security": 0.2,
+    "media_reports": 0.2
+   }
+  },
+  "opponent_call": {
+   "questions": {
+    "pro": 8,
+    "college": 8
+   },
+   "mult": {
+    "rivalry_history": 4,
+    "opponent_team": 3,
+    "opponent_coach": 3,
+    "scheme_philosophy": 2,
+    "injury_status": 0.5,
+    "job_security": 0.3,
+    "contract": 0.2
+   }
+  },
+  "crisis": {
+   "questions": {
+    "pro": 12,
+    "college": 12
+   },
+   "toneShift": 1.0,
+   "mult": {
+    "discipline_conduct": 5,
+    "off_field_player": 5,
+    "media_reports": 3,
+    "job_security": 2,
+    "culture_leadership": 2,
+    "social_issue": 3,
+    "opponent_team": 0.1,
+    "game_plan": 0.1
+   }
+  }
+ }
+}

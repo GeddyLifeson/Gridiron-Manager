@@ -1,7 +1,7 @@
 // The people above a college head coach (T9.1.1, L5.4.1, L5.4.2): power arrangement, the athletic
 // director's answers to requests, and the president and board. The AD decides totals; the coach
 // decides what to ask for. Every grant or refusal is logged with a reason code (T9.1.1 acceptance).
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { P } from './params.ts';
 import type {
   AdExchange, AdRequest, AthleticDirector, PowerArrangement, PresidentBody, ReasonCode, RequestOutcome,
@@ -109,5 +109,5 @@ export function boardMustApprove(totalValueCents: number): boolean {
 export function presidentInvolvementChance(buyoutCents: number, openComplianceCase: boolean): number {
   const millions = buyoutCents / 100 / 1_000_000;
   const raw = P('president.involve_base') + P('president.involve_per_million_buyout') * millions + (openComplianceCase ? P('president.involve_open_case') : 0);
-  return Math.min(raw, P('president.involve_max'));
+  return possible(Math.min(raw, P('president.involve_max')));
 }

@@ -65589,6 +65589,3701 @@
      "reason": "First load from the 2026 rule book text (WP-01)."
     }
    ]
+  },
+  {
+   "id": "F-rule-1907",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: complete, incomplete or intercepted pass: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 2, Item 1 (text copy rulebook_2026.txt, line 4032)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Completion of a Pass. Whether a pass was complete or incomplete.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.catch"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1908",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: complete, incomplete or intercepted pass: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 2-a (text copy ncaa-rulebook-2026.txt, line 5078)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Pass ruled complete, incomplete or intercepted anywhere in the field of play or an end zone.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.catch"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1909",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: runner down by contact (a whistle that stopped a live play is never reviewable): true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 3, Item 1 (text copy rulebook_2026.txt, line 4070)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Down by Contact. Whether a player should have been ruled down by contact while in possession of the ball.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.down_by_contact"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1910",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: runner down by contact (a whistle that stopped a live play is never reviewable): true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 3-d (text copy ncaa-rulebook-2026.txt, line 5115)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "or live ball ruled dead in possession of a ball carrier, when there is a clear recovery or the ball goes out of bounds in the immediate continuing football action.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.down_by_contact"
+   ],
+   "notes": "College reviews a live ball ruled dead only when there is a clear recovery or the ball goes out of bounds in the immediate continuing action (12-3-3-d); the boolean records that the aspect is reviewable. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1911",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: the dead-ball spot against the line to gain: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 7 (text copy rulebook_2026.txt, line 4130)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The dead ball spot is reviewable to determine whether it was short of, at, or beyond the line to gain.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.spot"
+   ],
+   "notes": "The book limits spot review to the line to gain and the goal line (15-3-4 Item 1 Note 2, 15-3-7); the boolean cannot carry that limit. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1912",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: the dead-ball spot against the line to gain: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 3-e (text copy ncaa-rulebook-2026.txt, line 5130)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Ball carrier’s forward progress, spot of fumble, or spot of out-of-bounds backward pass, with respect to a first down or the goal line.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.spot"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1913",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: pass forward or backward: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 11, Item 1 (text copy rulebook_2026.txt, line 4168)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Direction of a Pass. Whether a pass was forward or backward.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.forward_or_backward_pass"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1914",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: pass forward or backward: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 2-e (text copy ncaa-rulebook-2026.txt, line 5086)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Pass ruled forward or backward.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.forward_or_backward_pass"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1915",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: runner or receiver in or out of bounds: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 5, Item 1 (text copy rulebook_2026.txt, line 4106)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Runner Inbounds. A ruling that a runner was inbounds is reviewable to determine whether the runner touched out of bounds.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.in_bounds"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1916",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: runner or receiver in or out of bounds: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 3-g (text copy ncaa-rulebook-2026.txt, line 5134)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Ball carrier in or out of bounds. If a ball carrier is ruled out of bounds, the play is not reviewable, except as in Rules 12-3-1-a and 12-3-3-d.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.in_bounds"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1917",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: ball breaking the plane of the goal line in possession: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 4, Item 1 (text copy rulebook_2026.txt, line 4094)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Ball breaking the plane of the goal line. Whether any part of the ball broke the plane of the goal line while in player possession and before the ball should have been declared dead.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.score"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1918",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: ball breaking the plane of the goal line in possession: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 1-a (text copy ncaa-rulebook-2026.txt, line 5070)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "A potential touchdown or safety.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.score"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1919",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: recovery of a loose ball: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 2, Item 2 (text copy rulebook_2026.txt, line 4041)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Recovery of a Loose Ball. Whether a player legally recovered a loose ball in the field of play, at the sideline, goal line, or in the end zone.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.possession"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1920",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: recovery of a loose ball: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 3-j (text copy ncaa-rulebook-2026.txt, line 5141)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Catch or recovery of a loose ball in the field of play or an end zone.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.possession"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1921",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: fumble before the runner was down: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 2, Item 4 (text copy rulebook_2026.txt, line 4057)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Fumble. Whether a runner lost possession (a) before he was down by contact, out of bounds, or had given himself up",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.fumble_before_down"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1922",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: fumble before the runner was down: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 3-d (text copy ncaa-rulebook-2026.txt, line 5115)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "or live ball ruled dead in possession of a ball carrier, when there is a clear recovery or the ball goes out of bounds in the immediate continuing football action.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.fumble_before_down"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1923",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: field goal or try good or no good: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 11, Item 3 (text copy rulebook_2026.txt, line 4174)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Whether a field goal or Try attempt crossed above the crossbar and inside the uprights is reviewable, but only if the ball crosses the plane of the goal post below the top of the uprights, or if the ball touches anything.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.kick_good"
+   ],
+   "notes": "Reviewable only where the ball crossed below the top of the uprights or touched something; the boolean cannot carry that limit. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1924",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: field goal or try good or no good: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5072)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Field goal attempts if and only if the ball is ruled (a) below or above the crossbar or (b) inside or outside the uprights when it is lower than the top of the uprights.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.kick_good"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1925",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: touching of a kick or a loose ball: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 3, Item 4 (text copy rulebook_2026.txt, line 4080)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Touching of a Kick. Whether a player touched a kick and the spot of touching.",
+     "value": true
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 3, Item 5 (text copy rulebook_2026.txt, line 4089)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Touching of a Loose Ball. Whether a player touched a loose ball.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.touching"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1926",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: touching of a kick or a loose ball: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 4-a (text copy ncaa-rulebook-2026.txt, line 5145)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Touching of a kick.",
+     "value": true
+    },
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 3-h (text copy ncaa-rulebook-2026.txt, line 5136)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Catch, recovery or touching of a loose ball by a player inbounds or out of bounds",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.touching"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1927",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: a foul call (a single foul may be opened to review by its own switch): false (pro, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 4 (text copy rulebook_2026.txt, line 4191)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "any aspect of a play not listed as reviewable in Section 3 of this Rule.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.reviewable.foul"
+   ],
+   "notes": "False for fouls in general. Penalty administration (15-7-1), a foul nullified or created by a changed ruling (15-7-2) and the listed college fouls (12-3-8) are reached through the per-foul switch foul.<id>.replay_reviewed, which belongs to the fouls rule rows. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1928",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay may change a ruling of: a foul call (a single foul may be opened to review by its own switch): false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "No other plays or officiating decisions are reviewable.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.reviewable.foul"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1929",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play that begins after the two-minute warning of either half: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(a) (text copy rulebook_2026.txt, line 3976)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "that begins after the two-minute warning of each half;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.after_two_minute"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1930",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play that begins after the two-minute warning of either half: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.after_two_minute"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1931",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play in overtime: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(b) (text copy rulebook_2026.txt, line 3977)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "throughout any overtime period;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.overtime"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1932",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play in overtime: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.overtime"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1933",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play ruled a score: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(c) (text copy rulebook_2026.txt, line 3978)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "when points are scored by either team;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.scoring_play"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1934",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a play ruled a score: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.scoring_play"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1935",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a try, good or no good: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(d) (text copy rulebook_2026.txt, line 3979)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "that is a Try attempt (successful or unsuccessful);",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.try"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1936",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a try, good or no good: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.try"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1937",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: an interception, or a fumble or backward pass ruled recovered by the opponent: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(e)(1) (text copy rulebook_2026.txt, line 3981)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "an interception by an opponent;",
+     "value": true
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(e)(2) (text copy rulebook_2026.txt, line 3982)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "a fumble or backward pass recovered by an opponent or that goes out of bounds through the opponent’s end zone;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.turnover"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1938",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: an interception, or a fumble or backward pass ruled recovered by the opponent: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.turnover"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1939",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: the offense ruled short of the line to gain on the last down of a series: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(e)(3) (text copy rulebook_2026.txt, line 3983)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "that the offense failed to reach the line to gain on fourth down;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.failed_fourth_down"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1940",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: the offense ruled short of the line to gain on the last down of a series: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.failed_fourth_down"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1941",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: the kicking team ruled in possession at the end of a kick down: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(e)(4) (text copy rulebook_2026.txt, line 3984)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "possession by the kicking team at the end of any free kick or scrimmage kick down;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.kick_possession"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1942",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: the kicking team ruled in possession at the end of a kick down: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.kick_possession"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1943",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a player disqualification: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 1, Article 2(e)(5) (text copy rulebook_2026.txt, line 3985)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "a disqualification of a player.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.booth_only.disqualification"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1944",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Under replay.model challenge_plus_booth, only the booth may review: a player disqualification: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 5, Article 1-b (text copy ncaa-rulebook-2026.txt, line 5304)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The head coach of either team may request that the game be stopped and a play be reviewed by challenging the on-field ruling.",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.booth_only.disqualification"
+   ],
+   "notes": "Inert at college: replay.model is booth_all_plays, so no play is reserved to the booth; a head coach may challenge any reviewable ruling (12-5-1-b). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1945",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect catch without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4251)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "completed, intercepted, or the direction of any pass;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.catch"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1946",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect catch without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.catch"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1947",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect down_by_contact without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4254)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "down by contact (when a player is not ruled down by contact on the field);",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.down_by_contact"
+   ],
+   "notes": "Only when the runner was not ruled down on the field. The engine's assistCanChange returns false for this aspect regardless of the key. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1948",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect down_by_contact without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.down_by_contact"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1949",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect spot without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4253)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "location of the football or a player in relation to a line or the pocket area;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.spot"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1950",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect spot without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.spot"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1951",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect forward_or_backward_pass without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4251)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "completed, intercepted, or the direction of any pass;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.forward_or_backward_pass"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1952",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect forward_or_backward_pass without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.forward_or_backward_pass"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1953",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect in_bounds without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4252)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "touching of a loose ball, boundary line, goal line, or end line;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.in_bounds"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1954",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect in_bounds without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.in_bounds"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1955",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect score without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4252)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "touching of a loose ball, boundary line, goal line, or end line;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.score"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1956",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect score without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.score"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1957",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect possession without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4250)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "(e) possession; (f) completed, intercepted, or the direction of any pass;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.possession"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1958",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect possession without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.possession"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1959",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect fumble_before_down without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4250)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "(e) possession; (f) completed, intercepted, or the direction of any pass;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.fumble_before_down"
+   ],
+   "notes": "Interpretation: a fumble before the runner was down is a possession question under 15-9(e). The book lists no item by this name. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1960",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect fumble_before_down without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.fumble_before_down"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1961",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect kick_good without a review: false (pro, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9, items (a) to (j). Read for absence: The list of matters replay assist may address names no ruling on whether a kick was good; items (a) to (j) read in full.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.kick_good"
+   ],
+   "notes": "No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1962",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect kick_good without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.kick_good"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1963",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect touching without a review: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4252)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "touching of a loose ball, boundary line, goal line, or end line;",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.touching"
+   ],
+   "notes": "Covers a loose ball; touching of a kick is reached only through (j)(7), which is a per-foul switch. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1964",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect touching without a review: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5231)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "However, the replay official may correct obvious errors that may have a significant impact on the outcome of the game, including those involving the game clock, whether or not a play is reviewable.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.touching"
+   ],
+   "notes": "College has no separate named assist procedure. Value read from 12-3-7 (correct obvious errors whether or not reviewable, fouls excepted) with 12-5-1-a (the replay official reviews every play). Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1965",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect foul without a review: false (pro, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 9 (text copy rulebook_2026.txt, line 4255)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "if a foul is called for:",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.assist.foul"
+   ],
+   "notes": "False for fouls in general: 15-9(j) lists seven specific fouls that may be removed. Those are per-foul switches foul.<id>.assist_removable, which belong to the fouls rule rows. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1966",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Replay assist may correct a ruling of aspect foul without a review: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 7 (text copy ncaa-rulebook-2026.txt, line 5234)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "This excludes fouls that are not specifically reviewable",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.assist.foul"
+   ],
+   "notes": "College has no separate named assist procedure. Article 7 lets the replay official correct obvious errors with a significant impact, whether or not the play is reviewable, but not fouls that are not specifically reviewable. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1967",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Yard line the ball goes to when replay shows it was lost in a team's own end zone and nobody clearly recovered it: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 15, Section 3, Article 2, Item 1, Note 2 (text copy rulebook_2026.txt, line 4038)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "except that if possession was lost in the team’s own end zone, and the ball was not clearly recovered in the end zone, the ball will be placed at the one-yard line.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:replay.no_recovery_end_zone_yardline"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1968",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Yard line the ball goes to when replay shows it was lost in a team's own end zone and nobody clearly recovered it: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 12, Section 3, Article 3-d-1 (text copy ncaa-rulebook-2026.txt, line 5121)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "the dead-ball ruling is upheld.",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:replay.no_recovery_end_zone_yardline"
+   ],
+   "notes": "Inert value 0: the NCAA text has no one-yard-line placement. With no clear recovery the on-field dead-ball ruling is upheld (12-3-3-d-1). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-1969",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 1 count (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 3(d) (text copy rulebook_2026.txt, line 4295)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "There shall be a maximum of one 10-minute period",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.regular.max_periods"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1970",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 0 count (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-h (text copy ncaa-rulebook-2026.txt, line 2186)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Each team will be allowed one timeout beginning with the third extra period until the game is ended.",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.regular.max_periods"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. 0 means no limit: the book names no last period. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1971",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Timeouts per team for each overtime half. None carry over: 2 count (pro, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 3(e) (text copy rulebook_2026.txt, line 4297)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Each team shall be entitled to two timeouts",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.regular.timeouts"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1972",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Timeouts per team for each overtime half. None carry over: 1 count (college, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-h (text copy ncaa-rulebook-2026.txt, line 2185)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Each team shall be allowed one timeout for the first extra period and one timeout for the second extra period.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.regular.timeouts"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1973",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 1 count (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 3(d) (text copy rulebook_2026.txt, line 4295)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "There shall be a maximum of one 10-minute period",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.regular.periods_per_half"
+   ],
+   "notes": "One period only, so timeouts are never carried over; the book speaks of halves only in the postseason. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1974",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 1 count (college, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-h (text copy ncaa-rulebook-2026.txt, line 2189)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Unused extra-period timeouts may not be carried over to other extra periods.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.regular.periods_per_half"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. Each period is its own timeout allowance. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1975",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A new coin toss is held after this many overtime periods. 0 means never: 0 count (pro, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 3(d) (text copy rulebook_2026.txt, line 4295)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "There shall be a maximum of one 10-minute period",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.regular.new_toss_after_periods"
+   ],
+   "notes": "One period only, so no second toss. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1976",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A new coin toss is held after this many overtime periods. 0 means never: 0 count (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-c (text copy ncaa-rulebook-2026.txt, line 2145)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.regular.new_toss_after_periods"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. No second toss: the loser of the toss chooses first in even-numbered periods. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1977",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 0 index (pro, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 3(d) (text copy rulebook_2026.txt, line 4295)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "There shall be a maximum of one 10-minute period",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.regular.loser_chooses_at_period"
+   ],
+   "notes": "One period only, so the loser never has a first choice. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-1978",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 2 index (college, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-c (text copy ncaa-rulebook-2026.txt, line 2145)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.regular.loser_chooses_at_period"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. The alternating format also gives the loser first choice in every later even-numbered period; the module reads this key only for the timed format. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-1979",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 0 count (pro, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(d) (text copy rulebook_2026.txt, line 4309)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "another overtime period will begin, and play will continue, regardless of how many 15-minute periods are necessary.",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.postseason.max_periods"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1980",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Overtime periods played at most; the game ends when the last one expires, tied or not. 0 means no limit: 0 count (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-h (text copy ncaa-rulebook-2026.txt, line 2186)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Each team will be allowed one timeout beginning with the third extra period until the game is ended.",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.postseason.max_periods"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. 0 means no limit: the book names no last period. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1981",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Timeouts per team for each overtime half. None carry over: 3 count (pro, 2026 rules).",
+   "value": 3,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(g) (text copy rulebook_2026.txt, line 4314)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Each team is entitled to three timeouts during a half.",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.postseason.timeouts"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1982",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Timeouts per team for each overtime half. None carry over: 1 count (college, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-h (text copy ncaa-rulebook-2026.txt, line 2185)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Each team shall be allowed one timeout for the first extra period and one timeout for the second extra period.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.postseason.timeouts"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1983",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 2 count (pro, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(h) (text copy rulebook_2026.txt, line 4315)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "At the end of a second overtime period, timing rules shall apply as at the end of the first half.",
+     "value": 2
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(g) (text copy rulebook_2026.txt, line 4314)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Each team is entitled to three timeouts during a half.",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.postseason.periods_per_half"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1984",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Overtime periods that make a half: timeouts are renewed and a new kickoff or choice is made at the start of each: 1 count (college, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-h (text copy ncaa-rulebook-2026.txt, line 2189)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Unused extra-period timeouts may not be carried over to other extra periods.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.postseason.periods_per_half"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. Each period is its own timeout allowance. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1985",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A new coin toss is held after this many overtime periods. 0 means never: 4 count (pro, 2026 rules).",
+   "value": 4,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(i) (text copy rulebook_2026.txt, line 4317)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "At the end of a fourth overtime period, there will be another coin toss",
+     "value": 4
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.postseason.new_toss_after_periods"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1986",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A new coin toss is held after this many overtime periods. 0 means never: 0 count (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-c (text copy ncaa-rulebook-2026.txt, line 2145)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.postseason.new_toss_after_periods"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. No second toss: the loser of the toss chooses first in even-numbered periods. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-1987",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 3 index (pro, 2026 rules).",
+   "value": 3,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(e) (text copy rulebook_2026.txt, line 4311)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "At the beginning of the third overtime period, the captain who lost the coin toss prior to the first overtime period shall have the first choice of the two privileges in 4-2-2, unless the team that won the coin toss deferred.",
+     "value": 3
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.postseason.loser_chooses_at_period"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-1988",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Overtime period, counted from the last toss, at whose start the loser of that toss has first choice. 0 means none: 2 index (college, 2026 rules).",
+   "value": 2,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-c (text copy ncaa-rulebook-2026.txt, line 2145)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The loser of the toss shall exercise the remaining option for the first extra period and shall have the first choice of the two options for subsequent",
+     "value": 2
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.postseason.loser_chooses_at_period"
+   ],
+   "notes": "College has one extra-period procedure for every game, so the regular and postseason keys carry the same value. The alternating format also gives the loser first choice in every later even-numbered period; the module reads this key only for the timed format. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-1989",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Intermission before overtime begins: 180 s (pro, 2026 rules).",
+   "value": 180,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 3 (text copy rulebook_2026.txt, line 4286)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Following an intermission of no more than three minutes after the end of a regular season game, an extra period of 10 minutes shall commence.",
+     "value": 180
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4 (text copy rulebook_2026.txt, line 4299)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Following an intermission of no more than three minutes after the end of the regular game, an extra period of 15 minutes shall commence.",
+     "value": 180
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.intermission_s"
+   ],
+   "notes": "The book states a maximum of three minutes; the value is that maximum. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1990",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Intermission before overtime begins: 0 s (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3. Read for absence: Article 3 (a) to (h) and Rule 3-2 read for a length of break before the first extra period. None is stated: the officials review the procedure, then the toss is held (3-1-3-a, b).",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.intermission_s"
+   ],
+   "notes": "Inert value 0: the NCAA text states no length of break before the first extra period. Unresolved; a second source (conference or broadcast window) is wanted. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1991",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Intermission between overtime periods: 120 s (pro, 2026 rules).",
+   "value": 120,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(e) (text copy rulebook_2026.txt, line 4310)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Between each overtime period, there shall be a two-minute intermission",
+     "value": 120
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.period_break_s"
+   ],
+   "notes": "Postseason only: the regular season has a single period. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1992",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Intermission between overtime periods: 0 s (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-h (text copy ncaa-rulebook-2026.txt, line 2196)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "In the absence of a media timeout, after the second extra period, there will be a two minute mandatory break period.",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.period_break_s"
+   ],
+   "notes": "Value 0: the book states a break only after the second extra period (two minutes, absent a media timeout), and a media timeout after the first and second periods. One key cannot carry a break after one period only; split the key if that matters. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "s"
+  },
+  {
+   "id": "F-rule-1993",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A timed overtime period has a two-minute warning, and with it the two-minute fumble limit: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 3(e) (text copy rulebook_2026.txt, line 4297)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The general provisions for the fourth quarter of a game, including timing, shall apply.",
+     "value": true
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(h) (text copy rulebook_2026.txt, line 4315)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "At the end of a second overtime period, timing rules shall apply as at the end of the first half.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.two_minute_warning"
+   ],
+   "notes": "Inferred from \"general provisions for the fourth quarter, including timing\" and the end-of-half timing rule; Rule 3-41 names only the second and fourth periods. Second source wanted. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1994",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A timed overtime period has a two-minute warning, and with it the two-minute fumble limit: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-d (text copy ncaa-rulebook-2026.txt, line 2148)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "An extra period shall consist of two possession series",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.two_minute_warning"
+   ],
+   "notes": "An extra period has no game clock, so it has no two-minute warning. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1995",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "The winner of the overtime toss may defer: true (pro, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 4(e) (text copy rulebook_2026.txt, line 4312)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "unless the team that won the coin toss deferred.",
+     "value": true
+    },
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 16, Section 1, Article 2 (text copy rulebook_2026.txt, line 4284)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "in accordance with rules pertaining to a usual pregame toss",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:overtime.toss_defer_allowed"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1996",
+   "level": "college",
+   "domain": "rule",
+   "statement": "The winner of the overtime toss may defer: false (college, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 1, Article 3-b (text copy ncaa-rulebook-2026.txt, line 2139)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "The winner of the toss may not defer the choice",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:overtime.toss_defer_allowed"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-1997",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Depth of each end zone, goal line to end line: 30 ft (pro, 2026 rules).",
+   "value": 30,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 2, Article 3 (text copy rulebook_2026.txt, line 383)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the edge of the line toward the field of play (actual goal line) is 30 feet from the inside edge of the end line.",
+     "value": 30
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.end_zone_depth_ft"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-1998",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Depth of each end zone, goal line to end line: 30 ft (college, 2026 rules).",
+   "value": 30,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 2, Section 12, Article 3 (text copy ncaa-rulebook-2026.txt, line 1519)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "An end line runs between the sidelines 10 yards behind each goal line",
+     "value": 30
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.end_zone_depth_ft"
+   ],
+   "notes": "10 yards written as 30 feet. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-1999",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Distance from each sideline to the bottom of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 36 ft (pro, 2026 rules).",
+   "value": 36,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 2, Article 4, Item 1 (text copy rulebook_2026.txt, line 388)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Bottoms of numbers indicating yard lines in multiples of 10 must be placed beginning 12 yards in from each sideline.",
+     "value": 36
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.numbers_bottom_from_sideline_ft"
+   ],
+   "notes": "12 yards written as 36 feet. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2000",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Distance from each sideline to the bottom of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 21 ft (college, 2026 rules).",
+   "value": 21,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 2, Article 1-h (text copy ncaa-rulebook-2026.txt, line 670)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "White field yard-line numbers not larger than 6 feet in height and 4 feet in width, with the tops of the numbers nine yards from the sidelines, are recommended.",
+     "value": 21
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.numbers_bottom_from_sideline_ft"
+   ],
+   "notes": "Derived: top at 9 yards (27 feet) less the 6-foot maximum height. A recommendation, not a requirement; numbers may be smaller. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2001",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Distance from each sideline to the top of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 42 ft (pro, 2026 rules).",
+   "value": 42,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 2, Article 4, Item 1 (text copy rulebook_2026.txt, line 388)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Bottoms of numbers indicating yard lines in multiples of 10 must be placed beginning 12 yards in from each sideline. Each numeral must be in white and measure 2 yards in length.",
+     "value": 42
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.numbers_top_from_sideline_ft"
+   ],
+   "notes": "Derived: bottom at 36 feet plus a numeral 2 yards (6 feet) long. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2002",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Distance from each sideline to the top of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram): 27 ft (college, 2026 rules).",
+   "value": 27,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 2, Article 1-h (text copy ncaa-rulebook-2026.txt, line 670)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "White field yard-line numbers not larger than 6 feet in height and 4 feet in width, with the tops of the numbers nine yards from the sidelines, are recommended.",
+     "value": 27
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.numbers_top_from_sideline_ft"
+   ],
+   "notes": "9 yards written as 27 feet. A recommendation, not a requirement. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2003",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Players allowed neither on nor off the line when directly behind the snapper: 1 count (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 7, Section 5, Article 1(d) (text copy rulebook_2026.txt, line 2087)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Only one player may be in such a position, and he must wear an eligible number",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:formation.neither_behind_snapper_max"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-2004",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Players allowed neither on nor off the line when directly behind the snapper: 0 count (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 1, Article 4-a-2 (text copy ncaa-rulebook-2026.txt, line 3492)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "All players must be either linemen or backs",
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:formation.neither_behind_snapper_max"
+   ],
+   "notes": "Inert value 0: every college player is a lineman or a back at the snap, so no one is neither on nor off the line. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "count"
+  },
+  {
+   "id": "F-rule-2005",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "A player this close or closer behind the snapper is the player under center: 1 yd (pro, 2026 rules).",
+   "value": 1,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 3, Section 42 (text copy rulebook_2026.txt, line 924)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "A T-formation quarterback is defined as a player aligned one yard or less behind the snapper.",
+     "value": 1
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:formation.t_quarterback_depth_yd"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2006",
+   "level": "college",
+   "domain": "rule",
+   "statement": "A player this close or closer behind the snapper is the player under center: 0 yd (college, 2026 rules).",
+   "value": 0,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 2 (definitions) and Rule 7. Read for absence: Rule 2 definitions and Rule 7 searched for a T-formation or under-center quarterback defined by distance behind the snapper. The NCAA text has none; numbering.qb_under_center_eligible is true.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:formation.t_quarterback_depth_yd"
+   ],
+   "notes": "Inert value 0: the NCAA text has no such definition. No quote: the value records that the rule book has no such provision. The text was searched and the named rules read. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2007",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Top of the lower band of eligible jersey numbers (the band starts at 0): 49 index (pro, 2026 rules).",
+   "value": 49,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 5, Section 1, Article 2 (text copy rulebook_2026.txt, line 1299)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+     "value": 49
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:numbering.eligible_low_max"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-2008",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Top of the lower band of eligible jersey numbers (the band starts at 0): 49 index (college, 2026 rules).",
+   "value": 49,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 3-c (text copy ncaa-rulebook-2026.txt, line 3679)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Each lineman who is on the end of their scrimmage line and who is wearing a number other than 50 through 79.",
+     "value": 49
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:numbering.eligible_low_max"
+   ],
+   "notes": "Eligible numbers are every number other than 50 through 79, so the lower band runs 0 to 49. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-2009",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Bottom of the upper band of eligible jersey numbers: 80 index (pro, 2026 rules).",
+   "value": 80,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 5, Section 1, Article 2 (text copy rulebook_2026.txt, line 1299)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+     "value": 80
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:numbering.eligible_high_min"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-2010",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Bottom of the upper band of eligible jersey numbers: 80 index (college, 2026 rules).",
+   "value": 80,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 7, Section 3, Article 3-c (text copy ncaa-rulebook-2026.txt, line 3681)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "Each back wearing a number other than 50 through 79.",
+     "value": 80
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:numbering.eligible_high_min"
+   ],
+   "notes": "Upper band starts at 80 (numbers run to 99, Rule 1-4-2-a). Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-2011",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Top of the upper band of eligible jersey numbers: 89 index (pro, 2026 rules).",
+   "value": 89,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 5, Section 1, Article 2 (text copy rulebook_2026.txt, line 1299)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "Eligible pass receivers and a T-formation quarterback must be wearing numerals 0-49 or 80-89.",
+     "value": 89
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:numbering.eligible_high_max"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-2012",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Top of the upper band of eligible jersey numbers: 99 index (college, 2026 rules).",
+   "value": 99,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 4, Article 2-a (text copy ncaa-rulebook-2026.txt, line 883)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "All players shall be numbered 0 through 99.",
+     "value": 99
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:numbering.eligible_high_max"
+   ],
+   "notes": "Top of the upper band is the top number, 99. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "index"
+  },
+  {
+   "id": "F-rule-2013",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (college rule 3-4-3-b).: false (pro, 2026 rules).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 4, Section 3, Article 2(e) (text copy rulebook_2026.txt, line 1001)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "the game clock will start as if the foul had not occurred, except that the clock will start on the snap if:",
+     "value": false
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:clock.foul_restart_offended_option_late"
+   ],
+   "notes": "False: the pro clock starts on the snap by rule in the listed cases (4-3-2-e), with no option for the offended team and no test of who is ahead. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-2014",
+   "level": "college",
+   "domain": "rule",
+   "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (college rule 3-4-3-b).: true (college, 2026 rules).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 3, Section 4, Article 3-b (text copy ncaa-rulebook-2026.txt, line 2682)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "quote": "If the game clock is stopped to complete a penalty for a foul by the team ahead in the score (or either team if the score is tied) anytime after the Two- Minute Timeout in the 2nd or 4th quarters and the clock would start by rule on the referee’s signal, it will start on the snap, at the option of the offended team.",
+     "value": true
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:clock.foul_restart_offended_option_late"
+   ],
+   "notes": "Rule 3-4-3-a (clock tactics, the referee's discretion, guideline under five minutes) is not modelled. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ]
+  },
+  {
+   "id": "F-rule-2015",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "Width of the field, sideline to sideline: 160 ft (pro, 2026 rules).",
+   "value": 160,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 1, Section 1, Article 1 (text copy rulebook_2026.txt, line 353)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "The game shall be played upon a rectangular field, 360 feet in length and 160 feet in width.",
+     "value": 160
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.width_ft"
+   ],
+   "notes": "Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2016",
+   "level": "college",
+   "domain": "rule",
+   "statement": "Width of the field, sideline to sideline: 160 ft (college, 2026 rules).",
+   "value": 160,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 2, Article 1 and Appendix D, field diagram, page FR-130 (PDF page 133). Figure read as an image in the rule book PDF (the text copy lacks it): The dimension line across the full width of the field is labelled 160, beside the 360 length line.",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 160
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.width_ft"
+   ],
+   "notes": "The NCAA text copy gives the field dimensions only in Appendix D (Rule 1-2-1: \"with dimensions, lines, zones, goals and pylons as indicated in Appendix D\"); the figure was read as an image in the official PDF (ncaaorg.s3.amazonaws.com PRMFB_RulesBook.pdf). Unit feet, as for the 360 length. Independent published sources agree (Wikipedia American football field; BAFRA 2013 field diagrams), recorded here as a note, not as register sources. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "ft"
+  },
+  {
+   "id": "F-rule-2017",
+   "level": "pro",
+   "domain": "rule",
+   "statement": "New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).: 0.309028 yd (pro, 2026 rules).",
+   "value": 0.309028,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Official Playing Rules of the National Football League, 2026",
+     "locator": "Rule 2, Section 1 (text copy rulebook_2026.txt, line 421)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-rulebook-2026",
+     "primary": true,
+     "quote": "long axis, 11 to 11¼ inches;",
+     "value": 0.309028
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "pro_2026:field.ball_length_yd"
+   ],
+   "notes": "Midpoint of the allowed long axis, 11.125 inches = 0.309028 yd (0.3090277...). The book gives a range, not one length. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
+  },
+  {
+   "id": "F-rule-2018",
+   "level": "college",
+   "domain": "rule",
+   "statement": "New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).: 0.309896 yd (college, 2026 rules).",
+   "value": 0.309896,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA Football Rules and Interpretations (NCAA, May 2026)",
+     "locator": "Rule 1, Section 3, Article 1-f and the ball diagram, page FR-22 (PDF page 25). Figure read as an image in the rule book PDF (the text copy lacks it): The ball diagram labels the length 10 7/8\" to 11 7/16\".",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa-rulebook-2026",
+     "primary": true,
+     "value": 0.309896
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [
+    "college_2026:field.ball_length_yd"
+   ],
+   "notes": "The NCAA text copy says only \"Conforms to maximum and minimum dimensions and shape indicated in the accompanying diagram\" (1-3-1-f); the range was read as an image in the official PDF. Midpoint 11 5/32 in (11.15625) = 0.309896 yd. Primary text read directly; no independent cross-check yet (Q6.1.2).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from the 2026 rule book text (WP-01)."
+    }
+   ],
+   "unit": "yd"
   }
  ]
 }

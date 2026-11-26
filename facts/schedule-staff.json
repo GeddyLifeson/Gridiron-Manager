@@ -1,0 +1,1018 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-sched-0001",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Each NFL club plays 17 regular-season games.",
+   "value": 17,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 24 Section 8 (text copy)",
+     "locator": "Article 24 Section 8 (text copy cba_2020.txt, line 8277)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-cba",
+     "primary": true,
+     "quote": "which there are 17 regular season games per Club per year",
+     "value": 17
+    },
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The NFL's 32 teams will each play 17 games over 18 weeks.",
+     "value": 17
+    },
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv per club, 2021-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); every club 17 games each season 2021-2026 (2022: two clubs 16, the cancelled Bills-Bengals game)",
+     "value": 17
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0002",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The NFL regular season runs 18 weeks.",
+   "value": 18,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The NFL's 32 teams will each play 17 games over 18 weeks.",
+     "value": 18
+    },
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv max week",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); last week is 18 in every season 2021-2026",
+     "value": 18
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0003",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Byes begin in Week 5.",
+   "value": 5,
+   "unit": "week",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Byes will begin in Week 5 and end in Week 14",
+     "value": 5
+    },
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv byes",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); first bye week 5 in 2023, 2024, 2025 and 2026 (6 in 2021 and 2022)",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "The window has shifted: SAM data shows week 6 as the first bye week in 2021 and 2022, so the value is the current (2023 onward) window. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0004",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Byes end in Week 14.",
+   "value": 14,
+   "unit": "week",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Byes will begin in Week 5 and end in Week 14",
+     "value": 14
+    },
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv byes",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); last bye week 14 in 2021, 2023, 2024, 2025 and 2026 (2022 shows 17 only because the Bills-Bengals game was cancelled)",
+     "value": 14
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0005",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "No club has a bye in Thanksgiving week (Week 12 in 2026).",
+   "value": 12,
+   "unit": "week",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv byes and Thanksgiving games",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); Thanksgiving Thursday falls in week 12 in 2026 and no club has a bye that week (2022 to 2026 all show zero byes in Thanksgiving week)",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "ONE SOURCE. Counter-evidence: in 2021 two clubs had a bye in Thanksgiving week (week 12), so \"no byes in Thanksgiving week\" is a pattern of 2022 to 2026, not a rule written down anywhere read. Bible C2.2.1 should call it a soft pattern. Thanksgiving week is 12 or 13 depending on the year (13 in 2024 and 2025); the scheduler must derive it from the calendar, this value is the 2026 week. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0006",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Every game of the final regular-season week is a division game.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "For the 17th consecutive year, all 16 games scheduled for the final week of the season are division contests",
+     "value": true
+    },
+    {
+     "citation": "Wikipedia, 2026 NFL season (https://en.wikipedia.org/wiki/2026_NFL_season; read 2026-11-26)",
+     "locator": "Schedule section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "all games during the final weekend will be intra-division games",
+     "value": true
+    },
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv div_game, last week",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); 16 of 16 final-week games are division games in every season 2021-2026",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0007",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A club may play at most two Thursday games on short rest in a season.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL approves allowing teams to play two Thursday games on short weeks (2023-03-28, https://nbcsports.com/nfl/profootballtalk/rumor-mill/news/nfl-approves-allowing-teams-to-play-two-thursday-games-on-short-weeks); headline read, body truncated",
+     "locator": "headline",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-pft",
+     "primary": false,
+     "quote": "NFL approves allowing teams to play two Thursday games on short weeks",
+     "value": 2
+    },
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv rest columns",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); most Thursday games on 5 or fewer days of rest (Thanksgiving excluded) for one club in a season is 2 in 2022 to 2026 and 1 in 2021; never more than 2",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "The PFT body was truncated and the NFL.com 2026 procedures page does not state the limit; the SAM figure is observed, not a rule text. The 2023 resolution itself is in the bible audit (P7, P8) but was not re-read here. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0008",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Sunday Night Football may be flexed up to twice between Weeks 5 and 10 (any week 11 to 17).",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 Flexible Scheduling Procedures and Scheduling for Week 18 (https://www.nfl.com/legal/flexible-scheduling-procedures; page undated)",
+     "locator": "2026 Flexible Scheduling Procedures",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "For Sunday Night Football it may be used up to twice between Weeks 5-10",
+     "value": 2
+    },
+    {
+     "citation": "theScore, NFL announces full 2026 regular-season schedule (https://www.thescore.com/nfl/news/3539550/nfl-announces-full-2026-regular-season-schedule; May 2026)",
+     "locator": "flex section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "Sunday night contests can be swapped out twice during Weeks 5-10",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0009",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Thursday Night Football may be flexed up to twice between Weeks 13 and 17.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 Flexible Scheduling Procedures and Scheduling for Week 18 (https://www.nfl.com/legal/flexible-scheduling-procedures; page undated)",
+     "locator": "2026 Flexible Scheduling Procedures",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "For Thursday Night Football it may be used up to twice between Weeks 13-17.",
+     "value": 2
+    },
+    {
+     "citation": "Sports Illustrated, NFL Owners Vote to Change Flex Rules Over Thursday Night Football Schedule (2025-03-31, https://www.si.com/nfl/nfl-owners-vote-to-change-flex-rules-over-thursday-night-football-schedule)",
+     "locator": "2025-03-31 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "flex up to two games into Thursday Night Football",
+     "value": 2
+    },
+    {
+     "citation": "theScore, NFL announces full 2026 regular-season schedule (https://www.thescore.com/nfl/news/3539550/nfl-announces-full-2026-regular-season-schedule; May 2026)",
+     "locator": "flex section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "the league can move Thursday games twice between Weeks 13-17",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0010",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A Thursday flex is decided no later than 21 days before the game.",
+   "value": 21,
+   "unit": "day",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 Flexible Scheduling Procedures and Scheduling for Week 18 (https://www.nfl.com/legal/flexible-scheduling-procedures; page undated)",
+     "locator": "2026 Flexible Scheduling Procedures",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "the flexible scheduling decision will generally be made no later than 21 days prior to the game",
+     "value": 21
+    },
+    {
+     "citation": "Sports Illustrated, NFL Owners Vote to Change Flex Rules Over Thursday Night Football Schedule (2025-03-31, https://www.si.com/nfl/nfl-owners-vote-to-change-flex-rules-over-thursday-night-football-schedule)",
+     "locator": "2025-03-31 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "trim the notice needed to flex a Thursday Night Football game from 28 to 21 days",
+     "value": 21
+    }
+   ],
+   "usedBy": [],
+   "notes": "Other notice periods on the same NFL.com page, not keyed: Sunday night 12 days (Weeks 5-13) and 6 days (Weeks 14-17); Monday night flex any week 12 to 17 with 12 days. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0011",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Three games are played on Saturday in Week 18 of 2026.",
+   "value": 3,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "three games will be played on Saturday (1 p.m. ET, 4:30 p.m. ET and 8 p.m. ET)",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "ONE SOURCE for 2026. SAM data shows 2 Saturday games in week 18 in each of 2021 to 2025 (its 2026 week 18 is a placeholder with every game on Sunday), so the count varies by year; Week 17 had 1 to 3 Saturdays in 2023 to 2025. The NFL.com procedures page says the Week 18 Saturday and Sunday slots are not assigned in advance. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0012",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The 2026 schedule has nine international games.",
+   "value": 9,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The NFL schedule features nine international games, the most-ever in a season",
+     "value": 9
+    },
+    {
+     "citation": "NFL.com, 2026 NFL schedule release, nine international games (https://www.nfl.com/news/2026-nfl-schedule-release-nine-international-games-dates-times-matchups; May 2026)",
+     "locator": "schedule release article",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "matchups for all nine International Games",
+     "value": 9
+    },
+    {
+     "citation": "SAM local NFL data, nfl/data/games.csv (regular-season games 2021-2026, nflverse-derived), computed by facts/g10-build/schedule_compute.py (output schedule_out.json)",
+     "locator": "games.csv location",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "sam-nflverse-games",
+     "primary": false,
+     "quote": "SAM regular-season games.csv 2021-2026 computed (schedule_out.json); 2026 has 9 games whose location is not Home (3, 6, 5, 5, 7 in 2021 to 2025)",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0013",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Each club plays three preseason games (the Hall of Fame Game clubs a fourth).",
+   "value": 3,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL-NFLPA Collective Bargaining Agreement 2020, Article 24 Section 8 (text copy)",
+     "locator": "Article 24 Section 8 (text copy cba_2020.txt, line 8277)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-cba",
+     "primary": true,
+     "quote": "the NFL shall hold no more than three preseason games per Club per year",
+     "value": 3
+    },
+    {
+     "citation": "NFL Operations, 2026 NFL schedule announced (https://edge-operations.nfl.com/updates/the-game/2026-nfl-schedule-announced/; page undated, May 2026)",
+     "locator": "schedule announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "three preseason games for the sixth consecutive year",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0014",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "FBS teams may schedule up to 12 regular-season games.",
+   "value": 12,
+   "unit": "count",
+   "validFor": "2026 and 2027",
+   "sources": [
+    {
+     "citation": "AP via NBC Sports, NCAA Cabinet tweaks college football calendar with 14-week season (2026-06-26, https://www.nbcsports.com/college-football/news/ncaa-cabinet-tweaks-college-football-calendar-with-14-week-season-and-bowl-rule-change)",
+     "locator": "AP, 2026-06-26",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "associated-press",
+     "primary": false,
+     "quote": "teams will be able to schedule up to 12 regular-season games",
+     "value": 12
+    },
+    {
+     "citation": "FBSchedules.com, NCAA adopts 14-week football season (2026-06-25, modified 2026-10-19, https://fbschedules.com/ncaa-adopts-14-week-football-season-changes-fcs-to-fbs-bowl-eligibility/amp/)",
+     "locator": "2026-06-25",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "programs will continue to be permitted to schedule up to 12 regular-season games",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "\"Up to 12\": a maximum, not a requirement. No NCAA manual text was reachable. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0015",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "From fall 2027 the FBS regular season is a standardized 14 weeks.",
+   "value": 14,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "AP via NBC Sports, NCAA Cabinet tweaks college football calendar with 14-week season (2026-06-26, https://www.nbcsports.com/college-football/news/ncaa-cabinet-tweaks-college-football-calendar-with-14-week-season-and-bowl-rule-change)",
+     "locator": "AP, 2026-06-26",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "associated-press",
+     "primary": false,
+     "quote": "for the 14-week season that ends following Thanksgiving",
+     "value": 14
+    },
+    {
+     "citation": "FBSchedules.com, NCAA adopts 14-week football season (2026-06-25, modified 2026-10-19, https://fbschedules.com/ncaa-adopts-14-week-football-season-changes-fcs-to-fbs-bowl-eligibility/amp/)",
+     "locator": "2026-06-25",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "will move to a standardized 14-week regular-season format beginning in fall 2027",
+     "value": 14
+    }
+   ],
+   "usedBy": [],
+   "notes": "Applies from 2027. No page read states the 2026 week count (the 2026 season starts in Week 0 and a Week 0 start is not standard until the 2027 change), so the G-13 config value of 14 for 2026 is NOT confirmed. Two open dates per school from 2027. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0016",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "In 2026 the SEC, Big Ten, Big 12 and 12 of 17 ACC teams play nine conference games.",
+   "value": 9,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "CBS Sports, SEC adopts nine-game conference slate starting in 2026 (2025-08-21, https://www.cbssports.com/college-football/news/sec-adopts-nine-game-conference-slate-starting-in-2026-as-cfp-metrics-shift-emphasis-on-schedule-strength)",
+     "locator": "2025-08-21",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "quote": "SEC athletic directors adopted a nine-game conference football schedule starting with the 2026-27 season",
+     "value": 9
+    },
+    {
+     "citation": "On3, While Big 12, SEC and ACC require 10 power opponents in 2026, Big Ten has no plans to do the same (Sept 2025, https://www.on3.com/news/while-big-12-sec-and-acc-requires-10-power-opponents-in-2026-big-ten-has-no-plans-to-do-the-same)",
+     "locator": "Sept 2025",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "The Big Ten will play nine conference games, as it has every season since 2016",
+     "value": 9
+    },
+    {
+     "citation": "On3, ACC announces 12 teams will play 9 conference games in 2026, five have 8-game schedule (Dec 2025, https://www.on3.com/news/acc-announces-12-teams-will-play-9-conference-games-in-2026-five-have-8-game-schedule/)",
+     "locator": "Dec 2025",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "a nine-game conference slate",
+     "value": 9
+    },
+    {
+     "citation": "Field Level Media via AOL, Reports: Big Ten won't follow suit in requiring 10 power opponents (2025-09-24, https://www.aol.com/articles/reports-big-ten-wont-suit-233731086.html)",
+     "locator": "2025-09-24",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "field-level-media",
+     "primary": false,
+     "quote": "nine league football games plus one nonconference opponent from a power league",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "CORRECTS the bible: 12 of 17 ACC teams play nine and FIVE play eight (Boston College, Clemson, Florida State, Georgia Tech, North Carolina), per On3 and AP; the bible had 16 and 1. From 2027 one ACC school plays eight each year (ESPN via the fetch). The value is the common one, so the ACC five need a per-conference override in the data that G-13 reads. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0017",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The Big 12, SEC and ACC require ten games against power-conference opponents from 2026.",
+   "value": 10,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "On3, While Big 12, SEC and ACC require 10 power opponents in 2026, Big Ten has no plans to do the same (Sept 2025, https://www.on3.com/news/while-big-12-sec-and-acc-requires-10-power-opponents-in-2026-big-ten-has-no-plans-to-do-the-same)",
+     "locator": "Sept 2025",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "will begin requiring their schools to play a minimum of 10 games against power conference opponents",
+     "value": 10
+    },
+    {
+     "citation": "Field Level Media via AOL, Reports: Big Ten won't follow suit in requiring 10 power opponents (2025-09-24, https://www.aol.com/articles/reports-big-ten-wont-suit-233731086.html)",
+     "locator": "2025-09-24",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "field-level-media",
+     "primary": false,
+     "quote": "three major conferences will require their members to face at least 10 power-conference opponents",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "The Big Ten has no such rule (On3: it is not requiring a non-conference power opponent), so that conference has no value for this key. Notre Dame counts as a power opponent (CBS, ESPN pages for the SEC wording). Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0018",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "From 2027-28 each Power-conference and Group of 6 team is expected to play at least 10 qualifying regular-season games.",
+   "value": 10,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "College Football Playoff, 24-team expansion release and fact sheet (2026-11-09, https://collegefootballplayoff.com/news/2026/11/9/24-team-expansion)",
+     "locator": "2026-11-09 fact sheet",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Each A4 institution will be expected to play at least 10 qualifying regular season games",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "ONE SOURCE (the official release). Same 10 for the Group of 6. The CFP page says no weight is given to a win over more than one FCS opponent a season; it lists no FCS game as qualifying. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0019",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "An FBS program may have up to four graduate student coaches.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "since 2023-07-01",
+   "sources": [
+    {
+     "citation": "NCAA.org, Division I removes some restrictions on countable coaches in football (2024-06-25, https://www.ncaa.org/news/media-center-division-i-removes-some-restrictions-on-countable-coaches-in-football/)",
+     "locator": "2024-06-25",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "remain able to have up to four graduate student coaches",
+     "value": 4
+    },
+    {
+     "citation": "NCAA LSDBi proposal 2022-28-FBS, football coaching limits (Adopted Final 2023-03-12, effective 2023-07-01; https://web3.ncaa.org/lsdbi/search/proposalView?id=106991)",
+     "locator": "Bylaw 11.7.4, effective 2023-07-01",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "four graduate assistant student coaches",
+     "value": 4
+    },
+    {
+     "citation": "LSU Compliance, NCAA Bylaws on Personnel Requirements (copyright 2021, pre-2023 bylaw text; https://www.compliance.lsu.edu/personnel)",
+     "locator": "pre-2023 snapshot",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "four graduate assistant coaches",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Fetched pages dated to mid-2024; nothing dated 2025 or 2026 was found, and the current NCAA manual was not read. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0020",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "FBS football is limited to 11 off-campus recruiters, the head coach among them.",
+   "value": 11,
+   "unit": "count",
+   "validFor": "since 2023-07-01",
+   "sources": [
+    {
+     "citation": "NCAA.org, Division I removes some restrictions on countable coaches in football (2024-06-25, https://www.ncaa.org/news/media-center-division-i-removes-some-restrictions-on-countable-coaches-in-football/)",
+     "locator": "2024-06-25",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "FBS teams remain limited to up to 11 staff members",
+     "value": 11
+    },
+    {
+     "citation": "LSU Compliance, NCAA Bylaws on Personnel Requirements (copyright 2021, pre-2023 bylaw text; https://www.compliance.lsu.edu/personnel)",
+     "locator": "pre-2023 snapshot",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Football, Bowl Subdivision- 11",
+     "value": 11
+    }
+   ],
+   "usedBy": [],
+   "notes": "The 2024 release says the change \"does not change the number of off-campus recruiters\". The second subdivision figure (13 in the bible) was not confirmed. Nothing dated 2025 or 2026 read. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0021",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "An FBS football program may have no more than five strength and conditioning coaches.",
+   "value": 5,
+   "unit": "count",
+   "validFor": "since 2023-07-01",
+   "sources": [
+    {
+     "citation": "NCAA.org, Division I removes some restrictions on countable coaches in football (2024-06-25, https://www.ncaa.org/news/media-center-division-i-removes-some-restrictions-on-countable-coaches-in-football/)",
+     "locator": "2024-06-25",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "no more than five strength and conditioning coaches",
+     "value": 5
+    },
+    {
+     "citation": "LSU Compliance, NCAA Bylaws on Personnel Requirements (copyright 2021, pre-2023 bylaw text; https://www.compliance.lsu.edu/personnel)",
+     "locator": "Bylaw 11.7.3.1.1, pre-2023 text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lsu-compliance",
+     "primary": false,
+     "quote": "Not more than five weight or strength coaches are permitted to work with a football program in any capacity.",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Nothing dated 2025 or 2026 read. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0022",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The limit on student assistant coaches equals the number of permissible off-campus recruiters (11 in FBS).",
+   "value": 11,
+   "unit": "count",
+   "validFor": "since 2024-06-25",
+   "sources": [
+    {
+     "citation": "NCAA.org, Division I removes some restrictions on countable coaches in football (2024-06-25, https://www.ncaa.org/news/media-center-division-i-removes-some-restrictions-on-countable-coaches-in-football/)",
+     "locator": "2024-06-25",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "will be the same as the number of permissible off-campus recruiters",
+     "value": 11
+    }
+   ],
+   "usedBy": [],
+   "notes": "ONE SOURCE, and the value is derived (limit equals the recruiter number). The release does not say whether this restated or changed the earlier rule. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0023",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A person may serve as a graduate student coach for at most three years.",
+   "value": 3,
+   "unit": "seasons",
+   "validFor": "since 2023-07-01",
+   "sources": [
+    {
+     "citation": "NCAA.org, Division I Council modernizes rules for coaching limits (2023-01-11, https://www.ncaa.org/news/media-center-division-i-council-modernizes-rules-for-coaching-limits/)",
+     "locator": "2023-01-11",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "limited individuals to serving three years maximum in that role",
+     "value": 3
+    },
+    {
+     "citation": "GW Hatchet, NCAA sets new rules for coaching limits (2023-01-19, https://www.gwhatchet.com/2023/01/19/ncaa-sets-new-rules-for-coaching-limits/)",
+     "locator": "2023-01-19",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "gw-hatchet",
+     "primary": false,
+     "quote": "to serving a maximum of three years",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "LSDBi 2022-28-FBS and a 2019 UGA page describe the older form: two years, a third only after completing 24 semester hours. Both give three as the ceiling. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-sched-0024",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A graduate assistant coach must be within seven years of a first bachelor's degree or of exhausting football eligibility.",
+   "value": 7,
+   "unit": "years",
+   "validFor": "since 2023-07-01",
+   "sources": [
+    {
+     "citation": "NCAA LSDBi proposal 2022-28-FBS, football coaching limits (Adopted Final 2023-03-12, effective 2023-07-01; https://web3.ncaa.org/lsdbi/search/proposalView?id=106991)",
+     "locator": "Proposal 2022-28-FBS",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "within the previous seven years",
+     "value": 7
+    },
+    {
+     "citation": "FootballScoop, NCAA establishes Graduate Assistant guidelines, 7-year clock and more (undated, https://footballscoop.com/news/ncaa-establishes-guidelines-for-graduate-assistants)",
+     "locator": "article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop",
+     "primary": false,
+     "quote": "The seven-year window begins after receiving first baccalaureate",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Professional-contract time is excluded (LSDBi, LSU). The FootballScoop piece is undated and older. Web quotes as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find them).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the schedule and staff facts pass from sources read this session."
+    }
+   ]
+  }
+ ]
+}

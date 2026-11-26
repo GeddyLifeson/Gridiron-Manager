@@ -1,0 +1,108 @@
+{
+ "version": "1",
+ "note": "Measured from real head coach press conference transcripts (research/press/, tally.py). share, tone and followup come from in-season sessions (postgame, day after, midweek, weekly); perSession is the mean question count per session kind over all classified sessions. Status of each number: facts.json (F-press-*). Small samples: these print PROVISIONAL until three independent clubs agree.",
+ "levels": {
+  "pro": {
+   "share": {
+    "analytics_stats": 0.0072,
+    "culture_leadership": 0.1304,
+    "decision_call": 0.0652,
+    "depth_chart": 0.0652,
+    "fans_crowd": 0.0072,
+    "game_plan": 0.0072,
+    "injury_status": 0.0942,
+    "job_security": 0.0217,
+    "media_reports": 0.0217,
+    "officiating_rules": 0.0217,
+    "opponent_coach": 0.0217,
+    "opponent_player": 0.0217,
+    "penalties": 0.0145,
+    "player_performance": 0.0797,
+    "practice_prep": 0.0145,
+    "qb_change": 0.0072,
+    "qb_performance": 0.058,
+    "result_overall": 0.0362,
+    "rivalry_history": 0.0072,
+    "roster_move": 0.0362,
+    "scheme_philosophy": 0.0507,
+    "specific_play": 0.0362,
+    "staff": 0.0217,
+    "standings_stakes": 0.0145,
+    "trade": 0.0072,
+    "unit_performance": 0.1304
+   },
+   "tone": {
+    "hostile": 0.0,
+    "neutral": 0.5435,
+    "probing": 0.1594,
+    "soft": 0.2971
+   },
+   "followup": 0.2101,
+   "perSession": {
+    "day_after": 14.8,
+    "end_of_season": 11.0,
+    "introductory": 10.0,
+    "midweek": 15.0,
+    "offseason": 40.0,
+    "postgame": 9.8,
+    "training_camp": 18.2
+   },
+   "questions": 138,
+   "transcripts": 11,
+   "facts": [
+    "F-press-0001",
+    "F-press-0003",
+    "F-press-0005",
+    "F-press-0007"
+   ]
+  },
+  "college": {
+   "share": {
+    "analytics_stats": 0.0088,
+    "culture_leadership": 0.1053,
+    "decision_call": 0.0088,
+    "depth_chart": 0.0965,
+    "fans_crowd": 0.0088,
+    "game_plan": 0.0439,
+    "injury_status": 0.0702,
+    "job_security": 0.0088,
+    "milestone_record": 0.0175,
+    "officiating_rules": 0.0088,
+    "opponent_coach": 0.0088,
+    "opponent_player": 0.0526,
+    "opponent_team": 0.0351,
+    "other": 0.0175,
+    "personal_family": 0.0088,
+    "play_calling_role": 0.0088,
+    "player_performance": 0.114,
+    "practice_prep": 0.0351,
+    "qb_performance": 0.0439,
+    "recruiting": 0.0088,
+    "roster_move": 0.0088,
+    "schedule_travel_weather": 0.0439,
+    "staff": 0.0439,
+    "standings_stakes": 0.0263,
+    "transfer_nil": 0.0263,
+    "unit_performance": 0.1404
+   },
+   "tone": {
+    "hostile": 0.0,
+    "neutral": 0.2982,
+    "probing": 0.0088,
+    "soft": 0.693
+   },
+   "followup": 0.0263,
+   "perSession": {
+    "weekly": 16.3
+   },
+   "questions": 114,
+   "transcripts": 7,
+   "facts": [
+    "F-press-0002",
+    "F-press-0004",
+    "F-press-0006",
+    "F-press-0008"
+   ]
+  }
+ }
+}

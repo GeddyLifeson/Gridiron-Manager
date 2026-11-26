@@ -179,7 +179,8 @@ describe('C7.4.1 rookie contracts and undrafted free agents', () => {
     expect(ok(rookieContract({ id: 3, round: null, overall: null, firstLeagueYear: 2026, signingBonusCents: 10_000_00 }, R)).contract.years).toHaveLength(3);
   });
   it('the undrafted bonus pool reads the latest published year and says when it is not the draft year', () => {
-    expect(undraftedPoolCents(R, 2026)).toEqual({ cents: 172_337_00, basisYear: 2024, exact: false });
+    expect(undraftedPoolCents(R, 2026)).toEqual({ cents: 229_224_00, basisYear: 2026, exact: true });
+    expect(undraftedPoolCents(R, 2027)).toEqual({ cents: 229_224_00, basisYear: 2026, exact: false });
     expect(undraftedPoolCents(R, 2021)).toEqual({ cents: 160_000_00, basisYear: 2021, exact: true });
   });
   it('no offer may exceed the club pool or the roster limit', () => {

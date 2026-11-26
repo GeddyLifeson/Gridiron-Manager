@@ -1,7 +1,7 @@
 // Per-play environment: the wind field for ball flight (J12.3.1, to J9.7.1), crowd noise for the play
 // (J12.6.1), and footing slips (J12.5.1 edge case). Each draw uses its own J13 stream so that changing a
 // play call never changes the gust or a slip (J13 counterfactual rule; J12.3.1 acceptance 1).
-import type { Contract } from '@gm/engine-core';
+import { Contract } from '@gm/engine-core';
 import { YD_PER_S_PER_MPH } from './physics.ts';
 
 const DEG_TO_RAD = Math.PI / 180;
@@ -88,7 +88,8 @@ export function noiseForPlay(env: Contract.Environment, sit: NoiseSituation, rul
 /** J12.5.1 chance of a slip on one hard cut: zero at or above the footing threshold, rising below it. */
 export function slipChancePerCut(footing: number, p: Contract.ParamTable): number {
   const below = p.num('environment.slip.footingBelow') - footing;
-  return below > 0 ? Math.min(1, below * p.num('environment.slip.chancePerCutPerFootingPoint')) : 0;
+  // A3.1 ruling 22: a player can slip on perfect footing too, with the floor chance.
+  return Contract.possible(below > 0 ? below * p.num('environment.slip.chancePerCutPerFootingPoint') : 0);
 }
 
 /** Opens footing[game, play, player] (J13.2.1). Draw `slipOnCut` from it once per hard cut, in cut order. */

@@ -1,7 +1,7 @@
 // L5.4.2 president and board, L5.4.3 boosters and donor groups, L5.4.6 donor share of a buyout, T9.1.1
 // rules 2 and 3. The athletic director himself runs through owner.ts (L5.4.1: L5.1.1 to L5.1.5 apply with
 // him as the main actor) and his roster authority is the program default in power.ts.
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { param } from './params.ts';
 import type { BossProfile } from './profile.ts';
 
@@ -24,8 +24,8 @@ export function needsBoardApproval(totalValueUsd: number): boolean {
 
 /** T9.1.1 rule 2: chance the president steps in on a firing, hire or scandal; rises with buyout and any compliance case. */
 export function presidentInvolvementChance(buyoutUsd: number, complianceCase: boolean): number {
-  return clamp(param('president.involveBase') + param('president.involvePerTenMillion') * buyoutUsd / param('deadMoney.carryUsdUnit')
-    + (complianceCase ? param('president.involveCompliance') : 0), 0, 1);
+  return possible(clamp(param('president.involveBase') + param('president.involvePerTenMillion') * buyoutUsd / param('deadMoney.carryUsdUnit')
+    + (complianceCase ? param('president.involveCompliance') : 0), 0, 1));
 }
 
 /** T9.1.1 rule 3: a new athletic director did not hire the coach; E4 applies the patience reset. */
