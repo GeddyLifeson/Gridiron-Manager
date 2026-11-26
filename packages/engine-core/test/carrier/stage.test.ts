@@ -153,8 +153,24 @@ describe('J8.4.1 acceptance: ball security', () => {
 });
 
 describe('J8.4.2 acceptance: clock and boundary', () => {
-  const run = (rule: 'stayInBounds' | 'getOutOfBounds' | 'none', seed: number) =>
-    runScene({ seed, ballY: 6, instruction: { rule, practicedThisWeek: true }, rbAt: [0, -3], rbVel: [7, -0.3], chasers: { 12: { at: [5, 1], speed: 8 } }, maxTicks: 60 });
+  const run = (rule: 'stayInBounds' | 'getOutOfBounds' | 'none', seed: number, practiced = true, iq = 50) =>
+    runScene({ seed, ballY: 6, attrs: { football_intelligence: iq }, instruction: { rule, practicedThisWeek: practiced }, rbAt: [0, -4.2], rbVel: [7, -0.3], chasers: { 12: { at: [5, 1], speed: 8 } }, maxTicks: 60 });
+  const inBounds = (practiced: boolean, iq: number): number => {
+    let ended = 0, inb = 0;
+    for (let seed = 1; seed <= 150; seed++) {
+      const r = reason(run('stayInBounds', seed, practiced, iq).dead);
+      if (r === null) continue;
+      ended++; if (r !== 'runner_out_of_bounds') inb++;
+    }
+    return inb / ended;
+  };
+  it('unpracticed, the in-bounds share is at least 10 points lower (MA-70; shown at football intelligence 30, see the handoff)', () => {
+    expect(inBounds(true, 30) - inBounds(false, 30)).toBeGreaterThanOrEqual(0.10);
+  }, T);
+  it('self-preservation: with no situation rule a carrier near the sideline sometimes steps out to avoid the hit', () => {
+    const out = share(100, (seed) => reason(run('none', seed).dead) === 'runner_out_of_bounds');
+    expect(out).toBeGreaterThan(0.2); expect(out).toBeLessThan(0.95);
+  }, T);
   it('stay in bounds, practiced: carriers near the sideline end the play in bounds at least 85% of the time', () => {
     let ended = 0, inb = 0;
     for (let seed = 1; seed <= 120; seed++) {

@@ -43,7 +43,13 @@ const ROWS = [
   ['look.crowdYd', 0.5, 0, 1.5, 'yd', 'bible', 'J8.1.1', QUANT],
   ['look.crowdRadiusYd', 1.0, 0.5, 2, 'yd', 'bible', 'J8.1.1', QUANT],
   // A defender "can reach the path" when he gets within this distance of a projected point no later than the carrier does.
-  ['look.reachYd', 1.0, 0.5, 2, 'yd', 'assumption', 'J8.1.1', QUANT],
+  ['lane.reachSlackYd', 1.0, 0.5, 2, 'yd', 'assumption', 'J8.1.1', QUANT],
+  // J8.1.1 self-preservation (MA-70): a lane that leaves the field within `hitAvoidOutYd` gets this bonus when a
+  // defender with a clear hit arrives within `hitAvoidS`, scaled down by toughness (competitiveness until D holds toughness).
+  ['lane.hitAvoid', 8.0, 0, 12, 'yd', 'assumption', 'J8.1.1', CLOCK],
+  ['lane.hitAvoidS', 0.5, 0.2, 1.0, 's', 'assumption', 'J8.1.1', CLOCK],
+  ['lane.hitAvoidOutYd', 2.5, 0.5, 4, 'yd', 'assumption', 'J8.1.1', CLOCK],
+  ['lane.hitAvoidToughPerZ', 0.2, 0, 0.5, 'ratio/z', 'assumption', 'J8.1.1', CLOCK],
   ['look.pathSamples', 4, 2, 8, 'count', 'assumption', 'J8.1.1', STRUCT],
   // Half-angle of the vision cone around his heading; defenders outside it are not counted.
   ['look.coneHalfDeg', 100, 70, 135, 'deg', 'assumption', 'J8.1.1', VISION],
@@ -67,6 +73,8 @@ const ROWS = [
   ['read.fadeS', 0.5, 0.2, 1.0, 's', 'bible', 'J8.2.1', READ],
   // Penetration: a free defender this close in the backfield before the read ends the press at once.
   ['read.penetrationYd', 2.0, 1, 4, 'yd', 'assumption', 'J8.2.1', READ],
+  // J8.2.1 (MA-70): the bang, bend or bounce choice point sits this far past the aim point.
+  ['choice.pointYd', 3, 1, 5, 'yd', 'assumption', 'J8.2.1', READ],
   ['read.recogBeta0', 1.4, 0, 3, 'logit', 'assumption', 'J8.2.1', READ],
   ['read.recogPerZ', 0.8, 0, 2, 'logit/z', 'assumption', 'J8.2.1', READ],
   ['read.recogKnowledge', 0.6, 0, 2, 'logit per unit knowledge', 'assumption', 'J8.2.1', READ],
