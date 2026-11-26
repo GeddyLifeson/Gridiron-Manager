@@ -360,3 +360,14 @@ describe('ranked crowd queue (MB-7)', () => {
 // Compile-time check: a real browser AudioContext satisfies the engine's context type.
 type RealFits = AudioContext extends AudioContextLike ? true : false;
 export const realFits: RealFits = true;
+
+describe('settings schema drives the buses (PV-14)', () => {
+  it('schema defaults give the engine defaults, and mono reads audio.mono', async () => {
+    const { settings } = await import('@gm/app-services');
+    const { busSettingsFrom, monoFrom, BUS_DEFAULTS } = await import('../../src/audio/engine/index.ts');
+    const d = settings.defaultValues('user');
+    expect(busSettingsFrom((k) => d[k])).toEqual(BUS_DEFAULTS);
+    expect(monoFrom((k) => d[k])).toBe(false);
+    expect(monoFrom((k) => (k === 'audio.mono' ? true : d[k]))).toBe(true);
+  });
+});

@@ -1,10 +1,14 @@
 // WP-26 tests (Q1.7.2 play level). Fixture rows hold no real rate; the baseline file is checked as data.
 import { describe, expect, it } from 'vitest';
+import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import type { PlayByPlayRow } from '@gm/schema';
 import { row, run, pass } from '../calibration/fixtures.ts';
 import type { LoadedTargets } from '../../src/calibration/targets.ts';
 import {
   readCsv, rowFromPublic, measureCells, CELL_PLAN, SPLITS, SHAPE_POINTS, compareCell, shapeChecks, baselineStatus,
-  buildPlayReport, formatPlayReport, readBaseline, readTolerances, officialTotals, worstMisses, UNCHARTED_FIELDS,
+  buildPlayReport, formatPlayReport, readBaseline, cellStatus, readChartSeason, applyChart, personnelFromParticipation, rowFromCollege, CHART_FIELDS, readTolerances, officialTotals, worstMisses, UNCHARTED_FIELDS,
   type CellValue, type Tolerances, type RealBaseline, type CsvRecord,
 } from '../../src/calibration-play/index.ts';
 
@@ -57,9 +61,71 @@ describe('rowFromPublic', () => {
     expect(at({ two_point_attempt: '1', two_point_conv_result: 'success', down: 'NA' })).toMatchObject({ playKind: 'try', kickKind: null, resultType: 'try_good', down: null, distanceYd: null });
     expect(at({ play_type: 'kickoff', kickoff_attempt: '1', down: 'NA' })).toMatchObject({ playKind: 'kickoff', kickKind: 'kickoff' });
   });
-  it('uncharted fields stay neutral', () => {
+  it('uncharted and not-yet-charted fields stay neutral', () => {
     const r = rowFromPublic(publicRow({}), { gameId: 1, playIndex: 1 })!;
-    for (const f of UNCHARTED_FIELDS) expect([null, false]).toContain(r[f]);
+    for (const f of [...UNCHARTED_FIELDS, ...CHART_FIELDS]) expect([null, false]).toContain(r[f]);
+  });
+});
+
+describe('charts', () => {
+  it('reads personnel only when it describes five eligibles, fullbacks as backs', () => {
+    expect(personnelFromParticipation('1 RB, 1 TE, 3 WR')).toBe('11');
+    expect(personnelFromParticipation('1 C, 2 G, 1 QB, 1 RB, 2 T, 2 TE, 2 WR')).toBe('12');
+    expect(personnelFromParticipation('1 C, 2 G, 1 FB, 2 T, 1 QB, 1 RB, 1 TE, 2 WR')).toBe('21');
+    expect(personnelFromParticipation('1 RB, 1 TE, 2 WR')).toBeNull();
+    expect(personnelFromParticipation('')).toBeNull();
+  });
+  it('applies a chart: a dropback needs both its rusher count and its pressure flag', () => {
+    const base = rowFromPublic(publicRow({}), { gameId: 1, playIndex: 1 })!;
+    const chart = { personnelCode: '11', boxCount: 6, rushers: 4, pressure: true, coverageFamily: 'cover3' as const, playAction: true, motion: false };
+    expect(applyChart(base, chart)).toMatchObject({ personnelCode: '11', boxCount: 6, rushers: 4, pressure: true, coverageFamily: 'cover3', playAction: true, motion: false });
+    expect(applyChart(base, { ...chart, pressure: null })).toMatchObject({ rushers: null, pressure: false });
+    expect(applyChart(base, undefined)).toBe(base);
+  });
+  it('reads participation and FTN files, 0 and impossible counts as not charted', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'wp26-'));
+    const p = join(dir, 'p.csv'), f = join(dir, 'f.csv');
+    writeFileSync(p, 'nflverse_game_id,play_id,offense_personnel,defenders_in_box,number_of_pass_rushers,was_pressure,defense_coverage_type\n'
+      + 'G,1,"1 RB, 1 TE, 3 WR",6,4,TRUE,COVER_3\nG,2,"1 RB, 1 TE, 3 WR",0,0,FALSE,COMBO\nG,3,,7,44,,\n');
+    writeFileSync(f, 'nflverse_game_id,nflverse_play_id,n_defense_box,n_pass_rushers,is_motion,is_play_action\nG,1,6,4,TRUE,FALSE\n');
+    const s = readChartSeason(p, f, 2023);
+    expect(s.byPlay.get('G|1')).toEqual({ personnelCode: '11', boxCount: 6, rushers: 4, pressure: true, coverageFamily: 'cover3', playAction: false, motion: true });
+    expect(s.byPlay.get('G|2')).toMatchObject({ boxCount: null, rushers: null, pressure: false, coverageFamily: 'other', playAction: null });
+    expect(s.byPlay.get('G|3')).toMatchObject({ boxCount: 7, rushers: null, pressure: null, coverageFamily: null });
+    expect(s.second.get('G|1')).toEqual({ boxCount: 6, rushers: 4 });
+    rmSync(dir, { recursive: true });
+  });
+  it('charted splits count only charted plays and share over them', () => {
+    const d = (rushers: number | null, pressure: boolean, over: Partial<PlayByPlayRow> = {}) => pass('complete', 8, { rushers, pressure, ...over });
+    const cells = new Map(measureCells([d(4, false), d(4, true), d(5, true), d(null, false), run(3, { boxCount: 7 }), run(5, { boxCount: 6 })]).map((c) => [c.id, c]));
+    expect(cells.get('rushers[4].share')).toMatchObject({ n: 3, value: Number((2 / 3).toPrecision(6)) });
+    expect(cells.get('all[all].pass.pressureRate')).toMatchObject({ n: 3, value: Number((2 / 3).toPrecision(6)) });
+    expect(cells.get('pressure[pressured].pass.completionPct')).toMatchObject({ n: 2, value: 1 });
+    expect(cells.get('box[7].share')).toMatchObject({ n: 2, value: 0.5 });
+  });
+});
+
+describe('college rows', () => {
+  const crow = (o: CsvRecord): CsvRecord => ({
+    game_id: '1', game_play_number: '1', season_type: 'regular', home_team_division: 'fbs', away_team_division: 'fbs', home_team: 'H', pos_team: 'A', period: '2',
+    clock_minutes: '7', clock_seconds: '11', play_type: 'Rush', play_text: 'X run for 5 yds', down: '2', distance: '7', yards_to_goal: '40', yards_gained: '5', yds_penalty: '',
+    rush: '1', pass: '0', completion: '0', sack: '0', int: '0', rush_td: '0', pass_td: '0', penalty_flag: 'False', penalty_declined: 'False', penalty_no_play: 'False',
+    firstD_by_yards: '0', firstD_by_penalty: '0', fumble_vec: '0', Goal_To_Go: 'False', pos_team_score: '7', def_pos_team_score: '3', drive_number: '4', ...o,
+  });
+  const at = (o: CsvRecord) => rowFromCollege(crow(o), { gameId: 1, playIndex: 1 });
+  it('maps rushes, completions, sacks and takes foul yards out of the play', () => {
+    expect(at({})).toMatchObject({ offense: 1, resultType: 'run', yardsGained: 5, clockTenths: 4310, down: 2, yardsToGoalYd: 40, dropback: false, scramble: false });
+    expect(at({ rush: '0', pass: '1', completion: '1', play_type: 'Pass Reception', yards_gained: '12', firstD_by_yards: '1' })).toMatchObject({ resultType: 'pass_complete', dropback: true, firstDown: true });
+    expect(at({ rush: '0', pass: '1', sack: '1', play_type: 'Sack', yards_gained: '-7' })).toMatchObject({ resultType: 'sack', sack: true, yardsGained: -7 });
+    expect(at({ yards_gained: '-7', yds_penalty: '-10', penalty_flag: 'True', play_text: 'X run for 3 yds Penalty, Holding' })!.yardsGained).toBe(3);
+    expect(at({ rush: '0', pass: '1', int: '1', play_type: 'Interception Return' })).toMatchObject({ resultType: 'interception', interception: true });
+  });
+  it('drops no-plays, penalty rows and two-point rows, and finds kneel-downs and spikes in the text', () => {
+    expect(at({ penalty_no_play: 'True' })).toBeNull();
+    expect(at({ rush: '0', play_type: 'Penalty' })).toBeNull();
+    expect(at({ play_type: 'Two Point Rush' })).toBeNull();
+        expect(at({ play_text: 'Team kneel down' })!.resultType).toBe('kneel');
+    expect(at({ rush: '0', pass: '1', play_text: 'X spike' })).toMatchObject({ resultType: 'spike', dropback: false });
   });
 });
 
@@ -144,8 +210,31 @@ describe('the real baseline file', () => {
       for (const o of c.others) expect(Math.abs(c.fromPlayByPlay - o.value) / o.value).toBeLessThan(0.001);
     }
   });
-  it('has no college file: no college cell is filled from a pro value', () => {
-    expect(readBaseline('college_2026')).toBeNull();
+  it('charted cells name their own collections and are 1 of 3 (FTN equals the participation chart in 2023 and 2024, so it is not a second collection)', () => {
+    expect(b.groups!.map((g) => g.name)).toEqual(['participation chart', 'FTN chart']);
+    const status = (dim: string, metric: string) => cellStatus(b, { dim, metric });
+    expect(status('rushers', 'share')).toBe('1 of 3');
+    expect(status('all', 'pass.pressureRate')).toBe('1 of 3');
+    expect(status('action', 'share')).toBe('1 of 3');
+    expect(status('all', 'play.yards')).toBe('1 of 3');
+    for (const s of b.chartChecks!) {
+      expect(s.dropbacksCharted / s.dropbacks).toBeGreaterThan(0.85);
+      if (s.season >= 2023) { expect(s.rushersEqual / s.rushersBoth).toBeGreaterThan(0.999); expect(s.boxEqual / s.boxBoth).toBeGreaterThan(0.99); }
+      else expect(s.rushersEqual / s.rushersBoth).toBeLessThan(0.9);
+    }
+    const ids = new Set(b.cells.map((c) => c.id));
+    for (const id of ['all[all].pass.pressureRate', 'rushers[4].pass.sackRate', 'box[7].rush.yardsPerCarry', 'coverage[cover3].pass.completionPct', 'action[playAction].pass.yardsPerAttempt', 'personnel[11].share', 'motion[motion].play.passPlayShare']) expect(ids.has(id)).toBe(true);
+  });
+  it('has a college file from its own collection, with the uncharted cells left out', () => {
+    const c = readBaseline('college_2026')!;
+    expect(c.ruleSetId).toBe('college_2026');
+    expect(c.sources.map((s) => s.citation)).toEqual(['cfbfastR play-by-play (sportsdataverse-data)']);
+    expect(baselineStatus(c)).toBe('1 of 3');
+    const ids = new Set(c.cells.map((x) => x.id));
+    expect(ids.has('all[all].rush.yardsPerCarry')).toBe(true);
+    expect(c.cells.some((x) => ['depth', 'rushers', 'pressure', 'action', 'coverage', 'box', 'personnel', 'motion'].includes(x.dim))).toBe(false);
+    expect(ids.has('all[all].pass.scrambleShare')).toBe(false);
+    expect(c.seasons).toBe('2023-2025');
   });
   it('reads its tolerances from the file', () => {
     const t = readTolerances();

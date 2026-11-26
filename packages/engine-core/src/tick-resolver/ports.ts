@@ -11,6 +11,7 @@ import type { Contests } from '../contest/index.ts';
 import type { Movement } from '../kinematics/index.ts';
 import type { Perception, PerceptionConfig } from '../perception/index.ts';
 import type { PlayContext, PlayerAi, PlayerMind, SlotPlay } from '../player-ai/index.ts';
+import type { CarrierPlay } from '../carrier/stage.ts';
 import type { PresnapInput, PresnapPlan, SnapResult } from '../presnap/index.ts';
 import type { QbPlay } from '../qb/play.ts';
 import type { PlayStage } from '../tick/index.ts';
@@ -58,6 +59,27 @@ export interface PlayServices {
   protectedPasser(): number;
   /** The quarterback module registers how to answer `protectedPasser`. Called once, in `create`. */
   claimPasser(slotNow: () => number): void;
+  /**
+   * The slot the kick operation still owns: the punter until he punts, the holder until the place kick
+   * is struck or the operation fails (a bobble, a lost ball). -1 otherwise. A carrier module leaves
+   * that man alone, exactly like `protectedPasser`.
+   */
+  kickOwner(): number;
+  /**
+   * What the ball carrier module offers the others, or null while it is a stand-in. Read at run time
+   * or in `setPlay`, never in `create`: the carrier module is created after the quarterback module.
+   */
+  runner(): RunnerHooks | null;
+  /** The ball carrier module registers its hooks. Called once, in `create`. */
+  claimRunner(hooks: RunnerHooks): void;
+}
+
+/** The ball carrier module's two services to the quarterback module (J7.5, J8). */
+export interface RunnerHooks {
+  /** From here the carrier module steers this man and he can be tackled like any runner. True when it took him. */
+  onRun(world: TickWorld, slot: number, why: string): boolean;
+  /** Best running lane beyond the line for this man, 0 to 1. Draws nothing. */
+  laneQuality(world: TickWorld, slot: number): number;
 }
 
 /**
@@ -86,7 +108,7 @@ export interface PlugStages {
   readonly stages: readonly PlayStage[];
   /** Called after the pre-snap plan exists and before the loop's `begin`, like `PlayerAi.setPlay`. */
   setPlay?(world: TickWorld): void;
-  /** J10.6.2 hit energy the slot took and gave this play, for `PlayerDelta.hitLoad`. Summed over modules. */
+  /** J10.6.2 hit energy the slot took and gave this play, for `PlayerDelta.hitLoad`. The fouls-and-injuries module's ledger is used alone when it has one; otherwise the modules' are summed. */
   hitLoad?(slot: number): number;
   /** True when the module needs the after-whistle ticks even with no film kept (a dead-ball foul hazard is live). */
   wantsAfterWhistle?(world: TickWorld): boolean;
@@ -119,6 +141,11 @@ export interface PlaySetup {
    * a direct snap to a runner). Read by the quarterback module only.
    */
   readonly qb?: QbPlay | null;
+  /**
+   * What the ball carrier module is handed before the snap (J8 inputs): a designed run's back rules
+   * (aiming point, read key) and the return call. Null or absent: every carrier runs on the look-ahead.
+   */
+  readonly carrier?: CarrierPlay | null;
 }
 
 export interface PlayContentPort {

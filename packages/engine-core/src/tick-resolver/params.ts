@@ -2,7 +2,7 @@
 // module's author (basis 'assumption') unless the leaf states it. None is a rule value: rules arrive by
 // key. The stand-in rows exist only while WP-20, WP-21 or WP-22 is missing and go when they land.
 import type { ParamFile, ParamTable } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const A = 'assumption' as const;
 const ROWS: readonly ParamRow[] = [
@@ -46,6 +46,7 @@ export function tickResolverParams(t: ParamTable): TickResolverParams {
   if (cachedTable === t && cached !== null) return cached;
   const out: Record<string, number> = {};
   for (const p of PARAMS.params) { const short = p.name.slice('tickResolver.'.length); out[short] = t.num(p.name); }
-  cachedTable = t; cached = out;
-  return out;
+  const fast = fastParams(out);
+  cachedTable = t; cached = fast;
+  return fast;
 }

@@ -59,14 +59,23 @@ export const SETTINGS: readonly SettingDef[] = [
   pick('display.markerSize', 'display', ['standard', 'large', 'larger'], 'standard', ['O5.3.2']),
   pick('display.frameCap', 'display', ['display-rate', 'half-rate'], 'display-rate', ['O5.3.2']),
   pick('display.performanceTier', 'display', ['low', 'standard', 'high'], 'standard', ['O5.3.2']),
-  // Audio (O5.3.2): each cue has a volume and an off switch. The play clock tick is optional.
+  // Audio (O5.3.2, presentation plan 4.1 and 7, amendment A-3, PV-14): one volume and one off switch
+  // per mixer bus. `whistleCrowd` split into crowd and officials; `alerts` became the ui bus (old
+  // stored values carry over: LEGACY_AUDIO_KEYS). Ambience is off by default (plan 4.2, rank 6). The
+  // play clock tick stays its own optional cue on the ui bus.
   vol('master', 100), on('audio.masterOn', 'audio', true, ['O5.3.2']),
-  vol('whistleCrowd', 100), on('audio.whistleCrowdOn', 'audio', true, ['O5.3.2']),
-  vol('alerts', 100), on('audio.alertsOn', 'audio', true, ['O5.3.2']),
+  vol('crowd', 100), on('audio.crowdOn', 'audio', true, ['O5.3.2']),
+  vol('officials', 100), on('audio.officialsOn', 'audio', true, ['O5.3.2']),
+  vol('contact', 100), on('audio.contactOn', 'audio', true, ['O5.3.2']),
+  vol('cadence', 100), on('audio.cadenceOn', 'audio', true, ['O5.3.2']),
+  vol('ui', 100), on('audio.uiOn', 'audio', true, ['O5.3.2']),
+  vol('ambience', 100), on('audio.ambienceOn', 'audio', false, ['O5.3.2']),
   vol('playClockTick', 100), on('audio.playClockTickOn', 'audio', false, ['O5.3.2']),
-  // Menu music (PV-11, MB-11): off until Marlon decides (presentation plan section 9). Never plays
-  // during a game or in the film room.
-  on('audio.menuMusicOn', 'audio', false, ['O5.3.2']),
+  // Menu music (PV-11, MB-11): the music bus switch, off until Marlon decides (presentation plan
+  // section 9). Never plays during a game or in the film room.
+  vol('music', 100), on('audio.menuMusicOn', 'audio', false, ['O5.3.2']),
+  // Mono (plan 7, A-3): pan collapsed to the centre for single-sided hearing.
+  on('audio.mono', 'audio', false, ['O5.3.2', 'O5.5.2']),
   // Controls (O5.2.1, O5.2.2): overrides are stored as differences from the default key map.
   { key: 'controls.keyProfile', group: 'controls', scope: 'user', type: 'string', default: 'default', maxLength: 64, help: 'settings.controls.keyProfile', bible: ['O5.2.2'], lockedInCertified: false },
   { key: 'controls.keyOverrides', group: 'controls', scope: 'user', type: 'record', default: {}, help: 'settings.controls.keyOverrides', bible: ['O5.2.2'], lockedInCertified: false },
@@ -77,6 +86,9 @@ export const SETTINGS: readonly SettingDef[] = [
   on('accessibility.thickFieldLines', 'accessibility', false, ['O5.5.1']),
   pick('accessibility.focusHighlight', 'accessibility', ['standard', 'large', 'larger'], 'standard', ['O5.5.1']),
   on('accessibility.reducedMotion', 'accessibility', false, ['O5.5.2']),
+  // Captions strip (plan 7, A-3, PV-14): names each game sound as it plays. `auto` shows it while the
+  // master bus is off or silent.
+  pick('accessibility.captions', 'accessibility', ['auto', 'on', 'off'], 'auto', ['O5.5.2']),
   pick('accessibility.holdToConfirm', 'accessibility', ['off', 'standard', 'long'], 'off', ['O5.5.2']),
   pick('accessibility.chordTimeout', 'accessibility', ['standard', 'long', 'longer'], 'standard', ['O5.5.2']),
   on('accessibility.stickyModifiers', 'accessibility', false, ['O5.5.2']),
@@ -100,6 +112,17 @@ export const SETTINGS: readonly SettingDef[] = [
   // Session scope: temporary view states, never stored (O5.3.1).
   { key: 'session.viewStates', group: 'navigation', scope: 'session', type: 'record', default: {}, help: 'settings.session.viewStates', bible: ['O5.3.1', 'O1.3.3'], lockedInCertified: false },
 ];
+
+/**
+ * Audio keys renamed by the bus split (PV-14). A stored old key fills each new key the file does not
+ * already hold, so a user's volume survives the update. The old keys stay in the file as unknown keys.
+ */
+export const LEGACY_AUDIO_KEYS: Readonly<Record<string, readonly string[]>> = {
+  'audio.whistleCrowdVolume': ['audio.crowdVolume', 'audio.officialsVolume'],
+  'audio.whistleCrowdOn': ['audio.crowdOn', 'audio.officialsOn'],
+  'audio.alertsVolume': ['audio.uiVolume'],
+  'audio.alertsOn': ['audio.uiOn'],
+};
 
 export const SETTINGS_BY_KEY: ReadonlyMap<string, SettingDef> = new Map(SETTINGS.map((d) => [d.key, d]));
 

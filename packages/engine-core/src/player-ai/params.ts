@@ -4,7 +4,7 @@
 // means this module's author chose the number because the leaf gives a direction and no size.
 // No row here is a real-world measurement.
 import type { ParamFile, ParamTable } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const LOAF = 'K1.2.1 loaf tags per game (recorded for tuning)', BUST = 'J15 explosive pass and unblocked pressure rows (J4.5.2)';
 const INT = 'J15.4.1 interception rate, J15.7.2 explosive rate (K1.3.1)', FOUL = 'J15 interference and holding bands (K1.3.3)';
@@ -228,9 +228,15 @@ export type PlayerAiParams = Readonly<Record<PlayerAiParamName, number>>;
 
 export const PARAMS: ParamFile = defineParams('playerAi', '0.1.0', ROWS);
 
+const RESOLVED = new WeakMap<ParamTable, PlayerAiParams>();
 /** Resolve once per play, never inside the tick. */
 export function playerAiParams(t: ParamTable): PlayerAiParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`playerAi.${row[0]}`);
-  return out as PlayerAiParams;
+  const fast = fastParams(out) as PlayerAiParams;
+  RESOLVED.set(t, fast);
+  return fast;
 }

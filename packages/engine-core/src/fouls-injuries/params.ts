@@ -14,7 +14,7 @@
 // Rule values (which fouls exist, the ineligible-downfield limit, the low-block zone) are read from
 // the rule set by key only (RULE_KEYS below). No rule number appears in this module.
 import type { ParamFile, ParamTable, RuleKeyManifest } from '@gm/schema';
-import { defineParams, type ParamRow } from '../tick/param-util.ts';
+import { defineParams, fastParams, type ParamRow } from '../tick/param-util.ts';
 
 const HOLD = 'J15 offensive holding 2.25 flags per game (2 of 3); J10.2.1 acceptance';
 const FACE = 'J15 illegal use of hands to the face 0.22 per game (2 of 3)';
@@ -50,11 +50,12 @@ const ROWS = [
   // Borderline legal acts (B11.3.2 rule 1): within this margin of a geometric limit.
   ['borderlineYd', 0.3, 0.05, 1, 'yd', 'assumption', 'J10.2.3', 'B11.3.2 false-flag rate'],
   ['contactGapYd', 0.25, 0, 0.6, 'yd', 'assumption', 'J10.4.1', STRUCT],
-  // J2.6.1 hit energy is reduced mass times closing speed squared times kinematics.hitEnergyScale. J10 reads
-  // it with 1 = a league-typical open-field tackle; these two rows define that tackle (a 210 lb carrier met
-  // by a 200 lb tackler, reduced mass about 102 lb, closing at 5 yd/s), so the reading stays right whatever
-  // the kinematics scale is.
-  ['energy.typicalReducedLb', 102, 60, 160, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
+  // J10 reads hit energy with 1 = a league-typical open-field tackle. The stage runs this tackle (a 210 lb
+  // carrier met head-on by a 200 lb tackler closing at 5 yd/s) through kinematics' own contactNumbers once
+  // per play and divides by the result, so the reading stays right whether or not kinematics already
+  // normalises (PR 199 makes it do so; then this divisor is about 1).
+  ['energy.typicalCarrierLb', 210, 150, 260, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
+  ['energy.typicalTacklerLb', 200, 150, 260, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
   ['energy.typicalClosingYps', 5, 3, 8, 'yd/s', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
 
   // J10.2.1 offensive holding: per-tick hazard while A < -0.6 and the defender is within reach.
@@ -203,11 +204,17 @@ export type FoulsInjuriesParams = Readonly<Record<FoulsInjuriesParamName, number
 export const MODULE = 'foulsInjuries';
 export const PARAMS: ParamFile = defineParams(MODULE, '0.1.0', ROWS);
 
+const RESOLVED = new WeakMap<ParamTable, FoulsInjuriesParams>();
 /** Resolve once per play, never inside the tick. */
 export function foulsInjuriesParams(t: ParamTable): FoulsInjuriesParams {
+  // A parameter table never changes, so its rows are read once per table, not once per play (G-97).
+  const hit = RESOLVED.get(t);
+  if (hit !== undefined) return hit;
   const out: Record<string, number> = {};
   for (const row of ROWS) out[row[0]] = t.num(`${MODULE}.${row[0]}`);
-  return out as FoulsInjuriesParams;
+  const fast = fastParams(out) as FoulsInjuriesParams;
+  RESOLVED.set(t, fast);
+  return fast;
 }
 
 /** The fouls this module commits (J10.2 to J10.5). Each one's hazard is disabled when `foul.<id>.exists` is false. */
@@ -252,4 +259,18 @@ export const OPTIONAL_RULE_KEYS = {
   contactZone: 'foul.illegal_contact.zone_yd',
   /** Depth beyond the line at which an offensive block before the pass is offensive interference (pro Rule 8-5). */
   pickDepth: 'foul.opi.block_depth_yd',
+  /**
+   * How the ineligible-downfield depth is measured: \`entire_body\` (pro Rule 8-3-1, "entire body ... more than
+   * one yard beyond") or \`any_part\` (college Rule 7-3-10, "any part of their body is beyond"). Missing: the centre.
+   */
+  idfMeasure: 'foul.ineligible_downfield.measure',
+  /**
+   * When the depth counts: \`at_throw\` (pro, "before the pass has been thrown", judged at the throw) or
+   * \`any_time_before_throw\` (college, "shall be or have been"). Missing: at the throw.
+   */
+  idfWhen: 'foul.ineligible_downfield.when',
+  /** True where an ineligible who made contact within the limit on his initial charge may be driven past it (pro 8-3-1 Item 1). Missing: false. */
+  idfEngaged: 'foul.ineligible_downfield.engaged_exception',
+  /** True where the limit applies only to a pass that crosses the line (college 7-3-10). Missing: true (the bible's reading, B5.3.2 open question for pro). */
+  idfCross: 'foul.ineligible_downfield.pass_must_cross',
 } as const;

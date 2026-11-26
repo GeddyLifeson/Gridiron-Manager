@@ -13,6 +13,30 @@ export type Tempo = 'huddle' | 'no_huddle' | 'hurry_up';
 /** J5.1.1 run-on time: bench-to-spot distance at jog speed. */
 export function runOnS(distanceYd: number, p: PresnapParams): number { return distanceYd / p['sub.jogSpeedYps']!; }
 
+/** I4.1.1 What the coach's fourth-down choice does to the kicking unit's run-on. */
+export interface UnitChange {
+  readonly unit: 'punt' | 'field_goal';
+  /** The special teams coordinator alerted this unit on third down (I4.1.1, I11). */
+  readonly alerted: boolean;
+  /** The coach changed his mind after a unit had started onto the field. */
+  readonly reversed: boolean;
+  /** Seconds between the dead ball and the start of this pre-snap phase; the unit has been moving that long. Default 0. */
+  readonly sinceDeadBallS?: number;
+}
+
+/**
+ * I4.1.1 seconds from the start of the pre-snap phase until the kicking unit is set: the unit's
+ * dead-ball-to-set time, plus the not-alerted time, plus the full run-off and run-on after a change of
+ * mind, less what has already run since the dead ball. Never below 0.
+ */
+export function unitSetS(u: UnitChange, p: PresnapParams): number {
+  const s = p[u.unit === 'punt' ? 'unit.puntSetS' : 'unit.fieldGoalSetS']! + (u.alerted ? 0 : p['unit.notAlertedS']!) + (u.reversed ? p['unit.reversalS']! : 0);
+  const left = s - (u.sinceDeadBallS ?? 0);
+  return left > 0 ? left : 0;
+}
+/** I4.1.1 "raises the 12-men and illegal-substitution hazard": the run-off and run-on of a reversal counts as that many seconds of late call in the J5.1.1 draw. */
+export function unitLateS(u: UnitChange | null | undefined, p: PresnapParams): number { return u && u.reversed ? p['unit.reversalS']! : 0; }
+
 /**
  * J5.1.1 substitution error chance for one changing player: base 0.2% per changed player, times 4 at
  * hurry-up, rising with how late the call came, falling with package readiness (D9 knowledge 0 to 100).
