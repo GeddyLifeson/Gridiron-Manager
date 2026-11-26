@@ -152,6 +152,24 @@ export class WorldService {
 
   saveHeader(): SaveHeader { return this.header; }
 
+  /**
+   * The career's season in progress (JSON of play.SeasonPlaySave: the season state and the seat's game
+   * outcomes), written over the last one and flushed. Its own table; the world state and command log are unchanged.
+   */
+  async saveSeason(json: string): Promise<void> {
+    await this.driver.exec('CREATE TABLE IF NOT EXISTS career_season (id INTEGER PRIMARY KEY, json TEXT NOT NULL)');
+    await this.driver.transaction([{ sql: 'INSERT OR REPLACE INTO career_season (id, json) VALUES (1, ?)', params: [json] }]);
+    await this.platform.flushSave(this.saveName, this.driver);
+  }
+
+  /** The season saved by `saveSeason`, or null when the career has not moved yet. */
+  async loadSeason(): Promise<string | null> {
+    const t = await this.driver.all<{ n: number }>("SELECT COUNT(*) AS n FROM sqlite_master WHERE type = 'table' AND name = 'career_season'");
+    if (!t[0] || Number(t[0].n) === 0) return null;
+    const rows = await this.driver.all<{ json: string }>('SELECT json FROM career_season WHERE id = 1');
+    return rows[0]?.json ?? null;
+  }
+
   /** The career recipe (JSON) of a save made by the new-game flow; null for a phase 0 world. */
   careerRecipeJson(): string | null {
     const v = this.header.generatorOptions[CAREER_RECIPE_KEY];

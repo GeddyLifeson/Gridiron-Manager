@@ -14,11 +14,18 @@ export interface CareerSeasonStart {
   readonly seedHex: string;
   /** The seat: a content key, or a team of the generated world (the picker's LiveWorld). */
   readonly seat: { readonly key: string } | { readonly world: play.WorldTeams; readonly teamId: number };
+  /** A season saved earlier (the career save): the season continues from it instead of starting fresh. */
+  readonly restore?: play.SeasonPlaySave;
 }
 
-export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, host: Omit<SeasonPortHost, 'level' | 'seasonYear'>): CareerPort {
+export interface CareerSeasonHost extends Omit<SeasonPortHost, 'level' | 'seasonYear'> {
+  /** Called with the season's save after every step the career takes (game day reached, game recorded, game delegated). */
+  onSeasonChange?(save: play.SeasonPlaySave): void;
+}
+
+export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, host: CareerSeasonHost): CareerPort {
   const base = { ruleSetId: s.ruleSetId, seasonYear: s.seasonYear, seedHex: s.seedHex };
-  const sp = 'key' in s.seat
+  const sp = s.restore ? play.SeasonPlay.restore(content, s.restore) : 'key' in s.seat
     ? play.SeasonPlay.start(content, { ...base, seatTeamKey: s.seat.key })
     : play.SeasonPlay.fromWorld(content, s.seat.world, { ...base, seatTeamId: s.seat.teamId });
   // Team strips from the content (club and school primary and secondary colours).
@@ -26,7 +33,12 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const c = content as any;
   const strips = new Map<string, { primary: string; alternate: string }>();
   for (const t of [...(c.proLeague?.league?.clubs ?? []), ...(c.college?.schools ?? [])]) if (t.primaryColour && t.secondaryColour) strips.set(t.id, { primary: t.primaryColour, alternate: t.secondaryColour });
-  return careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...host, level: s.level, seasonYear: s.seasonYear });
+  const { onSeasonChange, ...portHost } = host;
+  const port = careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...portHost, level: s.level, seasonYear: s.seasonYear });
+  if (!onSeasonChange) return port;
+  // Every step that moves the season hands its save to the host (the career save writes it).
+  const saved = <A extends unknown[]>(f: (...a: A) => void) => (...a: A) => { f(...a); onSeasonChange(sp.save()); };
+  return { ...port, advanceToGameDay: saved(port.advanceToGameDay), finishGame: saved(port.finishGame), delegateGame: saved(port.delegateGame) };
 }
 
 /** First team of the level in the content: the quick start's seat (a check entry, not a career choice). */
