@@ -1,0 +1,233 @@
+{
+ "$comment": "Proposed league-rule values (G-43). Copy into packages/rules-data/data/league with these fact rows. Absent key = rule not in force at that level.",
+ "sets": [
+  {
+   "id": "pro_2027",
+   "note": "Pro hall rules from the Class of 2027 (C9.3.1; X4.2.3 rule 5). Award panel rules from the 2024 season.",
+   "values": [
+    {
+     "key": "awards.panel_size",
+     "value": 50,
+     "factId": "F-honours-0001",
+     "unit": "count"
+    },
+    {
+     "key": "awards.ballot_points",
+     "value": "10,5,3,2,1",
+     "factId": "F-honours-0002"
+    },
+    {
+     "key": "awards.vote_timing",
+     "value": "before_postseason",
+     "factId": "F-honours-0003"
+    },
+    {
+     "key": "hall.vote_share",
+     "value": 0.8,
+     "factId": "F-honours-0006",
+     "unit": "ratio"
+    },
+    {
+     "key": "hall.player_wait_seasons",
+     "value": 5,
+     "factId": "F-honours-0007",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.coach_wait_seasons",
+     "value": 1,
+     "factId": "F-honours-0008",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.class_min",
+     "value": 3,
+     "factId": "F-honours-0004",
+     "unit": "count"
+    },
+    {
+     "key": "hall.class_max",
+     "value": 7,
+     "factId": "F-honours-0005",
+     "unit": "count"
+    },
+    {
+     "key": "hall.committee_voting",
+     "value": 25,
+     "factId": "F-honours-0009",
+     "unit": "count"
+    },
+    {
+     "key": "hall.candidates_per_year",
+     "value": 15,
+     "factId": "F-honours-0010",
+     "unit": "count"
+    }
+   ]
+  },
+  {
+   "id": "pro_2026",
+   "note": "Pro hall rules through the Class of 2026. Candidates per year under the old rules were not read as one number, so the key is absent and every eligible finalist is considered.",
+   "values": [
+    {
+     "key": "awards.panel_size",
+     "value": 50,
+     "factId": "F-honours-0001",
+     "unit": "count"
+    },
+    {
+     "key": "awards.ballot_points",
+     "value": "10,5,3,2,1",
+     "factId": "F-honours-0002"
+    },
+    {
+     "key": "awards.vote_timing",
+     "value": "before_postseason",
+     "factId": "F-honours-0003"
+    },
+    {
+     "key": "hall.vote_share",
+     "value": 0.8,
+     "factId": "F-honours-0006",
+     "unit": "ratio"
+    },
+    {
+     "key": "hall.player_wait_seasons",
+     "value": 5,
+     "factId": "F-honours-0007",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.coach_wait_seasons",
+     "value": 1,
+     "factId": "F-honours-0008",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.class_min",
+     "value": 4,
+     "factId": "F-honours-0011",
+     "unit": "count"
+    },
+    {
+     "key": "hall.class_max",
+     "value": 8,
+     "factId": "F-honours-0012",
+     "unit": "count"
+    },
+    {
+     "key": "hall.committee_voting",
+     "value": 50,
+     "factId": "F-honours-0013",
+     "unit": "count"
+    }
+   ]
+  },
+  {
+   "id": "college_2027",
+   "note": "College hall eligibility from the 2027 ballot. Committee size, class size and vote share for the college hall were not read: research owed, so the election keys are absent and the election refuses to run on this set alone.",
+   "values": [
+    {
+     "key": "hall.requires_first_team",
+     "value": true,
+     "factId": "F-honours-0014"
+    },
+    {
+     "key": "hall.player_wait_seasons",
+     "value": 10,
+     "factId": "F-honours-0015",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.player_window_years",
+     "value": 50,
+     "factId": "F-honours-0016",
+     "unit": "years"
+    },
+    {
+     "key": "hall.coach_min_games",
+     "value": 100,
+     "factId": "F-honours-0017",
+     "unit": "count"
+    },
+    {
+     "key": "hall.coach_min_win_pct",
+     "value": 0.595,
+     "factId": "F-honours-0019",
+     "unit": "ratio"
+    },
+    {
+     "key": "hall.coach_wait_seasons",
+     "value": 3,
+     "factId": "F-honours-0020",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.coach_age_at_once",
+     "value": 70,
+     "factId": "F-honours-0021",
+     "unit": "years"
+    },
+    {
+     "key": "hall.coach_age_active",
+     "value": 75,
+     "factId": "F-honours-0022",
+     "unit": "years"
+    }
+   ]
+  },
+  {
+   "id": "college_2026",
+   "note": "As college_2027 with the .600 coach minimum of the 2026 ballot.",
+   "values": [
+    {
+     "key": "hall.requires_first_team",
+     "value": true,
+     "factId": "F-honours-0014"
+    },
+    {
+     "key": "hall.player_wait_seasons",
+     "value": 10,
+     "factId": "F-honours-0015",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.player_window_years",
+     "value": 50,
+     "factId": "F-honours-0016",
+     "unit": "years"
+    },
+    {
+     "key": "hall.coach_min_games",
+     "value": 100,
+     "factId": "F-honours-0017",
+     "unit": "count"
+    },
+    {
+     "key": "hall.coach_min_win_pct",
+     "value": 0.6,
+     "factId": "F-honours-0018",
+     "unit": "ratio"
+    },
+    {
+     "key": "hall.coach_wait_seasons",
+     "value": 3,
+     "factId": "F-honours-0020",
+     "unit": "seasons"
+    },
+    {
+     "key": "hall.coach_age_at_once",
+     "value": 70,
+     "factId": "F-honours-0021",
+     "unit": "years"
+    },
+    {
+     "key": "hall.coach_age_active",
+     "value": 75,
+     "factId": "F-honours-0022",
+     "unit": "years"
+    }
+   ]
+  }
+ ]
+}
