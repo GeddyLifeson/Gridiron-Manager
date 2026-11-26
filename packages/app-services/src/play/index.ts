@@ -8,4 +8,5 @@ export { RecruitingDesk, type QueuedAct, type ActRecord, type RecruitingDeskSave
 export { writeCareerYear, readCareerYear, readLiveWorldMeta, LIVE_WORLD_TABLE, LIVE_WORLD_SAVE_VERSION, type LiveWorldMeta } from './career-save.ts';
 export { seatTeamFromDepth, engineUnits, slotOrder, simPlayerFromPerson, SLOTS, type SeatDepth, type SeatTeam, type EngineUnitMap } from './seat-depth.ts';
 // The generated world as the seat sees it, for the team screens (handoff item 2c).
+export { seatCapView, ruleSetOf, provenanceFrom } from './team-cap.ts';
 export { liveWorldTables, seatObserver, seatObservedWorld, teamCircle, rosterLimits, WORLD_ROSTER_LIST } from './team-world.ts';
