@@ -1,7 +1,7 @@
 // What the career root needs from the season (handoff item D). The host (App.tsx) adapts the app-services
 // season session to this port, so the screens never hold football logic (P1.2.2) and tests can drive the
 // root with a scripted season.
-import type { gameCallingCommands } from '@gm/app-services';
+import type { gameCallingCommands, presentationLive } from '@gm/app-services';
 
 export type GameSession = gameCallingCommands.GameCallingSession;
 
@@ -27,6 +27,16 @@ export interface SeasonToday {
   readonly champion: string | null;
 }
 
+/** The live field of the open game: the plays the resolver drew, for the field view and the sound stage. */
+export interface LiveField {
+  /** New plays since the last call, oldest first; a play with no trajectory (reference resolver) never appears. */
+  take(): readonly presentationLive.LivePlay[];
+  readonly geometry: GameSession['geometry'];
+  readonly userSide: 0 | 1;
+  readonly level: 'pro' | 'college';
+  readonly colours: readonly [{ readonly primary: string; readonly alternate: string }, { readonly primary: string; readonly alternate: string }];
+}
+
 export interface CareerPort {
   today(): SeasonToday;
   /** Plays every other game up to the seat's next game day (byes included). */
@@ -37,6 +47,8 @@ export interface CareerPort {
   finishGame(session: GameSession): void;
   /** The staff coaches the seat's game (K6); the season moves on. */
   delegateGame(): void;
+  /** The live field of the open game, or null when none is open. */
+  liveField(session: GameSession): LiveField | null;
   /** Player and team names for the play log (observed names only). */
   names(session: GameSession): { playerName(id: number): string; teamName(side: 0 | 1): string };
 }

@@ -1,8 +1,8 @@
 // Adapts the app-services season session (`play.SeasonPlay`) to the career root's port. The console setup
 // (sheets, keys, radio cutoff) comes from the host, so the sheet bridge supplies it without this file knowing.
-import type { gameCallingCommands, play } from '@gm/app-services';
+import { presentationLive, TICKS_PER_SECOND, type gameCallingCommands, type play } from '@gm/app-services';
 import { rt } from './text.ts';
-import type { CareerPort, GameSession, SeasonToday, StandingRow } from './port.ts';
+import type { CareerPort, GameSession, LiveField, SeasonToday, StandingRow } from './port.ts';
 
 type ConsoleConfig = gameCallingCommands.ConsoleConfig;
 type Resolve = (chord: string, contexts: readonly string[]) => string | undefined;
@@ -15,7 +15,12 @@ export interface SeasonPortHost {
   readonly resolve: Resolve;
   /** Real milliseconds a play runs on screen before the next call opens (I2.1.1); the play log shows it meanwhile. */
   liveMs?(): number;
+  /** Team colours by content key (home strip primary, away alternate); neutral greys when missing. */
+  colours?(teamKey: string): { readonly primary: string; readonly alternate: string } | null;
 }
+
+/** Neutral strip for a team the content gives no colours: presentation only, no team mark (A6). */
+const NEUTRAL = [{ primary: '#4a4a4a', alternate: '#e6e6e6' }, { primary: '#e6e6e6', alternate: '#4a4a4a' }] as const;
 
 /** Days from 1970-01-01 to 1 January of `year` (proleptic Gregorian; integer arithmetic only). */
 export function epochDayOfNewYear(year: number): number {
@@ -30,6 +35,7 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
   let sides: [string, string] = ['', ''];
   // The office reaches game day by advancing; until then the coming step's game is a week out (H1 adds the days).
   let gameDay = false;
+  let field: LiveField | null = null;
   const today = (): SeasonToday => {
     const t = sp.today();
     const seat = t.standings.find((r) => r.teamId === t.seatTeamId);
@@ -68,9 +74,25 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       if (!seat) throw new Error('career root: no game for the seat this week');
       const me = sp.nameOf(sp.today().seatTeamId), them = sp.nameOf(seat.opponentId);
       sides = seat.side === 0 ? [me, them] : [them, me];
-      return sp.openGame({ console: host.consoleConfig(String(seat.context.fixture.gameId)), resolve: host.resolve, keyIntervalMs: 0, startMs: 0, ...(host.liveMs ? { liveMs: () => host.liveMs!() } : {}) });
+      // The live field: the resolver is tapped for each play's trajectory, and the console holds the next call
+      // while the play runs on screen (I2.1.1); with no trajectory (reference resolver) the hold is the host's.
+      let tap: presentationLive.LiveTap | null = null;
+      const tapped = (r: Parameters<typeof presentationLive.liveTap>[0]) => (tap = presentationLive.liveTap(r)).resolver;
+      const shown = (rec: Parameters<ReturnType<typeof presentationLive.liveMsFrom>>[0]) => {
+        const ms = tap ? presentationLive.liveMsFrom(tap, TICKS_PER_SECOND)(rec) : 0;
+        return ms > 0 ? ms : host.liveMs?.() ?? 0;
+      };
+      const session = sp.openGame({ console: host.consoleConfig(String(seat.context.fixture.gameId)), resolve: host.resolve, keyIntervalMs: 0, startMs: 0, liveMs: shown, tapResolver: tapped });
+      const input = sp.gameInput!;
+      const queue = new presentationLive.LivePlayQueue({ tap: tap!, teams: input.teams, ticksPerSecond: TICKS_PER_SECOND, environment: () => input.environment, userSide: seat.side, rules: session.rules });
+      const col = (teamId: number, i: 0 | 1) => host.colours?.(sp.keyOf(teamId)) ?? NEUTRAL[i];
+      const home = seat.side === 0 ? sp.today().seatTeamId : seat.opponentId;
+      const away = seat.side === 0 ? seat.opponentId : sp.today().seatTeamId;
+      field = { take: () => queue.take(session.events), geometry: session.geometry, userSide: seat.side, level: host.level, colours: [col(home, 0), col(away, 1)] };
+      return session;
     },
-    finishGame: () => { sp.finishGame(); gameDay = false; },
+    finishGame: () => { sp.finishGame(); gameDay = false; field = null; },
+    liveField: () => field,
     delegateGame: () => { sp.advanceToGame(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; },
     // PLACEHOLDER rosters have no names yet: a player is his jersey slot until generated people play (G-17).
     names: () => ({ playerName: (id: number) => `#${id % 100}`, teamName: (side: 0 | 1) => sides[side] }),

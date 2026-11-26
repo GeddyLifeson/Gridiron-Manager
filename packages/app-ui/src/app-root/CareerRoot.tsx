@@ -2,7 +2,8 @@
 // is mounted with the office Today screen and the game-day console. Advancing to game day switches the shell to
 // game mode, which opens the console; the game runs on real time and the keyboard (the play clock always
 // runs); the final goes back into the season and the office shows the result and the standings.
-import { createElement, useCallback, useEffect, useMemo, useReducer, useState, type ReactNode } from 'react';
+import { createElement, useCallback, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from 'react';
+import { LivePlay, type LivePlayLike } from '../presentation/live/LivePlay.tsx';
 import { Shell, type RouteTable, type ShellContext } from '../shell/Shell.tsx';
 import { DEFAULT_KEYMAP, type Binding } from '../shell/keymap.ts';
 import { buildRoutes } from '../routes.ts';
@@ -44,15 +45,29 @@ export function SeasonPanel({ today, canDelegate, onDelegate }: { today: SeasonT
   );
 }
 
-interface LiveConsoleProps { readonly port: CareerPort; readonly session: GameSession; readonly bindings: readonly Binding[]; readonly now?: (() => number) | undefined; onDone(): void }
+interface LiveConsoleProps { readonly port: CareerPort; readonly session: GameSession; readonly bindings: readonly Binding[]; readonly now?: (() => number) | undefined; readonly soundStage: SoundStage | null; onDone(): void }
 
 /** The console route while a game is open: the live session drawn through the G-60 console. */
-function LiveConsole({ port, session, bindings, now, onDone }: LiveConsoleProps): ReactNode {
+function LiveConsole({ port, session, bindings, now, soundStage, onDone }: LiveConsoleProps): ReactNode {
   useLiveSession(session, { bindings, keysActive: true, ...(now ? { now } : {}) });
   const keyFor = useMemo(() => keyForIn(bindings), [bindings]);
   const names = useMemo(() => port.names(session), [port, session]);
   const view = gameCalling.consoleViewOfSession(session, { keyFor }) as unknown as ConsoleViewModel;
-  const field = <PlayLog lines={gameCalling.sessionPlayLog(session, names, 12)} />;
+  // The newest play the resolver drew runs on the live field and goes to the sound stage once (I9.1, O2.3.4).
+  const live = port.liveField(session);
+  const latest = useRef<LivePlayLike | null>(null);
+  const fresh = live?.take() ?? [];
+  if (fresh.length) latest.current = fresh[fresh.length - 1] as unknown as LivePlayLike;
+  const log = <PlayLog lines={gameCalling.sessionPlayLog(session, names, latest.current ? 4 : 12)} />;
+  const field = live && latest.current ? (
+    <div data-live-field style={{ display: 'grid', gridTemplateRows: '1fr auto', height: '100%' }}>
+      {createElement(LivePlay, {
+        play: latest.current, stage: soundStage, geometry: live.geometry, userSide: live.userSide, level: live.level,
+        home: live.colours[0], away: live.colours[1], theme: 'classic',
+      })}
+      {log}
+    </div>
+  ) : log;
   return (
     <div data-live-console data-step={session.final ? 'final' : session.driver.state.step} data-unit={session.driver.state.open?.unit ?? ''} style={{ height: '100%' }}>
       {session.final ? <FinalPanel session={session} names={names} onDone={onDone} /> : null}
@@ -85,10 +100,10 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
       home: { view: () => homeFromSeason(port.today()), dispatch: (i) => { if (i.kind === 'advance') advance(); } },
     });
     t['game.console'] = {
-      render: () => (session ? createElement(LiveConsole, { port, session, bindings, now, onDone: done }) : createElement(GameConsole, { view: null })),
+      render: () => (session ? createElement(LiveConsole, { port, session, bindings, now, soundStage, onDone: done }) : createElement(GameConsole, { view: null })),
     };
     return t;
-  }, [port, session, bindings, now, advance, done, version]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [port, session, bindings, now, soundStage, advance, done, version]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const context: ShellContext = {
     teamName: today.teamName, record: recordText(today.record), phaseLabel: today.stageLabel,
