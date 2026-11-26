@@ -5,3 +5,4 @@ export * as positions from './positions/index.ts';
 export * as coach from './coach/index.ts';
 export * as players from './players/index.ts';
 export * as collegeProgram from './college-program/index.ts';
+export * as lockerRoom from './locker-room/index.ts';

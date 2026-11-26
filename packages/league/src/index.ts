@@ -10,3 +10,7 @@ export * as history from './history/index.ts';
 export * as development from './development/index.ts';
 export * as draft from './draft/index.ts';
 export * as college from './college/index.ts';
+export * as awards from './awards/index.ts';
+export * as news from './news/index.ts';
+export * as medical from './medical/index.ts';
+export * as market from './market/index.ts';
