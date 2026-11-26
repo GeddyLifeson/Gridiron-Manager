@@ -269,9 +269,9 @@ const ambience: RecipeEntry[] = [
     mixDb: -10, minGapMs: 5000, rateGroup: 'stadium',
   },
   {
-    id: 'ambience.bandHit', bus: 'ambience', phase: 'v2', offByDefault: true, gate: 'period-fact',
+    id: 'ambience.bandHit', bus: 'ambience', phase: 'v2', offByDefault: true,
     info: 'None beyond setting: a generic band hit in a stoppage, never a real song.',
-    era: 'One brass-and-drum stab. Plays only once PV-10 checks the period fact (plan 2.1).',
+    era: 'One brass-and-drum stab. Allowed since F-presentation-era-0001 is Verified; still off until the player turns it on.',
     recipe: {
       layers: [
         ...[233, 294, 349, 466].map((f) => osc('sawtooth', f, env(0.03, 0.3, 0.3), 0.3, { filter: lp(2200, 1), lfo: { rate: 5.5, depth: 8 } })),
