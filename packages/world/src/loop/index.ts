@@ -24,8 +24,8 @@ export {
 } from './stops.ts';
 export {
   importedPeople, runHistory, historyRunScan, headCoachTenures, coachingTreeDepth, validateHistory, buildWithHistory,
-  historySeconds, gameMsForTarget, scaledEstimate, estimateWithinTolerance, gamesInSeason,
-  type HistoryPlan, type HistoryRunReport, type ValidatorBands, type ValidationResult, type BuiltHistory, type BudgetInput,
+  rerunSeedHex, draftHistory, historySeconds, gameMsForTarget, scaledEstimate, estimateWithinTolerance, gamesInSeason,
+  type HistoryPlan, type HistoryRunReport, type ValidatorBands, type ValidationResult, type BuiltHistory, type BudgetInput, type HistoryDraft,
 } from './history.ts';
 export {
   STREAM_LIFECYCLE, curveKey, curveProblems, foundingYear, planTeamSpans, isActive, activeTeamIds, awaitingFounding, lifecycleStep,

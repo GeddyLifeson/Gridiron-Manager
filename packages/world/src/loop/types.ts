@@ -14,7 +14,7 @@ import type { TeamSpan } from './lifecycle.ts';
 export const WEEKLY_ORDER = ['lifecycle', 'games', 'health', 'statistics', 'notability', 'memory', 'edges', 'needs', 'moves', 'labels', 'news'] as const;
 export type WeeklyStep = (typeof WEEKLY_ORDER)[number];
 /** Season-point passes (X12.1.1). X12.1.3's exits run first, because exits come before cohorts on one date (X11.1.1). */
-export const SEASON_POINT_ORDER = ['leaving', 'cohorts', 'development', 'culture', 'compaction'] as const;
+export const SEASON_POINT_ORDER = ['leaving', 'hall', 'cohorts', 'development', 'culture', 'compaction'] as const;
 export type SeasonStep = (typeof SEASON_POINT_ORDER)[number];
 export type StepId = WeeklyStep | SeasonStep;
 
@@ -23,7 +23,8 @@ export const STEP_OWNER: Readonly<Record<StepId, string>> = {
   games: 'X13.1.2 games by tier (engine-game through the game port)', health: 'D11 injuries and health', statistics: 'X3.4.1 statistics and records',
   notability: 'X4 notability', memory: 'X6 memory', edges: 'X7 edges', needs: 'X5 needs and stress', moves: 'K7 job and roster moves',
   labels: 'X2.2.2 labels touched by new events', news: 'X12.2.1 news routing', cohorts: 'X11 cohorts', development: 'D7, D8 development and aging',
-  culture: 'X9 culture', leaving: 'X12.1.3 inactive and deceased', compaction: 'X2.4.1 compaction',
+  culture: 'X9 culture',
+  hall: 'E5.6.3 Hall of Fame ballots (career.reputation runBallot for coaches; player case owed)', leaving: 'X12.1.3 inactive and deceased', compaction: 'X2.4.1 compaction',
 };
 
 export type PersonStatus = 'active' | 'inactive' | 'deceased';

@@ -14,7 +14,7 @@ const logText = (w: loop.LiveWorld): string => JSON.stringify(w.log.rows());
 describe('the fixed order (X12.1.1)', () => {
   it('has the lifecycle step, then the ten X12.1.1 weekly steps and the season-point steps in the written order', () => {
     expect(loop.WEEKLY_ORDER).toEqual(['lifecycle', 'games', 'health', 'statistics', 'notability', 'memory', 'edges', 'needs', 'moves', 'labels', 'news']);
-    expect(loop.SEASON_POINT_ORDER).toEqual(['leaving', 'cohorts', 'development', 'culture', 'compaction']);
+    expect(loop.SEASON_POINT_ORDER).toEqual(['leaving', 'hall', 'cohorts', 'development', 'culture', 'compaction']);
   });
   it('two runs of ten seasons from one seed give identical logs and hashes (acceptance)', () => {
     const a = ran(10), b = ran(10);

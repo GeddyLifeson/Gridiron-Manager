@@ -2,6 +2,7 @@
 // as live play, every game through the game port (the real engine), every event `source: history_run`.
 // There is no separate history generator (X10.3.1 rule 3).
 import { param as gparam } from '../generation/params.ts';
+import { hash64Hex, utf8 } from '@gm/engine-core';
 import { HISTORY_RUN_ENDED } from './events.ts';
 import { activeTeamIds, isActive } from './lifecycle.ts';
 import { runSeason, unboundSteps, type PassOptions } from './order.ts';
@@ -268,4 +269,35 @@ export function gamesInSeason(world: LiveWorld, schedule: SchedulePort): number 
   let n = 0;
   for (let w = 0; w < schedule.weeksInSeason(world); w++) n += schedule.gamesOn(world, w).length;
   return n;
+}
+
+// ---------- Rerun history (Marlon 2026-11-26, the Dwarf Fortress-style world generation) ----------
+
+/**
+ * The seed of the n-th rerun of a world: derived from the first seed, so the first seed and the rerun
+ * count still name the world. Rerun 0 is the first seed itself.
+ */
+export function rerunSeedHex(seedHex: string, rerun: number): string {
+  if (!Number.isInteger(rerun) || rerun < 0) throw new Error('rerun: a whole number, 0 or more');
+  return rerun === 0 ? seedHex : hash64Hex(utf8(`${seedHex}:rerun:${rerun}`));
+}
+
+export interface HistoryDraft {
+  readonly rerun: number;
+  readonly seedHex: string;
+  readonly built: BuiltHistory;
+}
+
+/**
+ * Generate one draft of the past for the player to look over before the career starts. Rerunning asks for
+ * the next draft with a fresh seed; the player keeps whichever draft he starts in. Data baked into the
+ * game (calibration tables from the master data run) is never touched by a rerun.
+ */
+export function draftHistory(
+  baseSeedHex: string, rerun: number,
+  make: (seedHex: string, seedStep: number) => { world: LiveWorld; systems: WorldSystems; plan: HistoryPlan },
+  bands: ValidatorBands = {},
+): HistoryDraft {
+  const seedHex = rerunSeedHex(baseSeedHex, rerun);
+  return { rerun, seedHex, built: buildWithHistory((step) => make(seedHex, step), bands) };
 }

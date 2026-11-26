@@ -119,3 +119,21 @@ describe('the real founding curves', () => {
     for (const id of pro.teamIds) expect(w.teamSpans.get(id)!.founded).toBeGreaterThanOrEqual(1920);
   });
 });
+
+describe('rerun history (Dwarf Fortress-style)', () => {
+  it('each rerun is a new seed derived from the first; the same rerun gives the same past', () => {
+    expect(loop.rerunSeedHex('00000000000000a7', 0)).toBe('00000000000000a7');
+    const one = loop.rerunSeedHex('00000000000000a7', 1), two = loop.rerunSeedHex('00000000000000a7', 2);
+    expect(one).toMatch(/^[0-9a-f]{16}$/);
+    expect(new Set(['00000000000000a7', one, two]).size).toBe(3);
+    const make = (seedHex: string, seedStep: number) => {
+      const w = loop.createWorld({ setup: setup({ seedHex }), content: trimmed(), names: NAMES, seedStep });
+      return { world: w, systems: testSystems(), plan: { seasons: 3, schedule: testSchedule } };
+    };
+    const a = loop.draftHistory('00000000000000a7', 1, make), b = loop.draftHistory('00000000000000a7', 1, make);
+    const c = loop.draftHistory('00000000000000a7', 2, make);
+    expect(loop.worldHash(a.built.world)).toBe(loop.worldHash(b.built.world));
+    expect(loop.worldHash(a.built.world)).not.toBe(loop.worldHash(c.built.world));
+    expect(a.seedHex).toBe(one);
+  });
+});

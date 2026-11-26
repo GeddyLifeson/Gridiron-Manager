@@ -1,9 +1,16 @@
 {
-  "ok": true,
-  "problems": [],
+  "ok": false,
+  "problems": [
+    {
+      "rule": "P1.1.2 level word in conditional",
+      "file": "packages/world/src/loop/lifecycle.ts",
+      "line": 29,
+      "message": "=== 'pro': branch on a rule key, never on a level (P1.3.3)"
+    }
+  ],
   "factNotes": [
-    "quotes checked 2249/2863 (rule book texts not found locally for the rest; set GM_NFL_RULEBOOK_TXT and GM_NCAA_RULEBOOK_TXT to check them)",
-    "PROVISIONAL rows (not Verified): 2706 of 2809",
+    "quotes checked 2249/2923 (rule book texts not found locally for the rest; set GM_NFL_RULEBOOK_TXT and GM_NCAA_RULEBOOK_TXT to check them)",
+    "PROVISIONAL rows (not Verified): 2713 of 2832",
     "rule keys in the dictionary: 1009"
   ],
   "ruleValueStatus": {
