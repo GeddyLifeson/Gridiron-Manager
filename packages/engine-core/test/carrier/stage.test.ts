@@ -66,6 +66,21 @@ describe('J8.1.1 acceptance: vision finds the cutback', () => {
   }, T);
 });
 
+describe('J6.3.1 gap control: a blocked defender who holds his ground still has his gap', () => {
+  const tackledBy12 = (advantage: number): number => share(60, (seed) => {
+    const r = runScene({
+      seed, how: 'exchange', rbAt: [-1.5, 0], rbVel: [6, 0], track: [6, 0], maxTicks: 12,
+      chasers: { 12: { at: [0.5, 0], speed: 0, still: true, blocked: true } },
+      setup: (w) => { for (const c of w.contests) if (c.defenseSlot === 12) c.advantage = advantage; },
+    });
+    return r.events.some((e) => e.type === 'tackle_attempt');
+  });
+  it('a defender who is even in his block comes off onto a runner in his gap; one being driven cannot', () => {
+    expect(tackledBy12(0.6)).toBe(0);
+    expect(tackledBy12(0)).toBeGreaterThan(0.3);
+  });
+});
+
 describe('J8.2.1 acceptance: the read on inside zone', () => {
   const read = (keyPy: number) => share(300, (seed) => {
     const r = runScene({

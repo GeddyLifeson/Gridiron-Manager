@@ -12,6 +12,13 @@ interface Point { x: number; y: number }
 /** The event kinds the field view draws (G-03 FILM_EVENT_KINDS). */
 export const FILM_EVENT_KINDS = ['snap', 'throw', 'catch', 'drop', 'tackle', 'fumble', 'flag', 'whistle', 'outOfBounds', 'kickLanding'] as const;
 export type FilmEventKind = (typeof FILM_EVENT_KINDS)[number];
+/**
+ * The one order for film events on the same tick, which the live feed's camera cues share (a throw and an
+ * out-of-bounds can land on one tick): the ball leaves the hand, then it arrives, then the play's end.
+ */
+export const FILM_TIE_ORDER: Readonly<Record<FilmEventKind, number>> = {
+  snap: 2, throw: 3, kickLanding: 4, catch: 4, drop: 4, tackle: 6, fumble: 6, outOfBounds: 6, flag: 7, whistle: 8,
+};
 
 export interface FilmEvent { kind: FilmEventKind; tick: number; x: number; y: number; slots?: number[] }
 

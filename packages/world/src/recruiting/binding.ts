@@ -2,13 +2,13 @@
 // read from teams, staffs and rosters, its staff reads from people, and its rule set and calendar over the
 // league rules. Every stand-in is a README decision (RC-06). Nothing here decides a recruiting act.
 import { stream } from '@gm/engine-core';
-import { calendar, recruiting } from '@gm/league';
+import { calendar, compliance, recruiting } from '@gm/league';
 import type { PersonRecord, RuleSet } from '@gm/schema';
 import { complianceOf, dispositionOf, partyOf, setCompliance, sinkFor, STREAM_CONDUCT, HEAD_COACH } from '../compliance/binding.ts';
 import { param as genParam } from '../generation/params.ts';
 import { isActive } from '../loop/lifecycle.ts';
 import type { LiveWorld, StepContext } from '../loop/types.ts';
-import { levelOfTeam, type Level, type TurnoverBinding } from '../turnover/binding.ts';
+import { levelOfTeam, specOf, type Level, type TurnoverBinding } from '../turnover/binding.ts';
 import { param as turnoverParam, RULE_KEY } from '../turnover/params.ts';
 import { RecruitingCalendar } from './calendar.ts';
 import { param } from './params.ts';
@@ -49,6 +49,30 @@ export interface RecruitingBinding {
   readonly calendarFiles: readonly calendar.CalendarFile[];
   /** K7.5.1 hooks on board order, offer count and committable offers (front office); absent keeps the G-36 defaults. */
   readonly policy?: (world: LiveWorld) => recruiting.AiProgramPolicy | undefined;
+  /**
+   * The user's own program (T4, X12.1.1): left out of the AI programs, and its queued acts taken through
+   * `act` on each recruiting Wednesday before the week resolves. Absent (history runs), every program is AI.
+   */
+  readonly user?: (world: LiveWorld) => UserRecruiting | undefined;
+}
+
+/** What the composition root gives for the user's program in one pass. */
+export interface UserRecruiting {
+  readonly teamIds: readonly number[];
+  /** Takes the user's queued acts for this recruiting day (league `takeAct`, `takeLook`, `makeOffer`...). */
+  act(a: UserRecruitingDay): void;
+  /** The user's answer on a commitment to a non-committable offer; absent, his staff answers as an AI program would. */
+  readonly decide?: recruiting.CommitDecider;
+}
+
+export interface UserRecruitingDay {
+  readonly state: recruiting.RecruitingState;
+  readonly ctx: recruiting.RecruitingContext;
+  readonly hook: recruiting.ComplianceHook;
+  readonly classYear: number;
+  readonly day: number;
+  /** Every program this pass, the user's included. */
+  readonly programs: readonly recruiting.ProgramInfo[];
 }
 
 /** World position code to the G-36 position group (T4.8.1 rooms). Unknown codes go to the nearest room by side. */
@@ -152,6 +176,21 @@ export function passBinding(ctx: StepContext, b: RecruitingBinding, levels: read
     room.set(key, r);
     return r;
   };
+  const wr = recruitingOf(world);
+  const incoming = (teamId: number, classYear: number, position: PositionGroup): number => {
+    let n = 0;
+    for (const p of Object.values(wr.state.prospects)) {
+      if (p.classYear >= classYear || p.position !== position) continue;
+      const st = wr.state.status[p.personId];
+      if (st?.teamId === teamId && (st.status === 'committed' || st.status === 'signed')) n++;
+    }
+    for (const [id, t] of Object.entries(wr.letters)) {
+      if (t !== teamId) continue;
+      const pos = world.people.get(Number(id))?.playing?.position;
+      if (pos !== undefined && groupOf(pos) === position) n++;
+    }
+    return n;
+  };
   const streak = new Map<number, number>();
   for (const g of world.results) {
     if (g.homePoints === g.awayPoints) continue;
@@ -190,9 +229,12 @@ export function passBinding(ctx: StepContext, b: RecruitingBinding, levels: read
       return target <= 0 ? 0 : Math.max(0, Math.min(1, 1 - have / target));
     },
     schemeFit: () => param('facts.schemeFit'),
-    returning: (teamId, position) => roomFor(teamId, classYearNow)[position]?.returning ?? 0,
+    // RC-07: an earlier class's committed and signed players (and letters not yet enrolled) also return.
+    returning: (teamId, position) => (roomFor(teamId, classYearNow)[position]?.returning ?? 0) + incoming(teamId, classYearNow, position),
     headCoachOn: (teamId) => infos.get(teamId)?.headCoachId ?? 0,
     lossStreak: (teamId) => streak.get(teamId) ?? 0,
+    // T4.8.1, T5.1.1: the class plan fits the world roster limit (RC-11).
+    rosterLimit: (teamId) => specOf(b.turnover, world, teamId).rosterLimit,
   };
   const ruleCache = new Map<number, RuleSet>();
   const rctx: recruiting.RecruitingContext & { setClass(y: number): void } = {
@@ -209,7 +251,8 @@ export function passBinding(ctx: StepContext, b: RecruitingBinding, levels: read
   };
   let currentDay = 0;
   const hook: recruiting.ComplianceHook = {
-    state: complianceOf(world), sink: sinkFor(ctx), tier: 3, source: ctx.source,
+    // The pass holds the log alone until done(): acts push onto one copy instead of copying it per act.
+    state: compliance.ownLog(complianceOf(world)), sink: sinkFor(ctx), tier: 3, source: ctx.source,
     party: (staffId, teamId) => partyOf(world, staffId, infos.get(teamId)?.headCoachId === staffId ? 'head_coach' : 'recruiter', teamId),
   };
   const people: recruiting.AiPeople = {
@@ -222,7 +265,7 @@ export function passBinding(ctx: StepContext, b: RecruitingBinding, levels: read
   const pass: PassBinding & { setDay(d: number): void; setClass(y: number): void } = {
     ctx: rctx, hook, people, level,
     programs: () => [...infos.values()],
-    done: () => setCompliance(world, hook.state),
+    done: () => setCompliance(world, compliance.releaseLog(hook.state)),
     setDay: (d) => { currentDay = d; },
     setClass: (y) => rctx.setClass(y),
   };

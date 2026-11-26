@@ -12,6 +12,7 @@ import { gameCalling } from '@gm/app-services';
 import { homeFromSeason, recordText } from './today.ts';
 import { FinalPanel, PlayLog, keyForIn, useLiveSession } from './ConsoleHost.tsx';
 import { rt } from './text.ts';
+import { teamSources } from './sources/team.ts';
 import type { CareerPort, GameSession, SeasonToday, WeekProgress } from './port.ts';
 import type { SoundStage } from '../audio/stage/index.ts';
 import type { AdvanceTarget } from '../screens/home/view.ts';
@@ -97,6 +98,8 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
   const [progress, setProgress] = useState<WeekProgress | null>(null);
   const [failure, setFailure] = useState<string | null>(null);
   const running = useRef(false);
+  // The shell is opened afresh on the office after a game, so it does not stay on the closed console.
+  const [shellKey, nextShell] = useReducer((n: number) => n + 1, 0);
   const today = useMemo(() => port.today(), [port, version]); // eslint-disable-line react-hooks/exhaustive-deps
   const gameDay = session !== null || (today.nextGame !== null && today.nextGame.daysToGame === 0);
 
@@ -125,13 +128,14 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
   const done = useCallback(() => {
     const s = session;
     if (!s) return;
-    move((p) => port.finishGame(s, p), () => setSession(null));
+    move((p) => port.finishGame(s, p), () => { setSession(null); nextShell(); });
   }, [port, session, move]);
   const delegate = useCallback(() => move((p) => port.delegateGame(p)), [port, move]);
   const status = progress ? <WeekProgressLine progress={progress} /> : failure ? <p data-week-error role="alert" className="gm-line">{rt('root.weekError', { message: failure })}</p> : null;
 
   const routes: RouteTable = useMemo(() => {
     const t = buildRoutes({
+      ...teamSources(port),
       home: { view: () => homeFromSeason(port.today(), 0, port.week?.() ?? null), dispatch: (i) => { if (i.kind === 'advance') step(i.target); } },
     });
     t['game.console'] = {
@@ -154,7 +158,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
   };
   return (
     <Shell
-      routes={routes} context={context} initialPath="/office/today" onAdvance={advance} soundStage={soundStage}
+      key={shellKey} routes={routes} context={context} initialPath="/office/today" onAdvance={advance} soundStage={soundStage}
       display={{ theme: 'classic' }}
       // The console takes the whole width on game day (O2.1.1 fixed layout); the season panel returns after the game.
       sidePanel={gameDay ? undefined : <SeasonPanel today={today} canDelegate={today.nextGame !== null && progress === null} onDelegate={delegate} />}

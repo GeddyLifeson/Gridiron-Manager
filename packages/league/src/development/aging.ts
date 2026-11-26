@@ -33,10 +33,14 @@ export function rolloverShare(n: DevNumbers): number {
 
 /** Move the physical index by a fraction of this year's drawn change. Returns a new block. */
 export function applyAgingFraction(n: DevNumbers, p: PlayingBlock, fraction: number): PlayingBlock {
+  return { ...p, hidden: { ...p.hidden, [HIDDEN.agingIndex]: agedIndex(n, p, fraction) } };
+}
+
+/** The physical index after a fraction of this year's drawn change. */
+export function agedIndex(n: DevNumbers, p: PlayingBlock, fraction: number): number {
   const delta = hiddenNum(p, HIDDEN.agingYearDelta, 0);
   const idx = hiddenNum(p, HIDDEN.agingIndex, 1);
-  const next = Math.min(num(n, 'aging.indexMax'), Math.max(0, idx * (1 + (delta * fraction) / num(n, 'scale.percent'))));
-  return { ...p, hidden: { ...p.hidden, [HIDDEN.agingIndex]: next } };
+  return Math.min(num(n, 'aging.indexMax'), Math.max(0, idx * (1 + (delta * fraction) / num(n, 'scale.percent'))));
 }
 
 /**

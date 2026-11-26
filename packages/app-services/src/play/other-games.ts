@@ -26,6 +26,8 @@ export interface OtherGameJob {
   readonly season: number;
   readonly fixture: seasons.Fixture;
   readonly seedHex: string;
+  /** Play resolver; absent for the real game's default (the tick engine). */
+  readonly resolver?: seasons.RealResolver;
 }
 
 /** What a job gives back: the season's outcome and the game's packed film (opponent scouting reads it). */
@@ -36,8 +38,8 @@ export interface OtherGameResult {
   readonly film: PackedGame;
 }
 
-export function jobOfContext(ctx: GameContext): OtherGameJob {
-  return { ruleSetId: ctx.ruleSetId, season: ctx.season, fixture: ctx.fixture, seedHex: ctx.seedHex };
+export function jobOfContext(ctx: GameContext, resolver?: seasons.RealResolver): OtherGameJob {
+  return { ruleSetId: ctx.ruleSetId, season: ctx.season, fixture: ctx.fixture, seedHex: ctx.seedHex, ...(resolver ? { resolver } : {}) };
 }
 
 /** The real game and what a played game is read with, for one rule set. */
@@ -49,8 +51,8 @@ export interface GameKit {
   readonly success: { readonly firstDownShare: number; readonly secondDownShare: number; readonly lateDownShare: number };
 }
 
-export function createGameKit(ruleSetId: string): GameKit {
-  const port = seasons.realGamePort({ ruleSetId });
+export function createGameKit(ruleSetId: string, resolver?: seasons.RealResolver): GameKit {
+  const port = seasons.realGamePort({ ruleSetId, ...(resolver ? { resolver } : {}) });
   const geometry = field.fieldGeometry(port.game.rules);
   const statsModule = stats.createStatsModule({ geometry, params: port.game.params });
   const d = ep.defaultDefinitions().success;
@@ -79,8 +81,9 @@ export function playWithKit(kit: GameKit, job: OtherGameJob): OtherGameResult {
 export function createOtherGameRunner(): (job: OtherGameJob) => OtherGameResult {
   const kits = new Map<string, GameKit>();
   return (job) => {
-    let kit = kits.get(job.ruleSetId);
-    if (!kit) { kit = createGameKit(job.ruleSetId); kits.set(job.ruleSetId, kit); }
+    const key = `${job.ruleSetId}|${job.resolver ?? ''}`;
+    let kit = kits.get(key);
+    if (!kit) { kit = createGameKit(job.ruleSetId, job.resolver); kits.set(key, kit); }
     return playWithKit(kit, job);
   };
 }

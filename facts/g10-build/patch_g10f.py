@@ -8,6 +8,7 @@ ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 DATE = '2026-11-26'
 from g10f_core import SRC, ADD, NOTES
 import g10f_entries   # fills SRC and ADD
+import g10g_entries
 
 FILES = ['league', 'cap', 'college', 'college-keys', 'college-recruiting', 'schedule-staff', 'injury', 'measured-rate']
 files = {f: json.load(open(f'{ROOT}/facts/{f}.json')) for f in FILES if os.path.exists(f'{ROOT}/facts/{f}.json')}

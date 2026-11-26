@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { FIXTURE_SPECS, runFixture, type FixtureExpect } from '../../src/migrations/fixtures.ts';
 import { MIGRATION_NOTICE, migrateSave, openOrMigrate } from '../../src/migrations/runner.ts';
-import { LEGACY_PREFIX, MIGRATION_STEPS, META_LEGACY_FORMAT1, MigrationError, STEP_1_TO_2, validateSteps, type MigrationStep } from '../../src/migrations/steps.ts';
+import { LEGACY_PREFIX, MIGRATION_STEPS, META_LEGACY_FORMAT1, MigrationError, STEP_1_TO_2, STEP_2_TO_3, validateSteps, type MigrationStep } from '../../src/migrations/steps.ts';
 import { SAVE_CORE_FORMAT_VERSION } from '../../src/save/types.ts';
 import { readChain } from '../../src/snapshot/chain.ts';
 import { HASHES, V, deps, memoryDb } from '../save/helpers.ts';
@@ -89,7 +89,7 @@ describe('the runner (P5.5.1)', () => {
         throw new Error('disk full');
       },
     };
-    const m = await migrateSave(src, { ...opts(), steps: [broken] });
+    const m = await migrateSave(src, { ...opts(), steps: [broken, STEP_2_TO_3] });
     expect(m).toMatchObject({ status: 'failed', from: 1, step: STEP_1_TO_2.id });
     expect(await src.exportBytes()).toEqual(original);
     expect((await src.all<{ n: number }>("SELECT COUNT(*) AS n FROM world_state WHERE key = 'world'"))[0]!.n).toBe(1);
@@ -109,8 +109,8 @@ describe('the runner (P5.5.1)', () => {
   });
 
   it('leaves a current save alone and does not load a newer one', async () => {
-    expect((await migrateSave(await memoryDb(bytesOf('f2-season1')), opts())).status).toBe('current');
-    const newer = await memoryDb(bytesOf('f2-season1'));
+    expect((await migrateSave(await memoryDb(bytesOf('f3-season1')), opts())).status).toBe('current');
+    const newer = await memoryDb(bytesOf('f3-season1'));
     await newer.exec(`UPDATE header SET save_format_version = ${SAVE_CORE_FORMAT_VERSION + 1}`);
     expect(await migrateSave(newer, opts())).toEqual({ status: 'newer', format: SAVE_CORE_FORMAT_VERSION + 1 });
     const loaded = await openOrMigrate(newer, opts());
@@ -126,6 +126,8 @@ describe('the runner (P5.5.1)', () => {
       expect(a.save.header().saveFormatVersion).toBe(SAVE_CORE_FORMAT_VERSION);
     }
     const b = await openOrMigrate(await memoryDb(bytesOf('f2-season15')), opts());
-    expect(b.status === 'opened' && b.migrated === null).toBe(true);
+    expect(b.status === 'opened' && b.migrated?.from).toBe(2);
+    const c = await openOrMigrate(await memoryDb(bytesOf('f3-season1')), opts());
+    expect(c.status === 'opened' && c.migrated === null).toBe(true);
   });
 });

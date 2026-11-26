@@ -98,7 +98,9 @@ function playGame(game: RealGame, index: number, wrap?: (r: Resolver) => Resolve
 const games = new Map<string, RealGame>();
 function realGame(rules: string): RealGame {
   let g = games.get(rules);
-  if (!g) { g = createRealGame(rules); games.set(rules, g); }
+  // The game and reference-play rows keep the reference resolver until their baselines are retaken on the tick
+  // engine (the tick play rows below already time it); the real game itself now defaults to tick.
+  if (!g) { g = createRealGame(rules, { resolver: 'reference' }); games.set(rules, g); }
   return g;
 }
 

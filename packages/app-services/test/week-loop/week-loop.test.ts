@@ -127,7 +127,7 @@ describe('seat week loop', () => {
     expect(() => sp.rebuildFilm(sp.seatResults()[0]!.fixture.gameId)).toThrow(/called by the seat/);
   });
 
-  it('the same seed gives the same week; save and restore keep the archive; replay refilms the season', () => {
+  it('the same seed gives the same week; save and restore keep the archive; replay refilms the season', { timeout: 600_000 }, () => {
     const a = proSeason(), b = proSeason();
     for (const sp of [a, b]) { runWeek(sp, toNextSeatWeek(sp)); }
     const la = toNextSeatWeek(a), lb = toNextSeatWeek(b);

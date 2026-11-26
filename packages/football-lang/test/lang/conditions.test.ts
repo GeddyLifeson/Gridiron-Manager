@@ -193,6 +193,12 @@ describe('conditions: ball, quarterback, time and position', () => {
     expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 5, seen: { 5: [2, 0] } }))).toBe('T');
     expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 5, seen: { 5: [-4, 0] } }))).toBe('F');
     expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 5, seen: { 5: [-4, 0] }, read: 'run' }))).toBe('T');
+    // A quarterback behind the line who is not coming downhill has not declared a run, whatever the read: a fake or a rollout.
+    const qbBound = assignment({ behavior: { type: 'zoneDrop', params: { qb: 'slot:5' }, path: [] } });
+    expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 5, seen: { 5: [-5, 4, 0, 5] }, read: 'run' }), D, qbBound)).toBe('F');
+    expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 5, seen: { 5: [-2, 1, 5, 1] }, read: 'run' }), D, qbBound)).toBe('T');
+    expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 6, seen: { 6: [-4, 0], 5: [-5, 0] }, read: 'run' }), D, qbBound)).toBe('T');
+    expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 5, seen: { 5: [1, 4, 0, 5] } }), D, qbBound)).toBe('T');
     expect(valueOf(cond('ballCarrierDeclared'), world({ carrier: 5 }))).toBe('U');
     expect(valueOf(cond('ballCarrierDeclared'), world())).toBe('F');
   });

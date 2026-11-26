@@ -114,7 +114,7 @@ const ROWS: readonly ParamRow[] = [
   ['block.puntGetOffS', 1.30, 1.1, 1.5, 's', 'bible', 'J9.4.3', BLOCK],
   ['block.puntPerZS', 0.03, 0, 0.06, 's/z', 'bible', 'J9.4.3', BLOCK],
   // J9.5.1 punts
-  ['punt.distMeanYd', 46, 40, 52, 'yd', 'bible', 'J9.5.1', PUNT],
+  ['punt.distMeanYd', 48.5, 40, 52, 'yd', 'assumption', 'J9.5.1', PUNT + '; open-field punts (own 40 or deeper) gross 50.5 (nflverse 2022-2024). J9.5.1 states 46, which was the league gross with short-field punts in it; this row is the open-field mean and punt.pinTargetYd shortens the rest'],
   ['punt.hangMeanS', 4.4, 3.8, 5, 's', 'bible', 'J9.5.1', PUNT],
   ['punt.distSdYd', 5, 2, 8, 'yd', 'bible', 'J9.5.1', PUNT],
   ['punt.hangSdS', 0.35, 0.15, 0.6, 's', 'bible', 'J9.5.1', PUNT],
@@ -127,6 +127,7 @@ const ROWS: readonly ParamRow[] = [
   ['punt.directionalPerZ', 0.1, 0, 0.3, '1/z', 'assumption', 'J9.5.1', PUNT],
   ['punt.pinLossYd', 11.5, 8, 15, 'yd', 'bible', 'J9.5.1', PUNT],
   ['punt.pinHangGainS', 0.2, 0, 0.5, 's', 'assumption', 'J9.5.1', PUNT],
+  ['punt.pinTargetYd', 10, 4, 20, 'yd', 'assumption', 'J9.5.1', 'gross punt by line of scrimmage: 37.3 yd from the opponent 40s, 44.5 from the 50s (nflverse 2022-2024)'],
   ['punt.normalBias', 0.3, 0, 0.8, 'bias', 'assumption', 'J9.3.1', BOUNCE],
   ['punt.pinBias', -0.6, -1, 0, 'bias', 'assumption', 'J9.3.1', BOUNCE],
   ['punt.shankBase', 0.02, 0.005, 0.05, 'probability', 'assumption', 'J9.5.1', PUNT],

@@ -1,0 +1,566 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-interview-0001",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Head coach interviews ask for the candidate's staff plan: who he would hire.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Vrentas, SI MMQB via Fortune, 'Interviewing an NFL head coach', 2016-01-19",
+     "locator": "https://fortune.com/2016/01/19/interviewing-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-mmqb-2016",
+     "primary": false,
+     "quote": "Staff is the single most important thing, because it shows judgment."
+    },
+    {
+     "citation": "Auman, Fox Sports, 'NFL coaching insider: behind the scenes of the interview and hiring process', 2025-01-16",
+     "locator": "https://www.foxsports.com/stories/nfl/nfl-coaching-insider-behind-scenes-interview-hiring-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-2025",
+     "primary": false
+    },
+    {
+     "citation": "Ledbetter, AJC, '10 questions for Falcons coaching candidates' (with Tony Dungy), 2026-01-16",
+     "locator": "https://www.ajc.com/sports/2026/01/10-questions-for-falcons-coaching-candidates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ajc-2026",
+     "primary": false,
+     "quote": "Who's on your staff?"
+    },
+    {
+     "citation": "Kapadia, The Ringer, '10 Rules for Hiring an NFL Head Coach', 2023-01-11",
+     "locator": "https://www.theringer.com/2023/01/11/nfl/10-rules-for-hiring-an-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ringer-2023",
+     "primary": false,
+     "quote": "Make sure they can build out a strong staff."
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "delegation stance; staff segment of E2.4.3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0002",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Head coach interviews ask about discipline, culture and how the candidate handles players.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Vrentas, SI MMQB via Fortune, 'Interviewing an NFL head coach', 2016-01-19",
+     "locator": "https://fortune.com/2016/01/19/interviewing-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-mmqb-2016",
+     "primary": false,
+     "quote": "What is your discipline policy when players get in off-the-field trouble?"
+    },
+    {
+     "citation": "Brandt, SI, 'Business of football: inside the NFL interview process', 2026-01-15",
+     "locator": "https://www.si.com/nfl/business-of-football-inside-nfl-interview-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-brandt-2026",
+     "primary": false
+    },
+    {
+     "citation": "Ledbetter, AJC, '10 questions for Falcons coaching candidates' (with Tony Dungy), 2026-01-16",
+     "locator": "https://www.ajc.com/sports/2026/01/10-questions-for-falcons-coaching-candidates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ajc-2026",
+     "primary": false,
+     "quote": "How to change the culture of losing?"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "discipline, player_relations, media stances",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0003",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Head coach interviews ask about analytics, clock management and in-game decisions.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Auman, Fox Sports, 'NFL coaching insider: behind the scenes of the interview and hiring process', 2025-01-16",
+     "locator": "https://www.foxsports.com/stories/nfl/nfl-coaching-insider-behind-scenes-interview-hiring-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-2025",
+     "primary": false,
+     "quote": "Why did you call this on this down?"
+    },
+    {
+     "citation": "Ledbetter, AJC, '10 questions for Falcons coaching candidates' (with Tony Dungy), 2026-01-16",
+     "locator": "https://www.ajc.com/sports/2026/01/10-questions-for-falcons-coaching-candidates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ajc-2026",
+     "primary": false,
+     "quote": "What's your clock management/analytics plan?"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "analytics and aggression stances",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0004",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Interviews cover who has final say on personnel and the coach-GM power balance.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Vrentas, SI MMQB via Fortune, 'Interviewing an NFL head coach', 2016-01-19",
+     "locator": "https://fortune.com/2016/01/19/interviewing-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-mmqb-2016",
+     "primary": false,
+     "quote": "Do you believe coaches or scouts should have final say on personnel evaluations?"
+    },
+    {
+     "citation": "Auman, Fox Sports, 'NFL coaching insider: behind the scenes of the interview and hiring process', 2025-01-16",
+     "locator": "https://www.foxsports.com/stories/nfl/nfl-coaching-insider-behind-scenes-interview-hiring-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-2025",
+     "primary": false
+    },
+    {
+     "citation": "Kapadia, The Ringer, '10 Rules for Hiring an NFL Head Coach', 2023-01-11",
+     "locator": "https://www.theringer.com/2023/01/11/nfl/10-rules-for-hiring-an-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ringer-2023",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "personnel_say stance",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0005",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Interviews probe scheme flexibility: fit the players or run one system.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Kapadia, The Ringer, '10 Rules for Hiring an NFL Head Coach', 2023-01-11",
+     "locator": "https://www.theringer.com/2023/01/11/nfl/10-rules-for-hiring-an-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ringer-2023",
+     "primary": false
+    },
+    {
+     "citation": "Vrentas, SI MMQB via Fortune, 'Interviewing an NFL head coach', 2016-01-19",
+     "locator": "https://fortune.com/2016/01/19/interviewing-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-mmqb-2016",
+     "primary": false,
+     "quote": "can't be one-size-fits all"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "flexibility and run_pass stances",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0006",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Interviews ask for the practice, week and conditioning plan.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Ledbetter, AJC, '10 questions for Falcons coaching candidates' (with Tony Dungy), 2026-01-16",
+     "locator": "https://www.ajc.com/sports/2026/01/10-questions-for-falcons-coaching-candidates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ajc-2026",
+     "primary": false
+    },
+    {
+     "citation": "Brandt, SI, 'Business of football: inside the NFL interview process', 2026-01-15",
+     "locator": "https://www.si.com/nfl/business-of-football-inside-nfl-interview-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-brandt-2026",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "practice_contact and youth stances",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0007",
+   "level": "both",
+   "domain": "career",
+   "statement": "Fit or chemistry between a coach and the people who hire him matters to hiring and to how hires turn out; many firings come from bad fit rather than lack of skill.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Brandt, SI, 'Business of football: inside the NFL interview process', 2026-01-15",
+     "locator": "https://www.si.com/nfl/business-of-football-inside-nfl-interview-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-brandt-2026",
+     "primary": false
+    },
+    {
+     "citation": "Lopiano and Zotos, Athletic Director's Desk Reference 2nd ed., excerpt 'Assessing and interviewing candidates' (Human Kinetics)",
+     "locator": "https://us.humankinetics.com/blogs/excerpt/assessing-and-interviewing-candidates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hk-lopiano",
+     "primary": false,
+     "quote": "many terminations are the result of bad fit rather than lack of skills or expertise."
+    },
+    {
+     "citation": "Groysberg, HBS Working Knowledge, 'Super Bowl coaches: how well do they fit their teams?', 2016-02-01",
+     "locator": "https://www.library.hbs.edu/working-knowledge/super-bowl-coaches-how-well-do-they-fit-their-teams",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hbs-2016",
+     "primary": false
+    },
+    {
+     "citation": "Vrentas, SI MMQB via Fortune, 'Interviewing an NFL head coach', 2016-01-19",
+     "locator": "https://fortune.com/2016/01/19/interviewing-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si-mmqb-2016",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "the core rule: hire score led by fit",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0008",
+   "level": "both",
+   "domain": "career",
+   "statement": "Head coaches hire assistants they trust and who are loyal, whose knowledge complements their own.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Rathwell, Bloom and Loughead (2014), Head coaches' perceptions on the roles, selection, and development of the assistant coach, International Sport Coaching Journal 1, 5-16",
+     "locator": "https://www.mcgill.ca/sportpsych/files/sportpsych/2014_-_rathwell_s._bloom_g.a._loughead_t.m._2014._head_coaches_perceptions_on_the_roles_selection_and_development_of_the_assistant_coach._international_sport_coaching_journal_1_5-16_0.pdf (abstract)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "rathwell-2014",
+     "primary": false,
+     "quote": "hired loyal assistants who possessed extensive football knowledge that complimented their own skill sets"
+    },
+    {
+     "citation": "Corlett, excerpt 'How do you get an assistant coaching position?' from Reynaud, Winning Ways of Women Coaches (Human Kinetics)",
+     "locator": "https://us.humankinetics.com/blogs/excerpt/how-do-you-get-an-assistant-coaching-position",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hk-corlett",
+     "primary": false,
+     "quote": "What does loyalty mean to you?"
+    },
+    {
+     "citation": "Kapadia, The Ringer, '10 Rules for Hiring an NFL Head Coach', 2023-01-11",
+     "locator": "https://www.theringer.com/2023/01/11/nfl/10-rules-for-hiring-an-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ringer-2023",
+     "primary": false
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "dissent stance; tie term",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0009",
+   "level": "both",
+   "domain": "career",
+   "statement": "Candidates ask the people hiring them about the head coach's philosophy and expectations.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Corlett, excerpt 'How do you get an assistant coaching position?' from Reynaud, Winning Ways of Women Coaches (Human Kinetics)",
+     "locator": "https://us.humankinetics.com/blogs/excerpt/how-do-you-get-an-assistant-coaching-position",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hk-corlett",
+     "primary": false,
+     "quote": "What is the coaching philosophy of the head coach?"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "reverse questions, candidateRead",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0010",
+   "level": "both",
+   "domain": "career",
+   "statement": "References weigh the candidate's recent supervisors; a recommendation from a respected coach carries weight but does not decide a hire.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Lopiano and Zotos, Athletic Director's Desk Reference 2nd ed., excerpt 'Assessing and interviewing candidates' (Human Kinetics)",
+     "locator": "https://us.humankinetics.com/blogs/excerpt/assessing-and-interviewing-candidates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hk-lopiano",
+     "primary": false,
+     "quote": "special attention to the most recent direct supervisors"
+    },
+    {
+     "citation": "Kapadia, The Ringer, '10 Rules for Hiring an NFL Head Coach', 2023-01-11",
+     "locator": "https://www.theringer.com/2023/01/11/nfl/10-rules-for-hiring-an-nfl-head-coach",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ringer-2023",
+     "primary": false,
+     "quote": "you don't have to hire a candidate just because a coach or player you respect recommends them"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "referralScore",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0011",
+   "level": "pro",
+   "domain": "career",
+   "statement": "First interviews are mostly virtual; finalists come in person.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Auman, Fox Sports, 'NFL coaching insider: behind the scenes of the interview and hiring process', 2025-01-16",
+     "locator": "https://www.foxsports.com/stories/nfl/nfl-coaching-insider-behind-scenes-interview-hiring-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-2025",
+     "primary": false,
+     "quote": "almost exclusively virtual"
+    },
+    {
+     "citation": "research/audit-r-coach-hiring.md section 1 (S1 to S5)",
+     "locator": "audit-r-coach-hiring.md line 40",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "audit-r",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "shortlist stage",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0012",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Teams tend to hire the opposite of the coach they just fired.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Auman, Fox Sports, 'NFL coaching insider: behind the scenes of the interview and hiring process', 2025-01-16",
+     "locator": "https://www.foxsports.com/stories/nfl/nfl-coaching-insider-behind-scenes-interview-hiring-process",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-2025",
+     "primary": false,
+     "quote": "Franchises often tend to oscillate to the opposite of their previous coach."
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "wantsAfterFiring",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0013",
+   "level": "both",
+   "domain": "career",
+   "statement": "Good practice asks every candidate the same questions.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Lopiano and Zotos, Athletic Director's Desk Reference 2nd ed., excerpt 'Assessing and interviewing candidates' (Human Kinetics)",
+     "locator": "https://us.humankinetics.com/blogs/excerpt/assessing-and-interviewing-candidates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "hk-lopiano",
+     "primary": false,
+     "quote": "a slate of questions to ask all candidates"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "one slate per opening",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0014",
+   "level": "college",
+   "domain": "career",
+   "statement": "School hiring asks how a coach puts player development and academics against winning.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Hoch, NFHS, 'Interview questions for hiring coaches within education-based athletics', 2018-04-09",
+     "locator": "https://nfhs.org/stories/interview-questions-for-hiring-coaches-within-education-based-athletics",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfhs-2018",
+     "primary": false,
+     "quote": "How do you promote and encourage your athletes to make a commitment to academic success?"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "academics stance (college); NFHS is high school",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  },
+  {
+   "id": "F-interview-0015",
+   "level": "both",
+   "domain": "career",
+   "statement": "Interview questions should ask for real examples and views, not yes-or-no questions with an obvious answer.",
+   "validFor": "hiring cycles 2015-2026",
+   "sources": [
+    {
+     "citation": "Hoch, NFHS, 'Interview questions for hiring coaches within education-based athletics', 2018-04-09",
+     "locator": "https://nfhs.org/stories/interview-questions-for-hiring-coaches-within-education-based-athletics",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfhs-2018",
+     "primary": false,
+     "quote": "Even the most dense coach will know enough to say 'yes.'"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "question design: no right answer",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for the fit-based interview module; status computed from sources."
+    }
+   ]
+  }
+ ]
+}

@@ -64,7 +64,7 @@ describe('ball parameter file', () => {
       'pass.releaseHeightYd': 2.2, 'pass.catchHeightYd': 1.6, 'snap.shotgunSpeedYps': 15, 'deflect.speedMin': 0.3,
       'deflect.speedMax': 0.7, 'deflect.angleMaxDeg': 60, 'bounce.sdTumbleDeg': 25, 'bounce.sdSpiralDeg': 12,
       'bounce.rollDecelYps2': 3, 'op.timeS': 1.3, 'op.cleanBeta0': 3.5, 'fg.range50Yd': 58, 'fg.rangePerZYd': 4,
-      'fg.rangeSdYd': 3, 'fg.accDecay': 0.12, 'fg.labelAddYd': 17, 'punt.distMeanYd': 46, 'punt.hangMeanS': 4.4,
+      'fg.rangeSdYd': 3, 'fg.accDecay': 0.12, 'fg.labelAddYd': 17, 'punt.hangMeanS': 4.4,
       'punt.corr': -0.4, 'block.puntSnapS': 0.75, 'block.puntGetOffS': 1.3, 'ko.alongSdYd': 4, 'ko.acrossSdYd': 3,
       'wind.gustAimGain': 0.02,
     };
@@ -156,6 +156,14 @@ describe('J9.1.2 snaps and exchanges', () => {
     const s = ball.solvePassFrom(40, 26, 60, 30, 26, 'firm', P['pass.dragPerYd']!, ball.NO_WIND, P);
     expect(s.arrival.h).toBeCloseTo(1.6, 6);
     expect(ball.passLaunch(40, 26, s, P).h).toBe(2.2);
+  });
+
+  it('solvePassFrom can land a throw on the ground instead (a throwaway, J7.5.2)', () => {
+    for (const type of ['drive', 'firm', 'touch'] as const) {
+      const s = ball.solvePassFrom(40, 26, 55, 30, 26, type, P['pass.dragPerYd']!, ball.NO_WIND, P, 0);
+      expect(s.arrival.h).toBeCloseTo(0, 6);
+      expect(Math.hypot(s.arrival.x - 55, s.arrival.y - 30)).toBeLessThan(0.05);
+    }
   });
 });
 
@@ -344,10 +352,17 @@ describe('J9.5.1 punts', () => {
   };
   const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
 
-  it('grade-50 distance punts average about 46 yd gross and 4.4 s hang, negatively correlated, about 2% shanks', () => {
+  it('a punt that would carry past the pin target is shortened and hung higher (short field)', () => {
+    const far = draws(), near = draws({ toGoalYd: 45 });
+    const m = (xs: { distYd: number; shank: boolean }[]) => mean(xs.filter((x) => !x.shank).map((x) => x.distYd));
+    expect(m(near)).toBeLessThan(45 - P['punt.pinTargetYd']! + 1);
+    expect(m(near)).toBeLessThan(m(far) - 8);
+    expect(m(draws({ toGoalYd: 90 }))).toBeCloseTo(m(far), 6);
+  });
+  it('grade-50 open-field distance punts average about 48.5 yd gross and 4.4 s hang, negatively correlated, about 2% shanks', () => {
     const d = draws();
     const clean = d.filter((x) => !x.shank);
-    expect(mean(clean.map((x) => x.distYd))).toBeCloseTo(46, 0);
+    expect(mean(clean.map((x) => x.distYd))).toBeCloseTo(48.5, 0);
     expect(mean(clean.map((x) => x.hangS))).toBeCloseTo(4.4, 1);
     const md = mean(clean.map((x) => x.distYd)), mh = mean(clean.map((x) => x.hangS));
     const cov = mean(clean.map((x) => (x.distYd - md) * (x.hangS - mh)));
