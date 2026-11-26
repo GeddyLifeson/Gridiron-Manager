@@ -1483,14 +1483,29 @@
    "value": 0.481,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: share of 1st-and-10 scrimmage plays (pass or run, no kneels or spikes) that are pass plays; n=39645",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.481
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.481 vs 0.481). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -1502,14 +1517,29 @@
    "value": 0.504,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: share of 1st-and-10 scrimmage plays that are dropbacks (qb_dropback); n=39645",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.504
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.504 vs 0.504). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -2047,14 +2077,29 @@
    "value": 26.6,
    "unit": "seconds",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: mean game-clock seconds from a pass snap to the next scrimmage snap in the same drive",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 25.66
+    }
+   ],
+   "status": "Conflict",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Zero sources before. Best nflverse reproduction under the most natural definition gives 25.66, not 26.6, so the stored target does not match its only measurement. The bible definition behind the target is not recorded; decide whether to adopt the measured value."
     }
    ]
   },
@@ -2066,14 +2111,29 @@
    "value": 36.6,
    "unit": "seconds",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: mean game-clock seconds from a run snap to the next scrimmage snap in the same drive",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 36.19
+    }
+   ],
+   "status": "Conflict",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Zero sources before. Best nflverse reproduction under the most natural definition gives 36.19, not 36.6, so the stored target does not match its only measurement. The bible definition behind the target is not recorded; decide whether to adopt the measured value."
     }
    ]
   },
@@ -3392,14 +3452,29 @@
    "value": 0.409,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: completion share of pressured dropbacks (was_pressure, scrambles excluded); n=16628",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.409
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.409 vs 0.409). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -3411,14 +3486,29 @@
    "value": 3.87,
    "unit": "yards",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: net yards per pressured dropback (yards_gained, sacks included); n=16628",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 3.87
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (3.87 vs 3.87). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -3575,14 +3665,29 @@
    "value": 0.045,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: sacks per pass play with 3 rushers (participation number_of_pass_rushers); n=2812",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.045
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.045 vs 0.045). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -3623,14 +3728,29 @@
    "value": 0.064,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: sacks per pass play with 4 rushers; n=39136",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.064
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.064 vs 0.064). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -3671,14 +3791,29 @@
    "value": 0.085,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: sacks per pass play with 5 rushers; n=11759",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.085
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.085 vs 0.085). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -3719,14 +3854,29 @@
    "value": 0.1,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: sacks per pass play with 6 rushers; n=3068",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.1
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.1 vs 0.1). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -3767,14 +3917,29 @@
    "value": 0.084,
    "unit": "share",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play and participation, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: sacks per pass play with 7 or more rushers; n=644",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.084
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.084 vs 0.084). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -5393,14 +5558,29 @@
    "value": 0.207,
    "unit": "share",
    "validFor": "2025",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, 2025 regular season, github.com/nflverse/nflverse-data releases; computed by the project: touchbacks per kickoff play, 2025 regular season; n=2794",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.207
+    }
+   ],
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Zero sources before. Recomputed from nflverse and the target is reproduced (0.207 vs 0.207). One independent group, so 1 of 3; a second and third source are still owed."
     }
    ]
   },
@@ -8101,14 +8281,29 @@
    "value": 0.3,
    "unit": "per 100 snaps",
    "validFor": "2022-2024",
-   "sources": [],
-   "status": "Unverified",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, 2022 to 2024 regular seasons, github.com/nflverse/nflverse-data releases; computed by the project: SD across 32 teams of offensive pre-snap fouls (false start, delay of game, offside, encroachment, neutral zone, illegal formation, shift, motion) per 100 snaps; mean 2.76",
+     "locator": "scripts/research/unverified-rows.py; output scripts/research/unverified-rows.out.json",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.41
+    }
+   ],
+   "status": "Conflict",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Unverified",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Zero sources before. Best nflverse reproduction under the most natural definition gives 0.41, not 0.3, so the stored target does not match its only measurement. The bible definition behind the target is not recorded; decide whether to adopt the measured value."
     }
    ]
   },
