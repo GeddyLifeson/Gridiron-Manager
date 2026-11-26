@@ -18,6 +18,27 @@ export type RuleRead = (level: Level, key: string) => number | undefined;
 export interface RosterPolicy {
   /** Board score of a player for a team: higher is wanted more. Must read observed grades only (K9). */
   readonly boardScore?: (ctx: GradeContext, teamId: number, personId: number, need: number) => number;
+  /** The player a team takes from the candidates, or null to leave the choice to the default board. */
+  readonly pick?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], phase: Phase) => number | null;
+  /** The players a team keeps at the cutdown (M6), or null for the default. Must keep `limit` with the minimums filled. */
+  readonly cutdown?: (ctx: PolicyContext, teamId: number, roster: readonly number[], limit: number, minByPosition: Readonly<Record<string, number>>) => readonly number[] | null;
+}
+
+/** Which choice a pick is (C7, C8, X11.1.1, T4). */
+export interface Phase {
+  readonly kind: 'free_agent' | 'draft' | 'undrafted' | 'recruit' | 'walk_on';
+  readonly round?: number;
+  readonly rounds?: number;
+}
+
+/** What a policy may read during one offseason cycle. One object per cycle: a policy may cache by it. */
+export interface PolicyContext {
+  readonly world: LiveWorld;
+  readonly b: TurnoverBinding;
+  readonly season: number;
+  readonly grades: GradeContext;
+  /** Round of this year's draft each drafted player went in. */
+  readonly draftedRound: ReadonlyMap<number, number>;
 }
 
 export interface TurnoverBinding {
@@ -30,6 +51,10 @@ export interface GradeContext {
   readonly world: LiveWorld;
   /** Observed grade of a player by a team this season (D6.4.2). Cached per team and player. */
   grade(teamId: number, personId: number): number;
+  /** The same look with its evidence variance (D6.4.2), for the front office's belief. */
+  belief(teamId: number, personId: number): { readonly mean: number; readonly variance: number };
+  /** The public look (media boards, no evaluator lean): what any club knows of the league (K7.2.1 baseline). */
+  publicGrade(personId: number): number;
 }
 
 export function levelOfTeam(world: LiveWorld, teamId: number): Level {
@@ -60,31 +85,48 @@ function lookValue(p: PersonRecord): number {
  * noise). The truth is read only through `scouting.observe`, the module's single truth reader.
  */
 export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>): GradeContext {
-  const cache = new Map<string, number>();
+  const cache = new Map<string, { mean: number; variance: number }>();
+  const pub = new Map<number, number>();
   const leniency = new Map<number, number>();
   const season = world.date.seasonYear;
   const evaluatorOf = (teamId: number): number => {
     for (const j of world.jobs.values()) if (j.teamId === teamId && j.positionId === 'pos:head_coach' && j.holderPersonId !== null) return j.holderPersonId;
     return 0;
   };
+  const look = (teamId: number, personId: number): { mean: number; variance: number } => {
+    const key = `${teamId}:${personId}`;
+    const hit = cache.get(key);
+    if (hit !== undefined) return hit;
+    const p = world.people.get(personId);
+    if (!p?.playing) return { mean: 0, variance: 0 };
+    let len = leniency.get(teamId);
+    if (len === undefined) { len = scouting.drawLeniency(stream(world.seed, 'world.turnover.lean', [teamId, season])); leniency.set(teamId, len); }
+    const rostered = rosteredIds.has(personId);
+    const item = scouting.observe(lookValue(p), {
+      attribute: 'overall', source: rostered ? 'season_stats' : 'workout',
+      units: rostered ? param('grade.rosteredUnits') : param('grade.workoutUnits'), date: world.date,
+      evaluator: { id: evaluatorOf(teamId), line: `team:${teamId}` }, skill: param('grade.aiSkill'),
+      estimateMean: 0, opponent: null,
+    }, { leniency: len, playerOffset: 0, schemeOffset: 0 }, stream(world.seed, 'world.turnover.look', [teamId, personId, season]));
+    const out = { mean: item.value, variance: item.variance };
+    cache.set(key, out);
+    return out;
+  };
   return {
     world,
-    grade(teamId, personId) {
-      const key = `${teamId}:${personId}`;
-      const hit = cache.get(key);
+    grade: (teamId, personId) => look(teamId, personId).mean,
+    belief: look,
+    publicGrade(personId) {
+      const hit = pub.get(personId);
       if (hit !== undefined) return hit;
       const p = world.people.get(personId);
       if (!p?.playing) return 0;
-      let len = leniency.get(teamId);
-      if (len === undefined) { len = scouting.drawLeniency(stream(world.seed, 'world.turnover.lean', [teamId, season])); leniency.set(teamId, len); }
-      const rostered = rosteredIds.has(personId);
       const item = scouting.observe(lookValue(p), {
-        attribute: 'overall', source: rostered ? 'season_stats' : 'workout',
-        units: rostered ? param('grade.rosteredUnits') : param('grade.workoutUnits'), date: world.date,
-        evaluator: { id: evaluatorOf(teamId), line: `team:${teamId}` }, skill: param('grade.aiSkill'),
+        attribute: 'overall', source: rosteredIds.has(personId) ? 'season_stats' : 'workout',
+        units: param('grade.rosteredUnits'), date: world.date, evaluator: { id: 0, line: 'public' }, skill: param('grade.aiSkill'),
         estimateMean: 0, opponent: null,
-      }, { leniency: len, playerOffset: 0, schemeOffset: 0 }, stream(world.seed, 'world.turnover.look', [teamId, personId, season]));
-      cache.set(key, item.value);
+      }, scouting.NO_LEAN, stream(world.seed, 'world.turnover.public', [personId, season]));
+      pub.set(personId, item.value);
       return item.value;
     },
   };

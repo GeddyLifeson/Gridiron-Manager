@@ -1,0 +1,215 @@
+// The front office AI (K7, front-office `gm`) as the world's roster policy. Each pro club has one general
+// manager, generated once from the world seed and the club id (K7.1.1). He decides from his club's own
+// observed grades only (K7.2.2 rule 6, K9): a `PlayerView` carries the observed grade and its variance, never
+// the truth. Mechanics stay in moves.ts (the draft order, signings, rosters); this file only chooses.
+//
+// What the world cannot give him yet, and the stand-in used (each flagged in README.md, TO-06 to TO-09):
+// - the J14.6.1 contribution table (engine batch runs): one wins-per-ISS for every position, replacement
+//   level from the club's own roster, slot weights from the position mix;
+// - contracts and the cap (C6): every cost is empty, so value equals surplus;
+// - projections (D6.5.1 ceiling looks): `projected` is null;
+// - job pressure (K8.3.1): 0; the power arrangement (L5.2.1): `split` for every club.
+import { stream } from '@gm/engine-core';
+import { gm } from '@gm/front-office';
+import { cap, development } from '@gm/league';
+import { ageIn, levelOfTeam, positionTargets, specOf, type Level, type PolicyContext, type Phase, type RosterPolicy } from './binding.ts';
+import { ruleSetOf } from './moves.ts';
+import { param } from './params.ts';
+
+export const STREAM_GM = 'world.frontoffice.gm';
+export const STREAM_DRAW = 'world.frontoffice.draw';
+
+type View = gm.PlayerView;
+
+/** D8.2.1 curve read as K7's linear age curve: prime ends at the last flat band, decline is the mean of the next four years. */
+export function ageCurve(): gm.AgeCurve {
+  const n = development.devNumbers();
+  const fam = (position: string) => development.familyOf(position);
+  const primeEnd = (position: string): number => {
+    let a = 18;
+    while (a < 45 && development.curvePercent(n, fam(position), a + 1) >= 0) a++;
+    return a;
+  };
+  const issPerPercent = (position: string): number => {
+    // The whole-player look is the mean over attributes; only body-moved attributes age (D8.2.1, body.ts).
+    const worked = development.WORKED[fam(position)];
+    const moved = worked.filter((a) => (development.BODY_MOVED as readonly string[]).includes(a));
+    return moved.reduce((s, a) => s + development.issPerPercent(n, a), 0) / Math.max(1, worked.length);
+  };
+  const cache = new Map<string, { peak: number; end: number; decline: number }>();
+  const of = (position: string) => {
+    let c = cache.get(position);
+    if (!c) {
+      const end = primeEnd(position);
+      let pct = 0;
+      for (let y = 1; y <= 4; y++) pct += development.curvePercent(n, fam(position), end + y);
+      c = { peak: end, end, decline: Math.max(0, -pct / 4) * issPerPercent(position) };
+      cache.set(position, c);
+    }
+    return c;
+  };
+  return {
+    group: (position) => development.CURVE_GROUP[fam(position)],
+    peakAge: (position) => of(position).peak,
+    primeEndAge: (position) => of(position).end,
+    declineIssPerYear: (position) => of(position).decline,
+  };
+}
+
+const quantile = (xs: readonly number[], q: number): number => {
+  if (xs.length === 0) return 0;
+  const s = [...xs].sort((a, b) => a - b);
+  return s[Math.min(s.length - 1, Math.max(0, Math.floor(q * (s.length - 1))))]!;
+};
+
+interface TeamState {
+  readonly profile: gm.GmProfile;
+  readonly ctx: gm.ValueContext;
+  needs: { size: number; needs: gm.Need[] } | null;
+}
+
+interface CycleState {
+  readonly teams: Map<number, TeamState>;
+  readonly draws: Map<string, number>;
+  readonly baseline: Map<Level, Record<string, number>>;
+}
+
+/** The front office AI bound as the `RosterPolicy` for pro clubs (TO-06). College clubs keep the default board. */
+export function gmPolicy(): RosterPolicy {
+  const curve = ageCurve();
+  const cycles = new WeakMap<PolicyContext, CycleState>();
+
+  const cycleOf = (pc: PolicyContext): CycleState => {
+    let c = cycles.get(pc);
+    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map() }; cycles.set(pc, c); }
+    return c;
+  };
+
+  const view = (pc: PolicyContext, teamId: number, id: number): View => {
+    const p = pc.world.people.get(id)!;
+    const g = pc.grades.belief(teamId, id);
+    return { personId: id, position: p.playing!.position, age: ageIn(p, pc.season), grade: { mean: g.mean, variance: g.variance }, projected: null, fit: 1, flags: 0, costCentsByYear: [] };
+  };
+
+  const gmIdOf = (pc: PolicyContext, teamId: number): number => {
+    for (const j of pc.world.jobs.values()) if (j.teamId === teamId && j.positionId === 'pos:general_manager' && j.holderPersonId !== null) return j.holderPersonId;
+    return -teamId;
+  };
+
+  const teamOf = (pc: PolicyContext, teamId: number): TeamState => {
+    const cyc = cycleOf(pc);
+    const hit = cyc.teams.get(teamId);
+    if (hit) return hit;
+    const spec = specOf(pc.b, pc.world, teamId);
+    const positions = Object.keys(spec.rosterMix).sort();
+    const groups = [...new Set(positions.map((x) => curve.group(x)))].sort();
+    const gmId = gmIdOf(pc, teamId);
+    // K7.1.1: one general manager per club, the same every season (front offices do not turn over off-screen yet).
+    const profile = gm.generateGm(stream(pc.world.seed, STREAM_GM, [teamId]), gmId, positions, groups, 'split');
+    const targets = positionTargets(spec);
+    const own = new Map<string, number[]>();
+    for (const id of pc.world.rosters.get(teamId) ?? []) {
+      const pos = pc.world.people.get(id)?.playing?.position;
+      if (pos) own.set(pos, [...(own.get(pos) ?? []), pc.grades.grade(teamId, id)]);
+    }
+    const all = [...own.values()].flat();
+    const replacement = new Map<string, number>();
+    const table: gm.ContributionTable = {
+      winsPerIss: () => param('gm.winsPerIss'),
+      replacementIss: (position) => {
+        let r = replacement.get(position);
+        if (r === undefined) { r = quantile(own.get(position) ?? all, param('gm.replacementQuantile')); replacement.set(position, r); }
+        return r;
+      },
+      slotWeights: (position) => {
+        const t = targets[position] ?? 0;
+        const starters = Math.max(1, Math.round(t * param('role.starterShareOfMix')));
+        return Array.from({ length: Math.max(starters, t) }, (_, i) => (i < starters ? 1 : param('gm.depthSlotWeight')));
+      },
+    };
+    const draw: gm.PersistentDraw = (kind, gmPerson, key) => {
+      const k = `${kind}:${gmPerson}:${key}`;
+      let v = cyc.draws.get(k);
+      if (v === undefined) { v = stream(pc.world.seed, STREAM_DRAW, [kind, gmPerson, key]).normal(); cyc.draws.set(k, v); }
+      return v;
+    };
+    // Costs are empty until contracts are in the world, so the going rate never enters a decision (TO-07).
+    const ctx: gm.ValueContext = { table, curve, centsPerWin: 1, draw, pressure: 0 };
+    const t: TeamState = { profile, ctx, needs: null };
+    cyc.teams.set(teamId, t);
+    return t;
+  };
+
+  /** The public baseline of a starter at each position (K7.2.1 input): mean public grade of each club's starters. */
+  const baselineOf = (pc: PolicyContext, level: Level): Record<string, number> => {
+    const cyc = cycleOf(pc);
+    const hit = cyc.baseline.get(level);
+    if (hit) return hit;
+    const sums: Record<string, { s: number; n: number }> = {};
+    for (const [teamId, ids] of pc.world.rosters) {
+      if (levelOfTeam(pc.world, teamId) !== level) continue;
+      const targets = positionTargets(specOf(pc.b, pc.world, teamId));
+      const byPos = new Map<string, number[]>();
+      for (const id of ids) {
+        const pos = pc.world.people.get(id)?.playing?.position;
+        if (pos) byPos.set(pos, [...(byPos.get(pos) ?? []), pc.grades.publicGrade(id)]);
+      }
+      for (const [pos, gs] of byPos) {
+        const k = Math.max(1, Math.round((targets[pos] ?? 0) * param('role.starterShareOfMix')));
+        for (const g of [...gs].sort((a, b) => b - a).slice(0, k)) { const e = (sums[pos] ??= { s: 0, n: 0 }); e.s += g; e.n++; }
+      }
+    }
+    const out: Record<string, number> = {};
+    for (const pos of Object.keys(sums).sort()) out[pos] = sums[pos]!.s / sums[pos]!.n;
+    cyc.baseline.set(level, out);
+    return out;
+  };
+
+  const needsOf = (pc: PolicyContext, teamId: number, t: TeamState): gm.Need[] => {
+    const roster = pc.world.rosters.get(teamId) ?? [];
+    if (t.needs && t.needs.size === roster.length) return t.needs.needs;
+    const own = gm.gmNeeds(t.profile, {
+      roster: roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => view(pc, teamId, id)),
+      baselineIss: baselineOf(pc, levelOfTeam(pc.world, teamId)), expiring: new Set(), unavailable: new Set(),
+    }, t.ctx);
+    const needs = gm.blendOwn(own, [], t.profile.coachVoiceWeight);
+    t.needs = { size: roster.length, needs };
+    return needs;
+  };
+
+  const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
+
+  const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
+    const keys = ['rookie.length_round_1', 'rookie.length_later_rounds', 'rookie.length_undrafted'];
+    if (keys.some((k) => pc.b.rule(level, k) === undefined)) return gm.P('value.horizonYears');
+    return cap.rookieLength(round, ruleSetOf(pc.b, level, pc.season));
+  };
+
+  return {
+    pick(pc, teamId, candidates, phase: Phase) {
+      if (!isPro(pc, teamId) || candidates.length === 0) return null;
+      const t = teamOf(pc, teamId);
+      const needs = needsOf(pc, teamId, t);
+      const pool = candidates.map((id) => view(pc, teamId, id));
+      const level = levelOfTeam(pc.world, teamId);
+      if (phase.kind === 'draft') {
+        const prospects = pool.map((v) => ({ ...v, coachRank: null, consensusRank: 0 }));
+        return gm.buildBoard(t.profile, prospects, needs, t.ctx, phase.round ?? 1, phase.rounds ?? 1, rookieYears(pc, level, phase.round ?? 1))[0]?.personId ?? null;
+      }
+      if (phase.kind === 'undrafted') return gm.undraftedBoard(t.profile, pool, needs, t.ctx)[0] ?? null;
+      // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
+      const fas = pool.map((v) => ({ ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }));
+      return gm.targets(t.profile, fas, needs, t.ctx)[0]?.personId ?? null;
+    },
+    cutdown(pc, teamId, roster, limit, minByPosition) {
+      if (!isPro(pc, teamId)) return null;
+      const t = teamOf(pc, teamId);
+      const result = gm.cutdown(t.profile, {
+        roster: roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => view(pc, teamId, id)),
+        limit, minByPosition, coachRank: new Map(), draftedRound: pc.draftedRound, deadCentsByYear: new Map(),
+        rounds: pc.b.rule(levelOfTeam(pc.world, teamId), 'league_rules.draft.rounds') ?? 0,
+      }, t.ctx);
+      return result.keep;
+    },
+  };
+}

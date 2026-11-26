@@ -18,6 +18,10 @@ const ROWS: readonly Row[] = [
   ['need.weight', 4, 0, 20, 'iss', 'assumption', 'K7.2.1', 'Need bonus on the board until front-office gm.needs is bound. No source read'],
   // M2: players at a position up to its mix count are starters for the development reps (D7.7.1 role).
   ['role.starterShareOfMix', 0.5, 0, 1, 'ratio', 'assumption', 'D7.7.1', 'Top half of each position by grade counts as starters. No source read'],
+  // TO-06: the front office AI's contribution table until the J14.6.1 engine batch runs exist.
+  ['gm.winsPerIss', 0.05, 0, 1, 'wins per iss-season', 'assumption', 'K7.2.2', 'One rate for every position until J14.6.1 runs; general managers spread it by their own position values. No source read'],
+  ['gm.replacementQuantile', 0.1, 0, 0.5, 'quantile', 'assumption', 'K7.2.2', "Replacement level is this quantile of the club's own observed grades at the position. No source read"],
+  ['gm.depthSlotWeight', 0.25, 0, 1, 'ratio', 'assumption', 'K7.2.2', 'Lineup weight of each depth slot past the starters. No source read'],
 ];
 
 export const PARAMS: ParamFile = {
