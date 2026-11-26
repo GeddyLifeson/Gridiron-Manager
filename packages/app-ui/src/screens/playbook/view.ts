@@ -44,23 +44,65 @@ export type PlaybookIntent =
   | { kind: 'export'; playIds: string[] }
   | { kind: 'duplicate'; playId: string }
   | { kind: 'set_role'; playId: string; role: string }
-  | { kind: 'rename_word'; partId: string; word: string };
+  | { kind: 'rename_word'; partId: string; word: string }
+  /** O3.3.1 bulk actions that hand plays to the install board (G5) and this week's plan (G6). */
+  | { kind: 'add_to_install'; playIds: string[] }
+  | { kind: 'add_to_plan'; playIds: string[] }
+  /** Save the current filter as a named set (O3.3.1 saved filter sets); the host keeps it per user. */
+  | { kind: 'save_filter'; name: string; filter: UiFilter };
+
+/** A saved filter set, kept by the host as a user preference (not world state). */
+export interface SavedFilter { name: string; filter: UiFilter }
 
 export const TABS = ['library', 'families', 'words', 'size'] as const;
 export type Tab = (typeof TABS)[number];
 export const ROLES = ['base', 'complement', 'constraint', 'situational', 'shot'] as const;
+export const STATUSES = ['draft', 'valid', 'installed', 'retired'] as const;
+
+/** Columns the table sorts on (O3.3.1: sort under 100 ms for 1,000 plays; the sort is a view option). */
+export const SORT_KEYS = ['call', 'family', 'personnel', 'formation', 'concept', 'protection', 'section', 'role', 'status', 'readiness', 'called', 'result', 'length'] as const;
+export type SortKey = (typeof SORT_KEYS)[number];
+export interface UiSort { key: SortKey; dir: 'asc' | 'desc' }
+
+const sortValue = (r: UiRow, k: SortKey): string | number => {
+  switch (k) {
+    case 'readiness': return r.readinessEstimate ?? -1;
+    case 'called': return r.called;
+    case 'result': return r.avgResult ?? -Infinity;
+    case 'length': return r.lengthS;
+    default: return r[k];
+  }
+};
+/** Rows in the chosen order; ties keep the read model's order so the table is stable. */
+export function sortRows(rows: readonly UiRow[], sort: UiSort | null): UiRow[] {
+  const out = rows.map((r, i) => ({ r, i }));
+  if (!sort) return out.map((x) => x.r);
+  const sign = sort.dir === 'asc' ? 1 : -1;
+  out.sort((a, b) => {
+    const x = sortValue(a.r, sort.key), y = sortValue(b.r, sort.key);
+    const c = typeof x === 'number' && typeof y === 'number' ? x - y : (String(x) < String(y) ? -1 : String(x) > String(y) ? 1 : 0);
+    return c !== 0 ? sign * c : a.i - b.i;
+  });
+  return out.map((x) => x.r);
+}
+export function sortFromView(view: Record<string, string>): UiSort | null {
+  const key = (SORT_KEYS as readonly string[]).includes(view.sort ?? '') ? (view.sort as SortKey) : null;
+  return key ? { key, dir: view.dir === 'desc' ? 'desc' : 'asc' } : null;
+}
+
+const FILTER_KEYS = ['text', 'formation', 'concept', 'personnel', 'role', 'situation', 'status'] as const;
 
 /** The filter lives in the address (O1.1.3) as strings, so back and forward keep it. */
 export function filterFromView(view: Record<string, string>): UiFilter {
   const f: UiFilter = {};
-  for (const k of ['text', 'formation', 'concept', 'personnel', 'role'] as const) if (view[k]) f[k] = view[k];
+  for (const k of FILTER_KEYS) if (view[k]) f[k] = view[k];
   if (view.retired === '1') f.includeRetired = true;
   return f;
 }
 export function filterToView(base: Record<string, string>, f: UiFilter): Record<string, string> {
   const out: Record<string, string> = {};
-  for (const [k, v] of Object.entries(base)) if (!['text', 'formation', 'concept', 'personnel', 'role', 'retired'].includes(k)) out[k] = v;
-  for (const k of ['text', 'formation', 'concept', 'personnel', 'role'] as const) if (f[k]) out[k] = f[k]!;
+  for (const [k, v] of Object.entries(base)) if (!([...FILTER_KEYS, 'retired'] as string[]).includes(k)) out[k] = v;
+  for (const k of FILTER_KEYS) if (f[k]) out[k] = f[k]!;
   if (f.includeRetired) out.retired = '1';
   return out;
 }

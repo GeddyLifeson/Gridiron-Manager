@@ -3,7 +3,7 @@
 import { createElement } from 'react';
 import type { RouteEntry } from '../../shell/index.ts';
 import { PlaybookScreen } from './PlaybookScreen.tsx';
-import { filterFromView, filterToView, TABS, type PlaybookIntent, type PlaybookUi, type Tab, type UiFilter } from './view.ts';
+import { filterFromView, filterToView, sortFromView, TABS, type PlaybookIntent, type PlaybookUi, type SavedFilter, type Tab, type UiFilter } from './view.ts';
 
 export { PlaybookScreen, type PlaybookScreenProps } from './PlaybookScreen.tsx';
 export * from './view.ts';
@@ -16,6 +16,8 @@ export type Side = (typeof SIDES)[number];
 export interface PlaybookHost {
   view(side: Side, filter: UiFilter): PlaybookUi | null;
   dispatch(side: Side, intent: PlaybookIntent): void;
+  /** Saved filter sets for this side (a user preference); absent means none saved. */
+  savedFilters?(side: Side): readonly SavedFilter[];
 }
 
 const isTab = (s: string | undefined): s is Tab => !!s && (TABS as readonly string[]).includes(s);
@@ -33,6 +35,20 @@ export function playbookRoute(host: PlaybookHost): RouteEntry {
         onTab: (tab) => p.setView({ ...p.location.view, tab }),
         onFilter: (f) => p.setView(filterToView(p.location.view, f)),
         onIntent: (i) => host.dispatch(side, i),
+        sort: sortFromView(p.location.view),
+        onSort: (s) => {
+          const next: Record<string, string> = { ...p.location.view };
+          delete next.sort; delete next.dir;
+          if (s) { next.sort = s.key; next.dir = s.dir; }
+          p.setView(next);
+        },
+        selectedPlay: p.location.view.play || null,
+        onSelectPlay: (id) => {
+          const next: Record<string, string> = { ...p.location.view };
+          if (id) next.play = id; else delete next.play;
+          p.setView(next);
+        },
+        savedFilters: host.savedFilters?.(side) ?? [],
       });
     },
   };

@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Shell, SCREENS } from '../../../src/shell/index.ts';
-import { PlaybookScreen, playbookRoute, pbTextIds, pt, SCREEN_ID, filterFromView, filterToView, type PlaybookUi, type Tab, type UiFilter } from '../../../src/screens/playbook/index.ts';
+import { PlaybookScreen, playbookRoute, pbTextIds, pt, SCREEN_ID, filterFromView, filterToView, sortRows, sortFromView, type PlaybookUi, type Tab, type UiFilter, type PlaybookIntent } from '../../../src/screens/playbook/index.ts';
 
 const lock = (allowed: boolean, heldBy: string | null = null, suggest = false) => ({ allowed, heldBy, suggest });
 const row = (id: string, over: Partial<PlaybookUi['rows'][number]> = {}): PlaybookUi['rows'][number] => ({
@@ -92,6 +92,44 @@ describe('playbook library screen (O3.3.1)', () => {
     expect(s).toContain('data-warning="amber"');
     expect(s).toContain(pt('pb.size.ceiling', { ceiling: '72%' }));
     expect(html(view({ size: null }), 'size')).toContain(pt('pb.size.none').replace(/,/g, ','));
+  });
+  it('O3.3.1 columns: family, personnel, formation, concept and protection are shown for every row', () => {
+    const out = html(view(), 'library');
+    for (const c of ['family', 'personnel', 'formation', 'concept', 'protection']) expect(out).toContain(pt(`pb.col.${c}`));
+    expect(out).toContain('<td>Trips</td><td>11</td><td>Trips</td><td>Stick</td>');
+  });
+  it('sorting follows the address, is stable on ties, and falls back to the read model order', () => {
+    const v = view();
+    expect(sortRows(v.rows, { key: 'called', dir: 'desc' }).map((r) => r.id)).toEqual(['Stick', 'Smash', 'Mesh']);
+    expect(sortRows(v.rows, { key: 'concept', dir: 'asc' }).map((r) => r.id)).toEqual(['Mesh', 'Smash', 'Stick']);
+    expect(sortRows(v.rows, null).map((r) => r.id)).toEqual(['Stick', 'Smash', 'Mesh']);
+    expect(sortFromView({ sort: 'readiness', dir: 'desc' })).toEqual({ key: 'readiness', dir: 'desc' });
+    expect(sortFromView({ sort: 'nonsense' })).toBeNull();
+    const out = renderToStaticMarkup(createElement(PlaybookScreen, { view: v, tab: 'library', readOnly: false, onTab: () => {}, onFilter: () => {}, onIntent: () => {}, sort: { key: 'concept', dir: 'asc' } }));
+    expect(out.indexOf('data-play="Mesh"')).toBeLessThan(out.indexOf('data-play="Stick"'));
+    expect(out).toContain('aria-sort="ascending"');
+  });
+  it('a play chosen in the address opens the detail pane with the install and plan hand-offs', () => {
+    const host = { view: () => view({ rows: [row('Stick', { called: 6, lastCalledWeek: 3 })] }), dispatch: () => {} };
+    const out = renderToStaticMarkup(createElement(Shell, { initialPath: '/football/playbook?tab=library&play=Stick', routes: { [SCREEN_ID]: playbookRoute(host) } }));
+    expect(out).toContain('data-detail="Stick"');
+    expect(out).toContain(esc(pt('pb.action.addToInstall', { count: 1 })));
+    expect(out).toContain(esc(pt('pb.action.addToPlan', { count: 1 })));
+    expect(out).toContain(pt('pb.detail.calledWeek', { called: 6, week: 3 }));
+  });
+  it('bulk hand-offs and the plan lock: a position coach is offered a suggestion to the head coach', () => {
+    const out = html(view({}, { build_plan_and_sheet: lock(false, 'coordinator', true) }), 'library');
+    expect(out).toContain(esc(pt('pb.action.addToInstall', { count: 0 })));
+    expect(out).toContain(esc(`${pt('pb.action.addToPlan', { count: 0 })} · ${pt('pb.action.suggest', { holder: pt('pb.holder.coordinator') })}`));
+  });
+  it('saved filter sets are listed and a new set is saved as an intent; status and situation filters round-trip', () => {
+    const out = renderToStaticMarkup(createElement(PlaybookScreen, { view: view(), tab: 'library', readOnly: false, onTab: () => {}, onFilter: () => {}, onIntent: () => {}, savedFilters: [{ name: '3rd down 11', filter: { personnel: 'personnel.11', situation: 'third' } }] }));
+    expect(out).toContain('data-saved-filters="1"');
+    expect(out).toContain('3rd down 11');
+    const f: UiFilter = { status: 'installed', situation: 'third_medium' };
+    expect(filterFromView(filterToView({}, f))).toEqual(f);
+    const intent: PlaybookIntent = { kind: 'save_filter', name: 'x', filter: f };
+    expect(intent.kind).toBe('save_filter');
   });
   it('no view shows the empty line', () => {
     expect(html(null, 'library')).toContain(pt('pb.empty'));
