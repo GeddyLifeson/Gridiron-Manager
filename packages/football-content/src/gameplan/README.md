@@ -7,6 +7,7 @@ Bible: G6 (game plan builder), G7 (call sheet designer), O3.4 rules. Entry: `src
 | `situations.ts` | G7.2.1 condition vocabulary, rules, focus, 5,000-state grid check (unmatched, shadowed); O3.4.2 coverage map |
 | `reference.ts` | G7.2.3 expected snaps, team or league table, depth marks |
 | `reference-pro-2024.ts` | Generated pro table (see below); built by `test/gameplan/build_reference.py` |
+| `reference-college-2024.ts` | Generated college table (see below); built by `test/gameplan/build_reference_college.py` |
 | `catalogue.ts` | G7.2.2 catalogue, tiers, coverage status, missing list; `catalogueEntries` and `downDistanceId` for G-74 |
 | `sheet.ts` | G7.1.1 sheet object, round trip, templates; G7.1.2 layout, keys, density |
 | `templates.ts` | Offense, defense (G7.7.1) and special teams (G7.7.2) templates; defensive focus with nearest personnel |
@@ -27,7 +28,9 @@ Bible: G6 (game plan builder), G7 (call sheet designer), O3.4 rules. Entry: `src
 
 ## The one real-world table
 
-G7.2.3 expected snaps for the pro rule set: 2024 NFL regular season from the nflverse play-by-play release (https://github.com/nflverse/nflverse-data/releases/tag/pbp). Recomputed on 2026-11-26 and every bible figure reproduced (61.3 snaps, third down 12.6 = 3.6 + 3.2 + 3.4 + 2.4, red zone 9.5, fringe 12.1, last two minutes 7.3, no-huddle 7.5, drives 10.8). It is still one data set, so the status is **PROVISIONAL (1 of 3)**. In a career the table is rebuilt from the simulated league (`tableFromStates`). No college table yet (area T).
+G7.2.3 expected snaps for the pro rule set: 2024 NFL regular season from the nflverse play-by-play release (https://github.com/nflverse/nflverse-data/releases/tag/pbp). Recomputed on 2026-11-26 and every bible figure reproduced (61.3 snaps, third down 12.6 = 3.6 + 3.2 + 3.4 + 2.4, red zone 9.5, fringe 12.1, last two minutes 7.3, no-huddle 7.5, drives 10.8). It is still one data set, so the status is **PROVISIONAL (1 of 3)**. In a career the table is rebuilt from the simulated league (`tableFromStates`).
+
+College: 2024 FBS regular season, both teams FBS, from the cfbfastR play-by-play release (https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp), 752 games. Run and pass snaps with a down, kneels and spikes left out by play text: 65.6 a team game (first down 28.9, second 21.3, third 13.4, fourth 1.9, red zone 9.4), drives 12.8. **PROVISIONAL (1 of 3)**, fact F-measured-rate-0390: ESPN box scores and NCAA.com count kneel-downs and sit 0.5 to 1 play higher (F-measured-rate-0282), so they do not confirm the same definition. No no-huddle flag in the release, so `tempo` is unseen. `leagueReference(level)` picks the table.
 
 ## Readings
 

@@ -1,0 +1,3215 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-tax-local-0001",
+   "level": "both",
+   "domain": "career",
+   "statement": "New York City resident personal income tax is graduated, 3.078% to 3.876% (single: 3.876% above $50,000).",
+   "value": "3.078-3.876",
+   "unit": "percent (graduated)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "New York State Department of Taxation and Finance: IT-2105-I Instructions for Form IT-2105 (Estimated Income Tax Payment Voucher, 2026) (https://tax.ny.gov/pdf/current_forms/it/it2105i.pdf; 2026 (first payment due April 15, 2026))",
+     "locator": "https://tax.ny.gov/pdf/current_forms/it/it2105i.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ny-gov",
+     "primary": false,
+     "quote": "$ 0 $12,000 3.078% of line 7 ... 50,000 ................ 1,813 plus 3.876% \"\" \"\" 50,000"
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "New York City levies an income tax on all NYC residents with rates from 3.078% to 3.876% (above $50,000 single)."
+    },
+    {
+     "citation": "City of St. Louis Comptroller: U.S. Cities That Levy Income (Earnings) Taxes (https://www.stlouis-mo.gov/government/departments/comptroller/initiatives/us-cities-that-levy-earnings-taxes.cfm; Updated Oct. 1, 2021 (cites Tax Foundation 2019 data))",
+     "locator": "https://www.stlouis-mo.gov/government/departments/comptroller/initiatives/us-cities-that-levy-earnings-taxes.cfm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "stlouis-mo-gov",
+     "primary": false,
+     "quote": "New York City at 3.078% to 3.876%"
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "New York | New York City | 3.876%"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-nyc. Official schedule from NYS DTF (which administers NYC PIT). Single brackets: 0-12,000 3.078%; 12,000-25,000 3.762%; 25,000-50,000 3.819%; >50,000 3.876%. MFJ top bracket starts at $90,000. Tax Foundation lists only the top rate 3.876%. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0002",
+   "level": "both",
+   "domain": "career",
+   "statement": "Nonresidents of New York City (including commuters) pay no NYC personal income tax.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "New York State Department of Taxation and Finance: Frequently Asked Questions about Filing Requirements, Residency, and Telecommuting for New York State Personal Income Tax (https://www.tax.ny.gov/pit/file/nonresident-faqs.htm; Updated: October 24, 2025)",
+     "locator": "https://www.tax.ny.gov/pit/file/nonresident-faqs.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ny-gov",
+     "primary": false,
+     "quote": "Nonresidents of New York City are not liable for New York City personal income tax.",
+     "value": 0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "NYC non-residents do not pay NYC income tax.",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-nyc. NYC commuter tax was repealed in 1999 (not separately sourced here). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0003",
+   "level": "both",
+   "domain": "career",
+   "statement": "Philadelphia Wage/Earnings Tax for residents is 3.735% from July 1, 2026 (3.74% from July 1, 2025).",
+   "value": 3.735,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Philadelphia Department of Revenue: Earnings Tax (employees) (https://www.phila.gov/services/payments-assistance-taxes/income-taxes/earnings-tax-employees/; undated (rate table shows July 1, 2026 row))",
+     "locator": "https://www.phila.gov/services/payments-assistance-taxes/income-taxes/earnings-tax-employees/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "phila-gov",
+     "primary": false,
+     "quote": "July 1, 2026 | 3.735% | 3.425%",
+     "value": 3.735
+    },
+    {
+     "citation": "USDA National Finance Center: Pennsylvania Local Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1782234630.htm; Published: August 17, 2026; Effective: Pay Period 14, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1782234630.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "The resident income tax rate has decreased from 3.74% to 3.735%.",
+     "value": 3.735
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "Philadelphia's resident Wage/Earnings Tax is 3.735% as of July 1, 2026",
+     "value": 3.735
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Philadelphia charges 3.75% (residents) or 3.44% (non-residents working in Philly) wage tax.",
+     "value": 3.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-philadelphia. Rate changes every July 1. Jan-Jun 2026 rate was 3.74%. IncomeTaxByState shows 3.75% (stale, 2024 rate) -> Conflict with official; official value used. Tax Foundation 3.8712% is older-year data. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0004",
+   "level": "both",
+   "domain": "career",
+   "statement": "Philadelphia Wage/Earnings Tax for non-residents working in the city is 3.425% from July 1, 2026 (3.43% from July 1, 2025).",
+   "value": 3.425,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Philadelphia Department of Revenue: Earnings Tax (employees) (https://www.phila.gov/services/payments-assistance-taxes/income-taxes/earnings-tax-employees/; undated (rate table shows July 1, 2026 row))",
+     "locator": "https://www.phila.gov/services/payments-assistance-taxes/income-taxes/earnings-tax-employees/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "phila-gov",
+     "primary": false,
+     "quote": "July 1, 2026 | 3.735% | 3.425%",
+     "value": 3.425
+    },
+    {
+     "citation": "USDA National Finance Center: Pennsylvania Local Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1782234630.htm; Published: August 17, 2026; Effective: Pay Period 14, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1782234630.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "The nonresident tax rate has decreased from 3.43% to 3.425%.",
+     "value": 3.425
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "non-residents pay 3.425% (not modeled).",
+     "value": 3.425
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Non-residents who work in Philly: 3.44%.",
+     "value": 3.44
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-philadelphia. IncomeTaxByState shows 3.44% (stale 2024 rate) -> Conflict with official. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0005",
+   "level": "both",
+   "domain": "career",
+   "statement": "Pittsburgh residents pay 3% Earned Income Tax (1% city + 2% Pittsburgh School District).",
+   "value": 3.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Pittsburgh: Taxes - Pittsburgh, PA (https://www.pittsburghpa.gov/City-Government/Finances/Taxes; last updated 03/05/2026)",
+     "locator": "https://www.pittsburghpa.gov/City-Government/Finances/Taxes",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pittsburghpa-gov",
+     "primary": false,
+     "quote": "Residents pay 1% city tax and 2% school tax for a total of 3%.",
+     "value": 3.0
+    },
+    {
+     "citation": "USDA National Finance Center: Pennsylvania Local Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1782234630.htm; Published: August 17, 2026; Effective: Pay Period 14, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1782234630.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Pittsburgh | 42/6600 | 3.0000 | 1.0000 | DS, R",
+     "value": 3.0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Pittsburgh charges 3.0%.",
+     "value": 3.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-pittsburgh. Plus Local Services Tax $52/year for anyone working in the city (city page: 'The Local Services Tax is $52/year, collected quarterly.'). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0006",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in Pittsburgh pay 1% (non-PA residents 1%; PA residents of other municipalities pay the higher of their home EIT rate or Pittsburgh's 1% non-resident rate).",
+   "value": 1.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Pittsburgh: Taxes - Pittsburgh, PA (https://www.pittsburghpa.gov/City-Government/Finances/Taxes; last updated 03/05/2026)",
+     "locator": "https://www.pittsburghpa.gov/City-Government/Finances/Taxes",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pittsburghpa-gov",
+     "primary": false,
+     "quote": "Non-Pennsylvania residents who work within the City pay 1%.",
+     "value": 1.0
+    },
+    {
+     "citation": "USDA National Finance Center: Pennsylvania Local Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1782234630.htm; Published: August 17, 2026; Effective: Pay Period 14, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1782234630.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Pittsburgh | 42/6600 | 3.0000 | 1.0000 | DS, R",
+     "value": 1.0
+    },
+    {
+     "citation": "University of Pittsburgh Payroll Department: US Tax Information (https://www.payroll.pitt.edu/us-tax-information; undated; rate table labelled 2026)",
+     "locator": "https://www.payroll.pitt.edu/us-tax-information",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pitt-edu",
+     "primary": false,
+     "quote": "City of Pittsburgh Non-Resident Tax4 | 1.00%",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-pittsburgh. Higher-of rule for PA residents is Act 32 practice; not quoted verbatim here. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0007",
+   "level": "both",
+   "domain": "career",
+   "statement": "Columbus municipal income tax is 2.5% on residents' income (100% credit up to 2.5% for tax paid to another city).",
+   "value": 2.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Columbus Income Tax Division: General Income Tax Information (https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information; undated (footer (c) 2026))",
+     "locator": "https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-gov",
+     "primary": false,
+     "quote": "Columbus residents pay a total of 2.5% in taxes on all income earned",
+     "value": 2.5
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Ohio | Columbus | 2.50%",
+     "value": 2.5
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "Columbus municipal income tax is 2.5% on qualifying wages.",
+     "value": 2.5
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Columbus, Cleveland, Akron, Dayton, and Toledo all charge 2.5%.",
+     "value": 2.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-columbus.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0008",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in Columbus pay the 2.5% municipal income tax on wages earned there (employers withhold for work location).",
+   "value": 2.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Columbus Income Tax Division: General Income Tax Information (https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information; undated (footer (c) 2026))",
+     "locator": "https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-gov",
+     "primary": false,
+     "quote": "Employers must withhold and remit City tax to the municipalities in which their employees work.",
+     "value": 2.5
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "Columbus municipal income tax is 2.5% on qualifying wages.",
+     "value": 2.5
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Columbus, Cleveland, Akron, Dayton, and Toledo all charge 2.5%.",
+     "value": 2.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-columbus. Official page states withholding by work location but does not use the word 'nonresident'; rate equality is inferred from Ohio's single-rate municipal system. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0009",
+   "level": "both",
+   "domain": "career",
+   "statement": "Cleveland municipal income tax for residents is 2.5% (100% credit up to 2.5%).",
+   "value": 2.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Central Collection Agency (City of Cleveland Division of Taxation): Tax Rates | CCA - Division Of Taxation (https://www.ccaohio.gov/tax-rates; undated; row appears under 'Tax Year 2026' tab)",
+     "locator": "https://www.ccaohio.gov/tax-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ccaohio-gov",
+     "primary": false,
+     "quote": "| Cleveland | Yes | 2.50% | 100% | 2.50% |",
+     "value": 2.5
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "Columbus and Cleveland charge 2.5% municipal income tax.",
+     "value": 2.5
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Columbus, Cleveland, Akron, Dayton, and Toledo all charge 2.5%.",
+     "value": 2.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-cleveland. Ohio municipal income tax is one rate applying to residents and to non-residents working in the city; CCA table does not split by residency. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0010",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in Cleveland pay 2.5% on wages earned in the city.",
+   "value": 2.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Central Collection Agency (City of Cleveland Division of Taxation): Tax Rates | CCA - Division Of Taxation (https://www.ccaohio.gov/tax-rates; undated; row appears under 'Tax Year 2026' tab)",
+     "locator": "https://www.ccaohio.gov/tax-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ccaohio-gov",
+     "primary": false,
+     "quote": "| Cleveland | Yes | 2.50% | 100% | 2.50% |",
+     "value": 2.5
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "Columbus and Cleveland charge 2.5% municipal income tax.",
+     "value": 2.5
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Columbus, Cleveland, Akron, Dayton, and Toledo all charge 2.5%.",
+     "value": 2.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-cleveland. Ohio municipal income tax is one rate applying to residents and to non-residents working in the city; CCA table does not split by residency. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0011",
+   "level": "both",
+   "domain": "career",
+   "statement": "Cincinnati income tax is 1.8% (effective 10/02/2020); residents get credit up to 1.8% for tax paid elsewhere.",
+   "value": 1.8,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Cincinnati Finance - Income Tax Division: Income Taxes (https://www.cincinnati-oh.gov/finance/income-taxes/; undated (footer Copyright 2026))",
+     "locator": "https://www.cincinnati-oh.gov/finance/income-taxes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cincinnati-oh-gov",
+     "primary": false,
+     "quote": "The current Cincinnati income tax rate effective 10/02/20 is 1.8%.",
+     "value": 1.8
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "Cincinnati ... 1.8% (ranking table)",
+     "value": 1.8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-cincinnati. Only 2 independent sources found (no Tax Foundation figure for Cincinnati). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0012",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in Cincinnati pay the 1.8% city income tax on earnings in the city.",
+   "value": 1.8,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Cincinnati Finance - Income Tax Division: Income Taxes (https://www.cincinnati-oh.gov/finance/income-taxes/; undated (footer Copyright 2026))",
+     "locator": "https://www.cincinnati-oh.gov/finance/income-taxes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cincinnati-oh-gov",
+     "primary": false,
+     "quote": "All nonresidents of Cincinnati engaged in business within the City of Cincinnati.",
+     "value": 1.8
+    },
+    {
+     "citation": "Paycheck Tax Calculator: 2026 Local Income Tax by City: Philly vs Detroit vs Columbus (https://paychecktaxcalculator.net/local-income-tax-by-city; Updated for 2026)",
+     "locator": "https://paychecktaxcalculator.net/local-income-tax-by-city",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paychecktaxcalculator-net",
+     "primary": false,
+     "quote": "Cincinnati ... 1.8% (ranking table)",
+     "value": 1.8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-cincinnati. Official page says nonresidents engaged in business in the city must file; same single rate. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0013",
+   "level": "both",
+   "domain": "career",
+   "statement": "Detroit city income tax for residents is 2.4% (since 2013).",
+   "value": 2.4,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Detroit: Income Tax Information (https://detroitmi.gov/taxonomy/term/2286; undated (2013-and-later rate column))",
+     "locator": "https://detroitmi.gov/taxonomy/term/2286",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "detroitmi-gov",
+     "primary": false,
+     "quote": "Resident Individuals: 2.4%",
+     "value": 2.4
+    },
+    {
+     "citation": "University of Michigan Finance (Payroll): Figuring Your Federal Taxes (https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf; Effective January 1, 2026)",
+     "locator": "https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "umich-edu",
+     "primary": false,
+     "quote": "For Detroit, the rate is 2.4% for residents and 1.2% for non-residents.",
+     "value": 2.4
+    },
+    {
+     "citation": "WDIV ClickOnDetroit (Graham Media Group): What Michigan cities impose an income tax? (https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/; Last updated: Nov 26, 2024)",
+     "locator": "https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "clickondetroit-com",
+     "primary": false,
+     "quote": "| Detroit | 2.4% | 1.2% |",
+     "value": 2.4
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Michigan | Detroit | 2.40%",
+     "value": 2.4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-detroit. Detroit income tax is administered by Michigan Treasury. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0014",
+   "level": "both",
+   "domain": "career",
+   "statement": "Detroit city income tax for non-residents working in Detroit is 1.2%.",
+   "value": 1.2,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Detroit: Income Tax Information (https://detroitmi.gov/taxonomy/term/2286; undated (2013-and-later rate column))",
+     "locator": "https://detroitmi.gov/taxonomy/term/2286",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "detroitmi-gov",
+     "primary": false,
+     "quote": "Non-Resident Individuals: 1.2%",
+     "value": 1.2
+    },
+    {
+     "citation": "University of Michigan Finance (Payroll): Figuring Your Federal Taxes (https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf; Effective January 1, 2026)",
+     "locator": "https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "umich-edu",
+     "primary": false,
+     "quote": "For Detroit, the rate is 2.4% for residents and 1.2% for non-residents.",
+     "value": 1.2
+    },
+    {
+     "citation": "WDIV ClickOnDetroit (Graham Media Group): What Michigan cities impose an income tax? (https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/; Last updated: Nov 26, 2024)",
+     "locator": "https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "clickondetroit-com",
+     "primary": false,
+     "quote": "| Detroit | 2.4% | 1.2% |",
+     "value": 1.2
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Detroit charges 2.4% on residents and 1.2% on non-residents who work in Detroit.",
+     "value": 1.2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-detroit.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0015",
+   "level": "both",
+   "domain": "career",
+   "statement": "Grand Rapids city income tax for residents is 1.5% (since July 1, 2010).",
+   "value": 1.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Grand Rapids Income Tax Department: Income Tax Guide for Individuals (https://www.grandrapidsmi.gov/Government/Departments/Income-Tax-Department/Guide-for-Individuals; undated (rate 'July 1, 2010 - Present'))",
+     "locator": "https://www.grandrapidsmi.gov/Government/Departments/Income-Tax-Department/Guide-for-Individuals",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "grandrapidsmi-gov",
+     "primary": false,
+     "quote": "July 1, 2010 - Present Individual Tax Rate ... Residents: 1.5%",
+     "value": 1.5
+    },
+    {
+     "citation": "University of Michigan Finance (Payroll): Figuring Your Federal Taxes (https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf; Effective January 1, 2026)",
+     "locator": "https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "umich-edu",
+     "primary": false,
+     "quote": "For Grand Rapids, the rate is 1.5% for residents and 0.75% for non-residents.",
+     "value": 1.5
+    },
+    {
+     "citation": "WDIV ClickOnDetroit (Graham Media Group): What Michigan cities impose an income tax? (https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/; Last updated: Nov 26, 2024)",
+     "locator": "https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "clickondetroit-com",
+     "primary": false,
+     "quote": "| Grand Rapids | 1.5% | 0.75% |",
+     "value": 1.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-grand-rapids.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0016",
+   "level": "both",
+   "domain": "career",
+   "statement": "Grand Rapids city income tax for non-residents working in the city is 0.75%.",
+   "value": 0.75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Grand Rapids Income Tax Department: Income Tax Guide for Individuals (https://www.grandrapidsmi.gov/Government/Departments/Income-Tax-Department/Guide-for-Individuals; undated (rate 'July 1, 2010 - Present'))",
+     "locator": "https://www.grandrapidsmi.gov/Government/Departments/Income-Tax-Department/Guide-for-Individuals",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "grandrapidsmi-gov",
+     "primary": false,
+     "quote": "July 1, 2010 - Present Individual Tax Rate ... Nonresidents: 0.75%",
+     "value": 0.75
+    },
+    {
+     "citation": "University of Michigan Finance (Payroll): Figuring Your Federal Taxes (https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf; Effective January 1, 2026)",
+     "locator": "https://finance.umich.edu/sites/default/files/2026-01/2026%20Figuring%20Your%20Taxes.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "umich-edu",
+     "primary": false,
+     "quote": "For Grand Rapids, the rate is 1.5% for residents and 0.75% for non-residents.",
+     "value": 0.75
+    },
+    {
+     "citation": "WDIV ClickOnDetroit (Graham Media Group): What Michigan cities impose an income tax? (https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/; Last updated: Nov 26, 2024)",
+     "locator": "https://help.clickondetroit.com/kb/article/198-what-michigan-cities-impose-an-income-tax/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "clickondetroit-com",
+     "primary": false,
+     "quote": "| Grand Rapids | 1.5% | 0.75% |",
+     "value": 0.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-grand-rapids.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0017",
+   "level": "both",
+   "domain": "career",
+   "statement": "Louisville Metro (Jefferson County) occupational license tax on residents working in the county is 2.20% of wages.",
+   "value": 2.2,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "USDA National Finance Center: Kentucky County (Local) Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1769795900.htm; Published: March 3, 2026; Effective: Pay Period 02, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1769795900.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Jefferson | 21/111 | 2.20% | 1.45% | DS",
+     "value": 2.2
+    },
+    {
+     "citation": "University of Louisville Payroll Department: Employee Certification of Service Performed Outside City of Louisville or Jefferson County, Kentucky (https://louisville.edu/finance/payroll/forms/city-county-tax-exemption-2025; 2025 certification period)",
+     "locator": "https://louisville.edu/finance/payroll/forms/city-county-tax-exemption-2025",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "louisville-edu",
+     "primary": false,
+     "quote": "Residents of Jefferson County who perform services in Jefferson County are taxed at a rate of 2.20%",
+     "value": 2.2
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Louisville Metro charges 2.2% of wages.",
+     "value": 2.2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-louisville. 2.20% = Metro 1.25% + TARC 0.20% + school board 0.75% (component split not verified here). U of L figure is for 2025; NFC confirms for 2026. Conflict note: NFC Kentucky City bulletin lists 'Louisville 1.45/1.45' and KACo 2025 lists county payroll rate 'Jefferson 1.25%' (county component only). Tax Foundation shows 1.45% (nonresident figure). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0018",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in Louisville Metro (Jefferson County) pay 1.45% occupational license tax.",
+   "value": 1.45,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "USDA National Finance Center: Kentucky County (Local) Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1769795900.htm; Published: March 3, 2026; Effective: Pay Period 02, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1769795900.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Jefferson | 21/111 | 2.20% | 1.45% | DS",
+     "value": 1.45
+    },
+    {
+     "citation": "University of Louisville Payroll Department: Employee Certification of Service Performed Outside City of Louisville or Jefferson County, Kentucky (https://louisville.edu/finance/payroll/forms/city-county-tax-exemption-2025; 2025 certification period)",
+     "locator": "https://louisville.edu/finance/payroll/forms/city-county-tax-exemption-2025",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "louisville-edu",
+     "primary": false,
+     "quote": "nonresidents of Jefferson County who perform services in Jefferson County are taxed at a rate of 1.45%",
+     "value": 1.45
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Kentucky | Louisville | 1.45%",
+     "value": 1.45
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-louisville.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0019",
+   "level": "both",
+   "domain": "career",
+   "statement": "Lexington-Fayette occupational license fee on wages is 2.25% (residents working in Fayette County).",
+   "value": 2.25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Lexington-Fayette Urban County Government: Occupational license fee (withholding) page (https://lexingtonky.gov/node/659; undated)",
+     "locator": "https://lexingtonky.gov/node/659",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lexingtonky-gov",
+     "primary": false,
+     "quote": "2.25% of each individual's gross wages, salaries, commissions and other compensation",
+     "value": 2.25
+    },
+    {
+     "citation": "USDA National Finance Center: Kentucky City (Local) Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1769804374.htm; Published: March 3, 2026; Effective: Pay Period 02, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1769804374.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Lexington-Fayette | 21/1980 | 2.25 | 2.25 | DS",
+     "value": 2.25
+    },
+    {
+     "citation": "Kentucky Association of Counties (KACo): 2025 County Occupational Tax Rates (https://kaco.org/media/6120/2025-databrief-occupationaltaxes-3.pdf; As of January 2025)",
+     "locator": "https://kaco.org/media/6120/2025-databrief-occupationaltaxes-3.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kaco-org",
+     "primary": false,
+     "quote": "Fayette 2.25%",
+     "value": 2.25
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Lexington charges 2.25%.",
+     "value": 2.25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-lexington. Tax is levied on work performed within Fayette County regardless of residence; NFC shows same resident/nonresident rate. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0020",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in Lexington-Fayette pay the same 2.25% occupational license fee on wages earned there.",
+   "value": 2.25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Lexington-Fayette Urban County Government: Occupational license fee (withholding) page (https://lexingtonky.gov/node/659; undated)",
+     "locator": "https://lexingtonky.gov/node/659",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lexingtonky-gov",
+     "primary": false,
+     "quote": "2.25% of each individual's gross wages, salaries, commissions and other compensation",
+     "value": 2.25
+    },
+    {
+     "citation": "USDA National Finance Center: Kentucky City (Local) Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1769804374.htm; Published: March 3, 2026; Effective: Pay Period 02, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1769804374.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Lexington-Fayette | 21/1980 | 2.25 | 2.25 | DS",
+     "value": 2.25
+    },
+    {
+     "citation": "Kentucky Association of Counties (KACo): 2025 County Occupational Tax Rates (https://kaco.org/media/6120/2025-databrief-occupationaltaxes-3.pdf; As of January 2025)",
+     "locator": "https://kaco.org/media/6120/2025-databrief-occupationaltaxes-3.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kaco-org",
+     "primary": false,
+     "quote": "Fayette 2.25%",
+     "value": 2.25
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Lexington charges 2.25%.",
+     "value": 2.25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-lexington. Tax is levied on work performed within Fayette County regardless of residence; NFC shows same resident/nonresident rate. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0021",
+   "level": "both",
+   "domain": "career",
+   "statement": "Kansas City, Missouri earnings tax is 1% on residents' earned income (renewed by voters April 7, 2026 for five years).",
+   "value": 1.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Kansas City, Missouri - Finance: Have You Paid Your KCMO Earnings Tax (E-Tax)? (https://www.kcmo.gov/city-hall/departments/finance/earnings-tax; undated)",
+     "locator": "https://www.kcmo.gov/city-hall/departments/finance/earnings-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kcmo-gov",
+     "primary": false,
+     "quote": "All Kansas City, Missouri, residents are required to pay the earnings tax, even if they work outside the city.",
+     "value": 1.0
+    },
+    {
+     "citation": "KCUR Kansas City Public Radio: Kansas City voters renew earnings tax, the city's largest single revenue source (https://www.kcur.org/politics-elections-and-government/2026-04-07/kansas-city-voters-renew-earnings-tax-city-revenue-elections; April 7, 2026)",
+     "locator": "https://www.kcur.org/politics-elections-and-government/2026-04-07/kansas-city-voters-renew-earnings-tax-city-revenue-elections",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kcur-org",
+     "primary": false,
+     "quote": "Kansas City voters on Tuesday overwhelmingly approved renewing the city's 1% earnings tax.",
+     "value": 1.0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Missouri | Kansas City | 1.00%",
+     "value": 1.0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "1% earnings tax on residents and people who work in KCMO.",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-kansas-city-mo.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0022",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents pay Kansas City, Missouri's 1% earnings tax on income earned within city limits.",
+   "value": 1.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Kansas City, Missouri - Finance: Have You Paid Your KCMO Earnings Tax (E-Tax)? (https://www.kcmo.gov/city-hall/departments/finance/earnings-tax; undated)",
+     "locator": "https://www.kcmo.gov/city-hall/departments/finance/earnings-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kcmo-gov",
+     "primary": false,
+     "quote": "Nonresidents are required to pay the earnings tax on income earned within Kansas City, Missouri, city limits.",
+     "value": 1.0
+    },
+    {
+     "citation": "KCUR Kansas City Public Radio: Kansas City voters renew earnings tax, the city's largest single revenue source (https://www.kcur.org/politics-elections-and-government/2026-04-07/kansas-city-voters-renew-earnings-tax-city-revenue-elections; April 7, 2026)",
+     "locator": "https://www.kcur.org/politics-elections-and-government/2026-04-07/kansas-city-voters-renew-earnings-tax-city-revenue-elections",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kcur-org",
+     "primary": false,
+     "quote": "People who live or work in Kansas City pay the earnings tax",
+     "value": 1.0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "1% earnings tax on residents and people who work in KCMO.",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-kansas-city-mo.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0023",
+   "level": "both",
+   "domain": "career",
+   "statement": "City of St. Louis earnings tax is 1% on residents' earnings regardless of work location (Prop E renewed April 7, 2026 for five years).",
+   "value": 1.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of St. Louis Collector of Revenue: Individual Earnings Tax Information (https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/individual-earnings-tax-info.cfm; Last updated March 25, 2026)",
+     "locator": "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/individual-earnings-tax-info.cfm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "stlouis-mo-gov",
+     "primary": false,
+     "quote": "The one percent earnings tax is collected from ... Residents of the City of St. Louis, regardless of the location of their employer.",
+     "value": 1.0
+    },
+    {
+     "citation": "EY Tax News: Voters renew the St. Louis, Missouri earnings tax for another five years (https://taxnews.ey.com/news/2026-0995-voters-renew-the-st-louis-missouri-earnings-tax-for-another-five-years; 05 May 2026)",
+     "locator": "https://taxnews.ey.com/news/2026-0995-voters-renew-the-st-louis-missouri-earnings-tax-for-another-five-years",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "approved Proposition E to continue the city's 1% earnings tax for an additional five-year period.",
+     "value": 1.0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "St. Louis also charges 1% on wages earned in the city.",
+     "value": 1.0
+    },
+    {
+     "citation": "City of St. Louis Comptroller: U.S. Cities That Levy Income (Earnings) Taxes (https://www.stlouis-mo.gov/government/departments/comptroller/initiatives/us-cities-that-levy-earnings-taxes.cfm; Updated Oct. 1, 2021 (cites Tax Foundation 2019 data))",
+     "locator": "https://www.stlouis-mo.gov/government/departments/comptroller/initiatives/us-cities-that-levy-earnings-taxes.cfm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "stlouis-mo-gov",
+     "primary": false,
+     "quote": "Both Kansas City and St. Louis have an earnings tax of 1.0 percent.",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-st-louis.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0024",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in the City of St. Louis pay the 1% earnings tax.",
+   "value": 1.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of St. Louis Collector of Revenue: Individual Earnings Tax Information (https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/individual-earnings-tax-info.cfm; Last updated March 25, 2026)",
+     "locator": "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/individual-earnings-tax-info.cfm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "stlouis-mo-gov",
+     "primary": false,
+     "quote": "Employees of businesses located or performing work/services within the City of St. Louis, regardless of where they live.",
+     "value": 1.0
+    },
+    {
+     "citation": "EY Tax News: Voters renew the St. Louis, Missouri earnings tax for another five years (https://taxnews.ey.com/news/2026-0995-voters-renew-the-st-louis-missouri-earnings-tax-for-another-five-years; 05 May 2026)",
+     "locator": "https://taxnews.ey.com/news/2026-0995-voters-renew-the-st-louis-missouri-earnings-tax-for-another-five-years",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "regardless of their work location and nonresident employees working within the city.",
+     "value": 1.0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "St. Louis also charges 1% on wages earned in the city.",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-st-louis.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0025",
+   "level": "both",
+   "domain": "career",
+   "statement": "Marion County (Indianapolis) local income tax is 2.02% for county residents (based on Jan. 1 county of residence).",
+   "value": 2.02,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Indiana Department of Revenue: Departmental Notice #1 (county income tax withholding rates) (https://www.in.gov/dA/92797e5a5f/dn01.pdf?language_id=1; Published Jan. 1, 2026; chart effective Oct. 1, 2026)",
+     "locator": "https://www.in.gov/dA/92797e5a5f/dn01.pdf?language_id=1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "in-gov",
+     "primary": false,
+     "quote": "Marion 49 0.0202 ... If an individual resides in an Indiana county on Jan. 1, the rate corresponds to that county of residence.",
+     "value": 2.02
+    },
+    {
+     "citation": "USDA National Finance Center: Indiana Counties (Local) Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1775234392.htm; Published: April 8, 2026; Effective: Pay Period 05, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1775234392.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Marion | 2.02 | 18/097",
+     "value": 2.02
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "Marion County (Indianapolis) charges 2.02%.",
+     "value": 2.02
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Indiana | Indianapolis | 2.02%",
+     "value": 2.02
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-indianapolis.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0026",
+   "level": "both",
+   "domain": "career",
+   "statement": "Out-of-state residents whose principal place of work is Marion County pay the Marion County rate, 2.02%. Indiana residents living in another county pay their home-county rate instead.",
+   "value": 2.02,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Indiana Department of Revenue: Departmental Notice #1 (county income tax withholding rates) (https://www.in.gov/dA/92797e5a5f/dn01.pdf?language_id=1; Published Jan. 1, 2026; chart effective Oct. 1, 2026)",
+     "locator": "https://www.in.gov/dA/92797e5a5f/dn01.pdf?language_id=1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "in-gov",
+     "primary": false,
+     "quote": "[out-of-state resident with principal place of work in an Indiana county] is subject to county tax at the rate corresponding to that Indiana county.",
+     "value": 2.02
+    },
+    {
+     "citation": "USDA National Finance Center: Indiana Counties (Local) Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1775234392.htm; Published: April 8, 2026; Effective: Pay Period 05, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1775234392.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Marion | 2.02 | 18/097",
+     "value": 2.02
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-indianapolis. Indiana county tax follows residence for Indiana residents; only out-of-state residents are taxed by work county. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0027",
+   "level": "both",
+   "domain": "career",
+   "statement": "Baltimore City local income tax for residents is 3.20% of Maryland taxable income in 2026.",
+   "value": 3.2,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Comptroller of Maryland: 2026 Maryland State and Local Withholding Information (https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf; February 4, 2026)",
+     "locator": "https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "marylandcomptroller-gov",
+     "primary": false,
+     "quote": "Baltimore City 04 3.20",
+     "value": 3.2
+    },
+    {
+     "citation": "USDA National Finance Center: Maryland State and Counties Income Tax Withholding (https://help.nfc.usda.gov/bulletins/2026/1783003892.htm; Published: July 16, 2026; Effective: Pay Period 12, 2026)",
+     "locator": "https://help.nfc.usda.gov/bulletins/2026/1783003892.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usda-gov",
+     "primary": false,
+     "quote": "Baltimore City | 3.20%",
+     "value": 3.2
+    },
+    {
+     "citation": "Maryland Department of Legislative Services: Local Income Tax Rates in Maryland (https://dls.maryland.gov/pubs/prod/NoPblTabPDF/2026CountyLocalTaxRates.pdf; undated; table covers CY 2022-CY 2026)",
+     "locator": "https://dls.maryland.gov/pubs/prod/NoPblTabPDF/2026CountyLocalTaxRates.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "maryland-gov",
+     "primary": false,
+     "quote": "Baltimore City ... CY 2026 ... 3.20%",
+     "value": 3.2
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Maryland | Baltimore | 3.20%",
+     "value": 3.2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-baltimore.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0028",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-Maryland residents working in Baltimore pay no Baltimore City local tax; instead Maryland charges a state-level Special Nonresident tax of 2.25% (in place of local tax).",
+   "value": 0,
+   "unit": "percent (city); 2.25 special nonresident state tax",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Comptroller of Maryland: 2026 Maryland State and Local Withholding Information (https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf; February 4, 2026)",
+     "locator": "https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "marylandcomptroller-gov",
+     "primary": false,
+     "quote": "the Nonresident rate (7.0%) is used, which includes no local tax ... but does include the Special 2.25% Nonresident rate",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-baltimore. Maryland residents of other counties pay their home county's rate, not Baltimore's. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0029",
+   "level": "both",
+   "domain": "career",
+   "statement": "Birmingham, Alabama occupational tax is 1% of wages for work performed in the city (applies by work location, residents and non-residents alike).",
+   "value": 1.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "OnPay: Birmingham Occupational Tax ID and TPA (https://help.onpay.com/hc/en-us/articles/29204020075931; undated)",
+     "locator": "https://help.onpay.com/hc/en-us/articles/29204020075931",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "onpay-com",
+     "primary": false,
+     "quote": "If you pay employees working in the City of Birmingham, Alabama, your business is subject to Birmingham Occupational Tax. ... Birmingham 1%",
+     "value": 1.0
+    },
+    {
+     "citation": "Alabama Daily News: Bill would end cities' occupational taxes (https://aldailynews.com/bill-would-end-cities-occupational-taxes/; January 24, 2022)",
+     "locator": "https://aldailynews.com/bill-would-end-cities-occupational-taxes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aldailynews-com",
+     "primary": false,
+     "quote": "Birmingham has a 1% occupational tax.",
+     "value": 1.0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Alabama (a) | Birmingham | 1.00%",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-birmingham. No official City of Birmingham page with the rate was readable (city page only links 'Employee Occupational Tax'). All sources secondary; most recent dated is 2022/undated. Flag: not confirmed for 2026 by a primary source. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0030",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in Birmingham pay the same 1% occupational tax (levied on work in the city).",
+   "value": 1.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "OnPay: Birmingham Occupational Tax ID and TPA (https://help.onpay.com/hc/en-us/articles/29204020075931; undated)",
+     "locator": "https://help.onpay.com/hc/en-us/articles/29204020075931",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "onpay-com",
+     "primary": false,
+     "quote": "If you pay employees working in the City of Birmingham, Alabama, your business is subject to Birmingham Occupational Tax.",
+     "value": 1.0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "Birmingham's tax applying to employees on payroll only",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-birmingham. Same caveat as resident row; tax is on employees working in city limits. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0031",
+   "level": "both",
+   "domain": "career",
+   "statement": "Mobile, Alabama levies no local income/occupational tax on wages (inferred: absent from every list of Alabama jurisdictions that tax income).",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Alabama Daily News: Bill would end cities' occupational taxes (https://aldailynews.com/bill-would-end-cities-occupational-taxes/; January 24, 2022)",
+     "locator": "https://aldailynews.com/bill-would-end-cities-occupational-taxes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aldailynews-com",
+     "primary": false,
+     "quote": "According to city-reported information to the league, 25 cities have occupational taxes, the highest of which are 2%. [Mobile not on list]",
+     "value": 0
+    },
+    {
+     "citation": "Alabama Department of Revenue: Annual Business Privilege/License Tax Fiscal Year Report (City of Mobile) (https://www.revenue.alabama.gov/wp-content/uploads/2026/04/City-of-Mobile.pdf; March 30, 2026)",
+     "locator": "https://www.revenue.alabama.gov/wp-content/uploads/2026/04/City-of-Mobile.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "alabama-gov",
+     "primary": false,
+     "quote": "[no occupational tax/wage-based fee appears; only business license fees]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Table 4 lists Alabama jurisdictions: Bessemer, Birmingham, Gadsden, Macon County [Mobile absent]",
+     "value": 0
+    },
+    {
+     "citation": "City of St. Louis Comptroller: U.S. Cities That Levy Income (Earnings) Taxes (https://www.stlouis-mo.gov/government/departments/comptroller/initiatives/us-cities-that-levy-earnings-taxes.cfm; Updated Oct. 1, 2021 (cites Tax Foundation 2019 data))",
+     "locator": "https://www.stlouis-mo.gov/government/departments/comptroller/initiatives/us-cities-that-levy-earnings-taxes.cfm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "stlouis-mo-gov",
+     "primary": false,
+     "quote": "Alabama: Bessemer, Birmingham, and Macon County at 1%; Gadsden at 2% [Mobile absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-mobile. Evidence by absence only; no source states 'Mobile has no occupational tax' in so many words. ALDOR's City of Mobile license schedule shows business license fees but no wage tax. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0032",
+   "level": "both",
+   "domain": "career",
+   "statement": "Metro Supportive Housing Services tax: 1% on Metro taxable income above $128,000 single / $205,000 joint (tax year 2026). Residents taxed on all income; non-residents on income earned in the Metro district.",
+   "value": 1.0,
+   "unit": "percent above threshold",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City of Portland Revenue Division (administers Metro SHS and Multnomah PFA): Personal Income Tax Filing and Payment Information (https://www.portland.gov/revenue/personal-tax; undated (copyright 2018-2026))",
+     "locator": "https://www.portland.gov/revenue/personal-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "portland-gov",
+     "primary": false,
+     "quote": "The Metro Supportive Housing Services (SHS) personal income tax rate is 1% ... Tax year 2026 ... $128,000 single ... $205,000 joint",
+     "value": 1.0
+    },
+    {
+     "citation": "Oregon Board of Tax Practitioners: Additional Local Taxes (https://oregon.gov/obtp/Documents/Additional%20Local%20Taxes.pdf; undated (refers to 2021/2022))",
+     "locator": "https://oregon.gov/obtp/Documents/Additional%20Local%20Taxes.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov",
+     "primary": false,
+     "quote": "The Metro Supportive Housing Services Personal Income Tax is a 1% tax on single taxpayers ... with income over $125,000, or joint taxpayers in the area with income over $200,000.",
+     "value": 1.0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Portland's 4 percent local income tax includes a 1 percent regional and 3 percent county tax.",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-metro-shs-portland. Threshold was $125,000/$200,000 for 2021-2025; inflation-indexed from 2026 per Portland Revenue table. OBTP/Tax Foundation give older $125k/$200k thresholds. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0033",
+   "level": "both",
+   "domain": "career",
+   "statement": "Multnomah County Preschool for All tax: 1.5% on taxable income over $125,000 single / $200,000 joint, plus additional 1.5% (3% total) over $250,000 / $400,000. Residents on all income; non-residents on Multnomah-sourced income. Valid 2026.",
+   "value": "1.5 / 3.0",
+   "unit": "percent above thresholds",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Multnomah County: Multnomah County Preschool For All Personal Income Tax (https://www.multco.us/info/multnomah-county-preschool-all-personal-income-tax; Last reviewed January 6, 2026)",
+     "locator": "https://www.multco.us/info/multnomah-county-preschool-all-personal-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "multco-us",
+     "primary": false,
+     "quote": "Income over $125,000 is taxed at rate of 1.5% and an additional 1.5% (3% total) on income over $250,000"
+    },
+    {
+     "citation": "City of Portland Revenue Division (administers Metro SHS and Multnomah PFA): Personal Income Tax Filing and Payment Information (https://www.portland.gov/revenue/personal-tax; undated (copyright 2018-2026))",
+     "locator": "https://www.portland.gov/revenue/personal-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "portland-gov",
+     "primary": false,
+     "quote": "The personal income tax rate is 1.5% on Multnomah County taxable income over $125,000 for individuals"
+    },
+    {
+     "citation": "Oregon Board of Tax Practitioners: Additional Local Taxes (https://oregon.gov/obtp/Documents/Additional%20Local%20Taxes.pdf; undated (refers to 2021/2022))",
+     "locator": "https://oregon.gov/obtp/Documents/Additional%20Local%20Taxes.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov",
+     "primary": false,
+     "quote": "an additional 1.5% (for a total of 3%) on single taxpayers in the county with income over $250,000"
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Portland's 4 percent local income tax includes a 1 percent regional and 3 percent county tax."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-multnomah-pfa-portland. Conflict on future change: Multnomah says +0.8% from Jan 1, 2027; Portland Revenue page says increase in 2028. Does not affect 2026. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0034",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents of Multnomah County pay the PFA tax only on income sourced within the county (same rates/thresholds).",
+   "value": "1.5 / 3.0",
+   "unit": "percent above thresholds",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Multnomah County: Multnomah County Preschool For All Personal Income Tax (https://www.multco.us/info/multnomah-county-preschool-all-personal-income-tax; Last reviewed January 6, 2026)",
+     "locator": "https://www.multco.us/info/multnomah-county-preschool-all-personal-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "multco-us",
+     "primary": false,
+     "quote": "For non-residents of Multnomah County, income sourced within the County will be subject to the tax thresholds."
+    },
+    {
+     "citation": "City of Portland Revenue Division (administers Metro SHS and Multnomah PFA): Personal Income Tax Filing and Payment Information (https://www.portland.gov/revenue/personal-tax; undated (copyright 2018-2026))",
+     "locator": "https://www.portland.gov/revenue/personal-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "portland-gov",
+     "primary": false,
+     "quote": "For non-residents, Multnomah County taxes only your income from Multnomah County sources."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-multnomah-pfa-nonresident-portland.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0035",
+   "level": "both",
+   "domain": "career",
+   "statement": "Oregon statewide transit tax is 0.1% of wages in 2026 (residents on all wages; non-residents on wages for work in Oregon). Proposed rise to 0.2% failed (Measure 120, May 19, 2026).",
+   "value": 0.1,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Oregon Department of Revenue: Statewide Transit Tax (https://www.oregon.gov/dor/programs/businesses/Pages/statewide-transit-tax.aspx; undated (mentions May 19, 2026 election))",
+     "locator": "https://www.oregon.gov/dor/programs/businesses/Pages/statewide-transit-tax.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov",
+     "primary": false,
+     "quote": "Please continue to withhold at the rate of one-tenth of 1 percent or .001. ... Measure 120 did not pass in the May 19, 2026 primary election.",
+     "value": 0.1
+    },
+    {
+     "citation": "Oregon Employment Department: Employer News (https://www.oregon.gov/employ/Businesses/Documents/Employer%20News%20Archived%20issues/Employer%20News%2002.12.2026.pdf; February 12, 2026)",
+     "locator": "https://www.oregon.gov/employ/Businesses/Documents/Employer%20News%20Archived%20issues/Employer%20News%2002.12.2026.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov",
+     "primary": false,
+     "quote": "The current Statewide Transit Tax (STT) rate of one-tenth of 1 percent or .001 will remain unchanged for 2026.",
+     "value": 0.1
+    },
+    {
+     "citation": "American Payroll Association (PayrollOrg): Oregon Voters to Decide Transit Tax Increase in May (https://blogs.payroll.org/pay-news-now/oregon-voters-to-decide-transit-tax-increase-in-may; Mar 30, 2026)",
+     "locator": "https://blogs.payroll.org/pay-news-now/oregon-voters-to-decide-transit-tax-increase-in-may",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "payroll-org",
+     "primary": false,
+     "quote": "Currently, the tax rate is 0.1%.",
+     "value": 0.1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-oregon-statewide-transit.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0036",
+   "level": "both",
+   "domain": "career",
+   "statement": "TriMet transit payroll tax is 0.8237% of wages for 2026, imposed on employers only (not withheld from employees).",
+   "value": 0.8237,
+   "unit": "percent (employer-paid)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Oregon Department of Revenue: Transit Payroll Taxes (150-211-503) (https://www.oregon.gov/DOR/forms/FormsPubs/transit-payroll-taxes_211-503.pdf; Rev. 11-18-25)",
+     "locator": "https://www.oregon.gov/DOR/forms/FormsPubs/transit-payroll-taxes_211-503.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov",
+     "primary": false,
+     "quote": "1/1/26 and beyond 0.008237",
+     "value": 0.8237
+    },
+    {
+     "citation": "Oregon Department of Revenue: TriMet Transit Payroll Tax (https://www.oregon.gov/dor/programs/businesses/Pages/TriMet-Transit.aspx; undated)",
+     "locator": "https://www.oregon.gov/dor/programs/businesses/Pages/TriMet-Transit.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov",
+     "primary": false,
+     "quote": "The transit tax is imposed directly on the employer.",
+     "value": 0.8237
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-trimet-transit. Only 2 sources; not an employee tax, so it does not reduce player take-home pay. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0037",
+   "level": "both",
+   "domain": "career",
+   "statement": "Seattle, WA has no local income tax in 2026; Washington has no individual income tax (a 9.9% state tax on AGI over $1M starts Jan 1, 2028).",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Washington State Department of Revenue: Income tax (https://dor.wa.gov/taxes-rates/income-tax; undated)",
+     "locator": "https://dor.wa.gov/taxes-rates/income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wa-gov",
+     "primary": false,
+     "quote": "Washington does not currently have an individual income tax. ... Beginning Jan. 1, 2028, a new 9.9% income tax will apply",
+     "value": 0
+    },
+    {
+     "citation": "EY Tax News: Seattle, Washington court rules that a graduated city income tax is invalid, but a flat tax is possible (https://taxnews.ey.com/news/2019-1478-seattle-washington-court-rules-that-a-graduated-city-income-tax-is-invalid-but-a-flat-tax-is-possible; 15 August 2019)",
+     "locator": "https://taxnews.ey.com/news/2019-1478-seattle-washington-court-rules-that-a-graduated-city-income-tax-is-invalid-but-a-flat-tax-is-possible",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "Seattle's 2017 ordinance instituting a local income tax on high earners' income ... unconstitutional because it is a graduated income tax",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [Washington not among them]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-seattle. Seattle's 2017 high-earner city income tax was struck down (Court of Appeals 2019). Seattle's JumpStart payroll expense tax is employer-paid, not sourced here. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0038",
+   "level": "both",
+   "domain": "career",
+   "statement": "Spokane, WA has no local income tax in 2026; Washington has no individual income tax (a 9.9% state tax on AGI over $1M starts Jan 1, 2028).",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Washington State Department of Revenue: Income tax (https://dor.wa.gov/taxes-rates/income-tax; undated)",
+     "locator": "https://dor.wa.gov/taxes-rates/income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wa-gov",
+     "primary": false,
+     "quote": "Washington does not currently have an individual income tax. ... Beginning Jan. 1, 2028, a new 9.9% income tax will apply",
+     "value": 0
+    },
+    {
+     "citation": "EY Tax News: Seattle, Washington court rules that a graduated city income tax is invalid, but a flat tax is possible (https://taxnews.ey.com/news/2019-1478-seattle-washington-court-rules-that-a-graduated-city-income-tax-is-invalid-but-a-flat-tax-is-possible; 15 August 2019)",
+     "locator": "https://taxnews.ey.com/news/2019-1478-seattle-washington-court-rules-that-a-graduated-city-income-tax-is-invalid-but-a-flat-tax-is-possible",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "Seattle's 2017 ordinance instituting a local income tax on high earners' income ... unconstitutional because it is a graduated income tax",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [Washington not among them]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-spokane. Seattle's 2017 high-earner city income tax was struck down (Court of Appeals 2019). Seattle's JumpStart payroll expense tax is employer-paid, not sourced here. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0039",
+   "level": "both",
+   "domain": "career",
+   "statement": "Denver Occupational Privilege Tax: employee pays $5.75 per month (employer pays $4.00/month per employee) for any month with at least $500 earned working in Denver; residence irrelevant.",
+   "value": 5.75,
+   "unit": "usd per month (employee)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "City and County of Denver Treasury: Business Taxes (https://denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury/Business-Tax-Information; undated)",
+     "locator": "https://denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Department-of-Finance/Our-Divisions/Treasury/Business-Tax-Information",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "denvergov-org",
+     "primary": false,
+     "quote": "Each taxable employee is liable for the employee OPT, which is withheld by the employer at a rate of $5.75 per month.",
+     "value": 5.75
+    },
+    {
+     "citation": "Patriot Software: A Breakdown of the Colorado Occupational Privilege Taxes (https://www.patriotsoftware.com/blog/payroll/occupational-privilege-tax-opt-colorado/; Oct 13, 2022)",
+     "locator": "https://www.patriotsoftware.com/blog/payroll/occupational-privilege-tax-opt-colorado/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "patriotsoftware-com",
+     "primary": false,
+     "quote": "The employee OPT is $5.75 per month.",
+     "value": 5.75
+    },
+    {
+     "citation": "OnPay: Colorado Occupational Privilege Taxes (https://help.onpay.com/hc/en-us/articles/201533015; undated)",
+     "locator": "https://help.onpay.com/hc/en-us/articles/201533015",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "onpay-com",
+     "primary": false,
+     "quote": "Denver: $5.75 per month employee; $4.00 per employee per month employer",
+     "value": 5.75
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Colorado | Denver | $9.75 per month",
+     "value": 9.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-denver-opt-employee. Applies equally to residents and non-residents. Tax Foundation's '$9.75 per month' is the combined employee+employer figure. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0040",
+   "level": "both",
+   "domain": "career",
+   "statement": "Albany, NY levies no city income tax; only New York City and Yonkers impose municipal income taxes in New York.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "only New York City and Yonkers impose a municipal income tax.",
+     "value": 0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "No other New York municipality levies an income tax.",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-albany. Only 2 sources (no official DTF sentence found saying 'only NYC and Yonkers'). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0041",
+   "level": "both",
+   "domain": "career",
+   "statement": "Buffalo, NY levies no city income tax; only New York City and Yonkers impose municipal income taxes in New York.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "only New York City and Yonkers impose a municipal income tax.",
+     "value": 0
+    },
+    {
+     "citation": "IncomeTaxByState.com: Local Income Tax 2026: NYC, Philly, Detroit, MD, IN (https://incometaxbystate.com/local-income-tax; Updated 2026-11-15 (footer says rates reviewed June 2026))",
+     "locator": "https://incometaxbystate.com/local-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "incometaxbystate-com",
+     "primary": false,
+     "quote": "No other New York municipality levies an income tax.",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-buffalo. Only 2 sources (no official DTF sentence found saying 'only NYC and Yonkers'). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0042",
+   "level": "both",
+   "domain": "career",
+   "statement": "Washington, DC resident income tax is graduated 4% to 10.75% (top rate over $1,000,000), unchanged for tax years after 2021.",
+   "value": "4-10.75",
+   "unit": "percent (graduated)",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "DC Office of Tax and Revenue: DC Individual and Fiduciary Income Tax Rates (https://otr.cfo.dc.gov/page/dc-individual-and-fiduciary-income-tax-rates; undated (rates for tax years beginning after 12/31/2021))",
+     "locator": "https://otr.cfo.dc.gov/page/dc-individual-and-fiduciary-income-tax-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "dc-gov",
+     "primary": false,
+     "quote": "Not over $10,000 -> 4% of the taxable income ... Over $1,000,000 -> $91,525, plus 10.75% of the excess above $1,000,000."
+    },
+    {
+     "citation": "Council of the District of Columbia (DC Code): § 47-1806.03 Tax on residents and nonresidents (https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.03; undated)",
+     "locator": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.03",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "dccouncil-gov",
+     "primary": false,
+     "quote": "Over $1,000,000 : $91,525, plus 10.75% of the excess over $1,000,000"
+    },
+    {
+     "citation": "AARP: Washington, D.C., Taxes: What You'll Owe in the 2026 Tax Season (https://www.aarp.org/states/washington-dc/state-tax-guide/; undated (2026 season))",
+     "locator": "https://www.aarp.org/states/washington-dc/state-tax-guide/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aarp-org",
+     "primary": false,
+     "quote": "ranging from 4 percent to 10.75 percent"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-resident-washington-dc. Brackets: <=10k 4%; 10-40k 6%; 40-60k 6.5%; 60-250k 8.5%; 250-500k 9.25%; 500k-1M 9.75%; >1M 10.75%. DC acts as both state and local level. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0043",
+   "level": "both",
+   "domain": "career",
+   "statement": "Non-residents working in DC pay no DC income tax (Home Rule Act bars taxing non-resident personal income).",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "DC Department of Finance and Revenue (Form D-4A, hosted by US DOE): Certificate of Non-Residence in the District of Columbia (https://www.energy.gov/sites/prod/files/2015/11/f27/Non-residence%20in%20DC.pdf; undated)",
+     "locator": "https://www.energy.gov/sites/prod/files/2015/11/f27/Non-residence%20in%20DC.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "energy-gov",
+     "primary": false,
+     "quote": "In order to establish that you are not a resident of the District and therefore not subject to t}ie [OCR: the] D.C. Withholding Tax, this form must be filed with your employer",
+     "value": 0
+    },
+    {
+     "citation": "Greater Greater Washington: Myth busting: DC Home Rule prohibits a 'commuter tax'... (https://ggwash.org/view/67994/myth-busting-dc-home-rule-commuter-tax-congestion-pricing; undated)",
+     "locator": "https://ggwash.org/view/67994/myth-busting-dc-home-rule-commuter-tax-congestion-pricing",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ggwash-org",
+     "primary": false,
+     "quote": "a tax on the whole or any portion of the personal income ... of any individual not a resident of the District.",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-nonresident-washington-dc. Only 2 sources, one an undated DC form copy hosted by DOE. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0044",
+   "level": "both",
+   "domain": "career",
+   "statement": "Atlanta has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Georgia absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Georgia absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Georgia absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-atlanta. Inferred: Georgia is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0045",
+   "level": "both",
+   "domain": "career",
+   "statement": "Dallas has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Texas absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Texas absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Texas absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-dallas. Inferred: Texas is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0046",
+   "level": "both",
+   "domain": "career",
+   "statement": "Houston has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Texas absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Texas absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Texas absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-houston. Inferred: Texas is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0047",
+   "level": "both",
+   "domain": "career",
+   "statement": "Miami has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Florida absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Florida absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Florida absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-miami. Inferred: Florida is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0048",
+   "level": "both",
+   "domain": "career",
+   "statement": "Boston has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Massachusetts absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Massachusetts absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Massachusetts absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-boston. Inferred: Massachusetts is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0049",
+   "level": "both",
+   "domain": "career",
+   "statement": "Chicago has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Illinois absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Illinois absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Illinois absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-chicago. Inferred: Illinois is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Chicago's former $4/month employee head tax (repealed 2014) is not sourced here. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0050",
+   "level": "both",
+   "domain": "career",
+   "statement": "Minneapolis has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Minnesota absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Minnesota absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Minnesota absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-minneapolis. Inferred: Minnesota is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0051",
+   "level": "both",
+   "domain": "career",
+   "statement": "Nashville has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Tennessee absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Tennessee absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Tennessee absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-nashville. Inferred: Tennessee is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0052",
+   "level": "both",
+   "domain": "career",
+   "statement": "Charlotte has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [North Carolina absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [North Carolina absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; North Carolina absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-charlotte. Inferred: North Carolina is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0053",
+   "level": "both",
+   "domain": "career",
+   "statement": "Las Vegas has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Nevada absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Nevada absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Nevada absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-las-vegas. Inferred: Nevada is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0054",
+   "level": "both",
+   "domain": "career",
+   "statement": "Los Angeles has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [California absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [California absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-los-angeles. Inferred: California is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Caution: Tax Foundation 2019 and Wikipedia mention a San Francisco payroll tax paid by the employer (St. Louis list: 'San Francisco at 0.38%'); it is not withheld from employees and was dropped from Tax Foundation's 2023 16-state list. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0055",
+   "level": "both",
+   "domain": "career",
+   "statement": "San Francisco has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [California absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [California absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-san-francisco. Inferred: California is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Caution: Tax Foundation 2019 and Wikipedia mention a San Francisco payroll tax paid by the employer (St. Louis list: 'San Francisco at 0.38%'); it is not withheld from employees and was dropped from Tax Foundation's 2023 16-state list. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0056",
+   "level": "both",
+   "domain": "career",
+   "statement": "Phoenix has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Arizona absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Arizona absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Arizona absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-phoenix. Inferred: Arizona is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0057",
+   "level": "both",
+   "domain": "career",
+   "statement": "Tampa has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Florida absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Florida absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Florida absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-tampa. Inferred: Florida is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0058",
+   "level": "both",
+   "domain": "career",
+   "statement": "Jacksonville has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Florida absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Florida absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Florida absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-jacksonville. Inferred: Florida is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0059",
+   "level": "both",
+   "domain": "career",
+   "statement": "Green Bay has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Wisconsin absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Wisconsin absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Wisconsin absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-green-bay. Inferred: Wisconsin is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0060",
+   "level": "both",
+   "domain": "career",
+   "statement": "Madison has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Wisconsin absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Wisconsin absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Wisconsin absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-madison. Inferred: Wisconsin is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0061",
+   "level": "both",
+   "domain": "career",
+   "statement": "Hartford has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Connecticut absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Connecticut absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Connecticut absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-hartford. Inferred: Connecticut is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0062",
+   "level": "both",
+   "domain": "career",
+   "statement": "Salt Lake City has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Utah absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Utah absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Utah absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-salt-lake-city. Inferred: Utah is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-local-0063",
+   "level": "both",
+   "domain": "career",
+   "statement": "New Orleans has no local (city/county) income or wage tax on employees in 2026.",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: Local Income Taxes: A Primer (2023) (https://taxfoundation.org/research/all/state/local-income-taxes-2023/; February 23, 2023; updated June 13, 2024 (data file named 2021))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 16 states tax income in some form. [direct: AL, CO, DE, KS, KY, MO, PA, WV; piggyback: IN, IA, MD, NY; hybrid: MI, NJ, OH, OR] [Louisiana absent]",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia: State income tax (https://en.wikipedia.org/wiki/State_income_tax; undated (live page, read 2026-11-26))",
+     "locator": "https://en.wikipedia.org/wiki/State_income_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "[local-tax states listed: Alabama, California (San Francisco, payroll only), Colorado, Delaware, Indiana, Iowa, Kansas, Kentucky, Maryland, Michigan, Missouri, New Jersey, New York, Ohio, Oregon, Pennsylvania, West Virginia] [Louisiana absent]",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: Local Income Taxes: City- and County-Level Income and Wage Taxes Continue to Wane (2019) (https://taxfoundation.org/research/all/state/local-income-taxes-2019/; July 30, 2019 (modified July 24, 2023))",
+     "locator": "https://taxfoundation.org/research/all/state/local-income-taxes-2019/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Today, local governments in 17 states tax income in some form. [Table 3 lists AL, CA, CO, DE, IN, IA, KS, KY, MD, MI, MO, NJ, NY, OH, OR, PA, WV; Louisiana absent]",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key local-tax-none-new-orleans. Inferred: Louisiana is not among the states whose localities tax income in either Tax Foundation's 2023 list (16 states) or Wikipedia's list. No city-specific page saying 'no income tax' was fetched. Only state-level income tax applies (if any). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  }
+ ]
+}

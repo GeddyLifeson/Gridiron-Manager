@@ -70,6 +70,8 @@ export interface SheetBox {
   readonly baseDown?: number;
   /** Rule priority: lower is checked first. Defaults to grid order. */
   readonly priority?: number;
+  /** A ruled box that also serves as the base box for these downs when no rule matches (K4.1.1 rule 4). */
+  readonly baseDowns?: readonly number[];
   readonly entries: readonly SheetEntry[];
 }
 
@@ -117,10 +119,13 @@ export function assignKeys(sheet: CallSheet, reserved: readonly string[]): Sheet
   const box: Record<string, readonly string[]> = {};
   const entry: Record<string, string> = {};
   const order = gridOrder(sheet.boxes);
-  const singles = order.length <= free.length ? free.length : free.length - 1;
+  // Overflow: the last p free letters become prefixes, each opening a second letter, with p as small as fits.
+  let p = 0;
+  if (order.length > free.length) { p = 1; while (p < free.length && free.length - p + p * free.length < order.length) p++; }
+  const singles = free.length - p;
   order.forEach((b, i) => {
     if (i < singles) box[b.id] = [free[i]!];
-    else { const j = i - singles; box[b.id] = [free[free.length - 1]!, free[j % free.length]!]; }
+    else { const j = i - singles; box[b.id] = [free[singles + Math.floor(j / free.length) % Math.max(1, p)]!, free[j % free.length]!]; }
     const entryKeys = [...DIGITS, ...free];
     b.entries.forEach((e, k) => { if (k < entryKeys.length) entry[e.id] = entryKeys[k]!; });
   });
@@ -156,7 +161,8 @@ export function focusBox(sheet: CallSheet, s: SheetSituation): Focus {
   const order = gridOrder(sheet.boxes);
   const ruled = order.map((b, i) => ({ b, p: b.priority ?? i })).filter((x) => x.b.rule !== null).sort((x, y) => x.p - y.p);
   for (const { b } of ruled) if (matches(b.rule!, s)) return { boxId: b.id, how: 'rule', empty: b.entries.length === 0 };
-  const base = order.find((b) => b.rule === null && (b.baseDown === undefined || b.baseDown === s.down)) ?? order.find((b) => b.rule === null);
+  const base = order.find((b) => b.rule === null && (b.baseDown === undefined || b.baseDown === s.down)) ?? order.find((b) => b.rule === null)
+    ?? (s.down === null ? undefined : order.find((b) => b.baseDowns?.includes(s.down!)));
   if (base) return { boxId: base.id, how: 'base', empty: base.entries.length === 0 };
   return { boxId: null, how: 'none', empty: true };
 }

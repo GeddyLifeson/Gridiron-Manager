@@ -3,6 +3,7 @@
 export { MODULE, PARAMS, param } from './params.ts';
 export { sha256, bytesToHex } from './sha256.ts';
 export { foundingCurveRows, defaultFoundingCurves, type FoundingCurveRow } from './founding-curves.ts';
+export { STREAM_LOST_CLUBS, lostClubData, lostClubCount, lostClubSpans, addLostClubs, type LostClubData, type LostClubSpan, type LostClubsResult } from './lost-clubs.ts';
 export {
   SIZE_PRESETS, SETUP_FIELDS, FORBIDDEN_SETUP_WORDS, historyPresets, seedHexFromText, setupFieldProblems, setupProblems, createSetup,
   canonicalSetup, setupHashHex, setupSeed, setupAsGeneratorOptions, type SizePreset, type PackRef, type SetupRecord,
@@ -16,12 +17,12 @@ export {
   STRUCTURE_STEPS, STREAM_STRUCTURE, blockedTermHits, buildStructures, structureProblems,
   type StructureStep, type ResourceBand, type PlaceRecord, type BuiltStructures, type StructureOptions,
 } from './structures.ts';
-export { STREAM_FOUNDING, STREAM_CULTURE, scaleMix, curveAge, triangularAge, foundPeople, foundingProblems, type FoundingResult, type OffLadderSeat } from './founding.ts';
+export { STREAM_FOUNDING, STREAM_CULTURE, scaleMix, curveAge, triangularAge, foundPeople, programStrength, foundingProblems, type FoundingResult, type OffLadderSeat } from './founding.ts';
 export {
   PLACEMENT_ORDER, FREE_AGENT_POOL, COACH_POOL, nameCollisions, placeImported, placeUser,
   type PlacementKind, type Placement, type PlacementPorts, type PlacementReport, type BackgroundFact, type UserPlacement,
 } from './placement.ts';
 export {
-  CONTENT_VERSION, RULE_KEYS, levelNumbers, rosterTierShares, makeNameSource, makeHomeRegionSource, defaultContent,
+  CONTENT_VERSION, RULE_KEYS, levelNumbers, rosterTierShares, tierFromProgram, makeNameSource, makeHomeRegionSource, defaultContent,
   type RuleLookup, type DefaultContentInput, type RawContent,
 } from './default-content.ts';
