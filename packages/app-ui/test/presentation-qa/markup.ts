@@ -3,6 +3,9 @@
 // browser pass (scripts/presentation-qa/screenshots.ts) checks the same thing on computed styles.
 import { contrastRatio, tokenVariables, type ColourVisionId, type ThemeId } from '../../src/tokens/index.ts';
 
+/** Screen-reader-only text (1 px box, clipped) is not drawn, so it has no contrast to check; the browser pass skips it the same way. */
+const isHidden = (style: string): boolean => /width:\s*1px/.test(style) && /height:\s*1px/.test(style);
+
 export interface TextRun { text: string; fg: string; bg: string; surface: string; tag: string }
 
 const VOID = new Set(['br', 'hr', 'img', 'input', 'meta', 'link', 'path', 'circle', 'rect', 'line', 'polygon', 'polyline', 'ellipse']);
@@ -43,14 +46,14 @@ export function textRuns(html: string, theme: ThemeId, vision: ColourVisionId): 
   const pageBg = resolveColour('var(--gm-surface-bg)', vars)!;
   const ink = resolveColour('var(--gm-text-ink)', vars)!;
   const out: TextRun[] = [];
-  const stack: { tag: string; fg: string; bg: string; surface: string }[] = [{ tag: 'body', fg: ink, bg: pageBg, surface: 'page' }];
+  const stack: { tag: string; fg: string; bg: string; surface: string; hidden: boolean }[] = [{ tag: 'body', fg: ink, bg: pageBg, surface: 'page', hidden: false }];
   const re = /<(\/?)([a-z0-9]+)([^>]*?)(\/?)>|([^<]+)/gi;
   let m: RegExpExecArray | null;
   while ((m = re.exec(html))) {
     if (m[5] !== undefined) {
       const text = m[5].replace(/&amp;/g, '&').replace(/&#x27;/g, "'").trim();
       const top = stack[stack.length - 1]!;
-      if (text && top.tag !== 'style' && top.tag !== 'title') out.push({ text, fg: top.fg, bg: top.bg, surface: top.surface, tag: top.tag });
+      if (text && !top.hidden && top.tag !== 'style' && top.tag !== 'title') out.push({ text, fg: top.fg, bg: top.bg, surface: top.surface, tag: top.tag });
       continue;
     }
     const closing = m[1] === '/', tag = m[2]!.toLowerCase(), attrs = m[3] ?? '';
@@ -61,7 +64,7 @@ export function textRuns(html: string, theme: ThemeId, vision: ColourVisionId): 
     const fg = resolveColour(prop(style, 'color'), vars) ?? parent.fg;
     const bg = resolveColour(prop(style, 'background'), vars) ?? resolveColour(prop(style, 'background-color'), vars) ?? parent.bg;
     const surface = /data-surface="([^"]+)"/.exec(attrs)?.[1] ?? parent.surface;
-    stack.push({ tag, fg, bg, surface });
+    stack.push({ tag, fg, bg, surface, hidden: parent.hidden || isHidden(style) });
   }
   return out;
 }
