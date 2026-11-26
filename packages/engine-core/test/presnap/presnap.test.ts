@@ -135,13 +135,13 @@ describe('J5.1 substitution and the huddle', () => {
     expect(holdEndS(true, false, false, 0, 5, P)).toBe(0);
   });
   it('J5.1.3: huddle delivery is near 1 and drops for the last-named players of a long call', () => {
-    expect(huddleDeliveryChance(6, 1, 50, P)).toBeCloseTo(0.998, 12);
+    expect(huddleDeliveryChance(6, 1, 50, P)).toBeCloseTo(0.9995, 12);
     expect(huddleDeliveryChance(14, 1, 50, P)).toBeLessThan(huddleDeliveryChance(14, 0, 50, P));
     expect(huddleDeliveryChance(6, 1, 20, P)).toBeLessThan(huddleDeliveryChance(6, 1, 80, P));
   });
-  it('J5.1.3 acceptance (direction): delivery failures rise on the road in a loud stadium at no-huddle', () => {
-    // With the starting value 0.998 per player an eleven-man huddle misses about 1.4 calls a game
-    // (11 x 0.002 x 62 plays), above the leaf's 0.5 target: the open conflict is reported in the PR.
+  it('J5.1.3 acceptance: under 0.5 huddle misses a game at home, and failures rise on the road in a loud stadium at no-huddle', () => {
+    // Expected misses for an eleven-man home huddle over a game of 62.1 plays (J15.3.2): under 0.5.
+    expect(11 * (1 - huddleDeliveryChance(6, 0.5, 50, P)) * 62.1).toBeLessThan(0.5);
     const misses = (over: Parameters<typeof input>[0]) => SEEDS(200).reduce((t, seed) => t + planPresnap(world({ seed }), input(over)).received.slice(0, SLOTS_PER_TEAM).filter((r) => !r[0]).length, 0);
     const home = misses({ tempo: 'huddle' });
     const road = misses({ tempo: 'no_huddle', playClockStartTenths: 140, offense: offenseInput({ noise: 0.9 }) });

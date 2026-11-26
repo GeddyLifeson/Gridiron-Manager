@@ -27,7 +27,9 @@ const ROWS: readonly ParamRow[] = [
   // J5.1.2 substitution hold.
   ['hold.capS', 8, 3, 15, 's', 'bible', 'J5.1.2', 'J5.1.2 acceptance'],
   // J5.1.3 huddle delivery.
-  ['huddle.deliveryBase', 0.998, 0.98, 1, 'probability', 'bible', 'J5.1.3', 'J5.1.3 acceptance'],
+  // Ruling 2026-11-26: the J5.1.3 target (under 0.5 missed calls a game) wins over the leaf's 0.998,
+  // which gives about 1.4. 0.9995 gives 11 x 0.0005 x 62.1 = 0.34. Assumption, to be fitted.
+  ['huddle.deliveryBase', 0.9995, 0.99, 1, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance (under 0.5 misses per game)'],
   ['huddle.longCallWords', 8, 4, 16, 'count', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
   ['huddle.longCallPerWord', 0.002, 0, 0.01, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
   ['huddle.clockCommandPerZ', 0.001, 0, 0.005, 'probability', 'assumption', 'J5.1.3', 'J5.1.3 acceptance'],
