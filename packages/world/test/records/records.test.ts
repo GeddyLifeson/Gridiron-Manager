@@ -168,7 +168,9 @@ describe('labels (X2.2.2)', () => {
 
   it('label queries read only rows (no truth fields) and pass the label lint', async () => {
     const { labels } = await import('@gm/models');
-    const types = new Set([records.TEAM_SEASON]);
+    const types = new Set<string>([records.TEAM_SEASON]);
     for (const d of records.LABEL_DEFS) expect(labels.labelDefProblems(d, types)).toEqual([]);
+    const bad = { ...records.LABEL_DEFS[0]!, positive: { types: [records.LABEL_FORMED] } };
+    expect(() => records.labelsStep({ defs: [bad] })).toThrow(/MA-80/);
   });
 });
