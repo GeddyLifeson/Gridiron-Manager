@@ -1,0 +1,1294 @@
+{
+ "domain": "medical",
+ "rows": [
+  {
+   "id": "F-injury-0001",
+   "level": "both",
+   "domain": "medical",
+   "statement": "Every player diagnosed with a concussion follows a five-step return process.",
+   "value": 5,
+   "unit": "steps",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Player Health and Safety, Concussion Protocol & Return-to-Participation Protocol (saved page copy)",
+     "locator": "Concussion protocol fact sheet (text copy nfl-health-safety--concussion-protocol.txt, line 30)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-health-safety",
+     "primary": true,
+     "quote": "Every NFL player diagnosed with a concussion must follow a five-step process before being cleared",
+     "value": 5
+    },
+    {
+     "citation": "NBC Sports, NFL concussion protocol explained (saved page copy)",
+     "locator": "Protocol explainer (text copy nbcsports--concussion-protocol-explained.txt, line 30)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-concussion",
+     "primary": false,
+     "quote": "Generally, the protocol outlines five phases",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary league page plus an independent explainer.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0002",
+   "level": "both",
+   "domain": "medical",
+   "statement": "Three unaffiliated neurotrauma consultants are assigned to each game (two sideline, one booth).",
+   "value": 3,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Player Health and Safety, Concussion Protocol & Return-to-Participation Protocol (saved page copy)",
+     "locator": "Concussion protocol fact sheet (text copy nfl-health-safety--concussion-protocol.txt, line 23)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-health-safety",
+     "primary": true,
+     "quote": "Added a third UNC who will monitor the broadcast video and audio feeds of each game",
+     "value": 3
+    },
+    {
+     "citation": "NBC Sports, NFL concussion protocol explained (saved page copy)",
+     "locator": "Protocol explainer (text copy nbcsports--concussion-protocol-explained.txt, line 13)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-concussion",
+     "primary": false,
+     "quote": "Three medical experts, known as unaffiliated neurotrauma consultants (UNCs), are assigned to each game",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "The sideline/booth split of 2 and 1 is from the bible; this pass confirms the third consultant in the booth and the total of three.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0003",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "The NFL removed the \"Probable\" game status in 2016; Questionable and Doubtful remain.",
+   "value": 2016,
+   "unit": "year",
+   "validFor": "2016",
+   "sources": [
+    {
+     "citation": "WebMD, NFL injury report explained (saved page copy)",
+     "locator": "Injury report explainer (text copy webmd--nfl-injury-report-explained.txt, line 34)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "webmd",
+     "primary": false,
+     "quote": "In 2016, the NFL eliminated the category.",
+     "value": 2016
+    }
+   ],
+   "usedBy": [],
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0004",
+   "level": "both",
+   "domain": "medical",
+   "statement": "High ankle sprain recovery: six to eight weeks (general population guidance; athletes may take longer).",
+   "value": "6-8",
+   "unit": "weeks",
+   "validFor": "general",
+   "sources": [
+    {
+     "citation": "Cleveland Clinic, High ankle sprain (saved page copy)",
+     "locator": "High ankle sprain page (text copy clevelandclinic--high-ankle-sprain.txt, line 42)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cleveland-clinic",
+     "primary": false,
+     "quote": "It might take six to eight weeks to recover from a high ankle sprain.",
+     "value": "6-8"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Clinical page, not NFL data. The bible row (about 3 games, 4 weeks) is lower; both are kept as separate facts.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0005",
+   "level": "both",
+   "domain": "medical",
+   "statement": "Turf toe grade 2: 3 to 14 days of rest before return to play in most cases.",
+   "value": "3-14",
+   "unit": "days",
+   "validFor": "general",
+   "sources": [
+    {
+     "citation": "AAOS OrthoInfo, Turf toe (saved page copy)",
+     "locator": "Turf toe page (text copy aaos-orthoinfo--turf-toe.txt, line 38)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aaos",
+     "primary": false,
+     "quote": "In most cases, an athlete with a Grade 2 injury needs 3 to 14 days of rest before returning to play.",
+     "value": "3-14"
+    }
+   ],
+   "usedBy": [],
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0006",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Ankle injury, median report listings per episode: 1.0 (1142 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Ankle: 1142 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0007",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Ankle injury, mean report listings per episode: 1.78 (1142 episodes).",
+   "value": 1.78,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Ankle: 1142 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.78",
+     "value": 1.78
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0008",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Ankle injury, share of episodes with one report listing: 0.544 (1142 episodes).",
+   "value": 0.544,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Ankle: 1142 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.544",
+     "value": 0.544
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0009",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Back injury, median report listings per episode: 1 (209 episodes).",
+   "value": 1,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Back: 209 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0010",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Back injury, mean report listings per episode: 1.59 (209 episodes).",
+   "value": 1.59,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Back: 209 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.59",
+     "value": 1.59
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0011",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Back injury, share of episodes with one report listing: 0.665 (209 episodes).",
+   "value": 0.665,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Back: 209 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.665",
+     "value": 0.665
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0012",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Calf injury, median report listings per episode: 1.0 (298 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Calf: 298 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0013",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Calf injury, mean report listings per episode: 1.8 (298 episodes).",
+   "value": 1.8,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Calf: 298 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.8",
+     "value": 1.8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0014",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Calf injury, share of episodes with one report listing: 0.537 (298 episodes).",
+   "value": 0.537,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Calf: 298 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.537",
+     "value": 0.537
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0015",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Concussion injury, median report listings per episode: 1.0 (1008 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Concussion: 1008 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0016",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Concussion injury, mean report listings per episode: 1.46 (1008 episodes).",
+   "value": 1.46,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Concussion: 1008 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.46",
+     "value": 1.46
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0017",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Concussion injury, share of episodes with one report listing: 0.707 (1008 episodes).",
+   "value": 0.707,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Concussion: 1008 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.707",
+     "value": 0.707
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0018",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Foot injury, median report listings per episode: 1 (463 episodes).",
+   "value": 1,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Foot: 463 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0019",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Foot injury, mean report listings per episode: 2.06 (463 episodes).",
+   "value": 2.06,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Foot: 463 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 2.06",
+     "value": 2.06
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0020",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Foot injury, share of episodes with one report listing: 0.529 (463 episodes).",
+   "value": 0.529,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Foot: 463 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.529",
+     "value": 0.529
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0021",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Groin injury, median report listings per episode: 1 (315 episodes).",
+   "value": 1,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Groin: 315 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0022",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Groin injury, mean report listings per episode: 1.75 (315 episodes).",
+   "value": 1.75,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Groin: 315 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.75",
+     "value": 1.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0023",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Groin injury, share of episodes with one report listing: 0.616 (315 episodes).",
+   "value": 0.616,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Groin: 315 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.616",
+     "value": 0.616
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0024",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Hamstring injury, median report listings per episode: 1 (1003 episodes).",
+   "value": 1,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Hamstring: 1003 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0025",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Hamstring injury, mean report listings per episode: 1.71 (1003 episodes).",
+   "value": 1.71,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Hamstring: 1003 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.71",
+     "value": 1.71
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0026",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Hamstring injury, share of episodes with one report listing: 0.546 (1003 episodes).",
+   "value": 0.546,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Hamstring: 1003 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.546",
+     "value": 0.546
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0027",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Hip injury, median report listings per episode: 1.0 (158 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Hip: 158 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0028",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Hip injury, mean report listings per episode: 1.7 (158 episodes).",
+   "value": 1.7,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Hip: 158 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.7",
+     "value": 1.7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0029",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Hip injury, share of episodes with one report listing: 0.595 (158 episodes).",
+   "value": 0.595,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Hip: 158 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.595",
+     "value": 0.595
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0030",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Knee injury, median report listings per episode: 1.0 (1404 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Knee: 1404 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0031",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Knee injury, mean report listings per episode: 1.76 (1404 episodes).",
+   "value": 1.76,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Knee: 1404 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.76",
+     "value": 1.76
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0032",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Knee injury, share of episodes with one report listing: 0.588 (1404 episodes).",
+   "value": 0.588,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Knee: 1404 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.588",
+     "value": 0.588
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0033",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Neck injury, median report listings per episode: 1.0 (178 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Neck: 178 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0034",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Neck injury, mean report listings per episode: 1.67 (178 episodes).",
+   "value": 1.67,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Neck: 178 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.67",
+     "value": 1.67
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0035",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Neck injury, share of episodes with one report listing: 0.629 (178 episodes).",
+   "value": 0.629,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Neck: 178 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.629",
+     "value": 0.629
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0036",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Quadriceps injury, median report listings per episode: 1.0 (152 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Quadriceps: 152 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0037",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Quadriceps injury, mean report listings per episode: 1.77 (152 episodes).",
+   "value": 1.77,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Quadriceps: 152 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.77",
+     "value": 1.77
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0038",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Quadriceps injury, share of episodes with one report listing: 0.546 (152 episodes).",
+   "value": 0.546,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Quadriceps: 152 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.546",
+     "value": 0.546
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0039",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Shoulder injury, median report listings per episode: 1.0 (468 episodes).",
+   "value": 1.0,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Shoulder: 468 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; median report listings per episode 1.0",
+     "value": 1.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0040",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Shoulder injury, mean report listings per episode: 1.54 (468 episodes).",
+   "value": 1.54,
+   "unit": "listings",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Shoulder: 468 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; mean report listings per episode 1.54",
+     "value": 1.54
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-injury-0041",
+   "level": "pro",
+   "domain": "medical",
+   "statement": "Shoulder injury, share of episodes with one report listing: 0.65 (468 episodes).",
+   "value": 0.65,
+   "unit": "ratio",
+   "validFor": "2012-2025",
+   "sources": [
+    {
+     "citation": "nflverse-data weekly injury reports 2012-2025, computed by facts/g10-build/injury_compute.py (https://github.com/nflverse/nflverse-data/releases/tag/injuries)",
+     "locator": "injury_compute.py over nflverse injuries_2012..2025.csv",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-injuries-computed",
+     "primary": false,
+     "quote": "Shoulder: 468 episodes of consecutive weekly Out report listings, regular seasons 2012-2025; share of episodes with one report listing 0.65",
+     "value": 0.65
+    }
+   ],
+   "usedBy": [],
+   "notes": "Counts weekly Out listings, not games missed: a player moved to injured reserve or cut stops being listed, so counts are lower bounds. The bible D11.2.1 table (median 3 games for knee) used a different measure and is not reproduced here; they answer different questions: the G-21 catalogue drives recovery time, these rows are for the injury report model only (integrator ruling).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  }
+ ]
+}

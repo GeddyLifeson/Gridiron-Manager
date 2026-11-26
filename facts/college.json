@@ -1,0 +1,417 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-college-0001",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Top subdivision schools that opt in: roster limit of 105 football players.",
+   "value": 105,
+   "unit": "count",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Ropes & Gray, House v. NCAA Settlement Approved (2025-06-20, https://www.ropesgray.com/en/insights/alerts/2025/06/house-v-ncaa-settlement-approved-era-of-direct-payments-to-college-athletes-begins)",
+     "locator": "Alert text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ropes-gray",
+     "primary": false,
+     "quote": "a school football team that opts in can only have 105 players on the roster; however, all of them may receive scholarships.",
+     "value": 105
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Ropes & Gray only; the 110 preseason limit was not found on any page read.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0002",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "No limit on scholarship athletes at schools that opt in (all 105 may receive aid); the 85-scholarship limit is gone.",
+   "value": 105,
+   "unit": "count",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Ropes & Gray, House v. NCAA Settlement Approved (2025-06-20, https://www.ropesgray.com/en/insights/alerts/2025/06/house-v-ncaa-settlement-approved-era-of-direct-payments-to-college-athletes-begins)",
+     "locator": "Alert text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ropes-gray",
+     "primary": false,
+     "quote": "there are no longer limits to the amount of scholarship athletes a school that opts in can have on a team.",
+     "value": 105
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). A conference may set a lower number (SEC 85 inside the 105 for 2025, bible T5.1.1).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0003",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Revenue-sharing cap per school in 2025-26: $20.5 million.",
+   "value": 20500000,
+   "unit": "USD",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Inside the Loud House, Syracuse will pay its athletes the maximum amount allowed (2026-04-26, https://insidetheloudhouse.com/syracuse-will-pay-its-athletes-the-maximum-amount-allowed-21-3-million-next-season)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "insidetheloudhouse",
+     "primary": false,
+     "quote": "In 2025-26, the cap was set at $20.5 million, and the Orange shared this maximum amount with its players.",
+     "value": 20500000
+    },
+    {
+     "citation": "Bleacher Report, College Athletes Earned $1.77B from Schools in 2025-26 (2026-10-01, https://bleacherreport.com/articles/25505747-college-athletes-earned-177b-schools-2025-26-additional-500m-nil-contracts)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "Schools were capped at $20.5 million in direct payments",
+     "value": 20500000
+    },
+    {
+     "citation": "NPR, With $2.7 billion settlement approved (2025-06-06, https://www.npr.org/2025/06/06/nx-s1-5426123/ncaa-settlement-deal-athlete-compensation-judge)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "a cap initially set at $20.5 million and that could rise as high as $33 million in 2035.",
+     "value": 20500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Ropes & Gray also prints \"$20 million as the cap for the first year\" once, and $20.5 million elsewhere on the same page.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0004",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Revenue-sharing cap per school in 2026-27: about $21.3 million.",
+   "value": 21300000,
+   "unit": "USD",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "Inside the Loud House, Syracuse will pay its athletes the maximum amount allowed (2026-04-26, https://insidetheloudhouse.com/syracuse-will-pay-its-athletes-the-maximum-amount-allowed-21-3-million-next-season)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "insidetheloudhouse",
+     "primary": false,
+     "quote": "In 2026-27, the cap is approximately $21.3 million",
+     "value": 21300000
+    },
+    {
+     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-dispatch",
+     "primary": false,
+     "quote": "the school will be allowed to share $21.3 million with athletes over 2026-27",
+     "value": 21300000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0005",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The cap rose 4 percent for 2026-27.",
+   "value": 4,
+   "unit": "percent",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "Columbus Dispatch via AOL, Which Ohio State sports will receive revenue-sharing money in 2026-27 (https://www.aol.com/articles/ohio-state-sports-receive-revenue-140213086.html)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "columbus-dispatch",
+     "primary": false,
+     "quote": "a 4% increase in the maximum allowable revenue for disbursement",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0006",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Third-party NIL deals of $600 or more must be reported (NIL Go).",
+   "value": 600,
+   "unit": "USD",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Ropes & Gray, House v. NCAA Settlement Approved (2025-06-20, https://www.ropesgray.com/en/insights/alerts/2025/06/house-v-ncaa-settlement-approved-era-of-direct-payments-to-college-athletes-begins)",
+     "locator": "Alert text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ropes-gray",
+     "primary": false,
+     "quote": "All NIL transactions with a total value of $600 or more must be reported by student-athletes and member institutions",
+     "value": 600
+    },
+    {
+     "citation": "Bleacher Report, College Athletes Earned $1.77B from Schools in 2025-26 (2026-10-01, https://bleacherreport.com/articles/25505747-college-athletes-earned-177b-schools-2025-26-additional-500m-nil-contracts)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "All deals with third parties worth more than $600 must be reported to the CSC through the online platform NIL Go.",
+     "value": 600
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The two sources differ on whether exactly $600 is reported (\"or more\" against \"more than\").",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0007",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "319 Division I schools opted into revenue sharing.",
+   "value": 319,
+   "unit": "count",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "Bleacher Report, College Athletes Earned $1.77B from Schools in 2025-26 (2026-10-01, https://bleacherreport.com/articles/25505747-college-athletes-earned-177b-schools-2025-26-additional-500m-nil-contracts)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacher-report",
+     "primary": false,
+     "quote": "Out of the 319 Division I schools that opted into revenue sharing",
+     "value": 319
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0008",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Clearinghouse deals cleared through October 31, 2026: 56,570 worth $775.11 million.",
+   "value": 775110000,
+   "unit": "USD",
+   "validFor": "through 2026-10-31",
+   "sources": [
+    {
+     "citation": "College Sports Commission, NIL Data Report Sept 1 to Oct 31 2026 (https://www.collegesportscommission.org/nil-data-report/nil-data-report-september-1-october-31-2026/)",
+     "locator": "Data report",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "college-sports-commission",
+     "primary": true,
+     "quote": "56,570 NIL deals have been cleared with an aggregate value of $775.11M",
+     "value": 775110000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0009",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Clearinghouse deals not cleared through October 31, 2026: 2,877 worth $177.14 million (resubmitted deals excluded).",
+   "value": 177140000,
+   "unit": "USD",
+   "validFor": "through 2026-10-31",
+   "sources": [
+    {
+     "citation": "College Sports Commission, NIL Data Report Sept 1 to Oct 31 2026 (https://www.collegesportscommission.org/nil-data-report/nil-data-report-september-1-october-31-2026/)",
+     "locator": "Data report",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "college-sports-commission",
+     "primary": true,
+     "quote": "2,877 NIL deals have been not cleared with an aggregate value of $177.14M",
+     "value": 177140000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0010",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Age-based eligibility: up to five years of eligibility for athletes entering by the year after their 19th birthday.",
+   "value": 5,
+   "unit": "years",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules (saved page copy)",
+     "locator": "Eligibility 101 (text copy ncaa--age-based-eligibility.txt, line 14)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "will have up to five years of eligibility",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary NCAA page, saved copy re-found by the lint-style test.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0011",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The age trigger is the academic year after the 19th birthday.",
+   "value": 19,
+   "unit": "age",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules (saved page copy)",
+     "locator": "Eligibility 101 (text copy ncaa--age-based-eligibility.txt, line 14)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "no later than the academic year after their 19th birthday",
+     "value": 19
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary NCAA page. The clock starts at the earlier of full-time enrolment and this trigger (bible T5.2.1 key eligibility.clock_start).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0012",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Divisions I and II move to age-based eligibility starting with the 2026-27 academic year.",
+   "value": "age_based_five_year",
+   "unit": "option",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Division I and II Age-Based Eligibility Rules (saved page copy)",
+     "locator": "Eligibility 101 (text copy ncaa--age-based-eligibility.txt, line 9)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "NCAA Divisions I and II eligibility rules are changing starting with the 2026-27 academic year.",
+     "value": "age_based_five_year"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary NCAA page. Old rules (four seasons, redshirt) apply to athletes under the transition.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  }
+ ]
+}
