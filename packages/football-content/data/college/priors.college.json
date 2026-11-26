@@ -1,0 +1,259 @@
+{
+ "schema": "g40.college-priors.v1",
+ "level": "college",
+ "bible": "T10.5.1",
+ "keys": {
+  "personnel_priors.college": {
+   "reader": "F1",
+   "value": {
+    "11": 0.55,
+    "10": 0.15,
+    "12": 0.15,
+    "20_21": 0.08,
+    "other": 0.07
+   },
+   "factIds": [
+    "F-college-design-0001"
+   ]
+  },
+  "tempo_priors.college": {
+   "reader": "F3",
+   "value": {
+    "no_huddle_snap_share": 0.35,
+    "system_low": 0.05,
+    "system_high": 0.8
+   },
+   "factIds": [
+    "F-college-design-0002"
+   ]
+  },
+  "qb_run_priors.college": {
+   "reader": "F4",
+   "value": {
+    "designed_qb_run_share": 0.08,
+    "system_low": 0.01,
+    "system_high": 0.35
+   },
+   "factIds": [
+    "F-college-design-0003"
+   ]
+  },
+  "rpo_share.college": {
+   "reader": "F7",
+   "value": {
+    "share": 0.12,
+    "system_low": 0.0,
+    "system_high": 0.3
+   },
+   "factIds": [
+    "F-college-design-0004"
+   ]
+  },
+  "strength_call.college": {
+   "reader": "F2, F11",
+   "value": "field_and_boundary",
+   "factIds": [
+    "F-college-design-0005"
+   ]
+  },
+  "pass_rate.college": {
+   "reader": "F6, K2",
+   "value": 0.498,
+   "factIds": [
+    "F-college-content-0001"
+   ]
+  },
+  "fourth_go.college": {
+   "reader": "I4, K2",
+   "value": {
+    "overall": 0.251,
+    "ytg_1_2": 0.65,
+    "ytg_3_5": 0.27,
+    "ytg_6_plus": 0.11
+   },
+   "factIds": [
+    "F-college-content-0002",
+    "F-college-content-0003",
+    "F-college-content-0004",
+    "F-college-content-0005"
+   ]
+  },
+  "install_size.college": {
+   "reader": "G5",
+   "value": 0.7,
+   "factIds": [
+    "F-college-design-0006"
+   ]
+  },
+  "signal_method.college": {
+   "reader": "I11, F3",
+   "value": "sideline_signals_and_boards",
+   "ruleKeyRefs": [
+    "comm.c2p_allowed"
+   ],
+   "factIds": [],
+   "note": "B13 owns the radio rule; this file only names the key. One helmet radio per side where the rule set allows it."
+  }
+ },
+ "system_priors": {
+  "college": {
+   "offense": {
+    "scope": "top subdivision",
+    "families": [
+     {
+      "id": "spread_rpo_tempo",
+      "label": "Spread with run-pass options and tempo",
+      "share": 0.45,
+      "marks": "Shotgun, 11 and 10 personnel, zone read and bubble or glance tags, no huddle with sideline signals"
+     },
+     {
+      "id": "pro_style_multiple",
+      "label": "Pro-style and multiple",
+      "share": 0.25,
+      "marks": "Under center and gun, 12 and 11 personnel, dropback and play action"
+     },
+     {
+      "id": "pass_first_spread",
+      "label": "Pass-first spread",
+      "share": 0.1,
+      "marks": "Four wide, quick game, mesh family; high pass rate, wide line splits"
+     },
+     {
+      "id": "power_spread_qb_run",
+      "label": "Power spread and quarterback run",
+      "share": 0.12,
+      "marks": "Gap schemes with the quarterback as a ball carrier"
+     },
+     {
+      "id": "triple_option_flexbone",
+      "label": "Triple option and flexbone",
+      "share": 0.03,
+      "marks": "Under center, fullback dive, quarterback keep, pitch; service academies and a few others"
+     },
+     {
+      "id": "other",
+      "label": "Other (wing, pistol-heavy, single-wing looks)",
+      "share": 0.05,
+      "marks": ""
+     }
+    ],
+    "factIds": [
+     "F-college-design-0007"
+    ]
+   },
+   "defense": {
+    "scope": "top subdivision",
+    "families": [
+     {
+      "id": "quarters_five_db",
+      "label": "Four-down, quarters-based, five defensive backs",
+      "share": 0.35,
+      "marks": "Pattern-match quarters, field and boundary safeties and corners"
+     },
+     {
+      "id": "odd_three_safety",
+      "label": "Odd front with three safeties (3-3-5 and 3-2-6 looks)",
+      "share": 0.25,
+      "marks": "Middle safety, light box, simulated pressure"
+     },
+     {
+      "id": "multiple_odd_one_high",
+      "label": "Multiple odd front, one-high match and fire zones",
+      "share": 0.25,
+      "marks": "Closest to pro structures"
+     },
+     {
+      "id": "pressure_man",
+      "label": "Pressure-heavy man",
+      "share": 0.1,
+      "marks": "Used by programs with better athletes than opponents"
+     },
+     {
+      "id": "option_specialist_rules",
+      "label": "Option-specialist rules (when facing option teams)",
+      "share": 0.05,
+      "marks": "Assignment football: dive, quarterback, pitch. Counted as a share of game plans, not of base structures"
+     }
+    ],
+    "factIds": [
+     "F-college-design-0008"
+    ]
+   }
+  }
+ },
+ "kicking": {
+  "fg_pct": 0.762,
+  "fg_attempts_per_team_game": 1.57,
+  "punts_per_team_game": 4.43,
+  "factIds": [
+   "F-college-content-0006",
+   "F-college-content-0007",
+   "F-college-content-0008"
+  ],
+  "derivedNotDataHere": [
+   "Kicker ability is drawn from a wider and lower distribution in college: player data (D3), not a prior in this file.",
+   "Hash offset from the center line is derived by J9 from field.hash_from_sideline_ft."
+  ]
+ },
+ "levelOverrides": {
+  "second_subdivision_and_below": {
+   "pass_rate.college": {
+    "value": 0.47,
+    "factIds": [
+     "F-college-design-0009"
+    ]
+   },
+   "system_priors": {
+    "offense": {
+     "families": [
+      {
+       "id": "spread_rpo_tempo",
+       "label": "Spread with run-pass options and tempo",
+       "share": 0.35,
+       "marks": "Shotgun, 11 and 10 personnel, zone read and bubble or glance tags, no huddle with sideline signals"
+      },
+      {
+       "id": "pro_style_multiple",
+       "label": "Pro-style and multiple",
+       "share": 0.25,
+       "marks": "Under center and gun, 12 and 11 personnel, dropback and play action"
+      },
+      {
+       "id": "pass_first_spread",
+       "label": "Pass-first spread",
+       "share": 0.1,
+       "marks": "Four wide, quick game, mesh family; high pass rate, wide line splits"
+      },
+      {
+       "id": "power_spread_qb_run",
+       "label": "Power spread and quarterback run",
+       "share": 0.18,
+       "marks": "Gap schemes with the quarterback as a ball carrier"
+      },
+      {
+       "id": "triple_option_flexbone",
+       "label": "Triple option and flexbone",
+       "share": 0.045,
+       "marks": "Under center, fullback dive, quarterback keep, pitch; service academies and a few others"
+      },
+      {
+       "id": "other",
+       "label": "Other (wing, pistol-heavy, single-wing looks)",
+       "share": 0.075,
+       "marks": ""
+      }
+     ],
+     "factIds": [
+      "F-college-design-0010"
+     ]
+    }
+   }
+  }
+ },
+ "openItems": [
+  "Measured family shares, tempo, personnel, quarterback-run and run-pass-option rates for college: no charting source found (T10.2.1 open question).",
+  "Shield punt and rugby punt prevalence: no source read (F12, T10.4.1). Not a prior until sourced.",
+  "College kickoff touchback rate: conflict 61% to 77% by season in the CFBD-lineage data (R24 caveat 1). Not used.",
+  "A third independent source (published NCAA team statistics) for the measured rows is not read."
+ ]
+}
