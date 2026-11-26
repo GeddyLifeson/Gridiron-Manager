@@ -1,0 +1,31 @@
+{
+  "$comment": "Glossary screen and term link strings (O6.6.1; A4, N5.2.1). Every user-facing string comes from here by id with named slots.",
+  "strings": {
+    "gl.title": "Glossary",
+    "gl.search": "Search terms",
+    "gl.domain": "Area",
+    "gl.domain.all": "All areas",
+    "gl.levelOnly": "Only terms used at this level ({level})",
+    "gl.flaggedOnly": "Only terms not yet triple verified",
+    "gl.count": "{shown} of {total} terms",
+    "gl.none": "No term matches.",
+    "gl.level.pro": "pro",
+    "gl.level.college": "college",
+    "gl.level.both": "pro and college",
+    "gl.card.aliases": "Also called: {list}",
+    "gl.card.variants": "System and regional names: {list}",
+    "gl.card.level": "Used at: {level}",
+    "gl.card.area": "Area: {domain}, {subdomain}",
+    "gl.card.leaf": "Defined in {leaf}",
+    "gl.card.status": "Sources: {status}",
+    "gl.card.flag": "Not yet triple verified.",
+    "gl.card.other": "At the other level it means: {definition}",
+    "gl.card.sources": "Sources ({row})",
+    "gl.card.source": "{citation}, read {date} ({how})",
+    "gl.card.primary": "primary text",
+    "gl.card.lesson": "Teach me this",
+    "gl.card.open": "Open glossary",
+    "gl.card.close": "Close",
+    "gl.select": "Pick a term to see its card."
+  }
+}

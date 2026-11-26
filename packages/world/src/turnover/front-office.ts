@@ -69,13 +69,19 @@ interface TeamState {
   readonly profile: gm.GmProfile;
   readonly ctx: gm.ValueContext;
   needs: { size: number; needs: gm.Need[] } | null;
+  /** The free agent value context (replacement = the free alternative), made once per cycle. */
+  fa: gm.ValueContext | null;
 }
 
 interface CycleState {
   readonly teams: Map<number, TeamState>;
-  readonly draws: Map<string, number>;
+  readonly draws: Map<string, Map<number, Map<number, number>>>;
   readonly baseline: Map<Level, Record<string, number>>;
+  readonly views: Map<number, Map<number, View>>;
 }
+
+const PROSPECTS = new WeakMap<View, gm.Prospect>();
+const FREE_AGENTS = new WeakMap<View, gm.FreeAgent>();
 
 /** The front office AI bound as the `RosterPolicy` for pro clubs (TO-06). College clubs keep the default board. */
 export function gmPolicy(): RosterPolicy {
@@ -84,14 +90,34 @@ export function gmPolicy(): RosterPolicy {
 
   const cycleOf = (pc: PolicyContext): CycleState => {
     let c = cycles.get(pc);
-    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map() }; cycles.set(pc, c); }
+    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map(), views: new Map() }; cycles.set(pc, c); }
     return c;
   };
 
+  // One view per team and player per cycle: its inputs (the cached look, the position, the age) do not move
+  // inside a cycle, and the same object lets the value context remember his wins by season.
   const view = (pc: PolicyContext, teamId: number, id: number): View => {
+    const cyc = cycleOf(pc);
+    let byPerson = cyc.views.get(teamId);
+    if (!byPerson) { byPerson = new Map(); cyc.views.set(teamId, byPerson); }
+    const hit = byPerson.get(id);
+    if (hit) return hit;
     const p = pc.world.people.get(id)!;
     const g = pc.grades.belief(teamId, id);
-    return { personId: id, position: p.playing!.position, age: ageIn(p, pc.season), grade: { mean: g.mean, variance: g.variance }, projected: null, fit: 1, flags: 0, costCentsByYear: [] };
+    const v: View = { personId: id, position: p.playing!.position, age: ageIn(p, pc.season), grade: { mean: g.mean, variance: g.variance }, projected: null, fit: 1, flags: 0, costCentsByYear: [] };
+    byPerson.set(id, v);
+    return v;
+  };
+  const prospectOf = (v: View): gm.Prospect => {
+    let x = PROSPECTS.get(v);
+    if (!x) { x = { ...v, coachRank: null, consensusRank: 0 }; PROSPECTS.set(v, x); }
+    return x;
+  };
+  // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
+  const freeAgentOf = (v: View): gm.FreeAgent => {
+    let x = FREE_AGENTS.get(v);
+    if (!x) { x = { ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }; FREE_AGENTS.set(v, x); }
+    return x;
   };
 
   // K7.1.1: the club's general manager person (founding fills the seat); -teamId only for a club with the seat vacant.
@@ -111,10 +137,11 @@ export function gmPolicy(): RosterPolicy {
     const own = new Map<string, number[]>();
     for (const id of pc.world.rosters.get(teamId) ?? []) {
       const pos = pc.world.people.get(id)?.playing?.position;
-      if (pos) own.set(pos, [...(own.get(pos) ?? []), pc.grades.grade(teamId, id)]);
+      if (pos) { const l = own.get(pos); if (l) l.push(pc.grades.grade(teamId, id)); else own.set(pos, [pc.grades.grade(teamId, id)]); }
     }
     const all = [...own.values()].flat();
     const replacement = new Map<string, number>();
+    const weights = new Map<string, readonly number[]>();
     const table: gm.ContributionTable = {
       winsPerIss: () => param('gm.winsPerIss'),
       replacementIss: (position) => {
@@ -123,20 +150,29 @@ export function gmPolicy(): RosterPolicy {
         return r;
       },
       slotWeights: (position) => {
-        const t = targets[position] ?? 0;
-        const starters = Math.max(1, Math.round(t * param('role.starterShareOfMix')));
-        return Array.from({ length: Math.max(starters, t) }, (_, i) => (i < starters ? 1 : param('gm.depthSlotWeight')));
+        let w = weights.get(position);
+        if (w === undefined) {
+          const t = targets[position] ?? 0;
+          const starters = Math.max(1, Math.round(t * param('role.starterShareOfMix')));
+          w = Object.freeze(Array.from({ length: Math.max(starters, t) }, (_, i) => (i < starters ? 1 : param('gm.depthSlotWeight'))));
+          weights.set(position, w);
+        }
+        return w;
       },
     };
     const draw: gm.PersistentDraw = (kind, gmPerson, key) => {
-      const k = `${kind}:${gmPerson}:${key}`;
-      let v = cyc.draws.get(k);
-      if (v === undefined) { v = stream(pc.world.seed, STREAM_DRAW, [kind, gmPerson, key]).normal(); cyc.draws.set(k, v); }
+      let byGm = cyc.draws.get(kind);
+      if (!byGm) { byGm = new Map(); cyc.draws.set(kind, byGm); }
+      let byKey = byGm.get(gmPerson);
+      if (!byKey) { byKey = new Map(); byGm.set(gmPerson, byKey); }
+      let v = byKey.get(key);
+      if (v === undefined) { v = stream(pc.world.seed, STREAM_DRAW, [kind, gmPerson, key]).normal(); byKey.set(key, v); }
       return v;
     };
     // Costs are empty until contracts are in the world, so the going rate never enters a decision (TO-07).
-    const ctx: gm.ValueContext = { table, curve, centsPerWin: 1, draw, pressure: 0 };
-    const t: TeamState = { profile, ctx, needs: null };
+    // The table, curve and draw above are fixed for the cycle, so the context may remember values (memo).
+    const ctx: gm.ValueContext = { table, curve, centsPerWin: 1, draw, pressure: 0, memo: true };
+    const t: TeamState = { profile, ctx, needs: null, fa: null };
     cyc.teams.set(teamId, t);
     return t;
   };
@@ -153,7 +189,7 @@ export function gmPolicy(): RosterPolicy {
       const byPos = new Map<string, number[]>();
       for (const id of ids) {
         const pos = pc.world.people.get(id)?.playing?.position;
-        if (pos) byPos.set(pos, [...(byPos.get(pos) ?? []), pc.grades.publicGrade(id)]);
+        if (pos) { const l = byPos.get(pos); if (l) l.push(pc.grades.publicGrade(id)); else byPos.set(pos, [pc.grades.publicGrade(id)]); }
       }
       for (const [pos, gs] of byPos) {
         const k = Math.max(1, Math.round((targets[pos] ?? 0) * param('role.starterShareOfMix')));
@@ -211,7 +247,7 @@ export function gmPolicy(): RosterPolicy {
     const grades = new Map<string, number[]>();
     for (const id of pc.world.pools.get(POOL.proEntry) ?? []) {
       const pos = pc.world.people.get(id)?.playing?.position;
-      if (pos) grades.set(pos, [...(grades.get(pos) ?? []), pc.grades.grade(teamId, id)]);
+      if (pos) { const l = grades.get(pos); if (l) l.push(pc.grades.grade(teamId, id)); else grades.set(pos, [pc.grades.grade(teamId, id)]); }
     }
     const out = new Map<string, number>();
     for (const [pos, gs] of grades) {
@@ -227,10 +263,12 @@ export function gmPolicy(): RosterPolicy {
   const faBoard = (pc: PolicyContext, teamId: number, pool: readonly View[], needs: readonly gm.Need[], t: TeamState) => {
     // K7.2.2 replacement before the draft is the player he can have for nothing after it: the prospect at
     // each position just past the league's expected picks there, as his own staff grades the entry pool.
-    const free = freeAlternative(pc, teamId);
-    const ctx: gm.ValueContext = { ...t.ctx, table: { ...t.ctx.table, replacementIss: (pos) => free.get(pos) ?? t.ctx.table.replacementIss(pos) } };
-    // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
-    const fas = pool.map((v) => ({ ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }));
+    if (!t.fa) {
+      const free = freeAlternative(pc, teamId);
+      t.fa = { ...t.ctx, table: { ...t.ctx.table, replacementIss: (pos) => free.get(pos) ?? t.ctx.table.replacementIss(pos) } };
+    }
+    const ctx = t.fa;
+    const fas = pool.map(freeAgentOf);
     return { ctx, byId: new Map(fas.map((v) => [v.personId, v])), ranked: gm.targets(t.profile, fas, needs, ctx) };
   };
 
@@ -256,10 +294,10 @@ export function gmPolicy(): RosterPolicy {
       const pool = candidates.map((id) => view(pc, teamId, id));
       const level = levelOfTeam(pc.world, teamId);
       if (phase.kind === 'draft') {
-        const prospects = pool.map((v) => ({ ...v, coachRank: null, consensusRank: 0 }));
+        const prospects = pool.map(prospectOf);
         return gm.buildBoard(t.profile, prospects, needs, t.ctx, phase.round ?? 1, phase.rounds ?? 1, rookieYears(pc, level, phase.round ?? 1))[0]?.personId ?? null;
       }
-      if (phase.kind === 'undrafted') return gm.undraftedBoard(t.profile, pool, needs, t.ctx)[0] ?? null;
+      if (phase.kind === 'undrafted') return gm.undraftedTop(t.profile, pool, needs, t.ctx);
       // K7.4.2: he targets only players worth more than replacement; with none left he signs nobody.
       return faBoard(pc, teamId, pool, needs, t).ranked[0]?.personId ?? 'pass';
     },
@@ -304,9 +342,18 @@ export function gmPolicy(): RosterPolicy {
       // Replacement level for a class is the low end of the class itself, as this staff grades it: against the
       // club's own roster almost no freshman would rate above replacement.
       const byPos = new Map<string, number[]>();
-      for (const v of pool) byPos.set(v.position, [...(byPos.get(v.position) ?? []), v.grade.mean]);
+      for (const v of pool) { const l = byPos.get(v.position); if (l) l.push(v.grade.mean); else byPos.set(v.position, [v.grade.mean]); }
       const allGrades = pool.map((v) => v.grade.mean);
-      const table: gm.ContributionTable = { ...t.ctx.table, replacementIss: (pos) => quantile(byPos.get(pos) ?? allGrades, param('gm.replacementQuantile')) };
+      // The quantile is a pure function of the class, so each position's is computed once per board.
+      const replacement = new Map<string, number>();
+      const table: gm.ContributionTable = {
+        ...t.ctx.table,
+        replacementIss: (pos) => {
+          let r = replacement.get(pos);
+          if (r === undefined) { r = quantile(byPos.get(pos) ?? allGrades, param('gm.replacementQuantile')); replacement.set(pos, r); }
+          return r;
+        },
+      };
       const board = gm.recruitBoard(b, pool, gm.placeNeeds(b, places), new Set(), { ...t.ctx, table });
       return board.slice(0, gm.offersWanted(openPlaces, param('college.offersPerSignee'), gm.P('college.evenBattleShare'))).map((r) => r.personId);
     },

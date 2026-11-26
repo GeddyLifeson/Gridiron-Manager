@@ -294,7 +294,7 @@ function views(world: LiveWorld): Views {
     if (s.seasonYear <= last - param('coach.tieSeasons')) continue;
     const ids = [s.headCoachId, ...s.staffIds].filter((x): x is number => x !== null);
     members.set(`${s.seasonYear}:${s.teamId}`, ids);
-    for (const id of ids) served.set(id, [...(served.get(id) ?? []), { season: s.seasonYear, team: s.teamId }]);
+    for (const id of ids) { const l = served.get(id); if (l) l.push({ season: s.seasonYear, team: s.teamId }); else served.set(id, [{ season: s.seasonYear, team: s.teamId }]); }
   }
   const champs = new Set<number>(world.seasons.length === 0 ? [] : Object.values(world.seasons[world.seasons.length - 1]!.champions));
   const tieCache = new Map<number, Map<number, number>>();
@@ -405,7 +405,7 @@ function inSeason(c: Cycle): void {
   const rows = c.world.results.slice(c.st.seen);
   c.st.seen = c.world.results.length;
   const byTeam = new Map<number, GameResult[]>();
-  for (const g of rows) for (const t of [g.homeTeamId, g.awayTeamId]) byTeam.set(t, [...(byTeam.get(t) ?? []), g]);
+  for (const g of rows) for (const t of [g.homeTeamId, g.awayTeamId]) { const l = byTeam.get(t); if (l) l.push(g); else byTeam.set(t, [g]); }
   const heads = [...c.st.heads.keys()].sort((a, b) => a - b);
   for (const teamId of heads) {
     const h = c.st.heads.get(teamId)!;

@@ -303,7 +303,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const d = play.designed ?? null;
     // J8.1.1 inputs: which vision grade applies to this carry.
     if (how === 'catch' || how === 'interception') zVision = zEff(w, c, 'run_after_catch');
-    else if (how === 'kick') zVision = zEff(w, c, 'return_vision');
+    else if (how === 'kick') zVision = zEff(w, c, 'return_vision') * q['ret.visionZScale'];
     else if (d !== null && d.slot === c) zVision = zEff(w, c, d.kind === 'zone' ? 'vision_zone' : 'vision_gap');
     else { const a = zEff(w, c, 'vision_zone'), b = zEff(w, c, 'vision_gap'); zVision = a > b ? a : b; }
     zDecisive = zOf(style?.decisiveness); zCreative = zOf(style?.creativity);
@@ -340,7 +340,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
       const e = view.entity(s);
       if (e === null) continue;
       const eng = w.players.engagement[s]!;
-      if (eng >= 0 && eng < w.contests.length && w.contests[eng]!.advantage > -0.5) continue;
+      if (eng >= 0 && eng < w.contests.length && w.contests[eng]!.advantage > -0.5 && tiedUp(w, s)) continue;
       const dx = e.px - cx, dy = e.py - cy, d = hyp(dx, dy);
       if (d > 0.5 && (dCos(heading) * dx + dSin(heading) * dy) / d < cone) continue;
       // J8.1.1 rule 5: in the first moments the line screens defenders at the line who are off his line of sight.
@@ -706,11 +706,23 @@ export function createCarrier(options: CarrierOptions): Carrier {
     return d > 0 ? (1 + (vx * dx + vy * dy) / (sp * d)) / 2 : 1;
   }
 
+  /**
+   * A defender in a block cannot get to the carrier, with one exception (J6.3.1 gap control): a run defender who
+   * is holding his ground in the block (advantage under the gap-control line) still has his gap, and comes off
+   * onto a carrier who runs into it.
+   */
+  function tiedUp(w: TickWorld, s: number): boolean {
+    const e = w.players.engagement[s]!;
+    if (e < 0) return false;
+    const k = e < w.contests.length ? w.contests[e]! : null;
+    return !(k !== null && k.type === 'runBlock' && k.defenseSlot === s && contests.runBlock.controlsGap(true, k.advantage));
+  }
+
   function contactsOf(w: TickWorld, c: number, out: Int16Array): number {
     const q = P(), side = w.slots[c]!.side;
     let n = 0;
     for (let s = 0; s < SLOT_COUNT; s++) {
-      if (w.slots[s]!.side === side || isDown(w, s) || w.players.engagement[s]! >= 0 || w.tick < rearm[s]!) continue;
+      if (w.slots[s]!.side === side || isDown(w, s) || tiedUp(w, s) || w.tick < rearm[s]!) continue;
       const gap = hyp(w.players.posX[s]! - w.players.posX[c]!, w.players.posY[s]! - w.players.posY[c]!) - w.slots[s]!.movement.bodyRadiusYd - w.slots[c]!.movement.bodyRadiusYd;
       if (gap > q['tackle.contactGapYd']) continue;
       let i = n;

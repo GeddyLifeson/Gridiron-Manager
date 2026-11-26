@@ -1,0 +1,278 @@
+{
+ "$comment": "Test fixture, not game data: the cap and rookie keys copied from rules-data proleague_2026.json (G-10) with their fact ids.",
+ "id": "fixture_pro_cap",
+ "values": {
+  "cap.min_cash_spend_pct": [
+   90,
+   "F-cap-0001"
+  ],
+  "cap.top_n_contracts": [
+   51,
+   "F-cap-0002"
+  ],
+  "cap.proration_max_years": [
+   5,
+   "F-cap-0003"
+  ],
+  "cap.june1_designations": [
+   2,
+   "F-cap-0004"
+  ],
+  "cap.conform_days": [
+   7,
+   "F-cap-0005"
+  ],
+  "rookie.length_round_1": [
+   4,
+   "F-cap-0006"
+  ],
+  "rookie.length_later_rounds": [
+   4,
+   "F-cap-0007"
+  ],
+  "rookie.length_undrafted": [
+   3,
+   "F-cap-0008"
+  ],
+  "rookie.max_annual_increase_pct": [
+   25,
+   "F-cap-0009"
+  ],
+  "rookie.undrafted_pool_2021_usd": [
+   160000,
+   "F-cap-0010"
+  ],
+  "rookie.option_deadline_before_may_day": [
+   3,
+   "F-cap-0011"
+  ],
+  "cap.min_salary_y2026_cs0": [
+   885000,
+   "F-cap-0012"
+  ],
+  "cap.min_salary_y2027_cs0": [
+   930000,
+   "F-cap-0013"
+  ],
+  "cap.min_salary_y2028_cs0": [
+   975000,
+   "F-cap-0014"
+  ],
+  "cap.min_salary_y2029_cs0": [
+   1020000,
+   "F-cap-0015"
+  ],
+  "cap.min_salary_y2030_cs0": [
+   1065000,
+   "F-cap-0016"
+  ],
+  "cap.min_salary_y2026_cs1": [
+   1005000,
+   "F-cap-0017"
+  ],
+  "cap.min_salary_y2027_cs1": [
+   1050000,
+   "F-cap-0018"
+  ],
+  "cap.min_salary_y2028_cs1": [
+   1095000,
+   "F-cap-0019"
+  ],
+  "cap.min_salary_y2029_cs1": [
+   1140000,
+   "F-cap-0020"
+  ],
+  "cap.min_salary_y2030_cs1": [
+   1185000,
+   "F-cap-0021"
+  ],
+  "cap.min_salary_y2026_cs2": [
+   1075000,
+   "F-cap-0022"
+  ],
+  "cap.min_salary_y2027_cs2": [
+   1120000,
+   "F-cap-0023"
+  ],
+  "cap.min_salary_y2028_cs2": [
+   1165000,
+   "F-cap-0024"
+  ],
+  "cap.min_salary_y2029_cs2": [
+   1210000,
+   "F-cap-0025"
+  ],
+  "cap.min_salary_y2030_cs2": [
+   1255000,
+   "F-cap-0026"
+  ],
+  "cap.min_salary_y2026_cs3": [
+   1145000,
+   "F-cap-0027"
+  ],
+  "cap.min_salary_y2027_cs3": [
+   1190000,
+   "F-cap-0028"
+  ],
+  "cap.min_salary_y2028_cs3": [
+   1235000,
+   "F-cap-0029"
+  ],
+  "cap.min_salary_y2029_cs3": [
+   1280000,
+   "F-cap-0030"
+  ],
+  "cap.min_salary_y2030_cs3": [
+   1325000,
+   "F-cap-0031"
+  ],
+  "cap.min_salary_y2026_cs4_6": [
+   1215000,
+   "F-cap-0032"
+  ],
+  "cap.min_salary_y2027_cs4_6": [
+   1260000,
+   "F-cap-0033"
+  ],
+  "cap.min_salary_y2028_cs4_6": [
+   1305000,
+   "F-cap-0034"
+  ],
+  "cap.min_salary_y2029_cs4_6": [
+   1350000,
+   "F-cap-0035"
+  ],
+  "cap.min_salary_y2030_cs4_6": [
+   1395000,
+   "F-cap-0036"
+  ],
+  "cap.min_salary_y2026_cs7_plus": [
+   1300000,
+   "F-cap-0037"
+  ],
+  "cap.min_salary_y2027_cs7_plus": [
+   1345000,
+   "F-cap-0038"
+  ],
+  "cap.min_salary_y2028_cs7_plus": [
+   1390000,
+   "F-cap-0039"
+  ],
+  "cap.min_salary_y2029_cs7_plus": [
+   1435000,
+   "F-cap-0040"
+  ],
+  "cap.min_salary_y2030_cs7_plus": [
+   1480000,
+   "F-cap-0041"
+  ],
+  "cap.amount_2026": [
+   301200000,
+   "F-cap-0042"
+  ],
+  "cap.amount_2021": [
+   182500000,
+   "F-cap-0043"
+  ],
+  "cap.amount_2022": [
+   208200000,
+   "F-cap-0044"
+  ],
+  "cap.amount_2023": [
+   224800000,
+   "F-cap-0045"
+  ],
+  "cap.amount_2024": [
+   255400000,
+   "F-cap-0046"
+  ],
+  "cap.veteran_benefit_2026": [
+   187500,
+   "F-cap-0047"
+  ],
+  "cap.four_year_qualifying_2026": [
+   1550000,
+   "F-cap-0048"
+  ],
+  "rookie.undrafted_pool_2024_usd": [
+   183103,
+   "F-cap-0049"
+  ],
+  "rookie.option_tiers": [
+   4,
+   "F-cap-0050"
+  ],
+  "cap.top51_excess_multiple": [
+   2,
+   "F-cap-0051"
+  ],
+  "cap.veteran_benefit_min_seasons": [
+   4,
+   "F-cap-0052"
+  ],
+  "cap.veteran_benefit_count_seasons": [
+   2,
+   "F-cap-0053"
+  ],
+  "rookie.option_basic_rank_from": [
+   3,
+   "F-cap-0054"
+  ],
+  "rookie.option_basic_rank_to": [
+   25,
+   "F-cap-0055"
+  ],
+  "rookie.option_playtime_rank_to": [
+   20,
+   "F-cap-0056"
+  ],
+  "rookie.option_playtime_two_of_three_pct": [
+   75,
+   "F-cap-0057"
+  ],
+  "rookie.option_playtime_average_pct": [
+   75,
+   "F-cap-0058"
+  ],
+  "rookie.option_playtime_each_pct": [
+   50,
+   "F-cap-0059"
+  ],
+  "rookie.option_franchise_pro_bowls": [
+   2,
+   "F-cap-0060"
+  ],
+  "rookie.escalator_l1_pct_round_2": [
+   60,
+   "F-cap-0061"
+  ],
+  "rookie.escalator_l1_pct_later_rounds": [
+   35,
+   "F-cap-0062"
+  ],
+  "rookie.escalator_l2_pct_each": [
+   55,
+   "F-cap-0063"
+  ],
+  "rookie.escalator_l2_extra_usd": [
+   250000,
+   "F-cap-0064"
+  ],
+  "rookie.first_pick_signing_bonus_2026": [
+   38100000,
+   "F-cap-0065"
+  ],
+  "rookie.undrafted_pool_2023_usd": [
+   172337,
+   "F-cap-0066"
+  ],
+  "rookie.undrafted_pool_2025_usd": [
+   206144,
+   "F-cap-0067"
+  ],
+  "rookie.undrafted_pool_2026_usd": [
+   229224,
+   "F-cap-0068"
+  ]
+ }
+}

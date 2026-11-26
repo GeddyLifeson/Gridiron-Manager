@@ -83,7 +83,7 @@ export const samples: Record<string, unknown> = {
   },
   'world:RosterSlot': { teamId: 3, personId: 101, list: 'active', jersey: 12, gameDayStatus: 'active', since: d() },
   'world:DepthChartRecord': { teamId: 3, unitId: 'core:11_personnel', roles: { QB: [101] }, rotation: [{ role: 'QB', personIds: [101], ruleKey: 'starter', share: null }], updated: d() },
-  'world:KnowledgeRow': { personId: 101, elementId: 'core:mesh', value: 40, lastPractised: d() },
+  'world:KnowledgeRow': { personId: 101, elementId: 'core:mesh', value: 40, peak: 55, lastPractised: d() },
   'world:InjuryRecord': {
     id: 30, personId: 101, typeId: 'core:ankle_sprain', bodyRegion: 'ankle', occurred: d(), play: { gameId: 7, playIndex: 14 },
     mechanism: 'tackle', severity: 'moderate', trueDaysToMilestone: { return_to_play: 18 }, estimatedDays: [14, 28],
@@ -189,4 +189,5 @@ export const samples: Record<string, unknown> = {
   },
   'world:KeyBinding': { actionId: 'advance_day', context: 'office', defaultKey: 'Space', userKey: null },
   'world:TemplateText': { key: 'news.game_result', text: '{home} to {away}', levelVariants: {}, rungVariants: {}, parameters: ['home', 'away'] },
+  'world:SystemStateEntry': { system: 'compliance', state: '{"cases":{"$map":[[7,{"stage":"open","parties":{"$set":[3,9]}}]]},"nextId":8}' },
 };

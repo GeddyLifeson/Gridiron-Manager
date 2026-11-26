@@ -381,6 +381,32 @@ describe('J2.5.3 traffic and spacing', () => {
   });
 });
 
+describe('a man past his blocker, and a man standing still', () => {
+  // A wall of five standing men, shoulder to shoulder, with no gap to steer through.
+  const wallRun = (wall: number[], slipping: boolean, man = 16): number => {
+    const w = fixtureWorld(), move = createMovement({ slipping: (_w, slot) => slipping && slot === man });
+    wall.forEach((s, i) => { place(w, s, 0, (i - 2) * 0.8); sprintTo(w, s, 0, (i - 2) * 0.8, 'arrive'); });
+    place(w, man, 1.5, 0); sprintTo(w, man, -8, 0);
+    createTickLoop([move.stage]).run(w, { stopAt: (x) => x.tick >= 15 });
+    return playX(w, man);
+  };
+  it('lets a player who has just shed a block go by opponents\' bodies, and holds him when he has not', () => {
+    expect(wallRun([0, 1, 2, 3, 4], false)).toBeGreaterThan(0);
+    expect(wallRun([0, 1, 2, 3, 4], true)).toBeLessThan(-2);
+  });
+  it('does not let a slipping player through his own team', () => {
+    expect(wallRun([11, 12, 13, 14, 15], true)).toBeGreaterThan(0);
+  });
+  it('turns a man standing in a running mode to his face target: there is no velocity for his hips to follow', () => {
+    const w = fixtureWorld(), move = createMovement();
+    place(w, 11, 7, 0); w.players.headingRad[11] = w.frame.attackDir === 1 ? 0 : Math.PI; // back to the offense
+    const i = w.intents[11]!; i.target = { px: 7, py: 0 }; i.moveMode = 'run'; i.arrival = 'arrive'; i.effort = 1; i.faceTarget = { px: -3, py: 0 };
+    createTickLoop([move.stage]).run(w, { stopAt: (x) => x.tick >= 15 });
+    const h = w.players.headingRad[11]! * w.frame.attackDir;
+    expect(Math.abs(Math.abs(h) - Math.PI)).toBeLessThan(0.05);
+  });
+});
+
 describe('J2.6.1 momentum at contact', () => {
   const out: ContactNumbers = { closingSpeedYps: 0, momentumRatio: 0, hitEnergy: 0, blindside: false };
   it('computes closing speed, momentum ratio, hit energy and the blindside flag', () => {

@@ -484,14 +484,14 @@
   },
   {
    "name": "officiating.crew.errorScaleYd.kick_good",
-   "value": 0.3,
+   "value": 0.02,
    "min": 0.01,
    "max": 2,
    "unit": "yd",
    "belongsTo": "officiating.crew",
    "basis": "assumption",
    "leaf": "B11.3.2",
-   "constrainedBy": "B9.2.1 open question (league reversal rates by type)",
+   "constrainedBy": "kick.extraPointPct and kick.fieldGoalPct rows (J15.6.1): at 0.3 the crew ruled 2.7% of good tries no good; B9.2.1 open question (league reversal rates by type)",
    "status": "starting"
   },
   {
