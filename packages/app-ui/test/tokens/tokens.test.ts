@@ -58,12 +58,11 @@ describe('no literal colour in component code (O6.2.1 lint)', () => {
   const walk = (d: string) => { for (const f of readdirSync(d)) { const p = join(d, f); if (statSync(p).isDirectory()) walk(p); else if (/\.(ts|tsx)$/.test(f)) files.push(p); } };
   walk(root);
   /**
-   * Files allowed to hold literal colours. `tokens/` is the token source. The field view (G-03,
-   * merged before this lint) still draws with its own colour constants on a canvas; it is listed by
-   * name until it reads `resolveColours()` from the token file, and each listed file must still exist
-   * so the list cannot go stale silently.
+   * Files allowed to hold literal colours. `tokens/` is the token source. Files waiting to move onto
+   * the tokens are listed by name, and each listed file must still exist so the list cannot go stale
+   * silently. The field view moved onto the tokens in G-03's follow-up; the list is empty.
    */
-  const PENDING_TOKEN_MIGRATION = ['field-view/colours.ts', 'field-view/renderer.ts'];
+  const PENDING_TOKEN_MIGRATION: string[] = [];
   const allowed = (p: string) => { const r = relative(root, p).split('\\').join('/'); return r.startsWith('tokens/') || PENDING_TOKEN_MIGRATION.includes(r); };
   it('every file on the pending-migration list exists', () => {
     for (const f of PENDING_TOKEN_MIGRATION) expect(files.map((x) => relative(root, x).split('\\').join('/'))).toContain(f);
