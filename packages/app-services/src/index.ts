@@ -21,3 +21,5 @@ export * as filmCommands from './commands/film/index.ts';
 export * as teaching from './teaching/index.ts';
 export * as gameManagement from './read-models/game-management/index.ts';
 export * as gameManagementCommands from './commands/game-management/index.ts';
+export * as gameCalling from './read-models/game-calling/index.ts';
+export * as gameCallingCommands from './commands/game-calling/index.ts';

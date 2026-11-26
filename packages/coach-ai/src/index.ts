@@ -3,3 +3,5 @@
 export * as profile from './profile/index.ts';
 export * as calling from './calling/index.ts';
 export * as management from './management/index.ts';
+export * as preparation from './preparation/index.ts';
+export * as staff from './staff/index.ts';

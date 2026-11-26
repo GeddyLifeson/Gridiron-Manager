@@ -18,6 +18,7 @@
     "facts": "tsx packages/tools/src/cli.ts facts",
     "headless": "tsx packages/headless/src/cli.ts",
     "gate": "tsx packages/headless/src/cli.ts gate",
+    "release-gate": "tsx scripts/release/gate.ts",
     "gate:browser": "tsx scripts/browser-gate.ts",
     "dev": "npm run dev -w @gm/shell-browser",
     "build:browser": "npm run build -w @gm/shell-browser",
