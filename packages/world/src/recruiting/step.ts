@@ -59,6 +59,8 @@ export function runRecruiting(ctx: StepContext, b: RecruitingBinding): StepDiges
   if (days.length === 0) return { recruiting_weeks: 0 };
   const pass = passBinding(ctx, b, levels);
   const programs = pass.programs();
+  const user = b.user?.(world);
+  const aiPrograms = user ? programs.filter((p) => !user.teamIds.includes(p.teamId)) : programs;
   const policy = b.policy?.(world);
   const grace = param('cycle.openGraceWeeks') * 7;
   let commits = 0, signings = 0, opened = 0, closed = 0;
@@ -80,7 +82,11 @@ export function runRecruiting(ctx: StepContext, b: RecruitingBinding): StepDiges
     for (const classYear of r.classes) {
       if (day > cal.februarySigning(classYear)) continue;
       pass.setClass(classYear);
-      const s = recruiting.recruitingWeek(r.state, pass.ctx, pass.hook, { classYear, day, aiPrograms: programs, people: pass.people, policy });
+      if (user) user.act({ state: r.state, ctx: pass.ctx, hook: pass.hook, classYear, day, programs });
+      const s = recruiting.recruitingWeek(r.state, pass.ctx, pass.hook, {
+        classYear, day, aiPrograms, people: pass.people, policy,
+        ...(user ? { userTeamIds: user.teamIds, ...(user.decide ? { userDecide: user.decide } : {}) } : {}),
+      });
       commits += s.commits; signings += s.signings;
     }
     r.throughDay = day;

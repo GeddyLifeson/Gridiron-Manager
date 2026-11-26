@@ -206,6 +206,11 @@ export class Ctx {
       this.push({ type: 'fumble', t: roundSimS(t), marginYd: null, marginS: null, visibility: 'open', kind: 'fumble', playerId: o.carrierId, side: this.side(o.team), forcedById: forcedBy, spot: this.spot(o.toPx, py) });
       const tr = t + c.time.carryBase;
       this.push({ type: 'possession', t: roundSimS(tr), side: this.side(other), playerId: recoverer, spot: this.spot(o.toPx, py), how: 'fumble_recovery' });
+      // A share of fumbles lost by the snapping team are returned for a touchdown.
+      if (o.team === 'snapping' && this.rng.chance(c.fumbleReturnTd)) {
+        this.carry({ team: 'opposing', carrierId: recoverer, fromPx: o.toPx, toPx: this.goalBehind - 1, py, t0: tr, oobShare: 0, fumbleShare: 0, ownEndZoneImpetus: this.side('snapping') });
+        return;
+      }
       this.dead(tr, 'down_by_contact', o.toPx, py, other, recoverer);
       return;
     }

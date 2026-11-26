@@ -61,7 +61,9 @@ describe('synchronous worker pool', () => {
 
 describe('a week of real games on the pool (J13.3.2)', () => {
   const ref = realWeekRef({ eventsHash: true });
-  const week: WeekGameJob[] = [...measureJobs('pro_2026', 8), ...measureJobs('college_2026', 6).map((j) => ({ ...j, gameId: j.gameId + 100 }))];
+  // Tick-engine games cost about 3.5 s each, so the week is smaller than a real one; it still mixes levels and
+  // gives every worker games out of order.
+  const week: WeekGameJob[] = [...measureJobs('pro_2026', 4), ...measureJobs('college_2026', 3).map((j) => ({ ...j, gameId: j.gameId + 100 }))];
 
   it('is byte-identical to the week played one game after another, for 1, 2 and 3 workers, twice over', async () => {
     const runner = await loadJobRunner<WeekGameJob, WeekGameOutcome>(ref);
@@ -76,7 +78,7 @@ describe('a week of real games on the pool (J13.3.2)', () => {
       const reversed = p.run([...week].reverse());
       expect(hex([...reversed].reverse())).toBe(want);
     }
-  });
+  }, 600_000);
   it('maps world game requests to jobs and back, one answer per request', async () => {
     const runner = await loadJobRunner<WeekGameJob, WeekGameOutcome>(realWeekRef());
     const reqs = week.slice(0, 2).map((j) => ({ game: { gameId: j.gameId }, seedHex: j.seedHex, ruleSetId: j.ruleSetId, tier: 3 }));

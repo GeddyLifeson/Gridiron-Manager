@@ -70,7 +70,7 @@ describe('the fixed order (X12.1.1)', () => {
 });
 
 describe('leaving football (X12.1.3)', () => {
-  it('the age table rises, stays low before 75, and is never 0 or 1 above the starting age', () => {
+  it('the age table rises in every year, and is never 0 or 1 above the starting age', () => {
     expect(loop.deathTableProblems()).toEqual([]);
     expect(loop.yearlyDeathChance(loop.param('death.minAge'))).toBe(0);
     expect(loop.yearlyDeathChance(40)).toBe(0);
@@ -79,7 +79,8 @@ describe('leaving football (X12.1.3)', () => {
   });
   it('a 60-season soak: only retired generated people die, with years of life and no cause', () => {
     const w = miniWorld();
-    const sys = testSystems();
+    // The test double's moves name nobody in the log, so keep the unnamed in the people table here.
+    const sys = testSystems({ leaving: loop.leavingStep({ archiveUnnamed: false }) });
     // An imported retiree and the user, both old and out of football: neither may ever die.
     const model = [...w.people.values()][0]!;
     const old = (id: number, origin: PersonRecord['origin']): PersonRecord => ({ ...model, id, origin, birthDate: { seasonYear: setup().firstSeasonYear - 80, dayIndex: 10 } });
@@ -108,11 +109,11 @@ describe('leaving football (X12.1.3)', () => {
   }, 120_000);
   it('a strong edge to someone near keeps a person active; an inactive person returns when hired', () => {
     const w = miniWorld();
-    const sys = testSystems({ leaving: loop.leavingStep({ strongEdgeNear: () => true }) });
+    const sys = testSystems({ leaving: loop.leavingStep({ strongEdgeNear: () => true, archiveUnnamed: false }) });
     for (let i = 0; i < 6; i++) loop.runSeason(w, sys, testSchedule);
     expect(w.outOfFootballSince.size).toBeGreaterThan(0);
     expect(w.log.ofType(loop.WENT_INACTIVE)).toHaveLength(0);
-    const v = ran(6);
+    const v = ran(6, { leaving: loop.leavingStep({ archiveUnnamed: false }) });
     const inactive = [...v.status].find(([, s]) => s === 'inactive')![0];
     expect(loop.searchable(v, inactive)).toBe(false);
     expect(loop.searchable(v, inactive, true)).toBe(true);
@@ -123,6 +124,66 @@ describe('leaving football (X12.1.3)', () => {
     expect(v.status.get(inactive)).toBe('active');
     expect(v.outOfFootballSince.has(inactive)).toBe(false);
     expect(v.log.ofType(loop.RETURNED_ACTIVE)).toHaveLength(1);
+  });
+});
+
+describe('leaving the world keeps the population bounded (X12.1.3 acceptance)', () => {
+  it('the death table is the sourced period life table of the year (facts/mortality.json)', () => {
+    // SSA Actuarial Study 120 Table 6, males, as printed.
+    expect(loop.periodMortality(65, 1900)).toBe(0.04159);
+    expect(loop.periodMortality(80, 1950)).toBe(0.10761);
+    expect(loop.periodMortality(65, 2000)).toBe(0.01977);
+    // Before the first table the first is used; after the last, the last; between decades, a straight line.
+    expect(loop.periodMortality(70, 1869)).toBe(0.06182);
+    expect(loop.periodMortality(70, 2026)).toBe(0.02548);
+    expect(loop.periodMortality(65, 1995)).toBeCloseTo((0.02393 + 0.01977) / 2, 10);
+    // Between listed ages, on a log scale: 67 lies between q65 and q70 of 1900.
+    const q67 = loop.periodMortality(67, 1900);
+    expect(q67).toBeGreaterThan(0.04159);
+    expect(q67).toBeLessThan(0.06182);
+    // Rule 2 still holds: nobody at or under 65 dies by this leaf, in any year.
+    expect(loop.yearlyDeathChance(65, 1900)).toBe(0);
+    expect(loop.yearlyDeathChance(66, 1900)).toBeGreaterThan(0);
+  });
+  it('entrants no league took leave football at the next season point; the unnamed go to the archive', () => {
+    const w = miniWorld();
+    const sys = testSystems();
+    loop.runSeason(w, sys, testSchedule);
+    loop.runSeason(w, sys, testSchedule);
+    // Two people sit in the pro entry pool with no league to take them (the test double runs no draft).
+    const model = [...w.people.values()].find((p) => p.playing)!;
+    const named = 9_100_001, unnamed = 9_100_002;
+    for (const id of [named, unnamed]) { w.people.set(id, { ...model, id }); w.status.set(id, 'active'); }
+    w.pools.set('pro_entry_pool', [named, unnamed]);
+    w.log.emit({ type: loop.RETURNED_ACTIVE, date: w.date, subjects: [{ kind: 'person', id: named }], payload: { reason: 'contacted' }, witnesses: { kind: 'none' }, tier: 3, source: 'sim' });
+    const before = loop.archivedCount(w);
+    loop.runSeason(w, sys, testSchedule);
+    expect(w.pools.get('pro_entry_pool') ?? []).not.toContain(named);
+    // Named by an event: he stays, inactive, without his playing block (nobody can read it again).
+    expect(w.status.get(named)).toBe('inactive');
+    expect(loop.slimmable(w, w.people.get(named)!, new Set())).toBe(true);
+    loop.slimRetired(w);
+    expect(w.people.get(named)!.playing).toBeUndefined();
+    // Named by nothing: one compact row, his name and birth year kept, gone from the people table.
+    expect(w.people.has(unnamed)).toBe(false);
+    expect(w.status.has(unnamed)).toBe(false);
+    expect(loop.archivedCount(w)).toBeGreaterThan(before);
+    const row = loop.archivedPerson(w, unnamed)!;
+    expect(row.first).toBe(model.name.first);
+    expect(row.birthYear).toBe(model.birthDate.seasonYear);
+    // The archive is plain data in systemState, so a save keeps it as it is.
+    expect(JSON.parse(JSON.stringify(w.systemState.get(loop.ARCHIVE_KEY)))).toEqual(w.systemState.get(loop.ARCHIVE_KEY));
+  });
+  it('no pool is pruned before a roster cycle has run, and an empty list turns pruning off', () => {
+    const w = miniWorld();
+    const model = [...w.people.values()].find((p) => p.playing)!;
+    w.people.set(9_100_003, { ...model, id: 9_100_003 }); w.status.set(9_100_003, 'active');
+    w.pools.set('pro_entry_pool', [9_100_003]);
+    loop.runSeason(w, testSystems(), testSchedule);
+    expect(w.pools.get('pro_entry_pool')).toContain(9_100_003);
+    const sys = testSystems({ leaving: loop.leavingStep({ unclaimedPools: [] }) });
+    for (let i = 0; i < 3; i++) loop.runSeason(w, sys, testSchedule);
+    expect(w.pools.get('pro_entry_pool')).toContain(9_100_003);
   });
 });
 

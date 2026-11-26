@@ -1,0 +1,2784 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-tax-state-0001",
+   "level": "both",
+   "domain": "career",
+   "statement": "Alabama: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $3,000",
+   "value": 5.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Alabama Department of Revenue: What is Alabama's individual income tax rate? (https://www.revenue.alabama.gov/faqs/what-is-alabamas-individual-income-tax-rate/; undated)",
+     "locator": "https://www.revenue.alabama.gov/faqs/what-is-alabamas-individual-income-tax-rate/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "alabama-gov",
+     "primary": false,
+     "quote": "5% All taxable income over $3,000",
+     "value": 5.0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Alabama | 2.00%: $0; 4.00%: $500; 5.00%: $3,000",
+     "value": 5.0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Alabama | Graduated | 2% – 5% | April 15",
+     "value": 5.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-AL. Statutory brackets unchanged; DOR page undated (not year-specific). Paycor gives range only (no threshold). structure=graduated. topRateThresholdUsdSingle=3000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0002",
+   "level": "both",
+   "domain": "career",
+   "statement": "Arkansas: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; threshold for 3.7% bracket not found in an opened source (TF Jan-1 table: top bracket from $4,600; DFA withholding formula top 3.9% band from $26,400/$97,801)",
+   "value": 3.7,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Talk Business & Politics: Governor signs tax cuts into law (https://talkbusiness.net/2026/05/governor-signs-tax-cuts-into-law/; 2026-05-06)",
+     "locator": "https://talkbusiness.net/2026/05/governor-signs-tax-cuts-into-law/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "talkbusiness-net",
+     "primary": false,
+     "quote": "lower Arkansas’ top personal income tax rate from 3.9% to 3.7%. ... The tax cuts are retroactive to the first of January 2026.",
+     "value": 3.7
+    },
+    {
+     "citation": "EY Tax News: Arkansas law lowers top individual income tax rate retroactive to January 1, 2026 (https://taxnews.ey.com/news/2026-1239-arkansas-law-lowers-top-individual-income-tax-rate-retroactive-to-january-1-2026; 2026-06-09)",
+     "locator": "https://taxnews.ey.com/news/2026-1239-arkansas-law-lowers-top-individual-income-tax-rate-retroactive-to-january-1-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "lowers the top individual tax rate from 3.9% to 3.7%",
+     "value": 3.7
+    },
+    {
+     "citation": "Arkansas DFA: State of Arkansas Withholding Tax Formula, Tax Year 2026 (https://www.dfa.arkansas.gov/wp-content/uploads/whformula_2026.pdf; Effective 01/01/2026)",
+     "locator": "https://www.dfa.arkansas.gov/wp-content/uploads/whformula_2026.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "arkansas-gov",
+     "primary": false,
+     "quote": "$97,801 and over 3.90% $89.30",
+     "value": 3.9
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Arkansas | 2.00%: $0; 3.90%: $4,600",
+     "value": 3.9
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Arkansas | Graduated | 0% – 3.9% | April 15",
+     "value": 3.9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-AR. H.B. 1001 (2026 session) cut top rate to 3.7% retroactive to Jan 1 2026. Official DFA page for the new rate not opened; DFA withholding formula dated before the law still shows 3.9%. CONFLICT: 3.7% (enacted May 2026, retroactive to 1 Jan 2026: Talk Business, EY) vs 3.9% (Tax Foundation as of Jan 1 2026; DFA original 2026 withholding formula; Paycor). Threshold of top bracket not confirmed. structure=graduated. topRateThresholdUsdSingle=threshold for 3.7% bracket not found in an opened source (TF Jan-1 table: top bracket from $4,600; DFA withholding formula top 3.9% band from $26,400/$97,801). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0003",
+   "level": "both",
+   "domain": "career",
+   "statement": "Arizona: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 2.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Arizona Department of Revenue: Individual Income Tax Highlights (https://azdor.gov/forms/individual-income-tax-highlights; undated (2025 tax-year page))",
+     "locator": "https://azdor.gov/forms/individual-income-tax-highlights",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "azdor-gov",
+     "primary": false,
+     "quote": "2025 New Tax Rate of 2.5% for All Income Levels and Filing Status",
+     "value": 2.5
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Arizona | 2.50%: $0",
+     "value": 2.5
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Arizona | Flat | 2.5% | April 15",
+     "value": 2.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-AZ. DOR page states the rate for tax year 2025; no 2026-specific DOR statement opened. TF and Paycor give 2.5% for 2026. structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0004",
+   "level": "both",
+   "domain": "career",
+   "statement": "California: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $1,000,000",
+   "value": 13.3,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "California Franchise Tax Board: Tax News October 2026 (https://www.ftb.ca.gov/about-ftb/newsroom/tax-news/2026/10.html; Last updated 10/13/2026)",
+     "locator": "https://www.ftb.ca.gov/about-ftb/newsroom/tax-news/2026/10.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "74,675.27 + 12.30% of the amount over 768,213",
+     "value": 12.3
+    },
+    {
+     "citation": "NerdWallet: California State Income Tax Guide for 2026 (https://www.nerdwallet.com/taxes/learn/california-state-tax; Updated Nov 10, 2026)",
+     "locator": "https://www.nerdwallet.com/taxes/learn/california-state-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nerdwallet-com",
+     "primary": false,
+     "quote": "topping out at 12.3% ... people with incomes over $1 million pay an additional 1% tax that helps to fund mental health services",
+     "value": 13.3
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "California | ... 12.30%: $742,953; 13.30%: $1,000,000",
+     "value": 13.3
+    },
+    {
+     "citation": "Connecticut General Assembly, Office of Legislative Research: Comparison of State Income Taxes in Select States (2026-R-0057) (https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf; 2026-03-20)",
+     "locator": "https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ct-gov",
+     "primary": false,
+     "quote": "California 1.0% 12.3%1 9 $11,079 $742,953 $22,158 $1,485,906",
+     "value": 12.3
+    },
+    {
+     "citation": "California Franchise Tax Board: 2025 California Tax Rate Schedules (https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf; 2025)",
+     "locator": "https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "742,953 AND OVER 72,219.84 + 12.30% 742,953",
+     "value": 12.3
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "California | Graduated | 1% – 12.3% | April 15",
+     "value": 12.3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-CA. Top schedule rate 12.3%; an additional 1% (Mental/Behavioral Health Services) tax on taxable income over $1,000,000 gives 13.3% combined. No FTB page opened this session states the 1% surcharge (not triple-verified from primary). 12.3% bracket threshold for 2026 single = $768,213 per FTB (TF and CGA show the 2025 figure $742,953). CONFLICT: Sources reporting the schedule rate say 12.3% (FTB, CGA, Paycor); 13.3% includes the 1% surcharge over $1M (TF, NerdWallet). 12.3% threshold: $768,213 (FTB 2026) vs $742,953 (TF/CGA = 2025 indexation). structure=graduated. topRateThresholdUsdSingle=1000000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0005",
+   "level": "both",
+   "domain": "career",
+   "statement": "Colorado: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 4.4,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Colorado | 4.40%: $0",
+     "value": 4.4
+    },
+    {
+     "citation": "NerdWallet: Colorado State Income Tax: Rates and Who Pays in 2026 (https://www.nerdwallet.com/taxes/learn/colorado-state-income-tax-rates; Updated Dec 12, 2025)",
+     "locator": "https://www.nerdwallet.com/taxes/learn/colorado-state-income-tax-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nerdwallet-com",
+     "primary": false,
+     "quote": "For tax year 2025, Colorado's state income tax rate is 4.4%.",
+     "value": 4.4
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Colorado | Flat | 4.25% | April 15",
+     "value": 4.25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-CO. Colorado DOR FAQ opened but the rate answer did not render; Legislative Council page failed to load. NerdWallet's statement is for TY2025. A TABOR-triggered temporary reduction is possible in any year (4.25% applied in 2024). CONFLICT: Paycor lists 4.25% (the 2024 temporary rate); TF and NerdWallet 4.4%. structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0006",
+   "level": "both",
+   "domain": "career",
+   "statement": "Connecticut: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $500,000",
+   "value": 6.99,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Connecticut General Assembly, Office of Legislative Research: Comparison of State Income Taxes in Select States (2026-R-0057) (https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf; 2026-03-20)",
+     "locator": "https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ct-gov",
+     "primary": false,
+     "quote": "Connecticut 2.0% 6.99% 7 10,000 500,000 20,000 1,000,000",
+     "value": 6.99
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Connecticut | ... 6.90%: $250,000; 6.99%: $500,000",
+     "value": 6.99
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Connecticut | Graduated | 2% – 6.99% | April 15",
+     "value": 6.99
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-CT. CT DRS page not opened; CGA OLR report is official legislative research (government). CT also has a benefit-recapture mechanism not captured here. structure=graduated. topRateThresholdUsdSingle=500000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0007",
+   "level": "both",
+   "domain": "career",
+   "statement": "District of Columbia: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $1,000,000",
+   "value": 10.75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "DC Office of Tax and Revenue: DC Individual and Fiduciary Income Tax Rates (https://otr.cfo.dc.gov/page/dc-individual-and-fiduciary-income-tax-rates; undated (rates for tax years beginning after 12/31/2021))",
+     "locator": "https://otr.cfo.dc.gov/page/dc-individual-and-fiduciary-income-tax-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "dc-gov",
+     "primary": false,
+     "quote": "Over $1,000,000: $91,525, plus 10.75% of the excess above $1,000,000.",
+     "value": 10.75
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Washington, D.C. | ... 9.75%: $500,000; 10.75%: $1,000,000",
+     "value": 10.75
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "District of Columbia | Graduated | 4% – 10.75% | April 15",
+     "value": 10.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-DC.  structure=graduated. topRateThresholdUsdSingle=1000000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0008",
+   "level": "both",
+   "domain": "career",
+   "statement": "Florida: no state individual income tax on wage income in tax year 2026",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Florida Department of Revenue: Do I have to file a personal income tax return in Florida? (https://floridarevenue.com/faq/Pages/FAQDetails.aspx?FAQID=1466; undated)",
+     "locator": "https://floridarevenue.com/faq/Pages/FAQDetails.aspx?FAQID=1466",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "floridarevenue-com",
+     "primary": false,
+     "quote": "Florida does not impose a personal income tax, so there are no filing requirements.",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "States with no individual income tax: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, and Wyoming.",
+     "value": 0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Florida | None | No state income tax | N/A",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-FL.  structure=none (no wage income tax). topRateThresholdUsdSingle=None. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0009",
+   "level": "both",
+   "domain": "career",
+   "statement": "Georgia: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 4.99,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Georgia Department of Revenue: Important Tax Updates (https://dor.georgia.gov/taxes/important-tax-updates; undated (under heading '2026 Income Tax Changes'))",
+     "locator": "https://dor.georgia.gov/taxes/important-tax-updates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "georgia-gov",
+     "primary": false,
+     "quote": "The Georgia income tax rate has been reduced to a flat rate of 4.99%.",
+     "value": 4.99
+    },
+    {
+     "citation": "Office of the Governor of Georgia: Gov. Kemp Signs Legislation Lowering Taxes and Supporting Economic Growth (https://gov.georgia.gov/press-releases/2026-05-11/gov-kemp-signs-legislation-lowering-taxes-and-supporting-economic-growth; 2026-05-11)",
+     "locator": "https://gov.georgia.gov/press-releases/2026-05-11/gov-kemp-signs-legislation-lowering-taxes-and-supporting-economic-growth",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "georgia-gov",
+     "primary": false,
+     "quote": "lowers Georgia's state income tax rate from 5.19% to 4.99%, beginning January 1, 2026.",
+     "value": 4.99
+    },
+    {
+     "citation": "EY Tax News: Georgia law lowers individual personal income tax rate retroactive to January 1, 2026 (https://taxnews.ey.com/news/2026-1249-georgia-law-lowers-individual-personal-income-tax-rate-retroactive-to-january-1-2026; 2026-06-10)",
+     "locator": "https://taxnews.ey.com/news/2026-1249-georgia-law-lowers-individual-personal-income-tax-rate-retroactive-to-january-1-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "Georgia's personal income tax rate is reduced from 5.19% to 4.99%",
+     "value": 4.99
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Georgia | 5.19%: $0",
+     "value": 5.19
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Georgia | Flat | 5.19% | April 15",
+     "value": 5.19
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-GA. HB 463 (2026) cut the flat rate to 4.99% from Jan 1 2026. Governor's office and DOR are both state government (count as one primary family) plus EY. CONFLICT: 4.99% (enacted 2026, retroactive: DOR, Governor, EY) vs 5.19% (Tax Foundation as of Jan 1 2026; Paycor Jan 2026). structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0010",
+   "level": "both",
+   "domain": "career",
+   "statement": "Iowa: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 3.8,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Iowa Department of Revenue: IDR Announces 2026 Individual Income Tax and Interest Rates (https://revenue.iowa.gov/press-release/2025-10-21/idr-announces-2026-individual-income-tax-and-interest-rates; 2025-10-21)",
+     "locator": "https://revenue.iowa.gov/press-release/2025-10-21/idr-announces-2026-individual-income-tax-and-interest-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "iowa-gov",
+     "primary": false,
+     "quote": "Iowa law provides for a flat tax rate of 3.8 percent. ... In 2026, all levels of taxable individual income will be subject to this rate.",
+     "value": 3.8
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Iowa | 3.80%: $0",
+     "value": 3.8
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Iowa | Flat | 3.8% | April 30",
+     "value": 3.8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-IA.  structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0011",
+   "level": "both",
+   "domain": "career",
+   "statement": "Idaho: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat; applies to Idaho taxable income above a zero-rate band (TF: from $4,811 single)",
+   "value": 5.3,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "EY Tax News: Idaho issues revised income tax withholding tables/formula for immediate use (https://taxnews.ey.com/news/2026-1829-idaho-issues-revised-income-tax-withholding-tables-formula-for-immediate-use; 2026-08-26)",
+     "locator": "https://taxnews.ey.com/news/2026-1829-idaho-issues-revised-income-tax-withholding-tables-formula-for-immediate-use",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "The tax rate of 5.3% (unchanged)",
+     "value": 5.3
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Idaho | 5.30%: $4,811",
+     "value": 5.3
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Idaho | Flat | 5.695% | April 15",
+     "value": 5.695
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-ID. Idaho Tax Commission page not opened (search results only). Single-rate system with a 0% first band. CONFLICT: Paycor lists 5.695% (the pre-2025 rate); TF and EY 5.3%. structure=flat. topRateThresholdUsdSingle=applies to Idaho taxable income above a zero-rate band (TF: from $4,811 single). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0012",
+   "level": "both",
+   "domain": "career",
+   "statement": "Illinois: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 4.95,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Illinois Department of Revenue: Income Tax Rates (https://tax.illinois.gov/research/taxrates/income.html; Effective July 1, 2017)",
+     "locator": "https://tax.illinois.gov/research/taxrates/income.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "illinois-gov",
+     "primary": false,
+     "quote": "4.95 percent of net income",
+     "value": 4.95
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Illinois | 4.95%: $0",
+     "value": 4.95
+    },
+    {
+     "citation": "Connecticut General Assembly, Office of Legislative Research: Comparison of State Income Taxes in Select States (2026-R-0057) (https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf; 2026-03-20)",
+     "locator": "https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ct-gov",
+     "primary": false,
+     "quote": "Illinois imposes a flat tax and consequently has only one rate and bracket."
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Illinois | Flat | 4.95% | April 15",
+     "value": 4.95
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-IL.  structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0013",
+   "level": "both",
+   "domain": "career",
+   "statement": "Indiana: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 2.95,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Indiana Department of Revenue: Rates, Fees, and Penalties (https://www.in.gov/dor/resources/tax-rates-and-reports/rates-fees-and-penalties/; modified 2026-09-18)",
+     "locator": "https://www.in.gov/dor/resources/tax-rates-and-reports/rates-fees-and-penalties/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "in-gov",
+     "primary": false,
+     "quote": "The Indiana Individual adjusted gross income tax rate for 2026 is 2.95%",
+     "value": 2.95
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Indiana | 2.95%: $0",
+     "value": 2.95
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Indiana | Flat | 3% | April 15",
+     "value": 3.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-IN. Indiana counties also levy local income taxes (not included). Rate scheduled to fall to 2.90% in 2027. CONFLICT: Paycor lists 3% (2025 rate); DOR and TF 2.95%. structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0014",
+   "level": "both",
+   "domain": "career",
+   "statement": "Kansas: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $23,000",
+   "value": 5.58,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Kansas Office of Revisor of Statutes: K.S.A. 79-32,110 (https://ksrevisor.gov/statutes/chapters/ch79/079_032_0110.html; undated (for tax year 2024 and all tax years thereafter))",
+     "locator": "https://ksrevisor.gov/statutes/chapters/ch79/079_032_0110.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ksrevisor-gov",
+     "primary": false,
+     "quote": "Over $23,000 | $1,196 plus 5.58% of excess over $23,000",
+     "value": 5.58
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Kansas | 5.20%: $0; 5.58%: $23,000",
+     "value": 5.58
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Kansas | Graduated | 5.2% – 5.58% | April 15",
+     "value": 5.58
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-KS. Kansas DOR rate page returned 404; statute used as primary text. structure=graduated. topRateThresholdUsdSingle=23000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0015",
+   "level": "both",
+   "domain": "career",
+   "statement": "Kentucky: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 3.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Kentucky Department of Revenue: 2026 Withholding Formula (42A003) (https://revenue.ky.gov/Forms/2026%20Withholding%20Formula.pdf; 10-2025)",
+     "locator": "https://revenue.ky.gov/Forms/2026%20Withholding%20Formula.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ky-gov",
+     "primary": false,
+     "quote": "2026 Kentucky Tax Rate: 3.5% of taxable income",
+     "value": 3.5
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Kentucky | 3.50%: $0",
+     "value": 3.5
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Kentucky | Flat | 4% | April 15",
+     "value": 4.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-KY. Local occupational license taxes not included. CONFLICT: Paycor lists 4% (2025 rate); DOR and TF 3.5%. structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0016",
+   "level": "both",
+   "domain": "career",
+   "statement": "Louisiana: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 3.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Louisiana Department of Revenue: What are the individual income tax rates and brackets? (https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/what-are-the-individual-income-tax-rates-and-brackets/; undated)",
+     "locator": "https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/what-are-the-individual-income-tax-rates-and-brackets/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "louisiana-gov",
+     "primary": false,
+     "quote": "For taxable periods beginning on or after January 1,, 2025, the individual income tax rate is a flat 3%.",
+     "value": 3.0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Louisiana | 3.00%: $0",
+     "value": 3.0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Louisiana | Flat | 3% | May 15",
+     "value": 3.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-LA.  structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0017",
+   "level": "both",
+   "domain": "career",
+   "statement": "Massachusetts: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat 5% plus 4% surtax (two-tier); top rate starts at taxable income over $1,107,750",
+   "value": 9.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Massachusetts Department of Revenue: Massachusetts Tax Rates (https://www.mass.gov/info-details/massachusetts-tax-rates; Updated December 30, 2025)",
+     "locator": "https://www.mass.gov/info-details/massachusetts-tax-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mass-gov",
+     "primary": false,
+     "quote": "For income exceeding $1,107,750, there is an additional surtax of 4%.",
+     "value": 9.0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Massachusetts | 5.00%: $0; 9.00%: $1,083,150",
+     "value": 9.0
+    },
+    {
+     "citation": "Connecticut General Assembly, Office of Legislative Research: Comparison of State Income Taxes in Select States (2026-R-0057) (https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf; 2026-03-20)",
+     "locator": "https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ct-gov",
+     "primary": false,
+     "quote": "9% on income greater than $1,083,150",
+     "value": 9.0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Massachusetts | Flat | 5% | April 15",
+     "value": 5.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-MA. 5% base rate on wages plus 4% surtax above the indexed threshold. DOR gives $1,107,750 for 2026 and $1,083,150 for 2025. CONFLICT: Threshold: $1,107,750 (DOR, 2026) vs $1,083,150 (TF and CGA, = 2025 figure). Paycor lists only the 5% base rate. structure=flat 5% plus 4% surtax (two-tier). topRateThresholdUsdSingle=1107750. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0018",
+   "level": "both",
+   "domain": "career",
+   "statement": "Maryland: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $1,000,000",
+   "value": 6.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Comptroller of Maryland: 2026 Maryland State and Local Withholding Information (https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf; 2026-02-04)",
+     "locator": "https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "marylandcomptroller-gov",
+     "primary": false,
+     "quote": "Over $1,000,000 6.5 percent (new)",
+     "value": 6.5
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Maryland | ... 6.25%: $500,000; 6.50%: $1,000,000",
+     "value": 6.5
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Maryland | Graduated | 2% – 5.75% | April 15",
+     "value": 5.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-MD. State rate only; Maryland counties add local income tax (nonresidents pay a special nonresident rate instead). CONFLICT: Paycor lists 5.75% top (pre-2025 law); Comptroller and TF 6.5%. structure=graduated. topRateThresholdUsdSingle=1000000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0019",
+   "level": "both",
+   "domain": "career",
+   "statement": "Michigan: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 4.25,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Michigan Department of Treasury: State individual income tax rate for 2026 tax year determined (https://www.michigan.gov/treasury/news/2026/04/15/state-individual-income-tax-rate-for-2026-tax-year-determined; 2026-04-15)",
+     "locator": "https://www.michigan.gov/treasury/news/2026/04/15/state-individual-income-tax-rate-for-2026-tax-year-determined",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "michigan-gov",
+     "primary": false,
+     "quote": "Accordingly, the rate in effect under state law for the 2026 tax year is 4.25%.",
+     "value": 4.25
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Michigan | 4.25%: $0",
+     "value": 4.25
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Michigan | Flat | 4.25% | April 15",
+     "value": 4.25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-MI. City income taxes (e.g. Detroit) not included. structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0020",
+   "level": "both",
+   "domain": "career",
+   "statement": "Minnesota: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $203,150",
+   "value": 9.85,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Minnesota Department of Revenue: Minnesota income tax brackets, standard deduction and dependent exemption amounts for tax year 2026 (https://www.revenue.state.mn.us/press-release/2025-12-16/minnesota-income-tax-brackets-standard-deduction-and-dependent-exemption; 2025-12-16)",
+     "locator": "https://www.revenue.state.mn.us/press-release/2025-12-16/minnesota-income-tax-brackets-standard-deduction-and-dependent-exemption",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mn-us",
+     "primary": false,
+     "quote": "9.85%: $203,151 and over",
+     "value": 9.85
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Minnesota | ... 7.85%: $109,430; 9.85%: $203,150",
+     "value": 9.85
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Minnesota | Graduated | 5.35% – 9.85% | April 15",
+     "value": 9.85
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-MN.  structure=graduated. topRateThresholdUsdSingle=203150. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0021",
+   "level": "both",
+   "domain": "career",
+   "statement": "Missouri: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $9,436",
+   "value": 4.7,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Missouri Department of Revenue: 2026 Missouri Withholding Tax Formula (Form 4282) (https://dor.mo.gov/forms/4282_2026.pdf; December 2025, revised 03-2026)",
+     "locator": "https://dor.mo.gov/forms/4282_2026.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mo-gov",
+     "primary": false,
+     "quote": "$9,436.01 and over | 4.70%",
+     "value": 4.7
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Missouri | ... 4.50%: $8,088; 4.70%: $9,436",
+     "value": 4.7
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Missouri | Graduated | 2% – 4.8% | April 15",
+     "value": 4.8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-MO. Kansas City and St. Louis earnings taxes not included. CONFLICT: Paycor lists 4.8% (2024 rate); DOR and TF 4.7%. structure=graduated. topRateThresholdUsdSingle=9436. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0022",
+   "level": "both",
+   "domain": "career",
+   "statement": "Mississippi: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat above exempt band; top rate starts at taxable income over $10,000",
+   "value": 4.0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Mississippi Department of Revenue: Individual Income Tax - General Information (https://www.dor.ms.gov/general-information; undated)",
+     "locator": "https://www.dor.ms.gov/general-information",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ms-gov",
+     "primary": false,
+     "quote": "Excess of $10,000 of Taxable Income is taxed @ 4%",
+     "value": 4.0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Mississippi | 4.00%: $10,000",
+     "value": 4.0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Mississippi | Flat | 4.4% (first $10,000 earned is tax exempt) | April 15",
+     "value": 4.4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-MS. DOR page is internally inconsistent: its table row for 2026 says 4%, but a paragraph reads 'In 2026, the graduated 2025 tax year income tax rate is: ... 4.4% on the remaining taxable income in excess of $10,000.' CONFLICT: 4.0% (DOR table, TF) vs 4.4% (DOR paragraph, Paycor = 2025 rate). structure=flat above exempt band. topRateThresholdUsdSingle=10000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0023",
+   "level": "both",
+   "domain": "career",
+   "statement": "Montana: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $47,500",
+   "value": 5.65,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Montana Department of Revenue: 2026 Withholding Updates (https://revenue.mt.gov/news/recent-news/2026-withholding-updates; 2025-12-08)",
+     "locator": "https://revenue.mt.gov/news/recent-news/2026-withholding-updates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mt-gov",
+     "primary": false,
+     "quote": "Beginning January 1, 2026, the highest marginal tax rate will decrease from 5.9% to 5.65% ... the 4.7% lower rate will apply to income up to $47,500 for all other statuses",
+     "value": 5.65
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Montana | 4.70%: $0; 5.65%: $47,500",
+     "value": 5.65
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Montana | Graduated | 4.7% – 5.9% | April 15",
+     "value": 5.9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-MT.  CONFLICT: Paycor lists 5.9% (2025 rate); DOR and TF 5.65%. structure=graduated. topRateThresholdUsdSingle=47500. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0024",
+   "level": "both",
+   "domain": "career",
+   "statement": "North Carolina: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 3.99,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "North Carolina Department of Revenue: Tax Rate Schedules (https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules; undated)",
+     "locator": "https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncdor-gov",
+     "primary": false,
+     "quote": "For Taxable Years after 2025, the North Carolina individual income tax rate is 3.99% (0.0399).",
+     "value": 3.99
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "North Carolina | 3.99%: $0",
+     "value": 3.99
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "North Carolina | Flat | 3.99% | April 15",
+     "value": 3.99
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-NC.  structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0025",
+   "level": "both",
+   "domain": "career",
+   "statement": "North Dakota: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $244,825",
+   "value": 2.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "North Dakota Office of State Tax Commissioner: Individual Income Tax (https://www.tax.nd.gov/individual-income-tax; undated (shows 2025 tax year table))",
+     "locator": "https://www.tax.nd.gov/individual-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nd-gov",
+     "primary": false,
+     "quote": "$244,825 | | 2.50%",
+     "value": 2.5
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "North Dakota | 1.95%: $48,475; 2.50%: $244,825",
+     "value": 2.5
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "North Dakota | Graduated | 0% – 2.5% | April 15",
+     "value": 2.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-ND. Threshold $244,825 is the 2025 figure on the ND page; TF lists the same number for 2026 (2026 indexation not confirmed). structure=graduated. topRateThresholdUsdSingle=244825. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0026",
+   "level": "both",
+   "domain": "career",
+   "statement": "Nebraska: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $24,760",
+   "value": 4.55,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Nebraska Department of Revenue: 2026 Tax Calculation Schedule (Form 8-460-2026) (https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/drafts/2026_tax_calculation_schedule.pdf; DRAFT AS OF 8/17/2026)",
+     "locator": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/drafts/2026_tax_calculation_schedule.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nebraska-gov",
+     "primary": false,
+     "quote": "24,760 39,900 $ 825.71 + 4.55% of the excess over $24,760",
+     "value": 4.55
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Nebraska | 2.46%: $0; 3.51%: $4,130; 4.55%: $24,760",
+     "value": 4.55
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Nebraska | Graduated | 2.46% – 4.55% | April 15",
+     "value": 4.55
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-NE. DOR source is a draft form. structure=graduated. topRateThresholdUsdSingle=24760. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0027",
+   "level": "both",
+   "domain": "career",
+   "statement": "New Mexico: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $210,000",
+   "value": 5.9,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Justia (NM Stat. § 7-2-7, 2024 compilation): 2024 New Mexico Statutes § 7-2-7 (https://law.justia.com/codes/new-mexico/chapter-7/article-2/section-7-2-7; 2024 compilation)",
+     "locator": "https://law.justia.com/codes/new-mexico/chapter-7/article-2/section-7-2-7",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "justia-com",
+     "primary": false,
+     "quote": "Over $210,000: $10,010.50 plus 5.9% of excess over $210,000.",
+     "value": 5.9
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "New Mexico | ... 4.90%: $66,500; 5.90%: $210,000",
+     "value": 5.9
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "New Mexico | Graduated | 1.5% – 5.9% | April 30",
+     "value": 5.9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-NM. Statute text opened is the 2024 compilation (pre-2025 lower brackets); top rate/threshold match TF 2026. NM Taxation and Revenue page not opened. structure=graduated. topRateThresholdUsdSingle=210000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0028",
+   "level": "both",
+   "domain": "career",
+   "statement": "Nevada: no state individual income tax on wage income in tax year 2026",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Nevada Department of Taxation: Tax Information for Nevada (https://tax.nv.gov/about-nevada-department-of-taxation/income-tax-in-nevada; undated)",
+     "locator": "https://tax.nv.gov/about-nevada-department-of-taxation/income-tax-in-nevada",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nv-gov",
+     "primary": false,
+     "quote": "The State of Nevada does not impose a state income tax on individuals.",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "States with no individual income tax: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, and Wyoming.",
+     "value": 0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Nevada | None | No state income tax | N/A",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-NV.  structure=none (no wage income tax). topRateThresholdUsdSingle=None. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0029",
+   "level": "both",
+   "domain": "career",
+   "statement": "New York: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $25,000,000",
+   "value": 10.9,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "New York State Senate (NY Tax Law § 601): Tax Law § 601(c)(1)(vii) (https://www.nysenate.gov/legislation/laws/TAX/601; for taxable years beginning after 2025 and before 2027)",
+     "locator": "https://www.nysenate.gov/legislation/laws/TAX/601",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nysenate-gov",
+     "primary": false,
+     "quote": "Over $25,000,000 $2,509,714 plus 10.90% of excess over $25,000,000",
+     "value": 10.9
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "New York | ... 10.30%: $5,000,000; 10.90%: $25,000,000",
+     "value": 10.9
+    },
+    {
+     "citation": "Connecticut General Assembly, Office of Legislative Research: Comparison of State Income Taxes in Select States (2026-R-0057) (https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf; 2026-03-20)",
+     "locator": "https://www.cga.ct.gov/2026/rpt/pdf/2026-R-0057.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ct-gov",
+     "primary": false,
+     "quote": "New York 4.0% 10.9% 9 8,500 25,000,000 17,150 25,000,000",
+     "value": 10.9
+    },
+    {
+     "citation": "NerdWallet: New York State Income Tax Rates and Brackets for 2025-2026 (https://www.nerdwallet.com/taxes/learn/new-york-state-tax; Updated Feb 6, 2026)",
+     "locator": "https://www.nerdwallet.com/taxes/learn/new-york-state-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nerdwallet-com",
+     "primary": false,
+     "quote": "10.9% ... $25,000,001 and over (tax year 2025)",
+     "value": 10.9
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "New York | Graduated | 4% – 10.9% | April 15",
+     "value": 10.9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-NY. Statute text reassembled by the fetch tool from line-broken source. NYC/Yonkers local tax not included. structure=graduated. topRateThresholdUsdSingle=25000000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0030",
+   "level": "both",
+   "domain": "career",
+   "statement": "Ohio: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat above exempt band; top rate starts at taxable income over $26,050",
+   "value": 2.75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "EY Tax News: Ohio releases modified 2026 income tax withholding formulas and tables (https://taxnews.ey.com/news/2026-1619-ohio-releases-modified-2026-income-tax-withholding-formulas-and-tables-reflecting-scheduled-tax-cut; 2026-07-27)",
+     "locator": "https://taxnews.ey.com/news/2026-1619-ohio-releases-modified-2026-income-tax-withholding-formulas-and-tables-reflecting-scheduled-tax-cut",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "Effective January 1, 2026, a flat personal income tax rate of 2.75% applies to income over $26,050.",
+     "value": 2.75
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Ohio | 2.75%: $26,050",
+     "value": 2.75
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Ohio | Flat | 2.75% on income above $26,050 | April 15",
+     "value": 2.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-OH. Ohio Department of Taxation page not opened. Municipal income taxes not included. structure=flat above exempt band. topRateThresholdUsdSingle=26050. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0031",
+   "level": "both",
+   "domain": "career",
+   "statement": "Oklahoma: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $7,200",
+   "value": 4.5,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Oklahoma Tax Commission: 2026 Oklahoma Resident Individual Income Tax Forms and Instructions (https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/software-developers/Dev511-Pkt-26.pdf; 2026 tax year)",
+     "locator": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/software-developers/Dev511-Pkt-26.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oklahoma-gov",
+     "primary": false,
+     "quote": "The top individual income tax rate decreased to 4.5%. The tax tables have been revised.",
+     "value": 4.5
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Oklahoma | 2.50%: $3,750; 3.50%: $4,900; 4.50%: $7,200",
+     "value": 4.5
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Oklahoma | Graduated | 0.25% – 4.5% | April 15",
+     "value": 4.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-OK. Threshold ($7,200 single) from TF only. structure=graduated. topRateThresholdUsdSingle=7200. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0032",
+   "level": "both",
+   "domain": "career",
+   "statement": "Oregon: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $125,000",
+   "value": 9.9,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Oregon | 4.75%: $0; 6.75%: $4,550; 8.75%: $11,400; 9.90%: $125,000",
+     "value": 9.9
+    },
+    {
+     "citation": "Oregon Department of Revenue: Oregon Personal Income Brackets and Tax Rates (1930-2020) (https://www.oregon.gov:443/dor/programs/gov-research/Documents/Oregon%20Personal%20Income%20Brackets%20and%20Tax%20Rates.pdf; covers tax years through 2020)",
+     "locator": "https://www.oregon.gov:443/dor/programs/gov-research/Documents/Oregon%20Personal%20Income%20Brackets%20and%20Tax%20Rates.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov:443",
+     "primary": false,
+     "quote": "Single and Separate < 3,600 3,600 - 9,050 9,050-125,000 > 125,000",
+     "value": 9.9
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Oregon | Graduated | 4.75% – 9.9% | April 15",
+     "value": 9.9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-OR. Oregon DOR source is historical (through 2020); top threshold $125,000 is not indexed. Local taxes (Portland Metro, Multnomah) not included. structure=graduated. topRateThresholdUsdSingle=125000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0033",
+   "level": "both",
+   "domain": "career",
+   "statement": "Pennsylvania: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 3.07,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Pennsylvania Department of Revenue: Personal Income Tax (https://www.pa.gov/en/agencies/revenue/resources/tax-types-and-information/personal-income-tax; undated)",
+     "locator": "https://www.pa.gov/en/agencies/revenue/resources/tax-types-and-information/personal-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pa-gov",
+     "primary": false,
+     "quote": "Pennsylvania personal income tax is levied at the rate of 3.07 percent against taxable income of resident and nonresident individuals.",
+     "value": 3.07
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Pennsylvania | 3.07%: $0",
+     "value": 3.07
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Pennsylvania | Flat | 3.07% | April 20",
+     "value": 3.07
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-PA. Local earned income taxes (e.g. Philadelphia wage tax) not included. structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0034",
+   "level": "both",
+   "domain": "career",
+   "statement": "South Carolina: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated (two rates); top rate starts at taxable income over $30,000",
+   "value": 5.21,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "South Carolina Department of Revenue: Information about H. 4216 (https://www.dor.sc.gov/news/information-about-h-4216; 2026-04-15)",
+     "locator": "https://www.dor.sc.gov/news/information-about-h-4216",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "sc-gov",
+     "primary": false,
+     "quote": "The tax rate for income from $30,000 and above is 5.21%, minus $966. ... H. 4216 is effective beginning with the 2026 tax year",
+     "value": 5.21
+    },
+    {
+     "citation": "EY Tax News: South Carolina law lowers state income tax rate retroactive to January 1, 2026 (https://taxnews.ey.com/news/2026-0919-south-carolina-law-lowers-state-income-tax-rate-retroactive-to-january-1-2026; 2026-04-22)",
+     "locator": "https://taxnews.ey.com/news/2026-0919-south-carolina-law-lowers-state-income-tax-rate-retroactive-to-january-1-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "lowers the top tax rate from 6.0% to 5.21%",
+     "value": 5.21
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "South Carolina | 0.00%: $0; 3.00%: $3,640; 6.00%: $18,230",
+     "value": 6.0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "South Carolina | Graduated | 0% – 6.2% | May 1 (2025 extension)",
+     "value": 6.2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-SC. H. 4216 restructured SC to 1.99% below $30,000 and 5.21% (minus $966) from $30,000, effective tax year 2026. CONFLICT: 5.21% from $30,000 (DOR, EY; enacted 2026) vs 6.0% from $18,230 (TF Jan 1 2026) vs 6.2% (Paycor). structure=graduated (two rates). topRateThresholdUsdSingle=30000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0035",
+   "level": "both",
+   "domain": "career",
+   "statement": "South Dakota: no state individual income tax on wage income in tax year 2026",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "South Dakota Department of Revenue: Individual Taxes (https://dor.sd.gov/individuals/taxes/; undated)",
+     "locator": "https://dor.sd.gov/individuals/taxes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "sd-gov",
+     "primary": false,
+     "quote": "South Dakota is one of seven states that does not impose a state income tax.",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "States with no individual income tax: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, and Wyoming.",
+     "value": 0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "South Dakota | None | No state income tax | N/A",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-SD.  structure=none (no wage income tax). topRateThresholdUsdSingle=None. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0036",
+   "level": "both",
+   "domain": "career",
+   "statement": "Tennessee: no state individual income tax on wage income in tax year 2026",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tennessee Department of Revenue: Hall Income Tax Manual (https://www.tn.gov/content/dam/tn/revenue/documents/tax_manuals/march-2021/Hall-Income-Tax.pdf; March 2021)",
+     "locator": "https://www.tn.gov/content/dam/tn/revenue/documents/tax_manuals/march-2021/Hall-Income-Tax.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tn-gov",
+     "primary": false,
+     "quote": "The Hall income tax, unlike most income taxes, does not apply to earned income. In other words, it does not apply to salaries, wages, and commissions. ... The Hall income tax is fully repealed for any tax year that begins on or after January 1, 2021.",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "States with no individual income tax: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, and Wyoming.",
+     "value": 0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Tennessee | None | No state income tax | N/A",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-TN.  structure=none (no wage income tax). topRateThresholdUsdSingle=None. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0037",
+   "level": "both",
+   "domain": "career",
+   "statement": "Texas: no state individual income tax on wage income in tax year 2026",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "AARP: Texas State Taxes guide (https://www.aarp.org/states/texas/state-taxes-guide/; originally published Feb 9, 2023; updated (date not shown))",
+     "locator": "https://www.aarp.org/states/texas/state-taxes-guide/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aarp-org",
+     "primary": false,
+     "quote": "Income tax: Texas doesn't tax individual income.",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "States with no individual income tax: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, and Wyoming.",
+     "value": 0
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Texas | None | No state income tax | N/A",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-TX. Texas Comptroller page not opened (no primary source). structure=none (no wage income tax). topRateThresholdUsdSingle=None. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0038",
+   "level": "both",
+   "domain": "career",
+   "statement": "Utah: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), flat",
+   "value": 4.45,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "EY Tax News: Utah law lowers state income tax rate retroactive to January 1, 2026 (https://taxnews.ey.com/news/2026-0913-utah-law-lowers-state-income-tax-rate-retroactive-to-january-1-2026; 2026-04-21)",
+     "locator": "https://taxnews.ey.com/news/2026-0913-utah-law-lowers-state-income-tax-rate-retroactive-to-january-1-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "lowers the state's individual income tax rate from 4.5% to 4.45%",
+     "value": 4.45
+    },
+    {
+     "citation": "KSL.com: Cox approves bill cutting income tax for sixth straight year (https://www.ksl.com/article/51472448/cox-approves-bill-cutting-income-tax-for-sixth-straight-year; 2026-03-24)",
+     "locator": "https://www.ksl.com/article/51472448/cox-approves-bill-cutting-income-tax-for-sixth-straight-year",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ksl-com",
+     "primary": false,
+     "quote": "will cut the income tax rate from 4.50% to 4.45% retroactive to the beginning of this year",
+     "value": 4.45
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Utah | 4.50%: $0",
+     "value": 4.5
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Utah | Flat | 4.55% | April 15",
+     "value": 4.55
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-UT. S.B. 60 (2026). Utah Tax Commission Pub 14 link failed to load. CONFLICT: 4.45% (enacted 2026, retroactive: EY, KSL) vs 4.50% (TF Jan 1 2026) vs 4.55% (Paycor, 2024 rate). structure=flat. topRateThresholdUsdSingle=0. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0039",
+   "level": "both",
+   "domain": "career",
+   "statement": "Virginia: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $17,000",
+   "value": 5.75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Virginia Legislative Information System (Va. Code § 58.1-320): § 58.1-320. Imposition of tax (https://law.lis.virginia.gov/vacode/58.1-320/; undated (since 1990))",
+     "locator": "https://law.lis.virginia.gov/vacode/58.1-320/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "virginia-gov",
+     "primary": false,
+     "quote": "Five and three-quarters percent on income in excess of $17,000 for taxable years beginning on and after January 1, 1990.",
+     "value": 5.75
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Virginia | ... 5.00%: $5,000; 5.75%: $17,000",
+     "value": 5.75
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Virginia | Graduated | 2% – 5.75% | May 1",
+     "value": 5.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-VA.  structure=graduated. topRateThresholdUsdSingle=17000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0040",
+   "level": "both",
+   "domain": "career",
+   "statement": "Vermont: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $249,700",
+   "value": 8.75,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Vermont | ... 7.60%: $119,700; 8.75%: $249,700",
+     "value": 8.75
+    },
+    {
+     "citation": "Vermont General Assembly (32 V.S.A. § 5822): 32 V.S.A. § 5822 (https://legislature.vermont.gov/statutes/section/32/151/05822; statutory base table (indexed annually))",
+     "locator": "https://legislature.vermont.gov/statutes/section/32/151/05822",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vermont-gov",
+     "primary": false,
+     "quote": "Over $195,450.00 ... $12,659.00 plus 8.75% of the amount of taxable income over $195,450.00",
+     "value": 8.75
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Vermont | Graduated | 3.35% – 8.75% | April 15",
+     "value": 8.75
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-VT. Rate confirmed by 3 sources; 2026 threshold $249,700 from TF only (statute shows the unindexed base $195,450; Commissioner indexes yearly). structure=graduated. topRateThresholdUsdSingle=249700. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0041",
+   "level": "both",
+   "domain": "career",
+   "statement": "Washington: no state individual income tax on wage income in tax year 2026 (a 7%/9.9% capital gains tax exists; a new 9.9% income tax on AGI over $1 million takes effect Jan 1, 2028)",
+   "value": 0,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Washington Department of Revenue: Income tax (https://dor.wa.gov/taxes-rates/income-tax; undated)",
+     "locator": "https://dor.wa.gov/taxes-rates/income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wa-gov",
+     "primary": false,
+     "quote": "Washington does not currently have an individual income tax. ... Beginning Jan. 1, 2028, a new 9.9% income tax will apply to individuals",
+     "value": 0
+    },
+    {
+     "citation": "Kiplinger: New 9.9% Income Tax on Millionaires: What's Happening in Washington (https://www.kiplinger.com/taxes/washington-state-millionaire-tax; published 2026-03-03, updated 2026-03-31)",
+     "locator": "https://www.kiplinger.com/taxes/washington-state-millionaire-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger-com",
+     "primary": false,
+     "quote": "will take effect in 2028, with the first tax payments collected in 2029",
+     "value": 0
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Washington (capital gains only) | 7%: $0; 9%: $1,000,000"
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Washington | None | No state income tax | N/A",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-WA. SB 6346 (signed Mar 30 2026) creates a 9.9% tax on income over $1 million beginning Jan 1 2028; legal challenges expected. TF lists WA capital gains tax only (7% / 9% over $1M). structure=none (no wage income tax in 2026). topRateThresholdUsdSingle=None. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0042",
+   "level": "both",
+   "domain": "career",
+   "statement": "Wisconsin: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $332,720",
+   "value": 7.65,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wisconsin Department of Revenue: What are the individual income tax rates? (https://www.revenue.wi.gov/Pages/FAQS/pcs-taxrates.aspx; 2026-11-23)",
+     "locator": "https://www.revenue.wi.gov/Pages/FAQS/pcs-taxrates.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wi-gov",
+     "primary": false,
+     "quote": "$332,720 | | $17,030.62 + 7.65% | $332,720",
+     "value": 7.65
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Wisconsin | ... 5.30%: $51,950; 7.65%: $332,720",
+     "value": 7.65
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "Wisonsin | Graduated | 3.54% – 7.65% | April 15",
+     "value": 7.65
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-WI.  structure=graduated. topRateThresholdUsdSingle=332720. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0043",
+   "level": "both",
+   "domain": "career",
+   "statement": "West Virginia: top marginal state individual income tax rate on wage income for tax year 2026 (single filer), graduated; top rate starts at taxable income over $60,000",
+   "value": 4.58,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "West Virginia State Tax Department: Personal Income Tax Reduction Bill (https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx/; undated (refers to SB 392 signed 2026-03-31))",
+     "locator": "https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wv-gov",
+     "primary": false,
+     "quote": "Over $60,000: $1,950.50 plus 4.58% of excess over $60,000. ... a 5% income tax cut for all West Virginians retroactive to January 1, 2026.",
+     "value": 4.58
+    },
+    {
+     "citation": "EY Tax News: West Virginia law lowers personal income tax rate retroactive to January 1, 2026 (https://taxnews.ey.com/news/2026-0864-west-virginia-law-lowers-personal-income-tax-rate-retroactive-to-january-1-2026-updated-withholding-formula-is-now-available; 2026-04-14)",
+     "locator": "https://taxnews.ey.com/news/2026-0864-west-virginia-law-lowers-personal-income-tax-rate-retroactive-to-january-1-2026-updated-withholding-formula-is-now-available",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ey-com",
+     "primary": false,
+     "quote": "from 4.82% to 4.58%",
+     "value": 4.58
+    },
+    {
+     "citation": "Tax Foundation: State Individual Income Tax Rates and Brackets, 2026 (https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/; rates as of January 1, 2026)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "West Virginia | ... 4.44%: $40,000; 4.82%: $60,000",
+     "value": 4.82
+    },
+    {
+     "citation": "Paycor: 2026 State Income Tax Rates by State (https://www.paycor.com/resource-center/articles/state-income-tax-rates/; Last Updated: January 26, 2026 (metadata 2026-11-18))",
+     "locator": "https://www.paycor.com/resource-center/articles/state-income-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "paycor-com",
+     "primary": false,
+     "quote": "West Virginia | Graduated | 2.22% – 4.82% | April 15",
+     "value": 4.82
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-top-rate-WV. S.B. 392 (2026). CONFLICT: 4.58% (enacted 2026, retroactive: WV Tax Dept, EY) vs 4.82% (TF Jan 1 2026; Paycor). structure=graduated. topRateThresholdUsdSingle=60000. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0044",
+   "level": "both",
+   "domain": "career",
+   "statement": "US states with a wage income tax tax nonresident professional athletes on the share of pay earned in the state, normally allocated by duty days (days in state / total duty days in the season); no-income-tax states (e.g. FL, TX, NV, WA, SD, TN) impose none",
+   "value": "duty-days allocation",
+   "unit": "rule",
+   "validFor": "2024-2026 (sources dated 2024 to 2026)",
+   "sources": [
+    {
+     "citation": "National Taxpayers Union Foundation: Jock Taxes — Juice That Isn't Worth the Squeeze? (https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf; 2024-08-15)",
+     "locator": "https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ntu-org",
+     "primary": false,
+     "quote": "the only states that do not levy jock taxes are those with no state income tax ... States calculate jock taxes based on a percentage of 'duty days' spent in that state."
+    },
+    {
+     "citation": "Wikipedia: Jock tax (https://en.wikipedia.org/wiki/Jock_tax; undated)",
+     "locator": "https://en.wikipedia.org/wiki/Jock_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "By 2014, the only U.S. jurisdictions with major professional teams without a jock tax were Florida, Texas, Washington state, and Washington, D.C."
+    },
+    {
+     "citation": "New Jersey Division of Taxation: Nonresident Athletes (https://www.nj.gov/treasury/taxation/individuals/nonresident-athletes.shtml; Last Updated: Monday, 09/28/26)",
+     "locator": "https://www.nj.gov/treasury/taxation/individuals/nonresident-athletes.shtml",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nj-gov",
+     "primary": false,
+     "quote": "is calculated based on the ratio of duty days spent within New Jersey proportionate to the total number of duty days spent both within and without New Jersey during the taxable year."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-jock-general. State rules (NJ, IN, IA, MD) shown in their own rows use the same duty-day ratio. Duty days run from preseason training through the last game (MD AR-IT24). Arizona exempts MLB spring training from nonresident tax (Wikipedia, not verified). Local taxes (Philadelphia, Kansas City, Detroit, Prince George's County) also apply. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0045",
+   "level": "both",
+   "domain": "career",
+   "statement": "Indiana: nonresident professional athletes apportion income to Indiana by Indiana duty days / total duty days",
+   "value": "duty-days allocation",
+   "unit": "rule",
+   "validFor": "current (bulletin March 2023)",
+   "sources": [
+    {
+     "citation": "Indiana Department of Revenue: Income Tax Information Bulletin #88 (https://secure.in.gov/dor/files/ib88.pdf; March 2023)",
+     "locator": "https://secure.in.gov/dor/files/ib88.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "in-gov",
+     "primary": false,
+     "quote": "The numerator of the fraction is the individual's Indiana duty days for the taxable year. The denominator of the fraction is the individual's total duty days for the taxable year."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-jock-IN. Primary only; general duty-day practice corroborated by NTU. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0046",
+   "level": "both",
+   "domain": "career",
+   "statement": "Iowa: nonresident professional athletes' Iowa-source income = compensation x Iowa duty days / total duty days",
+   "value": "duty-days allocation",
+   "unit": "rule",
+   "validFor": "tax years beginning on or after 1995 (amended 2023)",
+   "sources": [
+    {
+     "citation": "Iowa Legislature (Iowa Administrative Code): 701—302.46(422) Taxation of compensation of nonresident members of professional athletic teams (https://www.legis.iowa.gov/docs/iac/rule/02-05-2025.701.302.46.pdf; IAC 02/05/2025)",
+     "locator": "https://www.legis.iowa.gov/docs/iac/rule/02-05-2025.701.302.46.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "iowa-gov",
+     "primary": false,
+     "quote": "in the ratio that the number of duty days spent in Iowa rendering services for the team during the tax year bears to the total number of duty days spent both within and without Iowa in the tax year."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-jock-IA. Iowa Admin. Code 701—302.46(422). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0047",
+   "level": "both",
+   "domain": "career",
+   "statement": "Maryland: nonresident professional athletes allocate team compensation by Maryland duty days / total duty days (duty days = official preseason training through last game, including postseason)",
+   "value": "duty-days allocation",
+   "unit": "rule",
+   "validFor": "current (release revised September 2008)",
+   "sources": [
+    {
+     "citation": "Comptroller of Maryland: Administrative Release No. 24: Nonresident Professional Athletes and Entertainers (https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/administrative-releases/income-and-estate-tax/ar_it24.pdf; revised September 2008)",
+     "locator": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/administrative-releases/income-and-estate-tax/ar_it24.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "marylandcomptroller-gov",
+     "primary": false,
+     "quote": "The numerator of the fraction is the number of duty days spent in Maryland ... The denominator of the fraction is the total number of duty days spent within and without Maryland"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-jock-MD. Maryland Administrative Release No. 24. Nonresidents also owe a special nonresident tax in place of county tax (not sourced here). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0048",
+   "level": "both",
+   "domain": "career",
+   "statement": "Missouri: withholding on nonresident entertainers (which covers visiting performers) is at the top rate, 4.70% for 2026",
+   "value": 4.7,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Missouri Department of Revenue: 2026 Missouri Withholding Tax Formula (Form 4282) (https://dor.mo.gov/forms/4282_2026.pdf; December 2025, revised 03-2026)",
+     "locator": "https://dor.mo.gov/forms/4282_2026.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "mo-gov",
+     "primary": false,
+     "quote": "The 4.70% rate also applies to supplemental wages, lump-sum distributions, and nonresident entertainer withholding.",
+     "value": 4.7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-jock-MO. From the 2026 withholding formula; whether athletes fall under 'nonresident entertainer' withholding is not stated in the opened text. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0049",
+   "level": "both",
+   "domain": "career",
+   "statement": "Illinois: jock tax on visiting athletes is retaliatory, imposed only on athletes from jurisdictions that tax Illinois-based players; general rule allocates to Illinois all compensation paid in Illinois to nonresidents",
+   "value": "retaliatory",
+   "unit": "rule",
+   "validFor": "current",
+   "sources": [
+    {
+     "citation": "Wikipedia: Jock tax (https://en.wikipedia.org/wiki/Jock_tax; undated)",
+     "locator": "https://en.wikipedia.org/wiki/Jock_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "is only imposed on athletes from jurisdictions that impose jock taxes on Illinois-based players"
+    },
+    {
+     "citation": "National Taxpayers Union Foundation: Jock Taxes — Juice That Isn't Worth the Squeeze? (https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf; 2024-08-15)",
+     "locator": "https://ntu.org/library/doclib/2024/08/Jock-taxes-1.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ntu-org",
+     "primary": false,
+     "quote": "Illinois quickly retaliated by levying a jock tax"
+    },
+    {
+     "citation": "Illinois General Assembly: 35 ILCS 5/302 (https://ilga.gov/legislation/ilcs/documents/003500050K302.htm; undated)",
+     "locator": "https://ilga.gov/legislation/ilcs/documents/003500050K302.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ilga-gov",
+     "primary": false,
+     "quote": "All items of compensation paid in this State ... to an individual who is a nonresident at the time of such payment ... are allocated to this State"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-jock-IL. Retaliatory condition from Wikipedia and NTU; statutory text for the athlete provision not opened (35 ILCS 5/302 shows only the general rule). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0050",
+   "level": "both",
+   "domain": "career",
+   "statement": "Tennessee: former flat jock tax ($2,500 per game, max 3 games/yr, NBA and NHL players) was repealed (2014 law; collection ended 2015-16 NBA season); Tennessee now has no tax on wages",
+   "value": 0,
+   "unit": "usd",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia: Jock tax (https://en.wikipedia.org/wiki/Jock_tax; undated)",
+     "locator": "https://en.wikipedia.org/wiki/Jock_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "a flat-rate tax of $2,500 per game ... applied to a maximum of three games per calendar year ... later repealed in April 2014",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-jock-TN. Repeal details from Wikipedia only (secondary); no-wage-tax status is triple-sourced in state-tax-top-rate-TN. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0051",
+   "level": "both",
+   "domain": "career",
+   "statement": "California: nonresidents pay California tax on pay for services performed in California",
+   "value": "source-based",
+   "unit": "rule",
+   "validFor": "current (Pub 1100 rev 10/2024)",
+   "sources": [
+    {
+     "citation": "California Franchise Tax Board: FTB Pub. 1100 Taxation of Nonresidents and Individuals Who Change Residency (https://www.ftb.ca.gov/forms/misc/1100.html; Revised: 10/2024)",
+     "locator": "https://www.ftb.ca.gov/forms/misc/1100.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ca-gov",
+     "primary": false,
+     "quote": "California taxes compensation received by a nonresident for performance of services in California."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-nonresident-CA.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0052",
+   "level": "both",
+   "domain": "career",
+   "statement": "Pennsylvania: the 3.07% flat rate applies to taxable income of both residents and nonresidents",
+   "value": 3.07,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Pennsylvania Department of Revenue: Personal Income Tax (https://www.pa.gov/en/agencies/revenue/resources/tax-types-and-information/personal-income-tax; undated)",
+     "locator": "https://www.pa.gov/en/agencies/revenue/resources/tax-types-and-information/personal-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pa-gov",
+     "primary": false,
+     "quote": "levied at the rate of 3.07 percent against taxable income of resident and nonresident individuals",
+     "value": 3.07
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-nonresident-PA.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0053",
+   "level": "both",
+   "domain": "career",
+   "statement": "Oregon: nonresident income tax is based on taxable income from Oregon sources",
+   "value": "source-based",
+   "unit": "rule",
+   "validFor": "current",
+   "sources": [
+    {
+     "citation": "Oregon Department of Revenue: Personal income tax (https://www.oregon.gov/dor/programs/individuals/pages/PIT.aspx; undated)",
+     "locator": "https://www.oregon.gov/dor/programs/individuals/pages/PIT.aspx",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "oregon-gov",
+     "primary": false,
+     "quote": "The income tax for nonresidents is based on taxable income from Oregon sources."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-nonresident-OR.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0054",
+   "level": "both",
+   "domain": "career",
+   "statement": "North Dakota: a nonresident must file a North Dakota return if required to file a federal return and has income from a North Dakota source",
+   "value": "source-based",
+   "unit": "rule",
+   "validFor": "current",
+   "sources": [
+    {
+     "citation": "North Dakota Office of State Tax Commissioner: Individual Income Tax (https://www.tax.nd.gov/individual-income-tax; undated)",
+     "locator": "https://www.tax.nd.gov/individual-income-tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nd-gov",
+     "primary": false,
+     "quote": "You must file an income tax return in North Dakota if you are a resident, part-year resident, or nonresident and:"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-nonresident-ND.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0055",
+   "level": "both",
+   "domain": "career",
+   "statement": "Mississippi: nonresidents and part-year residents with income taxed by Mississippi must file",
+   "value": "source-based",
+   "unit": "rule",
+   "validFor": "current",
+   "sources": [
+    {
+     "citation": "Mississippi Department of Revenue: Individual Income Tax - General Information (https://www.dor.ms.gov/general-information; undated)",
+     "locator": "https://www.dor.ms.gov/general-information",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ms-gov",
+     "primary": false,
+     "quote": "You are a Non-Resident or Part-Year Resident with income taxed by Mississippi."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-nonresident-MS.  Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-tax-state-0056",
+   "level": "both",
+   "domain": "career",
+   "statement": "District of Columbia: income tax applies to people domiciled in DC or keeping an abode there 183+ days; DC cannot tax nonresidents who work there (federal prohibition), so visiting athletes owe no DC jock tax",
+   "value": "residents only",
+   "unit": "rule",
+   "validFor": "current",
+   "sources": [
+    {
+     "citation": "DC Office of Tax and Revenue: DC Individual and Fiduciary Income Tax Rates (https://otr.cfo.dc.gov/page/dc-individual-and-fiduciary-income-tax-rates; undated)",
+     "locator": "https://otr.cfo.dc.gov/page/dc-individual-and-fiduciary-income-tax-rates",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "dc-gov",
+     "primary": false,
+     "quote": "domiciled in the District at any time during the tax year ... maintains an abode in the District for 183 or more days during the year"
+    },
+    {
+     "citation": "Wikipedia: Jock tax (https://en.wikipedia.org/wiki/Jock_tax; undated)",
+     "locator": "https://en.wikipedia.org/wiki/Jock_tax",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-org",
+     "primary": false,
+     "quote": "Congress specifically prohibits [Washington, D.C.] from taxing non-residents"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key state-tax-nonresident-DC. The federal prohibition comes from Wikipedia (secondary); OTR page gives the residency test only. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  }
+ ]
+}

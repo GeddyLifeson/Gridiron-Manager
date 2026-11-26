@@ -39,11 +39,11 @@ describe('reference resolver: fouls', () => {
     const run = plays(runCalls, rules);
     const byPass = count(pass);
     const byRun = count(run);
-    const perPlay = (perGame: number) => (perGame * P('foul.committedPerAccepted')) / P('volume.playsPerGame');
+    const perPlay = (perGame: number, id: string) => (perGame * P(`foul.committedPerAccepted.${id}`)) / P('volume.playsPerGame');
     // Types open on every scrimmage play: the same chance on a run and on a pass.
     for (const id of ['false_start', 'offensive_holding', 'delay_of_game', 'offside', 'unnecessary_roughness']) {
       const row = FOUL_ROWS.find((f) => f.id === id)!;
-      const p = perPlay(row.perGame);
+      const p = perPlay(row.perGame, id);
       const se = Math.sqrt(p / N);
       expect(Math.abs((byPass.get(id) ?? 0) / N - p), `${id} on passes`).toBeLessThan(5 * se);
       expect(Math.abs((byRun.get(id) ?? 0) / N - p), `${id} on runs`).toBeLessThan(5 * se);

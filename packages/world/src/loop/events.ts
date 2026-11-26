@@ -12,6 +12,8 @@ export const RELEASED = 'released';
 export const USER_BACKGROUND = 'user_background';
 export const TEAM_FOUNDED = 'team_founded';
 export const TEAM_FOLDED = 'team_folded';
+/** The game that decides a competition's title was won (read by the legends pages and the record book). */
+export const TITLE_WON = 'title_won';
 
 const CONSUMERS = ['world.loop'];
 
@@ -39,7 +41,20 @@ export const RELEASED_FALLBACK: EventTypeDef = {
   id: RELEASED, family: 'roster', payloadSchema: { reason: 'string' }, witnessRule: 'public', lineTemplate: 'event.released', harmClass: 'professional_negative', importedAllowed: true, minTier: 3, consumers: CONSUMERS, compactable: false,
 };
 
-/** This module's types, plus `released` when the given ids do not already hold it. */
+/**
+ * `title_won` belongs to the league's honours; this row is used only where a registry does not hold it
+ * yet. The champion team is the event's team (`where.teamId`), so no person's career counters change.
+ */
+export const TITLE_WON_FALLBACK: EventTypeDef = {
+  id: TITLE_WON, family: 'honors', payloadSchema: { season: 'number', opponent: 'id', points: 'number', opponent_points: 'number' }, witnessRule: 'public',
+  lineTemplate: 'event.title_won', harmClass: 'none', importedAllowed: true, minTier: 3, consumers: ['world.loop', 'league.history', 'app.legends'], compactable: false,
+};
+
+/** This module's types, plus `released` and `title_won` when the given ids do not already hold them. */
 export function worldEventTypes(registeredIds: readonly string[] = []): EventTypeDef[] {
-  return registeredIds.includes(RELEASED) ? [...WORLD_EVENT_TYPES] : [...WORLD_EVENT_TYPES, RELEASED_FALLBACK];
+  return [
+    ...WORLD_EVENT_TYPES,
+    ...(registeredIds.includes(RELEASED) ? [] : [RELEASED_FALLBACK]),
+    ...(registeredIds.includes(TITLE_WON) ? [] : [TITLE_WON_FALLBACK]),
+  ];
 }

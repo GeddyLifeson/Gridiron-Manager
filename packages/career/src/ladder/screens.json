@@ -60,6 +60,7 @@
     "coach.life": { "kind": "self" },
     "coach.job_market": { "kind": "self" },
     "coach.record": { "kind": "self" },
+    "coach.notebook": { "kind": "self" },
     "school.lessons": { "kind": "self" },
     "school.glossary": { "kind": "self" },
     "school.drills": { "kind": "self" },

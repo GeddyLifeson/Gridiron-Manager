@@ -28,25 +28,62 @@ export function seedToHex(s: WorldSeed): string {
   return (s.hi >>> 0).toString(16).padStart(8, '0') + (s.lo >>> 0).toString(16).padStart(8, '0');
 }
 
-function encodeScope(seed: WorldSeed, name: string, scope: readonly ScopeField[]): Uint8Array {
-  const parts: number[] = [];
-  const pushU32 = (n: number) => { parts.push(n & 0xff, (n >>> 8) & 0xff, (n >>> 16) & 0xff, (n >>> 24) & 0xff); };
-  const pushStr = (s: string) => { const b = utf8(s); pushU32(b.length); for (const x of b) parts.push(x); };
-  pushStr(KEY_SCHEME_VERSION);
-  pushU32(seed.hi); pushU32(seed.lo);
-  pushStr(name);
-  pushU32(scope.length);
-  for (const f of scope) {
-    if (typeof f === 'string') { parts.push(1); pushStr(f); }
-    else {
-      if (!Number.isInteger(f) || f < -2147483648 || f > 4294967295) throw new Error(`scope field ${f} must be a 32-bit integer`);
-      parts.push(2); pushU32(f >>> 0);
+// The key bytes: version, seed words, name, then each scope field (1 + string or 2 + u32), little-endian
+// u32 lengths and values. Written into one reused buffer and hashed in place (G-97: a game derives a
+// stream for every draw site). ASCII strings are copied directly; others go through the encoder, so the
+// bytes are the UTF-8 bytes either way.
+let keyBuf = new Uint8Array(256);
+let keyLen = 0;
+
+function keyEnsure(n: number): void {
+  if (keyLen + n <= keyBuf.length) return;
+  let cap = keyBuf.length * 2;
+  while (cap < keyLen + n) cap *= 2;
+  const next = new Uint8Array(cap);
+  next.set(keyBuf.subarray(0, keyLen));
+  keyBuf = next;
+}
+
+function keyU32(n: number): void {
+  keyEnsure(4);
+  const b = keyBuf;
+  b[keyLen] = n & 0xff; b[keyLen + 1] = (n >>> 8) & 0xff; b[keyLen + 2] = (n >>> 16) & 0xff; b[keyLen + 3] = (n >>> 24) & 0xff;
+  keyLen += 4;
+}
+
+function keyStr(s: string): void {
+  const n = s.length;
+  for (let i = 0; i < n; i++) {
+    if (s.charCodeAt(i) > 0x7f) {
+      const u = utf8(s);
+      keyU32(u.length); keyEnsure(u.length); keyBuf.set(u, keyLen); keyLen += u.length;
+      return;
     }
   }
-  return Uint8Array.from(parts);
+  keyU32(n); keyEnsure(n);
+  const b = keyBuf;
+  for (let i = 0; i < n; i++) b[keyLen + i] = s.charCodeAt(i);
+  keyLen += n;
+}
+
+function encodeScope(seed: WorldSeed, name: string, scope: readonly ScopeField[]): Uint8Array {
+  keyLen = 0;
+  keyStr(KEY_SCHEME_VERSION);
+  keyU32(seed.hi); keyU32(seed.lo);
+  keyStr(name);
+  keyU32(scope.length);
+  for (const f of scope) {
+    if (typeof f === 'string') { keyEnsure(1); keyBuf[keyLen++] = 1; keyStr(f); }
+    else {
+      if (!Number.isInteger(f) || f < -2147483648 || f > 4294967295) throw new Error(`scope field ${f} must be a 32-bit integer`);
+      keyEnsure(1); keyBuf[keyLen++] = 2; keyU32(f >>> 0);
+    }
+  }
+  return keyBuf.subarray(0, keyLen);
 }
 
 export function streamKey(seed: WorldSeed, name: string, scope: readonly ScopeField[]): Key128 {
+  // The bytes are a view of the shared buffer; the hash reads them before anything else writes there.
   return murmur3x86_128(encodeScope(seed, name, scope), 0);
 }
 

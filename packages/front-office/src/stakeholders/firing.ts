@@ -181,7 +181,7 @@ export function firingHazard(dm: DecisionMakerProfile, model: DeciderModel, r: R
   const money = moneyFactor(dm, r.money, r.confidence);
   const situation = situationFactor(r.situation, dm.patience);
   const scale = model.hazardScale;
-  const inSeason = r.inSeason ? inSeasonFactor(r.inSeason) : 1;
+  const inSeason = r.inSeason ? inSeasonFactor(r.inSeason) * model.inSeasonScale : 1;
   return { base, year, gm, money, situation, scale, inSeason, pFire: Math.min(P('fire.cap'), base * year * gm * money * situation) * scale * inSeason };
 }
 

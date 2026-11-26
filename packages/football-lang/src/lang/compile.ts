@@ -9,7 +9,7 @@ import {
 import { ACTIONS, INSTANT_ACTIONS, type ActFn } from './actions.ts';
 import { CONDITIONS, type Args, type CompileEnv, type CondFn } from './conditions.ts';
 import { constsOf } from './params.ts';
-import { F, T, U, aim, compileSelector, dist, isSelector, type ActivePoint, type Ctx, type Sel, type Tri } from './runtime.ts';
+import { F, T, U, aim, compileSelector, dist, face, isSelector, type ActivePoint, type Ctx, type Sel, type Tri } from './runtime.ts';
 import { ACTION_DEFS, BEHAVIOR_DEFS, CONDITION_DEFS, UNIVERSAL_EVENTS, VOCABULARY, isBehavior, type ArgSpec } from './vocabulary.ts';
 
 export interface CompileOptions {
@@ -267,6 +267,13 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
       }
     }
     wasStemDone = c.stemDone;
+
+    // A run blocker locked up with a defender sustains the block (J4.2.1 `sustain`): he stays on that man until the
+    // block is won, lost or broken, whatever his rule would otherwise send him to.
+    if (live && !dead && c.behavior === 'runBlock' && c.view.lockedWith) {
+      const held = c.view.lockedWith(), e = held >= 0 ? view.entity(held) : null;
+      if (e !== null) { aim(c, e.px, e.py); face(c, e.px, e.py); intent.arrival = 'through'; intent.moveMode = 'run'; }
+    }
 
     if (!live) {
       // Before the snap he holds his stance, or runs his drawn motion.
