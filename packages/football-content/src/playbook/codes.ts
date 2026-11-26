@@ -1,6 +1,7 @@
 // G4.4 short codes: wristbands (G4.4.1, G4.4.5), one-word and no-huddle codes (G4.4.2), sideline signals
 // and their decoding (G4.4.3), and dummy calls (G4.4.4). Randomness is never drawn here: functions return
 // chances, and the caller draws from its J13 stream.
+import { possible } from '@gm/schema';
 import { LEARNING_PROFILES, param } from './params.ts';
 import { powReal, powInt } from './dmath.ts';
 import type { Call, LanguageFamily } from './types.ts';
@@ -175,12 +176,12 @@ export function decodeQ(e: Pick<SignalExposure, 'effort' | 'signs' | 'dummies'>)
 /** Chance the call is decoded: 1 - (1 - q)^n, n zero when never shown in a game (G4.4.3). */
 export function decodeChance(e: SignalExposure): number {
   let n = e.n;
-  if (n <= 0) return 0;
+  if (n <= 0) return possible(0);
   if (e.covered) n = n * (1 - param('signals.coverReduction'));
   if (e.tv) n = n * (1 + param('signals.tvShare'));
   const q = decodeQ(e);
   const keep = Number.isInteger(n) ? powInt(1 - q, n) : powReal(1 - q, n);
-  return 1 - keep;
+  return possible(1 - keep);
 }
 
 /** Value K3 gets from a call: full when decoded, a timing leak when only its signalling moment is known. */

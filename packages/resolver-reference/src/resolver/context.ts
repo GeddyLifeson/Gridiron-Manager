@@ -2,7 +2,7 @@
 // random stream, and helpers that append truth events (contract D-03, D-04). Play-frame values (px along
 // the direction the snapping team attacks, py to its left) are converted to field-frame spots on write.
 import {
-  roundYd, roundSimS, otherSide, issToZ,
+  roundYd, roundSimS, otherSide, issToZ, possible,
   type DeterministicMath, type FieldedPlayer, type PlayInput, type RandomStream, type Side, type SimPlayer,
   type SimTeam, type Spot, type TruthEvent,
 } from '@gm/schema';
@@ -106,8 +106,9 @@ export class Ctx {
 
   /** Moves a probability by `sd` standard deviations of a latent logistic outcome. No change at 0. */
   shifted(p: number, sd: number): number {
-    if (sd === 0 || p <= 0 || p >= 1) return p < 0 ? 0 : p > 1 ? 1 : p;
-    return this.math.logistic(this.math.log(p / (1 - p)) + sd * LOGISTIC_SD);
+    // A3.1 ruling 22: a shifted chance is never exactly 0 or 1.
+    if (sd === 0 || p <= 0 || p >= 1) return possible(p);
+    return possible(this.math.logistic(this.math.log(p / (1 - p)) + sd * LOGISTIC_SD));
   }
 
   pickId(team: Team): number {
@@ -197,7 +198,8 @@ export class Ctx {
     this.reachLineToGain(o, t, py);
     const margin = o.team === 'snapping' && this.ltgPx !== null ? roundYd(Math.abs(o.toPx - this.ltgPx)) : null;
     const other: Team = o.team === 'snapping' ? 'opposing' : 'snapping';
-    if (o.fumbleShare > 0 && this.rng.chance(o.fumbleShare)) {
+    // A3.1 ruling 22: every carry can end in a fumble, even one the caller rates at 0 (after a catch, a scramble, a return).
+    if (this.rng.chance(possible(o.fumbleShare))) {
       const forcedBy = this.pickId(other);
       const recoverer = this.pickId(other);
       this.push({ type: 'tackle_attempt', t: roundSimS(t), outcome: 'made', carrierId: o.carrierId, tacklerIds: [forcedBy], spot: this.spot(o.toPx, py) });

@@ -3,7 +3,7 @@
 // one change ripples down the chart until a chair posts to the market (K7). Choices by people (who comes,
 // whom the appointer promotes) are inputs decided by K7, K8 and the user; this module owns the order, the
 // windows, the starting chances, and the bookkeeping.
-import type { RandomStream, WorldDate } from '@gm/schema';
+import { possible, type RandomStream, type WorldDate } from '@gm/schema';
 import { CATALOGUE, type Catalogue, type CascadeKind } from './catalogue.ts';
 import { draft, EVENT, type DraftMeta, type EventDraft } from './events.ts';
 import { param } from './params.ts';
@@ -59,14 +59,14 @@ export interface CascadeResult {
 
 /** X8.4.1 rule 3: base chance by chair kind plus adjustments, clamped; the appointer's say is 100 percent. */
 export function keepChance(kind: CascadeKind, v: IncumbentView): number {
-  if (v.requiredByAppointer) return 1;
-  if (kind === 'none' || kind === 'head_coach') return 1;
+  if (v.requiredByAppointer) return possible(1);
+  if (kind === 'none' || kind === 'head_coach') return possible(1);
   let p = param(`keep.${kind}`);
   if (v.strongPositiveEdge) p += param('keep.adjust.strongEdge');
   if (v.unitTopQuarter) p += param('keep.adjust.topQuarterUnit');
   if (v.sameSchemeFamily) p += param('keep.adjust.sameScheme');
   if (v.negativeEdge) p += param('keep.adjust.negativeEdge');
-  return Math.min(param('keep.clampMax'), Math.max(0, p));
+  return possible(Math.min(param('keep.clampMax'), Math.max(0, p)));
 }
 
 function windowDays(kind: CascadeKind): number {
