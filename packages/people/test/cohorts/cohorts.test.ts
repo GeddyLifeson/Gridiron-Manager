@@ -290,3 +290,14 @@ describe('determinism and day-one draws', () => {
     expect(countByLevel('coach_staff_entry', [1, 2, 3], (id) => (id === 1 ? 'pro' : 'college'))).toEqual({ college: 2, pro: 1 });
   });
 });
+
+describe('emits are accepted by the G-22 event log', () => {
+  it('cohort_entered and cohort_validation_warning rows emit through EventLog with the cohort types registered', async () => {
+    const { history } = await import('@gm/league');
+    const log = new history.EventLog({ registry: history.typeRegistry(COHORT_EVENT_TYPES) });
+    const r = runCohort({ kind: 'coach_staff_entry', season: 2070, date: date(2070), world: { ...WORLD, openEntryChairs: 10, retiredWouldBeCoaches: 0 }, open, makePerson: maker('coach_staff_entry', 2070), sizeOverride: 30 });
+    for (const e of r.emits) expect(log.emit(e).ok, e.type).toBe(true);
+    const u = formUndraftedPool([1, 2, 3], [2], 2070, date(2070, 120));
+    expect(log.emit(u.emit).ok).toBe(true);
+  });
+});

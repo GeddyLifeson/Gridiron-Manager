@@ -1,0 +1,89 @@
+{
+  "domain": "career",
+  "rows": [
+    {
+      "id": "F-bosses-0001",
+      "level": "pro",
+      "domain": "career",
+      "statement": "Who held final say on draft decisions across the 32 pro clubs in the 2016 ESPN NFL Nation survey, as general manager : head coach : owner or family member : other executive.",
+      "value": "21:5:4:2",
+      "unit": "clubs",
+      "validFor": "2016 draft",
+      "sources": [
+        {
+          "citation": "ESPN NFL Nation 2016 draft decision-maker survey, tallied in research/audit-r31-r34.md R35",
+          "locator": "/mnt/project-files/research/audit-r31-r34.md, R35 (the researcher's tally of the article's prose)",
+          "dateRead": "2026-11-25",
+          "howRead": "secondary summary",
+          "independenceGroup": "espn-nfl-nation-2016",
+          "primary": false,
+          "quote": "the general manager had final say in 21, the head coach in 5 (MIA, NE, ATL, LAR, SEA), an owner or family member in 4 (CIN, IND, SD/LAC, DAL), another executive in 2 (CLE, PHI)",
+          "value": "21:5:4:2"
+        },
+        {
+          "citation": "Bleacher Report, Tyler Conway, '2016 NFL Draft Decision-Makers for Each Team Revealed by ESPN NFL Nation', 2016-04-18",
+          "locator": "https://bleacherreport.com/articles/2633712-2016-nfl-draft-decision-makers-for-each-team-revealed-by-espn-nfl-nation (32-team table, tallied by G-48; owner-family counts Cincinnati's president-owner and the Chargers' family president, as R35 does)",
+          "dateRead": "2026-11-26",
+          "howRead": "secondary summary",
+          "independenceGroup": "espn-nfl-nation-2016",
+          "primary": false,
+          "quote": "General managers comprise an overwhelming majority of the final say.",
+          "value": "21:5:4:2"
+        }
+      ],
+      "status": "1 of 3",
+      "usedBy": ["career.bosses power.odds.*"],
+      "notes": "Both sources relay one survey, so they are one independence group. The article text says four head coaches; its own table lists five (Atlanta included). Ten years old: used as a starting distribution only (L5.2.1).",
+      "statusHistory": [{ "date": "2026-11-26", "status": "1 of 3", "reason": "G-48 load; Bleacher Report table read 2026-11-26 confirms the R35 tally." }]
+    },
+    {
+      "id": "F-bosses-0002",
+      "level": "pro",
+      "domain": "career",
+      "statement": "Who held the final call on football decisions across the 32 pro clubs in a 2015 list, as general manager : head coach : owner : other executive.",
+      "value": "20:3:9:0",
+      "unit": "clubs",
+      "validFor": "2015 offseason (date inferred from content; page shows none)",
+      "sources": [
+        {
+          "citation": "Sportsnaut, 'Who calls the shots for every NFL team' (undated, content points to spring 2015)",
+          "locator": "https://sportsnaut.com/who-calls-the-shots-for-every-nfl-team (team-by-team list, tallied by G-48)",
+          "dateRead": "2026-11-26",
+          "howRead": "secondary summary",
+          "independenceGroup": "sportsnaut",
+          "primary": false,
+          "quote": "One person who has the final call on all football-related choices.",
+          "value": "20:3:9:0"
+        }
+      ],
+      "status": "1 of 3",
+      "usedBy": ["career.bosses (evidence only: shows owners holding final say far more often than the 2016 survey)"],
+      "notes": "Classification of owner-presidents is a judgment call. Not used as odds; recorded because it disagrees with F-bosses-0001 on the owner share.",
+      "statusHistory": [{ "date": "2026-11-26", "status": "1 of 3", "reason": "G-48 load." }]
+    },
+    {
+      "id": "F-bosses-0003",
+      "level": "pro",
+      "domain": "career",
+      "statement": "Head coaches named as holding final say on all football decisions and the 53-man roster in January 2026.",
+      "value": 5,
+      "unit": "clubs (named, at least)",
+      "validFor": "2026-01",
+      "sources": [
+        {
+          "citation": "The Ringer, Lindsay Jones, 'The NFL's GM Power Era Has Arrived', 2026-01-21",
+          "locator": "https://www.theringer.com/2026/01/21/nfl/nfl-head-coaching-carousel-general-manager-power-era-brandon-beane-promoted-sean-mcdermott-fired",
+          "dateRead": "2026-11-26",
+          "howRead": "secondary summary",
+          "independenceGroup": "the-ringer",
+          "primary": false,
+          "quote": "These are the men who have the final say on all football decisions and control over the 53-man roster.",
+          "value": 5
+        }
+      ],
+      "status": "1 of 3",
+      "usedBy": ["career.bosses (evidence only: the head-coach weight of 5 still matches in 2026)"],
+      "statusHistory": [{ "date": "2026-11-26", "status": "1 of 3", "reason": "G-48 load." }]
+    }
+  ]
+}
