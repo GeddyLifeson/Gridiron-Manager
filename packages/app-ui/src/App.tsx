@@ -6,8 +6,14 @@ import {
   WorldService, runGolden, compareGolden, goldenInputs, VERSIONS,
   type Platform, type WorldSummaryModel, type GoldenReport,
 } from '@gm/app-services';
+import { SoundStageCaptions, type SoundStage } from './audio/stage/index.ts';
 
-export interface AppProps { platform: Platform; golden: GoldenReport }
+export interface AppProps {
+  platform: Platform;
+  golden: GoldenReport;
+  /** The sound stage built by the shell host; absent or null runs silent. */
+  soundStage?: SoundStage | null;
+}
 
 type Gate = { state: 'idle' | 'running' } | { state: 'done'; ok: boolean; digest: string; mismatches: string[]; seconds: number };
 
@@ -21,7 +27,7 @@ function randomSeedHex(): string {
   return a.toString(16).padStart(8, '0') + (b >>> 0).toString(16).padStart(8, '0');
 }
 
-export function App({ platform, golden }: AppProps) {
+export function App({ platform, golden, soundStage = null }: AppProps) {
   const [saves, setSaves] = useState<{ name: string; sizeBytes: number }[]>([]);
   const [svc, setSvc] = useState<WorldService | null>(null);
   const [summary, setSummary] = useState<WorldSummaryModel | null>(null);
@@ -32,6 +38,8 @@ export function App({ platform, golden }: AppProps) {
 
   const refresh = useCallback(async () => setSaves(await platform.listSaves()), [platform]);
   useEffect(() => { void refresh(); }, [refresh]);
+  // The phase 0 screen is the title screen for menu music (off unless the user turned it on).
+  useEffect(() => { soundStage?.setPlace({ hub: 'title', inGame: false, offseason: false }); }, [soundStage]);
 
   const open = async (s: WorldService) => { setSvc(s); setSummary(s.worldSummary()); await refresh(); };
 
@@ -110,6 +118,7 @@ export function App({ platform, golden }: AppProps) {
           <p data-testid="gate-result">{gate.ok ? 'PASS' : 'FAIL'}: digest <code>{gate.digest}</code>, golden <code>{golden.digest}</code>, {gate.seconds}s{gate.mismatches.length ? `. Mismatches: ${gate.mismatches.join('; ')}` : ''}</p>
         )}
       </section>
+      <SoundStageCaptions stage={soundStage} />
     </main>
   );
 }

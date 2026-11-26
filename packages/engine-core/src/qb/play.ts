@@ -19,6 +19,19 @@ export interface QbTarget {
   /** What the quarterback knows of his own receiver from practice, as z. 0 when the caller gives none. */
   readonly zHands?: number;
   readonly zContestedCatch?: number;
+  /**
+   * His receiver's legs, known from practice (J2.2), for walking him along the route (J7.3.1 step 1).
+   * When the caller gives none the league-typical rows `qb.judge.route*` stand in.
+   */
+  readonly topSpeedYps?: number;
+  readonly accelTauS?: number;
+  readonly brakeYps2?: number;
+  /**
+   * Share of his top speed he carries through each point of `route` (J2.1.3): 1 where he runs
+   * through, less where he plants. Same length as `route`. Absent: only the break is planted, at the
+   * league-typical share for its angle.
+   */
+  readonly cutShare?: readonly number[];
 }
 
 /** One step of the progression (J7.2.1). */
@@ -64,7 +77,17 @@ export interface MovementAction {
   readonly keepOption: boolean;
 }
 
-export const QB_PLAY_KINDS = ['pass', 'hailMary', 'mesh', 'spike', 'kneel', 'sneak'] as const;
+/**
+ * A designed handoff with no read (F4): he turns, meets the back and gives the ball. Nothing a
+ * defender does changes it. A give that depends on a key is a `MeshRead`.
+ */
+export interface Handoff {
+  readonly backSlot: number;
+  /** Where he carries the ball to meet the back, play frame. Null: he gives it where he took the snap. */
+  readonly meet: PlayPoint | null;
+}
+
+export const QB_PLAY_KINDS = ['pass', 'hailMary', 'mesh', 'handoff', 'spike', 'kneel', 'sneak'] as const;
 export type QbPlayKind = (typeof QB_PLAY_KINDS)[number];
 
 /** N2 stand-in: the value of a completion for these yards, and the cost of a turnover, in expected points. */
@@ -112,6 +135,8 @@ export interface QbPlay {
    */
   readonly correctedReads: readonly QbRead[] | null;
   readonly mesh: MeshRead | null;
+  /** The designed handoff of a `handoff` play. Absent or null on every other kind. */
+  readonly handoff?: Handoff | null;
   readonly instructions: QbInstructions;
   /** Slots of the originally eligible receivers (J7.5.2). */
   readonly eligible: readonly number[];
@@ -162,6 +187,11 @@ export function qbPlayProblems(play: QbPlay): string[] {
       if (play.mesh.endS <= play.mesh.startS) out.push('mesh: the window must have a length');
       if (play.mesh.onCrash === 'throw' && !play.mesh.throwTarget) out.push('mesh: a run-pass option needs its route');
     }
+  }
+  if (play.kind === 'handoff') {
+    const h = play.handoff ?? null;
+    if (h === null) out.push('a handoff play needs its handoff');
+    else if (!slotOk(h.backSlot) || h.backSlot === play.qbSlot) out.push('handoff: the back must be a teammate');
   }
   if (play.kind === 'hailMary' && !play.landmark) out.push('a Hail Mary needs its landmark');
   if (play.kind === 'pass' && play.reads.length === 0 && !play.checkdown) out.push('a pass needs at least one read');

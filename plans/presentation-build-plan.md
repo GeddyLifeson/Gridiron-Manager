@@ -260,7 +260,7 @@ Model policy (game-build-plan.md section 0): Fable for genuinely hard modules, O
 
 ## 9. Open items for Marlon
 
-1. Classic era look as the default theme (plan: yes, with the plain themes one setting away). Body text stays in system fonts; the period display faces are drawn by code.
+1. Classic era look as the default theme: DECIDED yes (Marlon, 2026-11-26 06:47 UTC), plain themes one setting away (`display.theme` default `classic`, PR 240). Body text stays in system fonts; the period display faces are drawn by code.
 2. Spoken words: the cadence and referee announcements use tones plus on-screen text, no voice. A generated (not real-person) voice is possible later if wanted.
 3. Figure mode after the gates: wanted, or keep markers only.
 4. Whether menu music is wanted at all (default plan: on in menus, user volume).

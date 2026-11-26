@@ -208,3 +208,10 @@ describe('Q1.5.1 greyscale', () => {
     expect(worst.ratio).toBeGreaterThanOrEqual(1);
   });
 });
+
+describe('team colours in grey (Q1.5.1; found by the PV-17 QA suite)', () => {
+  it('home and away differ by at least the grey floor in every theme and colour-vision palette', async () => {
+    const { greyFailures: grey } = await import('./greyscale.ts');
+    expect(grey(['team.home', 'team.away'])).toEqual([]);
+  });
+});
