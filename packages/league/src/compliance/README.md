@@ -20,7 +20,7 @@ never breaks a rule, W-28 `mayReceiveEvent`).
 
 `commitAct` no longer copies the whole log per act when the caller holds it (`ownLog` ... `releaseLog`; the
 world's recruiting pass does). Acts past the detection window (`compliance.detect_window_years`, the statute
-of limitations: NCAA Bylaw 19.5.11, four years, fact F-college-0029, Rulebook only), past the K2.8.2 cooldown
+of limitations: NCAA Bylaw 19.5.11, four years, fact F-compliance-0001, Rulebook only), past the K2.8.2 cooldown
 and in no open case move to `state.archive` (chunks per sweep), as do closed cases past the window. No step
 reads them again, so results are unchanged (tested over 30 seasons). `complianceWeek` sweeps weekly; `commitAct`
 sweeps when the live log has doubled, keeping acts younger than `retire_window_floor_years` because the weekly
