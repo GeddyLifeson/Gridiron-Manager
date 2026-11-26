@@ -1,0 +1,26 @@
+{
+  "$comment": "Weekly task families by rung (H1.5.5 table, H9.5.2). share = part of the rung's daily load at full depth; the load is rung_overload_ga (115 percent) of rung_day_hours for the graduate assistant, rung_overload_other otherwise. Shares are Assumption; the families are the leaf's.",
+  "rungs": {
+    "student_assistant": [
+      { "family": "film_cutting", "share": 0.5, "leaf": "H1.5.5" },
+      { "family": "equipment_and_errands", "share": 0.3, "leaf": "H1.5.5" },
+      { "family": "visit_hosting", "share": 0.2, "leaf": "H1.5.5" }
+    ],
+    "graduate_assistant": [
+      { "family": "film_tagging", "share": 0.4, "leaf": "H2.6.3" },
+      { "family": "scout_cards", "share": 0.35, "leaf": "H9.2.3" },
+      { "family": "scout_team", "share": 0.25, "leaf": "H3.6.2" }
+    ],
+    "quality_control": [
+      { "family": "tendency_tables", "share": 0.4, "leaf": "H1.5.5" },
+      { "family": "report_sections", "share": 0.3, "leaf": "H9.2.4" },
+      { "family": "self_scout", "share": 0.2, "leaf": "G8" },
+      { "family": "decision_book_draft", "share": 0.1, "leaf": "H9.3.1" }
+    ],
+    "position_coach": [
+      { "family": "plan_part", "share": 0.4, "leaf": "H1.5.5" },
+      { "family": "grades", "share": 0.3, "leaf": "H1.5.5" },
+      { "family": "packet_and_tip_sheet", "share": 0.3, "leaf": "H9.2.4" }
+    ]
+  }
+}
