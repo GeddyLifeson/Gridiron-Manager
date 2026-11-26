@@ -55,14 +55,10 @@ describe('greyscale (Q1.5.1)', () => {
     expect(greyFailures(STATE_COLOURS, LABELLED)).toEqual([]);
   });
 
-  // Observation (PV-17, 2026-11-26): team.home and team.away are 1.02 to 1.17:1 apart in grey in every theme and
-  // palette, under the 1.25 floor: the two team colours are told apart by hue only. That is acceptable only
-  // because something else carries the side: the strip prints each team's name beside its colour (and the ball
-  // triangle points at the team with it), and the field tells offence from defence by marker shape (the marker
-  // test below). The test pins that: the colour pair stays hue-only, and if a carrier goes, it fails.
-  it('home and away are hue-only, and their name and shape carriers are present', () => {
-    const fails = greyFailures(['team.home', 'team.away']);
-    expect(fails.length).toBe(THEME_IDS.length * COLOUR_VISION_IDS.length);
+  // PV-17 found team.home and team.away 1.02 to 1.17:1 apart in grey (hue only). Fixed 2026-11-26: the tokens now
+  // keep them 1.32 to 1.38:1 apart in every theme and palette. The name and possession carriers stay required too.
+  it('home and away stay apart in grey in every theme and palette, and their name and shape carriers are present', () => {
+    expect(greyFailures(['team.home', 'team.away'])).toEqual([]);
     for (const theme of THEME_IDS) {
       const strip = surfaceMarkup('strip-plain', theme);
       expect(strip, theme).toMatch(/data-item="teams"/);

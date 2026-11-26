@@ -136,3 +136,23 @@ describe('flash limiter (plan section 7, PR 209)', () => {
     expect(r.cuesDropped()).toEqual([]);
   });
 });
+
+describe('kick and post-hit cues (PV-00 kick, postHit; cue table rows kick, post_hit)', () => {
+  const kicks = [{ kind: 'kick' as const, tick: 13, x: 30, y: 26.65 }, { kind: 'postHit' as const, tick: 31, x: 110, y: 27.5 }];
+  it('each kicked-ball event gets its own cue on its tick, switched by the table row', () => {
+    const cues = buildCues([], 10, [], kicks);
+    expect(cues.map((c) => [c.shape, c.fromTick, c.switchKey])).toEqual([
+      ['kickMark', 13, cueSwitch('kick')],
+      ['postMark', 31, cueSwitch('postHit')],
+    ]);
+    expect(switchedOn(cues, { [cueSwitch('kick')]: false })).toHaveLength(0);
+  });
+  it('the renderer draws them from the kicks option and draws neither without it', () => {
+    const on = new FieldRenderer(fixturePlay(), PRO, { ...base, kicks });
+    const off = new FieldRenderer(fixturePlay(), PRO, base);
+    for (const r of [on, off]) { r.resize(960, 600); r.update(13, 0); }
+    const a = new RecordingContext(), b = new RecordingContext();
+    on.draw(a); off.draw(b);
+    expect(a.arcs.length).toBeGreaterThan(b.arcs.length);
+  });
+});
