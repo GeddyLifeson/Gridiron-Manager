@@ -1,0 +1,19 @@
+{
+  "$comment": "Numbers for league/src/history (G-22). The league lint bans numeric literals in .ts files, so they live here. Each value is named in params.ts with its basis.",
+  "retainPlaySeasons": 2,
+  "fnv64OffsetBasis": "14695981039346656037",
+  "fnv64Prime": "1099511628211",
+  "hexRadix": 16,
+  "hashHexWidth": 16,
+  "seasonsInSizeBudget": 30,
+  "sizeBudgetBytesAtSeason30": 100000000,
+  "bitsPerHexDigit": 4,
+  "lowestTier": 3,
+  "fnv64Limb": {
+    "bits": 16,
+    "mask": 65535,
+    "primeLow": 435,
+    "primeShiftBits": 8,
+    "byteMask": 255
+  }
+}
