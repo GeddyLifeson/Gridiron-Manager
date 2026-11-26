@@ -87,10 +87,9 @@ export function medicalRulesFrom(level: 'pro' | 'college', read: (key: string) =
     const v = read(k);
     if (v === undefined) { values[k] = fb[k]!; used.push(k); } else values[k] = v;
   }
-  if (level === 'pro' && !('roster.ir_min_games' in values)) {
-    const ir = read('roster.ir_min_games');
-    if (ir !== undefined) values['roster.ir_min_games'] = ir;
-  }
+  // Injured reserve: held only where the league's rules hold the key (league.medical reads its absence as no list).
+  const ir = read('roster.ir_min_games');
+  if (ir !== undefined) values['roster.ir_min_games'] = ir;
   const rs: RuleSet = {
     id: `world.health.${level}`, level, seasonYear: 0,
     num: (k) => Number(need(values, k)), bool: (k) => { const v = need(values, k); return v === true || v === 1; }, opt: (k) => String(need(values, k)),
