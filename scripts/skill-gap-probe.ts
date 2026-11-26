@@ -66,6 +66,7 @@ for (let i = i0; i < i1; i++) {
     else if (e.type === 'pressure') add(teamOf(e.passerId), 'ev:pr:' + e.kind);
     else if (e.type === 'contest' && String(e.contest).startsWith('move.')) add(teamOf(e.winnerId), 'ev:move:' + (teamOf(e.winnerId) === teamOf(e.loserId) ? 'x' : 'w'));
     else if (e.type === 'contest') add(teamOf(e.winnerId), 'ev:' + e.contest + ':won');
+    else if (e.type === 'detail' && String(e.code).startsWith('presnap.') && /check|disguise|misread/.test(String(e.code))) add(0, 'ev:' + e.code);
     else if (e.type === 'fumble') add(teamOf(e.playerId ?? e.carrierId), 'ev:fumble');
   }
   res.records.forEach((rec: any, k: number) => {
@@ -75,6 +76,11 @@ for (let i = i0; i < i1; i++) {
     for (const f of r.penalties) add(((f.side === 0) !== flip) ? 0 : 1, 'penYd', f.yards);
     if (r.noPlay) { add(t, 'noPlay'); return; }
     add(t, 'kind:' + r.playKind + ':' + r.resultType);
+    // Returns, by the returning side (the kicking play's defense): count and yards per punt and kickoff return.
+    if (r.textKey === 'pbp.punt_returned' || r.textKey === 'pbp.kickoff_returned') {
+      const k = r.textKey === 'pbp.punt_returned' ? 'pr' : 'kr';
+      add(1 - t, 'ret:' + k + ':n'); add(1 - t, 'ret:' + k + ':yd', Number(r.textParams.returnYards) || 0);
+    }
     if (r.playKind !== 'scrimmage') return;
     add(t, 'plays');
     if (r.dropback) { add(t, 'db'); if (r.sack) add(t, 'sack'); else if (r.scramble) add(t, 'scr'); else { add(t, 'att'); add(t, 'passYd', r.yardsGained); if (r.airYd !== null) add(t, 'air', r.airYd); if (r.resultType === 'complete' || r.yardsAfterCatch !== null) add(t, 'cmp'); } if (r.interception) add(t, 'int'); if (r.pressure) add(t, 'press'); }
@@ -94,5 +100,6 @@ if (opt.detail) for (const t of [0, 1]) { const x = T[t]!; const g = (k: string)
   const tk = g('ev:tk:made') + g('ev:tk:broken') + g('ev:tk:missed'), cc = g('ev:cp:catch') + g('ev:cp:drop');
   const cp = Object.keys(x).filter((k) => k.startsWith('ev:cp:') && k !== 'ev:cp:contested').reduce((a, k) => a + x[k]!, 0);
   console.log(`   as ball side: tackled ${(100 * g('ev:tk:made') / tk).toFixed(1)}% of ${(tk / N).toFixed(1)} attempts (broken ${(100 * g('ev:tk:broken') / tk).toFixed(1)}, missed ${(100 * g('ev:tk:missed') / tk).toFixed(1)}) | catch points ${(cp / N).toFixed(1)}: caught ${(100 * g('ev:cp:catch') / cp).toFixed(1)}% drop ${(100 * g('ev:cp:drop') / cc).toFixed(1)}% of hands-on, breakup ${(100 * g('ev:cp:breakup') / cp).toFixed(1)}% int ${(100 * g('ev:cp:interception') / cp).toFixed(1)}% uncatchable ${(100 * g('ev:cp:uncatchable') / cp).toFixed(1)}% grounded ${(100 * g('ev:cp:grounded') / cp).toFixed(1)}% contested ${(100 * g('ev:cp:contested') / cp).toFixed(1)}%`);
+  console.log(`   returns: punt ${(g('ret:pr:n') / N).toFixed(2)}/gm at ${(g('ret:pr:yd') / g('ret:pr:n')).toFixed(2)} yd, kickoff ${(g('ret:kr:n') / N).toFixed(2)}/gm at ${(g('ret:kr:yd') / g('ret:kr:n')).toFixed(2)} yd`);
   console.log('   ' + Object.keys(x).filter((k) => k.includes(':')).sort().map((k) => `${k} ${(x[k]! / N).toFixed(2)}`).join(', '));
 }
