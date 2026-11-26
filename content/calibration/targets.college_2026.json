@@ -310,9 +310,9 @@
     "high": null
    },
    "factId": "F-measured-rate-0290",
-   "tier": "tune",
+   "tier": "watch",
    "ruleSetDependent": false,
-   "note": "The game summary has no neutral-site field, so the simulated value counts every game until one is added. Tune the venue effect against the conference-only and strength-removed rows, never this raw row."
+   "note": "The game summary has no neutral-site field, so the simulated value counts every game until one is added. Tune the venue effect against the conference-only and strength-removed rows, never this raw row. Reported, not tuned (2026-11-26): raw share includes scheduling; no strength-removed win share row exists yet."
   },
   {
    "id": "result.homeWinShare.conference",
@@ -358,9 +358,33 @@
     "high": null
    },
    "factId": "F-measured-rate-0292",
+   "tier": "watch",
+   "ruleSetDependent": false,
+   "note": "Inflated because stronger teams host more non-conference games (non-conference margin 10.13). Neutral-site games are not separated in the simulated summary yet. Reported, not tuned (2026-11-26): the gate plays equal rosters, so this raw value (scheduling included) is the wrong target; tune score.homeMargin.equalStrength instead (plans/calibration/home-edge/targets-verification.md)."
+  },
+  {
+   "id": "score.homeMargin.equalStrength",
+   "ruleSetId": "college_2026",
+   "leaf": "T12.2.1",
+   "layer": "game",
+   "kind": "mean",
+   "quantity": "Home margin, team strength removed (equal rosters)",
+   "unit": "points",
+   "filter": "game.homeMargin",
+   "definition": "Home final score minus visitor final score between equal rosters, which is the home edge with team strength removed. Source: least-squares team rating home term on ESPN college schedules, FBS against FBS regular season 2022 to 2025 (research/college/college_game_shape.py, key spread.homeFieldRatingAdj).",
+   "value": 2.5,
+   "n": 2976,
+   "seasons": "2022-2025",
+   "tolerance": {
+    "type": "rel",
+    "value": 0.3,
+    "low": null,
+    "high": null
+   },
+   "factId": "F-measured-rate-0295",
    "tier": "tune",
    "ruleSetDependent": false,
-   "note": "Inflated because stronger teams host more non-conference games (non-conference margin 10.13). Neutral-site games are not separated in the simulated summary yet."
+   "note": "The gate plays two equal placeholder rosters, so its plain home margin is this quantity. Outside figures agree within the band: arXiv 2401.16392 FBS 2023 2.39 (1.89 to 2.88), Wharton 2.8 (FBS+FCS 2005-2023), VSiN about 2.6 (not verbatim); not added as sources because they differ from 2.5 exactly. By season 2022 1.8, 2023 2.36, 2024 2.78, 2025 2.94."
   },
   {
    "id": "score.homeMargin.sd",
@@ -1715,8 +1739,8 @@
    "quantity": "Accepted fouls per team per game",
    "unit": "count",
    "filter": "game.penaltiesAcceptedPerTeam",
-   "definition": "Accepted penalties per team game. Source: cfbfastR play-by-play, FBS against FBS regular season 2022 to 2025, script research/college/college_baselines.py, csv label 'penalties_per_team_game'.",
-   "value": 5.1785,
+   "definition": "Accepted penalties per team game. Source: ESPN box scores, every FBS against FBS regular-season game 2022 to 2025 (35,719 penalties over 5,996 team-games); NCAA.com team statistics agree (5.946). The cfbfastR play-by-play count (5.1785) undercounts and is not used.",
+   "value": 5.9571,
    "n": 2998,
    "seasons": "2022-2025",
    "tolerance": {
@@ -1728,7 +1752,7 @@
    "factId": "F-measured-rate-0349",
    "tier": "tune",
    "ruleSetDependent": true,
-   "note": "College teams are flagged less in this data; may be how fouls are recorded in the source. Tune with a wide band until a second source agrees. By season 2022 5.0702, 2023 4.9413, 2024 5.2699, 2025 5.4259. Power tier 5.1372, other tier 5.2615 (by the offense's conference). Pro value from the same script 5.9104 (shown for comparison only, never used as a college value)."
+   "note": "Publishers' count per the standing ruling (college penalty target 5.95 and 52.2). By season (ESPN) 6.01, 5.84, 5.97, 6.01. Pro value from the same play-by-play script 5.9104 (shown for comparison only, never used as a college value)."
   },
   {
    "id": "foul.yardsPerTeam",
@@ -1739,8 +1763,8 @@
    "quantity": "Foul yards per team per game",
    "unit": "yards",
    "filter": "game.penaltyYardsPerTeam",
-   "definition": "Yards of accepted penalties per team game. Source: cfbfastR play-by-play, FBS against FBS regular season 2022 to 2025, script research/college/college_baselines.py, csv label 'penalty_yds_per_team_game'.",
-   "value": 42.7185,
+   "definition": "Yards of accepted penalties per team game. Source: ESPN box scores, every FBS against FBS regular-season game 2022 to 2025 (313,117 yards over 5,996 team-games); NCAA.com agrees (52.29). The cfbfastR play-by-play sum (42.7185) undercounts and is not used.",
+   "value": 52.221,
    "n": 2998,
    "seasons": "2022-2025",
    "tolerance": {
@@ -1752,7 +1776,7 @@
    "factId": "F-measured-rate-0350",
    "tier": "watch",
    "ruleSetDependent": true,
-   "note": "By season 2022 41.4673, 2023 40.5473, 2024 45.4581, 2025 43.357. Power tier 42.2849, other tier 43.5071 (by the offense's conference). Pro value from the same script 48.3957 (shown for comparison only, never used as a college value)."
+   "note": "Publishers' count per the standing ruling (college penalty target 5.95 and 52.2)."
   },
   {
    "id": "foul.yardsPerAccepted",

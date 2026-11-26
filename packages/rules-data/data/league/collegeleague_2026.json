@@ -552,6 +552,17 @@
    "value": 2.0,
    "unit": "gpa",
    "factId": "F-recruiting-0036"
+  },
+  {
+   "key": "cfp.champion_auto_bids",
+   "value": 0,
+   "unit": "count",
+   "factId": "F-college-0031"
+  },
+  {
+   "key": "cfp.byes_champions_only",
+   "value": false,
+   "factId": "F-college-0030"
   }
  ]
 }

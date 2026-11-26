@@ -1388,6 +1388,97 @@
      "reason": "G-10 seventh pass: sources read through the cloud web fetch."
     }
    ]
+  },
+  {
+   "id": "F-college-0030",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2026-27 CFP: first-round byes are not reserved for conference champions; seeds 1-4 by the committee ranking get them.",
+   "value": false,
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format; no page date, (c) 2026)",
+     "locator": "Format summary",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 1-4 receive first-round byes",
+     "value": false
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format; no page date, (c) 2026)",
+     "locator": "Seeding",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "The CFP bracket will follow the selection committee's rankings",
+     "value": false
+    },
+    {
+     "citation": "Wikipedia, College Football Playoff (https://en.wikipedia.org/wiki/College_Football_Playoff; no revision date shown)",
+     "locator": "Features list",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "This was changed for the 2025 season, with the four highest-ranked teams overall now receiving first-round byes, regardless of conference champion status.",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Two groups, one primary. The CFP page does not use the words \"regardless of conference championship\"; that wording is Wikipedia's. For 2024 the four highest-ranked conference champions got byes. Automatic bids are NOT zero in 2026-27: the CFP page shows 4 automatic bids for ACC, Big Ten, Big 12 and SEC champions and 1 for the highest-ranked Group of Six team (F-college-0018 and 0019); automatic qualifiers ranked outside the top 12 are placed at the bottom of the seeding.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass."
+    }
+   ]
+  },
+  {
+   "id": "F-college-0031",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "2026-27 CFP: no automatic places go to the five highest-ranked conference champions from any conference (the 2024-25 rule); automatic bids are tied to named conferences instead.",
+   "value": 0,
+   "unit": "places",
+   "validFor": "2026-27",
+   "sources": [
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format; no page date, (c) 2026)",
+     "locator": "Automatic Bids boxes",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "ACC, Big Ten, Big 12 & SEC Champions",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia, College Football Playoff (https://en.wikipedia.org/wiki/College_Football_Playoff; no revision date shown)",
+     "locator": "12-team format features",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "Starting in 2026, this was altered to guarantee each champion of a",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia states the earlier rule as \"Guaranteed bids for the top five conference champions in the CFP rankings\" and the 2026 replacement as a bid for each Power Four champion (ACC, Big Ten, Big 12, SEC) plus one Group of Six team that \"does not have to be a conference champion\". The tie of the five-champion rule to 2024 and 2025 is not verbatim in any page read. The value 0 is read from the replacement; the CFP page lists 4 + 1 conference-named bids and 7 at-large. No FOX/AP article was found. See F-college-0018 and 0019.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass."
+    }
+   ]
   }
  ]
 }

@@ -62,6 +62,12 @@ export interface ValueContext {
   readonly draw: PersistentDraw;
   /** Job pressure on this general manager, 0 to 1 (K8.3.1). Shortens his horizon (K7.1.1 rule 4). */
   readonly pressure: number;
+  /**
+   * Speed only, never a result: true when the table, curve and draw answer the same for the same question for
+   * the life of this object, so a player's wins by season may be remembered per context, profile and view
+   * object. A copy with a changed member is a different object and keeps its own memory.
+   */
+  readonly memo?: boolean;
 }
 
 /** L5.2.1 `power` fields this module checks. */

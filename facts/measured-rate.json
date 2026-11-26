@@ -8674,9 +8674,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Checked, no source added: official counts include kneel-downs."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Added the NCAA game-level reading to the note; no source attached because kneel-downs cannot be separated."
     }
    ],
-   "notes": "Not confirmed. ESPN box scores (same 5,996 team-games) give 67.24 plays per team-game and NCAA.com season totals (all FBS games) give 66.85, both counting rushing attempts plus pass attempts with kneel-downs. The same definition recomputed from cfbfastR gives 66.0 to 66.2 per season for 2023-2025, so the play-by-play is about 0.5 to 0.9 plays per game short of both publishers. Excluding kneel-downs and spikes (about 0.5 per team game) gives 65.4 to 65.7. Neither publisher separates kneel-downs, so the 66.10 value has no independent source."
+   "notes": "Not confirmed. ESPN box scores (same 5,996 team-games) give 67.24 plays per team-game and NCAA.com season totals (all FBS games) give 66.85, both counting rushing attempts plus pass attempts with kneel-downs. The same definition recomputed from cfbfastR gives 66.0 to 66.2 per season for 2023-2025, so the play-by-play is about 0.5 to 0.9 plays per game short of both publishers. Excluding kneel-downs and spikes (about 0.5 per team game) gives 65.4 to 65.7. Neither publisher separates kneel-downs, so the 66.10 value has no independent source. Update: the NCAA game feed for the same FBS-against-FBS games reads 68.62 (2022) and 66.87 (2023) plays per team game, equal to the ESPN box scores; the 2024 feed has unusable rushing attempts. cfbfastR on the same definition reads 67.65 and 66.00."
   },
   {
    "id": "F-measured-rate-0283",
@@ -9745,7 +9750,7 @@
      "locator": "research/college/verify-targets-2026-11-26/results.md, espn_boxscore_pull.js; 5,996 team-games (same count as the baseline); completions 113,977 over attempts 186,561 = 0.6109 against 0.6097 here, within the 3 percent tolerance, so no value is attached. Independence from the cfbfastR play-by-play not proven (both pass through ESPN game ids)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "espn-box-scores",
+     "independenceGroup": "ncaa-stat-feed",
      "primary": false
     }
    ],
@@ -9761,6 +9766,11 @@
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "ESPN box scores for the same 5,996 team-games give 61.09 percent completion against 60.97 here. Second publisher; a third (NCAA game-level) was not reachable."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Regrouped: NCAA.com game statistics and ESPN box scores carry the same numbers (plays per game 68.616 against 68.616 for 2022), so they are one independence group, not two."
     }
    ]
   },
@@ -9874,9 +9884,18 @@
      "independenceGroup": "cfbfastr-pbp",
      "primary": false,
      "value": 0.0602
+    },
+    {
+     "citation": "NCAA.com game centre team statistics (NCAA_GetGamecenterTeamStatsFootballById_web), every FBS against FBS regular-season game 2022 to 2024, read in the PC browser; computed by the project",
+     "locator": "research/college/verify-targets-2026-11-26/results.md, ncaa_gamelevel_pull.js; 9,521 sacks over 139,883 attempts plus sacks = 6.37 percent (6.35, 6.45, 6.32 by season) against 6.05 percent for the baseline on 2022-2024; 2025 has no NCAA game ids",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ncaa-stat-feed",
+     "primary": false,
+     "value": 0.0637
     }
    ],
-   "status": "1 of 3",
+   "status": "Conflict",
    "usedBy": [],
    "statusHistory": [
     {
@@ -9888,9 +9907,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Checked, no source added: scope differs."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "NCAA game-level sacks over attempts plus sacks read 6.37 percent over the same games; the play-by-play baseline reads about 6.0, 5 percent lower."
     }
    ],
-   "notes": "NCAA.com all-FBS season totals (sacks over attempts plus sacks) give 6.35, 6.16 and 5.92 percent for 2023-2025; ESPN season totals 6.31, 6.16 and 5.97. cfbfastR at that scope gives 5.99, 5.83 and 5.80, about 0.2 to 0.4 points lower (the play-by-play counts about 6 percent fewer sacks). No publisher gives an FBS-against-FBS figure."
+   "notes": "NCAA.com all-FBS season totals (sacks over attempts plus sacks) give 6.35, 6.16 and 5.92 percent for 2023-2025; ESPN season totals 6.31, 6.16 and 5.97. cfbfastR at that scope gives 5.99, 5.83 and 5.80, about 0.2 to 0.4 points lower (the play-by-play counts about 6 percent fewer sacks). No publisher gives an FBS-against-FBS figure. The NCAA game feed (same games, 2022-2024) reads 6.37 percent; NCAA.com and ESPN season totals read 5.9 to 6.4. The baseline sits low because the play-by-play counts about 6 percent fewer sacks."
   },
   {
    "id": "F-measured-rate-0324",
@@ -9923,9 +9947,14 @@
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Checked, no source added: definition and scope differ."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Added the NCAA game-level reading to the note; no source attached because the definition differs."
     }
    ],
-   "notes": "Publishers count sacks as rushes. NCAA.com all-FBS 2023-2025 gives 4.39 per carry with sacks in and 5.04 with sacks taken out (kneel-downs still in); ESPN FBS-against-FBS box scores give 4.28 with sacks in. cfbfastR with sacks in gives 4.37 to 4.50. The publishers sit 3 to 5 percent below the play-by-play on the same definition, and none excludes kneel-downs, so 5.1491 has no independent source."
+   "notes": "Publishers count sacks as rushes. NCAA.com all-FBS 2023-2025 gives 4.39 per carry with sacks in and 5.04 with sacks taken out (kneel-downs still in); ESPN FBS-against-FBS box scores give 4.28 with sacks in. cfbfastR with sacks in gives 4.37 to 4.50. The publishers sit 3 to 5 percent below the play-by-play on the same definition, and none excludes kneel-downs, so 5.1491 has no independent source. Update: the NCAA game feed for the same games (sacks counted as rushes) reads 4.254 (2022) and 4.236 (2023) yards per rush; cfbfastR on that definition reads 4.480 and 4.461, about 5 percent higher."
   },
   {
    "id": "F-measured-rate-0325",
@@ -10627,26 +10656,17 @@
    "id": "F-measured-rate-0349",
    "level": "college",
    "domain": "measured-rate",
-   "statement": "Accepted fouls per team per game: 5.1785 (college, 2022-2025).",
-   "value": 5.1785,
+   "statement": "Accepted fouls per team per game: 5.9571 (college, publishers' box-score count, FBS against FBS regular season 2022-2025).",
+   "value": 5.9571,
    "unit": "count",
    "validFor": "2022-2025",
    "sources": [
-    {
-     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
-     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
-     "dateRead": "2026-11-25",
-     "howRead": "dataset computed",
-     "independenceGroup": "cfbfastr-pbp",
-     "primary": false,
-     "value": 5.1785
-    },
     {
      "citation": "ESPN college football game box scores (summary pages), every FBS against FBS regular-season game 2022 to 2025, read in the PC browser; computed by the project",
      "locator": "research/college/verify-targets-2026-11-26/results.md; 35,719 penalties over 5,996 team-games = 5.957 per team-game (6.01, 5.84, 5.97, 6.01 by season)",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "espn-box-scores",
+     "independenceGroup": "ncaa-stat-feed",
      "primary": false,
      "value": 5.9571
     },
@@ -10655,12 +10675,11 @@
      "locator": "research/college/verify-targets-2026-11-26/results.md; 30,223 penalties over 5,083 team-games = 5.946 per team-game; scope is all FBS games including FCS opponents and bowls, 2023-2025",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "ncaa-team-stats",
-     "primary": false,
-     "value": 5.9462
+     "independenceGroup": "ncaa-stat-feed",
+     "primary": false
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
@@ -10672,34 +10691,40 @@
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "Two publishers agree with each other near 5.95 per team-game; the cfbfastR count (5.18) is 13 percent lower. Cause not diagnosed (offsetting or no-play fouls missing from the play-by-play is the first suspect)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Regrouped: NCAA.com game statistics and ESPN box scores carry the same numbers (plays per game 68.616 against 68.616 for 2022), so they are one independence group, not two. The Conflict stands."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Diagnosis added: the baseline filter explains about 0.4 of the 0.7 gap."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Integrator, per the standing ruling to use the publishers' count (5.95) for the college penalty target: the row now holds the ESPN box-score value. The cfbfastR play-by-play figure (5.1785) measures a filtered subset and is kept in the notes, not as a source; NCAA.com is the same independence group and a wider scope, so it carries no value. One independent group."
     }
    ],
-   "notes": "Two independent publishers read 5.95 to 5.96 accepted penalties per team game; the cfbfastR play-by-play count is 13 percent lower. Do not certify until the cause is found."
+   "notes": "Two independent publishers read 5.95 to 5.96 accepted penalties per team game; the cfbfastR play-by-play count is 13 percent lower. Do not certify until the cause is found. Recounting the baseline play-by-play (2024): the baseline filter gives 5.27; every flagged play 5.69; every foul mention on accepted-flag plays 5.65; the publishers 5.98. About 0.4 of the gap is the baseline's own filter, about 5 percent is fouls the play-by-play never records. Integrator 2026-11-26: the cfbfastR play-by-play figure 5.1785 (bible/_sources/calibration.college_top.v1.json, research/college/college_baselines.py) undercounts; it is no longer a source of this row."
   },
   {
    "id": "F-measured-rate-0350",
    "level": "college",
    "domain": "measured-rate",
-   "statement": "Foul yards per team per game: 42.7185 (college, 2022-2025).",
-   "value": 42.7185,
+   "statement": "Foul yards per team per game: 52.221 (college, publishers' box-score count, FBS against FBS regular season 2022-2025).",
+   "value": 52.221,
    "unit": "yards",
    "validFor": "2022-2025",
    "sources": [
-    {
-     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
-     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
-     "dateRead": "2026-11-25",
-     "howRead": "dataset computed",
-     "independenceGroup": "cfbfastr-pbp",
-     "primary": false,
-     "value": 42.7185
-    },
     {
      "citation": "ESPN college football game box scores (summary pages), every FBS against FBS regular-season game 2022 to 2025, read in the PC browser; computed by the project",
      "locator": "research/college/verify-targets-2026-11-26/results.md; 313,117 penalty yards over 5,996 team-games = 52.22 per team-game",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "espn-box-scores",
+     "independenceGroup": "ncaa-stat-feed",
      "primary": false,
      "value": 52.221
     },
@@ -10708,12 +10733,11 @@
      "locator": "research/college/verify-targets-2026-11-26/results.md; 265,780 yards over 5,083 team-games = 52.29 per team-game; scope is all FBS games including FCS opponents and bowls, 2023-2025",
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
-     "independenceGroup": "ncaa-team-stats",
-     "primary": false,
-     "value": 52.2899
+     "independenceGroup": "ncaa-stat-feed",
+     "primary": false
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
@@ -10725,9 +10749,19 @@
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "ESPN and NCAA.com agree near 52.2 yards per team-game; the cfbfastR sum (42.72) is 18 percent lower."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "Regrouped: NCAA.com game statistics and ESPN box scores carry the same numbers (plays per game 68.616 against 68.616 for 2022), so they are one independence group, not two. The Conflict stands."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Integrator, per the standing ruling to use the publishers' count (52.2) for the college penalty target: the row now holds the ESPN box-score value. The cfbfastR play-by-play figure (42.7185) measures a filtered subset and is kept in the notes, not as a source; NCAA.com is the same independence group and a wider scope, so it carries no value. One independent group."
     }
    ],
-   "notes": "Two independent publishers read 52.2 to 52.3 penalty yards per team game; the cfbfastR play-by-play sum is 18 percent lower. Do not certify until the cause is found."
+   "notes": "Two independent publishers read 52.2 to 52.3 penalty yards per team game; the cfbfastR play-by-play sum is 18 percent lower. Do not certify until the cause is found. Integrator 2026-11-26: the cfbfastR play-by-play figure 42.7185 (bible/_sources/calibration.college_top.v1.json, research/college/college_baselines.py) undercounts; it is no longer a source of this row."
   },
   {
    "id": "F-measured-rate-0351",
@@ -10786,6 +10820,36 @@
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
     }
    ]
+  },
+  {
+   "id": "F-measured-rate-0390",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Run and pass snaps per team game with a down, kneel-downs and spikes excluded, FBS against FBS regular season: 65.56 (college, 2024). Basis of the college G7.2.3 expected-snaps table.",
+   "value": 65.56,
+   "unit": "plays",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play 2024 (sportsdataverse-data release cfbfastR_cfb_pbp, play_by_play_2024.parquet), FBS against FBS regular season, 752 games, 98,609 snaps; computed by the project",
+     "locator": "packages/football-content/test/gameplan/build_reference_college.py; output packages/football-content/src/gameplan/reference-college-2024.ts",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 65.56
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "New row for the college expected-snaps table. Publishers checked on 2026-11-26 count plays another way and do not confirm this definition."
+    }
+   ],
+   "notes": "Agrees with F-measured-rate-0282's note (65.4 to 65.7 excluding kneels and spikes, 2023-2025). Checked 2026-11-26: TeamRankings plays per game (2024 column, page dated 2025-01-21) shows no league average and no definition; the 82 teams read averaged about 71.4, a top-sorted partial list, so not comparable. CBS Sports (Dennis Dodd, 2025-02-26) gives about 175 combined plays per game for both teams, which counts kicks and penalties, not this definition. Sports-reference could not be read from the cloud. No independent source on the same definition yet."
   }
  ]
 }

@@ -102,10 +102,19 @@ function speedOf(p: AlignedPlayer): number | null {
   return Math.sqrt(vx * vx + vy * vy);
 }
 
+/** What the caller knows about the down that positions alone do not show. */
+export interface AlignmentContext {
+  /**
+   * The snap is from a scrimmage kick formation (a punt or a place kick is obviously coming, kicker and holder at
+   * their depths). The caller says so; the checker tests only the line (snapper with two linemen on each side).
+   */
+  readonly scrimmageKickFormation?: boolean;
+}
+
 /** The full static analysis. `checkAlignment` returns only its findings. */
 export function analyseAlignment(
   players: readonly AlignedPlayer[], rules: RuleSet, params: ParamTable,
-  bounds: AlignmentBounds | null = null, step: number | null = null,
+  bounds: AlignmentBounds | null = null, step: number | null = null, context: AlignmentContext = {},
 ): AlignmentReport {
   const n = players.length;
   const findings: LegalityFinding[] = [];
@@ -140,6 +149,16 @@ export function analyseAlignment(
     if (depth > tDepth) continue;
     if (underCenter === -1 || depth < players[snapper]!.px - players[underCenter]!.px) underCenter = i;
   }
+  // B13.2.2 (NCAA 2-27-4-d-2): where the man under center is eligible as he stands, the player in position to take a
+  // hand-to-hand snap is a back. That book gives no distance, so he is the nearest man directly behind the snapper
+  // who is not clearly off the line; he counts as off the line (a back), not as neither.
+  if (underCenter === -1 && rules.bool('numbering.qb_under_center_eligible')) {
+    for (let i = 0; i < n; i++) {
+      if (status[i] !== 'neither' || !behindSnapper(i)) continue;
+      if (underCenter === -1 || players[i]!.px > players[underCenter]!.px) underCenter = i;
+    }
+    if (underCenter !== -1) status[underCenter] = 'off';
+  }
 
   // B2.3.1: more than the rule set's count is a foul; fewer is legal and worth a note.
   const maxPlayers = rules.num('substitution.max_players');
@@ -156,7 +175,18 @@ export function analyseAlignment(
   // 0 means the rule book states no such number (the dictionary's meaning of the key).
   const backfieldMax = rules.num('formation.backfield_max');
   if (backfieldMax > 0 && offLine > backfieldMax) findings.push(finding('formation.backfield_max', 'formation.backfield_max', null, 'B13.2.2', step));
-  if (lineIneligibleNumbers < rules.num('formation.numbered_linemen_min')) {
+  // B13.2.2 (NCAA 7-1-4-a-5): from a scrimmage kick formation the snapper and the two linemen on each side of him
+  // are exceptions to the numbering rule, so fewer than the minimum may wear the ineligible numbers.
+  let kickException = false;
+  if (context.scrimmageKickFormation === true && snapper !== -1) {
+    let left = 0, right = 0;
+    for (let i = 0; i < n; i++) {
+      if (status[i] !== 'on' || i === snapper) continue;
+      if (players[i]!.py > players[snapper]!.py) left++; else right++;
+    }
+    kickException = left >= 2 && right >= 2;
+  }
+  if (!kickException && lineIneligibleNumbers < rules.num('formation.numbered_linemen_min')) {
     findings.push(finding('formation.numbered_linemen_min', 'formation.numbered_linemen_min', null, 'B13.2.2', step));
   }
 
