@@ -10577,7 +10577,7 @@
    ]
   },
   {
-   "id": "F-measured-rate-0353",
+   "id": "F-measured-rate-0390",
    "level": "college",
    "domain": "measured-rate",
    "statement": "Run and pass snaps per team game with a down, kneel-downs and spikes excluded, FBS against FBS regular season: 65.56 (college, 2024). Basis of the college G7.2.3 expected-snaps table.",
@@ -10596,9 +10596,7 @@
     }
    ],
    "status": "1 of 3",
-   "usedBy": [
-    "football-content.gameplan.collegeReference2024"
-   ],
+   "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",

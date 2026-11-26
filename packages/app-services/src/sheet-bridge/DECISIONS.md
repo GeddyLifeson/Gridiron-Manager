@@ -27,7 +27,7 @@ Bridge from the game plan's call sheet (G-68, G7) to the calling console (G-60, 
 - **Assumption**: with no game plan at all the staff list every book call for the side, in book order, fitting
   any situation. It keeps the game playable; it is not good football and the plan screen should say so.
 - Box sizes follow the level's table (`level`): pro 2024 (nflverse, PROVISIONAL 1 of 3) or college 2024
-  (cfbfastR FBS against FBS regular season, 752 games, 65.6 snaps a team game; fact F-measured-rate-0353,
+  (cfbfastR FBS against FBS regular season, 752 games, 65.6 snaps a team game; fact F-measured-rate-0390,
   1 of 3). The college release has no no-huddle flag, so tempo is unseen there.
 - Layout and priorities come from the offense template (G7.1.2, G7.2.1 clock above zones above downs) for both
   sides, since the AI's boxes are catalogue situations. Category boxes (shots, screens ...) hold the plan's calls

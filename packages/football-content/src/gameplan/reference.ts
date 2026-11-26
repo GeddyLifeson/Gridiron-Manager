@@ -13,7 +13,7 @@
 // The college starting table is the 2024 FBS regular season (both teams FBS) from the cfbfastR play-by-play
 // release (https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp), generated
 // by test/gameplan/build_reference_college.py: 752 games, 98,609 run and pass snaps, 65.6 a team game with
-// kneels and spikes left out. Status: 1 of 3 (fact F-measured-rate-0353). Publishers that count plays (ESPN box
+// kneels and spikes left out. Status: 1 of 3 (fact F-measured-rate-0390). Publishers that count plays (ESPN box
 // scores, NCAA.com) include kneel-downs and land 0.5 to 1 play a game higher, as fact F-measured-rate-0282
 // records, so they do not confirm the figure on the same definition. The release has no no-huddle flag, so
 // tempo is an unseen field of the college table and a tempo box gets an approximate (upper bound) figure.
@@ -81,15 +81,16 @@ export function collegeReference2024(): ReferenceTable {
     cells: decode(COLLEGE_2024_CELLS),
     unseen: new Set<ConditionField>(['scoreDiff', 'timeouts', 'personnel', 'formationFamily', 'hash', 'afterEvent', 'tempo']),
     drivesPerGame: COLLEGE_2024_DRIVES / COLLEGE_2024_TEAM_GAMES,
-    status: 'PROVISIONAL (1 of 3: cfbfastR 2024 FBS play-by-play, F-measured-rate-0353)',
+    status: 'PROVISIONAL (1 of 3: cfbfastR 2024 FBS play-by-play, F-measured-rate-0390)',
   };
   return collegeCache;
 }
 
 export type ReferenceLevel = 'pro' | 'college';
+const LEAGUE_TABLES: Readonly<Record<ReferenceLevel, () => ReferenceTable>> = { pro: proReference2024, college: collegeReference2024 };
 /** The league starting table for a level (G7.2.3); a career replaces it with the simulated league's own. */
 export function leagueReference(level: ReferenceLevel): ReferenceTable {
-  return level === 'college' ? collegeReference2024() : proReference2024();
+  return LEAGUE_TABLES[level]();
 }
 
 /** A table from recorded states (the team's own call records, or the simulated league's). Kneels, spikes and tries must already be left out. */

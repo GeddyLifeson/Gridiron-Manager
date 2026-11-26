@@ -169,7 +169,8 @@ export function staffEstimates(inp: EstimateInput): StaffEstimates {
   const grand = meanOf(all, 0);
   const variance = all.w > 1 ? Math.max(0, all.sq / all.w - grand * grand) : 0;
   const playSd = all.w > 1 && variance > 0 ? Math.sqrt(variance) : ESTIMATE_PARAMS.playSdStart;
-  const noiseSd = preparation.prepDepth({ preparationZ: inp.preparationZ, evaluationZ: inp.preparationZ, tellHours: 0 }).noiseSd;
+  // With no film at all the staff have no opinion to be wrong about: no noise, so the plan's order stands.
+  const noiseSd = used === 0 ? 0 : preparation.prepDepth({ preparationZ: inp.preparationZ, evaluationZ: inp.preparationZ, tellHours: 0 }).noiseSd;
   // Plan order breaks exact ties (a call never seen, in a family never seen), so an empty film gives the plan's order.
   const tie = (i: number) => -i * 1e-9;
   const callLevel = new Map<string, { mean: number; se: number; w: number }>();

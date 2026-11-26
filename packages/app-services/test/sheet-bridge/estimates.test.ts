@@ -8,7 +8,7 @@ import { contentBook } from '../../src/coach-calling/index.ts';
 import { rankBox, staffDraft, staffEstimates, stateOf, yardageEpa } from '../../src/sheet-bridge/index.ts';
 
 const book = contentBook();
-const noise = (tag = 'a') => streamSource(seedFromHex('5eed'))('coachPrep', [1, 1, 7, tag]);
+const noise = (tag = 'a') => streamSource(seedFromHex('5eed'))('coachAI', [1, 1, 7, tag]);
 
 let n = 0;
 /** TEST FILM: one own offensive row. */
@@ -86,7 +86,7 @@ describe('staff payoff estimates from film', () => {
 
 describe('staff draft ranked by the estimates', () => {
   const draft = (observed: boolean, level: gp.ReferenceLevel = 'pro') => staffDraft({
-    unit: 'offense', gameId: 1, menu: PLAN, preparationZ: 2, book, level,
+    unit: 'offense', gameId: 'g1', menu: PLAN, preparationZ: 2, book, level,
     ...(observed ? { observed: { teamId: 7, film: FILM, noise: noise() } } : {}),
   });
   const box = (d: ReturnType<typeof draft>, sit: string) => d.sheet.boxes.find((b) => b.situationId === sit)?.entries.map((e) => e.call.playId);
