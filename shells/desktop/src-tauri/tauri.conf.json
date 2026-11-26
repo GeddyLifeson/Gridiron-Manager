@@ -8,12 +8,25 @@
     "devUrl": "http://localhost:5173"
   },
   "app": {
-    "windows": [{ "title": "Gridiron Manager", "width": 1100, "height": 820 }],
-    "security": { "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' ipc: http://ipc.localhost" }
+    "windows": [{ "label": "main", "title": "Gridiron Manager", "width": 1100, "height": 820, "minWidth": 800, "minHeight": 600 }],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' ipc: http://ipc.localhost"
+    }
   },
   "bundle": {
     "active": true,
-    "targets": "all",
-    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"]
+    "targets": ["nsis", "msi", "deb", "appimage", "dmg"],
+    "publisher": "Gridiron Manager",
+    "shortDescription": "Head coach career simulation under NFL and college rules",
+    "longDescription": "Gridiron Manager: start as a nobody in college football and climb to NFL head coach. Saves, user content and logs are ordinary files in Documents/Gridiron Manager.",
+    "category": "SportsGame",
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
+    "windows": {
+      "webviewInstallMode": { "type": "embedBootstrapper" },
+      "nsis": { "installMode": "currentUser" }
+    },
+    "linux": {
+      "deb": { "depends": ["libwebkit2gtk-4.1-0 (>= 2.40)"] }
+    }
   }
 }
