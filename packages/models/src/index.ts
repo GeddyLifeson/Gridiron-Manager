@@ -4,3 +4,4 @@ export * as ep from './ep/index.ts';
 export * as wp from './wp/index.ts';
 export * as predictability from './predictability/index.ts';
 export * as decisions from './decisions/index.ts';
+export * as labels from './labels/index.ts';
