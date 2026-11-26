@@ -14,9 +14,14 @@ export interface AppWorldContent {
   readonly names: generation.PersonNameSource;
   /** League rules, then the rule set, then the schedule module's games-per-club row (as the fixtures do). */
   readonly lookup: Readonly<Record<Level, generation.RuleLookup>>;
+  /** Names of the league-rules keys of each level (the contracts module reads the minimum salary bands from them). */
+  readonly leagueKeys: Readonly<Record<Level, readonly string[]>>;
+  /** Season year of the league-rules files every league year reads (MO-02: today's rules throughout). */
+  readonly rulesYear: number;
 }
 
 const RULE_SET_OF: Readonly<Record<Level, string>> = { pro: 'pro_2026', college: 'college_2026' };
+const LEAGUE_RULES_OF: Readonly<Record<Level, string>> = { pro: 'pro_league_2026', college: 'college_league_2026' };
 
 function lookupFor(level: Level, seasonGames: number | undefined): generation.RuleLookup {
   const league = leagueRules.leagueNumbers(level);
@@ -38,6 +43,8 @@ export function appWorldContent(): AppWorldContent {
     pro: generation.levelNumbers(pro), college: generation.levelNumbers(college),
     recruitTrackedPerSignee: cohorts.param('recruitTrackedPerSignee'), seasonGamesByLevelId: cfg.college.gamesByLevel,
   });
-  cached = { content, names: generation.makeNameSource(raw), lookup: { pro, college } };
+  const proRules = leagueRules.resolveLeagueRules(LEAGUE_RULES_OF.pro);
+  const leagueKeys = { pro: proRules.keys(), college: leagueRules.resolveLeagueRules(LEAGUE_RULES_OF.college).keys() };
+  cached = { content, names: generation.makeNameSource(raw), lookup: { pro, college }, leagueKeys, rulesYear: proRules.seasonYear };
   return cached;
 }

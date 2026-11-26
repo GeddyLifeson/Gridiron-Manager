@@ -3,7 +3,7 @@
 // The world is a trimmed cut of the real content (4 clubs, 4 schools) so the real engine runs in seconds.
 import { describe, expect, it } from 'vitest';
 import * as career from '@gm/career';
-import { generation, loop, season } from '@gm/world';
+import { contracts, generation, loop, season } from '@gm/world';
 import { newgame } from '../../src/index.ts';
 
 function trimmed(clubs: number, schools: number): newgame.AppWorldContent {
@@ -101,6 +101,8 @@ describe('a draft of the past, rerun, and the start', { timeout: 300_000 }, () =
     expect(started.start.coach.name).toEqual({ first: 'Pat', last: 'Doe' });
     expect(started.world.date.seasonYear).toBe(2026);
     expect(started.world.teams.length).toBe(8);
+    // The contracts step runs in the history: the pro clubs hold player contracts (C6, PR 273 wired).
+    expect(contracts.contractsOf(started.world).active.length).toBeGreaterThan(0);
     expect(loop.worldHash(started.world)).toBe(started.start.worldHash);
     expect(generation.decodeWorldCode(started.start.worldCode).ok).toBe(true);
   });
