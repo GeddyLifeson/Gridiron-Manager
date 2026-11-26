@@ -1,0 +1,81 @@
+{
+ "ruleset_id": "collegeschedstaff_2026",
+ "level": "college",
+ "season_year": 2026,
+ "source": {
+  "document": "Fact register rows F-sched (facts/schedule-staff.json)",
+  "date": "2026"
+ },
+ "schema_version": 1,
+ "values": [
+  {
+   "key": "schedule.regular_season_games",
+   "value": 12,
+   "unit": "count",
+   "factId": "F-sched-0014",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "schedule.weeks",
+   "value": 14,
+   "unit": "count",
+   "factId": "F-sched-0015",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "schedule.conference_games",
+   "value": 9,
+   "unit": "count",
+   "factId": "F-sched-0016"
+  },
+  {
+   "key": "schedule.power_opponents_min",
+   "value": 10,
+   "unit": "count",
+   "factId": "F-sched-0017",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "schedule.playoff_qualifying_games_min",
+   "value": 10,
+   "unit": "count",
+   "factId": "F-sched-0018"
+  },
+  {
+   "key": "staff.graduate_assistant_limit",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-sched-0019"
+  },
+  {
+   "key": "staff.off_campus_recruiter_limit",
+   "value": 11,
+   "unit": "count",
+   "factId": "F-sched-0020"
+  },
+  {
+   "key": "staff.strength_staff_limit",
+   "value": 5,
+   "unit": "count",
+   "factId": "F-sched-0021"
+  },
+  {
+   "key": "staff.student_assistant_limit",
+   "value": 11,
+   "unit": "count",
+   "factId": "F-sched-0022"
+  },
+  {
+   "key": "staff.ga_max_seasons",
+   "value": 3,
+   "unit": "seasons",
+   "factId": "F-sched-0023"
+  },
+  {
+   "key": "staff.ga_degree_window_years",
+   "value": 7,
+   "unit": "years",
+   "factId": "F-sched-0024"
+  }
+ ]
+}
