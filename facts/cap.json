@@ -2034,6 +2034,56 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-cap-0065",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 first overall pick (Fernando Mendoza, Raiders): signing bonus $38.1 million of a four-year $57.27 million fully guaranteed deal.",
+   "value": 38100000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "theScore, Raiders sign No. 1 pick Mendoza to 4-year, $57M rookie deal (2026-07, https://thescore.com/nfl/news/3569729)",
+     "locator": "contract article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "It also includes a $38.1-million signing bonus, according to Spotrac.",
+     "value": 38100000
+    },
+    {
+     "citation": "FanSided, Every first-round signing bonus from the 2026 NFL Draft (2026-04-24, projected figures, https://fansided.com/nfl/every-first-round-signing-bonus-from-the-2026-nfl-draft)",
+     "locator": "first-round table, pick 1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fansided",
+     "primary": false,
+     "quote": "$38.1 million",
+     "value": 38100000
+    },
+    {
+     "citation": "ESPN, Raiders sign No. 1 pick Fernando Mendoza to rookie contract (2026-07-23, https://www.espn.com/nfl/story/_/id/49433918/raiders-sign-no-1-pick-fernando-mendoza-rookie-contract)",
+     "locator": "signing report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "Mendoza signed a four-year, $57.27 million fully guaranteed deal with a fifth-year option."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The signing bonus comes from Spotrac via theScore and a pre-signing FanSided projection that agrees; ESPN gives the total only. Slot values for other picks (FanSided/SI, April projections): pick 2 $36.2M, pick 3 $35M, pick 32 $8.7M signing bonus; no slot value is stated in any page, so only the first pick is entered.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

@@ -1,0 +1,317 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-college-content-0001",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS offenses throw (dropbacks over scrimmage plays, kneels and spikes excluded) on 49.8% of plays.",
+   "value": 0.498,
+   "unit": "ratio",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, pass rate (dropbacks / plays), FBS all 49.8%",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.pass_rate = 0.496",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "pass_rate.college"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read."
+  },
+  {
+   "id": "F-college-content-0002",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS fourth-down go rate (go / go + punt + field goal attempt): 25.1% of fourth downs.",
+   "value": 0.251,
+   "unit": "ratio",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, 4th down go rate FBS all 25.1%",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.fourth_go_rate = 0.243",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "fourth_go.college.overall"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read."
+  },
+  {
+   "id": "F-college-content-0003",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS fourth-down go rate at 1 to 2 yards to go: 65%.",
+   "value": 0.65,
+   "unit": "ratio",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, 4th go rate 1 to 2 yds, FBS 65%",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.fourth_go_rate_1-2 = 0.6387",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "fourth_go.college.ytg_1_2"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read."
+  },
+  {
+   "id": "F-college-content-0004",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS fourth-down go rate at 3 to 5 yards to go: 27%.",
+   "value": 0.27,
+   "unit": "ratio",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, 4th go rate 3 to 5 yds, FBS 27%",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.fourth_go_rate_3-5 = 0.2619",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "fourth_go.college.ytg_3_5"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read."
+  },
+  {
+   "id": "F-college-content-0005",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS fourth-down go rate at 6 or more yards to go: 11%.",
+   "value": 0.11,
+   "unit": "ratio",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, 4th go rate 6+ yds, FBS 11%",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.fourth_go_rate_6+ = 0.1072",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "fourth_go.college.ytg_6_plus"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read."
+  },
+  {
+   "id": "F-college-content-0006",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS field goal accuracy: 76.2% of attempts made.",
+   "value": 0.762,
+   "unit": "ratio",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, FG attempts / FG% FBS 1.57 / 76.2%",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.fg_pct = 0.7558",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "kicking.college.fg_pct"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read. Both runs count blocked kicks as attempts that were not made. ESPN gives 75.6% against 76.2%."
+  },
+  {
+   "id": "F-college-content-0007",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS field goal attempts: 1.57 per team-game.",
+   "value": 1.57,
+   "unit": "per team-game",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, FG attempts FBS 1.57",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.fg_attempts_per_team_game = 1.5063",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "kicking.college.fg_attempts_per_team_game"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read. Both runs count made, missed and blocked kicks as attempts. ESPN gives 1.51 against 1.57 (4% lower); the gap stays visible here. T12 owns the calibration band."
+  },
+  {
+   "id": "F-college-content-0008",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS punts: 4.43 per team-game.",
+   "value": 4.43,
+   "unit": "per team-game",
+   "validFor": "FBS regular seasons 2022 to 2025",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR_cfb_pbp 2022-2025 (CFBD-derived play by play), regular season, FBS vs FBS; project analysis research/college/college_baselines.py, results/college_vs_nfl_baselines.csv",
+     "locator": "R24 table, punts FBS 4.43",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbd-pbp",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse espn_cfb_pbp 2022-2024 (ESPN-lineage play by play), regular season, all listed teams; project script data/college/build/espn_crosscheck.py",
+     "locator": "data/college/espn-crosscheck.json, mean_2022_2024.punts_per_team_game = 4.3222",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-pbp",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "kicking.college.punts_per_team_game"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (G-40): CFBD-lineage and ESPN-lineage play by play agree."
+    }
+   ],
+   "notes": "The two play-by-play sources are both distributed through the sportsdataverse-data release repository but come from different upstream feeds (CFBD and ESPN), so they are counted as two independence groups. The ESPN run includes FCS opponents and 2022 to 2024 only. A third independent source (published NCAA team statistics) was not read."
+  }
+ ]
+}

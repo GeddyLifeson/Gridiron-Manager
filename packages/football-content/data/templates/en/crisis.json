@@ -1,0 +1,680 @@
+{
+ "contentSchemaVersion": 1,
+ "language": "en",
+ "templates": [
+  {
+   "key": "crisis.off_field_incident.title",
+   "params": {},
+   "default": "Off-field incident",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.off_field_incident.first_report",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "A first report has reached you about {subject}. Little is confirmed, and the first account may be worse or milder than the facts.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "Campus police and the school have been in touch about {subject}. The first account is partial; the school may act before you do."
+    },
+    {
+     "level": "pro",
+     "text": "A call came in the night about {subject}. The first report is partial and the club has not yet confirmed anything."
+    }
+   ],
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.off_field_incident.facts_confirmed",
+   "params": {
+    "subject": {
+     "type": "person"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "The facts about {subject} are in. Reporters have the story and are asking {team} for a response.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "The facts about {subject} are in. The athletic director has been told and reporters are asking the program for a response."
+    },
+    {
+     "level": "pro",
+     "text": "The facts about {subject} are in. The owner has been told and reporters are asking {team} for a response."
+    }
+   ],
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.off_field_incident.outside_process",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "An outside process on {subject} is under way. It runs on its own clock and not yours.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "The school conduct process on {subject} is under way and the school mandatory minimums come first."
+    },
+    {
+     "level": "pro",
+     "text": "The league has taken up the case on {subject}. Its discipline replaces any club action for the same act."
+    }
+   ],
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.off_field_incident.outcome",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "The outcome on {subject} is decided. What you did through it is on record.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.league_suspension.title",
+   "params": {},
+   "default": "League suspension",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.league_suspension.notice",
+   "params": {
+    "games": {
+     "type": "number",
+     "unit": "games"
+    },
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "The league has suspended {subject} for {games|# game|# games}. You had no say, and the depth chart now has a gap.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.league_suspension.appeal",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} has filed an appeal. The length could change before it is served.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.league_suspension.served",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} is serving the suspension. The club facility rules for the second half of a suspension apply.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.league_suspension.return",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} is eligible to return. His room has been waiting to see what his job looks like now.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.injury_to_star.title",
+   "params": {},
+   "default": "Injury to a star",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.injury_to_star.diagnosis",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} is out for the season. The plan leaned on him, and the medical staff have the timeline.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.injury_to_star.roles_reset",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "The roles around {subject} have to be reset. The room is watching who moves up.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.injury_to_star.expectations",
+   "params": {},
+   "default": "The goals for the season may need resetting.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "The goals for the season may need resetting, and the athletic director will ask where you stand."
+    },
+    {
+     "level": "pro",
+     "text": "The goals for the season may need resetting, and the owner will ask where you stand."
+    }
+   ],
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.losing_streak.title",
+   "params": {},
+   "default": "Losing streak",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.losing_streak.opened",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "{team} have lost {n|# game|# games} in a row, more than preseason expectation allowed for. The film is the place to tell bad play from bad luck.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.losing_streak.pressure",
+   "params": {
+    "team": {
+     "type": "team"
+    }
+   },
+   "default": "The streak is now the story around {team}. Pressure is reaching upstairs.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "The streak is now the story around {team}. The athletic director and donors are asking questions."
+    },
+    {
+     "level": "pro",
+     "text": "The streak is now the story around {team}. The owner and the general manager are asking questions."
+    }
+   ],
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.losing_streak.closed",
+   "params": {},
+   "default": "The streak is over. The record keeps what you changed and what you left alone, and does not credit either.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.public_dispute.title",
+   "params": {},
+   "default": "Public dispute",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.public_dispute.seen",
+   "params": {
+    "other": {
+     "type": "person"
+    },
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "A dispute involving {subject} and {other} was seen in public. It was about football, and cameras or reporters were there.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.public_dispute.handling",
+   "params": {
+    "topic": {
+     "type": "text"
+    }
+   },
+   "default": "The two sides of the {topic} dispute are yours to hear. Your answer will be watched more closely than the argument.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.public_dispute.settled",
+   "params": {
+    "topic": {
+     "type": "text"
+    }
+   },
+   "default": "The {topic} dispute is over for now. What you did is in the record.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.hazing.title",
+   "params": {},
+   "default": "Hazing",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.hazing.warning",
+   "params": {
+    "room": {
+     "type": "text"
+    }
+   },
+   "default": "Someone close to the room reports that veterans are mistreating younger players in the {room} room.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.hazing.surfaced",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "room": {
+     "type": "text"
+    },
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "Hazing in the {room} room has surfaced: {n|# person|# people} saw it, and {subject} is named.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "Hazing in the {room} room has surfaced: {n|# person|# people} saw it, and {subject} is named. The school may require you to report it."
+    },
+    {
+     "level": "pro",
+     "text": "Hazing in the {room} room has surfaced: {n|# person|# people} saw it, and {subject} is named."
+    }
+   ],
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.hazing.ruling",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "The way you treat {subject} will be compared with how others were treated before, and everyone in the room knows the comparison.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.hazing.closed",
+   "params": {},
+   "default": "The hazing case is closed. A hidden case would carry a later chance of coming out.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.holdout.title",
+   "params": {},
+   "default": "Holdout",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.holdout.absent",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} is not practising over his contract. If he returned today the staff think he would be about {n} percent ready.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.holdout.talks",
+   "params": {
+    "days": {
+     "type": "number",
+     "unit": "d"
+    },
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "Talks on {subject} continue between the front office and his agent. The opener is {days|# day|# days} away.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.holdout.resolved",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "The holdout is over: {subject} is back, or has been traded.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.family_emergency.title",
+   "params": {},
+   "default": "Family emergency",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.family_emergency.told",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} has come to you with a family emergency and needs to leave.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.family_emergency.away",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} is away. Here is who would play or cover in his place, and nothing on this screen puts a price on being kind.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.family_emergency.back",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} is back when he chose to be. What the team knows is limited to what he approved.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.team_illness.title",
+   "params": {},
+   "default": "Team illness",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.team_illness.warning",
+   "params": {
+    "room": {
+     "type": "text"
+    }
+   },
+   "default": "The medical staff believe illness is spreading in the {room} room.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.team_illness.outbreak",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    }
+   },
+   "default": "{n|# player is|# players are} out with illness. Everyone out is listed with that word and nothing more.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.team_illness.over",
+   "params": {},
+   "default": "The illness has run its course. Everyone is back or listed.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.staff_crisis.title",
+   "params": {},
+   "default": "Staff crisis",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.staff_crisis.gone",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    },
+    "subject": {
+     "type": "person"
+    },
+    "task": {
+     "type": "text"
+    }
+   },
+   "default": "{subject} cannot work this week. {n|# task needs|# tasks need} someone to take it, starting with {task}.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "{subject} is out of the staff room this week. {n|# task needs|# tasks need} someone to take it, starting with {task}."
+    },
+    {
+     "level": "pro",
+     "text": "{subject} is out of the building this week. {n|# task needs|# tasks need} someone to take it, starting with {task}."
+    }
+   ],
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.staff_crisis.covered",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "Every task of {subject} has a person assigned or an uncovered mark. Taking one yourself shows the hours.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.staff_crisis.settled",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "The staff crisis around {subject} is settled.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.portal_exodus.title",
+   "params": {},
+   "default": "Portal exodus",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.portal_exodus.before_window",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    }
+   },
+   "default": "Your staff think {n|# player|# players} may leave when the transfer window opens. Each read gives what it rests on, and it can be wrong.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.portal_exodus.window",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    }
+   },
+   "default": "{n|# more player has|# more players have} entered the transfer window. The list is building over the days.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.portal_exodus.after_window",
+   "params": {
+    "n": {
+     "type": "number",
+     "unit": "count"
+    }
+   },
+   "default": "The window has closed. The roster has {n|# gap|# gaps} to fill.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.academic_ineligibility.title",
+   "params": {},
+   "default": "Academic ineligibility",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.academic_ineligibility.trending",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "Academic support reports {subject} is trending below the line.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.academic_ineligibility.ruled_out",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} has been ruled academically ineligible. The depth chart has a gap.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.academic_ineligibility.regained",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "{subject} has regained eligibility.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.investigation.title",
+   "params": {},
+   "default": "Investigation",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.investigation.notice",
+   "params": {},
+   "default": "The school has received notice of an investigation into the program.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.investigation.interviews",
+   "params": {},
+   "default": "Interviews are under way. Recruits and their families are asking about it.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.investigation.finding",
+   "params": {},
+   "default": "A finding has been issued. Penalties follow the infractions table.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.investigation.appeal",
+   "params": {},
+   "default": "The appeal period has begun.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.booster_revolt.title",
+   "params": {},
+   "default": "Booster revolt",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.booster_revolt.opened",
+   "params": {},
+   "default": "Donors have turned on the program. They cannot fire you, but they are making the athletic director's year hard.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.booster_revolt.demands",
+   "params": {
+    "task": {
+     "type": "text"
+    }
+   },
+   "default": "The donors want {task}. Giving it to them has a price in the building.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.booster_revolt.ended",
+   "params": {},
+   "default": "The donor pressure has eased. Results ended it faster than anything you could do or tell them.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.boss_fired.title",
+   "params": {},
+   "default": "The boss is fired",
+   "note": "guard=football"
+  },
+  {
+   "key": "crisis.boss_fired.announced",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "The head coach is out. {subject} will run the building for now.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.boss_fired.limbo",
+   "params": {},
+   "default": "The new head coach has not named who he is keeping. Jobs are filling in the usual order.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.boss_fired.decided",
+   "params": {},
+   "default": "You know where you stand: kept, passed over, or free to go to market.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "crisis.witnessed.title",
+   "params": {},
+   "default": "Something you witnessed",
+   "note": "guard=personal"
+  },
+  {
+   "key": "crisis.witnessed.seen",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "You saw something involving {subject}. Only you know how sure you are, and who else may have seen it.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.witnessed.decide",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "You can say nothing, raise it with {subject}, tell your boss, go over your boss, or go outside. No outcome is shown.",
+   "note": "guard=personal; no quotation"
+  },
+  {
+   "key": "crisis.witnessed.after",
+   "params": {},
+   "default": "What you did is a dated fact on your history. Later employers will read it by their own profiles.",
+   "note": "guard=personal; no quotation"
+  }
+ ]
+}

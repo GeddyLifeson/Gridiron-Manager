@@ -1,0 +1,92 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-college-targets-0001",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Share of FBS team-seasons that were unbeaten in FBS-against-FBS regular-season games: 8 of 531 (college, 2022-2025).",
+   "value": 0.0151,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "research/college/results/college_game_shape_2022_2025.txt line 35 (unbeaten 8, n 531); research/college/college_game_shape.py line 59",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.0151
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-41: row printed in T12 but not loaded by WP-13. Value re-read from the project script output on 2026-11-26; no outside page opened."
+    }
+   ]
+  },
+  {
+   "id": "F-college-targets-0002",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Share of FBS team-seasons that were winless in FBS-against-FBS regular-season games: 2 of 531 (college, 2022-2025).",
+   "value": 0.0038,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "research/college/results/college_game_shape_2022_2025.txt line 35 (winless 2, n 531); research/college/college_game_shape.py line 59",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.0038
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-41: row printed in T12 but not loaded by WP-13. Value re-read from the project script output on 2026-11-26; no outside page opened."
+    }
+   ]
+  },
+  {
+   "id": "F-college-targets-0003",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Points per drive, offense only: 2.1756 (college, 2022-2025).",
+   "value": 2.1756,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "research/college/results/college_vs_nfl_baselines_T.csv row points_per_drive, column FBS 2022-2025; research/college/college_baselines.py line 93",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 2.1756
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-41: row printed in T12 but not loaded by WP-13. Value re-read from the project script output on 2026-11-26; no outside page opened."
+    }
+   ]
+  }
+ ]
+}

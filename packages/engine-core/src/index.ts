@@ -16,3 +16,4 @@ export * as kinematics from './kinematics/index.ts';
 export * as perception from './perception/index.ts';
 export * as presnap from './presnap/index.ts';
 export * as playerAi from './player-ai/index.ts';
+export * as ball from './ball/index.ts';

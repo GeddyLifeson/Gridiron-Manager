@@ -1,0 +1,49 @@
+{
+ "2022": {
+  "team_games": 1630,
+  "scrimmage_plays_per_team_game": 66.8571,
+  "pass_rate": 0.4969,
+  "fourth_go_rate": 0.2416,
+  "fourth_go_rate_1-2": 0.6183,
+  "fourth_go_rate_3-5": 0.2655,
+  "fourth_go_rate_6+": 0.1108,
+  "fg_attempts_per_team_game": 1.484,
+  "fg_pct": 0.7635,
+  "punts_per_team_game": 4.4669
+ },
+ "2023": {
+  "team_games": 1720,
+  "scrimmage_plays_per_team_game": 65.2209,
+  "pass_rate": 0.4971,
+  "fourth_go_rate": 0.2403,
+  "fourth_go_rate_1-2": 0.6366,
+  "fourth_go_rate_3-5": 0.259,
+  "fourth_go_rate_6+": 0.1062,
+  "fg_attempts_per_team_game": 1.5081,
+  "fg_pct": 0.7494,
+  "punts_per_team_game": 4.3471
+ },
+ "2024": {
+  "team_games": 1796,
+  "scrimmage_plays_per_team_game": 65.1336,
+  "pass_rate": 0.494,
+  "fourth_go_rate": 0.247,
+  "fourth_go_rate_1-2": 0.6611,
+  "fourth_go_rate_3-5": 0.2613,
+  "fourth_go_rate_6+": 0.1046,
+  "fg_attempts_per_team_game": 1.5267,
+  "fg_pct": 0.7546,
+  "punts_per_team_game": 4.1526
+ },
+ "mean_2022_2024": {
+  "scrimmage_plays_per_team_game": 65.7372,
+  "pass_rate": 0.496,
+  "fourth_go_rate": 0.243,
+  "fourth_go_rate_1-2": 0.6387,
+  "fourth_go_rate_3-5": 0.2619,
+  "fourth_go_rate_6+": 0.1072,
+  "fg_attempts_per_team_game": 1.5063,
+  "fg_pct": 0.7558,
+  "punts_per_team_game": 4.3222
+ }
+}

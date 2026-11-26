@@ -1,0 +1,32 @@
+{
+  "$comment": "L1.1.2 relationship event kinds. base = starting memory strength from L1.1.2, L1.2 to L1.4 (bible starting values). halfLife = the L1.1.2 class. weights = share of the scaled strength that moves trust, respect and roleBelief (assumption: L1.1.2 says the summed effect feeds the three values but gives no split). facet = the X1 facet that sets the 0.5 to 1.5 personality factor of L1.1.1, invert = high facet means a smaller reaction (assumption: L1.1.1 names the factor, not the facet). New kinds are rows here, no code change.",
+  "kinds": {
+    "promise_kept":            { "base": 15,  "halfLife": "promise",     "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.3.1" },
+    "promise_broken":          { "base": -30, "halfLife": "promise",     "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.3.1" },
+    "lied_found_out":          { "base": -40, "halfLife": "promise",     "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.1.2" },
+    "told_before_depth_chart": { "base": 5,   "halfLife": "playingTime", "weights": { "trust": 0.5, "roleBelief": 0.5 }, "facet": "ego",        "invert": false, "leaf": "L1.2.3" },
+    "found_out_depth_chart":   { "base": -10, "halfLife": "playingTime", "weights": { "trust": 0.5, "roleBelief": 0.5 }, "facet": "ego",        "invert": false, "leaf": "L1.2.3" },
+    "found_out_sideline":      { "base": -15, "halfLife": "playingTime", "weights": { "trust": 0.5, "roleBelief": 0.5 }, "facet": "ego",        "invert": false, "leaf": "L1.2.3" },
+    "path_back_honoured":      { "base": 20,  "halfLife": "playingTime", "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.2.3" },
+    "did_not_tell_me_himself": { "base": -6,  "halfLife": "playingTime", "weights": { "trust": 1 },                    "facet": "ego",          "invert": false, "leaf": "L1.2.1" },
+    "public_callout":          { "base": -8,  "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.5 },    "facet": "competitiveness", "invert": true, "leaf": "H4.2.2, L1.1.2" },
+    "asked_injury_in_person":  { "base": 6,   "halfLife": "routine",     "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.1.2" },
+    "pressured_play_hurt":     { "base": -20, "halfLife": "personal",    "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.2" },
+    "teammate_pressured_hurt": { "base": -8,  "halfLife": "personal",    "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.2" },
+    "ignored_on_reserve":      { "base": -10, "halfLife": "playingTime", "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.2" },
+    "cut_head_coach_in_person":{ "base": 10,  "halfLife": "cutDay",      "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.3" },
+    "cut_staff_in_person":     { "base": 0,   "halfLife": "cutDay",      "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.3" },
+    "cut_staffer_no_word":     { "base": -15, "halfLife": "cutDay",      "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.3" },
+    "cut_media_first":         { "base": -30, "halfLife": "cutDay",      "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.3" },
+    "personal_kindness":       { "base": 25,  "halfLife": "personal",    "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.2.5" },
+    "qb_input_ignored":        { "base": -10, "halfLife": "playingTime", "weights": { "trust": 0.5, "respect": 0.5 },    "facet": "ego",          "invert": false, "leaf": "L1.4.1" },
+    "incentive_reached_helped":{ "base": 12,  "halfLife": "promise",     "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.4" },
+    "incentive_missed_benched":{ "base": -15, "halfLife": "promise",     "weights": { "trust": 1 },                    "facet": null,           "invert": false, "leaf": "L1.4.4" },
+    "coach_left_recruit":      { "base": -5,  "halfLife": "promise",     "weights": { "trust": 1 },                    "facet": "loyalty",      "invert": false, "leaf": "L1.3.1" },
+    "talk_good":               { "base": 0,   "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.25, "roleBelief": 0.25 }, "facet": null, "invert": false, "leaf": "L1.2.1" },
+    "talk_neutral":            { "base": 0,   "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.25, "roleBelief": 0.25 }, "facet": null, "invert": false, "leaf": "L1.2.1" },
+    "talk_bad":                { "base": 0,   "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.25, "roleBelief": 0.25 }, "facet": null, "invert": false, "leaf": "L1.2.1" },
+    "praise":                  { "base": 0,   "halfLife": "routine",     "weights": { "trust": 0.5, "respect": 0.5 },    "facet": null,           "invert": false, "leaf": "L1.2.4" },
+    "correction":              { "base": 0,   "halfLife": "routine",     "weights": { "respect": 1 },                  "facet": "coachability", "invert": true,  "leaf": "L1.2.4" }
+  }
+}

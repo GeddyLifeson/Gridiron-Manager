@@ -6,3 +6,5 @@ export * as roster from './roster/index.ts';
 export * as calendar from './calendar/index.ts';
 export * as standings from './standings/index.ts';
 export * as postseason from './postseason/index.ts';
+export * as history from './history/index.ts';
+export * as development from './development/index.ts';
