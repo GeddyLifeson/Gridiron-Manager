@@ -5,7 +5,7 @@ import { FactFile, RuleKeyDef, RuleSetFile, computeStatus, ruleStatusShippable, 
 import { validateRuleSetFile } from '../../src/index.ts';
 
 const read = (p: string) => JSON.parse(readFileSync(new URL(`../../../../${p}`, import.meta.url), 'utf8'));
-const FILES = ['league', 'cap', 'college', 'college-keys', 'injury'];
+const FILES = ['league', 'cap', 'college', 'college-keys', 'college-recruiting', 'injury'];
 const rows: FactRow[] = FILES.flatMap((f) => FactFile.parse(read(`facts/${f}.json`)).rows);
 const byId = new Map(rows.map((r) => [r.id, r]));
 
@@ -27,6 +27,15 @@ const TEXTS: Record<string, string[]> = {
   'clevelandclinic--high-ankle-sprain.txt': ['/mnt/project-files/research/glossary/sources/clevelandclinic--high-ankle-sprain.txt'],
   'aaos-orthoinfo--turf-toe.txt': ['/mnt/project-files/research/glossary/sources/aaos-orthoinfo--turf-toe.txt'],
   'webmd--nfl-injury-report-explained.txt': ['/mnt/project-files/research/glossary/sources/webmd--nfl-injury-report-explained.txt'],
+  '2025-26-fbs-calendar-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/2025-26-fbs-calendar-raw.txt'],
+  '2026-27-fbs-calendar-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/2026-27-fbs-calendar-raw.txt'],
+  '2022-23-fbs-recruiting-guide-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/2022-23-fbs-recruiting-guide-raw.txt'],
+  'JULY2026-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/JULY2026-raw.txt'],
+  'FEB2026-fbsoc-report.txt': ['/mnt/project-files/research/college/ncaa-primary/FEB2026-fbsoc-report.txt'],
+  'May2026-D1AEC-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/May2026-D1AEC-raw.txt'],
+  'fball-students-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/other/fball-students-raw.txt'],
+  'initial-eligibility-psa-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/other/initial-eligibility-psa-raw.txt'],
+  '2026-nfl-education-memo-raw.txt': ['/mnt/project-files/research/college/ncaa-primary/2026-nfl-education-memo-raw.txt'],
 };
 
 describe('G-10 fact rows', () => {

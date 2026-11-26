@@ -601,6 +601,286 @@
    "readBy": [
     "league (G-10 data)"
    ]
+  },
+  {
+   "key": "recruiting.model",
+   "type": "option",
+   "meaning": "Recruiting budget model in force: day pools or opportunities",
+   "ownerLeaf": "T4.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "days_2025",
+    "opps_2027"
+   ]
+  },
+  {
+   "key": "recruiting.eval_days_fall",
+   "type": "number",
+   "meaning": "Fall evaluation days per school",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "recruiting.person_days_spring",
+   "type": "number",
+   "meaning": "Spring recruiting-person days per school",
+   "ownerLeaf": "T4.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "recruiting.offcampus_max",
+   "type": "number",
+   "meaning": "Staff who may recruit off campus, head coach included",
+   "ownerLeaf": "T4.6.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "recruiting.hc_counts_against_days",
+   "type": "boolean",
+   "meaning": "Head coach off-campus days count against the pools",
+   "ownerLeaf": "T4.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "recruiting.hc_spring_offcampus_allowed",
+   "type": "boolean",
+   "meaning": "Head coach may recruit off campus in the spring period",
+   "ownerLeaf": "T4.6.1",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "recruiting.contacts_per_week",
+   "type": "number",
+   "meaning": "In-person off-campus contacts per prospect per week in a contact period",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "recruiting.contacts_total",
+   "type": "number",
+   "meaning": "Off-campus contacts per prospect in all",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "recruiting.calls_per_week",
+   "type": "number",
+   "meaning": "Phone calls per prospect per week outside a contact period",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "recruiting.call_start_month",
+   "type": "number",
+   "meaning": "Phone calls may start: month",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "month"
+  },
+  {
+   "key": "recruiting.call_start_day",
+   "type": "number",
+   "meaning": "Phone calls may start: day",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day"
+  },
+  {
+   "key": "recruiting.call_start_years_before_class",
+   "type": "number",
+   "meaning": "Phone calls may start: years before class",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "recruiting.contact_start_month",
+   "type": "number",
+   "meaning": "Off-campus contact may start: month",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "month"
+  },
+  {
+   "key": "recruiting.contact_start_day",
+   "type": "number",
+   "meaning": "Off-campus contact may start: day",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day"
+  },
+  {
+   "key": "recruiting.contact_start_years_before_class",
+   "type": "number",
+   "meaning": "Off-campus contact may start: years before class",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "recruiting.message_start_month",
+   "type": "number",
+   "meaning": "Private electronic messages may start: month",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "month"
+  },
+  {
+   "key": "recruiting.message_start_day",
+   "type": "number",
+   "meaning": "Private electronic messages may start: day",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day"
+  },
+  {
+   "key": "recruiting.message_start_years_before_class",
+   "type": "number",
+   "meaning": "Private electronic messages may start: years before the class year",
+   "ownerLeaf": "T4.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "visits.official_per_school",
+   "type": "number",
+   "meaning": "Official visits a prospect may take to one school",
+   "ownerLeaf": "T4.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "visits.second_after_hc_change",
+   "type": "boolean",
+   "meaning": "Second official visit after a head coach change",
+   "ownerLeaf": "T4.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "visits.max_hours",
+   "type": "number",
+   "meaning": "Longest official visit",
+   "ownerLeaf": "T4.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "hours"
+  },
+  {
+   "key": "visits.paid_companions",
+   "type": "number",
+   "meaning": "Companions the school may pay for on an official visit",
+   "ownerLeaf": "T4.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "iawp.window_years",
+   "type": "number",
+   "meaning": "Years before and after enrolment during which an associated person may not be hired",
+   "ownerLeaf": "T4.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "college.initial_eligibility.core_courses",
+   "type": "number",
+   "meaning": "Core courses needed to qualify",
+   "ownerLeaf": "T4.5.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "college.initial_eligibility.core_gpa",
+   "type": "number",
+   "meaning": "Lowest core grade average to qualify",
+   "ownerLeaf": "T4.5.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "gpa"
+  },
+  {
+   "key": "college.initial_eligibility.core_before_final_year",
+   "type": "number",
+   "meaning": "Core courses finished before the last year of high school",
+   "ownerLeaf": "T4.5.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "college.initial_eligibility.core_before_final_year_ems",
+   "type": "number",
+   "meaning": "Of those, courses in English, mathematics or science",
+   "ownerLeaf": "T4.5.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "juco.transfer_gpa",
+   "type": "number",
+   "meaning": "Two-year transfer grade point minimum",
+   "ownerLeaf": "T4.1.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "gpa"
   }
  ]
 }
