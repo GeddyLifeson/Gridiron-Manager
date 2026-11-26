@@ -6,7 +6,10 @@
 //   npx tsx packages/world/test/loop/tools/master-history.ts --out=master-run [--seed=HEX] [--workers=N]
 //       [--seasons=157] [--size=full] [--games=real|test] [--lost=1]
 //
-// --workers defaults to the core count minus one; the calling thread plays games too. --games=test swaps
+// --workers defaults to the core count minus one; the calling thread plays games too. --dev-workers (default
+// the same count, also in a --games=test dry run) runs each offseason's development years on worker threads;
+// each player's year comes from his own stream and the blocks are applied in person id order, so the world
+// hash is the same for any count (0 runs them on this thread). --games=test swaps
 // in the TEST DOUBLE game port for a quick dry run of the whole pipeline; every output then says so, and
 // such a run must never be baked. --seasons shortens the span (it always ends the season before today).
 //
@@ -40,6 +43,7 @@ const SIZE = arg('size', 'full') as generation.SizePreset;
 const GAMES = arg('games', 'real');
 const LOST = Number(arg('lost', '1'));
 const WORKERS = Number(arg('workers', String(Math.max(0, availableParallelism() - 1))));
+const DEV_WORKERS = Number(arg('dev-workers', String(WORKERS)));
 const TODAY = new Date().getUTCFullYear();
 
 mkdirSync(OUT, { recursive: true });
@@ -81,8 +85,19 @@ const schedule = loop.historySchedule({
   postseasonField: (c) => levelLookup(c.level)('playoff.field_size'),
 });
 
+// ---------- the development years on worker threads (the headless world pool) ----------
+let devPool: Pool | null = null;
+let developBatch: turnover.TurnoverBinding['developBatch'];
+if (DEV_WORKERS > 0) {
+  const wp = await import(new URL('../../../../headless/src/week-pool/index.ts', import.meta.url).href);
+  const dp = await import(new URL('../../../../headless/src/world-pool/index.ts', import.meta.url).href);
+  const ref = dp.developmentRef();
+  devPool = wp.createSyncPool({ module: ref, workers: DEV_WORKERS, mainRunner: await wp.loadJobRunner(ref) }) as Pool;
+  developBatch = dp.developmentBatchPort((chunks: readonly unknown[]) => devPool!.run(chunks));
+}
+
 // ---------- the systems ----------
-const binding: turnover.TurnoverBinding = { content, rule, policy: turnover.gmPolicy() };
+const binding: turnover.TurnoverBinding = { content, rule, policy: turnover.gmPolicy(), developBatch };
 const proClubs = w.teams.filter((t) => turnover.levelOfTeam(w, t.id) === 'pro').length;
 const timing: Record<string, number> = {};
 const timed = (name: string, h: loop.StepHandler): loop.StepHandler => (ctx) => {
@@ -198,3 +213,4 @@ const totalS = (performance.now() - t0) / 1000;
 const final = snapshot(report.stoppedEarly ? 'stopped' : 'finished', report.seasonsRun);
 console.log(JSON.stringify({ finished: report.seasonsRun, totalS: Math.round(totalS), worldHash: final.worldHash, failures: final.failures.slice(0, 5) }));
 if (pool) await pool.close();
+if (devPool) await devPool.close();
