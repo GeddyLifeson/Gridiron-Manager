@@ -1,5 +1,6 @@
 // The front office AI (K7, front-office `gm`) as the world's roster policy. Each pro club has one general
-// manager, generated once from the world seed and the club id (K7.1.1). He decides from his club's own
+// manager: the person in its `pos:general_manager` seat, with his K7.1.1 profile drawn once from the world seed
+// and the club id. Before free agency he may break the contact rule (K7.7.1, `earlyContact` through `gm.raise`). He decides from his club's own
 // observed grades only (K7.2.2 rule 6, K9): a `PlayerView` carries the observed grade and its variance, never
 // the truth. Mechanics stay in moves.ts (the draft order, signings, rosters); this file only chooses.
 //
@@ -12,6 +13,7 @@
 import { stream } from '@gm/engine-core';
 import { gm } from '@gm/front-office';
 import { cap, development } from '@gm/league';
+import { complianceOf, complianceRules, dispositionOf, generalManagerOf, partyOf, publicBelief, setCompliance, sinkFor, STREAM_CONDUCT, streamFor } from '../compliance/binding.ts';
 import { ageIn, levelOfTeam, positionTargets, specOf, type Level, type PolicyContext, type Phase, type RosterPolicy } from './binding.ts';
 import { POOL, ruleSetOf } from './moves.ts';
 import { param } from './params.ts';
@@ -91,10 +93,8 @@ export function gmPolicy(): RosterPolicy {
     return { personId: id, position: p.playing!.position, age: ageIn(p, pc.season), grade: { mean: g.mean, variance: g.variance }, projected: null, fit: 1, flags: 0, costCentsByYear: [] };
   };
 
-  const gmIdOf = (pc: PolicyContext, teamId: number): number => {
-    for (const j of pc.world.jobs.values()) if (j.teamId === teamId && j.positionId === 'pos:general_manager' && j.holderPersonId !== null) return j.holderPersonId;
-    return -teamId;
-  };
+  // K7.1.1: the club's general manager person (founding fills the seat); -teamId only for a club with the seat vacant.
+  const gmIdOf = (pc: PolicyContext, teamId: number): number => generalManagerOf(pc.world, teamId) ?? -teamId;
 
   const teamOf = (pc: PolicyContext, teamId: number): TeamState => {
     const cyc = cycleOf(pc);
@@ -222,6 +222,17 @@ export function gmPolicy(): RosterPolicy {
     return out;
   };
 
+  /** K7.4.2 free agent board: replacement is the free alternative after the draft, the deal his own horizon (TO-07). */
+  const faBoard = (pc: PolicyContext, teamId: number, pool: readonly View[], needs: readonly gm.Need[], t: TeamState) => {
+    // K7.2.2 replacement before the draft is the player he can have for nothing after it: the prospect at
+    // each position just past the league's expected picks there, as his own staff grades the entry pool.
+    const free = freeAlternative(pc, teamId);
+    const ctx: gm.ValueContext = { ...t.ctx, table: { ...t.ctx.table, replacementIss: (pos) => free.get(pos) ?? t.ctx.table.replacementIss(pos) } };
+    // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
+    const fas = pool.map((v) => ({ ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }));
+    return { ctx, byId: new Map(fas.map((v) => [v.personId, v])), ranked: gm.targets(t.profile, fas, needs, ctx) };
+  };
+
   const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
 
   const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
@@ -242,14 +253,35 @@ export function gmPolicy(): RosterPolicy {
         return gm.buildBoard(t.profile, prospects, needs, t.ctx, phase.round ?? 1, phase.rounds ?? 1, rookieYears(pc, level, phase.round ?? 1))[0]?.personId ?? null;
       }
       if (phase.kind === 'undrafted') return gm.undraftedBoard(t.profile, pool, needs, t.ctx)[0] ?? null;
-      // K7.2.2 replacement before the draft is the player he can have for nothing after it: the prospect at
-      // each position just past the league's expected picks there, as his own staff grades the entry pool.
-      const free = freeAlternative(pc, teamId);
-      const faCtx: gm.ValueContext = { ...t.ctx, table: { ...t.ctx.table, replacementIss: (pos) => free.get(pos) ?? t.ctx.table.replacementIss(pos) } };
-      // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
-      const fas = pool.map((v) => ({ ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }));
       // K7.4.2: he targets only players worth more than replacement; with none left he signs nobody.
-      return gm.targets(t.profile, fas, needs, faCtx)[0]?.personId ?? 'pass';
+      return faBoard(pc, teamId, pool, needs, t).ranked[0]?.personId ?? 'pass';
+    },
+    earlyContact(pc, teamId, candidates, slot) {
+      if (!isPro(pc, teamId) || candidates.length === 0) return null;
+      // K7.7.1 needs a person who can act: no general manager in the seat, no act.
+      const gmId = generalManagerOf(pc.world, teamId);
+      if (gmId === null) return null;
+      const t = teamOf(pc, teamId);
+      const pool = candidates.map((id) => view(pc, teamId, id));
+      const board = faBoard(pc, teamId, pool, needsOf(pc, teamId, t), t);
+      const top = board.ranked[0];
+      if (!top) return null;
+      // K7.2.2 gain: the worth of his top target over the one he expects to land from his place in the order.
+      const worth = (id: number): number => gm.playerWorth(t.profile, board.byId.get(id)!, board.ctx, gm.P('value.horizonYears')).value;
+      const expected = board.ranked[Math.min(slot, board.ranked.length - 1)]!;
+      const gainWins = Math.max(0, worth(top.personId) - worth(expected.personId));
+      const level = levelOfTeam(pc.world, teamId);
+      const team = pc.world.teams.find((x) => x.id === teamId)!;
+      const rules = complianceRules(`world:${level}`, pc.season, level, (k) => pc.b.rule(level, k));
+      const kind = 'early_contact_player';
+      // The general manager and the player he reached both know (L6.3.1 holders); either can talk.
+      const r = gm.raise(complianceOf(pc.world), {
+        kind, gainWins, belief: publicBelief(gm.OPPORTUNITIES[kind].classId), actor: partyOf(pc.world, gmId, 'general_manager', teamId),
+        marketRead: t.profile.behavior.marketRead, disposition: dispositionOf(pc.world, gmId, 0), orderedBy: null, knew: [gmId, top.personId],
+        date: pc.world.date, competitionId: team.competitionId, tier: pc.ctx.tierOfTeam(teamId), source: pc.ctx.source,
+      }, rules, t.ctx.draw, streamFor(pc.ctx, STREAM_CONDUCT), sinkFor(pc.ctx));
+      setCompliance(pc.world, r.state);
+      return r.commit ? top.personId : null;
     },
     recruitOffers(pc, teamId, candidates, openPlaces) {
       if (isPro(pc, teamId) || candidates.length === 0) return null;

@@ -24,9 +24,25 @@ const BOSS_ROLE: Readonly<Record<LevelSpec['bossChairs'][number], { role: Person
   president: { role: 'administrator', group: 'athletic_director', field: 'presidentPersonId' },
 };
 
+/**
+ * A seat with no ladder rung (S1.1.1 `onLadder: false`): general manager, owner seat, strength staff, game
+ * management, athletic director, president. `JobRecord.rung` is 0 to 9, so these seats have no job row
+ * until CR-G25-1 lands; the world keeps them here so their holders are in the world and can act.
+ */
+export interface OffLadderSeat {
+  readonly seatId: number;
+  readonly teamId: number;
+  readonly catalogueId: string;
+  readonly positionId: string;
+  readonly holderPersonId: number | null;
+  readonly holderSince: WorldDate | null;
+}
+
 export interface FoundingResult {
   readonly people: PersonRecord[];
   readonly jobs: JobRecord[];
+  /** Seats with no ladder rung, in seat order (CR-G25-1 stand-in). */
+  readonly offLadder: OffLadderSeat[];
   readonly staffs: positions.Staff[];
   /** Team id to player ids, in roster-slot order. */
   readonly rosters: Map<number, number[]>;
@@ -106,6 +122,7 @@ export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldC
   const regionOfPlace = new Map(built.places.map((p) => [p.id, p]));
   const people: PersonRecord[] = [];
   const jobs: JobRecord[] = [];
+  const offLadder: OffLadderSeat[] = [];
   const staffs: positions.Staff[] = [];
   const rosters = new Map<number, number[]>();
   const cultures: CultureRecord[] = [];
@@ -150,7 +167,10 @@ export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldC
       staffContractEndYear.set(p.id, year + s.int(1, param('contract.staffMaxYears')));
     });
     staffs.push(staff);
-    for (const seat of staff.seats) if (seat.rung !== null) jobs.push(positions.toJobRecord(staff, seat));
+    for (const seat of staff.seats) {
+      if (seat.rung !== null) jobs.push(positions.toJobRecord(staff, seat));
+      else offLadder.push({ seatId: seat.seatId, teamId: team.id, catalogueId: seat.catalogueId, positionId: seat.positionId, holderPersonId: seat.holderPersonId, holderSince: seat.holderSince });
+    }
 
     // Players: the real position mix scaled to the level's roster limit.
     const counts = scaleMix(spec.rosterMix, spec.rosterLimit);
@@ -182,7 +202,7 @@ export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldC
       labels: content.labelIds, firstYear: year, games: content.seasonGamesByLevelId?.[compName.get(team.competitionId)!] ?? spec.seasonGames, draw: () => cs.uniform(),
     })));
   }
-  return { people, jobs, staffs, rosters, cultures, staffContractEndYear, classYearOf, implausible, nextIds: next };
+  return { people, jobs, offLadder, staffs, rosters, cultures, staffContractEndYear, classYearOf, implausible, nextIds: next };
 }
 
 /** X10.2.2 acceptance checks that need no other module. Empty when the founding is sound. */

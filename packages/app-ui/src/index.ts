@@ -25,3 +25,5 @@ export * as settings from './screens/settings/index.ts';
 export * as gameplan from './screens/gameplan/index.ts';
 export * as soundStage from './audio/stage/index.ts';
 export * as livePlay from './presentation/live/index.ts';
+export * as strip from './presentation/strip/index.ts';
+export * as banners from './presentation/banners/index.ts';
