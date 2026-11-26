@@ -88,7 +88,7 @@ export class FieldRenderer {
     this.ink = [inkOn(opts.colours.sides[0]), inkOn(opts.colours.sides[1])];
     this.frames = decodeTrajectory(play.trajectory);
     if (play.slots.length !== this.frames.slotCount) throw new Error(`play ${play.playId} lists ${play.slots.length} slots, the trajectory has ${this.frames.slotCount}`);
-    this.sample = newSample(this.frames.slotCount);
+    this.sample = newSample(this.frames.slotCount, this.frames.officialCount);
     this.labelLift = new Float64Array(this.frames.slotCount);
     this.cues = buildCues(play.events, play.ticksPerSecond);
     this.markings = buildMarkings(geometry, opts.markings ?? PRO_MARKINGS);
@@ -158,6 +158,7 @@ export class FieldRenderer {
     const r = (d / 2) * cam.scale;
     this.drawEngagements(ctx, r);
     this.drawTrails(ctx, r);
+    this.drawOfficials(ctx, r);
     for (let s = 0; s < this.looks.length; s++) this.drawMarker(ctx, s, r);
     this.drawBall(ctx, r);
     this.drawCues(ctx, r);
@@ -300,13 +301,15 @@ export class FieldRenderer {
     const sx = cam.sx(s.x[slot]!, s.y[slot]!), sy = cam.sy(s.x[slot]!, s.y[slot]!);
     const colour = this.opts.colours.sides[look.side];
     const st = look.style;
-    const facing = s.facingRad[slot]!;
-    const fdx = cam.dirX(facing), fdy = cam.dirY(facing);
+    // Hips for the body (lying down), eyes for the facing tick: film shows the helmet (J1.6.2).
+    const heading = s.headingRad[slot]!, gaze = s.gazeRad[slot]!;
+    const hdx = cam.dirX(heading), hdy = cam.dirY(heading);
+    const fdx = cam.dirX(gaze), fdy = cam.dirY(gaze);
     ctx.save();
     ctx.translate(sx, sy);
     if (s.state[slot] === DOWN) {
       // Flatten across the facing direction: the marker lies down.
-      const a = Math.atan2(fdy, fdx);
+      const a = Math.atan2(hdy, hdx);
       ctx.rotate(a); ctx.scale(param('downFlatten'), 1); ctx.rotate(-a);
     }
     const rr = st.shape === 'smallSquare' ? r * 0.7 : r;
@@ -338,6 +341,16 @@ export class FieldRenderer {
     ctx.lineWidth = Math.max(1.5, r * 0.18);
     ctx.beginPath(); ctx.moveTo(fdx * rr, fdy * rr); ctx.lineTo(fdx * (rr + tick), fdy * (rr + tick)); ctx.stroke();
     ctx.restore();
+  }
+
+  /** Officials as small striped squares (they are on film; J1.6.2 records them). */
+  private drawOfficials(ctx: Canvas2DLike, r: number): void {
+    const s = this.sample, cam = this.camera, h = r * 0.6;
+    for (let k = 0; k < s.officialX.length; k++) {
+      const x = cam.sx(s.officialX[k]!, s.officialY[k]!), y = cam.sy(s.officialX[k]!, s.officialY[k]!);
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(x - h, y - h, 2 * h, 2 * h);
+      ctx.fillStyle = '#000000'; ctx.fillRect(x - h / 3, y - h, (2 * h) / 3, 2 * h);
+    }
   }
 
   private drawBall(ctx: Canvas2DLike, r: number): void {

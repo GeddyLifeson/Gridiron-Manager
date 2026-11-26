@@ -1,10 +1,17 @@
-// Trajectory buffer, layout 0 (P2.2.2). WP-09 owns the real layout (contract tick.ts: "the layout
-// belongs to WP-09 and is versioned by formatVersion"). Until it lands, the view reads the P2.2.2
-// layout below, delta-encoded at 0.01 yd (J1.6.2), without the general compressor (P2.2.2 measures
-// that in phase 2). Contract request CR-G03-2 asks WP-09 to adopt or replace it; a new layout only
-// needs a new entry in DECODERS.
+// Trajectory buffers (J1.6.2, P2.2.2). WP-09 owns the layout (contract tick.ts: "the layout belongs to
+// WP-09 and is versioned by formatVersion"). Old versions stay readable: each keeps its decoder.
 //
-// Per tick, little-endian, every field a delta from the previous tick (tick 0 from zero):
+// Version 1 is the engine's record (WP-09, packages/engine-core/src/tick/trajectory.ts). app-ui may
+// not import engine-core (P1.2.1), so its layout is read here a second time; a test compares the two
+// once the engine barrel exports the recorder. Byte 0: number of officials. Then one frame per tick,
+// the first a delta from zero, field frame:
+//   22 players: dx, dy (zigzag LEB128 varints, 0.01 yd), dHeading, dGaze (zigzag varints, 1/4096
+//               turn CCW from +x), moveMode (1 byte), advantage (1 signed byte). The advantage is a
+//               hidden field (J1.6.2): it is skipped here and never reaches the view.
+//   ball:       state (1 byte), dx, dy, dHeight (zigzag varints, 0.01 yd), carrier slot (1 byte, 255 none)
+//   officials:  dx, dy, dGaze (zigzag varints)
+//
+// Version 0 is the P2.2.2 fixed layout, used by fixtures and practice tools. Per tick, little-endian, every field a delta from the previous tick (tick 0 from zero):
 //   22 players x 6 bytes: x int16, y int16 (0.01 yd), facing uint8 (256 steps of a turn), state uint8
 //   ball x 8 bytes: x int16, y int16, z int16 (0.01 yd), state uint8, spare uint8
 // Player state is the MOVE_MODES code. Ball state: low 3 bits the BALL_STATES code, high 5 bits the
@@ -21,6 +28,7 @@ export const FILM_BALL_STATES = ['deadPreSnap', 'snapInFlight', 'held', 'exchang
 export type FilmBallState = (typeof FILM_BALL_STATES)[number];
 
 export const LAYOUT0_VERSION = 0;
+export const LAYOUT1_VERSION = 1;
 /** Players per tick in layout 0: the 22 slots of a play (J1.4.1). */
 export const LAYOUT0_SLOTS = 22;
 const PLAYER_BYTES = 6;
@@ -29,6 +37,10 @@ export const LAYOUT0_TICK_BYTES = LAYOUT0_SLOTS * PLAYER_BYTES + BALL_BYTES;
 /** 0.01 yd per unit (J1.6.2, P2.2.2). */
 export const UNITS_PER_YD = 100;
 const TURN_STEPS = 256;
+const V1_ANGLE_STEPS = 4096;
+const V1_NO_CARRIER = 255;
+const VARINT_GROUP = 128;
+const TWO_PI = 2 * Math.PI;
 const BALL_KIND_MASK = 7;
 const CARRIER_SHIFT = 3;
 
@@ -39,8 +51,10 @@ export interface FilmFrames {
   readonly slotCount: number;
   readonly x: Float64Array;
   readonly y: Float64Array;
-  /** Facing code, 0 to 255, one turn in 256 steps counter-clockwise from +x (J1.2.1). */
-  readonly facing: Uint8Array;
+  /** Hips, radians counter-clockwise from +x (J1.2.1). */
+  readonly headingRad: Float64Array;
+  /** Eyes (helmet direction, which film shows), radians. Layout 0 has none and repeats the heading. */
+  readonly gazeRad: Float64Array;
   /** Code into FILM_MOVE_MODES. */
   readonly state: Uint8Array;
   readonly ballX: Float64Array;
@@ -50,6 +64,10 @@ export interface FilmFrames {
   readonly ballKind: Uint8Array;
   /** Slot holding the ball, or -1. */
   readonly ballCarrier: Int8Array;
+  /** Officials per tick (0 in layout 0); positions at `tickIndex * officialCount + i`. */
+  readonly officialCount: number;
+  readonly officialX: Float64Array;
+  readonly officialY: Float64Array;
 }
 
 /** One decoded tick, as an engine or fixture writes it. Used by the encoder and the tests. */
@@ -72,9 +90,10 @@ function decodeLayout0(rec: TrajectoryRecordLike): FilmFrames {
   const n = tickCount * LAYOUT0_SLOTS;
   const out = {
     firstTick, tickCount, slotCount: LAYOUT0_SLOTS,
-    x: new Float64Array(n), y: new Float64Array(n), facing: new Uint8Array(n), state: new Uint8Array(n),
+    x: new Float64Array(n), y: new Float64Array(n), headingRad: new Float64Array(n), gazeRad: new Float64Array(n), state: new Uint8Array(n),
     ballX: new Float64Array(tickCount), ballY: new Float64Array(tickCount), ballZ: new Float64Array(tickCount),
     ballKind: new Uint8Array(tickCount), ballCarrier: new Int8Array(tickCount),
+    officialCount: 0, officialX: new Float64Array(0), officialY: new Float64Array(0),
   };
   const dv = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
   const px = new Int32Array(LAYOUT0_SLOTS), py = new Int32Array(LAYOUT0_SLOTS);
@@ -91,7 +110,8 @@ function decodeLayout0(rec: TrajectoryRecordLike): FilmFrames {
       const i = t * LAYOUT0_SLOTS + s;
       out.x[i] = px[s]! / UNITS_PER_YD;
       out.y[i] = py[s]! / UNITS_PER_YD;
-      out.facing[i] = pf[s]!;
+      out.headingRad[i] = facingToRad(pf[s]!);
+      out.gazeRad[i] = out.headingRad[i]!;
       if (ps[s]! >= FILM_MOVE_MODES.length) throw new TrajectoryFormatError(`tick ${t} slot ${s}: state code ${ps[s]} is not a move mode`);
       out.state[i] = ps[s]!;
     }
@@ -111,7 +131,63 @@ function decodeLayout0(rec: TrajectoryRecordLike): FilmFrames {
   return out;
 }
 
-const DECODERS: Record<number, (rec: TrajectoryRecordLike) => FilmFrames> = { [LAYOUT0_VERSION]: decodeLayout0 };
+function decodeLayout1(rec: TrajectoryRecordLike): FilmFrames {
+  const { tickCount, firstTick, buffer: buf } = rec;
+  if (!Number.isInteger(tickCount) || tickCount < 1) throw new TrajectoryFormatError(`tickCount ${tickCount} must be a positive integer`);
+  let at = 0;
+  const byte = (): number => {
+    if (at >= buf.length) throw new TrajectoryFormatError(`layout 1 buffer ends early at byte ${at}`);
+    return buf[at++]!;
+  };
+  const varint = (): number => {
+    let v = 0, mul = 1, b = 0;
+    do { b = byte(); v += (b % VARINT_GROUP) * mul; mul *= VARINT_GROUP; } while (b >= VARINT_GROUP);
+    return v % 2 === 1 ? -(v + 1) / 2 : v / 2;
+  };
+  const S = LAYOUT0_SLOTS;
+  const officials = byte();
+  const n = tickCount * S;
+  const out = {
+    firstTick, tickCount, slotCount: S,
+    x: new Float64Array(n), y: new Float64Array(n), headingRad: new Float64Array(n), gazeRad: new Float64Array(n), state: new Uint8Array(n),
+    ballX: new Float64Array(tickCount), ballY: new Float64Array(tickCount), ballZ: new Float64Array(tickCount),
+    ballKind: new Uint8Array(tickCount), ballCarrier: new Int8Array(tickCount),
+    officialCount: officials, officialX: new Float64Array(tickCount * officials), officialY: new Float64Array(tickCount * officials),
+  };
+  const px = new Float64Array(S), py = new Float64Array(S), ph = new Float64Array(S), pg = new Float64Array(S);
+  const ox = new Float64Array(officials), oy = new Float64Array(officials);
+  let bx = 0, by = 0, bz = 0;
+  const angle = (q: number) => (((q % V1_ANGLE_STEPS) + V1_ANGLE_STEPS) % V1_ANGLE_STEPS / V1_ANGLE_STEPS) * TWO_PI;
+  for (let t = 0; t < tickCount; t++) {
+    for (let s = 0; s < S; s++) {
+      px[s] = px[s]! + varint(); py[s] = py[s]! + varint(); ph[s] = ph[s]! + varint(); pg[s] = pg[s]! + varint();
+      const mode = byte();
+      byte(); // the engagement advantage: hidden (J1.6.2), skipped
+      if (mode >= FILM_MOVE_MODES.length) throw new TrajectoryFormatError(`tick ${t} slot ${s}: state code ${mode} is not a move mode`);
+      const i = t * S + s;
+      out.x[i] = px[s]! / UNITS_PER_YD; out.y[i] = py[s]! / UNITS_PER_YD;
+      out.headingRad[i] = angle(ph[s]!); out.gazeRad[i] = angle(pg[s]!);
+      out.state[i] = mode;
+    }
+    const kind = byte();
+    if (kind >= FILM_BALL_STATES.length) throw new TrajectoryFormatError(`tick ${t}: ball state ${kind} unknown`);
+    bx += varint(); by += varint(); bz += varint();
+    const carrier = byte();
+    if (carrier !== V1_NO_CARRIER && carrier >= S) throw new TrajectoryFormatError(`tick ${t}: carrier slot ${carrier} out of range`);
+    out.ballKind[t] = kind;
+    out.ballX[t] = bx / UNITS_PER_YD; out.ballY[t] = by / UNITS_PER_YD; out.ballZ[t] = bz / UNITS_PER_YD;
+    out.ballCarrier[t] = carrier === V1_NO_CARRIER ? -1 : carrier;
+    for (let k = 0; k < officials; k++) {
+      ox[k] = ox[k]! + varint(); oy[k] = oy[k]! + varint(); varint(); // officials' gaze is not drawn
+      out.officialX[t * officials + k] = ox[k]! / UNITS_PER_YD;
+      out.officialY[t * officials + k] = oy[k]! / UNITS_PER_YD;
+    }
+  }
+  if (at !== buf.length) throw new TrajectoryFormatError(`layout 1 buffer has ${buf.length - at} bytes after ${tickCount} ticks`);
+  return out;
+}
+
+const DECODERS: Record<number, (rec: TrajectoryRecordLike) => FilmFrames> = { [LAYOUT0_VERSION]: decodeLayout0, [LAYOUT1_VERSION]: decodeLayout1 };
 
 /** Decodes a stored trajectory. Old versions stay readable (P2.2.2): each version keeps its decoder. */
 export function decodeTrajectory(rec: TrajectoryRecordLike): FilmFrames {
