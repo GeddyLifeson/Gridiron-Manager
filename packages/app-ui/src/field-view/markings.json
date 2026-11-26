@@ -1,5 +1,5 @@
 {
-  "$comment": "Field markings the view draws that are not in FieldGeometry yet (CR-G03-3 asks for rule keys). Pro values are read from the 2026 NFL rulebook, Rule 1 Section 2. One source only, so the computed status is PROVISIONAL (Q6.3.1). College values were not read: a college game draws the pro markings and is flagged until the keys exist (J1.1.1 open question).",
+  "$comment": "Field markings the view draws that are not in FieldGeometry yet (CR-G03-3 asks for rule keys). Pro values are read from the 2026 NFL rulebook, Rule 1 Section 2; college values from the 2026 NCAA rulebook, Rule 1 Section 2 Article 1. One source each, so the computed status is PROVISIONAL (Q6.3.1). Where a value matches a rule key (field.numbers_bottom_from_sideline_ft, field.numbers_top_from_sideline_ft) a test pins it to the rule-set row. Values the text does not state are listed under `assumed` per set and are display choices.",
   "pro_2026": {
     "sources": [
       {
@@ -8,18 +8,39 @@
         "read": "2026-11-26"
       }
     ],
+    "assumed": ["inboundsHashLengthFt", "endZoneDecorationClearFt"],
     "yardLineEveryYd": 5,
     "hashEveryYd": 1,
+    "inboundsHashLengthFt": 2,
     "sidelineTickFromSidelineFt": 0.6667,
     "sidelineTickLengthFt": 2,
     "numbersEveryYd": 10,
     "numbersBottomFromSidelineYd": 12,
     "numeralLengthYd": 2,
     "tryLineFromGoalLineYd": 2,
-    "tryLineLengthYd": 1
+    "tryLineLengthYd": 1,
+    "endZoneDecorationClearFt": 4
   },
-  "assumptions": {
-    "$comment": "Not stated in the rule text read. Display choices.",
-    "inboundsHashLengthFt": 2
+  "college_2026": {
+    "sources": [
+      {
+        "title": "2026 NCAA Football Rules and Interpretations, Rule 1 Section 2 Article 1 b, d, h and j",
+        "where": "research/college/ncaa-rulebook-2026.txt lines 648 to 677",
+        "read": "2026-11-26"
+      }
+    ],
+    "$comment": "Article 1-h recommends numbers no taller than 6 ft with tops 9 yd from the sidelines (bottoms 7 yd, the rule-set's 21 ft). The 5-yard lines and 1-yard hash spacing are drawn in Appendix D, which this text copy holds only as a diagram, so they are assumed to match the pro field. Rule 1 names no try-line marking for college, so none is drawn. Article 1-d keeps end-zone decoration (team names) at least 4 ft from any line; the pro text has no such figure, so the pro set assumes the same clearance.",
+    "assumed": ["yardLineEveryYd", "hashEveryYd"],
+    "yardLineEveryYd": 5,
+    "hashEveryYd": 1,
+    "inboundsHashLengthFt": 2,
+    "sidelineTickFromSidelineFt": 0.3333,
+    "sidelineTickLengthFt": 2,
+    "numbersEveryYd": 10,
+    "numbersBottomFromSidelineYd": 7,
+    "numeralLengthYd": 2,
+    "tryLineFromGoalLineYd": null,
+    "tryLineLengthYd": null,
+    "endZoneDecorationClearFt": 4
   }
 }
