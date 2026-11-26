@@ -7,3 +7,4 @@ export * as tiers from './tiers/index.ts';
 export * as season from './season/index.ts';
 export * as turnover from './turnover/index.ts';
 export * as compliance from './compliance/index.ts';
+export * as recruiting from './recruiting/index.ts';
