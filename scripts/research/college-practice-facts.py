@@ -1,0 +1,28 @@
+# Builds facts/college-practice.json from NCAA LSDBi bylaw text read in the PC browser on 2026-11-26.
+import json
+SRC = {
+ 'offseason': ('NCAA Legislative Services Database, Bylaw 17.1.7.2 (b) Bowl Subdivision Football (revised 8/3/26), https://web3.ncaa.org/lsdbi/bylaw?ruleId=14', 'Bylaw 17.1.7.2(b); page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-bylaw-17.1.7.2-ruleId14.txt'),
+ 'spring': ('NCAA Legislative Services Database, Bylaw 17.13.7.5 Spring Practice [FBS/FCS], https://web3.ncaa.org/lsdbi/bylaw?ruleId=163', 'Bylaw 17.13.7.5; page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-bylaw-17.13.7.5-ruleId163.txt'),
+ 'dayoff': ('NCAA Legislative Services Database, Bylaw 17.1.7.4 Required Day Off -- Playing Season, https://web3.ncaa.org/lsdbi/bylaw?ruleId=106', 'Bylaw 17.1.7.4; page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-bylaw-17.1.7.4-ruleId106.txt'),
+}
+R = [
+ ('offseason', 'FBS football, last contest to January 1: required weight training, conditioning, film review and walk-throughs are limited to 8 hours per week.', 8, 'hours per week', 'activities between the institution\'s last contest and January 1 are limited to required weight training, conditioning, review of game film and walk-throughs', 'A student-athlete\'s participation in such activities shall be limited to a maximum of eight hours per week'),
+ ('offseason', 'FBS football, last contest to January 1: of the 8 weekly hours, at most 2 may be film viewing and walk-throughs.', 2, 'hours per week', 'of which not more than two hours per week may be spent on the viewing of film and participating in walk-throughs', 'not more than two hours per week may be spent on the viewing of film and participating in walk-throughs'),
+ ('spring', 'Football spring practice: 15 sessions are permitted (spring game and intrasquad scrimmages count).', 15, 'count', 'Fifteen postseason practice sessions [including intrasquad scrimmages and the spring game permitted in Bylaw 17.13.6.2-(a)] are permissible.', 'Fifteen postseason practice sessions'),
+ ('spring', 'Football spring practice: all sessions fall within 34 consecutive calendar days (vacation, exam and weather-closure days omitted).', 34, 'days', 'All practice sessions are conducted within a period of 34 consecutive calendar days', '34 consecutive calendar days'),
+ ('spring', 'Football spring practice: at most 12 of the 15 sessions may involve contact, and none before the third session.', 12, 'count', 'Only 12 of the practice sessions may involve contact, and such contact shall not occur prior to the third practice session.', 'Only 12 of the practice sessions may involve contact'),
+ ('spring', 'Football spring practice: at most 8 sessions may involve tackling.', 8, 'count', 'Of the 12 permissible contact sessions, eight sessions may involve tackling', 'eight sessions may involve tackling'),
+ ('spring', 'Football spring practice: at most 3 of the tackling sessions may be mostly 11-on-11 scrimmage (the spring game is one of them).', 3, 'count', 'not more than three of the eight tackling sessions may be devoted primarily (greater than 50 percent of practice time) to 11-on-11 scrimmages.', 'not more than three of the eight tackling sessions'),
+ ('spring', 'Football spring practice: no full-contact practices on consecutive calendar days.', True, 'flag', 'An institution shall not conduct full contact (tackling to the ground) practices on consecutive calendar days.', 'shall not conduct full contact (tackling to the ground) practices on consecutive calendar days'),
+ ('spring', 'Football spring practice: at most 75 minutes of full contact in any one on-field session (other than the three mostly 11-on-11 sessions).', 75, 'minutes', 'shall not conduct more than a total of 75 minutes of full contact (tackling to the ground) within any one on-field practice session', '75 minutes of full contact'),
+ ('spring', 'Football spring practice: a student-athlete may take part in at most 4 hours per day and 20 hours per week of countable activities.', 20, 'hours per week', 'shall be limited to a maximum of four hours per day and 20 hours per week.', 'four hours per day and 20 hours per week'),
+ ('dayoff', 'Playing season: one calendar day per week with no countable athletically related activities (not during conference or postseason championships and bowl games).', 1, 'days per week', 'all countable athletically related activities (per Bylaw 17.02.1) shall be prohibited during one calendar day per week', 'prohibited during one calendar day per week'),
+]
+rows = []
+for i, (k, st, v, u, quote, _) in enumerate(R, 1):
+    cit, loc = SRC[k]
+    rows.append({'id': 'F-college-practice-%04d' % i, 'level': 'college', 'domain': 'league-rule', 'statement': st, 'value': v, 'unit': u, 'validFor': '2026',
+        'sources': [{'citation': cit, 'locator': loc, 'dateRead': '2026-11-26', 'howRead': 'primary text', 'independenceGroup': 'ncaa-lsdbi', 'primary': True, 'quote': quote, 'value': v}],
+        'status': 'Rulebook only', 'usedBy': [], 'notes': 'Primary text read directly in the PC browser; one primary source, no independent cross-check yet. The quote lint does not re-find it because the LSDBi text is not one of the rule book copies it knows; the page text is saved at the path in the locator.',
+        'statusHistory': [{'date': '2026-11-26', 'status': 'Rulebook only', 'reason': 'First load from NCAA LSDBi bylaw text (research sources thread).'}]})
+json.dump({'domain': 'league-rule', 'rows': rows}, open('facts/college-practice.json', 'w'), indent=1, ensure_ascii=False)
