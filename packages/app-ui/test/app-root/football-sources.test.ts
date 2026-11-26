@@ -58,29 +58,34 @@ describe('football sources', () => {
       const port = startCareerSeason(CONTENT, { level, ruleSetId: `${level}_2026`, seasonYear: 2026, seedHex: '00000000000000a7', seat: { key: firstTeamKey(CONTENT, level) } },
         { resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings });
       const today = port.today();
-      const desk = port.football!;
-      expect(desk.gameId).not.toBeNull();
-      const routes = buildRoutes(footballSources(desk));
+      // The football screens come through the port's hub sources (one spread in the career root).
+      const sources = port.sources!() as ReturnType<typeof footballSources>;
+      const routes = buildRoutes(sources);
       for (const id of ['football.game_plan', 'football.call_sheet', 'football.print', 'football.playbook', 'football.install', 'football.defense_designer']) {
         expect(routes[id], id).toBeDefined();
         const html = renderToStaticMarkup(routes[id]!.render(props(id)) as never);
         expect(html.length, id).toBeGreaterThan(200);
       }
+      const OPTS = { situation: null, paper: 'letter' as const, keyHints: true };
+      const sheet = sources.gameplan.view('offense', OPTS)!.sheet;
+      expect(sheet.gameId).not.toBe('next');
       // The call sheet shows the seat's own calls (the starter book), named the way the caller says them.
       const sheetHtml = renderToStaticMarkup(routes['football.call_sheet']!.render(props('football.call_sheet')) as never);
-      const firstCall = desk.gameplanView('offense', { situation: null, paper: 'letter', keyHints: true })!.sheet.boxes.flatMap((b) => b.entries)[0]!.call;
-      expect(sheetHtml).toContain(firstCall);
-      // Edit, then open the game: the console's offense sheet is the edited one.
-      const box = desk.sheets().offense.boxes.find((b) => b.entries.length > 1)!;
-      expect(desk.runGameplan('offense', { kind: 'remove_box', boxId: box.id }).ok).toBe(true);
+      expect(sheetHtml).toContain(sheet.boxes.flatMap((b) => b.entries)[0]!.call);
+      // Edit through the screen intent; the root is asked to redraw; then open the game: the console's sheet is the edited one.
+      let redraws = 0;
+      const off = port.subscribe!(() => redraws++);
+      const box = sheet.boxes.find((b) => b.entries.length > 1)!;
+      sources.gameplan.dispatch('offense', { kind: 'remove_entry', boxId: box.id, entryId: box.entries[0]!.id });
+      expect(redraws).toBe(1);
+      off();
       expect(today.nextGame).not.toBeNull();
       port.advanceToGameDay();
       const session = port.startGame();
       expect(session.final).toBe(false);
       const consoleSheet = session.driver.state.cfg.sheets.offense!;
-      expect(consoleSheet.id).toContain(desk.gameId!);
-      expect(consoleSheet.boxes.some((b) => b.id === box.id)).toBe(false);
-      expect(consoleSheet.boxes.length).toBe(desk.sheets().offense.boxes.length);
+      expect(consoleSheet.id).toContain(sheet.gameId);
+      expect(consoleSheet.boxes.find((b) => b.id === box.id)!.entries.length).toBe(box.entries.length - 1);
     });
   }
 });

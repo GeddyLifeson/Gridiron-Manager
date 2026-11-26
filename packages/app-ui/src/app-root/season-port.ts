@@ -106,6 +106,5 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
     delegateGame: () => { sp.advanceToGame(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; },
     // PLACEHOLDER rosters have no names yet: a player is his jersey slot until generated people play (G-17).
     names: () => ({ playerName: (id: number) => `#${id % 100}`, teamName: (side: 0 | 1) => sides[side] }),
-    ...(host.football ? { football: host.football } : {}),
   };
 }

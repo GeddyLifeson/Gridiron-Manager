@@ -19,11 +19,20 @@ type DeskCommand<K extends 'runGameplan' | 'runPlaybook'> = Parameters<Desk[K]>[
 
 export interface FootballSourceOptions {
   /** Called after every command, so the root redraws the open screen. */
-  readonly onChange?: () => void;
+  readonly onChange?: (() => void) | undefined;
   /** The platform's print dialog (the browser's in the browser build). */
-  readonly print?: () => void;
+  readonly print?: (() => void) | undefined;
   /** Hands an exported file (sheet or plays) to the platform, for example as a download. */
   readonly saveFile?: (name: string, text: string) => void;
+}
+
+/** What the football hub takes from the career start (`hubSources`). */
+export interface FootballHubInput {
+  /** The seat's football desk; absent for a scripted season. */
+  readonly football?: play.FootballDesk;
+  /** Asks the career root to redraw (the port's subscription). */
+  readonly changed?: () => void;
+  readonly print?: () => void;
 }
 
 export type FootballSources = Required<Pick<RouteSources, 'gameplan' | 'print' | 'playbook' | 'install' | 'defenseDesigner'>>;
@@ -68,7 +77,8 @@ export function footballSources(desk: Desk, o: FootballSourceOptions = {}): Foot
       changed();
     },
   };
-  const print: PrintHost = { ...gameplan, ...(o.print ? { print: o.print } : {}) };
+  const doPrint = o.print;
+  const print: PrintHost = { ...gameplan, ...(doPrint ? { print: doPrint } : {}) };
 
   const saved = new Map<Side, SavedFilter[]>();
   const playbook: PlaybookHost = {
