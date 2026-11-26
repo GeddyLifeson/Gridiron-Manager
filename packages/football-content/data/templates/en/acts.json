@@ -1,0 +1,210 @@
+{
+ "contentSchemaVersion": 1,
+ "language": "en",
+ "templates": [
+  {
+   "key": "act.talk_private.label",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "Talk to {subject} in private",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.talk_private.detail",
+   "params": {
+    "subject": {
+     "type": "person"
+    }
+   },
+   "default": "A private conversation with {subject}. It takes a block of your week and nothing goes on the record.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.address_team.label",
+   "params": {},
+   "default": "Address the team",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.address_team.detail",
+   "params": {},
+   "default": "Speak to the whole team with a theme. Everyone in the building hears it the same day.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.ask_captains.label",
+   "params": {},
+   "default": "Ask the captains to handle it",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.ask_captains.detail",
+   "params": {},
+   "default": "Hand it to the leadership council. They act only if they trust you enough to.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.apply_discipline.label",
+   "params": {},
+   "default": "Apply discipline",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.apply_discipline.detail",
+   "params": {},
+   "default": "Open a discipline case under your published standards. It is judged against how you treated the last case like it.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.change_role_lineup.label",
+   "params": {},
+   "default": "Change a role or the lineup",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.change_role_lineup.detail",
+   "params": {},
+   "default": "Move a player in the depth chart or change his role. The room reads the reason, not just the move.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.reassign_staff_work.label",
+   "params": {},
+   "default": "Reassign staff work",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.reassign_staff_work.detail",
+   "params": {},
+   "default": "Give a task to someone else on the staff, or take it yourself. The hours show before you confirm.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.speak_public.label",
+   "params": {},
+   "default": "Speak in public",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.speak_public.detail",
+   "params": {},
+   "default": "Take a stance at the podium, or decline to. Everyone named or implied hears it within a day.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.background_reporter.label",
+   "params": {},
+   "default": "Talk to a reporter on background",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.background_reporter.detail",
+   "params": {},
+   "default": "Give one reporter context away from the podium. Anything private you pass on is a leak and can be traced to you.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.inform_upstairs.label",
+   "params": {},
+   "default": "Tell the people above you",
+   "variants": [
+    {
+     "level": "college",
+     "text": "Inform the athletic director"
+    },
+    {
+     "level": "pro",
+     "text": "Inform the owner or general manager"
+    }
+   ],
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.inform_upstairs.detail",
+   "params": {},
+   "default": "Tell your boss before the story reaches them another way. You see how you stand with them, in words, before you ask.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "Tell the athletic director before the story reaches them another way. You see how you stand with them, in words, before you ask."
+    },
+    {
+     "level": "pro",
+     "text": "Tell the owner and the general manager before they hear it elsewhere. You see how you stand with them, in words, before you ask."
+    }
+   ],
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.call_family_agent.label",
+   "params": {},
+   "default": "Call a family member or an agent",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.call_family_agent.detail",
+   "params": {},
+   "default": "Speak to the people behind the person. What you say is remembered by them for years.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.give_time_off.label",
+   "params": {},
+   "default": "Give time off",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.give_time_off.detail",
+   "params": {},
+   "default": "Excuse someone from the building. Nothing on this screen puts a price on it.",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.report_outside.label",
+   "params": {},
+   "default": "Report the matter outside",
+   "variants": [
+    {
+     "level": "college",
+     "text": "Report to the school or compliance"
+    },
+    {
+     "level": "pro",
+     "text": "Report to the league"
+    }
+   ],
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.report_outside.detail",
+   "params": {},
+   "default": "File the matter with the body that holds it. What you reported becomes a dated fact on your history.",
+   "variants": [
+    {
+     "level": "college",
+     "text": "File the matter with the school or compliance office. Some matters must be reported, and staff who stay silent become parties if it comes out."
+    },
+    {
+     "level": "pro",
+     "text": "File the matter with the league office. What you reported becomes a dated fact on your history."
+    }
+   ],
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.wait_for_facts.label",
+   "params": {},
+   "default": "Wait for facts",
+   "note": "guard=football; no quotation"
+  },
+  {
+   "key": "act.wait_for_facts.detail",
+   "params": {},
+   "default": "Do nothing yet. Waiting is a choice and the record keeps it as one.",
+   "note": "guard=football; no quotation"
+  }
+ ]
+}

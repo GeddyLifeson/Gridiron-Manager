@@ -1,0 +1,198 @@
+{
+ "note": "L9.3.1 act set. No act spends a currency; none is graded. Every act resolves through its owning system (ownerSystem) and writes one event there. Acts above the job's authority appear as an ask to the person who holds the power (L5.2.1). Rule-breaking responses are offered with a warning and run through L8.2.5.",
+ "acts": [
+  {
+   "id": "talk_private",
+   "ownerSystem": "L1.2",
+   "involves": "person",
+   "event": "L1.2.conversation",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.talk_private.label",
+   "detailKey": "act.talk_private.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "address_team",
+   "ownerSystem": "H4",
+   "involves": "team",
+   "event": "H4.team_address",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.address_team.label",
+   "detailKey": "act.address_team.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "ask_captains",
+   "ownerSystem": "L2.2.2",
+   "involves": "council",
+   "event": "L2.2.2.council_handoff",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.ask_captains.label",
+   "detailKey": "act.ask_captains.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "apply_discipline",
+   "ownerSystem": "L3",
+   "involves": "person",
+   "event": "L3.discipline_case",
+   "powerNeeded": "discipline",
+   "askIfAboveAuthority": true,
+   "labelKey": "act.apply_discipline.label",
+   "detailKey": "act.apply_discipline.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "change_role_lineup",
+   "ownerSystem": "M2",
+   "involves": "person",
+   "event": "M2.depth_chart_change",
+   "powerNeeded": "roster",
+   "askIfAboveAuthority": true,
+   "labelKey": "act.change_role_lineup.label",
+   "detailKey": "act.change_role_lineup.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "reassign_staff_work",
+   "ownerSystem": "L4",
+   "involves": "staff",
+   "event": "L4.task_reassignment",
+   "powerNeeded": "staff",
+   "askIfAboveAuthority": true,
+   "labelKey": "act.reassign_staff_work.label",
+   "detailKey": "act.reassign_staff_work.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "speak_public",
+   "ownerSystem": "H7.2.1",
+   "involves": "audience",
+   "event": "H7.2.1.statement",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.speak_public.label",
+   "detailKey": "act.speak_public.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "background_reporter",
+   "ownerSystem": "L6.2.2",
+   "involves": "reporter",
+   "event": "L6.2.2.background_talk",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.background_reporter.label",
+   "detailKey": "act.background_reporter.detail",
+   "spendsCurrency": false,
+   "graded": false,
+   "minutes": {
+    "value": 15,
+    "unit": "minutes",
+    "factId": "F-crisis-0016"
+   }
+  },
+  {
+   "id": "inform_upstairs",
+   "ownerSystem": "L5",
+   "involves": "boss",
+   "event": "L5.upstairs_notice",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.inform_upstairs.label",
+   "detailKey": "act.inform_upstairs.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "call_family_agent",
+   "ownerSystem": "L7",
+   "involves": "family_or_agent",
+   "event": "L7.call",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.call_family_agent.label",
+   "detailKey": "act.call_family_agent.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "give_time_off",
+   "ownerSystem": "H1",
+   "involves": "person",
+   "event": "H1.excused_absence",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.give_time_off.label",
+   "detailKey": "act.give_time_off.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "report_outside",
+   "ownerSystem": "L8",
+   "involves": "body",
+   "event": "L8.report",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.report_outside.label",
+   "detailKey": "act.report_outside.detail",
+   "spendsCurrency": false,
+   "graded": false
+  },
+  {
+   "id": "wait_for_facts",
+   "ownerSystem": "L9.1.1",
+   "involves": "none",
+   "event": "L9.1.1.wait",
+   "powerNeeded": null,
+   "askIfAboveAuthority": false,
+   "labelKey": "act.wait_for_facts.label",
+   "detailKey": "act.wait_for_facts.detail",
+   "spendsCurrency": false,
+   "graded": false
+  }
+ ],
+ "ruleBreakingResponses": [
+  {
+   "id": "hide_case",
+   "offeredIn": [
+    "hazing",
+    "academic_ineligibility",
+    "investigation",
+    "witnessed"
+   ],
+   "pipeline": "L8.2.5",
+   "warned": true
+  },
+  {
+   "id": "shade_report",
+   "offeredIn": [
+    "team_illness",
+    "injury_to_star"
+   ],
+   "pipeline": "L8.2.5",
+   "warned": true
+  },
+  {
+   "id": "improper_benefit",
+   "offeredIn": [
+    "holdout",
+    "portal_exodus",
+    "academic_ineligibility"
+   ],
+   "pipeline": "L8.2.5",
+   "warned": true
+  }
+ ]
+}

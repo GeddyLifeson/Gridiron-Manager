@@ -1,0 +1,1035 @@
+{
+ "version": "g25.1",
+ "leaf": "X8.1.1, S1.2.1, L4.1.1",
+ "positions": [
+  {
+   "definition": {
+    "id": "pos:head_coach",
+    "appointer": "boss",
+    "reportsTo": null,
+    "requiredForGame": true,
+    "successionRule": [
+     {
+      "kind": "named_deputy"
+     },
+     {
+      "kind": "role",
+      "positionId": "pos:assistant_head_coach"
+     },
+     {
+      "kind": "role_group",
+      "group": "coordinators",
+      "side": null,
+      "order": "years_in_chair"
+     },
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": true
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Head coach",
+   "roleGroup": "head_coach",
+   "cascadeKind": "head_coach",
+   "reportsToRule": "boss",
+   "controls": [
+    "staff.final_say_on_assistants"
+   ],
+   "side": "whole_team",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:offensive_coordinator",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": true,
+    "successionRule": [
+     {
+      "kind": "named_deputy"
+     },
+     {
+      "kind": "role_group",
+      "group": "position_coaches",
+      "side": "offense",
+      "order": "years_in_chair"
+     },
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Offensive coordinator",
+   "roleGroup": "coordinators",
+   "cascadeKind": "coordinator",
+   "reportsToRule": "head_coach",
+   "controls": [
+    "gameplan.offense",
+    "calling.offense",
+    "adjustments.offense",
+    "install.offense"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1",
+   "note": "X8.1.1 table: named deputy; play-calling head coach of that side (applied by the game-day stand-in rule X8.3.2, not the chair rule); senior position coach on that side."
+  },
+  {
+   "definition": {
+    "id": "pos:defensive_coordinator",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": true,
+    "successionRule": [
+     {
+      "kind": "named_deputy"
+     },
+     {
+      "kind": "role_group",
+      "group": "position_coaches",
+      "side": "defense",
+      "order": "years_in_chair"
+     },
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Defensive coordinator",
+   "roleGroup": "coordinators",
+   "cascadeKind": "coordinator",
+   "reportsToRule": "head_coach",
+   "controls": [
+    "gameplan.defense",
+    "calling.defense",
+    "adjustments.defense",
+    "install.defense"
+   ],
+   "side": "defense",
+   "leaf": "X8.1.1",
+   "note": "X8.1.1 table: named deputy; play-calling head coach of that side (applied by the game-day stand-in rule X8.3.2, not the chair rule); senior position coach on that side."
+  },
+  {
+   "definition": {
+    "id": "pos:special_teams_coordinator",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": true,
+    "successionRule": [
+     {
+      "kind": "named_deputy"
+     },
+     {
+      "kind": "role",
+      "positionId": "pos:special_teams_assistant"
+     },
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Special teams coordinator",
+   "roleGroup": "coordinators",
+   "cascadeKind": "special_teams_coordinator",
+   "reportsToRule": "head_coach",
+   "controls": [
+    "gameplan.special_teams",
+    "calling.special_teams",
+    "adjustments.special_teams",
+    "room.specialists"
+   ],
+   "side": "special_teams",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:assistant_head_coach",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Assistant head coach",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "head_coach",
+   "controls": [],
+   "side": "whole_team",
+   "leaf": "X8.1.1",
+   "note": "A title added to another seat (S1.1.2 rung 6, L4.1.1)."
+  },
+  {
+   "definition": {
+    "id": "pos:pass_game_coordinator.offense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Pass game coordinator",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "package.third_down"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:run_game_coordinator.offense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Run game coordinator",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "package.red_zone"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:pass_game_coordinator.defense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:defensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Pass game coordinator (defense)",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [],
+   "side": "defense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:run_game_coordinator.defense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:defensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Run game coordinator (defense)",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [],
+   "side": "defense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:co_coordinator.offense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Co-offensive coordinator",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "coordinator",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [],
+   "side": "offense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:co_coordinator.defense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:defensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Co-defensive coordinator",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "coordinator",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [],
+   "side": "defense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:senior_assistant",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Senior assistant",
+   "roleGroup": "senior_assistants",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "head_coach",
+   "controls": [],
+   "side": "whole_team",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:game_management",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Game management coach",
+   "roleGroup": "support",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "head_coach",
+   "controls": [
+    "game_management.charts"
+   ],
+   "side": "whole_team",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.qb",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "QB coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.qb"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.rb",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "RB coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.rb"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.wr",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "WR coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.wr"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.te",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "TE coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.te"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.ol",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "OL coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.ol"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.dl",
+    "appointer": "head_coach",
+    "reportsTo": "pos:defensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "DL coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.dl"
+   ],
+   "side": "defense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.lb",
+    "appointer": "head_coach",
+    "reportsTo": "pos:defensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "LB coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.lb"
+   ],
+   "side": "defense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:position_coach.db",
+    "appointer": "head_coach",
+    "reportsTo": "pos:defensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "DB coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "room.db"
+   ],
+   "side": "defense",
+   "leaf": "X8.1.1",
+   "note": "Position coach: head coach reassigns (X8.1.1 table)."
+  },
+  {
+   "definition": {
+    "id": "pos:special_teams_assistant",
+    "appointer": "head_coach",
+    "reportsTo": "pos:special_teams_coordinator",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Special teams assistant",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [],
+   "side": "special_teams",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:assistant_position_coach",
+    "appointer": "head_coach",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Assistant position coach",
+   "roleGroup": "position_coaches",
+   "cascadeKind": "position_coach",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [],
+   "side": "by_seat",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:quality_control.offense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:offensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Quality control (offense)",
+   "roleGroup": "support",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "film_breakdown.offense",
+    "opponent_report.offense"
+   ],
+   "side": "offense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:quality_control.defense",
+    "appointer": "head_coach",
+    "reportsTo": "pos:defensive_coordinator",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Quality control (defense)",
+   "roleGroup": "support",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "film_breakdown.defense",
+    "opponent_report.defense"
+   ],
+   "side": "defense",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:quality_control.special_teams",
+    "appointer": "head_coach",
+    "reportsTo": "pos:special_teams_coordinator",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Quality control (special teams)",
+   "roleGroup": "support",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "film_breakdown.special_teams"
+   ],
+   "side": "special_teams",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:analyst",
+    "appointer": "head_coach",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Analyst",
+   "roleGroup": "support",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "coordinator_of_side",
+   "controls": [
+    "self_scout"
+   ],
+   "side": "by_seat",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:recruiting_assistant",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Recruiting or personnel assistant",
+   "roleGroup": "support",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "head_coach",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:scouting_assistant",
+    "appointer": "general_manager",
+    "reportsTo": "pos:general_manager",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Scouting assistant",
+   "roleGroup": "personnel",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "general_manager",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1",
+   "note": "Scouts report to the general manager, not the head coach (S1.1.3 edge case)."
+  },
+  {
+   "definition": {
+    "id": "pos:graduate_assistant",
+    "appointer": "head_coach",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": "staff.grad_assistants_max"
+   },
+   "title": "Graduate assistant",
+   "roleGroup": "support",
+   "cascadeKind": "graduate_assistant",
+   "reportsToRule": "position_coach_of_group",
+   "controls": [],
+   "side": "by_seat",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:coaching_assistant",
+    "appointer": "head_coach",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": null
+   },
+   "title": "Coaching assistant",
+   "roleGroup": "support",
+   "cascadeKind": "graduate_assistant",
+   "reportsToRule": "position_coach_of_group",
+   "controls": [],
+   "side": "by_seat",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:student_assistant",
+    "appointer": "head_coach",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": "staff.student_assistants_max"
+   },
+   "title": "Student assistant coach",
+   "roleGroup": "students",
+   "cascadeKind": "graduate_assistant",
+   "reportsToRule": "position_coach_of_group",
+   "controls": [],
+   "side": "by_seat",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:student_manager",
+    "appointer": "head_coach",
+    "reportsTo": "pos:graduate_assistant",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": null
+   },
+   "title": "Student manager",
+   "roleGroup": "students",
+   "cascadeKind": "graduate_assistant",
+   "reportsToRule": "graduate_assistant",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:student_video",
+    "appointer": "head_coach",
+    "reportsTo": "pos:graduate_assistant",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": null
+   },
+   "title": "Student video assistant",
+   "roleGroup": "students",
+   "cascadeKind": "graduate_assistant",
+   "reportsToRule": "graduate_assistant",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:recruiting_student",
+    "appointer": "head_coach",
+    "reportsTo": "pos:recruiting_assistant",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": null
+   },
+   "title": "Recruiting student worker",
+   "roleGroup": "students",
+   "cascadeKind": "graduate_assistant",
+   "reportsToRule": "recruiting_assistant",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:camp_intern",
+    "appointer": "head_coach",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": null
+   },
+   "title": "Training-camp intern or fellowship coach",
+   "roleGroup": "students",
+   "cascadeKind": "graduate_assistant",
+   "reportsToRule": "position_coach_of_group",
+   "controls": [],
+   "side": "by_seat",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:strength_head",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "yes",
+    "maxCountKey": "staff.strength_staff_max"
+   },
+   "title": "Head strength and conditioning coach",
+   "roleGroup": "strength",
+   "cascadeKind": "strength_head",
+   "reportsToRule": "head_coach",
+   "controls": [
+    "strength.program"
+   ],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:strength_assistant",
+    "appointer": "head_coach",
+    "reportsTo": "pos:strength_head",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "yes",
+    "maxCountKey": "staff.strength_staff_max"
+   },
+   "title": "Strength and conditioning assistant",
+   "roleGroup": "strength",
+   "cascadeKind": "analyst_qc",
+   "reportsToRule": "strength_head",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:general_manager_college",
+    "appointer": "head_coach",
+    "reportsTo": "pos:head_coach",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "acting_only",
+    "maxCountKey": null
+   },
+   "title": "General manager or director of player personnel",
+   "roleGroup": "personnel",
+   "cascadeKind": "none",
+   "reportsToRule": "head_coach",
+   "controls": [
+    "roster.transfers"
+   ],
+   "side": "support",
+   "leaf": "X8.1.1",
+   "note": "College seat (S1.1.2 rung 7): not held by the user in v1 (T4.6.1)."
+  },
+  {
+   "definition": {
+    "id": "pos:general_manager",
+    "appointer": "owner",
+    "reportsTo": "pos:owner",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "acting_only",
+    "maxCountKey": null
+   },
+   "title": "General manager",
+   "roleGroup": "boss",
+   "cascadeKind": "none",
+   "reportsToRule": "none",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:athletic_director",
+    "appointer": "president",
+    "reportsTo": "pos:president",
+    "requiredForGame": false,
+    "successionRule": [
+     {
+      "kind": "appointer_pick",
+      "outsideAllowed": false
+     }
+    ],
+    "interimAllowed": "acting_only",
+    "maxCountKey": null
+   },
+   "title": "Athletic director",
+   "roleGroup": "boss",
+   "cascadeKind": "none",
+   "reportsToRule": "none",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1"
+  },
+  {
+   "definition": {
+    "id": "pos:president",
+    "appointer": "board",
+    "reportsTo": "pos:board",
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": null
+   },
+   "title": "President",
+   "roleGroup": "boss",
+   "cascadeKind": "none",
+   "reportsToRule": "none",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1",
+   "note": "School president; appointed outside football (L5.4)."
+  },
+  {
+   "definition": {
+    "id": "pos:owner",
+    "appointer": "ownership_change",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": null
+   },
+   "title": "Owner",
+   "roleGroup": "boss",
+   "cascadeKind": "none",
+   "reportsToRule": "none",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1",
+   "note": "Ownership change only (C10)."
+  },
+  {
+   "definition": {
+    "id": "pos:board",
+    "appointer": "none",
+    "reportsTo": null,
+    "requiredForGame": false,
+    "successionRule": [],
+    "interimAllowed": "no",
+    "maxCountKey": null
+   },
+   "title": "Board of trustees",
+   "roleGroup": "boss",
+   "cascadeKind": "none",
+   "reportsToRule": "none",
+   "controls": [],
+   "side": "support",
+   "leaf": "X8.1.1",
+   "note": "Outside football; listed so every reports_to resolves."
+  }
+ ]
+}
