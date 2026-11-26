@@ -2,8 +2,8 @@
 // payroll on the club's books (C6.2.3 rule 1), and the minimum cash spending floor (C6.2.3 rule 2).
 export { MODULE, PARAMS, param, type FloorPeriod } from './params.ts';
 export {
-  CONTRACTS_KEY, contractsOf, setContracts, contractOf, clubContracts, salaryIn, lastYear,
-  type PlayerTerms, type PlayerContract, type FloorCheck, type ContractsState, type MarketYear,
+  CONTRACTS_KEY, contractsOf, setContracts, contractOf, clubContracts, salaryIn, lastYear, teamSalaryIn, deadNowCents,
+  type PlayerTerms, type PlayerContract, type FloorCheck, type ContractsState, type MarketYear, type ReleasedOwed,
 } from './state.ts';
 export { PAY_SCALE_SNAPSHOT, PAY_SCALE_FACTS, sourcedScale, sourcedYears, publicPercentiles, marketPrice, type PriceInput } from './scale.ts';
 export {

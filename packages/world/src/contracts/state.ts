@@ -40,6 +40,21 @@ export interface ContractsState {
   readonly floorChecks: readonly FloorCheck[];
   /** The latest league year's free agent signings at their market price (PC-11): the front office's going rate reads them (TO-07). */
   readonly lastMarket?: MarketYear;
+  /**
+   * Guaranteed salary of released players still to be paid (PC-06): cash follows the contract's own years
+   * (CBA Art. 26 s.5, Art. 27 s.16), so a later year's guarantee is paid in that year by the old club.
+   */
+  readonly releasedOwed?: readonly ReleasedOwed[];
+  /** Each capped club's Team Salary by league year when its contracts opened (kept salaries plus dead money). Keyed `${teamId}:${year}`. */
+  readonly teamSalary?: Readonly<Record<string, number>>;
+}
+
+/** One league year's guaranteed salary a club still owes a player it released. */
+export interface ReleasedOwed {
+  readonly personId: number;
+  readonly teamId: number;
+  readonly leagueYear: number;
+  readonly cents: number;
 }
 
 /** One league year's free agent signings: who signed, with which club, at what average per year. */
@@ -71,6 +86,20 @@ export function clubContracts(world: LiveWorld, teamId: number): PlayerContract[
 /** Paragraph 5 salary a contract pays in a league year (0 outside its years). The world's contracts carry no bonuses yet (PC-05). */
 export function salaryIn(c: PlayerContract, leagueYear: number): number {
   return c.terms.years.find((y) => y.leagueYear === leagueYear)?.baseSalary.amountCents ?? 0;
+}
+
+/** A club's Team Salary in a league year as its contracts opened (PC-06), or undefined before then. */
+export function teamSalaryIn(world: LiveWorld, teamId: number, leagueYear: number): number | undefined {
+  return contractsOf(world).teamSalary?.[`${teamId}:${leagueYear}`];
+}
+
+/**
+ * C6.3.2 rule 1 as the world's contracts carry it (PC-06): the cap charge this league year of releasing a
+ * player now, the guaranteed salary of every year left. The world releases at the league year's opening, on
+ * or before June 1, and its contracts carry no signing bonus, so nothing defers to the next year.
+ */
+export function deadNowCents(c: PlayerContract, leagueYear: number): number {
+  return c.terms.years.filter((y) => y.leagueYear >= leagueYear && y.baseSalary.guarantee.skill).reduce((s, y) => s + y.baseSalary.amountCents, 0);
 }
 
 export function lastYear(c: PlayerContract): number {

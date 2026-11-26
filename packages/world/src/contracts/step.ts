@@ -15,7 +15,7 @@ import { ageCurve } from '../turnover/front-office.ts';
 import { ruleSetFor, type ContractsBinding } from './binding.ts';
 import { param, type FloorPeriod } from './params.ts';
 import { marketPrice, publicPercentiles, sourcedScale } from './scale.ts';
-import { contractsOf, lastYear, salaryIn, setContracts, type ContractsState, type FloorCheck, type PlayerContract } from './state.ts';
+import { contractsOf, deadNowCents, lastYear, salaryIn, setContracts, type ContractsState, type FloorCheck, type PlayerContract, type ReleasedOwed } from './state.ts';
 
 /** Reason on a club's yearly player pay entry (C6.2.3 rule 1). The floor counts these only (MO-10). */
 export const PLAYER_PAY_REASON = 'player_pay';
@@ -94,8 +94,10 @@ interface Run {
   signed: number;
   ended: number;
   releasedGuaranteeCents: number;
-  /** Released guarantees charged this year, by club (PC-06): they count against the year's room. */
+  /** Dead money of this year's releases, by club (PC-06): it counts against the year's cap room. */
   readonly releasedBy: Map<number, number>;
+  /** Released guarantees still to be paid, this year's included (PC-06). */
+  readonly owed: ReleasedOwed[];
 }
 
 function credited(world: LiveWorld, id: number): number {
@@ -218,13 +220,14 @@ function closeContracts(r: Run): PlayerContract[] {
     const onRoster = (world.rosters.get(c.teamId) ?? []).includes(c.personId) && isActive(world, c.teamId, year);
     if (onRoster && lastYear(c) >= year && world.status.get(c.personId) === 'active') { keep.push(c); continue; }
     r.ended++;
-    // PC-06: a release before the last year still owes the guaranteed salary of the years left, paid now.
+    // PC-06: a release before the last year still owes the guaranteed salary of the years left. The cap
+    // charge of all of it falls in this year (C6.3.2 rule 1); the cash is paid in each contract year.
     if (lastYear(c) >= year && world.status.get(c.personId) === 'active') {
-      const owed = c.terms.years.filter((y) => y.leagueYear >= year && y.baseSalary.guarantee.skill).reduce((s, y) => s + y.baseSalary.amountCents, 0);
-      if (owed > 0) {
-        chargeClub(world, { teamId: c.teamId, seasonYear: year, cents: owed, reason: PLAYER_PAY_REASON });
-        r.releasedGuaranteeCents += owed;
-        r.releasedBy.set(c.teamId, (r.releasedBy.get(c.teamId) ?? 0) + owed);
+      const dead = deadNowCents(c, year);
+      if (dead > 0) r.releasedBy.set(c.teamId, (r.releasedBy.get(c.teamId) ?? 0) + dead);
+      for (const y of c.terms.years) {
+        if (y.leagueYear < year || !y.baseSalary.guarantee.skill || y.baseSalary.amountCents <= 0) continue;
+        r.owed.push({ personId: c.personId, teamId: c.teamId, leagueYear: y.leagueYear, cents: y.baseSalary.amountCents });
       }
     }
   }
@@ -310,7 +313,7 @@ export function runContractYear(world: LiveWorld, b: ContractsBinding, signings:
   };
   const r: Run = {
     world, b, year, cap, grades, signings, percentiles, time: b.marketTime?.(year) ?? 1, freeAgentApy: [],
-    founding: start.paidYears.length === 0, state: start, signed: 0, ended: 0, releasedGuaranteeCents: 0, releasedBy: new Map(),
+    founding: start.paidYears.length === 0, state: start, signed: 0, ended: 0, releasedGuaranteeCents: 0, releasedBy: new Map(), owed: [...(start.releasedOwed ?? [])],
   };
   const floorShortfallCents = checkFloors(r);
   const keep = closeContracts(r);
@@ -336,8 +339,22 @@ export function runContractYear(world: LiveWorld, b: ContractsBinding, signings:
     chargeClub(world, { teamId, seasonYear: year, cents, reason: PLAYER_PAY_REASON });
     pay += cents;
   }
+  // PC-06: released guarantees due this year are paid by the old club (CBA Art. 26 s.5, Art. 27 s.16).
+  const due = new Map<number, number>();
+  for (const o of r.owed) if (o.leagueYear <= year) due.set(o.teamId, (due.get(o.teamId) ?? 0) + o.cents);
+  for (const [teamId, cents] of [...due].sort((x, y) => x[0] - y[0])) {
+    if (!world.teams.some((t) => t.id === teamId)) continue;
+    chargeClub(world, { teamId, seasonYear: year, cents, reason: PLAYER_PAY_REASON });
+    r.releasedGuaranteeCents += cents;
+  }
+  const releasedOwed = r.owed.filter((o) => o.leagueYear > year).sort((x, y) => x.leagueYear - y.leagueYear || x.teamId - y.teamId || x.personId - y.personId);
+  const teamSalary: Record<string, number> = { ...(r.state.teamSalary ?? {}) };
+  for (const teamId of teams) {
+    if (cap(world, teamId, year) === undefined) continue;
+    teamSalary[`${teamId}:${year}`] = (paidBy.get(teamId) ?? 0) + (r.releasedBy.get(teamId) ?? 0);
+  }
   const lastMarket = { seasonYear: year, signings: [...r.freeAgentApy].sort((x, y) => x.personId - y.personId) };
-  setContracts(world, { ...r.state, active, paidYears: [...r.state.paidYears, year], periodRoster: roster, lastMarket });
+  setContracts(world, { ...r.state, active, paidYears: [...r.state.paidYears, year], periodRoster: roster, lastMarket, releasedOwed, teamSalary });
   return { seasonYear: year, signed: r.signed, ended: r.ended, active: active.length, playerPayCents: pay + r.releasedGuaranteeCents, floorShortfallCents, already: false };
 }
 

@@ -173,14 +173,26 @@ describe('contracts over offseasons (C6.4.2, C8, C6.2.3)', () => {
     for (const c of rows) expect(c.terms.years).toHaveLength(capRules.rookieLength(null, proRules));
   });
 
-  it('pays every club every year once, and keeps each year under the cap', () => {
+  it('pays every club every year once, and keeps each year\'s Team Salary under the cap', () => {
     for (let y = first; y <= year; y++) {
       for (const teamId of proTeams(w)) {
         const pay = contracts.playerCashPaid(w, teamId, y);
         if (teamId === stingy && y === first) { expect(pay).toBe(0); continue; }
         expect(pay).toBeGreaterThan(0);
-        expect(pay).toBeLessThanOrEqual(capCents);
+        // Cash and cap differ (PC-06): the cap check is on Team Salary, kept salaries plus dead money.
+        expect(contracts.teamSalaryIn(w, teamId, y)).toBeLessThanOrEqual(cap(w, teamId, y)!);
       }
+    }
+  });
+
+  it('pays a released guarantee in its own contract year and charges all of it to the cap the year of the release (PC-06)', () => {
+    for (const o of st.releasedOwed ?? []) expect(o.leagueYear).toBeGreaterThan(year);
+    // Every club's cash in a year is its open contracts' salaries plus guarantees due that year, so the cash
+    // never runs ahead of the money owed: over the run, cash paid is at most Team Salary charged.
+    for (const teamId of proTeams(w)) {
+      let cash = 0, salary = 0;
+      for (let y = first; y <= year; y++) { cash += contracts.playerCashPaid(w, teamId, y); salary += contracts.teamSalaryIn(w, teamId, y) ?? 0; }
+      expect(cash).toBeLessThanOrEqual(salary);
     }
   });
 

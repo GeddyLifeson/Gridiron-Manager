@@ -50,9 +50,21 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
   rule 3, 2 of 3). The fifth-year option year and the undrafted bonus pool split are not modelled yet.
   Founding players sign as veterans whatever their service, because the world holds no draft record for them.
 - **PC-06** A contract ends when it runs out, when the club no longer rosters the player, or when he leaves
-  football. A release before the last year pays the guaranteed salary still owed, all at once, as player pay.
-  This is a simplification: the CBA pays on schedule, and offset is not modelled. Retirement ends the contract
-  outright, where the CBA would toll it on the reserve/retired list.
+  football. A release before the last year keeps the guaranteed salary still owed on the old club, and cash and
+  cap treat it differently (status: Rulebook only, CBA primary text; an OverTheCap or Spotrac cross-check is owed,
+  the cloud cannot reach either):
+  - Cash follows the contract's own years. Salary is a yearly amount paid in weekly or bi-weekly installments
+    over the regular season (CBA Art. 26 s.5(a)(i); Standard Player Contract para. 5), and a released player
+    "shall continue to receive the guaranteed portion of the contract and that money shall continue to count
+    against the Salary Cap" (Art. 27 s.16). Each later year's guarantee is paid by the old club in that year
+    (`releasedOwed` in state).
+  - The cap charge of all of it falls in the release year (C6.3.2 rule 1, league `cap.releaseCharges`). The
+    June 1 split (Art. 13 s.6(b)(ii)) moves only signing bonus proration to the next league year; the world's
+    contracts carry no signing bonus, and the world releases at the league year's opening (before June 1), so
+    nothing defers. `teamSalary` in state records each club's Team Salary (kept salaries plus dead money) by
+    year, and the cutdown keeps that under the cap (TO-07).
+  Offset is not modelled. Retirement ends the contract outright, where the CBA would toll it on the
+  reserve/retired list.
 - **PC-07** A league year's salaries are charged once, at the first pass of the year, after the roster cycle,
   as one `player_pay` entry per club (the same timing as staff pay, MO-07). The world's contracts carry no
   bonuses, so cash equals the cap charge.
