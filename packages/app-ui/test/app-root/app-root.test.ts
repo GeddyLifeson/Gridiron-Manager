@@ -176,7 +176,7 @@ describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
     const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
     const key = CONTENT.proLeague.league.clubs[2].id;
     const make = (pool?: play.WeekPool) => {
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: key });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', resolver: 'reference', seatTeamKey: key });
       return { sp, port: careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, consoleConfig: (g) => gameCalling.staffConsoleConfig('pro_2026', g, DEFAULT_KEYMAP.bindings), ...(pool ? { pool } : {}) }) };
     };
     const here = make();
@@ -198,7 +198,7 @@ describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
     const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
     const key = CONTENT.proLeague.league.clubs[3].id;
     const make = (pool?: play.WeekPool) => {
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: key });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', resolver: 'reference', seatTeamKey: key });
       return { sp, port: careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, consoleConfig: (g) => gameCalling.staffConsoleConfig('pro_2026', g, DEFAULT_KEYMAP.bindings), ...(pool ? { pool } : {}) }) };
     };
     const here = make();
@@ -228,11 +228,11 @@ describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
 
   it('college: the first week control plays the bye weeks in the pool, then opens the seat week as in place', async () => {
     const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
-    const built = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: CONTENT.college.schools[0].id }).built;
+    const built = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', resolver: 'reference', seatTeamKey: CONTENT.college.schools[0].id }).built;
     const first = Math.min(...built.spec.fixtures.map((x) => x.week));
     const seat = built.spec.teams.find((t) => !built.spec.fixtures.some((x) => x.week === first && (x.home === t.id || x.away === t.id)))!;
     const make = (pool?: play.WeekPool) => {
-      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: seat.key });
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', resolver: 'reference', seatTeamKey: seat.key });
       return { sp, port: careerPortFromSeason(sp, { level: 'college', seasonYear: 2026, resolve, bindings: DEFAULT_KEYMAP.bindings, consoleConfig: () => { throw new Error('the week supplies the console'); }, ...(pool ? { pool } : {}) }) };
     };
     const here = make();
