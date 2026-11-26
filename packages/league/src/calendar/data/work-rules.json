@@ -385,7 +385,8 @@
    "id": "camp.days_off_weekly",
    "leaf": "C11.2.2",
    "phases": [
-    "training_camp"
+    "training_camp",
+    "preseason"
    ],
    "plain": "At least one day off in every 7 until the first preseason game",
    "cls": "breakable",
