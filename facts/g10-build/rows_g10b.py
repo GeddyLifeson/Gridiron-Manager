@@ -279,3 +279,22 @@ COL.row(CL, '2027: lower-division wins get ranking credit for only one FCS win p
 COL.row(CL, '2027: schools are expected to play at least ten qualifying regular-season games.', 10, 'games', '2027',
   [M('espn_cfp27', 'format article', 'Each Power 4 school will be expected to play at least 10 qualifying regular-season games.', 10),
    M('fbs_cfp27', 'format article', 'G6 institutions will likewise be required to play at least 10 qualifying regular-season games.', 10)], key=None, notes=N1)
+
+# ---- compensatory draft system (CBA Appendix V), read by G-34
+AV = 'Appendix V'
+def comp(key, meaning, text, val, unit, where, quote):
+    LG.row('pro', text, val, unit, Y, [cba(AV + ' ' + where, quote, val)], key=('league_rules.draft.' + key, meaning, 'C7.2.1'), notes=NC + ' One source group; the NFL.com compensatory-picks pages could be added as a second.')
+comp('comp_first_round', 'Round of the earliest compensatory pick (top bracket)', 'The top compensatory bracket (a CFA in the top 5%) gets a pick after the last selection of round 3.', 3, 'round', 'Paragraph 3(b)(1)', 'following the last selection in the third round of the College Draft')
+comp('comp_cfa_top_pct', 'A compensatory free agent ranks within this top percent', 'A compensatory free agent must rank within the top 35% of all league players.', 35, 'percent', 'Paragraph 1(ii)', 'ranked within the top 35% of all League players')
+for r, pct, ord_ in [(3, 5, 'third'), (4, 10, 'fourth'), (5, 15, 'fifth'), (6, 25, 'sixth'), (7, 35, 'seventh')]:
+    comp(f'comp_bracket_top_pct_r{r}', f'Top percent bracket ending at round {r}', f'A CFA lost within the top {pct}% (and below the previous bracket) earns a pick after round {r}.', pct, 'percent', f'Paragraph 3(b)', f'following the last selection in the {ord_} round of the College Draft')
+comp('comp_points_all_league', 'Points for first-team All-Pro / All-NFL', 'First-team All-NFL or All-Pro adds 20 points.', 20, 'points', 'Paragraph 2(b)(1)', 'Selected 1st Team ALL NFL by PFWA or 1st Team ALL PRO by AP: 20 points.')
+comp('comp_points_all_conference', 'Points for All-Conference', 'All-Conference (PFWA) adds 5 points.', 5, 'points', 'Paragraph 2(b)(2)', 'Selected All Conference by PFWA (except if selected ALL NFL or ALL PRO above): 5 points.')
+comp('comp_snap_min_pct', 'Least play percent that earns participation points', 'Participation points need at least 25 percent of offensive or defensive plays.', 25, 'percent', 'Paragraph 2(b)(3)', 'a minimum of 25% of the offensive/ defensive plays')
+comp('comp_points_per_punt', 'Punter points per punt attempted', 'Punters get 1 point per punt attempted.', 1, 'points', 'Paragraph 2(b)(3)', '1 point will be awarded for each punt attempted')
+comp('comp_points_per_punt_inside20', 'Punter points per punt inside the 20', 'Punters get 1 point per punt inside the 20.', 1, 'points', 'Paragraph 2(b)(3)', '1 point for each punt inside the 20-yard line during')
+comp('comp_points_per_fga', 'Kicker points per field goal attempt', 'Kickers get 2 points per field goal attempted.', 2, 'points', 'Paragraph 2(b)(3)', 'and 2 points for each field goal attempted')
+comp('comp_points_per_fgm', 'Kicker points per field goal made', 'Kickers get 1 point per field goal made.', 1, 'points', 'Paragraph 2(b)(3)', 'and 1 point for each field goal made during the')
+comp('comp_veteran_accrued_seasons', 'Accrued seasons that push a pick back (non-quarterbacks)', 'A non-quarterback CFA with ten or more accrued seasons cannot earn a pick before round 5\'s end.', 10, 'seasons', 'Paragraph 4', 'with ten or more Accrued Seasons at the time of signing with his new Club')
+comp('comp_veteran_earliest_round', 'Earliest round for a veteran CFA pick', 'Such a pick comes no earlier than the end of round 5.', 5, 'round', 'Paragraph 4', 'no Club shall be entitled to a Compensatory Draft Selection before the end of the fifth round')
+comp('comp_equal_count_margin_points', 'Points margin for a pick on an equal count', 'With equal numbers lost and gained, a pick needs the lost sum to exceed the gained sum by more than 300 points.', 300, 'points', 'Paragraph 5', 'is more than 300 points greater than the sum of')

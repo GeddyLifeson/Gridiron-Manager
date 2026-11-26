@@ -657,6 +657,108 @@
    "factId": "F-league-0114"
   },
   {
+   "key": "league_rules.draft.comp_first_round",
+   "value": 3,
+   "unit": "round",
+   "factId": "F-league-0115"
+  },
+  {
+   "key": "league_rules.draft.comp_cfa_top_pct",
+   "value": 35,
+   "unit": "percent",
+   "factId": "F-league-0116"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r3",
+   "value": 5,
+   "unit": "percent",
+   "factId": "F-league-0117"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r4",
+   "value": 10,
+   "unit": "percent",
+   "factId": "F-league-0118"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r5",
+   "value": 15,
+   "unit": "percent",
+   "factId": "F-league-0119"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r6",
+   "value": 25,
+   "unit": "percent",
+   "factId": "F-league-0120"
+  },
+  {
+   "key": "league_rules.draft.comp_bracket_top_pct_r7",
+   "value": 35,
+   "unit": "percent",
+   "factId": "F-league-0121"
+  },
+  {
+   "key": "league_rules.draft.comp_points_all_league",
+   "value": 20,
+   "unit": "points",
+   "factId": "F-league-0122"
+  },
+  {
+   "key": "league_rules.draft.comp_points_all_conference",
+   "value": 5,
+   "unit": "points",
+   "factId": "F-league-0123"
+  },
+  {
+   "key": "league_rules.draft.comp_snap_min_pct",
+   "value": 25,
+   "unit": "percent",
+   "factId": "F-league-0124"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_punt",
+   "value": 1,
+   "unit": "points",
+   "factId": "F-league-0125"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_punt_inside20",
+   "value": 1,
+   "unit": "points",
+   "factId": "F-league-0126"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_fga",
+   "value": 2,
+   "unit": "points",
+   "factId": "F-league-0127"
+  },
+  {
+   "key": "league_rules.draft.comp_points_per_fgm",
+   "value": 1,
+   "unit": "points",
+   "factId": "F-league-0128"
+  },
+  {
+   "key": "league_rules.draft.comp_veteran_accrued_seasons",
+   "value": 10,
+   "unit": "seasons",
+   "factId": "F-league-0129"
+  },
+  {
+   "key": "league_rules.draft.comp_veteran_earliest_round",
+   "value": 5,
+   "unit": "round",
+   "factId": "F-league-0130"
+  },
+  {
+   "key": "league_rules.draft.comp_equal_count_margin_points",
+   "value": 300,
+   "unit": "points",
+   "factId": "F-league-0131"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
