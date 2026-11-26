@@ -25,6 +25,8 @@ export interface ConsoleConfig {
   readonly radioCutoffTenths: number | null;
   /** I2.3.6 "send queued calls at once" for hurry-up: a matching queued call is sent without a confirm. */
   readonly sendQueuedAtOnce?: boolean;
+  /** The rest of the week's game plan, off the sheet: reachable in game by the playbook search (in-game.ts). */
+  readonly pool?: Readonly<Partial<Record<Unit, readonly SheetEntry[]>>>;
   readonly table?: Table;
 }
 

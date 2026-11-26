@@ -172,6 +172,13 @@ describe('console config in one call', () => {
       for (const k of letters) expect(RESERVED).not.toContain(k);
       expect(new Set(Object.values(r.config.keys[u]!.box).map((k) => k.join('+'))).size).toBe(r.config.sheets[u]!.boxes.length);
     }
+  });  it('the plan calls off the sheet become the in-game search pool, none duplicated from the sheet', () => {
+    const mine = gp.addEntry({ ...gp.offenseTemplate(), gameId: 'g1' }, 'first_10', { id: 'x', call: { playId: 'pass_mesh', tags: [] } });
+    const r = consoleConfigFor({ rules: RULES, gameId: 'g1', bindings: BINDINGS, sheets: { offense: mine }, plan: { offense: PLAN }, staffPreparationZ: { offense: 0, defense: 0 }, special });
+    const pool = r.config.pool?.offense ?? [];
+    const onSheet = new Set(r.config.sheets.offense!.boxes.flatMap((b) => b.entries.map((e) => e.label)));
+    expect(pool.length).toBeGreaterThan(0);
+    for (const e of pool) { expect(onSheet.has(e.label)).toBe(false); expect(e.id.startsWith('pool:')).toBe(true); }
   });
 });
 
