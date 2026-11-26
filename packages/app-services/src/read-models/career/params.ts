@@ -15,6 +15,11 @@ export const PARAMS: ParamFile = {
       basis: 'assumption', leaf: 'O4.6.2',
       constrainedBy: 'test career-screens: the range ends sit this many standard deviations of the mean yearly return from the middle (1.2816 is the 10th and 90th percentile of a normal)', status: 'starting',
     },
+    {
+      name: 'careerScreens.hoursCulture', value: 0.5, min: 0, max: 1, unit: 'ratio', belongsTo: 'S4.1.1',
+      basis: 'assumption', leaf: 'E7.7.2',
+      constrainedBy: 'test career-live: the boss\'s hours culture (S4.1.1) is not in the save yet (CR-CS-2), so the assignment list reads required hours at the middle of the S9.2.1 range', status: 'starting',
+    },
   ],
 };
 
