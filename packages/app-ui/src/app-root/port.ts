@@ -37,16 +37,23 @@ export interface LiveField {
   readonly colours: readonly [{ readonly primary: string; readonly alternate: string }, { readonly primary: string; readonly alternate: string }];
 }
 
+/** Games of the current batch played so far (the week's other games, off the main thread). */
+export interface WeekProgress { readonly done: number; readonly total: number }
+export type OnWeekProgress = (p: WeekProgress) => void;
+
 export interface CareerPort {
   today(): SeasonToday;
-  /** Plays every other game up to the seat's next game day (byes included). */
-  advanceToGameDay(): void;
+  /**
+   * Plays every other game up to the seat's next game day (byes included). A port that plays them in workers
+   * returns a promise and reports each batch through `onProgress`; a port that plays them in place returns nothing.
+   */
+  advanceToGameDay(onProgress?: OnWeekProgress): void | Promise<void>;
   /** Opens the seat's game on game day; the opponent calls through the coach AI. */
   startGame(): GameSession;
   /** Records the finished game in the season and the world. */
-  finishGame(session: GameSession): void;
+  finishGame(session: GameSession, onProgress?: OnWeekProgress): void | Promise<void>;
   /** The staff coaches the seat's game (K6); the season moves on. */
-  delegateGame(): void;
+  delegateGame(onProgress?: OnWeekProgress): void | Promise<void>;
   /** The live field of the open game, or null when none is open. */
   liveField(session: GameSession): LiveField | null;
   /** Player and team names for the play log (observed names only). */

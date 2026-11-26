@@ -12,7 +12,7 @@ import { gameCalling } from '@gm/app-services';
 import { homeFromSeason, recordText } from './today.ts';
 import { FinalPanel, PlayLog, keyForIn, useLiveSession } from './ConsoleHost.tsx';
 import { rt } from './text.ts';
-import type { CareerPort, GameSession, SeasonToday } from './port.ts';
+import type { CareerPort, GameSession, SeasonToday, WeekProgress } from './port.ts';
 import type { SoundStage } from '../audio/stage/index.ts';
 
 export interface CareerRootProps {
@@ -42,6 +42,19 @@ export function SeasonPanel({ today, canDelegate, onDelegate }: { today: SeasonT
         ))}</tbody>
       </table>
     </aside>
+  );
+}
+
+/**
+ * The week's other games while they play off the main thread: games done of the batch (P2.1.2). Shown on
+ * Today, on the console after the final, and in the season panel.
+ */
+export function WeekProgressLine({ progress }: { progress: WeekProgress }): ReactNode {
+  return (
+    <p data-week-progress role="status" aria-live="polite" className="gm-line">
+      {rt('root.weekProgress', { done: progress.done, total: progress.total })}{' '}
+      <progress max={Math.max(1, progress.total)} value={progress.done} />
+    </p>
   );
 }
 
@@ -79,31 +92,59 @@ function LiveConsole({ port, session, bindings, now, soundStage, onDone }: LiveC
 export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStage = null, now }: CareerRootProps): ReactNode {
   const [version, bump] = useReducer((n: number) => n + 1, 0);
   const [session, setSession] = useState<GameSession | null>(null);
+  // The week's other games while a worker pool plays them; null when nothing is running.
+  const [progress, setProgress] = useState<WeekProgress | null>(null);
+  const [failure, setFailure] = useState<string | null>(null);
+  const running = useRef(false);
   const today = useMemo(() => port.today(), [port, version]); // eslint-disable-line react-hooks/exhaustive-deps
   const gameDay = session !== null || (today.nextGame !== null && today.nextGame.daysToGame === 0);
 
   // Game day: the shell switches to game mode and opens the console; the game starts when it does.
   useEffect(() => {
-    if (gameDay && session === null) setSession(port.startGame());
-  }, [gameDay, session, port]);
+    if (gameDay && session === null && progress === null) setSession(port.startGame());
+  }, [gameDay, session, port, progress]);
 
-  const advance = useCallback(() => { port.advanceToGameDay(); bump(); }, [port]);
+  /**
+   * Runs one season move. A port that plays the other games in place returns at once; one that plays them in
+   * workers returns a promise, and the screen stays live with their progress until it settles. One at a time.
+   */
+  const move = useCallback((go: (onProgress: (p: WeekProgress) => void) => void | Promise<void>, after?: () => void) => {
+    if (running.current) return;
+    setFailure(null);
+    const r = go((p) => setProgress(p));
+    if (!(r instanceof Promise)) { after?.(); bump(); return; }
+    running.current = true;
+    setProgress({ done: 0, total: 0 });
+    r.then(() => after?.(), (e: unknown) => setFailure(e instanceof Error ? e.message : String(e)))
+      .finally(() => { running.current = false; setProgress(null); bump(); });
+  }, []);
+
+  const advance = useCallback(() => move((p) => port.advanceToGameDay(p)), [port, move]);
   const done = useCallback(() => {
-    if (session) port.finishGame(session);
-    setSession(null);
-    bump();
-  }, [port, session]);
-  const delegate = useCallback(() => { port.delegateGame(); bump(); }, [port]);
+    const s = session;
+    if (!s) return;
+    move((p) => port.finishGame(s, p), () => setSession(null));
+  }, [port, session, move]);
+  const delegate = useCallback(() => move((p) => port.delegateGame(p)), [port, move]);
+  const status = progress ? <WeekProgressLine progress={progress} /> : failure ? <p data-week-error role="alert" className="gm-line">{rt('root.weekError', { message: failure })}</p> : null;
 
   const routes: RouteTable = useMemo(() => {
     const t = buildRoutes({
       home: { view: () => homeFromSeason(port.today()), dispatch: (i) => { if (i.kind === 'advance') advance(); } },
     });
     t['game.console'] = {
-      render: () => (session ? createElement(LiveConsole, { port, session, bindings, now, soundStage, onDone: done }) : createElement(GameConsole, { view: null })),
+      render: () => (
+        <>
+          {status}
+          {session ? createElement(LiveConsole, { port, session, bindings, now, soundStage, onDone: done }) : createElement(GameConsole, { view: null })}
+        </>
+      ),
     };
+    // Today shows the week's other games while they play (unbuilt-work item 15).
+    const todayRoute = t['office.today'];
+    if (todayRoute) t['office.today'] = { render: (p) => <>{status}{todayRoute.render(p)}</> };
     return t;
-  }, [port, session, bindings, now, soundStage, advance, done, version]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [port, session, bindings, now, soundStage, advance, done, version, status]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const context: ShellContext = {
     teamName: today.teamName, record: recordText(today.record), phaseLabel: today.stageLabel,
@@ -114,7 +155,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
       routes={routes} context={context} initialPath="/office/today" onAdvance={advance} soundStage={soundStage}
       display={{ theme: 'classic' }}
       // The console takes the whole width on game day (O2.1.1 fixed layout); the season panel returns after the game.
-      sidePanel={gameDay ? undefined : <SeasonPanel today={today} canDelegate={today.nextGame !== null} onDelegate={delegate} />}
+      sidePanel={gameDay ? undefined : <SeasonPanel today={today} canDelegate={today.nextGame !== null && progress === null} onDelegate={delegate} />}
     />
   );
 }

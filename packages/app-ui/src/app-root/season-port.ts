@@ -18,6 +18,11 @@ export interface SeasonPortHost {
   liveMs?(): number;
   /** Team colours by content key (home strip primary, away alternate); neutral greys when missing. */
   colours?(teamKey: string): { readonly primary: string; readonly alternate: string } | null;
+  /**
+   * Where the games the seat does not call are played (P2.1.2): the shell's Web Worker pool. Without one they
+   * run in place, which holds the screen for the length of the week.
+   */
+  readonly pool?: play.WeekPool;
 }
 
 /** The theme's own home and away colours for a team the content gives none: presentation only, no team mark (A6). */
@@ -73,7 +78,10 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
   };
   return {
     today,
-    advanceToGameDay: () => { sp.advanceToGame(); gameDay = sp.nextSeatGame() !== null; },
+    advanceToGameDay: (onProgress) => {
+      if (!host.pool) { sp.advanceToGame(); gameDay = sp.nextSeatGame() !== null; return; }
+      return sp.advanceToGameIn(host.pool, onProgress).then(() => { gameDay = sp.nextSeatGame() !== null; });
+    },
     startGame: (): GameSession => {
       const seat = sp.nextSeatGame();
       if (!seat) throw new Error('career root: no game for the seat this week');
@@ -96,9 +104,19 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       field = { take: () => queue.take(session.events), geometry: session.geometry, userSide: seat.side, level: host.level, colours: [col(home, 0), col(away, 1)] };
       return session;
     },
-    finishGame: () => { sp.finishGame(); gameDay = false; field = null; },
+    finishGame: (_session, onProgress) => {
+      const done = () => { gameDay = false; field = null; };
+      if (!host.pool) { sp.finishGame(); done(); return; }
+      return sp.finishGameIn(host.pool, onProgress).then(done);
+    },
     liveField: () => field,
-    delegateGame: () => { sp.advanceToGame(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; },
+    delegateGame: (onProgress) => {
+      if (!host.pool) { sp.advanceToGame(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; return; }
+      const pool = host.pool;
+      return sp.advanceToGameIn(pool, onProgress)
+        .then(() => (sp.nextSeatGame() ? sp.delegateGameIn(pool, onProgress) : null))
+        .then(() => { gameDay = false; });
+    },
     // PLACEHOLDER rosters have no names yet: a player is his jersey slot until generated people play (G-17).
     names: () => ({ playerName: (id: number) => `#${id % 100}`, teamName: (side: 0 | 1) => sides[side] }),
   };

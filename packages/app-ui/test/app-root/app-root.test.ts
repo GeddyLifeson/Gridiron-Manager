@@ -7,7 +7,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, it, expect } from 'vitest';
 import { gameCalling, play } from '@gm/app-services';
 import type { GameSession } from '../../src/app-root/index.ts';
-import { careerPortFromSeason, epochDayOfNewYear, homeFromSeason, rootTextIds, SeasonPanel, type SeasonToday } from '../../src/app-root/index.ts';
+import { careerPortFromSeason, epochDayOfNewYear, homeFromSeason, rootTextIds, SeasonPanel, WeekProgressLine, type SeasonToday } from '../../src/app-root/index.ts';
 import { resolverFor } from '../../src/app-root/ConsoleHost.tsx';
 import { DEFAULT_KEYMAP } from '../../src/shell/keymap.ts';
 import TEXT from '../../src/app-root/text.json';
@@ -137,4 +137,34 @@ describe('a game on the staff sheets through the career port', () => {
       expect(gameCalling.sessionPlayLog(session, port.names(session), 5)).toHaveLength(5);
     }, 300_000);
   }
+});
+
+describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
+  it('pro: a pooled port answers with promises, reports progress and lands the same season as the in-place port', async () => {
+    const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+    const key = CONTENT.proLeague.league.clubs[2].id;
+    const make = (pool?: play.WeekPool) => {
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: key });
+      return { sp, port: careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, consoleConfig: (g) => gameCalling.staffConsoleConfig('pro_2026', g, DEFAULT_KEYMAP.bindings), ...(pool ? { pool } : {}) }) };
+    };
+    const here = make();
+    expect(here.port.delegateGame()).toBeUndefined();
+
+    const pooled = make(play.inlinePool());
+    const seen: { done: number; total: number }[] = [];
+    const r = pooled.port.delegateGame((p) => seen.push(p));
+    expect(r).toBeInstanceOf(Promise);
+    await r;
+    expect(pooled.sp.state.chain).toBe(here.sp.state.chain);
+    expect(pooled.port.today()).toEqual(here.port.today());
+    const last = seen[seen.length - 1]!;
+    expect(last.done).toBe(last.total);
+    expect(last.total).toBe(here.sp.state.games.length);
+  }, 300_000);
+
+  it('the progress line reads games done of the batch', () => {
+    const html = renderToStaticMarkup(createElement(WeekProgressLine, { progress: { done: 5, total: 15 } }));
+    expect(html).toContain('5 of 15');
+    expect(html).toContain('data-week-progress');
+  });
 });
