@@ -8062,6 +8062,7 @@
    "level": "pro",
    "domain": "league-rule",
    "statement": "Coach-to-player (C2P) equity rule: after a total system failure (complete inability to communicate from the sideline to the designated player), the opposing club hands over its C2P components to the league and both clubs use C2P again once the affected system works; a temporary disruption is not a total failure.",
+   "value": true,
    "validFor": "2026",
    "sources": [
     {
