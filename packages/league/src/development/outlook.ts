@@ -19,13 +19,15 @@ export interface OutlookInput {
 
 export function agingOutlook(n: DevNumbers, math: DeterministicMath, o: OutlookInput): { chance: number; label: OutlookLabel } {
   const expected = curvePercent(n, o.family, o.estimatedAgeNext);
-  const trend = o.observedTrendPercent;
-  // Weight the trend by how much the staff trusts it: a noisy read counts less.
   const noise = num(n, 'aging.noiseSdPoints');
-  const spread = math.sqrt(expected * expected * num(n, 'aging.traitSd') * num(n, 'aging.traitSd') + noise * noise + o.trendSdPoints * o.trendSdPoints);
-  const wTrend = trend === null ? 0 : (spread * spread) / (spread * spread + o.trendSdPoints * o.trendSdPoints + num(n, 'outlook.estimateSdPoints') * num(n, 'outlook.estimateSdPoints'));
-  const mean = trend === null ? expected : (1 - wTrend) * expected + wTrend * trend;
-  const zScore = (-num(n, 'outlook.dropPercent') - mean) / Math.max(spread, noise);
+  const traitSd = num(n, 'aging.traitSd');
+  // Prior from the position curve; the staff's observed trend updates it by precision weighting.
+  const priorVar = expected * expected * traitSd * traitSd + noise * noise;
+  const obsVar = o.trendSdPoints * o.trendSdPoints;
+  const w = o.observedTrendPercent === null ? 0 : priorVar / (priorVar + obsVar);
+  const mean = (1 - w) * expected + w * (o.observedTrendPercent ?? 0);
+  const spread = Math.max(noise, math.sqrt((1 - w) * priorVar + noise * noise));
+  const zScore = (-num(n, 'outlook.dropPercent') - mean) / spread;
   const chance = math.logistic(num(n, 'outlook.probitScale') * zScore);
   const label: OutlookLabel = chance < num(n, 'outlook.lowBelow') ? 'low' : chance > num(n, 'outlook.highAbove') ? 'high' : 'moderate';
   return { chance, label };

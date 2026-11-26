@@ -54,16 +54,42 @@ export function slope(xs: readonly number[], ys: readonly number[]): number {
   return den === 0 ? 0 : num / den;
 }
 
-export interface DriftResult { readonly series: string; readonly slopePerSeason: number; readonly driftOverRun: number; readonly withinBand: boolean; readonly ok: boolean }
+export interface DriftResult {
+  readonly series: string;
+  readonly slopePerSeason: number;
+  readonly driftOverRun: number;
+  /** Standard error of the drift, corrected for year-to-year persistence (lag-1 autocorrelation). */
+  readonly driftSe: number;
+  readonly allowed: number;
+  readonly withinBand: boolean;
+  readonly ok: boolean;
+}
 
 /**
- * Q1.6.4 drift test for one series: fit a line over the window and require the total drift over the
- * window (slope x length) within `maxDrift`, and every value inside [lo, hi].
+ * Q1.6.4 drift test for one series: fit a line over the window; the drift over the window (slope x
+ * length) must be within `maxDrift`, or within `seMultiple` standard errors when the series is so
+ * small and persistent that its noise alone exceeds `maxDrift` (a 32-player position wanders by
+ * generations). The standard error uses the residuals' lag-1 autocorrelation for an effective sample
+ * size. Every value must also sit inside [lo, hi].
  */
-export function driftTest(series: string, seasons: readonly number[], values: readonly number[], maxDrift: number, lo: number, hi: number): DriftResult {
+export function driftTest(math: DeterministicMath, series: string, seasons: readonly number[], values: readonly number[], maxDrift: number, seMultiple: number, lo: number, hi: number): DriftResult {
   const s = slope(seasons, values);
-  const span = seasons.length > 0 ? seasons[seasons.length - 1]! - seasons[0]! : 0;
+  const nPts = seasons.length;
+  const span = nPts > 0 ? seasons[nPts - 1]! - seasons[0]! : 0;
   const drift = s * span;
+  const mx = mean(seasons);
+  const my = mean(values);
+  const resid = values.map((v, i) => v - (my + s * (seasons[i]! - mx)));
+  const sxx = seasons.reduce((acc, x) => acc + (x - mx) * (x - mx), 0);
+  const dof = Math.max(1, nPts - 1 - 1);
+  const rss = resid.reduce((acc, r) => acc + r * r, 0);
+  let lag = 0;
+  for (let i = 1; i < nPts; i++) lag += resid[i]! * resid[i - 1]!;
+  const rho = rss > 0 ? Math.min((nPts - 1) / (nPts + 1), Math.max(0, lag / rss)) : 0;
+  const inflate = math.sqrt((1 + rho) / (1 - rho));
+  const seSlope = sxx > 0 ? math.sqrt(rss / dof / sxx) * inflate : 0;
+  const driftSe = seSlope * span;
+  const allowed = Math.max(maxDrift, seMultiple * driftSe);
   const withinBand = values.every((v) => v >= lo && v <= hi);
-  return { series, slopePerSeason: s, driftOverRun: drift, withinBand, ok: Math.abs(drift) <= maxDrift && withinBand };
+  return { series, slopePerSeason: s, driftOverRun: drift, driftSe, allowed, withinBand, ok: Math.abs(drift) <= allowed && withinBand };
 }

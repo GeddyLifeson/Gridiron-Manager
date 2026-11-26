@@ -29,8 +29,13 @@ export const HIDDEN = {
 
 /** Adult drill results (D8.1.1 hidden targets), by TrueTests key. */
 export const adultTestKey = (test: string): string => `growth.adult.${test}`;
+const PEAK_KEYS = new Map<string, string>();
 /** Highest value ever held per attribute (D7.5.1 decay floor and relearning). */
-export const peakKey = (a: AttributeId): string => `peak.${a}`;
+export function peakKey(a: AttributeId): string {
+  let k = PEAK_KEYS.get(a);
+  if (k === undefined) { k = `peak.${a}`; PEAK_KEYS.set(a, k); }
+  return k;
+}
 /** Body factor last applied to an attribute (growth share times aging), so the next change is a difference. */
 export const bodyKey = (a: BodyAttribute | AttributeId): string => `body.${a}`;
 

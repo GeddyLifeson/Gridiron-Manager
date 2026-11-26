@@ -1551,18 +1551,6 @@
    "status": "starting"
   },
   {
-   "name": "league.development.outlook.estimateSdPoints",
-   "value": 0.8,
-   "min": 0,
-   "max": 5,
-   "unit": "percent",
-   "belongsTo": "league.development",
-   "basis": "assumption",
-   "leaf": "D8.5.1",
-   "constrainedBy": "D8.5.1 acceptance: an average staff is right on direction at least 60 percent of the time",
-   "status": "starting"
-  },
-  {
    "name": "league.development.year.weeks.offseasonProgram",
    "value": 10,
    "min": 0,

@@ -93,8 +93,16 @@ export function devNumbers(overrides: Readonly<Record<string, number>> = {}, tab
   return { params: paramTable([PARAMS], overrides), tables };
 }
 
-/** Short-name reader: `num(n, 'gain.k')`. */
-export const num = (n: DevNumbers, short: string): number => n.params.num(p(short));
+const cache = new WeakMap<DevNumbers, Map<string, number>>();
+
+/** Short-name reader: `num(n, 'gain.k')`. Values are cached per DevNumbers (a ParamTable never changes). */
+export function num(n: DevNumbers, short: string): number {
+  let m = cache.get(n);
+  if (!m) { m = new Map(); cache.set(n, m); }
+  let v = m.get(short);
+  if (v === undefined) { v = n.params.num(p(short)); m.set(short, v); }
+  return v;
+}
 
 /** Piecewise-linear lookup on knots, clamped at both ends. */
 export function interp(xs: readonly number[], ys: readonly number[], x: number): number {

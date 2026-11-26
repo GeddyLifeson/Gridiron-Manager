@@ -7,7 +7,7 @@
 // is the same model, not a lighter one (A3 row 20); `developAttribute` with weeks = 1 is one week.
 import type { AttributeId, DeterministicMath, PlayingBlock, RandomStream } from '@gm/schema';
 import { BODY_MOVED, bodyCeilingShift, clampIss } from './body.ts';
-import { DEV_CLASS, MOVEMENT_TECHNIQUE, TENDENCIES } from './classes.ts';
+import { DEV_CLASS, DEV_CLASSES, MOVEMENT_TECHNIQUE, TENDENCIES, type DevClass } from './classes.ts';
 import { HIDDEN, hiddenNum, peakKey } from './hidden.ts';
 import { num, type DevNumbers } from './params.ts';
 import { pointReps, traitMultiplier } from './teaching.ts';
@@ -22,7 +22,10 @@ export function ageFactor(n: DevNumbers, ageYears: number): number {
 
 /** D7.1.2 class rate of an attribute at an age (speed and power only until 23). */
 export function classRate(n: DevNumbers, a: AttributeId, ageYears: number): number {
-  const c = DEV_CLASS[a];
+  return classRateOf(n, DEV_CLASS[a], ageYears);
+}
+
+function classRateOf(n: DevNumbers, c: DevClass, ageYears: number): number {
   if (c === 'speedPower' && ageYears >= num(n, 'classRate.speedPowerMaxAge')) return 0;
   return num(n, `classRate.${c}`);
 }
@@ -101,11 +104,14 @@ export interface SpanInputs {
 export const FACET = { workEthic: 'work_habits', coachability: 'coachability', competitiveness: 'competitiveness', loveOfFootball: 'love_of_football' } as const;
 
 /** Ceiling an attribute trains toward now: stored ceiling, lowered by the body and, after 30, by lost movement. */
+const BODY_SET: ReadonlySet<string> = new Set(BODY_MOVED);
+const MOVEMENT_SET: ReadonlySet<string> = new Set(MOVEMENT_TECHNIQUE);
+
 export function effectiveCeiling(n: DevNumbers, p: PlayingBlock, a: AttributeId, ageYears: number): number {
   const stored = p.ceilings[a] ?? p.attributes[a] ?? 0;
   let c = stored;
-  if (BODY_MOVED.includes(a)) c += bodyCeilingShift(n, p, a);
-  if (ageYears >= num(n, 'aging.movementCeilingAge') && MOVEMENT_TECHNIQUE.includes(a)) {
+  if (BODY_SET.has(a)) c += bodyCeilingShift(n, p, a);
+  if (MOVEMENT_SET.has(a) && ageYears >= num(n, 'aging.movementCeilingAge')) {
     const lost = Math.max(0, 1 - hiddenNum(p, HIDDEN.agingIndex, 1));
     c -= num(n, 'aging.movementCeilingIssPerPercent') * num(n, 'scale.percent') * lost;
   }
@@ -127,17 +133,22 @@ export function developSpan(n: DevNumbers, math: DeterministicMath, p: PlayingBl
   const attributes = { ...p.attributes };
   const hidden = { ...p.hidden };
   const ids = Object.keys(p.attributes).sort() as AttributeId[];
+  const shared = devRate * age * work * fresh * form;
+  const rates = new Map<string, number>();
+  for (const c of DEV_CLASSES) rates.set(c, classRateOf(n, c, inp.ageYears));
   for (const a of ids) {
     const z = stream.normal();
     const cur = p.attributes[a]!;
-    if (DEV_CLASS[a] === undefined) continue;
-    const peak = Math.max(cur, hiddenNum(p, peakKey(a), cur));
+    const cls = DEV_CLASS[a];
+    if (cls === undefined) continue;
+    const pk = p.hidden[peakKey(a)];
+    const peak = typeof pk === 'number' && pk > cur ? pk : cur;
     let reps = inp.reps[a] ?? 0;
-    if (points.includes(a) && !TENDENCIES.includes(a)) reps = pointReps(n, reps, coach, points.length);
-    const rate = classRate(n, a, inp.ageYears) * devRate * age * work * (inp.teaching?.[a] ?? 1) * fresh * form;
+    if (points.length > 0 && points.includes(a) && !TENDENCIES.includes(a)) reps = pointReps(n, reps, coach, points.length);
+    const rate = rates.get(cls)! * shared * (inp.teaching?.[a] ?? 1);
     const next = stepAttribute(n, math, { current: cur, ceiling: effectiveCeiling(n, p, a, inp.ageYears), peak, reps, rate }, inp.weeks, z);
-    attributes[a] = next;
-    hidden[peakKey(a)] = Math.max(peak, next);
+    if (next !== cur) attributes[a] = next;
+    if (pk === undefined || next > peak || cur > peak) hidden[peakKey(a)] = Math.max(peak, next);
   }
   hidden[HIDDEN.form] = stepForm(n, math, form, inp.weeks, stream.normal());
   return { ...p, attributes, hidden };

@@ -1,5 +1,6 @@
 // D7.1 to D7.5 acceptance criteria.
 import { describe, expect, it } from 'vitest';
+import type { PlayingBlock } from '@gm/schema';
 import {
   stepAttribute, developSpan, devNumbers, teachingMultiplier, userTeachingTerm, vacancyMultiplier, tendencyStep,
   pointProcessingLoad, creditReps, ageFactor, classRate, stepForm, num, peakKey,
@@ -125,7 +126,7 @@ describe('D7.4.2 plateaus and breakthroughs', () => {
       const p = { ...p0, hidden: { ...p0.hidden, 'dev.form': fm } };
       const facets = { work_habits: 50 + s.normal() * 15, coachability: 50 + s.normal() * 15 };
       const p2 = { ...p, attributes: { ...p.attributes, route_running_short: 40 }, ceilings: { ...p.ceilings, route_running_short: 60 }, hidden: { ...p.hidden, [peakKey('route_running_short')]: 40 } };
-      let q = p2;
+      let q: PlayingBlock = p2;
       for (let w = 0; w < 30; w++) q = developSpan(N, MATH, q, { ageYears: 22, weeks: 1, reps: { route_running_short: 40 }, facets }, rng(4, 'w', i, w));
       gains.push(q.attributes.route_running_short! - 40);
     }
