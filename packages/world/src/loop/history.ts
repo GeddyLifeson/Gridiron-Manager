@@ -14,6 +14,8 @@ export interface HistoryPlan {
   /** Called after each season with its summary (the progress screen). Return 'stop' to start in the season reached. */
   readonly onSeason?: (summary: SeasonSummary, done: number, of: number) => 'continue' | 'stop' | void;
   readonly pass?: Omit<PassOptions, 'source'>;
+  /** Seasons already played before a resume from a checkpoint (loop/checkpoint.ts). Default 0. */
+  readonly alreadyDone?: number;
 }
 
 export interface HistoryRunReport {
@@ -31,7 +33,8 @@ export function importedPeople(world: LiveWorld): number[] {
 export function runHistory(world: LiveWorld, systems: WorldSystems, plan: HistoryPlan): HistoryRunReport {
   const imported = importedPeople(world);
   if (imported.length > 0) throw new Error(`history run refused: ${imported.length} imported people exist before the run (X10.3.1 rule 2)`);
-  let done = 0, stoppedEarly = false;
+  let done = plan.alreadyDone ?? 0, stoppedEarly = false;
+  if (!Number.isInteger(done) || done < 0 || done > plan.seasons) throw new Error(`history run: alreadyDone ${done} is not between 0 and ${plan.seasons}`);
   for (; done < plan.seasons; ) {
     const summary = runSeason(world, systems, plan.schedule, { ...plan.pass, source: 'history_run' });
     done++;

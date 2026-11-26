@@ -288,6 +288,35 @@ describe('J5.4 the offense\'s pre-snap process', () => {
     expect(unblockedAfterSet(3, 2, 2, 3, true, true)).toEqual([0, 0]);
     expect(unblockedAfterSet(3, 2, 2, 3, false, false)).toEqual([1, 0]);
   });
+  it('F5.2.1 acceptance, J5.4.2 step 3: a called protection set against the true picture blocks the blitzer; set wrong, he is free', () => {
+    // Five-man big on big; the Will (team slot 5, world slot 16) comes and the Mike drops.
+    const call = { id: 'test.man5', type: 'man' as const, slide: null, line: [0, 1, 2, 3, 4], extras: [] };
+    const d = defense();
+    d[5] = { ...d[5]!, behavior: { ...d[5]!.behavior, type: 'blitz' } };
+    const WILL = SLOTS_PER_TEAM + 5, MIKE = SLOTS_PER_TEAM + 4;
+    for (const seed of SEEDS(20)) {
+      const right = planPresnap(world({ seed }), input({ errorsDisabled: true, offense: offenseInput({ protection: call }), defense: defenseInput({ assignments: d }) })).protection;
+      expect(right.recognized).toBe(true);
+      expect(right.binding!.mike).toBe(WILL);
+      expect(right.free).toEqual([]);
+      expect(right.unblockedLeft + right.unblockedRight).toBe(0);
+      const wrong = planPresnap(world({ seed, params: tableWith({ 'presnap.prot.intercept': -50 }) }), input({ offense: offenseInput({ protection: call }), defense: defenseInput({ assignments: d }) })).protection;
+      expect(wrong.recognized).toBe(false);
+      expect(wrong.binding!.mike).toBe(MIKE);
+      expect(wrong.free).toEqual([WILL]);
+      expect(wrong.unblockedLeft + wrong.unblockedRight).toBe(1);
+      expect(wrong.hot).toBe(false);
+    }
+    // A six-man protection set right against six: nobody free, nobody hot. Against seven: one declared hot.
+    const six = { id: 'test.man6', type: 'man' as const, slide: null, line: [0, 1, 2, 3, 4], extras: [{ teamSlot: 10, job: 'scan' as const }] };
+    const a = planPresnap(world(), input({ errorsDisabled: true, offense: offenseInput({ protection: six }), defense: defenseInput({ assignments: defense(6) }) })).protection;
+    expect(a.free).toEqual([]);
+    expect(a.hot).toBe(false);
+    const b = planPresnap(world(), input({ errorsDisabled: true, offense: offenseInput({ protection: six }), defense: defenseInput({ assignments: defense(7) }) })).protection;
+    expect(b.free).toHaveLength(1);
+    expect(b.hot).toBe(true);
+    expect(b.hotSide).not.toBe(0);
+  });
   it('J5.4.2 acceptance 2: the unblocked-rusher chance rises with disguise and noise and falls with the protection grade', () => {
     const base = protectionRecognitionChance(50, 0, 0, 0, DMATH, P);
     expect(protectionRecognitionChance(50, 0.6, 0, 0, DMATH, P)).toBeLessThan(base);

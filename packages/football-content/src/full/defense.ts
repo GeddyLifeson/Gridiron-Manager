@@ -6,6 +6,7 @@ import type { Basis, DefenseDef, Slot } from '../starter/types.ts';
 import { act, clause, not, test } from '../starter/build.ts';
 import { MORE_DEFENSE } from './defense-more.ts';
 import { BOOK_DEFENSE } from './defense-book.ts';
+import { PRESSURE_DEFENSE } from './defense-pressure.ts';
 
 type D = Omit<Slot, 'concept' | 'at'> & { at: Slot['at'] };
 const mk = (concept: string, load = 1) => (s: D): Slot => ({ ...s, concept, load: s.load ?? load });
@@ -252,5 +253,5 @@ function threeFourCover3(): DefenseDef {
       NOBODY_HELPS]);
 }
 
-export const ADDED_DEFENSE: readonly DefenseDef[] = [cover1Robber(), cover3Flip(), cover3FireZone(), cover3Fire3(), cover4Palms(), nickelCover1(), nickelCover4(), dimeCover2(), threeFourCover3(), ...MORE_DEFENSE, ...BOOK_DEFENSE];
+export const ADDED_DEFENSE: readonly DefenseDef[] = [cover1Robber(), cover3Flip(), cover3FireZone(), cover3Fire3(), cover4Palms(), nickelCover1(), nickelCover4(), dimeCover2(), threeFourCover3(), ...MORE_DEFENSE, ...BOOK_DEFENSE, ...PRESSURE_DEFENSE];
 export const FULL_DEFENSE: readonly DefenseDef[] = [...STARTER_DEFENSE, ...ADDED_DEFENSE];

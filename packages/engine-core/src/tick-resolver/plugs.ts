@@ -197,7 +197,17 @@ export function quarterbackPlug(): QuarterbackPlug {
  */
 export function withPreSnapRead(play: QbPlay, plan: PresnapPlan | null): QbPlay {
   if (plan === null || !plan.qb.made) return play;
-  const hot = play.hot === null ? null : { ...play.hot, expectedPreSnap: plan.qb.pressure };
+  // F5.2.2, F5.6.1: a protection that declared a hot rusher gives the quarterback his hot throw, the first read to
+  // that rusher's side (else his first read). The receiver runs the route as drawn: the sight adjust is not built.
+  const prot = plan.protection as PresnapPlan['protection'] | undefined; // a plan built by hand may carry none
+  const declared = prot !== undefined && prot.binding != null && prot.hot ? prot.binding.hot[0] : undefined;
+  let bound: QbPlay['hot'] = null;
+  if (play.hot === null && declared !== undefined && play.kind === 'pass') {
+    const side = prot?.hotSide ?? 0;
+    const to = play.reads.find((r) => r.kind === 'receiver' && Math.sign(r.target.route[0]?.py ?? 0) === side) ?? play.reads.find((r) => r.kind === 'receiver');
+    if (to !== undefined) bound = { rusherSlot: declared, target: to.target, expectedPreSnap: true };
+  }
+  const hot = play.hot === null ? bound : { ...play.hot, expectedPreSnap: plan.qb.pressure };
   const wrong = !plan.qb.shellCorrect || !plan.qb.manCorrect;
   if (!wrong || play.correctedReads !== null || play.reads.length < 2) return hot === play.hot ? play : { ...play, hot };
   const sideOf = (r: QbRead): number => { const at = r.target.route[0]; return at === undefined ? 0 : Math.sign(at.py); };
