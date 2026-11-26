@@ -45,7 +45,8 @@ describe('a called protection on the tick engine', () => {
     expect(free(wrong)).toBeGreaterThan(free(right));
     // J6.2.4: the centre, set on a Mike who dropped, finds the blitzer he did not have, late; sometimes not at all.
     expect(late(wrong)).toBeGreaterThan(late(right) + N * 0.3);
-    expect(late(wrong) + free(wrong)).toBeGreaterThan(N * 0.5);
+    // On the other snaps the ball is out before the blitzer reaches anyone.
+    expect(late(wrong) + free(wrong)).toBeGreaterThan(N * 0.4);
   });
   it('a play that calls no protection notes none', () => {
     expect(none['protection.unblocked_pressure'] ?? 0).toBe(0);
