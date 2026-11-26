@@ -1357,6 +1357,37 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-college-0029",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The College Football Hall of Fame inaugural class (1951) had 32 players and 22 coaches.",
+   "value": 54,
+   "unit": "inductees",
+   "validFor": "1951",
+   "sources": [
+    {
+     "citation": "National Football Foundation, College Football Hall of Fame about page (https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame.aspx; no page date, (c) 2026)",
+     "locator": "About text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nff",
+     "primary": true,
+     "quote": "Inaugural Hall of Fame Class in 1951 included 32 players and 22 coaches.",
+     "value": 54
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Value is the class total, 32 + 22. One source (NFF); Wikipedia gives the same founding year 1951. College eligibility: a player 10 full seasons after the last year of play (NFF criteria page; Wikipedia agrees); a coach 3 full seasons after retirement, or at once at age 70. STILL NOT FOUND: Honors Court size, any vote-share threshold (the page says the vote results are \"to be used as a reference\"), and a typical annual class size; the page gives only totals (1,129 players and 241 coaches after the 2026 class). A District Screening Committee forwards about 60 players to a national ballot sent to NFF chapter and academic members.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
   }
  ]
 }

@@ -8019,6 +8019,232 @@
      "reason": "G-10 seventh pass: sources read through the cloud web fetch."
     }
    ]
+  },
+  {
+   "id": "F-league-0218",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The pro league was founded in 1920 as the American Professional Football Association (renamed National Football League for the 1922 season).",
+   "value": 1920,
+   "unit": "year",
+   "validFor": "history",
+   "sources": [
+    {
+     "citation": "Wikipedia, National Football League (https://en.wikipedia.org/wiki/National_Football_League)",
+     "locator": "Lead",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The NFL was formed in 1920 as the American Professional Football Association (APFA)",
+     "value": 1920
+    },
+    {
+     "citation": "Wikipedia, History of the National Football League (https://en.wikipedia.org/wiki/History_of_the_National_Football_League)",
+     "locator": "Lead",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "was founded in 1920 as the American Professional Football Association (APFA)",
+     "value": 1920
+    },
+    {
+     "citation": "Pro Football Hall of Fame, Hall of Fame history (https://www.profootballhof.com/visit/hall-of-fame-history/; no page date)",
+     "locator": "Hall history text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "was founded in Canton on Sept.17, 1920.",
+     "value": 1920
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia places the Canton meeting that formed the league on 1920-08-20 and the APFA name on 1920-09-17; the Hall of Fame page gives 1920-09-17. Only the year is claimed. The two Wikipedia pages count as one independence group.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0219",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The Pro Football Hall of Fame opened to the public on September 7, 1963 (43 seasons after the league's 1920 founding).",
+   "value": 1963,
+   "unit": "year",
+   "validFor": "history",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, Hall of Fame history (https://www.profootballhof.com/visit/hall-of-fame-history/; no page date)",
+     "locator": "Hall history text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "The Pro Football Hall of Fame opened to the public Sept. 7, 1963",
+     "value": 1963
+    },
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Infobox",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "Established: September 7, 1963",
+     "value": 1963
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Opening year, not necessarily the first induction year: the size of the first (charter) class, assumed 17 in the history code, was NOT found in any page read, so no row is made for it.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0220",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The Pro Football Hall of Fame Selection Committee has 28 members, of whom 25 vote in a given year (reduced from 50 ahead of the Class of 2027).",
+   "value": 28,
+   "unit": "members",
+   "validFor": "2027 election",
+   "sources": [
+    {
+     "citation": "Pro Football Hall of Fame, selection process improvements ahead of the Class of 2027 election (2026-09-04, https://www.profootballhof.com/news/pro-football-hall-of-fame-announces-selection-process-improvements-ahead-of-class-of-2027-election)",
+     "locator": "Press release",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "pfhof",
+     "primary": true,
+     "quote": "reducing the Selection Committee from 50 to 28",
+     "value": 28
+    },
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Selection section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "enshrinees are selected by a 28-person panel officially known as the Selection Committee. Of this group, 25 will vote in a given year.",
+     "value": 28
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The earlier committee was 50. The history code covers a span of seasons; the 28 applies to the 2027 election onward.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0221",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A Pro Football Hall of Fame finalist needs at least 80 percent support from the Selection Committee.",
+   "value": 80,
+   "unit": "percent",
+   "validFor": "unknown",
+   "sources": [
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Selection section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "To be elected, a finalist must receive at least 80% support from the committee.",
+     "value": 80
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One source. The Hall press release of 2026-09-04 does not mention the threshold, so it is not confirmed unchanged under the 28-member panel.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0222",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The Pro Football Hall of Fame elects at least four and no more than nine candidates a year (the 2020 centennial class of 20 was a one-off).",
+   "value": 9,
+   "unit": "maximum per year",
+   "validFor": "unknown",
+   "sources": [
+    {
+     "citation": "Wikipedia, Pro Football Hall of Fame (https://en.wikipedia.org/wiki/Pro_Football_Hall_of_Fame)",
+     "locator": "Selection section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "At least four, but no more than nine, candidates are elected annually.",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One source; the minimum is 4. The per-category limits are being replaced by a single \"Players\" pool from 2027 (Hall press release and Wikipedia).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0223",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Wikipedia states 49 defunct NFL franchises, but its own club table has 48 rows (the likely cause of the 48 vs 49 conflict).",
+   "value": 49,
+   "unit": "franchises",
+   "validFor": "history",
+   "sources": [
+    {
+     "citation": "Wikipedia, List of defunct NFL franchises (https://en.wikipedia.org/wiki/List_of_defunct_NFL_franchises)",
+     "locator": "Lead sentence",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-defunct",
+     "primary": false,
+     "quote": "The NFL has had a total of 49 franchises become defunct over its history",
+     "value": 49
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). No second count source found: Pro-Football-Reference's team list returned no defunct section and Pro Football Archives' homepage has no list. Sample years in the Wikipedia table (joined/folded): Akron 1920/1926, Canton 1920/1926, Duluth 1923/1927, Frankford 1924/1931, Providence 1925/1931, Dallas Texans 1952/1952, Cincinnati Reds 1933/1934. Joined/folded years may differ from first/last game seasons; the Reds were revoked with three games left in 1934.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass: sources read through the cloud web fetch."
+    }
+   ]
   }
  ]
 }
