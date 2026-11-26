@@ -1,6 +1,6 @@
 # G-69 decisions and owed requests
 
-1. **The day-after session counts toward the head coach's 3 media days** (`media.day_after_counts_toward_week`, Assumption). H1.2.1 places sessions on Monday (the day after), Wednesday and Friday; H7.1.1 lists the day-after session separately. Sent to the bible thread as CR-G69-B1.
+1. **The day-after session counts toward the head coach's 3 media days** (`media.day_after_counts_toward_week`, Assumption). H1.2.1 places sessions on Monday (the day after), Wednesday and Friday; H7.1.1 lists the day-after session separately. Settled by bible ruling MA-51: it counts.
 2. **Default practices are in shells with thud contact.** This means a whole default season shows zero limit warnings (H1.2.1 acceptance). Padded days are the user's choice and are checked by the G-12 checker.
 3. **Every advance control stops in front of the game block.** The game belongs to area I, so "to game day" means exactly that.
 4. **First week of a season:** a scheduled day-after session becomes a mid-week session, because there was no previous game.
