@@ -72,10 +72,17 @@ export interface GradeContext {
   publicGrade(personId: number): number;
 }
 
+// A team's competition is set when it is made and never changes, so its level is cached per world.
+const LEVELS = new WeakMap<LiveWorld, Map<number, Level>>();
 export function levelOfTeam(world: LiveWorld, teamId: number): Level {
+  let m = LEVELS.get(world);
+  if (m === undefined) { m = new Map(); LEVELS.set(world, m); }
+  const hit = m.get(teamId);
+  if (hit !== undefined) return hit;
   const t = world.teams.find((x) => x.id === teamId);
   const c = t && world.competitions.find((x) => x.id === t.competitionId);
   if (!c) throw new Error(`team ${teamId} has no competition`);
+  m.set(teamId, c.level as Level);
   return c.level as Level;
 }
 
@@ -84,8 +91,12 @@ export function specOf(b: TurnoverBinding, world: LiveWorld, teamId: number): Le
 }
 
 /** Position targets on a full roster: the real mix scaled to the roster limit, as founding does (X10.2.2). */
-export function positionTargets(spec: LevelSpec): Record<string, number> {
-  return scaleMix(spec.rosterMix, spec.rosterLimit);
+const TARGETS = new WeakMap<LevelSpec, Readonly<Record<string, number>>>();
+/** Cached per level spec (read in the signing loops' hot path), so the result is frozen. */
+export function positionTargets(spec: LevelSpec): Readonly<Record<string, number>> {
+  let t = TARGETS.get(spec);
+  if (t === undefined) { t = Object.freeze(scaleMix(spec.rosterMix, spec.rosterLimit)); TARGETS.set(spec, t); }
+  return t;
 }
 
 const mean = (xs: readonly number[]): number => (xs.length === 0 ? 0 : xs.reduce((a, x) => a + x, 0) / xs.length);
@@ -100,17 +111,23 @@ function lookValue(p: PersonRecord): number {
  * noise). The truth is read only through `scouting.observe`, the module's single truth reader.
  */
 export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>): GradeContext {
-  const cache = new Map<string, { mean: number; variance: number }>();
+  const cache = new Map<number, Map<number, { mean: number; variance: number }>>();
   const pub = new Map<number, number>();
   const leniency = new Map<number, number>();
   const season = world.date.seasonYear;
+  // Head coach per team, read once per context (the job scan is the whole ladder: 13k rows on the full world).
+  let heads: Map<number, number> | null = null;
   const evaluatorOf = (teamId: number): number => {
-    for (const j of world.jobs.values()) if (j.teamId === teamId && j.positionId === 'pos:head_coach' && j.holderPersonId !== null) return j.holderPersonId;
-    return 0;
+    if (heads === null) {
+      heads = new Map();
+      for (const j of world.jobs.values()) if (j.positionId === 'pos:head_coach' && j.holderPersonId !== null && !heads.has(j.teamId)) heads.set(j.teamId, j.holderPersonId);
+    }
+    return heads.get(teamId) ?? 0;
   };
   const look = (teamId: number, personId: number): { mean: number; variance: number } => {
-    const key = `${teamId}:${personId}`;
-    const hit = cache.get(key);
+    let byTeam = cache.get(teamId);
+    if (byTeam === undefined) { byTeam = new Map(); cache.set(teamId, byTeam); }
+    const hit = byTeam.get(personId);
     if (hit !== undefined) return hit;
     const p = world.people.get(personId);
     if (!p?.playing) return { mean: 0, variance: 0 };
@@ -124,7 +141,7 @@ export function gradeContext(world: LiveWorld, rosteredIds: ReadonlySet<number>)
       estimateMean: 0, opponent: null,
     }, { leniency: len, playerOffset: 0, schemeOffset: 0 }, stream(world.seed, 'world.turnover.look', [teamId, personId, season]));
     const out = { mean: item.value, variance: item.variance };
-    cache.set(key, out);
+    byTeam.set(personId, out);
     return out;
   };
   return {

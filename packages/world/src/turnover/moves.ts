@@ -67,11 +67,22 @@ function available(world: LiveWorld, id: number): boolean {
 }
 
 /** Need of a team at a position: open places against the mix target, as a 0..1 share. */
+// Position counts per roster array. Every roster change writes a new array, so the array is the cache key.
+const COUNTS = new WeakMap<readonly number[], Map<string, number>>();
+function positionCounts(world: LiveWorld, roster: readonly number[]): Map<string, number> {
+  let m = COUNTS.get(roster);
+  if (m === undefined) {
+    m = new Map();
+    for (const id of roster) { const pos = world.people.get(id)?.playing?.position; if (pos !== undefined) m.set(pos, (m.get(pos) ?? 0) + 1); }
+    COUNTS.set(roster, m);
+  }
+  return m;
+}
 function needAt(c: Cycle, teamId: number, position: string): number {
   const target = positionTargets(specOf(c.b, c.world, teamId))[position] ?? 0;
   if (target <= 0) return 0;
-  let have = 0;
-  for (const id of c.world.rosters.get(teamId) ?? []) if (c.world.people.get(id)?.playing?.position === position) have++;
+  const roster = c.world.rosters.get(teamId);
+  const have = roster ? positionCounts(c.world, roster).get(position) ?? 0 : 0;
   return Math.max(0, Math.min(1, (target - have) / target));
 }
 
