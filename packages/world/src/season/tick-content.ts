@@ -192,7 +192,7 @@ function defenderKeys(a: Assignment, O: readonly Assignment[], qbSlot: number): 
       let best = Infinity;
       for (const r of rec) {
         if (!r.eligible) continue;
-        const d = (r.py - a.preSnap.align.py) ** 2 + (r.px + a.preSnap.align.px) ** 2;
+        const ey = r.py - a.preSnap.align.py, ex = r.px + a.preSnap.align.px, d = ey * ey + ex * ex;
         if (d < best) { best = d; s = r.i; }
       }
     } else {
@@ -324,10 +324,15 @@ function qbPlayOf(def: starter.PlayDef, O: readonly Assignment[], defenseSlotOf:
   const q = O[qbSlot]!, action = q.behavior.params['action'];
   const backSlot = O.findIndex((a) => a.role === 'R');
   const routes = O.map((a, s) => ({ a, s })).filter((x) => x.a.behavior.type === ROUTE && x.s !== qbSlot);
-  const keyed = q.keys.filter((k) => k.startsWith('role:')).map((k) => k.slice(5));
+  // Read order: the receivers the quarterback's keys name, in that order (a bound key is `slot:n`), then the rest
+  // from the shortest route to the deepest and, at one depth, from the inside out. The starter plays name only the
+  // first read, and slot order alone made the outside clear-out the second read of every quick-game play.
+  // Provisional until the content carries a progression.
+  const keyed = q.keys.map((k) => (k.startsWith('role:') ? O.findIndex((a) => a.role === k.slice(5)) : k.startsWith('slot:') ? Number(k.slice(5)) : -1)).filter((n) => n >= 0);
+  const depthOf = (a: Assignment): number => a.behavior.path.reduce((m, p) => Math.max(m, p.px), 0);
   const ordered = [...routes].sort((x, y) => {
-    const ix = keyed.indexOf(x.a.role), iy = keyed.indexOf(y.a.role);
-    return (ix < 0 ? 99 : ix) - (iy < 0 ? 99 : iy) || x.s - y.s;
+    const ix = keyed.indexOf(x.s), iy = keyed.indexOf(y.s);
+    return (ix < 0 ? 99 : ix) - (iy < 0 ? 99 : iy) || depthOf(x.a) - depthOf(y.a) || Math.abs(x.a.preSnap.align.py) - Math.abs(y.a.preSnap.align.py) || x.s - y.s;
   });
   const reads: QbRead[] = ordered.map((x, i) => ({ kind: 'receiver', target: tickResolver.qbTargetOf(x.s, x.a), priorValue: Math.max(0.1, 0.6 - 0.1 * i) }));
   const eligible = routes.map((x) => x.s);

@@ -293,6 +293,19 @@ describe('J3.4 gaze', () => {
     expect(turned[0]).toBeCloseTo(0.6, 9); expect(turned[1]).toBeCloseTo(1.2, 9);
     expect(turned[2]).toBeCloseTo(Math.PI / 2, 6); expect(turned[4]).toBeCloseTo(Math.PI / 2, 6);
   });
+  it('starts a player configured with his eyes on the ball looking at it, whichever way his hips face', () => {
+    const { w, see } = stage();
+    place(w, 0, 5, -20); w.ball.kind = 'held'; w.ball.carrierSlot = 0; w.ball.x = w.players.posX[0]!; w.ball.y = w.players.posY[0]!;
+    facing(w, VIEWER, 180);
+    see.configure(VIEWER, { gaze: 'ball' });
+    runTicks(w, [see.stage], 8);
+    const g = w.players.gazeRad[VIEWER]! * w.frame.attackDir;
+    expect(Math.abs(Math.abs(g) - Math.PI / 2)).toBeLessThan(0.05);
+    see.configure(VIEWER, { gaze: 'hips' });
+    const loop = createTickLoop([{ name: 'perceive', run: see.stage.run }]);
+    for (let i = 0; i < 8; i++) loop.step(w);
+    expect(w.players.gazeRad[VIEWER]).toBeCloseTo(w.players.headingRad[VIEWER]!, 9);
+  });
   it('follows a player as last perceived, and the hips by default', () => {
     const { w, see } = stage();
     place(w, 0, 5, -20);
@@ -309,6 +322,15 @@ describe('J3.4 gaze', () => {
 });
 
 describe('J3.5 the ball', () => {
+  it('sees a held ball moving with the man who holds it', () => {
+    const { w, see } = stage({}, { test: { fixedDelayS: 0, fullAttention: true, noNoise: true } });
+    place(w, 0, -4, 0);
+    w.ball.kind = 'held'; w.ball.carrierSlot = 0; w.ball.x = w.players.posX[0]!; w.ball.y = w.players.posY[0]!;
+    w.players.velX[0] = 3 * w.frame.attackDir; w.players.velY[0] = -5 * w.frame.attackDir;
+    runTicks(w, [see.stage], 3);
+    const b = see.view(VIEWER).ball()!;
+    expect([b.velPx, b.velPy]).toEqual([3, -5]);
+  });
   it('believes the old carrier until the handoff has been seen (J3.5.2)', () => {
     const { w, see } = stage();
     place(w, 0, -4, 0); place(w, 1, -4, 1);
@@ -392,6 +414,18 @@ describe('receiver numbers and determinism', () => {
     runTicks(w, [see.stage], 1);
     const v = see.view(VIEWER);
     expect([1, 2, 3, 4, 5, 6].map((s) => v.receiverNumber(s))).toEqual([1, 2, 3, 1, 2, 0]);
+  });
+  it('numbers them again at the snap, from where they lined up and not from the huddle', () => {
+    const { w, see } = stage();
+    for (const s of [1, 2, 3]) { w.players.eligible[s] = 1; place(w, s, -8, 0.5 * s); }
+    w.tick = -30;
+    const loop = createTickLoop([see.stage]);
+    loop.begin(w);
+    loop.step(w);
+    expect([1, 2, 3].map((s) => see.view(VIEWER).receiverNumber(s))).toEqual([3, 2, 1]);
+    place(w, 1, -1, 20); place(w, 2, -1, 12); place(w, 3, -1, -9);
+    while (w.tick < 1) loop.step(w);
+    expect([1, 2, 3].map((s) => see.view(VIEWER).receiverNumber(s))).toEqual([1, 2, 1]);
   });
   function trace(seed: number) {
     const w = fixtureWorld({ seed }), see = createPerception(), move = createMovement(), out: string[] = [];

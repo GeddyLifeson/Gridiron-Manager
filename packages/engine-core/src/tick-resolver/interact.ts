@@ -42,6 +42,8 @@ export interface Interact {
   readonly stage: PlayStage;
   /** Hand this to `createMovement({ engagementLimit })`. */
   readonly limit: EngagementLimit;
+  /** Hand this to `createMovement({ slipping })`: true for a defender in the free time after he shed a block. */
+  readonly slipping: (world: TickWorld, slot: number) => boolean;
   /**
    * Call before the loop's `begin`. `startAdvantage(blockerSlot, defenderSlot)` gives the J5.6.1
    * get-off term for the first contest of a defender; null when the play has no snap count.
@@ -187,6 +189,7 @@ export function createInteract(): Interact {
 
   return {
     stage, limit,
+    slipping: (w, slot) => w.tick >= 0 && w.tick < freeUntil[slot]!,
     setPlay(c, start) { contests = c; startAdvantage = start; },
     isOpen: (index) => open[index] === true,
   };

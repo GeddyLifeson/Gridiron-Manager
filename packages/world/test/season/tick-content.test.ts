@@ -7,6 +7,7 @@ import { resolveRuleSet } from '@gm/rules-data';
 import {
   DEFENSE_ROLES, OFFENSE_ROLES, UNIT_JERSEYS, createRealGameCore, createStarterContentPort, tickParamTable,
 } from '../../src/season/index.ts';
+import { READ_STEP_S } from '../../src/season/tick-content.ts';
 
 const params = tickParamTable();
 const pro = resolveRuleSet('pro_2026');
@@ -45,6 +46,55 @@ describe('starter content port', () => {
     expect(r.qb!.kind).toBe('handoff');
     expect(r.qb!.handoff!.meet).not.toBeNull();
     expect(r.carrier!.designed!.slot).toBe(back);
+  });
+  it('gives every defender a key to read run or pass from: a box man a lineman then the quarterback, the rest the quarterback', () => {
+    const s = port.setup(inputOf(offenseCalls('dropback_pass', null)))!;
+    const qb = OFFENSE_ROLES.indexOf('Q');
+    s.presnap.defense.assignments.forEach((a, i) => {
+      const p = s.perception[SLOTS_PER_TEAM + i]!, keys = (p.keys ?? []).filter((k) => k >= 0);
+      expect(p.readsKeys, a.role).toBe(true);
+      expect(keys.length, a.role).toBeGreaterThan(0);
+      for (const k of keys) expect(k, a.role).toBeLessThan(SLOTS_PER_TEAM);
+      if (a.keys.length === 0) expect(keys[keys.length - 1], a.role).toBe(qb);
+      if (a.keys.length === 0 && keys.length === 2) expect(keys[0], a.role).toBeLessThan(5);
+    });
+  });
+  it('starts zone defenders and route runners with their eyes on the ball, and nobody else', () => {
+    const s = port.setup(inputOf(offenseCalls('dropback_pass', null)))!;
+    s.presnap.offense.assignments.forEach((a, i) => expect(s.perception[i]!.gaze, a.role).toBe(a.behavior.type === 'route' ? 'ball' : undefined));
+    s.presnap.defense.assignments.forEach((a, i) => expect(s.perception[SLOTS_PER_TEAM + i]!.gaze, a.role).toBe(a.behavior.type === 'zoneDrop' || a.behavior.type === 'deepZone' ? 'ball' : undefined));
+  });
+  it('binds roles to slots, so a man or a key named by role resolves to a player', () => {
+    for (const kind of ['run', 'dropback_pass', 'quick_pass', 'play_action', 'screen']) {
+      const s = port.setup(inputOf(offenseCalls(kind, kind === 'run' ? 'right' : null, 'cover1')))!;
+      for (const a of [...s.presnap.offense.assignments, ...s.presnap.defense.assignments]) {
+        expect(JSON.stringify([a.keys, a.behavior.params]), `${kind} ${a.role}`).not.toMatch(/role:/);
+      }
+    }
+  });
+  it('orders the quarterback\'s reads: the receiver his keys name first, then from the shortest route to the deepest', () => {
+    for (const kind of ['dropback_pass', 'quick_pass']) {
+      const s = port.setup(inputOf(offenseCalls(kind, null)))!;
+      const reads = s.qb!.reads.filter((r) => r.kind === 'receiver');
+      expect(reads.length, kind).toBeGreaterThanOrEqual(3);
+      const depth = reads.map((r) => Math.max(...r.target.route.map((p) => p.px)));
+      const named = s.presnap.offense.assignments[OFFENSE_ROLES.indexOf('Q')]!.keys.some((k) => k === `slot:${reads[0]!.target.slot}`);
+      const rest = named ? depth.slice(1) : depth;
+      expect(rest, kind).toEqual([...rest].sort((a, b) => a - b));
+      // Each read is valued a little less than the one before it.
+      for (let i = 1; i < reads.length; i++) expect(reads[i]!.priorValue, kind).toBeLessThan(reads[i - 1]!.priorValue);
+    }
+  });
+  it('gives a zone defender with no drawn path somewhere to drop, and holds an underneath man for the read step unless he reads pass', () => {
+    const s = port.setup(inputOf(offenseCalls('dropback_pass', null)))!;
+    for (const a of s.presnap.defense.assignments) {
+      if (a.behavior.type === 'deepZone') expect(a.behavior.path.length, a.role).toBeGreaterThan(0);
+      if (a.behavior.type !== 'zoneDrop') continue;
+      const drop = a.rules.find((r) => r.then.some((t) => t.name === 'dropTo'));
+      expect(drop, a.role).toBeDefined();
+      expect(JSON.stringify(drop!.when), a.role).toContain(`"s":${READ_STEP_S}`);
+      expect(JSON.stringify(drop!.guard), a.role).toContain('"kind":"run"');
+    }
   });
   it('lines up legally under pro rules with the placeholder jerseys', () => {
     for (const kind of ['run', 'dropback_pass', 'quick_pass', 'play_action', 'screen', 'rpo', 'kneel']) {

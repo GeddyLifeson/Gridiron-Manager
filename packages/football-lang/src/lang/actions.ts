@@ -460,16 +460,19 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
   // With the ball still in a passer's or runner's hands there is no ball to break on: a coverage defender sent to
   // "drive on" a threat plays the nearest receiver, a step on top of him, until the ball is thrown. (Running at the
   // held ball sent flat defenders after the quarterback.)
-  breakOnBall: () => (c) => {
-    const kind = c.view.ballKind();
-    const holder = kind === 'held' ? seenCarrier(c) : null;
-    if (!c.offense && holder !== null && holder.slot < SLOTS_PER_TEAM && holder.px <= 0) {
-      const e = nearestOf(c, 0, (x) => c.view.receiverNumber(x.slot) > 0);
-      if (e === null) { hold(c); return false; }
-      aim(c, e.px + c.k.trailOffset, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
-      return false;
-    }
-    toBall(c); return false;
+  breakOnBall: (_a, env) => {
+    const m = env.alloc(1);
+    return (c, first) => {
+      // Decided when the action starts: a ball that came loose and was fallen on is still a ball to get to.
+      if (first) { const holder = c.view.ballKind() === 'held' ? seenCarrier(c) : null; c.mem[m] = !c.offense && holder !== null && holder.slot < SLOTS_PER_TEAM && holder.px <= 0 ? 1 : 0; }
+      if (c.mem[m] === 1 && c.view.ballKind() === 'held') {
+        const e = nearestOf(c, 0, (x) => c.view.receiverNumber(x.slot) > 0);
+        if (e === null) { hold(c); return false; }
+        aim(c, e.px + c.k.trailOffset, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
+        return false;
+      }
+      toBall(c); return false;
+    };
   },
   playHands: () => (c, first) => {
     if (first) c.technique['ballPlay'] = 'playHands';

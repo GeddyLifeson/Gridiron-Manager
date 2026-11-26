@@ -52,7 +52,9 @@ export const PARAMS: ParamFile = {
       ['passBlock.interior.lambda', 0.3, 0, 1.5, '1/s', 'a'],
       ['passBlock.interior.sigma', 0.45, 0.1, 1.0, 'A/sqrt(s)', 'a'],
       ['passBlock.gLosing', 1.0, 0.8, 1.0, 'share of free speed', 'b'],
-      ['passBlock.gEven', 0.15, 0.1, 0.7, 'share of free speed', 'b'],
+      // J6.2.1 states 0.35. Tuned to 0.15 against the pro sack rate (48 tick-engine games: 0.35 gave 10.0% sacks,
+      // 0.15 gave 8.4%; real 6.9%), so the row is no longer the bible's number and is marked as this module's.
+      ['passBlock.gEven', 0.15, 0.1, 0.7, 'share of free speed', 'a'],
       ['passBlock.gWinning', 0, 0, 0.2, 'share of free speed', 'b'],
       ['passBlock.counterThreshold', 0.4, 0.2, 0.8, 'A', 'b'],
       ['passBlock.counterHoldS', 0.5, 0.2, 1.0, 's', 'b'],

@@ -131,7 +131,7 @@ describe('pass rush (J6.2)', () => {
   const homeBy = (dz: number, seconds: number, help: 'none' | 'double' = 'none') => share(5000, (i) => timeHome(dz, i, help) <= seconds);
 
   it('even a stalemated rusher collapses the pocket, and cumulative pressure rises with time held', () => {
-    expect(passRush.rushSpeedFactor(0)).toBe(0.35);
+    expect(passRush.rushSpeedFactor(0)).toBe(0.15);
     expect(passRush.rushSpeedFactor(-1)).toBe(1);
     expect(passRush.rushSpeedFactor(1)).toBe(0);
     const curve = [1.5, 2.0, 2.5, 3.0, 3.5, 4.0].map((t) => homeBy(0, t));

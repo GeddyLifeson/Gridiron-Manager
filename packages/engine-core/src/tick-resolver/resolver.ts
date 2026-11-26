@@ -65,6 +65,8 @@ export function orderEvents(events: readonly TruthEvent[]): TruthEvent[] {
   return order.map((o) => o.e);
 }
 
+const PERCEPTION_RESET = { keys: [], prep: 0, dComplexityS: 0, dKnowledgeS: 0, readsKeys: false, prior: 0, aggression: 0, boxDefender: false } as const;
+
 export function createTickResolver(options: TickResolverOptions): TickResolver {
   const supplied = options.plugs ?? [];
   for (const plug of supplied) if (!PLUG_IDS.includes(plug.id)) throw new Error(`unknown stage module ${String(plug.id)}`);
@@ -82,7 +84,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   const interact = createInteract();
   const keyEvidence = createKeyEvidence();
   const perception = createPerception({ evidence: keyEvidence.source });
-  const movement = createMovement({ engagementLimit: interact.limit });
+  const movement = createMovement({ engagementLimit: interact.limit, slipping: interact.slipping });
   const playerAi = createPlayerAi({
     view: perception.view,
     gaze: { atBall: (slot) => perception.gazeAtBall(slot) },
@@ -257,7 +259,10 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     callNoise[0] = s0.context.noise?.[0] ?? 0; callNoise[1] = s0.context.noise?.[1] ?? 0;
     // Eyes start each play with the hips: a gaze rule a module set on the last play must not carry into this one (J13.1.1).
     for (let s = 0; s < SLOT_COUNT; s++) perception.gazeWithHips(s);
-    for (let s = 0; s < SLOT_COUNT; s++) { const cfg = s0.perception[s]; if (cfg !== undefined) perception.configure(s, cfg); }
+    // So do his keys and the rest of his settings: perception keeps a setting until it is changed, and a play that
+    // sets none (a kick) would otherwise be read with the keys of the play before it, which differ from run to run of
+    // the same game in one process.
+    for (let s = 0; s < SLOT_COUNT; s++) { perception.configure(s, PERCEPTION_RESET); const cfg = s0.perception[s]; if (cfg !== undefined) perception.configure(s, cfg); }
     playerAi.setPlay(slotPlays, s0.context, null);
 
     let loop = freeKickLoop;

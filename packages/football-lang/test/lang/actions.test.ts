@@ -25,6 +25,17 @@ describe('actions: movement', () => {
     expect(target(on)).toEqual([10 + K.extend, 0]);
   });
 
+  it('runPath for a deep zone: stays on top of the deepest receiver coming into his zone while the ball is held', () => {
+    const zone = { behavior: { type: 'deepZone', params: {}, path: [pt(14, 0)] } };
+    const go = world({ self: [12, 0], seen: { 7: [10, 4, 7, 0], 8: [3, -30, 7, 0], 9: [11, 6, 7, 0] }, rn: { 7: 2, 8: 1 } });
+    // Receiver 7 will be at 10 + 7 * lead: he plays a cushion beyond that, between his landmark and the man. Receiver 8
+    // is outside his zone and slot 9 is not a receiver.
+    expect(target(runAction(act('runPath'), go, D, zone))).toEqual([10 + 7 * K.offLeadS + K.offCushion, 2]);
+    // Nobody threatening his depth: he goes to his landmark. With the ball thrown he no longer shades the receiver.
+    expect(target(runAction(act('runPath'), world({ self: [12, 0], seen: { 7: [2, 4] }, rn: { 7: 2 } }), D, zone))).toEqual([14, 0]);
+    expect(target(runAction(act('runPath'), { ...go, kind: 'passInFlight' }, D, zone))).toEqual([14, 0]);
+  });
+
   it('continue: changes nothing, the current action goes on', () => {
     const o = runAction(A('continue'), world({ self: [0, 0] }), O, { behavior: { type: 'route', params: {}, path: [pt(8, 0)] } });
     expect(target(o)).toEqual([8, 0]);
@@ -83,16 +94,29 @@ describe('actions: movement', () => {
     expect(target(runAction(A('wall', { target: 'slot:1' }), w))).toEqual([7, 8 - K.trailOffset]);
     expect(target(runAction(A('trail', { target: 'slot:1' }), w))).toEqual([7 - K.trailOffset, 8]);
     expect(target(runAction(act('trail', { target: 'slot:9' }), w))).toEqual([6, 4]);
+    // A defender who starts on top of his man stays on top: a cushion ahead of where the man will be, never back toward him.
+    const off = world({ self: [9, 8], seen: { 1: [2, 8, 6, 0] } });
+    expect(target(runAction(act('trail', { target: 'slot:1' }), off))).toEqual([Math.max(2 + 6 * K.offLeadS + K.offCushion, 9), 8]);
+    expect(target(runAction(act('trail', { target: 'slot:1' }), world({ self: [9, 8], seen: { 1: [2, 8, 0, 0] } })))).toEqual([9, 8]);
   });
 
   it('pursue: takes the named angle to the carrier', () => {
+    // He plays the carrier a step ahead of what he sees. This carrier is going away as fast as he can run, so there
+    // is no meeting point and every angle starts from the man himself.
     const w = world({ self: [8, -6], carrier: 5, seen: { 5: [0, 2, 4, 6] } });
-    expect(target(runAction(A('pursue', { angle: 'direct' }), w))).toEqual([0, 2]);
-    expect(target(runAction(act('pursue', { angle: 'intercept' }), w))).toEqual([0 + 4 * K.pursueLeadS, 2 + 6 * K.pursueLeadS]);
-    expect(target(runAction(act('pursue', { angle: 'cutback' }), w))).toEqual([0 + 4 * K.pursueLeadS, 2 + 6 * K.pursueLeadS - K.pursueCutback]);
+    const ex = 4 * K.pursueAnticipateS, ey = 2 + 6 * K.pursueAnticipateS;
+    expect(target(runAction(A('pursue', { angle: 'direct' }), w))).toEqual([ex, ey]);
+    expect(target(runAction(act('pursue', { angle: 'intercept' }), w))).toEqual([ex, ey]);
+    expect(target(runAction(act('pursue', { angle: 'cutback' }), w))).toEqual([ex, ey - K.pursueCutback]);
     const o = runAction(act('pursue', { angle: 'insideOut' }), w);
-    expect(target(o)).toEqual([0 + 4 * K.pursueLeadS, 2 + 6 * K.pursueLeadS - K.shoulderOffset]);
+    expect(target(o)).toEqual([ex, ey - K.shoulderOffset]);
     expect(o.intent.arrival).toBe('breakdown');
+    // A carrier coming at him is met where the two arrive together: half way, for two men at the same pace.
+    const meet = runAction(act('pursue', { angle: 'intercept' }), world({ self: [0, 10], carrier: 5, seen: { 5: [0, 0, 0, 5] } }));
+    expect(target(meet)[0]).toBe(0);
+    expect(target(meet)[1]).toBeCloseTo(5 + 2.5 * K.pursueAnticipateS, 9);
+    // Inside tackling range he goes through the man instead of gathering.
+    expect(runAction(act('pursue', { angle: 'direct' }), world({ self: [1, 2], carrier: 5, seen: { 5: [0, 2, 0, 0] } })).intent.arrival).toBe('through');
     const contain = runAction(act('pursue', { angle: 'contain' }), world({ self: [3, 8], carrier: 5, seen: { 5: [0, 2, 0, 0] } }));
     expect(target(contain)).toEqual([0, 8]);
   });
@@ -205,9 +229,16 @@ describe('actions: blocking', () => {
   it('passSet: sets back off the line between his man and the passer', () => {
     const a = { behavior: { type: 'passSet', params: { man: 'slot:12' }, path: [] } };
     const o = runAction(A('passSet', { type: 'vertical' }), world({ self: [0, 3], seen: { 12: [1, 3.6] } }), O, a);
-    expect(target(o)).toEqual([-K.passSetDepth, 3.6]);
+    // He waits at the set depth on the rusher's line to the middle of the pocket.
+    expect(target(o)[0]).toBe(-K.passSetDepth);
+    expect(target(o)[1]).toBeCloseTo(3.6 - 3.6 * (1 + K.passSetDepth) / (1 + K.passSetPocketDepth), 9);
     expect(o.technique['passSet']).toBe('vertical');
     expect(target(runAction(act('passSet'), world({ self: [0, 3] }), O, a))).toEqual([-K.passSetDepth, 3]);
+    // Once the rusher is at the set depth he gives ground with him, at arm's length on that same line.
+    const deep = target(runAction(act('passSet'), world({ self: [0, 3], seen: { 12: [-2.5, 3] } }), O, a)) as [number, number];
+    const lx = -K.passSetPocketDepth + 2.5, ly = -3, len = Math.hypot(lx, ly);
+    expect(deep[0]).toBeCloseTo(-2.5 + (lx / len) * K.passSetMirrorGap, 9);
+    expect(deep[1]).toBeCloseTo(3 + (ly / len) * K.passSetMirrorGap, 9);
   });
 
   it('slide: sets toward the called side and picks up what shows there', () => {
@@ -246,6 +277,11 @@ describe('actions: the ball', () => {
     expect(target(runAction(A('breakOnBall'), world({ self: [10, 0], kind: 'passInFlight', landing: [14, 5] })))).toEqual([14, 5]);
     expect(target(runAction(act('breakOnBall'), world({ self: [10, 0], kind: 'passInFlight', ball: [0, 0, 20, 4] })))).toEqual([20 * K.pursueLeadS, 4 * K.pursueLeadS]);
     expect(target(runAction(act('breakOnBall'), world({ self: [10, 0], kind: 'loose', ball: [3, 2, 5, 5] })))).toEqual([3, 2]);
+    // A passer still holding the ball behind the line is not a ball to run at: the defender covers the nearest receiver from on top.
+    const held = world({ self: [6, 2], kind: 'held', carrier: 5, seen: { 5: [-6, 0], 7: [9, 5], 8: [14, -12] }, rn: { 7: 1, 8: 1 } });
+    expect(target(runAction(act('breakOnBall'), held))).toEqual([9 + K.trailOffset, 5]);
+    // A runner past the line is a ball to get to, and so is the ball for the offense.
+    expect(target(runAction(act('breakOnBall'), world({ self: [6, 2], kind: 'held', carrier: 6, ball: [3, 1], seen: { 6: [3, 1], 7: [9, 5] }, rn: { 7: 1 } })))).toEqual([3, 1]);
   });
 
   it('playHands, strip, secure and getDown set the ball technique', () => {
