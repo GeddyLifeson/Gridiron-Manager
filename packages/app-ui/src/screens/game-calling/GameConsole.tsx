@@ -32,7 +32,7 @@ export interface ConsoleViewModel {
     personnel: string; opponentPersonnel: string | null; booth: { role: string; text: string; agePlays: number } | null; tendency: { text: string; sample: number } | null;
     tempo: string; relay: string; cadence: string | null; timeout: ConsoleControlVM; challenge: ConsoleControlVM;
   };
-  prompt: { kind: 'options' | 'fourth' | 'try'; options: readonly { key: string | null; labelKey: string; isDefault: boolean }[] } | null;
+  prompt: { kind: 'options' | 'fourth'; options: readonly { key: string | null; labelKey: string; isDefault: boolean }[] } | null;
   hint: readonly { key: string; action: string }[];
   notice: string | null;
 }

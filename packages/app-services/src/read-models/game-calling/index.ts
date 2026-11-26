@@ -65,7 +65,7 @@ export interface ConsoleView {
     readonly personnel: string; readonly opponentPersonnel: string | null; readonly booth: BoothNote | null; readonly tendency: TendencyLine | null;
     readonly tempo: string; readonly relay: string; readonly cadence: string | null; readonly timeout: ControlView; readonly challenge: ControlView;
   };
-  readonly prompt: { readonly kind: 'options' | 'fourth' | 'try'; readonly options: readonly { readonly key: string | null; readonly labelKey: string; readonly isDefault: boolean }[] } | null;
+  readonly prompt: { readonly kind: 'options' | 'fourth'; readonly options: readonly { readonly key: string | null; readonly labelKey: string; readonly isDefault: boolean }[] } | null;
   readonly hint: readonly { readonly key: string; readonly action: string }[];
   readonly notice: string | null;
 }
@@ -75,7 +75,6 @@ const HINTS: Record<string, readonly string[]> = {
   sent: ['call.clear', 'call.timeout', 'call.challenge', 'booth.list'],
   prompt: ['call.entry_1', 'call.confirm', 'call.timeout'],
   fourth: ['call.entry_1', 'call.timeout'],
-  try: ['call.entry_1', 'call.timeout'],
   idle: ['call.timeout', 'call.challenge', 'booth.list', 'playback.skip'],
 };
 
@@ -113,11 +112,9 @@ export function buildConsoleView(i: ConsoleViewInput): ConsoleView {
   const req = c.open?.request;
   const prompt = c.step === 'prompt' && req
     ? { kind: 'options' as const, options: req.options.map((o, n) => ({ key: n < 10 ? String((n + 1) % 10) : null, labelKey: o.labelKey, isDefault: o.optionId === req.defaultOptionId })) }
-    : c.step === 'fourth'
-      ? { kind: 'fourth' as const, options: ['console.go', 'console.punt', 'console.fieldGoal'].map((labelKey, n) => ({ key: String(n + 1), labelKey, isDefault: false })) }
-      : c.step === 'try'
-        ? { kind: 'try' as const, options: ['console.kickTry', 'console.goForTwo'].map((labelKey, n) => ({ key: String(n + 1), labelKey, isDefault: false })) }
-        : null;
+    : c.step === 'fourth' && req
+      ? { kind: 'fourth' as const, options: (req.type === 'opposing_call' ? ['console.defense', 'console.puntReturn', 'console.fieldGoalBlock'] : ['console.go', 'console.punt', 'console.fieldGoal']).map((labelKey, n) => ({ key: String(n + 1), labelKey, isDefault: false })) }
+      : null;
   const s = i.strip;
   return {
     unit, step: c.step,

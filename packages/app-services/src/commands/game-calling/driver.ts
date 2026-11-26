@@ -8,7 +8,7 @@ import { pressKey, settle, tick, type ConsoleCommand, type ConsoleState, type St
 
 /** Key contexts the console is in (keymap.default.json `contexts`), innermost last. */
 export function consoleContexts(s: ConsoleState): string[] {
-  if (!s.open || s.step === 'prompt' || s.step === 'fourth' || s.step === 'try') return ['global', 'console.offense', 'console.prompt'];
+  if (!s.open || s.step === 'prompt' || s.step === 'fourth') return ['global', 'console.offense', 'console.prompt'];
   return ['global', `console.${s.open.unit}`];
 }
 
@@ -98,4 +98,11 @@ export class ConsoleKeyDriver {
     void command;
     return { accepted: false };
   }
+}
+
+/** Letters the console contexts bind (O2.2.2): box letters skip them. Reads the live key map's bindings. */
+export function consoleReservedKeys(bindings: readonly { readonly context: string; readonly keys: readonly string[] }[]): string[] {
+  const out = new Set<string>();
+  for (const b of bindings) if (b.context.startsWith('console.')) for (const k of b.keys) if (/^Key[A-Z]$/.test(k)) out.add(k);
+  return [...out].sort();
 }

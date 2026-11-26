@@ -5,11 +5,11 @@
 // no command that pauses, holds or slows it (R1.2.6 gate item 6).
 import type { DecisionRequest } from '@gm/schema';
 import { param } from './params.ts';
-import { focusBox, type CallSheet, type Focus, type SheetEntry, type SheetKeys, type SheetSituation, type TagKind, type Unit, type Relay } from './sheet.ts';
+import { focusBox, gridOrder, type CallSheet, type Focus, type SheetEntry, type SheetKeys, type SheetSituation, type TagKind, type Unit, type Relay } from './sheet.ts';
 import { RELAYS, TEMPOS, defenseMarkers, offenseMarkers, type ConsoleTempo, type Markers } from './cycle.ts';
 
 type Table = Parameters<typeof param>[1];
-export type Step = 'idle' | 'fourth' | 'try' | 'select' | 'sent' | 'prompt';
+export type Step = 'idle' | 'fourth' | 'select' | 'sent' | 'prompt';
 
 export interface ConsoleConfig {
   readonly sheets: Readonly<Partial<Record<Unit, CallSheet>>>;
@@ -30,8 +30,14 @@ export interface ConsoleConfig {
 export interface OpenInput {
   readonly request: DecisionRequest;
   readonly situation: SheetSituation;
-  /** The request is a snapping call on the last down (O2.4.2), or a try (B7). Free kicks open the special sheet. */
-  readonly kind: 'scrimmage' | 'fourth_down' | 'try' | 'free_kick' | 'opponent_kick' | 'option';
+  /**
+   * The request is a call on the last down (O2.4.2: go, punt or field goal; on defense: defense, punt return or
+   * block). `own_kick` is a kick the team makes (kickoff, safety kick, the kicked try after the try choice) and
+   * `opponent_kick` the other team's free kick: both open the special sheet on the box holding `kickKind`.
+   */
+  readonly kind: 'scrimmage' | 'fourth_down' | 'own_kick' | 'opponent_kick' | 'option';
+  /** For `own_kick` the kick kind, for `opponent_kick` the return kind the focus looks for (schema KickKind, ReturnKind). */
+  readonly kickKind?: string | null;
   readonly playClockTenths: number;
   readonly atMs: number;
   readonly personnelOnField: string;
@@ -119,17 +125,17 @@ export function playClockAt(s: ConsoleState, atMs: number): number {
 }
 
 function unitFor(o: OpenInput): Unit {
-  if (o.kind === 'free_kick' || o.kind === 'opponent_kick') return 'special';
+  if (o.kind === 'own_kick' || o.kind === 'opponent_kick') return 'special';
   if (o.request.type === 'opposing_call') return 'defense';
   return 'offense';
 }
 
 function sheetOf(s: ConsoleState, unit: Unit): CallSheet | null { return s.cfg.sheets[unit] ?? null; }
 
-/** Focus on the first box holding a kick of this kind (O2.4.2: after choosing, the matching sheet opens). */
+/** Focus on the first box holding a kick or return of this kind (O2.4.2: after choosing, the matching sheet opens). */
 function kickFocus(sheet: CallSheet | null, kickKind: string): Focus {
   if (!sheet) return NO_FOCUS;
-  const b = sheet.boxes.find((x) => x.entries.some((e) => e.call.unit === 'kick' && e.call.kickKind === kickKind));
+  const b = gridOrder(sheet.boxes).find((x) => x.entries.some((e) => (e.call.unit === 'kick' && e.call.kickKind === kickKind) || (e.call.unit === 'return' && e.call.returnKind === kickKind)));
   return b ? { boxId: b.id, how: 'rule', empty: false } : focusBox(sheet, { down: null, distance: null, toGoal: 0, twoMinute: false, lastPlayOfHalf: false, scoreDiff: 0, personnel: null, suddenChange: false, noHuddle: false });
 }
 
@@ -146,9 +152,9 @@ export function openRequest(prev: ConsoleState, o: OpenInput): ConsoleState {
   const log = [...prev.log, { atMs: o.atMs, playClockTenths: o.playClockTenths, what: 'open', detail: `${o.request.type}#${o.request.requestId}` }];
   if (o.kind === 'option') return { ...base, step: 'prompt', focus: NO_FOCUS, log };
   if (o.kind === 'fourth_down') return { ...base, step: 'fourth', focus: NO_FOCUS, log };
-  if (o.kind === 'try') return { ...base, step: 'try', focus: NO_FOCUS, log };
   const sheet = sheetOf(base, unit);
-  const focus = sheet ? focusBox(sheet, o.situation) : NO_FOCUS;
+  const kick = (o.kind === 'own_kick' || o.kind === 'opponent_kick') && o.kickKind ? o.kickKind : null;
+  const focus = kick ? kickFocus(sheet, kick) : sheet ? focusBox(sheet, o.situation) : NO_FOCUS;
   let s: ConsoleState = { ...base, step: 'select', focus, log, notice: focus.empty ? 'console.boxEmpty' : null };
   if (o.suggestion) s = { ...s, notice: s.notice ?? 'console.suggestionReady' };
   return s;
@@ -221,7 +227,10 @@ export function tick(s: ConsoleState, atMs: number): StepResult {
   if (!s.open || s.step === 'idle') return { state: { ...s, nowMs: atMs }, commands: [], handled: false };
   if (s.sent) return settle({ ...s, nowMs: atMs }, atMs);
   const deadline = s.open.request.deadlinePlayClockTenths;
-  if (deadline !== null && playClockAt(s, atMs) <= deadline) {
+  // A prompt with a fixed window (penalty choice, toss) closes after that much real time (J11.6.1).
+  const win = s.open.request.windowTenths;
+  const windowShut = deadline === null && win !== null && atMs - s.open.atMs >= win * 100;
+  if ((deadline !== null && playClockAt(s, atMs) <= deadline) || windowShut) {
     const st = logged({ ...s, step: 'idle', notice: 'console.playingDefault' }, atMs, 'deadline');
     return { state: st, commands: [{ type: 'deadline.default', requestId: s.open.request.requestId }], handled: true };
   }
@@ -275,13 +284,13 @@ function prompt(s: ConsoleState, action: string | undefined, atMs: number): Step
   return { state: logged({ ...s, step: 'idle' }, atMs, 'option', optionId), commands: [{ type: 'option.send', requestId: req.requestId, optionId, acceptedAtPlayClockTenths: at }], handled: true };
 }
 
-/** O2.4.2: go, punt, field goal on fourth down; kick or go for two on a try. One key each. */
+/** O2.4.2: go, punt, field goal on fourth down; on defense, defense, punt return or field goal block. One key each. */
 function chooseUnit(s: ConsoleState, d: number | null, atMs: number): StepResult {
   if (d === null || !s.open) return { state: s, commands: [], handled: false };
   const open = s.open;
-  const pick = s.step === 'fourth'
-    ? ({ 1: ['offense', null], 2: ['special', 'punt'], 3: ['special', 'field_goal'] } as Record<number, [Unit, string | null]>)[d]
-    : ({ 1: ['special', 'try_kick'], 2: ['offense', null] } as Record<number, [Unit, string | null]>)[d];
+  const pick = open.request.type === 'opposing_call'
+    ? ({ 1: ['defense', null], 2: ['special', 'punt_return'], 3: ['special', 'field_goal_block'] } as Record<number, [Unit, string | null]>)[d]
+    : ({ 1: ['offense', null], 2: ['special', 'punt'], 3: ['special', 'field_goal'] } as Record<number, [Unit, string | null]>)[d];
   if (!pick) return { state: s, commands: [], handled: false };
   const [unit, kick] = pick;
   const sheet = sheetOf(s, unit);
@@ -332,7 +341,7 @@ export function pressKey(s0: ConsoleState, action: string | undefined, code: str
   if (tab) return { state: s, commands: [{ type: 'panel.tab', tab: Number(tab[1]) }], handled: true };
 
   if (s.step === 'prompt') return prompt(s, action, atMs);
-  if (s.step === 'fourth' || s.step === 'try') return chooseUnit(s, digitOf(action), atMs);
+  if (s.step === 'fourth') return chooseUnit(s, digitOf(action), atMs);
   if (s.step === 'idle') return none;
 
   if (s.step === 'sent') {
