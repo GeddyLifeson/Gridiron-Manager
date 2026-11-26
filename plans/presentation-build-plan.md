@@ -96,7 +96,7 @@ The strip is the console's score bug, always visible, text and shapes only:
 | Asset | Information carried | Made by | Rank | Phase |
 | --- | --- | --- | --- | --- |
 | Icon set (about 40): timeout, challenge flag, whistle, injury, review, weather kinds, wind, possession, call confirm, warning, lock, film, notebook, phone, and so on | State at a glance, always paired with text or a label | Code-drawn SVG from tokens | 3 | v1 |
-| Injury icon: a plus in a circle in a token colour, never a red cross on white (the Red Cross emblem is legally protected; status: 1 of 3, to be checked in PV-13) | Injury | Code | 3 | v1 |
+| Injury icon: a plus in a circle in a token colour, never a red cross on white (the Red Cross emblem is legally protected; status: Verified in PV-13 on 2026-11-26 from Geneva Convention I arts. 38 and 53 (ICRC text), 18 U.S.C. 706 (Cornell LII) and the British Red Cross emblem page; the icon is drawn in ink only and a test fails any red on it in any theme) | Injury | Code | 3 | v1 |
 | Disabled choices stay visible with the reason ("no timeouts left", "illegal: 12 on field") (MB-15) | Why an action is not available | Code | 3 | v1 |
 | Hint bar names the keys for the current state (MB-13, O2.5.2) | Input speed | Code | 3 | v1 |
 | Generated team identity: name, colours (two plus an alternate, contrast-checked), a simple generated shape (stripe pattern or geometric badge from a small grammar), never a logo | Telling teams apart | Code, seeded by the world (not cosmetic: identity is part of the save) | 6 | v1 |
