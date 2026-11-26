@@ -1,0 +1,334 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-cohort-0001",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Players drafted in the 2025 pro draft: 257 (2010 to 2026 range 253 to 262).",
+   "value": 257,
+   "unit": "count",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Project data /mnt/project-files/data/people (nflverse release), counted by G-44 script packages/people/test/cohorts/tools/cohort_refs.py",
+     "locator": "nfl_draft_history.csv, rows with season 2025",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 257
+    },
+    {
+     "citation": "NCAA Research, Estimated probability of competing in professional athletics (2025 data) (read and recorded by the bible depth pass, research/depth-pass/X11-log.md; not re-read by G-44)",
+     "locator": "football row",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa-research",
+     "primary": false,
+     "value": 257
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ],
+   "notes": "Per-year counts 2010-2026 from the same file: 255,254,253,254,256,256,253,253,256,254,255,259,262,259,257,257,257. Draft length is a rule (C7) and the cohort reads the era's drafted count as input."
+  },
+  {
+   "id": "F-cohort-0002",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Underclassmen granted eligibility for the 2026 pro draft (forgoing college eligibility): 63.",
+   "value": 63,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, league announcement of underclassmen granted special eligibility for the 2026 draft (read and recorded by the bible depth pass, research/depth-pass/X11-log.md; not re-read by G-44)",
+     "locator": "article",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-com",
+     "primary": true,
+     "value": 63
+    },
+    {
+     "citation": "NBC Sports Pro Football Talk, 'NFL announces 63 players who officially left college for the 2026 draft'",
+     "locator": "headline, web search result 2026-11-26",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pft",
+     "primary": false,
+     "value": 63
+    },
+    {
+     "citation": "On3, 'NFL announces list of 63 underclassmen forgoing eligibility, declaring for 2026 Draft'",
+     "locator": "headline, web search result 2026-11-26",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "value": 63
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ],
+   "notes": "NFL.com's separate list of 42 players granted special eligibility counts players who graduated with eligibility left; not the same set."
+  },
+  {
+   "id": "F-cohort-0003",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Underclassmen entering the 2025 pro draft early: 70.",
+   "value": 70,
+   "unit": "count",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "NBC Sports Pro Football Talk, 'NFL announces the 70 players forgoing remaining college eligibility to enter the draft'",
+     "locator": "headline, web search result 2026-11-26",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pft",
+     "primary": false,
+     "value": 70
+    },
+    {
+     "citation": "CBS Sports early entrant totals 2020 to 2025 (read and recorded by the bible depth pass, research/depth-pass/X11-log.md; not re-read by G-44)",
+     "locator": "article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "value": 70
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ]
+  },
+  {
+   "id": "F-cohort-0004",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Age of drafted players at the draft, 2015 to 2025: median 22; shares 20:0.5%, 21:17.0%, 22:36.0%, 23:34.7%, 24:10.2%, 25:1.4%, 26+:0.2%; 97.9% between 21 and 24.",
+   "value": 22,
+   "unit": "y",
+   "validFor": "2015-2025",
+   "sources": [
+    {
+     "citation": "Project data /mnt/project-files/data/people (nflverse release), counted by G-44 script packages/people/test/cohorts/tools/cohort_refs.py",
+     "locator": "nfl_draft_history.csv `age`, seasons 2015-2025, n = 2,815 with an age",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 22
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ],
+   "notes": "X11.1.2 rule 1 cites the same file with n = 3,068 and '80 percent between 21 and 24'; the computed share is 97.9 percent (consistent with 'at least 70 percent' in its acceptance)."
+  },
+  {
+   "id": "F-cohort-0005",
+   "level": "college",
+   "domain": "career",
+   "statement": "High school signees at the top college level, class of 2025: 2,513 (class of 2024: 2,364), about 18 per team.",
+   "value": 2513,
+   "unit": "count",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Dave Campbell's Texas Football, 'Recruiting by the numbers' (texasfootball.com, 2025-08) (read and recorded by the bible depth pass, research/depth-pass/X11-log.md; not re-read by G-44); article seen in a G-44 web search result 2026-11-26",
+     "locator": "article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "texasfootball",
+     "primary": false,
+     "value": 2513
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ]
+  },
+  {
+   "id": "F-cohort-0006",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Undrafted free agents signed after the 2025 draft: about 522.",
+   "value": 522,
+   "unit": "count",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Over the Cap, 'Looking at the 2025 UDFA class' (read and recorded by the bible depth pass, research/depth-pass/X11-log.md; not re-read by G-44)",
+     "locator": "team-by-team table, summed",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "value": 522
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ]
+  },
+  {
+   "id": "F-cohort-0007",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Pro roster age, 2025 season: median 26, 80 percent between 23 and 31 (birth-year approximation).",
+   "value": 26,
+   "unit": "y",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Project data /mnt/project-files/data/people (nflverse release), counted by G-44 script packages/people/test/cohorts/tools/cohort_refs.py",
+     "locator": "nfl_rosters_2025_2026.csv, season 2025, 2025 minus birth year, n = 2,974",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 26
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ]
+  },
+  {
+   "id": "F-cohort-0008",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Pro career span (seasons on the register) for careers begun 2000 or later and ended by 2022: median 3, mean 4.0, 55 percent 3 seasons or shorter.",
+   "value": 3,
+   "unit": "seasons",
+   "validFor": "2000-2022",
+   "sources": [
+    {
+     "citation": "Project data /mnt/project-files/data/people (nflverse release), counted by G-44 script packages/people/test/cohorts/tools/cohort_refs.py",
+     "locator": "nfl_players.csv last_season - rookie_season + 1, n = 10,013",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ],
+   "notes": "Published figures differ by definition (X11.2.3 rule 3)."
+  },
+  {
+   "id": "F-cohort-0009",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Football age (on September 1) in a pro player's final season, careers begun 2000 or later and ended by 2022: median 25, 10th to 90th percentile 23 to 30.",
+   "value": 25,
+   "unit": "y",
+   "validFor": "2000-2022",
+   "sources": [
+    {
+     "citation": "Project data /mnt/project-files/data/people (nflverse release), counted by G-44 script packages/people/test/cohorts/tools/cohort_refs.py",
+     "locator": "nfl_players.csv, last_season minus birth year, minus 1 when born after September 1; n = 10,013",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 25
+    },
+    {
+     "citation": "Bible X11.2.3 rule 2 (same project file, method not recorded) (read and recorded by the bible depth pass, research/depth-pass/X11-log.md; not re-read by G-44)",
+     "locator": "X11.2.3 rule 2",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "gm-bible-depth-pass",
+     "primary": false,
+     "value": 27
+    }
+   ],
+   "status": "Conflict",
+   "usedBy": [
+    "people.cohorts"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load by G-44; status computed from sources (Q6.1.2)"
+    }
+   ],
+   "notes": "Conflict: G-44 computes median 25 (26 by calendar-year age) where X11.2.3 rule 2 states 27; sent to the bible fixes thread. The soak band in params stays at the bible's 26 to 28 until the leaf is fixed."
+  }
+ ]
+}

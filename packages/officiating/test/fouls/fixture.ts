@@ -15,13 +15,13 @@ type V = number | boolean | string;
 const PRO: Record<string, [number, string]> = {
   false_start: [5, 'R'], encroachment: [5, ''], neutral_zone_infraction: [5, ''], offside: [5, ''], illegal_shift: [5, ''],
   illegal_motion: [5, ''], illegal_formation: [5, ''], illegal_snap: [5, ''], snap_to_ineligible: [5, ''], delay_of_game: [5, ''],
-  delay_of_game_spike: [5, 'D'], excess_timeout: [5, ''], illegal_substitution: [5, 'R'], too_many_men: [5, ''], too_many_men_formation: [5, ''],
-  illegal_forward_pass_beyond_line: [5, 'LSR'], second_forward_pass: [5, 'LR'], forward_pass_after_change: [5, 'S'],
-  illegal_touching_ineligible: [5, ''], illegal_touching_after_oob: [0, 'L'], grounding: [10, 'LR'], ineligible_downfield: [5, ''],
+  delay_of_game_spike: [5, 'D'], excess_timeout: [5, ''], illegal_substitution: [5, 'R'], too_many_on_field: [5, ''], too_many_in_formation: [5, ''],
+  illegal_forward_pass: [5, 'LSR'], second_forward_pass: [5, 'LR'], forward_pass_after_change: [5, 'S'],
+  illegal_touching_pass: [5, ''], illegal_touching_after_oob: [0, 'L'], intentional_grounding: [10, 'LR'], ineligible_downfield_pass: [5, ''],
   illegal_contact: [5, 'A'], illegal_cut_block: [15, 'A'], def_holding: [5, 'A'], dpi: [0, 'AS'], opi: [10, ''],
-  backward_pass_oob: [5, 'LR'], illegal_handoff_forward: [5, 'L'],
-  holding_offense: [10, ''], illegal_hands_offense: [10, ''], block_in_back: [10, ''], assist_runner: [10, ''],
-  illegal_hands_defense: [5, 'A'], clipping: [15, 'Ap'], peel_back: [15, 'p'], low_block: [15, 'Ap'], chop_block: [15, 'p'],
+  backward_pass_out_of_bounds: [5, 'LR'], handing_forward: [5, 'L'],
+  offensive_holding: [10, ''], illegal_use_of_hands_offense: [10, ''], illegal_block_in_back: [10, ''], assisting_runner: [10, ''],
+  illegal_use_of_hands_defense: [5, 'A'], clipping: [15, 'Ap'], peel_back: [15, 'p'], block_below_waist: [15, 'Ap'], chop_block: [15, 'p'],
   crackback: [15, 'p'], blindside_block: [15, 'Ap'],
   unnecessary_roughness: [15, 'Apf'], defenseless_player: [15, 'Apf'], helmet_use: [15, 'Apf'], roughing_passer: [15, 'Apf'],
   roughing_kicker: [15, 'Apf'], running_into_kicker: [5, ''], roughing_holder: [15, 'Apf'], striking: [15, 'Apf'],
@@ -29,20 +29,20 @@ const PRO: Record<string, [number, string]> = {
   unsportsmanlike: [15, 'Auf'], taunting: [15, 'ADuf'], kick_block_leverage: [15, 'Au'], kick_block_leaping: [15, 'Au'],
   clock_manipulation: [15, 'u'], palpably_unfair: [15, 'uf'], league_dq: [15, 'pa'], illegal_bat: [10, 'LR'], illegal_kick: [10, 'LR'],
   non_player_unsportsmanlike: [15, 'Auf'], foul_against_official: [15, 'Aua'], challenge_without_timeout: [15, 'u'], excess_injury_timeout: [5, ''],
-  free_kick_offside: [5, ''], free_kick_illegal_formation: [5, ''], free_kick_early_movement: [5, ''], illegal_free_kick: [5, ''],
-  free_kick_illegal_block: [10, ''], wedge: [15, 'Sp'], illegal_double_team: [15, 'Sp'], onside_untouched_past_zone: [15, 'u'],
+  free_kick_offside: [5, ''], free_kick_early_movement: [5, ''], illegal_free_kick: [5, ''],
+  free_kick_illegal_block: [10, ''], illegal_wedge: [15, 'Sp'], illegal_double_team: [15, 'Sp'], onside_untouched_past_zone: [15, 'u'],
   free_kick_illegal_touching: [5, ''], free_kick_voluntary_oob: [5, ''], running_into_free_kicker: [5, ''],
-  illegal_scrimmage_kick: [5, 'L'], ineligible_downfield_kick: [5, ''], kick_voluntary_oob: [5, ''], def_illegal_formation_kick: [5, ''],
+  illegal_scrimmage_kick: [5, 'L'], kick_ineligible_downfield: [5, ''], kick_voluntary_oob: [5, ''], def_illegal_formation_kick: [5, ''],
   pushing_teammates_formation: [15, 'Ap'], pull_and_shoot_holding: [5, 'A'], kick_holding: [10, ''], kick_illegal_touching_after_oob: [5, ''],
   kick_catch_interference: [15, 'Sp'], fair_catch_interference: [15, 'Sp'], invalid_fair_catch_signal: [5, 'S'],
-  muff_opportunity_interference: [0, 'S'], block_after_fair_catch_signal: [15, 'Sp'], contact_with_fair_catcher: [15, 'pf'],
+  muff_opportunity_interference: [0, 'S'], block_after_fair_catch_signal: [15, 'Sp'], fair_catcher_contact: [15, 'pf'],
 };
 
 const GLOBAL_PRO: Record<string, V> = {
   'series.downs': 4, 'series.yards_to_gain': 10, 'score.safety': 2, 'try.safety_points': 1, 'clock.periods_per_half': 2,
   'enforce.half_distance.applies': true, 'enforce.half_distance.fraction': 0.5,
   'enforce.five_fifteen.applies': true, 'enforce.five_fifteen.minor_yards': 5, 'enforce.five_fifteen.major_yards': 15,
-  'enforce.interference.capped': false, 'enforce.interference.max_yards': 0, 'enforce.interference.floor_yardline': 1,
+  'foul.dpi.max_yards': 0, 'enforce.interference.floor_yardline': 1,
   'enforce.interference.floor_rule': 'end_zone_only', 'enforce.interference.half_inside_yardline': 2, 'enforce.interference.half_inclusive': false,
   'enforce.end_zone_foul_yardline': 20, 'enforce.double_foul_safety_yardline': 1, 'enforce.clean_hands.personal_offsets': true,
   'enforce.spike_delay_foul': 'delay_of_game_spike', 'enforce.defensive_foul_extends_period': true, 'enforce.touchdown_foul_to_kickoff': true,
@@ -64,16 +64,16 @@ function build(level: 'pro' | 'college'): Map<string, V> {
     for (const e of f.ext ?? []) m.set(`foul.${f.id}.${e}`, e === 'enforcement' ? 'standard' : true);
   }
   m.set('foul.dpi.enforcement', 'interference_spot');
-  m.set('foul.grounding.enforcement', 'previous_or_spot_worse');
+  m.set('foul.intentional_grounding.enforcement', 'previous_or_spot_worse');
   m.set('foul.palpably_unfair.enforcement', 'equitable');
   if (level === 'college') {
     // B13.5.1: 15-yard limit, the 2-yard line, half the distance from on or inside the 2.
-    m.set('enforce.interference.capped', true); m.set('enforce.interference.max_yards', 15);
+    m.set('foul.dpi.max_yards', 15);
     m.set('enforce.interference.floor_yardline', 2); m.set('enforce.interference.floor_rule', 'inside_floor');
     m.set('enforce.interference.half_inclusive', true);
-    // B13.5.2: holding 10 yards, no illegal contact foul. B13.5.4: grounding at the spot. B13.8.1: targeting.
+    // B13.5.2: holding 10 yards, no illegal contact foul. B13.5.4: intentional_grounding at the spot. B13.8.1: targeting.
     m.set('foul.def_holding.yards', 10); m.set('foul.illegal_contact.exists', false);
-    m.set('foul.grounding.yards', 0); m.set('foul.grounding.spot_foul', true); m.set('foul.grounding.enforcement', 'standard');
+    m.set('foul.intentional_grounding.yards', 0); m.set('foul.intentional_grounding.spot_foul', true); m.set('foul.intentional_grounding.enforcement', 'standard');
     m.set('foul.targeting.exists', true);
   }
   return m;

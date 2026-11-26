@@ -42,7 +42,7 @@ describe('foul catalogue and manifest (B8.1.1, B8.1.2)', () => {
 
   it('B8.1.2 rows read back as written: holding 10 and no first down, defensive holding 5 and a first down', () => {
     const b = bench({ ball: 30 });
-    expect(foulRules.catalogue('holding_offense', b.ctx)).toMatchObject({ yards: 10, afd: false, lod: false, foulClass: 'other' });
+    expect(foulRules.catalogue('offensive_holding', b.ctx)).toMatchObject({ yards: 10, afd: false, lod: false, foulClass: 'other' });
     expect(foulRules.catalogue('def_holding', b.ctx)).toMatchObject({ yards: 5, afd: true });
     expect(foulRules.catalogue('running_into_kicker', b.ctx)).toMatchObject({ yards: 5, afd: false, foulClass: 'other' });
     expect(foulRules.catalogue('helmet_weapon', b.ctx)).toMatchObject({ yards: 15, dq: 'automatic' });
@@ -59,12 +59,12 @@ describe('foul catalogue and manifest (B8.1.1, B8.1.2)', () => {
         ev('dpi', 1, 2, 24), ev('unnecessary_roughness', 1, 2, 24),
         ev('def_holding', 1, 2.5, 30, { borderline: true }),
         { type: 'possession', t: 3, side: 1, playerId: 24, spot: { x: 60, y: 20 }, how: 'interception' },
-        ev('block_in_back', 1, 4, 31, { phase: 'after_change_of_possession' }),
+        ev('illegal_block_in_back', 1, 4, 31, { phase: 'after_change_of_possession' }),
         ev('taunting', 1, 5, 24),
         { type: 'dead_ball', t: 6, marginYd: null, marginS: null, visibility: 'open', reason: 'down_by_contact', spot: { x: 55, y: 20 }, side: 1, carrierId: 24 },
       ] };
     const pro = candidates(truth, bench({ ball: 30 }).ctx);
-    expect(pro.map((r) => r.foulId)).toEqual(['illegal_contact', 'dpi', 'unnecessary_roughness', 'block_in_back', 'taunting']);
+    expect(pro.map((r) => r.foulId)).toEqual(['illegal_contact', 'dpi', 'unnecessary_roughness', 'illegal_block_in_back', 'taunting']);
     expect(pro.every((r) => !r.called && !r.correct)).toBe(true);
     expect(pro[1]!.sameAct).toBe(2); expect(pro[2]!.sameAct).toBe(1);
     expect(pro.map((r) => r.beforeChangeOfPossession)).toEqual([true, true, true, false, false]);
@@ -79,14 +79,14 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
   it('no called foul: one option holding the called outcome unchanged', () => {
     const b = bench({ ball: 30, dir });
     const o = play(b, { end: 38 });
-    const opts = foulRules.options(o, [foul(b, 'holding_offense', 'A', { called: false })], b.ctx);
+    const opts = foulRules.options(o, [foul(b, 'offensive_holding', 'A', { called: false })], b.ctx);
     expect(opts).toHaveLength(1);
     expect(opts[0]!.outcome).toBe(o);
   });
 
   it('B8.5.2: offensive holding 3 yards behind the line on a run that gains 8 nets minus 10 from the previous spot', () => {
     const b = bench({ ball: 30, dir });
-    const fouls = [foul(b, 'holding_offense', 'A', { at: 27 })];
+    const fouls = [foul(b, 'offensive_holding', 'A', { at: 27 })];
     const opts = foulRules.options(play(b, { end: 38 }), fouls, b.ctx);
     const o = pick(opts, 'previous_spot');
     expect(at(b, o)).toBe(20);
@@ -96,7 +96,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.2: offensive holding 6 yards downfield on a 15-yard run is marked from the spot of the foul, a net of minus 4', () => {
     const b = bench({ ball: 30, dir });
-    const fouls = [foul(b, 'holding_offense', 'A', { at: 36 })];
+    const fouls = [foul(b, 'offensive_holding', 'A', { at: 36 })];
     const o = pick(foulRules.options(play(b, { end: 45 }), fouls, b.ctx), 'spot_of_foul');
     expect(at(b, o)).toBe(26);
     expect(o.outcome.enforcement).toMatchObject({ yardsWalked: -10, replayDown: true });
@@ -105,7 +105,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.2: offensive holding beyond the end of the run is marked from the basic spot', () => {
     const b = bench({ ball: 30, dir });
-    const o = pick(foulRules.options(play(b, { end: 34 }), [foul(b, 'holding_offense', 'A', { at: 40 })], b.ctx), 'basic_spot');
+    const o = pick(foulRules.options(play(b, { end: 34 }), [foul(b, 'offensive_holding', 'A', { at: 40 })], b.ctx), 'basic_spot');
     expect(at(b, o)).toBe(24);
   });
 
@@ -170,7 +170,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
   it('B8.5.3: offensive holding in its own end zone offers a safety', () => {
     const b = bench({ ball: 3, dir });
     const o = play(b, { end: 9, result: 'pass_complete' });
-    const opts = foulRules.options(o, [foul(b, 'holding_offense', 'A', { at: -2, phase: 'pass_play' })], b.ctx);
+    const opts = foulRules.options(o, [foul(b, 'offensive_holding', 'A', { at: -2, phase: 'pass_play' })], b.ctx);
     const s = pick(opts, 'safety');
     expect(s.outcome.score).toEqual({ type: 'safety', side: b.B, points: 2, scorerId: null });
     expect(at(b, pick(opts, 'previous_spot'))).toBe(1.5);
@@ -193,23 +193,23 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
     }
   });
 
-  it('B8.5.4: intentional grounding on fourth down gives the defense the ball after the yardage', () => {
+  it('B8.5.4: intentional intentional_grounding on fourth down gives the defense the ball after the yardage', () => {
     const b = bench({ ball: 40, dir, down: 4, toGo: 10 });
-    const fouls = [foul(b, 'grounding', 'A', { phase: 'pass_play', at: 33 })];
+    const fouls = [foul(b, 'intentional_grounding', 'A', { phase: 'pass_play', at: 33 })];
     const o = pick(foulRules.options(play(b, { end: 40, result: 'pass_incomplete', incomplete: true }), fouls, b.ctx), 'previous_spot');
     expect(at(b, o)).toBe(30);
     expect(o.outcome.enforcement!.lossOfDown).toBe(true);
     expect(next(b, o, fouls)).toMatchObject({ possession: b.B, down: 1, turnoverOnDowns: true });
   });
 
-  it('B8.1.2: grounding from farther back than the yardage is marked at the spot of the pass; from the end zone it is a safety', () => {
+  it('B8.1.2: intentional_grounding from farther back than the yardage is marked at the spot of the pass; from the end zone it is a safety', () => {
     const b = bench({ ball: 40, dir, down: 2 });
-    const fouls = [foul(b, 'grounding', 'A', { phase: 'pass_play', at: 26 })];
+    const fouls = [foul(b, 'intentional_grounding', 'A', { phase: 'pass_play', at: 26 })];
     const o = pick(foulRules.options(play(b, { end: 40, result: 'pass_incomplete', incomplete: true }), fouls, b.ctx), 'spot_of_foul');
     expect(at(b, o)).toBe(26);
     expect(next(b, o, fouls)).toMatchObject({ down: 3, distanceYd: 24 });
     const deep = bench({ ball: 4, dir });
-    const s = foulRules.options(play(deep, { end: 4, incomplete: true }), [foul(deep, 'grounding', 'A', { phase: 'pass_play', at: -3 })], deep.ctx);
+    const s = foulRules.options(play(deep, { end: 4, incomplete: true }), [foul(deep, 'intentional_grounding', 'A', { phase: 'pass_play', at: -3 })], deep.ctx);
     expect(pick(s, 'safety').outcome.score!.side).toBe(deep.B);
   });
 
@@ -224,7 +224,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.5 rule 2: fouls by both teams with no change of possession offset and the down is replayed; nobody may decline', () => {
     const b = bench({ ball: 30, dir, down: 2, toGo: 7 });
-    const fouls = [foul(b, 'holding_offense', 'A', { at: 31 }), foul(b, 'def_holding', 'B', { at: 40 })];
+    const fouls = [foul(b, 'offensive_holding', 'A', { at: 31 }), foul(b, 'def_holding', 'B', { at: 40 })];
     const opts = foulRules.options(play(b, { end: 52 }), fouls, b.ctx);
     expect(opts).toHaveLength(1);
     expect(opts[0]!.outcome).toMatchObject({ noPlay: true, possessionAfter: b.A });
@@ -273,7 +273,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.5 rule 6: no clean hands (the intercepting team was offside before the throw) offsets and replays', () => {
     const b = bench({ ball: 30, dir, down: 2 });
-    const fouls = [foul(b, 'offside', 'B', { t: 0, phase: 'pass_play' }), foul(b, 'block_in_back', 'A', { at: 50, afterChange: true })];
+    const fouls = [foul(b, 'offside', 'B', { t: 0, phase: 'pass_play' }), foul(b, 'illegal_block_in_back', 'A', { at: 50, afterChange: true })];
     const opts = foulRules.options(play(b, { end: 50, to: 'B', result: 'interception' }), fouls, b.ctx);
     expect(opts).toHaveLength(1);
     expect(opts[0]!.outcome).toMatchObject({ noPlay: true, possessionAfter: b.A, changeOfPossession: false });
@@ -282,7 +282,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.5 rule 6: clean hands (holding before the throw, block in the back on the return) keeps the ball with the intercepting team and enforces its own foul', () => {
     const b = bench({ ball: 30, dir });
-    const fouls = [foul(b, 'holding_offense', 'A', { at: 28, phase: 'pass_play' }), foul(b, 'block_in_back', 'B', { at: 55, afterChange: true })];
+    const fouls = [foul(b, 'offensive_holding', 'A', { at: 28, phase: 'pass_play' }), foul(b, 'illegal_block_in_back', 'B', { at: 55, afterChange: true })];
     const opts = foulRules.options(play(b, { end: 50, to: 'B', result: 'interception' }), fouls, b.ctx);
     expect(opts).toHaveLength(1);
     expect(opts[0]!.outcome.possessionAfter).toBe(b.B);
@@ -293,7 +293,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.5 rule 6 (2024): a personal foul by the offense before the change offsets, and the ball stays where the other foul would be marked from', () => {
     const b = bench({ ball: 30, dir });
-    const fouls = [foul(b, 'unnecessary_roughness', 'A', { phase: 'pass_play' }), foul(b, 'block_in_back', 'B', { at: 55, afterChange: true })];
+    const fouls = [foul(b, 'unnecessary_roughness', 'A', { phase: 'pass_play' }), foul(b, 'illegal_block_in_back', 'B', { at: 55, afterChange: true })];
     const opts = foulRules.options(play(b, { end: 50, to: 'B', result: 'interception' }), fouls, b.ctx);
     expect(opts[0]!.outcome.enforcement!.offsetting).toBe(true);
     expect(opts[0]!.outcome.possessionAfter).toBe(b.B);
@@ -302,7 +302,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.5 rule 7: both teams foul after the change: offset, the team in possession keeps the ball where its foul would be marked from', () => {
     const b = bench({ ball: 30, dir });
-    const fouls = [foul(b, 'face_mask', 'A', { at: 52, afterChange: true }), foul(b, 'block_in_back', 'B', { at: 55, afterChange: true })];
+    const fouls = [foul(b, 'face_mask', 'A', { at: 52, afterChange: true }), foul(b, 'illegal_block_in_back', 'B', { at: 55, afterChange: true })];
     const opts = foulRules.options(play(b, { end: 50, to: 'B', result: 'interception' }), fouls, b.ctx);
     expect(opts).toHaveLength(1);
     expect(opts[0]!.outcome.enforcement!.offsetting).toBe(true);
@@ -381,7 +381,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
   it('B8.5.7 rule 6: a live-ball foul by the scoring team nullifies the score', () => {
     const b = bench({ ball: 80, dir });
     const o = play(b, { end: 100, score: 'touchdown' });
-    const opt = pick(foulRules.options(o, [foul(b, 'holding_offense', 'A', { at: 85 })], b.ctx), 'spot_of_foul');
+    const opt = pick(foulRules.options(o, [foul(b, 'offensive_holding', 'A', { at: 85 })], b.ctx), 'spot_of_foul');
     expect(opt.outcome.score).toBeNull();
     expect(at(b, opt)).toBe(75);
   });
@@ -417,7 +417,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.8 rule 2: the yardage of a loss-of-down foul may be declined while the down is kept', () => {
     const b = bench({ ball: 40, dir, down: 3 });
-    const fouls = [foul(b, 'grounding', 'A', { phase: 'pass_play', at: 33 })];
+    const fouls = [foul(b, 'intentional_grounding', 'A', { phase: 'pass_play', at: 33 })];
     const o = pick(foulRules.options(play(b, { end: 40, incomplete: true }), fouls, b.ctx), 'no_yardage');
     expect(at(b, o)).toBe(40);
     expect(next(b, o, fouls)).toMatchObject({ down: 4 });
@@ -438,7 +438,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
   it('B6.6.1 rule 8: a block in the back by the return team is marked from the end of the kick when that is worse', () => {
     const b = bench({ ball: 30, dir, down: 4 });
     const o = play(b, { end: 60, to: 'B', result: 'punt' });
-    const fouls = [foul(b, 'block_in_back', 'B', { phase: 'scrimmage_kick', at: 70 })];
+    const fouls = [foul(b, 'illegal_block_in_back', 'B', { phase: 'scrimmage_kick', at: 70 })];
     const truth: PlayTruth = { resolverId: 'reference', resolverVersion: '0', gameId: 1, playNumber: 1, originX: b.x(30), originY: 26, attackDir: dir,
       liveDurationTenths: 90, endZoneImpetus: null, events: [
         { type: 'kick', t: 2, kickKind: 'punt', kickerId: 4, kickSpot: { x: b.x(16), y: 26 }, landingSpot: { x: b.x(75), y: 20 }, hangTimeS: 4.4, crossedLine: true, blockedById: null },
@@ -487,10 +487,10 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
   it('B7.3.3: offensive holding on a good two-point try is replayed from the 12; a loss-of-down foul fails the try', () => {
     const b = bench({ ball: 98, dir, playKind: 'try' });
     const o = play(b, { end: 100, result: 'try_good', score: 'try_two' });
-    const again = pick(foulRules.options(o, [foul(b, 'holding_offense', 'A', { phase: 'try', at: 97 })], b.ctx), 'previous_spot');
+    const again = pick(foulRules.options(o, [foul(b, 'offensive_holding', 'A', { phase: 'try', at: 97 })], b.ctx), 'previous_spot');
     expect(at(b, again)).toBe(88);
     expect(again.outcome.score).toBeNull();
-    const fails = pick(foulRules.options(o, [foul(b, 'illegal_forward_pass_beyond_line', 'A', { phase: 'try', at: 99 })], b.ctx), 'try_fails');
+    const fails = pick(foulRules.options(o, [foul(b, 'illegal_forward_pass', 'A', { phase: 'try', at: 99 })], b.ctx), 'try_fails');
     expect(fails.outcome.score).toBeNull();
     expect(fails.outcome.noPlay).toBe(false);
   });
@@ -532,9 +532,9 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
     expect(at(b, both)).toBe(65);
   });
 
-  it('B13.5.4: college grounding from 8 yards behind the line costs 8 yards and the down', () => {
+  it('B13.5.4: college intentional_grounding from 8 yards behind the line costs 8 yards and the down', () => {
     const b = bench({ ball: 40, dir, level: 'college', down: 2 });
-    const fouls = [foul(b, 'grounding', 'A', { phase: 'pass_play', at: 32 })];
+    const fouls = [foul(b, 'intentional_grounding', 'A', { phase: 'pass_play', at: 32 })];
     const o = pick(foulRules.options(play(b, { end: 40, incomplete: true }), fouls, b.ctx), 'spot_of_foul');
     expect(at(b, o)).toBe(32);
     expect(next(b, o, fouls)).toMatchObject({ down: 3, distanceYd: 18 });
@@ -558,7 +558,7 @@ describe.each(DIRS)('Q1.1.1 rule cases for B8, attack direction %i', (dir) => {
 
   it('B8.5.1 step 2: a foul against an official is enforced on its own, in addition to an offset', () => {
     const b = bench({ ball: 30, dir });
-    const fouls = [foul(b, 'holding_offense', 'A', { at: 31 }), foul(b, 'def_holding', 'B', { at: 40 }), foul(b, 'foul_against_official', 'B', { timing: 'dead_ball', playerId: 91 })];
+    const fouls = [foul(b, 'offensive_holding', 'A', { at: 31 }), foul(b, 'def_holding', 'B', { at: 40 }), foul(b, 'foul_against_official', 'B', { timing: 'dead_ball', playerId: 91 })];
     const opts = foulRules.options(play(b, { end: 52 }), fouls, b.ctx);
     expect(opts).toHaveLength(1);
     expect(at(b, opts[0]!)).toBe(45);

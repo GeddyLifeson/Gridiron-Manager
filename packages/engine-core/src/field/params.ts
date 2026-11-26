@@ -11,7 +11,7 @@ export const RULE_KEYS: RuleKeyManifest = [
   { key: 'field.end_zone_depth_ft', type: 'number', unit: 'ft', meaning: 'Depth of each end zone, goal line to end line', ownerLeaf: 'J1.1.1', readBy: READ_BY },
   { key: 'field.width_ft', type: 'number', unit: 'ft', meaning: 'Width of the field, sideline to sideline', ownerLeaf: 'J1.1.1', readBy: READ_BY },
   { key: 'field.hash_from_sideline_ft', type: 'number', unit: 'ft', meaning: 'Distance from each sideline to the inbounds lines (hash marks)', ownerLeaf: 'B13.2.1', readBy: READ_BY },
-  { key: 'field.goal_post_width_ft', type: 'number', unit: 'ft', meaning: 'Distance between the uprights (length of the crossbar)', ownerLeaf: 'J1.1.1', readBy: READ_BY },
+  { key: 'field.goal_width_ft', type: 'number', unit: 'ft', meaning: 'Distance between the uprights (length of the crossbar)', ownerLeaf: 'J1.1.1', readBy: READ_BY },
   { key: 'field.crossbar_height_ft', type: 'number', unit: 'ft', meaning: 'Height of the top of the crossbar above the ground', ownerLeaf: 'J1.1.1', readBy: READ_BY },
   { key: 'field.numbers_bottom_from_sideline_ft', type: 'number', unit: 'ft', meaning: 'Distance from each sideline to the bottom of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram)', ownerLeaf: 'J1.1.3', readBy: READ_BY },
   { key: 'field.numbers_top_from_sideline_ft', type: 'number', unit: 'ft', meaning: 'Distance from each sideline to the top of the yard-line numbers (J1.1.1: not yet extracted from the Rule 1 diagram)', ownerLeaf: 'J1.1.3', readBy: READ_BY },

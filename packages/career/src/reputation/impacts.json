@@ -1,0 +1,588 @@
+{
+ "version": "g52.1",
+ "leaf": "E5.2.1 to E5.2.5, E5.6.1",
+ "note": "Event type ids marked as requested in README are proposals to the owning modules; sizes are E5 starting values (Assumptions).",
+ "transferEventTypes": [
+  "level_changed"
+ ],
+ "retractionTypes": [
+  "report_retracted"
+ ],
+ "rows": [
+  {
+   "kind": "promise_kept",
+   "eventType": "promise_kept",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": 1,
+    "recruits": 1
+   },
+   "leaf": "E5.2.1"
+  },
+  {
+   "kind": "promise_broken",
+   "eventType": "promise_broken",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": -3,
+    "recruits": -3
+   },
+   "leaf": "E5.2.1"
+  },
+  {
+   "kind": "release_told_in_person",
+   "eventType": "player_released",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": 0.5,
+    "recruits": 0.5
+   },
+   "leaf": "E5.2.1",
+   "match": [
+    {
+     "key": "toldBy",
+     "op": "eq",
+     "value": "coach_in_person"
+    }
+   ]
+  },
+  {
+   "kind": "release_learned_from_media",
+   "eventType": "player_released",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": -3,
+    "recruits": -3
+   },
+   "leaf": "E5.2.1",
+   "match": [
+    {
+     "key": "toldBy",
+     "op": "eq",
+     "value": "media"
+    }
+   ]
+  },
+  {
+   "kind": "player_blamed_publicly",
+   "eventType": "player_blamed_publicly",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": -2,
+    "recruits": -2
+   },
+   "leaf": "E5.2.1"
+  },
+  {
+   "kind": "room_player_first_honour",
+   "eventType": "first_team_honour",
+   "subjectRole": "position_coach",
+   "sizes": {
+    "players": 2,
+    "recruits": 2
+   },
+   "leaf": "E5.2.1"
+  },
+  {
+   "kind": "star_treated_lightly",
+   "eventType": "discipline_inconsistent",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": -2,
+    "recruits": -2
+   },
+   "leaf": "E5.2.1",
+   "match": [
+    {
+     "key": "witnessed",
+     "op": "eq",
+     "value": true
+    }
+   ]
+  },
+  {
+   "kind": "lame_duck",
+   "eventType": "lame_duck_season",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": -2,
+    "recruits": -2
+   },
+   "leaf": "E5.2.1",
+   "once": true
+  },
+  {
+   "kind": "authority_removed",
+   "eventType": "authority_removed",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": -3,
+    "recruits": -3
+   },
+   "leaf": "E5.2.1",
+   "once": true
+  },
+  {
+   "kind": "season_above",
+   "eventType": "season_finished",
+   "subjectRole": "coach",
+   "sizes": {
+    "players": 3,
+    "recruits": 3,
+    "administrators_and_owners": 4,
+    "media": 3
+   },
+   "leaf": "E5.2.1, E5.2.3, E5.2.4",
+   "match": [
+    {
+     "key": "bands",
+     "op": "gt",
+     "value": 0
+    }
+   ],
+   "scaleBy": {
+    "administrators_and_owners": "bands"
+   }
+  },
+  {
+   "kind": "season_below",
+   "eventType": "season_finished",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": -4,
+    "media": -3
+   },
+   "leaf": "E5.2.3, E5.2.4",
+   "match": [
+    {
+     "key": "bands",
+     "op": "lt",
+     "value": 0
+    }
+   ],
+   "scaleBy": {
+    "administrators_and_owners": "bands"
+   }
+  },
+  {
+   "kind": "assistant_hired_up",
+   "eventType": "assistant_hired_up",
+   "subjectRole": "former_boss",
+   "sizes": {
+    "peers": 2
+   },
+   "leaf": "E5.2.2"
+  },
+  {
+   "kind": "assistant_move_supported",
+   "eventType": "assistant_hired_up",
+   "subjectRole": "supported_move",
+   "sizes": {
+    "peers": 1
+   },
+   "leaf": "E5.2.2"
+  },
+  {
+   "kind": "interview_blocked",
+   "eventType": "interview_blocked",
+   "subjectRole": "coach",
+   "sizes": {
+    "peers": -2
+   },
+   "leaf": "E5.2.2"
+  },
+  {
+   "kind": "assistant_credited",
+   "eventType": "assistant_credited",
+   "subjectRole": "coach",
+   "sizes": {
+    "peers": 0.5
+   },
+   "leaf": "E5.2.2"
+  },
+  {
+   "kind": "credit_taken",
+   "eventType": "credit_taken",
+   "subjectRole": "coach",
+   "sizes": {
+    "peers": -1
+   },
+   "leaf": "E5.2.2"
+  },
+  {
+   "kind": "assistant_fired_first_year",
+   "eventType": "staff_released",
+   "subjectRole": "released_by",
+   "sizes": {
+    "peers": -1
+   },
+   "leaf": "E5.2.2",
+   "match": [
+    {
+     "key": "firstContractYear",
+     "op": "eq",
+     "value": true
+    }
+   ]
+  },
+  {
+   "kind": "assistant_scapegoated",
+   "eventType": "staff_released",
+   "subjectRole": "released_by",
+   "sizes": {
+    "peers": -2
+   },
+   "leaf": "E5.2.2",
+   "match": [
+    {
+     "key": "unitTopHalf",
+     "op": "eq",
+     "value": true
+    }
+   ]
+  },
+  {
+   "kind": "staff_left_hours",
+   "eventType": "staff_resigned",
+   "subjectRole": "boss",
+   "sizes": {
+    "peers": -1
+   },
+   "leaf": "E5.2.2",
+   "match": [
+    {
+     "key": "reason",
+     "op": "eq",
+     "value": "hours"
+    }
+   ]
+  },
+  {
+   "kind": "clinic_talk",
+   "eventType": "clinic_talk_given",
+   "subjectRole": "coach",
+   "sizes": {
+    "peers": 0.5
+   },
+   "leaf": "E5.2.2"
+  },
+  {
+   "kind": "unit_top_five",
+   "eventType": "unit_ranked",
+   "subjectRole": "coach",
+   "sizes": {
+    "peers": 2
+   },
+   "leaf": "E5.2.2",
+   "match": [
+    {
+     "key": "rank",
+     "op": "lte",
+     "value": 5
+    }
+   ]
+  },
+  {
+   "kind": "postseason_win",
+   "eventType": "postseason_game",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": 2,
+    "fans": 2
+   },
+   "leaf": "E5.2.3, E5.2.5",
+   "match": [
+    {
+     "key": "won",
+     "op": "eq",
+     "value": true
+    }
+   ],
+   "fanBase": true
+  },
+  {
+   "kind": "championship",
+   "eventType": "championship_won",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": 10,
+    "fans": 12
+   },
+   "leaf": "E5.2.3, E5.2.5",
+   "fanBase": true
+  },
+  {
+   "kind": "fired_for_results",
+   "eventType": "coach_fired",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": -5
+   },
+   "leaf": "E5.2.3",
+   "match": [
+    {
+     "key": "reason",
+     "op": "eq",
+     "value": "results"
+    }
+   ]
+  },
+  {
+   "kind": "vindicated_after_firing",
+   "eventType": "team_declined_after_firing",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": 3
+   },
+   "leaf": "E5.2.3"
+  },
+  {
+   "kind": "backed_out_of_offer",
+   "eventType": "offer_reneged",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": -8
+   },
+   "leaf": "E5.2.3"
+  },
+  {
+   "kind": "owner_dispute",
+   "eventType": "owner_dispute_public",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": -3
+   },
+   "leaf": "E5.2.3"
+  },
+  {
+   "kind": "compliance_violation",
+   "eventType": "violation_detected",
+   "subjectRole": "violator",
+   "sizes": {
+    "administrators_and_owners": -6
+   },
+   "leaf": "E5.2.3"
+  },
+  {
+   "kind": "declined_interview_after_applying",
+   "eventType": "interview_declined",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": -1
+   },
+   "leaf": "E5.2.3",
+   "partyOnly": true
+  },
+  {
+   "kind": "availability_met",
+   "eventType": "media_season_closed",
+   "subjectRole": "coach",
+   "sizes": {
+    "media": 1
+   },
+   "leaf": "E5.2.4",
+   "match": [
+    {
+     "key": "skipped",
+     "op": "eq",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "kind": "availability_skipped",
+   "eventType": "media_availability_skipped",
+   "subjectRole": "coach",
+   "sizes": {
+    "media": -1
+   },
+   "leaf": "E5.2.4"
+  },
+  {
+   "kind": "statement_false",
+   "eventType": "statement_shown_false",
+   "subjectRole": "coach",
+   "sizes": {
+    "media": -4
+   },
+   "leaf": "E5.2.4"
+  },
+  {
+   "kind": "candid_answer",
+   "eventType": "candid_answer",
+   "subjectRole": "coach",
+   "sizes": {
+    "media": 1
+   },
+   "leaf": "E5.2.4"
+  },
+  {
+   "kind": "second_guessed_loss",
+   "eventType": "decision_second_guessed",
+   "subjectRole": "coach",
+   "sizes": {
+    "media": -1
+   },
+   "leaf": "E5.2.4",
+   "match": [
+    {
+     "key": "modelCorrect",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "key": "won",
+     "op": "eq",
+     "value": false
+    }
+   ]
+  },
+  {
+   "kind": "second_guessed_win",
+   "eventType": "decision_second_guessed",
+   "subjectRole": "coach",
+   "sizes": {
+    "media": 1
+   },
+   "leaf": "E5.2.4",
+   "match": [
+    {
+     "key": "modelCorrect",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "key": "won",
+     "op": "eq",
+     "value": true
+    }
+   ]
+  },
+  {
+   "kind": "win",
+   "eventType": "game_played",
+   "subjectRole": "coach",
+   "sizes": {
+    "fans": 0.3
+   },
+   "leaf": "E5.2.5",
+   "match": [
+    {
+     "key": "result",
+     "op": "eq",
+     "value": "win"
+    },
+    {
+     "key": "rivalry",
+     "op": "eq",
+     "value": false
+    }
+   ],
+   "fanBase": true
+  },
+  {
+   "kind": "loss",
+   "eventType": "game_played",
+   "subjectRole": "coach",
+   "sizes": {
+    "fans": -0.3
+   },
+   "leaf": "E5.2.5",
+   "match": [
+    {
+     "key": "result",
+     "op": "eq",
+     "value": "loss"
+    },
+    {
+     "key": "rivalry",
+     "op": "eq",
+     "value": false
+    }
+   ],
+   "fanBase": true
+  },
+  {
+   "kind": "rivalry_win",
+   "eventType": "game_played",
+   "subjectRole": "coach",
+   "sizes": {
+    "fans": 0.9
+   },
+   "leaf": "E5.2.5",
+   "match": [
+    {
+     "key": "result",
+     "op": "eq",
+     "value": "win"
+    },
+    {
+     "key": "rivalry",
+     "op": "eq",
+     "value": true
+    }
+   ],
+   "fanBase": true
+  },
+  {
+   "kind": "rivalry_loss",
+   "eventType": "game_played",
+   "subjectRole": "coach",
+   "sizes": {
+    "fans": -0.9
+   },
+   "leaf": "E5.2.5",
+   "match": [
+    {
+     "key": "result",
+     "op": "eq",
+     "value": "loss"
+    },
+    {
+     "key": "rivalry",
+     "op": "eq",
+     "value": true
+    }
+   ],
+   "fanBase": true
+  },
+  {
+   "kind": "left_during_contract",
+   "eventType": "left_during_contract",
+   "subjectRole": "coach",
+   "sizes": {
+    "fans": -10
+   },
+   "leaf": "E5.2.5",
+   "fanBase": true
+  },
+  {
+   "kind": "community_event",
+   "eventType": "community_event",
+   "subjectRole": "coach",
+   "sizes": {
+    "fans": 0.3
+   },
+   "leaf": "E5.2.5",
+   "fanBase": true
+  },
+  {
+   "kind": "award_head_coach",
+   "eventType": "award_won",
+   "subjectRole": "coach",
+   "sizes": {
+    "administrators_and_owners": 3,
+    "media": 3,
+    "fans": 2
+   },
+   "leaf": "E5.6.1",
+   "match": [
+    {
+     "key": "awardKind",
+     "op": "eq",
+     "value": "head_coach"
+    }
+   ]
+  }
+ ]
+}
