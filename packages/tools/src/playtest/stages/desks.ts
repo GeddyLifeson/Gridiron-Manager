@@ -71,7 +71,8 @@ export function deskHooks(rec: Recorder): CareerYearHooks {
     seasonEnd(y, n) {
       if (n === 0 && staffWeeks === 0) rec.add('invalid', 'practice', 'practice.no_staff_week', 'No week ran the staff practice when the user left it alone.', OWNERS.practice);
       if (gamesSeen === 0) rec.add('invalid', 'evaluations', 'scouting.no_game_looks', 'The seat played no game the staff saw on film.', OWNERS.evaluations);
-      if (y.level === 'college' && target === null) rec.add('invalid', 'recruiting', 'recruiting.no_open_class', 'No recruiting class opened during the season.', OWNERS.recruiting);
+      // A world built without its history has no recruit pool until its first season point, so the first season may have no class.
+      if (n > 0 && y.level === 'college' && target === null) rec.add('invalid', 'recruiting', 'recruiting.no_open_class', 'No recruiting class opened during the season.', OWNERS.recruiting);
     },
     summary() {
       return `${practices} practices (${userWeeks} planned by the user), ${gamesSeen} seat games on film, ${target === null ? 'no recruiting acts' : 'recruiting acts queued'}`;
