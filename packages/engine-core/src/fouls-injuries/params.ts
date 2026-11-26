@@ -37,6 +37,9 @@ const SEV = 'B11 call model reads severity; J10.1.1';
 const ROWS = [
   // J10.1.1 common
   ['zDiscipline', 0.4, 0.1, 1, 'logit/z', 'bible', 'J10.2.1', HOLD],
+  // Ruling 2026-11-26 (one pro scale, no level of play): every grade a foul hazard reads is read against how sharp
+  // the other eleven is. 1: two rosters of the same skill foul at the same rate whatever that skill is.
+  ['opposedShare', 1, 0, 1, 'ratio', 'assumption', 'J10.1.1', 'equal rosters at 25, 40, 50 and 75: flags per game do not move with the level'],
   // A committed foul's severity: base + gain * how badly the contest was lost + spread * (u - 0.5), clipped 0 to 1.
   ['severity.base', 0.35, 0, 1, 'ratio', 'assumption', 'J10.1.1', SEV],
   ['severity.gain', 0.4, 0, 1, 'ratio', 'assumption', 'J10.1.1', SEV],
