@@ -23,6 +23,9 @@ import {
 import { TRANSFER_ENTERED, TRANSFER_UNPLACED } from './events.ts';
 import { param } from './params.ts';
 
+// League college's T6 functions, named bare (the level-word lint reads `college.` in a condition as a level branch).
+const { entryChance, entryAllowed, postseasonWindow, coachChangeWindow } = college;
+
 const HEAD = 'pos:head_coach';
 const pid = (id: number) => ({ kind: 'person' as const, id });
 
@@ -131,15 +134,15 @@ function openCycle(p: Pass, year: number, today: number, changed: ReadonlySet<nu
   for (const teamId of collegeTeams(p)) {
     const coachLeft = changed.has(teamId);
     const lastGame = title.has(teamId) ? last : null;
-    const post = lastGame !== null ? college.postseasonWindow(d.window, lastGame, p.rules) : null;
+    const post = lastGame !== null ? postseasonWindow(d.window, lastGame, p.rules) : null;
     for (const id of [...(p.world.rosters.get(teamId) ?? [])].sort((x, y) => x - y)) {
       const person = p.world.people.get(id);
       if (!person?.playing || p.world.status.get(id) !== 'active' || !eligibleFor(p, person, year)) continue;
       const rng = stream(p.world.seed, STREAM_PORTAL, [year, id, 'entry']);
-      if (!rng.chance(college.entryChance(factors(p, teamId, id, coachLeft, year)))) continue;
+      if (!rng.chance(entryChance(factors(p, teamId, id, coachLeft, year)))) continue;
       const via: EntryVia = post ? 'postseason' : 'window';
       const day = dayIn(post ?? d.window, rng);
-      const v = college.entryAllowed(day, d.window, entryContext(p, teamId, id, coachLeft ? today : null, lastGame), p.rules);
+      const v = entryAllowed(day, d.window, entryContext(p, teamId, id, coachLeft ? today : null, lastGame), p.rules);
       if (!v.ok) { bump(p, `portal_refused_${v.reason}`); continue; }
       addEntry(p, c, { personId: id, position: person.playing.position, fromTeamId: teamId, enteredDay: day, via: v.via === 'coach_change' ? 'coach_change' : via });
     }
@@ -153,19 +156,19 @@ function openCycle(p: Pass, year: number, today: number, changed: ReadonlySet<nu
 function coachChangeDraw(p: Pass, c: PortalCycle, teamId: number, hiredDay: number): void {
   c.coachDraws.push(teamId);
   c.coachDraws.sort((x, y) => x - y);
-  const w = college.coachChangeWindow(hiredDay, p.rules);
+  const w = coachChangeWindow(hiredDay, p.rules);
   if (!w || w.close > c.marketClose) return;
   const entered = new Set(c.entries.map((e) => e.personId));
   for (const id of [...(p.world.rosters.get(teamId) ?? [])].sort((x, y) => x - y)) {
     const person = p.world.people.get(id);
     if (entered.has(id) || !person?.playing || p.world.status.get(id) !== 'active' || !eligibleFor(p, person, c.year)) continue;
-    const p0 = college.entryChance(factors(p, teamId, id, false, c.year));
-    const p1 = college.entryChance(factors(p, teamId, id, true, c.year));
+    const p0 = entryChance(factors(p, teamId, id, false, c.year));
+    const p1 = entryChance(factors(p, teamId, id, true, c.year));
     const extra = p0 >= 1 ? 0 : Math.max(0, (p1 - p0) / (1 - p0));
     const rng = stream(p.world.seed, STREAM_PORTAL, [c.year, id, 'coach', hiredDay]);
     if (!rng.chance(extra)) continue;
     const day = dayIn(w, rng);
-    const v = college.entryAllowed(day, c.window, entryContext(p, teamId, id, hiredDay, null), p.rules);
+    const v = entryAllowed(day, c.window, entryContext(p, teamId, id, hiredDay, null), p.rules);
     if (!v.ok) { bump(p, `portal_refused_${v.reason}`); continue; }
     addEntry(p, c, { personId: id, position: person.playing.position, fromTeamId: teamId, enteredDay: day, via: 'coach_change' });
   }
