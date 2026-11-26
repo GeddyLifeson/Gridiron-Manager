@@ -1,0 +1,333 @@
+{
+ "domain": "coaching-convention",
+ "rows": [
+  {
+   "id": "F-legends-0001",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Season passing leaderboards require 14 pass attempts per team game.",
+   "value": 14,
+   "unit": "pass_attempts per team game",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 14
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0002",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Season rushing leaderboards require 6.25 rushing attempts per team game.",
+   "value": 6.25,
+   "unit": "rush_attempts per team game",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 6.25
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0003",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Season receiving leaderboards require 1.875 receptions per team game.",
+   "value": 1.875,
+   "unit": "receptions per team game",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 1.875
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0004",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Season field goal leaderboards require 1 field goal attempt per team game.",
+   "value": 1,
+   "unit": "field_goal_attempts per team game",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0005",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Season punting leaderboards require 2.5 punts per team game.",
+   "value": 2.5,
+   "unit": "punts per team game",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 2.5
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0006",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Career passing rate leaderboards require 1,500 pass attempts.",
+   "value": 1500,
+   "unit": "pass_attempts",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 1500
+    },
+    {
+     "citation": "Wikipedia, \"List of NFL career passer rating leaders\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://en.wikipedia.org/wiki/List_of_NFL_career_passer_rating_leaders",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "value": 1500
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0007",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Career rushing rate leaderboards require 750 rushing attempts.",
+   "value": 750,
+   "unit": "rush_attempts",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 750
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0008",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Career receiving rate leaderboards require 200 receptions.",
+   "value": 200,
+   "unit": "receptions",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 200
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0009",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Career field goal rate leaderboards require 100 field goal attempts.",
+   "value": 100,
+   "unit": "field_goal_attempts",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 100
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0010",
+   "level": "pro",
+   "domain": "coaching-convention",
+   "statement": "Career punting rate leaderboards require 250 punts.",
+   "value": 250,
+   "unit": "punts",
+   "validFor": "17-game regular season (2021 onward)",
+   "sources": [
+    {
+     "citation": "Pro Football Reference, \"Minimum requirements for football leaderboards\" (read by the X3 depth pass, research/depth-pass/X3-log.md)",
+     "locator": "https://www.pro-football-reference.com/about/minimums.htm",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "value": 250
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Reference-site practice for leaderboards, used as the record book qualifier (X3.4.1 rule 3). Network access was blocked from the G-84 thread, so no third source was read: PROVISIONAL. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Sources from the X3 depth pass log"
+    }
+   ]
+  },
+  {
+   "id": "F-legends-0011",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "College record book rate qualifiers use the pro per-team-game rates until the governing body records book is read (X3.4.1 rule 3).",
+   "validFor": "until research lands",
+   "sources": [],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [],
+   "notes": "Research owed: college records book qualification minimums. Cited by packages/app-services/src/read-models/legends/records.json (record qualifiers).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "X3.4.1 rule 3"
+    }
+   ]
+  }
+ ]
+}

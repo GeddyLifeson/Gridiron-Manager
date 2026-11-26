@@ -1,0 +1,281 @@
+{
+ "domain": "measured-rate",
+ "note": "Pace facts read by the game flow's between-play timing (flow/params.ts) and the calibration chart (headless calibration/params.ts). Module-local until the register owner loads them into facts/. Status words: Verified, 2 of 3, 1 of 3, Rulebook only, Conflict, Assumption.",
+ "rows": [
+  {
+   "id": "pace-01",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Snap-to-snap game clock after an in-bounds play when the next play is a huddle play: mean 38.84 s, sd 5.86, median 40 (n 32,105). Game-clock seconds from one snap to the next snap of the same drive and quarter; the first play in bounds and not incomplete, no penalty or timeout on it, gaps over 60 s dropped. Quarters 1 to 3 outside the last two minutes of the half.",
+   "value": 38.84,
+   "unit": "seconds",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3"
+  },
+  {
+   "id": "pace-02",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Snap-to-snap game clock after an in-bounds play when the next play is flagged no huddle: mean 29.87 s, sd 6.56, median 29 (n 4,392). Game-clock seconds from one snap to the next snap of the same drive and quarter; the first play in bounds and not incomplete, no penalty or timeout on it, gaps over 60 s dropped. Quarters 1 to 3 outside the last two minutes of the half.",
+   "value": 29.87,
+   "unit": "seconds",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3"
+  },
+  {
+   "id": "pace-03",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Snap-to-snap game clock after an in-bounds play in the last two minutes of the second quarter when the next play is flagged no huddle: mean 22.30 s, sd 4.88, median 22 (n 1,050).",
+   "value": 22.3,
+   "unit": "seconds",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3"
+  },
+  {
+   "id": "pace-04",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Snap-to-snap game clock after an in-bounds play, quarters 1 to 3, every tempo: mean 37.29 s, sd 7.12, median 39 (n 38,037); by season 37.20, 37.23, 37.44.",
+   "value": 37.29,
+   "unit": "seconds",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3"
+  },
+  {
+   "id": "pace-05",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Play clock used per snap: 32.6 of 40 s in neutral situations (quarters 1 to 3, within 14 points, outside the last two minutes of a half), 32.1 s on all plays. With row pace-04 this puts a live in-bounds play near 5 s.",
+   "value": 32.62,
+   "unit": "seconds",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sharp Football Analysis, NFL team pace stats, 2026 season page dated 2026-11-24: play clock used per snap by team; unweighted mean of the 32 rows computed by the project (32.14 s all plays, 32.62 s neutral)",
+     "locator": "sharpfootballanalysis.com/stats-nfl/nfl-team-pace-stats/",
+     "dateRead": "2026-11-26",
+     "howRead": "page read by a fetch tool, table rows transcribed",
+     "independenceGroup": "sharp-football",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "note": "Different season and a different quantity from rows pace-01 to pace-04, so it is a cross-check of them, not a second source for them. The reference resolver's live plays average 4.3 s, about 1 s short; the flow values are fitted to the snap-to-snap rows with that resolver and should be fitted again when it changes."
+  },
+  {
+   "id": "pace-06",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "No-huddle share of pass and run plays: 0.097 outside the last two minutes of a half (0.080 leaving out a team trailing by nine or more in the fourth quarter, where it is 0.293), 0.172 inside them; after an in-bounds play in the last two minutes it is 0.68 in the second quarter and 0.78 to 0.90 for a team trailing by 1 to 16 in the fourth.",
+   "value": 0.097,
+   "unit": "share",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3"
+  },
+  {
+   "id": "pace-07",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "A team leading in the last five minutes of the fourth quarter snaps late: median snap-to-snap gap 43 s after an in-bounds play (leading by 1 to 8, 5:00 to 2:01, n 495).",
+   "value": 43,
+   "unit": "seconds",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "note": "Not modelled yet: the call has no tempo for it (change request to the schema owner)."
+  },
+  {
+   "id": "pace-08",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "After a runner goes out of bounds outside the last two minutes (clock restarts on the ready signal) the snap-to-snap game clock averages 34.65 s (n 5,823), 4.2 s less than after an in-bounds play.",
+   "value": 34.65,
+   "unit": "seconds",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3"
+  },
+  {
+   "id": "pace-09",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Live time of an incomplete pass (game clock from the snap to the next snap, the clock being stopped between): mean 4.93 s, sd 1.49 (n 7,561).",
+   "value": 4.93,
+   "unit": "seconds",
+   "validFor": "2022-2024",
+   "sources": [
+    {
+     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
+     "locator": "research/pace/pace_nfl2.py, output research/pace/pace_nfl2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3"
+  },
+  {
+   "id": "pace-10",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Snap-to-snap game clock after an in-bounds play, periods 1 to 3 outside the last two minutes of the half, every tempo: mean 33.27 s, sd 9.60, median 35 (n 34,822, the 640 games whose clock ticks on every play; 33.21 s from a second filter over 889 games). Team-season means: sd 3.6 s, 10th to 90th percentile 28.7 to 37.7 s.",
+   "value": 33.27,
+   "unit": "seconds",
+   "validFor": "2023-2024",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play, FBS against FBS regular-season games 2023 and 2024 (1,502 games; 640 with a clock reading on every play), github.com/sportsdataverse/sportsdataverse-data release cfbfastR_cfb_pbp; computed by the project",
+     "locator": "research/pace/pace_cfb2.py, output research/pace/pace_cfb2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastR",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "note": "41% of the play rows repeat the clock of the row before, so only games and stretches with a reading on every play are used."
+  },
+  {
+   "id": "pace-11",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "No-huddle share of college plays: 0.6. No source charts it. It is the mix of the pro huddle gap (pace-01) and the pro no-huddle gap (pace-02) that gives the college mean gap (pace-10): (38.84 - 33.27) / (38.84 - 29.87) = 0.62.",
+   "value": 0.6,
+   "unit": "share",
+   "validFor": "2023-2024",
+   "sources": [],
+   "status": "Assumption"
+  },
+  {
+   "id": "pace-12",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Scrimmage plays per team per game under the first-down clock rule in force since 2023: 65.0 (2023: 65.03, 2024: 65.02; kneel-downs, spikes and flagged plays out; 65.6 with flagged plays in). 2022, the last season the clock stopped on every first down: 66.7.",
+   "value": 65.0,
+   "unit": "plays",
+   "validFor": "2023-2024",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play, FBS against FBS regular-season games 2023 and 2024 (1,502 games; 640 with a clock reading on every play), github.com/sportsdataverse/sportsdataverse-data release cfbfastR_cfb_pbp; computed by the project",
+     "locator": "research/pace/pace_cfb2.py, output research/pace/pace_cfb2_out.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastR",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "note": "The gate's target game.playsPerTeam is 66.1 from 2022 to 2025 pooled, which mixes the two clock rules."
+  },
+  {
+   "id": "pace-13",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "The 40-second play clock starts when the play ends; the 25-second play clock starts with the referee's whistle.",
+   "value": null,
+   "unit": "rule",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NFL rulebook, Rule 4 Section 6 Articles 1 and 2",
+     "locator": "nfl-rules/rulebook_2026.txt lines 1128 to 1146",
+     "dateRead": "2026-11-26",
+     "howRead": "rule text read directly",
+     "independenceGroup": "nfl-rulebook",
+     "primary": true
+    }
+   ],
+   "status": "Rulebook only"
+  },
+  {
+   "id": "pace-14",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "With the 40-second play clock running the ball is ready when an official places it; with the play clock set at 25 seconds it is ready, and the clock starts, when the referee sounds the whistle. The operator starts the 40-second clock within one second of the dead-ball signal.",
+   "value": null,
+   "unit": "rule",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2026 NCAA football rule book, Rule 2 Section 2 Article 4 and Section 29 Article 2",
+     "locator": "research/college/ncaa-rulebook-2026.txt lines 1278 to 1284 and 2002 to 2008",
+     "dateRead": "2026-11-26",
+     "howRead": "rule text read directly",
+     "independenceGroup": "ncaa-rulebook",
+     "primary": true
+    }
+   ],
+   "status": "Rulebook only"
+  }
+ ]
+}

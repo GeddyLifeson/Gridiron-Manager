@@ -40,6 +40,7 @@ export function deathTableProblems(maxAge = 120): string[] {
 export function employedIds(world: LiveWorld): Set<number> {
   const out = new Set<number>();
   for (const j of world.jobs.values()) if (j.holderPersonId !== null) out.add(j.holderPersonId);
+  for (const s of world.offLadder.values()) if (s.holderPersonId !== null) out.add(s.holderPersonId);
   for (const ids of world.rosters.values()) for (const id of ids) out.add(id);
   for (const t of world.teams) for (const id of [t.ownerPersonId, t.athleticDirectorPersonId, t.presidentPersonId]) if (id !== null) out.add(id);
   return out;

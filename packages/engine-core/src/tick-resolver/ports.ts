@@ -51,6 +51,8 @@ export interface PlayServices {
   setup(): PlaySetup;
   /** The input of the play being run: situation, calls, teams, environment. */
   input(): PlayInput;
+  /** The kicking look the play is snapped from (`PlaySetup.kickLook`), or null. */
+  kickLook(): KickLook | null;
   /**
    * The slot of a passer whose arrival contests the quarterback module is resolving this tick (J6.2.5:
    * pressure, hit, sack, escape), or -1. A carrier module must not tackle that man: he is the
@@ -61,8 +63,9 @@ export interface PlayServices {
   claimPasser(slotNow: () => number): void;
   /**
    * The slot the kick operation still owns: the punter until he punts, the holder until the place kick
-   * is struck or the operation fails (a bobble, a lost ball). -1 otherwise. A carrier module leaves
-   * that man alone, exactly like `protectedPasser`.
+   * is struck or the operation fails (a bobble, a lost ball). -1 otherwise, and always -1 on a play from
+   * a kicking look (`kickLook`): nobody kicks, so the man with the ball is a runner or a passer. A
+   * carrier module leaves the owned man alone, exactly like `protectedPasser`.
    */
   kickOwner(): number;
   /**
@@ -146,6 +149,25 @@ export interface PlaySetup {
    * (aiming point, read key) and the return call. Null or absent: every carrier runs on the look-ahead.
    */
   readonly carrier?: CarrierPlay | null;
+  /**
+   * Set when an offensive call is snapped from a kicking formation (a fake, or a play from the kick look
+   * on a try). Null or absent: an ordinary snap. Never with a kick call: a kick call is the kick.
+   */
+  readonly kickLook?: KickLook | null;
+}
+
+/**
+ * A scrimmage play snapped from a kicking formation (F12.7.1, I4.6.1): a fake punt, a fake field goal,
+ * or a play from the kick look on a try. The call is an offensive call; the eleven men are the kicking
+ * unit the coach sent out, lined up by the play's own assignments, and they play with their own grades
+ * (a punter throws like a punter). The engine does three things for it: the long snapper snaps to the
+ * man named here, the ball takes a long snap's time to reach him, and nobody kicks.
+ */
+export interface KickLook {
+  /** The kick the formation shows. It changes nothing in the play; it is recorded so film, statistics and scouting can find the fake. */
+  readonly kind: 'punt' | 'field_goal' | 'try_kick';
+  /** Team slot (0 to 10) the ball is snapped to: the punter, the protector, the holder, the kicker. */
+  readonly snapTo: number;
 }
 
 export interface PlayContentPort {

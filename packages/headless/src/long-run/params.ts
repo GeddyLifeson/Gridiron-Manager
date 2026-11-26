@@ -19,12 +19,13 @@ const ROWS: readonly Row[] = [
   // Q1.6.4 drift test: fit seasons 5 to 30.
   ['drift.fitFrom', 5, 1, 50, 'index', 'bible', 'Q1.6.4', 'Q1.6.4: fit a line over seasons 5 to 30'],
   ['drift.recordsFrom', 10, 1, 50, 'index', 'bible', 'Q1.6.4', 'Q1.6.4: record-fall rate after season 10'],
-  // Tolerances. Q1.6.4 open question: no source read yet. Assumption, research owed.
+  // Default tolerances for series with no real-league row in tolerances.ts (class quality, career length, money and
+  // the like). Assumption, research owed. Real values for scoring, age, turnover and talent spread: tolerances.ts.
   ['drift.slopeShare', 0.005, 0, 1, 'ratio', 'assumption', 'Q1.6.4', 'Largest |slope| per season as a share of the series mean. No source read: Unverified'],
   ['drift.bandShare', 0.25, 0, 10, 'ratio', 'assumption', 'Q1.6.4', 'Default band: every season within this share of the fitted mean. No source read: Unverified'],
   ['series.minSample', 20, 1, 10000, 'count', 'assumption', 'Q1.6.4', 'Fewest people behind a by-position or career value before it is a series point; below it the value is noise'],
   ['drift.recordWindow', 5, 2, 20, 'count', 'assumption', 'Q1.6.4', 'Seasons per window when testing that record falls decline'],
-  ['drift.recordSteadyRate', 0.2, 0, 10, 'ratio', 'assumption', 'Q1.6.4', 'Record falls per tracked record per season that count as a low steady rate. No source read: Unverified'],
+  ['drift.recordSteadyRate', 0.06, 0, 10, 'ratio', 'assumption', 'Q1.6.4', 'Record falls per tracked record per season that count as a low steady rate. Real NFL 2020-2024: 0.059 (F-measured-rate-0365, 1 of 3, nflverse only)'],
 ];
 
 export const PARAMS: ParamFile = {
