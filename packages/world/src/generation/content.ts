@@ -52,8 +52,14 @@ export interface LevelSpec {
   readonly bossChairs: readonly ('owner' | 'athletic_director' | 'president')[];
   /** Founding player ages: 'curve' is the X10.2.2 rule 1 quantile curve, 'class_years' is rule 2. */
   readonly ageModel: 'curve' | 'class_years';
-  /** Talent request for one founding player (D13.2.1), drawing from the slot's stream where the level uses tiers. */
-  readonly talent: (s: import('@gm/schema').RandomStream) => import('@gm/people').generator.Talent;
+  /**
+   * Talent request for one founding player (D13.2.1), drawing from the slot's stream where the level uses tiers.
+   * `programZ` is the team's program strength (founding `programStrength`, T12.2.1) where the level ranks
+   * programs; a level that ignores it draws every team from one mix.
+   */
+  readonly talent: (s: import('@gm/schema').RandomStream, programZ?: number) => import('@gm/people').generator.Talent;
+  /** Founding ranks this level's teams by program strength (college: T12.2.1 talent gap between programs). */
+  readonly programStrength?: boolean;
   /** X1.2.1 population group for players at this level. */
   readonly playerGroup: string;
   /** L3 violation class ids of the level (content), for the culture record. */

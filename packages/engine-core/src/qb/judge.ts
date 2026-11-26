@@ -31,6 +31,9 @@ export interface JudgeContext {
   /** His own error for a throw of these air yards from his current platform (J7.6.2). He knows his arm. */
   accuracySdYd(airYd: number): number;
   wet: boolean;
+  /** The sidelines in the play frame, when the caller knows them: he does not expect a receiver to run out of bounds. */
+  loPy?: number;
+  hiPy?: number;
   /** A Hail Mary or free play is thrown even past his range. */
   allowOutOfRange: boolean;
   /**
@@ -280,6 +283,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
         ax = rx + vx * arrive; ay = ry + vy * arrive;
         if (speed > 0) { dirX = vx / speed; dirY = vy / speed; }
       }
+      if (ctx.loPy !== undefined && ctx.hiPy !== undefined) {
+        const lo = ctx.loPy + p['judge.sidelineRoomYd'], hi = ctx.hiPy - p['judge.sidelineRoomYd'];
+        if (lo < hi) ay = ay < lo ? lo : ay > hi ? hi : ay;
+      }
       dist = hyp(ax - qx, ay - qy);
       flight = ctx.flightS(dist, trajectory);
       arrive = releaseInS + flight;
@@ -298,7 +305,12 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     for (let d = first; d < first + SLOTS_PER_TEAM && d < SLOT_COUNT; d++) {
       const e = view.entity(d);
       if (e === null) continue;
-      const react = arrive < p['judge.defenderReactS'] ? arrive : p['judge.defenderReactS'];
+      // A defender breaks on the ball when it leaves the hand, not when the quarterback makes up his mind: until
+      // the release and his own reaction he holds the course he is on. Starting every defender at the decision gave
+      // each one the release time as a head start (about 3.5 yd), so he read nearly every short throw as contested
+      // (0.5 yd of separation, 0.4 to 0.6 to complete) while those same throws were caught 65 to 70% of the time.
+      const hold = releaseInS + p['judge.defenderReactS'];
+      const react = arrive < hold ? arrive : hold;
       const ex = e.px + e.velPx * react, ey = e.py + e.velPy * react;
       const d0 = hyp(ax - e.px, ay - e.py);
       const toward = d0 > 0 ? (e.velPx * (ax - e.px) + e.velPy * (ay - e.py)) / d0 : 0;
@@ -342,7 +354,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     const radius = ctx.catchPoint.catchRadiusYd(0, false) + p['judge.reachAdjustYd'], sd = ctx.accuracySdYd(air);
     const catchable = insideRadiusShare(radius, sd, ctx.math), placement = expectedPlacementError(radius, sd);
     let pHat: number, iHat: number;
-    if (nearest >= 0 && ctx.catchPoint.isContested(sepEst)) {
+    // A defender can play any ball that comes down inside his reach (the catch-point stage gives him the same radius),
+    // so that is the separation at which the throw stops being open. Judging it open down to one yard had him throw
+    // deep balls he read as uncovered into two defenders in five.
+    if (nearest >= 0 && sepEst <= radius) {
       const probs = ctx.catchPoint.contestedProbabilities({
         zContestedCatch: target.zContestedCatch ?? 0, zBallSkills: 0, position, ballLocated: position !== 'trail', placementError: placement, hitAtCatch: false, wet: ctx.wet,
       });
@@ -350,7 +365,11 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
       iHat = catchable * probs[2]! + (1 - catchable) * p['judge.missPickContested'];
     } else {
       pHat = catchable * ctx.catchPoint.uncontestedCatchProbability({ zHands: target.zHands ?? 0, placementError: placement, hitAtCatch: false, wet: ctx.wet });
-      iHat = (1 - catchable) * p['judge.missPickOpen'];
+      // A long ball that misses hangs for defenders he never looked at (the deep safety is rarely in his view when he
+      // watches the receiver). With one flat share he rated a 30 yd throw 1.4% to be picked; those throws were picked
+      // 4 to 12% of the time (real 5.8% at 21 to 30 yd, 8.1% beyond), and he threw them at every chance.
+      const far = air - p['acc.midFromYd'];
+      iHat = (1 - catchable) * (p['judge.missPickOpen'] + (far > 0 ? far * p['judge.missPickOpenPerYd'] : 0));
     }
     pHat *= 1 - blocked;
     iHat = iHat * (1 - blocked) + blocked * p['judge.lanePickShare'];
@@ -360,7 +379,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     let yac = p['judge.yacBaseYd'] + p['judge.yacPerSepYd'] * openYd;
     if (yac > p['judge.yacMaxYd']) yac = p['judge.yacMaxYd'];
     s.yards = ax + yac;
-    s.v = pHat * ctx.value.yards(s.yards) - iHat * ctx.value.turnoverCost;
+    // A ball that is neither caught nor intercepted costs the down. Without that cost a covered deep throw (one
+    // chance in four for 25 yards) rated above the threshold, and he threw it.
+    const pInc = 1 - pHat - iHat;
+    s.v = pHat * ctx.value.yards(s.yards) - iHat * ctx.value.turnoverCost - (pInc > 0 ? pInc : 0) * (ctx.value.incompleteCost ?? 0);
     if (alert && nearest >= 0 && ax - nearX >= p['judge.alertLeadYd']) s.v += p['judge.alertBonusEp'];
     s.ax = ax; s.ay = ay; s.dirX = dirX; s.dirY = dirY; s.dist = dist; s.flight = flight; s.arrive = arrive; s.sepEst = sepEst;
     s.minLane = minLane; s.laneAlong = laneAlong; s.blocked = blocked; s.nearest = nearest; s.nearX = nearX; s.nearY = nearY;
@@ -395,5 +417,6 @@ export function standInValue(p: QbParams, down: number | null, toGoYd: number | 
   return {
     yards: (gain) => perYd * gain + (toGoYd !== null && gain >= toGoYd ? bonus : 0),
     turnoverCost: p['value.turnoverCostEp'],
+    incompleteCost: p['value.incompleteCostEp'],
   };
 }

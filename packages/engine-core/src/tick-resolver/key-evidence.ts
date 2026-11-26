@@ -79,7 +79,10 @@ export function createKeyEvidence(): KeyEvidence {
     const dx = px[base + key]! - px0[key]!, dy = py[base + key]! - py0[key]!;
     if (cls[key] === C_LINE) {
       const h = hatTick[key]! >= 0 && hatTick[key]! <= seen ? hat[key]! : H_NONE;
-      if (h === H_PULL_LEFT || h === H_PULL_RIGHT) { out[0] = q['keyRead.pullEvidence']!; out[1] = h === H_PULL_LEFT ? 1 : -1; }
+      // After the mesh a quarterback who has gone back off his spot with the ball outweighs what the line's first
+      // step showed: the defender has seen through the fake (J3.3.1), and his read can come back to pass.
+      if (qbHolds && meshed && px[base + c]! - px0[c]! <= -q['keyRead.qbDropStepYd']!) out[0] = q['keyRead.qbDropEvidence']!;
+      else if (h === H_PULL_LEFT || h === H_PULL_RIGHT) { out[0] = q['keyRead.pullEvidence']!; out[1] = h === H_PULL_LEFT ? 1 : -1; }
       else if (h === H_LOW) out[0] = q['keyRead.lineRunEvidence']!;
       else if (h === H_HIGH) out[0] = q['keyRead.linePassEvidence']!;
     } else if (cls[key] === C_QB) {

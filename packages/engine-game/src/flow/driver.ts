@@ -12,7 +12,7 @@
 import { Contract, stateHash } from '@gm/engine-core';
 import { OPT, TENTHS_PER_S, flowParam } from './params.ts';
 import { UNIT_START_PHASES } from './table.ts';
-import { applyEvent, replayEvents, resolvePlay } from './apply.ts';
+import { applyEvent, keepResolvedPlay, replayEvents, resolvePlay } from './apply.ts';
 import { defaultLineup, defaultOpposingCall, defaultSnappingCall, defaultTossChoice, loserMenu, tossMenu } from './defaults.ts';
 import {
   SIDES, isFreeKick, other, periodExpired, publicCalled, rulingContext, seriesFromRestart, situationOf,
@@ -414,7 +414,9 @@ function buildRecord(
   };
   // The hash is of the state this record leads to, from the state as it stands now (the choices around the play are in it).
   const resolved = resolvePlay(r.deps, r.state, draft);
-  return { record: { ...draft, stateHash: stateHash(resolved.state) }, overtimeStep: resolved.overtimeStep };
+  const record: Contract.PlayRecord = { ...draft, stateHash: stateHash(resolved.state) };
+  keepResolvedPlay(r.deps, r.state, record, resolved.state);
+  return { record, overtimeStep: resolved.overtimeStep };
 }
 
 /** The dead ball after a play record (J11.3 to J11.5): score, drive, stoppages, runoff, then the spotted ball. */
