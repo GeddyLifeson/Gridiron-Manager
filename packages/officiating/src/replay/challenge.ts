@@ -1,7 +1,8 @@
 // Who may start a review (B9.1.1, B9.1.2, B13.9.1). The count of challenges, the condition for one
 // more, the timeout a challenge needs and the plays kept for the booth are rule keys.
-import type { CalledPlay, PlayResultType, ReviewRequest, RulingAspect, RulingContext, Side } from '@gm/schema';
+import type { CalledPlay, FoulRecord, PlayResultType, ReviewRequest, RulingAspect, RulingContext, Side } from '@gm/schema';
 import { foulReplaySwitch } from '../crew/index.ts';
+import { catalogue, foulExists } from '../fouls/index.ts';
 import { changesTheResult, evidenceQuality, reviewCanChange } from './evidence.ts';
 import { KEY, MODEL, REFUSED, REPLAY, THIRD_IF, boothOnlyKey } from './params.ts';
 
@@ -56,7 +57,7 @@ export function challengeRefusal(called: CalledPlay | null, side: Side, ctx: Rul
   if (ctx.situation.overtime && !ctx.rules.bool(KEY.allowedInOvertime)) return REFUSED.overtime;
   if (ctx.rules.opt(KEY.model) === MODEL.challengePlusBooth && (boothOnlySituation(ctx) || (called !== null && boothOnlyRuling(called, ctx)))) return REFUSED.boothOnly;
   if (challengesLeft(side, ctx) === 0) return REFUSED.noChallenges;
-  if (ctx.rules.bool(KEY.requiresTimeout) && ctx.before.timeoutsLeft[side] === 0) return REFUSED.noTimeout;
+  if (ctx.rules.bool(KEY.needsTimeout) && ctx.before.timeoutsLeft[side] === 0) return REFUSED.noTimeout;
   return null;
 }
 
@@ -96,4 +97,30 @@ export function challengeAccounting(request: ReviewRequest, result: { allowed: b
   // A team with no timeout left has none to lose: it is fouled instead (rule 5), never charged a timeout it does not have.
   const hasTimeout = request.side !== null && ctx.before.timeoutsLeft[request.side] > 0;
   return { challengeLost: !won, timeoutCharged: hasTimeout && (!won || !ctx.rules.bool(KEY.overturnRefundsTimeout)) };
+}
+
+/** The foul of B9.1.1 rule 5 in the foul catalogue (B8.1.2). */
+export const NO_TIMEOUT_FOUL = 'challenge_without_timeout';
+
+/**
+ * The flag the officials throw for a coach's challenge (B9.1.1 rule 5), or null when none is due.
+ * A team that challenges when it has exhausted its timeouts is fouled where the level has that foul
+ * (pro: Rule 15-1-1(d) penalty, 15 yards, always a foul between downs by 14-1-2 Item 4 exception).
+ * Where it does not (college: 12-5-1-b-6, and 3-3-1-b says the request is not acknowledged) the
+ * challenge simply gets no review. The foul is no act of the play: it has no player and no truth
+ * event, and as a foul between downs its spot and phase are recorded, never enforced from.
+ */
+export function challengeFoul(request: ReviewRequest, called: CalledPlay, t: number, ctx: RulingContext): FoulRecord | null {
+  if (request.source !== 'coach_challenge' || request.side === null) return null;
+  if (!ctx.rules.bool(KEY.needsTimeout) || ctx.before.timeoutsLeft[request.side] > 0) return null;
+  if (!foulExists(NO_TIMEOUT_FOUL, ctx.rules)) return null;
+  const row = catalogue(NO_TIMEOUT_FOUL, ctx);
+  const o = called.calledOutcome;
+  return {
+    foulId: NO_TIMEOUT_FOUL, side: request.side, playerId: null, spot: { x: o.spotX, y: o.spotY }, t,
+    timing: 'between_downs', phase: ctx.situation.playKind === 'try' ? 'try' : 'running_play',
+    yards: row.yards, afd: row.afd, lod: row.lod, spotFoul: row.spotFoul, runoffEligible: row.runoffEligible,
+    foulClass: row.foulClass, dq: row.dq, beforeChangeOfPossession: true,
+    eventIndex: null, sameAct: null, called: true, correct: true, flagrant: false,
+  };
 }

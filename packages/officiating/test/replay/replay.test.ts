@@ -8,8 +8,10 @@ import {
 } from '@gm/schema';
 import { CREW, crewModel, foulsAfterReview, seenFrom } from '../../src/crew/index.ts';
 import {
-  PARAMS, REFUSED, REPLAY, RULE_KEYS, boothMayReview, challengeAccounting, challengeRefusal, challengesLeft, evidenceQuality, replayParamNames, replayRules,
+  NO_TIMEOUT_FOUL, PARAMS, REFUSED, REPLAY, RULE_KEYS, boothMayReview, challengeAccounting, challengeFoul, challengeRefusal, challengesLeft, evidenceQuality, replayParamNames, replayRules,
 } from '../../src/replay/index.ts';
+import { resolveRuleSet } from '@gm/rules-data';
+import { createOfficiating } from '../../src/facade/index.ts';
 import { candidatesOf, ctx, ev, plays, truthOf, type CtxOptions } from '../crew/helpers.ts';
 import { PROB_FLOOR, type TruthEvent } from '@gm/schema';
 
@@ -119,7 +121,9 @@ describe('B9.1.1 the coach\'s challenge', () => {
   it('the number of challenges and the timeout rule are read from the rule set', () => {
     expect(challengesLeft(0, ctx({ rules: { 'challenge.count': 1 }, before: { challengesUsed: [1, 0], challengesWon: [0, 0] } }))).toBe(0);
     expect(challengesLeft(0, ctx({ rules: { 'challenge.third_if': 'never' }, before: { challengesUsed: [2, 0], challengesWon: [2, 0] } }))).toBe(0);
-    expect(challengeRefusal(play(), 0, ctx({ rules: { 'challenge.requires_timeout': false }, situation: { timeoutsLeft: [0, 0] } }))).toBeNull();
+    expect(challengeRefusal(play(), 0, ctx({ rules: { 'challenge.needs_available_timeout': false }, situation: { timeoutsLeft: [0, 0] } }))).toBeNull();
+    // Break test: the pro book challenges by flag (requires_timeout false) and still needs a timeout (15-1-1(d)).
+    expect(challengeRefusal(play(), 0, ctx({ rules: { 'challenge.requires_timeout': false }, situation: { timeoutsLeft: [0, 0] } }))).toBe(REFUSED.noTimeout);
   });
 });
 
@@ -487,5 +491,52 @@ describe('B13.9.1 the all-plays booth model, and fouls a rule set sends to repla
       const quiet = crewModel.perceive(numbered(none, 1), [], ctx({ model, params: { [CREW.phantomMaxChance]: 0 } }));
       expect(replayRules.boothReview(calledPlay(quiet.rulings, {}, quiet.fouls), c)).toBeNull();
     }
+  });
+});
+
+describe('B9.1.1 rule 5: a challenge with no timeouts left, on the real rule sets (break test)', () => {
+  const off = createOfficiating();
+  /** The fixture context with a real level's rule set. Plain run, side 0 attacking east, dead at x = 44. */
+  const at = (level: 'pro_2026' | 'college_2026', timeoutsLeft: [number, number]): RulingContext =>
+    ({ ...ctx({ situation: { timeoutsLeft } }), rules: resolveRuleSet(level) });
+  const thrown = (level: 'pro_2026' | 'college_2026', timeoutsLeft: [number, number]) => {
+    const c = at(level, timeoutsLeft);
+    const truth = plays.run(44);
+    const called = off.rulePlay(truth, c);
+    return { called, res: off.review(called, truth, challenge([], 0), c) };
+  };
+
+  it('pro: no review and no timeout, and a 15-yard foul between downs on the team that threw the flag (15-1-1(d), 14-1-2 Item 4)', () => {
+    const { called, res } = thrown('pro_2026', [0, 3]);
+    expect(called.fouls.filter((f) => f.called)).toEqual([]);
+    expect(res).toMatchObject({ allowed: false, refusedKey: REFUSED.noTimeout, reversed: [], timeoutCharged: false, challengeLost: true });
+    const flags = res.called.fouls.filter((f) => f.called);
+    expect(flags).toMatchObject([{ foulId: NO_TIMEOUT_FOUL, side: 0, playerId: null, timing: 'between_downs', yards: 15, eventIndex: null }]);
+    // The run stands. The opponent may decline (B8.5.8); accepting walks the challenger back 15 yards from the
+    // succeeding spot (the crew's spot of the run), and that is the default for the opponent.
+    expect(res.called.rulings).toEqual(called.rulings);
+    const idx = res.called.fouls.indexOf(flags[0]!);
+    const accepted = res.called.options.filter((o) => o.outcome.enforcement?.enforced.includes(idx));
+    expect(accepted).toHaveLength(1);
+    expect(accepted[0]).toMatchObject({ side: 1, outcome: { possessionAfter: 0, noPlay: false } });
+    expect(accepted[0]!.outcome.spotX).toBeCloseTo(called.calledOutcome.spotX - 15, 6);
+    expect(res.called.defaultOptionId).toBe(accepted[0]!.optionId);
+  });
+
+  it('pro with a timeout left: the flag at a play that names nothing reviewable costs that timeout and draws no foul (rule 4a)', () => {
+    const { called, res } = thrown('pro_2026', [1, 3]);
+    expect(res).toMatchObject({ allowed: false, refusedKey: REFUSED.notReviewable, timeoutCharged: true });
+    expect(res.called).toEqual(called);
+  });
+
+  it('college: the request is not acknowledged; no review, no timeout, no foul (12-5-1-b-6, 3-3-1-b)', () => {
+    const { called, res } = thrown('college_2026', [0, 3]);
+    expect(res).toMatchObject({ allowed: false, refusedKey: REFUSED.noTimeout, reversed: [], timeoutCharged: false });
+    expect(res.called).toEqual(called);
+  });
+
+  it('both levels say a challenge needs a timeout; only the pro book has the foul', () => {
+    for (const level of ['pro_2026', 'college_2026'] as const) expect(challengeRefusal(null, 0, at(level, [0, 3]))).toBe(REFUSED.noTimeout);
+    expect(challengeFoul(challenge([], 1), thrown('pro_2026', [0, 3]).called, 0, at('pro_2026', [0, 3]))).toBeNull(); // side 1 has timeouts
   });
 });

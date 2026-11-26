@@ -12,7 +12,7 @@ import { crewModel, foulsAfterReview } from '../crew/index.ts';
 import { foulRules, optionsFromTruth } from '../fouls/index.ts';
 import { createKickRuling, type KickRuling } from '../kick/index.ts';
 import { createOvertimeRules, type OvertimeRulesX } from '../overtime/index.ts';
-import { challengeAccounting, replayRules } from '../replay/index.ts';
+import { challengeAccounting, challengeFoul, replayRules } from '../replay/index.ts';
 import { createRestartRules, type RestartRulesX } from '../restart/index.ts';
 import { clockFacts, scrimmageRuling } from '../scrimmage/index.ts';
 import { attackDirOf, forwardYards, seriesRules } from '../series/index.ts';
@@ -126,7 +126,13 @@ export function createOfficiating(parts: FacadeParts = {}): OfficiatingFacade {
       const seenBy = crew.perceive(truth, fouls.candidates(truth, ctx), ctx);
       const res = replay.review(seenBy.seen, truth, called.rulings, request, ctx);
       const cost = challengeAccounting(request, res, ctx);
-      if (!res.allowed || res.reversed.length === 0) return { allowed: res.allowed, refusedKey: res.refusedKey, reversed: [], called, ...cost };
+      if (!res.allowed || res.reversed.length === 0) {
+        // A challenge with no timeout left draws a flag where the level has that foul (B9.1.1 rule 5).
+        const last = truth.events[truth.events.length - 1];
+        const foul = challengeFoul(request, called, last === undefined ? 0 : last.t, ctx);
+        const out = foul === null ? called : assemble(truth, seenBy.seen, called.rulings, [...called.fouls, foul], ctx);
+        return { allowed: res.allowed, refusedKey: res.refusedKey, reversed: [], called: out, ...cost };
+      }
       const reversed = new Set(res.reversed);
       const rulings = called.rulings.map((r, i) => (reversed.has(i) ? { ...r, calledValue: r.trueValue } : r));
       const records = foulsAfterReview(called.fouls, called.rulings, res.reversed);

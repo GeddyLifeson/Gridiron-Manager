@@ -35,6 +35,7 @@ function fixtureValues(model: 'challenge_plus_booth' | 'booth_all_plays'): Map<s
     ['challenge.count', 2],
     ['challenge.third_if', 'either_of_first_two_won'],
     ['challenge.requires_timeout', true],
+    ['challenge.needs_available_timeout', true],
     ['challenge.overturn_refunds_timeout', true],
     ['challenge.allowed_in_overtime', !flag],
     ['replay.no_recovery_end_zone_yardline', 1],

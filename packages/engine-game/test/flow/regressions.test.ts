@@ -261,3 +261,43 @@ describe('deciders cannot learn the truth of the last play (EX-0001, exploit sea
     }
   });
 });
+
+describe('a coach with no timeout left may still throw the challenge flag (break test, B9.1.1 rules 4a and 5)', () => {
+  const QUIET_3: FakeScript = (sit) => (sit.playNumber === 1 ? { yards: 60, ret: 10 } : sit.playNumber <= 3 ? { ...QUIET, yards: 4 } : undefined);
+  /** The flag the officiating adds for the refused throw (the pro foul); the flow must keep it in the play. */
+  const FLAG: Contract.FoulRecord = {
+    foulId: 'challenge_without_timeout', side: 0, playerId: null, spot: { x: 50, y: 26.65 }, t: 4, timing: 'between_downs', phase: 'running_play',
+    yards: 15, afd: false, lod: false, spotFoul: false, runoffEligible: false, foulClass: 'other', dq: 'none', beforeChangeOfPossession: true,
+    eventIndex: null, sameAct: null, called: true, correct: true, flagrant: false,
+  };
+  const refusing: FakeGameOptions['officiating'] = (fake) => ({
+    ...fake,
+    review: (called, truth, request, ctx) => (request.source === 'coach_challenge'
+      ? { allowed: false, refusedKey: 'replay.refused.no_timeout', reversed: [], called: { ...called, fouls: [...called.fouls, { ...FLAG, side: request.side! }] }, timeoutCharged: false, challengeLost: true }
+      : fake.review(called, truth, request, ctx)),
+  });
+  const flagOn3 = { pick: (req: Contract.DecisionRequest, sit: Contract.GameSituation) =>
+    (req.type === 'challenge' && sit.playNumber === 3 && req.side === sit.offense ? OPT.challengeFlag : undefined) };
+
+  it('the flag is offered, names nothing, costs no timeout, and the officials\' flag is kept in the play', () => {
+    const r = runChecked(fakeGame({ seed: 3, script: QUIET_3, policy: flagOn3, officiating: refusing, rulesOver: { 'timeout.per_half': 0 } }));
+    expect(r.problems).toEqual([]);
+    const offered = eventsOfType(r.result.events, 'decision_requested').filter((e) => e.request.type === 'challenge');
+    expect(offered.length).toBeGreaterThan(0);
+    for (const e of offered) expect(e.request.options.map((o) => o.optionId)).toEqual([OPT.none, OPT.challengeFlag]);
+    const rec = r.result.records[2]!;
+    const reviews = eventsOfType(r.result.events, 'review_resolved');
+    expect(reviews).toHaveLength(1);
+    expect(reviews[0]).toMatchObject({ reversed: false, request: { source: 'coach_challenge', side: rec.situation.offense, aspects: [] } });
+    expect(eventsOfType(r.result.events, 'timeout_charged').filter((e) => e.kind === 'team')).toEqual([]);
+    expect(rec.called.fouls.filter((f) => f.foulId === FLAG.foulId)).toMatchObject([{ side: rec.situation.offense, called: true }]);
+    expect(r.result.final.challengesUsed).toEqual([0, 0]);
+  });
+
+  it('with timeouts left the flag is never offered: a coach who may challenge names a ruling', () => {
+    const r = runChecked(fakeGame({ seed: 3, script: QUIET_3 }));
+    for (const e of eventsOfType(r.result.events, 'decision_requested')) {
+      if (e.request.type === 'challenge') expect(e.request.options.map((o) => o.optionId)).not.toContain(OPT.challengeFlag);
+    }
+  });
+});

@@ -6,7 +6,7 @@ import { review } from './review.ts';
 
 export { PARAMS, RULE_KEYS, REPLAY, KEY, MODEL, THIRD_IF, REFUSED, BOOTH_ONLY, boothOnlyKey, assistKey, replayParamNames, type BoothOnly } from './params.ts';
 export { evidenceQuality, isWrong, changesTheResult, reviewCanChange, assistCanChange } from './evidence.ts';
-export { boothOnlySituation, boothOnlyRuling, boothMayReview, challengesLeft, challengeRefusal, challengeable, boothReview, challengeAccounting } from './challenge.ts';
+export { boothOnlySituation, boothOnlyRuling, boothMayReview, challengesLeft, challengeRefusal, challengeable, boothReview, challengeAccounting, challengeFoul, NO_TIMEOUT_FOUL } from './challenge.ts';
 export { review, placementValues, type ReviewOutcome } from './review.ts';
 
 /** The replay rules of WP-05. They keep no state between calls. */

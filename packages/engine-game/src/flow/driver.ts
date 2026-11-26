@@ -359,7 +359,8 @@ function unitPlay(r: Run): void {
   // Replay (B9): a booth review, or one coach's challenge. The ruling steps after it run again.
   const review = (request: Contract.ReviewRequest) => {
     const res = off.review(called, result.truth, request, ctx);
-    if (res.allowed) called = res.called;
+    // A refused challenge keeps the ruling, but may add a flag (B9.1.1 rule 5), so the play is always taken back.
+    called = res.called;
     r.lastCalled = publicCalled(called);
     r.emit({ type: 'review_resolved', request: res.allowed ? request : { ...request, aspects: [] }, reversed: res.allowed && res.reversed.length > 0, record: draft(called, null).record });
     if (res.timeoutCharged && request.side !== null) r.emit({ type: 'timeout_charged', side: request.side, kind: 'team' });
@@ -370,8 +371,14 @@ function unitPlay(r: Run): void {
   else {
     for (const side of [offense, other(offense)]) {
       const aspects = off.replay.challengeable(called, side, ctx);
-      if (aspects.length === 0) continue;
-      const d = r.ask({ type: 'challenge', side, options: [OPT.none, ...aspects], defaultOptionId: OPT.none });
+      // The throw is never blocked (B9.1.1 rule 4a): a coach with no timeout left may still throw the flag at a
+      // reviewable ruling. It names nothing and gets no review; the officiating charges what the level says
+      // (pro: 15 yards, rule 5; college: the request is not acknowledged). Other refused throws (no challenge
+      // left, booth-only plays) are not offered yet.
+      const outOfTimeouts = r.deps.rules.bool('challenge.needs_available_timeout') && r.state.timeoutsLeft[side] === 0;
+      const options = aspects.length > 0 ? aspects : outOfTimeouts && called.rulings.some((x) => x.reviewable) ? [OPT.challengeFlag] : [];
+      if (options.length === 0) continue;
+      const d = r.ask({ type: 'challenge', side, options: [OPT.none, ...options], defaultOptionId: OPT.none });
       if (d.optionId === null || d.optionId === OPT.none) continue;
       review({ source: 'coach_challenge', side, aspects: aspects.filter((a) => a === d.optionId) });
       break;
