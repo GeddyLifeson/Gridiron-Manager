@@ -102,6 +102,118 @@
     "age_based_five_year",
     "seasons_four_year"
    ]
+  },
+  {
+   "key": "league.preseason_roster_limit",
+   "type": "number",
+   "meaning": "Camp participant limit before the declaration date",
+   "ownerLeaf": "T5.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.field_size",
+   "type": "number",
+   "meaning": "Playoff clubs per bracket group",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.grouping",
+   "type": "option",
+   "meaning": "Whether the bracket is per conference or national",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "conference",
+    "national"
+   ]
+  },
+  {
+   "key": "playoff.byes",
+   "type": "number",
+   "meaning": "First-round byes per bracket group",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.campus_rounds",
+   "type": "number",
+   "meaning": "Rounds hosted by the higher seed",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "cfp.power_champions_auto",
+   "type": "boolean",
+   "meaning": "Power conference champions get automatic bids",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "cfp.other_auto_bids",
+   "type": "number",
+   "meaning": "Automatic bids for the best team outside the power conferences",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "cfp.independent_auto_rank",
+   "type": "number",
+   "meaning": "Independent automatic bid rank",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "rank"
+  },
+  {
+   "key": "bowl.eligibility_wins",
+   "type": "number",
+   "meaning": "Wins for bowl eligibility",
+   "ownerLeaf": "T3.5.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "wins"
+  },
+  {
+   "key": "bowl.lower_division_wins_counted",
+   "type": "number",
+   "meaning": "Lower-division wins counted for bowl eligibility",
+   "ownerLeaf": "T3.5.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "wins"
+  },
+  {
+   "key": "bowl.fill_min_wins",
+   "type": "number",
+   "meaning": "Fewest wins for a team that fills an open bowl spot",
+   "ownerLeaf": "T3.5.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "wins"
   }
  ]
 }

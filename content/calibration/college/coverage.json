@@ -1,0 +1,1248 @@
+{
+ "source": "bible/T-college-football/T12-college-calibration-targets.md",
+ "note": "Every T12 table row mapped to a target id. The pro column is kept only so a test can prove no college value was copied from it (G-41).",
+ "rows": [
+  {
+   "leaf": "T12.1.1",
+   "label": "Points per team per game",
+   "columns": {
+    "Target": "Points per team per game",
+    "College": "26.82 (SD 13.57)",
+    "Power tier": "26.17",
+    "Other tier": "27.51",
+    "Pro, same script": "22.19 (SD 9.72)",
+    "Tolerance": "3%"
+   },
+   "targetIds": [
+    "score.pointsPerTeam"
+   ],
+   "pro": "22.19 (SD 9.72)",
+   "power": "26.17",
+   "other": "27.51"
+  },
+  {
+   "leaf": "T12.1.1",
+   "label": "Total points",
+   "columns": {
+    "Target": "Total points",
+    "College": "53.4 (SD 16.9), median 52",
+    "Power tier": "",
+    "Other tier": "",
+    "Pro, same script": "44.4",
+    "Tolerance": "3%"
+   },
+   "targetIds": [
+    "score.totalPoints"
+   ],
+   "pro": "44.4",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.1.1",
+   "label": "Scrimmage plays per team",
+   "columns": {
+    "Target": "Scrimmage plays per team",
+    "College": "66.10",
+    "Power tier": "65.10",
+    "Other tier": "67.41",
+    "Pro, same script": "62.09",
+    "Tolerance": "3%"
+   },
+   "targetIds": [
+    "game.playsPerTeam"
+   ],
+   "pro": "62.09",
+   "power": "65.10",
+   "other": "67.41"
+  },
+  {
+   "leaf": "T12.1.1",
+   "label": "Drives per team",
+   "columns": {
+    "Target": "Drives per team",
+    "College": "11.05",
+    "Power tier": "10.75",
+    "Other tier": "11.40",
+    "Pro, same script": "10.89",
+    "Tolerance": "4%"
+   },
+   "targetIds": [
+    "drive.perTeam"
+   ],
+   "pro": "10.89",
+   "power": "10.75",
+   "other": "11.40"
+  },
+  {
+   "leaf": "T12.1.1",
+   "label": "Tied games",
+   "columns": {
+    "Target": "Tied games",
+    "College": "0",
+    "Power tier": "",
+    "Other tier": "",
+    "Pro, same script": "",
+    "Tolerance": "exact"
+   },
+   "targetIds": [
+    "result.ties"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Decided by 3 or fewer",
+   "columns": {
+    "Target": "Decided by 3 or fewer",
+    "College (2,976 games)": "17.4%",
+    "Pro (J15.2.1)": "25.3%"
+   },
+   "targetIds": [
+    "result.marginLe3"
+   ],
+   "pro": "25.3%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Decided by 8 or fewer",
+   "columns": {
+    "Target": "Decided by 8 or fewer",
+    "College (2,976 games)": "38.0%",
+    "Pro (J15.2.1)": "55.8%"
+   },
+   "targetIds": [
+    "result.marginLe8"
+   ],
+   "pro": "55.8%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Decided by 17 or more",
+   "columns": {
+    "Target": "Decided by 17 or more",
+    "College (2,976 games)": "42.9%",
+    "Pro (J15.2.1)": "26.1%"
+   },
+   "targetIds": [
+    "result.marginGe17"
+   ],
+   "pro": "26.1%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Decided by 28 or more",
+   "columns": {
+    "Target": "Decided by 28 or more",
+    "College (2,976 games)": "19.5%",
+    "Pro (J15.2.1)": "not measured"
+   },
+   "targetIds": [
+    "result.marginGe28"
+   ],
+   "pro": "not measured",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Mean absolute margin",
+   "columns": {
+    "Target": "Mean absolute margin",
+    "College (2,976 games)": "16.3, median 14",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "result.meanAbsMargin"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Home win share (non-neutral)",
+   "columns": {
+    "Target": "Home win share (non-neutral)",
+    "College (2,976 games)": "58.8%",
+    "Pro (J15.2.1)": "54.8%"
+   },
+   "targetIds": [
+    "result.homeWinShare"
+   ],
+   "pro": "54.8%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Home margin, raw",
+   "columns": {
+    "Target": "Home margin, raw",
+    "College (2,976 games)": "+4.64 (SD 20.3)",
+    "Pro (J15.2.1)": "+2.18 (SD 13.8)"
+   },
+   "targetIds": [
+    "score.homeMargin"
+   ],
+   "pro": "+2.18 (SD 13.8)",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Home win share, conference games only",
+   "columns": {
+    "Target": "Home win share, conference games only",
+    "College (2,976 games)": "55.7%, margin +2.49",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "result.homeWinShare.conference"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Home edge with team strength removed",
+   "columns": {
+    "Target": "Home edge with team strength removed",
+    "College (2,976 games)": "about 2.5 points (1.8, 2.4, 2.8, 2.9 by season)",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "spread.homeFieldRatingAdj"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Standard deviation of team rating",
+   "columns": {
+    "Target": "Standard deviation of team rating",
+    "College (2,976 games)": "9.2 points (9.0 to 9.6 by season)",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "spread.teamRatingSd"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Standard deviation of team win share",
+   "columns": {
+    "Target": "Standard deviation of team win share",
+    "College (2,976 games)": "0.215 (531 team-seasons)",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "spread.teamWinPctSd"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Team-seasons with 6 or more wins",
+   "columns": {
+    "Target": "Team-seasons with 6 or more wins",
+    "College (2,976 games)": "61.8%",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "spread.share6PlusWins"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Team-seasons with 10 or more wins",
+   "columns": {
+    "Target": "Team-seasons with 10 or more wins",
+    "College (2,976 games)": "15.1%",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "spread.share10PlusWins"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Team-seasons with 2 or fewer wins",
+   "columns": {
+    "Target": "Team-seasons with 2 or fewer wins",
+    "College (2,976 games)": "5.8%",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "spread.share2OrFewerWins"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.1",
+   "label": "Unbeaten and winless regular seasons",
+   "columns": {
+    "Target": "Unbeaten and winless regular seasons",
+    "College (2,976 games)": "8 and 2 in four seasons",
+    "Pro (J15.2.1)": ""
+   },
+   "targetIds": [
+    "spread.unbeatenShare",
+    "spread.winlessShare"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "0 to 3",
+   "columns": {
+    "Gap": "0 to 3",
+    "Games": "612",
+    "Favourite wins": "54.7%",
+    "Favourite's mean margin": "+1.8"
+   },
+   "targetIds": [
+    "upset.ratingGap.gap0to3"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "3 to 7",
+   "columns": {
+    "Gap": "3 to 7",
+    "Games": "711",
+    "Favourite wins": "71.7%",
+    "Favourite's mean margin": "+7.0"
+   },
+   "targetIds": [
+    "upset.ratingGap.gap3to7"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "7 to 10",
+   "columns": {
+    "Gap": "7 to 10",
+    "Games": "442",
+    "Favourite wins": "81.4%",
+    "Favourite's mean margin": "+11.5"
+   },
+   "targetIds": [
+    "upset.ratingGap.gap7to10"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "10 to 14",
+   "columns": {
+    "Gap": "10 to 14",
+    "Games": "548",
+    "Favourite wins": "90.3%",
+    "Favourite's mean margin": "+16.7"
+   },
+   "targetIds": [
+    "upset.ratingGap.gap10to14"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "14 to 21",
+   "columns": {
+    "Gap": "14 to 21",
+    "Games": "449",
+    "Favourite wins": "95.1%",
+    "Favourite's mean margin": "+23.5"
+   },
+   "targetIds": [
+    "upset.ratingGap.gap14to21"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "21 to 28",
+   "columns": {
+    "Gap": "21 to 28",
+    "Games": "177",
+    "Favourite wins": "100%",
+    "Favourite's mean margin": "+31.9"
+   },
+   "targetIds": [
+    "upset.ratingGap.gap21to28"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "Over 28",
+   "columns": {
+    "Gap": "Over 28",
+    "Games": "37",
+    "Favourite wins": "100%",
+    "Favourite's mean margin": "+40.6"
+   },
+   "targetIds": [
+    "upset.ratingGap.gap28plus"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "0 to 3",
+   "columns": {
+    "Gap": "0 to 3",
+    "Games": "470",
+    "Favourite wins": "51.9%"
+   },
+   "targetIds": [
+    "upset.priorGap.gap0to3"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "3 to 7",
+   "columns": {
+    "Gap": "3 to 7",
+    "Games": "543",
+    "Favourite wins": "57.6%"
+   },
+   "targetIds": [
+    "upset.priorGap.gap3to7"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "7 to 10",
+   "columns": {
+    "Gap": "7 to 10",
+    "Games": "321",
+    "Favourite wins": "68.2%"
+   },
+   "targetIds": [
+    "upset.priorGap.gap7to10"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "10 to 14",
+   "columns": {
+    "Gap": "10 to 14",
+    "Games": "388",
+    "Favourite wins": "70.6%"
+   },
+   "targetIds": [
+    "upset.priorGap.gap10to14"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "14 to 21",
+   "columns": {
+    "Gap": "14 to 21",
+    "Games": "333",
+    "Favourite wins": "81.1%"
+   },
+   "targetIds": [
+    "upset.priorGap.gap14to21"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.2.2",
+   "label": "Over 21",
+   "columns": {
+    "Gap": "Over 21",
+    "Games": "133",
+    "Favourite wins": "88.0%"
+   },
+   "targetIds": [
+    "upset.priorGap.gap21plus"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Pass rate (dropbacks over plays)",
+   "columns": {
+    "Target": "Pass rate (dropbacks over plays)",
+    "College": "49.8%",
+    "Power": "50.6%",
+    "Other": "49.3%",
+    "Pro, same script": "57.6%",
+    "Tolerance": "4%"
+   },
+   "targetIds": [
+    "pass.rate"
+   ],
+   "pro": "57.6%",
+   "power": "50.6%",
+   "other": "49.3%"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Completion share",
+   "columns": {
+    "Target": "Completion share",
+    "College": "61.0%",
+    "Power": "61.9%",
+    "Other": "60.0%",
+    "Pro, same script": "64.6%",
+    "Tolerance": "3%"
+   },
+   "targetIds": [
+    "pass.completionPct"
+   ],
+   "pro": "64.6%",
+   "power": "61.9%",
+   "other": "60.0%"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Yards per attempt",
+   "columns": {
+    "Target": "Yards per attempt",
+    "College": "7.53",
+    "Power": "7.68",
+    "Other": "7.37",
+    "Pro, same script": "7.06",
+    "Tolerance": "4%"
+   },
+   "targetIds": [
+    "pass.yardsPerAttempt"
+   ],
+   "pro": "7.06",
+   "power": "7.68",
+   "other": "7.37"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Touchdown per attempt",
+   "columns": {
+    "Target": "Touchdown per attempt",
+    "College": "5.01%",
+    "Power": "5.14%",
+    "Other": "4.85%",
+    "Pro, same script": "4.26%",
+    "Tolerance": "8%"
+   },
+   "targetIds": [
+    "pass.tdRate"
+   ],
+   "pro": "4.26%",
+   "power": "5.14%",
+   "other": "4.85%"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Interception per attempt",
+   "columns": {
+    "Target": "Interception per attempt",
+    "College": "2.56%",
+    "Power": "2.43%",
+    "Other": "2.70%",
+    "Pro, same script": "2.28%",
+    "Tolerance": "10%"
+   },
+   "targetIds": [
+    "pass.intRate"
+   ],
+   "pro": "2.28%",
+   "power": "2.43%",
+   "other": "2.70%"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Sack per dropback",
+   "columns": {
+    "Target": "Sack per dropback",
+    "College": "6.02%",
+    "Power": "5.96%",
+    "Other": "6.13%",
+    "Pro, same script": "6.90%",
+    "Tolerance": "8%"
+   },
+   "targetIds": [
+    "pass.sackRate"
+   ],
+   "pro": "6.90%",
+   "power": "5.96%",
+   "other": "6.13%"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Yards per rush (sacks excluded)",
+   "columns": {
+    "Target": "Yards per rush (sacks excluded)",
+    "College": "5.15",
+    "Power": "5.17",
+    "Other": "5.11",
+    "Pro, same script": "4.52",
+    "Tolerance": "4%"
+   },
+   "targetIds": [
+    "rush.yardsPerCarry"
+   ],
+   "pro": "4.52",
+   "power": "5.17",
+   "other": "5.11"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Rush touchdown rate",
+   "columns": {
+    "Target": "Rush touchdown rate",
+    "College": "4.75%",
+    "Power": "4.97%",
+    "Other": "4.50%",
+    "Pro, same script": "3.42%",
+    "Tolerance": "8%"
+   },
+   "targetIds": [
+    "rush.tdRate"
+   ],
+   "pro": "3.42%",
+   "power": "4.97%",
+   "other": "4.50%"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Rushes of 10 or more yards",
+   "columns": {
+    "Target": "Rushes of 10 or more yards",
+    "College": "14.45%",
+    "Power": "14.68%",
+    "Other": "14.19%",
+    "Pro, same script": "11.71%",
+    "Tolerance": "6%"
+   },
+   "targetIds": [
+    "rush.explosive10Rate"
+   ],
+   "pro": "11.71%",
+   "power": "14.68%",
+   "other": "14.19%"
+  },
+  {
+   "leaf": "T12.3.1",
+   "label": "Third-down conversion",
+   "columns": {
+    "Target": "Third-down conversion",
+    "College": "40.6%",
+    "Power": "41.6%",
+    "Other": "39.6%",
+    "Pro, same script": "39.9%",
+    "Tolerance": "4%"
+   },
+   "targetIds": [
+    "down.thirdConv"
+   ],
+   "pro": "39.9%",
+   "power": "41.6%",
+   "other": "39.6%"
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Fourth-down go rate (go over go plus punt plus field goal try)",
+   "columns": {
+    "Target": "Fourth-down go rate (go over go plus punt plus field goal try)",
+    "College": "25.1%",
+    "Pro, same script": "19.4%",
+    "Tolerance": "10%"
+   },
+   "targetIds": [
+    "decision.fourthGoRate"
+   ],
+   "pro": "19.4%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Go rate, 1 to 2 yards to go",
+   "columns": {
+    "Target": "Go rate, 1 to 2 yards to go",
+    "College": "65.4%",
+    "Pro, same script": "55.2%",
+    "Tolerance": "10%"
+   },
+   "targetIds": [
+    "decision.fourthGoRate.ytg1to2"
+   ],
+   "pro": "55.2%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Go rate, 3 to 5",
+   "columns": {
+    "Target": "Go rate, 3 to 5",
+    "College": "27.3%",
+    "Pro, same script": "19.7%",
+    "Tolerance": "12%"
+   },
+   "targetIds": [
+    "decision.fourthGoRate.ytg3to5"
+   ],
+   "pro": "19.7%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Go rate, 6 or more",
+   "columns": {
+    "Target": "Go rate, 6 or more",
+    "College": "10.9%",
+    "Pro, same script": "7.4%",
+    "Tolerance": "15%"
+   },
+   "targetIds": [
+    "decision.fourthGoRate.ytg6plus"
+   ],
+   "pro": "7.4%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Fourth-down conversion",
+   "columns": {
+    "Target": "Fourth-down conversion",
+    "College": "53.8%",
+    "Pro, same script": "53.2%",
+    "Tolerance": "6%"
+   },
+   "targetIds": [
+    "down.fourthConv"
+   ],
+   "pro": "53.2%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Punts per team per game",
+   "columns": {
+    "Target": "Punts per team per game",
+    "College": "4.43",
+    "Pro, same script": "3.99",
+    "Tolerance": "6%"
+   },
+   "targetIds": [
+    "kick.puntsPerTeam"
+   ],
+   "pro": "3.99",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Field goal tries per team per game",
+   "columns": {
+    "Target": "Field goal tries per team per game",
+    "College": "1.57",
+    "Pro, same script": "1.99",
+    "Tolerance": "8%"
+   },
+   "targetIds": [
+    "kick.fgAttPerTeam"
+   ],
+   "pro": "1.99",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.4.1",
+   "label": "Field goal share made",
+   "columns": {
+    "Target": "Field goal share made",
+    "College": "76.2%",
+    "Pro, same script": "85.0%",
+    "Tolerance": "3%"
+   },
+   "targetIds": [
+    "kick.fgPct"
+   ],
+   "pro": "85.0%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Plays per drive",
+   "columns": {
+    "Target": "Plays per drive",
+    "College": "5.78",
+    "Power": "5.83",
+    "Other": "5.72",
+    "Pro, same script": "5.94"
+   },
+   "targetIds": [
+    "drive.playsPerDrive"
+   ],
+   "pro": "5.94",
+   "power": "5.83",
+   "other": "5.72"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Yards per drive",
+   "columns": {
+    "Target": "Yards per drive",
+    "College": "33.5",
+    "Power": "34.4",
+    "Other": "32.6",
+    "Pro, same script": "not computed"
+   },
+   "targetIds": [
+    "drive.yardsPerDrive"
+   ],
+   "pro": "not computed",
+   "power": "34.4",
+   "other": "32.6"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Touchdown",
+   "columns": {
+    "Target": "Touchdown",
+    "College": "28.3%",
+    "Power": "29.7%",
+    "Other": "26.8%",
+    "Pro, same script": "21.3%"
+   },
+   "targetIds": [
+    "drive.tdShare"
+   ],
+   "pro": "21.3%",
+   "power": "29.7%",
+   "other": "26.8%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Field goal made",
+   "columns": {
+    "Target": "Field goal made",
+    "College": "10.6%",
+    "Power": "11.3%",
+    "Other": "10.0%",
+    "Pro, same script": "15.5%"
+   },
+   "targetIds": [
+    "drive.fgShare"
+   ],
+   "pro": "15.5%",
+   "power": "11.3%",
+   "other": "10.0%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Punt",
+   "columns": {
+    "Target": "Punt",
+    "College": "38.0%",
+    "Power": "36.5%",
+    "Other": "39.5%",
+    "Pro, same script": "36.5%"
+   },
+   "targetIds": [
+    "drive.puntShare"
+   ],
+   "pro": "36.5%",
+   "power": "36.5%",
+   "other": "39.5%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Turnover",
+   "columns": {
+    "Target": "Turnover",
+    "College": "11.4%",
+    "Power": "11.3%",
+    "Other": "11.6%",
+    "Pro, same script": "10.3%"
+   },
+   "targetIds": [
+    "drive.turnoverShare"
+   ],
+   "pro": "10.3%",
+   "power": "11.3%",
+   "other": "11.6%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Turnover on downs",
+   "columns": {
+    "Target": "Turnover on downs",
+    "College": "7.8%",
+    "Power": "7.4%",
+    "Other": "8.3%",
+    "Pro, same script": "not computed"
+   },
+   "targetIds": [
+    "drive.downsShare"
+   ],
+   "pro": "not computed",
+   "power": "7.4%",
+   "other": "8.3%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Drives reaching the red zone",
+   "columns": {
+    "Target": "Drives reaching the red zone",
+    "College": "30.9%",
+    "Power": "32.6%",
+    "Other": "29.2%",
+    "Pro, same script": "29.0%"
+   },
+   "targetIds": [
+    "drive.redZoneShare"
+   ],
+   "pro": "29.0%",
+   "power": "32.6%",
+   "other": "29.2%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Red-zone touchdown rate",
+   "columns": {
+    "Target": "Red-zone touchdown rate",
+    "College": "63.2%",
+    "Power": "64.4%",
+    "Other": "61.7%",
+    "Pro, same script": "56.3%"
+   },
+   "targetIds": [
+    "drive.redZoneTdRate"
+   ],
+   "pro": "56.3%",
+   "power": "64.4%",
+   "other": "61.7%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Red-zone scoring rate",
+   "columns": {
+    "Target": "Red-zone scoring rate",
+    "College": "85.3%",
+    "Power": "86.2%",
+    "Other": "84.2%",
+    "Pro, same script": "86.5%"
+   },
+   "targetIds": [
+    "drive.redZoneScoreRate"
+   ],
+   "pro": "86.5%",
+   "power": "86.2%",
+   "other": "84.2%"
+  },
+  {
+   "leaf": "T12.5.1",
+   "label": "Points per drive (offense only)",
+   "columns": {
+    "Target": "Points per drive (offense only)",
+    "College": "2.18",
+    "Power": "2.30",
+    "Other": "2.04",
+    "Pro, same script": "not comparable"
+   },
+   "targetIds": [
+    "drive.pointsPerDrive"
+   ],
+   "pro": "not comparable",
+   "power": "2.30",
+   "other": "2.04"
+  },
+  {
+   "leaf": "T12.6.1",
+   "label": "Accepted fouls per team per game",
+   "columns": {
+    "Target": "Accepted fouls per team per game",
+    "College": "5.18",
+    "Pro, same script": "5.91",
+    "Tier": "tune"
+   },
+   "targetIds": [
+    "foul.acceptedPerTeam"
+   ],
+   "pro": "5.91",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.6.1",
+   "label": "Foul yards per team per game",
+   "columns": {
+    "Target": "Foul yards per team per game",
+    "College": "42.7",
+    "Pro, same script": "48.4",
+    "Tier": "watch"
+   },
+   "targetIds": [
+    "foul.yardsPerTeam"
+   ],
+   "pro": "48.4",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.6.1",
+   "label": "Yards per accepted foul",
+   "columns": {
+    "Target": "Yards per accepted foul",
+    "College": "8.25",
+    "Pro, same script": "8.19",
+    "Tier": "watch"
+   },
+   "targetIds": [
+    "foul.yardsPerAccepted"
+   ],
+   "pro": "8.19",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.6.1",
+   "label": "Fumbles lost per play",
+   "columns": {
+    "Target": "Fumbles lost per play",
+    "College": "0.71%",
+    "Pro, same script": "0.75%",
+    "Tier": "watch"
+   },
+   "targetIds": [
+    "turnover.fumbleLostPerPlay"
+   ],
+   "pro": "0.75%",
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "F1",
+   "columns": {
+    "Requested by": "F1",
+    "Rate": "Personnel grouping shares",
+    "Until measured": "T10.5.1 Assumption"
+   },
+   "targetIds": [
+    "open.personnelShares"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "F3",
+   "columns": {
+    "Requested by": "F3",
+    "Rate": "Tempo and no-huddle share",
+    "Until measured": "T10.5.1 Assumption"
+   },
+   "targetIds": [
+    "open.tempoNoHuddleShare"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "F4, F7",
+   "columns": {
+    "Requested by": "F4, F7",
+    "Rate": "Quarterback run, option, and run-pass option shares",
+    "Until measured": "T10.5.1 Assumption"
+   },
+   "targetIds": [
+    "open.qbRunOptionRpoShares"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "F5",
+   "columns": {
+    "Requested by": "F5",
+    "Rate": "Pressure rate, time to throw",
+    "Until measured": "Pro shape from J15.4.2, scaled so the sack rate lands at 6.0%"
+   },
+   "targetIds": [
+    "open.pressureRateTimeToThrow"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "F6",
+   "columns": {
+    "Requested by": "F6",
+    "Rate": "Concept and target-depth distributions",
+    "Until measured": "Pro shape, system priors from T10.2.1"
+   },
+   "targetIds": [
+    "open.conceptTargetDepth"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "F10",
+   "columns": {
+    "Requested by": "F10",
+    "Rate": "Coverage shares",
+    "Until measured": "T10.3.1 Assumption"
+   },
+   "targetIds": [
+    "open.coverageShares"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "F12, B13.6",
+   "columns": {
+    "Requested by": "F12, B13.6",
+    "Rate": "Field goals by distance, kickoff results, punt net",
+    "Until measured": "Pro curve shape, college ability distribution"
+   },
+   "targetIds": [
+    "open.kickingByDistance"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "B13.9",
+   "columns": {
+    "Requested by": "B13.9",
+    "Rate": "Targeting fouls per game",
+    "Until measured": "Starting value 0.2 per game, Assumption"
+   },
+   "targetIds": [
+    "open.targetingPerGame"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "J15.7.2",
+   "columns": {
+    "Requested by": "J15.7.2",
+    "Rate": "Injury rates",
+    "Until measured": "Pro rates, D11"
+   },
+   "targetIds": [
+    "open.injuryRates"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "J15.2.1",
+   "columns": {
+    "Requested by": "J15.2.1",
+    "Rate": "Overtime share",
+    "Until measured": "Pro value as a placeholder, marked Unverified"
+   },
+   "targetIds": [
+    "open.overtimeShare"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  },
+  {
+   "leaf": "T12.7.1",
+   "label": "T2",
+   "columns": {
+    "Requested by": "T2",
+    "Rate": "Second-subdivision baselines",
+    "Until measured": "Top-subdivision values with the `other` tier column"
+   },
+   "targetIds": [
+    "open.secondSubdivision"
+   ],
+   "pro": null,
+   "power": null,
+   "other": null
+  }
+ ]
+}

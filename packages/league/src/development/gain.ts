@@ -69,19 +69,40 @@ export function stepAttribute(n: DevNumbers, math: DeterministicMath, s: Attribu
   return Math.min(top, s.current + Math.max(0, noisy));
 }
 
-/** The form term after n weeks (D7.4.2): mean-reverting to 1 with an 8-week half-life, kept to 0.5..1.5. */
+/**
+ * The form term after n weeks (D7.4.2, Marlon's ruling 2026-11-26: uncapped). Its logarithm reverts
+ * toward the level that keeps the mean at 1 with an 8-week half-life; there are no bounds, only
+ * positivity, because improvement comes down to more than the player.
+ */
 export function stepForm(n: DevNumbers, math: DeterministicMath, form: number, weeks: number, z: number): number {
   const half = 1 / (1 + 1);
   const rho1 = math.pow(half, 1 / num(n, 'form.halfLifeWeeks'));
   const rho = math.pow(rho1, weeks);
-  const sd = num(n, 'form.weeklySd') * math.sqrt((1 - rho * rho) / (1 - rho1 * rho1));
-  const next = 1 + (form - 1) * rho + sd * z;
-  return Math.min(num(n, 'form.max'), Math.max(num(n, 'form.min'), next));
+  const s = num(n, 'form.weeklySdLog');
+  const stationaryVar = (s * s) / (1 - rho1 * rho1);
+  const centre = -stationaryVar * half;
+  const sd = s * math.sqrt((1 - rho * rho) / (1 - rho1 * rho1));
+  const logNow = math.log(Math.max(form, Number.MIN_VALUE));
+  return math.exp(centre + (logNow - centre) * rho + sd * z);
 }
 
-/** A change of teacher, role or scheme resets form toward 1.0 with a random kick (D7.4.2). */
-export function resetForm(n: DevNumbers, stream: RandomStream): number {
-  return Math.min(num(n, 'form.max'), Math.max(num(n, 'form.min'), 1 + stream.normal() * num(n, 'form.resetKickSd')));
+/** A change of teacher, role or scheme resets form toward 1 with a random kick (D7.4.2), uncapped. */
+export function resetForm(n: DevNumbers, math: DeterministicMath, stream: RandomStream): number {
+  return meanOneLogNormal(math, num(n, 'form.resetKickSdLog'), stream.normal());
+}
+
+/** exp(sd z - sd^2 / 2): positive, mean 1, no cap. */
+export function meanOneLogNormal(math: DeterministicMath, sdLog: number, z: number): number {
+  return math.exp(sdLog * z - (sdLog * sdLog) / (1 + 1));
+}
+
+/**
+ * This year's surroundings multiplier (D7.4.2 ruling): everything around the player that the model
+ * does not name one by one (scheme fit, role, health, life away from football, the building). Drawn
+ * at each rollover, mean 1, uncapped.
+ */
+export function drawSurroundings(n: DevNumbers, math: DeterministicMath, stream: RandomStream): number {
+  return meanOneLogNormal(math, num(n, 'surroundings.yearSdLog'), stream.normal());
 }
 
 /** What one development span needs besides the player. */
@@ -123,8 +144,8 @@ export function effectiveCeiling(n: DevNumbers, p: PlayingBlock, a: AttributeId,
  * Draws: one normal per attribute in `ATTRIBUTE_IDS` order of the block's keys (sorted), then one for form.
  */
 export function developSpan(n: DevNumbers, math: DeterministicMath, p: PlayingBlock, inp: SpanInputs, stream: RandomStream): PlayingBlock {
-  const devRate = hiddenNum(p, HIDDEN.devRate, num(n, 'devRate.mean'));
-  const form = hiddenNum(p, HIDDEN.form, 1);
+  const devRate = hiddenNum(p, HIDDEN.devRate, 1);
+  const form = hiddenNum(p, HIDDEN.form, 1) * hiddenNum(p, HIDDEN.surroundings, 1);
   const work = traitMultiplier(n, inp.facets[FACET.workEthic], num(n, 'trait.workEthicSwing'));
   const coach = traitMultiplier(n, inp.facets[FACET.coachability], num(n, 'trait.coachabilitySwing'));
   const age = ageFactor(n, inp.ageYears);
@@ -150,6 +171,6 @@ export function developSpan(n: DevNumbers, math: DeterministicMath, p: PlayingBl
     if (next !== cur) attributes[a] = next;
     if (pk === undefined || next > peak || cur > peak) hidden[peakKey(a)] = Math.max(peak, next);
   }
-  hidden[HIDDEN.form] = stepForm(n, math, form, inp.weeks, stream.normal());
+  hidden[HIDDEN.form] = stepForm(n, math, hiddenNum(p, HIDDEN.form, 1), inp.weeks, stream.normal());
   return { ...p, attributes, hidden };
 }

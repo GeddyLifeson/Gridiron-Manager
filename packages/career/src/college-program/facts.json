@@ -1,0 +1,274 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-collegeprog-0001",
+   "level": "college",
+   "domain": "career",
+   "statement": "Top-subdivision head coaches paid 1 million dollars or more in the 2025 season (USA Today salary database count).",
+   "value": 94,
+   "unit": "count",
+   "validFor": "2025 season",
+   "sources": [
+    {
+     "citation": "FootballScoop, 'USA Today releases 2025 list of highest-paid college football coaches', 2025-10-08 (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.1)",
+     "locator": "https://footballscoop.com/2025/10/08/highest-paid-college-football-coaches-2025",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday-footballscoop",
+     "primary": false,
+     "value": 94
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": [],
+   "notes": "USA Today database page blocked to the fetcher; count read through FootballScoop only."
+  },
+  {
+   "id": "F-collegeprog-0002",
+   "level": "college",
+   "domain": "career",
+   "statement": "Top-subdivision head coaches paid 10 million dollars or more in the 2025 season.",
+   "value": 9,
+   "unit": "count",
+   "validFor": "2025 season",
+   "sources": [
+    {
+     "citation": "FootballScoop, 'USA Today releases 2025 list of highest-paid college football coaches', 2025-10-08 (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.1)",
+     "locator": "https://footballscoop.com/2025/10/08/highest-paid-college-football-coaches-2025",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday-footballscoop",
+     "primary": false,
+     "value": 9
+    },
+    {
+     "citation": "CBS Sports, 'College football head coach salary rankings 2025' (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.1)",
+     "locator": "https://www.cbssports.com/college-football/news/college-football-head-coach-salary-rankings-2025",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "value": 9
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": []
+  },
+  {
+   "id": "F-collegeprog-0003",
+   "level": "college",
+   "domain": "career",
+   "statement": "Highest head coach salary outside the power conferences, 2025 season (Liberty).",
+   "value": 5940000,
+   "unit": "USD",
+   "validFor": "2025 season",
+   "sources": [
+    {
+     "citation": "FootballScoop, 'USA Today releases 2025 list of highest-paid college football coaches', 2025-10-08 (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.1)",
+     "locator": "https://footballscoop.com/2025/10/08/highest-paid-college-football-coaches-2025",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday-footballscoop",
+     "primary": false,
+     "value": 5940000
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": []
+  },
+  {
+   "id": "F-collegeprog-0004",
+   "level": "college",
+   "domain": "career",
+   "statement": "Lowest full-time top-subdivision head coach salary, 2025 season (Missouri State).",
+   "value": 450000,
+   "unit": "USD",
+   "validFor": "2025 season",
+   "sources": [
+    {
+     "citation": "FootballScoop, 'USA Today releases 2025 list of highest-paid college football coaches', 2025-10-08 (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.1)",
+     "locator": "https://footballscoop.com/2025/10/08/highest-paid-college-football-coaches-2025",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday-footballscoop",
+     "primary": false,
+     "value": 450000
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": []
+  },
+  {
+   "id": "F-collegeprog-0005",
+   "level": "college",
+   "domain": "career",
+   "statement": "Highest-paid college football assistant coach, 2024 (LSU defensive coordinator).",
+   "value": 2500000,
+   "unit": "USD",
+   "validFor": "2024 season",
+   "sources": [
+    {
+     "citation": "FootballScoop, USA Today assistant coach database 2024 (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.3)",
+     "locator": "https://footballscoop.com (USA Today assistant salary database coverage, 2024)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday-footballscoop",
+     "primary": false,
+     "value": 2500000
+    },
+    {
+     "citation": "On3, top 25 highest-paid assistants, December 2024 (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.3)",
+     "locator": "https://www.on3.com (assistant coach salaries, December 2024)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "value": 2500000
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": []
+  },
+  {
+   "id": "F-collegeprog-0006",
+   "level": "college",
+   "domain": "career",
+   "statement": "The 25th-highest-paid college football assistant earned at least 1.5 million dollars (2024).",
+   "value": 1500000,
+   "unit": "USD",
+   "validFor": "2024 season",
+   "sources": [
+    {
+     "citation": "On3, top 25 highest-paid assistants, December 2024 (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.3)",
+     "locator": "https://www.on3.com (assistant coach salaries, December 2024)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "value": 1500000
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": []
+  },
+  {
+   "id": "F-collegeprog-0007",
+   "level": "college",
+   "domain": "career",
+   "statement": "Highest-paid college football general manager (North Carolina), about 1.5 million dollars a year.",
+   "value": 1500000,
+   "unit": "USD",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "On3, USA Today top 25 general manager salaries (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.4)",
+     "locator": "https://www.on3.com (general manager salaries)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "value": 1500000
+    },
+    {
+     "citation": "AOL / USA Today syndication, general manager pay (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.4)",
+     "locator": "https://www.aol.com (USA Today general manager salaries)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday-aol",
+     "primary": false,
+     "value": 1500000
+    },
+    {
+     "citation": "FootballScoop, North Carolina general manager contract story (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.4)",
+     "locator": "https://footballscoop.com (North Carolina general manager contract)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop-contract",
+     "primary": false,
+     "value": 1500000
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": [],
+   "notes": "Three groups per the research file; the AOL item is a USA Today syndication and may not be independent of the On3 summary of the same list."
+  },
+  {
+   "id": "F-collegeprog-0008",
+   "level": "college",
+   "domain": "career",
+   "statement": "The 25th-highest-paid college football general manager earned 325,008 dollars.",
+   "value": 325008,
+   "unit": "USD",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "On3, USA Today top 25 general manager salaries (read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.4)",
+     "locator": "https://www.on3.com (general manager salaries)",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "value": 325008
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": []
+  },
+  {
+   "id": "F-collegeprog-0009",
+   "level": "college",
+   "domain": "career",
+   "statement": "Graduate assistant stipend: 800 to 1,500 dollars a month during the academic year, nothing in summer, plus graduate tuition.",
+   "value": "800-1500",
+   "unit": "USD/month",
+   "validFor": "undated",
+   "sources": [
+    {
+     "citation": "FootballScoop, 'Let's talk about GA pay' (undated; read second-hand in research/college/R21-R25-coach-pay-and-career-start.md section 21.3)",
+     "locator": "https://footballscoop.com ('Let's talk about GA pay')",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop-ga",
+     "primary": false,
+     "value": "800-1500"
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": []
+  },
+  {
+   "id": "F-collegeprog-0010",
+   "level": "college",
+   "domain": "career",
+   "statement": "Total football staff size: about 45 to 70 at other top-subdivision programs, 70 to 100 at large power programs.",
+   "value": "45-70;70-100",
+   "unit": "count",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "Bible T9.4.1 facts list (low-quality single source per the bible)",
+     "locator": "bible/T-college-football/T9-college-staff-and-program.md T9.4.1",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "t9-staff-totals",
+     "primary": false,
+     "value": "45-70;70-100"
+    }
+   ],
+   "status": "Unverified",
+   "usedBy": [],
+   "statusHistory": [],
+   "notes": "Low quality; the bible marks it 1 of 3."
+  }
+ ]
+}

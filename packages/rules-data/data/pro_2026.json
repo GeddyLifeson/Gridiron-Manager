@@ -3021,6 +3021,212 @@
    "value": 1,
    "factId": "F-rule-1159",
    "unit": "yd"
+  },
+  {
+   "key": "clock.periods_per_half",
+   "value": 2,
+   "factId": "F-rule-1161",
+   "unit": "count"
+  },
+  {
+   "key": "enforce.half_distance.applies",
+   "value": true,
+   "factId": "F-rule-1163"
+  },
+  {
+   "key": "enforce.half_distance.fraction",
+   "value": 0.5,
+   "factId": "F-rule-1165",
+   "unit": "ratio"
+  },
+  {
+   "key": "enforce.half_distance_divisor",
+   "value": 2,
+   "factId": "F-rule-1167",
+   "unit": "ratio"
+  },
+  {
+   "key": "enforce.five_fifteen.applies",
+   "value": true,
+   "factId": "F-rule-1169"
+  },
+  {
+   "key": "enforce.five_fifteen.minor_yards",
+   "value": 5,
+   "factId": "F-rule-1171",
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.five_fifteen.major_yards",
+   "value": 15,
+   "factId": "F-rule-1173",
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.capped",
+   "value": false,
+   "factId": "F-rule-1175"
+  },
+  {
+   "key": "enforce.interference.max_yards",
+   "value": 0,
+   "factId": "F-rule-1177",
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.floor_yardline",
+   "value": 1,
+   "factId": "F-rule-1179",
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.floor_rule",
+   "value": "end_zone_only",
+   "factId": "F-rule-1181"
+  },
+  {
+   "key": "enforce.interference.half_inside_yardline",
+   "value": 2,
+   "factId": "F-rule-1183",
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.interference.half_inclusive",
+   "value": false,
+   "factId": "F-rule-1185"
+  },
+  {
+   "key": "enforce.end_zone_foul_yardline",
+   "value": 20,
+   "factId": "F-rule-1187",
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.double_foul_safety_yardline",
+   "value": 1,
+   "factId": "F-rule-1189",
+   "unit": "yd"
+  },
+  {
+   "key": "enforce.clean_hands.personal_offsets",
+   "value": true,
+   "factId": "F-rule-1191"
+  },
+  {
+   "key": "enforce.spike_delay_foul",
+   "value": "delay_of_game_spike",
+   "factId": "F-rule-1193"
+  },
+  {
+   "key": "enforce.defensive_foul_extends_period",
+   "value": true,
+   "factId": "F-rule-1195"
+  },
+  {
+   "key": "enforce.touchdown_foul_to_kickoff",
+   "value": false,
+   "factId": "F-rule-1197"
+  },
+  {
+   "key": "kickoff.landing_zone_yardline",
+   "value": 20,
+   "factId": "F-rule-1199",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.kicking_team_line_yardline",
+   "value": 40,
+   "factId": "F-rule-1201",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.receiving_line_yardline",
+   "value": 35,
+   "factId": "F-rule-1203",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.setup_zone_back_yardline",
+   "value": 30,
+   "factId": "F-rule-1205",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.touchback_reduced_kick_yardline",
+   "value": 50,
+   "factId": "F-rule-1207",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.touchback_reduced_yardline",
+   "value": 20,
+   "factId": "F-rule-1209",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.short_spot_yd_from_kick",
+   "value": 25,
+   "factId": "F-rule-1211",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.safety_kick_short_spot_yd_from_kick",
+   "value": 30,
+   "factId": "F-rule-1213",
+   "unit": "yd"
+  },
+  {
+   "key": "kickoff.safety_kick_out_of_bounds_yd_from_kick",
+   "value": 30,
+   "factId": "F-rule-1215",
+   "unit": "yd"
+  },
+  {
+   "key": "onside.min_distance_yd",
+   "value": 10,
+   "factId": "F-rule-1217",
+   "unit": "yd"
+  },
+  {
+   "key": "onside.setup_zone_depth_yd",
+   "value": 15,
+   "factId": "F-rule-1219",
+   "unit": "yd"
+  },
+  {
+   "key": "onside.untouched_dead_beyond_yd",
+   "value": 25,
+   "factId": "F-rule-1221",
+   "unit": "yd"
+  },
+  {
+   "key": "onside.untouched_beyond_penalty_yd",
+   "value": 15,
+   "factId": "F-rule-1223",
+   "unit": "yd"
+  },
+  {
+   "key": "punt.first_touch_min_yardline",
+   "value": 1,
+   "factId": "F-rule-1225",
+   "unit": "yd"
+  },
+  {
+   "key": "fg.miss_spot_min_yardline",
+   "value": 20,
+   "factId": "F-rule-1227",
+   "unit": "yd"
+  },
+  {
+   "key": "try.defense_return_points",
+   "value": 2,
+   "factId": "F-rule-1229",
+   "unit": "points"
+  },
+  {
+   "key": "toss.defer_allowed",
+   "value": true,
+   "factId": "F-rule-1231"
   }
  ]
 }

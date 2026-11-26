@@ -11,7 +11,7 @@ export { growthShares, collegeStrengthProgress, effectiveAge, drawDevelopmentTra
 export { BODY_TESTS, BODY_MOVED, bodyFactors, applyBody, bodyCeilingShift, issPerPercent, strengthWeight, clampIss, type BodyTest } from './body.ts';
 export { curvePercent, agingMultiplier, drawAgingYear, rolloverShare, applyAgingFraction, agingRollover, injuryAgeFactor, applyInjuryLoss } from './aging.ts';
 export { teachingMultiplier, vacancyMultiplier, userTeachingTerm, traitMultiplier, pointReps, pointProcessingLoad, tendencyStep, type TeachingInput } from './teaching.ts';
-export { ageFactor, classRate, stepAttribute, stepForm, resetForm, developSpan, effectiveCeiling, FACET, type AttributeStep, type SpanInputs } from './gain.ts';
+export { ageFactor, classRate, stepAttribute, stepForm, resetForm, meanOneLogNormal, drawSurroundings, developSpan, effectiveCeiling, FACET, type AttributeStep, type SpanInputs } from './gain.ts';
 export { ACTIVITIES, WINDOWS, repWeight, creditReps, defaultWeeklyReps, type Activity, type ActivityLine, type Window, type Role } from './reps.ts';
 export { measuredExitRate, retireShare, retirementChance, midSeasonRetirementChance, comebackChance, type RetireInput } from './exit.ts';
 export { agingOutlook, type OutlookInput, type OutlookLabel } from './outlook.ts';

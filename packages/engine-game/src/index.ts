@@ -5,3 +5,4 @@ export * from './golden.ts';
 export * as stats from './stats/index.ts';
 export * as flow from './flow/index.ts';
 export * as bench from './bench/index.ts';
+export * as environment from './environment/index.ts';

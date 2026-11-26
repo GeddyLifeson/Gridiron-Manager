@@ -1,0 +1,36 @@
+{
+  "note": "T9.6.1 college pay bands, 2025 USD per year. Each band is [minUsd, maxUsd, weight]; a role draws one band by weight, then uniform inside it. 'basis' names the fact row (real-world anchor) or 'assumption' (cells the bible marks Starting). Head coach band weights are this module's choice, fitted so a 138-team world (68 power, 70 other) has 80 to 105 head coaches at 1 million or more (T9.6.1 acceptance; F-collegeprog-0001).",
+  "baseYear": 2025,
+  "roles": {
+    "head_coach": {
+      "power":  { "bands": [[4000000, 9000000, 0.8], [9000000, 13000000, 0.2]], "basis": "F-collegeprog-0002 elite share; bible band 4 to 13 million" },
+      "other":  { "bands": [[450000, 1000000, 0.6], [1000000, 2500000, 0.33], [2500000, 5940000, 0.07]], "basis": "F-collegeprog-0003, F-collegeprog-0004; weights assumption" },
+      "second": { "bands": [[150000, 450000, 1]], "basis": "assumption; bible: top jobs near 0.45 million (1 of 3), typical unknown" }
+    },
+    "coordinator": {
+      "power":  { "bands": [[800000, 1500000, 0.6], [1500000, 2500000, 0.4]], "basis": "F-collegeprog-0005, F-collegeprog-0006" },
+      "other":  { "bands": [[200000, 600000, 1]], "basis": "assumption (Starting)" },
+      "second": { "bands": [[60000, 150000, 1]], "basis": "assumption (Starting)" }
+    },
+    "position_coach": {
+      "power":  { "bands": [[250000, 900000, 1]], "basis": "assumption (Starting)" },
+      "other":  { "bands": [[80000, 250000, 1]], "basis": "assumption (Starting)" },
+      "second": { "bands": [[40000, 90000, 1]], "basis": "assumption (Starting)" }
+    },
+    "general_manager": {
+      "power":  { "bands": [[300000, 1500000, 1]], "basis": "F-collegeprog-0007, F-collegeprog-0008" },
+      "other":  { "bands": [[100000, 300000, 1]], "basis": "assumption (Starting)" },
+      "second": { "bands": [[0, 0, 1]], "basis": "rare: no seat by default" }
+    },
+    "analyst": {
+      "power":  { "bands": [[40000, 150000, 1]], "basis": "assumption (Starting)" },
+      "other":  { "bands": [[20000, 60000, 1]], "basis": "assumption (Starting)" },
+      "second": { "bands": [[0, 20000, 1]], "basis": "assumption: often unpaid" }
+    },
+    "graduate_assistant": {
+      "power":  { "bands": [[7200, 13500, 1]], "basis": "F-collegeprog-0009: 800 to 1,500 a month for 9 academic months" },
+      "other":  { "bands": [[7200, 13500, 1]], "basis": "F-collegeprog-0009: same or less" },
+      "second": { "bands": [[5400, 13500, 1]], "basis": "F-collegeprog-0009: same or less (assumption floor)" }
+    }
+  }
+}
