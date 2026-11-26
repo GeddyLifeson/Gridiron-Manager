@@ -8,20 +8,23 @@ import type {
 } from '@gm/schema';
 import type { SetupRecord } from '../generation/setup.ts';
 import type { PlaceRecord } from '../generation/structures.ts';
+import type { TeamSpan } from './lifecycle.ts';
 
 /** X12.1.1 weekly order. Fixed: the order is part of state (the pass hash folds each step id in turn). */
-export const WEEKLY_ORDER = ['games', 'health', 'statistics', 'notability', 'memory', 'edges', 'needs', 'moves', 'labels', 'news'] as const;
+export const WEEKLY_ORDER = ['lifecycle', 'games', 'health', 'statistics', 'notability', 'memory', 'edges', 'needs', 'moves', 'labels', 'news'] as const;
 export type WeeklyStep = (typeof WEEKLY_ORDER)[number];
 /** Season-point passes (X12.1.1). X12.1.3's exits run first, because exits come before cohorts on one date (X11.1.1). */
-export const SEASON_POINT_ORDER = ['leaving', 'cohorts', 'development', 'culture', 'compaction'] as const;
+export const SEASON_POINT_ORDER = ['leaving', 'hall', 'cohorts', 'development', 'culture', 'compaction'] as const;
 export type SeasonStep = (typeof SEASON_POINT_ORDER)[number];
 export type StepId = WeeklyStep | SeasonStep;
 
 export const STEP_OWNER: Readonly<Record<StepId, string>> = {
+  lifecycle: 'Teams founded and folded in the past (Marlon 2026-11-26; loop/lifecycle.ts)',
   games: 'X13.1.2 games by tier (engine-game through the game port)', health: 'D11 injuries and health', statistics: 'X3.4.1 statistics and records',
   notability: 'X4 notability', memory: 'X6 memory', edges: 'X7 edges', needs: 'X5 needs and stress', moves: 'K7 job and roster moves',
   labels: 'X2.2.2 labels touched by new events', news: 'X12.2.1 news routing', cohorts: 'X11 cohorts', development: 'D7, D8 development and aging',
-  culture: 'X9 culture', leaving: 'X12.1.3 inactive and deceased', compaction: 'X2.4.1 compaction',
+  culture: 'X9 culture',
+  hall: 'E5.6.3 Hall of Fame ballots (career.reputation runBallot for coaches; player case owed)', leaving: 'X12.1.3 inactive and deceased', compaction: 'X2.4.1 compaction',
 };
 
 export type PersonStatus = 'active' | 'inactive' | 'deceased';
@@ -77,6 +80,8 @@ export interface LiveWorld {
   readonly places: PlaceRecord[];
   readonly venues: VenueRecord[];
   readonly teams: TeamRecord[];
+  /** When each team was founded and, if gone, folded. A team with no span exists in every season. */
+  readonly teamSpans: Map<number, TeamSpan>;
   readonly placeOfTeam: Map<number, number>;
   readonly people: Map<number, PersonRecord>;
   readonly status: Map<number, PersonStatus>;

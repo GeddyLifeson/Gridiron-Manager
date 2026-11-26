@@ -22,6 +22,7 @@ import { createPerception } from '../perception/index.ts';
 import { NEUTRAL_MIND, createPlayerAi, type SlotPlay } from '../player-ai/index.ts';
 import { createPresnapStages, planPresnap, presnapParams, startingAdvantage, type PresnapPlan, type PresnapStages } from '../presnap/index.ts';
 import { createTickLoop, createTickWorld, createTrajectoryRecorder, type PlayStage, type TrajectoryRecorder } from '../tick/index.ts';
+import { createCatchPointStage } from './catch-point.ts';
 import { createFinish } from './finish.ts';
 import { createInteract } from './interact.ts';
 import { createKickOp, isFreeKick } from './kick-op.ts';
@@ -87,6 +88,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   const heldBall = createHeldBallStage();
   const boundary = createBoundaryWatcher();
   const kickOp = createKickOp(perception);
+  const catchPoint = createCatchPointStage(perception);
   const finish = createFinish();
   const callNoise: [number, number] = [0, 0];
   const callCohesion = new Float64Array(SLOT_COUNT);
@@ -94,6 +96,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   // Per-play state the services expose.
   let plan: PresnapPlan | null = null, presnap: PresnapStages | null = null, setup: PlaySetup | null = null, current: PlayInput | null = null;
   let contests: Contests | null = null, contestsOf: ParamTable | null = null;
+  let passerNow: (() => number) | null = null;
   const services: PlayServices = {
     perception, movement, playerAi, ball,
     contests: () => { if (contests === null) throw new Error('no play is being resolved'); return contests; },
@@ -101,6 +104,8 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     snap: () => (presnap === null ? null : presnap.snap()),
     setup: () => { if (setup === null) throw new Error('no play is being resolved'); return setup; },
     input: () => { if (current === null) throw new Error('no play is being resolved'); return current; },
+    protectedPasser: () => (passerNow === null ? -1 : passerNow()),
+    claimPasser: (f) => { passerNow = f; },
   };
   const built: PlugStages[] = plugs.map((plug) => plug.create(services));
 
@@ -127,7 +132,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   // MODULE_ORDER, spelled out. The loop groups by stage name and keeps this order inside each name.
   const fixedStages: readonly PlayStage[] = [
     gate(perception.stage, () => perceptionFrom), gate(playerAi.stage, () => 0), movement.stage, heldBall,
-    ball.move, ball.detect, boundary.moveStage, boundary.detectStage, interact.stage, kickOp.stage,
+    ball.move, ball.detect, boundary.moveStage, boundary.detectStage, interact.stage, kickOp.stage, catchPoint.stage,
     ...built[0]!.stages, ...built[1]!.stages, ...built[2]!.stages, finish, ledger,
   ];
   const freeKickLoop = createTickLoop(fixedStages);
@@ -218,6 +223,8 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
       callCohesion[s] = deps.length > 0 ? cohesion / deps.length : q['setup.defaultCohesion']!;
     }
     callNoise[0] = s0.context.noise?.[0] ?? 0; callNoise[1] = s0.context.noise?.[1] ?? 0;
+    // Eyes start each play with the hips: a gaze rule a module set on the last play must not carry into this one (J13.1.1).
+    for (let s = 0; s < SLOT_COUNT; s++) perception.gazeWithHips(s);
     for (let s = 0; s < SLOT_COUNT; s++) { const cfg = s0.perception[s]; if (cfg !== undefined) perception.configure(s, cfg); }
     playerAi.setPlay(slotPlays, s0.context, null);
 
@@ -234,6 +241,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     }
     const snapOf = (): ReturnType<PlayServices['snap']> => (presnap === null ? null : presnap.snap());
     kickOp.setPlay(input, O, s0.context.pressure ?? 0, snapOf);
+    catchPoint.setPlay(contests!);
     for (const b of built) b.setPlay?.(world);
 
     const full = input.options.detail === 'full', stopAtTick = input.options.stopAtTick;

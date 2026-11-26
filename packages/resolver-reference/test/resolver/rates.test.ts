@@ -1,8 +1,7 @@
 // The reference resolver's draws land on the rates in its parameter file, and move the right way with
 // ratings and with the defensive family (J1.6.3). The numbers compared against are read from PARAMS.
-// Four are typed here because fitted parameters were set to reach them and no parameter holds them:
-// interception 2.28%, 7.7 air yards per attempt and 10.9 yards per completion (J15.4.1), and 4.29 yards
-// per designed run (J15.5.1). Whether any of these figures is right is the calibration suite's question
+// Three are typed here because the measured depth shares reach them and no parameter holds them:
+// interception 2.28%, 7.7 air yards per attempt and 10.9 yards per completion (J15.4.1). Whether any of these figures is right is the calibration suite's question
 // (Q2, WP-13): most J15 rows are PROVISIONAL (build plan section 4).
 import { describe, expect, it } from 'vitest';
 import { deadBallOf, eventsOf, type PlayCalls, type PlayResult, type SimTeam } from '@gm/schema';
@@ -60,7 +59,7 @@ describe('reference resolver: dropbacks land on the J15.4 rows in the parameter 
 
   it('completion, interception, air yards and yards per completion', () => {
     expect(Math.abs(line.completions / line.attempts - P('pass.completionAll'))).toBeLessThan(0.012);
-    // 2.28% interceptions is the J15.4.1 row the depth shares were fitted to.
+    // 2.28% interceptions is the J15.4.1 row; the measured depth shares give 2.29%.
     expect(Math.abs(line.interceptions / line.attempts - 0.0228)).toBeLessThan(tol(0.0228, line.attempts));
     expect(Math.abs(line.air / line.attempts - 7.7)).toBeLessThan(0.3);
     expect(Math.abs(line.yards / line.completions - 10.9)).toBeLessThan(0.4);
@@ -88,6 +87,27 @@ describe('reference resolver: dropbacks land on the J15.4 rows in the parameter 
     for (const l of by) expect(Math.abs(l.completions / l.attempts - P('pass.completionAll'))).toBeLessThan(0.02);
   });
 
+  it('yards after the catch follow the depth of the catch', () => {
+    const sum: number[] = [], n: number[] = [], lost: number[] = [];
+    for (const r of runMany(pass(4), N)) {
+      const rel = eventsOf(r.truth, 'pass_release')[0];
+      if (!rel || eventsOf(r.truth, 'catch_point')[0]?.outcome !== 'catch') continue;
+      const a = Math.round(rel.airYd);
+      const band = a < 0 ? 0 : a === 0 ? 1 : a <= 5 ? 2 : a <= 10 ? 3 : a <= 15 ? 4 : a <= 20 ? 5 : a <= 30 ? 6 : 7;
+      const end = deadBallOf(r.truth).spot.x - 35;
+      sum[band] = (sum[band] ?? 0) + end - rel.airYd; n[band] = (n[band] ?? 0) + 1;
+      if (Math.round(end) < 0) lost[band] = (lost[band] ?? 0) + 1;
+    }
+    // From the 35 the goal line is out of reach for all but the deepest band, so each mean is the parameter.
+    ['b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6'].forEach((b, i) => {
+      const m = P(`pass.yacMeanYd.${b}`);
+      // Five standard errors: the spread of the draw is at most its mean.
+      expect(Math.abs(sum[i]! / n[i]! - m), `band ${b}`).toBeLessThan((5 * m) / Math.sqrt(n[i]!));
+    });
+    // Completions behind the line that lose yards: 13% in the real file; one exponential stage gave 28%.
+    expect(Math.abs(lost[0]! / n[0]! - 0.13)).toBeLessThan(0.03);
+  });
+
   it('completes fewer passes under pressure than from a clean pocket', () => {
     const results = runMany(pass(5), N);
     const hot = passLine(results.filter((r) => eventsOf(r.truth, 'pressure').length > 0), 35);
@@ -101,21 +121,36 @@ describe('reference resolver: runs land on the J15.5.1 rows in the parameter fil
   const mean = (rs: readonly PlayResult[]) => rs.reduce((s, r) => s + gain(r), 0) / rs.length;
   const clean = (rs: readonly PlayResult[]) => rs.filter((r) => eventsOf(r.truth, 'fumble').length === 0);
 
-  it('mean gain by box count is the designed-run mean moved by the by-box row', () => {
-    const designed = 4.29; // J15.5.1 designed runs only: the value `run.shiftYd` was set for
-    for (const [box, name] of [[6, 'run.ypcBox6'], [7, 'run.ypcBox7'], [8, 'run.ypcBox8'], [9, 'run.ypcBox9']] as const) {
-      const m = mean(clean(runMany(run(box), N)));
-      expect(Math.abs(m - (designed + P(name) - P('run.ypcAll'))), `box ${box}: ${m}`).toBeLessThan(0.2);
-    }
+  const BOXES = [[6, 'box6'], [7, 'box7'], [8, 'box8'], [9, 'box9']] as const;
+  const ypc = (name: string) => P(`run.ypc${name[0]!.toUpperCase()}${name.slice(1)}`);
+  /** The by-box rows averaged over the real mix of boxes: the reference the box shift is measured from. */
+  const boxMean = BOXES.reduce((s, [, name]) => s + P(`run.boxShare.${name}`) * ypc(name), 0) / BOXES.reduce((s, [, name]) => s + P(`run.boxShare.${name}`), 0);
+
+  it('mean gain by box count is the table mean moved by the by-box row less the rows\' average over the real mix', () => {
+    const means = BOXES.map(([box]) => mean(clean(runMany(run(box), N))));
+    BOXES.forEach(([box, name], i) => expect(Math.abs(means[i]! - means[1]! - (ypc(name) - ypc('box7'))), `box ${box}: ${means[i]}`).toBeLessThan(0.25));
+    // A defense that calls the real mix of boxes leaves the mean on the table's own mean (4.59 yd with the goal line out of reach).
+    const mixed = BOXES.reduce((s, [, name], i) => s + P(`run.boxShare.${name}`) * means[i]!, 0);
+    expect(Math.abs(mixed - 4.59), `mixed ${mixed}`).toBeLessThan(0.15);
     expect(mean(runMany(run(5), 5000))).toBe(mean(runMany(run(6), 5000)));
     expect(mean(runMany(run(11), 5000))).toBe(mean(runMany(run(9), 5000)));
+  });
+
+  it('a carry is stopped at or behind the line as often as real designed runs (18.5%) when the box is the real mix', () => {
+    // Reported gain is whole yards between the nearest yard lines; from a snap on a yard line that is round(gain).
+    let stuffed = 0;
+    BOXES.forEach(([box, name]) => {
+      const rs = clean(runMany(run(box), N));
+      stuffed += P(`run.boxShare.${name}`) * rs.filter((r) => Math.round(gain(r)) <= 0).length / rs.length;
+    });
+    expect(Math.abs(stuffed - 0.185), `stuffed ${stuffed}`).toBeLessThan(0.012);
   });
 
   it('keeps the shape of the quantile table and loses the ball at the fumble row', () => {
     const results = runMany(run(7), N);
     const gains = clean(results).map(gain).sort((a, b) => a - b);
     const at = (p: number) => gains[Math.floor(p * gains.length)]!;
-    const shift = P('run.shiftYd') + P('run.ypcBox7') - P('run.ypcAll');
+    const shift = ypc('box7') - boxMean;
     for (const [p, name] of [[0.10, 'run.q10'], [0.25, 'run.q25'], [0.50, 'run.q50'], [0.75, 'run.q75'], [0.90, 'run.q90']] as const) {
       expect(Math.abs(at(p) - (P(name) + shift)), `quantile ${p}`).toBeLessThan(0.35);
     }

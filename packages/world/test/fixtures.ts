@@ -88,7 +88,8 @@ export const testSchedule: loop.SchedulePort = {
     const out: loop.ScheduledGame[] = [];
     let gameId = week * 1000 + 1;
     for (const comp of world.competitions) {
-      const ids = comp.teamIds;
+      const ids = loop.activeTeamIds(world, comp.teamIds);
+      if (ids.length < 2) continue;
       if (week < WEEKS) {
         const n = ids.length, half = Math.floor(n / 2);
         for (let i = 0; i < half; i++) {

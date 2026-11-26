@@ -46,7 +46,7 @@ describe('reference resolver: contract (J1.6.3, J14.1.2)', () => {
 
   it('rejects an override of a parameter that does not exist', () => {
     expect(() => referenceParamTable({ 'run.noSuchThing': 1 })).toThrow();
-    expect(referenceParamTable({ 'run.shiftYd': 0 }).num('resolverRef.run.shiftYd')).toBe(0);
+    expect(referenceParamTable({ 'run.floorYd': -8 }).num('resolverRef.run.floorYd')).toBe(-8);
   });
 });
 

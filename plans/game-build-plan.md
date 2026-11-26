@@ -226,3 +226,7 @@ Columns: **Bible** = leaves it implements; **Owns** = paths (tests in the matchi
 - Phase 5 gate needs modern fourth-down rates measured first (R3.2.1); G-59 cannot pass until that research lands.
 - College practice and time limits are PROVISIONAL (R1.2.7 edge case); G-12 and G-65 ship them as config.
 - Awaiting Marlon (not rulings): one locked people pack in certified careers (P7.4.1), the practice field as an open lab (A3.2.2), commercial or personal release (A3.3.1). G-95 and G-100 build switches for these, off until he decides.
+
+## 8. Presentation packages (graphics and sound)
+
+Graphics and sound have their own plan: `plans/presentation-build-plan.md`, packages PV-00 to PV-18 in three waves (PW1 starts now), with a classic 1970s and 1980s look. They extend this file and follow its sections 0 and 2. Models: 15 Opus, 4 Sonnet, no Fable.
