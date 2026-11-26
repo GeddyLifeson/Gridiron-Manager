@@ -16,7 +16,7 @@ describe('pressure calls', () => {
   });
   it('a creeper or simulated pressure rushes four with a lineman dropping and a backer or back coming', () => {
     const sims = PRESSURE_DEFENSE.filter(isSimulatedPressure).map((d) => d.id).sort();
-    expect(sims).toEqual(['def_creeper_boundary', 'def_creeper_field_edge', 'def_sim_mug_cover1_rat', 'def_sim_mug_cover3']);
+    expect(sims).toEqual(['def_creeper_boundary', 'def_creeper_boundary_safety', 'def_creeper_field_edge', 'def_creeper_safety_insert', 'def_sim_mug_cover1_rat', 'def_sim_mug_cover3']);
     for (const id of sims) {
       const d = byId.get(id)!;
       expect(d.rushers).toBe(4);
@@ -24,7 +24,7 @@ describe('pressure calls', () => {
       expect(d.slots.some((s) => !LINE.has(s.role) && s.behavior === 'blitz')).toBe(true);
     }
     expect(isSimulatedPressure(byId.get('def_cover3_fire3_sim')!)).toBe(true);
-    for (const id of ['def_cover3_sky', 'def_cover3_fire_zone', 'def_cover0_six_man', 'def_34_cover3', 'def_cover1_five_man']) expect(isSimulatedPressure(byId.get(id)!), id).toBe(false);
+    for (const id of ['def_cover3_sky', 'def_cover3_fire_zone', 'def_cover0_six_man', 'def_34_cover3', 'def_cover1_five_man', 'def_cover1_slot_blitz']) expect(isSimulatedPressure(byId.get(id)!), id).toBe(false);
   });
   it('a simulated pressure shows six at the line; a creeper shows four', () => {
     const atLine = (id: string) => byId.get(id)!.slots.filter((s) => s.onLine === true).length;

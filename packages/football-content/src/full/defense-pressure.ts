@@ -177,7 +177,64 @@ function cover1FiveMan(): DefenseDef {
       NOBODY_HELPS]);
 }
 
-export const PRESSURE_DEFENSE: readonly DefenseDef[] = [creeperFieldEdge(), creeperBoundary(), simMugCover3(), simMugCover1Rat(), fireZoneWeak(), cover1FiveMan()];
+// ---- Strong safety insert creeper (1997 Jets "Thunder Skim") ------------------------------------------
+function creeperSafetyInsert(): DefenseDef {
+  const c = 'creeperSafetyInsert';
+  return call('def_creeper_safety_insert', 'Safety Insert Creeper (End Drops)', 'cover3', '4-3 base look, four rush with the strong safety inserting inside, strong end dropping', 4, 7,
+    'A base two-high look. The strong safety comes down late from outside the box and inserts through the strong A gap while the end to his side drops to the strong hook. Weak spot: he has a long way to run, and a lineman is a hook defender.', [
+      ...front(c, 'RDE', 'hookRight', 8),
+      rusher(c, 'SS', [8, 3], 'hash:8:3', 'A', 'right', 'aGapBlitz'),
+      zone(c, 'MIKE', [4.5, 0.5], 'lb:over:center', 'zoneDrop', { zone: 'middleHook', depth: 10 }),
+      zone(c, 'SAM', [4.5, 4], 'lb:over:rightCurlFlat', 'zoneDrop', { zone: 'curlFlatRight', depth: 11, landmark: 'numbersTop' }),
+      zone(c, 'WILL', [4.5, -4], 'lb:over:leftCurlFlat', 'zoneDrop', { zone: 'curlFlatLeft', depth: 11, landmark: 'numbersTop' }),
+      ...threeDeep(c),
+    ], [
+      FOUR_FOR_ONE, CREEPER_LOOK, COVER3_BEHIND,
+      { claim: 'Zone dog "Thunder Skim" (1997 Jets): the strong safety blitzes the A gap and a defensive end drops to the strong hook', status: '1 of 3', sources: ['hoover-sim-origin'] },
+      { claim: 'The safety starts 8 yd deep outside the box; the linebackers\' zones are design values', status: 'Assumption', sources: [] },
+      NOBODY_HELPS]);
+}
+
+// ---- Boundary safety creeper ----------------------------------------------------------------------------
+function creeperBoundarySafety(): DefenseDef {
+  const c = 'creeperBoundarySafety';
+  return call('def_creeper_boundary_safety', 'Boundary Safety Creeper', 'cover3', '4-3 base look, four rush with the boundary safety off the weak edge, weak end dropping', 4, 7,
+    'A base two-high look. The boundary safety comes down late off the weak edge, the end to his side drops to the weak curl-flat and the other safety rolls to the deep middle. Weak spot: the middle of the field is late to close.', [
+      ...front(c, 'LDE', 'curlFlatLeft', 8),
+      rusher(c, 'FS', [8, -5.5], 'hash:8:-5.5', 'C', 'left', 'edgeBlitz'),
+      zone(c, 'SS', [12, 3], 'hash:12:3', 'deepZone', { zone: 'deepMiddle', depth: 12, rotated: true }),
+      zone(c, 'MIKE', [4.5, 0.5], 'lb:over:center', 'zoneDrop', { zone: 'hookRight', depth: 11, landmark: 'hashOutside' }),
+      zone(c, 'WILL', [4.5, -3], 'lb:over:leftHook', 'zoneDrop', { zone: 'hookLeft', depth: 11, landmark: 'hashOutside' }),
+      zone(c, 'SAM', [4.5, 4], 'lb:over:rightCurlFlat', 'zoneDrop', { zone: 'curlFlatRight', depth: 11, landmark: 'numbersTop' }),
+      deepThird(c, 'LCB', 'left'), deepThird(c, 'RCB', 'right'),
+    ], [
+      FOUR_FOR_ONE, CREEPER_LOOK,
+      { claim: 'A boundary creeper brings the corner or the boundary safety with the middle of the field closed behind it', status: '1 of 3', sources: ['gaylor-creepers-sims'] },
+      { claim: 'A boundary creeper is a named family beside the field creeper', status: '2 of 3', sources: ['alexander-passing-strength', 'gaylor-creepers-sims'] },
+      { claim: 'The end as the weak curl-flat dropper, the other safety rolling to the deep middle and all depths are design values', status: 'Assumption', sources: [] },
+      NOBODY_HELPS]);
+}
+
+// ---- Cover 1 with the slot defender as the fifth rusher ------------------------------------------------------
+function cover1SlotBlitz(): DefenseDef {
+  const c = 'cover1SlotBlitz';
+  return call('def_cover1_slot_blitz', 'Cover 1, Slot Blitz', 'cover1', '4-3 base, man free, the defender over the slot as a fifth rusher', 5, 6,
+    'Man free with no hole player: the Sam blitzes from over the slot, outside the box, and the strong safety comes down to take his receiver. Weak spot: the safety is late to the slot receiver.', [
+      ...front(c, null, '', 0),
+      rusher(c, 'SAM', [3.5, 7], 'rcv:2:right:3.5:inside', 'C', 'right', 'edgeBlitz'),
+      man(c, 'SS', [8, 6], 'rcv:2:right:8:inside', '#2:right', 'off'),
+      man(c, 'MIKE', [4.5, 0.5], 'lb:over:center', 'role:R', 'off'),
+      man(c, 'WILL', [4, -7.5], 'rcv:2:left:4:inside', '#2:left', 'off'),
+      man(c, 'LCB', [7.5, -17], 'rcv:1:left:7.5:outside', '#1:left', 'off'),
+      man(c, 'RCB', [7.5, 17], 'rcv:1:right:7.5:outside', '#1:right', 'off'),
+      zone(c, 'FS', [13, 0], 'hash:13:0', 'deepZone', { zone: 'deepMiddle', depth: 13 }),
+    ], [
+      COVER1_BASE,
+      { claim: 'The slot defender as the fifth rusher and the safety replacing him are design values', status: 'Assumption', sources: [] },
+      NOBODY_HELPS]);
+}
+
+export const PRESSURE_DEFENSE: readonly DefenseDef[] = [creeperFieldEdge(), creeperBoundary(), simMugCover3(), simMugCover1Rat(), fireZoneWeak(), cover1FiveMan(), creeperSafetyInsert(), creeperBoundarySafety(), cover1SlotBlitz()];
 
 const LINE_ROLES: ReadonlySet<string> = new Set(['LDE', 'LDT', 'RDT', 'RDE', 'NT']);
 const RUSH: ReadonlySet<string> = new Set(['passRush', 'blitz']);
