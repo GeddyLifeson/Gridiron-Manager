@@ -55,6 +55,8 @@ export function estimate(baked: BakedHistory, c: WorldChoice, benchmarkRatio = 1
 
 export interface Progress {
   readonly rerun: number;
+  /** 0, or 1 when the first try failed validation and the run is redone with seed plus 1 (X10.3.2). */
+  readonly seedStep: number;
   readonly done: number;
   readonly of: number;
   readonly seasonYear: number;
@@ -91,13 +93,14 @@ export function runDraft(
   const now = opts.now ?? (() => 0);
   const t0 = now();
   let current: loop.LiveWorld | null = null;
+  let currentStep = 0;
   const setupOf = (seedHex: string) => draftSetup({ ...c, seedHex });
   const make = bindDraft(setupOf, {
     ...opts.binding,
     onSeason: (s, done, of) => {
       const w = current!;
       opts.onProgress?.({
-        rerun, done, of, seasonYear: s.seasonYear,
+        rerun, seedStep: currentStep, done, of, seasonYear: s.seasonYear,
         champions: Object.entries(s.champions).map(([cid, tid]) => ({ competition: compName(w, Number(cid)), team: teamName(w, tid) })),
         teamsActive: w.teams.filter((t) => loop.isActive(w, t.id, s.seasonYear)).length,
         people: w.people.size, hallMembers: w.hall.members.length, elapsedMs: now() - t0,
@@ -107,6 +110,7 @@ export function runDraft(
   const draft = loop.draftHistory(c.seedHex, rerun, (seedHex, step) => {
     const parts = make(seedHex, step);
     current = parts.world;
+    currentStep = step;
     return parts;
   });
   const setup = draft.built.world.setup;

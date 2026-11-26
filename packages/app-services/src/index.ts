@@ -35,3 +35,4 @@ export * as gameplan from './read-models/gameplan/index.ts';
 export * as gameplanCommands from './commands/gameplan/index.ts';
 export * as presentationLive from './presentation/live/index.ts';
 export * as coachCalling from './coach-calling/index.ts';
+export * as newgame from './newgame/index.ts';
