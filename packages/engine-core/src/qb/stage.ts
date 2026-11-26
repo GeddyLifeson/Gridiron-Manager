@@ -21,6 +21,7 @@ import { pickOutcome, type Contests } from '../contest/index.ts';
 import { PI, dAtan2, dCos, dSqrt } from '../dmath.ts';
 import { cutMultiplier, kinParams } from '../kinematics/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
+import { COVERING, READING, RUSHING, opposingElevenZ, opposingZ } from '../tick/opposition.ts';
 import {
   accuracySdYd, anticipationEarlyS, blindsideFeelChance, clip, depthBand, dropDepthYd, eyesDownfieldChance, falsePressureChance, freePlaySeenChance,
   hotSeenChance, interceptionCeiling, keyReadChance, knowsGroundingChance, maxBallSpeedYps, meshFumbleChance, meshReadChance, platformMultiplier, pumpFakeChance, readTimeS, releaseTimeS,
@@ -158,6 +159,10 @@ export interface Quarterback {
 
 function hyp(x: number, y: number): number { return dSqrt(x * x + y * y); }
 
+// The grades on the other side of his clocks. The rush is the four the block contest reads (J6.2.1); the coverage
+// is how fast its men sort the play out (`READING`).
+const RUSH_GRADES = ['get_off', 'power_rush', 'hand_moves', 'speed_rush_and_bend'] as const;
+
 /**
  * Flight times from the J9 solver in still air, by distance and trajectory, for one arm in one air
  * (J7.6.1: "flight time comes from J9 and was already used in the estimate"). Solving is slow, so a
@@ -171,10 +176,12 @@ const flightTables = new WeakMap<BallParams, Map<string, FlightTable>>();
 function flightTable(vBallYps: number, k: number, maxRangeYd: number, bp: BallParams): FlightTable {
   let byArm = flightTables.get(bp);
   if (byArm === undefined) { byArm = new Map(); flightTables.set(bp, byArm); }
-  const key = `${vBallYps}|${k}`;
+  // The row count is part of the key: a table first built for a shorter field must not answer a longer
+  // one, or a throw's flight would depend on which plays came before it (and on garbage collection).
+  const n = Math.floor(maxRangeYd / FLIGHT_STEP_YD) + 2;
+  const key = `${vBallYps}|${k}|${n}`;
   const hit = byArm.get(key);
   if (hit !== undefined) return hit;
-  const n = Math.floor(maxRangeYd / FLIGHT_STEP_YD) + 2;
   const row = (): FlightRow => ({ timeS: new Float64Array(n), tan: new Float64Array(n) });
   const made: FlightTable = { n, releaseH: bp['pass.releaseHeightYd']!, catchH: bp['pass.catchHeightYd']!, firm: row(), drive: row(), touch: row() };
   for (let i = 1; i < n; i++) {
@@ -239,7 +246,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   let phase = WAIT, level = NONE, everHad = false, gotBallT = 0, tSet = 0, launchPx = 0, launchPy = 0, setPx: number | null = null, setPy: number | null = null;
   let idx = 0, look = 0, passes = 0, visitStart = 0, waitStart = 0, evaluating = false, blockUntil = 0, restarted = false, firstPass = true;
   let eyesDown = false, hotSeen = false, hotDone = false, falseDrawn = false, falseDone = false, freeSeen = false, knowsRule = true, deepestRead = -1;
-  let threat = -1, threatTtc = Infinity, threatPx = 0, threatPy = 0, respondedTo = -1, pressureNear = false, inFace = false, takeSack = false, dodge = false;
+  let threat = -1, threatTtc = Infinity, threatPx = 0, threatPy = 0, respondedTo = -1, respondedAt = 0, answers = 0, pressureNear = false, inFace = false, takeSack = false, dodge = false;
   let response: PressureResponse | null = null, extendSide = 0, everOutside = false, scrambleDraw = 0, keyDraw = 0;
   let releaseAt = 0, relTarget: QbTarget | null = null, relKind: ThrowRecord['kind'] = 'pass', relRead = -1, relHot = false, relAnticipated = false, relUnset = false, relMoving = false;
   let relP = 0, relI = 0, relV = 0, relThr = 0, awayPx = 0, awayPy = 0, awayH: number | undefined = 0;
@@ -273,7 +280,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     cur = next;
     phase = WAIT; level = NONE; everHad = false; setPx = null; setPy = null; ticksTracked = 0;
     idx = 0; look = -1; passes = 0; evaluating = false; blockUntil = 0; restarted = false; firstPass = true; eyesDown = false;
-    hotDone = false; falseDone = false; threat = -1; respondedTo = -1; takeSack = false; dodge = false; response = null; extendSide = 0; everOutside = false;
+    hotDone = false; falseDone = false; threat = -1; respondedTo = -1; respondedAt = 0; answers = 0; takeSack = false; dodge = false; response = null; extendSide = 0; everOutside = false;
     scrambleDraw = 0; keyDraw = 0; relTarget = null; underPressureNow = false; carrierOwns = false; stumbleUntil = 0;
     meshSum = 0; meshN = 0; meshDecided = false; meshLate = false; pitchDone = false;
     throwRecord = null; sack = null; kneel = null; ran = null; hazard = null; mesh = null; handoff = null;
@@ -284,14 +291,22 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const p = P = qbParams(w.params), bp = BP = ballParams(w.params), s = play.qbSlot;
     const info = w.slots[s]!, a = info.player.attributes, pl = w.players;
     const body = pl.dFatigueZ[s]! + pl.dInjuryZ[s]!, mind = body + pl.dKnowledgeZ[s]!;
+    // Ruling 2026-11-26 (one pro scale, no level of play): his grades are read against the eleven he is playing.
+    // The three clocks and the ball have their own opponents (the rush, the coverage); every other grade is read
+    // against how fast the other eleven sorts a play out. Nobody has a behavior before the snap, so all of them.
+    const zEleven = opposingElevenZ(w, s, READING), opposed = p['oppose.gradeShare'] * zEleven;
     const zb = (id: string): number => issToZ(a[id]!) - body, zm = (id: string): number => issToZ(a[id]!) - mind;
-    zFoot = zb('footwork_and_drop'); zPocket = zb('pocket_movement'); zScramble = zb('scramble_and_run_skill'); zRelease = zb('release_time'); zArm = zb('arm_strength');
-    zAccShort = zb('accuracy_short'); zAccMid = zb('accuracy_intermediate'); zAccDeep = zb('accuracy_deep'); zMove = zb('accuracy_on_the_move'); zUnderPressure = zb('accuracy_under_pressure');
+    const zbo = (id: string): number => zb(id) - opposed, zmo = (id: string): number => zm(id) - opposed;
+    zFoot = zb('footwork_and_drop'); zPocket = zbo('pocket_movement'); zScramble = zbo('scramble_and_run_skill'); zRelease = zb('release_time'); zArm = zb('arm_strength');
+    zAccShort = zbo('accuracy_short'); zAccMid = zbo('accuracy_intermediate'); zAccDeep = zbo('accuracy_deep'); zMove = zbo('accuracy_on_the_move'); zUnderPressure = zbo('accuracy_under_pressure');
     zCod = info.player.tests.changeOfDirectionZ - body;
-    zProc = zm('processing_speed'); zCov = zm('coverage_reading_post_snap'); zBlitz = zm('blitz_recognition'); zAnt = zm('anticipation'); zMeshRead = zm('play_recognition');
-    zFi = zm('football_intelligence'); zHandling = zb('play_fake_and_ball_handling'); zComposure = zm('composure');
-    decisionRisk = a['decision_risk']!; composure = a['composure']!;
-    tReadS = readTimeS(zProc, p); earlyS = anticipationEarlyS(zAnt, p); releaseS = releaseTimeS(zRelease, p); vBall = maxBallSpeedYps(zArm, p);
+    zProc = zm('processing_speed'); zCov = zmo('coverage_reading_post_snap'); zBlitz = zmo('blitz_recognition'); zAnt = zmo('anticipation'); zMeshRead = zmo('play_recognition');
+    zFi = zmo('football_intelligence'); zHandling = zbo('play_fake_and_ball_handling'); zComposure = zmo('composure');
+    decisionRisk = a['decision_risk']!; composure = a['composure']! - 10 * opposed;
+    tReadS = readTimeS(zProc, p); earlyS = anticipationEarlyS(zAnt, p); releaseS = releaseTimeS(zRelease, p);
+    // Ball speed is read against the eleven it is thrown at.
+    const vArm = maxBallSpeedYps(zArm, p);
+    vBall = maxBallSpeedYps(zArm, p, zEleven);
     riskOffset = riskOffsetEp(decisionRisk, play.instructions.risk, p);
     wet = w.environment.precip !== 'none' || w.environment.derived.grip < 1;
     gustMult = gustAimMultiplier(w.environment, bp['wind.gustAimGain']!);
@@ -316,7 +331,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     intCeil = freeSeen ? 1 : interceptionCeiling(trailing, oneScore, sit.period, sit.clockTenths * TICK_S, p);
 
     seq = play.reads.slice();
-    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
     deepestRead = -1;
     if (freeSeen) {
       let deep = -Infinity;
@@ -328,12 +343,15 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       if (deepestRead > 0) { const r = seq.splice(deepestRead, 1)[0]!; seq.unshift(r); deepestRead = 0; }
     }
     const k = airDrag(bp['pass.dragPerYd']!, w.environment);
-    const far = solvePassFrom(0, 0, 300, 0, vBall, 'drive', k, NO_WIND, bp);
+    // His range is his own arm's, and never more than the ball he throws on this play can cover.
+    const far = solvePassFrom(0, 0, 300, 0, vArm < vBall ? vArm : vBall, 'drive', k, NO_WIND, bp);
     const table = flightTable(vBall, k, far.arrival.x, bp);
     const kp = kinParams(w.params);
     ctx = {
       p, catchPoint, math: w.math, value: play.value ?? standInValue(p, sit.down, sit.distanceYd),
       releaseS, vBallYps: vBall, dragPerYd: k, maxRangeYd: far.arrival.x, wet, allowOutOfRange: play.kind === 'hailMary',
+      loPy: Math.min((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
+      hiPy: Math.max((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
       accuracySdYd: (airYd) => errorSd(airYd, platformNow(false, false)),
       flightS: (distYd, trajectory) => flightFrom(table, distYd, trajectory),
       heightYd: (distYd, alongYd, trajectory) => heightFrom(table, distYd, alongYd, trajectory),
@@ -481,6 +499,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     ran = { tick: w.tick, why };
     carrierOwns = options.onRun ? options.onRun(w, cur!.qbSlot, why) : false;
     detail(w, `qb.${why}`);
+    // The stat line reads the shared code (contract decision D-16): without it no scramble was ever counted.
+    if (why === 'scramble') detail(w, 'scramble');
     note(w, why);
   }
 
@@ -730,7 +750,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   }
 
   function baseOf(i: number): number {
-    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'];
+    // With nobody left to look at, the other choice is throwing it away, and a throwaway is an incompletion.
+    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'] - P!['value.incompleteCostEp'];
   }
 
   function noiseOf(i: number): number { return nBegin[N_SEP + ((passes * seq.length + i) % SEP_LOOKS)]! * separationSdYd(zCov, P!); }
@@ -743,6 +764,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     // J7.1.2: he throws once the receiver has broken, or up to `earlyS` before it if he trusts the timing.
     if (!(out.broken || out.toBreakS <= earlyS)) return NaN;
     if (!out.seen && earlyS <= 0) return NaN;
+    // On a free play an incompletion costs nothing: the penalty is there to take.
+    if (freeSeen) { const inc = 1 - out.pHat - out.iHat; if (inc > 0) out.v += inc * p['value.incompleteCostEp']; }
     if (freeSeen && i === deepestRead) out.v += p['freePlay.deepBonusEp'];
     return throwThresholdEp(baseOf(i), riskOffset, t - tSet, pressureNear, p);
   }
@@ -767,7 +790,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     if (!restarted && play.correctedReads !== null && t >= tSet) {
       restarted = true;
       seq = play.correctedReads.slice();
-      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
       idx = 0; newVisit(w, t); blockUntil = t + tReadS;
       note(w, 'restart');
     }
@@ -775,6 +798,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     lookAtSlot(w, targetOf(w, v, idx).slot);
     if (t < blockUntil - EPS) return;
     const thr = judgeRead(w, v, idx, t, est);
+    // A receiver already past his arm's reach only gets farther away: he comes off him at once and does not wait
+    // out the read. Waiting cost him the next receiver, who had run out of his window by the time he looked.
+    if (thr !== thr && est.outOfRange) { idx++; newVisit(w, t); if (idx < seq.length) note(w, 'read', seq[idx]!.target.slot, idx); return; }
     if (thr === thr) {
       if (!evaluating) { evaluating = true; visitStart = t > blockUntil ? t : blockUntil; }
       if (!options.test?.noThrow && est.v >= thr && est.iHat <= intCeil) { startRelease(w, t, targetOf(w, v, idx), 'pass', idx, false, est, thr); return; }
@@ -798,30 +824,58 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
 
   function respond(w: TickWorld, v: PerceivedView, t: number): void {
     const p = P!, play = cur!, temp = p['pressure.softmaxTempEp'];
-    respondedTo = threat;
+    // A second answer to the same rusher (he moved, and the man is on him again): the ball has to come out now.
+    const again = respondedTo === threat;
+    respondedTo = threat; respondedAt = t; answers++;
     const scores: number[] = [], which: number[] = [];
     // Throw now: the read he is on, or the checkdown once it is available (J7.3.3).
     let throwIdx = -1, thr = NaN;
-    if (phase !== DROP && idx < seq.length) { thr = judgeRead(w, v, idx, t, est); if (thr === thr && est.iHat <= intCeil) throwIdx = idx; }
+    // In his drop he has no throw (the hot throw, J7.3.3, is the answer to a rusher that early).
+    const canThrow = phase !== DROP;
+    if (canThrow && idx < seq.length) { thr = judgeRead(w, v, idx, t, est); if (thr === thr && est.iHat <= intCeil) throwIdx = idx; }
     if (throwIdx < 0 && play.checkdown && (phase === EXTEND || idx >= p['read.checkdownAfter'])) {
       const cd = seq.length - 1;
       thr = judgeRead(w, v, cd, t, est);
       if (thr === thr && est.iHat <= intCeil) throwIdx = cd;
     }
+    // No throw on the read he is on: another receiver in the progression he can judge now, the best one. On his second
+    // answer the ball has to come out, so he takes the best throw anywhere even with one on his own read. Held to the
+    // one read he had no throw in two answers out of three, and those ended as sacks or throwaways (15 to 18% of
+    // dropbacks together against 10.4% real). Rating every receiver on the first answer went too far the other way
+    // (sacks 3.4%): he cannot look the whole field over in the half second he has.
+    if (canThrow && (throwIdx < 0 || again)) {
+      let bestV = throwIdx >= 0 ? est.v : -Infinity, bestI = throwIdx;
+      for (let i = 0; i < seq.length; i++) {
+        if (i === throwIdx) continue;
+        const th = judgeRead(w, v, i, t, estAlt);
+        if (th === th && estAlt.iHat <= intCeil && estAlt.v > bestV) { bestV = estAlt.v; bestI = i; }
+      }
+      if (bestI !== throwIdx) { throwIdx = bestI; thr = judgeRead(w, v, throwIdx, t, est); }
+    }
+    // With the rusher on him there is no next read to wait for: the other choice is throwing it away, so the throw is
+    // rated against that and not against the read he would have looked at next. Rated against the next read he threw
+    // it away with a receiver he rated a completion: one dropback in five ended as a throwaway.
+    if (throwIdx >= 0) thr = p['resp.throwAwayEp'] - p['value.incompleteCostEp'];
     if (throwIdx >= 0 && !options.test?.noThrow) { scores.push((est.v - thr) / temp); which.push(0); }
-    if (phase === POCKET || phase === DROP) { scores.push((p['resp.pocketEp'] + p['resp.pocketPerZEp'] * zPocket) / temp); which.push(1); }
+    if (!again && (phase === POCKET || phase === DROP)) { scores.push((p['resp.pocketEp'] + p['resp.pocketPerZEp'] * zPocket) / temp); which.push(1); }
     // Escape needs somewhere to go: no rusher he senses on the side away from the threat.
     const away = threatPy >= v.self.py ? -1 : 1;
     let open = true;
     for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) if (sensed[d] === 1 && d !== threat && (playY(w, d) - v.self.py) * away > 0) open = false;
-    if (open && phase !== EXTEND) { scores.push((p['resp.escapeEp'] + p['resp.escapePerZEp'] * zScramble + p['resp.escapeCodPerZEp'] * zCod) / temp); which.push(2); }
+    if (open && phase !== EXTEND && !again) { scores.push((p['resp.escapeEp'] + p['resp.escapePerZEp'] * zScramble + p['resp.escapeCodPerZEp'] * zCod) / temp); which.push(2); }
     const legal = findThrowaway(w, v);
     const dump = legal === 0 && uBegin[U_DUMP]! < riskyDumpChance(zComposure, p, w.math);
-    if ((legal !== 0 || dump) && !options.test?.noThrow) { scores.push(p['resp.throwAwayEp'] / temp); which.push(3); }
+    // Throwing it away costs the down, the same cost every aimed throw is charged for an incompletion. Scored without
+    // it the throwaway outranked moving in the pocket and escaping, and half of all answers with no throw on were
+    // throwaways (11% of dropbacks; charted throwaways are 3.5 to 3.6% of dropbacks, FTN 2023 and 2024).
+    if ((legal !== 0 || dump) && !options.test?.noThrow) { scores.push((p['resp.throwAwayEp'] - p['value.incompleteCostEp']) / temp); which.push(3); }
+    // A second answer with neither a throw nor a throwaway on is no answer: he keeps moving.
+    if (again && scores.length === 0) return;
     scores.push((p['resp.sackEp'] + (play.instructions.protectBall ? p['resp.protectBallEp'] : 0)) / temp); which.push(4);
     const pick = which[pickOutcome(contests.math.outcomeProbabilities(scores, w.math), uTick[3]!)]!;
-    response = PRESSURE_RESPONSES[pick]!;
-    note(w, `pressure: ${response}`, threat, threatTtc);
+    // The record keeps his first answer; a second answer to the same rusher shows in the notes and in what he did.
+    if (!again) response = PRESSURE_RESPONSES[pick]!;
+    note(w, `pressure: ${PRESSURE_RESPONSES[pick]!}`, threat, threatTtc);
     if (pick === 0) startRelease(w, t, targetOf(w, v, throwIdx), 'pass', throwIdx, false, est, thr);
     else if (pick === 1) dodge = true;
     else if (pick === 2) toExtend(w, v, away);
@@ -1024,7 +1078,12 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const p = P!, play = cur!;
     gotBallT = t;
     launchPx = play.launchPx ?? -dropDepthYd(play.drop, p); launchPy = play.launchPy ?? v.self.py;
-    tSet = setTimeS(play.drop, zFoot, play.playActionS, play.badSnapS, p);
+    // The other side of his three clocks, read once, when he has the ball and the defense has declared (the player
+    // AI has set this tick's behaviors): the rush his drop and release race, and the coverage his reads sort out.
+    const s = play.qbSlot, zRush = opposingZ(w, s, RUSHING, RUSH_GRADES), zCoverage = opposingZ(w, s, COVERING, READING);
+    tReadS = readTimeS(zProc, p, zCoverage); releaseS = releaseTimeS(zRelease, p, zRush);
+    if (ctx !== null) ctx.releaseS = releaseS;
+    tSet = setTimeS(play.drop, zFoot, play.playActionS, play.badSnapS, p, zRush);
     if (tSet < t) tSet = t;
     if (play.kind === 'kneel') { launchPx = v.self.px - p['kneel.lossYd']; launchPy = v.self.py; phase = SCRIPTED; }
     else if (play.kind === 'spike') phase = SCRIPTED;
@@ -1142,7 +1201,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     }
 
     if (takeSack) { stay(w, v); track(w); return; }
-    if (level === IMMINENT && threat !== respondedTo) {
+    if (level === IMMINENT && (threat !== respondedTo || (answers === 1 && response === 'pocketMovement' && phase !== DROP && t >= respondedAt + p['resp.secondAnswerS'] - EPS))) {
       respond(w, v, t);
       if (phase === RELEASE || takeSack) { stay(w, v); track(w); return; }
     }
@@ -1190,7 +1249,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
       if (pl.moveMode[d] === M_DOWN || w.tick < pl.onGroundUntilTick[d]!) continue;
       const c = pl.engagement[d]!;
-      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < 0)) continue;
+      // Free, or winning his block by the margin the quarterback's own read uses (J7.4.1): a man still locked up
+      // a yard from an under-center quarterback at the snap is not pressure.
+      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < p['pressure.feltAdvantage'])) continue;
       const dx = pl.posX[d]! - qx, dy = pl.posY[d]! - qy, dist = hyp(dx, dy), gap = dist - rQ - w.slots[d]!.movement.bodyRadiusYd;
       const closing = dist > 0 ? -((pl.velX[d]! - pl.velX[s]!) * dx + (pl.velY[d]! - pl.velY[s]!) * dy) / dist : 0;
       const ttc = gap <= 0 ? 0 : closing > 0 ? gap / closing : Infinity;
@@ -1200,6 +1261,13 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
         if (pressured[d] === 0) { pressured[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'pressure', rusherId, passerId: qbId, spot }); }
       }
       if (gap > p['arrival.contactGapYd'] || w.tick < rearm[d]!) continue;
+      if (has && play.kind === 'kneel' && kneel === null) {
+        // A kneel-down ends when he is touched: he is going to the ground anyway (J7.8.1), so this is the kneel, not a sack.
+        kneel = { tick: w.tick, x: qx, y: qy };
+        detail(w, 'qb.kneel');
+        phase = OVER;
+        return;
+      }
       if (!has) {
         // Contact just after the release is a hit on the passer and changes nothing about the throw (J6.2.5).
         if (hitDone[d] === 0) { hitDone[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'hit', rusherId, passerId: qbId, spot }); }
@@ -1209,7 +1277,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       for (let o = SLOTS_PER_TEAM; o < SLOT_COUNT; o++) {
         if (o === d || pl.moveMode[o] === M_DOWN) continue;
         const oc = pl.engagement[o]!;
-        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < 0)) continue;
+        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < p['pressure.feltAdvantage'])) continue;
         if (hyp(pl.posX[o]! - qx, pl.posY[o]! - qy) <= p['arrival.secondRusherYd']) second = true;
       }
       const dInfo = w.slots[d]!, da = dInfo.player.attributes;

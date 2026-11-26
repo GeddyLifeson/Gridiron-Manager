@@ -5,8 +5,9 @@ import { FULL_PA } from './offense-pa.ts';
 import { FULL_PASSES } from './offense-pass.ts';
 import { FULL_RUNS } from './offense-run.ts';
 import { MORE_PLAYS } from './offense-more.ts';
+import { BOOK_PLAYS } from './offense-book.ts';
 
 /** Plays this work package adds. */
-export const ADDED_PLAYS: readonly PlayDef[] = [...FULL_RUNS, ...FULL_PASSES, ...FULL_PA, ...MORE_PLAYS];
+export const ADDED_PLAYS: readonly PlayDef[] = [...FULL_RUNS, ...FULL_PASSES, ...FULL_PA, ...MORE_PLAYS, ...BOOK_PLAYS];
 /** Every play of the v1 set: the starter twelve first, then the additions. */
 export const FULL_PLAYS: readonly PlayDef[] = [...STARTER_PLAYS, ...ADDED_PLAYS];

@@ -5317,6 +5317,53 @@
    "key": "foul.ineligible_downfield.pass_must_cross",
    "value": true,
    "factId": "F-rule-2042"
+  },
+  {
+   "key": "comm.c2p_designated_offense",
+   "value": 0,
+   "factId": "F-rule-2044",
+   "unit": "count"
+  },
+  {
+   "key": "comm.c2p_designated_defense",
+   "value": 0,
+   "factId": "F-rule-2046",
+   "unit": "count"
+  },
+  {
+   "key": "toss.minutes_before_kickoff",
+   "value": 3,
+   "factId": "F-rule-2048",
+   "unit": "min"
+  },
+  {
+   "key": "toss.field_presence_minutes",
+   "value": 0,
+   "factId": "F-rule-2050",
+   "unit": "min"
+  },
+  {
+   "key": "toss.late_field_penalty_yd",
+   "value": 0,
+   "factId": "F-rule-2052",
+   "unit": "yd"
+  },
+  {
+   "key": "replay.challenge_designee_allowed",
+   "value": false,
+   "factId": "F-rule-2054"
+  },
+  {
+   "key": "formation.scrimmage_kick_kicker_depth_yd",
+   "value": 10,
+   "factId": "F-rule-2056",
+   "unit": "yd"
+  },
+  {
+   "key": "formation.scrimmage_kick_holder_depth_yd",
+   "value": 7,
+   "factId": "F-rule-2058",
+   "unit": "yd"
   }
  ]
 }

@@ -163,8 +163,22 @@ export interface RosterNames {
  * The statistics module's surface (WP-07). All three are pure functions of play records, so a box
  * score cannot disagree with the play-by-play (P3.1.1).
  */
+/** What a caller knows about the game beyond its play records, for `StatsModule.summary`. */
+export interface SummaryFinalInput {
+  score: readonly [number, number];
+  tie: boolean;
+  stateHash: string;
+  ruleSetId: string;
+  seedHex: string;
+  /**
+   * Team timeouts charged to each side. They are game events (`timeout_charged`, kind `team`), not play
+   * records, so the caller counts them from the event log. Left out, the summary reports 0 for both.
+   */
+  timeoutsUsed?: readonly [number, number];
+}
+
 export interface StatsModule {
   credits(record: PlayRecord): StatCredit[];
   playByPlay(record: PlayRecord, next: PlayRecord | null): PlayByPlayRow;
-  summary(records: readonly PlayRecord[], drives: readonly z.infer<typeof DriveRecord>[], final: { score: readonly [number, number]; tie: boolean; stateHash: string; ruleSetId: string; seedHex: string }): GameSummary;
+  summary(records: readonly PlayRecord[], drives: readonly z.infer<typeof DriveRecord>[], final: SummaryFinalInput): GameSummary;
 }

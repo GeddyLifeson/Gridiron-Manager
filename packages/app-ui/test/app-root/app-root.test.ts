@@ -8,7 +8,7 @@ import { describe, it, expect } from 'vitest';
 import { gameCalling, play, weekLoop } from '@gm/app-services';
 import { buildRoutes } from '../../src/routes.ts';
 import type { GameSession } from '../../src/app-root/index.ts';
-import { careerPortFromSeason, epochDayOfNewYear, homeFromSeason, rootTextIds, SeasonPanel, type SeasonToday } from '../../src/app-root/index.ts';
+import { careerPortFromSeason, epochDayOfNewYear, homeFromSeason, rootTextIds, SeasonPanel, WeekProgressLine, type SeasonToday } from '../../src/app-root/index.ts';
 import { resolverFor } from '../../src/app-root/ConsoleHost.tsx';
 import { DEFAULT_KEYMAP } from '../../src/shell/keymap.ts';
 import TEXT from '../../src/app-root/text.json';
@@ -269,4 +269,91 @@ describe('week, film and media screens fed from the season (item 2d)', () => {
       if (next) expect(next.weekId).not.toBe(meet.weekId);
     }, 300_000);
   }
+});
+
+describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
+  it('pro: a pooled port answers with promises, reports progress and lands the same season as the in-place port', async () => {
+    const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+    const key = CONTENT.proLeague.league.clubs[2].id;
+    const make = (pool?: play.WeekPool) => {
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: key });
+      return { sp, port: careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, consoleConfig: (g) => gameCalling.staffConsoleConfig('pro_2026', g, DEFAULT_KEYMAP.bindings), ...(pool ? { pool } : {}) }) };
+    };
+    const here = make();
+    expect(here.port.delegateGame()).toBeUndefined();
+
+    const pooled = make(play.inlinePool());
+    const seen: { done: number; total: number }[] = [];
+    const r = pooled.port.delegateGame((p) => seen.push(p));
+    expect(r).toBeInstanceOf(Promise);
+    await r;
+    expect(pooled.sp.state.chain).toBe(here.sp.state.chain);
+    expect(pooled.port.today()).toEqual(here.port.today());
+    const last = seen[seen.length - 1]!;
+    expect(last.done).toBe(last.total);
+    expect(last.total).toBe(here.sp.state.games.length);
+  }, 300_000);
+
+  it('pro: a game finished on the console, then the rest of the week in a pool, lands the same season as in place', async () => {
+    const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+    const key = CONTENT.proLeague.league.clubs[3].id;
+    const make = (pool?: play.WeekPool) => {
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'pro_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: key });
+      return { sp, port: careerPortFromSeason(sp, { level: 'pro', seasonYear: 2026, resolve, consoleConfig: (g) => gameCalling.staffConsoleConfig('pro_2026', g, DEFAULT_KEYMAP.bindings), ...(pool ? { pool } : {}) }) };
+    };
+    const here = make();
+    here.port.advanceToGameDay();
+    const s1 = here.port.startGame();
+    playByKeys(s1);
+    expect(here.port.finishGame(s1)).toBeUndefined();
+
+    const pooled = make(play.inlinePool());
+    await pooled.port.advanceToGameDay();
+    const s2 = pooled.port.startGame();
+    playByKeys(s2);
+    expect(s2.situation().score).toEqual(s1.situation().score);
+    const seen: { done: number; total: number }[] = [];
+    const r = pooled.port.finishGame(s2, (p) => seen.push(p));
+    expect(r).toBeInstanceOf(Promise);
+    await r;
+    expect(pooled.sp.state.chain).toBe(here.sp.state.chain);
+    expect(pooled.port.today()).toEqual(here.port.today());
+    expect(JSON.stringify(pooled.sp.film.save())).toBe(JSON.stringify(here.sp.film.save()));
+    // The pool played every game of the week but the seat's own.
+    expect(seen[seen.length - 1]).toEqual({ done: here.sp.state.games.length - 1, total: here.sp.state.games.length - 1 });
+    // The console is closed: game day is over and the next game is a week out.
+    expect(pooled.port.today().nextGame?.daysToGame).toBeGreaterThan(0);
+    expect(pooled.port.liveField(s2)).toBeNull();
+  }, 600_000);
+
+  it('college: the first week control plays the bye weeks in the pool, then opens the seat week as in place', async () => {
+    const resolve = resolverFor(DEFAULT_KEYMAP.bindings);
+    const built = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: CONTENT.college.schools[0].id }).built;
+    const first = Math.min(...built.spec.fixtures.map((x) => x.week));
+    const seat = built.spec.teams.find((t) => !built.spec.fixtures.some((x) => x.week === first && (x.home === t.id || x.away === t.id)))!;
+    const make = (pool?: play.WeekPool) => {
+      const sp = play.SeasonPlay.start(CONTENT as never, { ruleSetId: 'college_2026', seasonYear: 2026, seedHex: '5b4a39281706f5e4', seatTeamKey: seat.key });
+      return { sp, port: careerPortFromSeason(sp, { level: 'college', seasonYear: 2026, resolve, bindings: DEFAULT_KEYMAP.bindings, consoleConfig: () => { throw new Error('the week supplies the console'); }, ...(pool ? { pool } : {}) }) };
+    };
+    const here = make();
+    expect(here.port.advance!('next_block')).toBeUndefined();
+    const pooled = make(play.inlinePool());
+    const seen: { done: number; total: number }[] = [];
+    const r = pooled.port.advance!('next_block', (p) => seen.push(p));
+    expect(r).toBeInstanceOf(Promise);
+    await r;
+    expect(seen.some((p) => p.total > 0 && p.done === p.total)).toBe(true);
+    expect(pooled.sp.state.chain).toBe(here.sp.state.chain);
+    expect(pooled.port.week!()).toEqual(here.port.week!());
+    // Once the seat week is open, the next control is in place again (no games until game day).
+    expect(pooled.port.advance!('end_of_day')).toBeUndefined();
+  }, 300_000);
+
+  it('the progress line reads games done of the batch', () => {
+    const html = renderToStaticMarkup(createElement(WeekProgressLine, { progress: { done: 5, total: 15 } }));
+    expect(html).toContain('5 of 15');
+    expect(html).toContain('data-week-progress');
+    // Before the pool has counted the batch: no "0 of 0".
+    expect(renderToStaticMarkup(createElement(WeekProgressLine, { progress: { done: 0, total: 0 } }))).not.toContain('0 of 0');
+  });
 });

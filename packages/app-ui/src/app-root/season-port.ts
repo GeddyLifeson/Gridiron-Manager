@@ -30,6 +30,11 @@ export interface SeasonPortHost {
   readonly venues?: ReadonlyMap<string, weekLoop.Venue>;
   /** Market size 1 to 5 by team content key (pro market tier, college size tier), for the press room (H7.2). */
   marketOf?(teamKey: string): number | null;
+  /**
+   * Where the games the seat does not call are played (P2.1.2): the shell's Web Worker pool. Without one they
+   * run in place, which holds the screen for the length of the week.
+   */
+  readonly pool?: play.WeekPool;
 }
 
 /** The theme's own home and away colours for a team the content gives none: presentation only, no team mark (A6). */
@@ -156,11 +161,18 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
   return {
     today,
     week,
-    advance: step,
-    advanceToGameDay: () => {
-      const l = openLoop();
-      if (l && !l.atGameDay) l.toGameDay();
-      gameDay = sp.nextSeatGame() !== null;
+    advance: (target, onProgress) => {
+      if (!host.pool || loop) { step(target); return; }
+      return sp.advanceToGameIn(host.pool, onProgress).then(() => step(target));
+    },
+    advanceToGameDay: (onProgress) => {
+      const toGameDay = () => {
+        const l = openLoop();
+        if (l && !l.atGameDay) l.toGameDay();
+        gameDay = sp.nextSeatGame() !== null;
+      };
+      if (!host.pool || loop) { toGameDay(); return; }
+      return sp.advanceToGameIn(host.pool, onProgress).then(toGameDay);
     },
     startGame: (): GameSession => {
       const seat = sp.nextSeatGame();
@@ -188,7 +200,7 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       field = { take: () => queue.take(session.events), geometry: session.geometry, userSide: seat.side, level: host.level, colours: [col(home, 0), col(away, 1)] };
       return session;
     },
-    finishGame: (session) => {
+    finishGame: (session, onProgress) => {
       const input = sp.gameInput;
       const t = filmTap;
       if (input && t && session.final) {
@@ -197,11 +209,21 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
         const own = host.colours?.(sp.keyOf(sp.seatTeamId)) ?? TOKEN_TEAMS[0];
         filmView = { geometry: session.geometry, home: own, away: TOKEN_TEAMS[1] };
       }
-      sp.finishGame(); gameDay = false; field = null; loop = null; filmTap = null;
+      const done = () => { gameDay = false; field = null; loop = null; filmTap = null; };
+      if (!host.pool) { sp.finishGame(); done(); return; }
+      return sp.finishGameIn(host.pool, onProgress).then(done);
     },
     routeSources: (redraw) => ({ ...(desk ? weekSources(desk, redraw) : {}), ...filmSources(film, filmView) }),
     liveField: () => field,
-    delegateGame: () => { closeLoop(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; loop = null; },
+    delegateGame: (onProgress) => {
+      const done = () => { gameDay = false; loop = null; };
+      if (!host.pool) { closeLoop(); if (sp.nextSeatGame()) sp.delegateGame(); done(); return; }
+      const pool = host.pool;
+      // Bye weeks first, in the pool; then the seat's week to kickoff, then its game and the rest of the step.
+      return sp.advanceToGameIn(pool, onProgress)
+        .then(() => { closeLoop(); return sp.nextSeatGame() ? sp.delegateGameIn(pool, onProgress) : null; })
+        .then(done);
+    },
     // PLACEHOLDER rosters have no names yet: a player is his jersey slot until generated people play (G-17).
     names: () => ({ playerName: (id: number) => `#${id % 100}`, teamName: (side: 0 | 1) => sides[side] }),
   };

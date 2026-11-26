@@ -6,7 +6,7 @@ import {
   type AlignedPlayer, type PreSnapScript,
 } from '../../src/legality/index.ts';
 import { ParamFile, RuleKeyManifest } from '@gm/schema';
-import { BANDS, FREE, FIXTURES, FIXTURE_BANDS, FIXTURE_FREE, MANIFEST_KEYS, P, base, illegalCodes, pl, swap } from './fixtures.ts';
+import { BANDS, FREE, FIXTURES, FIXTURE_BANDS, FIXTURE_FREE, MANIFEST_KEYS, P, base, fixtureRuleSet, illegalCodes, pl, swap } from './fixtures.ts';
 
 const codes = (players: AlignedPlayer[], rules = BANDS) => illegalCodes(checkAlignment(players, rules, P));
 /** A guard who reported eligible lines up in the backfield: six on the line, both ends still eligible. */
@@ -181,6 +181,26 @@ describe('B2.3.3 reporting eligible', () => {
 });
 
 describe('B13.2.2 numbered linemen and backs (second fixture)', () => {
+  it('with no distance in the book and nobody allowed neither, the man taking a hand-to-hand snap is a back and eligible', () => {
+    // The shipped college values (F-rule-2004, F-rule-2006): NCAA 7-1-4-a-2 and 2-27-4-d-2.
+    const college = fixtureRuleSet('fixture_free_no_distance', { ...FIXTURE_FREE, 'formation.neither_behind_snapper_max': 0, 'formation.t_quarterback_depth_yd': 0 });
+    const r = analyseAlignment(base(), college, P);
+    const q = base().findIndex((p) => p.role === 'Q');
+    expect(illegalCodes(r.findings)).toEqual([]);
+    expect(r.status[q]).toBe('off');
+    expect(r.underCenter).toBe(q);
+    expect(r.eligible[q]).toBe(true);
+    // A man in the neither band who is not behind the snapper is still neither a lineman nor a back.
+    expect(illegalCodes(checkAlignment(swap(base(), 'H', { px: -0.5 }), college, P))).toEqual(['formation.neither_position']);
+  });
+  it('a scrimmage kick formation with the snapper and two linemen on each side may have fewer numbered linemen', () => {
+    const four = swap(swap(base(), 'RT', { jersey: 85 }), 'C', { jersey: 48 });
+    expect(illegalCodes(analyseAlignment(four, FREE, P, null, null, { scrimmageKickFormation: true }).findings)).toEqual([]);
+    expect(illegalCodes(analyseAlignment(four, FREE, P).findings)).toEqual(['formation.numbered_linemen_min']);
+    // One lineman on a side of the snapper: the exception does not apply.
+    const oneLeft = swap(swap(four, 'LT', { py: -2.8 }), 'X', { py: -18 });
+    expect(illegalCodes(analyseAlignment(oneLeft, FREE, P, null, null, { scrimmageKickFormation: true }).findings)).toEqual(['formation.numbered_linemen_min']);
+  });
   it('a formation with four linemen numbered in the ineligible band is flagged', () => {
     const fs = checkAlignment(swap(base(), 'RT', { jersey: 85 }), FREE, P);
     expect(illegalCodes(fs)).toEqual(['formation.numbered_linemen_min']);

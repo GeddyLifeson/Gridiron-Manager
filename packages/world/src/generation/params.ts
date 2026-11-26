@@ -43,6 +43,11 @@ const ROWS: readonly Row[] = [
   ['contract.staffMaxYears', 5, 1, 10, 'y', 'assumption', 'X10.2.2', 'Longest founding staff deal until E3 and S9 lengths are wired (spread is a tuning knob in the leaf)'],
   // X10.2.2 rule 6 and X8.4.3: seasons left out of calibration bands.
   ['calibration.skipSeasons', 5, 0, 10, 'seasons', 'bible', 'X10.2.2', 'X10.2.2 rule 6'],
+  // T12.2.1 talent gap between college programs at founding (research/tuning/talent-spread.md). Fitted to the
+  // 247Sports 2025 team talent table (blue-chip counts by roster rank, ranks 1 to 50) and the CBS 2025
+  // blue-chip ratio list: 2 of 3 for the shape, the fit itself is this file's.
+  ['talent.programRho', 0.84, 0, 0.99, 'ratio', 'assumption', 'T12.2.1', 'Correlation of a founding college player with his program strength; fitted to blue-chip share by program rank'],
+  ['talent.programZCap', 1.7, 0.5, 4, 'z', 'assumption', 'T12.2.1', 'Program strength ceiling: the top ten programs hold about the same blue-chip stock (247Sports 2025 table)'],
   // Founding prestige of a club with no history level in content.
   ['prestige.neutral', 0.5, 0, 1, 'ratio', 'assumption', 'X10.2.1', 'Founding prestige where content gives no football history level'],
   // Lost clubs (lost-clubs.ts): grounds and markets of the clubs that fold in the world's past.
