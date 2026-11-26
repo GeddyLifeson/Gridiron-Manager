@@ -246,10 +246,12 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     // K1 inputs per slot. A slot whose assignment does not compile runs no rules and stands (J4.6.1).
     const slotPlays: (SlotPlay | null)[] = [];
     const notCompiled: number[] = [];
+    const blockers: (lang.Compiled | null)[] = new Array<lang.Compiled | null>(SLOT_COUNT).fill(null);
     for (let s = 0; s < SLOT_COUNT; s++) {
       const part = s0.slots[s] ?? null, a = assignmentOf(s);
       if (part === null || a === undefined) { slotPlays.push(null); continue; }
       const compiled = compile(a);
+      blockers[s] = compiled;
       if (compiled === null) notCompiled.push(s);
       const alt = part.alternate !== undefined ? part.alternate : compile(s0.alternates?.[s]);
       slotPlays.push({ ...part, compiled, mind: minds === null ? NEUTRAL_MIND : minds.mind(slots[s]!.playerId), alternate: alt });
@@ -270,6 +272,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
       playerAi.setPlay(slotPlays, s0.context, null);
       plan = null; presnap = null; perceptionFrom = 0;
       interact.setPlay(contests!, null);
+      for (let s = 0; s < SLOT_COUNT; s++) blockers[s]?.setBlockTarget(null);
     } else {
       const thePlan = planPresnap(world, presnapInput), pp = presnapParams(params);
       // G2.5.1: a completed check puts the defenders it reached on their new assignment for the play, with the
@@ -299,6 +302,19 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
       plan = thePlan; presnap = createPresnapStages(thePlan, presnapInput);
       perceptionFrom = -q['setup.perceptionLeadTicks']!;
       interact.setPlay(contests!, (blocker, defender) => startingAdvantage(thePlan.startS[blocker]!, thePlan.startS[defender]!, pp));
+      // F5, J5.4.2: the called protection as the identifier set it. Each blocker in it blocks his own man, gap or
+      // scan list, and football-lang aims him there; a blocker outside it (or any play with none) takes the nearest.
+      const bound = thePlan.protection.binding;
+      interact.setProtection(bound, bound === null ? null : () => services.protectedPasser());
+      if (bound !== null) {
+        world.emit({ type: 'detail', t: thePlan.firstTick * TICK_S, code: thePlan.protection.recognized && !thePlan.protection.dropped ? 'presnap.protection_set' : 'presnap.protection_misset', playerIds: [slots[thePlan.protection.identifierSlot]!.playerId], spot: null, value: thePlan.protection.free.length });
+      }
+      for (let s = 0; s < SLOTS_PER_TEAM; s++) {
+        const compiled = blockers[s]!;
+        if (compiled === null) continue;
+        const slot = s;
+        compiled.setBlockTarget(bound === null || bound.man[s] === -3 ? null : () => interact.blockTarget(world, slot));
+      }
       loop = createTickLoop([...presnap.stages, ...fixedStages]);
     }
     const snapOf = (): ReturnType<PlayServices['snap']> => (presnap === null ? null : presnap.snap());

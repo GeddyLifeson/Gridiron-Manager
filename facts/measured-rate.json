@@ -10575,6 +10575,180 @@
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
     }
    ]
+  },
+  {
+   "id": "F-measured-rate-0471",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pressure rate on blitzes, league-wide: 42.3% (pro, 2025).",
+   "value": 42.3,
+   "unit": "percent",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "Daire Carragher, \"5 most effective blitzers from the 2025 NFL season,\" PFF, 2026-03-02, pff.com/news/nfl-5-most-effective-blitzers-from-the-2025-nfl-season",
+     "locator": "research/tuning/pass-protection.md section 1, row R1",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 42.3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0472",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of pass plays with a five-man protection: more than 70% in every season (pro, 2018-2021). The value is the stated lower bound.",
+   "value": 70,
+   "unit": "percent",
+   "validFor": "2018-2021",
+   "sources": [
+    {
+     "citation": "Diante Lee, \"How NFL defenses attacked five-man protections in 2021,\" PFF, 2022-02-25, pff.com/news/nfl-how-nfl-defenses-attacked-five-man-protections-2021",
+     "locator": "research/tuning/pass-protection.md section 1, row R2",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 70
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0473",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Pressure rate against five-man protections: 40% of passing snaps in three of four seasons (pro, 2018-2021).",
+   "value": 40,
+   "unit": "percent",
+   "validFor": "2018-2021",
+   "sources": [
+    {
+     "citation": "Diante Lee, \"How NFL defenses attacked five-man protections in 2021,\" PFF, 2022-02-25, pff.com/news/nfl-how-nfl-defenses-attacked-five-man-protections-2021",
+     "locator": "research/tuning/pass-protection.md section 1, row R3",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 40
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0474",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Unblocked pressures per blitz, highest team defense: 26.74% (Cleveland, 50 on 187 blitzes; pro, 2023).",
+   "value": 26.74,
+   "unit": "percent",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "PFF, \"Introducing Unlocked Pressure Rate: Assessing how often blitzes lead to unblocked pressures,\" 2024-10-17, pff.com/news/nfl-unlocked-pressure-rate-week-6, 2023 table",
+     "locator": "research/tuning/pass-protection.md section 1, row R4",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 26.74
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0475",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Unblocked pressures per blitz, lowest team defense: 8.56% (Green Bay, 19 on 222 blitzes; pro, 2023).",
+   "value": 8.56,
+   "unit": "percent",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "PFF, \"Introducing Unlocked Pressure Rate: Assessing how often blitzes lead to unblocked pressures,\" 2024-10-17, pff.com/news/nfl-unlocked-pressure-rate-week-6, 2023 table",
+     "locator": "research/tuning/pass-protection.md section 1, row R5",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pff",
+     "primary": false,
+     "value": 8.56
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0476",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Unblocked pressure rate, highest team defense: 11.3% (Kansas City, 73 unblocked pressures; pro, 2023 regular season). The page does not state the denominator; 73 over 11.3% is about 646, a season of dropbacks faced.",
+   "value": 11.3,
+   "unit": "percent",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "NFL Next Gen Stats, \"How defensive pressure defined the 2023 NFL season,\" nfl.com/news/next-gen-stats-how-defensive-pressure-defined-the-2023-nfl-season",
+     "locator": "research/tuning/pass-protection.md section 1, row R6",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-next-gen-stats",
+     "primary": false,
+     "value": 11.3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Pass protection research (thread Add pass protection schemes): one published page each; no second provider publishes the same cut."
+    }
+   ]
   }
  ]
 }

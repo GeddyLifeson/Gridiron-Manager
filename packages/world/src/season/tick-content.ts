@@ -19,7 +19,7 @@ import {
   SLOT_COUNT, SLOTS_PER_TEAM,
   type Assignment, type CoverageFamily, type KickCall, type PlayCalls, type PlayInput, type ReturnCall, type RuleSet,
 } from '@gm/schema';
-import { perception as perceptionModule, playerAi as playerAiModule, qb as qbModule, tickResolver } from '@gm/engine-core';
+import { perception as perceptionModule, playerAi as playerAiModule, presnap as presnapModule, qb as qbModule, tickResolver } from '@gm/engine-core';
 import { full, starter } from '@gm/football-content';
 import { lang } from '@gm/football-lang';
 import { createPresnapCalls } from './presnap-calls.ts';
@@ -63,6 +63,19 @@ export const PROVISIONAL: readonly string[] = [
   'a zone defender with no drawn path drops to a landmark for his zone name (yards from the ball) at the content depth',
   'package readiness 70 and opponent preparation 0.5 for every unit (neutral rosters carry no knowledge)',
 ];
+
+/**
+ * The protection the play calls (F5, @gm/football-content `full.protectionFor`), with its roles turned into team
+ * slots. A mirrored play mirrors a fixed slide side; the shipped protections name none.
+ */
+function protectionCallOf(def: starter.PlayDef, O: readonly Assignment[]): presnapModule.ProtectionCall | null {
+  const c = full.protectionFor(def);
+  if (c === null) return null;
+  const slotOf = (role: string): number => O.findIndex((a) => a.role === role);
+  const line = c.lineRoles.map(slotOf), extras = c.keptIn.map((k) => ({ teamSlot: slotOf(k.role), job: k.job }));
+  if (line.some((t) => t < 0) || extras.some((e) => e.teamSlot < 0)) return null;
+  return { id: c.protection.id, type: c.protection.type, slide: c.protection.slide, line, extras };
+}
 
 const MAN_FAMILIES: ReadonlySet<CoverageFamily> = new Set<CoverageFamily>(['cover0', 'cover1', 'two_man']);
 
@@ -219,7 +232,7 @@ function defenderKeys(a: Assignment, O: readonly Assignment[], qbSlot: number): 
   return out;
 }
 
-interface OffensePlay { readonly def: starter.PlayDef; readonly O: Assignment[] }
+interface OffensePlay { readonly def: starter.PlayDef; readonly O: Assignment[]; readonly protection: presnapModule.ProtectionCall | null }
 
 const PLAY_FOR_KIND: Readonly<Record<string, string>> = {
   run: 'run_inside_zone_right', dropback_pass: 'dropback_four_verticals', quick_pass: 'quick_stick', play_action: 'play_action_deep_cross',
@@ -476,7 +489,8 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
     let p = offense.get(key);
     if (p === undefined) {
       const raw = starter.assignmentsOf(def).map(clearOfLine);
-      p = { def, O: bound(inOrder(left ? raw.map(mirror) : raw, OFFENSE_ROLES)) };
+      const O = bound(inOrder(left ? raw.map(mirror) : raw, OFFENSE_ROLES));
+      p = { def, O, protection: protectionCallOf(def, O) };
       offense.set(key, p);
     }
     return p;
@@ -542,6 +556,7 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
       const s = calls.snapping, o = calls.opposing;
       let O: Assignment[], D: Assignment[];
       let qb: QbPlay | null = null, carrier: PlaySetup['carrier'] = null, shotgun = false;
+      let protection: presnapModule.ProtectionCall | null = null;
       let phase: 'pass_play' | 'running_play' | 'scrimmage_kick' = 'pass_play';
       let manMatch: Record<number, number> = {}, coverage: 'man' | 'zone' = 'zone';
       if (s.unit === 'offense') {
@@ -549,7 +564,7 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
         if (def === null) return null;
         const left = def.runDirection !== null && def.runDirection !== 'middle' && s.runDirection === 'left';
         const p = offenseOf(def, left);
-        O = p.O; shotgun = def.shotgun;
+        O = p.O; shotgun = def.shotgun; protection = p.protection;
         const runDir = def.runDirection === null ? 'middle' : def.runDirection === 'middle' ? 'middle' : left ? 'left' : 'right';
         qb = qbPlayOf(def, O, defenseSlotOf);
         const ran = def.kind === 'run' || def.kind === 'draw' || def.kind === 'qb_run' || def.kind === 'rpo' || def.kind === 'kneel';
@@ -608,7 +623,7 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
         presnap: {
           tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, relay, callWords: CALL_WORDS, hardCount: false, silentCount: s.unit === 'offense' && crowd.silentCount, longCount: false,
           snapsOnSameCount: 0, shotgun, venue: crowd.venue, snapFoulPhase: phase,
-          offense: { assignments: O, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: qbSlot >= 0 ? qbSlot : 0, noise: crowd.unitNoise[0], familiarityZ: crowd.familiarityZ[0], shift: null, motion: null, audibles: [], canRedirect: true, prepared: 0.5 },
+          offense: { assignments: O, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: qbSlot >= 0 ? qbSlot : 0, noise: crowd.unitNoise[0], familiarityZ: crowd.familiarityZ[0], shift: null, motion: null, audibles: [], canRedirect: true, prepared: 0.5, protection },
           defense: { assignments: D, substituted: [], callLateS: 0, packageReadiness: 70, signalCaller: s.unit === 'offense' ? 4 : 0, noise: crowd.unitNoise[1], familiarityZ: crowd.familiarityZ[1], coverage, manMatch, bluff: false, checks: defCalls?.checks ?? [], disguise: defCalls?.disguise ?? [], simulatedPressure: false, aggressiveGetOff: false },
         },
         slots,
