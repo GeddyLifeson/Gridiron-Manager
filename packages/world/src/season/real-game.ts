@@ -187,9 +187,9 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   const input = (gameIndex: number, seedHex: string): GameInput => {
     const [home, away] = teamIss(gameIndex, seedHex);
     return {
-    gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
-    teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
-    crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
+      gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
+      teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
+      crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
     };
   };
   const deps = (inp: GameInput): GameDeps => ({

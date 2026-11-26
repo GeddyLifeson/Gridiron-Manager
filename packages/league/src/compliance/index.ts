@@ -6,6 +6,7 @@ export * from './types.ts';
 export * from './events.ts';
 export * from './dates.ts';
 export * from './act.ts';
+export * from './log.ts';
 export * from './detect.ts';
 export * from './penalty.ts';
 export * from './decide.ts';

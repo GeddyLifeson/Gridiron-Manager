@@ -94,6 +94,8 @@ export type QbPlayKind = (typeof QB_PLAY_KINDS)[number];
 export interface QbValueModel {
   yards(gainYd: number): number;
   readonly turnoverCost: number;
+  /** What an incompletion costs (the down is gone). Left out, an incompletion costs nothing. */
+  readonly incompleteCost?: number;
 }
 
 export interface QbInstructions {

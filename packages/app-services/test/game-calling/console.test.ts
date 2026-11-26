@@ -215,3 +215,16 @@ describe('console view (O2.1.1, O2.5.2)', () => {
     for (const bad of ['"truth"', '"rating"', '"trueRating"', '"potential"', '"opposingCall"', '"attributes"', '"hidden"']) expect(json).not.toContain(bad);
   });
 });
+
+describe('host time (break test #4)', () => {
+  it('a NaN, infinite or negative wait is no time at all, and settle keeps a sane step', () => {
+    const d = driver();
+    const t0 = d.nowMs;
+    for (const ms of [NaN, -1, -60_000, Infinity, -Infinity]) d.wait(ms);
+    expect(d.nowMs).toBe(t0);
+    d.settle(NaN);
+    d.settle(-100);
+    expect(Number.isFinite(d.nowMs)).toBe(true);
+    expect(Number.isFinite(d.state.nowMs)).toBe(true);
+  });
+});

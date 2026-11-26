@@ -27,6 +27,8 @@ export class PlayerView implements PerceivedView {
   readonly land = { px: 0, py: 0 };
   /** The sidelines in his play frame: lateral position of the lower and the higher one. */
   readonly bounds = { lo: 0, hi: 0 };
+  /** The opponent he is locked up with in a block (the blocker's man, or the defender's blocker), or -1. */
+  lockedSlot = -1;
 
   constructor(selfSlot: Slot) {
     this.selfSlot = selfSlot;
@@ -43,6 +45,7 @@ export class PlayerView implements PerceivedView {
   heard(call: string): boolean { return this.heardCalls.includes(call); }
   landingPoint(): { readonly px: number; readonly py: number } | null { return this.landOn ? this.land : null; }
   sidelines(): { readonly lo: number; readonly hi: number } { return this.bounds; }
+  lockedWith(): Slot | -1 { return this.lockedSlot; }
   receiverNumber(slot: Slot): number { return slot >= 0 && slot < SLOT_COUNT ? this.receiverNumbers[slot]! : 0; }
 
   setSide(sign: number): void { this.read.side = SIDES[sign > 0 ? 1 : sign < 0 ? 2 : 0]!; }
