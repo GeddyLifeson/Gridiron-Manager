@@ -51,7 +51,7 @@ value, A = assumption) and its bible leaf. Calibrated with `test/recruiting/tool
 | Early signing about 85 percent or more of high school signees | 85.8 percent |
 | Offers per signee at top programs 6 to 10 | 9.3 |
 | Junior college share of signees 5 to 15 percent (T4.8.2) | 12.2 percent |
-| Published list committed by August 85 percent (T4.1.1) | **77 percent (gap)** |
+| Published list committed by August 85 percent (T4.1.1) | **77 percent (gap; 67 to 82 across seeds)** |
 
 The August share is the one target not met. Raising the weekly commit pace lowers it (the best
 prospects wait for more offers), so it needs a model change (earlier offers to the top of the list,

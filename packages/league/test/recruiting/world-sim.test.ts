@@ -7,7 +7,7 @@ import { runCycle } from './sim.ts';
 
 describe('G-36 one-cycle world simulation', () => {
   it('meets the T4 timing, flip, signing and class-mix targets', () => {
-    const { metrics: m } = runCycle({ programs: 30, seed: 7 });
+    const { metrics: m } = runCycle();
     expect(m.decommitShare).toBeGreaterThanOrEqual(0.10);
     expect(m.decommitShare).toBeLessThanOrEqual(0.25);
     expect(m.dropShare).toBeLessThanOrEqual(0.08);
