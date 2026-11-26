@@ -6,10 +6,10 @@ export {
   TEAM_FOUNDED, TEAM_FOLDED, TITLE_WON, WORLD_EVENT_TYPES, RELEASED_FALLBACK, TITLE_WON_FALLBACK, worldEventTypes,
 } from './events.ts';
 export {
-  WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER,
+  WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER, GAME_INJURIES_KEY,
   type WeeklyStep, type SeasonStep, type StepId, type PersonStatus, type Scalar, type GameResult, type StaffSeason, type SeasonSummary, type TeamRecordLine,
   type LiveWorld, type StepContext, type StepDigest, type StepHandler, type WorldSystems, type SchedulePort, type ScheduledGame,
-  type GameRequest, type GamePlayed, type GamePort, type GameBatchPort,
+  type GameRequest, type GamePlayed, type GameInjury, type WeekInjuries, type GamePort, type GameBatchPort,
 } from './types.ts';
 export { createWorld, steppedSeed, type CreateWorldInput } from './world.ts';
 export {
