@@ -344,10 +344,10 @@
   },
   {
    "key": "pay.scholarship_credit_2026_27",
-   "value": 0,
+   "value": 2500000,
    "unit": "USD",
    "factId": "F-college-keys-0030",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "note": "PROVISIONAL: status Conflict (Q6.3.1); value from the College Sports Commission primary text"
   },
   {
    "key": "pay.multi_year",
