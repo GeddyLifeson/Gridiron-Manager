@@ -13,3 +13,6 @@ export { buildFinanceView, mixModel, projectRange, type FinanceInput } from './f
 export { buildLifeView, hoursByTask, sleepWord, energyWord, healthLines, effectLines, familyRows, type LifeInput } from './life.ts';
 export { careerSpecs, CAREER_MODELS, type CareerSources, type CareerSchemas, type CoachParams } from './spec.ts';
 export { t as careerText, money } from './text.ts';
+export { careerSourcesOf, type LiveCareerOptions, type TeamSeasonLine } from './live.ts';
+export { liveCareerTables, jobHistoryOf, staffRuns, staffMates, howKey, type LiveCareerTables } from './live-tables.ts';
+export { careerHost, teamSeasonOf, EMPTY_VIEWS, type CareerHost, type CareerHostOptions } from './host.ts';
