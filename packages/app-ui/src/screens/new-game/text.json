@@ -5,7 +5,7 @@
   "coach.lead": "Who you are before the first day. Background only: no points, no traits, no ratings.",
   "coach.first": "First name", "coach.last": "Last name", "coach.level": "Level", "coach.level.college": "College", "coach.level.pro": "Pro",
   "coach.way": "How you start", "coach.way.origin": "From nothing (an origin card)", "coach.way.preset": "Further up the ladder (a preset)",
-  "coach.origin": "Origin", "coach.preset": "Preset", "coach.save": "Save name", "coach.next": "Next: the world's past",
+  "coach.origin": "Origin", "coach.preset": "Preset", "coach.save": "Career file name", "coach.next": "Next: the world's past",
   "world.lead": "Every season of the past is played by the same engine you coach in, under today's rules. Teams are founded and fold, people are born, retire and die, and the Hall of Fame takes its classes. All people and teams are fictional.",
   "world.length": "How long the past runs", "world.length.seasons": "{n} seasons, from {from}", "world.length.none": "No past: start in {year}",
   "world.length.full": "The full span: {n} seasons, from {from}, when football began", "world.length.custom": "Another length (seasons)",

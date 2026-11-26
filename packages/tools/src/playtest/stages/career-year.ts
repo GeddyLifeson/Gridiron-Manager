@@ -73,7 +73,16 @@ async function reopen(rec: Recorder, s: SaveSession, y: play.CareerYear): Promis
  * Plays `seasons` seasons and offseasons on one live world, through the save each season. Returns the stage
  * summary line. `save` is the career's open save; the returned session replaces it.
  */
-export async function careerYears(rec: Recorder, save: SaveSession, run: CareerYearRun, seasonsToPlay: number): Promise<{ summary: string; save: SaveSession }> {
+/** Checks other stages run on the same live world (stages/desks.ts): before a season, after each week, after a season. */
+export interface CareerYearHooks {
+  seasonStart?(y: play.CareerYear, n: number): void;
+  week?(y: play.CareerYear): void;
+  seasonEnd?(y: play.CareerYear, n: number): void;
+  summary?(): string;
+}
+
+export async function careerYears(rec: Recorder, save: SaveSession, run: CareerYearRun, seasonsToPlay: number, hooks: CareerYearHooks = {}): Promise<{ summary: string; save: SaveSession }> {
+  const week = (c: play.CareerYear): boolean => { const more = c.delegateWeek(); hooks.week?.(c); return more; };
   let y = run.year;
   let s = save;
   const lines: string[] = [];
@@ -84,18 +93,19 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
 
     // The first season: a mid-season save, then both copies play a week and must agree (save and restore keep the world).
     let weeks = n === 0 ? 0 : 1; // after the first season, the offseason already played week 0 (the roster cycle)
+    hooks.seasonStart?.(y, n);
     if (n === 0) {
-      for (let i = 0; i < 3 && y.delegateWeek(); i++) weeks++;
+      for (let i = 0; i < 3 && week(y); i++) weeks++;
       const before = y.view().worldHash;
       const r = await reopen(rec, s, y);
       s = r.s;
       if (r.y !== y) {
-        y.delegateWeek(); r.y.delegateWeek(); weeks++;
+        y.delegateWeek(); week(r.y); weeks++;
         if (r.y.view().worldHash !== y.view().worldHash) rec.add('invalid', 'save', 'live_world.diverged', 'A restored mid-season world played the next week differently from the original.', OWNERS.careerYear, { savedAt: before });
         y = r.y;
       }
     }
-    while (y.delegateWeek()) weeks++;
+    while (week(y)) weeks++;
     if (y.season.stage !== 'final') { rec.add('stuck', 'offseason', 'season.not_final', `The ${year} season stopped at stage ${y.season.stage}.`, OWNERS.careerYear); break; }
 
     const w = y.world;
@@ -109,6 +119,7 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
     if (carried < played) rec.add('missing', 'offseason', 'results.team_not_in_world', `${played - carried} of ${played} season-session games had a team the world does not have (a small world holds fewer schools than the content), ${seatLost} of them the seat's, so the world's record of those teams is short.`, OWNERS.careerYear, { year, seatLost });
     const mine = y.season.summary().teams.find((t) => t.teamId === y.season.seatTeamId);
 
+    hooks.seasonEnd?.(y, n);
     const firstEvent = w.log.nextId;
     const people0 = w.people.size;
     const sum = y.runOffseason();
@@ -141,5 +152,6 @@ export async function careerYears(rec: Recorder, save: SaveSession, run: CareerY
     s = r.s; y = r.y;
     lines.push(`${year}: ${weeks} weeks, ${played} seat-league games, ${mine ? `${mine.wins}-${mine.losses}-${mine.ties}` : 'no record'}, ${drafted} drafted, ${signed} signed, ${retired} retired, +${newPeople} people`);
   }
-  return { summary: `${run.level} seat, ${lines.length} seasons on one live world: ${lines.join('; ')}`, save: s };
+  const extra = hooks.summary?.();
+  return { summary: `${run.level} seat, ${lines.length} seasons on one live world: ${lines.join('; ')}${extra ? `; ${extra}` : ''}`, save: s };
 }

@@ -12,6 +12,7 @@ import { gameFrame } from './stages/game-frame.ts';
 import { gamePlanWeek } from './stages/game-plan.ts';
 import { playGameDay } from './stages/game-day.ts';
 import { careerYears, startCareerYear } from './stages/career-year.ts';
+import { deskHooks } from './stages/desks.ts';
 import { advanceSeason, openCareer, probeCommands, roundTrip, type SaveSession } from './stages/save.ts';
 import type { CareerReport, PlaytestOptions } from './types.ts';
 
@@ -73,7 +74,7 @@ export async function runPlaytestCareer(seedHex: string, o: PlaytestOptions): Pr
     // Season to season on one live world, through the save (stages/career-year.ts). Pro seat on even seeds, college on odd.
     const level = Number.parseInt(seedHex.slice(-1), 16) % 2 === 0 ? 'pro' : 'college';
     await rec.stage('offseason', OWNERS.careerYear, async () => {
-      const r = await careerYears(rec, save!, startCareerYear(seedHex, level), o.worldSeasons);
+      const r = await careerYears(rec, save!, startCareerYear(seedHex, level), o.worldSeasons, deskHooks(rec));
       save = r.save;
       return r.summary;
     });

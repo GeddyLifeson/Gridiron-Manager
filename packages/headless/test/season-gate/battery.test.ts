@@ -53,7 +53,8 @@ describe('G-87 paired-policy form (Q3.1.1)', () => {
     expect(va).not.toBeNull();
     expect(b.run(seed, 'pro_2026')).toBe(va);
     // A resolver parameter, not a chart one: the real-game facade does not hand chart overrides to the chart caller yet (CR-G87-5).
-    const shifted = realGameArm({ label: 'c', paramOverrides: { 'resolverRef.run.q50': 6 }, measure: yardsPerScrimmagePlay });
+    // The real game runs on the tick resolver, so the parameter is a tick one: tacklers reach farther.
+    const shifted = realGameArm({ label: 'c', paramOverrides: { 'carrier.tackle.contactGapYd': 0.4 }, measure: yardsPerScrimmagePlay });
     expect(shifted.run(seed, 'pro_2026')).not.toBe(va);
   }, 60_000);
 

@@ -9,7 +9,7 @@ import {
 } from '../../../src/read-models/game-management/index.ts';
 import { refusal, expiryCommand, isGameManagementCommand, type GameManagementCommand } from '../../../src/commands/game-management/index.ts';
 import { fixtureTables, HOME, AWAY, USER, AWAY_COACH } from '../../observer/fixture-world.ts';
-import { GameManagementData } from './schema.ts';
+import { GameManagementData } from '@gm/schema';
 
 const live = (o: Partial<LiveGameInput> = {}): LiveGameInput => ({
   gameId: 'g1', ownSide: 0, period: 2, overtime: false, halfEndPeriods: [2, 4], clockTenths: 6000, playClockTenths: 300, playClockFullS: 40,

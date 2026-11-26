@@ -40,7 +40,7 @@ Fixes the PR 168 drift failure: before this, ages rose exactly one year per seas
   his grade of the entry-pool prospect just past the expected picks at the position, the player he can have for nothing), slot weights
   from the mix (starters 1, depth `gm.depthSlotWeight`). The age curve is D8.2.1 read linearly (`ageCurve()`). The K7.2.1 baseline is
   the mean public grade of each club's starters (`GradeContext.publicGrade`, no evaluator lean).
-- TO-07. No contracts or cap yet (TO-04): every cost is empty, so value equals surplus and `centsPerWin` never enters. Pressure is 0
+- TO-07. With the contracts module in the world and `gmPolicy({ contracts })` bound: a player's cost to his own club is his contract's salary by league year, cutting him keeps his guaranteed salary as dead money, a free agent carries his C8.3.1 market years, guarantee share and minimum, and `centsPerWin` is `gm.goingRateCentsPerWin` over last market's free agent signings (average per year over the wins the signing club's general manager now expects of him this season; before any market, every active veteran contract read the same way). Without contracts every cost is empty, so value equals surplus and `centsPerWin` (1) never enters. Pressure is 0
   (K8.3.1 unbound). Projections are null (no D6.5.1 ceiling looks off-screen).
 - TO-08. College signings: each program's K7.1.2 builder (from the seed, the club and its head coach) offers down its `recruitBoard`
   (value and `placeNeeds`; replacement at the low end of the class as it grades it) for `offersWanted(open, college.offersPerSignee)`

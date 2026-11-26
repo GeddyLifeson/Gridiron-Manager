@@ -55,6 +55,8 @@ export interface SystemsOptions {
    * history drafts, so the new-game past and the baked master run keep their hashes; on for a career.
    */
   readonly recruiting?: boolean;
+  /** The user's own program in the recruiting week (a college career): left out of the AI programs, his queued acts taken. */
+  readonly recruitingUser?: (world: loop.LiveWorld) => recruiting.UserRecruiting | undefined;
   /** Wraps the schedule (a career takes the seat's competition out and feeds its played games instead). */
   readonly schedule?: (base: loop.SchedulePort) => loop.SchedulePort;
   readonly unboundReason?: string;
@@ -75,7 +77,7 @@ export function bindSystems(world: loop.LiveWorld, opts: SystemsOptions): BoundS
   const rule: turnover.RuleRead = (lvl, k) => lookup[lvl as Level](k);
   const binding: turnover.TurnoverBinding = { content, rule, policy: turnover.gmPolicy() };
   const rb: recruiting.RecruitingBinding | null = opts.recruiting
-    ? { turnover: binding, calendarFiles: calendar.CALENDAR_FILES, policy: () => recruiting.gmRecruitingPolicy() }
+    ? { turnover: binding, calendarFiles: calendar.CALENDAR_FILES, policy: () => recruiting.gmRecruitingPolicy(), ...(opts.recruitingUser ? { user: opts.recruitingUser } : {}) }
     : null;
   const moves = rb
     ? recruiting.movesWithRecruiting(rb, turnover.rosterMovesStep({ ...binding, policy: recruiting.lettersPolicy(binding.policy) }))

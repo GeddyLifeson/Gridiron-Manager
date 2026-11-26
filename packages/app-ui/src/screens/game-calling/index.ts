@@ -5,6 +5,7 @@ import type { RouteTable } from '../../shell/index.ts';
 import { GameConsole, type ConsoleViewModel, type ConsolePresentation } from './GameConsole.tsx';
 
 export * from './GameConsole.tsx';
+export * from './InGameDesk.tsx';
 
 export interface GameCallingSource {
   /** The console read model for this frame, or null before the first dead ball. */

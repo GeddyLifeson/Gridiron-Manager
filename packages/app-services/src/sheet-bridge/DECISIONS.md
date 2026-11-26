@@ -14,11 +14,21 @@ Bridge from the game plan's call sheet (G-68, G7) to the calling console (G-60, 
   `prepDepth(preparationZ)`: catalogue coverage (70% to 100% of situations get a box) and script length (8 to 15),
   both bible values in coach-ai params. Each call's situations are the plan's `situationIds`; box size follows
   expected snaps (G7.2.3, pro 2024 table, PROVISIONAL 1 of 3 there).
-- **Assumption**: without the staff's K3 payoff estimates (no prior table exists yet, G-74 PriorTable), calls
-  are ranked in the plan's own order. Pass `estimates` once the week builds them.
+- Ranking inside a box (estimates.ts): the staff's payoff estimates from the team's own charted film (G-66
+  rows, source 'own'), observed grades only. Each play's payoff is its yardage EPA on the N2.2.1 baseline
+  model (charted rows carry no turnover or timeouts: both are Assumptions). Levels shrink toward the level
+  above by 12 plays of weight (Assumption): unit, call family, call, then call against a look and call in a
+  catalogue situation. Skill: estimate noise SD by `preparation` through coach-ai `prepDepth` (K3.3.1 rule 4,
+  0.20 to 0.05 expected points, a bible value). Each box keeps the size the K3 builder gave it and takes the
+  fitting calls with the best situational estimate, plan order on a tie. A defensive row records coverage and
+  rushers, not the call, so it counts for every planned call with that signature (Assumption).
+  `rankedBy` says which happened: 'estimates' (week-built, `estimates`), 'film' (`observed`) or 'planOrder'.
+- **Assumption**: with no film and no week estimates, calls are ranked in the plan's own order.
 - **Assumption**: with no game plan at all the staff list every book call for the side, in book order, fitting
   any situation. It keeps the game playable; it is not good football and the plan screen should say so.
-- No college expected-snaps table exists, so the pro 2024 table is the default for both levels (flagged).
+- Box sizes follow the level's table (`level`): pro 2024 (nflverse, PROVISIONAL 1 of 3) or college 2024
+  (cfbfastR FBS against FBS regular season, 752 games, 65.6 snaps a team game; fact F-measured-rate-0390,
+  1 of 3). The college release has no no-huddle flag, so tempo is unseen there.
 - Layout and priorities come from the offense template (G7.1.2, G7.2.1 clock above zones above downs) for both
   sides, since the AI's boxes are catalogue situations. Category boxes (shots, screens ...) hold the plan's calls
   chosen for them, in plan order, up to `size.boxScanMax`.
@@ -39,6 +49,7 @@ Bridge from the game plan's call sheet (G-68, G7) to the calling console (G-60, 
 ## Owed
 - Barrel line `export * as sheetBridge from './sheet-bridge/index.ts'` (carried in this PR, told to "Integrate:
   exports and screen routes").
-- K3 priors so the draft can rank by the staff's estimates; a college expected-snaps table.
+- The week runner passes `observed` (own film, `payoffNoise` stream, the scouting report's look shares) and
+  `level`. A second and third source for the college snap figure on the same definition (no kneels).
 - Defensive template layout (personnel boxes, third-down split) for a drafted defense: the AI's boxes are
   down-and-distance situations, so the draft uses that layout.

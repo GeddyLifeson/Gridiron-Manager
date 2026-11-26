@@ -195,6 +195,22 @@ describe('J5.2 alignment', () => {
   });
 });
 
+describe('J5.1 squaring up at the spot', () => {
+  it('has every man who is set at his spot facing the line of scrimmage at the snap, defenders included', () => {
+    const r = run();
+    let checked = 0;
+    for (let s = 0; s < 2 * SLOTS_PER_TEAM; s++) {
+      if (Math.hypot(r.w.players.velX[s]!, r.w.players.velY[s]!) > 0.05) continue; // a man in motion faces where he runs
+      // Heading in the play frame: 0 is toward the defense's goal line, pi is back toward the offense's.
+      const h = r.w.frame.attackDir === 1 ? r.w.players.headingRad[s]! : r.w.players.headingRad[s]! + Math.PI;
+      const cos = Math.cos(h);
+      if (s < SLOTS_PER_TEAM) expect(cos, `offense slot ${s}`).toBeGreaterThan(0.9); else expect(cos, `defense slot ${s}`).toBeLessThan(-0.9);
+      checked++;
+    }
+    expect(checked).toBeGreaterThanOrEqual(20);
+  });
+});
+
 describe('J5.3 shifts and motion', () => {
   const motionInput = (over: Partial<Parameters<typeof defenseInput>[0]> = {}) => input({ offense: offenseInput({ motion: { teamSlot: 7, leadS: 1.2 } }), defense: defenseInput(over) });
   it('J5.3.1 acceptance: the motion runs legally with full time and the motion man has a running start at the snap', () => {
@@ -212,12 +228,14 @@ describe('J5.3 shifts and motion', () => {
   });
   it('J5.3.1: a forced snap before the offense is set is an illegal shift, or a dead-ball false start with the clock running inside two minutes', () => {
     const far = (w: ReturnType<typeof world>) => { for (let s = 0; s < SLOTS_PER_TEAM; s++) w.players.posX[s] = w.frame.originX - 22 * w.frame.attackDir; return w; };
+    // A clock that lets every man reach his spot (J5.8.1 `alignTravelS`) half a second before it runs out: aligned, not set.
+    const short = Math.round((planPresnap(far(world()), input({ tempo: 'no_huddle' })).offenseSetS - 0.5) * 10);
     const w = far(world());
-    const plan = planPresnap(w, input({ tempo: 'no_huddle', playClockStartTenths: 45 }));
+    const plan = planPresnap(w, input({ tempo: 'no_huddle', playClockStartTenths: short }));
     expect(plan.fouls.map((f) => f.foulId)).toContain('illegal_shift');
     const w2 = far(world());
     (w2.situation as { insideTwoMinute: boolean }).insideTwoMinute = true;
-    const plan2 = planPresnap(w2, input({ tempo: 'no_huddle', playClockStartTenths: 45 }));
+    const plan2 = planPresnap(w2, input({ tempo: 'no_huddle', playClockStartTenths: short }));
     expect(plan2.fouls.find((f) => f.slot === null && f.foulId === 'false_start')?.deadBall).toBe(true);
   });
   it('J5.3.2 acceptance: against a man call with no bluff the matched defender follows the motion on 100% of trials', () => {
@@ -270,6 +288,35 @@ describe('J5.4 the offense\'s pre-snap process', () => {
     expect(unblockedAfterSet(3, 2, 2, 3, true, true)).toEqual([0, 0]);
     expect(unblockedAfterSet(3, 2, 2, 3, false, false)).toEqual([1, 0]);
   });
+  it('F5.2.1 acceptance, J5.4.2 step 3: a called protection set against the true picture blocks the blitzer; set wrong, he is free', () => {
+    // Five-man big on big; the Will (team slot 5, world slot 16) comes and the Mike drops.
+    const call = { id: 'test.man5', type: 'man' as const, slide: null, line: [0, 1, 2, 3, 4], extras: [] };
+    const d = defense();
+    d[5] = { ...d[5]!, behavior: { ...d[5]!.behavior, type: 'blitz' } };
+    const WILL = SLOTS_PER_TEAM + 5, MIKE = SLOTS_PER_TEAM + 4;
+    for (const seed of SEEDS(20)) {
+      const right = planPresnap(world({ seed }), input({ errorsDisabled: true, offense: offenseInput({ protection: call }), defense: defenseInput({ assignments: d }) })).protection;
+      expect(right.recognized).toBe(true);
+      expect(right.binding!.mike).toBe(WILL);
+      expect(right.free).toEqual([]);
+      expect(right.unblockedLeft + right.unblockedRight).toBe(0);
+      const wrong = planPresnap(world({ seed, params: tableWith({ 'presnap.prot.intercept': -50 }) }), input({ offense: offenseInput({ protection: call }), defense: defenseInput({ assignments: d }) })).protection;
+      expect(wrong.recognized).toBe(false);
+      expect(wrong.binding!.mike).toBe(MIKE);
+      expect(wrong.free).toEqual([WILL]);
+      expect(wrong.unblockedLeft + wrong.unblockedRight).toBe(1);
+      expect(wrong.hot).toBe(false);
+    }
+    // A six-man protection set right against six: nobody free, nobody hot. Against seven: one declared hot.
+    const six = { id: 'test.man6', type: 'man' as const, slide: null, line: [0, 1, 2, 3, 4], extras: [{ teamSlot: 10, job: 'scan' as const }] };
+    const a = planPresnap(world(), input({ errorsDisabled: true, offense: offenseInput({ protection: six }), defense: defenseInput({ assignments: defense(6) }) })).protection;
+    expect(a.free).toEqual([]);
+    expect(a.hot).toBe(false);
+    const b = planPresnap(world(), input({ errorsDisabled: true, offense: offenseInput({ protection: six }), defense: defenseInput({ assignments: defense(7) }) })).protection;
+    expect(b.free).toHaveLength(1);
+    expect(b.hot).toBe(true);
+    expect(b.hotSide).not.toBe(0);
+  });
   it('J5.4.2 acceptance 2: the unblocked-rusher chance rises with disguise and noise and falls with the protection grade', () => {
     const base = protectionRecognitionChance(50, 0, 0, 0, DMATH, P);
     expect(protectionRecognitionChance(50, 0.6, 0, 0, DMATH, P)).toBeLessThan(base);
@@ -318,6 +365,34 @@ describe('J5.5 the defense\'s pre-snap process', () => {
     const notEmpty = planPresnap(world(), input({ errorsDisabled: true, defense: defenseInput({ checks: [{ name: 'cover1_five', trigger: 'empty' }] }) }));
     expect(notEmpty.checks[0]!.fired).toBe(false);
   });
+  it('G2.5.1: a completed check with a patch walks the named defender to his new spot; a check that misses him leaves him', () => {
+    const empty = offense(); empty[10] = asg('RB', 'route', -1.5, -6, false);
+    const walked = asg('SS', 'zoneDrop', 5, 9, false);
+    const check = { name: 'walk_out', trigger: 'empty' as const, patch: [{ teamSlot: 9, assignment: walked }] };
+    const r = run(input({ errorsDisabled: true, offense: offenseInput({ assignments: empty }), defense: defenseInput({ checks: [check] }) }));
+    expect(r.plan.checks[0]!.completed).toBe(true);
+    expect(r.plan.checks[0]!.patched).toEqual([9]);
+    const s = SLOTS_PER_TEAM + 9, last = r.plan.targets[s]![r.plan.targets[s]!.length - 1]!;
+    expect([last.px, last.py]).toEqual([5, 9]);
+    expect(Math.hypot(playX(r.w, s) - 5, playY(r.w, s) - 9)).toBeLessThan(1.5);
+    expect(ofType(r.w, 'detail').some((e) => e.code === 'presnap.check_patched')).toBe(true);
+    // Without the look the check never fires and nobody moves.
+    const plain = planPresnap(world(), input({ errorsDisabled: true, defense: defenseInput({ checks: [check] }) }));
+    expect(plain.checks[0]!.patched).toEqual([]);
+    // A defender the check did not reach is not patched (J3.6.1 delivery).
+    let missed = 0;
+    for (const seed of SEEDS(60)) {
+      const plan = planPresnap(world({ seed }), input({ offense: offenseInput({ assignments: empty }), defense: defenseInput({ noise: 1, checks: [check] }) }));
+      const c = plan.checks[0]!;
+      if (c.completed && !plan.received[s]![1]) { missed++; expect(c.patched).toEqual([]); }
+      if (c.completed && plan.received[s]![1]) expect(c.patched).toEqual([9]);
+    }
+    expect(missed).toBeGreaterThan(0);
+  });
+  it('a formation check (a look the content found) shows when the offense is aligned', () => {
+    const plan = planPresnap(world(), input({ errorsDisabled: true, defense: defenseInput({ checks: [{ name: 'trips_check', trigger: 'formation' }] }) }));
+    expect(plan.checks[0]!.fired).toBe(true);
+  });
   it('J5.3.2: a check takes 0.5 to 1.5 s, shorter for a better signal caller', () => {
     expect(checkDurationS(50, P)).toBe(1);
     expect(checkDurationS(100, P)).toBe(0.5);
@@ -353,7 +428,7 @@ describe('J5.6 cadence and the snap', () => {
   });
   it('J5.6.2 acceptance: bad snaps rise in rain, fall with a better pairing; an average dry shotgun pair matches the starting rates', () => {
     const [l0, o0] = badSnapChances(0, false, false, true, P, DMATH);
-    expect(l0).toBeCloseTo(0.0015, 9); expect(o0).toBeCloseTo(0.015, 9);
+    expect(l0).toBeCloseTo(0.0025, 9); expect(o0).toBeCloseTo(0.015, 9);
     const [l1, o1] = badSnapChances(0, true, false, true, P, DMATH);
     expect(l1).toBeGreaterThan(l0); expect(o1).toBeGreaterThan(o0);
     expect(badSnapChances(1.5, false, false, true, P, DMATH)[1]).toBeLessThan(o0);
@@ -361,12 +436,27 @@ describe('J5.6 cadence and the snap', () => {
   });
 });
 
+describe('J5.6.2 snap exchange fitted to real aborted snaps (nflverse 2018-2025, 1 of 3)', () => {
+  const logit = (q: number) => Math.log(q / (1 - q));
+  it('an average pair aborts 0.25% of shotgun snaps and 0.40% under center', () => {
+    expect(badSnapChances(0, false, false, true, P, DMATH)[0]).toBeCloseTo(0.0025, 6);
+    expect(badSnapChances(0, false, false, false, P, DMATH)[0]).toBeCloseTo(0.004, 6);
+  });
+  it('one sd of the centre and quarterback pair (dz 0.707) moves the aborted rate about 0.5 logit (real 0.61 shotgun, 0.39 under center)', () => {
+    const pairSd = Math.SQRT1_2;
+    const shift = logit(badSnapChances(-pairSd, false, false, true, P, DMATH)[0]) - logit(badSnapChances(0, false, false, true, P, DMATH)[0]);
+    expect(shift).toBeGreaterThan(0.39); expect(shift).toBeLessThan(0.61);
+  });
+});
+
 describe('J5.7 pre-snap fouls', () => {
   it('D4.2.2 discipline enters once: 1 at grade 50, 2 at 0, floored at 0.25', () => {
     expect(disciplineMult(50, P)).toBe(1); expect(disciplineMult(0, P)).toBe(2); expect(disciplineMult(100, P)).toBe(0.25);
   });
-  it('venue term: road-to-home ratios are 1.051 on offense and 1.142 on defense; neutral is 1', () => {
-    expect(venueMult('road', true, P) / venueMult('home', true, P)).toBeCloseTo(1.051, 3);
+  it('venue term: 1.142 road to home on defense; none on offense, where the delay-of-game split from the relay carries the measured gap; neutral is 1', () => {
+    // J5.7.1: the term closes the gap the mechanisms leave. Offense: 2.194 road against 2.087 home is 0.107 per 100 snaps,
+    // and delay of game alone is 0.13 (J12.6.1: 0.47 against 0.34), which the play clock now produces (relay.test.ts).
+    expect(venueMult('road', true, P) / venueMult('home', true, P)).toBe(1);
     expect(venueMult('road', false, P) / venueMult('home', false, P)).toBeCloseTo(1.142, 2);
     expect(venueMult('neutral', true, P)).toBe(1);
   });
@@ -374,7 +464,10 @@ describe('J5.7 pre-snap fouls', () => {
     const t0 = { noise: 0, hardCountOwn: false, defensiveMovement: false, rushedSnap: false, longCount: false, fatigue: 0 };
     const b = P['foul.baseFalseStartLine']!;
     expect(falseStartChance(b, 50, 'neutral', t0, DMATH, P)).toBeCloseTo(b, 12);
-    expect(falseStartChance(b, 50, 'neutral', { ...t0, noise: 1 }, DMATH, P)).toBeCloseTo(b * Math.exp(0.7), 9);
+    // J12.6.1: "little or no noise weight" on the direct false-start term (road false starts show no excess).
+    expect(P['foul.gNoise']!).toBeLessThanOrEqual(0.1);
+    expect(falseStartChance(b, 50, 'neutral', { ...t0, noise: 1 }, DMATH, P)).toBeCloseTo(b * Math.exp(P['foul.gNoise']!), 9);
+    expect(falseStartChance(b, 50, 'neutral', { ...t0, fatigue: 1 }, DMATH, P)).toBeGreaterThan(b);
     expect(falseStartChance(b, 50, 'neutral', { ...t0, hardCountOwn: true }, DMATH, P)).toBeGreaterThan(b);
     const o0 = { hardCountOpp: false, anticipated: false, aggression: false, fatigue: 0 };
     const d = P['foul.baseDefOffside']!;
@@ -394,10 +487,15 @@ describe('J5.7 pre-snap fouls', () => {
     const perGameBoth = 2 * 62.1 * perSnap;
     expect(perGameBoth).toBeGreaterThan(2.3 * 0.75); expect(perGameBoth).toBeLessThan(2.3 * 1.25);
   });
-  it('home teams commit fewer pre-snap fouls than road teams over many snaps', () => {
-    const big = tableWith({ 'presnap.foul.baseFalseStartLine': 0.03, 'presnap.foul.baseFalseStartOther': 0.01 });
-    const count = (venue: 'home' | 'road') => SEEDS(1500).reduce((t, seed) => t + planPresnap(world({ seed, params: big }), input({ venue })).fouls.filter((f) => f.foulId === 'false_start').length, 0);
-    expect(count('road')).toBeGreaterThan(count('home'));
+  it('a road defense commits more pre-snap fouls than a home defense over many snaps, and false starts do not differ by venue', () => {
+    const big = tableWith({ 'presnap.foul.baseFalseStartLine': 0.03, 'presnap.foul.baseFalseStartOther': 0.01, 'presnap.foul.baseDefOffside': 0.03 });
+    const DEF = new Set(['offside', 'defensive_offside', 'neutral_zone_infraction', 'encroachment']);
+    // `venue` is the offense's: a home offense faces a road defense.
+    const count = (venue: 'home' | 'road', test: (id: string) => boolean) => SEEDS(1500).reduce((t, seed) => t + planPresnap(world({ seed, params: big }), input({ venue })).fouls.filter((f) => test(f.foulId)).length, 0);
+    expect(count('home', (id) => DEF.has(id))).toBeGreaterThan(count('road', (id) => DEF.has(id)));
+    // The same draws against the same chance: a false start by the line is the same snap at home and on the road.
+    const lineFalseStarts = (venue: 'home' | 'road') => SEEDS(300).map((seed) => planPresnap(world({ seed, params: tableWith({ 'presnap.foul.baseFalseStartLine': 0.03, 'presnap.foul.baseDefOffside': 0 }) }), input({ venue })).fouls.filter((f) => f.foulId === 'false_start').length);
+    expect(lineFalseStarts('road')).toEqual(lineFalseStarts('home'));
   });
   it('a dead-ball pre-snap foul ends the play before the snap: flag, dead ball, no snap', () => {
     const r = run(input(), { params: tableWith({ 'presnap.foul.baseFalseStartLine': 1 }) });

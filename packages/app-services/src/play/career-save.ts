@@ -35,6 +35,8 @@ export interface LiveWorldMeta {
 }
 
 const PARTS = ['meta', 'world', 'season', 'injected'] as const;
+/** Desk parts (practice, the staff's eye, the user's recruiting): written always, optional on read for saves written before them. */
+const DESK_PARTS = ['practice', 'scouting', 'recruiting'] as const;
 
 /** Entries per row of a big world field. One JSON string per field overflows the engine's string limit after a season. */
 export const LIVE_WORLD_CHUNK = 2000;
@@ -78,6 +80,11 @@ function worldFromRows(manifest: readonly FieldEntry[], p: Map<string, string>):
   return out;
 }
 
+/** The world from its `world` row: a field manifest (chunked saves), or the whole plain world (the first version-1 saves). */
+function worldOf(row: unknown, p: Map<string, string>): unknown {
+  return Array.isArray(row) ? worldFromRows(row as FieldEntry[], p) : row;
+}
+
 /** Writes the career year into the save database, replacing the previous copy. */
 export async function writeCareerYear(driver: SqlDriver, y: CareerYear, codec: snapshot.BlobCodec = snapshot.defaultCodec()): Promise<LiveWorldMeta> {
   await driver.exec(DDL);
@@ -88,9 +95,11 @@ export async function writeCareerYear(driver: SqlDriver, y: CareerYear, codec: s
     version: LIVE_WORLD_SAVE_VERSION, seatTeamId: s.seatTeamId, seasonYear: v.seasonYear, worldWeek: v.worldWeek, seasons: v.seasons, worldHash: v.worldHash,
   };
   const w = worldRows(s.world);
+  const desk: Record<(typeof DESK_PARTS)[number], unknown> = { practice: s.practice, scouting: s.scouting, recruiting: s.recruiting };
   const rows = [
     { part: 'meta', json: JSON.stringify(meta) }, { part: 'world', json: JSON.stringify(w.manifest) },
     { part: 'season', json: JSON.stringify(s.season) }, { part: 'injected', json: JSON.stringify(s.injected) },
+    ...DESK_PARTS.map((part) => ({ part, json: JSON.stringify(desk[part]) })),
   ];
   const blobs: { part: string; rawLength: number; blob: Uint8Array }[] = [];
   for (const r of w.rows) {
@@ -144,7 +153,8 @@ export async function readCareerYear(driver: SqlDriver, o: Omit<CareerYearOption
   if (!READABLE_VERSIONS.includes(meta.version)) throw new Error(`live world save: version ${String(meta.version)} is not supported`);
   const save: CareerYearSave = {
     version: 1, seatTeamId: meta.seatTeamId,
-    world: worldFromRows(JSON.parse(p.get('world')!) as FieldEntry[], p), season: JSON.parse(p.get('season')!), injected: JSON.parse(p.get('injected')!) as number[],
+    world: worldOf(JSON.parse(p.get('world')!), p), season: JSON.parse(p.get('season')!), injected: JSON.parse(p.get('injected')!) as number[],
+    ...Object.fromEntries(DESK_PARTS.filter((d) => p.has(d)).map((d) => [d, JSON.parse(p.get(d)!)])),
   };
   const y = CareerYear.restore(o, save);
   const hash = y.view().worldHash;

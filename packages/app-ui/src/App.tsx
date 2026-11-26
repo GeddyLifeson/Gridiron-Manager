@@ -4,13 +4,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import {
   WorldService, runGolden, compareGolden, goldenInputs, VERSIONS,
-  type Platform, type WorldSummaryModel, type GoldenReport, newgame,
+  type Platform, type WorldSummaryModel, type GoldenReport, newgame, type play,
 } from '@gm/app-services';
 import { NewGameFlow } from './screens/new-game/index.ts';
 import { SoundStageCaptions, type SoundStage } from './audio/stage/index.ts';
 import { CareerRoot, firstTeamKey, resolverFor, startCareerSeason, type CareerPort, type LeagueContent } from './app-root/index.ts';
 import { DEFAULT_KEYMAP } from './shell/keymap.ts';
-import { gameCalling, type gameCallingCommands } from '@gm/app-services';
+import type { gameCallingCommands } from '@gm/app-services';
 
 export interface AppProps {
   platform: Platform;
@@ -23,6 +23,8 @@ export interface AppProps {
   consoleConfig?: (ruleSetId: string, gameId: string) => gameCallingCommands.ConsoleConfig;
   /** Check entry (?quick=pro|college): a season with the level's first team, straight to the office. */
   quickCareer?: 'pro' | 'college' | null;
+  /** Where the season's other games are played: the shell's Web Worker pool (P2.1.2). Absent plays them in place. */
+  weekPool?: play.WeekPool;
   /**
    * The new-game flow (coach, history length, the past played, review, rerun, start). Absent keeps the
    * phase 0 new-career box. `onStart` belongs to the career root; without one the phase 0 world opens.
@@ -51,15 +53,15 @@ function randomSeedHex(): string {
   return a.toString(16).padStart(8, '0') + (b >>> 0).toString(16).padStart(8, '0');
 }
 
-export function App({ platform, golden, soundStage = null, newGame, leagueContent, consoleConfig, quickCareer = null }: AppProps) {
+export function App({ platform, golden, soundStage = null, newGame, leagueContent, consoleConfig, quickCareer = null, weekPool }: AppProps) {
   const [career, setCareer] = useState<CareerPort | null>(null);
   useEffect(() => {
     if (!quickCareer || !leagueContent || career) return;
-    const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
     const ruleSetId = RULE_SET_OF[quickCareer];
+    // Without a host override the console calls from the football desk's sheets (the staff's draft, as edited).
     setCareer(startCareerSeason(leagueContent, { level: quickCareer, ruleSetId, seasonYear: 2026, seedHex: randomSeedHex(), seat: { key: firstTeamKey(leagueContent, quickCareer) } },
-      { consoleConfig: (gameId) => setup(ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings) }));
-  }, [quickCareer, leagueContent, consoleConfig, career]);
+      { ...(consoleConfig ? { consoleConfig: (gameId: string) => consoleConfig(ruleSetId, gameId) } : {}), resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings, ...(weekPool ? { pool: weekPool } : {}) }));
+  }, [quickCareer, leagueContent, consoleConfig, career, weekPool]);
   const [saves, setSaves] = useState<{ name: string; sizeBytes: number }[]>([]);
   const [svc, setSvc] = useState<WorldService | null>(null);
   const [summary, setSummary] = useState<WorldSummaryModel | null>(null);
@@ -84,10 +86,9 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     if (newGame?.onStart) { newGame.onStart(start, world); return; }
     // The career root: the season of the seat's level from the generated world, on the office and the console.
     if (leagueContent && start.seatTeamId !== null) {
-      const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
       try {
-        setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId } },
-          { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings) }));
+        setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId }, live: { world, userPersonId: start.coach.personId } },
+          { ...(consoleConfig ? { consoleConfig: (gameId: string) => consoleConfig(start.ruleSetId, gameId) } : {}), resolve: resolverFor(DEFAULT_KEYMAP.bindings), bindings: DEFAULT_KEYMAP.bindings, ...(weekPool ? { pool: weekPool } : {}) }));
         return;
       } catch (e) { setMsg((e as Error).message); return; }
     }
@@ -135,8 +136,8 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
       )}
       {!svc && (
         <section style={box} aria-label="Careers">
-          {!newGame && (<>
-            <h2 style={{ fontSize: 17 }}>New career</h2>
+          {(<>
+            <h2 style={{ fontSize: 17 }}>{newGame ? 'Empty world (phase 0 developer check)' : 'New career'}</h2>
             <label>Save name <input value={name} onChange={(e) => setName(e.target.value.replace(/[^\w-]/g, ''))} /></label>{' '}
             <label>World seed <input value={seed} onChange={(e) => setSeed(e.target.value.replace(/[^0-9a-f]/gi, '').slice(0, 16).toLowerCase())} style={{ fontFamily: 'monospace' }} /></label>{' '}
             <button onClick={newCareer} disabled={!name || !seed}>Start</button>

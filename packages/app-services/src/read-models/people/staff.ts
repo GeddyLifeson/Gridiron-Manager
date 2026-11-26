@@ -2,6 +2,7 @@
 // coach card shows the record, never a skill: no K2 parameter, no skill number, bar or word standing for
 // one (E9.5.2, acceptance). What the user reads is the demonstrated record with its sample (the events
 // behind each line), labels once the label engine has them (N2.8), and his proposals with their results.
+import { positions } from '@gm/career';
 import type { ObservedWorld } from '../../observer/index.ts';
 import type { CoachCardView, DemonstratedLine, ProposalRow, StaffSeat, StaffView, WordRead } from './types.ts';
 import { contractLine, displayName, nameOf, peopleById, seenRead, visibleEventIds, worldDate } from './world.ts';
@@ -11,6 +12,14 @@ type Row = Record<string, unknown>;
 export interface StaffInputs {
   /** Cost text key of covering a vacant seat, by job id (O4.3.1 edge case). */
   readonly coverCost?: Readonly<Record<string, string>>;
+}
+
+let titles: ReadonlyMap<string, string> | null = null;
+
+/** The catalogue title of a staff job (X8.1.2), e.g. "Offensive Coordinator"; null when the id is not a catalogue job. */
+export function jobTitle(catalogueId: string): string | null {
+  titles ??= new Map(positions.CATALOGUE.jobs.map((j) => [j.id, j.title]));
+  return titles.get(catalogueId) ?? null;
 }
 
 export function buildStaff(world: ObservedWorld, clubId: number, input: StaffInputs = {}): StaffView {

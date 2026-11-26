@@ -12,7 +12,8 @@ export function engineTempo(t: ConsoleTempo): 'huddle' | 'no_huddle' | 'hurry_up
 }
 
 /** Who goes on the field for a unit and personnel group: the host's depth chart (I6). */
-export type LineupFor = (unit: SnappingCall['unit'] | OpposingCall['unit'], personnelCode: string | null) => FieldedPlayer[];
+/** Who takes the field for a call. `detail` is the kick or return kind of a kick or return call (punt, field_goal, kick_return ...). */
+export type LineupFor = (unit: SnappingCall['unit'] | OpposingCall['unit'], personnelCode: string | null, detail?: string | null) => FieldedPlayer[];
 
 export interface Actor { readonly kind: 'user' | 'staff'; readonly personId: number | null }
 
@@ -25,9 +26,9 @@ export function callDecision(request: DecisionRequest, sent: SentCall, lineup: L
     const snappingCall: SnappingCall = { ...c, personnelCode, tags: [...c.tags, ...extra], tempo: engineTempo(sent.tempo), players: lineup('offense', personnelCode) };
     return { ...base, snappingCall, opposingCall: null };
   }
-  if (c.unit === 'kick') return { ...base, snappingCall: { ...c, players: lineup('kick', null) }, opposingCall: null };
+  if (c.unit === 'kick') return { ...base, snappingCall: { ...c, players: lineup('kick', null, c.kickKind) }, opposingCall: null };
   if (c.unit === 'defense') return { ...base, snappingCall: null, opposingCall: { ...c, players: lineup('defense', sent.personnel) } };
-  return { ...base, snappingCall: null, opposingCall: { ...c, players: lineup('return', null) } };
+  return { ...base, snappingCall: null, opposingCall: { ...c, players: lineup('return', null, c.returnKind) } };
 }
 
 export function optionDecision(request: DecisionRequest, optionId: string, acceptedAtPlayClockTenths: number, actor: Actor = { kind: 'user', personId: null }): Decision {
