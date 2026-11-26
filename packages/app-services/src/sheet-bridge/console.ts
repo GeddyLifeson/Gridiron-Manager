@@ -3,8 +3,8 @@
 // become call templates from the content book (the engine call minus players: the console adds whoever the
 // depth chart sends). A situation the console cannot test stays on the sheet as a box the user opens by key
 // (its rule never matches), and a call whose play is missing from the book is left out and listed.
-import { gameplan as gp } from '@gm/football-content';
-import type { BoxRule, CallSheet, CallTemplate, Readiness, SheetBox, SheetEntry } from '../commands/game-calling/sheet.ts';
+import { full, gameplan as gp } from '@gm/football-content';
+import type { BoxRule, CallSheet, CallTemplate, Readiness, SheetBox, SheetEntry, TagDef } from '../commands/game-calling/sheet.ts';
 import { defenseCall, offenseCall } from '../coach-calling/build.ts';
 import { contentBook, type ContentBook } from '../coach-calling/content.ts';
 
@@ -122,6 +122,14 @@ export function toConsoleSheet(sheet: gp.Sheet, inp: ConsoleSheetInputs = {}): C
   const manualOnly: string[] = [];
   const broken: string[] = [];
   const ordered = gp.withReadingOrder(sheet.boxes);
+  // Route tags (I2.3.2): any route the team runs in a play on this sheet, for any receiver of the called play.
+  const run = unit === 'offense' ? full.routesRun(sheet.boxes.flatMap((b) => b.entries.map((e) => book.plays.get(e.call.playId)).filter((p): p is NonNullable<typeof p> => p !== undefined))) : new Set<string>();
+  const routeTags = (call: Call): TagDef[] => {
+    const p = unit === 'offense' ? book.plays.get(call.playId) : undefined;
+    if (!p) return [];
+    return full.routeTagsFor(p).filter((t) => run.has(t.route) && !call.tags.includes(t.id))
+      .map((t) => ({ id: t.id, kind: 'route' as const, label: t.label, group: `route:${t.role}`, spokenTenths: inp.spokenTenths?.({ playId: call.playId, tags: [t.id] }) ?? 0, installed: true }));
+  };
   const boxes: SheetBox[] = ordered.map((b) => {
     const sit = b.situationId === null ? undefined : sits.get(b.situationId);
     let rule = sit ? toBoxRule(sit) : null;
@@ -132,7 +140,7 @@ export function toConsoleSheet(sheet: gp.Sheet, inp: ConsoleSheetInputs = {}): C
       if (!call) { broken.push(`${b.id}/${e.id}`); continue; }
       entries.push({
         id: `${b.id}/${e.id}`, label: inp.label?.(e.call) ?? defaultLabel(book, e.call), call, spokenTenths: inp.spokenTenths?.(e.call) ?? 0,
-        readiness: inp.readiness?.(e.call) ?? 'ready', tags: [], onBand: gp.bandNumberOf(sheet, e.call) !== null, signal: inp.signal?.(e.call) ?? false,
+        readiness: inp.readiness?.(e.call) ?? 'ready', tags: routeTags(e.call), onBand: gp.bandNumberOf(sheet, e.call) !== null, signal: inp.signal?.(e.call) ?? false,
         replacement: inp.replacement?.(e.call) ?? null,
       });
     }

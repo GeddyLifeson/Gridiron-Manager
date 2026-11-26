@@ -10,6 +10,7 @@ import { ADDED_PLAYS, FULL_PLAYS } from './offense.ts';
 
 export { ALL_SOURCES, FULL_SOURCES, SOURCE_BY_ID } from './sources.ts';
 export { FULL_FORMATIONS } from './formations.ts';
+export { ROUTE_TREE, TAG_RECEIVERS, routeTagId, parseRouteTag, routeTagsFor, routesRun, withRouteTags, type RouteShape, type RouteTag } from './route-tags.ts';
 export { PRO_BOOK, COLLEGE_BOOK, STARTER_BOOKS, STARTER_BOOK_BY_LEVEL, INTENT_WEIGHT, starterBookFor, menuFor, pickEntry, bookPlay, bookCall, type StarterBook, type BookEntry, type BookSituation } from './books.ts';
 export { ADDED_PLAYS, FULL_PLAYS, ADDED_DEFENSE, FULL_DEFENSE, ALL_FORMATIONS, FORMATION_BY_ID };
 

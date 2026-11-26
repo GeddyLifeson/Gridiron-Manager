@@ -172,7 +172,14 @@ describe('console config in one call', () => {
       for (const k of letters) expect(RESERVED).not.toContain(k);
       expect(new Set(Object.values(r.config.keys[u]!.box).map((k) => k.join('+'))).size).toBe(r.config.sheets[u]!.boxes.length);
     }
-  });  it('the plan calls off the sheet become the in-game search pool, none duplicated from the sheet', () => {
+  });  it('offense entries carry route tags for routes the sheet already runs, one group per receiver', () => {
+    const mine = gp.addEntry({ ...gp.offenseTemplate(), gameId: 'g1' }, 'first_10', { id: 'x', call: { playId: 'pass_mesh', tags: [] } });
+    const r = consoleConfigFor({ rules: RULES, gameId: 'g1', bindings: BINDINGS, sheets: { offense: mine }, plan: { offense: PLAN }, staffPreparationZ: { offense: 0, defense: 0 }, special });
+    const e = r.config.sheets.offense!.boxes.flatMap((b) => b.entries).find((x) => x.id.endsWith('/x'))!;
+    expect(e.tags.length).toBeGreaterThan(0);
+    for (const t of e.tags) { expect(t.kind).toBe('route'); expect(t.group).toMatch(/^route:[A-Z]+$/); expect(t.installed).toBe(true); }
+  });
+  it('the plan calls off the sheet become the in-game search pool, none duplicated from the sheet', () => {
     const mine = gp.addEntry({ ...gp.offenseTemplate(), gameId: 'g1' }, 'first_10', { id: 'x', call: { playId: 'pass_mesh', tags: [] } });
     const r = consoleConfigFor({ rules: RULES, gameId: 'g1', bindings: BINDINGS, sheets: { offense: mine }, plan: { offense: PLAN }, staffPreparationZ: { offense: 0, defense: 0 }, special });
     const pool = r.config.pool?.offense ?? [];
