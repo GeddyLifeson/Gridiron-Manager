@@ -2,6 +2,7 @@
 // (sheets, keys, radio cutoff) comes from the host, so the sheet bridge supplies it without this file knowing.
 import { presentationLive, TICKS_PER_SECOND, type gameCallingCommands, type play } from '@gm/app-services';
 import { rt } from './text.ts';
+import { NEUTRAL_STRIPS } from '../tokens/index.ts';
 import type { CareerPort, GameSession, LiveField, SeasonToday, StandingRow } from './port.ts';
 
 type ConsoleConfig = gameCallingCommands.ConsoleConfig;
@@ -20,7 +21,7 @@ export interface SeasonPortHost {
 }
 
 /** Neutral strip for a team the content gives no colours: presentation only, no team mark (A6). */
-const NEUTRAL = [{ primary: '#4a4a4a', alternate: '#e6e6e6' }, { primary: '#e6e6e6', alternate: '#4a4a4a' }] as const;
+const NEUTRAL = NEUTRAL_STRIPS;
 
 /** Days from 1970-01-01 to 1 January of `year` (proleptic Gregorian; integer arithmetic only). */
 export function epochDayOfNewYear(year: number): number {
