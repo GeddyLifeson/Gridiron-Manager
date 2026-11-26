@@ -1,0 +1,6 @@
+{
+ "$comment": "T4.8.1 starting shape of a 105-man roster by position. Status: Assumption in the bible (no source read); a guide the user may ignore. Also the position mix of a generated class (T4.1.1 position quotas).",
+ "leaf": "T4.8.1",
+ "status": "Assumption",
+ "shape": { "QB": 5, "RB": 7, "WR": 14, "TE": 7, "OL": 18, "DL": 16, "LB": 12, "DB": 20, "ST": 6 }
+}
