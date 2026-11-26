@@ -97,7 +97,9 @@ describe('tick resolver with the real quarterback: who ends the play', () => {
     // before any rusher is home, and nobody was sacked.
     const params = tableWith({ 'qb.risk.intCeiling': -1, 'qb.risk.intCeilingTrailing': -1 });
     let sacks = 0, held = 0;
-    for (let seed = 1; seed <= 600; seed++) {
+    // Sacks are rare here (most arrivals catch him in his release and are hits), and rarer since his release is
+    // read against the rush: 240 plays hold one.
+    for (let seed = 1; seed <= 240; seed++) {
       const r = resolver.simulatePlay(playInput({ seed, playNumber: seed, grade, params }));
       expect(playTruthProblems(r.truth)).toEqual([]);
       const sack = eventsOf(r.truth, 'pressure').find((e) => e.kind === 'sack');

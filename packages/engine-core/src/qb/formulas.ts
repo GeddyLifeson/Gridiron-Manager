@@ -17,17 +17,18 @@ export function dropDepthYd(drop: DropType, p: QbParams): number {
 
 /**
  * J7.1.1 `tSet`: the table time, less 0.05 s per z of footwork, plus the play-action time (0.4 to
- * 0.7 s, chosen by the play) and the bad-snap time (0.2 to 0.6 s, from J5.6.2).
+ * 0.7 s, chosen by the play) and the bad-snap time (0.2 to 0.6 s, from J5.6.2). `zRush` is the other side
+ * of the drop: the rush he is getting away from, on the same scale (0 when the caller has none).
  */
-export function setTimeS(drop: DropType, zFootwork: number, playActionS: number, badSnapS: number, p: QbParams): number {
+export function setTimeS(drop: DropType, zFootwork: number, playActionS: number, badSnapS: number, p: QbParams, zRush = 0): number {
   const base = drop === 'gunQuick' ? p['drop.gunQuick.setS'] : drop === 'gun3' ? p['drop.gun3.setS'] : drop === 'uc3' ? p['drop.uc3.setS']
     : drop === 'uc5' ? p['drop.uc5.setS'] : p['drop.uc7.setS'];
-  return base - p['drop.footworkPerZS'] * zFootwork + playActionS + badSnapS;
+  return base - p['drop.footworkPerZS'] * zFootwork + p['drop.rushPerZS'] * zRush + playActionS + badSnapS;
 }
 
-/** J7.2.1 step 3: time on a read before the eyes move on. */
-export function readTimeS(zProcessing: number, p: QbParams): number {
-  const t = p['read.tReadBaseS'] - p['read.tReadPerZS'] * zProcessing;
+/** J7.2.1 step 3: time on a read before the eyes move on. `zCoverage` is the coverage he is sorting out, on the same scale. */
+export function readTimeS(zProcessing: number, p: QbParams, zCoverage = 0): number {
+  const t = p['read.tReadBaseS'] - p['read.tReadPerZS'] * zProcessing + p['read.coveragePerZS'] * zCoverage;
   return t < p['read.tReadFloorS'] ? p['read.tReadFloorS'] : t;
 }
 
@@ -115,15 +116,15 @@ export function riskyDumpChance(zComposure: number, p: QbParams, math: Determini
   return math.logistic(p['throwaway.dumpBeta0'] - p['throwaway.dumpPerZ'] * zComposure);
 }
 
-/** J7.6.1: seconds from decision to ball out. */
-export function releaseTimeS(zRelease: number, p: QbParams): number {
-  const t = p['throw.releaseBaseS'] - p['throw.releasePerZS'] * zRelease;
+/** J7.6.1: seconds from decision to ball out. `zRush` is the rush closing on him, on the same scale. */
+export function releaseTimeS(zRelease: number, p: QbParams, zRush = 0): number {
+  const t = p['throw.releaseBaseS'] - p['throw.releasePerZS'] * zRelease + p['throw.releaseRushPerZS'] * zRush;
   return t < p['throw.releaseFloorS'] ? p['throw.releaseFloorS'] : t;
 }
 
-/** J7.6.1: maximum release speed, yd/s. */
-export function maxBallSpeedYps(zArm: number, p: QbParams): number {
-  const v = p['throw.vBallBaseYps'] + p['throw.vBallPerZYps'] * zArm;
+/** J7.6.1: maximum release speed, yd/s. `zDefense` is the eleven the ball is thrown against, on the same scale. */
+export function maxBallSpeedYps(zArm: number, p: QbParams, zDefense = 0): number {
+  const v = p['throw.vBallBaseYps'] + p['throw.vBallPerZYps'] * zArm - p['throw.vBallDefensePerZYps'] * zDefense;
   return v < p['throw.vBallFloorYps'] ? p['throw.vBallFloorYps'] : v;
 }
 
