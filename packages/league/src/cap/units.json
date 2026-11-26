@@ -1,0 +1,5 @@
+{
+  "$comment": "Unit conversions and labels for the cap module. Not football facts: the league lint bans numeric literals in .ts (P1.1.2), so conversions live here.",
+  "centsPerUsd": 100,
+  "percent": 100
+}
