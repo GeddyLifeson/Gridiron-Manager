@@ -2292,6 +2292,465 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-cap-0069",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: the Player Cost Amount starts as 55 percent of projected League Media revenue.",
+   "value": 55,
+   "unit": "percent",
+   "validFor": "2020-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(i) (text copy cba_2020.txt, line 5050)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "55% of projected League Media AR",
+     "value": 55
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0070",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: plus 45 percent of projected NFL Ventures/Postseason revenue.",
+   "value": 45,
+   "unit": "percent",
+   "validFor": "2020-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(i) (text copy cba_2020.txt, line 5051)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "45% of projected NFL Ventures/Postseason AR",
+     "value": 45
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0071",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: plus 40 percent of projected Local revenue.",
+   "value": 40,
+   "unit": "percent",
+   "validFor": "2020-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(i) (text copy cba_2020.txt, line 5052)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "40% of projected Local AR",
+     "value": 40
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0072",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: less 47.5 percent of the Joint Contribution Amount.",
+   "value": 47.5,
+   "unit": "percent",
+   "validFor": "2020-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(i) (text copy cba_2020.txt, line 5054)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "47.5% of the Joint Contribution Amount",
+     "value": 47.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0073",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: for 2021 to 2030 the Player Cost Amount is capped at 48.5 percent of Projected AR (a ceiling).",
+   "value": 48.5,
+   "unit": "percent of Projected AR",
+   "validFor": "2021-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(ii)(B) (text copy cba_2020.txt, line 5056)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "is greater than 48.5% of Projected AR then the Player Cost Amount shall be reduced to 48.5% of Projected AR",
+     "value": 48.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0074",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: for 2021 to 2030 the Player Cost Amount is raised to at least 48 percent of Projected AR (a floor).",
+   "value": 48,
+   "unit": "percent of Projected AR",
+   "validFor": "2021-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(ii)(B) (text copy cba_2020.txt, line 5067)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "is less than 48% of Projected AR, the Player Cost Amount shall be increased to 48% of Projected AR",
+     "value": 48
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0075",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: for 2020 only the floor was 47 percent of Projected AR (ceiling 48.5 percent).",
+   "value": 47,
+   "unit": "percent of Projected AR",
+   "validFor": "2020",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(ii)(A) (text copy cba_2020.txt, line 5058)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "is less than 47% of Projected AR, the Player Cost Amount shall be increased to 47% of Projected AR",
+     "value": 47
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0076",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: the Salary Cap is the Player Cost Amount less Projected Benefits, divided by the number of clubs, adjusted by any True-Up.",
+   "validFor": "2020-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 6(c)(v) (text copy cba_2020.txt, line 5255)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "The Salary Cap for a League Year shall be the Player Cost Amount for that League Year less Projected Benefits for that League Year, divided by the number of Clubs in the League in that League Year, adjusted by any applicable True Up"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0077",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Cap rule: a True-Up carries any difference between the cap set with projected and later updated revenue into the next year's cap, with interest.",
+   "validFor": "2020-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 3(b)(ii) (text copy cba_2020.txt, line 4816)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "shall be a “True-Up,” to be credited or deducted, as the case may be, in the calculation of the Salary Cap for the upcoming League Year"
+    }
+   ],
+   "usedBy": [],
+   "notes": "No year-over-year growth limit on the cap was found in Article 12; the only bounds are the 48 and 48.5 percent bands on the Player Cost Amount. The 17-game Media Kicker (Section 6(c)(iv)) can raise the Player Cost Amount for years with new media contracts and is not modelled here.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0078",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum Team Cash Spending, 2017 to 2020 (four league years): 89 percent of the Salary Caps for the period.",
+   "value": 89,
+   "unit": "percent",
+   "validFor": "2017-2020",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 9(a) (text copy cba_2020.txt, line 5297)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a guaranteed Minimum Team Cash Spending of 89% of the Salary Caps for such period",
+     "value": 89
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0079",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum Team Cash Spending, 2021 to 2023: 90 percent of the Salary Caps for the period.",
+   "value": 90,
+   "unit": "percent",
+   "validFor": "2021-2023",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 9(b) (text copy cba_2020.txt, line 5300)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "there shall be a guaranteed Minimum Team Cash Spending of 90% of the Salary Caps for such periods",
+     "value": 90
+    }
+   ],
+   "usedBy": [],
+   "notes": "Same sentence covers all three 90 percent periods (2021-2023, 2024-2026, 2027-2030); the period years come from the same subsection. Any shortfall is paid to players by the club on or before the next September 15 (Section 9(c)), after the 2020, 2023, 2026 and 2030 League Years. See F-cap-0001.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0080",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum Team Cash Spending, 2024 to 2026: 90 percent of the Salary Caps for the period.",
+   "value": 90,
+   "unit": "percent",
+   "validFor": "2024-2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 9(b) (text copy cba_2020.txt, line 5300)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "there shall be a guaranteed Minimum Team Cash Spending of 90% of the Salary Caps for such periods",
+     "value": 90
+    }
+   ],
+   "usedBy": [],
+   "notes": "Same sentence covers all three 90 percent periods (2021-2023, 2024-2026, 2027-2030); the period years come from the same subsection. Any shortfall is paid to players by the club on or before the next September 15 (Section 9(c)), after the 2020, 2023, 2026 and 2030 League Years. See F-cap-0001.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0081",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum Team Cash Spending, 2027 to 2030: 90 percent of the Salary Caps for the period.",
+   "value": 90,
+   "unit": "percent",
+   "validFor": "2027-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 9(b) (text copy cba_2020.txt, line 5300)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "there shall be a guaranteed Minimum Team Cash Spending of 90% of the Salary Caps for such periods",
+     "value": 90
+    }
+   ],
+   "usedBy": [],
+   "notes": "Same sentence covers all three 90 percent periods (2021-2023, 2024-2026, 2027-2030); the period years come from the same subsection. Any shortfall is paid to players by the club on or before the next September 15 (Section 9(c)), after the 2020, 2023, 2026 and 2030 League Years. See F-cap-0001.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0082",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Guaranteed League-Wide Cash Spending: 95 percent of the Salary Caps for each period multiplied by the number of clubs.",
+   "value": 95,
+   "unit": "percent",
+   "validFor": "2017-2030",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 12 Section 8(b) (text copy cba_2020.txt, line 5268)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "there shall be Guaranteed League-Wide Cash Spending of 95% of the Salary Caps",
+     "value": 95
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source (Over the Cap's copy of the CBA is the same text, not independent). The 2020 CBA runs to 2030.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "G-10 seventh pass: CBA text read locally."
+    }
+   ]
+  },
+  {
+   "id": "F-cap-0083",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2020 salary cap per club: $198,200,000 (plus $40 million per team in player benefits).",
+   "value": 198200000,
+   "unit": "USD",
+   "validFor": "2020",
+   "sources": [
+    {
+     "citation": "Wikipedia, NFL salary cap (https://en.wikipedia.org/wiki/NFL_salary_cap; no date shown)",
+     "locator": "Maximum team salary table",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "2020 | $198.2 million + $40 million per team in player benefits",
+     "value": 198200000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). One source. The Over the Cap page read this pass shows only 2026 onward, and Spotrac and NFL pages could not be read. NOT FOUND: the 2025 cap (no page read states it) and a labelled 2027 figure.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-10 seventh pass."
+    }
+   ]
   }
  ]
 }
