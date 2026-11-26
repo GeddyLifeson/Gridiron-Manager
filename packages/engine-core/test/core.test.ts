@@ -123,3 +123,24 @@ describe('canonical bytes and hashes (P1.1.5)', () => {
     expect(chainNext({ ...base, parameterSetVersion: 'q' })).not.toBe(h);
   });
 });
+
+import { streamSource, DMATH } from '../src/index.ts';
+
+describe('simulation contract adapters (J13.1.1, J13.3.1)', () => {
+  it('streamSource gives the same sequence as stream() and restarts on the same key', () => {
+    const seed = seedFromNumber(20260101);
+    const src = streamSource(seed);
+    const a = src('contest', [1, 2, 10, 20, 'block']);
+    const b = stream(seed, 'contest', [1, 2, 10, 20, 'block']);
+    const c = src('contest', [1, 2, 10, 20, 'block']);
+    const first = a.nextU32();
+    expect(first).toBe(b.nextU32());
+    expect(c.nextU32()).toBe(first);
+    expect(a.draws).toBe(1);
+  });
+  it('DMATH is the engine math', () => {
+    expect(DMATH.sin(0.5)).toBe(dSin(0.5));
+    expect(DMATH.exp(1.25)).toBe(dExp(1.25));
+    expect(DMATH.logistic(0)).toBe(logistic(0));
+  });
+});
