@@ -69,7 +69,7 @@ export function engineParamTable(files: readonly ParamFile[] = ENGINE_PARAM_FILE
 const UNITS = ['offense', 'defense', 'kick', 'return'] as const;
 const PER_UNIT = 11;
 
-/** PLACEHOLDER roster: four units of eleven, every attribute at `iss`. Not real people, not generated people. */
+/** PLACEHOLDER roster: four units of eleven, every grade at `iss`. Not real people, not generated people. */
 export function placeholderTeam(side: Side, iss: number, jerseys?: Readonly<Record<string, readonly number[]>>): SimTeam {
   const base = (side + 1) * 1000;
   const players: SimPlayer[] = [];
@@ -79,7 +79,8 @@ export function placeholderTeam(side: Side, iss: number, jerseys?: Readonly<Reco
     for (let i = 1; i <= PER_UNIT; i++) {
       const playerId = base + u * 100 + i;
       const attributes: Record<string, number> = {};
-      for (const a of ATTRIBUTE_IDS) attributes[a] = iss;
+      // `decision_risk` is a tendency (D4.5.1: 50 is neither careful nor bold), not a grade, so it does not follow the level.
+      for (const a of ATTRIBUTE_IDS) attributes[a] = a === 'decision_risk' ? 50 : iss;
       players.push({
         playerId, position: unit, jersey: jerseys?.[unit]?.[i - 1] ?? (u * PER_UNIT + i) % 100, heightIn: 74, weightLb: 220, ageYears: 25, attributes,
         tests: { fortyS: 4.6, tenSplitS: 1.6, threeConeS: null, shuttleS: null, verticalIn: null, broadIn: null, changeOfDirectionZ: 0 },

@@ -9,6 +9,7 @@ import {
 } from '@gm/schema';
 import { callDeliveryChance, perceptionParams, type PerceptionParams } from '../perception/index.ts';
 type FoulPhase = TruthEventOf<'foul_committed'>['phase'];
+import { READING, opposingElevenZ } from '../tick/opposition.ts';
 import { drawTeam, type TeamDraws } from './draws.ts';
 import {
   audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
@@ -219,6 +220,9 @@ export function snapperOf(as: readonly Assignment[]): number {
 }
 
 const iss = (w: TickWorld, slot: number, attr: string): number => w.slots[slot]!.player.attributes[attr] ?? 50;
+/** D4.2.2 foul discipline as the pre-snap fouls read it: against how sharp the other eleven is (`foul.opposedShare`). */
+const testedDiscipline = (w: TickWorld, slot: number, p: PresnapParams): number =>
+  iss(w, slot, 'foul_discipline') - p['foul.opposedShare']! * 10 * opposingElevenZ(w, slot, READING);
 
 function shellOf(depths: readonly number[], highDepth: number): Shell {
   let n = 0;
@@ -577,7 +581,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       const a = O.assignments[s]!;
       const interior = a.preSnap.onLine && spot[s]!.py > lineMinPy && spot[s]!.py < lineMaxPy;
       const base = interior ? p['foul.baseFalseStartLine']! : p['foul.baseFalseStartOther']!;
-      const pr = falseStartChance(base, iss(w, s, 'foul_discipline'), input.venue, {
+      const pr = falseStartChance(base, testedDiscipline(w, s, p), input.venue, {
         noise: O.noise, hardCountOwn: input.hardCount, defensiveMovement: stemming, rushedSnap: input.tempo === 'hurry_up',
         longCount: input.longCount, fatigue: w.players.fatigueNow[s]!,
       }, math, p);
@@ -588,7 +592,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       if (missing.includes(s)) continue;
       const exposed = spot[s]!.px <= ON_LINE_DEPTH || rushers.includes(s);
       if (!exposed) continue;
-      const pr = defensiveOffsideChance(p['foul.baseDefOffside']!, iss(w, s, 'foul_discipline'), venueD, {
+      const pr = defensiveOffsideChance(p['foul.baseDefOffside']!, testedDiscipline(w, s, p), venueD, {
         hardCountOpp: input.hardCount, anticipated: input.snapsOnSameCount >= p['getoff.anticipationSnaps']!, aggression: D.aggressiveGetOff, fatigue: w.players.fatigueNow[s]!,
       }, math, p);
       const id = w.slots[s]!.playerId;

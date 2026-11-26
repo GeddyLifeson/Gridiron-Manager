@@ -25,6 +25,8 @@ const TACKLE = 'J6.6.1 acceptance (rushing quantiles and yards after catch)';
 const STRUCT = 'none: structural';
 
 const ROWS = [
+  // Ruling 2026-11-26: share of the chasing eleven's reading grades set against the carrier's vision and patience.
+  ['oppose.visionShare', 1, 0, 1, 'ratio', 'assumption', 'J8.1.1', 'equal rosters at 25, 40, 50 and 75: yards per carry do not move with the level'],
   // J8.1.1 look-ahead
   ['look.lanes', 11, 9, 13, 'count', 'bible', 'J8.1.1', VISION],
   ['look.fanDeg', 150, 120, 180, 'deg', 'bible', 'J8.1.1', VISION],

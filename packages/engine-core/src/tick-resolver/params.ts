@@ -49,6 +49,8 @@ const ROWS: readonly ParamRow[] = [
   ['catch.hitClosingYps', 3, 0.5, 8, 'yd/s', A, 'J6.5.1', 'closing speed that makes the contact a hit'],
   ['catch.movingYps', 2, 0.5, 5, 'yd/s', A, 'J6.5.1', 'receiver faster than this has a direction a defender can trail'],
   ['catch.knockDownKeep', 0.25, 0, 1, 'ratio', A, 'J6.5.1', 'share of its pace a dropped or broken-up ball keeps'],
+  // Ruling 2026-11-26 (one pro scale, no level of play): the hands at a ball are read against the men across from it.
+  ['catch.opposedShare', 1, 0, 1, 'ratio', A, 'J6.5.1', 'equal rosters at 25, 40, 50 and 75: drop and interception rates do not move with the level'],
   // Kick-play operation (J9.4 to J9.6): values the call content will carry once it has them.
   ['kick.aimLatYd', 12, 0, 25, 'yd', A, 'J9.5.1', 'lateral aim of a directional punt or kickoff'],
   ['kick.kickoffTargetAlongYd', 62, 30, 80, 'yd', A, 'J9.6.1', 'called landing point until the kick call carries one'],

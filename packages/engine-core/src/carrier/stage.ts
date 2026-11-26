@@ -29,6 +29,7 @@ import { PI, dAtan2, dCos, dExp, dLog, dSin, dSqrt, logistic } from '../dmath.ts
 import { contactNumbers, kinParams, type ContactNumbers, type KinParams } from '../kinematics/index.ts';
 import type { PlayerMind } from '../player-ai/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
+import { READING, opposingElevenZ } from '../tick/opposition.ts';
 import { declareDead } from '../tick-resolver/finish.ts';
 import {
   accountedDefenders, awarenessChance, bounceBiasYd, clip, competesChance, doNotScoreChance, horizonS, laneNoiseSdYd,
@@ -308,6 +309,10 @@ export function createCarrier(options: CarrierOptions): Carrier {
     else { const a = zEff(w, c, 'vision_zone'), b = zEff(w, c, 'vision_gap'); zVision = a > b ? a : b; }
     zDecisive = zOf(style?.decisiveness); zCreative = zOf(style?.creativity);
     zPatience = zEff(w, c, 'patience_and_tempo');
+    // Ruling 2026-11-26 (one pro scale, no level of play): what he sees and how he sets up his blocks is read
+    // against how fast the eleven chasing him sorts the play out. His styles are tendencies and are not.
+    const chasing = q['oppose.visionShare'] * opposingElevenZ(w, c, READING);
+    zVision -= chasing; zPatience -= chasing;
     temp = laneTemperatureYd(zDecisive, q); horizon = horizonS(zVision, q); kAccount = accountedDefenders(zVision, q); noiseSd = laneNoiseSdYd(zVision, q);
     // Designed run: press then read (J8.2.1). Otherwise the assignment's current target is his track.
     runPhase = 0; hasChoice = false; escapeUntil = 0;
@@ -813,7 +818,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
     if (offense && contests.tackle.pileApplies(n, losDist, engagedBothSides(w, c))) {
       let free = 0;
       for (let o = 0; o < SLOT_COUNT; o++) if (o !== s && w.slots[o]!.side !== cInfo.side && pl.engagement[o]! < 0 && !isDown(w, o) && hyp(px(w, o) - cx, py(w, o) - py(w, c)) < 2) free++;
-      const gain = contests.tackle.resolvePile({ surge: surge(w, c), zPower: zEff(w, c, 'power_finish'), freeDefenders: free, pushers: 0 }, pairStream(w, c, s, 'pile'));
+      const gain = contests.tackle.resolvePile({ surge: surge(w, c), zPower: zEff(w, c, 'power_finish') - zEff(w, s, 'tackling'), freeDefenders: free, pushers: 0 }, pairStream(w, c, s, 'pile'));
       const ids: number[] = [];
       for (let i = 0; i < n; i++) ids.push(w.slots[contactList[i]!]!.playerId);
       const fumble = fumbleDraw(w, c, s, energyRel, contact.blindside, -1, false, true);
@@ -846,7 +851,8 @@ export function createCarrier(options: CarrierOptions): Carrier {
       lunging: w.intents[s]!.arrival !== 'breakdown' && speed > q['tackle.breakdownYps'] && type !== 'behind',
       momentumRatio: ratio, tacklers, roomToCut: covered ? 0 : roomToCut(w, c), moveWon,
       stripAttempt: options.playerAi?.stripAttempt(s) ?? false,
-      zContactBalance: zEff(w, c, 'contact_balance'), type,
+      // Broken or missed: his balance against this tackler's tackling, so equal men split the same way at any level.
+      zContactBalance: zEff(w, c, 'contact_balance') - zEff(w, s, 'tackling'), type,
     };
     const pTackle = contests.tackle.tackleProbability(input);
     const res = contests.tackle.resolveTackle(input, pairStream(w, c, s, 'tackle'));

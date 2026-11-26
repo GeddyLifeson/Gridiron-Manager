@@ -93,7 +93,9 @@ describe('tick resolver with the real quarterback: who ends the play', () => {
       return Object.fromEntries(['pass_set', 'anchor', 'mirror', 'hand_use_in_protection', 'get_off', 'power_rush', 'hand_moves', 'speed_rush_and_bend', 'inside_counter'].map((a) => [a, v]));
     };
     let sacks = 0, held = 0;
-    for (let seed = 1; seed <= 120; seed++) {
+    // Sacks are rare here (most arrivals catch him in his release and are hits), and rarer since his release is
+    // read against the rush: 240 plays hold one.
+    for (let seed = 1; seed <= 240; seed++) {
       const r = resolver.simulatePlay(playInput({ seed, playNumber: seed, grade }));
       expect(playTruthProblems(r.truth)).toEqual([]);
       const sack = eventsOf(r.truth, 'pressure').find((e) => e.kind === 'sack');
