@@ -915,16 +915,31 @@
      "primary": false,
      "quote": "Teams can now sign 17 players to their practice squads if one of those players is a member of",
      "value": 16
+    },
+    {
+     "citation": "NFL Football Operations, Contract Language (https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language)",
+     "locator": "Contract Language page, Practice Squads section",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The practice squad consists of 16 players as of 2026. However, teams can sign 17 players to their practice squads if one of those players is a member of the NFL's International Pathway Program.",
+     "value": 16
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -946,16 +961,31 @@
      "primary": false,
      "quote": "NFL teams can have 16 players on their practice squad — or 17, as long as one of those players is part of",
      "value": 1
+    },
+    {
+     "citation": "NFL Football Operations, International Player Pathway (https://operations.nfl.com/platforms-initiatives/international-growth/international-player-pathway)",
+     "locator": "International Player Pathway page, 2026 season paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "During the 2026 season, each club may have a combined maximum of 17 Practice Squad players as long as one player qualifies as an International Player.",
+     "value": 1
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -987,16 +1017,31 @@
      "primary": false,
      "quote": "Up to 10 players may have no more than two accrued seasons.",
      "value": 10
+    },
+    {
+     "citation": "NFL Football Operations, Contract Language (https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language)",
+     "locator": "Contract Language page, Practice Squads section",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Teams can also have a maximum of ten players who have earned no more than two accrued seasons.",
+     "value": 10
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Replaces the earlier young_min key: the CBA (Article 33 Section 4) sets separate caps per category, so ten is a ceiling on group B, not a reserved allocation (research/g15-practice-squad-eligibility.md).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1028,16 +1073,31 @@
      "primary": false,
      "quote": "Of the other 16, 10 must be rookies or second-year players, while there are no restrictions on the other six.",
      "value": 6
+    },
+    {
+     "citation": "NFL Football Operations, Contract Language (https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language)",
+     "locator": "Contract Language page, Practice Squads section",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Each team to have up to six players with unlimited accrued seasons on the practice squad.",
+     "value": 6
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1069,16 +1129,31 @@
      "primary": false,
      "quote": "Players can be promoted a maximum of three times in a season.",
      "value": 3
+    },
+    {
+     "citation": "NFL Football Operations, Contract Language (https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language)",
+     "locator": "Contract Language page, Standard Elevation Addendum",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Each practice squad players can be elevated for a maximum of three regular season games in the same League Year.",
+     "value": 3
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Resolves the bible C5.3.2 dissent: two independent 2025 pages say three. CONFLICT: the row value 3 follows SI and NFL.com (2022 change); the 2020 CBA text (Article 33 Section 5(f): \"a maximum combination of two regular season or postseason games in the same League Year\") and ESPN 2025 (\"Teams can't activate a player more than twice\") say 2. Needs a decision before the value is relied on.",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1629,16 +1704,31 @@
      "primary": false,
      "quote": "NFL to shorten time between first-round picks to eight minutes",
      "value": 8
+    },
+    {
+     "citation": "NFL Football Operations, NFL Draft Rules (https://operations.nfl.com/calendar-events/nfl-draft/nfl-draft-rules)",
+     "locator": "Draft rules page, pick-clock paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Only the first round is held on Thursday. It starts at 8 p.m. Eastern time, and each team has eight minutes to make its pick.",
+     "value": 8
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1660,16 +1750,31 @@
      "primary": false,
      "quote": "Teams get seven minutes to make picks in the second round.",
      "value": 7
+    },
+    {
+     "citation": "NFL Football Operations, NFL Draft Rules (https://operations.nfl.com/calendar-events/nfl-draft/nfl-draft-rules)",
+     "locator": "Draft rules page, pick-clock paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Teams get seven minutes to make picks in the second round",
+     "value": 7
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1691,16 +1796,31 @@
      "primary": false,
      "quote": "That time drops to five minutes for regular and compensatory picks in rounds three through six.",
      "value": 5
+    },
+    {
+     "citation": "NFL Football Operations, NFL Draft Rules (https://operations.nfl.com/calendar-events/nfl-draft/nfl-draft-rules)",
+     "locator": "Draft rules page, pick-clock paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "five minutes for regular or compensatory picks in rounds 3-6",
+     "value": 5
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1722,16 +1842,31 @@
      "primary": false,
      "quote": "There are just four minutes between picks in the seventh round.",
      "value": 4
+    },
+    {
+     "citation": "NFL Football Operations, NFL Draft Rules (https://operations.nfl.com/calendar-events/nfl-draft/nfl-draft-rules)",
+     "locator": "Draft rules page, pick-clock paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "and four minutes in round 7",
+     "value": 4
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -3618,16 +3753,31 @@
      "primary": false,
      "quote": "seven teams from each of the league's two conferences qualify for the playoffs",
      "value": 7
+    },
+    {
+     "citation": "NFL Football Operations, 2020 NFL-NFLPA CBA: Need to Know (https://operations.nfl.com/platforms-initiatives/player-development-partnership/collective-bargaining-agreement)",
+     "locator": "CBA Need to Know page, highlights",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "14-team playoff: Starting in the 2020 season, seven teams from each conference will make the playoffs",
+     "value": 7
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
