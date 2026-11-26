@@ -1,0 +1,1889 @@
+{
+ "leaf": "A4.5.6",
+ "terms": [
+  {
+   "id": "term.20-yard-shuttle-pro",
+   "term": "20-yard shuttle",
+   "aliases": [
+    "short shuttle",
+    "5-10-5"
+   ],
+   "definition": "An agility drill that starts at the middle of three cones 5 yards apart: run 5 yards one way, 10 yards the other way, then 5 yards back to the start, timed for quickness and change of direction.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0013",
+   "variants": "short shuttle; 5-10-5"
+  },
+  {
+   "id": "term.25-increase-rule-pro",
+   "term": "25% increase rule",
+   "aliases": [
+    "25 percent rule"
+   ],
+   "definition": "A rookie-contract rule: salary may not rise more than 25% of the Year-One Rookie Salary per year, unless the contract pays only minimum salary.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0019"
+  },
+  {
+   "id": "term.30-rules-pro",
+   "term": "30% rules",
+   "aliases": [
+    "30 percent rule",
+    "year-to-year salary increase limit"
+   ],
+   "definition": "A CBA limit on contracts that run past the final CBA year (2030): salary (excluding signing bonus) may not rise by more than 30% of the final-year salary per year in those later seasons.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0027",
+   "variants": "30% Rule; Deion Rule is separate (Art. 13 Sec. 6(b)(i)(2))"
+  },
+  {
+   "id": "term.40-yard-dash-pro",
+   "term": "40-yard dash",
+   "aliases": [
+    "forty"
+   ],
+   "definition": "A timed sprint of 40 yards that measures straight-line speed; the best-known combine test.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0033"
+  },
+  {
+   "id": "term.53-man-roster-pro",
+   "term": "53-man roster",
+   "aliases": [
+    "active/inactive list",
+    "53-player roster"
+   ],
+   "definition": "The most players a club may carry at once in the regular season and playoffs: 53 on the active/inactive list (54 or 55 when one or two practice squad players are elevated for a game).",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0040",
+   "variants": "active/inactive list"
+  },
+  {
+   "id": "term.90-man-roster-pro",
+   "term": "90-man roster",
+   "aliases": [
+    "90-player roster"
+   ],
+   "definition": "The roster limit with which clubs open training camp; it is cut to 53 before the regular season.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0047",
+   "variants": "90-player roster"
+  },
+  {
+   "id": "term.accrued-season-pro",
+   "term": "accrued season",
+   "aliases": [
+    "accrued seasons"
+   ],
+   "definition": "A season in which a player was on full pay status for at least six regular season games, counted toward free-agent status (four = unrestricted, three = restricted).",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0053"
+  },
+  {
+   "id": "term.agent-pro",
+   "term": "agent",
+   "aliases": [
+    "player agent",
+    "certified agent"
+   ],
+   "definition": "The person who negotiates a player's contract; clubs may deal only with agents the union has certified (the CBA says Certified Contract Advisor), or with the player himself.",
+   "domain": "front-office",
+   "subdomain": "agents",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0059",
+   "variants": "NFLPA Certified Contract Advisor"
+  },
+  {
+   "id": "term.anti-collusion-pro",
+   "term": "anti-collusion",
+   "aliases": [
+    "collusion rule"
+   ],
+   "definition": "A CBA ban on clubs agreeing with the league or each other to limit who they negotiate with, whether to offer or match contracts, or what terms they offer.",
+   "domain": "front-office",
+   "subdomain": "rules",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0069"
+  },
+  {
+   "id": "term.arm-length-pro",
+   "term": "arm length",
+   "aliases": [
+    "arms"
+   ],
+   "definition": "A measured arm length (with height) that evaluators track for prospects such as cornerbacks and linemen.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0073"
+  },
+  {
+   "id": "term.assignment-of-draft-rights-pro",
+   "term": "assignment of draft rights",
+   "aliases": [
+    "draft rights trade"
+   ],
+   "definition": "A club passes its exclusive right to negotiate with a drafted player (for example by trade or waivers) to another club, which gets the same, no greater, rights.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0075"
+  },
+  {
+   "id": "term.base-salary-pro",
+   "term": "base salary",
+   "aliases": [
+    "Paragraph 5 salary",
+    "P5 salary"
+   ],
+   "definition": "The yearly salary written into Paragraph 5 of the standard NFL Player Contract, earned in the regular season.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0101"
+  },
+  {
+   "id": "term.bench-press-combine-pro",
+   "term": "bench press (combine)",
+   "aliases": [
+    "225 bench",
+    "225-pound bench"
+   ],
+   "definition": "A strength-and-endurance test: the number of repetitions of 225 pounds a prospect can lift.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0107"
+  },
+  {
+   "id": "term.broad-jump-pro",
+   "term": "broad jump",
+   "aliases": [
+    "standing long jump"
+   ],
+   "definition": "A standing jump for distance, a test of lower-body power and, per the Seahawks, of lateral power output tied to 40 time.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0133"
+  },
+  {
+   "id": "term.cap-carryover-pro",
+   "term": "cap carryover",
+   "aliases": [
+    "rollover",
+    "carry over room"
+   ],
+   "definition": "A club may move unused cap room into the next League Year by giving written notice before 4 p.m. New York time the day after its last regular season game.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0145",
+   "variants": "CBA name: Carrying Over Room"
+  },
+  {
+   "id": "term.cap-circumvention-pro",
+   "term": "cap circumvention",
+   "aliases": [
+    "undisclosed terms",
+    "side deal"
+   ],
+   "definition": "Any deal or term designed to defeat the cap or rookie pool rules; secret side agreements are barred, and penalties can include fines up to $6.5M, loss of up to two draft picks and executive suspensions.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0146"
+  },
+  {
+   "id": "term.cap-guarantee-pro",
+   "term": "cap guarantee",
+   "aliases": [
+    "guaranteed for cap"
+   ],
+   "definition": "Protection that makes money owed even if the club cuts the player to create cap room, sign a free agent or re-sign its own player.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0147"
+  },
+  {
+   "id": "term.cap-hit-pro",
+   "term": "cap hit",
+   "aliases": [
+    "cap number",
+    "cap charge"
+   ],
+   "definition": "The amount one player's contract counts against his club's salary cap in a League Year, which can differ a lot from the cash he is paid that year.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0148"
+  },
+  {
+   "id": "term.cap-space-pro",
+   "term": "cap space",
+   "aliases": [
+    "cap room",
+    "room",
+    "cap room available"
+   ],
+   "definition": "The part of the salary cap a club has not used, meaning the cap minus its Team Salary. The CBA calls it Room.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0149",
+   "variants": "CBA term: Room"
+  },
+  {
+   "id": "term.cash-spending-floor-pro",
+   "term": "cash spending floor",
+   "aliases": [
+    "minimum team cash spending"
+   ],
+   "definition": "A CBA guarantee that each club's actual cash spending on players reaches a set share of the cap over a multi-year window: 90% over 2021-23, 2024-26 and 2027-30, with shortfalls paid to players.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0153",
+   "variants": "Minimum Team Cash Spending"
+  },
+  {
+   "id": "term.clear-waivers-pro",
+   "term": "clear waivers",
+   "aliases": [
+    "cleared waivers"
+   ],
+   "definition": "A waived player goes unclaimed by every club and becomes a free agent, free to sign anywhere.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0178"
+  },
+  {
+   "id": "term.combine-pro",
+   "term": "combine",
+   "aliases": [
+    "scouting combine",
+    "NFL Scouting Combine"
+   ],
+   "definition": "The annual invitation-only week in Indianapolis where college prospects are medically examined, interviewed and tested in front of NFL coaches, executives and scouts.",
+   "domain": "front-office",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0197",
+   "variants": "NFL Scouting Combine"
+  },
+  {
+   "id": "term.commissioner-disapproval-pro",
+   "term": "commissioner disapproval",
+   "aliases": [
+    "contract disapproval"
+   ],
+   "definition": "The commissioner's power to reject a player contract that breaks the CBA's contract, free-agency or cap rules; the player or club can appeal to the System Arbitrator.",
+   "domain": "front-office",
+   "subdomain": "rules",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0200"
+  },
+  {
+   "id": "term.compensatory-formula-pro",
+   "term": "compensatory formula",
+   "aliases": [
+    "comp pick formula"
+   ],
+   "definition": "The calculation, published in CBA Appendix V, that ranks lost and signed free agents by average yearly pay, honors and snaps, and uses the percentile to set which round the pick falls in.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0202"
+  },
+  {
+   "id": "term.compensatory-pick-pro",
+   "term": "compensatory pick",
+   "aliases": [
+    "comp pick",
+    "compensatory draft selection"
+   ],
+   "definition": "An extra pick at the end of rounds three to seven given to a club that lost more (or better) unrestricted free agents than it signed; each club gets at most four a year.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0203"
+  },
+  {
+   "id": "term.credited-season-pro",
+   "term": "credited season",
+   "aliases": [
+    "credited seasons",
+    "CS"
+   ],
+   "definition": "A season in which a player was on full pay for at least three regular season games; it sets his minimum salary and some benefits.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0240"
+  },
+  {
+   "id": "term.cut-down-day-pro",
+   "term": "cut-down day",
+   "aliases": [
+    "roster cutdown",
+    "final cuts"
+   ],
+   "definition": "The deadline before the regular season by which clubs must trim from 90 players to 53, releasing or moving injured players to lists.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0250"
+  },
+  {
+   "id": "term.de-escalator-pro",
+   "term": "de-escalator",
+   "aliases": [
+    "de-escalator clause"
+   ],
+   "definition": "A contract clause that lowers a player's pay if he fails to hit stated performance marks.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0256"
+  },
+  {
+   "id": "term.dead-ball-offseason-workouts-pro",
+   "term": "dead ball (offseason workouts)",
+   "aliases": [
+    "dead ball activities"
+   ],
+   "definition": "Phase One offseason work with no live football play: quarterbacks may throw to uncovered receivers, kickers and long snappers may work without a defense, and defenders may not catch balls.",
+   "domain": "front-office",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0259",
+   "variants": "dead ball"
+  },
+  {
+   "id": "term.dead-money-pro",
+   "term": "dead money",
+   "aliases": [
+    "dead cap",
+    "dead cap charge"
+   ],
+   "definition": "Cap charge a club still carries for a player who is no longer on the roster, mainly unamortized signing bonus and guaranteed pay that speeds onto the cap after a release.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0261"
+  },
+  {
+   "id": "term.deferred-salary-pro",
+   "term": "deferred salary",
+   "aliases": [
+    "deferred Paragraph 5"
+   ],
+   "definition": "Paragraph 5 salary earned in one year but not paid until after the next League Year; it counts against the cap at its present value, using a Treasury-based discount rate.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0282"
+  },
+  {
+   "id": "term.deion-rule-pro",
+   "term": "Deion Rule",
+   "aliases": [
+    "Deion rule"
+   ],
+   "definition": "A cap rule for contracts running past the CBA's end: if early-year pay is below the bonus slices assigned to those years, part of the later-year signing bonus slices is moved back into the early years.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0283"
+  },
+  {
+   "id": "term.designated-to-return-pro",
+   "term": "designated to return",
+   "aliases": [
+    "IR-R",
+    "designated for return",
+    "IR-designated to return"
+   ],
+   "definition": "A tag that lets a club bring a player back from injured reserve to practice and the roster during the season, limited per club and per player.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0289",
+   "variants": "IR-designated to return"
+  },
+  {
+   "id": "term.draft-eligibility-pro",
+   "term": "draft eligibility",
+   "aliases": [
+    "three-year rule"
+   ],
+   "definition": "A player may enter the draft once three NFL regular seasons have begun and ended after his high school class graduated; college players must also have used up their eligibility (or request early entry).",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0325"
+  },
+  {
+   "id": "term.draft-order-pro",
+   "term": "draft order",
+   "aliases": [
+    "draft position"
+   ],
+   "definition": "Order of picks in each round: non-playoff teams first by reverse record (picks 1-20), then playoff teams by how far they advanced, ending with the Super Bowl champion at 32.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0326"
+  },
+  {
+   "id": "term.draft-pick-compensation-pro",
+   "term": "draft pick compensation",
+   "aliases": [
+    "draft choice compensation"
+   ],
+   "definition": "Draft picks one club owes another in return for a player: two firsts for a non-exclusive franchise player, or a first, second or original-round pick for a restricted free agent (matching removes the pick).",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0327",
+   "variants": "Draft Choice Compensation"
+  },
+  {
+   "id": "term.exclusive-franchise-tag-pro",
+   "term": "exclusive franchise tag",
+   "aliases": [
+    "exclusive franchise tender"
+   ],
+   "definition": "A franchise tender that bars the player from negotiating with any other club and pays the greater of the average of the five largest current-year salaries at his position or the non-exclusive amount.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0358"
+  },
+  {
+   "id": "term.exclusive-rights-free-agent-pro",
+   "term": "exclusive rights free agent",
+   "aliases": [
+    "ERFA",
+    "exclusive rights player"
+   ],
+   "definition": "A veteran with fewer than three accrued seasons whose contract expired and whose old club tendered him a one-year contract at least at the minimum; he may negotiate only with that club.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0359"
+  },
+  {
+   "id": "term.exempt-list-pro",
+   "term": "exempt list",
+   "aliases": [
+    "commissioner exempt list",
+    "commissioner permission list"
+   ],
+   "definition": "A list the commissioner uses to take a player off the roster, with pay, while a Personal Conduct Policy case is pending.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0360",
+   "variants": "Exempt Commissioner Permission"
+  },
+  {
+   "id": "term.extension-pro",
+   "term": "extension",
+   "aliases": [
+    "contract extension"
+   ],
+   "definition": "A new agreement that adds years to a player's contract before it expires; the CBA treats it as a renegotiation.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0364"
+  },
+  {
+   "id": "term.fifth-year-option-pro",
+   "term": "fifth-year option",
+   "aliases": [
+    "5th-year option"
+   ],
+   "definition": "A club's right to extend a first-round pick's contract by one year at a salary set by formula (a transition tender, a lower positional average, or the franchise tender, depending on playing time and Pro Bowls); it must be exercised after the third season and before May 3.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0392"
+  },
+  {
+   "id": "term.fine-schedule-pro",
+   "term": "fine schedule",
+   "aliases": [
+    "fines for holdout",
+    "club discipline fines"
+   ],
+   "definition": "The CBA's schedule of maximum club fines for rule breaks (overweight, lateness, camp absence and so on), applied in steps of 40%, 70% and 100% of the maximum for a first, second and third offense.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0396",
+   "variants": "Progressive Discipline"
+  },
+  {
+   "id": "term.first-round-tender-pro",
+   "term": "first-round tender",
+   "aliases": [
+    "first round RFA tender"
+   ],
+   "definition": "The highest restricted-free-agent tender: if the club does not match an offer sheet it receives the new club's first-round pick.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0400"
+  },
+  {
+   "id": "term.franchise-tag-pro",
+   "term": "franchise tag",
+   "aliases": [
+    "franchise player designation",
+    "tag"
+   ],
+   "definition": "A club's once-a-year designation of a player who would otherwise be a free agent, keeping his rights for a one-year tender equal to the greater of a positional top-five average or 120% of his prior-year salary.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0430"
+  },
+  {
+   "id": "term.fully-guaranteed-pro",
+   "term": "fully guaranteed",
+   "aliases": [
+    "guaranteed for skill, injury and cap"
+   ],
+   "definition": "Money protected against release for all three reasons (skill, injury and cap), so it is owed even if the player is cut.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0441"
+  },
+  {
+   "id": "term.game-day-active-list-pro",
+   "term": "game-day active list",
+   "aliases": [
+    "active list",
+    "48-man active list",
+    "46-man game-day actives"
+   ],
+   "definition": "The players a club may dress for a game: 48 if at least eight of them are offensive linemen (center, guard, tackle), otherwise 47; a club may carry as few as 44.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0447",
+   "variants": "Active List; 46-man (pre-2020)"
+  },
+  {
+   "id": "term.grievance-pro",
+   "term": "grievance",
+   "aliases": [
+    "salary grievance",
+    "non-injury grievance"
+   ],
+   "definition": "A formal dispute over the meaning or application of the CBA, a player contract or league rules, which a player, club, Management Council or the NFLPA must start within 50 days and which goes to arbitration.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0469",
+   "variants": "Non-Injury Grievance; Injury Grievance (Art. 44)"
+  },
+  {
+   "id": "term.guaranteed-at-signing-pro",
+   "term": "guaranteed at signing",
+   "aliases": [
+    "fully guaranteed at signing"
+   ],
+   "definition": "Money locked in on the day the contract is signed, as opposed to a guarantee that only vests later if the player is still on the roster.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0472"
+  },
+  {
+   "id": "term.guaranteed-money-pro",
+   "term": "guaranteed money",
+   "aliases": [
+    "guarantee",
+    "guaranteed salary"
+   ],
+   "definition": "Pay a club owes a player even if it releases him, but only for the reasons the guarantee covers (skill, injury, cap), so much of the 'guaranteed' total in headlines is only partly protected.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0473"
+  },
+  {
+   "id": "term.holdout-pro",
+   "term": "holdout",
+   "aliases": [
+    "contract holdout"
+   ],
+   "definition": "A player under contract stays away from camp or team activities, usually to push for a new deal; the CBA allows forfeiture of bonuses, mandatory daily fines and loss of an accrued season.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0504"
+  },
+  {
+   "id": "term.inactive-list-pro",
+   "term": "inactive list",
+   "aliases": [
+    "inactives",
+    "game-day inactives"
+   ],
+   "definition": "Rostered players not dressed for a game; they stay on the 53-man list and get the same benefits and protections as active players.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0544"
+  },
+  {
+   "id": "term.incentive-pro",
+   "term": "incentive",
+   "aliases": [
+    "performance incentive",
+    "incentive clause"
+   ],
+   "definition": "Contract pay earned only when a stated performance, playing-time or honors mark is reached; the CBA allows only listed categories.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0548"
+  },
+  {
+   "id": "term.injured-reserve-pro",
+   "term": "injured reserve",
+   "aliases": [
+    "IR",
+    "reserve/injured",
+    "Reserve Injured"
+   ],
+   "definition": "A roster list for players with injuries that will keep them out for a stretch; they are removed from the active roster but stay under contract.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0555",
+   "variants": "reserve/injured"
+  },
+  {
+   "id": "term.injury-guarantee-pro",
+   "term": "injury guarantee",
+   "aliases": [
+    "guaranteed for injury only"
+   ],
+   "definition": "Pay owed only if the player is cut while unable to play because of a football injury (for example, failing a physical); it does not protect against a skill or cap release.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0556"
+  },
+  {
+   "id": "term.injury-protection-pro",
+   "term": "injury protection",
+   "aliases": [
+    "injury protection benefit"
+   ],
+   "definition": "A CBA benefit paying a released player 100% of his next-season base salary (up to a cap, $2.1M in 2025-26) if a severe football injury kept him from playing his club's last game; available once in a career.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0557",
+   "variants": "Injury Protection Benefit"
+  },
+  {
+   "id": "term.international-pathway-player-pro",
+   "term": "international pathway player",
+   "aliases": [
+    "international player exemption",
+    "IPP"
+   ],
+   "definition": "An extra practice squad player, outside the 14-player limit, whose citizenship and home are outside the U.S., its territories and Canada; he may not sign an NFL contract while in the program.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0575",
+   "variants": "International Player (CBA); International Player Pathway"
+  },
+  {
+   "id": "term.june-1-tender-pro",
+   "term": "June 1 tender",
+   "aliases": [
+    "June 15 tender"
+   ],
+   "definition": "A later tender a club must make to keep rights to an unsigned restricted free agent: at least 110% of his prior-year salary by June 1 (for the lowest, first-refusal-only tender) or on June 15 in place of a higher tender.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0586",
+   "variants": "June 15 Tender"
+  },
+  {
+   "id": "term.league-minimum-cap-hit-pro",
+   "term": "league minimum cap hit",
+   "aliases": [
+    "minimum contract"
+   ],
+   "definition": "The cap charge of a minimum-salary contract; for a veteran with four or more credited seasons on a qualifying one-year deal it counts as a two-credited-season minimum.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0616"
+  },
+  {
+   "id": "term.league-year-pro",
+   "term": "league year",
+   "aliases": [
+    "new league year"
+   ],
+   "definition": "The cap and contract accounting year, which starts in March (not at the season opener); contracts expire, trades and free agency open, and tenders are due when it begins.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0617"
+  },
+  {
+   "id": "term.legal-tampering-period-pro",
+   "term": "legal tampering period",
+   "aliases": [
+    "negotiating window",
+    "negotiation period",
+    "Two Day Negotiating Period"
+   ],
+   "definition": "The 48 hours before a new League Year in which certified agents (or unrepresented players) may negotiate with other clubs' front offices, but no contract can be signed until 4 p.m. New York time on the first day.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0622",
+   "variants": "CBA name: Two Day Negotiating Period"
+  },
+  {
+   "id": "term.likely-to-be-earned-pro",
+   "term": "likely to be earned",
+   "aliases": [
+    "LTBE"
+   ],
+   "definition": "An incentive the cap rules treat as probable, because the player (or team) hit the same mark the previous year; it is counted against the cap from the start of the year.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0626",
+   "variants": "LTBE"
+  },
+  {
+   "id": "term.minicamp-pro",
+   "term": "minicamp",
+   "aliases": [
+    "mandatory minicamp"
+   ],
+   "definition": "An offseason team practice: each club may hold one mandatory veteran minicamp of up to three practice days (plus a physical day), in week three or four of Phase Three, with no live contact.",
+   "domain": "front-office",
+   "subdomain": "practice",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0665"
+  },
+  {
+   "id": "term.minimum-salary-pro",
+   "term": "minimum salary",
+   "aliases": [
+    "league minimum",
+    "minimum active/inactive salary"
+   ],
+   "definition": "The lowest Paragraph 5 salary a club may pay, set by credited seasons; in 2026 it runs from $885,000 (no credited seasons) to $1,300,000 (seven or more) for players on the active/inactive list, with a lower scale for players off it.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0666"
+  },
+  {
+   "id": "term.nflpa-certified-agent-pro",
+   "term": "NFLPA certified agent",
+   "aliases": [
+    "certified contract advisor"
+   ],
+   "definition": "An agent the players' union has certified, the only kind a club may negotiate a contract with (or the player himself).",
+   "domain": "front-office",
+   "subdomain": "agents",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0693"
+  },
+  {
+   "id": "term.non-exclusive-franchise-tag-pro",
+   "term": "non-exclusive franchise tag",
+   "aliases": [
+    "nonexclusive franchise tender"
+   ],
+   "definition": "A franchise tender that lets the player negotiate with other clubs; his club can match an offer sheet within five days and, if it does not, receives two first-round picks.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0702"
+  },
+  {
+   "id": "term.non-football-injury-or-illness-pro",
+   "term": "non-football injury or illness",
+   "aliases": [
+    "NFI",
+    "N-F/I",
+    "reserve/NFI"
+   ],
+   "definition": "A list for a player hurt or ill from something unrelated to football work (including rookies still recovering from college injuries); he is not paid while on it.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0703",
+   "variants": "N-F/I"
+  },
+  {
+   "id": "term.not-likely-to-be-earned-pro",
+   "term": "not likely to be earned",
+   "aliases": [
+    "NLTBE"
+   ],
+   "definition": "An incentive the player (or team) did not reach last year; it stays off the cap until earned, and if earning it pushes the club over the cap at year end the excess is charged to next year.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0706",
+   "variants": "NLTBE"
+  },
+  {
+   "id": "term.offer-sheet-pro",
+   "term": "offer sheet",
+   "aliases": [
+    "RFA offer sheet"
+   ],
+   "definition": "A written offer, signed by a restricted (or non-exclusively tagged or transition) player and a new club, that lists its principal terms; the old club has five days to match it.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0718"
+  },
+  {
+   "id": "term.offseason-workout-program-pro",
+   "term": "offseason workout program",
+   "aliases": [
+    "OTAs",
+    "organized team activities",
+    "voluntary workouts",
+    "nine-week program"
+   ],
+   "definition": "A club's voluntary spring program of strength, conditioning and football work: nine weeks in three phases, at most four workouts per week per player, none on weekends; the mandatory minicamp counts as one of the weeks.",
+   "domain": "front-office",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0721",
+   "variants": "OTAs (Phase Three practices)"
+  },
+  {
+   "id": "term.option-bonus-pro",
+   "term": "option bonus",
+   "aliases": [
+    "option bonus (contract)"
+   ],
+   "definition": "A payment made when a club (or at times a player) exercises an option in the contract; the CBA treats it as signing bonus and prorates it.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0737"
+  },
+  {
+   "id": "term.original-round-tender-pro",
+   "term": "original-round tender",
+   "aliases": [
+    "original draft round tender"
+   ],
+   "definition": "A restricted-free-agent tender that gives the club a pick in the round the player was originally drafted in if it does not match an offer sheet.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0740"
+  },
+  {
+   "id": "term.paragraph-5-pro",
+   "term": "Paragraph 5",
+   "aliases": [
+    "Paragraph 5 of the NFL Player Contract"
+   ],
+   "definition": "The clause of the standard NFL Player Contract that lists the player's yearly salary.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0763"
+  },
+  {
+   "id": "term.pay-cut-pro",
+   "term": "pay cut",
+   "aliases": [
+    "salary reduction",
+    "take a pay cut"
+   ],
+   "definition": "A player agrees to a lower salary, often to avoid being released; unlike a restructure, the player really gives up money.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0775"
+  },
+  {
+   "id": "term.per-game-roster-bonus-pro",
+   "term": "per-game roster bonus",
+   "aliases": [
+    "per game active roster bonus",
+    "game-day roster bonus"
+   ],
+   "definition": "A roster bonus paid for each game a player is on the club's game-day active list (or active/inactive list, depending on the contract).",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0781"
+  },
+  {
+   "id": "term.performance-based-pool-pro",
+   "term": "performance-based pool",
+   "aliases": [
+    "PBP"
+   ],
+   "definition": "A league-funded pool, taken out of the cap like a player benefit, that is paid to players each year; to qualify a player must play at least one down in a regular season game.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0782",
+   "variants": "Performance Based Pool"
+  },
+  {
+   "id": "term.physically-unable-to-perform-pro",
+   "term": "physically unable to perform",
+   "aliases": [
+    "PUP",
+    "active/PUP",
+    "reserve/PUP"
+   ],
+   "definition": "A list for a player with a football injury who cannot yet practice: on the active/PUP list at camp he counts against the roster and can return any time he is cleared; on reserve/PUP he is off the roster for at least the first four games. He is paid his full salary.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0794",
+   "variants": "active/PUP; reserve/PUP"
+  },
+  {
+   "id": "term.post-draft-rookie-minicamp-pro",
+   "term": "post-draft rookie minicamp",
+   "aliases": [
+    "rookie minicamp"
+   ],
+   "definition": "A three-day minicamp each club may hold on the first or second weekend after the draft for its rookies (and invited first-year players).",
+   "domain": "front-office",
+   "subdomain": "practice",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0830"
+  },
+  {
+   "id": "term.post-june-1-designation-pro",
+   "term": "post-June 1 designation",
+   "aliases": [
+    "June 1 release",
+    "post-June 1 cut"
+   ],
+   "definition": "A club may name up to two players a year, before June 2, whose release is treated for the cap as if it happened on June 2: this year's proration stays on the cap and the later years' unamortized bonus moves to the next League Year.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0831"
+  },
+  {
+   "id": "term.practice-squad-elevation-pro",
+   "term": "practice squad elevation",
+   "aliases": [
+    "standard elevation",
+    "elevated from the practice squad"
+   ],
+   "definition": "A club may move a practice squad player up to its game-day roster for a game without a new contract; he reverts to the practice squad the next business day without waivers, and each player can be elevated for only a limited number of games a year.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0840",
+   "variants": "Standard Elevation Addendum"
+  },
+  {
+   "id": "term.practice-squad-pro",
+   "term": "practice squad",
+   "aliases": [
+    "PS",
+    "taxi squad (old name)"
+   ],
+   "definition": "A group of extra players who practice with a club but are not on its active/inactive list; the CBA caps it at 14 per club from 2022, with an added International Player slot when the league elects.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0841",
+   "variants": "taxi squad (old name)"
+  },
+  {
+   "id": "term.principal-terms-pro",
+   "term": "principal terms",
+   "aliases": [
+    "principal terms of an offer sheet"
+   ],
+   "definition": "The parts of an offer sheet the old club must match to keep the player: the dollar amounts (signing bonus, base salary, reporting and roster bonuses), certain likely incentives and honors, and requested non-pay contract changes such as guarantees and no-trade clauses.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0850"
+  },
+  {
+   "id": "term.prior-year-salary-pro",
+   "term": "prior year salary",
+   "aliases": [
+    "PYS"
+   ],
+   "definition": "The total of a player's base salary, roster and reporting bonuses, prorated signing bonus and similar pay for the last year of his latest contract (excluding other performance bonuses); the base for tag and tender math.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0851",
+   "variants": "PYS"
+  },
+  {
+   "id": "term.pro-day-pro",
+   "term": "pro day",
+   "aliases": [
+    "college pro day"
+   ],
+   "definition": "A workout held at a prospect's own college where NFL scouts watch tests and drills; the league monitors the rules for them.",
+   "domain": "front-office",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0853"
+  },
+  {
+   "id": "term.proration-pro",
+   "term": "proration",
+   "aliases": [
+    "signing bonus proration",
+    "bonus proration"
+   ],
+   "definition": "Straight-line spreading of a signing bonus (and items treated like one) over the contract years for cap purposes, up to five years for veteran contracts and four for rookie contracts.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0863"
+  },
+  {
+   "id": "term.proven-performance-escalator-pro",
+   "term": "proven performance escalator",
+   "aliases": [
+    "PPE",
+    "salary escalator"
+   ],
+   "definition": "A rule that raises a second- to seventh-round pick's fourth-year salary if he meets playing-time (or Pro Bowl) thresholds in his first three seasons; first-rounders and undrafted players cannot earn it.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0864",
+   "variants": "PPE; Level One, Two, Three"
+  },
+  {
+   "id": "term.red-flag-replay-pro",
+   "term": "red flag (replay)",
+   "aliases": [
+    "challenge flag"
+   ],
+   "definition": "The red flag a head coach throws onto the field before the next snap to start a replay challenge.",
+   "domain": "front-office",
+   "subdomain": "replay",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0899"
+  },
+  {
+   "id": "term.red-flag-scouting-pro",
+   "term": "red flag (scouting)",
+   "aliases": [
+    "red flag",
+    "red flags",
+    "red-flag player"
+   ],
+   "definition": "A warning sign scouts note about a prospect, such as a test result worse than the usual range for his position.",
+   "domain": "front-office",
+   "subdomain": "scouting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0900"
+  },
+  {
+   "id": "term.release-pro",
+   "term": "release",
+   "aliases": [
+    "cut",
+    "waive",
+    "terminate",
+    "let go (player)"
+   ],
+   "definition": "A club ends a player's contract. A player with four or more credited seasons is simply free to sign anywhere (between the Monday after the Super Bowl and the trade deadline); other players first go through waivers.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0908"
+  },
+  {
+   "id": "term.report-date-pro",
+   "term": "report date",
+   "aliases": [
+    "reporting date",
+    "mandatory reporting date"
+   ],
+   "definition": "The date veterans must arrive at training camp: 47 days before a Thursday or Sunday opener (48 for a Monday opener), with rookies and first-year players allowed to report seven days earlier.",
+   "domain": "front-office",
+   "subdomain": "camp",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0913"
+  },
+  {
+   "id": "term.reporting-bonus-pro",
+   "term": "reporting bonus",
+   "aliases": [
+    "report bonus"
+   ],
+   "definition": "A bonus earned by reporting to team activities by a set date.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0914"
+  },
+  {
+   "id": "term.reserve-future-contract-pro",
+   "term": "reserve/future contract",
+   "aliases": [
+    "futures contract",
+    "future contract"
+   ],
+   "definition": "A contract a club signs with a player in January, after his team's season, for the coming League Year.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0915",
+   "variants": "futures contract"
+  },
+  {
+   "id": "term.reserve-retired-pro",
+   "term": "reserve/retired",
+   "aliases": [
+    "retired list"
+   ],
+   "definition": "A roster list for a retired player; a veteran with four or more credited seasons who is on it and later reinstated can opt for free agency instead of being sent back via recall waivers.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0916"
+  },
+  {
+   "id": "term.restricted-free-agent-pro",
+   "term": "restricted free agent",
+   "aliases": [
+    "RFA"
+   ],
+   "definition": "A veteran with exactly three accrued seasons whose contract has expired; any club may sign him, but his old club can match the offer if it tendered him a qualifying offer.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0918"
+  },
+  {
+   "id": "term.restructure-pro",
+   "term": "restructure",
+   "aliases": [
+    "contract restructure",
+    "convert salary to bonus"
+   ],
+   "definition": "A mid-contract change, usually turning base salary into signing bonus, that lowers this year's cap hit and spreads the money over later years.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0919"
+  },
+  {
+   "id": "term.right-of-first-refusal-pro",
+   "term": "right of first refusal",
+   "aliases": [
+    "ROFR"
+   ],
+   "definition": "A club's right to keep a player by matching the terms of an offer sheet he signs with another club.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0928"
+  },
+  {
+   "id": "term.right-of-first-refusal-tender-pro",
+   "term": "right of first refusal tender",
+   "aliases": [
+    "ROFR tender",
+    "right of first refusal only"
+   ],
+   "definition": "The lowest restricted-free-agent tender: the club may match any offer sheet but receives no draft pick if it lets the player go.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0929"
+  },
+  {
+   "id": "term.rookie-contract-pro",
+   "term": "rookie contract",
+   "aliases": [
+    "first contract",
+    "rookie deal"
+   ],
+   "definition": "A player's first NFL contract: four years for drafted players (first-rounders carry a club option for a fifth year, later-round picks the proven performance escalator) and three years for undrafted players.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0935"
+  },
+  {
+   "id": "term.rookie-pool-pro",
+   "term": "rookie pool",
+   "aliases": [
+    "total rookie compensation pool",
+    "rookie compensation pool"
+   ],
+   "definition": "The league-wide limit on rookie salary, set both for the whole contracts (Total pool) and for year one (Year-One pool); each club gets a share based on its picks plus a reserve for undrafted signings.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0938"
+  },
+  {
+   "id": "term.rookie-premiere-pro",
+   "term": "rookie premiere",
+   "aliases": [
+    "rookie showcase"
+   ],
+   "definition": "An annual May event, up to four days including a weekend, that clubs may allow invited rookies to attend; the NFLPA tells the league the dates.",
+   "domain": "front-office",
+   "subdomain": "practice",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0939",
+   "variants": "NFL Players Rookie Premiere"
+  },
+  {
+   "id": "term.rookie-redistribution-fund-pro",
+   "term": "rookie redistribution fund",
+   "aliases": [
+    "rookie fund"
+   ],
+   "definition": "A fund the union may set up each year (from 2021) that is treated as a player benefit cost; it pays the 17th-game check in 17-game seasons and then goes to other player benefits, including a boost for minimum-salary players from 2026.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0940"
+  },
+  {
+   "id": "term.rookie-wage-scale-pro",
+   "term": "rookie wage scale",
+   "aliases": [
+    "rookie scale",
+    "slotted rookie salary"
+   ],
+   "definition": "The system that fixes what drafted rookies can be paid: each pick has a fixed share of a league-wide rookie pool, contract terms are tightly limited, and yearly raises are capped.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0941"
+  },
+  {
+   "id": "term.roster-bonus-pro",
+   "term": "roster bonus",
+   "aliases": [
+    "active roster bonus",
+    "on-roster bonus"
+   ],
+   "definition": "Money earned by being on the club's roster on a date named in the contract.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0943"
+  },
+  {
+   "id": "term.roster-exemption-pro",
+   "term": "roster exemption",
+   "aliases": [
+    "roster exempt"
+   ],
+   "definition": "Permission to carry a player outside the roster limit for a short time (no more than two weeks of the regular season), used for unsigned veterans signed after final cuts and for contract players or restricted players who report late.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0945"
+  },
+  {
+   "id": "term.salary-cap-pro",
+   "term": "salary cap",
+   "aliases": [
+    "cap",
+    "team salary cap"
+   ],
+   "definition": "The most Salary a club may have on its books in a League Year, set each year from a share of league revenue after player benefits and divided equally among the clubs.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0973"
+  },
+  {
+   "id": "term.salary-escalator-pro",
+   "term": "salary escalator",
+   "aliases": [
+    "escalator"
+   ],
+   "definition": "A contract term that raises pay in a later year when the player reaches set performance marks; unlike an incentive it can raise a future salary that may not be guaranteed.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0974"
+  },
+  {
+   "id": "term.second-round-tender-pro",
+   "term": "second-round tender",
+   "aliases": [
+    "second round RFA tender"
+   ],
+   "definition": "A restricted-free-agent tender that gives the club a second-round pick if it does not match an offer sheet.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-0998"
+  },
+  {
+   "id": "term.signing-bonus-pro",
+   "term": "signing bonus",
+   "aliases": [
+    "SB"
+   ],
+   "definition": "A lump sum paid to a player for signing, counted against the cap in equal slices over the contract years (at most five), not all in the year it is paid.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1026"
+  },
+  {
+   "id": "term.signing-deadline-rookies-pro",
+   "term": "signing deadline (rookies)",
+   "aliases": [
+    "draft signing deadline"
+   ],
+   "definition": "A drafted rookie may sign until 4 p.m. New York time on the Tuesday after week 10 of the regular season; after that he cannot play that year, and his club's rights run to the next draft.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1027"
+  },
+  {
+   "id": "term.signing-period-pro",
+   "term": "signing period",
+   "aliases": [
+    "free agent signing period"
+   ],
+   "definition": "The window that limits a tagged or expiring player's market: a transition player unsigned by July 22 may deal only with his old club, and a tagged player must sign by the Tuesday after week 10 or sit out the season.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1028"
+  },
+  {
+   "id": "term.skill-guarantee-pro",
+   "term": "skill guarantee",
+   "aliases": [
+    "guaranteed for skill"
+   ],
+   "definition": "Protection that makes a player's money owed even if the club cuts him because it judges his skill or performance lacking compared with others at his position.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1035"
+  },
+  {
+   "id": "term.special-compensatory-pick-pro",
+   "term": "special compensatory pick",
+   "aliases": [
+    "minority hire compensatory pick"
+   ],
+   "definition": "A third-round pick awarded to a club that loses a person of color or a woman (employed there at least two seasons) to another club as head coach or primary football executive.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1053"
+  },
+  {
+   "id": "term.split-contract-pro",
+   "term": "split contract",
+   "aliases": [
+    "split salary",
+    "two-way salary"
+   ],
+   "definition": "A contract that pays one salary while the player is on the active/inactive list and a lower one when he is not (for example on injured reserve).",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1065"
+  },
+  {
+   "id": "term.supplemental-draft-pro",
+   "term": "supplemental draft",
+   "aliases": [
+    "supplemental draft of players"
+   ],
+   "definition": "An extra draft the league may hold before the first training camp for players who became draft-eligible after the regular draft; the club that picks one loses its pick in that round the next year.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1101"
+  },
+  {
+   "id": "term.suspended-list-pro",
+   "term": "suspended list",
+   "aliases": [
+    "reserve/suspended"
+   ],
+   "definition": "A roster category for players serving a league suspension; they do not count against the roster limit and are not paid for the missed weeks.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1104",
+   "variants": "Reserve/Suspended"
+  },
+  {
+   "id": "term.system-arbitrator-pro",
+   "term": "system arbitrator",
+   "aliases": [
+    "cap arbitrator"
+   ],
+   "definition": "The neutral arbitrator who decides disputes over cap, rookie pool, free agency and collusion rules (Articles 1, 4, 6-19, 26-28, 31, 65-67 of the CBA).",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1111"
+  },
+  {
+   "id": "term.team-salary-pro",
+   "term": "team salary",
+   "aliases": [
+    "cap charges",
+    "cap number (team)"
+   ],
+   "definition": "The total of everything counted against a club under the cap rules in a League Year: player contracts valued by CBA rules, tenders, practice squad pay, termination pay and similar items.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1129"
+  },
+  {
+   "id": "term.tender-pro",
+   "term": "tender",
+   "aliases": [
+    "qualifying offer",
+    "required tender"
+   ],
+   "definition": "A one-year contract offer a club must make to keep rights to a player (a draftee, exclusive rights or restricted player, or a tagged player), with the rights depending on the tender type.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1132"
+  },
+  {
+   "id": "term.termination-pay-pro",
+   "term": "termination pay",
+   "aliases": [
+    "severance (in-season)"
+   ],
+   "definition": "Pay owed to a player with four or more years of credited service who is released after his club's first regular season game (having made the active/inactive list): the unpaid balance of that year's Paragraph 5 salary, less any guaranteed salary.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1133"
+  },
+  {
+   "id": "term.three-cone-drill-pro",
+   "term": "three-cone drill",
+   "aliases": [
+    "3-cone",
+    "L-drill"
+   ],
+   "definition": "An agility drill around three cones set 5 yards apart in an L shape that tests how well a player changes direction and bends around cones.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1138",
+   "variants": "3-cone; L-drill"
+  },
+  {
+   "id": "term.top-51-rule-pro",
+   "term": "top 51 rule",
+   "aliases": [
+    "rule of 51"
+   ],
+   "definition": "From the start of the League Year until the regular season, only a club's 51 highest-valued contracts (plus tenders and offer sheets) count in full toward the cap; for the rest only salary above set thresholds counts.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1151"
+  },
+  {
+   "id": "term.training-camp-pro",
+   "term": "training camp",
+   "aliases": [
+    "camp",
+    "preseason training camp",
+    "fall camp (pro)"
+   ],
+   "definition": "The late-summer period, from the veteran reporting date through the Sunday before the first regular season game, in which clubs open with 90 players and cut to 53.",
+   "domain": "front-office",
+   "subdomain": "camp",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1163"
+  },
+  {
+   "id": "term.transition-tag-pro",
+   "term": "transition tag",
+   "aliases": [
+    "transition player designation"
+   ],
+   "definition": "A designation that lets the player shop himself while his club keeps a right of first refusal, with no draft compensation, at a tender equal to the greater of the top-ten positional average or 120% of his salary.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1168"
+  },
+  {
+   "id": "term.ufa-tender-pro",
+   "term": "UFA tender",
+   "aliases": [
+    "unrestricted free agent tender"
+   ],
+   "definition": "A one-year offer an old club may make by the Monday after the draft to an unrestricted free agent still unsigned; if he stays unsigned after July 22 he may sign only with that club, at 110% of his prior-year salary.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1192",
+   "variants": "UFA Tender"
+  },
+  {
+   "id": "term.undrafted-free-agent-pro",
+   "term": "undrafted free agent",
+   "aliases": [
+    "UDFA",
+    "undrafted rookie"
+   ],
+   "definition": "A player who was eligible for the draft but not picked, free to sign with any club after the draft; his first contract runs three years.",
+   "domain": "front-office",
+   "subdomain": "draft",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1197",
+   "variants": "CBA term: Undrafted Rookie"
+  },
+  {
+   "id": "term.unrestricted-free-agent-pro",
+   "term": "unrestricted free agent",
+   "aliases": [
+    "UFA"
+   ],
+   "definition": "A veteran with four or more accrued seasons whose contract has expired, free to sign with any club with no compensation owed.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1200"
+  },
+  {
+   "id": "term.upgraded-tender-pro",
+   "term": "upgraded tender",
+   "aliases": [
+    "(c)(i) Upgraded Tender"
+   ],
+   "definition": "A rule that if a club tenders a lower-round restricted free agent at the first-round (or second-round) level, it can only get a second-round (or third-round) pick for its own higher-drafted restricted free agents unless they get an equal tender.",
+   "domain": "front-office",
+   "subdomain": "free-agency",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1203",
+   "variants": "(c)(i) and (c)(ii) Upgraded Tender"
+  },
+  {
+   "id": "term.vertical-jump-pro",
+   "term": "vertical jump",
+   "aliases": [
+    "vert"
+   ],
+   "definition": "A standing jump measured by how high the athlete reaches, a test of lower-body explosiveness.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1211"
+  },
+  {
+   "id": "term.vested-veteran-pro",
+   "term": "vested veteran",
+   "aliases": [
+    "veteran with four accrued seasons"
+   ],
+   "definition": "A player with four or more years of credited service, who if released between the Monday after the Super Bowl and the trade deadline is not subject to waivers and can sign with any club at once.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1212"
+  },
+  {
+   "id": "term.vesting-guarantee-pro",
+   "term": "vesting guarantee",
+   "aliases": [
+    "guarantee vests",
+    "rolling guarantee"
+   ],
+   "definition": "A guarantee (usually injury-only at first) that becomes fully guaranteed on a set date if the player is still on the roster then.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1213"
+  },
+  {
+   "id": "term.veteran-salary-benefit-pro",
+   "term": "veteran salary benefit",
+   "aliases": [
+    "minimum salary benefit",
+    "vet min benefit"
+   ],
+   "definition": "A rule that lets a club sign a veteran with four or more credited seasons to a one-year minimum contract (plus a capped extra) while counting only the minimum for a two-year veteran against its cap; the gap is counted as a league-wide player benefit.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1214",
+   "variants": "Qualifying Contract; Four-Year Player Qualifying Contract"
+  },
+  {
+   "id": "term.void-years-pro",
+   "term": "void years",
+   "aliases": [
+    "voidable years",
+    "dummy years"
+   ],
+   "definition": "Extra years written into a contract that void automatically on a set date, so a bonus can be spread over more years; the unspent proration lands on the cap when the years void.",
+   "domain": "front-office",
+   "subdomain": "cap",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1218",
+   "variants": "dummy years"
+  },
+  {
+   "id": "term.waiver-claim-pro",
+   "term": "waiver claim",
+   "aliases": [
+    "claim"
+   ],
+   "definition": "A club's request, during the waiver period, to take over a waived player's contract and be awarded him.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1223"
+  },
+  {
+   "id": "term.waiver-priority-pro",
+   "term": "waiver priority",
+   "aliases": [
+    "waiver order",
+    "claim order"
+   ],
+   "definition": "The ranking of clubs that decides who is awarded a claimed player when several claim him; the highest-priority club gets him.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1224"
+  },
+  {
+   "id": "term.waivers-pro",
+   "term": "waivers",
+   "aliases": [
+    "waiver system",
+    "waiver wire"
+   ],
+   "definition": "The league process that lets other clubs claim a released player's contract before he can sign anywhere; it applies to players with fewer than four credited seasons, and to all players after the trade deadline.",
+   "domain": "front-office",
+   "subdomain": "roster",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1225"
+  },
+  {
+   "id": "term.wonderlic-pro",
+   "term": "Wonderlic",
+   "aliases": [
+    "Wonderlic Personnel Test",
+    "Wonderlic test"
+   ],
+   "definition": "A short written cognitive test that was among the tests given to draft prospects at the combine.",
+   "domain": "front-office",
+   "subdomain": "combine",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1251"
+  },
+  {
+   "id": "term.workout-bonus-pro",
+   "term": "workout bonus",
+   "aliases": [
+    "offseason workout bonus",
+    "offseason participation bonus"
+   ],
+   "definition": "Pay for attending an agreed share of the club's voluntary offseason workouts; for veterans with four or more accrued seasons the contract may require at most 84.375% of the workouts.",
+   "domain": "front-office",
+   "subdomain": "contracts",
+   "level": "pro",
+   "ownerLeaf": "A4.5.6",
+   "factRow": "F-glossary-1253"
+  }
+ ]
+}

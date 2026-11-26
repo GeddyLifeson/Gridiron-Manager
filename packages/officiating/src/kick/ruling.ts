@@ -98,9 +98,9 @@ class Frame {
     this.kickers = ctx.situation.offense;
     this.receivers = otherSide(this.kickers);
     this.dir = truth.attackDir;
-    this.events = truth.events;
-    this.kickIndex = truth.events.findIndex((e) => e.type === 'kick');
-    const kick = truth.events[this.kickIndex];
+    this.events = withKickersRecovery(truth.events, this.kickers);
+    this.kickIndex = this.events.findIndex((e) => e.type === 'kick');
+    const kick = this.events[this.kickIndex];
     if (!kick || kick.type !== 'kick') throw new Error('kick ruling called on a play with no kick event');
     this.kick = kick;
     const dead = eventsOf(truth, 'dead_ball')[0];
@@ -170,6 +170,22 @@ function deadInEndZone(f: Frame, defender: Side, possessor: Side | null, carrier
   }
   return { possession: defender, x: f.yardline(defender, touchbackYardline), y: f.g.centreY, touchback: true, score: null,
     newSeries: defender !== f.kickers || newSeries, labelKey: LABEL.touchback };
+}
+
+/**
+ * A dead ball recovered by the kickers with no possession event after the kick (how resolvers record a downed punt
+ * or an onside kick smothered on the ground) is read as the kickers' recovery at the dead-ball spot, so the
+ * possession rules apply: after a receivers' touch beyond the line it is the kickers' ball (B6.3.2 item 4), and a
+ * free kick recovered by the kickers is dead there (B6.1.3 item 7, B6.2.1 item 5).
+ */
+export function withKickersRecovery(events: readonly TruthEvent[], kickers: Side): readonly TruthEvent[] {
+  const d = events.findIndex((e) => e.type === 'dead_ball');
+  const dead = events[d];
+  if (!dead || dead.type !== 'dead_ball' || dead.reason !== 'kick_recovered_by_kickers' || dead.side !== kickers || dead.carrierId === null) return events;
+  const k = events.findIndex((e) => e.type === 'kick');
+  if (k < 0 || k > d || events.some((e, j) => j > k && j < d && e.type === 'possession')) return events;
+  const recovery: TruthEvent = { type: 'possession', t: dead.t, side: kickers, playerId: dead.carrierId, spot: dead.spot, how: 'kick_recovery' };
+  return [...events.slice(0, d), recovery, ...events.slice(d)];
 }
 
 /**

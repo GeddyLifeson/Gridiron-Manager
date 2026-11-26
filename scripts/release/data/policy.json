@@ -1,0 +1,19 @@
+{
+  "$comment": "G-100 scan policy (release gate cleanup, 2026-11-26). The A6.2.2 mark scan and the A6.3 name scan look for marks and real names that a PLAYER could see. A hit is permitted, and counted separately in the report, only when it falls on a surface a player never sees: source provenance or a code token. Every other hit fails. Nothing here hides a hit: the report lists the permitted counts by reason, and a test pins the policy. Anything new that can reach a player (a text file, a UI string, a content table) is player-facing by default.",
+  "provenanceFiles": [
+    "^facts/[^/]+\\.json$",
+    "^packages/[^/]+/(src|data)/.*(facts[^/]*|fact-rows)\\.json$",
+    "^content/calibration/",
+    "^packages/football-content/src/starter/sources\\.ts$"
+  ],
+  "provenanceFilesReason": "Fact rows (Q6.1.1), calibration targets and starter-playbook source citations name the publications, authors, leagues and datasets a value was read from. They are the register's evidence (Q6, A5) and are kept as provenance. They are read by tests, lint and reports, never drawn on screen: the presentation layer shows a rule's source reference only by id (Q6.1.1) and the guard test below keeps every provenance file out of app-ui and the shells.",
+  "annotationKeys": ["$comment", "$status", "$note", "$source", "source", "sources", "citation", "locator", "quote", "note", "notes", "reason", "evidence"],
+  "annotationKeysReason": "JSON annotation fields beside a value (where a number was read from). Same standing as a code comment: provenance, not content.",
+  "commentLines": true,
+  "commentLinesReason": "Code comments (// and block-comment lines) cite the rule or source a constant came from. They are not compiled into a string a player can see.",
+  "identifierAbbreviations": true,
+  "identifierAbbreviationsReason": "In .ts and .tsx an all-capital abbreviation that is not inside a quoted string is a code identifier (ACC, a constant for 'accuracy'), not a mark.",
+  "genericTerms": ["playoff"],
+  "genericTermsReason": "'playoff' is an ordinary English word for every sport and every level. The event mark is the full 'College Football Playoff', which the list also holds and the scan still catches.",
+  "nameFilesGuard": "No provenance file may be imported or read by packages/app-ui, packages/app-services or the shells (checked in scripts/release/test/policy.test.ts)."
+}

@@ -206,7 +206,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
 
   // Current carry.
   let cur = -1, carryTick = 0, turnUntil = 0, how: CarryHow = 'other';
-  let aware = true, dnsAware = false, competes = false, uRead = 0;
+  let aware = true, dnsAware = false, competes = false, uRead = 0, zTough = 0;
   let zVision = 0, zDecisive = 0, zCreative = 0, zPatience = 0, temp = 0.8, horizon = 0.7, kAccount = 3, noiseSd = 1.5;
   let instr: CarrierInstruction = NO_INSTRUCTION;
   // Designed run phases: 0 none, 1 press, 2 committed.
@@ -295,7 +295,8 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const zFb = zEff(w, c, 'football_intelligence');
     aware = instr.rule === 'none' || u[U_AWARE]! < awarenessChance(zFb, instr.practicedThisWeek, q);
     dnsAware = aware && instr.rule === 'doNotScore' && u[U_DNS]! < doNotScoreChance(zFb, instr.practicedThisWeek, q);
-    competes = u[U_COMPETE]! < competesChance(issToZ(mind?.competitiveness ?? 50), q);
+    zTough = issToZ(mind?.competitiveness ?? 50);
+    competes = u[U_COMPETE]! < competesChance(zTough, q);
     uRead = u[U_READ]!;
     const d = play.designed ?? null;
     // J8.1.1 inputs: which vision grade applies to this carry.
@@ -403,6 +404,16 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const g = w.geometry, r = w.slots[c]!.movement.bodyRadiusYd;
     const sit = w.situation, offense = w.slots[c]!.side === sit.offense;
     const ltgPx = w.frame.lineToGainPx, goalPx = w.frame.goalLinePx;
+    // J8.1.1 self-preservation: earliest clear hit among the threats he accounts for.
+    let tHitMin = Infinity;
+    for (let j = 0; j < nThreat; j++) {
+      const s = threat[j]!, e = view.entity(s)!;
+      const gap = hyp(e.px - cx, e.py - cy) - w.slots[s]!.movement.bodyRadiusYd - w.slots[c]!.movement.bodyRadiusYd;
+      const th = (gap > 0 ? gap : 0) / w.slots[s]!.movement.vMaxYps;
+      if (th < tHitMin) tHitMin = th;
+    }
+    // A carrier who knows the plan says stay in bounds does not take the sideline to dodge the hit.
+    const hitAvoid = !(aware && instr.rule === 'stayInBounds') && tHitMin <= q['lane.hitAvoidS'] ? q['lane.hitAvoid'] * clip(1 - q['lane.hitAvoidToughPerZ'] * (noisy ? zTough : 0), 0, 2) : 0;
     const shortYardage = offense && ((sit.down ?? 0) >= 3 && (sit.distanceYd ?? 99) <= 2);
     const fourthShort = offense && (sit.down ?? 0) === 4 && (sit.distanceYd ?? 99) <= 2;
     for (let i = 0; i < n; i++) {
@@ -427,7 +438,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
         let tHit = -1;
         for (let m = 1; m <= samples; m++) {
           const f = m / samples, qx = cx + ch * dist * f, qy = cy + sh * dist * f, tq = Hl * f;
-          if (hyp(e.px - qx, e.py - qy) - q['look.reachYd'] <= reachYd(w, s, e.velPx, e.velPy, tq)) { tHit = tq; break; }
+          if (hyp(e.px - qx, e.py - qy) - q['lane.reachSlackYd'] <= reachYd(w, s, e.velPx, e.velPy, tq)) { tHit = tq; break; }
         }
         if (tHit < 0) continue;
         score -= q['look.threatYd'] * (1 - blockCover(w, c, view, s, e.px, e.py, tHit));
@@ -446,6 +457,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
       const fy = w.frame.originY + ey * fd(w);
       const toSide = (fy < g.widthYd / 2 ? fy : g.widthYd - fy);
       if (out) score -= q['look.outOfBoundsYd'];
+      if (out && hitAvoid > 0 && dist <= q['lane.hitAvoidOutYd']) score += hitAvoid;
       if (aware && instr.rule === 'getOutOfBounds') {
         // Out is the goal: full term for a lane that gets there, part of it for one that closes on the sideline.
         const nowSide = startFy < g.widthYd / 2 ? startFy : g.widthYd - startFy;
@@ -493,7 +505,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const flip: Record<ReadRecord['correct'], ReadRecord['correct']> = { bang: 'bend', bend: 'bang', inside: 'outside', outside: 'inside' };
     const chosen = right ? correct : flip[correct];
     // The choice point: bang and inside hit the aim; bend cuts back as far again; outside bounces past it.
-    const far = 3;
+    const far = q['choice.pointYd'];
     choicePx = d.aimPx + 1;
     choicePy = chosen === 'bend' ? d.aimPy - playside * far : chosen === 'outside' ? d.aimPy + playside * far : d.aimPy;
     hasChoice = true;
