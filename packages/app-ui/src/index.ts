@@ -9,3 +9,6 @@ export * as scouting from './screens/scouting/index.ts';
 export * as analytics from './screens/analytics/index.ts';
 export * as week from './screens/week/index.ts';
 export * as film from './screens/film/index.ts';
+export * as career from './screens/career/index.ts';
+export * as school from './screens/school/index.ts';
+export * as gameManagement from './screens/game-management/index.ts';

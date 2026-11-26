@@ -18,3 +18,6 @@ export * as gameFrameCommands from './commands/game-frame/index.ts';
 export * as analytics from './read-models/analytics/index.ts';
 export * as film from './read-models/film/index.ts';
 export * as filmCommands from './commands/film/index.ts';
+export * as teaching from './teaching/index.ts';
+export * as gameManagement from './read-models/game-management/index.ts';
+export * as gameManagementCommands from './commands/game-management/index.ts';
