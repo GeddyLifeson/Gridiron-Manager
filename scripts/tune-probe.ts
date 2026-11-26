@@ -1,5 +1,6 @@
 // Tuning probe: the calibration report of a batch of real games with parameter overrides, run in several processes.
-// Usage: npx tsx scripts/tune-probe.ts <ruleSetId> <gamesPerProcess> <processes> [--ov overrides.json] [--out table.txt] [name=value ...]
+// Usage: npx tsx scripts/tune-probe.ts <ruleSetId> <gamesPerProcess> <processes> [--ov overrides.json] [--out table.txt] [--census] [--iss N] [--team-sd N] [name=value ...]
+// --census plays the level's census roster skill; --iss and --team-sd replace the level's gate roster skill and team spread (season.GATE_ROSTER_LEVEL).
 // Each process takes its own master seed; a row's simulated value is the mean over the processes (equal game counts), so
 // sd and quantile rows are close but not the exact pooled value. The gate itself is `headless calibrate`; this only steers tuning.
 import { spawn } from 'node:child_process';
@@ -14,10 +15,14 @@ const [rulesId = 'pro_2026', gamesArg = '500', procsArg = '4', ...rest] = proces
 const games = Number(gamesArg), procs = Number(procsArg);
 const overrides: Record<string, number> = {};
 let out: string | null = null;
+const roster: { iss?: number; teamSd?: number; census?: boolean } = {};
 for (let i = 0; i < rest.length; i++) {
   const a = rest[i]!;
   if (a === '--ov') Object.assign(overrides, JSON.parse(readFileSync(rest[++i]!, 'utf8')));
   else if (a === '--out') out = rest[++i]!;
+  else if (a === '--census') roster.census = true;
+  else if (a === '--iss') roster.iss = Number(rest[++i]);
+  else if (a === '--team-sd') roster.teamSd = Number(rest[++i]);
   else { const [k, v] = a.split('='); overrides[k!] = Number(v); }
 }
 
@@ -25,7 +30,7 @@ interface Row { id: string; tier: string; status: string | null; real: unknown; 
 
 if (process.env.TUNE_CHILD) {
   const seed = process.env.TUNE_CHILD;
-  const batch = createRealGame(rulesId, { paramOverrides: overrides }).batch(games, 4, seed);
+  const batch = createRealGame(rulesId, { paramOverrides: overrides, ...roster }).batch(games, 4, seed);
   const report = buildReport(loadTargets(ROOT, rulesId), batch.groups, { build: 'tune', paramsHash: 'tune', resolverId: 'reference', seeds: seed, games, seedGroups: 4 });
   const rows: Row[] = report.rows.map((r) => ({ id: r.id, tier: r.tier, status: r.status, real: r.real, sim: r.signedError === null ? null : (typeof r.real === 'number' ? r.real + r.signedError : r.signedError), tol: r.toleranceUsed, events: r.simEvents, state: r.state }));
   process.stdout.write(JSON.stringify(rows));
