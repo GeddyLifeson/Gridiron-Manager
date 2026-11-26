@@ -31,3 +31,4 @@ export {
   STREAM_LIFECYCLE, curveFor, curveProblems, foundingYear, planTeamSpans, isActive, activeTeamIds, awaitingFounding, lifecycleStep,
   type TeamSpan, type FoundingCurve, type LifecycleBinding,
 } from './lifecycle.ts';
+export { saveSystemState, loadSystemState } from './system-state.ts';
