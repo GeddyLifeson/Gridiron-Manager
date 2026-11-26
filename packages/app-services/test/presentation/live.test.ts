@@ -63,7 +63,8 @@ describe('live tap and live play on a real game', () => {
       expect(p.feed.visibility).toBe('user-visible');
       expect(p.film.slots).toHaveLength(22);
       // The feed's camera cues are the film's events (one filter for live play and film), flags aside.
-      const camera = p.feed.cues.filter((c) => !['contact', 'cadence', 'relay', 'ruling', 'flag'].includes(c.kind)).map((c) => `${c.kind}@${c.tick}`);
+      // The kick and post-hit cues (PV-00) are marks drawn on the field, not film camera events.
+      const camera = p.feed.cues.filter((c) => !['contact', 'cadence', 'relay', 'ruling', 'flag', 'kick', 'postHit'].includes(c.kind)).map((c) => `${c.kind}@${c.tick}`);
       expect(camera).toEqual(p.film.events.filter((e) => e.kind !== 'flag').map((e) => `${e.kind}@${e.tick}`));
       if (p.feed.conditions.noise !== null) withNoise++;
       expect(p.feed.missing).not.toContain('noise');
