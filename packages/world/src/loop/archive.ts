@@ -11,6 +11,7 @@
 // game is still the full engine (A3 row 20), and nothing about a living player changes.
 import type { PersonRecord } from '@gm/schema';
 import { param } from './params.ts';
+import { PeopleTable } from './people-table.ts';
 import type { LiveWorld, StepHandler } from './types.ts';
 
 /** Person ids on any current roster. */
@@ -36,26 +37,48 @@ export function slimmable(world: LiveWorld, p: PersonRecord, onRoster: ReadonlyS
 /** Drop the playing block of every slimmable person. Returns how many were slimmed. */
 export function slimRetired(world: LiveWorld): number {
   const onRoster = rostered(world);
+  const table = world.people instanceof PeopleTable ? world.people : null;
   let n = 0;
-  for (const [id, p] of world.people) {
-    if (!slimmable(world, p, onRoster)) continue;
-    const { playing: _drop, ...rest } = p;
-    world.people.set(id, rest as PersonRecord);
-    n++;
+  for (const id of [...world.people.keys()]) {
+    // Already cold: slimmed earlier and still out of the game (a returning person is stored live again).
+    if (table?.isFrozen(id)) continue;
+    const p = world.people.get(id)!;
+    if (slimmable(world, p, onRoster)) {
+      const { playing: _drop, ...rest } = p;
+      world.people.set(id, rest as PersonRecord);
+      n++;
+    }
+    // Inactive and dead people with no playing block go to cold storage (people-table.ts): storage only.
+    const status = world.status.get(id);
+    if (table && (status === 'inactive' || status === 'deceased') && world.people.get(id)!.playing === undefined) table.freeze(id);
   }
   return n;
 }
 
 /** Season-point handler: slim the retired. Bound beside compaction (see `withSlimming`). */
 export function slimStep(): StepHandler {
-  return (ctx) => ({ slimmed: slimRetired(ctx.world) });
+  return (ctx) => {
+    const slimmed = slimRetired(ctx.world);
+    packOldLog(ctx.world);
+    return { slimmed };
+  };
+}
+
+/**
+ * Storage only: log rows older than last season are held as text (league history `packBefore`). Last
+ * season stays live for the season point's readers. The step digest is unchanged, so pass hashes are too.
+ */
+function packOldLog(world: LiveWorld): void {
+  world.log.packBefore(world.date.seasonYear - 1);
 }
 
 /** Run a step and then the slimming, folding both digests (for the `compaction` slot). */
 export function withSlimming(step: StepHandler): StepHandler {
   return (ctx) => {
     const a = step(ctx) ?? {};
-    return { ...a, slimmed: slimRetired(ctx.world) };
+    const slimmed = slimRetired(ctx.world);
+    packOldLog(ctx.world);
+    return { ...a, slimmed };
   };
 }
 

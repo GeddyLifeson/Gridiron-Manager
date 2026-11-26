@@ -1,5 +1,6 @@
 // Assembling the live world from the generation steps (X10.2), with its history log.
 import { seedFromHex, seedToHex, type WorldSeed } from '@gm/engine-core';
+import { PeopleTable } from './people-table.ts';
 import { awards, compliance, history } from '@gm/league';
 import { cohorts } from '@gm/people';
 import type { EventTypeDef, PersonRecord } from '@gm/schema';
@@ -64,7 +65,7 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   const fProblems = foundingProblems(setup, content, built, founding, fOpts);
   if (fProblems.length > 0) throw new Error(`founding people are not legal on day one: ${fProblems.slice(0, 5).join('; ')}`);
 
-  const people = new Map(founding.people.map((p) => [p.id, p]));
+  const people = new PeopleTable(founding.people.map((p) => [p.id, p]));
   const logOptions = worldLogOptions(people, input);
   const world: LiveWorld = {
     setup, seed, seedStep,

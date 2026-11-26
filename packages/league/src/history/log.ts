@@ -88,7 +88,9 @@ function payloadProblem(def: EventTypeDef, payload: Readonly<Record<string, Scal
 
 export class EventLog {
   readonly #opts: EventLogOptions;
-  readonly #rows: WorldEvent[] = [];
+  // A row of a closed season may be held as its JSON text (`packBefore`), parsed again on read.
+  readonly #rows: (WorldEvent | string)[] = [];
+  #packed = 0;
   readonly #index = new Map<number, number>();
   readonly #byPerson = new Map<number, number[]>();
   readonly #byType = new Map<string, number[]>();
@@ -161,7 +163,7 @@ export class EventLog {
         if (origin && !mayReceiveEvent({ origin }, def)) return { ok: false, code: 'protected', reason: `type ${row.type} may not land on imported person ${pid} (A6.3.1)` };
       }
     }
-    const last = this.#rows[this.#rows.length - 1];
+    const last = this.#rows.length === 0 ? undefined : this.#at(this.#rows.length - 1);
     if (restoring) {
       if (last && row.id <= last.id) return { ok: false, code: 'order', reason: `id ${row.id} is not above ${last.id}` };
     } else if (row.id !== this.#nextId) return { ok: false, code: 'order', reason: `id ${row.id} is not the next id` };
@@ -191,21 +193,47 @@ export class EventLog {
     return { ok: true, event: frozen };
   }
 
+  /** Row at a position, parsed back (and frozen) if it is held as text. */
+  #at(i: number): WorldEvent {
+    const r = this.#rows[i]!;
+    return typeof r === 'string' ? deepFreeze(JSON.parse(r) as WorldEvent) : r;
+  }
+
+  /**
+   * Storage only (long history runs): hold every row dated before `seasonYear` as its JSON text, about a
+   * third of the heap of the row's objects. Readers get the same rows back (parsed and frozen); hashes were
+   * taken at append and do not change. Rows are held in append order, so packing stops at the first row
+   * of `seasonYear` or later. Returns how many rows were packed now.
+   */
+  packBefore(seasonYear: number): number {
+    let n = 0;
+    while (this.#packed < this.#rows.length) {
+      const r = this.#rows[this.#packed]!;
+      if (typeof r !== 'string') {
+        if (r.when.date.seasonYear >= seasonYear) break;
+        this.#rows[this.#packed] = JSON.stringify(r);
+        n++;
+      }
+      this.#packed++;
+    }
+    return n;
+  }
+
   get(id: number): WorldEvent | undefined {
     const i = this.#index.get(id);
-    return i === undefined ? undefined : this.#rows[i];
+    return i === undefined ? undefined : this.#at(i);
   }
 
   /** All rows in append order. The array is a copy; rows are frozen. */
-  rows(): WorldEvent[] { return [...this.#rows]; }
+  rows(): WorldEvent[] { return this.#rows.map((_, i) => this.#at(i)); }
 
   /** Rows that land on a person (actor or person subject), in order. */
-  forPerson(personId: number): WorldEvent[] { return (this.#byPerson.get(personId) ?? []).map((i) => this.#rows[i]!); }
+  forPerson(personId: number): WorldEvent[] { return (this.#byPerson.get(personId) ?? []).map((i) => this.#at(i)); }
 
-  ofType(type: string): WorldEvent[] { return (this.#byType.get(type) ?? []).map((i) => this.#rows[i]!); }
+  ofType(type: string): WorldEvent[] { return (this.#byType.get(type) ?? []).map((i) => this.#at(i)); }
 
   /** Ids reversed by a later reversal row (X2.1.3 rule 2: readers apply reversals at read time). */
-  reversedIds(): Set<number> { return reversedIds(this.#rows); }
+  reversedIds(): Set<number> { return reversedIds(this.rows()); }
 
   /** Per-season running hashes for the save (X2.1.3 rule 4), oldest season first. */
   seasonHashes(): SeasonLogHash[] {

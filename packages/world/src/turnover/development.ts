@@ -64,8 +64,10 @@ export function developmentStep(b: TurnoverBinding): StepHandler {
     const jobs: DevelopmentJob[] = [];
     const seed = { hi: world.seed.hi, lo: world.seed.lo };
     for (const id of [...world.people.keys()].sort((x, y) => x - y)) {
+      // Status first: inactive and dead people are kept cold (loop/people-table.ts) and need not be read.
+      if (world.status.get(id) !== 'active' || world.outOfFootballSince.has(id)) continue;
       const p = world.people.get(id)!;
-      if (!p.playing || world.status.get(id) !== 'active' || world.outOfFootballSince.has(id)) continue;
+      if (!p.playing) continue;
       let playing = p.playing;
       const teamId = teamOf.get(id);
       if (teamId !== undefined) { playing = advanceCounters(playing, season, hasEligibility(b.rule, levelOfTeam(world, teamId)), p.birthDate.seasonYear, starters.has(id)); counted++; }

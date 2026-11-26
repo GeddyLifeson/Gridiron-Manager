@@ -6,13 +6,15 @@ import type { EventTypeDef, WorldEvent } from '@gm/schema';
 import { history } from '@gm/league';
 import type { LiveWorld } from './types.ts';
 import { worldLogOptions, type CreateWorldInput } from './world.ts';
+import { plainPeople } from './people-table.ts';
 
 /** A structured-clone-safe copy of a world: everything but the log, plus the log's rows. */
 export type PackedWorld = Omit<LiveWorld, 'log' | 'logOptions'> & { readonly logRows: readonly WorldEvent[] };
 
 export function packWorld(world: LiveWorld): PackedWorld {
   const { log, logOptions: _opts, ...rest } = world;
-  return { ...rest, logRows: log.rows() };
+  // Cold people (people-table.ts) do not survive structured clone as a subclass: send every record live.
+  return { ...rest, people: plainPeople(rest.people), logRows: log.rows() };
 }
 
 /** Rebuild a packed world. `eventTypes` must be the types the world was created with. */
