@@ -82,6 +82,8 @@ const systems = loop.systemsFrom({
   lifecycle: timed('lifecycle', loop.lifecycleStep({ content, names: NAMES, built: w })),
   games: timed('games', loop.gamesStepBatch(schedule, gamePort)),
   leaving: timed('leaving', loop.leavingStep()),
+  // Log compaction has no counter list yet (X2.4.1 owner); the slot drops dead playing blocks (archive.ts).
+  compaction: timed('compaction', loop.slimStep()),
   hall: timed('hall', loop.hallStep({ halls: loop.defaultHalls({ pro: 'pro', college: 'college' }, PRO_LOOKUP('standings.tie_win_value') ?? 0.5) })),
   cohorts: timed('cohorts', loop.cohortStep({
     // Recruit classes follow the college teams alive this season; the draft pool follows the clubs alive.

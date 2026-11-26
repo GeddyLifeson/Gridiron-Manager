@@ -24,6 +24,8 @@ const ROWS: readonly Row[] = [
   ['hall.proOpensAfterSeasons', 43, 0, 100, 'seasons', 'assumption', 'C9.3.1', 'Real pro hall first class 1963 (2 of 3) minus league formation 1920 (1 of 3): 43. Flagged until the formation year has two more sources'],
   ['hall.proCharterClassMax', 17, 3, 40, 'count', 'assumption', 'C9.3.1', 'Real charter class of 1963 had 17 members (research/history-run: 2 of 3)'],
   ['hall.collegeOpensAfterSeasons', 82, 0, 150, 'seasons', 'assumption', 'C9.3.1', 'College hall opening after the first college season. Not sourced: Assumption, research owed (first college hall class year)'],
+  // Memory over a 157-season run (loop/archive.ts): the playing block of people who can never play again.
+  ['archive.playingAgeMax', 50, 45, 70, 'y', 'assumption', 'X2.4.1', 'No one this old plays again: the oldest pro players were in their late forties (not yet sourced). Storage only, no sim change'],
 ];
 
 export const PARAMS: ParamFile = {

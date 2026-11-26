@@ -36,3 +36,4 @@ export {
   type CoachSeasonRow, type PlayerLine, type HallMember, type HallBallotRecord, type HallState, type HallSpec, type HallBinding,
 } from './hall.ts';
 export { STREAM_HISTORY_SCHEDULE, seasonOrder, circleRound, roundsFor, historySchedule, type HistoryScheduleBinding } from './history-schedule.ts';
+export { slimmable, slimRetired, slimStep, withSlimming } from './archive.ts';

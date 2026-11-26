@@ -3,13 +3,16 @@
 // history schedule, leaving (inactive and deceased), cohorts (new people every season), the hall, and
 // with --turnover the D7/D8 development and K7 roster moves (slow: see the performance note in PR 226).
 // Run:
-// npx tsx packages/world/test/loop/tools/soak-history.ts [SEASONS] [CLUBS] [SCHOOLS] [--turnover]
+// node --expose-gc --import tsx packages/world/test/loop/tools/soak-history.ts [SEASONS] [CLUBS] [SCHOOLS] [--turnover] [--no-slim]
 import { COLLEGE_LOOKUP, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort, testSystems, trimmed } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
 
 const pos = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const seasons = Number(pos[0] ?? 157), clubs = Number(pos[1] ?? 8), schools = Number(pos[2] ?? 6);
 const withTurnover = process.argv.includes('--turnover');
+const slim = !process.argv.includes('--no-slim');
+/** Heap after a full collection when node runs with --expose-gc, so the numbers compare across runs. */
+const heapMB = (): number => { (globalThis as { gc?: () => void }).gc?.(); return Math.round(process.memoryUsage().heapUsed / 1e6); };
 const content = trimmed(clubs, schools);
 const w = loop.createWorld({
   setup: setup({ firstSeasonYear: 2026 - seasons, historySeasons: seasons }), content, names: NAMES, eventTypes: turnover.TURNOVER_EVENT_TYPES,
@@ -23,6 +26,7 @@ const binding: turnover.TurnoverBinding = { content, rule: (lvl, k) => (lvl === 
 const sys = testSystems({
   lifecycle: loop.lifecycleStep({ content, names: NAMES, built: w }),
   games: loop.gamesStep(schedule, testGamePort()),
+  ...(slim ? { compaction: loop.slimStep() } : {}),
   hall: loop.hallStep({ halls: loop.defaultHalls({ pro: 'pro', college: 'college' }, 0.5) }),
   cohorts: loop.cohortStep({
     scale: (world) => {
@@ -42,7 +46,7 @@ loop.runHistory(w, sys, { seasons, schedule, onSeason: (s, done) => {
     const status = { active: 0, inactive: 0, deceased: 0 };
     for (const v of w.status.values()) status[v]++;
     console.log(JSON.stringify({
-      season: s.seasonYear, done, msPer10: Math.round(now - last), heapMB: Math.round(process.memoryUsage().heapUsed / 1e6), people: w.people.size, status,
+      season: s.seasonYear, done, msPer10: Math.round(now - last), heapMB: heapMB(), people: w.people.size, status,
       logRows: w.log.rows().length, staffSeasons: w.staffSeasons.length, rosterSeasons: w.rosterSeasons.size, hallPlayers: w.hall.players.size,
       hallMembers: w.hall.members.length, teamsActive: [...w.teamSpans.values()].filter((x) => loop.isActive(w, x.teamId)).length,
     }));
