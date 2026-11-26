@@ -31,6 +31,7 @@ import type { PlayerMind } from '../player-ai/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import { READING, opposingElevenZ } from '../tick/opposition.ts';
 import { declareDead } from '../tick-resolver/finish.ts';
+import { RUN_BLOCK_ATTRS, RUN_DEFENSE_ATTRS } from '../tick-resolver/interact.ts';
 import {
   accountedDefenders, awarenessChance, bounceBiasYd, clip, competesChance, doNotScoreChance, horizonS, laneNoiseSdYd,
   laneTemperatureYd, pick, pressDurationS, readChance, softmax, turnUpDelayS, zOf,
@@ -199,6 +200,9 @@ export function createCarrier(options: CarrierOptions): Carrier {
   // Per-play state, reset in begin. Typed arrays so nothing is allocated per tick (P6.3.1).
   const ran = new Uint8Array(SLOT_COUNT);
   const rearm = new Int32Array(SLOT_COUNT);
+  // J6.3.1 gap control: a run defender in a block must come off it to tackle. Ticks he stays held after a failed
+  // shed, and whether he is off his block for the rest of the play.
+  const shedHeld = new Int32Array(SLOT_COUNT), shedOff = new Uint8Array(SLOT_COUNT);
   /** A receiver has touched this kick (a muff): the returner's let-it-go rule no longer applies. */
   let receiversTouched = false;
   const hit = new Float64Array(SLOT_COUNT);
@@ -251,7 +255,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
     options.movement ? options.movement.modeTopSpeed(w, s, M_SPRINT) : w.slots[s]!.movement.vMaxYps;
   const tNow = (w: TickWorld): number => (w.tick + 1) * TICK_S;
   const spot = (x: number, y: number) => ({ x: roundYd(x), y: roundYd(y) });
-  const pairStream = (w: TickWorld, a: number, b: number, type: 'tackle' | 'pile' | 'move' | 'fumble' | 'recovery'): RandomStream => {
+  const pairStream = (w: TickWorld, a: number, b: number, type: 'tackle' | 'pile' | 'move' | 'fumble' | 'recovery' | 'shed'): RandomStream => {
     const ia = w.slots[a]!.playerId, ib = w.slots[b]!.playerId, lo = ia < ib ? ia : ib, hi = ia < ib ? ib : ia;
     const key = `${lo}:${hi}:${type}`;
     let s = pairStreams.get(key);
@@ -270,7 +274,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
 
   function begin(w: TickWorld): void {
     p = carrierParams(w.params); kp = kinParams(w.params); bp = ballParams(w.params); contests = contestsOf();
-    ran.fill(0); rearm.fill(0); hit.fill(0); moveVs.fill(-1); carrierStreams.fill(null); pairStreams.clear();
+    ran.fill(0); rearm.fill(0); shedHeld.fill(0); shedOff.fill(0); hit.fill(0); moveVs.fill(-1); carrierStreams.fill(null); pairStreams.clear();
     carries.length = 0; tackles.length = 0; reads.length = 0; moveLog.length = 0; endings.length = 0; laneLog.length = 0;
     cur = -1; prevBallKind = w.ball.kind; runPhase = 0; hasChoice = false; hasTrack = false; escapeUntil = 0; receiversTouched = false;
   }
@@ -722,9 +726,32 @@ export function createCarrier(options: CarrierOptions): Carrier {
    */
   function tiedUp(w: TickWorld, s: number): boolean {
     const e = w.players.engagement[s]!;
-    if (e < 0) return false;
+    if (e < 0 || shedOff[s] === 1) return false;
+    if (w.tick < shedHeld[s]!) return true;
     const k = e < w.contests.length ? w.contests[e]! : null;
     return !(k !== null && k.type === 'runBlock' && k.defenseSlot === s && contests.runBlock.controlsGap(true, k.advantage));
+  }
+
+  const meanZ = (w: TickWorld, s: number, attrs: readonly string[]): number => {
+    let z = 0;
+    for (const a of attrs) z += zEff(w, s, a);
+    return z / attrs.length;
+  };
+
+  /**
+   * J6.3.1 gap control, the shed: a defender who holds his gap in a block still has to get off the blocker to make
+   * the tackle. One draw each time the carrier reaches him: his shedding against the blocker's sustain, and the
+   * block's advantage (a blocker winning the block keeps him on it). A failed shed holds him for `shed.retryS`.
+   */
+  function comesOff(w: TickWorld, c: number, s: number): boolean {
+    const e = w.players.engagement[s]!;
+    if (e < 0 || shedOff[s] === 1) return true;
+    const k = w.contests[e]!, q = P();
+    const zd = meanZ(w, s, RUN_DEFENSE_ATTRS) - meanZ(w, k.offenseSlot, RUN_BLOCK_ATTRS);
+    const p = clampProbability(logistic(q['shed.beta0'] + q['shed.beta1'] * zd - q['shed.betaA'] * k.advantage));
+    if (pairStream(w, c, s, 'shed').uniform() < p) { shedOff[s] = 1; return true; }
+    shedHeld[s] = w.tick + Math.ceil(q['shed.retryS'] / TICK_S);
+    return false;
   }
 
   function contactsOf(w: TickWorld, c: number, out: Int16Array): number {
@@ -734,6 +761,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
       if (w.slots[s]!.side === side || isDown(w, s) || tiedUp(w, s) || w.tick < rearm[s]!) continue;
       const gap = hyp(w.players.posX[s]! - w.players.posX[c]!, w.players.posY[s]! - w.players.posY[c]!) - w.slots[s]!.movement.bodyRadiusYd - w.slots[c]!.movement.bodyRadiusYd;
       if (gap > q['tackle.contactGapYd']) continue;
+      if (!comesOff(w, c, s)) continue;
       let i = n;
       threatD[s] = gap;
       while (i > 0 && threatD[out[i - 1]!]! > gap) { out[i] = out[i - 1]!; i--; }

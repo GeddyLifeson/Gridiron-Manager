@@ -23,6 +23,7 @@ const RETURN = 'J8.6.2 punt return average 9.4 yd (2 of 3); fair catch share (op
 const SCREEN = 'J8.3.2 acceptance; screens 5.46 yd per attempt (1 of 3)';
 const TACKLE = 'J6.6.1 acceptance (rushing quantiles and yards after catch)';
 const STRUCT = 'none: structural';
+const RUNSPREAD = 'real team-season yards per carry sd 0.33 offense and 0.33 defense, about +1.5 ypc per 25 points of margin (research/tuning/margins.md section 7, 1 of 3); rushing quantiles and mean (J15.4.1)';
 
 const ROWS = [
   // Ruling 2026-11-26: share of the chasing eleven's reading grades set against the carrier's vision and patience.
@@ -177,6 +178,14 @@ const ROWS = [
   // The gap between body circles a tackler can reach across with his arms. At 0.15 a tackler had to run into the
   // carrier's body, and a carrier who passed at arm's length was never touched (runs averaged over 10 yards).
   ['tackle.contactGapYd', 0.6, 0, 1.0, 'yd', 'assumption', 'J6.6.1', STRUCT],
+  // J6.3.1 gap control, the shed: a run defender holding his gap in a block must get off it to tackle the carrier.
+  // logit = beta0 + beta1 (his run-defense mix - the blocker's run-block mix, z) - betaA * block advantage. Before
+  // this every defender under the gap-control line tackled straight from the block, which made 9 of 10 tackles
+  // behind the line and left the run game deaf to blocking (research/tuning/margins.md section 8).
+  ['shed.beta0', 1.0, -1, 3, 'logit', 'assumption', 'J6.3.1', RUNSPREAD],
+  ['shed.beta1', 0.8, 0, 2, 'logit/z', 'assumption', 'J6.3.1', RUNSPREAD],
+  ['shed.betaA', 1.5, 0, 4, 'logit/A', 'assumption', 'J6.3.1', RUNSPREAD],
+  ['shed.retryS', 0.4, 0.1, 1.5, 's', 'assumption', 'J6.3.1', RUNSPREAD],
   ['tackle.missDownS', 0.8, 0.3, 1.5, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   ['tackle.brokenDownS', 0.4, 0.1, 1.0, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   // Square approach: angle quality is the cosine of the angle between the tackler's velocity and the line to the carrier, mapped to 0 to 1.
