@@ -43,7 +43,15 @@ export interface PassOptions {
   readonly source?: 'sim' | 'history_run';
   /** Test hook for the X12.1.1 acceptance: run the steps in another order to show the hash moves. */
   readonly order?: readonly StepId[];
+  /**
+   * The season's weekly passes (`SchedulePort.weeksInSeason`). When given, the season point refuses to run
+   * before they are all done (break test #9: a season point mid-season closed the season early).
+   */
+  readonly weeksInSeason?: number;
 }
+
+/** Thrown when the season point is asked for before the season's weekly passes are done. */
+export class SeasonNotOverError extends Error {}
 
 function runSteps(world: LiveWorld, systems: WorldSystems, order: readonly StepId[], opts: PassOptions): void {
   const source = opts.source ?? 'sim';
@@ -119,6 +127,9 @@ export function recordStaffSeason(world: LiveWorld): void {
 
 /** The season-point passes, the season's summary, then the calendar turns to the next season. */
 export function runSeasonPoint(world: LiveWorld, systems: WorldSystems, opts: PassOptions = {}): SeasonSummary {
+  if (opts.weeksInSeason !== undefined && world.week < opts.weeksInSeason) {
+    throw new SeasonNotOverError(`season point refused: week ${world.week} of ${opts.weeksInSeason} in ${world.date.seasonYear}; the season is not over`);
+  }
   recordStaffSeason(world);
   runSteps(world, systems, opts.order ?? SEASON_POINT_ORDER, opts);
   const summary = summarizeSeason(world);
@@ -134,7 +145,7 @@ export function runSeasonPoint(world: LiveWorld, systems: WorldSystems, opts: Pa
 export function runSeason(world: LiveWorld, systems: WorldSystems, schedule: SchedulePort, opts: PassOptions = {}): SeasonSummary {
   const weeks = schedule.weeksInSeason(world);
   while (world.week < weeks) runWeek(world, systems, opts);
-  return runSeasonPoint(world, systems, opts);
+  return runSeasonPoint(world, systems, { ...opts, weeksInSeason: weeks });
 }
 
 /**
