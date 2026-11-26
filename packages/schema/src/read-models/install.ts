@@ -1,10 +1,10 @@
 // The zod schema of the install board read model, with a visibility class on every field. It belongs in
-// @gm/schema (READ_MODELS) because app-services may not import zod: the schema integrator is asked to move
-// this file there unchanged, as with gameplan (CR-G68-S1). The plan is the club's own (own_team); every
+// @gm/schema (READ_MODELS) because app-services may not import zod. Moved here from app-services/test/read-models/install/data-schema.ts unchanged but for the field import.
+// The plan is the club's own (own_team); every
 // knowledge figure and everything computed from it (installed, readiness, laggers, error chance, delay) is
 // the staff's estimate (observer_estimate). Knowledge is in knowledge points on D9's 0 to 100 scale.
 import { z } from 'zod';
-import { own, est } from '@gm/schema';
+import { own, est } from '../field.ts';
 
 const text = () => own(z.string());
 const count = () => own(z.number().int().min(0), 'count');

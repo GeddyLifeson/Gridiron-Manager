@@ -11,6 +11,8 @@ import {
 } from '@gm/schema';
 import { SaveStore, readHeader, verifySaveLog, type SqlDriver, type ContentItem, type ReplayDeps, type ReplayReport } from '@gm/store';
 import type { Platform } from './platform.ts';
+import type { CareerYear, CareerYearOptions } from './play/career-year.ts';
+import { readCareerYear, readLiveWorldMeta, writeCareerYear, type LiveWorldMeta } from './play/career-save.ts';
 
 export const APP_SERVICES_VERSION = `app 0.0.1 / ${ENGINE_VERSION}`;
 
@@ -157,6 +159,21 @@ export class WorldService {
     const v = this.header.generatorOptions[CAREER_RECIPE_KEY];
     return typeof v === 'string' ? v : null;
   }
+
+  /** Writes the career's live world (the career year) into this save and flushes the file (P5, X12.1). */
+  async saveCareerYear(y: CareerYear): Promise<LiveWorldMeta> {
+    const meta = await writeCareerYear(this.driver, y);
+    await this.platform.flushSave(this.saveName, this.driver);
+    return meta;
+  }
+
+  /** The career year this save holds, checked against its saved world hash, or null when it has none. */
+  loadCareerYear(o: Omit<CareerYearOptions, 'world' | 'seatTeamId'>): Promise<CareerYear | null> {
+    return readCareerYear(this.driver, o);
+  }
+
+  /** Where the saved live world stands, without restoring it; null when the save has none. */
+  liveWorldMeta(): Promise<LiveWorldMeta | null> { return readLiveWorldMeta(this.driver); }
 
   async close(): Promise<void> { await this.driver.close(); }
 }

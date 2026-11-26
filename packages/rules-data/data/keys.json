@@ -10611,6 +10611,26 @@
    "readBy": [
     "career/gameday"
    ]
+  },
+  {
+   "key": "formation.scrimmage_kick_kicker_depth_yd",
+   "type": "number",
+   "meaning": "A scrimmage kick formation has a potential kicker at least this deep behind the neutral zone (punt formation)",
+   "ownerLeaf": "B6.3.1",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "unit": "yd"
+  },
+  {
+   "key": "formation.scrimmage_kick_holder_depth_yd",
+   "type": "number",
+   "meaning": "Or a potential holder and kicker at least this deep behind the neutral zone in position for a place kick",
+   "ownerLeaf": "B6.3.1",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "unit": "yd"
   }
  ]
 }

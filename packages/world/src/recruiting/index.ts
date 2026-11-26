@@ -4,7 +4,7 @@ export { MODULE, PARAMS, param } from './params.ts';
 export { formulaPeriods, projectedFiles, RecruitingCalendar, wednesdayOnOrAfter, dayOfWorld, cycleOpen, recruitingCalendarDays } from './calendar.ts';
 export {
   RECRUITING_KEY, STREAM_RECRUITING, recruitingOf, groupOf, recruitingLevels, trueQuality, recruitingRules, passBinding, recruitingCalendar,
-  type WorldRecruiting, type RecruitingBinding, type PassBinding,
+  type WorldRecruiting, type RecruitingBinding, type PassBinding, type UserRecruiting, type UserRecruitingDay,
 } from './binding.ts';
 export { circleIds, runRecruiting, lettersPolicy, movesWithRecruiting } from './step.ts';
 export { gmRecruitingPolicy } from './policy.ts';
