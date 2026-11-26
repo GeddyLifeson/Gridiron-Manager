@@ -77,6 +77,8 @@ export const OPT = {
   receive: 'receive', kick: 'kick', defer: 'defer', defendWest: 'defend_west', defendEast: 'defend_east',
   offense: 'offense', defense: 'defense',
   none: 'none', timeout: 'timeout',
+  /** A challenge flag thrown when the coach may not challenge: no review, and a timeout or a foul (B9.1.1 rules 4a and 5). */
+  challengeFlag: 'challenge_flag',
   tryKick: 'kick', tryTwo: 'two_point',
   runoffTake: 'take_runoff', runoffDecline: 'decline_runoff', runoffAccept: 'accept_runoff', runoffTimeout: 'spend_timeout',
 } as const;
