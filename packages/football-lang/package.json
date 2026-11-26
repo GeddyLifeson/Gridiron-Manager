@@ -1,6 +1,7 @@
 {
   "name": "@gm/football-lang",
   "version": "0.0.0",
+  "license": "UNLICENSED",
   "private": true,
   "type": "module",
   "main": "src/index.ts",

@@ -12,6 +12,7 @@ import { gameCalling } from '@gm/app-services';
 import { homeFromSeason, recordText } from './today.ts';
 import { FinalPanel, PlayLog, keyForIn, useLiveSession } from './ConsoleHost.tsx';
 import { rt } from './text.ts';
+import { teamSources } from './sources/team.ts';
 import type { CareerPort, GameSession, SeasonToday } from './port.ts';
 import type { SoundStage } from '../audio/stage/index.ts';
 import type { AdvanceTarget } from '../screens/home/view.ts';
@@ -102,6 +103,7 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
 
   const routes: RouteTable = useMemo(() => {
     const t = buildRoutes({
+      ...teamSources(port),
       home: { view: () => homeFromSeason(port.today(), 0, port.week?.() ?? null), dispatch: (i) => { if (i.kind === 'advance') step(i.target); } },
     });
     t['game.console'] = {

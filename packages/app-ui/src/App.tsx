@@ -86,7 +86,7 @@ export function App({ platform, golden, soundStage = null, newGame, leagueConten
     if (leagueContent && start.seatTeamId !== null) {
       const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
       try {
-        setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId } },
+        setCareer(startCareerSeason(leagueContent, { level: start.level, ruleSetId: start.ruleSetId, seasonYear: start.careerStartYear, seedHex: start.seedHex, seat: { world, teamId: start.seatTeamId }, live: { world, userPersonId: start.coach.personId } },
           { consoleConfig: (gameId) => setup(start.ruleSetId, gameId), ...(consoleConfig ? {} : { bindings: DEFAULT_KEYMAP.bindings }), resolve: resolverFor(DEFAULT_KEYMAP.bindings) }));
         return;
       } catch (e) { setMsg((e as Error).message); return; }

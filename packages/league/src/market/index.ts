@@ -19,7 +19,7 @@ export {
   type ContactActor, type ContactKind, type ContactTarget, type ContactInput, type ContactVerdict, type Agreement, type AgreementPosting,
 } from './window.ts';
 export {
-  positionScale, shareAt, demandFactor, timeFactor, expectedContract, positionSpendShares,
+  positionScale, shareAt, demandFactor, timeFactor, expectedContract, contractAtTime, positionSpendShares,
   type ScaleContract, type PositionScale, type ValueInput, type Range, type ExpectedContract,
 } from './value.ts';
 export {

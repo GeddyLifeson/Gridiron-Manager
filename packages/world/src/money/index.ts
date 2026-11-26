@@ -5,6 +5,7 @@ export {
   type ClubPayment, type ClubMoney, type CapCents,
 } from './club.ts';
 export { PERSON_MONEY_KEY, personMoneyOf, chargePerson, personalPaid, type PersonPayment, type PersonMoney } from './person.ts';
+export { STREAM_REVENUE, PLAYER_COST_KEYS, playerCostShare, revenueGrowth, revenueIndex, capProjection, generatedCapCents, type KeyRead, type CapProjection } from './revenue.ts';
 export {
   PERSON_INCOME_KEY, PAYROLL_KEY, STAFF_PAY_REASON, TOP_COLLEGE_COMPETITION, SECOND_COLLEGE_COMPETITION, WORLD_BANDS, worldBandRows, offLadderPay, defaultPayTier, seatPay, personIncomeOf, payrollOf, payStaffYear,
   grossPay, priorPay, staffPayCommitted, payrollStep, type PersonIncome, type PersonIncomeState, type PayrollState, type PayTierRead, type PayTier, type WorldBand, type PayrollRun,

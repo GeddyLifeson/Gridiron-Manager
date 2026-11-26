@@ -6340,6 +6340,66 @@
      }
     ]
    }
+  },
+  {
+   "key": "formation.scrimmage_kick_kicker_depth_yd",
+   "type": "number",
+   "meaning": "A scrimmage kick formation has a potential kicker at least this deep behind the neutral zone (punt formation)",
+   "ownerLeaf": "B6.3.1",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "pro": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 3, Section 17, Article 7, Item 1",
+      "q": "at least one player 10 or more yards behind the neutral zone",
+      "line": 685
+     }
+    ]
+   },
+   "college": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 2, Section 16, Article 10-a",
+      "q": "10 or more yards behind the neutral zone",
+      "line": 1627
+     }
+    ]
+   },
+   "unit": "yd"
+  },
+  {
+   "key": "formation.scrimmage_kick_holder_depth_yd",
+   "type": "number",
+   "meaning": "Or a potential holder and kicker at least this deep behind the neutral zone in position for a place kick",
+   "ownerLeaf": "B6.3.1",
+   "readBy": [
+    "football-lang.legality"
+   ],
+   "pro": {
+    "v": 7,
+    "src": [
+     {
+      "cite": "Rule 3, Section 17, Article 7, Item 1",
+      "q": "a potential holder and potential kicker seven or more yards behind the neutral zone",
+      "line": 686
+     }
+    ]
+   },
+   "college": {
+    "v": 7,
+    "src": [
+     {
+      "cite": "Rule 2, Section 16, Article 10-a",
+      "q": "potential kicker seven or more yards behind the neutral zone in position for a",
+      "line": 1628
+     }
+    ]
+   },
+   "unit": "yd"
   }
  ]
 }
