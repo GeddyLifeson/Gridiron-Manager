@@ -1,0 +1,21 @@
+{
+ "$comment": "Injury report rules by league-rules option `medical.injury_report_rule` (W-13: designations are data, never enums in code). Labels and meanings from D11.5.1 and H5.2. College default is `none` (no national report rule; D11.5.1 edge case, Unverified).",
+ "rules": {
+  "weekly_practice_and_status": {
+   "participation": [
+    { "id": "full", "label": "Full Participation", "minShare": 1, "injuryRelated": true, "status": "Verified in D11.5.1 (3 sources)" },
+    { "id": "limited", "label": "Limited Participation", "minShare": 0, "injuryRelated": true, "status": "Verified in D11.5.1 (3 sources)" },
+    { "id": "dnp", "label": "Did Not Participate", "minShare": null, "injuryRelated": true, "status": "Verified in D11.5.1 (3 sources)" },
+    { "id": "nir", "label": "Not Injury Related", "minShare": null, "injuryRelated": false, "status": "1 of 3 (D11.5.1)" }
+   ],
+   "gameStatus": [
+    { "id": "questionable", "label": "Questionable", "meaning": "uncertain to play", "rateId": "play_rate_questionable" },
+    { "id": "doubtful", "label": "Doubtful", "meaning": "unlikely to play", "rateId": "play_rate_doubtful" },
+    { "id": "out", "label": "Out", "meaning": "will not play", "rateId": "play_rate_out" }
+   ],
+   "unlistedRateId": "play_rate_listed_no_status",
+   "statusFactId": "F-injury-0003"
+  },
+  "none": { "participation": [], "gameStatus": [], "unlistedRateId": null, "statusFactId": null }
+ }
+}
