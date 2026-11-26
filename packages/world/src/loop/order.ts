@@ -5,11 +5,12 @@
 import { deriveSeed, seedToHex, stream } from '@gm/engine-core';
 import { history } from '@gm/league';
 import type { WorldTier } from '@gm/schema';
+import { TITLE_WON } from './events.ts';
 import { isActive } from './lifecycle.ts';
 import { param } from './params.ts';
 import {
-  SEASON_POINT_ORDER, WEEKLY_ORDER,
-  type GameBatchPort, type GamePort, type GameRequest, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
+  GAME_INJURIES_KEY, SEASON_POINT_ORDER, WEEKLY_ORDER,
+  type GameBatchPort, type GameInjury, type WeekInjuries, type GamePort, type GameRequest, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
 } from './types.ts';
 
 const FAR_TIER: WorldTier = 3;
@@ -171,6 +172,8 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
     const played = reqs.length === 0 ? [] : playAll(reqs);
     if (played.length !== reqs.length) throw new Error(`games step: ${reqs.length} games asked, ${played.length} answered`);
     let points = 0;
+    let reportedGames = 0;
+    const injuries: (GameInjury & { gameId: number })[] = [];
     reqs.forEach((req, i) => {
       const game = req.game, r = played[i]!;
       const row: GameResult = {
@@ -180,7 +183,20 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
       };
       world.results.push(row);
       points += r.homePoints + r.awayPoints;
+      if (r.injuries) {
+        reportedGames++;
+        for (const inj of r.injuries) injuries.push({ ...inj, gameId: game.gameId });
+      }
+      if (game.title && r.homePoints !== r.awayPoints) {
+        const [winner, loser, wp, lp] = r.homePoints > r.awayPoints ? [game.homeTeamId, game.awayTeamId, r.homePoints, r.awayPoints] : [game.awayTeamId, game.homeTeamId, r.awayPoints, r.homePoints];
+        ctx.emit({
+          type: TITLE_WON, date: world.date, competitionId: game.competitionId, teamId: winner, witnesses: { kind: 'public' }, tier: req.tier,
+          subjects: [{ kind: 'team', id: winner }, { kind: 'team', id: loser }], payload: { season: world.date.seasonYear, opponent: loser, points: wp, opponent_points: lp },
+        });
+      }
     });
+    // Left only when a port reports injuries, so a world whose games report none hashes as before.
+    if (reportedGames > 0) world.systemState.set(GAME_INJURIES_KEY, { seasonYear: world.date.seasonYear, week: world.week, reportedGames, injuries } satisfies WeekInjuries);
     return { games: games.length, points };
   };
 }
@@ -209,6 +225,31 @@ function plain(v: unknown): unknown {
 }
 const canonicalOf = (x: unknown): string => JSON.stringify(x) ?? 'undefined';
 
+/** Entries per hashed piece of a large state map: big enough to be cheap, small enough that no piece's text nears the engine's string limit. */
+const STATE_CHUNK = 2000;
+
+/**
+ * Folds `systemState` into a hash one system at a time. A system's top-level map fields (ties, memory
+ * rows, needs records: hundreds of thousands of entries in a long history) are folded in sorted chunks,
+ * so the world hash never builds one string of the whole state. Every value still counts.
+ */
+function hashSystemState(prev: string, state: ReadonlyMap<string, unknown>): string {
+  let h = prev;
+  for (const key of [...state.keys()].sort()) {
+    const v = state.get(key);
+    if (v === null || typeof v !== 'object' || v instanceof Map || Array.isArray(v)) { h = history.chainHash(h, { key, value: plain(v) }); continue; }
+    const small: Record<string, unknown> = {};
+    const big: [string, Map<unknown, unknown>][] = [];
+    for (const [f, x] of Object.entries(v)) if (x instanceof Map && x.size > STATE_CHUNK) big.push([f, x]); else small[f] = plain(x);
+    h = history.chainHash(h, { key, value: small });
+    for (const [f, m] of big.sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
+      const entries = plain(m) as unknown[];
+      for (let i = 0; i < entries.length; i += STATE_CHUNK) h = history.chainHash(h, { key, field: f, at: i, entries: entries.slice(i, i + STATE_CHUNK) });
+    }
+  }
+  return h;
+}
+
 /** A hash of the whole live world, for replay checks (J13). `deep` adds every person and job. */
 export function worldHash(world: LiveWorld, deep = true): string {
   const head = {
@@ -216,10 +257,10 @@ export function worldHash(world: LiveWorld, deep = true): string {
     log: world.log.seasonHashes(), nextIds: world.nextIds, seasons: world.seasons,
     status: [...world.status].sort((a, b) => a[0] - b[0]), tiers: [...world.tiers].sort((a, b) => a[0] - b[0]),
     rosters: [...world.rosters].sort((a, b) => a[0] - b[0]), pools: [...world.pools].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
-    systemState: plain(world.systemState),
     hall: world.hall.members,
   };
   let h = history.chainHash(history.EMPTY_SEASON_HASH, head);
+  h = hashSystemState(h, world.systemState);
   if (deep) {
     for (const id of [...world.people.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.people.get(id));
     for (const id of [...world.jobs.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.jobs.get(id));

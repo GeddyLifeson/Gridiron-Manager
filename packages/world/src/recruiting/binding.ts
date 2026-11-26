@@ -2,7 +2,7 @@
 // read from teams, staffs and rosters, its staff reads from people, and its rule set and calendar over the
 // league rules. Every stand-in is a README decision (RC-06). Nothing here decides a recruiting act.
 import { stream } from '@gm/engine-core';
-import { calendar, recruiting } from '@gm/league';
+import { calendar, compliance, recruiting } from '@gm/league';
 import type { PersonRecord, RuleSet } from '@gm/schema';
 import { complianceOf, dispositionOf, partyOf, setCompliance, sinkFor, STREAM_CONDUCT, HEAD_COACH } from '../compliance/binding.ts';
 import { param as genParam } from '../generation/params.ts';
@@ -251,7 +251,8 @@ export function passBinding(ctx: StepContext, b: RecruitingBinding, levels: read
   };
   let currentDay = 0;
   const hook: recruiting.ComplianceHook = {
-    state: complianceOf(world), sink: sinkFor(ctx), tier: 3, source: ctx.source,
+    // The pass holds the log alone until done(): acts push onto one copy instead of copying it per act.
+    state: compliance.ownLog(complianceOf(world)), sink: sinkFor(ctx), tier: 3, source: ctx.source,
     party: (staffId, teamId) => partyOf(world, staffId, infos.get(teamId)?.headCoachId === staffId ? 'head_coach' : 'recruiter', teamId),
   };
   const people: recruiting.AiPeople = {
@@ -264,7 +265,7 @@ export function passBinding(ctx: StepContext, b: RecruitingBinding, levels: read
   const pass: PassBinding & { setDay(d: number): void; setClass(y: number): void } = {
     ctx: rctx, hook, people, level,
     programs: () => [...infos.values()],
-    done: () => setCompliance(world, hook.state),
+    done: () => setCompliance(world, compliance.releaseLog(hook.state)),
     setDay: (d) => { currentDay = d; },
     setClass: (y) => rctx.setClass(y),
   };

@@ -48,6 +48,13 @@ export function dSqrt(x: number): number {
   return Math.sqrt(x);
 }
 
+// Horner coefficients, built once at load (the same doubles every call used to build).
+const EXP_INV: readonly number[] = [
+  1 / 121645100408832000, 1 / 6402373705728000, 1 / 355687428096000, 1 / 20922789888000,
+  1 / 1307674368000, 1 / 87178291200, 1 / 6227020800, 1 / 479001600, 1 / 39916800, 1 / 3628800,
+  1 / 362880, 1 / 40320, 1 / 5040, 1 / 720, 1 / 120, 1 / 24, 1 / 6, 1 / 2, 1, 1,
+];
+
 export function dExp(x: number): number {
   if (x !== x) return NaN;
   if (x > 709.782712893384) return Infinity;
@@ -56,12 +63,7 @@ export function dExp(x: number): number {
   const r = (x - k * LN2_HI) - k * LN2_LO; // |r| <= ~0.347
   // Taylor series to r^20 / 20!, Horner form.
   let p = 1 / 2432902008176640000; // 1/20!
-  const inv = [
-    1 / 121645100408832000, 1 / 6402373705728000, 1 / 355687428096000, 1 / 20922789888000,
-    1 / 1307674368000, 1 / 87178291200, 1 / 6227020800, 1 / 479001600, 1 / 39916800, 1 / 3628800,
-    1 / 362880, 1 / 40320, 1 / 5040, 1 / 720, 1 / 120, 1 / 24, 1 / 6, 1 / 2, 1, 1,
-  ];
-  for (let i = 0; i < inv.length; i++) p = p * r + inv[i]!;
+  for (let i = 0; i < EXP_INV.length; i++) p = p * r + EXP_INV[i]!;
   return scaleB(p, k);
 }
 
@@ -93,15 +95,20 @@ export function dLog(x: number): number {
   return e * LN2_HI + (logm + e * LN2_LO);
 }
 
+const SIN_C: readonly number[] = [
+  1 / 51090942171709440000, -1 / 121645100408832000, 1 / 355687428096000, -1 / 1307674368000,
+  1 / 6227020800, -1 / 39916800, 1 / 362880, -1 / 5040, 1 / 120, -1 / 6,
+];
+const COS_C: readonly number[] = [
+  -1 / 2432902008176640000, 1 / 6402373705728000, -1 / 20922789888000, 1 / 87178291200,
+  -1 / 479001600, 1 / 3628800, -1 / 40320, 1 / 720, -1 / 24, 1 / 2,
+];
+
 function sinPoly(r: number): number {
   const z = r * r;
   // r - r^3/3! + ... - r^23/23!
   let p = -1 / 25852016738884976640000; // -1/23!
-  const c = [
-    1 / 51090942171709440000, -1 / 121645100408832000, 1 / 355687428096000, -1 / 1307674368000,
-    1 / 6227020800, -1 / 39916800, 1 / 362880, -1 / 5040, 1 / 120, -1 / 6,
-  ];
-  for (let i = 0; i < c.length; i++) p = p * z + c[i]!;
+  for (let i = 0; i < SIN_C.length; i++) p = p * z + SIN_C[i]!;
   return r + r * z * p;
 }
 
@@ -109,11 +116,7 @@ function cosPoly(r: number): number {
   const z = r * r;
   // 1 - r^2/2! + r^4/4! - ... + r^22/22!, Horner form in z.
   let p = 1 / 1124000727777607680000; // 1/22!
-  const c = [
-    -1 / 2432902008176640000, 1 / 6402373705728000, -1 / 20922789888000, 1 / 87178291200,
-    -1 / 479001600, 1 / 3628800, -1 / 40320, 1 / 720, -1 / 24, 1 / 2,
-  ];
-  for (let i = 0; i < c.length; i++) p = p * z + c[i]!;
+  for (let i = 0; i < COS_C.length; i++) p = p * z + COS_C[i]!;
   // p = 1/2 - z/4! + z^2/6! - ... , so cos r = 1 - z * p.
   return 1 - z * p;
 }

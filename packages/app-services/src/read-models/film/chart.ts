@@ -16,7 +16,7 @@ import { registerBridge } from '../../observer/index.ts';
 import { param } from './params.ts';
 import { scrubTrajectory } from './scrub.ts';
 import { BASE_FIELDS, COACHING_FIELDS, type AssignmentLine, type BaseField, type Charter, type CoachingField, type FieldSource, type FilmSource, type Side } from './types.ts';
-import type { BaseSet, CoachingSet, FilmEvent, FilmRecord } from './views.ts';
+import { FILM_TIE_ORDER, type BaseSet, type CoachingSet, type FilmEvent, type FilmRecord } from './views.ts';
 
 registerBridge({
   name: 'film.filter',
@@ -97,7 +97,7 @@ export function publicEvents(src: FilmSource): FilmEvent[] {
     const w = out.find((e) => e.kind === 'whistle')!;
     out.push({ kind: 'flag', tick: whistleTick, x: w.x, y: w.y });
   }
-  return out.sort((a, b) => a.tick - b.tick);
+  return out.sort((a, b) => a.tick - b.tick || FILM_TIE_ORDER[a.kind] - FILM_TIE_ORDER[b.kind]);
 }
 
 /** Where the ball sat at the snap, from the first stored frame (format 1); the field centre otherwise. */
