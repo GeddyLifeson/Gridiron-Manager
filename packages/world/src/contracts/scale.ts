@@ -1,0 +1,79 @@
+// The pay scale by position (C8.3.1 rule 1) and the market price of a contract the world signs (rules 2
+// to 4). The scale is the real league's: shares of the cap at evenly spaced percentiles of the active
+// contracts at each position (pay-scale.json, built from OverTheCap's data by facts/market-pay-build,
+// fact rows F-market-pay-*, status 1 of 3). A player's place on it is his public grade rank at his
+// position among the players of his level's capped clubs (D6: public estimates, never true values).
+// See README decisions PC-02 and PC-11 to PC-13.
+import { market } from '@gm/league';
+import type { LiveWorld } from '../loop/types.ts';
+import type { GradeContext } from '../turnover/binding.ts';
+import scaleFile from './pay-scale.json' with { type: 'json' };
+
+interface ScaleRow { readonly from: readonly string[]; readonly contracts: number; readonly factId: string; readonly shares: readonly number[] }
+const ROWS: Readonly<Record<string, ScaleRow>> = scaleFile.positions;
+
+/** The snapshot date of the sourced scale. */
+export const PAY_SCALE_SNAPSHOT: string = scaleFile.snapshot;
+
+/** Fact rows the scale cites, by world position. */
+export const PAY_SCALE_FACTS: Readonly<Record<string, string>> = Object.fromEntries(Object.entries(ROWS).map(([p, r]) => [p, r.factId]));
+
+// PC-11: a position the file does not name prices from every position's shares pooled.
+const POOLED: readonly number[] = Object.values(ROWS).flatMap((r) => r.shares).sort((a, b) => b - a);
+
+/** The sourced scale at a world position, as the market module's `PositionScale` (shares highest first). */
+export function sourcedScale(position: string): market.PositionScale {
+  const r = ROWS[position];
+  if (r) return { position, shares: r.shares, from: r.from };
+  return { position, shares: POOLED, from: Object.keys(ROWS).sort() };
+}
+
+/**
+ * Public percentile of each player at a position in a population (1 = best, 0 = last), ties sharing their
+ * middle rank. A population of one sits at the middle.
+ */
+export function publicPercentiles(world: LiveWorld, grades: GradeContext, ids: readonly number[]): Map<number, number> {
+  const byPos = new Map<string, { id: number; g: number }[]>();
+  for (const id of ids) {
+    const pos = world.people.get(id)?.playing?.position;
+    if (!pos) continue;
+    const list = byPos.get(pos) ?? [];
+    list.push({ id, g: grades.publicGrade(id) });
+    byPos.set(pos, list);
+  }
+  const out = new Map<number, number>();
+  for (const list of byPos.values()) {
+    const sorted = [...list].sort((a, b) => a.g - b.g || a.id - b.id);
+    const n = sorted.length;
+    let i = 0;
+    while (i < n) {
+      let j = i;
+      while (j + 1 < n && sorted[j + 1]!.g === sorted[i]!.g) j++;
+      const p = n === 1 ? 0.5 : ((i + j) / 2) / (n - 1);
+      for (let k = i; k <= j; k++) out.set(sorted[k]!.id, p);
+      i = j + 1;
+    }
+  }
+  return out;
+}
+
+export interface PriceInput {
+  readonly position: string;
+  readonly percentile: number;
+  readonly suitors: number;
+  readonly age: number;
+  readonly primeEndAge: number;
+  readonly capCents: number;
+  readonly minimumCents: number;
+  /** C8.3.1 rule 4 time factor (1 = the first wave). */
+  readonly time: number;
+}
+
+/** C8.3.1 rules 1 to 4 on the sourced scale: years, average per year and guarantee share of one deal. */
+export function marketPrice(x: PriceInput): market.ExpectedContract {
+  const p = { low: x.percentile, mid: x.percentile, high: x.percentile };
+  return market.contractAtTime({
+    scale: sourcedScale(x.position), percentile: p, suitors: x.suitors, age: x.age, primeEndAge: x.primeEndAge,
+    productiveYearsLeft: Math.max(1, x.primeEndAge - x.age), injuryFlag: false, capCents: x.capCents, minimumCents: x.minimumCents,
+  }, x.time);
+}

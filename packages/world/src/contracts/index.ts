@@ -3,9 +3,10 @@
 export { MODULE, PARAMS, param, type FloorPeriod } from './params.ts';
 export {
   CONTRACTS_KEY, contractsOf, setContracts, contractOf, clubContracts, salaryIn, lastYear,
-  type PlayerTerms, type PlayerContract, type FloorCheck, type ContractsState,
+  type PlayerTerms, type PlayerContract, type FloorCheck, type ContractsState, type MarketYear,
 } from './state.ts';
+export { PAY_SCALE_SNAPSHOT, PAY_SCALE_FACTS, sourcedScale, publicPercentiles, marketPrice, type PriceInput } from './scale.ts';
 export {
-  PLAYER_PAY_REASON, FLOOR_SHORTFALL_REASON, STREAM_FOUNDING, FLOOR_PCT_KEY, ruleSetFor, namedFloorPeriods, floorPeriodOf, runContractYear, playerCashPaid, contractsStep,
-  type ContractsBinding, type ContractYearRun,
+  PLAYER_PAY_REASON, FLOOR_SHORTFALL_REASON, STREAM_FOUNDING, FLOOR_PCT_KEY, ruleSetFor, namedFloorPeriods, floorPeriodOf, runContractYear, playerCashPaid, contractsStep, suitorsAt,
+  type ContractsBinding, type ContractYearRun, type Signing,
 } from './step.ts';

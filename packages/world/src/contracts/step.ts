@@ -12,8 +12,9 @@ import { cashBudget, chargeClub, clubMoneyOf, capFromRules, type CapCents } from
 import { ageIn, gradeContext, levelOfTeam, rosteredSet, type GradeContext, type Level, type RuleRead } from '../turnover/binding.ts';
 import { PLAYER_DRAFTED, PLAYER_SIGNED } from '../turnover/events.ts';
 import { ageCurve } from '../turnover/front-office.ts';
-import { param as turnoverParam } from '../turnover/params.ts';
+import { ruleSetFor, type ContractsBinding } from './binding.ts';
 import { param, type FloorPeriod } from './params.ts';
+import { marketPrice, publicPercentiles, sourcedScale } from './scale.ts';
 import { contractsOf, lastYear, salaryIn, setContracts, type ContractsState, type FloorCheck, type PlayerContract } from './state.ts';
 
 /** Reason on a club's yearly player pay entry (C6.2.3 rule 1). The floor counts these only (MO-10). */
@@ -23,25 +24,7 @@ export const FLOOR_SHORTFALL_REASON = 'floor_shortfall';
 /** J13 stream of a founding contract's remaining years (PC-03). */
 export const STREAM_FOUNDING = 'world.contracts.founding';
 
-export interface ContractsBinding {
-  readonly rule: RuleRead;
-  /** Names of the rule keys a level holds: the cap module reads the minimum salary bands from key names. */
-  readonly keys: (level: Level) => readonly string[];
-  /** The rules year every league year reads (MO-02: today's rules throughout). */
-  readonly rulesYear: number;
-  /** A club the world must not write contracts for (for example the user's club once the career module owns it). */
-  readonly skipTeam?: (world: LiveWorld, teamId: number) => boolean;
-}
-
-/** A RuleSet over the binding's reader for one level, with its key names, for the league cap module. */
-export function ruleSetFor(b: ContractsBinding, level: Level): RuleSet {
-  const num = (k: string): number => {
-    const v = b.rule(level, k);
-    if (v === undefined) throw new Error(`league ${level} holds no rule ${k}`);
-    return v;
-  };
-  return { id: `world:${level}`, level: level as RuleSet['level'], seasonYear: b.rulesYear, num, bool: (k) => num(k) !== 0, opt: (k) => String(num(k)), keys: () => [...b.keys(level)] };
-}
+export { ruleSetFor, type ContractsBinding } from './binding.ts';
 
 /** League-rules key of a named floor period, `cap.min_cash_period_<from>_<to>_pct` (CBA Art. 12 s.9(a), (b)). */
 const PERIOD_KEY = /^cap\.min_cash_period_(\d+)_(\d+)_pct$/;
@@ -87,7 +70,12 @@ const NONE = { skill: false, cap: false, injury: false };
 const FULL = { skill: true, cap: true, injury: true };
 const FIRST_ROUND = 1;
 
-type Signing = { readonly kind: 'drafted'; readonly round: number } | { readonly kind: 'undrafted' } | { readonly kind: 'veteran' };
+/** How a player new to a club's books arrived. A free agent carries the C8.3.1 rule 2 suitor count at the moment he signed. */
+export type Signing =
+  | { readonly kind: 'drafted'; readonly round: number }
+  | { readonly kind: 'undrafted' }
+  | { readonly kind: 'free_agent'; readonly suitors: number }
+  | { readonly kind: 'veteran' };
 
 interface Run {
   readonly world: LiveWorld;
@@ -97,10 +85,17 @@ interface Run {
   readonly grades: GradeContext;
   readonly signings: ReadonlyMap<number, Signing>;
   readonly founding: boolean;
+  /** Public percentile of each rostered player at his position, by level (PC-11). */
+  readonly percentiles: (level: Level) => ReadonlyMap<number, number>;
+  /** C8.3.1 rule 4 time factor of this year's free agent signings (PC-12). */
+  readonly time: number;
+  readonly freeAgentApy: { personId: number; teamId: number; apyCents: number }[];
   state: ContractsState;
   signed: number;
   ended: number;
   releasedGuaranteeCents: number;
+  /** Released guarantees charged this year, by club (PC-06): they count against the year's room. */
+  readonly releasedBy: Map<number, number>;
 }
 
 function credited(world: LiveWorld, id: number): number {
@@ -125,20 +120,29 @@ function newContract(r: Run, personId: number, teamId: number, form: PlayerContr
   return c as PlayerContract;
 }
 
-/** Quantile of a list, linear between ranks (the turnover front office reads replacement level the same way). */
-function quantile(xs: readonly number[], q: number): number {
-  if (xs.length === 0) return 0;
-  const s = [...xs].sort((a, b) => a - b);
-  const pos = q * (s.length - 1);
-  const lo = Math.floor(pos), hi = Math.ceil(pos);
-  return s[lo]! + (s[hi]! - s[lo]!) * (pos - lo);
+/** Bisection steps that fix the budget scale (PC-13) to well under a cent of payroll. */
+const SCALE_STEPS = 60;
+
+/**
+ * The factor k at which `spend(k)` reaches `room`: `spend` is non-decreasing in k and flat once every player
+ * is at his top. Below 1 when the market prices are over the room; 1 or more when they are under it.
+ */
+function scaleTo(spend: (k: number) => number, room: number): number {
+  const at1 = spend(1);
+  if (at1 === 0) return 1;
+  if (at1 >= room) return room / at1;
+  let lo = 1, hi = 2;
+  while (spend(hi) < room && spend(hi) > spend(hi / 2)) hi *= 2;
+  for (let i = 0; i < SCALE_STEPS; i++) { const mid = (lo + hi) / 2; if (spend(mid) < room) lo = mid; else hi = mid; }
+  return lo;
 }
 
 /**
- * Contracts for one club's rostered players who hold none (PC-01 to PC-03). Rookies sign the fixed rookie
- * length at the minimum for each year's credited seasons; veterans are paid their minimum plus the club's
- * rate times their observed grade above the club's replacement level, the rate spreading the owner's budget
- * (capped at the cap) over the whole roster. New veteran money is cut back to fit under the cap.
+ * Contracts for one club's rostered players who hold none (PC-01, PC-02, PC-03, PC-11 to PC-13). Rookies sign
+ * the fixed rookie length at the minimum for each year's credited seasons. Everyone else is paid from the
+ * sourced position scale at his public percentile: a free agent at the C8.3.1 market price (demand from the
+ * clubs with need and room when he signed, and the time factor), a founding player or a re-signing veteran
+ * at the scale price itself. New veteran money is cut back to fit under the cap.
  */
 function openClub(r: Run, teamId: number, rules: RuleSet, capCents: number, keep: readonly PlayerContract[]): PlayerContract[] {
   const { world, year } = r;
@@ -147,34 +151,18 @@ function openClub(r: Run, teamId: number, rules: RuleSet, capCents: number, keep
   const fresh = roster.filter((id) => !held.has(id) && world.people.get(id)?.playing);
   if (fresh.length === 0) return [];
   const minimum = (id: number, k = 0) => capRules.minimumSalary(rules, r.b.rulesYear, credited(world, id) + k);
-  const budget = cashBudget(world, teamId, year, r.cap) ?? capCents;
-  const target = Math.min(budget, capCents);
-
-  // PC-02: the club's rate per point of observed grade above its replacement level at the position.
-  const byPos = new Map<string, number[]>();
-  for (const id of roster) {
-    const pos = world.people.get(id)?.playing?.position;
-    if (pos) byPos.set(pos, [...(byPos.get(pos) ?? []), r.grades.grade(teamId, id)]);
-  }
-  const all = [...byPos.values()].flat();
-  const repl = new Map<string, number>();
-  const surplus = (id: number): number => {
-    const pos = world.people.get(id)!.playing!.position;
-    let q = repl.get(pos);
-    if (q === undefined) { q = quantile(byPos.get(pos) ?? all, turnoverParam('gm.replacementQuantile')); repl.set(pos, q); }
-    return Math.max(0, r.grades.grade(teamId, id) - q);
-  };
-  const sumMin = roster.reduce((s, id) => s + (world.people.get(id)?.playing ? minimum(id) : 0), 0);
-  const sumW = roster.reduce((s, id) => s + (world.people.get(id)?.playing ? surplus(id) : 0), 0);
-  const rate = sumW > 0 ? Math.max(0, target - sumMin) / sumW : 0;
+  const percentile = r.percentiles(levelOfTeam(world, teamId));
+  // C6.2.3 rule 3: the owner's budget for the year, capped at the cap.
+  const target = Math.min(cashBudget(world, teamId, year, r.cap) ?? capCents, capCents);
 
   const out: PlayerContract[] = [];
-  let committed = keep.reduce((s, c) => s + salaryIn(c, year), 0);
+  // Guarantees of players released this year are on the books too (PC-06).
+  let committed = keep.reduce((s, c) => s + salaryIn(c, year), 0) + (r.releasedBy.get(teamId) ?? 0);
   // Rookies first: their pay is fixed by rule (C6.4.2 rule 1, PC-05).
   const vets: number[] = [];
   for (const id of fresh) {
     const sg = r.signings.get(id);
-    if (!sg || sg.kind === 'veteran') { vets.push(id); continue; }
+    if (sg?.kind !== 'drafted' && sg?.kind !== 'undrafted') { vets.push(id); continue; }
     const round = sg.kind === 'drafted' ? sg.round : null;
     const n = capRules.rookieLength(round, rules);
     const g = round === FIRST_ROUND ? FULL : NONE;
@@ -182,21 +170,43 @@ function openClub(r: Run, teamId: number, rules: RuleSet, capCents: number, keep
     committed += years[0]!.baseSalary.amountCents;
     out.push(newContract(r, id, teamId, 'rookie', years));
   }
-  // PC-02: veterans' money above the minimum, scaled down so the year's payroll fits under the cap.
-  const extra = vets.map((id) => rate * surplus(id));
-  const extraSum = extra.reduce((s, x) => s + x, 0);
-  const room = capCents - committed - vets.reduce((s, id) => s + minimum(id), 0);
-  const scale = extraSum > room ? Math.max(0, room) / extraSum : 1;
   const curve = ageCurve();
-  vets.forEach((id, i) => {
+  const priced = vets.map((id) => {
     const p = world.people.get(id)!;
-    const apy = minimum(id) + Math.floor(extra[i]! * scale);
-    // PC-03: C8.3.1 rule 3, years shrink with age: productive years left to the D8 prime end, 1 to the market ceiling.
-    let n = Math.min(market.P.maxContractYears, Math.max(1, curve.primeEndAge(p.playing!.position) - ageIn(p, year)));
-    if (r.founding) n = stream(world.seed, STREAM_FOUNDING, [teamId, id]).int(1, n);
-    const years = Array.from({ length: n }, (_, k) => contractYear(year + k, Math.max(apy, minimum(id, k)), NONE));
-    out.push(newContract(r, id, teamId, apy === minimum(id) ? 'minimum' : 'veteran', years));
+    const position = p.playing!.position;
+    const sg = r.signings.get(id);
+    const pct = percentile.get(id) ?? 0;
+    const age = ageIn(p, year);
+    const primeEndAge = curve.primeEndAge(position);
+    // PC-11: the market line. A free agent prices with his suitors and the time factor (PC-12); a founding
+    // player or a re-signing veteran at the scale price, demand and time both neutral (PC-13).
+    const line = marketPrice({
+      position, percentile: pct, suitors: sg?.kind === 'free_agent' ? sg.suitors : 0, age, primeEndAge, capCents,
+      minimumCents: minimum(id), time: sg?.kind === 'free_agent' ? r.time : 1,
+    });
+    const apy = sg?.kind === 'free_agent' ? line.apyCents.mid : Math.max(minimum(id), Math.round(market.shareAt(sourcedScale(position), pct) * capCents));
+    const top = Math.max(apy, Math.round(sourcedScale(position).shares[0]! * capCents));
+    return { id, apy, top, years: line.years, guaranteeShare: line.guaranteeShare, free: sg?.kind === 'free_agent' };
   });
+  // PC-13: the club spends its owner's budget. The year's new veteran money above the minimum moves in
+  // proportion to each player's market price until the payroll meets the budget: down to fit (never above
+  // the cap), or up, no player past the top of his position's scale.
+  const extra = priced.map((x) => x.apy - minimum(x.id));
+  const most = priced.map((x) => x.top - minimum(x.id));
+  const room = target - committed - priced.reduce((s, x) => s + minimum(x.id), 0);
+  const spend = (k: number) => extra.reduce((s, e, i) => s + Math.min(e * k, most[i]!), 0);
+  const scale = scaleTo(spend, Math.max(0, room));
+  for (const [i, x] of priced.entries()) {
+    const apy = minimum(x.id) + Math.floor(Math.min(extra[i]! * scale, most[i]!));
+    // PC-03: C8.3.1 rule 3 years; a founding contract is part way through its term.
+    let n = x.years;
+    if (r.founding) n = stream(world.seed, STREAM_FOUNDING, [teamId, x.id]).int(1, n);
+    // PC-11: the guarantee share is carried as fully guaranteed salary in the first years.
+    const guaranteed = Math.round(n * x.guaranteeShare);
+    const years = Array.from({ length: n }, (_, k) => contractYear(year + k, Math.max(apy, minimum(x.id, k)), k < guaranteed ? FULL : NONE));
+    out.push(newContract(r, x.id, teamId, apy === minimum(x.id) ? 'minimum' : 'veteran', years));
+    if (x.free) r.freeAgentApy.push({ personId: x.id, teamId, apyCents: apy });
+  }
   return out;
 }
 
@@ -214,6 +224,7 @@ function closeContracts(r: Run): PlayerContract[] {
       if (owed > 0) {
         chargeClub(world, { teamId: c.teamId, seasonYear: year, cents: owed, reason: PLAYER_PAY_REASON });
         r.releasedGuaranteeCents += owed;
+        r.releasedBy.set(c.teamId, (r.releasedBy.get(c.teamId) ?? 0) + owed);
       }
     }
   }
@@ -284,14 +295,26 @@ export function runContractYear(world: LiveWorld, b: ContractsBinding, signings:
   const start = contractsOf(world);
   if (start.paidYears.includes(year)) return { seasonYear: year, signed: 0, ended: 0, active: start.active.length, playerPayCents: 0, floorShortfallCents: 0, already: true };
   const cap = capFromRules(b.rule, b.rulesYear);
+  const grades = gradeContext(world, rosteredSet(world));
+  const teams = world.teams.filter((t) => isActive(world, t.id, year) && !(b.skipTeam?.(world, t.id) ?? false)).map((t) => t.id).sort((x, y) => x - y);
+  const byLevel = new Map<Level, Map<number, number>>();
+  // PC-11: the percentile population is every player rostered at the level's capped clubs this year.
+  const percentiles = (level: Level): ReadonlyMap<number, number> => {
+    let m = byLevel.get(level);
+    if (!m) {
+      const ids = teams.filter((t) => levelOfTeam(world, t) === level && cap(world, t, year) !== undefined).flatMap((t) => world.rosters.get(t) ?? []);
+      m = publicPercentiles(world, grades, ids);
+      byLevel.set(level, m);
+    }
+    return m;
+  };
   const r: Run = {
-    world, b, year, cap, grades: gradeContext(world, rosteredSet(world)), signings,
-    founding: start.paidYears.length === 0, state: start, signed: 0, ended: 0, releasedGuaranteeCents: 0,
+    world, b, year, cap, grades, signings, percentiles, time: b.marketTime?.(year) ?? 1, freeAgentApy: [],
+    founding: start.paidYears.length === 0, state: start, signed: 0, ended: 0, releasedGuaranteeCents: 0, releasedBy: new Map(),
   };
   const floorShortfallCents = checkFloors(r);
   const keep = closeContracts(r);
   const opened: PlayerContract[] = [];
-  const teams = world.teams.filter((t) => isActive(world, t.id, year) && !(b.skipTeam?.(world, t.id) ?? false)).map((t) => t.id).sort((x, y) => x - y);
   const paidBy = new Map<number, number>();
   const roster: Record<string, readonly number[]> = { ...r.state.periodRoster };
   for (const teamId of teams) {
@@ -313,7 +336,8 @@ export function runContractYear(world: LiveWorld, b: ContractsBinding, signings:
     chargeClub(world, { teamId, seasonYear: year, cents, reason: PLAYER_PAY_REASON });
     pay += cents;
   }
-  setContracts(world, { ...r.state, active, paidYears: [...r.state.paidYears, year], periodRoster: roster });
+  const lastMarket = { seasonYear: year, signings: [...r.freeAgentApy].sort((x, y) => x.personId - y.personId) };
+  setContracts(world, { ...r.state, active, paidYears: [...r.state.paidYears, year], periodRoster: roster, lastMarket });
   return { seasonYear: year, signed: r.signed, ended: r.ended, active: active.length, playerPayCents: pay + r.releasedGuaranteeCents, floorShortfallCents, already: false };
 }
 
@@ -321,6 +345,47 @@ export function runContractYear(world: LiveWorld, b: ContractsBinding, signings:
 export function playerCashPaid(world: LiveWorld, teamId: number, seasonYear: number): number {
   return clubMoneyOf(world).payments.filter((p) => p.teamId === teamId && p.seasonYear === seasonYear && p.reason === PLAYER_PAY_REASON).reduce((s, p) => s + p.cents, 0);
 }
+
+/**
+ * C8.3.1 rule 2 suitors of a free agent at the moment he signs: the capped clubs of his level with need at
+ * his position (no more players there than the level's median club) and room for his scale price at his public
+ * percentile among the level's rostered players at the position (the cap less
+ * what the club owes this league year: open contracts' salaries, and the minimum for each rostered player
+ * still without one). The club that signed him counts if it qualifies without him; never fewer than one.
+ */
+export function suitorsAt(world: LiveWorld, b: ContractsBinding, grades: GradeContext, personId: number, signedWith: number): number {
+  const year = world.date.seasonYear;
+  const p = world.people.get(personId)?.playing;
+  if (!p) return 1;
+  const level = levelOfTeam(world, signedWith);
+  const cap = capFromRules(b.rule, b.rulesYear);
+  const rules = ruleSetFor(b, level);
+  const st = contractsOf(world);
+  const clubs = world.teams.filter((t) => isActive(world, t.id, year) && levelOfTeam(world, t.id) === level && cap(world, t.id, year) !== undefined).map((t) => t.id);
+  const at = (teamId: number) => (world.rosters.get(teamId) ?? []).filter((id) => id !== personId && world.people.get(id)?.playing?.position === p.position).length;
+  const counts = clubs.map(at).sort((x, y) => x - y);
+  const median = counts.length === 0 ? 0 : counts[Math.floor((counts.length - 1) / 2)]!;
+  const byPerson = new Map(st.active.map((c) => [c.personId, c]));
+  const peers = clubs.flatMap((t) => (world.rosters.get(t) ?? []).filter((id) => world.people.get(id)?.playing?.position === p.position));
+  const pct = publicPercentiles(world, grades, [...new Set([...peers, personId])]).get(personId) ?? PUBLIC_MIDDLE;
+  const share = market.shareAt(sourcedScale(p.position), pct);
+  let n = 0;
+  for (const teamId of clubs) {
+    const capCents = cap(world, teamId, year)!;
+    const price = Math.round(share * capCents);
+    let owed = 0;
+    for (const id of world.rosters.get(teamId) ?? []) {
+      if (id === personId || !world.people.get(id)?.playing) continue;
+      const c = byPerson.get(id);
+      owed += c && c.teamId === teamId && lastYear(c) >= year ? salaryIn(c, year) : capRules.minimumSalary(rules, b.rulesYear, credited(world, id));
+    }
+    if (at(teamId) <= median && capCents - owed >= price) n++;
+  }
+  return Math.max(1, n);
+}
+
+/** Percentile of a player with no peers at his position: the middle of the scale. */
+const PUBLIC_MIDDLE = 0.5;
 
 /**
  * The moves step with the league year's contract work run after it, the first time it sees the year.
@@ -331,6 +396,7 @@ export function playerCashPaid(world: LiveWorld, teamId: number, seasonYear: num
 export function contractsStep(b: ContractsBinding, inner: StepHandler): StepHandler {
   return (ctx: StepContext): StepDigest | void => {
     const signings = new Map<number, Signing>();
+    let grades: GradeContext | null = null;
     const spy: StepContext = {
       world: ctx.world, step: ctx.step, source: ctx.source,
       tierOfTeam: (t) => ctx.tierOfTeam(t),
@@ -342,6 +408,10 @@ export function contractsStep(b: ContractsBinding, inner: StepHandler): StepHand
         if (subject && subject.kind === 'person') {
           if (e.type === PLAYER_DRAFTED && typeof payload.round === 'number') signings.set(subject.id, { kind: 'drafted', round: payload.round });
           if (e.type === PLAYER_SIGNED && payload.kind === 'undrafted') signings.set(subject.id, { kind: 'undrafted' });
+          // The roster already holds him; his suitors are counted now, before the next club signs anyone (PC-12).
+          if (e.type === PLAYER_SIGNED && payload.kind === 'free_agent' && typeof payload.team === 'number') {
+            signings.set(subject.id, { kind: 'free_agent', suitors: suitorsAt(ctx.world, b, (grades ??= gradeContext(ctx.world, rosteredSet(ctx.world))), subject.id, payload.team) });
+          }
         }
         return ctx.emit(e);
       },

@@ -10,8 +10,11 @@ with the world. Rows are schema `ContractRecord`s with player terms (P3.2.4). Ca
 cash are computed from them by league `cap` and never stored (P3.1.1).
 
 - `contractsStep(binding, inner)` wraps the roster cycle and runs the year's contract work after it, the
-  first time it sees the league year. It reads the cycle's `player_drafted` and undrafted `player_signed`
-  events as they pass, so drafted players sign rookie deals of their round's length.
+  first time it sees the league year. It reads the cycle's `player_drafted` and `player_signed` events as
+  they pass, so drafted players sign rookie deals of their round's length and each free agent's C8.3.1
+  suitors are counted the moment he signs (`suitorsAt`).
+- `sourcedScale(position)`, `publicPercentiles`, `marketPrice`: the real pay scale by position and the
+  market line (scale.ts, PC-11).
 - `runContractYear(world, binding, signings)` does one year's work once: it checks a floor period that just
   closed, ends contracts, opens new ones, and charges each capped club one `player_pay` entry.
 - `contractOf`, `clubContracts`, `salaryIn`, `playerCashPaid`, `floorPeriodOf`, `ruleSetFor`.
@@ -21,18 +24,11 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 - **PC-01** A club gets contracts when its league holds `cap.amount_<rulesYear>` (MO-02: today's rules in
   every year). College agreements (T5, T7) are not here. `skipTeam` leaves out a club the world must not
   write for.
-- **PC-02** (Assumption: the pay rule. No figure in it is invented.) A veteran is paid his minimum (C6.4.1)
-  plus the club's rate times his observed grade above the club's replacement level at his position. The rate
-  spreads the owner's budget, capped at the cap, over the whole roster: rate = (min(budget, cap) minus the
-  roster's minimums) / (the roster's summed grade above replacement). The money comes only from the cap
-  (F-cap-0042), the minimum table (F-cap-0012 to F-cap-0041) and the owner budget the money module already
-  draws (C6.2.3 rule 3, a bible Assumption). New veteran money is cut back so the year's payroll stays under
-  the cap. Grades are the club's own `scouting.observe` look (K9), and replacement is the turnover
-  `gm.replacementQuantile` of the club's grades. The salary is flat across the years. A year's salary is never
-  below that year's minimum.
-- **PC-03** Contract length follows C8.3.1 rule 3: years run to the D8 prime end of the position (turnover
-  `ageCurve`), from 1 up to the market ceiling (`league.market.maxContractYears`, an Assumption in the market
-  module). A founding contract is part way through its term: its remaining years are drawn from 1 to that
+- **PC-02** (replaced by PC-11 and PC-13.) The first version paid a veteran his minimum plus a club rate
+  times his observed grade above replacement, a linear spread flatter than the real league.
+- **PC-03** Contract length follows C8.3.1 rule 3 through `market.contractAtTime`: years run to the D8 prime
+  end of the position (turnover `ageCurve`), from 1 up to the market ceiling (`league.market.maxContractYears`,
+  an Assumption in the market module). A founding contract is part way through its term: its remaining years are drawn from 1 to that
   length on stream `world.contracts.founding`, so the founding contracts do not all end in one year.
 - **PC-04** Floor periods and their percents are the league-rules keys `cap.min_cash_period_<from>_<to>_pct`:
   2017 to 2020 at 89, then 2021 to 2023, 2024 to 2026 and 2027 to 2030 at 90 (CBA Art. 12 s.9(a), (b);
@@ -61,6 +57,29 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
   the years it ran.
 - **PC-09** The floor counts player pay only (`player_pay`): never staff pay, fines or earlier shortfall
   payments (MO-10).
+- **PC-11** (Data 1 of 3.) Pay comes from the real league's scale. `pay-scale.json` holds, for each world
+  position, the shares of the cap of OverTheCap's active contracts (`apy_cap_pct`, average per year over the
+  cap of the signing year) at 51 evenly spaced percentiles, best paid first. `facts/market-pay-build/build.py`
+  builds it and the fact rows F-market-pay-0001 to 0020 from the nflverse `contracts` release (file dated
+  2026-11-25; 2,546 active contracts). Mapping (Assumption): T reads LT and RT, G reads LG and RG, DE reads ED,
+  DT and NT read IDL, OLB, ILB and MLB read LB, FS and SS read S; a position not in the file reads every
+  position pooled. A player's place on the scale is his public grade rank at his position among the players
+  rostered at his level's capped clubs this year (D6 public look, ties share the middle rank). The market line
+  (`market.contractAtTime`) gives the years and the guarantee share; the guarantee is carried as fully
+  guaranteed salary in the first round(years x share) years, since the world's contracts hold no bonuses.
+- **PC-12** A free agent (`player_signed` with kind `free_agent`, early contact included) is paid the C8.3.1
+  market price: the scale share times the cap times the demand factor of his suitors, times the time factor.
+  Suitors are counted when he signs: the capped clubs of his level with no more players at his position than
+  the level's median club and room under the cap for his scale price (open contracts' salaries this year, and
+  the minimum for each rostered player still without one). The world signs all its free agents in one pass at
+  the market's opening, so the time factor is 1 (the first wave) unless the binding's `marketTime` says
+  otherwise. Each year's signings and prices are kept in `lastMarket` for the front office's going rate.
+- **PC-13** (Assumption: the level.) A club spends its owner's budget, capped at the cap (C6.2.3 rule 3).
+  Founding players and re-signing veterans are priced at the scale share itself (demand and time neutral).
+  Then the year's new veteran money above the minimum moves in proportion to each player's price until the
+  payroll meets the budget: down to fit, or up, with no player past the top of his position's scale. The
+  scale sets who is paid what relative to whom; the owner's budget sets the club's total. Released
+  guarantees of the year count against the room.
 - **PC-10** The user's club is included today, because the world runs its roster. Once the career module
   writes the user's player contracts, bind `skipTeam` for that club.
 
@@ -77,30 +96,45 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 | Shortfall paid to players rostered in the period, by Sept 15 | CBA Art. 12 s.9(c) | Rulebook only; bible C6.2.3: 1 of 3 |
 | Owner budget 95 to 110 percent of the cap | C6.2.3 rule 3, money module | Assumption (bible) |
 | First-round rookie deals fully guaranteed | C6.4.2 rule 3 | 2 of 3 (bible) |
-| Pay above the minimum by observed grade (PC-02) | this module | Assumption |
+| Pay shares of the cap by position and rank (PC-11) | `pay-scale.json`, F-market-pay-0001 to 0020 | 1 of 3 (OverTheCap via nflverse; second publisher and tag cross-check owed) |
+| World position to OverTheCap position mapping (PC-11) | `build.py` | Assumption |
+| Suitors: need at the median, room for the scale price (PC-12) | this module | Assumption (C8.3.1 rule 2 names need and room, not the tests) |
+| Club spends its owner budget, prices move in proportion (PC-13) | this module | Assumption |
 | Years to the D8 prime end, market ceiling 5 (PC-03) | C8.3.1 rule 3, market params | Bible rule; ceiling Assumption |
 | Four-year periods outside the CBA (PC-04) | C6.2.3 edge case | Assumption (bible) |
 | Equal shortfall shares (PC-08) | this module | Assumption |
 
-## Measured on the trimmed test world (founding year, 3 clubs)
+## Measured on the trimmed test world (8 pro clubs, founding and four offseasons)
 
-Founding payroll is 100.0 percent of the cap at every club (owner budgets are at or above the cap). The
-top five contracts are 4 to 7 percent of the cap each, the median is $3.3M to $4.4M, and 19 or 20 of the 53
-players are at about the minimum. Real top deals take far larger shares of the cap. Calibrating position pay
-shares is open research (C8.3.1 open question, M1.1.1), so PC-02's linear spread is flagged, not tuned.
+Founding: payroll is 100.0 percent of the cap at every club (owner budgets are at or above it). The
+best-paid contract is 24.5 percent of the cap (a quarterback, the real top is 24.5), the next are 17.4, 15.5
+and 14.9, and the median contract is 0.51 percent (real median at the busiest positions 0.4 to 0.5). Every
+later year stays at 100 percent of the cap with the owner budgets as drawn. About 175 free agents sign each
+offseason, each priced by PC-12.
+
+Contract length (PC-03) is short against the real league: 88 percent of the world's veteran deals are one
+year, where OverTheCap's active veteran deals (signed four or more years after the draft, 959 of them) are 57
+percent one year, mean 1.8 years. The D8 prime end is 25 at most positions, so most veterans have one
+productive year left by rule 3. This is reported, not tuned: it belongs to the D8 curve and C8.3.1 rule 3.
 
 ## Gaps
 
-- Free agents are priced by PC-02, not by the C8.3.1 market (`market.expectedContract` over the world's
-  position scale with demand and time factors). The turnover cycle's free agency runs no priced offers yet
-  (TO-04, TO-07). The next step is to feed these contracts into the front office (`costCentsByYear`, and
-  `centsPerWin` from `gm.goingRateCentsPerWin`) so cap room enters roster decisions.
+- The scale is the real league's, not one built from the world's own contracts (C8.3.1 rule 1 as written).
+  The world's rookies are paid the minimum (no slot table, PC-05), so a world-built scale would sink at the
+  rank of every first-round rookie; switch once the slot table is sourced and check the position spend
+  shares (C8.3.1 acceptance, within 2 points over 30 seasons).
+- Free agency is one pass with no offers: the price is the market line, not the result of clubs bidding
+  (`gm.roundOffers`, `market.choose`). The world's free agents are only the players cut or unsigned:
+  expiring contracts do not send players to the market (they re-sign at the scale price).
+- The fact rows are 1 of 3. Owed: a second publisher (Spotrac positional pages) and the franchise tag
+  cross-check (F-league-0013, the average of the top five prior-year salaries at each position against the
+  league's announced tag figures). The cloud reaches neither site; it needs a browser on Marlon's PC.
 - Not modelled: signing, roster, option and workout bonuses; incentives; restructures and extensions; tags
   and RFA tenders; trades; practice squad pay; the top-51 offseason rule; carryover and settlement; dead money
   from proration (no bonuses exist to prorate).
 - Players' personal income is not recorded (the E6 sheets are for staff). Shortfall shares are logged in
   `floorChecks`.
-- K7's plan to meet the floor (C6.2.3 AI use) is not built. PC-02 sets payroll at the budget, so only an owner
+- K7's plan to meet the floor (C6.2.3 AI use) is not built. PC-13 sets payroll at the budget, so only an owner
   who does not pay can fall short today.
 
 ## For the integrators
@@ -108,6 +142,9 @@ shares is open research (C8.3.1 open question, M1.1.1), so PC-02's linear spread
 - Barrel: `export * as contracts from './contracts/index.ts';` in `packages/world/src/index.ts`.
 - PARAMS: `world.contracts` (`floor.periodYears`).
 - P5 save slot for `systemState.player_contracts`.
+- Composition root: bind the front office with the contracts binding, `policy: turnover.gmPolicy({ contracts: cb })`,
+  so free agents carry their minimum and market years (TO-07). Optional: `cb.marketTime` from the calendar.
+- New fact file `facts/market-pay.json` (measured-rate rows, cited by `pay-scale.json`, not by a rule set).
 - Composition root: `moves: contracts.contractsStep(cb, turnover.movesStep(b, turnover.rosterMovesStep(b)))`,
   with `cb = { rule: b.rule, keys: (level) => <the level's league-rules key names>, rulesYear: 2026 }`, the
   same rules year as `money.capFromRules`.

@@ -15,7 +15,7 @@ const keysOf = (rel: string): string[] =>
   (JSON.parse(readFileSync(fileURLToPath(new URL(rel, import.meta.url)), 'utf8')).values as { key: string }[]).map((v) => v.key);
 const KEYS = { pro: keysOf('../../../rules-data/data/league/proleague_2026.json'), college: keysOf('../../../rules-data/data/league/collegeleague_2026.json') };
 const binding: contracts.ContractsBinding = { rule, keys: (lvl) => (lvl === 'pro' ? KEYS.pro : KEYS.college), rulesYear: RULES_YEAR };
-const tb: turnover.TurnoverBinding = { content, rule, policy: turnover.gmPolicy() };
+const tb: turnover.TurnoverBinding = { content, rule, policy: turnover.gmPolicy({ contracts: binding }) };
 const cap = money.capFromRules(rule, RULES_YEAR);
 const capCents = PRO_LOOKUP(`cap.amount_${RULES_YEAR}`)! * money.CENTS_PER_DOLLAR;
 const proRules = contracts.ruleSetFor(binding, 'pro');
