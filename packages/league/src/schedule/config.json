@@ -1,0 +1,514 @@
+{
+  "$comment": "G-13 schedule numbers. The league lint bans numeric literals in .ts, so every number lives here. Each block names its bible leaf and status. 'fact' entries quote the bible's status line (sources in /mnt/project-files/research/audit-r-schedule-patterns.md and audit-r-schedule-tiebreak-playoffs.md); 'assumption' entries are design choices with no real-world number behind them. Rule values move to the rule set (RULE_KEYS in params.ts) when G-10 adds the league rule files.",
+  "time": {
+    "daysPerWeek": 7,
+    "minutesPerHour": 60,
+    "minutesPerDay": 1440,
+    "$basis": "arithmetic"
+  },
+  "pro": {
+    "$leaf": "C2.1.1, C2.2.1",
+    "structure": {
+      "conferences": 2,
+      "divisionsPerConference": 4,
+      "clubsPerDivision": 4,
+      "gamesPerClub": 17,
+      "divisionGames": 6,
+      "intraRotationGames": 4,
+      "interRotationGames": 4,
+      "intraPlaceGames": 2,
+      "extraGames": 1,
+      "leagueGames": 272,
+      "$status": "17 games and the 6/4/4/2/1 split: Verified (C2.1.1). 272 is the arithmetic total (C2.1.1 acceptance 2)."
+    },
+    "rotation": {
+      "baseYear": 2026,
+      "intraCycle": 3,
+      "interCycle": 4,
+      "extraCycle": 4,
+      "intraMatchings": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      ],
+      "interOffsets": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "extraOffsetFromInter": 2,
+      "extraHostConferenceIndexByYearParity": {
+        "even": 1,
+        "odd": 0
+      },
+      "$status": "Cycle lengths 3/4/4: Verified (C2.1.1). The 17th game matched by prior-year rank: Verified. Conferences alternate the ninth home game, NFC (second conference here) hosting in even years: Verified. The tables themselves: any table satisfying the cycles (C2.1.1 rules, open question answered by the bible: clubs are fictional). 'The 17th-game division is the one played in full two seasons earlier' (offset 2): 1 of 3, used as the starting table."
+    },
+    "weeks": {
+      "count": 18,
+      "byeWindowFirst": 5,
+      "byeWindowLast": 14,
+      "noByeWeeksByYear": {
+        "2026": [
+          12
+        ],
+        "default": [
+          12
+        ]
+      },
+      "maxByeClubsPerWeek": 6,
+      "maxExtraEmptyByeWeeks": 1,
+      "maxConsecutiveSameSite": 3,
+      "finalWeekDivisionOnly": true,
+      "$status": "18 weeks, one bye: Verified. Window 5-14: Verified 2025-2026. Thanksgiving week (12 in 2026) has no byes: Verified for 2026, reason 1 of 3. 0/2/4/6 clubs per bye week and one other empty week allowed: C2.2.1 rule 2 (2026 spread 2,4,4,4,2,4,6,0,4,2). Cap of 3 straight road or home games: C2.2.1 rule 3. Final week all division games: 2 of 3."
+    },
+    "soft": {
+      "road3TargetMinClubs": 2,
+      "road3TargetMaxClubs": 4,
+      "offByeSoftMax": 2,
+      "offByeHardMax": 4,
+      "divisionLateWindowWeeks": 5,
+      "divisionLateMinGames": 2,
+      "$status": "Three-game road trips happen to 2 to 4 clubs a season (three in 2026, 15 over the four seasons before): practice Verified, counts 1 of 3. The band is enforced in both directions because this solver lacks the stadium-availability and broadcast constraints that force those trips in real seasons, and Marlon asked for the real pattern. Off-bye opponents: soft above 2, hard ceiling 4 (2026 maximum): 2 of 3. Two division games in the last five weeks: C2.2.1 soft constraint (assumption)."
+    },
+    "solver": {
+      "hardWeight": 1000,
+      "road3Weight": 20,
+      "offByeWeight": 10,
+      "divisionLateWeight": 5,
+      "internationalByeWeight": 1000,
+      "internationalNextHomeWeight": 3,
+      "lateAcceptanceLength": 60,
+      "maxIterations": 60000,
+      "restarts": 50,
+      "$basis": "assumption: search weights and budgets (C2.2.1 method: randomised construction, swap moves, restart with the next sub-seed, relax rule 3 after 50 failures) A three-game-road-trip count outside the 2 to 4 band is scored as hard, inside it the solver aims at a target drawn in the band."
+    }
+  },
+  "slots": {
+    "$leaf": "C2.3.1",
+    "days": {
+      "wed": -4,
+      "thu": -3,
+      "fri": -2,
+      "sat": -1,
+      "sun": 0,
+      "mon": 1
+    },
+    "kickoffEtMinutes": {
+      "thursday_night": 1215,
+      "sunday_early": 780,
+      "sunday_late": 985,
+      "sunday_night": 1220,
+      "monday_night": 1215,
+      "saturday": 990,
+      "saturday_night": 1215,
+      "holiday_early": 780,
+      "holiday_late": 990,
+      "holiday_night": 1220,
+      "opener_night": 1220,
+      "international_morning": 570
+    },
+    "thursdayFirstWeek": 2,
+    "thursdayLastWeek": 17,
+    "sundayNightLastWeek": 17,
+    "mondayNightLastWeek": 17,
+    "sundayLateMin": 3,
+    "sundayLateMax": 5,
+    "saturdayGamesByWeek": {
+      "15": 2,
+      "16": 1,
+      "17": 2
+    },
+    "maxShortWeekThursdays": 2,
+    "maxNationalGames": 7,
+    "minRestDays": 3,
+    "thursdayMaxZoneSpan": 2,
+    "noEarlyZones": [
+      "America/Los_Angeles"
+    ],
+    "byYear": {
+      "2026": {
+        "week1": [
+          {
+            "day": "wed",
+            "slot": "opener_night",
+            "kind": "opener"
+          },
+          {
+            "day": "fri",
+            "slot": "international_morning",
+            "kind": "international"
+          }
+        ],
+        "holidays": [
+          {
+            "week": 12,
+            "day": "wed",
+            "slot": "holiday_night",
+            "count": 1
+          },
+          {
+            "week": 12,
+            "day": "thu",
+            "slot": "holiday_early",
+            "count": 1
+          },
+          {
+            "week": 12,
+            "day": "thu",
+            "slot": "holiday_late",
+            "count": 1
+          },
+          {
+            "week": 12,
+            "day": "thu",
+            "slot": "holiday_night",
+            "count": 1
+          },
+          {
+            "week": 12,
+            "day": "fri",
+            "slot": "holiday_late",
+            "count": 1
+          },
+          {
+            "week": 16,
+            "day": "fri",
+            "slot": "holiday_late",
+            "count": 1
+          },
+          {
+            "week": 16,
+            "day": "fri",
+            "slot": "holiday_night",
+            "count": 1
+          }
+        ]
+      },
+      "default": {
+        "week1": [
+          {
+            "day": "thu",
+            "slot": "opener_night",
+            "kind": "opener"
+          }
+        ],
+        "holidays": [
+          {
+            "week": 12,
+            "day": "thu",
+            "slot": "holiday_early",
+            "count": 1
+          },
+          {
+            "week": 12,
+            "day": "thu",
+            "slot": "holiday_late",
+            "count": 1
+          },
+          {
+            "week": 12,
+            "day": "thu",
+            "slot": "holiday_night",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "attractiveness": {
+      "winWeight": 1,
+      "marketWeight": 1,
+      "starWeight": 1,
+      "usagePenalty": 0.25,
+      "pickPower": 10,
+      "$basis": "assumption: C2.3.1 names the inputs (last season's wins, market tier, stars) and the 0 to 7 range, not a formula. pickPower 10 and usagePenalty 0.25, with the two least attractive clubs kept off night slots, were tuned so generated seasons show 2 to 8 clubs with no night game (mean about 4) and 5 to 10 with six or more, against 2026's five and eight (2 of 3)."
+    },
+    "saturdayWeeksStatus": "Saturday games in late-season weeks: C2.3.1 slot table; the per-week counts are an assumption. 2026 week 1 (Wednesday opener, Friday game in Australia): 2 of 3. 2026 holiday games (Thanksgiving eve, tripleheader, Black Friday in week 12; two Christmas Day games in week 16, a Friday): 1 of 3. Short-week Thursday cap 2: Verified. National cap 7, floor 0: 2 of 3. Thursday within two time zones: 1 of 3. Pacific home games never early: C2.3.1 rule.",
+    "mondayRoadNextWeight": 5,
+    "thursdayZoneWeight": 3,
+    "kickoffStatus": "Slot times: Unverified (general knowledge, C2.3.1 says all are starting values). sunday_late uses 4:25 p.m. The international morning time (9:30 a.m. ET) is an assumption.",
+    "noPrimeTimeLeastAttractive": 2,
+    "noPrimeTimeStatus": "The two least attractive clubs get no night game: the C2.3.1 acceptance wants 2 to 8 clubs a season with none (2026 had five, 2 of 3); the weighted draw alone sometimes left only one. Assumption."
+  },
+  "zones": {
+    "$leaf": "C2.3.2",
+    "$status": "Standard-time UTC offsets in hours from the IANA time zone database (tzdata zone lines for each name). Daylight time shifts every US zone that observes it by the same hour, so zone differences hold; America/Phoenix does not observe daylight time, and the one-hour difference that opens in summer is ignored here (assumption, noted in DECISIONS).",
+    "utcOffsetHours": {
+      "America/New_York": -5,
+      "America/Detroit": -5,
+      "America/Indiana/Indianapolis": -5,
+      "America/Chicago": -6,
+      "America/Denver": -7,
+      "America/Boise": -7,
+      "America/Phoenix": -7,
+      "America/Los_Angeles": -8,
+      "Europe/London": 0,
+      "Europe/Berlin": 1,
+      "Europe/Madrid": 1,
+      "Europe/Paris": 1,
+      "America/Mexico_City": -6,
+      "America/Sao_Paulo": -3,
+      "Australia/Melbourne": 10
+    },
+    "easternZone": "America/New_York",
+    "zonesPerDayOnSite": 1
+  },
+  "international": {
+    "$leaf": "C2.4.1",
+    "gamesByYear": {
+      "2026": 9,
+      "default": 9
+    },
+    "firstWeek": 1,
+    "lastWeek": 13,
+    "byeProbability": {
+      "europe": 0.5,
+      "australia": 0.5,
+      "mexico": 0.3,
+      "south_america": 0.3
+    },
+    "venues": [
+      {
+        "id": "neutral.intl.london",
+        "region": "europe",
+        "zone": "Europe/London"
+      },
+      {
+        "id": "neutral.intl.berlin",
+        "region": "europe",
+        "zone": "Europe/Berlin"
+      },
+      {
+        "id": "neutral.intl.madrid",
+        "region": "europe",
+        "zone": "Europe/Madrid"
+      },
+      {
+        "id": "neutral.intl.paris",
+        "region": "europe",
+        "zone": "Europe/Paris"
+      },
+      {
+        "id": "neutral.intl.mexico",
+        "region": "mexico",
+        "zone": "America/Mexico_City"
+      },
+      {
+        "id": "neutral.intl.saopaulo",
+        "region": "south_america",
+        "zone": "America/Sao_Paulo"
+      },
+      {
+        "id": "neutral.intl.melbourne",
+        "region": "australia",
+        "zone": "Australia/Melbourne"
+      }
+    ],
+    "venueGamesByYear": {
+      "2026": {
+        "neutral.intl.london": 3,
+        "neutral.intl.berlin": 1,
+        "neutral.intl.madrid": 1,
+        "neutral.intl.paris": 1,
+        "neutral.intl.mexico": 1,
+        "neutral.intl.saopaulo": 1,
+        "neutral.intl.melbourne": 1
+      },
+      "default": {
+        "neutral.intl.london": 3,
+        "neutral.intl.berlin": 1,
+        "neutral.intl.madrid": 1,
+        "neutral.intl.paris": 1,
+        "neutral.intl.mexico": 1,
+        "neutral.intl.saopaulo": 1,
+        "neutral.intl.melbourne": 1
+      }
+    },
+    "week1VenueByYear": {
+      "2026": "neutral.intl.melbourne"
+    },
+    "$status": "Nine games in 2026: 1 of 3. Week 1 Friday game in Australia in 2026: 2 of 3. The bye after is the club's choice: Verified; 0.5 and 0.3: Assumption. Designated home clubs from the conference with nine home games: Unverified (C2.4.1). The split across cities is an assumption: the bible gives the count, not the cities. Venue ids are generic placeholders until C1.3.1 neutral venues exist as world data."
+  },
+  "preseason": {
+    "$leaf": "C2.5.1",
+    "games": 3,
+    "homeGamesHostConference": 1,
+    "homeGamesOtherConference": 2,
+    "avoidRegularWeeks": 2,
+    "jointPracticeKm": 1500,
+    "$status": "Three games: 1 of 3. 1 home for the nine-home conference, 2 for the other: 1 of 3. Not the Week 1 or Week 2 opponent: starting rule. 1,500 km joint-practice radius: starting value. The same-conference step (200 km per failed attempt) and the 2-opt budget are search settings (assumption).",
+    "sameConferenceStepKm": 200,
+    "matchIterations": 4000
+  },
+  "flex": {
+    "$leaf": "C2.3.3",
+    "sundayNight": {
+      "limitedFirst": 5,
+      "limitedLast": 10,
+      "limitedMax": 2,
+      "openFirst": 11,
+      "openLast": 17,
+      "noticeEarlyDays": 12,
+      "noticeEarlyLastWeek": 13,
+      "noticeLateDays": 6
+    },
+    "mondayNight": {
+      "first": 12,
+      "last": 17,
+      "noticeDays": 12
+    },
+    "thursdayNight": {
+      "first": 13,
+      "last": 17,
+      "max": 2,
+      "noticeDays": 21
+    },
+    "minDaysBetweenGames": 6,
+    "week18SaturdayGames": 3,
+    "$status": "2026 flex windows and notice: Verified. Only Sunday afternoon or TBD games move into a night slot: 2 of 3. Three week-18 Saturday games: 2 of 3 (one outlet says two). The six-day floor: Assumption."
+  },
+  "geo": {
+    "$basis": "Earth mean radius rounded to 6,371 km (used only to rank proximity and for the 1,500 km joint-practice test, so a kilometre of error does not matter: assumption-level precision); cosine by a six-term Taylor series in radians (no platform transcendental math, P1.1.1), error under 1e-6 for latitudes up to 60 degrees.",
+    "earthRadiusKm": 6371,
+    "degToRad": 0.017453292519943295,
+    "cosTaylor": [
+      1,
+      -0.5,
+      0.041666666666666664,
+      -0.001388888888888889,
+      2.48015873015873e-05,
+      -2.755731922398589e-07
+    ]
+  },
+  "college": {
+    "$leaf": "T3.1.1, T3.1.2",
+    "gamesByLevel": {
+      "college_top": 12,
+      "college_second": 11
+    },
+    "conferenceGamesByTier": {
+      "power": 9,
+      "other": 8,
+      "second": 8
+    },
+    "conferenceGamesOverride": {},
+    "maxProtected": 3,
+    "weeksByYear": {
+      "2026": 14,
+      "2027": 14,
+      "default": 14
+    },
+    "optionalFirstWeekByYear": {
+      "2026": true,
+      "default": false
+    },
+    "firstWeekPenalty": 30,
+    "secondSubdivisionGameRate": 0.94,
+    "secondSubdivisionMaxTopGames": 2,
+    "powerOpponentRule": {
+      "minGames": 10,
+      "conferences": [
+        "conf.c02",
+        "conf.c03",
+        "conf.c04"
+      ],
+      "countingIndependents": [
+        "school.alderbury"
+      ]
+    },
+    "qualifyingStandard": {
+      "fromYear": 2027,
+      "minGames": 10
+    },
+    "neutralShare": 0.025,
+    "rotationStaleCap": 6,
+    "rotationIterations": 20000,
+    "fillIterations": 4000,
+    "weekPrefs": {
+      "nonConferenceEarlyLast": 4,
+      "conferenceFirst": 4,
+      "lateNonConferenceShare": 0.2,
+      "protectedFinalWeek": true,
+      "wrongPhasePenalty": 4,
+      "rivalryWeekPenalty": 2,
+      "adjacentOpenPenalty": 1
+    },
+    "$status": "12 games: 2 of 3. Conference counts 2026: SEC 9, Big Ten 9, Big 12 9 Verified; ACC 9 for 16 and 8 for one 2 of 3 (an odd-sized nine-game conference leaves one school at eight, handled by parity). Other conferences 8 and second-subdivision 8: Unverified, assumption (T3.1.1 open question). Second-subdivision season length 11: assumption (the bible gives no number). Up to 3 protected annual opponents: SEC example (2 of 3). 0.94 lower-subdivision games per team-season: 1 of 3 (own count), acceptance band 0.8 to 1.1. 10-power-opponent rule for three of the four power conferences (fictional c02, c03, c04 stand in for SEC, ACC, Big 12; c01 for the Big Ten, which has none): Verified SEC, 2 of 3 ACC, 1 of 3 Big Ten. Which independent counts as a power opponent (Notre Dame counts): the choice of school.alderbury is an assumption. Neutral share 2.5%: 1 of 3. 14 weeks (12 games and two open weeks; 2026's early week optional): T3.1.1 rule 4 and T3.2.1, 2 of 3. Week preferences: assumption. Search settings (restarts, walk steps, nearest-candidate pool) and the 0.8 share of power-versus-other games hosted by the power program are assumptions; T3.1.2 reports the home side wins 66.7% of such games 'because the stronger team usually hosts' (1 of 3). A second-subdivision team may end one game short of its target when the pairing parity leaves it without a partner (minimum 10, assumption).",
+    "topLevel": "college_top",
+    "secondLevel": "college_second",
+    "restarts": 50,
+    "walkSteps": 2000,
+    "nearestCandidates": 8,
+    "secondSubdivisionMinGames": 10,
+    "powerHostsOtherShare": 0.8,
+    "protectedAlternationWeight": 4,
+    "rotationLevelTries": 8
+  },
+  "weekTypes": {
+    "$leaf": "C2.2.2",
+    "$basis": "arithmetic table from C2.2.2; 12 days is not in the table and is tagged mini_bye (DECISIONS)",
+    "bands": [
+      {
+        "maxDays": 2,
+        "tag": "illegal"
+      },
+      {
+        "maxDays": 4,
+        "tag": "short"
+      },
+      {
+        "maxDays": 5,
+        "tag": "short_mild"
+      },
+      {
+        "maxDays": 6,
+        "tag": "normal_minus_one"
+      },
+      {
+        "maxDays": 7,
+        "tag": "normal"
+      },
+      {
+        "maxDays": 8,
+        "tag": "long"
+      },
+      {
+        "maxDays": 12,
+        "tag": "mini_bye"
+      }
+    ],
+    "beyond": "bye"
+  },
+  "report": {
+    "$leaf": "C2.6.1",
+    "stretchGames": 4,
+    "$basis": "C2.6.1 rolling four-game stretch"
+  }
+}

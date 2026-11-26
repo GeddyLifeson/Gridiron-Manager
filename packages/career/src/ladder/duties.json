@@ -1,0 +1,546 @@
+{
+ "version": "g55.1",
+ "leaf": "S3.1.1 to S3.7.1",
+ "numbersBasis": "Due slots follow the H1.1.1 default week; hoursEst and due times are module starting values (Assumption), not real-world facts.",
+ "duties": [
+  {
+   "id": "duty:S3.2.1",
+   "title": "Practice charting",
+   "leaf": "S3.2.1",
+   "family": "practice_support",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "practice-chart",
+   "cadence": "daily",
+   "due": {
+    "day": "G-4",
+    "time": "15:00"
+   },
+   "hoursEst": 2,
+   "grader": "truth",
+   "consumer": "H3 practice plan, N1 film",
+   "kind": "chart",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.2.2",
+   "title": "Holding cards and signalling",
+   "leaf": "S3.2.2",
+   "family": "practice_support",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "signal-board",
+   "cadence": "daily",
+   "due": {
+    "day": "G-4",
+    "time": "15:00"
+   },
+   "hoursEst": 2,
+   "grader": "truth",
+   "consumer": "scout team, I2.1.1 relay",
+   "kind": "signal",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.2.3",
+   "title": "Video and equipment support",
+   "leaf": "S3.2.3",
+   "family": "practice_support",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "video-labels",
+   "cadence": "daily",
+   "due": {
+    "day": "G-4",
+    "time": "17:00"
+   },
+   "hoursEst": 3,
+   "grader": "truth",
+   "consumer": "N1 film, S3.5.3 grading",
+   "kind": "video",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.3.1",
+   "title": "Opponent film breakdown",
+   "leaf": "S3.3.1",
+   "family": "film_tagging",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "film-tagger",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-5",
+    "time": "08:00"
+   },
+   "hoursEst": 10,
+   "grader": "truth",
+   "consumer": "H2.3 tendency tables, K3",
+   "kind": "tagging",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.3.2",
+   "title": "Scout cards",
+   "leaf": "S3.3.2",
+   "family": "scout",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "card-designer",
+   "cadence": "daily",
+   "due": {
+    "day": "G-5",
+    "time": "22:00"
+   },
+   "hoursEst": 4,
+   "grader": "mixed",
+   "consumer": "scout team, D9 readiness",
+   "kind": "cards",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.3.3",
+   "title": "Running the scout team",
+   "leaf": "S3.3.3",
+   "family": "scout",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "scout-period",
+   "cadence": "daily",
+   "due": {
+    "day": "G-4",
+    "time": "15:00"
+   },
+   "hoursEst": 2,
+   "grader": "mixed",
+   "consumer": "starters, D9 readiness",
+   "kind": "scout_team",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.3.4",
+   "title": "Assisting a position and staying enrolled",
+   "leaf": "S3.3.4",
+   "family": "drills",
+   "levels": [
+    "college"
+   ],
+   "tool": "ga-term",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-4",
+    "time": "14:00"
+   },
+   "hoursEst": 8,
+   "grader": "boss",
+   "consumer": "position coach, T5 standing",
+   "kind": "enrolment",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.4.1",
+   "title": "Opponent tendency report",
+   "leaf": "S3.4.1",
+   "family": "reports",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "report-builder",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-5",
+    "time": "18:00"
+   },
+   "hoursEst": 8,
+   "grader": "mixed",
+   "consumer": "G6 game plan, K3",
+   "kind": "tendency",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.4.2",
+   "title": "Self-scout report",
+   "leaf": "S3.4.2",
+   "family": "reports",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "report-builder",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-6",
+    "time": "16:00"
+   },
+   "hoursEst": 4,
+   "grader": "truth",
+   "consumer": "G8 self-scout, coordinator",
+   "kind": "self_scout",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.4.3",
+   "title": "Cut-ups and teaching tape",
+   "leaf": "S3.4.3",
+   "family": "reports",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "cutup-builder",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-5",
+    "time": "20:00"
+   },
+   "hoursEst": 3,
+   "grader": "mixed",
+   "consumer": "H4 meetings, D9",
+   "kind": "reel",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.4.4",
+   "title": "Game-management charts and live advice",
+   "leaf": "S3.4.4",
+   "family": "game_management",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "gm-charts",
+   "cadence": "per_game",
+   "due": {
+    "day": "G-2",
+    "time": "12:00"
+   },
+   "hoursEst": 4,
+   "grader": "truth",
+   "consumer": "I5 head coach",
+   "kind": "advice",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.4.5",
+   "title": "Playbook drawings, install sheets, and practice scripts",
+   "leaf": "S3.4.5",
+   "family": "install_drawings",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "play-designer",
+   "cadence": "daily",
+   "due": {
+    "day": "G-5",
+    "time": "16:00"
+   },
+   "hoursEst": 4,
+   "grader": "mixed",
+   "consumer": "G5 install, H3 script",
+   "kind": "drawings",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.5.1",
+   "title": "Individual periods and drill design",
+   "leaf": "S3.5.1",
+   "family": "drills",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "drill-planner",
+   "cadence": "daily",
+   "due": {
+    "day": "G-4",
+    "time": "07:00"
+   },
+   "hoursEst": 2,
+   "grader": "outcome",
+   "consumer": "D3 technique growth",
+   "kind": "drills",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.5.2",
+   "title": "The position meeting",
+   "leaf": "S3.5.2",
+   "family": "position_meeting",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "meeting-builder",
+   "cadence": "daily",
+   "due": {
+    "day": "G-4",
+    "time": "10:00"
+   },
+   "hoursEst": 2,
+   "grader": "mixed",
+   "consumer": "D9 knowledge, H4",
+   "kind": "meeting",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.5.3",
+   "title": "Grading every snap",
+   "leaf": "S3.5.3",
+   "family": "player_grades",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "snap-grader",
+   "cadence": "per_game",
+   "due": {
+    "day": "G-6",
+    "time": "09:00"
+   },
+   "hoursEst": 4,
+   "grader": "truth",
+   "consumer": "coordinator, M2 depth chart",
+   "kind": "snap_grades",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.5.4",
+   "title": "Depth chart, substitution, and his players",
+   "leaf": "S3.5.4",
+   "family": "depth_chart",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "depth-chart",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-2",
+    "time": "16:00"
+   },
+   "hoursEst": 2,
+   "grader": "outcome",
+   "consumer": "coordinator, M2",
+   "kind": "depth",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.5.5",
+   "title": "Recruiting area",
+   "leaf": "S3.5.5",
+   "family": "recruiting",
+   "levels": [
+    "college"
+   ],
+   "tool": "recruiting-board",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-5",
+    "time": "19:00"
+   },
+   "hoursEst": 6,
+   "grader": "outcome",
+   "consumer": "T4 recruiting",
+   "kind": "recruiting",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.5.6",
+   "title": "His players off the field",
+   "leaf": "S3.5.6",
+   "family": "academics_conduct",
+   "levels": [
+    "college"
+   ],
+   "tool": "room-standing",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-6",
+    "time": "15:00"
+   },
+   "hoursEst": 2,
+   "grader": "outcome",
+   "consumer": "head coach, T5.3.1",
+   "kind": "academics",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.5.7",
+   "title": "Personnel reports for the front office",
+   "leaf": "S3.5.7",
+   "family": "personnel_reports",
+   "levels": [
+    "pro"
+   ],
+   "tool": "personnel-report",
+   "cadence": "per_request",
+   "due": {
+    "day": "G-5",
+    "time": "17:00"
+   },
+   "hoursEst": 3,
+   "grader": "outcome",
+   "consumer": "holder of roster say (L5.2.1)",
+   "kind": "personnel",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.6.1",
+   "title": "Owning a slice of the plan",
+   "leaf": "S3.6.1",
+   "family": "plan_slice",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "game-plan-builder",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-4",
+    "time": "18:00"
+   },
+   "hoursEst": 8,
+   "grader": "mixed",
+   "consumer": "G6 game plan, G7 call sheet",
+   "kind": "plan_slice",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.6.2",
+   "title": "Running a side of the ball",
+   "leaf": "S3.6.2",
+   "family": "side_plan",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "game-plan-builder",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-2",
+    "time": "18:00"
+   },
+   "hoursEst": 30,
+   "grader": "outcome",
+   "consumer": "the head coach, I2 to I4",
+   "kind": "side_plan",
+   "leadsFamilies": true
+  },
+  {
+   "id": "duty:S3.6.2#play_calling",
+   "title": "Calling plays for his side",
+   "leaf": "S3.6.2",
+   "family": "play_calling",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "call-screen",
+   "cadence": "per_game",
+   "due": {
+    "day": "G",
+    "time": "12:00"
+   },
+   "hoursEst": 4,
+   "grader": "outcome",
+   "consumer": "the game (I2, I3, I4)",
+   "kind": "play_calling",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.6.2#staff",
+   "title": "Managing his side's staff",
+   "leaf": "S3.6.2",
+   "family": "staff_management",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "staff-board",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-6",
+    "time": "11:00"
+   },
+   "hoursEst": 3,
+   "grader": "boss",
+   "consumer": "his assistants (L4)",
+   "kind": "staff",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.6.2#hiring",
+   "title": "Hiring and dismissal on his side",
+   "leaf": "S3.6.2",
+   "family": "staff_hiring",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "staff-hiring",
+   "cadence": "seasonal",
+   "due": null,
+   "hoursEst": 0,
+   "grader": "outcome",
+   "consumer": "head coach (L4.2.2)",
+   "kind": "hiring",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.6.3",
+   "title": "The coordinator's duties outside the plan",
+   "leaf": "S3.6.3",
+   "family": "coordinator_public",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "media-session",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-3",
+    "time": "12:00"
+   },
+   "hoursEst": 2,
+   "grader": "boss",
+   "consumer": "media (H7), job market (E2)",
+   "kind": "public",
+   "leadsFamilies": false
+  },
+  {
+   "id": "duty:S3.7.1",
+   "title": "The whole program",
+   "leaf": "S3.7.1",
+   "family": "whole_program",
+   "levels": [
+    "college",
+    "pro"
+   ],
+   "tool": "program-home",
+   "cadence": "weekly",
+   "due": {
+    "day": "G-6",
+    "time": "07:00"
+   },
+   "hoursEst": 0,
+   "grader": "outcome",
+   "consumer": "owner, AD or GM (L5)",
+   "kind": "program",
+   "leadsFamilies": true
+  }
+ ]
+}

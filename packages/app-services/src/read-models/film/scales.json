@@ -1,0 +1,8 @@
+{
+  "$comment": "Grade display tables (N1.4.2). Display data only: changing the scale never changes a stored grade. All cut points are Assumption (design) except the assignment-percentage tiers, which are params film.tier.* (SI 2014, 1 of 3, PROVISIONAL).",
+  "decimal": { "points": [[-2, 5.0], [-0.5, 6.0], [0.25, 7.0], [0.75, 8.0], [1, 9.0]], "digits": 1 },
+  "hundred": { "points": [[-2, 0], [1, 100]], "digits": 0 },
+  "letter": { "onDecimal": [[8.5, "A"], [7.5, "B"], [6.5, "C"], [6.0, "D"], [5.0, "F"]] },
+  "tiers": { "onDecimal": [[8.0, "starter"], [7.0, "situational"], [6.5, "role player"], [5.0, "backup"]] },
+  "assignmentWords": { "best": "best-player level", "average": "average", "trouble": "in trouble" }
+}

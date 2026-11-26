@@ -5567,6 +5567,858 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-league-0168",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Restricted free agent tender: at least 110 percent of the prior-year Paragraph 5 Salary.",
+   "value": 110,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 2(b)(i)(2)-(4) (text copy cba_2020.txt, line 2910)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "110% of the player’s prior year’s Paragraph 5 Salary, whichever is greater",
+     "value": 110
+    },
+    {
+     "citation": "NFL.com, 2022 NFL free agency glossary: All the terms you need to know (https://www.nfl.com/news/2022-nfl-free-agency-glossary-all-the-terms-you-need-to-know)",
+     "locator": "RFA tender levels (text copy nfl-com--free-agency-glossary-2022.txt, line 38)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "(b) 110 percent of the player's prior-year base salary",
+     "value": 110
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). NFL.com glossary (2022) states the same 110 percent for each tender level.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0169",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Unrestricted free agent tender to keep rights: one-year contract of at least 110 percent of prior-year salary.",
+   "value": 110,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 1(b)(i) (text copy cba_2020.txt, line 2817)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Contract of at least 110% of either (a) his Prior Year Salary",
+     "value": 110
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0170",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The prior club has 5 days after receiving an offer sheet to match it.",
+   "value": 5,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 3(a) (text copy cba_2020.txt, line 3064)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "within five days from the date it receives the Offer Sheet",
+     "value": 5
+    },
+    {
+     "citation": "NFL.com, 2022 NFL free agency glossary: All the terms you need to know (https://www.nfl.com/news/2022-nfl-free-agency-glossary-all-the-terms-you-need-to-know)",
+     "locator": "Franchise tag section (text copy nfl-com--free-agency-glossary-2022.txt, line 82)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "the player's previous team has five days to match the offer sheet",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0171",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A match notice must come no later than one day before the draft.",
+   "value": 1,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 3(b) (text copy cba_2020.txt, line 3068)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "but not later than one day before the Draft (unless the parties agree otherwise)",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0172",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Draft compensation is due in the next draft if the offer sheet is received later than two days before this year's draft.",
+   "value": 2,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 2(j) (text copy cba_2020.txt, line 3038)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "unless the Offer Sheet is received by the Prior Club later than two days before",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0173",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Unsigned tendered rights end at 4 p.m. New York time on the Tuesday after the tenth week of the regular season.",
+   "value": 10,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 2(f)(ii) (text copy cba_2020.txt, line 1407)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "by the Tuesday following the tenth week of the regular season, at 4:00pm New York time",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0174",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Club-performance incentives in an offer sheet that must be matched may not exceed 15 percent of the offer sheet salary.",
+   "value": 15,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 3(e)(i) (text copy cba_2020.txt, line 3117)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "such incentives may not exceed 15% of the Salary in the Offer Sheet",
+     "value": 15
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0175",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A club that matches an offer sheet may not trade the player to the offering club for at least one calendar year without his consent.",
+   "value": 1,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 9 Section 3(h) (text copy cba_2020.txt, line 3167)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "for at least one calendar year, unless the player consents to such trade",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0176",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp absence fine per day, veteran under contract, 2026: $60,000 (mandatory).",
+   "value": 60000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 11999)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$50,000 $50,000 $50,000 $50,000 $60,000 $60,000 $60,000 $60,000 $60,000",
+     "value": 60000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0177",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp absence fine per day, unrestricted free agent signee, 2026: $60,000 plus one week of Paragraph 5 salary per preseason game missed.",
+   "value": 60000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(vii) and Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 11999)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$50,000 $50,000 $50,000 $50,000 $60,000 $60,000 $60,000 $60,000 $60,000",
+     "value": 60000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0178",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp absence fine per day, drafted or undrafted rookie, 2026: $45,000.",
+   "value": 45000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12024)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$40,000 $40,000 $40,000 $40,000 $45,000 $45,000 $45,000 $45,000 $45,000",
+     "value": 45000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0179",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp absence fine per day, fifth-year option player, 2026 to 2030: $45,000 plus one week of regular season salary per preseason game missed.",
+   "value": 45000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(h)(i) (text copy cba_2020.txt, line 2697)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a fine of $40,000 per day for the 2020-2025 League Years and $45,000 per day for the 2026-2030 League Years, plus one week’s regular season salary for each preseason game missed",
+     "value": 45000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0180",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "veteran camp absence fine is mandatory: the club cannot reduce or waive it.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(vi) (text copy cba_2020.txt, line 11805)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "any such fines shall be mandatory, and shall not be reduced in amount or waived by the Club, in whole or in part",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Rookie and option-year fines carry no \"mandatory\" wording in the CBA, so no waivable value is given for them (the request asked for true; that needs a second source).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0181",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "ufa_signee camp absence fine is mandatory: the club cannot reduce or waive it.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(vii) (text copy cba_2020.txt, line 11805)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "any such fines shall be mandatory, and shall not be reduced in amount or waived by the Club, in whole or in part",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Rookie and option-year fines carry no \"mandatory\" wording in the CBA, so no waivable value is given for them (the request asked for true; that needs a second source).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0182",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "An unrestricted free agent signee absent from camp also owes one week of Paragraph 5 salary for each preseason game missed.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 42 Section 1(b)(vii) (text copy cba_2020.txt, line 11818)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "plus one week’s Paragraph 5 Salary for each preseason game missed",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0183",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A fifth-year option player absent from camp also owes one week of regular season salary for each preseason game missed.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 7 Section 7(h)(i) (text copy cba_2020.txt, line 2698)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "plus one week’s regular season salary for each preseason game missed",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0184",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 fine for unexcused mandatory minicamp absence, day1: $17,986.",
+   "value": 17986,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12031)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$15,980 $16,459 $16,953 $17,462 $17,986 $18,526 $19,082 $19,654 $20,244",
+     "value": 17986
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0185",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 fine for unexcused mandatory minicamp absence, day2: $35,973.",
+   "value": 35973,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12035)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$31,961 $32,920 $33,908 $34,925 $35,973 $37,052 $38,164 $39,309 $40,488",
+     "value": 35973
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0186",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Largest 2026 fine for unexcused mandatory minicamp absence, day3: $53,952.",
+   "value": 53952,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Exhibit A to Article 42 (2026 column) (text copy cba_2020.txt, line 12039)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "$47,936 $49,374 $50,855 $52,381 $53,952 $55,571 $57,238 $58,955 $60,724",
+     "value": 53952
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0187",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A player who misses five days or less of training camp may not be subject to forfeiture.",
+   "value": 5,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 4 Section 9(a)(i) (text copy cba_2020.txt, line 1196)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "A player who misses five days or less of training camp may not be subject to forfeiture",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Maximum permitted forfeiture; no player or club is obliged to agree to any.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0188",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp absence of six preseason days: up to 15 percent of forfeitable salary allocations.",
+   "value": 0.15,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 4 Section 9(a)(i) (text copy cba_2020.txt, line 1193)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the player may be required to forfeit up to 15% of his Forfeitable Salary Allocations",
+     "value": 0.15
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Maximum permitted forfeiture; no player or club is obliged to agree to any.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0189",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Each further camp day adds up to 1 percent.",
+   "value": 0.01,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 4 Section 9(a)(i) (text copy cba_2020.txt, line 1194)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "and up to an additional 1% of his Forfeitable Salary Allocations for each additional preseason day missed",
+     "value": 0.01
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Maximum permitted forfeiture; no player or club is obliged to agree to any.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0190",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp forfeiture is capped at 25 percent.",
+   "value": 0.25,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 4 Section 9(a)(i) (text copy cba_2020.txt, line 1196)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "up to a maximum of 25% of his Forfeitable Salary Allocations",
+     "value": 0.25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Maximum permitted forfeiture; no player or club is obliged to agree to any.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0191",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Absence that continues into the season: a further 25 percent of the remainder on missing the first regular season game.",
+   "value": 0.25,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 4 Section 9(a)(ii) (text copy cba_2020.txt, line 1200)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the player may be required to forfeit an additional 25% of the remaining Forfeitable Salary Allocations upon missing the first regular season game",
+     "value": 0.25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Maximum permitted forfeiture; no player or club is obliged to agree to any.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0192",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Weekly forfeiture of the remainder starts after the fourth week of the regular season.",
+   "value": 4,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 4 Section 9(a)(ii) (text copy cba_2020.txt, line 1202)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "If such absence continues beyond the fourth week of the regular season",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Maximum permitted forfeiture; no player or club is obliged to agree to any.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0193",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Weekly forfeiture is one-seventeenth of the remainder per missed regular season week.",
+   "value": 17,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 4 Section 9(a)(ii) (text copy cba_2020.txt, line 1204)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "one-seventeenth for each missed regular season week after the fourth week",
+     "value": 17
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found). Maximum permitted forfeiture; no player or club is obliged to agree to any.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0194",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A player under contract who fails to report on his mandatory reporting date earns no accrued season for that league year (absent extreme personal hardship).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 8 Section 1(b) (text copy cba_2020.txt, line 2771)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "A player shall not receive an Accrued Season for any League Year in which the player is under contract to a Club and in which (i) he failed to report to the Club’s preseason training camp on that player’s mandatory reporting date",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020, executed copy, no later amendment found).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

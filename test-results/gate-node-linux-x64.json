@@ -3,8 +3,8 @@
   "platform": "node-linux-x64",
   "runtime": "node 22.23.5 (V8 12.4.254.21-node.57)",
   "ok": true,
-  "digest": "ebf3bf6b4fac3b84",
-  "goldenDigest": "ebf3bf6b4fac3b84",
+  "digest": "87c062f378d0dd7e",
+  "goldenDigest": "87c062f378d0dd7e",
   "mismatches": [],
   "workerChecks": {
     "pro_2026.season.workers1": "538da6ad86c79879",
@@ -20,5 +20,5 @@
     "college_2026.gamePlays": 3744,
     "college_2026.seasonPlays": 5224
   },
-  "seconds": 3.7
+  "seconds": 4.7
 }
