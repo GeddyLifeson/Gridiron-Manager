@@ -111,7 +111,7 @@ function leftHandOverrides(): KeyOverrides {
   o['console.offense|call.tempo_cycle'] = ['KeyZ'];
   o['console.offense|call.cadence_cycle'] = ['KeyW'];
   o['console.offense|call.relay_cycle'] = ['Shift+KeyW'];
-  o['console.offense|call.precommit_cycle'] = ['KeyD'];
+  o['console.offense|call.precommit_cycle'] = ['Shift+KeyZ'];
   return o;
 }
 
