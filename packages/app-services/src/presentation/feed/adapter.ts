@@ -9,6 +9,7 @@
 import type { CalledPlay, Environment, PlayByPlayRow, PlayOutcome, PlayRecord, PlayTruth, SeriesState, TrajectoryRecord } from '@gm/schema';
 import { registerBridge } from '../../observer/index.ts';
 import { publicEvents } from '../../read-models/film/chart.ts';
+import { FILM_TIE_ORDER } from '../../read-models/film/views.ts';
 import type { FilmSource, FilmSourceSlot } from '../../read-models/film/types.ts';
 import {
   FEED_FORMAT_VERSION, type CameraCue, type FeedCue, type KickCue, type PostHitCue, type FeedSide, type FeedSource, type PresentationFeed, type RulingCue, type RulingKind,
@@ -85,9 +86,9 @@ type Unnumbered<T> = T extends unknown ? Omit<T, 'seq'> : never;
 const other = (s: FeedSide): FeedSide => (s === 0 ? 1 : 0);
 
 /** Kind order inside one tick: pre-snap talk, camera events, contact, rulings last (a ruling follows the whistle). */
+// Film kinds take the film's own tie order, so the feed's camera cues and the film's events agree on one tick.
 const ORDER: Readonly<Record<FeedCue['kind'], number>> = {
-  relay: 0, cadence: 1, snap: 2, kick: 3, throw: 3, postHit: 4, kickLanding: 4, catch: 4, drop: 4, contact: 5, tackle: 6, fumble: 6,
-  outOfBounds: 6, flag: 7, whistle: 8, ruling: 9,
+  relay: 0, cadence: 1, kick: 3, postHit: 4, contact: 5, ruling: 9, ...FILM_TIE_ORDER,
 };
 
 /** Rulings from the called outcome, in the order a referee would signal them. */

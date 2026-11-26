@@ -6,6 +6,7 @@ import { possible, PROB_FLOOR, type PersonOrigin, type WorldDate } from '@gm/sch
 import { violationClass } from './catalogue.ts';
 import { P } from './params.ts';
 import { weeksBetween } from './dates.ts';
+import { someActorClassRow } from './log-index.ts';
 import type { ComplianceState, StreamFor } from './types.ts';
 
 /** An opportunity raised by the owning leaf (K2.8.2 inputs). */
@@ -56,8 +57,8 @@ export function decideViolation(
 ): { readonly commit: boolean; readonly score: number; readonly reason: DecisionReason } {
   if (d.origin === 'imported') return { commit: false, score: 0, reason: 'protected_person' };
   const score = violationScore(opp, d, extraPressure);
-  const recent = state.log.some((r) => r.actor.personId === d.personId && r.classId === opp.classId
-    && weeksBetween(r.date, date) >= 0 && weeksBetween(r.date, date) < P('cooldown_weeks'));
+  // The same test as `state.log.some(...)` over this person's rows of this class (the log index).
+  const recent = someActorClassRow(state.log, d.personId, opp.classId, (rd) => weeksBetween(rd, date) >= 0 && weeksBetween(rd, date) < P('cooldown_weeks'));
   if (score <= 0 || recent) {
     // A3.1 ruling 22: a person whose character says no, or who just did it, still might, with the
     // floor chance. Its own keyed draw, so the other conduct draws are unchanged.

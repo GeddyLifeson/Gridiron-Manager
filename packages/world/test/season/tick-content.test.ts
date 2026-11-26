@@ -7,7 +7,7 @@ import { resolveRuleSet } from '@gm/rules-data';
 import {
   DEFENSE_ROLES, OFFENSE_ROLES, UNIT_JERSEYS, createRealGameCore, createStarterContentPort, tickParamTable,
 } from '../../src/season/index.ts';
-import { BOOT_DEPTH_YD, BOOT_WIDTH, POP_FAKE_S, READ_STEP_S } from '../../src/season/tick-content.ts';
+import { BOOT_DEPTH_YD, BOOT_WIDTH, POP_FAKE_S, READ_STEP_S, meshPoint } from '../../src/season/tick-content.ts';
 
 const params = tickParamTable();
 const pro = resolveRuleSet('pro_2026');
@@ -62,7 +62,27 @@ describe('starter content port', () => {
   it('starts zone defenders with their eyes on the ball, and nobody else: receivers look when it is thrown', () => {
     const s = port.setup(inputOf(offenseCalls('dropback_pass', null)))!;
     s.presnap.offense.assignments.forEach((a, i) => expect(s.perception[i]!.gaze, a.role).toBeUndefined());
-    s.presnap.defense.assignments.forEach((a, i) => expect(s.perception[SLOTS_PER_TEAM + i]!.gaze, a.role).toBe(a.behavior.type === 'zoneDrop' || a.behavior.type === 'deepZone' ? 'ball' : undefined));
+    s.presnap.defense.assignments.forEach((a, i) => expect(s.perception[SLOTS_PER_TEAM + i]!.gaze, a.role).toBe(a.behavior.type === 'zoneDrop' || a.behavior.type === 'deepZone' ? 'ball' : a.behavior.type === 'manCover' ? 'key' : undefined));
+  });
+  it('F4 the handoff happens at the first spot on the back\'s path the quarterback can reach before the back does', () => {
+    const qb = { px: -1, py: 0 }, deep = { px: -7, py: 0 };
+    // A back a yard behind his first drawn point: the quarterback cannot be six yards deep in time, so the mesh is further along.
+    const power = meshPoint(qb, deep, [{ px: -6, py: 1.5 }, { px: -1, py: 3 }, { px: 6, py: 4 }])!;
+    expect(power.px).toBeGreaterThan(-6); expect(power.px).toBeLessThan(0);
+    expect(Math.hypot(power.px - qb.px, power.py - qb.py)).toBeLessThanOrEqual(0.8 * (Math.hypot(1, 1.5) + Math.hypot(power.px + 6, power.py - 1.5)) + 1e-9);
+    // A downhill path that passes the quarterback: he meets the back as soon as the back is behind the line and in his reach.
+    const duo = meshPoint(qb, deep, [{ px: -2, py: 1 }, { px: 1, py: 2 }])!;
+    expect(duo.px).toBeLessThanOrEqual(-2);
+    // A path that never goes behind the line has no mesh point; one he can never beat the back to ends at the last spot behind the line.
+    expect(meshPoint(qb, { px: 1, py: 0 }, [{ px: 3, py: 0 }])).toBeNull();
+    const wide = meshPoint({ px: -1, py: -20 }, deep, [{ px: -6, py: 1 }, { px: 2, py: 2 }])!;
+    expect(wide.px).toBeLessThan(0); expect(wide.px).toBeGreaterThan(-1);
+  });
+  it('starts man defenders with their eyes on their man, so turning to run with him does not lose him', () => {
+    const s = port.setup(inputOf(offenseCalls('dropback_pass', null, 'cover1')))!;
+    const men = s.presnap.defense.assignments.map((a, i) => ({ a, p: s.perception[SLOTS_PER_TEAM + i]! })).filter((x) => x.a.behavior.type === 'manCover');
+    expect(men.length).toBeGreaterThan(0);
+    for (const m of men) { expect(m.p.gaze, m.a.role).toBe('key'); expect(m.p.keys!.length, m.a.role).toBeGreaterThan(0); }
   });
   it('binds roles to slots, so a man or a key named by role resolves to a player', () => {
     for (const kind of ['run', 'dropback_pass', 'quick_pass', 'play_action', 'screen']) {
@@ -109,7 +129,12 @@ describe('starter content port', () => {
       const drop = a.rules.find((r) => r.then.some((t) => t.name === 'dropTo'));
       expect(drop, a.role).toBeDefined();
       expect(JSON.stringify(drop!.when), a.role).toContain(`"s":${READ_STEP_S}`);
-      expect(JSON.stringify(drop!.guard), a.role).toContain('"kind":"run"');
+      // "Not a run read" is in the condition itself, so a defender fooled by a fake can still drop when his read comes back.
+      expect(JSON.stringify(drop!.when), a.role).toContain('{"op":"not","of":{"op":"test","name":"read","args":{"kind":"run"');
+      expect(drop!.guard, a.role).toBeNull();
+      // A run read alone does not send him anywhere: the runner has to have declared.
+      const come = a.rules.find((r) => r.text === 'Run read: come up and play the ball');
+      if (come !== undefined) expect(JSON.stringify(come.when), a.role).toContain('ballCarrierDeclared');
     }
   });
   it('lines up legally under pro rules with the placeholder jerseys', () => {

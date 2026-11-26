@@ -57,30 +57,50 @@ export const BODY_MOVED: readonly AttributeId[] = [...BODY_ATTRIBUTES, ...STRENG
  * Returns a new block; the input is not changed.
  */
 export function applyBody(n: DevNumbers, p: PlayingBlock, ageYears: number, family: PositionFamily): PlayingBlock {
-  const f = bodyFactors(n, p, ageYears, family);
-  const attributes = { ...p.attributes };
-  const ceilings = { ...p.ceilings };
-  const hidden = { ...p.hidden };
-  for (const a of BODY_MOVED) {
-    const now = f[a]!;
-    const before = hiddenNum(p, bodyKey(a), now);
-    hidden[bodyKey(a)] = now;
-    const cur = attributes[a];
-    if (typeof cur !== 'number') continue;
-    const shift = issPerPercent(n, a) * num(n, 'scale.percent') * (now - before);
-    attributes[a] = clampIss(n, cur + shift);
+  const out: PlayingBlock = { ...p, attributes: { ...p.attributes }, ceilings: { ...p.ceilings }, tests: { ...p.tests }, hidden: { ...p.hidden } };
+  applyBodyInPlace(n, out, ageYears, family);
+  return out;
+}
+
+/** Body-moved attributes with their factor key and ISS per factor unit (ISS per percent x percent), per DevNumbers. */
+const BODY_ROWS = new WeakMap<DevNumbers, readonly { readonly a: AttributeId; readonly key: string; readonly issPerUnit: number }[]>();
+function bodyRows(n: DevNumbers): readonly { readonly a: AttributeId; readonly key: string; readonly issPerUnit: number }[] {
+  let rows = BODY_ROWS.get(n);
+  if (!rows) {
+    rows = BODY_MOVED.map((a) => ({ a, key: bodyKey(a), issPerUnit: issPerPercent(n, a) * num(n, 'scale.percent') }));
+    BODY_ROWS.set(n, rows);
   }
-  const tests: Tests = { ...p.tests };
-  for (const t of BODY_TESTS) {
+  return rows;
+}
+const TEST_KEYS: readonly { readonly t: BodyTest; readonly key: string; readonly timed: boolean }[] = BODY_TESTS.map((t) => ({ t, key: adultTestKey(t), timed: TIMED.has(t) }));
+
+/**
+ * `applyBody` on a block whose attribute, test and hidden maps the caller owns: the same arithmetic, written
+ * in place (each attribute and drill reads only its own value and its own hidden key before writing them).
+ */
+export function applyBodyInPlace(n: DevNumbers, p: PlayingBlock, ageYears: number, family: PositionFamily): void {
+  const f = bodyFactors(n, p, ageYears, family);
+  const attributes = p.attributes as Record<string, number>;
+  const hidden = p.hidden as Record<string, number>;
+  const issMax = num(n, 'scale.issMax');
+  for (const row of bodyRows(n)) {
+    const now = f[row.a]!;
+    const before = hiddenNum(p, row.key, now);
+    hidden[row.key] = now;
+    const cur = attributes[row.a];
+    if (typeof cur !== 'number') continue;
+    const shift = row.issPerUnit * (now - before);
+    attributes[row.a] = Math.min(issMax, Math.max(0, cur + shift));
+  }
+  const tests = p.tests as Record<BodyTest, number | null | undefined>;
+  for (const { t, key, timed } of TEST_KEYS) {
     const cur = tests[t];
     if (cur === null || cur === undefined) continue;
-    const key = adultTestKey(t);
     const factor = f[t]!;
-    const adult = hiddenNum(p, key, TIMED.has(t) ? cur * factor : cur / factor);
+    const adult = hiddenNum(p, key, timed ? cur * factor : cur / factor);
     hidden[key] = adult;
-    tests[t] = TIMED.has(t) ? adult / factor : adult * factor;
+    tests[t] = timed ? adult / factor : adult * factor;
   }
-  return { ...p, attributes, ceilings, tests, hidden };
 }
 
 /**
@@ -88,6 +108,7 @@ export function applyBody(n: DevNumbers, p: PlayingBlock, ageYears: number, fami
  * (a young body not grown, an old one in decline). Zero at the adult peak.
  */
 export function bodyCeilingShift(n: DevNumbers, p: PlayingBlock, a: AttributeId): number {
+  for (const row of bodyRows(n)) if (row.a === a) return row.issPerUnit * (hiddenNum(p, row.key, 1) - 1);
   const f = hiddenNum(p, bodyKey(a), 1);
   return issPerPercent(n, a) * num(n, 'scale.percent') * (f - 1);
 }

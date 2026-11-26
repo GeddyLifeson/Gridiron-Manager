@@ -157,6 +157,14 @@ describe('J9.1.2 snaps and exchanges', () => {
     expect(s.arrival.h).toBeCloseTo(1.6, 6);
     expect(ball.passLaunch(40, 26, s, P).h).toBe(2.2);
   });
+
+  it('solvePassFrom can land a throw on the ground instead (a throwaway, J7.5.2)', () => {
+    for (const type of ['drive', 'firm', 'touch'] as const) {
+      const s = ball.solvePassFrom(40, 26, 55, 30, 26, type, P['pass.dragPerYd']!, ball.NO_WIND, P, 0);
+      expect(s.arrival.h).toBeCloseTo(0, 6);
+      expect(Math.hypot(s.arrival.x - 55, s.arrival.y - 30)).toBeLessThan(0.05);
+    }
+  });
 });
 
 describe('J9.2.1 deflections', () => {
