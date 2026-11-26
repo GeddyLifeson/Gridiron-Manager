@@ -975,6 +975,56 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-college-0028",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "College football player discipline runs under the school's student code and team rules, not a fine schedule in a labour agreement.",
+   "value": "school_code",
+   "validFor": "2025-26",
+   "sources": [
+    {
+     "citation": "University of Illinois Athletics, Student Conduct Policies, Student-Athlete Handbook (https://fightingillini.com/sports/2022/7/21/student-conduct-policies-sa-handbook)",
+     "locator": "Student Conduct Policies",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "illinois",
+     "primary": false,
+     "quote": "Any sanctions taken against a student-athlete by the DIA Director of Athletics (“director”) and/or a head coach for violations of the Student Code",
+     "value": "school_code"
+    },
+    {
+     "citation": "University of North Florida Athletics, Student-Athlete Handbook, Code of Conduct (https://www.unf.edu/athletics/student-handbook/conduct.html)",
+     "locator": "Code of Conduct page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "unf",
+     "primary": false,
+     "quote": "Failure to self-report a criminal charge of conviction constitutes grounds for immediate suspension or expulsion from the University.",
+     "value": "school_code"
+    },
+    {
+     "citation": "Brown University, Student-Athlete Code of Conduct policy (https://policy.brown.edu/policy/student-athlete-conduct)",
+     "locator": "Policy text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "brown",
+     "primary": false,
+     "quote": "Athletes must comply with the Code of Student Conduct and all policies referenced therein.",
+     "value": "school_code"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Three universities (Illinois, UNF, Brown). The sources show the governing code; none states that fines are absent, so that absence is not claimed. A modeling choice for the college file: no NCAA rule defines team discipline.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

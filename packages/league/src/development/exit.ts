@@ -1,5 +1,6 @@
 // The end of a career (D8.4.1). Two paths: "not wanted" emerges from roster decisions (K7), and
 // "chooses to retire" is drawn here as a share of the measured total exit rate by age and position.
+import { possible } from '@gm/schema';
 import { EXIT_GROUP, type PositionFamily } from './classes.ts';
 import { FACET } from './gain.ts';
 import { traitMultiplier } from './teaching.ts';
@@ -47,15 +48,16 @@ export function retirementChance(n: DevNumbers, r: RetireInput): number {
   if ((r.facets[FACET.competitiveness] ?? num(n, 'trait.facetMid')) >= num(n, 'trait.competitivenessHigh')) pr *= num(n, 'exit.highCompetitiveness');
   // Love of football: x1.3 at the low end to x0.7 at the high end.
   pr *= traitMultiplier(n, r.facets[FACET.loveOfFootball], -num(n, 'trait.loveOfFootballRetireSwing'));
-  return Math.min(1, Math.max(0, pr));
+  return possible(pr);
 }
 
 /** Mid-season retirement (D8.4.1 path 5): one quarter of the offseason chance. */
 export function midSeasonRetirementChance(n: DevNumbers, r: RetireInput): number {
-  return retirementChance(n, r) * num(n, 'exit.midSeasonShare');
+  return possible(retirementChance(n, r) * num(n, 'exit.midSeasonShare'));
 }
 
 /** Yearly chance a retired player asks to come back (D8.4.1 path 4): under 35 and still good enough to start somewhere. */
 export function comebackChance(n: DevNumbers, ageYears: number, wouldStartSomewhere: boolean): number {
-  return wouldStartSomewhere && ageYears < num(n, 'exit.comebackMaxAge') ? num(n, 'exit.comebackChance') : 0;
+  // A3.1 ruling 22: older or no longer good enough still leaves the floor chance.
+  return possible(wouldStartSomewhere && ageYears < num(n, 'exit.comebackMaxAge') ? num(n, 'exit.comebackChance') : 0);
 }

@@ -1,7 +1,7 @@
 // The person the head coach answers to: L5.1 owner, and L5.4.1 the athletic director in his place
 // (L5.1.1 to L5.1.5 apply with the athletic director as the main actor). Meetings, interference, resource
 // asks, hot-seat signs and dead money, business obligations, late-season requests.
-import type { RandomStream } from '@gm/schema';
+import { possible, type RandomStream } from '@gm/schema';
 import { memory, signal, type BossEvent, type BossPromise, type BossRecord } from './events.ts';
 import { param } from './params.ts';
 import type { BossProfile, OwnerInterest } from './profile.ts';
@@ -115,7 +115,7 @@ const KIND_INTEREST: Readonly<Record<InterferenceKind, OwnerInterest>> = {
  */
 export function interferenceChance(p: BossProfile, rec: BossRecord, resultsVsExpectation: number): number {
   const results = 1 - param('interference.resultsDamp') * Math.max(0, resultsVsExpectation);
-  return clamp(param('interference.baseWeekly') * p.weights.involvement * (1 - rec.trust / 100) * results, 0, 1);
+  return possible(clamp(param('interference.baseWeekly') * p.weights.involvement * (1 - rec.trust / 100) * results, 0, 1));
 }
 
 export interface InterferenceRequest { readonly kind: InterferenceKind; readonly interest: OwnerInterest; readonly day: number }
@@ -192,7 +192,7 @@ export function askChance(p: BossProfile, rec: BossRecord, a: AskInput): number 
     - param('ask.unreturnedPenalty') * a.unreturnedGrants
     + param('ask.gmShift') * (a.gmVoice ?? 0)
     + (a.boosterMood === undefined ? 0 : param('ask.boosterShift') * (a.boosterMood - 50) / 50);
-  return clamp(p.weights.spending + shift, param('ask.minChance'), param('ask.maxChance'));
+  return possible(clamp(p.weights.spending + shift, param('ask.minChance'), param('ask.maxChance')));
 }
 
 export interface AskAnswer { readonly outcome: AskOutcome; readonly reason: AskReason; readonly chance: number }
@@ -318,9 +318,9 @@ export type LateRequest = (typeof LATE_REQUESTS)[number];
  * owner's involvement.
  */
 export function lateRequestChance(flagSet: boolean, gm: BossProfile | null, owner: BossProfile): number {
-  if (!flagSet) return 0;
+  if (!flagSet) return possible(0);
   const pull = gm === null ? owner.weights.involvement : (gm.weights.draftInterest + owner.weights.involvement) / 2;
-  return clamp(param('late.baseWeekly') * (0.5 + pull), 0, 1);
+  return possible(clamp(param('late.baseWeekly') * (0.5 + pull), 0, 1));
 }
 
 export function drawLateRequest(flagSet: boolean, gm: BossProfile | null, owner: BossProfile, day: number, stream: RandomStream): BossEvent | null {

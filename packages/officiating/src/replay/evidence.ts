@@ -1,11 +1,10 @@
 // The video evidence model (B9.2.1 rule 5). Replay never changes a correct ruling. A wrong ruling
 // is changed with a chance equal to the evidence quality: how far the truth was from the decision
 // boundary, how well the act could be seen, and how many cameras the game has.
-import type { PlayTruth, Ruling, RulingContext } from '@gm/schema';
+import { possible, type PlayTruth, type Ruling, type RulingContext } from '@gm/schema';
 import { foulReplaySwitch } from '../crew/index.ts';
 import { REPLAY, assistKey } from './params.ts';
 
-const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
 
 export function isWrong(r: Ruling): boolean { return r.calledValue !== r.trueValue; }
 
@@ -43,7 +42,8 @@ export function evidenceQuality(r: Ruling, ctx: RulingContext): number {
   const clarity = m === null ? num(REPLAY.evidenceNoMargin) : 1 - ctx.math.exp(-m);
   const sight = num(r.visibility === 'open' ? REPLAY.evidenceSightOpen : r.visibility === 'crowded' ? REPLAY.evidenceSightCrowded : REPLAY.evidenceSightPile);
   const cameras = ctx.before.gameType === 'postseason' ? num(REPLAY.postseasonCameraFactor) : 1;
-  return clamp01(sight * clarity * cameras);
+  // A3.1 ruling 22: even a pile seen by no camera can still be overturned, with the floor chance.
+  return possible(sight * clarity * cameras);
 }
 
 /** A flag with no foul behind it. Replay can pick a flag up; it never adds one (B9.5.1 rule 3). */

@@ -7,6 +7,7 @@ import {
   CATALOGUE, EVENT, type IncumbentView, type Staff,
 } from '../../src/positions/index.ts';
 import { D0, addDays, ctxFor, dayOf, filledStaff, fixedUniform, scripted, seatOf } from './fixtures.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 const META = { date: D0, competitionId: 1, tier: 1 as const, source: 'sim' as const };
 const holder = (s: Staff, id: number) => seat(s, id).holderPersonId!;
@@ -169,8 +170,8 @@ describe('X8.4.1 firing cascade', () => {
     expect(keepChance('graduate_assistant', neutral)).toBeCloseTo(0.5);
     expect(keepChance('coordinator', { ...neutral, strongPositiveEdge: true, unitTopQuarter: true, sameSchemeFamily: true })).toBeCloseTo(0.75);
     expect(keepChance('graduate_assistant', { ...neutral, strongPositiveEdge: true, unitTopQuarter: true })).toBeCloseTo(0.95);
-    expect(keepChance('position_coach', { ...neutral, negativeEdge: true })).toBe(0);
-    expect(keepChance('position_coach', { ...neutral, requiredByAppointer: true })).toBe(1);
+    expect(keepChance('position_coach', { ...neutral, negativeEdge: true })).toBe(PROB_FLOOR);
+    expect(keepChance('position_coach', { ...neutral, requiredByAppointer: true })).toBe(1 - PROB_FLOOR);
   });
   it('after a change every staff member gets exactly one outcome within 30 days; brought people take their chairs', () => {
     const { staff: s0 } = filledStaff();

@@ -8,7 +8,7 @@ export const LEVELS: readonly Level[] = ['pro', 'college'];
 type Scalar = number | boolean | string;
 
 /** One source read for one value. `q` is copied from the rule book text; `absent` describes what was read when the book has no such rule. */
-export interface AuthSource { cite: string; q?: string; line?: number; absent?: string }
+export interface AuthSource { cite: string; q?: string; line?: number; absent?: string; /** What a diagram or figure in the rule book PDF shows, when the text copy lacks it (read as an image, page named in `cite`). */ seen?: string }
 export interface AuthSide { v: Scalar; src: AuthSource[]; note?: string }
 export interface AuthKey {
   key: string; type: 'number' | 'boolean' | 'option'; unit?: string; options?: string[];
@@ -96,7 +96,7 @@ function factSource(l: Level, s: AuthSource, v: Scalar, dateRead: string): FactS
   const b = BOOK[l];
   const src: FactSource = {
     citation: b.citation,
-    locator: s.q ? `${s.cite} (text copy ${b.file}${s.line ? `, line ${s.line}` : ''})` : `${s.cite}. Read for absence: ${s.absent}`,
+    locator: s.q ? `${s.cite} (text copy ${b.file}${s.line ? `, line ${s.line}` : ''})` : s.seen ? `${s.cite}. Figure read as an image in the rule book PDF (the text copy lacks it): ${s.seen}` : `${s.cite}. Read for absence: ${s.absent}`,
     dateRead, howRead: 'primary text', independenceGroup: b.group, primary: true,
   };
   if (s.q) src.quote = s.q;
@@ -133,7 +133,7 @@ export function build(input: BuildInput): BuildOutput {
       if (k.type === 'boolean' && typeof side.v !== 'boolean') problems.push(`${k.key} ${l}: value must be true or false`);
       if (k.type === 'option' && (typeof side.v !== 'string' || !k.options?.includes(side.v))) problems.push(`${k.key} ${l}: value ${String(side.v)} is not one of the options`);
       if (!side.src.length) problems.push(`${k.key} ${l}: no source`);
-      for (const s of side.src) if (!s.q && !s.absent) problems.push(`${k.key} ${l}: a source needs a quote or an absence note`);
+      for (const s of side.src) if (!s.q && !s.absent && !s.seen) problems.push(`${k.key} ${l}: a source needs a quote or an absence note`);
       const use = `${file.ruleset_id}:${k.key}`;
       let id = idByUse.get(use);
       if (!id) { maxId += 1; id = `F-rule-${String(maxId).padStart(4, '0')}`; idByUse.set(use, id); }
@@ -143,7 +143,7 @@ export function build(input: BuildInput): BuildOutput {
       if (vi >= 0) file.values[vi] = value; else file.values.push(value);
       const unit = k.unit && typeof side.v === 'number' ? ` ${k.unit}` : '';
       const old = facts.find((r) => r.id === id);
-      const absent = side.src.every((s) => !s.q);
+      const absent = side.src.every((s) => !s.q && !s.seen);
       const row: FactRow = {
         id, level: l, domain: 'rule',
         statement: `${k.meaning}: ${String(side.v)}${unit} (${l}, 2026 rules).`,

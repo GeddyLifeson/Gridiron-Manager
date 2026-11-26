@@ -1,6 +1,7 @@
 // C8.3.2 how a free agent chooses, with the coach's pitch (M5.2.1). Each offer gets a score: the money
 // term plus non-money terms, weighted by the player's values (X1). A coach's call cannot close a large
 // money gap (M5.2.1 rule 4). Every signing stores its top two reasons (C8.3.2 acceptance).
+import { PROB_FLOOR, type RandomStream } from '@gm/schema';
 import type { MarketDates } from './dates.ts';
 import { P, PERCENT, REASONS_PER_SIGNING } from './params.ts';
 import { compareInstant } from '../calendar/date.ts';
@@ -98,9 +99,24 @@ export function reservationScore(c: Chooser): number {
  * C8.3.2: the player picks the best score among offers within reach, or waits when the best is below his
  * reservation score. Equal scores: the earlier offer wins, then the lower club id (deterministic).
  */
-export function choose(c: Chooser, offers: readonly Offer[], now: Instant, dates: MarketDates): Choice {
+export function choose(c: Chooser, offers: readonly Offer[], now: Instant, dates: MarketDates, surprise?: RandomStream): Choice {
   const scored = scoreOffers(c, offers, now, dates);
   const ranked = scored.filter((s) => !s.outOfReach).sort((a, b) => b.score - a.score || compareInstant(a.offer.madeAt, b.offer.madeAt) || a.offer.clubId - b.offer.clubId);
+  if (surprise) {
+    // A3.1 ruling 22: every other outcome (any other offer, out of reach or not, or waiting) keeps the
+    // floor chance. One uniform draw; the expected choice takes the rest.
+    const usual = choose(c, offers, now, dates);
+    const usualClub = usual.kind === 'signs' ? usual.clubId : null;
+    const others: (Scored | null)[] = [...scored.filter((s) => s.offer.clubId !== usualClub), ...(usual.kind === 'signs' ? [null] : [])];
+    const u = surprise.uniform();
+    const i = Math.floor(u / PROB_FLOOR);
+    if (i < others.length) {
+      const pick = others[i]!;
+      if (pick === null) return { kind: 'waits', bestClubId: usualClub, reason: 'waited against expectation', scored };
+      return { kind: 'signs', clubId: pick.offer.clubId, reasons: topReasons(pick, null), scored };
+    }
+    return usual;
+  }
   const best = ranked[0];
   if (!best) return { kind: 'waits', bestClubId: null, reason: 'no offers', scored };
   if (best.score < reservationScore(c)) return { kind: 'waits', bestClubId: best.offer.clubId, reason: 'best offer below his expectation', scored };

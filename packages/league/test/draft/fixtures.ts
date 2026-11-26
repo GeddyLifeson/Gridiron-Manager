@@ -18,6 +18,7 @@ export const FILE_VALUES: readonly { key: string; value: number; factId: string 
   { key: "league_rules.draft.day2_first_round", value: 2, factId: "F-league-0115" },
   { key: "league_rules.draft.day3_first_round", value: 4, factId: "F-league-0116" },
   { key: "league_rules.draft.comp_first_round", value: 3, factId: "F-league-0117" },
+  { key: "league_rules.draft.revoke_window_hours", value: 72, factId: "F-league-0195" },
   { key: "league_rules.draft.comp_cfa_top_pct", value: 35, factId: "F-league-0118" },
   { key: "league_rules.draft.comp_bracket_top_pct_r3", value: 5, factId: "F-league-0119" },
   { key: "league_rules.draft.comp_bracket_top_pct_r4", value: 10, factId: "F-league-0120" },
@@ -70,7 +71,9 @@ export const FILE_VALUES: readonly { key: string; value: number; factId: string 
   { key: "cap.min_salary_y2028_cs7_plus", value: 1390000, factId: "F-cap-0039" },
   { key: "cap.min_salary_y2029_cs7_plus", value: 1435000, factId: "F-cap-0040" },
   { key: "cap.min_salary_y2030_cs7_plus", value: 1480000, factId: "F-cap-0041" },
-  { key: "rookie.undrafted_pool_2024_usd", value: 172337, factId: "F-cap-0049" },
+  { key: "rookie.undrafted_pool_2024_usd", value: 183103, factId: "F-cap-0049" },
+  { key: "rookie.undrafted_pool_2025_usd", value: 206144, factId: "F-cap-0067" },
+  { key: "rookie.undrafted_pool_2026_usd", value: 229224, factId: "F-cap-0068" },
   { key: "rookie.option_tiers", value: 4, factId: "F-cap-0050" },
   { key: "rookie.option_basic_rank_from", value: 3, factId: "F-cap-0054" },
   { key: "rookie.option_basic_rank_to", value: 25, factId: "F-cap-0055" },
@@ -88,7 +91,6 @@ export const FILE_VALUES: readonly { key: string; value: number; factId: string 
 export interface RequestedValue { readonly key: string; readonly value: number; readonly source: string }
 
 export const REQUESTED: readonly RequestedValue[] = [
-  { key: 'league_rules.draft.revoke_window_hours', value: 72, source: 'bible C7.1.1 rule 4: `league_rules.draft.revoke_window_hours` = 72 (2 of 3)' },
 ];
 
 type Val = number | boolean | string;

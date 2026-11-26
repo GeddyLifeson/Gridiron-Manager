@@ -1,0 +1,1528 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-recruiting-0001",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 2026 college rule set uses the day-pool recruiting model (33 fall evaluation days, 140 spring recruiting-person days); the opportunity model is a recommendation for January 1, 2027.",
+   "value": "days_2025",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(b), (2) (text copy JULY2026-raw.txt, line 26)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Increase the number of fall evaluation days from 33 to 50."
+    },
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item, effective date (text copy JULY2026-raw.txt, line 61)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Effective date. January 1, 2027."
+    },
+    {
+     "citation": "FootballScoop, NCAA clears way for off-campus recruiting changes (2026-07-23, https://www.footballscoop.com/2026/07/23/ncaa-clears-way-off-campus-recruiting-changes)",
+     "locator": "FootballScoop report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop",
+     "primary": false,
+     "quote": "up to 50 off-campus evaluation days during the fall evaluation period"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Adoption of the 2027 model by the Division I Cabinet was NOT found in any page read (Aug 28 and Oct 7 2026 NCAA pages say it is to be reviewed). The 2026 set therefore holds the day-pool model. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0002",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Fall evaluation days per school (FBS): 33 (42 at U.S. service academies).",
+   "value": 33,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, 2025-26 NCAA Recruiting Calendar, Division I Football Bowl Subdivision (https://ncaaorg.s3.amazonaws.com/compliance/recruiting/calendar/2025-26/2025-26D1Rec_FBSMFBRecruitingCalendar.pdf)",
+     "locator": "2025-26 FBS calendar, Sept. 1 through Nov. 30 (text copy 2025-26-fbs-calendar-raw.txt, line 31)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Thirty-three (42 for U.S. service academies) evaluation days during the fall evaluation period.",
+     "value": 33
+    },
+    {
+     "citation": "NCAA, Fall 2026-27 NCAA Recruiting Calendar and 2027 calendar, Division I FBS (updated 2026-11-05, https://ncaaorg.s3.amazonaws.com/compliance/recruiting/calendar/2026-27/2026-27D1Rec_FBSRecruitingCalendar.pdf)",
+     "locator": "2026-27 FBS calendar, SEP 1 - NOV 29 (text copy 2026-27-fbs-calendar-raw.txt, line 936)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Thirty-three (42 for U.S. service academies) evaluation days during the fall evaluation period.",
+     "value": 33
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "Thirty-three (42 for U.S. service academies) evaluation days during the fall evaluation period.",
+     "value": 33
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0003",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Spring recruiting-person days per school (FBS): 140 (180 at U.S. service academies), April 15 through May 23.",
+   "value": 140,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, 2025-26 NCAA Recruiting Calendar, Division I Football Bowl Subdivision (https://ncaaorg.s3.amazonaws.com/compliance/recruiting/calendar/2025-26/2025-26D1Rec_FBSMFBRecruitingCalendar.pdf)",
+     "locator": "2025-26 FBS calendar, April 15 through May 23 (text copy 2025-26-fbs-calendar-raw.txt, line 118)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "One hundred forty (180 for U.S. service academies)",
+     "value": 140
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source: the 2026-27 calendar updated 2026-11-05 lists only the fall evaluation days for 2026-27 and shows the 2027 periods without a day count. The 140 is the 2025-26 calendar value. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0004",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "FBS schools may use up to 11 off-campus recruiters, the head coach included (17 under a blanket waiver through January 1, 2027).",
+   "value": 11,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA.org, Division I removes some restrictions on countable coaches in football (2024-06-25, https://www.ncaa.org/news/2024/6/25/media-center-division-i-removes-some-restrictions-on-countable-coaches-in-football)",
+     "locator": "NCAA news 2024-06-25",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "FBS teams remain limited to up to 11 staff members",
+     "value": 11
+    },
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(e) (text copy JULY2026-raw.txt, line 45)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Increase the number of institutional staff members who may recruit off campus on behalf of the institution from 11 to 17.",
+     "value": 11
+    }
+   ],
+   "usedBy": [],
+   "notes": "Value is the legislated number. The July 2026 committee also approved a blanket waiver raising it to 17 for the fall evaluation period, effective through January 1, 2027 (quote: The blanket waiver is effective through January 1, 2027.); the module may apply 17 for fall 2026. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0005",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The head coach's off-campus recruiting counts against the day pools (the July 2026 recommendation would remove that from 2027).",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(c) (text copy JULY2026-raw.txt, line 30)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Eliminate the requirement to count an institution",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0006",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "FBS head coach may not recruit off campus in the spring period.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Spring Evaluations (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 229)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "the head coach shall not engage in off-campus recruiting activities, participate in off-campus coaching clinics",
+     "value": false
+    },
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(c) (text copy JULY2026-raw.txt, line 32)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "head football coach may not recruit off campus during the spring contact period.",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Both texts are NCAA; the July 2026 text states it as continuing. One group, two documents. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0007",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Recommended 2027 model: up to four recruiting opportunities per prospect from January 1 through May 31.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(d) (text copy JULY2026-raw.txt, line 37)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "An institution may engage in up to four recruiting opportunities per prospective student-athlete during the January 1 through May 31"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Recommendation only; Cabinet adoption not found. Not in the 2026 rule set; owed to a 2027 college rule set if adopted. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0008",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Recommended 2027 model: one evaluation day per prospect in the fall evaluation period.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(d) (text copy JULY2026-raw.txt, line 39)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "and one evaluation day during the fall evaluation period."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Recommendation only. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0009",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Recommended 2027 model: no more than one recruiting opportunity per prospect per week (Monday through Sunday).",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(d) (text copy JULY2026-raw.txt, line 40)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "may not engage in more than one recruiting opportunity per week per prospective"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Recommendation only. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0010",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Recommended 2027 model: up to 17 off-campus recruiters (head coach one of them).",
+   "value": 17,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(e) (text copy JULY2026-raw.txt, line 46)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "head football coach must be designated as one of the 17 off-campus recruiters.",
+     "value": 17
+    },
+    {
+     "citation": "FootballScoop, NCAA clears way for off-campus recruiting changes (2026-07-23, https://www.footballscoop.com/2026/07/23/ncaa-clears-way-off-campus-recruiting-changes)",
+     "locator": "FootballScoop report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop",
+     "primary": false,
+     "quote": "permit up to 16 program staff members and the head coach to recruit off campus",
+     "value": 17
+    }
+   ],
+   "usedBy": [],
+   "notes": "Recommendation only. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0011",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Recommended 2027 model: up to 300 recruiting person days from January 1 through May 31, and 50 fall evaluation days.",
+   "value": 300,
+   "unit": "days",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, July 23, 2026 (https://ncaaorg.s3.amazonaws.com/championships/sports/football/d1/FBSOC/JULY2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC July 2026 action item 1(a) (text copy JULY2026-raw.txt, line 21)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "engage in up to 300 recruiting person days from January 1 through May 31",
+     "value": 300
+    },
+    {
+     "citation": "FootballScoop, NCAA clears way for off-campus recruiting changes (2026-07-23, https://www.footballscoop.com/2026/07/23/ncaa-clears-way-off-campus-recruiting-changes)",
+     "locator": "FootballScoop report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop",
+     "primary": false,
+     "quote": "up to 300 off-campus recruiting person days during the winter and spring off-campus recruiting periods",
+     "value": 300
+    }
+   ],
+   "usedBy": [],
+   "notes": "Recommendation only. The same report's discussion section speaks of 350 person days in two periods: a conflict inside the source (action item 300 kept). Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0012",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "One in-person off-campus contact per prospect per week of a contact period.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Visits During Contact Period (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 200)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "One contact per PSA is permitted during each week of the contact period",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source. Newest NCAA guide found is August 2022 (2021-22 guide says the same); no 2026 text contradicting it was found. A current NCAA text is owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0013",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "No more than six off-campus contacts per prospect.",
+   "value": 6,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Evaluations and Contacts (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 142)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Not more than six off-campus contacts per PSA at any site.",
+     "value": 6
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "Coaches are only allowed six off-campus contacts with each student-athlete.",
+     "value": 6
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "No more than 6 off-campus contacts per PSA at any site",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0014",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Phone calls: once a week from September 1 of the senior year, unlimited in a contact period.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Senior column (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 26)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Once per week after September 1 of the senior year.",
+     "value": 1
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "Coaches can call athletes once a week after this time",
+     "value": 1
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "September 1 - senior year One call per week (unlimited during contact period)",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0015",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Phone calls may start: month 9 (September 1 of the senior year).",
+   "value": 9,
+   "unit": "month",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Senior column (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 26)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Once per week after September 1 of the senior year.",
+     "value": 9
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "September 1: Coaches can call athletes once a week after this time",
+     "value": 9
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "September 1 - senior year One call per week (unlimited during contact period)",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0016",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Phone calls may start: day 1 (September 1 of the senior year).",
+   "value": 1,
+   "unit": "day",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Senior column (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 26)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Once per week after September 1 of the senior year.",
+     "value": 1
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "September 1: Coaches can call athletes once a week after this time",
+     "value": 1
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "September 1 - senior year One call per week (unlimited during contact period)",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0017",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Phone calls may start: years before class 1 (September 1 of the senior year).",
+   "value": 1,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Senior column (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 26)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Once per week after September 1 of the senior year.",
+     "value": 1
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "September 1: Coaches can call athletes once a week after this time",
+     "value": 1
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "September 1 - senior year One call per week (unlimited during contact period)",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0018",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Off-campus in-person contact may start July 1 before the senior year (limited to contact periods): month 7.",
+   "value": 7,
+   "unit": "month",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Senior column (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 37)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "July 1 prior to senior",
+     "value": 7
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "July 1 before senior year:",
+     "value": 7
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "July 1 - after junior year Limited to contact periods",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0019",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Off-campus in-person contact may start July 1 before the senior year (limited to contact periods): day 1.",
+   "value": 1,
+   "unit": "day",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Senior column (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 37)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "July 1 prior to senior",
+     "value": 1
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "July 1 before senior year:",
+     "value": 1
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "July 1 - after junior year Limited to contact periods",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0020",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Off-campus in-person contact may start July 1 before the senior year (limited to contact periods): years before class 1.",
+   "value": 1,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Football Recruiting Guide, effective August 1, 2022 (https://iamasundevil.asu.edu/sites/default/files/2025-05/2022-23D1REC_MFBRecruitingGuide.pdf; same file as ncaaorg.s3 g_2022-23D1REC_MFBRecruitingGuide.pdf; the newest guide found)",
+     "locator": "2022-23 guide, Senior column (text copy 2022-23-fbs-recruiting-guide-raw.txt, line 37)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "July 1 prior to senior",
+     "value": 1
+    },
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "July 1 before senior year:",
+     "value": 1
+    },
+    {
+     "citation": "ASU Sun Devil Compliance, Football Recruiting Guide (undated PDF, https://sundevilcompliance.asu.edu/sites/default/files/football_recruiting_101_3.pdf; its figures are from an older rule year, e.g. 42 fall evaluation days)",
+     "locator": "Football recruiting guide",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "asu-compliance",
+     "primary": false,
+     "quote": "July 1 - after junior year Limited to contact periods",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0021",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Private electronic messages may start June 15 after the sophomore year (month 6); the 2022-23 NCAA guide and an undated compliance PDF say September 1 of the junior year.",
+   "value": 6,
+   "unit": "month",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "June 15 before junior year:",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "DISPUTED between rule years, so only the newest page is a source: NCSA (updated 2026-09-23) states June 15; the 2022-23 NCAA guide (Junior column, Recruiting Materials and Electronic Transmissions: September 1) and an undated ASU compliance PDF state September 1 of the junior year. The current NCAA text was not found; an NCAA primary is owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0022",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Private electronic messages may start June 15 after the sophomore year (day 15); the 2022-23 NCAA guide and an undated compliance PDF say September 1 of the junior year.",
+   "value": 15,
+   "unit": "day",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "June 15 before junior year:",
+     "value": 15
+    }
+   ],
+   "usedBy": [],
+   "notes": "DISPUTED between rule years, so only the newest page is a source: NCSA (updated 2026-09-23) states June 15; the 2022-23 NCAA guide (Junior column, Recruiting Materials and Electronic Transmissions: September 1) and an undated ASU compliance PDF state September 1 of the junior year. The current NCAA text was not found; an NCAA primary is owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0023",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Private electronic messages may start two years before the class year (after the sophomore year / start of the junior year).",
+   "value": 2,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCSA, 2026-27 NCAA Football Recruiting Rules and Calendar (last updated 2026-09-23, https://www.ncsasports.org/football/recruiting-rules-calendar)",
+     "locator": "2026-27 calendar page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncsa",
+     "primary": false,
+     "quote": "June 15 before junior year:",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Both readings (June 15 after the sophomore year; September 1 of the junior year) fall two years before the class year. One source row; the 2022-23 guide agrees on the year count. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0024",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A prospect may take one official visit to any one school.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, February 24-25, 2026 (https://ncaaorg.s3.amazonaws.com/committees/d1/fbsfboc/FEB2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC Feb 2026, informational item 2(d) (text copy FEB2026-fbsoc-report.txt, line 123)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Institutional Limit of One Official Visit Per",
+     "value": 1
+    },
+    {
+     "citation": "On3, NCAA recruits can now take unlimited official visits (2023, https://www.on3.com/news/ncaa-recruits-can-now-take-unlimited-official-visits)",
+     "locator": "On3 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "Recruits are still only allowed to use one official visit for each school.",
+     "value": 1
+    },
+    {
+     "citation": "University of Georgia Athletics Compliance, Expenses during campus visits (copyright 2025, https://compliance.sports.uga.edu/coaches-staff/ncaa-rules-for-administrative-coaching-staff/expenses-during-campus-visits/; partly outdated: still lists five visits)",
+     "locator": "UGA compliance page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "uga-compliance",
+     "primary": false,
+     "quote": "with no more than one official visit to any single institution",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0025",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A second official visit to the same school is allowed after a head coach change.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "On3, NCAA recruits can now take unlimited official visits (2023, https://www.on3.com/news/ncaa-recruits-can-now-take-unlimited-official-visits)",
+     "locator": "On3 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "players can take a second official visit to a program if a head coaching change occurs after their previous official.",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "One verbatim source (the CBS Sports article of 2023-04-14 reportedly says the same; its text was only read as a summary). Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0026",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "An official visit may last no longer than 48 hours.",
+   "value": 48,
+   "unit": "hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "University of Georgia Athletics Compliance, Expenses during campus visits (copyright 2025, https://compliance.sports.uga.edu/coaches-staff/ncaa-rules-for-administrative-coaching-staff/expenses-during-campus-visits/; partly outdated: still lists five visits)",
+     "locator": "UGA compliance page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "uga-compliance",
+     "primary": false,
+     "quote": "An official visit may not last longer than 48 hours.",
+     "value": 48
+    },
+    {
+     "citation": "On3, NCAA recruits can now take unlimited official visits (2023, https://www.on3.com/news/ncaa-recruits-can-now-take-unlimited-official-visits)",
+     "locator": "On3 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "Official visits may last no longer than a two-night stay",
+     "value": 48
+    }
+   ],
+   "usedBy": [],
+   "notes": "The On3 line says a two-night stay, read as the same 48 hours; the NCAA bylaw text was not read. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0027",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The school may pay for a prospect and two family members on an official visit.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "On3, NCAA recruits can now take unlimited official visits (2023, https://www.on3.com/news/ncaa-recruits-can-now-take-unlimited-official-visits)",
+     "locator": "On3 article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "for up to two family members accompanying a prospect on that visit.",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source. The October 2026 proposal to raise it to four is a separate row (not adopted). Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0028",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Proposed October 2026: a school may pay for a prospect and four accompanying individuals on an official visit (could be adopted as early as January 2027).",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2027",
+   "sources": [
+    {
+     "citation": "NCAA.org, Division I Cabinet introduces legislation to modernize NCAA rules (2026-10-07, https://www.ncaa.org/news/division-i-cabinet-introduces-legislation-to-modernize-ncaa-rules/)",
+     "locator": "NCAA news 2026-10-07",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "a prospect and four accompanying individuals for an official visit",
+     "value": 4
+    },
+    {
+     "citation": "FootballScoop, Division I Cabinet proposing a number of changes (2026-10-08, https://www.footballscoop.com/2026/10/08/division-i-cabinet-proposing-a-number-of-changes-to-modernize-ncaa-rules-impacting-coaching-staff-limits-and-official-visits)",
+     "locator": "FootballScoop 2026-10-08",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop",
+     "primary": false,
+     "quote": "for a prospect and four accompanying individuals on an official visit",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Proposal only. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0029",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The FBS limit of 70 official visits per school per year (from December 2022) was suspended by blanket waiver for 2024-25, and the FBS Oversight Committee adopted legislation in February 2026 eliminating it (pending Cabinet review April 14-15, 2026; outcome not read). The 2026 set therefore has no school cap.",
+   "value": 70,
+   "unit": "count",
+   "validFor": "2022-23",
+   "sources": [
+    {
+     "citation": "NCAA.org, FBS blanket waiver suspends school limit on number of football official visits (2024-11-08, https://www.ncaa.org/news/media-center-fbs-blanket-waiver-suspends-school-limit-on-number-of-football-official-visits/)",
+     "locator": "NCAA news 2024-11-08",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "FBS programs have been able to host a maximum of 70 official visits",
+     "value": 70
+    },
+    {
+     "citation": "NCAA, Report of the Division I FBS Oversight Committee, February 24-25, 2026 (https://ncaaorg.s3.amazonaws.com/committees/d1/fbsfboc/FEB2026D1FBSOC_Report.pdf)",
+     "locator": "FBSOC Feb 2026, informational item 1 (text copy FEB2026-fbsoc-report.txt, line 71)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "adopted legislation to eliminate the institutional limit on the number of official visits permitted in FBS."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Not a 2026 rule-set value: visits.school_cap stays absent (limit not applied), which matches the February 2026 elimination. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0030",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "A person associated with a prospect may not be hired from two years before to two years after the prospect enrols (IAWP, FBS).",
+   "value": 2,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "FootballScoop, NCAA approves IAWP rule, comprehensive recruiting changes (URL date 2025-03-04, https://www.footballscoop.com/2025/03/04/ncaa-approves-iawp-rule-comprehensive-recruiting-changes; text describes legislation effective August 2017)",
+     "locator": "FootballScoop IAWP report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop",
+     "primary": false,
+     "quote": "for a two-year period before and after the student's anticipated and actual enrollment",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "One source (the legislation is from 2017). The July 2026 FBSOC report says it did not recommend changes to the IAWP legislation but states no number. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0031",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "FBS football signee limit of 25 per year, adopted for recruits signing after August 1, 2017. No source read states its removal.",
+   "value": 25,
+   "unit": "count",
+   "validFor": "2017-18",
+   "sources": [
+    {
+     "citation": "FootballScoop, NCAA approves IAWP rule, comprehensive recruiting changes (URL date 2025-03-04, https://www.footballscoop.com/2025/03/04/ncaa-approves-iawp-rule-comprehensive-recruiting-changes; text describes legislation effective August 2017)",
+     "locator": "FootballScoop IAWP report",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop",
+     "primary": false,
+     "quote": "FBS schools are limited to signing 25 prospective and current student-athletes"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Not a 2026 rule-set value: recruiting.signee_cap stays absent. That absence rests on the bible (no cap from 2025-26), NOT on a source read in this pass; owed. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0032",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Division I qualifier: 16 NCAA-approved core courses.",
+   "value": 16,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Are You Ready to Play Football? (PDF dated 2023, modified 2025-05; https://s3.amazonaws.com/fs.ncaa.org/Docs/eligibility_center/Outreach/Fball/Fball_Students.pdf)",
+     "locator": "Are You Ready to Play Football? (text copy other/fball-students-raw.txt, line 72)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Earn 16 NCAA-approved core-course credits in the following areas:",
+     "value": 16
+    },
+    {
+     "citation": "UC Berkeley Athletic Study Center, NCAA academic eligibility requirements (copyright 2026, https://asc.berkeley.edu/resources/students/academic-advising-resources/ncaa-academic-eligibility-requirements-student-0)",
+     "locator": "Berkeley page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "berkeley",
+     "primary": false,
+     "quote": "Complete 16 Core Courses, including 10 before your seventh semester:",
+     "value": 16
+    },
+    {
+     "citation": "IMG Academy, NCAA eligibility requirements (copyright 2026, https://www.imgacademy.com/resources/articles/ncaa-eligibility-requirements)",
+     "locator": "IMG Academy article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "img-academy",
+     "primary": false,
+     "quote": "Completing 16 NCAA-approved core courses throughout high school",
+     "value": 16
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0033",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Division I qualifier: minimum core-course grade average 2.3.",
+   "value": 2.3,
+   "unit": "gpa",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Are You Ready to Play Football? (PDF dated 2023, modified 2025-05; https://s3.amazonaws.com/fs.ncaa.org/Docs/eligibility_center/Outreach/Fball/Fball_Students.pdf)",
+     "locator": "Are You Ready to Play Football? (text copy other/fball-students-raw.txt, line 159)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Earn a minimum 2.3 core-course GPA.",
+     "value": 2.3
+    },
+    {
+     "citation": "UC Berkeley Athletic Study Center, NCAA academic eligibility requirements (copyright 2026, https://asc.berkeley.edu/resources/students/academic-advising-resources/ncaa-academic-eligibility-requirements-student-0)",
+     "locator": "Berkeley page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "berkeley",
+     "primary": false,
+     "quote": "Earn a minimum 2.300 Grade-Point Average in core courses.",
+     "value": 2.3
+    },
+    {
+     "citation": "IMG Academy, NCAA eligibility requirements (copyright 2026, https://www.imgacademy.com/resources/articles/ncaa-eligibility-requirements)",
+     "locator": "IMG Academy article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "img-academy",
+     "primary": false,
+     "quote": "Earning the required core-course GPA (2.3 for Division I, 2.2 for Division II)",
+     "value": 2.3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0034",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Division I qualifier: 10 of the 16 core courses before the seventh semester.",
+   "value": 10,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Are You Ready to Play Football? (PDF dated 2023, modified 2025-05; https://s3.amazonaws.com/fs.ncaa.org/Docs/eligibility_center/Outreach/Fball/Fball_Students.pdf)",
+     "locator": "Are You Ready to Play Football? (text copy other/fball-students-raw.txt, line 156)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Complete 10 of your 16 NCAA-approved core-course credits, including seven in English, math or science, before",
+     "value": 10
+    },
+    {
+     "citation": "UC Berkeley Athletic Study Center, NCAA academic eligibility requirements (copyright 2026, https://asc.berkeley.edu/resources/students/academic-advising-resources/ncaa-academic-eligibility-requirements-student-0)",
+     "locator": "Berkeley page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "berkeley",
+     "primary": false,
+     "quote": "Complete 16 Core Courses, including 10 before your seventh semester:",
+     "value": 10
+    },
+    {
+     "citation": "IMG Academy, NCAA eligibility requirements (copyright 2026, https://www.imgacademy.com/resources/articles/ncaa-eligibility-requirements)",
+     "locator": "IMG Academy article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "img-academy",
+     "primary": false,
+     "quote": "Yes: 10 courses, including 7 in English, math, or science, completed before senior year",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0035",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Of those 10, seven in English, mathematics or science.",
+   "value": 7,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA Eligibility Center, Are You Ready to Play Football? (PDF dated 2023, modified 2025-05; https://s3.amazonaws.com/fs.ncaa.org/Docs/eligibility_center/Outreach/Fball/Fball_Students.pdf)",
+     "locator": "Are You Ready to Play Football? (text copy other/fball-students-raw.txt, line 156)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "including seven in English, math or science, before",
+     "value": 7
+    },
+    {
+     "citation": "NCAA.org, Division I initial-eligibility requirements (page modified 2026-11-25, https://www.ncaa.org/eligibility-center/initial-eligibility-requirements/division-i/)",
+     "locator": "NCAA Division I page",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "Ten of your core courses (7 in English, math, or science) must be completed before start of the seventh semester",
+     "value": 7
+    },
+    {
+     "citation": "IMG Academy, NCAA eligibility requirements (copyright 2026, https://www.imgacademy.com/resources/articles/ncaa-eligibility-requirements)",
+     "locator": "IMG Academy article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "img-academy",
+     "primary": false,
+     "quote": "Yes: 10 courses, including 7 in English, math, or science, completed before senior year",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0036",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Two-year college transfer grade average: 2.000 for transfers seeking eligibility in 2026-27 and after (it was 2.500). Approved by the Division I Cabinet on June 24, 2026.",
+   "value": 2.0,
+   "unit": "gpa",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I Academics and Eligibility Committee, May 8, 2026 (https://ncaaorg.s3.amazonaws.com/committees/d1/academicseligibility/May2026D1AEC_Report.pdf as saved)",
+     "locator": "AEC report May 8, 2026, Legislative Action (text copy May2026-D1AEC-raw.txt, line 25)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "the proposal reduces the transferable grade-point average requirement from 2.500 to 2.000",
+     "value": 2.0
+    },
+    {
+     "citation": "NJCAA, release on NCAA Division I two-year transfer changes (2026-06-24, https://stats.njcaa.org/general/2025-26/releases/20260624sx2a0g)",
+     "locator": "NJCAA release",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "njcaa",
+     "primary": false,
+     "quote": "the reduction of the transferable GPA requirement from 2.5 to 2.0 for two-year transfers",
+     "value": 2.0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text is the committee recommendation to the Cabinet; adoption is stated by the NJCAA release (adopted by the Division I Cabinet on June 24). The final legislative text (LSDBi) was not reachable. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-0037",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "May 2026 two-year transfer change removes the 12-hour average and the 48/72-hour requirement for nonqualifiers (effective for 2026-27). The juco.nonqualifier_hours and juco.qualifier_hours_per_term keys therefore have no value in the 2026 set (limit not applied).",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NCAA, Report of the Division I Academics and Eligibility Committee, May 8, 2026 (https://ncaaorg.s3.amazonaws.com/committees/d1/academicseligibility/May2026D1AEC_Report.pdf as saved)",
+     "locator": "AEC report May 8, 2026, Legislative Action (text copy May2026-D1AEC-raw.txt, line 26)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "eliminates certain credit-hour accumulation thresholds (including the average of 12 hours and the 48/72-hour requirement for nonqualifiers)",
+     "value": false
+    },
+    {
+     "citation": "NJCAA, release on NCAA Division I two-year transfer changes (2026-06-24, https://stats.njcaa.org/general/2025-26/releases/20260624sx2a0g)",
+     "locator": "NJCAA release",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "njcaa",
+     "primary": false,
+     "quote": "transfer credit-hour requirements will now be based on enrollment history"
+    }
+   ],
+   "usedBy": [],
+   "notes": "The replacement test is \"based on enrollment history\" (NJCAA); its text was not read, so no replacement key is filled. The old values (3 terms, 48 hours, 12 per term) are not restated by any source read this pass. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  }
+ ]
+}

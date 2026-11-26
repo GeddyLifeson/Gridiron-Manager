@@ -1,6 +1,7 @@
 // X11.2.3 stock balance: entries against exits, exit ages and career lengths against the references,
 // and the starting coach retirement hazard. This file checks aggregates; retirement decisions belong to
 // the people themselves (D, X5).
+import { possible } from '@gm/schema';
 import { param } from './params.ts';
 import { median } from './day-one.ts';
 
@@ -62,6 +63,6 @@ export function proAgeBandProblems(a: ProSoakAges): string[] {
  */
 export function coachRetirementChance(age: number): number {
   const start = param('coachRetireStartAge');
-  if (age < start) return 0;
-  return Math.min(param('coachRetireCap'), param('coachRetireStartChance') + (age - start) * param('coachRetireStepPerYear'));
+  if (age < start) return possible(0);
+  return possible(Math.min(param('coachRetireCap'), param('coachRetireStartChance') + (age - start) * param('coachRetireStepPerYear')));
 }

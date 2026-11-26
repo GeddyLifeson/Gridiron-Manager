@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { retirementChance, retireShare, measuredExitRate, midSeasonRetirementChance, comebackChance, agingOutlook } from '../../src/development/index.ts';
 import { MATH, N } from './helpers.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 const base = { family: 'RB' as const, ageYears: 30, majorInjuryLastYear: false, lostStartingJob: false, contenderWantsHim: false, facets: {} };
 
@@ -15,7 +16,7 @@ describe('D8.4.1 exit hazard', () => {
   it('choosing to retire is 0 at 27 and about one third of the total exit rate from 30', () => {
     expect(retireShare(N, 27)).toBe(0);
     expect(retireShare(N, 30)).toBeCloseTo(1 / 3, 3);
-    expect(retirementChance(N, { ...base, ageYears: 26 })).toBe(0);
+    expect(retirementChance(N, { ...base, ageYears: 26 })).toBe(PROB_FLOOR);
     expect(retirementChance(N, base)).toBeCloseTo(0.26 / 3, 3);
   });
   it('modifiers: major injury x2, lost starting job x1.5, contender x0.6, high competitiveness x0.7, love of football x1.3 to x0.7', () => {
@@ -28,8 +29,8 @@ describe('D8.4.1 exit hazard', () => {
     expect(retirementChance(N, { ...base, facets: { love_of_football: 100 } }) / b).toBeCloseTo(0.7, 9);
     expect(midSeasonRetirementChance(N, base) / b).toBeCloseTo(0.25, 9);
     expect(comebackChance(N, 33, true)).toBeCloseTo(0.03, 9);
-    expect(comebackChance(N, 35, true)).toBe(0);
-    expect(comebackChance(N, 30, false)).toBe(0);
+    expect(comebackChance(N, 35, true)).toBe(PROB_FLOOR);
+    expect(comebackChance(N, 30, false)).toBe(PROB_FLOOR);
   });
 });
 

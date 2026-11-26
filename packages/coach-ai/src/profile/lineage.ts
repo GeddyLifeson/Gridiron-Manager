@@ -1,6 +1,6 @@
 // Lineage (K2.5.2): what a coach takes from the people he worked under.
 import { clamp, type Draws } from './draws.ts';
-import { DEFENSE_RATE_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, TENDENCY_KEYS } from './keys.ts';
+import { DEFENSE_RATE_KEYS, EMPHASIS_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, TENDENCY_KEYS } from './keys.ts';
 import type { CoachPopulation } from './population.ts';
 import { ASSUMPTIONS } from './sources.ts';
 import type { PersonnelKey, SystemBlock, TendencyBlock } from './types.ts';
@@ -92,7 +92,12 @@ export function inheritTendencies(mentors: readonly MentorInput[], own: Tendency
   const total = ws.reduce((s, w) => s + w.weight, 0);
   if (total <= 0) return own;
   const k0 = ASSUMPTIONS.tendencyInheritWeight.value;
-  const out = { ...own };
+  const out = { ...own, emphasis: { ...own.emphasis } };
+  for (const k of EMPHASIS_KEYS) {
+    const m = ws.reduce((s, w) => s + w.weight * w.mentor.tendencies!.emphasis[k], 0) / total;
+    const spec = pop.fields[`tendencies.emphasis.${k}`]!;
+    out.emphasis[k] = clamp(k0 * m + (1 - k0) * own.emphasis[k], spec.min, spec.max);
+  }
   for (const k of TENDENCY_KEYS) {
     const m = ws.reduce((s, w) => s + w.weight * w.mentor.tendencies![k], 0) / total;
     const spec = pop.fields[`tendencies.${k}`]!;

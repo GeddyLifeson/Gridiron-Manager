@@ -1,7 +1,7 @@
 // Change over a career: between-season change (K2.5.1) and the memory block's updates (K2.1.5).
 // Use, not time, drives growth. No rule here reads points, experience totals or a level counter.
 import { clamp, type Draws } from './draws.ts';
-import { BEHAVIOR_KEYS, CALLER_FIELDS, DEFENSE_RATE_KEYS, OFFENSE_RATE_KEYS, ROLE_USES, TENDENCY_KEYS, type BehaviorKey } from './keys.ts';
+import { BEHAVIOR_KEYS, CALLER_FIELDS, DEFENSE_RATE_KEYS, EMPHASIS_KEYS, OFFENSE_RATE_KEYS, ROLE_USES, TENDENCY_KEYS, type BehaviorKey } from './keys.ts';
 import { getPopulation, type CoachPopulation } from './population.ts';
 import { ASSUMPTIONS } from './sources.ts';
 import type { CoachProfile, CoachRole, MemoryBlock, OpponentNoteRow, SideOfBall, SystemBlock, TendencyBlock } from './types.ts';
@@ -46,7 +46,15 @@ export function advanceSeason(p: CoachProfile, ctx: SeasonChangeContext, d: Draw
     behavior[k] = clamp(x, spec.min, spec.max);
   }
   // Rule 4: tendencies step toward what worked for him, plus noise (he can learn the wrong lesson from luck).
-  const tendencies = { ...p.tendencies };
+  const tendencies = { ...p.tendencies, emphasis: { ...p.tendencies.emphasis } };
+  // The emphasis dials move the same way (K2.1.3 rule 4).
+  for (const k of EMPHASIS_KEYS) {
+    const best = ctx.bestTendency?.emphasis?.[k];
+    if (best === undefined || ctx.roleLastSeason === null) continue;
+    const spec = pop.fields[`tendencies.emphasis.${k}`]!;
+    const step = ASSUMPTIONS.tendencyLearnStep.value * (best - tendencies.emphasis[k]) + TENDENCY_DRIFT_NOISE_SD.value * spec.sd * d.normal();
+    tendencies.emphasis[k] = clamp(tendencies.emphasis[k] + step, spec.min, spec.max);
+  }
   for (const k of TENDENCY_KEYS) {
     const best = ctx.bestTendency?.[k];
     if (best === undefined || ctx.roleLastSeason === null) continue;
