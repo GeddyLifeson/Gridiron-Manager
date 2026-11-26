@@ -8,6 +8,7 @@ import { stream } from '@gm/engine-core';
 import { development, draft } from '@gm/league';
 import { cohorts } from '@gm/people';
 import type { RuleSet } from '@gm/schema';
+import { applyForfeits } from '../compliance/penalties.ts';
 import { param as genParam } from '../generation/params.ts';
 import { isActive } from '../loop/lifecycle.ts';
 import { RELEASED } from '../loop/events.ts';
@@ -254,7 +255,8 @@ function runDraft(c: Cycle, level: Level, order: readonly number[], shares: Map<
   const slots = order.map((teamId, i) => ({ pick: i + 1, teamId, tier: champion.includes(teamId) ? 1 : 0 }))
     .sort((x, y) => x.tier - y.tier || shares.get(x.teamId)! - shares.get(y.teamId)! || x.pick - y.pick)
     .map((s, i) => ({ ...s, pick: i + 1 }));
-  const ledger = draft.createLedger(c.season, order, rules, 0);
+  // C7.2.1 rule 5: picks the league took for discipline (L8.2.5 orders) are gone from this draft.
+  const ledger = applyForfeits(c.world, draft.createLedger(c.season, order, rules, 0));
   const selections = draft.selectionOrder(slots, shares, ledger, rules);
   const pool = take(c.world, POOL.proEntry).filter((id) => available(c.world, id));
   const drafted: number[] = [];

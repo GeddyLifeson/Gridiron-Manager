@@ -72,8 +72,12 @@ export const SIZE_TARGETS = {
   standardSeason30: 1000 * MB,
   /** "under 400 MB in the first season" (standard). */
   standardSeason1: 400 * MB,
-  /** "`compact` ... target under 300 MB" (taken at season 30, the leaf gives no season: assumption). */
-  compactSeason30: 300 * MB,
+  /**
+   * P5.4.1 said "`compact` ... target under 300 MB". Marlon ruled on 2026-11-26 to accept about 600 MB
+   * at season 30 instead: by the leaf's own figures the log, summaries and live state alone pass 300 MB.
+   * MA amendment requested from "Apply bible fixes from modules".
+   */
+  compactSeason30: 600 * MB,
 } as const;
 
 /** P5.4.1 planning assumptions for the default world. Not facts: C2, T3, J15 and T12 own the real values. */
@@ -112,7 +116,7 @@ export const PARAMS: ParamFile = {
     window('compact.userFilm', 1, 'P5.4.1', 'bible'),
     bytes('target.standardSeason30', SIZE_TARGETS.standardSeason30, 'bible'),
     bytes('target.standardSeason1', SIZE_TARGETS.standardSeason1, 'bible'),
-    bytes('target.compactSeason30', SIZE_TARGETS.compactSeason30, 'assumption'),
+    bytes('target.compactSeason30', SIZE_TARGETS.compactSeason30, 'assumption'), // Marlon ruling 2026-11-26: 600 MB replaces P5.4.1's 300 MB
     bytes('planning.bytesPerPlayRow', PLANNING.bytesPerPlayRow, 'bible'),
     bytes('planning.bytesPerGameInput', PLANNING.bytesPerGameInput, 'bible'),
   ],
