@@ -16,3 +16,4 @@ export { t as careerText, money } from './text.ts';
 export { careerSourcesOf, type LiveCareerOptions, type TeamSeasonLine } from './live.ts';
 export { liveCareerTables, jobHistoryOf, staffRuns, staffMates, howKey, type LiveCareerTables } from './live-tables.ts';
 export { careerHost, teamSeasonOf, EMPTY_VIEWS, NOTEBOOK_KEY, PHILOSOPHY_KEY, type CareerHost, type CareerHostOptions } from './host.ts';
+export { COACH_KEY, coachStateOf, ensureCoachState, coachScreenInputs, startModeFor, draftFor, type CoachState, type CoachBoss, type CoachMoney, type CoachLife, type CoachScreenInputs } from './coach-state.ts';

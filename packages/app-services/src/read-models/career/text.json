@@ -160,5 +160,7 @@
  "spend.mortgage_interest": "mortgage interest",
  "spend.living": "living costs",
  "spend.debt_interest": "interest on debts",
- "spend.fees": "fees"
+ "spend.fees": "fees",
+ "date.day": "{season}, day {day}",
+ "task.required": "Required staff hours"
 }
