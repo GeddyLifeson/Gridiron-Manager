@@ -13,7 +13,7 @@ import { stream } from '@gm/engine-core';
 import { gm } from '@gm/front-office';
 import { cap, development } from '@gm/league';
 import { ageIn, levelOfTeam, positionTargets, specOf, type Level, type PolicyContext, type Phase, type RosterPolicy } from './binding.ts';
-import { ruleSetOf } from './moves.ts';
+import { POOL, ruleSetOf } from './moves.ts';
 import { param } from './params.ts';
 
 export const STREAM_GM = 'world.frontoffice.gm';
@@ -195,6 +195,33 @@ export function gmPolicy(): RosterPolicy {
     return b;
   };
 
+  const freeSets = new WeakMap<PolicyContext, Map<number, Map<string, number>>>();
+  /** Per position, his grade of the entry-pool prospect just past the expected draft picks there (TO-06). */
+  const freeAlternative = (pc: PolicyContext, teamId: number): Map<string, number> => {
+    let byTeam = freeSets.get(pc);
+    if (!byTeam) { byTeam = new Map(); freeSets.set(pc, byTeam); }
+    const hit = byTeam.get(teamId);
+    if (hit) return hit;
+    const level = levelOfTeam(pc.world, teamId);
+    const spec = specOf(pc.b, pc.world, teamId);
+    const clubs = pc.world.teams.filter((x) => levelOfTeam(pc.world, x.id) === level).length;
+    const picks = clubs * (pc.b.rule(level, 'league_rules.draft.rounds') ?? 0);
+    const mixTotal = Object.values(spec.rosterMix).reduce((a, x) => a + x, 0);
+    const grades = new Map<string, number[]>();
+    for (const id of pc.world.pools.get(POOL.proEntry) ?? []) {
+      const pos = pc.world.people.get(id)?.playing?.position;
+      if (pos) grades.set(pos, [...(grades.get(pos) ?? []), pc.grades.grade(teamId, id)]);
+    }
+    const out = new Map<string, number>();
+    for (const [pos, gs] of grades) {
+      const k = Math.round(picks * (spec.rosterMix[pos] ?? 0) / Math.max(1, mixTotal));
+      const sorted = [...gs].sort((a, b) => b - a);
+      out.set(pos, sorted[Math.min(sorted.length - 1, k)]!);
+    }
+    byTeam.set(teamId, out);
+    return out;
+  };
+
   const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
 
   const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
@@ -215,9 +242,14 @@ export function gmPolicy(): RosterPolicy {
         return gm.buildBoard(t.profile, prospects, needs, t.ctx, phase.round ?? 1, phase.rounds ?? 1, rookieYears(pc, level, phase.round ?? 1))[0]?.personId ?? null;
       }
       if (phase.kind === 'undrafted') return gm.undraftedBoard(t.profile, pool, needs, t.ctx)[0] ?? null;
+      // K7.2.2 replacement before the draft is the player he can have for nothing after it: the prospect at
+      // each position just past the league's expected picks there, as his own staff grades the entry pool.
+      const free = freeAlternative(pc, teamId);
+      const faCtx: gm.ValueContext = { ...t.ctx, table: { ...t.ctx.table, replacementIss: (pos) => free.get(pos) ?? t.ctx.table.replacementIss(pos) } };
       // C8: no contracts yet, so the expected deal is the general manager's own horizon and no minimum (TO-07).
       const fas = pool.map((v) => ({ ...v, expectedYears: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, publicSuitors: 0 }));
-      return gm.targets(t.profile, fas, needs, t.ctx)[0]?.personId ?? null;
+      // K7.4.2: he targets only players worth more than replacement; with none left he signs nobody.
+      return gm.targets(t.profile, fas, needs, faCtx)[0]?.personId ?? 'pass';
     },
     recruitOffers(pc, teamId, candidates, openPlaces) {
       if (isPro(pc, teamId) || candidates.length === 0) return null;

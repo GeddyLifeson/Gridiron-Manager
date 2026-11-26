@@ -83,6 +83,7 @@ function score(c: Cycle, teamId: number, id: number): number {
 /** Best available for a team from a candidate list: the policy's pick, else the default board (ties to the lower id). */
 function best(c: Cycle, teamId: number, ids: readonly number[], phase: Phase): number | null {
   const chosen = c.b.policy?.pick?.(c, teamId, ids, phase) ?? null;
+  if (chosen === 'pass') return null;
   if (chosen !== null && ids.includes(chosen)) return chosen;
   let top: number | null = null, topScore = -Infinity;
   for (const id of ids) {
@@ -190,13 +191,16 @@ function dropFromPools(world: LiveWorld, id: number): void {
 /** Round-robin signings: each team in order signs its best candidate until it reaches `upTo` or the list is empty. */
 function fill(c: Cycle, order: readonly number[], candidates: number[], upTo: (teamId: number) => number, kind: string, onSign?: (id: number) => void): number[] {
   const left = [...candidates];
+  // A team that takes nobody is done for this round of signings (K7.4.2: he signs only players worth more than replacement).
+  const done = new Set<number>();
   let moved = true;
   while (moved && left.length > 0) {
     moved = false;
     for (const teamId of order) {
       if ((c.world.rosters.get(teamId) ?? []).length >= upTo(teamId) || left.length === 0) continue;
+      if (done.has(teamId)) continue;
       const id = best(c, teamId, left, { kind: kind as Phase['kind'] });
-      if (id === null) continue;
+      if (id === null) { done.add(teamId); continue; }
       left.splice(left.indexOf(id), 1);
       onSign?.(id);
       sign(c, teamId, id, kind);

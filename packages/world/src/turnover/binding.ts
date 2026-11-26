@@ -18,8 +18,8 @@ export type RuleRead = (level: Level, key: string) => number | undefined;
 export interface RosterPolicy {
   /** Board score of a player for a team: higher is wanted more. Must read observed grades only (K9). */
   readonly boardScore?: (ctx: GradeContext, teamId: number, personId: number, need: number) => number;
-  /** The player a team takes from the candidates, or null to leave the choice to the default board. */
-  readonly pick?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], phase: Phase) => number | null;
+  /** The player a team takes from the candidates; 'pass' to take nobody now; null to leave the choice to the default board. */
+  readonly pick?: (ctx: PolicyContext, teamId: number, candidates: readonly number[], phase: Phase) => number | 'pass' | null;
   /** The players a team keeps at the cutdown (M6), or null for the default. Must keep `limit` with the minimums filled. */
   readonly cutdown?: (ctx: PolicyContext, teamId: number, roster: readonly number[], limit: number, minByPosition: Readonly<Record<string, number>>) => readonly number[] | null;
   /** K7.5.1: a college program's offers to ready recruits, best first, for `openPlaces` places; null for the default signing order. */
