@@ -1,6 +1,6 @@
 # Presentation build plan: graphics and sound
 
-Scope: everything the user sees and hears that is not a screen's data: the field, markers and play animation, broadcast-style overlays, the film room's look, interface art, and all audio. It extends `plans/game-build-plan.md` (G-00 to G-100) with packages `PV-00` to `PV-17`. Every rule in that file's sections 0 and 2 binds these packages (owned paths, integrator, checks, PRs, facts).
+Scope: everything the user sees and hears that is not a screen's data: the field, markers and play animation, broadcast-style overlays, the film room's look, interface art, and all audio. It extends `plans/game-build-plan.md` (G-00 to G-100) with packages `PV-00` to `PV-18`. Every rule in that file's sections 0 and 2 binds these packages (owned paths, integrator, checks, PRs, facts).
 
 Written 2026-11-26 by the thread "Plan graphics and sound" from: O6 (presentation rules), O2.3 and O2.6 (field and film), O5.3.2 and O5.5 (settings, accessibility), I9 (game presentation), J12.6.1 (crowd noise), J13 (streams), A6 (legal lines), the Myth and Blood code review (`/mnt/project-files/myth-and-blood.md` section 10, MB-1 to MB-20, already merged into O6.4.1, O5.3.2, O5.5.2 and J12.6.1), and the merged G-03 field view (`packages/app-ui/src/field-view/`).
 
@@ -21,7 +21,33 @@ Written 2026-11-26 by the thread "Plan graphics and sound" from: O6 (presentatio
 
 Plain, flat, functional: a coaching whiteboard and an all-22 film cut-up, not a broadcast video game. One typeface family with tabular figures (O6.2.1). Colours come only from design tokens (`packages/app-ui/src/tokens/tokens.json`); a lint fails on any literal colour. Three themes (light, dark, high contrast) and three colour-vision palettes (O5.5.1). Colour is never the only signal: team is also outline style, position group is shape, state is icon or text.
 
-Typeface: the system UI font stack in v1 (no font file, nothing to license). A bundled font is allowed only under the SIL Open Font License with its licence file and a register row (section 5). Which font, if any, is an open item for Marlon (section 9).
+Typeface: the system UI font stack for body text and tables (no font file, nothing to license). The two period display faces in 2.1 are drawn by code. A bundled font is allowed only under the SIL Open Font License with its licence file and a register row (section 5).
+
+## 2.1 Era look: classic 1970s and 1980s pro football (Marlon, 2026-11-26 04:59 UTC)
+
+Marlon: "use stuff authentic to classic 70s/80s NFL". The look and sound take their style from 1970s and 1980s pro football. This is a skin only. The rules stay modern ("the rules have always been the rules"), and every piece of football information in sections 3 and 4 is unchanged. The era look is the default theme ("Classic"). The plain light, dark and high-contrast themes stay available, and the era look must pass the same contrast, greyscale and legibility tests (O5.5.1). Under O6.1.1 the skin carries no information of its own, so it may never make information harder to read. If it does, the plain style wins.
+
+**Period facts behind the look** (status per A5; research on 2026-11-26 from the pages named; nothing here is a game rule):
+
+| Fact | Status | Sources |
+| --- | --- | --- |
+| US NFL broadcasts had no permanent on-screen score box until Fox's "Fox Box" in the 1994 season | Verified | Wikipedia "Score bug"; Awful Announcing, scorebug 30th anniversary; Grantland "Score" |
+| TV text in the period came from character generators, mainly as lower-third captions; the Chiron IV (1977) was the workhorse of mobile sports graphics from the late 1970s through most of the 1980s | 2 of 3 (lower thirds: Verified) | Wikipedia "Chyron Corporation"; ChyronHego "50 years of character generation"; TV Technology "Tracing the evolution of television's electronic graphics" |
+| Early character-generator text was blocky: the 1967 Videograph had one uppercase-only, slightly jagged font with no proportional spacing; the 1972 Chiron II added up to six loadable fonts | 1 of 3 | TV Technology (as above) |
+| Coaches studied 16mm film in the 1970s; the NFL moved coaching film to videotape in 1986 | 16mm: Verified; 1986: 2 of 3 | NFL.com film study article; Athletic Business, January 1992; Chiefs "Hank Stram's 16mm projector" (16mm only) |
+| Officials used pea whistles before the pealess Fox 40, first used professionally at the 1987 Pan Am Games | 1987: Verified; pea whistles before: 2 of 3 | Fox 40 company history; Sportskeeda whistle history; Refereeing World blog |
+| Stadium scoreboards were large lamp (light-bulb) boards; the first big video board (Diamond Vision) arrived in 1980 | Lamp boards: 1 of 3; 1980: 2 of 3 | Mental Floss "100 years of scoreboard watching"; Wikipedia "Jumbotron"; Daktronics company history |
+| Stadium organs and marching bands played during stoppages in the period | Assumption (not researched yet; PV-10 checks it before use) | none |
+
+**What the era look means for each part:**
+- **Score strip.** No broadcast score box existed in the period, but the game needs the score always visible (O2.1). So the strip is drawn as a stadium **lamp scoreboard**: a grid of round lamps in amber or white on a dark panel, with segmented clock digits. Everything on it is the same public game state as 3.4.
+- **Banners and stoppage text.** These are drawn as **character-generator lower thirds**: a code-drawn blocky uppercase display font with a hard drop shadow, flat colour bars, cut on and off with no motion (O6.4.1). They follow the same banner-queue rules.
+- **Field.** Flat grass or period artificial-turf colour (by venue), painted numbers in a blocky stencil style, a plain end zone with the generated team name in block letters. Markers stay O6.3.1 shapes, with period team colours from the generator (two flat colours, no gradients).
+- **Film room.** A **16mm coaching-film look** for seasons before 1986 in the world history, and a **videotape look** from 1986 on: still grain (a fresh grain pattern each frame from `cosmetic.display`, never moving marker positions), a soft vignette, reel leader title cards ("REEL 2  3RD QTR"), and a frame counter in the corner. No gate weave or jitter, because that would move positions. Grain and vignette turn off under reduced motion and high contrast. A "plain film" switch removes them.
+- **Sound.** A pea-whistle trill (a warble in the synthesized whistle), a period-feel crowd bed (the same engine-driven level), and a 16mm projector run sound on the ambience bus in the film room, optional and off by default. Stadium organ stings and band hits in stoppages only, once the period fact is checked. Referee announcements stay text, now drawn as character-generator lower thirds.
+- **Menu music.** Original brass and orchestral pieces in a period sports-film style, composed in code. **No NFL Films music**, no imitation of any specific piece or composer, and no real broadcasters' voices or catchphrases.
+- **Icons.** Flat, thick-line, two-colour, in the period's print and TV-graphics style.
+- **Never:** NFL or team marks, the NFL shield, real uniforms, real stadium names, real broadcaster names or voices, NFL Films footage or music, or trade dress copied from a real broadcast package.
 
 ## 3. Asset list: graphics
 
@@ -138,8 +164,19 @@ Mix rules from O5.3.2 (already in the bible): ducking of the crowd to about half
 1. **Code first.** Graphics are SVG or Canvas drawn from tokens and data files. Sounds are Web Audio graphs built from recipe data (oscillators, filtered noise, envelopes). Recipes live with the code (`packages/app-ui/src/audio/recipes/`), so every sound is reviewable text.
 2. **Offline rendering (optional, v2).** If decoded files help performance or a richer sound is wanted, a script renders recipes to Ogg files in a batch (Myth and Blood's `tools/sfx/` pattern, MB-19). Rendered files are build outputs, rebuilt from the recipes, and keep the live synthesized fallback.
 3. **Licensed assets (only if ever needed).** Allowed: CC0 or public-domain dedications for audio and images; SIL OFL for fonts; MIT, BSD or Apache code. Not allowed: non-commercial, no-derivatives, "royalty-free" licences that bar redistribution, unknown provenance, or anything with real team, player, song or chant content. Real crowd recordings need a licence check and a content check (no team names chanted).
-4. **AI-generated assets.** Not used in v1. If used later: only from a service whose terms allow commercial redistribution, the model, terms and prompt recorded in the register, never a real person's likeness or voice, never a real team.
-5. **Register.** `assets/LICENSES.json`, one row per non-code asset file: path, sha256, source URL, licence id, author, date retrieved, and for AI assets the model and prompt. PV-15 adds a checker the release gate (G-100) calls: every file under an asset folder has a row and every row's file exists; the existing name and mark scan also covers image files.
+4. **AI-generated assets.** Only for art that carries no football information (concept art, mood boards, possibly title-screen art). Only from a service whose terms allow commercial redistribution, with the model, terms and prompt recorded in the register. Never a real person's likeness or voice, never a real team, stadium or broadcast.
+5. **Tools available to the PV threads (Marlon, 2026-11-26: "you have tools and skills to help as well").** Code stays the source for anything that carries football information. These tools are for producing, previewing and checking assets, and for art that carries no information (title screen, mood boards). Every file a tool produces that ships in the game gets a register row. Any AI-generated file records its model, the service's terms link and the prompt, and passes the A6 checks (no real marks, people, voices, stadiums or broadcasts).
+
+   | Tool | Best use here | Ships in the game? |
+   | --- | --- | --- |
+   | `frontend-design` skill | Styling screens, the Classic theme's tokens, lower-third and lamp-scoreboard components (PV-05, PV-18) | Yes, as code |
+   | `dataviz` skill | Tendency tables, charts, analytics and self-scout visuals (O3.6, N2), in the era palette | Yes, as code |
+   | `codesign` (IMG.LY CoDesign) | Drafting icons, title cards, reel leaders and mood boards; exports SVG or PNG (PV-13, PV-18) | SVG exports may ship if redrawn into token colours; its AI generation counts as AI assets |
+   | `animation-studio` skill | Title and menu animations with code-made sound; offline rendering of sound recipes (PV-07, PV-11) | Yes, if the output is rebuildable from the repo |
+   | `image-generation` and `art-suite` skills, OpenArt connector (images and video) | Concept art and the era mood board; possibly title-screen art | Only non-information art, with a register row (model, terms, prompt) |
+   | Creative programs on Marlon's PC (list: `plans/pc-tools-inventory.md`, being written by "Inventory creative tools on Marlon's PC") | Audio and image editing, previewing renders by ear (no audio output in the cloud) | Files only with a register row |
+
+6. **Register.** `assets/LICENSES.json`, one row per non-code asset file: path, sha256, source URL, licence id, author, date retrieved, and for AI assets the model and prompt. PV-15 adds a checker the release gate (G-100) calls: every file under an asset folder has a row and every row's file exists; the existing name and mark scan also covers image files.
 
 ## 6. Cosmetic randomness, kept apart from the game
 
@@ -173,7 +210,7 @@ Same table format as game-build-plan.md section 5. "Rank" is the O6.1.1 order. O
 
 Model policy (game-build-plan.md section 0): Fable for genuinely hard modules, Opus for normal feature code and UI, Sonnet for data, content tables and test scaffolding.
 
-### PW1: can start now (8)
+### PW1: can start now (9)
 
 | WP | Title | Bible | Owns | Needs | Acceptance | Rank | Model |
 |----|-------|-------|------|-------|------------|------|-------|
@@ -181,10 +218,11 @@ Model policy (game-build-plan.md section 0): Fable for genuinely hard modules, O
 | PV-01 | Cosmetic random streams and lint | J13, P1.1.1, MB-16 | `packages/app-services/src/cosmetic/`; lint rule request to the integrator | main | Section 6 tests 1 to 3 pass | 1 | Opus (small; determinism test is the hard part) |
 | PV-02 | Cue table and feel tests | O5.5.2, O6.4.1, MB-1, MB-20 | `packages/app-ui/src/presentation/cues/` (`cue-table.json` plus tests) | main | One row per engine event kind: visual cue, sound, bus, caption text, setting switch, information carried; tests: every event with a cue has a visual twin, no row lacks "information", stingers never overlap | 2 | Sonnet: data table and tests |
 | PV-06 | Audio engine core | O5.3.2, MB-7, MB-8, MB-10, MB-18 | `packages/app-ui/src/audio/engine/` | main | Web Audio graph with the 8 buses, ducking, pan, per-sound rate limiter, ranked queue, synthesized fallback path; runs against a fake audio context in tests; no sound when a bus is off | 6 | Opus |
-| PV-07 | Synthesized sound recipes | O5.3.2, MB-9, MB-12, MB-19 | `packages/app-ui/src/audio/recipes/` | PV-06 | Every sound in 4.2 has a recipe; offline render test measures each recipe's peak and loudness inside the target; pitch variants draw from `cosmetic.audio` | 6 | Opus |
-| PV-11 | Menu music | MB-11 | `packages/app-ui/src/audio/music/` | PV-06 | 3 or 4 short loops composed in code; route test: no music on game-calling, film or any route under the game frame | 6 | Opus |
-| PV-13 | Icon set and interface states | O6.2, O2.5.2, O2.5.3, MB-13, MB-15 | `packages/app-ui/src/presentation/icons/` | main | About 40 SVG icons from tokens, each with a text label; contrast check in all themes and palettes; injury icon checked against the protected-emblem rule with 3 sources | 3 | Opus |
-| PV-15 | Asset licence register and checker | A6, P4, G-100 | `assets/LICENSES.json`, `scripts/assets/check-licences.mjs` | main | Checker passes on the empty register, fails a planted unlisted file and a planted row with a disallowed licence; G-100 thread told how to call it | 6 | Sonnet: scripted check |
+| PV-07 | Synthesized sound recipes | O5.3.2, MB-9, MB-12, MB-19, 2.1 | `packages/app-ui/src/audio/recipes/` | PV-06 | Every sound in 4.2 has a recipe in the era style of 2.1 (pea-whistle warble, period crowd, projector run, organ only once PV-10 checks the fact); offline render test measures each recipe's peak and loudness inside the target; pitch variants draw from `cosmetic.audio` | 6 | Opus |
+| PV-11 | Menu music | MB-11, 2.1 | `packages/app-ui/src/audio/music/` | PV-06 | 3 or 4 short original brass and orchestral loops in a period sports-film style, composed in code; no NFL Films music and no imitation of a specific piece or composer; route test: no music on game-calling, film or any route under the game frame | 6 | Opus |
+| PV-13 | Icon set and interface states | O6.2, O2.5.2, O2.5.3, MB-13, MB-15, 2.1 | `packages/app-ui/src/presentation/icons/` | main | About 40 SVG icons from tokens in the flat, thick-line, two-colour period style, each with a text label; contrast check in all themes and palettes; injury icon checked against the protected-emblem rule with 3 sources | 3 | Opus |
+| PV-15 | Asset licence register and checker | A6, P4, G-100 | `assets/LICENSES.json`, `scripts/assets/check-licences.mjs` | main | Rows hold model, terms link and prompt for AI assets; checker passes on the empty register, fails a planted unlisted file and a planted row with a disallowed licence; G-100 thread told how to call it | 6 | Sonnet: scripted check |
+| PV-18 | Classic era skin | 2.1, O6.2, O5.5.1, O2.6 | `packages/app-ui/src/presentation/era/` (Classic theme tokens, lamp-grid font, character-generator font, film grain and leader cards) | main; PV-05 and PV-12 consume it | Both display fonts drawn by code with no font file; Classic tokens pass every contrast and greyscale test; grain draws from `cosmetic.display`, never shifts a marker, and turns off under reduced motion and high contrast; 16mm look before 1986 and tape look after in the world calendar; a scan finds no NFL or real-broadcast names or marks | 6 | Opus |
 
 ### PW2: after the named PW1 packages and engine events (8)
 
@@ -211,12 +249,12 @@ Model policy (game-build-plan.md section 0): Fable for genuinely hard modules, O
 | Model | Packages |
 |-------|----------|
 | Fable | none (no package here is core simulation or AI; PV-01's determinism risk is covered by its tests) |
-| Opus | PV-00, PV-01, PV-03, PV-04, PV-05, PV-06, PV-07, PV-08, PV-09, PV-11, PV-12, PV-13, PV-14, PV-16 (14) |
+| Opus | PV-00, PV-01, PV-03, PV-04, PV-05, PV-06, PV-07, PV-08, PV-09, PV-11, PV-12, PV-13, PV-14, PV-16, PV-18 (15) |
 | Sonnet | PV-02, PV-10, PV-15, PV-17 (4) |
 
 ## 9. Open items for Marlon
 
-1. Bundled typeface or the system font stack (v1 plan: system stack).
+1. Classic era look as the default theme (plan: yes, with the plain themes one setting away). Body text stays in system fonts; the period display faces are drawn by code.
 2. Spoken words: the cadence and referee announcements use tones plus on-screen text, no voice. A generated (not real-person) voice is possible later if wanted.
 3. Figure mode after the gates: wanted, or keep markers only.
 4. Whether menu music is wanted at all (default plan: on in menus, user volume).
@@ -229,3 +267,5 @@ Model policy (game-build-plan.md section 0): Fable for genuinely hard modules, O
 - A-4 O6.4.1: allowed cue list adds throw line and boundary mark (already drawn by G-03); a fumble is a loose-ball ring, not a flash; film-only effects listed (slow motion, freeze, spotlight, telestrator).
 - A-5 J5, J6, J12 outputs: cadence, relay, contact tier and wind values exposed read-only to presentation, like the MB-6 `noise` amendment.
 - A-6 O5.5.2: three-flash limit (to be cited only after PV-14 verifies it).
+- A-7 O6.2 and O5.3.2: a "Classic" (1970s and 1980s) theme is the default skin, bound by O6.1.1 and the contrast rules; period display fonts drawn by code; film-room 16mm or tape look by world year; no NFL, broadcast or NFL Films marks, music or voices (section 2.1).
+- A-8 O6.8 (with A-1): tools and AI-asset rule from section 5 item 5.
