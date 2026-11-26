@@ -15,9 +15,9 @@
 // Not here yet: the seat's week (H1 calendar, `seatWeek`), AI preparation (K3), the user's own call sheet
 // (G-68 bridge) and generated rosters. The teams are the real game's neutral placeholder rosters.
 import { season as seasons } from '@gm/world';
-import type { DriveRecord, GameInput, PlayRecord } from '@gm/schema';
+import type { DriveRecord, GameDeps, GameInput, PersonRecord, PlayRecord, SimPlayer } from '@gm/schema';
 import { GameCallingSession, type GameSessionOptions, type LineupFor } from '../commands/game-calling/index.ts';
-import { seatTeamFromDepth, type SeatDepth } from './seat-depth.ts';
+import { seatTeamFromDepth, simPlayerFromPerson, type SeatDepth } from './seat-depth.ts';
 
 type GameContext = seasons.GameContext;
 type GameOutcome = seasons.GameOutcome;
@@ -37,7 +37,11 @@ export interface SeasonPlayOptions {
 
 /** What the host supplies to put the seat's game on the console: the console setup and the key map. */
 export type GameHost = Pick<GameSessionOptions, 'console' | 'resolve'>
-  & Partial<Pick<GameSessionOptions, 'keyIntervalMs' | 'startMs' | 'liveMs' | 'bookLine' | 'flowOptions' | 'firstPersonnel'>>;
+  & Partial<Pick<GameSessionOptions, 'keyIntervalMs' | 'startMs' | 'liveMs' | 'bookLine' | 'flowOptions' | 'firstPersonnel'>>
+  & {
+    /** Wraps the game's resolver (presentation live `liveTap`, so the field gets each play's trajectory). */
+    readonly tapResolver?: (resolver: GameDeps['resolver']) => GameDeps['resolver'];
+  };
 
 /** The seat's game in the coming step. */
 export interface SeatGame {
@@ -109,6 +113,9 @@ function teamNames(content: seasons.LeagueContent): Map<string, string> {
 /** What `fromWorld` reads of a generated world (@gm/world loop LiveWorld): its teams and their public identity. */
 export interface WorldTeams {
   readonly teams: readonly { readonly id: number; readonly identity: { readonly name: string; readonly abbreviation: string } }[];
+  /** The world's people and date: when present, the seat's players play with their own ratings. */
+  readonly people?: ReadonlyMap<number, PersonRecord>;
+  readonly date?: { readonly seasonYear: number };
 }
 
 export interface WorldSeasonOptions {
@@ -172,7 +179,13 @@ export class SeasonPlay {
    * not reach the games yet (placeholder rosters, see the file header).
    */
   static fromWorld(content: seasons.LeagueContent, world: WorldTeams, o: WorldSeasonOptions): SeasonPlay {
-    return new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId), ...(o.resolver ? { resolver: o.resolver } : {}) });
+    const play = new SeasonPlay(content, { ruleSetId: o.ruleSetId, seasonYear: o.seasonYear, seedHex: o.seedHex, seatTeamKey: contentKeyOfWorldTeam(content, world, o.seatTeamId), ...(o.resolver ? { resolver: o.resolver } : {}) });
+    const people = world.people;
+    if (people) {
+      const year = world.date?.seasonYear ?? o.seasonYear;
+      play.playerOf = (id) => { const p = people.get(id); return p ? simPlayerFromPerson(p, year) : null; };
+    }
+    return play;
   }
 
   /** A saved season, continued from its saved state. */
@@ -204,6 +217,8 @@ export class SeasonPlay {
   get champion(): number | null { return this.state.champion; }
   /** The console session of the seat's game while it is open. */
   get game(): GameCallingSession | null { return this.open?.session ?? null; }
+  /** The open game's input (teams and environment, for the live field), or null. */
+  get gameInput(): GameInput | null { return this.open?.input ?? null; }
 
   keyOf(teamId: number): string { return this.built.keyOf.get(teamId) ?? String(teamId); }
   nameOf(teamId: number): string { const k = this.keyOf(teamId); return this.names.get(k) ?? k; }
@@ -233,7 +248,11 @@ export class SeasonPlay {
    * placeholder eleven back. Not saved with the season: the world keeps the chart.
    */
   seatDepth: SeatDepth | null = null;
-  setDepthChart(d: SeatDepth | null): void { this.seatDepth = d; }
+  /** Ratings source for chart players when the chart brings none: the world's people (`fromWorld`), else none. */
+  playerOf: ((personId: number) => SimPlayer | null) | null = null;
+  setDepthChart(d: SeatDepth | null): void {
+    this.seatDepth = d === null || d.playerOf || !this.playerOf ? d : { ...d, playerOf: this.playerOf };
+  }
 
   /** The seat's game input for the coming step: the all-AI input, with the seat team from the depth chart when one is set. */
   private seatInput(seat: SeatGame): { input: GameInput; lineup: LineupFor } {
@@ -258,8 +277,10 @@ export class SeasonPlay {
     if (!seat) throw new Error('season session: the seat has no game in the coming step');
     if (this.seatOutcomes.has(seat.context.fixture.gameId)) throw new Error(`season session: game ${seat.context.fixture.gameId} is already played`);
     const { input, lineup } = this.seatInput(seat);
-    const deps = this.port.game.deps(input);
-    const session = new GameCallingSession({ ...host, input, deps, userSide: seat.side, lineup });
+    const { tapResolver, ...sessionHost } = host;
+    const base = this.port.game.deps(input);
+    const deps = tapResolver ? { ...base, resolver: tapResolver(base.resolver) } : base;
+    const session = new GameCallingSession({ ...sessionHost, input, deps, userSide: seat.side, lineup });
     session.start();
     this.open = { context: seat.context, input, session };
     return session;

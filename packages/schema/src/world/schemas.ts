@@ -15,6 +15,7 @@ import {
   LedgerEntry, BalanceSheet, HouseholdRecord, InboxItem, NewsItem, EvaluationRecord, PhilosophyRecord, NotabilityRollup,
 } from './career.ts';
 import { ScreenRecord, SettingRecord, KeyBinding, TemplateText } from './interface.ts';
+import { SystemStateEntry } from './system.ts';
 
 export function worldSchemas(): Record<string, z.ZodType> {
   return {
@@ -38,6 +39,7 @@ export function worldSchemas(): Record<string, z.ZodType> {
     'world:NotabilityRollup': NotabilityRollup,
     'world:ScreenRecord': ScreenRecord, 'world:SettingRecord': SettingRecord, 'world:KeyBinding': KeyBinding,
     'world:TemplateText': TemplateText,
+    'world:SystemStateEntry': SystemStateEntry,
   };
 }
 
@@ -103,6 +105,7 @@ export const WORLD_TABLES: readonly WorldTableSpec[] = [
   { table: 'promises', row: 'world:PromiseRecord', kind: 'state', appendOnly: false, key: ['id'], leaf: 'L1' },
   { table: 'reputations', row: 'world:ReputationRow', kind: 'state', appendOnly: false, key: ['personId', 'audience', 'competitionId'], leaf: 'E5' },
   { table: 'openings', row: 'world:JobOpening', kind: 'state', appendOnly: false, key: ['id'], leaf: 'E2' },
+  { table: 'systemState', row: 'world:SystemStateEntry', kind: 'state', appendOnly: false, key: ['system'], leaf: 'P5.1.1' },
   { table: 'balanceSheets', row: 'world:BalanceSheet', kind: 'state', appendOnly: false, key: ['personId'], leaf: 'E6' },
   { table: 'households', row: 'world:HouseholdRecord', kind: 'state', appendOnly: false, key: ['id'], leaf: 'E8' },
   { table: 'inbox', row: 'world:InboxItem', kind: 'state', appendOnly: false, key: ['id'], leaf: 'O1.2.2' },
