@@ -10,4 +10,6 @@ export default defineConfig({
   server: { port: 5173, strictPort: true, fs: { allow: ['../..'] } },
   build: { outDir: 'dist', target: 'es2022', sourcemap: true },
   optimizeDeps: { exclude: ['sql.js'] },
+  // The new-game history worker imports the app's modules as ES modules.
+  worker: { format: 'es' },
 });
