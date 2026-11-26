@@ -70,3 +70,22 @@ same weekly model, so headless runs are the full model, faster (A3 row 20).
   `drawDevelopmentTraits`.
 - Fact rows for the D8.4.1 exit table and the D8.2.1 calibration table (1 of 3, PROVISIONAL), so the
   register prints their status; values are carried in `tables.json` with their source note.
+
+## Aging fit to measured curves (2026-11-26)
+
+- **Whole-player value** (`value.ts`): the mean of the worked attributes plus a speed term. Speed lives in the
+  forty (body.ts moves drill results with the physical index), so an attribute mean alone barely moved with
+  age: a 35-year-old back graded within 1 ISS of his peak. The speed term counts one standard deviation of the
+  position's combine forty (F-aging-0001..0011, `speed-value.json`) as 10 ISS; specialists carry no speed weight
+  (Assumption). The world's overall look (turnover `lookValue`) reads this value.
+- **Curve groups** are one per measured target row: QB, RB, WR, TE, OL, DL, EDGE, LB, DB (CB, S), K, P (long
+  snappers with punters, Assumption).
+- **Curve** (`tables.json curves`): one band per year from 23 to 40, a ramp `-m x (age - start + 1)` per group,
+  fitted by `test/development/tools/fit-aging.ts` to the measured production change by age (F-aging-0012..0022,
+  targets in `facts/aging-build/targets.json`). Production is read as proportional to value above a floor
+  `value.productionSpanIss` (15, Assumption) below the peak. Fit error is under 1 ISS RMSE at every group.
+- **Prime end** (`curves.primeEnd`): the last age within `value.primeBandIss` (2 ISS, Assumption) of the fitted
+  peak. Fitted: QB 33, RB 28, WR 28, TE 30, OL 31, DL 30, EDGE 29, LB 30, DB 28, K and P 37 (the probe ends at
+  37, so their decline reads 0). The front office (`ageCurve`) and contracts read these instead of the first
+  negative band, which was 25 at every position.
+- The targets carry survivor bias (both seasons must qualify), so decline after 30 is if anything too mild.

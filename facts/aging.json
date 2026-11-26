@@ -1,0 +1,956 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-aging-0001",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at QB (QB): pooled within-position standard deviation 0.1775 s on a mean of 4.813 s, 3.688 percent of the mean; 414 timed players 2000-2026.",
+   "value": 3.688,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['QB'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 3.688
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0002",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at RB (RB, FB): pooled within-position standard deviation 0.1135 s on a mean of 4.58 s, 2.479 percent of the mean; 837 timed players 2000-2026.",
+   "value": 2.479,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['RB', 'FB'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 2.479
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0003",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at WR (WR): pooled within-position standard deviation 0.1022 s on a mean of 4.505 s, 2.269 percent of the mean; 1162 timed players 2000-2026.",
+   "value": 2.269,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['WR'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 2.269
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0004",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at TE (TE): pooled within-position standard deviation 0.1431 s on a mean of 4.757 s, 3.009 percent of the mean; 452 timed players 2000-2026.",
+   "value": 3.009,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['TE'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 3.009
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0005",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at OL (OT, OG, C, OL, G, T): pooled within-position standard deviation 0.181 s on a mean of 5.245 s, 3.451 percent of the mean; 1336 timed players 2000-2026.",
+   "value": 3.451,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['OT', 'OG', 'C', 'OL', 'G', 'T'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 3.451
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0006",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at DL (DT, NT, DL): pooled within-position standard deviation 0.1732 s on a mean of 5.073 s, 3.414 percent of the mean; 649 timed players 2000-2026.",
+   "value": 3.414,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['DT', 'NT', 'DL'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 3.414
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0007",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at EDGE (DE, EDGE, OLB): pooled within-position standard deviation 0.1313 s on a mean of 4.749 s, 2.764 percent of the mean; 1070 timed players 2000-2026.",
+   "value": 2.764,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['DE', 'EDGE', 'OLB'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 2.764
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0008",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at LB (ILB, LB, MLB): pooled within-position standard deviation 0.1308 s on a mean of 4.706 s, 2.779 percent of the mean; 439 timed players 2000-2026.",
+   "value": 2.779,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['ILB', 'LB', 'MLB'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 2.779
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0009",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at CB (CB): pooled within-position standard deviation 0.0928 s on a mean of 4.488 s, 2.068 percent of the mean; 837 timed players 2000-2026.",
+   "value": 2.068,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['CB'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 2.068
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0010",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at S (S, FS, SS, SAF): pooled within-position standard deviation 0.1003 s on a mean of 4.554 s, 2.203 percent of the mean; 571 timed players 2000-2026.",
+   "value": 2.203,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['S', 'FS', 'SS', 'SAF'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 2.203
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0011",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Combine forty at P (P): pooled within-position standard deviation 0.1608 s on a mean of 4.909 s, 3.276 percent of the mean; 107 timed players 2000-2026.",
+   "value": 3.276,
+   "unit": "percent of mean forty",
+   "validFor": "combine invitees 2000-2026",
+   "sources": [
+    {
+     "citation": "NFL Scouting Combine results (Pro Football Reference) as re-published by nflverse (nflverse-data release \"combine\", combine.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "pfr-combine",
+     "primary": false,
+     "locator": "pos in ['P'], forty not null; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 3.276
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: a second combine archive (nflcombineresults.com) and a published spread study. Prospects, not pro starters: the ISS standard deviation is defined among starters (D2), so this is a stand-in.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0012",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "QB production change per year of age (PPR points per game, percent): 21-24 +2.7, 25-27 +0.7, 28-30 +0.4, 31-33 -3.0. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": 0.4,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row QB PPR points per game",
+     "dateRead": "2026-11-26",
+     "value": 0.4
+    },
+    {
+     "citation": "Fein 2009 (rate stats 1980-2007) and Schalter 2018 (Pro Football Reference Approximate Value, starters, 1978 on), as summarised in research/football-manager-reference.md section 7.2",
+     "howRead": "secondary summary",
+     "independenceGroup": "fein-schalter",
+     "primary": false,
+     "locator": "QB section",
+     "dateRead": "2026-11-26",
+     "quote": "consistent shape: early skill peak, passing efficiency holds to ~30, mobility fades first"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0013",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "RB production change per year of age (PPR points per game, percent): 21-24 +8.2, 25-27 -4.7, 28-30 -10.9, 31-33 -19.4. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -10.9,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row RB PPR points per game",
+     "dateRead": "2026-11-26",
+     "value": -10.9
+    },
+    {
+     "citation": "Tristan Bassett, \"Production Curves: Positional Breakouts, Prime Years, and Falloffs by Age\", 4for4, 2025-08-23, 4for4.com/2025/preseason/production-curves-positional-breakouts-prime-years-and-falloffs-age",
+     "howRead": "secondary summary",
+     "independenceGroup": "4for4",
+     "primary": false,
+     "locator": "RB section",
+     "dateRead": "2026-11-26",
+     "quote": "a back's best year is at about age 26, but remains roughly at their peaks ... until the age of 28"
+    },
+    {
+     "citation": "Jeff Zimmerman, \"The Stats Room: At What Age do Players Decline?\", RotoWire, updated 2021-08-30, rotowire.com/football/article/the-stats-room-at-what-age-do-players-decline-29538 (delta method)",
+     "howRead": "secondary summary",
+     "independenceGroup": "rotowire",
+     "primary": false,
+     "locator": "RB section",
+     "dateRead": "2026-11-26",
+     "quote": "the drop doesn't start until the back turns 25"
+    },
+    {
+     "citation": "Fein 2009 (rate stats 1980-2007) and Schalter 2018 (Pro Football Reference Approximate Value, starters, 1978 on), as summarised in research/football-manager-reference.md section 7.2",
+     "howRead": "secondary summary",
+     "independenceGroup": "fein-schalter",
+     "primary": false,
+     "locator": "RB section",
+     "dateRead": "2026-11-26",
+     "quote": "RB: Fein peak 23-24, age 32 steepest (-10% YPC); Schalter AV max 26"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0014",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "WR production change per year of age (PPR points per game, percent): 21-24 +11.5, 25-27 -2.2, 28-30 -11.4, 31-33 -19.3. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -11.4,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row WR PPR points per game",
+     "dateRead": "2026-11-26",
+     "value": -11.4
+    },
+    {
+     "citation": "Tristan Bassett, \"Production Curves: Positional Breakouts, Prime Years, and Falloffs by Age\", 4for4, 2025-08-23, 4for4.com/2025/preseason/production-curves-positional-breakouts-prime-years-and-falloffs-age",
+     "howRead": "secondary summary",
+     "independenceGroup": "4for4",
+     "primary": false,
+     "locator": "WR section",
+     "dateRead": "2026-11-26",
+     "quote": "Age 29 tends to indicate the start of the decline"
+    },
+    {
+     "citation": "Jeff Zimmerman, \"The Stats Room: At What Age do Players Decline?\", RotoWire, updated 2021-08-30, rotowire.com/football/article/the-stats-room-at-what-age-do-players-decline-29538 (delta method)",
+     "howRead": "secondary summary",
+     "independenceGroup": "rotowire",
+     "primary": false,
+     "locator": "WR section",
+     "dateRead": "2026-11-26",
+     "quote": "The curve works out to an age-25 peak and steady decline the next year"
+    },
+    {
+     "citation": "Fein 2009 (rate stats 1980-2007) and Schalter 2018 (Pro Football Reference Approximate Value, starters, 1978 on), as summarised in research/football-manager-reference.md section 7.2",
+     "howRead": "secondary summary",
+     "independenceGroup": "fein-schalter",
+     "primary": false,
+     "locator": "WR section",
+     "dateRead": "2026-11-26",
+     "quote": "WR: Fein peak 27 (24-30 close)"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0015",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "TE production change per year of age (PPR points per game, percent): 21-24 +15.1, 25-27 -2.7, 28-30 -7.6, 31-33 -8.7. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -7.6,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row TE PPR points per game",
+     "dateRead": "2026-11-26",
+     "value": -7.6
+    },
+    {
+     "citation": "Tristan Bassett, \"Production Curves: Positional Breakouts, Prime Years, and Falloffs by Age\", 4for4, 2025-08-23, 4for4.com/2025/preseason/production-curves-positional-breakouts-prime-years-and-falloffs-age",
+     "howRead": "secondary summary",
+     "independenceGroup": "4for4",
+     "primary": false,
+     "locator": "TE section",
+     "dateRead": "2026-11-26",
+     "quote": "The players in our sample didn't begin to show any signs of regression until age 31"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0016",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "OL production change per year of age (snap share per game played, percent): 21-24 +9.4, 25-27 +2.6, 28-30 -2.9, 31-33 -11.1. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -2.9,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row OL snap share per game played",
+     "dateRead": "2026-11-26",
+     "value": -2.9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0017",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "DL production change per year of age (snap share, percent): 21-24 +9.0, 25-27 +1.6, 28-30 -3.9, 31-33 -15.0. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -3.9,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row DL snap share",
+     "dateRead": "2026-11-26",
+     "value": -3.9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0018",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "EDGE production change per year of age (sacks per game, percent): 21-24 +6.6, 25-27 +6.5, 28-30 -11.7, 31-33 -19.5. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -11.7,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row EDGE sacks per game",
+     "dateRead": "2026-11-26",
+     "value": -11.7
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0019",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "LB production change per year of age (snap share (31-33: tackles per game), percent): 21-24 +14.5, 25-27 +2.3, 28-30 -4.8, 31-33 -10.1. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -4.8,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row LB snap share (31-33: tackles per game)",
+     "dateRead": "2026-11-26",
+     "value": -4.8
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0020",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "DB production change per year of age (passes defended plus interceptions per game, percent): 21-24 +8.4, 25-27 -3.4, 28-30 -9.0, 31-33 -15.5. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -9.0,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row DB passes defended plus interceptions per game",
+     "dateRead": "2026-11-26",
+     "value": -9.0
+    },
+    {
+     "citation": "Fein 2009 (rate stats 1980-2007) and Schalter 2018 (Pro Football Reference Approximate Value, starters, 1978 on), as summarised in research/football-manager-reference.md section 7.2",
+     "howRead": "secondary summary",
+     "independenceGroup": "fein-schalter",
+     "primary": false,
+     "locator": "DB section",
+     "dateRead": "2026-11-26",
+     "quote": "DB: Schalter only: after year 3 peak AV slowly declines"
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0021",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "K production change per year of age (field goal percent (absolute points over a mean of about 84), percent): 21-24 -0.6, 25-27 +0.5, 28-30 -0.8, 31-33 -1.3. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": -0.8,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row K field goal percent (absolute points over a mean of about 84)",
+     "dateRead": "2026-11-26",
+     "value": -0.8
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0022",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "P production change per year of age (gross yards per punt (absolute yards over a mean of about 45), percent): 21-24 +2.7, 25-27 +1.1, 28-30 +0.2, 31-33 -1.8. The 28-30 band is the value; the cross-check sources support the shape (rise to the mid twenties, decline under way by 28-30), not the numbers.",
+   "value": 0.2,
+   "unit": "percent per year (28-30 band)",
+   "validFor": "NFL 1999-2025, same-player pairs, both seasons qualifying",
+   "sources": [
+    {
+     "citation": "Project research run over nflverse play-by-play, weekly stats and snap counts 1999-2025 (football-manager/research/longrun-aging-injury-stability.md section 1, analysis_aging_curves.py), delta method, age on September 1",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "locator": "section 1 table, row P gross yards per punt (absolute yards over a mean of about 45)",
+     "dateRead": "2026-11-26",
+     "value": 0.2
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Survivor bias: declines after 30 are understated. Production mixes ability, role and playing time; rookie-age gains are mostly playing time. Numbers are one dataset; the other sources check the shape only.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0023",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran NFL contracts signed 2011-2025 (4 or more years after the draft year, or undrafted; 15385 with a birth date): 78.9 percent are one year, mean 1.4 years.",
+   "value": 0.789,
+   "unit": "share one year",
+   "validFor": "contracts signed 2011-2025",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "year_signed 2011-2025, draft_year + 4 <= year_signed; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 0.789
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "Flow of signings. The 57 percent one-year figure in PR 286 was over active contracts only, which keeps long deals and drops expired one-year deals, so it overstates length against a world that counts every signing. Cross-checks owed: Spotrac transaction lists.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0024",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran contracts in pay tier 0.0-0.25 (percentile on the active contracts' cap-share scale at the position group): mean years by age band 0-25: 1.09 (n 191), 26-27: 1.04 (n 1938), 28-29: 1.02 (n 1586), 30-31: 1.0 (n 721), 32-33: 1.01 (n 292), 34-59: 1.01 (n 171).",
+   "value": 1.04,
+   "unit": "years (age 26-27 band)",
+   "validFor": "contracts signed 2011-2025",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.0-0.25; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 1.04
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: Spotrac contract lists by length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0025",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran contracts in pay tier 0.25-0.5 (percentile on the active contracts' cap-share scale at the position group): mean years by age band 0-25: 1.17 (n 141), 26-27: 1.1 (n 1920), 28-29: 1.07 (n 1584), 30-31: 1.05 (n 712), 32-33: 1.03 (n 287), 34-59: 1.06 (n 174).",
+   "value": 1.1,
+   "unit": "years (age 26-27 band)",
+   "validFor": "contracts signed 2011-2025",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.25-0.5; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 1.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: Spotrac contract lists by length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0026",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran contracts in pay tier 0.5-0.65 (percentile on the active contracts' cap-share scale at the position group): mean years by age band 0-25: 1.11 (n 88), 26-27: 1.25 (n 665), 28-29: 1.26 (n 701), 30-31: 1.29 (n 464), 32-33: 1.22 (n 220), 34-59: 1.15 (n 163).",
+   "value": 1.25,
+   "unit": "years (age 26-27 band)",
+   "validFor": "contracts signed 2011-2025",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.5-0.65; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 1.25
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: Spotrac contract lists by length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0027",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran contracts in pay tier 0.65-0.8 (percentile on the active contracts' cap-share scale at the position group): mean years by age band 0-25: 1.9 (n 82), 26-27: 2.25 (n 730), 28-29: 2.2 (n 586), 30-31: 2.05 (n 397), 32-33: 1.9 (n 181), 34-59: 1.65 (n 170).",
+   "value": 2.25,
+   "unit": "years (age 26-27 band)",
+   "validFor": "contracts signed 2011-2025",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.65-0.8; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 2.25
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: Spotrac contract lists by length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0028",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran contracts in pay tier 0.8-0.9 (percentile on the active contracts' cap-share scale at the position group): mean years by age band 0-25: 2.88 (n 60), 26-27: 3.08 (n 277), 28-29: 3.16 (n 209), 30-31: 2.58 (n 113), 32-33: 2.35 (n 54), 34-59: 1.86 (n 43).",
+   "value": 3.08,
+   "unit": "years (age 26-27 band)",
+   "validFor": "contracts signed 2011-2025",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.8-0.9; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 3.08
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: Spotrac contract lists by length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  },
+  {
+   "id": "F-aging-0029",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Veteran contracts in pay tier 0.9-1 (percentile on the active contracts' cap-share scale at the position group): mean years by age band 0-25: 4.06 (n 53), 26-27: 3.74 (n 195), 28-29: 3.47 (n 118), 30-31: 3.22 (n 55), 32-33: 3.22 (n 24), 34-59: 3.22 (n 20).",
+   "value": 3.74,
+   "unit": "years (age 26-27 band)",
+   "validFor": "contracts signed 2011-2025",
+   "sources": [
+    {
+     "citation": "OverTheCap contract data as re-published by nflverse (nflverse-data release \"contracts\", historical_contracts.parquet), github.com/nflverse/nflverse-data releases; computed by the project",
+     "howRead": "dataset computed",
+     "independenceGroup": "overthecap",
+     "primary": false,
+     "locator": "tier 0.9-1; facts/aging-build/build.py",
+     "dateRead": "2026-11-26",
+     "value": 3.74
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "notes": "One dataset. Cross-checks owed: Spotrac contract lists by length.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load (facts/aging-build/build.py)."
+    }
+   ]
+  }
+ ]
+}

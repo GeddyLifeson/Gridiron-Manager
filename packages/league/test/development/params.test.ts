@@ -30,9 +30,9 @@ describe('G-20 parameters and tables', () => {
       for (const a of WORKED[f]) expect(ATTRIBUTE_IDS).toContain(a);
     }
   });
-  it('the D8.2.1 curve table is carried exactly', () => {
-    expect(TABLES.curves.groups.RB).toEqual([0, -0.5, -1.1, -1.7, -2.3, -3.0, -3.5]);
-    expect(TABLES.curves.groups.K_P).toEqual([0, 0, -0.1, -0.2, -0.4, -0.7, -1.2]);
-    expect(TABLES.curves.bandStarts).toEqual([23, 26, 28, 30, 32, 34, 36]);
+  it('the D8.2.1 curve table is the fitted one: yearly bands, one row per measured group, never rising', () => {
+    expect(TABLES.curves.bandStarts).toEqual(Array.from({ length: 18 }, (_, i) => 23 + i));
+    expect(Object.keys(TABLES.curves.groups).sort()).toEqual(['DB', 'DL', 'EDGE', 'K', 'LB', 'OL', 'P', 'QB', 'RB', 'TE', 'WR']);
+    for (const row of Object.values(TABLES.curves.groups)) for (let i = 1; i < row.length; i++) expect(row[i]!).toBeLessThanOrEqual(row[i - 1]!);
   });
 });

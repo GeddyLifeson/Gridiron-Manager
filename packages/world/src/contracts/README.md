@@ -30,6 +30,13 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
   end of the position (turnover `ageCurve`), from 1 up to the market ceiling (`league.market.maxContractYears`,
   an Assumption in the market module). A founding contract is part way through its term: its remaining years are drawn from 1 to that
   length on stream `world.contracts.founding`, so the founding contracts do not all end in one year.
+- **PC-14** (supersedes PC-03's years) Veteran contract years come from the real league: `sourcedYears` reads
+  `length-scale.json` (OverTheCap veteran signings 2011-2025, built by `facts/aging-build/build.py`, fact rows
+  F-aging-0023..0029, status 1 of 3). The cell is the pay tier (the public percentile, read as the percentile of
+  cap share at the position) by age band; the player's place within his tier picks the quantile of that cell's
+  years, so the better-paid in a tier sign longer. The market ceiling still applies. Real flow: 78.9 percent of
+  veteran signings are one year, mean 1.40 years. (PR 286's 57 percent was over active contracts only, which keeps
+  long deals and drops expired one-year deals.)
 - **PC-04** Floor periods are the ones the CBA names: 2021 to 2023, 2024 to 2026 and 2027 to 2030 (Art. 12
   s.9(b), F-cap-0001, in `floor-periods.json`). Outside them, periods are `floor.periodYears` (4) long, the
   last CBA period's length (the C6.2.3 edge case keeps it past 2030). Read backward, the same rule lands on
@@ -99,7 +106,7 @@ cash are computed from them by league `cap` and never stored (P3.1.1).
 | World position to OverTheCap position mapping (PC-11) | `build.py` | Assumption |
 | Suitors: need at the median, room for the scale price (PC-12) | this module | Assumption (C8.3.1 rule 2 names need and room, not the tests) |
 | Club spends its owner budget, prices move in proportion (PC-13) | this module | Assumption |
-| Years to the D8 prime end, market ceiling 5 (PC-03) | C8.3.1 rule 3, market params | Bible rule; ceiling Assumption |
+| Veteran years by pay tier and age from OverTheCap signings, market ceiling 5 (PC-14) | length-scale.json, F-aging-0023..0029 | 1 of 3; ceiling Assumption |
 | Four-year periods outside the CBA (PC-04) | C6.2.3 edge case | Assumption (bible) |
 | Equal shortfall shares (PC-08) | this module | Assumption |
 

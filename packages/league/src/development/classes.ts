@@ -135,10 +135,9 @@ export const WORKED: Readonly<Record<PositionFamily, readonly AttributeId[]>> = 
   LS: [...PHYSICAL, 'assignment_discipline', ...SNAP, 'tackling', 'coverage_lane_discipline'],
 };
 
-/** D8.2.1 curve group of a family (tables.json `curves.groups`). */
+/** D8.2.1 curve group of a family (tables.json `curves.groups`): one per measured target row (facts/aging.json); long snappers age with punters (Assumption). */
 export const CURVE_GROUP: Readonly<Record<PositionFamily, string>> = {
-  QB: 'QB', RB: 'RB', WR: 'WR_CB', CB: 'WR_CB', TE: 'TE_LB_S', LB: 'TE_LB_S', S: 'TE_LB_S',
-  OL: 'OL', DL: 'DL_EDGE', EDGE: 'DL_EDGE', K: 'K_P', P: 'K_P', LS: 'K_P',
+  QB: 'QB', RB: 'RB', WR: 'WR', TE: 'TE', OL: 'OL', DL: 'DL', EDGE: 'EDGE', LB: 'LB', CB: 'DB', S: 'DB', K: 'K', P: 'P', LS: 'P',
 };
 
 /** D8.4.1 exit table column of a family. EDGE players count with DL; long snappers with punters (Assumption). */

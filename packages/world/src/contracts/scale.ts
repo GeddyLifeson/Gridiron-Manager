@@ -8,6 +8,7 @@ import { market } from '@gm/league';
 import type { LiveWorld } from '../loop/types.ts';
 import type { GradeContext } from '../turnover/binding.ts';
 import scaleFile from './pay-scale.json' with { type: 'json' };
+import lengthFile from './length-scale.json' with { type: 'json' };
 
 interface ScaleRow { readonly from: readonly string[]; readonly contracts: number; readonly factId: string; readonly shares: readonly number[] }
 const ROWS: Readonly<Record<string, ScaleRow>> = scaleFile.positions;
@@ -57,6 +58,29 @@ export function publicPercentiles(world: LiveWorld, grades: GradeContext, ids: r
   return out;
 }
 
+const LENGTH = lengthFile as { readonly tierStarts: readonly number[]; readonly ageStarts: readonly number[]; readonly yearsAtQuantile: readonly (readonly (readonly number[])[])[] };
+
+const lastStartAtOrBelow = (starts: readonly number[], x: number): number => {
+  let i = 0;
+  for (let k = 0; k < starts.length; k++) if (x >= starts[k]!) i = k;
+  return i;
+};
+
+/**
+ * PC-14: veteran contract years from the real league (length-scale.json, OverTheCap veteran signings
+ * 2011-2025, fact rows F-aging-0023..0029). The pay tier and age band pick a cell; the player's place
+ * within his tier picks the quantile of that cell's years, so the better-paid in a tier sign longer.
+ */
+export function sourcedYears(percentile: number, age: number): number {
+  const ti = lastStartAtOrBelow(LENGTH.tierStarts, percentile);
+  const ai = lastStartAtOrBelow(LENGTH.ageStarts, age);
+  const lo = LENGTH.tierStarts[ti]!;
+  const hi = ti + 1 < LENGTH.tierStarts.length ? LENGTH.tierStarts[ti + 1]! : 1;
+  const qs = LENGTH.yearsAtQuantile[ti]![ai]!;
+  const u = hi > lo ? (percentile - lo) / (hi - lo) : 0;
+  return qs[Math.min(qs.length - 1, Math.max(0, Math.floor(u * qs.length)))]!;
+}
+
 export interface PriceInput {
   readonly position: string;
   readonly percentile: number;
@@ -74,6 +98,6 @@ export function marketPrice(x: PriceInput): market.ExpectedContract {
   const p = { low: x.percentile, mid: x.percentile, high: x.percentile };
   return market.contractAtTime({
     scale: sourcedScale(x.position), percentile: p, suitors: x.suitors, age: x.age, primeEndAge: x.primeEndAge,
-    productiveYearsLeft: Math.max(1, x.primeEndAge - x.age), injuryFlag: false, capCents: x.capCents, minimumCents: x.minimumCents,
+    productiveYearsLeft: sourcedYears(x.percentile, x.age), injuryFlag: false, capCents: x.capCents, minimumCents: x.minimumCents,
   }, x.time);
 }

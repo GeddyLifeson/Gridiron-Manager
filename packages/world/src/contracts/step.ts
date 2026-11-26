@@ -172,7 +172,7 @@ function openClub(r: Run, teamId: number, rules: RuleSet, capCents: number, keep
   const scale = scaleTo(spend, Math.max(0, room));
   for (const [i, x] of priced.entries()) {
     const apy = minimum(x.id) + Math.floor(Math.min(extra[i]! * scale, most[i]!));
-    // PC-03: C8.3.1 rule 3 years; a founding contract is part way through its term.
+    // PC-14: sourced veteran years (PC-03 superseded); a founding contract is part way through its term.
     let n = x.years;
     if (r.founding) n = stream(world.seed, STREAM_FOUNDING, [teamId, x.id]).int(1, n);
     // PC-11: the guarantee share is carried as fully guaranteed salary in the first years.

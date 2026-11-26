@@ -84,8 +84,9 @@ describe('the front office AI as the roster policy (K7, TO-06)', () => {
 
 describe('the D8.2.1 curve read as a K7 age curve', () => {
   const c = turnover.ageCurve();
-  it('ends prime at the last flat band and declines faster for running backs than quarterbacks', () => {
-    expect(c.primeEndAge('RB')).toBe(25);
+  it('reads the fitted prime end (running backs 28, quarterbacks in their thirties) and declines faster for running backs than quarterbacks', () => {
+    expect(c.primeEndAge('RB')).toBe(28);
+    expect(c.primeEndAge('QB')).toBeGreaterThan(30);
     expect(c.primeEndAge('K')).toBeGreaterThan(c.primeEndAge('QB'));
     expect(c.declineIssPerYear('RB')).toBeGreaterThan(c.declineIssPerYear('QB'));
     expect(c.declineIssPerYear('QB')).toBeGreaterThan(0);

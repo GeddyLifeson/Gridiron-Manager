@@ -4,6 +4,7 @@
 import { ParamFile, type ParamTable } from '@gm/schema';
 import paramsFile from './params.json' with { type: 'json' };
 import tablesFile from './tables.json' with { type: 'json' };
+import speedFile from './speed-value.json' with { type: 'json' };
 
 export const MODULE = 'league.development';
 export const PARAMS: ParamFile = ParamFile.parse(paramsFile);
@@ -20,7 +21,13 @@ export interface DevelopmentTables {
   readonly version: string;
   readonly growth: Basis & { readonly ages: Row; readonly height: Row; readonly weight: Row; readonly speed: Row; readonly strengthRel: Row };
   readonly collegeYearShare: Basis & { readonly shares: Row };
-  readonly curves: Basis & { readonly bandStarts: Row; readonly groups: Readonly<Record<string, Row>> };
+  readonly curves: Basis & {
+    readonly bandStarts: Row; readonly groups: Readonly<Record<string, Row>>;
+    /** Fit results (fit-aging.ts): last age within `value.primeBandIss` of the peak, and the mean yearly loss in ISS over the next four years. */
+    readonly primeEnd: Readonly<Record<string, number>>; readonly declineIssPerYear: Readonly<Record<string, number>>;
+  };
+  /** Speed term of the whole-player value (value.ts), built by facts/aging-build/build.py. */
+  readonly speedValue: Basis & { readonly fortySdPercent: Readonly<Record<string, number>>; readonly weight: Readonly<Record<string, number>> };
   readonly agingWeights: Basis & {
     readonly fortyS: number; readonly tenSplitS: number; readonly threeConeS: number; readonly shuttleS: number;
     readonly verticalIn: number; readonly broadIn: number; readonly explosiveness: number; readonly playStrengthEarly: number;
@@ -46,7 +53,13 @@ export function tableProblems(t: DevelopmentTables): string[] {
   }
   if (!isRow(t.collegeYearShare.shares)) out.push('collegeYearShare.shares must be numbers');
   if (!isRow(t.curves.bandStarts)) out.push('curves.bandStarts must be numbers');
-  for (const [k, row] of Object.entries(t.curves.groups)) if (!isRow(row) || row.length !== t.curves.bandStarts.length) out.push(`curve ${k} needs one number per band`);
+  for (const [k, row] of Object.entries(t.curves.groups)) {
+    if (!isRow(row) || row.length !== t.curves.bandStarts.length) out.push(`curve ${k} needs one number per band`);
+    if (!isNum(t.curves.primeEnd?.[k]) || !isNum(t.curves.declineIssPerYear?.[k])) out.push(`curve ${k} needs primeEnd and declineIssPerYear`);
+  }
+  const sv = t.speedValue;
+  if (!sv || (sv.basis !== 'bible' && sv.basis !== 'assumption') || typeof sv.leaf !== 'string' || typeof sv.note !== 'string') out.push('speedValue: basis, leaf and note required');
+  else for (const [k, v] of Object.entries(sv.weight)) if (!isNum(v) || !isNum(sv.fortySdPercent[k]) || !(sv.fortySdPercent[k]! > 0)) out.push(`speedValue ${k} needs a weight and a positive fortySdPercent`);
   for (const [k, v] of Object.entries(t.agingWeights)) if (k !== 'basis' && k !== 'leaf' && k !== 'note' && !isNum(v)) out.push(`agingWeights.${k} must be a number`);
   if (!isRow(t.exitRates.ages)) out.push('exitRates.ages must be numbers');
   for (const [k, row] of Object.entries(t.exitRates.groups)) {
@@ -62,7 +75,7 @@ function loadTables(raw: unknown): DevelopmentTables {
   return t;
 }
 
-export const TABLES: DevelopmentTables = loadTables(tablesFile);
+export const TABLES: DevelopmentTables = loadTables({ ...tablesFile, speedValue: speedFile });
 
 /** A parameter table over one or more parameter files, with optional overrides by full name. */
 export function paramTable(files: readonly ParamFile[] = [PARAMS], overrides: Readonly<Record<string, number>> = {}): ParamTable {

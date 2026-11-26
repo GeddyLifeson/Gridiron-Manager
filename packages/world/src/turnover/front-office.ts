@@ -30,38 +30,20 @@ export const STREAM_DRAW = 'world.frontoffice.draw';
 
 type View = gm.PlayerView;
 
-/** D8.2.1 curve read as K7's linear age curve: prime ends at the last flat band, decline is the mean of the next four years. */
+/**
+ * D8.2.1 curve read as K7's linear age curve. Prime end and decline come from the fitted curve
+ * (development tables `curves.primeEnd` and `curves.declineIssPerYear`, fit-aging.ts): the last age whose
+ * expected whole-player value is within `value.primeBandIss` of the peak, and the mean yearly ISS loss
+ * over the four years after it. The peak age read here is the prime end (K7 projects growth to it).
+ */
 export function ageCurve(): gm.AgeCurve {
-  const n = development.devNumbers();
-  const fam = (position: string) => development.familyOf(position);
-  const primeEnd = (position: string): number => {
-    let a = 18;
-    while (a < 45 && development.curvePercent(n, fam(position), a + 1) >= 0) a++;
-    return a;
-  };
-  const issPerPercent = (position: string): number => {
-    // The whole-player look is the mean over attributes; only body-moved attributes age (D8.2.1, body.ts).
-    const worked = development.WORKED[fam(position)];
-    const moved = worked.filter((a) => (development.BODY_MOVED as readonly string[]).includes(a));
-    return moved.reduce((s, a) => s + development.issPerPercent(n, a), 0) / Math.max(1, worked.length);
-  };
-  const cache = new Map<string, { peak: number; end: number; decline: number }>();
-  const of = (position: string) => {
-    let c = cache.get(position);
-    if (!c) {
-      const end = primeEnd(position);
-      let pct = 0;
-      for (let y = 1; y <= 4; y++) pct += development.curvePercent(n, fam(position), end + y);
-      c = { peak: end, end, decline: Math.max(0, -pct / 4) * issPerPercent(position) };
-      cache.set(position, c);
-    }
-    return c;
-  };
+  const c = development.devNumbers().tables.curves;
+  const group = (position: string) => development.CURVE_GROUP[development.familyOf(position)];
   return {
-    group: (position) => development.CURVE_GROUP[fam(position)],
-    peakAge: (position) => of(position).peak,
-    primeEndAge: (position) => of(position).end,
-    declineIssPerYear: (position) => of(position).decline,
+    group,
+    peakAge: (position) => c.primeEnd[group(position)]!,
+    primeEndAge: (position) => c.primeEnd[group(position)]!,
+    declineIssPerYear: (position) => c.declineIssPerYear[group(position)]!,
   };
 }
 
