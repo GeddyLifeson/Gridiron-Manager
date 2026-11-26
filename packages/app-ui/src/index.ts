@@ -45,3 +45,4 @@ export * as print from './screens/print/index.ts';
 export * as decisionLog from './screens/decision-log/index.ts';
 export * as glossary from './screens/glossary/index.ts';
 export * as notebook from './screens/notebook/index.ts';
+export * as interviewScreens from './screens/interviews/index.ts';

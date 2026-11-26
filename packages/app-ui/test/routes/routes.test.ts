@@ -11,7 +11,7 @@ const ALL: Required<RouteSources> = {
   defenseDesigner: { load: stub() }, playDesigner: stub(),
   settings: { host: stub() }, playerDesigner: stub(), editors: stub(), gameplan: stub(), practice: { getModel: stub() }, home: stub(), people: stub(), legends: { load: stub() }, cap: stub(), depthChart: stub(), draftRoom: stub(), freeAgency: stub(),
   meetings: { getModel: stub() }, travel: { getModel: stub() }, documents: { getModel: stub() }, press: { getModel: stub() },
-  league: stub(), recruiting: stub(), playbook: stub(), install: stub(), print: stub(), peopleWork: stub(), decisionLog: stub(), glossary: stub(), notebook: stub(),
+  league: stub(), recruiting: stub(), playbook: stub(), install: stub(), print: stub(), peopleWork: stub(), decisionLog: stub(), glossary: stub(), notebook: stub(), interviews: stub(),
   gameManagement: { load: stub(), keyOf: stub() },
 };
 
