@@ -39,7 +39,8 @@ export const CreateWorldPayload = z.object({
 
 export const AdvanceDayPayload = z.object({ days: pub(z.number().int().min(1).max(366), 'count') }).strict();
 
-export const RenameCompetitionPayload = z.object({ competitionId: pub(z.number().int().positive(), 'id'), name: pub(z.string().min(1).max(60)) }).strict();
+/** A blank or whitespace-only name is refused (break test #11): the name is trimmed, then 1 to 60 characters. */
+export const RenameCompetitionPayload = z.object({ competitionId: pub(z.number().int().positive(), 'id'), name: pub(z.string().trim().min(1).max(60)) }).strict();
 
 // Office and people screen commands (G-72, CR-G72-3). app-services builds the requests
 // (commands/home, commands/people); these are their payloads. An inbox answer uses the command type the

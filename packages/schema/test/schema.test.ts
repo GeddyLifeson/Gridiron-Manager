@@ -58,3 +58,13 @@ describe('fact status is computed (Q6.1.2 acceptance)', () => {
     expect(computeStatus({ sources: [{ ...src('mem'), howRead: 'model knowledge' }] })).toBe('Unverified');
   });
 });
+
+describe('RenameCompetition name (break test #11)', () => {
+  it('refuses a blank or whitespace-only name and takes a real one', async () => {
+    const { RenameCompetitionPayload } = await import('../src/commands.ts');
+    expect(RenameCompetitionPayload.safeParse({ competitionId: 1, name: '' }).success).toBe(false);
+    expect(RenameCompetitionPayload.safeParse({ competitionId: 1, name: '   ' }).success).toBe(false);
+    expect(RenameCompetitionPayload.safeParse({ competitionId: 1, name: 'x'.repeat(61) }).success).toBe(false);
+    expect(RenameCompetitionPayload.safeParse({ competitionId: 1, name: 'Great Lakes League' }).success).toBe(true);
+  });
+});
