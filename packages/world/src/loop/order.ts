@@ -217,6 +217,7 @@ export function worldHash(world: LiveWorld, deep = true): string {
     status: [...world.status].sort((a, b) => a[0] - b[0]), tiers: [...world.tiers].sort((a, b) => a[0] - b[0]),
     rosters: [...world.rosters].sort((a, b) => a[0] - b[0]), pools: [...world.pools].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
     systemState: plain(world.systemState),
+    hall: world.hall.members,
   };
   let h = history.chainHash(history.EMPTY_SEASON_HASH, head);
   if (deep) {

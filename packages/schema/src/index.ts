@@ -23,6 +23,7 @@ export * from './read-models/game-frame.ts';
 export * from './read-models/film.ts';
 export * from './read-models/playbook.ts';
 export * from './read-models/install.ts';
+export * from './read-models/practice.ts';
 export * from './read-models/draft-room.ts';
 export * from './read-models/recruiting.ts';
 // World contract for the game build (plans/game-build-plan.md, G-00). Decisions: src/world/DECISIONS.md.

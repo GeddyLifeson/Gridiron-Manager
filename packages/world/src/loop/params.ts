@@ -20,6 +20,12 @@ const ROWS: readonly Row[] = [
   ['death.cap', 0.6, 0.1, 0.99, 'ratio', 'assumption', 'X12.1.3', 'Highest yearly chance; below 1 so no age is a certain end'],
   ['death.lowBefore', 75, 66, 90, 'y', 'bible', 'X12.1.3', 'X12.1.3 rule 2: stay low before 75'],
   ['death.lowCeiling', 0.05, 0.001, 0.2, 'ratio', 'assumption', 'X12.1.3', 'What "low" means before 75, for the table check'],
+  // Hall of Fame in the world's past (loop/hall.ts; C9.3.1, E5.6.3).
+  ['hall.proOpensAfterSeasons', 43, 0, 100, 'seasons', 'assumption', 'C9.3.1', 'Real pro hall first class 1963 (2 of 3) minus league formation 1920 (1 of 3): 43. Flagged until the formation year has two more sources'],
+  ['hall.proCharterClassMax', 17, 3, 40, 'count', 'assumption', 'C9.3.1', 'Real charter class of 1963 had 17 members (research/history-run: 2 of 3)'],
+  ['hall.collegeOpensAfterSeasons', 82, 0, 150, 'seasons', 'assumption', 'C9.3.1', 'College hall opening after the first college season. Not sourced: Assumption, research owed (first college hall class year)'],
+  // Memory over a 157-season run (loop/archive.ts): the playing block of people who can never play again.
+  ['archive.playingAgeMax', 50, 45, 70, 'y', 'assumption', 'X2.4.1', 'No one this old plays again: the oldest pro players were in their late forties (not yet sourced). Storage only, no sim change'],
 ];
 
 export const PARAMS: ParamFile = {
