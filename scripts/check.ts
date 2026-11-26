@@ -36,6 +36,7 @@ const steps: Step[] = [
   { name: 'unit, property and schema tests (vitest)', cmd: 'npx', args: ['vitest', 'run'] },
   { name: 'headless golden gate, 1 and N workers (Q1.3.1)', cmd: 'npx', args: ['tsx', 'packages/headless/src/cli.ts', 'gate'] },
   { name: 'browser golden gate and save round trip (R1.2.1 items 1-2)', cmd: 'npx', args: ['tsx', 'scripts/browser-gate.ts'], skip: quick ? '--quick' : undefined },
+  { name: 'browser build works offline after the first visit (P2.3.2, G-06)', cmd: 'npx', args: ['tsx', 'shells/browser/scripts/offline-check.ts'], skip: quick ? '--quick' : undefined },
   {
     name: 'desktop shell golden gate (R1.2.1 item 1)',
     cmd: desktop ?? '', args: ['--gate', desktopGate],

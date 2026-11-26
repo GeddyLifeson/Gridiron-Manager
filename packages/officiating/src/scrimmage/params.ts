@@ -15,7 +15,7 @@ export const RULE_KEYS: RuleKeyManifest = [
   { key: 'touchback.yardline', type: 'number', unit: 'yd', meaning: 'Yard line where a team awarded a touchback on a play from scrimmage next snaps (B7.6.1 rule 3).', ownerLeaf: 'B7.6.1', readBy: READ_BY },
   { key: 'touchback.momentum_min_yardline', type: 'number', unit: 'yd', meaning: 'New. Nearest yard line to his goal at which the ball is spotted under the momentum exception (B7.5.2 rule 3).', ownerLeaf: 'B7.5.2', readBy: READ_BY },
   { key: 'deadball.loose_at_rest_yardline', type: 'number', unit: 'yd', meaning: 'New. Yard line where a loose ball that came to rest behind a goal line is placed (B3.2.1 i).', ownerLeaf: 'B3.2.1', readBy: READ_BY },
-  { key: 'field.ball_length_yd', type: 'number', unit: 'yd', meaning: 'New. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).', ownerLeaf: 'B7.5.1', readBy: READ_BY },
+  { key: 'field.ball_length_yd', type: 'number', unit: 'yd', meaning: 'New, optional until sourced for both levels: when absent the forward point alone decides. Length of the ball. The ball is in the end zone until all of it is in the field of play (B7.5.1 notes).', ownerLeaf: 'B7.5.1', readBy: READ_BY },
 ];
 
 /** The scrimmage ruling has no tuning constant: it applies the rule as written to the events it is given (B11.2.1 rule 6). */
