@@ -5,6 +5,7 @@ import { cohorts } from '@gm/people';
 import type { EventTypeDef } from '@gm/schema';
 import type { PersonNameSource, WorldContent } from '../generation/content.ts';
 import { foundPeople, foundingProblems } from '../generation/founding.ts';
+import { addLostClubs, lostClubCount } from '../generation/lost-clubs.ts';
 import { param as gparam } from '../generation/params.ts';
 import { setupHashHex, type SetupRecord } from '../generation/setup.ts';
 import { buildStructures, structureProblems } from '../generation/structures.ts';
@@ -28,6 +29,11 @@ export interface CreateWorldInput {
    * in the first season are founded on day one.
    */
   readonly foundingCurves?: Readonly<Record<string, FoundingCurve>>;
+  /**
+   * Lost clubs (generation/lost-clubs.ts): pro clubs founded in the past that fold for good. Absent or 0
+   * adds none. `fraction` 1 gives the real graveyard scaled to the world's club count.
+   */
+  readonly lostClubs?: { readonly fraction: number };
 }
 
 /** Seed plus `step` as a 64-bit value (X10.3.2 "derived seed (seed plus 1)"). */
@@ -41,11 +47,17 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   const { setup, content } = input;
   const seedStep = input.seedStep ?? 0;
   const seed = steppedSeed(setup.seedHex, seedStep * gparam('validate.redoSeedStep'));
-  const built = buildStructures(setup, seed, content);
+  const base0 = buildStructures(setup, seed, content);
+  const proClubs = base0.competitions.filter((c) => c.level === 'pro').reduce((n, c) => n + c.teamIds.length, 0);
+  const lost = input.lostClubs && input.lostClubs.fraction > 0
+    ? addLostClubs(base0, seed, content, lostClubCount(proClubs, undefined, input.lostClubs.fraction), setup.firstSeasonYear)
+    : { built: base0, spans: [] };
+  const built = lost.built;
   const sProblems = structureProblems(built);
   if (sProblems.length > 0) throw new Error(`world structures are incomplete: ${sProblems.slice(0, 5).join('; ')}`);
   const careerStartYear = setup.firstSeasonYear + setup.historySeasons;
   const teamSpans = planTeamSpans(seed, built.teams, built.competitions, input.foundingCurves ?? {}, setup.firstSeasonYear, careerStartYear);
+  for (const s of lost.spans) teamSpans.set(s.teamId, { teamId: s.teamId, founded: s.founded, folded: s.folded });
   const dayOne = new Set([...teamSpans.values()].filter((s) => s.founded <= setup.firstSeasonYear).map((s) => s.teamId));
   const fOpts = { teamIds: dayOne };
   const founding = foundPeople(setup, seed, content, built, input.names, fOpts);
