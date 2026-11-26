@@ -1,6 +1,7 @@
 // Browser half of the phase 0 gate (R1.2.1 items 1 and 2):
 //  1. builds the browser bundle, serves it, and runs the golden set (?gate=1) in every installed
-//     browser engine (Chromium, Firefox, WebKit), comparing hashes byte for byte with golden.json;
+//     browser engine (Chromium, Firefox, WebKit), comparing hashes byte for byte with golden.json,
+//     and the store's save conformance career on that browser's own storage (Q1.3.1);
 //  2. creates a career through the real interface in the browser, exports the save, and replays it
 //     with the Node headless runner; then imports a Node-made save into the browser and loads it.
 // Usage: npm run gate:browser            (run `npx playwright install` once to get all three engines)
@@ -58,11 +59,20 @@ async function main(): Promise<number> {
       const page = await browser.newPage();
       await page.goto(`${srv.url}?gate=1`);
       await page.waitForFunction(() => (window as unknown as { __GATE_RESULT__?: unknown }).__GATE_RESULT__, null, { timeout: 180_000 });
-      const result = await page.evaluate(() => (window as unknown as { __GATE_RESULT__: Record<string, unknown> }).__GATE_RESULT__) as { ok: boolean; digest: string; mismatches: string[]; seconds: number };
+      const result = await page.evaluate(() => (window as unknown as { __GATE_RESULT__: Record<string, unknown> }).__GATE_RESULT__) as {
+        ok: boolean; digest: string; mismatches: string[]; seconds: number;
+        conformance?: { ok: boolean; got: { digest: string; stateHash: string } | null; replays: number; problems: string[]; seconds: number };
+      };
       const label = `browser-${t.name()}`;
       await writeFile(join(OUT, `gate-${label}.json`), JSON.stringify({ ...result, platform: label, engineVersion: version }, null, 2) + '\n');
       console.log(`${result.ok ? 'PASS' : 'FAIL'} golden set in ${t.name()} ${version}: digest ${result.digest}, ${result.seconds}s`);
       for (const m of result.mismatches) console.log(`  mismatch: ${m}`);
+      // Save core conformance (Q1.3.1) ran inside the page on this browser's own storage; its result is part of ok.
+      const conf = result.conformance;
+      if (!conf) console.log(`FAIL save conformance in ${t.name()}: the page reported none`);
+      else console.log(`${conf.ok ? 'PASS' : 'FAIL'} save conformance in ${t.name()}: digest ${conf.got?.digest ?? '-'}, state ${conf.got?.stateHash ?? '-'}, ${conf.replays} replays, ${conf.seconds}s`);
+      for (const p of conf?.problems ?? []) console.log(`  problem: ${p}`);
+      if (!conf) failures++;
       if (!result.ok) failures++;
 
       if (t === chromium) failures += await saveRoundTrip(browser, srv.url);
