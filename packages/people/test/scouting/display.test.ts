@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { PersonView } from '@gm/schema';
 import {
   ceilingLookVariance, COLOR_TIER_SCALE, confidenceOf, DECIMAL_SCALE, DEFAULT_SCALE_ID, formatForty, formatGrade, formatHeight,
-  fromBelief, grade, gradeCells, legendFor, LETTER_SCALE, makePrior, parseScale, project, projectionLookSd, RAW_SCALE,
+  confidenceWord, fromBelief, grade, gradeCells, hunchStrength, potentialRead, legendFor, LETTER_SCALE, makePrior, parseScale, project, projectionLookSd, RAW_SCALE,
   relativeIss, roleGrade, scaleById, SHIPPED_SCALES, toBelief, toPersonView, TWENTY_EIGHTY_SCALE, update, varianceOf,
   type Estimate,
 } from '../../src/scouting/index.ts';
@@ -64,18 +64,44 @@ describe('D6.2.1 scales', () => {
   });
 });
 
-describe('D6.1.1 grade text with a band', () => {
-  it('formats "7.1 (6.8 to 7.4)" style text, the band never hidden', () => {
-    const g = formatGrade(DECIMAL_SCALE, 62, sdForHalf(6));
-    expect(g.text).toBe('7.1 (6.8 to 7.4)');
+describe('D6.1.1 assigned grade text (MA-48)', () => {
+  const BY = { grader: 'position coach', on: { seasonYear: 2030, dayIndex: 44 }, watched: [{ count: 214, what: 'snaps' }, { count: 31, what: 'practices' }] };
+  it('shows the grade with a confidence word, grader, amount watched and date; no band by default', () => {
+    const g = formatGrade(DECIMAL_SCALE, 62, sdForHalf(6), BY, { dateText: () => 'week 6' });
+    expect(g.text).toBe('7.1 (fair look), position coach, graded 214 snaps and 31 practices, last updated week 6');
+    expect(g.text).not.toMatch(/ to /);
+    expect(g.bandText).toBe('6.8 to 7.4');
+  });
+  it('puts the numeric band in place of the word on the tap', () => {
+    expect(formatGrade(DECIMAL_SCALE, 62, sdForHalf(6), BY, { showBand: true, dateText: () => 'week 6' }).text)
+      .toBe('7.1 (6.8 to 7.4), position coach, graded 214 snaps and 31 practices, last updated week 6');
   });
   it('marks a band cut at the scale limit', () => {
-    const g = formatGrade(DECIMAL_SCALE, 22, sdForHalf(10));
-    expect(g.text).toBe('5.1 (<5.0 to 5.6)');
+    expect(formatGrade(DECIMAL_SCALE, 22, sdForHalf(10), BY).bandText).toBe('<5.0 to 5.6');
   });
-  it('shows a projection arrow only on scales that use one', () => {
-    expect(formatGrade(COLOR_TIER_SCALE, 60, 4, 'rising').text).toBe('Red ↑ (Red)');
-    expect(formatGrade(DECIMAL_SCALE, 60, 4, 'rising').text.includes('↑')).toBe(false);
+  it('confidence words follow the band width', () => {
+    expect(confidenceWord(sdForHalf(4.5))).toBe('well watched');
+    expect(confidenceWord(sdForHalf(8))).toBe('fair look');
+    expect(confidenceWord(12 * 12)).toBe('thin look');
+  });
+  it('shows a direction glyph only on scales that use one', () => {
+    expect(formatGrade(COLOR_TIER_SCALE, 60, 4, BY, { arrow: 'rising' }).text.startsWith('Red ↑ (well watched)')).toBe(true);
+    expect(formatGrade(DECIMAL_SCALE, 60, 4, BY, { arrow: 'rising' }).text.includes('↑')).toBe(false);
+  });
+});
+
+describe('MA-48 grade cells: unwatched players show no grade', () => {
+  it('a public-only attribute is an unwatched cell with no number in it', () => {
+    const watched = update(makePrior(48, 12, D0), { attribute: 'pass_set', value: 55, variance: 9, units: 40, date: D0, evaluator: { id: 5, line: 'ol' } }, 25, () => 50);
+    const view = toPersonView({ observerTeamId: 3, personId: 9, estimates: { anchor: makePrior(48, 12, D0), pass_set: watched } });
+    const cells = gradeCells(view, { scale: DECIMAL_SCALE, asOf: D0, age: 25, dateText: () => 'week 1' });
+    expect(cells[0]).toEqual({ state: 'unwatched', attribute: 'anchor', text: 'not watched', source: { kind: 'public' } });
+    expect(JSON.stringify(cells[0])).not.toMatch(/\d/);
+    const g = cells[1]!;
+    expect(g.state).toBe('graded');
+    if (g.state !== 'graded') return;
+    expect(g.text).toMatch(/^\d\.\d \((thin look|fair look|well watched)\), your staff, graded 40 looks, last updated week 1$/);
+    expect(g.bandText).toMatch(/ to /);
   });
 });
 
@@ -173,5 +199,32 @@ describe('P3.2.3 storage in PersonView', () => {
     const view = toPersonView({ observerTeamId: 3, personId: 9, estimates: { anchor: e } });
     expect(PersonView.safeParse(view).success).toBe(true);
     expect(view.sourceStaffIds).toEqual([7]);
+  });
+});
+
+describe('D6.5.1 potential is words only (MA-48)', () => {
+  const W = { seasonYear: 2030, dayIndex: 3 };
+  const cur = { mean: 30, variance: 64 };
+  it('reads a hunch, signed and dated, with direction and horizon, and no number', () => {
+    const pr = project({ current: cur, ceiling: { mean: 38, variance: 100 }, age: 22, horizon: { kind: 'peak' } });
+    const r = potentialRead({ projection: pr, currentMean: 30, age: 22, evaluator: { id: 0, name: 'area scout' }, writtenOn: W })!;
+    expect(r).toEqual({ kind: 'hunch', text: 'I think there is more in him.', direction: 'rising', horizon: 'at his peak', evaluator: 'area scout', writtenOn: W });
+    const { writtenOn: _w, ...shown } = r;
+    expect(JSON.stringify(shown)).not.toMatch(/\d/);
+  });
+  it('young players read tentative; the largest drivers give the explanation; evaluators word it differently', () => {
+    const pr = project({ current: cur, ceiling: { mean: 60, variance: 100 }, age: 19, horizon: { kind: 'years', years: 2 } });
+    const a = potentialRead({ projection: pr, currentMean: 30, age: 19, evaluator: { id: 0, name: 'A' }, writtenOn: W,
+      drivers: [{ kind: 'frame', pullIss: 6 }, { kind: 'work', pullIss: 3 }, { kind: 'trend', pullIss: 0.5 }] })!;
+    expect(a.kind).toBe('explanation');
+    expect(a.text).toBe('Too early to say much, but I think there is a lot more in him. Frame to add strength; works at it.');
+    expect(a.horizon).toBe('in 2 years');
+    const b = potentialRead({ projection: pr, currentMean: 30, age: 19, evaluator: { id: 1, name: 'B' }, writtenOn: W })!;
+    expect(b.text).not.toBe(a.text);
+  });
+  it('steady and doubt words, and no read past 28', () => {
+    expect(hunchStrength({ mean: 31, variance: 64 }, 30)).toBe('steady');
+    expect(hunchStrength({ mean: 20, variance: 64 }, 30)).toBe('doubt');
+    expect(potentialRead({ projection: null, currentMean: 30, age: 29, evaluator: { id: 0, name: 'A' }, writtenOn: W })).toBeNull();
   });
 });
