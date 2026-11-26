@@ -24,6 +24,14 @@ export interface AmbienceConditions {
  */
 export const PERIOD_FACT_CLEARED = false;
 
+/**
+ * The band half of the period fact is cleared: F-presentation-era-0001 (facts/presentation-era.json) is
+ * Verified from three re-read pages (KCUR, Packers.com, Ravens history) showing live team bands at NFL home
+ * games in the 1970s and 1980s. The quotes are in /mnt/project-files/research/band/band-quotes.md. The ORGAN has
+ * no dated NFL source, so it stays gated behind PERIOD_FACT_CLEARED.
+ */
+export const BAND_FACT_CLEARED = true;
+
 /** Rain bed level 0..1 by engine precipitation. Snow is quiet, so it has no bed (Assumption: design curve). */
 export function rainLevel(precip: AmbienceConditions['precip']): number {
   switch (precip) {
@@ -51,6 +59,8 @@ export interface AmbienceOptions {
   rampSeconds?: number;
   /** Defaults to PERIOD_FACT_CLEARED. Organ and band stings need this and the engine rows built with `includeGated`. */
   periodFactCleared?: boolean;
+  /** Defaults to BAND_FACT_CLEARED. The band hit needs only this. */
+  bandFactCleared?: boolean;
 }
 
 export class AmbienceDriver {
@@ -59,10 +69,12 @@ export class AmbienceDriver {
   private inPlay = false;
   private readonly ramp: number;
   private readonly periodOk: boolean;
+  private readonly bandOk: boolean;
 
   constructor(private readonly engine: AudioEngine, opts: AmbienceOptions = {}) {
     this.ramp = opts.rampSeconds ?? 1.5;
     this.periodOk = opts.periodFactCleared ?? PERIOD_FACT_CLEARED;
+    this.bandOk = opts.bandFactCleared ?? BAND_FACT_CLEARED;
   }
 
   /** A play has started (snap) or ended (dead ball). Stings are refused while a play is live. */
@@ -83,10 +95,11 @@ export class AmbienceDriver {
     return this.engine.play('ambience.gust', { when: opts.when, gain, variantDraw: opts.variantDraw }).played;
   }
 
-  /** A stoppage sting. Refused during a live play, and the organ and band while the period fact is unverified. */
+  /** A stoppage sting. Refused during a live play, the organ while the period fact is unverified, and the band if its fact is off. */
   stoppage(kind: StoppageSting, opts: { when?: number; variantDraw?: number } = {}): boolean {
     if (this.inPlay) return false;
-    if (kind !== 'paChime' && !this.periodOk) return false;
+    if (kind === 'organSting' && !this.periodOk) return false;
+    if (kind === 'bandHit' && !this.bandOk) return false;
     return this.engine.play(STING_ID[kind], { when: opts.when, variantDraw: opts.variantDraw }).played;
   }
 

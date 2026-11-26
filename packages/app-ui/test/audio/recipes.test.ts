@@ -129,14 +129,13 @@ describe('selectors for the drivers', () => {
 });
 
 describe('era and legal lines (plan 2.1 and A6)', () => {
-  it('stadium organ and band wait for the period fact, and are off by default', () => {
-    for (const id of ['ambience.organSting', 'ambience.bandHit']) {
-      expect(RECIPE_BY_ID.get(id)!.gate, id).toBe('period-fact');
-      expect(RECIPE_BY_ID.get(id)!.offByDefault, id).toBe(true);
-    }
+  it('the organ waits for the period fact, the band is cleared (F-presentation-era-0001), and both are off by default', () => {
+    expect(RECIPE_BY_ID.get('ambience.organSting')!.gate).toBe('period-fact');
+    expect(RECIPE_BY_ID.get('ambience.bandHit')!.gate).toBeUndefined();
+    for (const id of ['ambience.organSting', 'ambience.bandHit']) expect(RECIPE_BY_ID.get(id)!.offByDefault, id).toBe(true);
     const playable = toSoundDefs().map((d) => d.id);
     expect(playable).not.toContain('ambience.organSting');
-    expect(playable).not.toContain('ambience.bandHit');
+    expect(playable).toContain('ambience.bandHit');
     expect(toSoundDefs({ includeGated: true }).map((d) => d.id)).toContain('ambience.organSting');
   });
 

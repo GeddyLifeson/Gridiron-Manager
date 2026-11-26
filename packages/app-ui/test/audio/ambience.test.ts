@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { AudioEngine, BUS_DEFAULTS, FakeAudioContext } from '../../src/audio/engine/index.ts';
-import { AmbienceDriver, bedLevels, rainLevel, PERIOD_FACT_CLEARED, type AmbienceConditions } from '../../src/audio/ambience/index.ts';
+import { AmbienceDriver, bedLevels, rainLevel, PERIOD_FACT_CLEARED, BAND_FACT_CLEARED, type AmbienceConditions } from '../../src/audio/ambience/index.ts';
 import { toSoundDefs } from '../../src/audio/recipes/index.ts';
 
 const open = (over: Partial<AmbienceConditions> = {}): AmbienceConditions => ({ windMph: 0, gustMph: 0, precip: 'none', roof: 'open', ...over });
@@ -65,13 +65,16 @@ describe('ambience driver', () => {
     expect(d.stoppage('paChime')).toBe(true);
   });
 
-  it('keeps the organ and band silent while the period fact is unverified', () => {
+  it('keeps the organ silent while its period fact is unverified, and lets the band play', () => {
     expect(PERIOD_FACT_CLEARED).toBe(false);
-    expect(toSoundDefs().some((s) => s.id === 'ambience.organSting' || s.id === 'ambience.bandHit')).toBe(false);
+    expect(BAND_FACT_CLEARED).toBe(true);
+    expect(toSoundDefs().some((s) => s.id === 'ambience.organSting')).toBe(false);
+    expect(toSoundDefs().some((s) => s.id === 'ambience.bandHit')).toBe(true);
     const { engine } = make(true, true);
     const d = new AmbienceDriver(engine);
     expect(d.stoppage('organSting')).toBe(false);
-    expect(d.stoppage('bandHit')).toBe(false);
+    expect(d.stoppage('bandHit')).toBe(true);
+    expect(new AmbienceDriver(make(true, true).engine, { bandFactCleared: false }).stoppage('bandHit')).toBe(false);
     const cleared = new AmbienceDriver(make(true, true).engine, { periodFactCleared: true });
     expect(cleared.stoppage('organSting')).toBe(true);
   });
