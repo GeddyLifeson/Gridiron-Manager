@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gate:offline": "tsx scripts/offline-check.ts"
   },
   "dependencies": {
     "react": "19.3.1",
