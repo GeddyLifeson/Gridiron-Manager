@@ -482,16 +482,31 @@
      "primary": false,
      "quote": "the CFP will remain a 12-team field in 2026",
      "value": 12
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, how the field is set",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 5-12 play first-round games at the higher seed's home stadium",
+     "value": 12
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). 2027 is 24 (rows below, keyless; a college_2027 rule set is needed).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -512,16 +527,31 @@
      "primary": false,
      "quote": "the CFP will remain a 12-team field in 2026",
      "value": "national"
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, bracket rules",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "The CFP bracket will follow the selection committee’s rankings, with no modifications made to avoid rematches between teams that may have played during the regular season or are from the same conference.",
+     "value": "national"
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Derived: a single 12-team field.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -543,16 +573,41 @@
      "primary": false,
      "quote": "The opening round of games, featuring the fifth through 12th seeds, will be played on campus",
      "value": 4
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, seeding",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 1-4 receive first-round byes",
+     "value": 4
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, seeding",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 5-12 play first-round games at the higher seed's home stadium",
+     "value": 4
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Bye count implied (seeds 1-4), not stated.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -574,16 +629,31 @@
      "primary": false,
      "quote": "with the final three rounds going to traditional bowl sites",
      "value": 1
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, schedule paragraph",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "from the CFP First Round hosted on campus by the higher-ranked seeds, through the CFP Quarterfinals and CFP Semifinals, culminating in Las Vegas at the 2027 CFP National Championship.",
+     "value": 1
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -614,16 +684,31 @@
      "primary": false,
      "quote": "holding automatic spots to the champions of the Power Four conferences",
      "value": true
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, how the field is set",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "4 Automatic Bids ACC, Big Ten, Big 12 & SEC Champions",
+     "value": true
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -655,16 +740,31 @@
      "primary": false,
      "quote": "will rather go to the highest-ranked non-Power Four program",
      "value": 1
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, how the field is set",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt",
+     "value": 1
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The two pages disagree on whether that team must be a conference champion (SI: champion; USA Today: \"no longer has to be a conference champion\"); the count of one bid agrees.",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -696,16 +796,31 @@
      "primary": false,
      "quote": "granting Notre Dame a spot if it is anywhere in the top 12",
      "value": 12
+    },
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)",
+     "locator": "Format page, how the field is set",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Notre Dame receives an automatic bid if it is ranked in the CFP Top 12 on Selection Day.",
+     "value": 12
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -850,16 +965,31 @@
      "primary": false,
      "quote": "19 at-large selections, the four champions of the Autonomy Four (A4) conferences",
      "value": 24
+    },
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "Format page, how the field is set",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "The 24-team format takes effect for the 2027-28 season. The participating teams will consist of: 4 Automatic Bids ACC, Big Ten, Big 12 & SEC Champions (as determined by their respective conferences) 1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt 19 At-Large Bids",
+     "value": 24
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). A top-25 pool for at-large teams is not stated by either page (the committee ranking could extend beyond 25).",
-   "status": "2 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },
@@ -881,16 +1011,41 @@
      "primary": false,
      "quote": "Teams seeded Nos. 1-8 earn a first-round bye followed by a home game.",
      "value": 8
+    },
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "Format page, seeding the bracket",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 1-8 will each earn a CFP First Round bye and will host a CFP Second Round game on campus.",
+     "value": 8
+    },
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "Format page, seeding the bracket",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 9-16 will each host a CFP First Round game on campus.",
+     "value": 8
     }
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Reseeding is not stated.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (cfp-official)."
     }
    ]
   },

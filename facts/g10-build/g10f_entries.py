@@ -61,3 +61,18 @@ note('F-league-0107', 'FOX Sports (read 2026-11-26) writes "there is no reseedin
 add('F-league-0108', 'fox_po', 'Reseeding answer', 'the host of each game is determined by seeding number, not position in the bracket.')
 add('F-league-0108', 'nbc_po', 'Conference championship paragraph', 'These games are hosted by the higher-seeded team and serve as the final step before the Super Bowl.')
 add('F-league-0104', 'nfp_po', 'Opening line', 'Fourteen teams, seven from each conference, qualify for the NFL playoffs', 7)
+
+# ---- College Football Playoff official site (primary), read in the PC browser 2026-11-26
+src('cfp12', 'College Football Playoff, About the 12-Team CFP Format (2026-27) (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format)', 'cfp-official', True)
+src('cfp24', 'College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)', 'cfp-official', True)
+add('F-college-0014', 'cfp12', 'Format page, how the field is set', "Seeds 5-12 play first-round games at the higher seed's home stadium", 12)
+add('F-college-0015', 'cfp12', 'Format page, bracket rules', "The CFP bracket will follow the selection committee’s rankings, with no modifications made to avoid rematches between teams that may have played during the regular season or are from the same conference.", 'national')
+add('F-college-0016', 'cfp12', 'Format page, seeding', 'Seeds 1-4 receive first-round byes', 4)
+add('F-college-0016', 'cfp12', 'Format page, seeding', "Seeds 5-12 play first-round games at the higher seed's home stadium", 4)
+add('F-college-0017', 'cfp12', 'Format page, schedule paragraph', 'from the CFP First Round hosted on campus by the higher-ranked seeds, through the CFP Quarterfinals and CFP Semifinals, culminating in Las Vegas at the 2027 CFP National Championship.', 1)
+add('F-college-0018', 'cfp12', 'Format page, how the field is set', '4 Automatic Bids ACC, Big Ten, Big 12 & SEC Champions', True)
+add('F-college-0019', 'cfp12', 'Format page, how the field is set', '1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt', 1)
+add('F-college-0020', 'cfp12', 'Format page, how the field is set', 'Notre Dame receives an automatic bid if it is ranked in the CFP Top 12 on Selection Day.', 12)
+add('F-college-0024', 'cfp24', 'Format page, how the field is set', 'The 24-team format takes effect for the 2027-28 season. The participating teams will consist of: 4 Automatic Bids ACC, Big Ten, Big 12 & SEC Champions (as determined by their respective conferences) 1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt 19 At-Large Bids', 24)
+add('F-college-0025', 'cfp24', 'Format page, seeding the bracket', 'Seeds 1-8 will each earn a CFP First Round bye and will host a CFP Second Round game on campus.', 8)
+add('F-college-0025', 'cfp24', 'Format page, seeding the bracket', 'Seeds 9-16 will each host a CFP First Round game on campus.', 8)
