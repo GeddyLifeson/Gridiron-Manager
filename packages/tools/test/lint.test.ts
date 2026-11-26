@@ -87,10 +87,12 @@ describe('fact links (Q6.2.1, Q1.2.1, Q6.3.1 acceptance)', () => {
   });
   it('a rule row below Rulebook only fails, and a typed status that differs from the computed one fails', () => {
     const r2 = JSON.parse(JSON.stringify(rows));
-    r2[0].sources = [{ ...r2[0].sources[0], howRead: 'model knowledge', primary: false }];
+    // The first rule-domain row: facts/measured-rate.json sorts before facts/rule.json.
+    const i = r2.findIndex((r: { domain: string }) => r.domain === 'rule');
+    r2[i].sources = [{ ...r2[i].sources[0], howRead: 'model knowledge', primary: false }];
     const rules = lintFacts(ROOT, { rows: r2 }).problems.map((p) => p.rule);
     expect(rules).toContain('Q6.1.2 computed status');
-    r2[0].status = 'Unverified';
+    r2[i].status = 'Unverified';
     expect(lintFacts(ROOT, { rows: r2 }).problems.map((p) => p.rule)).toContain('Q6.3.1 rule status');
   });
 });
