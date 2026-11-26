@@ -106,6 +106,8 @@ export class CapTarget implements BreakTarget {
         const n = g['years'] as number;
         if (!Number.isSafeInteger(n) || n < 1) return { accepted: false, reason: 'no contract years' };
         if (!isCount(g['base']) || !isCount(g['bonus'])) return { accepted: false, reason: 'the rig signs whole non-negative cents only' };
+        if (!isCount(g['credited'])) return { accepted: false, reason: 'credited seasons are a whole number from 0' };
+        if (!Number.isSafeInteger((g['base'] as number) * n + (g['bonus'] as number))) return { accepted: false, reason: 'the contract total is too large to keep exactly' };
         const guarantee = g['guaranteed'] ? cap.FULLY_GUARANTEED : cap.NOT_GUARANTEED;
         const years = Array.from({ length: n }, (_, i) => cap.plainYear(this.year + i, g['base'] as number, guarantee));
         const bonus = g['bonus'] as number;

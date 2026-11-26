@@ -27,4 +27,15 @@ describe('cap module against hostile inputs', () => {
       expect(releaseCharges(deal(), { ...rel, basePaidCents: 0, earnedThisYearCents: bad }, rules).ok).toBe(false);
     }
   });
+  it('credited seasons that are not a whole count are refused, not looked up (second run)', () => {
+    for (const bad of [-1, 1.5, NaN]) {
+      expect(() => minimumSalary(rules, 2026, bad)).toThrow(/whole number/);
+      expect(restructure(deal(), 2026, M(1), bad, rules).ok).toBe(false);
+      expect(payCut(deal(), 2026, new Map([[2026, M(5)]]), bad, rules).ok).toBe(false);
+    }
+  });
+  it('an extension whose total cannot be counted exactly is refused', () => {
+    const big = Number.MAX_SAFE_INTEGER - 10;
+    expect(extend(deal(), 2026, [plainYear(2028, big)], big).ok).toBe(false);
+  });
 });

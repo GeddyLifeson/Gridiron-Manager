@@ -25,6 +25,7 @@ function bands(rules: RuleSet): Band[] {
  * Years after the last rule-set year continue the C6.4.1 yearly step (assumption, the agreement ends 2030).
  */
 export function minimumSalary(rules: RuleSet, leagueYear: number, creditedSeasons: number, params: ParamTable = paramTable()): number {
+  if (!Number.isSafeInteger(creditedSeasons) || creditedSeasons < 0) throw new Error(`league.cap: credited seasons must be a whole number from 0, not ${creditedSeasons}`);
   const all = bands(rules);
   if (all.length === 0) throw new Error('league.cap: rule set has no minimum salary table');
   const years = [...new Set(all.map((b) => b.year))].sort((a, b) => a - b);

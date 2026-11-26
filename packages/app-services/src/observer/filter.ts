@@ -38,6 +38,21 @@ const DROP = Symbol('drop');
 const SCALAR_TYPES: ReadonlySet<string> = new Set(['string', 'number', 'int', 'bigint', 'boolean', 'enum', 'literal', 'nan', 'null', 'undefined', 'symbol', 'template_literal']);
 type Out = unknown | typeof DROP;
 
+const TYPEOF: Readonly<Record<string, string>> = { string: 'string', template_literal: 'string', number: 'number', int: 'number', nan: 'number', bigint: 'bigint', boolean: 'boolean' };
+/**
+ * Does a scalar value have the kind its schema names? A value of another kind (a string where a number is
+ * declared, an object anywhere) is unreadable: the field's class describes the declared value, not whatever
+ * was put in its place.
+ */
+function scalarFits(p: ReturnType<typeof peel>, value: unknown): boolean {
+  if (typeof value === 'object') return false;
+  const t = TYPEOF[p.type];
+  if (t) return typeof value === t;
+  if (p.type === 'enum') return Object.values(p.def.entries as Record<string, unknown>).includes(value);
+  if (p.type === 'literal') return (p.def.values as unknown[]).includes(value);
+  return p.type === 'null' || p.type === 'undefined' ? value == null : false;
+}
+
 interface Ctx {
   observer: Observer;
   env: OwnerEnv;
@@ -95,7 +110,8 @@ function node(schema: Schema, value: unknown, path: string, isField: boolean, fr
       const shape = p.def.shape as Record<string, Schema>;
       const out: Record<string, unknown> = {};
       for (const key of Object.keys(value)) {
-        if (!(key in shape)) { ctx.report?.dropped.push({ path: `${path}.${key}`, reason: 'unknown_key' }); continue; }
+        // Own keys only: `constructor`, `toString` and `__proto__` are `in` every object and are not fields.
+        if (!Object.hasOwn(shape, key)) { ctx.report?.dropped.push({ path: `${path}.${key}`, reason: 'unknown_key' }); continue; }
         const r = child(shape[key]!, value[key], `${path}.${key}`, `.${key}`, true, f, ctx);
         if (r !== DROP) out[key] = r;
       }
@@ -134,9 +150,9 @@ function node(schema: Schema, value: unknown, path: string, isField: boolean, fr
     }
     case 'union': {
       if (typeof value !== 'object') {
-        // A scalar is kept only when some option of the union is a scalar shape.
+        // A scalar is kept only when some option of the union is a scalar shape it fits.
         const options = p.def.options as Schema[];
-        if (options.some((o) => SCALAR_TYPES.has(peel(o).type) || peel(o).type === 'unknown' || peel(o).type === 'any')) return value;
+        if (options.some((o) => { const q = peel(o); return q.type === 'unknown' || q.type === 'any' || (SCALAR_TYPES.has(q.type) && scalarFits(q, value)); })) return value;
         ctx.report?.dropped.push({ path, reason: 'unreadable' });
         return DROP;
       }
@@ -150,7 +166,7 @@ function node(schema: Schema, value: unknown, path: string, isField: boolean, fr
     default:
       // Scalars, enums, literals, and `unknown` leaves the contract classed as a whole. A scalar shape that holds
       // an object or an array is unreadable: keeping it would pass whatever is nested inside to every observer.
-      if (SCALAR_TYPES.has(p.type) && typeof value === 'object') { ctx.report?.dropped.push({ path, reason: 'unreadable' }); return DROP; }
+      if (SCALAR_TYPES.has(p.type) && !scalarFits(p, value)) { ctx.report?.dropped.push({ path, reason: 'unreadable' }); return DROP; }
       return plainClone(value, path);
   }
 }

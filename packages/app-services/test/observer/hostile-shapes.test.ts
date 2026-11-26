@@ -38,4 +38,31 @@ describe('observer filter against hostile shapes', () => {
       expect(() => filterValue(tableSchema(b), row, viewers[1]!)).not.toThrow();
     }
   });
+  it('a key named after an Object.prototype member is dropped, never thrown (second run)', () => {
+    for (const table of WORLD_ROW_TABLES) {
+      const schema = tableSchema(table);
+      for (const key of ['constructor', 'toString', 'hasOwnProperty', '__proto__']) {
+        const row = { ...(fullSample(schema, 0) as object) } as Record<string, unknown>;
+        Object.defineProperty(row, key, { value: { breaktest: SECRET }, enumerable: true, configurable: true, writable: true });
+        for (const o of viewers) {
+          let out: unknown;
+          expect(() => { out = filterValue(schema, row, o); }).not.toThrow();
+          expect(has(out)).toBe(false);
+        }
+      }
+    }
+  });
+  it('a scalar of the wrong kind (a string where a number is declared) is dropped (second run)', () => {
+    for (const table of WORLD_ROW_TABLES) {
+      const schema = tableSchema(table);
+      const root = JSON.parse(JSON.stringify(fullSample(schema, 0))) as Record<string, unknown>;
+      for (const k of Object.keys(root)) {
+        if (typeof root[k] === 'number') { const row = { ...root, [k]: SECRET }; for (const o of viewers) expect(has(filterValue(schema, row, o))).toBe(false); }
+        if (Array.isArray(root[k]) && typeof (root[k] as unknown[])[0] === 'number') {
+          const row = { ...root, [k]: [SECRET] }; for (const o of viewers) expect(has(filterValue(schema, row, o))).toBe(false);
+        }
+      }
+    }
+  });
 });
+
