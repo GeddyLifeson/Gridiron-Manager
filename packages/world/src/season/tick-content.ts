@@ -19,7 +19,7 @@ import {
   SLOT_COUNT, SLOTS_PER_TEAM,
   type Assignment, type CoverageFamily, type KickCall, type PlayCalls, type PlayInput, type ReturnCall, type RuleSet,
 } from '@gm/schema';
-import { qb as qbModule, tickResolver } from '@gm/engine-core';
+import { perception as perceptionModule, qb as qbModule, tickResolver } from '@gm/engine-core';
 import { starter } from '@gm/football-content';
 
 type PlaySetup = tickResolver.PlaySetup;
@@ -119,6 +119,41 @@ const RALLY: Assignment['rules'][number] = {
 const readsRun = (a: Assignment): boolean => JSON.stringify(a.rules).includes('"read"');
 function withRally(a: Assignment): Assignment {
   return { ...a, rules: readsRun(a) ? [...a.rules, RALLY] : [RALLY, ...a.rules] };
+}
+
+const LINEMEN: ReadonlySet<string> = new Set(['LT', 'LG', 'C', 'RG', 'RT']);
+/**
+ * A defender's assignment key list (J3.1.2) resolved to slots for the perception system, with the ball last.
+ * `qb`, `role:X` and `#n:side` resolve from the offense's alignment; `nearestThreat` is the receiver nearest his
+ * spot. Without keys the perception system gives him no primary key, so he reads no run-pass evidence and is
+ * slow to the handoff: every defender also tracks the ball (provisional, J3.1.2 names no default).
+ */
+function defenderKeys(a: Assignment, O: readonly Assignment[], qbSlot: number): number[] {
+  const rec = O.map((x, i) => ({ i, py: x.preSnap.align.py, px: x.preSnap.align.px, eligible: !LINEMEN.has(x.role) && i !== qbSlot }));
+  const receiver = (n: number, sign: number): number => {
+    const side = rec.filter((r) => r.eligible && Math.sign(r.py) === sign).sort((x, y) => Math.abs(y.py) - Math.abs(x.py));
+    return side[n - 1]?.i ?? -1;
+  };
+  const out: number[] = [];
+  for (const k of a.keys) {
+    let s = -1;
+    if (k === 'qb') s = qbSlot;
+    else if (k.startsWith('role:')) s = O.findIndex((x) => x.role === k.slice(5));
+    else if (k === 'nearestThreat') {
+      let best = Infinity;
+      for (const r of rec) {
+        if (!r.eligible) continue;
+        const d = (r.py - a.preSnap.align.py) ** 2 + (r.px + a.preSnap.align.px) ** 2;
+        if (d < best) { best = d; s = r.i; }
+      }
+    } else {
+      const m = /^#(\d+)(?::(left|right))?$/.exec(k);
+      if (m !== null) s = receiver(Number(m[1]), m[2] === 'right' ? -1 : 1);
+    }
+    if (s >= 0 && !out.includes(s)) out.push(s);
+  }
+  out.push(perceptionModule.KEY_BALL);
+  return out;
 }
 
 interface OffensePlay { readonly def: starter.PlayDef; readonly O: Assignment[] }
@@ -407,7 +442,8 @@ export function createStarterContentPort(): StarterContentPort {
       const qbSlot = qb === null ? -1 : qb.qbSlot;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
       const slots: PlaySetup['slots'] = Array.from({ length: SLOT_COUNT }, (_, w) => ({ conceptId: (w < SLOTS_PER_TEAM ? O[w]! : D[w - SLOTS_PER_TEAM]!).conceptId }));
-      const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => (w >= SLOTS_PER_TEAM && s.unit === 'offense' ? { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7 } : {}));
+      const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => (w >= SLOTS_PER_TEAM && s.unit === 'offense'
+        ? { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(D[w - SLOTS_PER_TEAM]!, O, qbSlot) } : {}));
       return {
         presnap: {
           tempo, playClockStartTenths: input.rules.num('clock.play_clock_s') * 10, callWords: 6, hardCount: false, silentCount: false, longCount: false,
