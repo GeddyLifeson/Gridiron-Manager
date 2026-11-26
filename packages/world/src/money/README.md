@@ -70,7 +70,7 @@ so it is folded into `worldHash` and saved with the world.
 | Staff pay bands by tier and rung | career `contract/defaults.json`, E3.2.1 | Per cell basis there: pro rungs 9 and 7 edges 1 of 3, typical Assumption; pro rung 5 Assumption (no source); pro rung 3 anchored on one 2018 estimate (1 of 3); power four rungs 5 and 7 and group of six rung 5 on single primary contracts (Rulebook only), edges Assumption; other cells Assumption |
 | Median as the off-screen offer | E3.2.1 (median times leverage), MO-05 | Bible rule, leverage 1 is a design choice |
 | Power four by resource band | MO-06 | Assumption |
-| Second-level college and off-ladder bands | `bands.json`, MO-11 | Computed from the cited rows: GM 2 of 3; FCS head coach rows mix Verified (high, examples) and 1 of 3 (Big Sky median); FCS coordinator 1 of 3; FCS position coach 2 of 3 and 1 of 3; group of six AD 1 of 3; FCS AD Verified. Medians from midpoints are noted as Assumption in the row |
+| Second-level college and off-ladder bands | `bands.json`, MO-11 | Computed from the cited rows: GM 2 of 3; FCS head coach rows mix Verified (examples) and 1 of 3 (Big Sky median, first-year low); FCS coordinator 1 of 3; FCS position coach 1 of 3; group of six AD 1 of 3; FCS AD 2 of 3. Statuses as of PR 278 on 2026-11-26; the citation test reads the live ones. Medians from midpoints are noted as Assumption in the row |
 
 ## Gaps
 
