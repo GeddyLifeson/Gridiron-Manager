@@ -11,10 +11,11 @@ import { P } from './params.ts';
 import { KEY, num } from './keys.ts';
 import { defaultPlan } from './classplan.ts';
 import { boardOrder, gradeOf, takeLook } from './evaluation.ts';
+import { boardOf } from './interest.ts';
 import { breachesOf, nameRecruiters, periodOn, tieOf } from './limits.ts';
 import { takeAct, type ComplianceHook } from './actions.ts';
 import { activeOffer, makeOffer, withdrawOffer } from './offers.ts';
-import { hostOfficialVisit, VISIT_BLOCKS, type VisitPlan } from './visits.ts';
+import { hostOfficialVisit, hostUnofficialVisit, VISIT_BLOCKS, type VisitPlan } from './visits.ts';
 import type { ActionKind, ClassPlanRow, PositionGroup, ProgramInfo, RecruitingState } from './types.ts';
 
 export interface AiPeople {
@@ -53,11 +54,14 @@ function hsPlaces(row: ClassPlanRow): number { return row.target - row.heldForTr
 /** First-pass board for a class (T4.3.1): prospects whose public rating the program can aim at, plus its own region. */
 export function aiBuildBoard(state: RecruitingState, ctx: RecruitingContext, prog: ProgramInfo, people: AiPeople, classYear: number, day: number): void {
   const floor = prog.tier === 'top' ? P('ai.minStarsTop') : prog.tier === 'middle' ? P('ai.minStarsMiddle') : P('ai.minStarsLower');
+  const ceiling = prog.tier === 'top' ? P('stars.five') : prog.tier === 'middle' ? P('ai.maxStarsMiddle') : P('ai.maxStarsLower');
   const evaluator = prog.staffIds[prog.staffIds.length - 1] ?? prog.headCoachId;
   for (const p of Object.values(state.prospects)) {
     if (p.classYear !== classYear) continue;
     const near = p.region === prog.region;
+    // A program boards the prospects it can aim at: its rating band, one more star either way at home (T4.1.1).
     if (p.publicStars < floor && !(near && p.publicStars >= floor - 1)) continue;
+    if (p.publicStars > ceiling && !(near && p.publicStars <= ceiling + 1)) continue;
     if (state.boards[prog.teamId]?.grades[p.personId]) continue;
     takeLook(state, ctx, prog.teamId, p.personId, 'first_pass_film', day, { skill: people.evaluationSkill(evaluator), competition: 1, byPositionCoach: false });
   }
@@ -92,6 +96,8 @@ function aiTry(state: RecruitingState, ctx: RecruitingContext, hook: ComplianceH
  */
 export function aiProgramWeek(state: RecruitingState, ctx: RecruitingContext, hook: ComplianceHook, prog: ProgramInfo, people: AiPeople, classYear: number, day: number): void {
   const teamId = prog.teamId;
+  const board = boardOf(state, teamId);
+  if (!board.builtClasses.includes(classYear)) { aiBuildBoard(state, ctx, prog, people, classYear, day); board.builtClasses.push(classYear); }
   const rules = ctx.rulesOn(day);
   const max = num(rules, KEY.offcampusMax) ?? prog.staffIds.length;
   nameRecruiters(state, ctx, teamId, prog.staffIds.slice(0, max), day);
@@ -108,7 +114,8 @@ export function aiProgramWeek(state: RecruitingState, ctx: RecruitingContext, ho
       const st = state.status[id];
       return !!p && !!st && p.classYear === classYear && p.position === row.position && st.status !== 'signed' && st.status !== 'enrolled';
     });
-    let out = ranked.filter((id) => offeredHere.has(id) && state.status[id]!.teamId !== teamId).length;
+    // Live offers: to prospects still choosing. One committed elsewhere no longer holds a place on the plan.
+    let out = ranked.filter((id) => offeredHere.has(id) && state.status[id]!.status === 'open').length;
     const committableTop = Math.round(open * offersPerPlace(prog.tier) * P('offer.committableShare'));
     let rank = 0;
     for (const id of ranked) {
@@ -131,6 +138,7 @@ export function aiProgramWeek(state: RecruitingState, ctx: RecruitingContext, ho
   const budget = new Map<number, number>(recruiters.map((s) => [s, P('ai.contactsPerRecruiterWeek')]));
   let hcLeft = P('ai.headCoachContactsWeek');
   let visitsLeft = P('ai.visitsPerWeek');
+  let unofficialLeft = P('ai.unofficialPerWeek');
   targets.forEach((id, i) => {
     const p = state.prospects[id]!;
     const t = tieOf(state, id, teamId);
@@ -145,6 +153,15 @@ export function aiProgramWeek(state: RecruitingState, ctx: RecruitingContext, ho
     if (hcLeft > 0 && i < P('ai.headCoachTargets')) {
       const kind: ActionKind = period === 'contact' ? 'home_visit' : 'call';
       if (aiTry(state, ctx, hook, people, kind, teamId, prog.headCoachId, id, day, p.region)) hcLeft -= 1;
+    }
+    // Unofficial visits (T4.5.1): the family pays; any period that allows on-campus contact. Juniors come in spring and summer.
+    const lastUnofficial = t.unofficialVisits[t.unofficialVisits.length - 1];
+    if (unofficialLeft > 0 && i < P('ai.visitTargets') && period !== 'dead' && period !== null
+      && (lastUnofficial === undefined || day - lastUnofficial >= P('ai.unofficialGapWeeks') * P('daysPerWeek'))) {
+      if (breachesOf(state, ctx, { kind: 'unofficial_visit', teamId, staffId: rec, prospectId: id, day }).length === 0) {
+        hostUnofficialVisit(state, ctx, hook, teamId, rec, id, day);
+        unofficialLeft -= 1;
+      }
     }
     // Official visits (T4.5.1): top targets, on weekends the calendar allows, a home game in the fall.
     if (visitsLeft > 0 && t.officialVisits.length === 0 && i < P('ai.visitTargets') && period !== 'dead' && period !== null) {

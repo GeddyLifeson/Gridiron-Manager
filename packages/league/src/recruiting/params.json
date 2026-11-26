@@ -534,13 +534,13 @@
 ],
 [
 "stars.publishedListPerTopProgram",
-2.2,
+2.94,
 0,
 10,
 "count",
 "assumption",
 "T4.1.1",
-"Length of the published national list per top program (top 300 at real size)"
+"Length of the published national list per top program (about 400 at real size, the blue-chip count)"
 ],
 [
 "academic.gpaMean",
@@ -734,7 +734,7 @@
 ],
 [
 "commit.thresholdMean",
-58,
+50,
 30,
 90,
 "iss",
@@ -774,7 +774,7 @@
 ],
 [
 "commit.marginMean",
-6,
+3,
 0,
 20,
 "iss",
@@ -784,7 +784,7 @@
 ],
 [
 "commit.marginSd",
-2.5,
+1.5,
 0,
 10,
 "iss",
@@ -794,7 +794,7 @@
 ],
 [
 "commit.marginMin",
-1,
+0.5,
 0,
 20,
 "iss",
@@ -811,6 +811,46 @@
 "assumption",
 "T4.5.2",
 "Ceiling"
+],
+[
+"commit.urgencyMax",
+0.2,
+0,
+0.6,
+"ratio",
+"assumption",
+"T4.5.2",
+"Share the commitment bar falls from January of the junior year to the early period (fitted to T4.1.1 and T4.5.2 timing targets)"
+],
+[
+"commit.perStar",
+4,
+0,
+15,
+"iss",
+"assumption",
+"T4.5.2",
+"Bar raised per public star above the floor"
+],
+[
+"commit.rampWidth",
+8,
+0.5,
+30,
+"iss",
+"assumption",
+"T4.5.2",
+"Half-width of the band around the bar over which a prospect becomes ready to commit"
+],
+[
+"commit.weeklyPace",
+0.35,
+0,
+1,
+"ratio",
+"assumption",
+"T4.5.2",
+"Weekly chance a fully ready prospect commits"
 ],
 [
 "commit.lateRelaxPerWeek",
@@ -1714,7 +1754,7 @@
 ],
 [
 "look.meanWeight",
-0.35,
+0.25,
 0,
 1,
 "ratio",
@@ -1953,6 +1993,26 @@
 "Lower"
 ],
 [
+"ai.maxStarsMiddle",
+4,
+2,
+5,
+"stars",
+"assumption",
+"T4.4.5",
+"Highest rating a middle program boards outside its home state (it cannot land the rest)"
+],
+[
+"ai.maxStarsLower",
+3,
+2,
+5,
+"stars",
+"assumption",
+"T4.4.5",
+"Highest rating a lower program boards outside its home state"
+],
+[
 "ai.overSignAllowance",
 1,
 0,
@@ -2011,6 +2071,26 @@
 "assumption",
 "T4.5.1",
 "Visits hosted a week (top-tier budget, 60 or more a cycle)"
+],
+[
+"ai.unofficialPerWeek",
+10,
+0,
+60,
+"count",
+"assumption",
+"T4.5.1",
+"Unofficial visits a program hosts in a week"
+],
+[
+"ai.unofficialGapWeeks",
+6,
+1,
+26,
+"weeks",
+"assumption",
+"T4.5.1",
+"Weeks between unofficial visits by one prospect to one school"
 ],
 [
 "ai.visitHours",

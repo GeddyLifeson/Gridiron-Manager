@@ -217,6 +217,8 @@ export interface Board {
   boardLine: number;
   /** Prospects in the position coach's queue (T4.3.1). Moving one by hand puts him here regardless of the line. */
   queue: number[];
+  /** Classes this staff has run a first-pass board for. */
+  builtClasses: number[];
 }
 
 export type LookKind = 'first_pass_film' | 'full_film' | 'live' | 'camp' | 'hs_coach_word';

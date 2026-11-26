@@ -1,6 +1,7 @@
 // T4.5.2 commitment, flips and signing. A verbal commitment binds nobody; signing does. Firmness is
 // hidden: a committed prospect carries a weekly decommitment chance with the T4.5.2 multipliers, and the
 // staff sees only words with a basis and a date.
+import { dayNumber } from '../calendar/date.ts';
 import { clamp, type RecruitingContext } from './context.ts';
 import { P } from './params.ts';
 import { addEvidence, boardOf, interestTable } from './interest.ts';
@@ -116,12 +117,19 @@ export function prospectWeek(state: RecruitingState, ctx: RecruitingContext, cla
       const best = table[0];
       if (best) {
         const second = table[1]?.interest ?? 0;
-        const relax = afterEarly ? clamp(P('commit.lateRelaxPerWeek') * (day - dates.earlyClose!) / week, 0, P('commit.lateRelaxMax')) : 0;
-        const threshold = p.commitThreshold * (1 - relax);
+        // Urgency: the bar falls as the early period nears (a junior in January needs more certainty than a
+        // senior in November), and keeps falling for a prospect still unsigned after it (late signees).
+        const start = dayNumber({ y: classYear - 1, m: 1, d: 1 });
+        const toEarly = dates.earlyOpen !== null && dates.earlyOpen > start ? clamp((day - start) / (dates.earlyOpen - start), 0, 1) : 0;
+        const relax = P('commit.urgencyMax') * toEarly + (afterEarly ? clamp(P('commit.lateRelaxPerWeek') * (day - dates.earlyClose!) / week, 0, P('commit.lateRelaxMax')) : 0);
+        // A higher-rated prospect aims higher (he expects more offers to choose from).
+        const threshold = (p.commitThreshold + P('commit.perStar') * (p.publicStars - P('stars.floor'))) * (1 - relax);
         const t = tieOf(state, id, best.teamId);
         const cooling = t.decommitDay !== null && day - t.decommitDay < P('decommit.cooldownWeeks') * week;
         const o = activeOffer(state, id, best.teamId);
-        if (o && !cooling && best.interest >= threshold && best.interest - second >= p.commitMargin * (1 - relax)) {
+        // Readiness ramps across the bar, so commitments spread over weeks instead of piling up at it.
+        const ready = clamp(P('half') + (best.interest - threshold) / (P('commit.rampWidth') + P('commit.rampWidth')), 0, 1);
+        if (o && !cooling && best.interest - second >= p.commitMargin && r.chance(P('commit.weeklyPace') * ready)) {
           if (o.committable || decide(best.teamId, id, day)) {
             setCommittable(state, id, best.teamId, true);
             commit(state, p, best.teamId, day);

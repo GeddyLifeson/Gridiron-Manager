@@ -96,7 +96,7 @@ function shift(word: StandingWord, steps: number): StandingWord {
 }
 
 export function emptyBoard(teamId: number, boardLine: number): Board {
-  return { teamId, grades: {}, reads: {}, circles: {}, firmness: {}, academics: {}, boardLine, queue: [] };
+  return { teamId, grades: {}, reads: {}, circles: {}, firmness: {}, academics: {}, boardLine, queue: [], builtClasses: [] };
 }
 
 export function boardOf(state: RecruitingState, teamId: number): Board {
