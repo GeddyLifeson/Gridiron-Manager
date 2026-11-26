@@ -38,6 +38,14 @@ export interface ContractsState {
   /** Floor periods already checked, by `${from}-${to}`. */
   readonly checkedPeriods: readonly string[];
   readonly floorChecks: readonly FloorCheck[];
+  /** The latest league year's free agent signings at their market price (PC-11): the front office's going rate reads them (TO-07). */
+  readonly lastMarket?: MarketYear;
+}
+
+/** One league year's free agent signings: who signed, with which club, at what average per year. */
+export interface MarketYear {
+  readonly seasonYear: number;
+  readonly signings: readonly { readonly personId: number; readonly teamId: number; readonly apyCents: number }[];
 }
 
 const EMPTY: ContractsState = { nextId: 1, active: [], paidYears: [], periodRoster: {}, checkedPeriods: [], floorChecks: [] };
