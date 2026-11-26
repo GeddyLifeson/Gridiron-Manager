@@ -1,0 +1,861 @@
+{
+ "$comment": "O5.2.1 default key map (bible path ui/keymap.default.json). A binding is {context, action, keys, device}. Keys are physical key codes (O1.3.1: number and letter rows bound by position) with Ctrl, Alt, Shift and Meta prefixes. The innermost active context wins. Console bindings are the O5.2.1 starting values; G-60 owns their behaviour.",
+ "contexts": [
+  "global",
+  "console.offense",
+  "console.defense",
+  "console.special",
+  "console.prompt",
+  "film",
+  "designer",
+  "table",
+  "text"
+ ],
+ "bindings": [
+  {
+   "context": "global",
+   "action": "hub.office",
+   "keys": [
+    "Digit1"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.team",
+   "keys": [
+    "Digit2"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.football",
+   "keys": [
+    "Digit3"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.week",
+   "keys": [
+    "Digit4"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.game",
+   "keys": [
+    "Digit5"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.film",
+   "keys": [
+    "Digit6"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.people",
+   "keys": [
+    "Digit7"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.league",
+   "keys": [
+    "Digit8"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.coach",
+   "keys": [
+    "Digit9"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "hub.school",
+   "keys": [
+    "Digit0"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "nav.back",
+   "keys": [
+    "Escape"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "nav.history_back",
+   "keys": [
+    "Alt+ArrowLeft"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "nav.history_forward",
+   "keys": [
+    "Alt+ArrowRight"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "palette.open",
+   "keys": [
+    "Slash"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "help.keys",
+   "keys": [
+    "Shift+Slash"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "help.screen",
+   "keys": [
+    "F1"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "global",
+   "action": "office.advance",
+   "keys": [
+    "Space"
+   ],
+   "device": "keyboard",
+   "note": "Office screen only (O1.3.1)"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_1",
+   "keys": [
+    "Digit1"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_2",
+   "keys": [
+    "Digit2"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_3",
+   "keys": [
+    "Digit3"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_4",
+   "keys": [
+    "Digit4"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_5",
+   "keys": [
+    "Digit5"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_6",
+   "keys": [
+    "Digit6"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_7",
+   "keys": [
+    "Digit7"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_8",
+   "keys": [
+    "Digit8"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_9",
+   "keys": [
+    "Digit9"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.entry_0",
+   "keys": [
+    "Digit0"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.confirm",
+   "keys": [
+    "Enter"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.clear",
+   "keys": [
+    "Backspace"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.personnel",
+   "keys": [
+    "KeyG"
+   ],
+   "device": "keyboard",
+   "note": "then group digits (O5.2.1)"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.timeout",
+   "keys": [
+    "KeyT"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.challenge",
+   "keys": [
+    "KeyC"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "booth.list",
+   "keys": [
+    "KeyB"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "booth.ask",
+   "keys": [
+    "Shift+KeyB"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.take_suggestion",
+   "keys": [
+    "Tab"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "playbook.search",
+   "keys": [
+    "Slash"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "playback.skip",
+   "keys": [
+    "KeyS"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "playback.replay_once",
+   "keys": [
+    "KeyY"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "panel.tab_1",
+   "keys": [
+    "F2"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "panel.tab_2",
+   "keys": [
+    "F3"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "panel.tab_3",
+   "keys": [
+    "F4"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "panel.tab_4",
+   "keys": [
+    "F5"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "panel.tab_5",
+   "keys": [
+    "F6"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.box_select",
+   "keys": [],
+   "device": "keyboard",
+   "note": "letters by sheet position, skipping letters bound here (O2.2.2); no default"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_1",
+   "keys": [
+    "Digit1"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_2",
+   "keys": [
+    "Digit2"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_3",
+   "keys": [
+    "Digit3"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_4",
+   "keys": [
+    "Digit4"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_5",
+   "keys": [
+    "Digit5"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_6",
+   "keys": [
+    "Digit6"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_7",
+   "keys": [
+    "Digit7"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_8",
+   "keys": [
+    "Digit8"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_9",
+   "keys": [
+    "Digit9"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.entry_0",
+   "keys": [
+    "Digit0"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.confirm",
+   "keys": [
+    "Enter"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.clear",
+   "keys": [
+    "Backspace"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.personnel",
+   "keys": [
+    "KeyG"
+   ],
+   "device": "keyboard",
+   "note": "then group digits (O5.2.1)"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.timeout",
+   "keys": [
+    "KeyT"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.challenge",
+   "keys": [
+    "KeyC"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "booth.list",
+   "keys": [
+    "KeyB"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "booth.ask",
+   "keys": [
+    "Shift+KeyB"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.take_suggestion",
+   "keys": [
+    "Tab"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "playbook.search",
+   "keys": [
+    "Slash"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "playback.skip",
+   "keys": [
+    "KeyS"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "playback.replay_once",
+   "keys": [
+    "KeyY"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "panel.tab_1",
+   "keys": [
+    "F2"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "panel.tab_2",
+   "keys": [
+    "F3"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "panel.tab_3",
+   "keys": [
+    "F4"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "panel.tab_4",
+   "keys": [
+    "F5"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "panel.tab_5",
+   "keys": [
+    "F6"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.defense",
+   "action": "call.box_select",
+   "keys": [],
+   "device": "keyboard",
+   "note": "letters by sheet position, skipping letters bound here (O2.2.2); no default"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_1",
+   "keys": [
+    "Digit1"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_2",
+   "keys": [
+    "Digit2"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_3",
+   "keys": [
+    "Digit3"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_4",
+   "keys": [
+    "Digit4"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_5",
+   "keys": [
+    "Digit5"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_6",
+   "keys": [
+    "Digit6"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_7",
+   "keys": [
+    "Digit7"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_8",
+   "keys": [
+    "Digit8"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_9",
+   "keys": [
+    "Digit9"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.entry_0",
+   "keys": [
+    "Digit0"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.confirm",
+   "keys": [
+    "Enter"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.clear",
+   "keys": [
+    "Backspace"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.personnel",
+   "keys": [
+    "KeyG"
+   ],
+   "device": "keyboard",
+   "note": "then group digits (O5.2.1)"
+  },
+  {
+   "context": "console.special",
+   "action": "call.timeout",
+   "keys": [
+    "KeyT"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.challenge",
+   "keys": [
+    "KeyC"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "booth.list",
+   "keys": [
+    "KeyB"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "booth.ask",
+   "keys": [
+    "Shift+KeyB"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.take_suggestion",
+   "keys": [
+    "Tab"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "playbook.search",
+   "keys": [
+    "Slash"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "playback.skip",
+   "keys": [
+    "KeyS"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "playback.replay_once",
+   "keys": [
+    "KeyY"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "panel.tab_1",
+   "keys": [
+    "F2"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "panel.tab_2",
+   "keys": [
+    "F3"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "panel.tab_3",
+   "keys": [
+    "F4"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "panel.tab_4",
+   "keys": [
+    "F5"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "panel.tab_5",
+   "keys": [
+    "F6"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.special",
+   "action": "call.box_select",
+   "keys": [],
+   "device": "keyboard",
+   "note": "letters by sheet position, skipping letters bound here (O2.2.2); no default"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.flip",
+   "keys": [
+    "KeyF"
+   ],
+   "device": "keyboard",
+   "note": "held with a digit (O5.2.1)"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.motion_tag",
+   "keys": [
+    "KeyM"
+   ],
+   "device": "keyboard",
+   "note": "held with a digit (O5.2.1)"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.protection_tag",
+   "keys": [
+    "KeyP"
+   ],
+   "device": "keyboard",
+   "note": "held with a digit (O5.2.1)"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.route_tag",
+   "keys": [
+    "KeyR"
+   ],
+   "device": "keyboard",
+   "note": "held with a digit (O5.2.1)"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.tempo_cycle",
+   "keys": [
+    "BracketLeft"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.cadence_cycle",
+   "keys": [
+    "BracketRight"
+   ],
+   "device": "keyboard"
+  },
+  {
+   "context": "console.offense",
+   "action": "call.relay_cycle",
+   "keys": [
+    "Backslash"
+   ],
+   "device": "keyboard"
+  }
+ ]
+}

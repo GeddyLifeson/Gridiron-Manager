@@ -1,0 +1,19 @@
+{
+  "$comment": "Protected event types for imported people (A6.3.1). Content, so it can be audited (X14.1.3). Used here by the pack validator: a pack table, column or value that names one of these fails validation. The importer and event systems (G-42) call one function, mayReceiveEvent, that reads the same list. A new event type is protected until someone marks it allowed (A6.3.1 rule 6).",
+  "bible": "A6.3.1",
+  "protected": [
+    { "id": "crime", "words": ["arrest", "arrested", "crime", "criminal", "charged", "indicted", "convicted", "jail", "prison", "dui", "assault"] },
+    { "id": "conduct_suspension", "words": ["suspension", "suspended", "conduct", "misconduct", "discipline", "disciplinary", "fine", "fined"] },
+    { "id": "scandal", "words": ["scandal", "controversy", "allegation", "accused"] },
+    { "id": "substance", "words": ["doping", "steroid", "steroids", "ped", "banned_substance", "substance", "drug", "drugs", "positive_test"] },
+    { "id": "academic_fraud", "words": ["academic", "fraud", "cheating", "ineligible_grades"] },
+    { "id": "rule_breaking", "words": ["tampering", "recruiting_violation", "violation", "cheating", "faking", "feigned"] },
+    { "id": "family_event", "words": ["divorce", "marriage", "wedding", "birth_of_child", "custody", "family_death", "family_illness"] },
+    { "id": "health_non_play", "words": ["illness", "cancer", "disease", "death", "died", "overdose", "hospitalised", "hospitalized"] },
+    { "id": "mental_health", "words": ["mental", "depression", "anxiety", "therapy", "rehab"] },
+    { "id": "money", "words": ["bankruptcy", "debt", "lawsuit", "foreclosure", "money_trouble"] },
+    { "id": "gambling", "words": ["gambling", "betting", "wager", "sportsbook"] },
+    { "id": "quotation", "words": ["quote", "quoted", "statement", "opinion", "tweet", "post"] }
+  ],
+  "allowed_football_events": ["injury_in_play", "performance", "benching", "depth_chart_move", "release", "trade", "transfer", "firing_for_results", "hiring", "retirement", "award", "record"]
+}

@@ -1,0 +1,980 @@
+{
+ "$comment": "A6.2.2 blocked-terms list. Real marks, compiled by the project from public knowledge; PROVISIONAL: each entry still needs its public-list source read and logged (A6.2.2 'each real name read from a public source at the time'). Marks only, no people.",
+ "status": "PROVISIONAL",
+ "proNicknames": [
+  "49ers",
+  "Bears",
+  "Bengals",
+  "Bills",
+  "Broncos",
+  "Browns",
+  "Buccaneers",
+  "Cardinals",
+  "Chargers",
+  "Chiefs",
+  "Colts",
+  "Commanders",
+  "Cowboys",
+  "Dolphins",
+  "Eagles",
+  "Falcons",
+  "Giants",
+  "Jaguars",
+  "Jets",
+  "Lions",
+  "Oilers",
+  "Packers",
+  "Panthers",
+  "Patriots",
+  "Raiders",
+  "Rams",
+  "Ravens",
+  "Redskins",
+  "Saints",
+  "Seahawks",
+  "Steelers",
+  "Texans",
+  "Titans",
+  "Vikings"
+ ],
+ "proCities": [
+  "Boston",
+  "New England",
+  "Buffalo",
+  "New York",
+  "Miami",
+  "Baltimore",
+  "Pittsburgh",
+  "Cleveland",
+  "Cincinnati",
+  "Tennessee",
+  "Nashville",
+  "Indianapolis",
+  "Houston",
+  "Jacksonville",
+  "Kansas City",
+  "Las Vegas",
+  "Oakland",
+  "Los Angeles",
+  "San Diego",
+  "Denver",
+  "Philadelphia",
+  "Dallas",
+  "Washington",
+  "Green Bay",
+  "Chicago",
+  "Detroit",
+  "Minnesota",
+  "New Orleans",
+  "Atlanta",
+  "Carolina",
+  "Charlotte",
+  "Tampa Bay",
+  "Tampa",
+  "Arizona",
+  "Phoenix",
+  "San Francisco",
+  "Seattle",
+  "St. Louis"
+ ],
+ "otherLeagueNicknames": [
+  "Mariners",
+  "Yankees",
+  "Red Sox",
+  "Lakers",
+  "Celtics",
+  "Bulls",
+  "Knicks",
+  "Pistons",
+  "Heat",
+  "Warriors",
+  "Cubs",
+  "Dodgers",
+  "Mets",
+  "Braves",
+  "Astros",
+  "Rangers",
+  "Padres",
+  "Pirates",
+  "Brewers",
+  "Twins",
+  "Royals",
+  "Tigers",
+  "Orioles",
+  "Nationals",
+  "Phillies",
+  "Rockies",
+  "Cavaliers",
+  "Spurs",
+  "Suns",
+  "Nets",
+  "Hawks",
+  "Bucks",
+  "Pacers",
+  "Thunder",
+  "Jazz",
+  "Kings",
+  "Clippers",
+  "Mavericks",
+  "Rockets",
+  "Grizzlies",
+  "Pelicans",
+  "Hornets",
+  "Magic",
+  "Wizards",
+  "Raptors",
+  "Stampeders",
+  "Argonauts",
+  "Roughriders",
+  "Tiger-Cats",
+  "Blue Bombers",
+  "Alouettes",
+  "Lions"
+ ],
+ "colleges": [
+  {
+   "school": "Alabama",
+   "nickname": "Crimson Tide"
+  },
+  {
+   "school": "Auburn",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Arkansas",
+   "nickname": "Razorbacks"
+  },
+  {
+   "school": "Florida",
+   "nickname": "Gators"
+  },
+  {
+   "school": "Georgia",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "Kentucky",
+   "nickname": "Wildcats"
+  },
+  {
+   "school": "LSU",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Mississippi State",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "Ole Miss",
+   "nickname": "Rebels"
+  },
+  {
+   "school": "Missouri",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "South Carolina",
+   "nickname": "Gamecocks"
+  },
+  {
+   "school": "Tennessee",
+   "nickname": "Volunteers"
+  },
+  {
+   "school": "Texas A&M",
+   "nickname": "Aggies"
+  },
+  {
+   "school": "Vanderbilt",
+   "nickname": "Commodores"
+  },
+  {
+   "school": "Texas",
+   "nickname": "Longhorns"
+  },
+  {
+   "school": "Oklahoma",
+   "nickname": "Sooners"
+  },
+  {
+   "school": "Ohio State",
+   "nickname": "Buckeyes"
+  },
+  {
+   "school": "Michigan",
+   "nickname": "Wolverines"
+  },
+  {
+   "school": "Michigan State",
+   "nickname": "Spartans"
+  },
+  {
+   "school": "Penn State",
+   "nickname": "Nittany Lions"
+  },
+  {
+   "school": "Wisconsin",
+   "nickname": "Badgers"
+  },
+  {
+   "school": "Iowa",
+   "nickname": "Hawkeyes"
+  },
+  {
+   "school": "Minnesota",
+   "nickname": "Golden Gophers"
+  },
+  {
+   "school": "Nebraska",
+   "nickname": "Cornhuskers"
+  },
+  {
+   "school": "Illinois",
+   "nickname": "Fighting Illini"
+  },
+  {
+   "school": "Indiana",
+   "nickname": "Hoosiers"
+  },
+  {
+   "school": "Purdue",
+   "nickname": "Boilermakers"
+  },
+  {
+   "school": "Northwestern",
+   "nickname": "Wildcats"
+  },
+  {
+   "school": "Maryland",
+   "nickname": "Terrapins"
+  },
+  {
+   "school": "Rutgers",
+   "nickname": "Scarlet Knights"
+  },
+  {
+   "school": "Oregon",
+   "nickname": "Ducks"
+  },
+  {
+   "school": "Oregon State",
+   "nickname": "Beavers"
+  },
+  {
+   "school": "Washington",
+   "nickname": "Huskies"
+  },
+  {
+   "school": "Washington State",
+   "nickname": "Cougars"
+  },
+  {
+   "school": "UCLA",
+   "nickname": "Bruins"
+  },
+  {
+   "school": "USC",
+   "nickname": "Trojans"
+  },
+  {
+   "school": "Stanford",
+   "nickname": "Cardinal"
+  },
+  {
+   "school": "California",
+   "nickname": "Golden Bears"
+  },
+  {
+   "school": "Utah",
+   "nickname": "Utes"
+  },
+  {
+   "school": "Colorado",
+   "nickname": "Buffaloes"
+  },
+  {
+   "school": "Arizona",
+   "nickname": "Wildcats"
+  },
+  {
+   "school": "Arizona State",
+   "nickname": "Sun Devils"
+  },
+  {
+   "school": "Clemson",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Florida State",
+   "nickname": "Seminoles"
+  },
+  {
+   "school": "Miami",
+   "nickname": "Hurricanes"
+  },
+  {
+   "school": "North Carolina",
+   "nickname": "Tar Heels"
+  },
+  {
+   "school": "NC State",
+   "nickname": "Wolfpack"
+  },
+  {
+   "school": "Duke",
+   "nickname": "Blue Devils"
+  },
+  {
+   "school": "Wake Forest",
+   "nickname": "Demon Deacons"
+  },
+  {
+   "school": "Virginia",
+   "nickname": "Cavaliers"
+  },
+  {
+   "school": "Virginia Tech",
+   "nickname": "Hokies"
+  },
+  {
+   "school": "Georgia Tech",
+   "nickname": "Yellow Jackets"
+  },
+  {
+   "school": "Louisville",
+   "nickname": "Cardinals"
+  },
+  {
+   "school": "Pittsburgh",
+   "nickname": "Panthers"
+  },
+  {
+   "school": "Syracuse",
+   "nickname": "Orange"
+  },
+  {
+   "school": "Boston College",
+   "nickname": "Eagles"
+  },
+  {
+   "school": "Notre Dame",
+   "nickname": "Fighting Irish"
+  },
+  {
+   "school": "SMU",
+   "nickname": "Mustangs"
+  },
+  {
+   "school": "TCU",
+   "nickname": "Horned Frogs"
+  },
+  {
+   "school": "Baylor",
+   "nickname": "Bears"
+  },
+  {
+   "school": "Texas Tech",
+   "nickname": "Red Raiders"
+  },
+  {
+   "school": "Oklahoma State",
+   "nickname": "Cowboys"
+  },
+  {
+   "school": "Kansas",
+   "nickname": "Jayhawks"
+  },
+  {
+   "school": "Kansas State",
+   "nickname": "Wildcats"
+  },
+  {
+   "school": "Iowa State",
+   "nickname": "Cyclones"
+  },
+  {
+   "school": "West Virginia",
+   "nickname": "Mountaineers"
+  },
+  {
+   "school": "Cincinnati",
+   "nickname": "Bearcats"
+  },
+  {
+   "school": "UCF",
+   "nickname": "Knights"
+  },
+  {
+   "school": "Houston",
+   "nickname": "Cougars"
+  },
+  {
+   "school": "BYU",
+   "nickname": "Cougars"
+  },
+  {
+   "school": "Boise State",
+   "nickname": "Broncos"
+  },
+  {
+   "school": "Fresno State",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "San Diego State",
+   "nickname": "Aztecs"
+  },
+  {
+   "school": "Nevada",
+   "nickname": "Wolf Pack"
+  },
+  {
+   "school": "UNLV",
+   "nickname": "Rebels"
+  },
+  {
+   "school": "Wyoming",
+   "nickname": "Cowboys"
+  },
+  {
+   "school": "Colorado State",
+   "nickname": "Rams"
+  },
+  {
+   "school": "Utah State",
+   "nickname": "Aggies"
+  },
+  {
+   "school": "Air Force",
+   "nickname": "Falcons"
+  },
+  {
+   "school": "New Mexico",
+   "nickname": "Lobos"
+  },
+  {
+   "school": "San Jose State",
+   "nickname": "Spartans"
+  },
+  {
+   "school": "Hawaii",
+   "nickname": "Rainbow Warriors"
+  },
+  {
+   "school": "Memphis",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Tulane",
+   "nickname": "Green Wave"
+  },
+  {
+   "school": "Tulsa",
+   "nickname": "Golden Hurricane"
+  },
+  {
+   "school": "Navy",
+   "nickname": "Midshipmen"
+  },
+  {
+   "school": "Army",
+   "nickname": "Black Knights"
+  },
+  {
+   "school": "Temple",
+   "nickname": "Owls"
+  },
+  {
+   "school": "East Carolina",
+   "nickname": "Pirates"
+  },
+  {
+   "school": "South Florida",
+   "nickname": "Bulls"
+  },
+  {
+   "school": "Rice",
+   "nickname": "Owls"
+  },
+  {
+   "school": "North Texas",
+   "nickname": "Mean Green"
+  },
+  {
+   "school": "UTSA",
+   "nickname": "Roadrunners"
+  },
+  {
+   "school": "Charlotte",
+   "nickname": "49ers"
+  },
+  {
+   "school": "Florida Atlantic",
+   "nickname": "Owls"
+  },
+  {
+   "school": "Appalachian State",
+   "nickname": "Mountaineers"
+  },
+  {
+   "school": "Coastal Carolina",
+   "nickname": "Chanticleers"
+  },
+  {
+   "school": "Georgia Southern",
+   "nickname": "Eagles"
+  },
+  {
+   "school": "Georgia State",
+   "nickname": "Panthers"
+  },
+  {
+   "school": "Troy",
+   "nickname": "Trojans"
+  },
+  {
+   "school": "South Alabama",
+   "nickname": "Jaguars"
+  },
+  {
+   "school": "Louisiana",
+   "nickname": "Ragin' Cajuns"
+  },
+  {
+   "school": "Louisiana Monroe",
+   "nickname": "Warhawks"
+  },
+  {
+   "school": "Arkansas State",
+   "nickname": "Red Wolves"
+  },
+  {
+   "school": "Texas State",
+   "nickname": "Bobcats"
+  },
+  {
+   "school": "Marshall",
+   "nickname": "Thundering Herd"
+  },
+  {
+   "school": "Old Dominion",
+   "nickname": "Monarchs"
+  },
+  {
+   "school": "James Madison",
+   "nickname": "Dukes"
+  },
+  {
+   "school": "Liberty",
+   "nickname": "Flames"
+  },
+  {
+   "school": "Western Kentucky",
+   "nickname": "Hilltoppers"
+  },
+  {
+   "school": "Middle Tennessee",
+   "nickname": "Blue Raiders"
+  },
+  {
+   "school": "Louisiana Tech",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "Southern Miss",
+   "nickname": "Golden Eagles"
+  },
+  {
+   "school": "Ohio",
+   "nickname": "Bobcats"
+  },
+  {
+   "school": "Miami (OH)",
+   "nickname": "RedHawks"
+  },
+  {
+   "school": "Akron",
+   "nickname": "Zips"
+  },
+  {
+   "school": "Kent State",
+   "nickname": "Golden Flashes"
+  },
+  {
+   "school": "Bowling Green",
+   "nickname": "Falcons"
+  },
+  {
+   "school": "Toledo",
+   "nickname": "Rockets"
+  },
+  {
+   "school": "Buffalo",
+   "nickname": "Bulls"
+  },
+  {
+   "school": "Ball State",
+   "nickname": "Cardinals"
+  },
+  {
+   "school": "Central Michigan",
+   "nickname": "Chippewas"
+  },
+  {
+   "school": "Eastern Michigan",
+   "nickname": "Eagles"
+  },
+  {
+   "school": "Western Michigan",
+   "nickname": "Broncos"
+  },
+  {
+   "school": "Northern Illinois",
+   "nickname": "Huskies"
+  },
+  {
+   "school": "Massachusetts",
+   "nickname": "Minutemen"
+  },
+  {
+   "school": "Connecticut",
+   "nickname": "Huskies"
+  },
+  {
+   "school": "New Mexico State",
+   "nickname": "Aggies"
+  },
+  {
+   "school": "UTEP",
+   "nickname": "Miners"
+  },
+  {
+   "school": "Florida International",
+   "nickname": "Panthers"
+  },
+  {
+   "school": "Kennesaw State",
+   "nickname": "Owls"
+  },
+  {
+   "school": "Sam Houston",
+   "nickname": "Bearkats"
+  },
+  {
+   "school": "Jacksonville State",
+   "nickname": "Gamecocks"
+  },
+  {
+   "school": "Delaware",
+   "nickname": "Blue Hens"
+  },
+  {
+   "school": "Missouri State",
+   "nickname": "Bears"
+  },
+  {
+   "school": "North Dakota State",
+   "nickname": "Bison"
+  },
+  {
+   "school": "South Dakota State",
+   "nickname": "Jackrabbits"
+  },
+  {
+   "school": "Montana",
+   "nickname": "Grizzlies"
+  },
+  {
+   "school": "Montana State",
+   "nickname": "Bobcats"
+  },
+  {
+   "school": "Harvard",
+   "nickname": "Crimson"
+  },
+  {
+   "school": "Yale",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "Princeton",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Brown",
+   "nickname": "Bears"
+  },
+  {
+   "school": "Cornell",
+   "nickname": "Big Red"
+  },
+  {
+   "school": "Dartmouth",
+   "nickname": "Big Green"
+  },
+  {
+   "school": "Columbia",
+   "nickname": "Lions"
+  },
+  {
+   "school": "Penn",
+   "nickname": "Quakers"
+  },
+  {
+   "school": "Villanova",
+   "nickname": "Wildcats"
+  },
+  {
+   "school": "Richmond",
+   "nickname": "Spiders"
+  },
+  {
+   "school": "William & Mary",
+   "nickname": "Tribe"
+  },
+  {
+   "school": "Towson",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Howard",
+   "nickname": "Bison"
+  },
+  {
+   "school": "Grambling State",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Jackson State",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Florida A&M",
+   "nickname": "Rattlers"
+  },
+  {
+   "school": "Alabama State",
+   "nickname": "Hornets"
+  },
+  {
+   "school": "Prairie View A&M",
+   "nickname": "Panthers"
+  },
+  {
+   "school": "Southern",
+   "nickname": "Jaguars"
+  },
+  {
+   "school": "Alcorn State",
+   "nickname": "Braves"
+  },
+  {
+   "school": "Morgan State",
+   "nickname": "Bears"
+  },
+  {
+   "school": "North Carolina A&T",
+   "nickname": "Aggies"
+  },
+  {
+   "school": "Eastern Washington",
+   "nickname": "Eagles"
+  },
+  {
+   "school": "Idaho",
+   "nickname": "Vandals"
+  },
+  {
+   "school": "Weber State",
+   "nickname": "Wildcats"
+  },
+  {
+   "school": "Northern Arizona",
+   "nickname": "Lumberjacks"
+  },
+  {
+   "school": "Sacramento State",
+   "nickname": "Hornets"
+  },
+  {
+   "school": "UC Davis",
+   "nickname": "Aggies"
+  },
+  {
+   "school": "Cal Poly",
+   "nickname": "Mustangs"
+  },
+  {
+   "school": "Furman",
+   "nickname": "Paladins"
+  },
+  {
+   "school": "Wofford",
+   "nickname": "Terriers"
+  },
+  {
+   "school": "Chattanooga",
+   "nickname": "Mocs"
+  },
+  {
+   "school": "Samford",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "The Citadel",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "Mercer",
+   "nickname": "Bears"
+  },
+  {
+   "school": "Stony Brook",
+   "nickname": "Seawolves"
+  },
+  {
+   "school": "Albany",
+   "nickname": "Great Danes"
+  },
+  {
+   "school": "Lehigh",
+   "nickname": "Mountain Hawks"
+  },
+  {
+   "school": "Lafayette",
+   "nickname": "Leopards"
+  },
+  {
+   "school": "Colgate",
+   "nickname": "Raiders"
+  },
+  {
+   "school": "Holy Cross",
+   "nickname": "Crusaders"
+  },
+  {
+   "school": "Fordham",
+   "nickname": "Rams"
+  },
+  {
+   "school": "Georgetown",
+   "nickname": "Hoyas"
+  },
+  {
+   "school": "Yale",
+   "nickname": "Bulldogs"
+  },
+  {
+   "school": "Youngstown State",
+   "nickname": "Penguins"
+  },
+  {
+   "school": "Illinois State",
+   "nickname": "Redbirds"
+  },
+  {
+   "school": "Southern Illinois",
+   "nickname": "Salukis"
+  },
+  {
+   "school": "Northern Iowa",
+   "nickname": "Panthers"
+  },
+  {
+   "school": "Indiana State",
+   "nickname": "Sycamores"
+  },
+  {
+   "school": "Murray State",
+   "nickname": "Racers"
+  },
+  {
+   "school": "Tennessee State",
+   "nickname": "Tigers"
+  },
+  {
+   "school": "Austin Peay",
+   "nickname": "Governors"
+  },
+  {
+   "school": "Eastern Kentucky",
+   "nickname": "Colonels"
+  }
+ ],
+ "conferencesAndLeagues": [
+  "Big Ten",
+  "SEC",
+  "ACC",
+  "Big 12",
+  "Pac-12",
+  "Mountain West",
+  "Sun Belt",
+  "Mid-American Conference",
+  "MAC",
+  "American Athletic Conference",
+  "AAC",
+  "Conference USA",
+  "C-USA",
+  "Ivy League",
+  "Big Sky",
+  "Southland",
+  "Colonial Athletic Association",
+  "CAA",
+  "Patriot League",
+  "Pioneer League",
+  "Missouri Valley",
+  "MEAC",
+  "SWAC",
+  "Big East",
+  "Big South",
+  "OVC",
+  "Ohio Valley Conference",
+  "SoCon",
+  "Southern Conference",
+  "Atlantic Coast Conference",
+  "Southeastern Conference",
+  "Pacific-12",
+  "NFL",
+  "National Football League",
+  "AFC",
+  "NFC",
+  "American Football Conference",
+  "National Football Conference",
+  "CFL",
+  "XFL",
+  "USFL",
+  "UFL",
+  "NCAA",
+  "FBS",
+  "FCS",
+  "College Football Playoff"
+ ],
+ "eventsAndTrophies": [
+  "Rose Bowl",
+  "Sugar Bowl",
+  "Orange Bowl",
+  "Cotton Bowl",
+  "Fiesta Bowl",
+  "Peach Bowl",
+  "Citrus Bowl",
+  "Super Bowl",
+  "Pro Bowl",
+  "Heisman",
+  "Lombardi",
+  "Vince Lombardi Trophy",
+  "Heisman Trophy",
+  "Doak Walker",
+  "Biletnikoff",
+  "Outland",
+  "Lombardi Award",
+  "Sun Bowl",
+  "Gator Bowl",
+  "Liberty Bowl",
+  "Alamo Bowl",
+  "Holiday Bowl",
+  "Music City Bowl",
+  "Hall of Fame Bowl",
+  "Playoff"
+ ],
+ "commonWordRule": "A nickname that is an ordinary word is blocked only together with the real team's city or school place (A6.2.2 rule 3). A place name that is a real team city is blocked only with a real nickname."
+}

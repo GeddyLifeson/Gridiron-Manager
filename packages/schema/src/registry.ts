@@ -7,12 +7,14 @@ import { COMMANDS, CommandEnvelope, READ_MODELS } from './commands.ts';
 import { SaveHeader } from './save.ts';
 import { DummyGameState, PlayRow } from './game.ts';
 import { simSchemas } from './sim/schemas.ts';
+import { worldSchemas } from './world/schemas.ts';
 
 export function allSchemas(): Record<string, z.ZodType> {
   const out: Record<string, z.ZodType> = {
     WorldState, Competition, Team, Person, RuleKeyDef, RuleSetFile, FactRow, CommandEnvelope, SaveHeader, DummyGameState, PlayRow,
   };
   Object.assign(out, simSchemas());
+  Object.assign(out, worldSchemas());
   for (const c of COMMANDS) out[`command:${c.type}`] = c.payload;
   for (const [k, v] of Object.entries(READ_MODELS)) out[`readModel:${k}`] = v;
   return out;

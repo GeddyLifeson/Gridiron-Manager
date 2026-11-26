@@ -1,0 +1,509 @@
+{
+  "$comment": "people_pack v1: tables and columns (U7.1.1), manifest (P7.3.1 + U7.1.1 additions), forbidden column words (P7.3.1, U6.1.1 rule 1, U2.1.1 rule 2). Kinds: text, int, num, iso_date, enum, key_list. Editing this file changes the format: bump schema_version.",
+  "schema_id": "people_pack",
+  "schema_version": 1,
+  "manifest": {
+    "required": [
+      "schema_id",
+      "schema_version",
+      "pack_id",
+      "name",
+      "version",
+      "author",
+      "contains",
+      "source_statement"
+    ],
+    "contains_values": [
+      "generated",
+      "real",
+      "mixed"
+    ],
+    "team_names_values": [
+      "plain",
+      "omitted"
+    ],
+    "redistribution_values": [
+      "yes",
+      "no"
+    ],
+    "optional": [
+      "snapshot_date",
+      "seasons_covered",
+      "seasons_skipped",
+      "team_names",
+      "redistribution",
+      "base",
+      "counts"
+    ]
+  },
+  "tables": {
+    "people": {
+      "columns": [
+        {
+          "name": "source_key",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "alt_keys",
+          "kind": "key_list"
+        },
+        {
+          "name": "name_first",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "name_last",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "name_suffix",
+          "kind": "text"
+        },
+        {
+          "name": "birth_date",
+          "kind": "iso_date"
+        },
+        {
+          "name": "hometown_city",
+          "kind": "text"
+        },
+        {
+          "name": "hometown_region",
+          "kind": "text"
+        },
+        {
+          "name": "hometown_country",
+          "kind": "text"
+        },
+        {
+          "name": "hometown_lat",
+          "kind": "num"
+        },
+        {
+          "name": "hometown_lon",
+          "kind": "num"
+        }
+      ]
+    },
+    "playing": {
+      "columns": [
+        {
+          "name": "source_key",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "position",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "height_in",
+          "kind": "num"
+        },
+        {
+          "name": "weight_lb",
+          "kind": "num"
+        },
+        {
+          "name": "forty",
+          "kind": "num"
+        },
+        {
+          "name": "bench",
+          "kind": "num"
+        },
+        {
+          "name": "vertical",
+          "kind": "num"
+        },
+        {
+          "name": "broad_jump",
+          "kind": "num"
+        },
+        {
+          "name": "cone",
+          "kind": "num"
+        },
+        {
+          "name": "shuttle",
+          "kind": "num"
+        },
+        {
+          "name": "test_year",
+          "kind": "int"
+        },
+        {
+          "name": "level",
+          "kind": "enum",
+          "values": [
+            "pro",
+            "college"
+          ]
+        },
+        {
+          "name": "class_year",
+          "kind": "text"
+        },
+        {
+          "name": "years_exp",
+          "kind": "int"
+        },
+        {
+          "name": "draft_year",
+          "kind": "int"
+        },
+        {
+          "name": "draft_round",
+          "kind": "int"
+        },
+        {
+          "name": "draft_pick",
+          "kind": "int"
+        }
+      ]
+    },
+    "player_seasons": {
+      "extraColumns": "stats",
+      "columns": [
+        {
+          "name": "source_key",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "season",
+          "required": true,
+          "kind": "int"
+        },
+        {
+          "name": "level",
+          "required": true,
+          "kind": "enum",
+          "values": [
+            "pro",
+            "college"
+          ]
+        },
+        {
+          "name": "organisation",
+          "kind": "text"
+        },
+        {
+          "name": "games",
+          "kind": "int"
+        },
+        {
+          "name": "starts",
+          "kind": "int"
+        },
+        {
+          "name": "snaps_off",
+          "kind": "int"
+        },
+        {
+          "name": "snaps_def",
+          "kind": "int"
+        },
+        {
+          "name": "snaps_st",
+          "kind": "int"
+        }
+      ]
+    },
+    "coaching_seasons": {
+      "columns": [
+        {
+          "name": "source_key",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "season",
+          "required": true,
+          "kind": "int"
+        },
+        {
+          "name": "level",
+          "required": true,
+          "kind": "enum",
+          "values": [
+            "pro",
+            "college"
+          ]
+        },
+        {
+          "name": "organisation",
+          "kind": "text"
+        },
+        {
+          "name": "role",
+          "required": true,
+          "kind": "enum",
+          "values": [
+            "head coach",
+            "coordinator",
+            "position coach",
+            "staff"
+          ]
+        },
+        {
+          "name": "games",
+          "kind": "int"
+        },
+        {
+          "name": "wins",
+          "kind": "int"
+        },
+        {
+          "name": "losses",
+          "kind": "int"
+        },
+        {
+          "name": "ties",
+          "kind": "int"
+        }
+      ]
+    },
+    "official_seasons": {
+      "columns": [
+        {
+          "name": "source_key",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "season",
+          "required": true,
+          "kind": "int"
+        },
+        {
+          "name": "position",
+          "kind": "text"
+        },
+        {
+          "name": "games",
+          "kind": "int"
+        }
+      ]
+    },
+    "links": {
+      "columns": [
+        {
+          "name": "source_key_a",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "source_key_b",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "kind",
+          "required": true,
+          "kind": "enum",
+          "values": [
+            "coached",
+            "worked_under",
+            "teammate",
+            "family"
+          ]
+        },
+        {
+          "name": "seasons",
+          "kind": "text"
+        },
+        {
+          "name": "source",
+          "kind": "text"
+        }
+      ],
+      "$comment": "A family link holds two source keys and the kind and nothing else (X14.1.1 rule 7): seasons and source are dropped from family rows."
+    },
+    "overrides": {
+      "optional": true,
+      "columns": [
+        {
+          "name": "source_key",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "attribute",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "kind": "num"
+        }
+      ]
+    },
+    "removed": {
+      "deltaOnly": true,
+      "columns": [
+        {
+          "name": "source_key",
+          "required": true,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  "forbidden_column_words": {
+    "$comment": "A column whose name, split on non-letters, holds one of these words is dropped and listed (P7.3.1, U6.1.1 rule 1, U2.1.1 rule 2). Jersey numbers are dropped always (U2.1.1 rule 2).",
+    "image": [
+      "image",
+      "images",
+      "img",
+      "photo",
+      "photos",
+      "picture",
+      "headshot",
+      "portrait",
+      "logo",
+      "icon",
+      "avatar"
+    ],
+    "uniform": [
+      "uniform",
+      "jersey",
+      "helmet",
+      "colors",
+      "colours"
+    ],
+    "medical": [
+      "medical",
+      "injury",
+      "injuries",
+      "diagnosis",
+      "surgery",
+      "illness",
+      "health"
+    ],
+    "legal": [
+      "legal",
+      "lawsuit",
+      "arrest",
+      "arrests",
+      "crime",
+      "charge",
+      "charges",
+      "conviction",
+      "suspension",
+      "discipline",
+      "misconduct"
+    ],
+    "family": [
+      "family",
+      "spouse",
+      "wife",
+      "husband",
+      "child",
+      "children",
+      "son",
+      "daughter",
+      "parent",
+      "parents",
+      "mother",
+      "father",
+      "sibling",
+      "brother",
+      "sister",
+      "partner"
+    ],
+    "pay": [
+      "pay",
+      "salary",
+      "wage",
+      "contract",
+      "bonus",
+      "guaranteed",
+      "cap"
+    ],
+    "contact": [
+      "address",
+      "street",
+      "postal",
+      "phone",
+      "email",
+      "contact",
+      "twitter",
+      "instagram",
+      "facebook",
+      "social",
+      "handle"
+    ],
+    "text": [
+      "quote",
+      "quotes",
+      "note",
+      "notes",
+      "comment",
+      "comments",
+      "bio",
+      "biography",
+      "description",
+      "summary",
+      "story"
+    ],
+    "web": [
+      "url",
+      "uri",
+      "http",
+      "https",
+      "website",
+      "web",
+      "link"
+    ]
+  },
+  "positions": [
+    "QB",
+    "RB",
+    "FB",
+    "WR",
+    "TE",
+    "OT",
+    "OG",
+    "C",
+    "DE",
+    "DT",
+    "NT",
+    "LB",
+    "CB",
+    "S",
+    "K",
+    "P",
+    "LS",
+    "KR",
+    "PR"
+  ],
+  "position_aliases": {
+    "HB": "RB",
+    "TB": "RB",
+    "T": "OT",
+    "LT": "OT",
+    "RT": "OT",
+    "G": "OG",
+    "LG": "OG",
+    "RG": "OG",
+    "FS": "S",
+    "SS": "S",
+    "SAF": "S",
+    "ILB": "LB",
+    "OLB": "LB",
+    "MLB": "LB",
+    "EDGE": "DE",
+    "DI": "DT",
+    "PK": "K",
+    "LONGSNAPPER": "LS",
+    "LONG SNAPPER": "LS",
+    "SNAPPER": "LS"
+  },
+  "$comment_positions": "Canonical positions and aliases are content, matched after upper-casing and removing dots and spaces (U2.1.1 edge case). Mapping to the game's position groups is the importer's job (G-42, U3); this list only decides 'unknown position' rejects (U7.3.2 rule 2). Starting list, not a fact."
+}

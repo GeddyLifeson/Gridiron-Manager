@@ -1,2 +1,4 @@
-// @gm/people: placeholder until its phase (R1.2). See README.md.
-export const PACKAGE = 'people';
+// @gm/people: person generation, the people-pack importer, attribute estimation, the shuffle (D13, U, A6, X).
+// Each module is re-exported under a namespace: modules export PARAMS, and a plain `export *` drops
+// clashing names without an error. Integrator-owned.
+export * as pack from './pack/index.ts';
