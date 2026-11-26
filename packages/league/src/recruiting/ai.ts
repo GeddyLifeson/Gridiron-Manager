@@ -89,18 +89,72 @@ function countAt(state: RecruitingState, teamId: number, classYear: number, posi
 
 function hsPlaces(row: ClassPlanRow): number { return row.target - row.heldForTransfer; }
 
-/** First-pass board for a class (T4.3.1): prospects whose public rating the program can aim at, plus its own region. */
-export function aiBuildBoard(state: RecruitingState, ctx: RecruitingContext, prog: ProgramInfo, people: AiPeople, classYear: number, day: number): void {
+/** The public rating band a program aims at (T4.1.1): its tier's stars, one more either way at home. */
+function inBand(prog: ProgramInfo, p: Prospect): boolean {
   const floor = prog.tier === 'top' ? P('ai.minStarsTop') : prog.tier === 'middle' ? P('ai.minStarsMiddle') : P('ai.minStarsLower');
   const ceiling = prog.tier === 'top' ? P('stars.five') : prog.tier === 'middle' ? P('ai.maxStarsMiddle') : P('ai.maxStarsLower');
+  const near = p.region === prog.region;
+  if (p.publicStars < floor && !(near && p.publicStars >= floor - 1)) return false;
+  if (p.publicStars > ceiling && !(near && p.publicStars <= ceiling + 1)) return false;
+  return true;
+}
+
+/**
+ * The staff's shortlist order for one room (T4.3.1): the band's prospects, those on the published national
+ * list first (staffs work from the services' lists), then by public rating, a home-region lift and the
+ * staff's own finds. The finds are drawn once per staff and prospect, so the order
+ * is a pure function of the class; it is kept against the class table (rebuilt when prospects change) and
+ * is never saved.
+ */
+const ORDERS = new WeakMap<readonly Prospect[], Map<string, number[]>>();
+function shortlistOrder(state: RecruitingState, ctx: RecruitingContext, prog: ProgramInfo, classYear: number, position: PositionGroup): readonly number[] {
+  const cls = prospectsOfClass(state, classYear);
+  let byRoom = ORDERS.get(cls);
+  if (!byRoom) { byRoom = new Map(); ORDERS.set(cls, byRoom); }
+  const k = `${prog.teamId}:${position}`;
+  let order = byRoom.get(k);
+  if (order) return order;
+  const keyed: { id: number; key: number }[] = [];
+  for (const p of cls) {
+    if (p.position !== position || !inBand(prog, p)) continue;
+    const r = ctx.rng(['shortlist', prog.teamId, p.personId]);
+    keyed.push({ id: p.personId, key: (p.publicRank !== null ? P('stars.five') : 0) + p.publicStars + (p.region === prog.region ? P('shortlist.homeBonus') : 0) + P('shortlist.findSpread') * r.uniform() });
+  }
+  keyed.sort((a, b) => b.key - a.key || a.id - b.id);
+  order = keyed.map((x) => x.id);
+  byRoom.set(k, order);
+  return order;
+}
+
+/** Names a staff puts on its shortlist for a number of open places: its offers per place, times the names it evaluates per offer. */
+function shortlistSize(prog: ProgramInfo, places: number): number {
+  return Math.ceil(places * offersPerPlace(prog.tier) * P('shortlist.perOffer'));
+}
+
+/** First-pass film on the next names of a room's shortlist. Returns how many were added. */
+function addToShortlist(state: RecruitingState, ctx: RecruitingContext, prog: ProgramInfo, people: AiPeople, classYear: number, position: PositionGroup, count: number, day: number): number {
+  if (count <= 0) return 0;
   const evaluator = prog.staffIds[prog.staffIds.length - 1] ?? prog.headCoachId;
-  for (const p of prospectsOfClass(state, classYear)) {
-    const near = p.region === prog.region;
-    // A program boards the prospects it can aim at: its rating band, one more star either way at home (T4.1.1).
-    if (p.publicStars < floor && !(near && p.publicStars >= floor - 1)) continue;
-    if (p.publicStars > ceiling && !(near && p.publicStars <= ceiling + 1)) continue;
-    if (state.boards[prog.teamId]?.grades[p.personId]) continue;
-    takeLook(state, ctx, prog.teamId, p.personId, 'first_pass_film', day, { skill: people.evaluationSkill(evaluator), competition: 1, byPositionCoach: false });
+  const skill = people.evaluationSkill(evaluator);
+  const graded = boardOf(state, prog.teamId).grades;
+  let added = 0;
+  for (const id of shortlistOrder(state, ctx, prog, classYear, position)) {
+    if (added >= count) break;
+    if (graded[id] || state.status[id]?.status !== 'open') continue;
+    takeLook(state, ctx, prog.teamId, id, 'first_pass_film', day, { skill, competition: 1, byPositionCoach: false });
+    added += 1;
+  }
+  return added;
+}
+
+/**
+ * First-pass board for a class (T4.3.1), as real staffs build it: a shortlist per position room, sized to
+ * the room's open places, not a grade on every prospect in the program's band. Ruling 2026-11-26
+ * (shortlists, like real staffs). Sizes: F-recruiting-practice-0001 and -0002 through `shortlist.perOffer`.
+ */
+export function aiBuildBoard(state: RecruitingState, ctx: RecruitingContext, prog: ProgramInfo, people: AiPeople, classYear: number, day: number): void {
+  for (const row of planOf(state, ctx, prog.teamId)) {
+    addToShortlist(state, ctx, prog, people, classYear, row.position, shortlistSize(prog, hsPlaces(row)), day);
   }
 }
 
@@ -194,6 +248,19 @@ export function aiProgramWeek(state: RecruitingState, ctx: RecruitingContext, ho
       offeredHere.add(id); out += 1;
       const room = offeredRoom.get(row.position);
       if (room) room.push(id); else offeredRoom.set(row.position, [id]);
+    }
+    // The room's shortlist has run dry before its offers are out (names committed elsewhere or offered
+    // already): the staff evaluates the next names on its list and offers down them (T4.3.1).
+    if (out < want && addToShortlist(state, ctx, prog, people, classYear, row.position, Math.ceil((want - out) * P('shortlist.perOffer')), day) > 0) {
+      for (const id of boardRoom(state, teamId, classYear, row.position)) {
+        if (out >= want) break;
+        const st = state.status[id];
+        if (!st || st.status !== 'open' || offeredHere.has(id)) continue;
+        makeOffer(state, ctx, teamId, id, day, fall);
+        offeredHere.add(id); out += 1;
+        const room = offeredRoom.get(row.position);
+        if (room) room.push(id); else offeredRoom.set(row.position, [id]);
+      }
     }
     if (fall) for (const id of offeredRoom.get(row.position) ?? []) { const o = activeOffer(state, id, teamId); if (o) o.committable = true; }
   }
