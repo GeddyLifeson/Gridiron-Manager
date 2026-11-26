@@ -44,6 +44,12 @@ export interface ProgramFacts {
   headCoachOn(teamId: number, day: number): number;
   /** Losses in a row now (T4.5.2 multiplier). */
   lossStreak(teamId: number): number;
+  /**
+   * The roster limit the program's class must fit under (T5.1.1), or undefined for none. When given, the
+   * default class plan scales the T4.8.1 shape to it and never plans more places than the limit less the
+   * returning players (T4.8.1: programs sign within their roster room).
+   */
+  rosterLimit?(teamId: number): number | undefined;
 }
 
 /** What a school is to one prospect on the facts alone: every preference score but the relationship (T4.1.1). */

@@ -110,7 +110,14 @@ export function aiAcceptsCommitment(state: RecruitingState, ctx: RecruitingConte
   if (!p) return false;
   const row = planOf(state, ctx, teamId).find((r) => r.position === p.position);
   if (!row) return false;
-  return countAt(state, teamId, p.classYear, p.position) < hsPlaces(row) + P('ai.overSignAllowance');
+  if (countAt(state, teamId, p.classYear, p.position) >= hsPlaces(row) + P('ai.overSignAllowance')) return false;
+  // Under a roster limit the over-sign allowance stays inside the room the plan holds for the whole class (T4.8.1).
+  if (ctx.programs.rosterLimit?.(teamId) === undefined) return true;
+  const plan = planOf(state, ctx, teamId);
+  const room = plan.reduce((a, r) => a + r.target, 0);
+  let held = 0;
+  for (const r of plan) held += countAt(state, teamId, p.classYear, r.position);
+  return held < room;
 }
 
 /** Try an act as an AI person: skip it if it breaks a rule and K2.8.2 says no (T4.2.1 AI use). */

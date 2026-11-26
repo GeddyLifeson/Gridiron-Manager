@@ -237,6 +237,8 @@ export interface BoardGrade {
   measured: { heightIn: number; weightLb: number; fortyS: number } | null;
   /** The user's own stored grade, truth-graded later (S11.1.1). */
   userGrade: number | null;
+  /** Day of the latest look (MA-48: a grade is shown with the date it was set). Absent before any look. */
+  lastLookDay?: number;
 }
 
 /** T4.8.1 `class_plan{position, target, source_split}`. */
