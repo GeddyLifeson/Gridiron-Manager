@@ -13,6 +13,7 @@ import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
 import { resolveRuleSet } from '@gm/rules-data';
 import { PARAMS as CHART_PARAMS, createChartCaller, depthRoster, runBatch, type BatchResult } from '../calibration/index.ts';
+import { chartOverrides } from '../calibration/params.ts';
 
 /** Every parameter file of the modules a phase 1 game runs. A name defined twice is an error. */
 export const ENGINE_PARAM_FILES: readonly ParamFile[] = [
@@ -84,6 +85,8 @@ export function createRealGame(ruleSetId: string, opts: { iss?: number; paramOve
   const statsModule = stats.createStatsModule({ geometry, params });
   const regulationPeriods = rules.num('clock.periods');
   const iss = opts.iss ?? 50;
+  // The callers read the chart through the same overrides as the parameter table, on top of the level's chart (CR-G87-5).
+  const overrides = chartOverrides(rules.level, opts.paramOverrides);
   const input = (gameIndex: number, seedHex: string): GameInput => ({
     gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
     teams: [placeholderTeam(0, iss), placeholderTeam(1, iss)],
@@ -93,8 +96,8 @@ export function createRealGame(ruleSetId: string, opts: { iss?: number; paramOve
     rules, params, geometry, streams: streamSource(seedFromHex(inp.seedHex)), math: DMATH,
     resolver: resolver.REFERENCE_RESOLVER, officiating: off,
     deciders: [
-      createChartCaller({ side: 0, geometry, roster: depthRoster(inp.teams[0].depth), regulationPeriods }),
-      createChartCaller({ side: 1, geometry, roster: depthRoster(inp.teams[1].depth), regulationPeriods }),
+      createChartCaller({ side: 0, geometry, roster: depthRoster(inp.teams[0].depth), regulationPeriods, overrides }),
+      createChartCaller({ side: 1, geometry, roster: depthRoster(inp.teams[1].depth), regulationPeriods, overrides }),
     ],
   });
   const simulate = (inp: GameInput) => flow.simulateGame(inp, deps(inp));
