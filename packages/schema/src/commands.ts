@@ -8,6 +8,7 @@ import { InstallData } from './read-models/install.ts';
 import { PracticeDeskData } from './read-models/practice.ts';
 import { DraftRoomData, FreeAgencyData } from './read-models/draft-room.ts';
 import { RecruitingBoardData } from './read-models/recruiting.ts';
+import { ScoutingTableData, ScoutingPersonnelData } from './read-models/scouting.ts';
 import { GAME_DAY_COMMAND_SPECS } from './game-day-commands.ts';
 import { GAMEPLAN_COMMAND_SPECS } from './gameplan-commands.ts';
 import { FILM_MODEL_SCHEMAS, FILM_COMMAND_SPECS } from './read-models/film.ts';
@@ -148,6 +149,8 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   draftRoom: readModelOf(DraftRoomData),
   freeAgency: readModelOf(FreeAgencyData),
   recruitingBoard: readModelOf(RecruitingBoardData),
+  scoutingTable: readModelOf(ScoutingTableData),
+  scoutingPersonnel: readModelOf(ScoutingPersonnelData),
   playerCard: readModelOf(PlayerCardData),
   rosterTable: readModelOf(RosterTableData),
   staff: readModelOf(StaffData),

@@ -26,6 +26,7 @@ export * from './read-models/install.ts';
 export * from './read-models/practice.ts';
 export * from './read-models/draft-room.ts';
 export * from './read-models/recruiting.ts';
+export * from './read-models/scouting.ts';
 // World contract for the game build (plans/game-build-plan.md, G-00). Decisions: src/world/DECISIONS.md.
 export * from './world/index.ts';
 // zod for packages that may import only this entry point (app-services read-model and command schemas, CR-G63-0).
