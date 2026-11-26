@@ -54,7 +54,7 @@ function LiveConsole({ port, session, bindings, now, onDone }: LiveConsoleProps)
   const view = gameCalling.consoleViewOfSession(session, { keyFor }) as unknown as ConsoleViewModel;
   const field = <PlayLog lines={gameCalling.sessionPlayLog(session, names, 12)} />;
   return (
-    <div data-live-console style={{ height: '100%' }}>
+    <div data-live-console data-step={session.final ? 'final' : session.driver.state.step} data-unit={session.driver.state.open?.unit ?? ''} style={{ height: '100%' }}>
       {session.final ? <FinalPanel session={session} names={names} onDone={onDone} /> : null}
       {createElement(GameConsole, { view, field })}
     </div>
@@ -98,7 +98,8 @@ export function CareerRoot({ port, bindings = DEFAULT_KEYMAP.bindings, soundStag
     <Shell
       routes={routes} context={context} initialPath="/office/today" onAdvance={advance} soundStage={soundStage}
       display={{ theme: 'classic' }}
-      sidePanel={<SeasonPanel today={today} canDelegate={!gameDay && today.nextGame !== null} onDelegate={delegate} />}
+      // The console takes the whole width on game day (O2.1.1 fixed layout); the season panel returns after the game.
+      sidePanel={gameDay ? undefined : <SeasonPanel today={today} canDelegate={today.nextGame !== null} onDelegate={delegate} />}
     />
   );
 }

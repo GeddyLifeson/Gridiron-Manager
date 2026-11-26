@@ -2,6 +2,10 @@ import { createRoot } from 'react-dom/client';
 import { App, soundStage as sound } from '@gm/app-ui';
 import { runGolden, compareGolden, goldenInputs, settings, WorldService, type GoldenReport, type Platform } from '@gm/app-services';
 import golden from '../../../golden/golden.json';
+import proLeague from '../../../packages/football-content/data/world/pro-league.json';
+import college from '../../../packages/football-content/data/world/college.json';
+import proLeagueRules from '../../../packages/rules-data/data/league/proleague_2026.json';
+import collegeLeagueRules from '../../../packages/rules-data/data/league/collegeleague_2026.json';
 import { BrowserPlatform } from './platform-browser.ts';
 import { registerOffline } from './offline.ts';
 import { DesktopPlatform, isDesktop } from './platform-desktop.ts';
@@ -80,6 +84,11 @@ async function main() {
   else captureWebViewErrors();
   const platform: Platform = isDesktop() ? new DesktopPlatform() : await BrowserPlatform.create();
   if (await gateMode(platform)) return;
-  createRoot(document.getElementById('root')!).render(<App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} />);
+  const quick = new URLSearchParams(location.search).get('quick');
+  const leagueContent = { proLeague, college, proLeagueRules, collegeLeagueRules };
+  createRoot(document.getElementById('root')!).render(
+    <App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} leagueContent={leagueContent}
+      quickCareer={quick === 'pro' || quick === 'college' ? quick : null} />,
+  );
 }
 void main();

@@ -7,13 +7,26 @@ import {
   type Platform, type WorldSummaryModel, type GoldenReport,
 } from '@gm/app-services';
 import { SoundStageCaptions, type SoundStage } from './audio/stage/index.ts';
+import { CareerRoot, firstTeamKey, resolverFor, startCareerSeason, type CareerPort, type LeagueContent } from './app-root/index.ts';
+import { DEFAULT_KEYMAP } from './shell/keymap.ts';
+import { gameCalling, type gameCallingCommands } from '@gm/app-services';
 
 export interface AppProps {
   platform: Platform;
   golden: GoldenReport;
   /** The sound stage built by the shell host; absent or null runs silent. */
   soundStage?: SoundStage | null;
+  /** The four league files the season is built from (the shell host imports them). */
+  leagueContent?: LeagueContent;
+  /** The console setup for a game (the sheet bridge); by default the staff drafts both sides from the content book. */
+  consoleConfig?: (ruleSetId: string, gameId: string) => gameCallingCommands.ConsoleConfig;
+  /** Check entry (?quick=pro|college): a season with the level's first team, straight to the office. */
+  quickCareer?: 'pro' | 'college' | null;
 }
+
+/** Rule set of each level's 2026 season (A2 scope: one rule year per level). */
+const RULE_SET_OF = { pro: 'pro_2026', college: 'college_2026' } as const;
+
 
 type Gate = { state: 'idle' | 'running' } | { state: 'done'; ok: boolean; digest: string; mismatches: string[]; seconds: number };
 
@@ -27,7 +40,15 @@ function randomSeedHex(): string {
   return a.toString(16).padStart(8, '0') + (b >>> 0).toString(16).padStart(8, '0');
 }
 
-export function App({ platform, golden, soundStage = null }: AppProps) {
+export function App({ platform, golden, soundStage = null, leagueContent, consoleConfig, quickCareer = null }: AppProps) {
+  const [career, setCareer] = useState<CareerPort | null>(null);
+  useEffect(() => {
+    if (!quickCareer || !leagueContent || career) return;
+    const setup = consoleConfig ?? ((id: string, gameId: string) => gameCalling.staffConsoleConfig(id, gameId, DEFAULT_KEYMAP.bindings));
+    const ruleSetId = RULE_SET_OF[quickCareer];
+    setCareer(startCareerSeason(leagueContent, { level: quickCareer, ruleSetId, seasonYear: 2026, seedHex: randomSeedHex(), seat: { key: firstTeamKey(leagueContent, quickCareer) } },
+      { consoleConfig: (gameId) => setup(ruleSetId, gameId), resolve: resolverFor(DEFAULT_KEYMAP.bindings) }));
+  }, [quickCareer, leagueContent, consoleConfig, career]);
   const [saves, setSaves] = useState<{ name: string; sizeBytes: number }[]>([]);
   const [svc, setSvc] = useState<WorldService | null>(null);
   const [summary, setSummary] = useState<WorldSummaryModel | null>(null);
@@ -75,6 +96,7 @@ export function App({ platform, golden, soundStage = null }: AppProps) {
   };
 
   const s = summary?.data;
+  if (career) return <CareerRoot port={career} soundStage={soundStage} />;
   return (
     <main style={{ maxWidth: 860, margin: '0 auto', padding: '16px' }}>
       <h1 style={{ fontSize: 22 }}>Gridiron Manager</h1>

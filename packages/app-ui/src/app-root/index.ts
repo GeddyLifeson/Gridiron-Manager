@@ -5,3 +5,4 @@ export * from './season-port.ts';
 export * from './ConsoleHost.tsx';
 export * from './CareerRoot.tsx';
 export { rt as rootText, rootTextIds } from './text.ts';
+export * from './start.ts';

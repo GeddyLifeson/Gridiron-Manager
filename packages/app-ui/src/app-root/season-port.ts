@@ -11,10 +11,16 @@ export interface SeasonPortHost {
   readonly level: 'pro' | 'college';
   readonly seasonYear: number;
   /** The console setup for the seat's game, built when the game opens (the staff's sheet or the user's own). */
-  consoleConfig(): ConsoleConfig;
+  consoleConfig(gameId: string): ConsoleConfig;
   readonly resolve: Resolve;
   /** Real milliseconds a play runs on screen before the next call opens (I2.1.1); the play log shows it meanwhile. */
   liveMs?(): number;
+}
+
+/** Days from 1970-01-01 to 1 January of `year` (proleptic Gregorian; integer arithmetic only). */
+export function epochDayOfNewYear(year: number): number {
+  const y = year - 1;
+  return 365 * (year - 1970) + (Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)) - (Math.floor(1969 / 4) - Math.floor(1969 / 100) + Math.floor(1969 / 400));
 }
 
 /** Days in a league week: the season steps a week at a time until the week loop (H1) adds the days. */
@@ -43,7 +49,9 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
     }
     const n = t.nextGame;
     const daysToGame = gameDay ? 0 : ((t.weeksToGame ?? 0) + 1) * DAYS_PER_WEEK;
-    const dayIndex = n?.dayIndex != null ? Math.max(0, n.dayIndex - daysToGame) : Math.max(0, t.week - 1) * DAYS_PER_WEEK;
+    // Fixture days count from 1970-01-01; the office date line counts days of the season year from 1 January.
+    const gameDay0 = n?.dayIndex != null ? n.dayIndex - epochDayOfNewYear(host.seasonYear) : null;
+    const dayIndex = gameDay0 !== null ? Math.max(0, gameDay0 - daysToGame) : Math.max(0, t.week - 1) * DAYS_PER_WEEK;
     return {
       teamName: t.seatTeamName, level: host.level, seasonYear: host.seasonYear, dayIndex,
       stageLabel: t.stage === 'regular' ? rt('root.week', { week: t.week }) : t.stage === 'postseason' ? rt('root.round', { round: t.round }) : rt('root.seasonOver'),
@@ -60,7 +68,7 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
       if (!seat) throw new Error('career root: no game for the seat this week');
       const me = sp.nameOf(sp.today().seatTeamId), them = sp.nameOf(seat.opponentId);
       sides = seat.side === 0 ? [me, them] : [them, me];
-      return sp.openGame({ console: host.consoleConfig(), resolve: host.resolve, keyIntervalMs: 0, startMs: 0, ...(host.liveMs ? { liveMs: () => host.liveMs!() } : {}) });
+      return sp.openGame({ console: host.consoleConfig(String(seat.context.fixture.gameId)), resolve: host.resolve, keyIntervalMs: 0, startMs: 0, ...(host.liveMs ? { liveMs: () => host.liveMs!() } : {}) });
     },
     finishGame: () => { sp.finishGame(); gameDay = false; },
     delegateGame: () => { sp.advanceToGame(); if (sp.nextSeatGame()) sp.delegateGame(); gameDay = false; },

@@ -152,3 +152,4 @@ export function buildConsoleView(i: ConsoleViewInput): ConsoleView {
   };
 }
 export * from './session-view.ts';
+export * from './game-day-setup.ts';
