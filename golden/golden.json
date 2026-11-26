@@ -1,7 +1,7 @@
 {
   "engineVersion": "engine-core 0.0.1 / dummy-game 1",
   "parameterSetVersion": "dummy-0",
-  "contentHash": "e2963ab4426440f7",
+  "contentHash": "88cd7742dc93ae6a",
   "results": {
     "math.dSin": "2db694815cc81fee",
     "math.dCos": "9c98d23b92a92af4",
@@ -28,5 +28,5 @@
     "college_2026.gamePlays": 3744,
     "college_2026.seasonPlays": 5224
   },
-  "digest": "c937f74b50151fce"
+  "digest": "ebf3bf6b4fac3b84"
 }

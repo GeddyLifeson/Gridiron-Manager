@@ -1,0 +1,2704 @@
+{
+ "dateRead": "2026-11-26",
+ "readBy": [
+  "officiating/fouls"
+ ],
+ "shared": {
+  "nfl_afd_general": {
+   "cite": "Rule 14, Section 1, Article 2, Item 5",
+   "q": "After a penalty for a foul by Team B prior to, during, or after a play from scrimmage, the ensuing down is first-and-10 for Team A.",
+   "line": 3605
+  },
+  "nfl_afd_exceptions": {
+   "cite": "Rule 14, Section 1, Article 2, Item 5, Exceptions",
+   "q": "For the above exceptions, the number of the down and the line to gain remain the same unless a distance penalty places the ball on or in advance of the line to gain",
+   "line": 3618
+  },
+  "nfl_runoff": {
+   "cite": "Rule 4, Section 7, Article 1",
+   "q": "A team is not permitted to conserve time after the two-minute warning of either half by committing any of these acts: (a) a foul by either team that stops the clock during any dead ball period; (b) intentional grounding; (c) an illegal forward pass; (d) throwing a backward pass out of bounds;",
+   "line": 1183
+  },
+  "nfl_runoff_defense": {
+   "cite": "Rule 4, Section 7, Article 1, Item 2",
+   "q": "Item 2. Actions by the Defense. If the action is by the defense, the play clock will be reset to 40 seconds",
+   "line": 1206
+  },
+  "nfl_personal_section": {
+   "cite": "Rule 12, Section 2",
+   "q": "SECTION 2 PERSONAL FOULS",
+   "line": 3104
+  },
+  "nfl_other_personal": {
+   "cite": "Rule 12, Section 2, Article 19",
+   "q": "Fouls that include a 15-yard penalty but are not listed in this Section or in Section 3 are considered personal fouls for penalty enforcement purposes.",
+   "line": 3385
+  },
+  "nfl_unsportsmanlike_section": {
+   "cite": "Rule 12, Section 3",
+   "q": "SECTION 3 UNSPORTSMANLIKE CONDUCT",
+   "line": 3388
+  },
+  "ncaa_runoff": {
+   "cite": "Rule 3, Section 4, Article 4-a",
+   "q": "before a change of team possession if either team commits a foul that causes the clock to stop immediately and the penalty for that foul is accepted, the referee will subtract 10 seconds from the game clock",
+   "line": 2692
+  },
+  "ncaa_runoff_list": {
+   "cite": "Rule 3, Section 4, Article 4-a-1 to 4",
+   "q": "Any foul that prevents the snap (e.g., false start, encroachment, defensive offside by contact in the neutral zone, etc.) (A.R. 3-4-4-III); 2. Intentional grounding to stop the clock; 3. Incomplete illegal forward pass; 4. Backward pass thrown out of bounds to stop the clock;",
+   "line": 2697
+  },
+  "ncaa_runoff_not": {
+   "cite": "Rule 3, Section 4, Article 4-b",
+   "q": "The 10-second rule does not apply if the game clock is not running when the foul occurs or if the foul does not cause the game clock to stop immediately (e.g., illegal formation).",
+   "line": 2705
+  },
+  "ncaa_personal": {
+   "cite": "Rule 9, Section 1",
+   "q": "All fouls in this section (unless noted) and any other acts of unnecessary roughness are personal fouls.",
+   "line": 4087
+  },
+  "ncaa_personal_penalty": {
+   "cite": "Rule 9, Section 1, PENALTY",
+   "q": "Except as otherwise noted, the penalties for all personal fouls are as follows: PENALTY—Personal foul. 15 yards. For dead-ball fouls, 15 yards from the succeeding spot. Automatic first down for fouls by Team B if not in conflict with other rules.",
+   "line": 4089
+  },
+  "ncaa_flagrant": {
+   "cite": "Rule 9, Section 1, Article 1",
+   "q": "all flagrant fouls (Rule 2-10-3) require ejection or disqualification.",
+   "line": 4112
+  },
+  "ncaa_targeting_penalty": {
+   "cite": "Rule 9, Section 1, Articles 3 and 4, PENALTY",
+   "q": "PENALTY—[ARTICLE 3 and ARTICLE 4]—15 yards. For dead-ball fouls, 15 yards from the succeeding spot. Automatic first down for fouls by Team B if not in conflict with other rules.",
+   "line": 4180
+  },
+  "ncaa_targeting_dq": {
+   "cite": "Rule 9, Section 1, Articles 3 and 4, PENALTY",
+   "q": "for a player’s first targeting foul in a season, disqualification for the remainder of the game with no carryover disqualification",
+   "line": 4183
+  },
+  "ncaa_unsportsmanlike_afd": {
+   "cite": "Rule 9, Section 2, Article 1, PENALTY",
+   "q": "Automatic first down for live-ball and dead-ball fouls by Team B if not in conflict with other rules. Flagrant offenders, if players or substitutes, shall be ejected [S47].",
+   "line": 4475
+  }
+ },
+ "entries": [
+  {
+   "id": "false_start",
+   "name": "False start",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 4, Article 2",
+    "q": "Penalty: For a false start: Loss of five yards from the line of scrimmage. The penalty is enforced prior to the snap.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2030
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 3-d",
+    "q": "No Team A player may commit a false start (Rule 7-1-2-b) or contact an opponent (A.R. 7-1-3-III). PENALTY—[a-d] Dead-ball foul: Five yards from the succeeding spot.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "line": 3482
+   }
+  },
+  {
+   "id": "encroachment",
+   "name": "Encroachment (defensive contact before the snap)",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 4, Article 3",
+    "q": "Penalty: For encroachment: Loss of five yards from the line of scrimmage. The penalty is enforced prior to the snap.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general",
+      "nfl_afd_exceptions"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 2033
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 5-a-1",
+    "q": "PENALTY [1-3]—Dead-ball foul, offside. Five yards from the succeeding spot [S18].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "note": "College has no foul named encroachment for the defense; contact before the snap is a dead-ball offside under 7-1-5-a-1.",
+    "line": 3553
+   }
+  },
+  {
+   "id": "neutral_zone_infraction",
+   "name": "Neutral zone infraction",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 4, Article 4",
+    "q": "Penalty: For a neutral zone infraction: Loss of five yards from line of scrimmage. Penalty is enforced prior to snap.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general",
+      "nfl_afd_exceptions"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 2055
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 5-a-2",
+    "q": "PENALTY [1-3]—Dead-ball foul, offside. Five yards from the succeeding spot [S18].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "note": "College: entering the neutral zone and causing an offensive lineman to react is a dead-ball offside under 7-1-5-a-2.",
+    "line": 3553
+   }
+  },
+  {
+   "id": "offside",
+   "name": "Offside at the snap",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 4, Article 5",
+    "q": "Penalty: For offside: Loss of five yards.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general",
+      "nfl_afd_exceptions"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 2058
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 5-b",
+    "q": "2. All players must be inbounds. PENALTY—Live-ball foul. Five yards from the previous spot [S18].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3571
+   }
+  },
+  {
+   "id": "illegal_shift",
+   "name": "Illegal shift",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 4, Article 6",
+    "q": "Penalty: For an illegal shift: Loss of five yards.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2071
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 4-c",
+    "q": "PENALTY [a-c]—Live-ball foul: Five yards from the previous spot",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3532
+   }
+  },
+  {
+   "id": "illegal_motion",
+   "name": "Illegal motion",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 4, Article 8",
+    "q": "Penalty: For a player illegally in motion at the snap: Loss of five yards.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2079
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 4-b",
+    "q": "PENALTY [a-c]—Live-ball foul: Five yards from the previous spot",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3532
+   }
+  },
+  {
+   "id": "illegal_formation",
+   "name": "Illegal formation (offense)",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 5, Article 1",
+    "q": "Penalty: For illegal formation by the offense: Loss of five yards.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2092
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 4-a",
+    "q": "PENALTY [a-c]—Live-ball foul: Five yards from the previous spot",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3532
+   }
+  },
+  {
+   "id": "illegal_snap",
+   "name": "Illegal snap",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 6, Article 3",
+    "q": "Penalty: For illegally snapping the ball: Loss of five yards from the line of scrimmage.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "note": "The pro penalty statement does not say whether the ball is dead; the field is false until a second source settles it.",
+    "line": 2118
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 1-a and b",
+    "q": "No player shall put the ball in play before it is ready for play (Rule 4-1-4 and A.R. 4-1-4-I and II). PENALTY [a-b]—Dead-ball foul. Five yards from the succeeding spot",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "line": 3417
+   }
+  },
+  {
+   "id": "snap_to_ineligible",
+   "name": "Snap to an ineligible receiver of the snap",
+   "ownerLeaf": "B8.1.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 7, Section 6, Article 4",
+    "q": "Penalty: For snapping the ball to a player who is ineligible to receive the snap: Loss of five yards from the line of scrimmage. The whistle shall be blown immediately.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2122
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 2, Article 3",
+    "q": "ARTICLE 3. No offensive lineman may receive a hand-to-hand snap. PENALTY—Live-ball foul. Five yards from the previous spot [S19].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3616
+   }
+  },
+  {
+   "id": "delay_of_game",
+   "name": "Delay of game",
+   "ownerLeaf": "B1.3.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 4, Section 6, Article 5",
+    "q": "Penalty: For delay of the game: Loss of five yards: (a) from the succeeding spot if it occurs between downs and the ball remains dead; or (b) from the previous spot if the ball was in play.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general",
+      "nfl_afd_exceptions"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "note": "Dead-ball field true: part (b), a delay with the ball in play, is the rare case.",
+    "line": 1178
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 3, Section 4, Article 2",
+    "q": "Action clearly designed to delay the officials from making the ball ready for play (A.R. 3-4-2-II). PENALTY—Dead-ball foul. Five yards from the succeeding spot [S7 and S21].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "note": "Runoff reading: an expired play clock is a foul that prevents the snap (3-4-4-a-1).",
+    "line": 2671
+   }
+  },
+  {
+   "id": "too_many_in_formation",
+   "name": "More than 11 players in the formation or huddle",
+   "ownerLeaf": "B2.4",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 5, Section 1, Article 1",
+    "q": "Penalty: For more than 11 players in the formation prior to the snap or free kick: Loss of five yards from the succeeding spot.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general",
+      "nfl_afd_exceptions"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 1280
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 3, Section 5, Article 3-a",
+    "q": "Officials shall stop the action whether or not the ball has been snapped. PENALTY—Dead-ball foul. Five yards from the succeeding spot. [S22]",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "note": "College 3-5-3-a binds Team A only; a Team B surplus at the snap is too_many_on_field.",
+    "line": 2770
+   }
+  },
+  {
+   "id": "too_many_on_field",
+   "name": "More than 11 players on the field at the snap",
+   "ownerLeaf": "B2.4",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 5, Section 1, Article 1",
+    "q": "Penalty: For more than 11 players on the field of play or the end zone while the ball is in play: Loss of five yards from the previous spot.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general",
+      "nfl_afd_exceptions"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 1288
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 3, Section 5, Article 3-b",
+    "q": "The infraction is treated as a live-ball foul (A.R. 3-5-3-I-VII). PENALTY—Live-ball foul. Five yards at the previous spot. [S22]",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 2774
+   }
+  },
+  {
+   "id": "illegal_forward_pass",
+   "name": "Illegal forward pass from beyond the line",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 1, Article 2, Penalty (a)",
+    "q": "(a) For a forward pass from beyond the line: Loss of down and five yards from the spot where the ball is released.",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2157
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 3, Article 2-a to e",
+    "q": "PENALTY [a-e]—Five yards from the spot of the foul; also loss of down if by Team A before team possession changes during a scrimmage down",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "line": 3658
+   }
+  },
+  {
+   "id": "illegal_touching_pass",
+   "name": "Illegal touching of a forward pass by an ineligible",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 1, Article 8-a",
+    "q": "Penalty: For illegal touching of a forward pass: Loss of five yards at the previous spot.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2229
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 3, Article 11",
+    "q": "touch a legal forward pass until it has touched an opponent or an official (A.R. 5-2-3-I and A.R. 7-3-11-I-II). PENALTY—Five yards from the previous spot, loss of down [S16 and S9].",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3830
+   }
+  },
+  {
+   "id": "illegal_touching_after_oob",
+   "name": "Illegal touching of a forward pass after going out of bounds",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 1, Article 8-b",
+    "q": "Penalty: For illegal touching of a forward pass after being out of bounds: Loss of down at the previous spot.",
+    "yards": 0,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2232
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 3, Article 4",
+    "q": "returning inbounds, it is an incomplete pass (Rule 7-3-7) and not a foul for illegal touching. PENALTY—Loss of down at the previous spot [S16 and S9].",
+    "yards": 0,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3693
+   }
+  },
+  {
+   "id": "intentional_grounding",
+   "name": "Intentional grounding",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 2, Article 1",
+    "q": "Penalty: For intentional grounding: (a) Loss of down and 10 yards from the previous spot; or",
+    "yards": 10,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "note": "The spot-of-pass alternative and the safety from the end zone are in foul.grounding.enforcement.",
+    "line": 2252
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 3, Article 2-f to h",
+    "q": "PENALTY [f-h]—Loss of down at the spot of the foul [S36 and S9].",
+    "yards": 0,
+    "afd": false,
+    "lod": true,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "line": 3673
+   }
+  },
+  {
+   "id": "ineligible_downfield_pass",
+   "name": "Ineligible receiver downfield on a pass",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 3, Article 1",
+    "q": "Penalty: For ineligible offensive player downfield: Loss of five yards from the previous spot.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "note": "The older key foul.ineligible_downfield.yards holds the downfield limit, not this penalty.",
+    "line": 2284
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 3, Article 10",
+    "q": "the ball away and the ball lands near or beyond the sideline.) (A.R. 7-3-10-I and -III). PENALTY—Five yards from the previous spot [S37].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3825
+   }
+  },
+  {
+   "id": "illegal_contact",
+   "name": "Illegal contact with a receiver",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 4, Article 3",
+    "q": "Penalty: For illegal contact by the defense: Loss of five yards and automatic first down.",
+    "yards": 5,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 2306
+   },
+   "college": {
+    "exists": false,
+    "cite": "Rule 7, Section 3, Article 8",
+    "absent": "Article 8 is headed \"Illegal Contact and Pass Interference\" but its penalties are those of offensive and defensive pass interference; the rule book has no separate five-yard illegal contact foul (Appendix G lists none)."
+   }
+  },
+  {
+   "id": "def_holding",
+   "name": "Defensive holding",
+   "ownerLeaf": "B8.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 1, Article 6",
+    "q": "Penalty: For defensive holding: Loss of five yards and an automatic first down.",
+    "yards": 5,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 3099
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 3, Article 4-c to e",
+    "q": "Continuous contact is illegal (A.R. 9-3-4-I). PENALTY [c-e]—10 yards plus automatic first down if the first down is not in conflict with other rules",
+    "yards": 10,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4688
+   }
+  },
+  {
+   "id": "dpi",
+   "name": "Defensive pass interference",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 5, Article 1",
+    "q": "Penalty: For pass interference by the defense: First down for the offensive team at the spot of the foul.",
+    "yards": 0,
+    "afd": true,
+    "lod": false,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "note": "Spot foul: the yards field is 0 and the cap (none at pro) is foul.dpi.max_yards.",
+    "line": 2373
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 3, Article 8-c",
+    "q": "PENALTY—Team A’s ball at the spot of the foul, first down, if the foul occurs fewer than 15 yards beyond the previous spot.",
+    "yards": 0,
+    "afd": true,
+    "lod": false,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "note": "Spot foul up to 15 yards: the yards field is 0 and the cap is foul.dpi.max_yards.",
+    "line": 3761
+   }
+  },
+  {
+   "id": "opi",
+   "name": "Offensive pass interference",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 5, Article 1",
+    "q": "Penalty: For pass interference by the offense: Loss of 10 yards from the previous spot.",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2380
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 3, Article 8-b",
+    "q": "PENALTY—10 yards from the previous spot [S33]. c. Defensive pass interference is contact",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3741
+   }
+  },
+  {
+   "id": "backward_pass_out_of_bounds",
+   "name": "Backward pass thrown out of bounds to save time",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 7, Article 2",
+    "q": "Penalty: For a backward pass out of bounds before a change of possession during a play that starts after the two-minute warning. Loss of down and 5 yards.",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2429
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 2, Article 1",
+    "q": "to throw the ball intentionally out of bounds to conserve time. PENALTY—Five yards from the spot of the foul; also loss of down if by Team A",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_list"
+     ]
+    },
+    "line": 3596
+   }
+  },
+  {
+   "id": "handing_forward",
+   "name": "Illegally handing the ball forward",
+   "ownerLeaf": "B5",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 8, Section 7, Article 4, Penalty (a)",
+    "q": "(a) For handing ball forward beyond the line of scrimmage: Loss of down and five yards from spot of the foul.",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2459
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 7, Section 1, Article 6",
+    "q": "at least two yards behind their scrimmage line when receiving the ball (A.R. 7-1-6-I). PENALTY—Five yards from the spot of the foul; also loss of a down if by Team A",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3582
+   }
+  },
+  {
+   "id": "offensive_holding",
+   "name": "Offensive holding",
+   "ownerLeaf": "B8.2.1",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 1, Article 3-c",
+    "q": "Penalty: For holding by the offense: Loss of 10 yards.",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 3058
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 3, Article 3-b",
+    "q": "b. Holding. The hand(s) and arm(s) shall not be used to grasp, pull, hook, clamp or encircle in any way that illegally impedes or illegally obstructs an opponent. PENALTY—10 yards",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4650
+   }
+  },
+  {
+   "id": "illegal_use_of_hands_offense",
+   "name": "Illegal use of hands by the offense",
+   "ownerLeaf": "B8.2.1",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 1, Article 3-a",
+    "q": "Penalty: For illegal use of hands by the offense: Loss of 10 yards.",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 3044
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 3, Article 3-a",
+    "q": "b. Holding. The hand(s) and arm(s) shall not be used to grasp, pull, hook, clamp or encircle in any way that illegally impedes or illegally obstructs an opponent. PENALTY—10 yards",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "note": "The 9-3-3 penalty covers paragraphs a (use of hands) and b (holding).",
+    "line": 4650
+   }
+  },
+  {
+   "id": "illegal_block_in_back",
+   "name": "Illegal block in the back",
+   "ownerLeaf": "B8.2.1",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 1, Article 3-b",
+    "q": "Penalty: For an illegal block in the back above the waist by the offense: Loss of 10 yards.",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 3052
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 3, Article 5",
+    "q": "PENALTY—10 yards. Penalties for Team A fouls behind the neutral zone are enforced from the previous spot. Safety if the foul occurs behind Team A’s goal line. [S43].",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "note": "Either team; the penalty carries no first down.",
+    "line": 4715
+   }
+  },
+  {
+   "id": "assisting_runner",
+   "name": "Assisting the runner or interlocked interference",
+   "ownerLeaf": "B8.2.1",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 1, Article 4",
+    "q": "Penalty: For assisting the runner, interlocking interference, or illegal use of hands, arms, or body by the offense: Loss of 10 yards.",
+    "yards": 10,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 3084
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 3, Article 2",
+    "q": "one another in any manner while contacting an opponent. PENALTY—Five yards [S44].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4633
+   }
+  },
+  {
+   "id": "illegal_use_of_hands_defense",
+   "name": "Illegal use of hands by the defense",
+   "ownerLeaf": "B8.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 1, Article 7",
+    "q": "Penalty: For illegal use of hands by the defense: Loss of five yards and an automatic first down.",
+    "yards": 5,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 3102
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 3, Article 4-c to e",
+    "q": "Continuous contact is illegal (A.R. 9-3-4-I). PENALTY [c-e]—10 yards plus automatic first down if the first down is not in conflict with other rules",
+    "yards": 10,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4688
+   }
+  },
+  {
+   "id": "clipping",
+   "name": "Clipping",
+   "ownerLeaf": "B8.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 1",
+    "q": "Penalty: For clipping: Loss of 15 yards.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3117
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 5",
+    "q": "ARTICLE 5. There shall be no clipping (Rule 2-5).",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4243
+   }
+  },
+  {
+   "id": "block_below_waist",
+   "name": "Illegal block below the waist",
+   "ownerLeaf": "B8.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 4",
+    "q": "Penalty: For illegally blocking below the waist: Loss of 15 yards.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3149
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 6",
+    "q": "Blocking Below the Waist ARTICLE 6. a. Team A prior to a change of team possession:",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4265
+   }
+  },
+  {
+   "id": "chop_block",
+   "name": "Chop block",
+   "ownerLeaf": "B8.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 5",
+    "q": "Penalty: For a chop block: Loss of 15 yards.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3166
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 10",
+    "q": "ARTICLE 10. There shall be no chop blocking (Rule 2-3-3)",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4346
+   }
+  },
+  {
+   "id": "blindside_block",
+   "name": "Blindside block",
+   "ownerLeaf": "B8.2",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 7",
+    "q": "Penalty: For a blindside block: Loss of 15 yards.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3186
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 18",
+    "q": "ARTICLE 18. No player shall deliver a blind-side block by attacking an opponent with forcible contact.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4442
+   }
+  },
+  {
+   "id": "unnecessary_roughness",
+   "name": "Unnecessary roughness",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 8",
+    "q": "Penalty: For unnecessary roughness: Loss of 15 yards. The player may be disqualified if the action is judged by the official(s) to be flagrant. If the foul is by the defense, it is also an automatic first down.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3210
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1",
+    "q": "All fouls in this section (unless noted) and any other acts of unnecessary roughness are personal fouls.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4087
+   }
+  },
+  {
+   "id": "defenseless_player",
+   "name": "Contact against a defenseless player",
+   "ownerLeaf": "B8.3.1",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 9",
+    "q": "Penalty: For unnecessary roughness: Loss of 15 yards and an automatic first down. The player may be disqualified if the action is judged by the official(s) to be flagrant.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "note": "The statement gives the first down with no offense or defense qualifier (B8.1.2 edge case).",
+    "line": 3248
+   },
+   "college": {
+    "exists": false,
+    "cite": "Rule 9, Section 1, Articles 3, 4 and 12",
+    "absent": "Section 1 has no separate foul for contact against a defenseless player; forcible contact to the head or neck of a defenseless player is targeting (9-1-4) and contact on a player out of the play is 9-1-12 (unnecessary roughness here)."
+   }
+  },
+  {
+   "id": "helmet_use",
+   "name": "Impermissible use of the helmet",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 10",
+    "q": "Penalty: For impermissible use of the helmet: Loss of 15 yards. If the foul is by the defense, it is also an automatic first down. The player may be disqualified.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3255
+   },
+   "college": {
+    "exists": false,
+    "cite": "Rule 9, Section 1, Article 3",
+    "absent": "No separate foul: forcible contact with the crown of the helmet is targeting (9-1-3), catalogued as targeting."
+   }
+  },
+  {
+   "id": "roughing_passer",
+   "name": "Roughing the passer",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 11",
+    "q": "Penalty: For roughing the passer: Loss of 15 yards and an automatic first down; disqualification, if flagrant.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3310
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 9",
+    "q": "a. No defensive player shall unnecessarily rough a passer, when it is obvious the ball has been thrown.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4316
+   }
+  },
+  {
+   "id": "roughing_kicker",
+   "name": "Roughing the kicker or holder",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 12",
+    "q": "(1) For roughing the kicker: Loss of 15 yards from the previous spot (personal foul) and an automatic first down. The player may be disqualified if the action is flagrant.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3331
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 16-a",
+    "q": "PENALTY—Roughing or any other personal foul against the kicker who is in the act or just after kicking the ball; or roughing the holder: 15 yards from the previous spot, plus automatic first down if not in conflict with other rules [S38 and S30].",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ]
+    },
+    "line": 4422
+   }
+  },
+  {
+   "id": "running_into_kicker",
+   "name": "Running into the kicker or holder",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 12",
+    "q": "(2) For running into the kicker: Loss of five yards from the previous spot (not a personal foul). There is not an automatic first down.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general",
+      "nfl_afd_exceptions"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 3333
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 16-a",
+    "q": "Running into the kicker or holder: 5 yards from the previous spot [S30].",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4425
+   }
+  },
+  {
+   "id": "striking",
+   "name": "Striking, kicking, kneeing or tripping",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 14",
+    "q": "Penalty: For prohibited acts in (a-e) above: Loss of 15 yards. If a foul is judged by the official(s) to be flagrant, the offender may be disqualified",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3363
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 2",
+    "q": "No person subject to the rules shall strike an opponent with the knee",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4117
+   }
+  },
+  {
+   "id": "face_mask",
+   "name": "Face mask",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 15",
+    "q": "Penalty: For twisting, turning, pushing, pulling, or controlling the mask or helmet opening: Loss of 15 yards. The player may be disqualified if the action is flagrant.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3369
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 8-b",
+    "q": "No player shall grasp and then twist, turn or pull the face mask, chin strap or any helmet opening of an opponent.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4310
+   }
+  },
+  {
+   "id": "horse_collar",
+   "name": "Horse-collar tackle",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 16",
+    "q": "Penalty: For a horse-collar tackle: Loss of 15 yards and an automatic first down.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3375
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 15",
+    "q": "ARTICLE 15. All players are prohibited from grabbing the inside back or side collar of the shoulder pads or jersey",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "yards": [
+      "ncaa_personal_penalty"
+     ],
+     "afd": [
+      "ncaa_personal_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4391
+   }
+  },
+  {
+   "id": "helmet_weapon",
+   "name": "Use of a helmet as a weapon",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 17",
+    "q": "Penalty: For illegal use of a helmet as a weapon: Loss of 15 yards and automatic disqualification.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "automatic",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3378
+   },
+   "college": {
+    "exists": false,
+    "cite": "Rule 9, Sections 1 and 2",
+    "absent": "Read Rule 9 in full: no foul for using a removed helmet as a weapon; the act falls under striking (9-1-2) or fighting (9-5)."
+   }
+  },
+  {
+   "id": "hip_drop",
+   "name": "Hip-drop tackle",
+   "ownerLeaf": "B8.3",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 2, Article 18",
+    "q": "Penalty: For a hip-drop tackle: Loss of 15 yards and an automatic first down.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_personal_section"
+     ]
+    },
+    "line": 3384
+   },
+   "college": {
+    "exists": false,
+    "cite": "Rule 9, Section 1",
+    "absent": "Searched the whole text for \"hip-drop\" and \"hip drop\": no hit; Section 1 lists no such foul."
+   }
+  },
+  {
+   "id": "targeting",
+   "name": "Targeting",
+   "ownerLeaf": "B13.12",
+   "pro": {
+    "exists": false,
+    "cite": "whole book",
+    "absent": "Searched the whole text for \"targeting\": no hit. Helmet contact is 12-2-10 (helmet_use) and hits on a defenseless player are 12-2-9 (defenseless_player)."
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 3",
+    "q": "ARTICLE 3. No player shall target and make forcible contact against an opponent with the crown of their helmet.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "automatic",
+    "more": {
+     "yards": [
+      "ncaa_targeting_penalty"
+     ],
+     "afd": [
+      "ncaa_targeting_penalty"
+     ],
+     "class": [
+      "ncaa_personal"
+     ],
+     "dq": [
+      "ncaa_targeting_dq"
+     ],
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "note": "Articles 3 (crown of the helmet) and 4 (head or neck of a defenseless player) share one penalty.",
+    "line": 4131
+   }
+  },
+  {
+   "id": "unsportsmanlike",
+   "name": "Unsportsmanlike conduct",
+   "ownerLeaf": "B8.4",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 3, Article 1",
+    "q": "Penalty: For unsportsmanlike conduct (a) through (h): Loss of 15 yards from the succeeding spot or whatever spot the Referee, after consulting with the crew, deems equitable. If the foul is by the defense, it is also an automatic first down.",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "unsportsmanlike",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_unsportsmanlike_section"
+     ]
+    },
+    "line": 3415
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 2, Article 1",
+    "q": "PENALTY—Unsportsmanlike conduct. Live-ball fouls by players: 15 yards [S27].",
+    "yards": 15,
+    "afd": true,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "unsportsmanlike",
+    "dq": "if_flagrant",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ],
+     "afd": [
+      "ncaa_unsportsmanlike_afd"
+     ],
+     "dq": [
+      "ncaa_unsportsmanlike_afd"
+     ]
+    },
+    "line": 4472
+   }
+  },
+  {
+   "id": "illegal_bat",
+   "name": "Illegal bat",
+   "ownerLeaf": "B8.4",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 5, Article 1",
+    "q": "Penalty: For illegal batting or kicking the ball: Loss of 10 yards. If the foul is by Team A before possession changes during a scrimmage down: Loss of down and loss of 10 yards",
+    "yards": 10,
+    "afd": true,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "note": "Runoff: 4-7-1-f names batting or kicking the ball out of bounds only.",
+    "line": 3497
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 4, Article 1",
+    "q": "PENALTY—10 yards and loss of down for fouls by Team A if the loss of down is not in conflict with other rules [S31 and S9]",
+    "yards": 10,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4727
+   }
+  },
+  {
+   "id": "illegal_kick",
+   "name": "Illegally kicking the ball",
+   "ownerLeaf": "B8.4",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 12, Section 5, Article 2",
+    "q": "Penalty: For illegal batting or kicking the ball: Loss of 10 yards. If the foul is by Team A before possession changes during a scrimmage down: Loss of down and loss of 10 yards",
+    "yards": 10,
+    "afd": true,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": true,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [
+      "nfl_afd_general"
+     ],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "note": "Runoff: 4-7-1-f names batting or kicking the ball out of bounds only.",
+    "line": 3497
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 9, Section 4, Article 4",
+    "q": "PENALTY—10 yards, plus loss of down for fouls by Team A if the loss of down is not in conflict with other rules",
+    "yards": 10,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 4745
+   }
+  },
+  {
+   "id": "free_kick_offside",
+   "name": "Free kick offside or illegal free kick formation",
+   "ownerLeaf": "B6",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 6, Section 1, Article 3",
+    "q": "Penalty: For a player being beyond the restraining line when the ball is kicked (offside), a player being out of bounds when the ball is kicked, either team being in an illegal formation when the ball is kicked, kicking team players (other than the kicker) or receiving team players in the setup zone moving before permitted, or kicker moving beyond 15 yards from the kicker’s restraining line before permitted (illegal formation): Loss of five yards.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 1720
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 6, Section 1, Article 2-b and c",
+    "q": "PENALTY [b-c5]—Live-ball foul. Five yards from the previous spot",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3077
+   }
+  },
+  {
+   "id": "illegal_wedge",
+   "name": "Illegal wedge on a free kick",
+   "ownerLeaf": "B6",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 6, Section 2, Article 1",
+    "q": "Penalty: For an illegal wedge block or an illegal double team block: Loss of 15 yards.",
+    "yards": 15,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_other_personal"
+     ]
+    },
+    "note": "During the kick it is enforced from the spot of the foul, during the return as customary; the spot field is false.",
+    "line": 1817
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 6, Section 1, Article 10",
+    "q": "PENALTY—Noncontact foul. 15 yards, spot of the foul, or 15 yards, spot where the subsequent dead ball belongs to Team B",
+    "yards": 15,
+    "afd": false,
+    "lod": false,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3151
+   }
+  },
+  {
+   "id": "kick_catch_interference",
+   "name": "Kick catch interference",
+   "ownerLeaf": "B6",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 10, Section 1, Article 1, Penalty (a)",
+    "q": "(a) For kick catch interference (interference with the opportunity to make a catch when a prior signal has not been made): Loss of 15 yards from the spot of the foul",
+    "yards": 15,
+    "afd": false,
+    "lod": false,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_other_personal"
+     ]
+    },
+    "note": "A kicking team foul: the receiving team takes the ball with a new series, so the automatic-first-down field is false.",
+    "line": 2733
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 6, Section 4, Article 1",
+    "q": "Receiving team’s ball, first down, 15 yards beyond the spot of the foul for an interference foul [S33].",
+    "yards": 15,
+    "afd": false,
+    "lod": false,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "if_flagrant",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ]
+    },
+    "note": "A kicking team foul: the receiving team takes the ball with a new series, so the automatic-first-down field is false.",
+    "line": 3335
+   }
+  },
+  {
+   "id": "fair_catcher_contact",
+   "name": "Contact with a player who has made a fair catch",
+   "ownerLeaf": "B6",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 10, Section 2, Article 3",
+    "q": "Penalty: For illegal contact with a player who has made a fair catch: Loss of 15 yards from the dead ball spot and disqualification if flagrant.",
+    "yards": 15,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": false,
+    "class": "personal",
+    "dq": "if_flagrant",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ],
+     "class": [
+      "nfl_other_personal"
+     ]
+    },
+    "note": "A kicking team foul: the receiving team takes the ball with a new series, so the automatic-first-down field is false.",
+    "line": 2787
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 6, Section 5, Article 5",
+    "q": "PENALTY—Dead-ball foul. Receiving team’s ball 15 yards from the succeeding spot [S7 and S38].",
+    "yards": 15,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": true,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "if_flagrant",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ],
+     "dq": [
+      "ncaa_flagrant"
+     ]
+    },
+    "note": "A kicking team foul: the receiving team takes the ball with a new series, so the automatic-first-down field is false.",
+    "line": 3407
+   }
+  },
+  {
+   "id": "invalid_fair_catch_signal",
+   "name": "Invalid fair catch signal",
+   "ownerLeaf": "B6",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 10, Section 2, Article 2",
+    "q": "Penalty: For an invalid fair catch signal: Loss of five yards from the spot of the signal.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff",
+      "nfl_runoff_defense"
+     ]
+    },
+    "line": 2755
+   },
+   "college": {
+    "exists": false,
+    "cite": "Appendix F (official signals), note",
+    "q": "There is no illegal fair catch in the NCAA Football Rules.",
+    "line": 5801
+   }
+  },
+  {
+   "id": "illegal_scrimmage_kick",
+   "name": "Illegal scrimmage kick (beyond the line)",
+   "ownerLeaf": "B6",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 1",
+    "q": "Penalty: For a punt, drop kick, or place kick that is kicked beyond the line of scrimmage or not from scrimmage: Loss of down and five yards from the spot of the kick.",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": true,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2512
+   },
+   "college": {
+    "exists": true,
+    "cite": "Rule 6, Section 3, Article 10-c",
+    "q": "PENALTY—For an illegal kick beyond the neutral zone (live-ball foul): Five yards from the previous spot and loss of down [S31 and S9].",
+    "yards": 5,
+    "afd": false,
+    "lod": true,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "runoff_eligible": [
+      "ncaa_runoff",
+      "ncaa_runoff_not"
+     ]
+    },
+    "line": 3265
+   }
+  },
+  {
+   "id": "kick_ineligible_downfield",
+   "name": "Ineligible player downfield before a scrimmage kick",
+   "ownerLeaf": "B6",
+   "pro": {
+    "exists": true,
+    "cite": "Rule 9, Section 1, Article 2",
+    "q": "Penalty: For ineligible player downfield before the ball is kicked: Loss of five yards.",
+    "yards": 5,
+    "afd": false,
+    "lod": false,
+    "spot_foul": false,
+    "dead_ball": false,
+    "runoff_eligible": false,
+    "class": "other",
+    "dq": "none",
+    "more": {
+     "afd": [],
+     "runoff_eligible": [
+      "nfl_runoff"
+     ]
+    },
+    "line": 2524
+   },
+   "college": {
+    "exists": false,
+    "cite": "Rule 6, Section 3 (scrimmage kicks)",
+    "absent": "The scrimmage kick section was read in full; it has no rule holding kicking team players at the line until the kick (see punt.release)."
+   }
+  }
+ ]
+}

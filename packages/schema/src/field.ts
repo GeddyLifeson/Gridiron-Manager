@@ -11,7 +11,9 @@ export type Unit =
   | 'count' | 'id' | 'index' | 'ratio' | 'day_index' | 'season_year' | 'version' | 'ms_epoch'
   // Simulation contract units (J1.2.1, J11.1.1): integer tenths of a second for clocks, ticks of 0.1 s,
   // radians, acceleration, the internal skill scale (ISS 0 to 100) and its z form, and J12 weather units.
-  | 'tenths_s' | 'tick' | 'rad' | 'yd_per_s2' | 'iss' | 'z' | 'mph' | 'deg_f' | 'deg';
+  | 'tenths_s' | 'tick' | 'rad' | 'yd_per_s2' | 'iss' | 'z' | 'mph' | 'deg_f' | 'deg'
+  // A bounded design scale from the bible (world contract W-05, CR-G00-1). The `scale` meta key names the leaf and bounds.
+  | 'scale';
 
 export interface FieldMeta {
   vis: Visibility;
