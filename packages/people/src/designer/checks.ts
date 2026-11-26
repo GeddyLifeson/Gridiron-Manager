@@ -8,6 +8,7 @@ import { proProfile, type ProfileVar } from '../generator/profiles.ts';
 import { growthShare, physicalIss, changeOfDirectionZ, type BodyVector } from '../generator/body.ts';
 import { plausibilityWarnings, type PlausibilityWarning } from '../generator/plausibility.ts';
 import { param as gparam } from '../generator/params.ts';
+import { normalCdf } from '../generator/normal.ts';
 import { isRealPerson, sheetFromRecord, type Sheet } from './sheet.ts';
 
 /** The current body of a sheet as a profile vector (only the variables that are set). */
@@ -67,10 +68,18 @@ const SHEET_FIELD: Readonly<Record<ProfileVar, string>> = {
   threeConeS: 'tests.threeConeS', shuttleS: 'tests.shuttleS', benchReps: 'tests.benchReps',
 };
 
+/** Smallest tail shown: beyond it the text reads "1 in a trillion" (keeps the figure finite). */
+const TAIL_FLOOR = 1e-12;
+
 /** A D13.1.2 warning in sheet terms: which sheet fields it names, and how rare the value is. */
 export interface DesignerWarning extends PlausibilityWarning {
   /** Sheet paths the warning is about (two for a joint warning). */
   fields: string[];
+  /**
+   * How rare the value is inside the position profile, as "1 in N" (two-sided normal tail for one value,
+   * the bivariate tail for a pair). Null for a record-limit warning, which is "beyond any recorded player".
+   */
+  oneIn: number | null;
 }
 
 function changedFromSource(sheet: Sheet): Set<string> | null {
@@ -94,7 +103,13 @@ export function designerWarnings(sheet: Sheet, math: DeterministicMath): Designe
   try { prof = proProfile(profileOf(sheet.position)); } catch { return []; }
   const adult = adultEquivalent(sheet);
   const raw = plausibilityWarnings(prof, adult, math);
-  const out: DesignerWarning[] = raw.map((w) => ({ ...w, fields: w.field.split('+').map((v) => SHEET_FIELD[v as ProfileVar] ?? v) }));
+  const oneIn = (w: PlausibilityWarning): number | null => {
+    if (w.kind === 'record') return null;
+    if (w.kind === 'joint') return Math.round(1 / Math.max(math.exp(-w.value / 2), TAIL_FLOOR));
+    const z = Math.abs((w.value - prof.mean(w.field as ProfileVar)) / prof.sd(w.field as ProfileVar));
+    return Math.round(1 / Math.max(2 * (1 - normalCdf(z, math)), TAIL_FLOOR));
+  };
+  const out: DesignerWarning[] = raw.map((w) => ({ ...w, fields: w.field.split('+').map((v) => SHEET_FIELD[v as ProfileVar] ?? v), oneIn: oneIn(w) }));
   const changed = changedFromSource(sheet);
   if (changed === null) return out;
   const ageChanged = changed.has('ageYears');

@@ -18,3 +18,7 @@ export {
   commitSheet, designerAccess, mayEnterCertifiedCareer, inSharedRankings, DESIGNER_VERSION, STREAM_DESIGN,
   type DesignerWorld, type DesignedPlayer, type DesignerLogEntry, type CommitInput, type Refusal,
 } from './commit.ts';
+export {
+  openDesigner, applyIntent, setField, designerView,
+  type DesignerSession, type DesignerEnv, type DesignerIntent, type DesignerView, type ViewField,
+} from './session.ts';
