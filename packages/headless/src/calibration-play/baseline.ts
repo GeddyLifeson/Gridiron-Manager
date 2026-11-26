@@ -61,6 +61,8 @@ export interface RealBaseline {
   readonly chartChecks?: readonly ChartCheck[];
   /** Cell groups measured on other collections than `sources` (absent in a baseline with none). */
   readonly groups?: readonly CellGroup[];
+  /** Dims and metrics left out because the collection does not hold what they read; they print MISSING SOURCE. */
+  readonly omitted?: { readonly dims: readonly string[]; readonly metrics: readonly string[]; readonly reason: string };
   readonly cells: readonly CellValue[];
 }
 
@@ -81,7 +83,7 @@ export function baselineStatus(b: Pick<RealBaseline, 'sources'>): FactStatus {
 }
 
 /** Status of one cell: the group that names its dim or metric, else the base sources. */
-export function cellStatus(b: Pick<RealBaseline, 'sources' | 'groups'>, cell: Pick<CellValue, 'dim' | 'metric'>): FactStatus {
+export function cellStatus(b: Pick<RealBaseline, 'sources' | 'groups'>, cell: { readonly dim: string; readonly metric: string }): FactStatus {
   const g = (b.groups ?? []).find((x) => x.dims.includes(cell.dim) || x.metrics.includes(cell.metric));
   const n = new Set(g ? g.collections : b.sources.map((s) => s.citation)).size;
   return n >= 3 ? 'Verified' : n === 2 ? '2 of 3' : n === 1 ? '1 of 3' : 'Unverified';

@@ -3,6 +3,7 @@ export { readCsv } from './csv.ts';
 export type { CsvRecord } from './csv.ts';
 export { readChartSeason, applyChart, personnelFromParticipation, playKey } from './charting.ts';
 export type { ChartedPlay, ChartSeason } from './charting.ts';
+export { rowFromCollege, readCollegeSeason, COLLEGE_COLUMNS } from './college-row.ts';
 export { rowFromPublic, PUBLIC_COLUMNS_READ, UNCHARTED_FIELDS, CHART_FIELDS } from './public-row.ts';
 export { measureCells, cellId, PERSONNEL_CODES, COVERAGE_KEYS, playYards, orderedGroups, SPLITS, METRICS, CELL_PLAN, SHAPE_POINTS, DEPTH_BINS } from './cells.ts';
 export type { CellValue, CellKind, CellClass, Split, Metric, Dim, Family } from './cells.ts';

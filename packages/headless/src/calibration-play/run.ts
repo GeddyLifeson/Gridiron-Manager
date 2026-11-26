@@ -15,6 +15,7 @@ import { gameSeedHex } from '../calibration/batch.ts';
 import { createRealGame } from '../real-game/index.ts';
 import { baselinePath, buildBaseline, readBaseline, readPublicSeason, readTeamTotals, readTolerances, type SeasonRows } from './files.ts';
 import { readChartSeason } from './charting.ts';
+import { readCollegeSeason } from './college-row.ts';
 import type { CellGroup } from './baseline.ts';
 import { buildPlayReport, formatPlayReport } from './report.ts';
 
@@ -31,7 +32,7 @@ const CHART_GROUPS: readonly CellGroup[] = [
   {
     name: 'participation chart', dims: ['rushers', 'pressure', 'coverage', 'box', 'personnel'],
     metrics: ['pass.pressureRate', 'pass.rushers1to3', 'pass.rushers4', 'pass.rushers5', 'pass.rushers6plus'], collections: [PARTICIPATION],
-    note: 'Rusher count, pressure flag, coverage, box count and personnel come from the participation file. FTN holds a second rusher and box count; it equals the participation count on 99.9% of plays in 2023 and 2024 (one chart) and on 76% (rushers) and 52% (box) in 2022 (chartChecks), so no second collection is counted.',
+    note: 'Rusher count, pressure flag, coverage, box count and personnel come from the participation file. FTN holds a second rusher and box count; it equals the participation count on 99.9% of plays in 2023 and 2024 (one chart) and on 77% (rushers) and 55% (box) in 2022 (chartChecks), so no second collection is counted.',
   },
   {
     name: 'FTN chart', dims: ['action', 'motion'], metrics: ['pass.playActionShare', 'play.motionShare'], collections: [FTN],
@@ -63,6 +64,33 @@ function baseline(): number {
   for (const c of b.chartChecks ?? []) console.log(`  ${c.season} charts: dropbacks ${c.dropbacksCharted}/${c.dropbacks}, carries with box ${c.carriesBoxCharted}/${c.carries}, coverage ${c.coverageCharted}, personnel ${c.personnelCharted}/${c.passRunPlays}, FTN missing ${c.ftnMissing}; rushers equal ${c.rushersEqual}/${c.rushersBoth}, box equal ${c.boxEqual}/${c.boxBoth}`);
   for (const c of b.adapterChecks) console.log(`  ${c.season} ${c.quantity}: play-by-play ${c.fromPlayByPlay}; ${c.others.map((o) => `${o.source} ${o.value}`).join('; ')}; difference ${c.difference}`);
   console.log(`wrote ${baselinePath('pro_2026')}: ${b.cells.length} cells`);
+  return 0;
+}
+
+const COLLEGE_SEASONS = [2023, 2024, 2025];
+function collegeBaseline(): number {
+  const dir = argv[1];
+  if (!dir) { console.error('usage: college-baseline <dir with play_by_play_YYYY.csv>'); return 2; }
+  const seasons: SeasonRows[] = [];
+  let next = 1;
+  for (const y of COLLEGE_SEASONS) {
+    const file = join(dir, `play_by_play_${y}.csv`);
+    if (!existsSync(file)) { console.error(`missing season ${y} in ${dir}`); return 1; }
+    const s = readCollegeSeason(file, y, next);
+    next += s.games;
+    seasons.push(s);
+    console.log(`${y}: ${s.games} games, ${s.rows.length} rows`);
+  }
+  const b = buildBaseline('college_2026', seasons, [{
+    citation: 'cfbfastR play-by-play (sportsdataverse-data)', locator: `https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfbfastR_cfb_pbp/play_by_play_<year>.csv, ${COLLEGE_SEASONS.join(', ')}, season_type regular, both teams top subdivision`,
+    retrieved: opt('retrieved', ''),
+  }], [], [], {
+    dims: ['depth', 'rushers', 'pressure', 'action', 'coverage', 'box', 'personnel', 'motion'],
+    metrics: ['pass.scrambleShare', 'pass.yacPerCompletion', 'pass.pressureRate', 'pass.rushers1to3', 'pass.rushers4', 'pass.rushers5', 'pass.rushers6plus', 'pass.playActionShare', 'play.motionShare'],
+    reason: 'The college file holds no air yards, charting or scramble flag (scrambles are coded as rushes), so these cells have no college source.',
+  });
+  writeFileSync(baselinePath('college_2026'), JSON.stringify(b, null, 1) + '\n');
+  console.log(`wrote ${baselinePath('college_2026')}: ${b.cells.length} cells`);
   return 0;
 }
 
@@ -110,4 +138,4 @@ function report(): number {
   return 0;
 }
 
-process.exit(argv[0] === 'baseline' ? baseline() : argv[0] === 'report' ? report() : (console.error('usage: baseline | report'), 2));
+process.exit(argv[0] === 'baseline' ? baseline() : argv[0] === 'college-baseline' ? collegeBaseline() : argv[0] === 'report' ? report() : (console.error('usage: baseline | report'), 2));

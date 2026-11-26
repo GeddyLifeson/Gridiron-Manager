@@ -278,7 +278,7 @@
    "collections": [
     "nflverse participation (pbp_participation)"
    ],
-   "note": "Rusher count, pressure flag, coverage, box count and personnel come from the participation file. FTN holds a second rusher and box count; it equals the participation count on 99.9% of plays in 2023 and 2024 (one chart) and on 76% (rushers) and 52% (box) in 2022 (chartChecks), so no second collection is counted."
+   "note": "Rusher count, pressure flag, coverage, box count and personnel come from the participation file. FTN holds a second rusher and box count; it equals the participation count on 99.9% of plays in 2023 and 2024 (one chart) and on 77% (rushers) and 55% (box) in 2022 (chartChecks), so no second collection is counted."
   },
   {
    "name": "FTN chart",

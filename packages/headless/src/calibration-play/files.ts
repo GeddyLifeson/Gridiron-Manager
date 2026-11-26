@@ -87,7 +87,7 @@ export function readTeamTotals(path: string): Map<number, Record<string, number>
   return out;
 }
 
-export function buildBaseline(ruleSetId: string, seasons: readonly SeasonRows[], sources: readonly BaselineSource[], totals: readonly { source: string; bySeason: Map<number, Record<string, number>> }[], groups: readonly CellGroup[] = []): RealBaseline {
+export function buildBaseline(ruleSetId: string, seasons: readonly SeasonRows[], sources: readonly BaselineSource[], totals: readonly { source: string; bySeason: Map<number, Record<string, number>> }[], groups: readonly CellGroup[] = [], omitted?: RealBaseline['omitted']): RealBaseline {
   const adapterChecks: AdapterCheck[] = [];
   for (const s of seasons) {
     const mine = officialTotals(s.rows);
@@ -100,6 +100,7 @@ export function buildBaseline(ruleSetId: string, seasons: readonly SeasonRows[],
   const years = seasons.map((s) => s.season);
   return {
     ruleSetId, seasons: `${Math.min(...years)}-${Math.max(...years)}`, seasonType: 'REG', sources,
-    games: seasons.reduce((a, s) => a + s.games, 0), rows: rows.length, adapterChecks, chartChecks: seasons.flatMap((s) => (s.chartCheck ? [s.chartCheck] : [])), groups, cells: measureCells(rows),
+    games: seasons.reduce((a, s) => a + s.games, 0), rows: rows.length, adapterChecks, chartChecks: seasons.flatMap((s) => (s.chartCheck ? [s.chartCheck] : [])), groups, ...(omitted ? { omitted } : {}),
+    cells: measureCells(rows).filter((c) => !omitted || !(omitted.dims.includes(c.dim) || omitted.metrics.includes(c.metric))),
   };
 }
