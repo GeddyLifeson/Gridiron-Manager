@@ -329,7 +329,9 @@ describe('K8.3.1 and E4.2 one confidence procedure', () => {
 
 describe('K8.4.1 and E4.3 the firing decision, with no built-in bounce', () => {
   it('base curve: 0 at 55, 0.25 at 40, 0.60 at 30, 0.90 at 15 and below; capped at 0.95', () => {
-    expect(baseHazard(55)).toBe(0);
+    expect(baseHazard(55)).toBe(0.002);
+    expect(baseHazard(90)).toBe(0.002);
+    expect(baseHazard(54)).toBeGreaterThan(0.002);
     expect(baseHazard(40)).toBeCloseTo(0.25, 10);
     expect(baseHazard(30)).toBeCloseTo(0.6, 10);
     expect(baseHazard(15)).toBeCloseTo(0.9, 10);
@@ -367,17 +369,19 @@ describe('K8.4.1 and E4.3 the firing decision, with no built-in bounce', () => {
     expect(review(d, PRO, reviewIn({ underConductInvestigation: true }), rng(1)).outcome).toBe('conduct_process');
   });
 
-  it('emergency reviews: below 30, once a season, scaled 0.25 / 0.4 / 0.15, never in the first 8 games or while alive (E4.3.3)', () => {
-    expect(needsEmergencyReview(29, false)).toBe(true);
-    expect(needsEmergencyReview(29, true)).toBe(false);
-    expect(needsEmergencyReview(30, false)).toBe(false);
-    const c = { gamesPlayed: 5, gamesInSeason: 17, gamesOnJob: 20, interimWithHeadCoachExperience: false, aliveForPostseason: false };
+  it('emergency reviews: below 30; scaled 0.25 / 0.4 / 0.15; first 8 games, still alive and kept-once all reduce but never zero the chance (E4.3.3, MA-52)', () => {
+    expect(needsEmergencyReview(29)).toBe(true);
+    expect(needsEmergencyReview(30)).toBe(false);
+    const c = { gamesPlayed: 5, gamesInSeason: 17, gamesOnJob: 20, interimWithHeadCoachExperience: false, aliveForPostseason: false, keptAtEmergencyThisSeason: false };
     expect(inSeasonFactor(c)).toBe(0.25);
     expect(inSeasonFactor({ ...c, gamesPlayed: 10 })).toBe(0.4);
     expect(inSeasonFactor({ ...c, gamesPlayed: 16 })).toBe(0.15);
     expect(inSeasonFactor({ ...c, interimWithHeadCoachExperience: true })).toBeCloseTo(0.35, 10);
-    expect(inSeasonFactor({ ...c, gamesOnJob: 7 })).toBe(0);
-    expect(inSeasonFactor({ ...c, aliveForPostseason: true })).toBe(0);
+    expect(inSeasonFactor({ ...c, aliveForPostseason: true })).toBeCloseTo(0.25 * 0.4, 10);
+    expect(inSeasonFactor({ ...c, keptAtEmergencyThisSeason: true })).toBeCloseTo(0.25 * P('fire.inSeason.afterKept'), 10);
+    const worst = { ...c, gamesOnJob: 1, aliveForPostseason: true, keptAtEmergencyThisSeason: true, gamesPlayed: 16 };
+    expect(inSeasonFactor(worst)).toBeGreaterThan(0);
+    expect(firingHazard(dm(), PRO, reviewIn({ confidence: 100, inSeason: worst })).pFire).toBeGreaterThan(0);
   });
 
   it('no modifier keyed to a coaching change exists anywhere in the module (E4.3.5)', () => {
@@ -397,16 +401,23 @@ const PRO_SIM: SimOptions = { seed: 1, teams: 32, games: 17, seasons: 200, model
 const COLLEGE_SIM: SimOptions = { seed: 1, teams: 130, games: 12, seasons: 200, model: 'college', postseasonShare: 0.3, postseasonWinShare: 0.5, contractYears: 6, salaryOverRevenue: 0.08, offseasonWeeks: 38 };
 
 describe('calibration on the synthetic test league (E4.3.1 acceptance 1, E4.7.2 acceptance 2, K8.4.1)', () => {
-  it('professional: 5 to 9 firings a season on average, no more than 5% of seasons outside 3 to 11 (800 seasons, four seeds)', () => {
-    const all = [1, 2, 3, 4].flatMap((seed) => simulate({ ...PRO_SIM, seed }).firingsPerSeason);
+  it('professional: 5 to 9 firings a season on average, no more than 5% of seasons outside 3 to 11, in-season share near the real 36% (800 seasons, four seeds)', () => {
+    const runs = [1, 2, 3, 4].map((seed) => simulate({ ...PRO_SIM, seed }));
+    const all = runs.flatMap((r) => r.firingsPerSeason);
+    const inSeason = mean(runs.flatMap((r) => r.inSeasonPerSeason)) / mean(all);
+    expect(inSeason).toBeGreaterThanOrEqual(0.3);
+    expect(inSeason).toBeLessThanOrEqual(0.4);
     expect(mean(all)).toBeGreaterThanOrEqual(5);
     expect(mean(all)).toBeLessThanOrEqual(9);
     expect(all.filter((x) => x < 3 || x > 11).length / all.length).toBeLessThanOrEqual(0.05);
   });
 
-  it('college: 6% to 12% of programs fire their head coach each season', () => {
+  it('college: 6% to 12% of programs fire their head coach each season; in-season share inside the 15% to 40% band (Assumption: no sourced college share)', () => {
     const r = simulate(COLLEGE_SIM);
     const share = mean(r.firingsPerSeason) / COLLEGE_SIM.teams;
+    const inSeason = mean(r.inSeasonPerSeason) / mean(r.firingsPerSeason);
+    expect(inSeason).toBeGreaterThanOrEqual(0.15);
+    expect(inSeason).toBeLessThanOrEqual(0.4);
     expect(share).toBeGreaterThanOrEqual(0.06);
     expect(share).toBeLessThanOrEqual(0.12);
   });
