@@ -6,4 +6,7 @@ out/
 shells/desktop/src-tauri/target/
 shells/desktop/src-tauri/gen/
 .vite/
-test-results/tmp-saves/
+test-results/
+
+# Migration fixtures are fixed test inputs (Q1.2.3); they must be committed.
+!packages/store/test/migrations/fixtures/*.gmsave

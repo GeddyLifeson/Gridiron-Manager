@@ -1,0 +1,599 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-measured-rate-0353",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "League points per game (both teams), pro regular seasons: mean 44.45, season-to-season standard deviation 1.96.",
+   "value": 44.45,
+   "unit": "points",
+   "validFor": "2002-2024",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series pointsPerGameBothTeams",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 44.45
+    },
+    {
+     "citation": "footballdb.com NFL team scoring tables, regular seasons 2002 to 2024 (23 seasons, summed over 32 teams), read in the PC browser",
+     "locator": "scripts/research/footballdb-scoring-2002-2024.json; matches the nflverse points per game in all 23 seasons (max difference 0.000)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "footballdb",
+     "primary": false,
+     "value": 44.45
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source: footballdb season scoring tables read in the PC browser; the 23-season series is identical to nflverse. Pro Football Reference is behind a bot check, so no third source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0354",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "League points per game, real drift: the fitted trend over 2002-2024 is 0.41% of the mean per season. Used as the largest allowed slope share (the real league also changed rules in this span, so a fixed-rule sim should sit at or under it).",
+   "value": 0.0041,
+   "unit": "ratio per season",
+   "validFor": "2002-2024",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series pointsPerGameBothTeams slopeShare",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.0041
+    },
+    {
+     "citation": "footballdb.com NFL team scoring tables, regular seasons 2002 to 2024 (23 seasons, summed over 32 teams), read in the PC browser",
+     "locator": "scripts/research/footballdb-scoring-2002-2024.json; matches the nflverse points per game in all 23 seasons (max difference 0.000)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "footballdb",
+     "primary": false,
+     "value": 0.0041
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source: footballdb season scoring tables read in the PC browser; the 23-season series is identical to nflverse. Pro Football Reference is behind a bot check, so no third source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0355",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "League points per game, real band: every season sat between -7.2% and +11.5% of the 23-season mean. Used as the band share, rounded up to 0.12.",
+   "value": 0.12,
+   "unit": "ratio",
+   "validFor": "2002-2024",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series pointsPerGameBothTeams relMin/relMax",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.12
+    },
+    {
+     "citation": "footballdb.com NFL team scoring tables, regular seasons 2002 to 2024 (23 seasons, summed over 32 teams), read in the PC browser",
+     "locator": "scripts/research/footballdb-scoring-2002-2024.json; matches the nflverse points per game in all 23 seasons (max difference 0.000)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "footballdb",
+     "primary": false,
+     "value": 0.12
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source: footballdb season scoring tables read in the PC browser; the 23-season series is identical to nflverse. Pro Football Reference is behind a bot check, so no third source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0356",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Mean age of the opening-week roster on Sept 1, pro: mean 26.79 years, season-to-season standard deviation 0.27 (2016 dropped: roster file artefact).",
+   "value": 26.79,
+   "unit": "years",
+   "validFor": "2002-2024 except 2016",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series meanAgeWeek1Roster",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 26.79
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0357",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Mean roster age, real drift: the fitted trend is 0.11% of the mean per season (about 0.03 years). Used as the largest allowed slope share.",
+   "value": 0.0011,
+   "unit": "ratio per season",
+   "validFor": "2002-2024 except 2016",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series meanAgeWeek1Roster slopeShare",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.0011
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0358",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Mean roster age, real band: every season sat between -1.65% and +1.48% of the mean (26.34 to 27.18 years). Used as the band share, rounded up to 0.017.",
+   "value": 0.017,
+   "unit": "ratio",
+   "validFor": "2002-2024 except 2016",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series meanAgeWeek1Roster relMin/relMax",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.017
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0359",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Share of the opening-week roster who were not on any roster the opening week of the year before, pro: mean 0.256, standard deviation 0.031 (2016 and 2017 dropped).",
+   "value": 0.256,
+   "unit": "ratio",
+   "validFor": "2003-2024 except 2016, 2017",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series rosterShareNewToLeague",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.256
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0360",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Roster turnover, real drift: the fitted trend is 1.39% of the mean per season (the share of new players rose from about 0.23 to 0.29 across the span, partly with rule and roster-size changes). Used as the largest allowed slope share, rounded up to 0.014.",
+   "value": 0.014,
+   "unit": "ratio per season",
+   "validFor": "2003-2024 except 2016, 2017",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series rosterShareNewToLeague slopeShare",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.014
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0361",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Roster turnover, real band: every season sat between -15.3% and +26.2% of the mean (0.217 to 0.323). Used as the band share, rounded up to 0.27.",
+   "value": 0.27,
+   "unit": "ratio",
+   "validFor": "2003-2024 except 2016, 2017",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series rosterShareNewToLeague relMin/relMax",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.27
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0362",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Spread of team win percentage (standard deviation across the 32 teams), pro: mean 0.191, season-to-season standard deviation 0.015. Outcome proxy only: true talent is not observable, so this measures talent spread plus luck.",
+   "value": 0.191,
+   "unit": "ratio",
+   "validFor": "2002-2024",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series teamWinPctSd",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.191
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0363",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Team win percentage spread, real drift: the fitted trend is 0.03% of the mean per season; twice its standard error is 0.50%. Used as the largest allowed slope share for talent-spread series, 0.005. A proxy: see the mean row.",
+   "value": 0.005,
+   "unit": "ratio per season",
+   "validFor": "2002-2024",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series teamWinPctSd twoSEShare",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.005
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0364",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Team win percentage spread, real band: every season sat between -16.6% and +12.6% of the mean (0.159 to 0.215). Used as the band share for talent-spread series, rounded up to 0.17. A proxy: see the mean row.",
+   "value": 0.17,
+   "unit": "ratio",
+   "validFor": "2002-2024",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series teamWinPctSd relMin/relMax",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.17
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0365",
+   "level": "pro",
+   "domain": "measured-rate",
+   "statement": "Records that fell, per tracked record per season, in the latest window: 0.059 in 2020-2024 (17 records: single-game team points, single-game margin, single-season team points, and 14 single-season player counting stats, all measured against records set since 1999). Earlier windows: 0.329, 0.141, 0.141, 0.024 (2000-04 to 2015-19). Used as the low steady rate, rounded to 0.06.",
+   "value": 0.06,
+   "unit": "falls per record per season",
+   "validFor": "2000-2024",
+   "sources": [
+    {
+     "citation": "nflverse data, github.com/nflverse (nfldata games.csv; nflverse-data releases weekly_rosters and stats_player), regular seasons 2002 to 2024; computed by the project",
+     "locator": "scripts/research/drift-variation.py -> scripts/research/drift-variation.out.json, series records.windows",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse",
+     "primary": false,
+     "value": 0.06
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 drift research: computed from nflverse only; the second and third independent sources (Pro Football Reference league tables, footballdb) are not reachable from the cloud container."
+    }
+   ],
+   "notes": "The universe is records set since 1999, not all-time, so early windows are inflated by the start-up; the late windows are the steady-state evidence."
+  },
+  {
+   "id": "F-measured-rate-0366",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS points per game (both teams), FBS-vs-FBS regular-season games: mean 54.94, season-to-season standard deviation 1.82 (19 seasons).",
+   "value": 54.94,
+   "unit": "points",
+   "validFor": "2004-2024 except 2020 (and 2006 for scoring)",
+   "sources": [
+    {
+     "citation": "ESPN college football scores as republished in sportsdataverse-data (github.com/sportsdataverse, release espn_cfb_schedules), FBS-vs-FBS regular-season games 2004-2024; computed by the project",
+     "locator": "scripts/research/drift-variation-fbs.py -> drift-variation-fbs.out.json, pointsPerGameBothTeams",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-via-sportsdataverse",
+     "primary": false,
+     "value": 54.94
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 FBS drift research: one source. CollegeFootballData and Sports Reference are not reachable (API key; bot check). The project's CFBD-derived file agrees on 2023 (53.38 against 53.40) and differs by 0.5 on 2022, so it is not counted as a second source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0367",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS points per game, real drift: the fitted trend is 0.17% of the mean per season; twice its standard error is 0.25%. Used as the largest allowed slope share, 0.0025.",
+   "value": 0.0025,
+   "unit": "ratio per season",
+   "validFor": "2004-2024 except 2020 (and 2006 for scoring)",
+   "sources": [
+    {
+     "citation": "ESPN college football scores as republished in sportsdataverse-data (github.com/sportsdataverse, release espn_cfb_schedules), FBS-vs-FBS regular-season games 2004-2024; computed by the project",
+     "locator": "scripts/research/drift-variation-fbs.py -> drift-variation-fbs.out.json, pointsPerGameBothTeams slopeShare/twoSEShare",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-via-sportsdataverse",
+     "primary": false,
+     "value": 0.0025
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 FBS drift research: one source. CollegeFootballData and Sports Reference are not reachable (API key; bot check). The project's CFBD-derived file agrees on 2023 (53.38 against 53.40) and differs by 0.5 on 2022, so it is not counted as a second source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0368",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS points per game, real band: every season sat between -4.8% and +5.9% of the mean. Used as the band share, rounded up to 0.06.",
+   "value": 0.06,
+   "unit": "ratio",
+   "validFor": "2004-2024 except 2020 (and 2006 for scoring)",
+   "sources": [
+    {
+     "citation": "ESPN college football scores as republished in sportsdataverse-data (github.com/sportsdataverse, release espn_cfb_schedules), FBS-vs-FBS regular-season games 2004-2024; computed by the project",
+     "locator": "scripts/research/drift-variation-fbs.py -> drift-variation-fbs.out.json, pointsPerGameBothTeams relMin/relMax",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-via-sportsdataverse",
+     "primary": false,
+     "value": 0.06
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 FBS drift research: one source. CollegeFootballData and Sports Reference are not reachable (API key; bot check). The project's CFBD-derived file agrees on 2023 (53.38 against 53.40) and differs by 0.5 on 2022, so it is not counted as a second source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0369",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Spread of FBS team win percentage (standard deviation across teams with 8 or more FBS games): mean 0.236, season-to-season standard deviation 0.0095. Outcome proxy only: true talent is not observable.",
+   "value": 0.236,
+   "unit": "ratio",
+   "validFor": "2004-2024 except 2020 (and 2006 for scoring)",
+   "sources": [
+    {
+     "citation": "ESPN college football scores as republished in sportsdataverse-data (github.com/sportsdataverse, release espn_cfb_schedules), FBS-vs-FBS regular-season games 2004-2024; computed by the project",
+     "locator": "scripts/research/drift-variation-fbs.py -> drift-variation-fbs.out.json, teamWinPctSd",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-via-sportsdataverse",
+     "primary": false,
+     "value": 0.236
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 FBS drift research: one source. CollegeFootballData and Sports Reference are not reachable (API key; bot check). The project's CFBD-derived file agrees on 2023 (53.38 against 53.40) and differs by 0.5 on 2022, so it is not counted as a second source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0370",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS team win percentage spread, real drift: the fitted trend is 0.13% of the mean per season; twice its standard error is 0.30%. Used as the largest allowed slope share for college talent-spread series, 0.003. A proxy.",
+   "value": 0.003,
+   "unit": "ratio per season",
+   "validFor": "2004-2024 except 2020 (and 2006 for scoring)",
+   "sources": [
+    {
+     "citation": "ESPN college football scores as republished in sportsdataverse-data (github.com/sportsdataverse, release espn_cfb_schedules), FBS-vs-FBS regular-season games 2004-2024; computed by the project",
+     "locator": "scripts/research/drift-variation-fbs.py -> drift-variation-fbs.out.json, teamWinPctSd slopeShare/twoSEShare",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-via-sportsdataverse",
+     "primary": false,
+     "value": 0.003
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 FBS drift research: one source. CollegeFootballData and Sports Reference are not reachable (API key; bot check). The project's CFBD-derived file agrees on 2023 (53.38 against 53.40) and differs by 0.5 on 2022, so it is not counted as a second source."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0371",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "FBS team win percentage spread, real band: every season sat between -7.7% and +10.0% of the mean. Used as the band share for college talent-spread series, rounded up to 0.10. A proxy.",
+   "value": 0.1,
+   "unit": "ratio",
+   "validFor": "2004-2024 except 2020 (and 2006 for scoring)",
+   "sources": [
+    {
+     "citation": "ESPN college football scores as republished in sportsdataverse-data (github.com/sportsdataverse, release espn_cfb_schedules), FBS-vs-FBS regular-season games 2004-2024; computed by the project",
+     "locator": "scripts/research/drift-variation-fbs.py -> drift-variation-fbs.out.json, teamWinPctSd relMin/relMax",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-via-sportsdataverse",
+     "primary": false,
+     "value": 0.1
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "G-88 FBS drift research: one source. CollegeFootballData and Sports Reference are not reachable (API key; bot check). The project's CFBD-derived file agrees on 2023 (53.38 against 53.40) and differs by 0.5 on 2022, so it is not counted as a second source."
+    }
+   ]
+  }
+ ]
+}

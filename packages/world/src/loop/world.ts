@@ -1,6 +1,6 @@
 // Assembling the live world from the generation steps (X10.2), with its history log.
 import { seedFromHex, seedToHex, type WorldSeed } from '@gm/engine-core';
-import { awards, history } from '@gm/league';
+import { awards, compliance, history } from '@gm/league';
 import { cohorts } from '@gm/people';
 import type { EventTypeDef } from '@gm/schema';
 import type { PersonNameSource, WorldContent } from '../generation/content.ts';
@@ -64,11 +64,12 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
   const fProblems = foundingProblems(setup, content, built, founding, fOpts);
   if (fProblems.length > 0) throw new Error(`founding people are not legal on day one: ${fProblems.slice(0, 5).join('; ')}`);
 
-  // The cohort step emits G-44's types, so they are added here when the caller's registry lacks them.
+  // The cohort step emits G-44's types and the compliance step L8.2.5's, so they are added here when the
+  // caller's registry lacks them.
   const base = input.eventTypes ?? [];
   const baseIds = new Set(base.map((t) => t.id));
   // The hall step emits league awards' honour types; they are added the same way.
-  const given = [...base, ...[...cohorts.COHORT_EVENT_TYPES, ...awards.HONOUR_EVENT_TYPES].filter((t) => !baseIds.has(t.id))];
+  const given = [...base, ...[...cohorts.COHORT_EVENT_TYPES, ...compliance.COMPLIANCE_EVENT_TYPES, ...awards.HONOUR_EVENT_TYPES].filter((t) => !baseIds.has(t.id))];
   const reg = history.buildTypeRegistry([...given, ...worldEventTypes(given.map((t) => t.id))]);
   if (!reg.ok) throw new Error(`event types refused: ${reg.problems.join('; ')}`);
   const people = new Map(founding.people.map((p) => [p.id, p]));
@@ -81,9 +82,9 @@ export function createWorld(input: CreateWorldInput): LiveWorld {
     competitions: built.competitions, conferences: built.conferences, places: built.places, venues: built.venues, teams: built.teams, teamSpans,
     placeOfTeam: new Map(built.placeOfTeam),
     people, status: new Map(founding.people.map((p) => [p.id, 'active' as const])), outOfFootballSince: new Map(),
-    jobs: new Map(founding.jobs.map((j) => [j.id, j])), rosters: founding.rosters,
+    jobs: new Map(founding.jobs.map((j) => [j.id, j])), offLadder: new Map(founding.offLadder.map((s) => [s.seatId, s])), rosters: founding.rosters,
     cultures: new Map(founding.cultures.map((c) => [c.teamId, c])), staffContractEndYear: founding.staffContractEndYear,
-    tiers: new Map(), pendingTiers: new Map(), pools: new Map(),
+    tiers: new Map(), pendingTiers: new Map(), pools: new Map(), systemState: new Map(),
     log: new history.EventLog(logOptions), logOptions,
     nextIds: { ...built.nextIds, person: founding.nextIds.person, job: founding.nextIds.job, game: 1 },
     results: [], seasons: [], staffSeasons: [], rosterSeasons: new Map(), hall: emptyHallState(),

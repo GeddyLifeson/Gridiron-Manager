@@ -123,7 +123,8 @@ class ProbeContext implements Canvas2DLike {
 const colours = resolveTeamColours({ primary: '#7a1f1f', alternate: '#e0e0e0' }, { primary: '#1f3a7a', alternate: '#f0f0f0' });
 
 /** Plays `events` on the fixture play at `speed`, 60 frames a second, and checks every event spot. */
-function fieldFlashes(theme: (typeof THEME_IDS)[number], speed: number, events?: FilmEvent[]) {
+/** `limiterSpeed` is the speed the renderer is told (its flash limiter works in display time); default the real one. */
+function fieldFlashes(theme: (typeof THEME_IDS)[number], speed: number, events?: FilmEvent[], limiterSpeed = speed) {
   const base = fixturePlay();
   const play = events ? { ...base, events } : base;
   // The cue colour moved by one unit of blue so the probe can tell cues (and contact bars) from yard
@@ -131,7 +132,7 @@ function fieldFlashes(theme: (typeof THEME_IDS)[number], speed: number, events?:
   const base0 = fieldPalette(theme);
   const n = parseInt(base0.cue.slice(1), 16);
   const pal = { ...base0, cue: `#${((n & 0xff) > 0 ? n - 1 : n + 1).toString(16).padStart(6, '0')}` };
-  const r = new FieldRenderer(play, PRO, { mode: 'film', orientation: 'offenseUp', zoom: 'wide', userSide: 0, colours, palette: pal });
+  const r = new FieldRenderer(play, PRO, { mode: 'film', orientation: 'offenseUp', zoom: 'wide', userSide: 0, colours, palette: pal, speed: limiterSpeed });
   r.resize(1280, 720, 0);
   const f = r.frames;
   const tps = play.ticksPerSecond;
@@ -166,14 +167,23 @@ describe('the field view never flashes more than three times a second (measured)
 });
 
 describe('the field probe catches a strobe (so the measured test above can fail)', () => {
-  it('fumble flashes at one spot every 0.5 s of engine time, at double speed, fail', () => {
-    const base = fixturePlay();
-    // A spot well behind the line, away from the contact bars of the engaged linemen.
-    const snap = base.events[0]!;
+  // A spot well behind the line, away from the contact bars of the engaged linemen.
+  const strobeAt = () => {
+    const snap = fixturePlay().events[0]!;
     const spot = { x: snap.x - 20, y: snap.y + 15 };
     const strobe: FilmEvent[] = [];
     for (let t = 0; t < 30; t += 5) strobe.push({ kind: 'fumble', tick: t, x: spot.x, y: spot.y });
-    const reports = fieldFlashes('light', 2, strobe);
+    return strobe;
+  };
+  it('fumble rings at one spot every 0.5 s of engine time, at double speed, fail when the limiter is fooled', () => {
+    // The renderer is told quarter speed while playing at double, so its limiter lets every onset through:
+    // the probe must see the strobe.
+    const reports = fieldFlashes('light', 2, strobeAt(), 0.25);
     expect(reports.some((rep) => !rep.ok)).toBe(true);
+  });
+  it('the same strobe passes once the renderer knows the speed (PV-04 runs field cues through the limiter)', () => {
+    const reports = fieldFlashes('light', 2, strobeAt());
+    expect(reports.every((rep) => rep.ok)).toBe(true);
+    expect(reports.some((rep) => rep.changes.length > 0)).toBe(true);
   });
 });

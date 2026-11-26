@@ -1381,16 +1381,31 @@
      "primary": false,
      "quote": "Cap Maximum 2021",
      "value": 182500000
+    },
+    {
+     "citation": "NFL Football Operations, NFL Salary Cap (https://operations.nfl.com/calendar-events/nfl-free-agency/nfl-salary-cap)",
+     "locator": "NFL Salary Cap (By Season) table, row 2021",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "2021 $182.5M",
+     "value": 182500000
     }
    ],
    "usedBy": [],
    "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1412,16 +1427,31 @@
      "primary": false,
      "quote": "Cap Maximum 2022",
      "value": 208200000
+    },
+    {
+     "citation": "NFL Football Operations, NFL Salary Cap (https://operations.nfl.com/calendar-events/nfl-free-agency/nfl-salary-cap)",
+     "locator": "NFL Salary Cap (By Season) table, row 2022",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "2022 $208.2M",
+     "value": 208200000
     }
    ],
    "usedBy": [],
    "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1443,16 +1473,31 @@
      "primary": false,
      "quote": "Cap Maximum 2023",
      "value": 224800000
+    },
+    {
+     "citation": "NFL Football Operations, NFL Salary Cap (https://operations.nfl.com/calendar-events/nfl-free-agency/nfl-salary-cap)",
+     "locator": "NFL Salary Cap (By Season) table, row 2023",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "2023 $224.8M",
+     "value": 224800000
     }
    ],
    "usedBy": [],
    "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },
@@ -1474,16 +1519,31 @@
      "primary": false,
      "quote": "Cap Maximum 2024",
      "value": 255400000
+    },
+    {
+     "citation": "NFL Football Operations, NFL Salary Cap (https://operations.nfl.com/calendar-events/nfl-free-agency/nfl-salary-cap)",
+     "locator": "NFL Salary Cap (By Season) table, row 2024",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "2024 $255.4M",
+     "value": 255400000
     }
    ],
    "usedBy": [],
    "notes": "Value read from the Spotrac table by the web fetch (table row, not a sentence); 1 of 3 until a second source is read.",
-   "status": "1 of 3",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "G-10 blocked-facts pass: sources read in the PC browser and added (nfl-league-office)."
     }
    ]
   },

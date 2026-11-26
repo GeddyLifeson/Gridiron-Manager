@@ -205,12 +205,14 @@ export function worldHash(world: LiveWorld, deep = true): string {
     log: world.log.seasonHashes(), nextIds: world.nextIds, seasons: world.seasons,
     status: [...world.status].sort((a, b) => a[0] - b[0]), tiers: [...world.tiers].sort((a, b) => a[0] - b[0]),
     rosters: [...world.rosters].sort((a, b) => a[0] - b[0]), pools: [...world.pools].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
+    systemState: [...world.systemState].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
     hall: world.hall.members,
   };
   let h = history.chainHash(history.EMPTY_SEASON_HASH, head);
   if (deep) {
     for (const id of [...world.people.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.people.get(id));
     for (const id of [...world.jobs.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.jobs.get(id));
+    for (const id of [...world.offLadder.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.offLadder.get(id));
     for (const t of world.teams) h = history.chainHash(h, t);
     for (const id of [...world.cultures.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.cultures.get(id));
   }

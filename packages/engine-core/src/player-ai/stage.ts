@@ -16,7 +16,7 @@ import {
   BEHAVIORS, MOVE_MODES, SLOTS_PER_TEAM, SLOT_COUNT, TICK_S, foulKey, roundSimS,
   type Behavior, type CompiledAssignment, type Intent, type MoveMode, type PerceivedEntity, type PerceivedView, type RuleKeyManifest, type TickWorld,
 } from '@gm/schema';
-import { dCos, dSin, PI } from '../dmath.ts';
+import { dCos, dSin, dSqrt, PI } from '../dmath.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import {
   ballInBackfield, backfieldDecoy, beatenBlocker, beatenDeep, carrierWithin, distTo, freeRusher, inZoneHole, isLastLine, nearestReceiver, newCue,
@@ -65,6 +65,12 @@ export interface PlayerAiOptions {
   readonly gaze?: { atBall(slot: number): void } | null;
   /** J3.6.1: a veteran calls his adjustment to the teammates who depend on him (K1.7.5 rule 3). */
   readonly call?: ((world: TickWorld, senderSlot: number, listeners: readonly number[], call: string) => void) | null;
+  /**
+   * J3.5.1: where this player judges a pass in the air will come down, once he has located it. Writes
+   * the play-frame point to `out[0]`, `out[1]` and returns true; false while he has not located it.
+   * The perception module's `landingEstimate`. Without it nobody goes to a ball in the air.
+   */
+  readonly landing?: ((world: TickWorld, slot: number, out: Float64Array) => boolean) | null;
   /** J4.4.1 acceptance: a shuffled evaluation order. Never set in a game. */
   readonly test?: { readonly order?: readonly number[] };
 }
@@ -389,6 +395,37 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
     else if (prim === P_STAND) { hasT[s] = 0; tvx[s] = 0; tvy[s] = 0; mode[s] = RUN; arr[s] = ARRIVE; }
   }
 
+  /**
+   * J3.5.1 "every break on the ball and every adjustment by a receiver". A man who has located a pass
+   * in the air goes to where he judges it will come down: a defender breaks on it from wherever he is;
+   * a receiver on a route leaves the route for it only when he can be there as it arrives. He runs
+   * through the spot when the ball leads him and settles under it when it is short, judged from the
+   * ball he sees and his own legs. The estimate carries his tracking error (J3.5.1), so a
+   * poor tracker runs to the wrong spot early in the flight. Returns true when he is playing the ball.
+   */
+  const land = new Float64Array(2);
+  function playBall(world: TickWorld, s: number, view: PerceivedView): boolean {
+    const q = p!, landing = options.landing;
+    if (!landing || view.ballKind() !== 'passInFlight' || s === qbSlot) return false;
+    const offense = s < SLOTS_PER_TEAM;
+    if (offense && beh[s] !== 'route') return false;
+    if (!landing(world, s, land)) return false;
+    const b = view.ball();
+    if (b === null) return false;
+    const lx = land[0]!, ly = land[1]!, d = distTo(view, lx, ly);
+    const bx = lx - b.px, by = ly - b.py, ballSpeed = dSqrt(b.velPx * b.velPx + b.velPy * b.velPy);
+    const left = ballSpeed > 0 ? dSqrt(bx * bx + by * by) / ballSpeed : 0;
+    const vMax = world.slots[s]!.movement.vMaxYps;
+    // A receiver stays on his route when the ball is not his to get.
+    if (offense && d > vMax * left + q.ballReachYd) return false;
+    aim(s, lx, ly, true);
+    faceBall(s, view);
+    if (d <= q.ballSettleYd) { arr[s] = ARRIVE; return true; }
+    // In stride when the ball leads him; with time to spare he gets under it and waits instead of running past the spot.
+    if (left > 0 && d / left < q.ballStrideShare * vMax) arr[s] = ARRIVE;
+    return true;
+  }
+
   function learned(world: TickWorld, s: number, other: number, sp: SlotPlay): number {
     if (memory === null || other < 0) return 0;
     void sp;
@@ -601,6 +638,7 @@ export function createPlayerAi(options: PlayerAiOptions): PlayerAi {
     if (act[s]! >= 0 && released[s] === 0) applyAct(s, view);
     const foul = fouls[s] ?? null;
     if (foul !== null && live && foul.targetSlot >= 0) { const e = view.entity(foul.targetSlot); if (e !== null) aim(s, e.px, e.py, true); }
+    if (live && !engaged && players.hasBall[s] !== 1) playBall(world, s, view);
     if (live && s < SLOTS_PER_TEAM && beh[s] === 'route' && released[s] === 0 && view.ballKind() === 'held') improvise(world, s, view, sp);
     if (live) accidents(world, s, view, sp);
 

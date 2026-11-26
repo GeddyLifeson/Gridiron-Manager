@@ -95,10 +95,12 @@ export interface StripProps { model: StripModel; look: StripLook }
 
 export function Strip({ model: m, look }: StripProps): ReactNode {
   const bg = look === 'classic' ? eraVar('lampPanel') : v('surface.panel');
+  // Ink for anything that inherits (the screen-reader summary): the lamp colour on the dark lamp panel.
+  const ink = look === 'classic' ? eraVar('lampOn') : v('text.ink');
   const pc = m.playClock;
   return (
     <div role="region" aria-label="Score board" data-look={look} data-region="strip"
-      style={{ background: bg, display: 'flex', flexDirection: 'column', gap: 'var(--gm-space)', padding: 'var(--gm-space) calc(var(--gm-space) * 3)', whiteSpace: 'nowrap', overflow: 'hidden', fontSize: 'var(--gm-type-md)' }}>
+      style={{ background: bg, color: ink, display: 'flex', flexDirection: 'column', gap: 'var(--gm-space)', padding: 'var(--gm-space) calc(var(--gm-space) * 3)', whiteSpace: 'nowrap', overflow: 'hidden', fontSize: 'var(--gm-type-md)' }}>
       <p style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', margin: 0 }} aria-live="off">{m.summary}</p>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap }}>
         <TeamBlock t={m.away} look={look} mirror={false} />

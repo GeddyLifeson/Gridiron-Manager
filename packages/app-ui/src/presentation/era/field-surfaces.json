@@ -1,0 +1,13 @@
+{
+  "$comment": "PV-18: venue surface colours for the Classic theme's field (plan 2.1: flat grass or period artificial-turf colour by venue). Laid over field.turf, field.endZone and field.surround.",
+  "grass": {
+    "turf": "#2f5d25",
+    "endZone": "#2a5421",
+    "surround": "#244a1c"
+  },
+  "artificial": {
+    "turf": "#1f6b3e",
+    "endZone": "#1c6038",
+    "surround": "#185231"
+  }
+}

@@ -3,7 +3,7 @@
 // ball, the official's flag and the cues of visible events. It has no access to engine truth beyond
 // the trajectory and the filtered event list, so it cannot leak it (I9.3.2, O2.3.3).
 import { Camera, type CameraContext, type FieldBox } from './camera.ts';
-import { buildCues, activeCues, type Cue } from './cues.ts';
+import { buildCues, activeCues, limitFlashes, switchedOn, cueSwitch, type Cue, type CueSwitches, type FieldContact, type FieldKick, type ContactTier } from './cues.ts';
 import { decodeTrajectory, FILM_MOVE_MODES, type FilmFrames } from './format.ts';
 import { buildMarkings, PRO_MARKINGS, type FieldMarkings, type MarkingSet } from './markings.ts';
 import { fillBlockText, blockWidth } from './blockFont.ts';
@@ -64,6 +64,18 @@ export interface RenderOptions {
   readonly cosmetic?: CosmeticDraw;
   /** Draws rain and snow particles; the wet tint stays. Off in the high-contrast theme. Default on. */
   readonly weatherParticles?: boolean;
+  /**
+   * The feed's contact cues for the play (PV-00). When given (even empty), contact bars come only from
+   * these, weighted by the engine's tier; when absent (the feed lists `contactTier` missing) the bar
+   * falls back to two engaged markers touching, drawn at the lightest weight.
+   */
+  readonly contacts?: readonly FieldContact[];
+  /** The feed's kick and post-hit cues for the play (PV-00 `kick`, `postHit`). Absent draws neither. */
+  readonly kicks?: readonly FieldKick[];
+  /** Per-cue settings switches by cue-table key (MB-17). Missing keys are on. */
+  readonly cueSwitches?: CueSwitches;
+  /** Playback speed, for the flash limiter (display time). Default 1; see `setSpeed`. */
+  readonly speed?: number;
 }
 
 /** A team name in an end zone, in that team's colour. */
@@ -88,7 +100,10 @@ export class FieldRenderer {
   readonly frames: FilmFrames;
   readonly camera = new Camera();
   readonly sample: FrameSample;
-  private readonly cues: Cue[];
+  private readonly allCues: Cue[];
+  private cues: Cue[] = [];
+  private droppedCues: Cue[] = [];
+  private bars: { tier: ContactTier | 0; widthPx: number }[] = [];
   private readonly cueBuf: Cue[] = [];
   private readonly markings: FieldMarkings;
   private readonly looks: SlotLook[];
@@ -118,7 +133,8 @@ export class FieldRenderer {
     if (play.slots.length !== this.frames.slotCount) throw new Error(`play ${play.playId} lists ${play.slots.length} slots, the trajectory has ${this.frames.slotCount}`);
     this.sample = newSample(this.frames.slotCount, this.frames.officialCount);
     this.labelLift = new Float64Array(this.frames.slotCount);
-    this.cues = buildCues(play.events, play.ticksPerSecond);
+    this.allCues = buildCues(play.events, play.ticksPerSecond, opts.contacts ?? [], opts.kicks ?? []);
+    this.applyLimits(opts.speed ?? 1);
     this.markings = buildMarkings(geometry, opts.markings ?? PRO_MARKINGS);
     const table = opts.markers ?? DEFAULT_MARKERS;
     this.looks = [...play.slots].sort((a, b) => a.slot - b.slot).map((s) => {
@@ -127,7 +143,7 @@ export class FieldRenderer {
       return { style, group, offense, jersey: String(s.jersey), letter: positionLetter(s.role), side: s.side };
     });
     this.presnapBox = this.computePresnapBox();
-    for (const c of this.cues) {
+    for (const c of this.allCues) {
       const target = c.event.slots?.[1];
       if (c.shape === 'passLine' && target !== undefined) {
         const i = (Math.min(Math.max(c.event.tick - this.frames.firstTick, 0), this.frames.tickCount - 1)) * this.frames.slotCount + target;
@@ -186,6 +202,18 @@ export class FieldRenderer {
     const wx = this.sample.x[slot]!, wy = this.sample.y[slot]!;
     return { x: this.camera.sx(wx, wy), y: this.camera.sy(wx, wy) };
   }
+  /** Switches and the flash limiter at a playback speed (call when the speed changes). */
+  setSpeed(speed: number): void { this.applyLimits(speed); }
+
+  private applyLimits(speed: number): void {
+    const { kept, dropped } = limitFlashes(switchedOn(this.allCues, this.opts.cueSwitches), this.play.ticksPerSecond, speed);
+    this.cues = kept; this.droppedCues = dropped;
+  }
+
+  /** Test hook: cues the flash limiter refused at the current speed. */
+  cuesDropped(): readonly Cue[] { return this.droppedCues; }
+  /** Test hook: contact bars drawn by the last draw, with tier (0 for the untiered fallback) and width. */
+  contactBars(): readonly { tier: ContactTier | 0; widthPx: number }[] { return this.bars; }
   /** Test hook: cues on screen now. */
   cuesShown(): Cue[] { return this.cueBuf.slice(0, activeCues(this.cues, this.sample.tick, this.cueBuf)); }
   /** Test hook: the dead-ball spot and gained line, when shown at the current tick (MB-3). */
@@ -403,11 +431,48 @@ export class FieldRenderer {
     }
   }
 
-  /** Contact bar between two engaged opponents whose markers touch (O2.3.2). Both must be reported engaged. */
+  /** Bar weight for a contact tier (MB-2): heavier hits draw a thicker bar; tier 0 is the untiered fallback. */
+  private barWidth(tier: ContactTier | 0, r: number): number {
+    return Math.max(1 + tier, r * param('contactBarPerTier') * Math.max(1, tier));
+  }
+
+  /** Contact bars: from the feed's tiered contacts when the feed has them, else from engaged markers. */
   private drawEngagements(ctx: Canvas2DLike, r: number): void {
+    this.bars = [];
+    if (this.opts.cueSwitches?.[cueSwitch('contact', 1)] === false) return;
+    if (this.opts.contacts) { this.drawContactBars(ctx, r); return; }
+    this.drawEngagedFallback(ctx, r);
+  }
+
+  private drawContactBars(ctx: Canvas2DLike, r: number): void {
+    const n = activeCues(this.cues, this.sample.tick, this.cueBuf);
+    const s = this.sample, cam = this.camera;
+    ctx.strokeStyle = this.pal.cue;
+    for (let k = 0; k < n; k++) {
+      const c = this.cueBuf[k]!;
+      if (c.shape !== 'contact') continue;
+      const e = c.event, tier = c.tier!;
+      const w = this.barWidth(tier, r);
+      ctx.lineWidth = w;
+      ctx.beginPath();
+      const [a, b] = e.slots ?? [];
+      if (a !== undefined && b !== undefined && a < s.x.length && b < s.x.length) {
+        ctx.moveTo(cam.sx(s.x[a]!, s.y[a]!), cam.sy(s.x[a]!, s.y[a]!)); ctx.lineTo(cam.sx(s.x[b]!, s.y[b]!), cam.sy(s.x[b]!, s.y[b]!));
+      } else {
+        // One body named: a short bar across the contact spot.
+        const x = cam.sx(e.x, e.y), y = cam.sy(e.x, e.y);
+        ctx.moveTo(x - r, y); ctx.lineTo(x + r, y);
+      }
+      ctx.stroke();
+      this.bars.push({ tier, widthPx: w });
+    }
+  }
+
+  /** Contact bar between two engaged opponents whose markers touch (O2.3.2). Both must be reported engaged. */
+  private drawEngagedFallback(ctx: Canvas2DLike, r: number): void {
     const s = this.sample, cam = this.camera, reach = param('engageContactYd');
     ctx.strokeStyle = this.pal.cue;
-    ctx.lineWidth = Math.max(2, r * 0.5);
+    ctx.lineWidth = this.barWidth(0, r);
     ctx.beginPath();
     for (let i = 0; i < this.looks.length; i++) {
       if (s.state[i] !== ENGAGED || !this.looks[i]!.offense) continue;
@@ -417,7 +482,10 @@ export class FieldRenderer {
         const dx = s.x[i]! - s.x[j]!, dy = s.y[i]! - s.y[j]!, dd = dx * dx + dy * dy;
         if (dd <= bestD) { bestD = dd; best = j; }
       }
-      if (best >= 0) { ctx.moveTo(cam.sx(s.x[i]!, s.y[i]!), cam.sy(s.x[i]!, s.y[i]!)); ctx.lineTo(cam.sx(s.x[best]!, s.y[best]!), cam.sy(s.x[best]!, s.y[best]!)); }
+      if (best >= 0) {
+        ctx.moveTo(cam.sx(s.x[i]!, s.y[i]!), cam.sy(s.x[i]!, s.y[i]!)); ctx.lineTo(cam.sx(s.x[best]!, s.y[best]!), cam.sy(s.x[best]!, s.y[best]!));
+        this.bars.push({ tier: 0, widthPx: ctx.lineWidth });
+      }
     }
     ctx.stroke();
   }
@@ -528,7 +596,6 @@ export class FieldRenderer {
     for (let i = 0; i < n; i++) {
       const c = this.cueBuf[i]!, e = c.event;
       const x = cam.sx(e.x, e.y), y = cam.sy(e.x, e.y);
-      const fade = 1 - (this.sample.tick - c.fromTick) / (c.toTick - c.fromTick);
       ctx.lineWidth = Math.max(1.5, r * 0.25);
       switch (c.shape) {
         case 'passLine': {
@@ -543,9 +610,14 @@ export class FieldRenderer {
         case 'cross':
           ctx.strokeStyle = this.pal.cue; ctx.beginPath();
           ctx.moveTo(x - r, y - r); ctx.lineTo(x + r, y + r); ctx.moveTo(x + r, y - r); ctx.lineTo(x - r, y + r); ctx.stroke(); break;
-        case 'flash':
-          ctx.globalAlpha = Math.max(0, fade); ctx.fillStyle = this.pal.cue;
-          ctx.beginPath(); ctx.arc(x, y, r * 2, 0, TWO_PI); ctx.fill(); ctx.globalAlpha = 1; break;
+        case 'openRing':
+          // Dropped pass: the catch ring left open, so it never reads as a catch in greyscale.
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.arc(x, y, r * 1.8, 0.25 * Math.PI, 1.75 * Math.PI); ctx.stroke(); break;
+        case 'looseRing':
+          // Loose ball (A-4): a dashed ring at the fumble spot, steady for the cue's life (no flash).
+          ctx.strokeStyle = this.pal.cue; ctx.setLineDash([3, 3]);
+          ctx.beginPath(); ctx.arc(x, y, r * 2, 0, TWO_PI); ctx.stroke(); ctx.setLineDash([]); break;
+        case 'contact': break; // drawn under the markers by drawEngagements
         case 'flag':
           // The flag at its spot, with no name until the announcement (I7.1.2).
           ctx.fillStyle = this.pal.flag; ctx.beginPath(); ctx.moveTo(x, y - r); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r); ctx.lineTo(x - r, y); ctx.closePath(); ctx.fill(); break;
@@ -554,6 +626,15 @@ export class FieldRenderer {
           ctx.beginPath(); ctx.arc(x, y, r * 2.8, 0, TWO_PI); ctx.stroke(); break;
         case 'boundary':
           ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.moveTo(x - r * 1.5, y); ctx.lineTo(x + r * 1.5, y); ctx.stroke(); break;
+        case 'kickMark':
+          // The kick spot: a small ring with a short tee line under it, steady for the cue's life.
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath(); ctx.arc(x, y, r * 1.2, 0, TWO_PI); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(x - r, y + r * 1.8); ctx.lineTo(x + r, y + r * 1.8); ctx.stroke(); break;
+        case 'postMark':
+          // The ball struck the goal: a double tick across the spot, never a flash (O5.5.2).
+          ctx.strokeStyle = this.pal.cue; ctx.beginPath();
+          ctx.moveTo(x - r * 1.5, y - r * 0.6); ctx.lineTo(x + r * 1.5, y - r * 0.6);
+          ctx.moveTo(x - r * 1.5, y + r * 0.6); ctx.lineTo(x + r * 1.5, y + r * 0.6); ctx.stroke(); break;
       }
     }
   }

@@ -10,19 +10,27 @@
 //   Free kick (kickoff, safety kick, onside kick, fair-catch kick): there is no snap; the ball is
 //     kicked at tick 0 from the spot.
 //
-// Draws: stream `ball` of the kick's own flight index, operation first, then the kick (J13.2.1).
+//   A play from a kicking look (F12.7.1, `PlaySetup.kickLook`): an offensive call snapped from a punt or
+//     place-kick formation, a fake. Nobody kicks and this operation owns nobody. Its one job is the long
+//     snap: the pre-snap stage put the ball in the air toward the man the play names (J9.1.2), and here
+//     he takes it when it arrives, or it goes by him on a snap drawn loose. From then on he is a passer
+//     (the quarterback module, if the play gave him a procedure) or a runner (the carrier module).
+//
+// Draws: stream `ball` of the kick's own flight index, operation first, then the kick (J13.2.1). A
+// play from a kicking look draws nothing here.
 //
 // Not built, and said so in the handoff: the kick block contest (J9.4.3), the kicker's approach as
-// movement (the foot is taken to be at the ball on time), the fake, a hurried "mayday" unit, the
-// called landing point of a kickoff (a parameter stands in for the call), and the punt type beyond
-// distance against directional.
+// movement (the foot is taken to be at the ball on time), a hurried "mayday" unit, the called landing
+// point of a kickoff (a parameter stands in for the call), the punt type beyond distance against
+// directional, and the I4.6.1 trigger read (the protector or holder checking the look and choosing
+// between the fake and the kick: a called fake is always run).
 import {
   SLOTS_PER_TEAM, SLOT_COUNT, TICK_S, issToZ, roundSimS, roundYd,
   type Assignment, type KickKind, type PlayInput, type TickWorld,
 } from '@gm/schema';
 import { dSqrt } from '../dmath.ts';
 import {
-  ballParams, beginKickFlight, kickoffLaunch, launchKick, puntLaunch, puntOperationTimeS, resolveKickoff, resolveOnside, resolveOperation,
+  ballParams, beginKickFlight, beginLoose, kickoffLaunch, launchKick, puntLaunch, puntOperationTimeS, resolveKickoff, resolveOnside, resolveOperation,
   resolvePlaceKick, resolvePunt, type KickLaunch, type Operation, type PlaceKick,
 } from '../ball/index.ts';
 import type { Perception } from '../perception/index.ts';
@@ -30,6 +38,7 @@ import type { SnapResult } from '../presnap/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import { declareDead } from './finish.ts';
 import { tickResolverParams } from './params.ts';
+import type { KickLook } from './ports.ts';
 
 export const FREE_KICKS: readonly KickKind[] = ['kickoff', 'onside_kick', 'safety_kick', 'fair_catch_kick'];
 export function isFreeKick(input: PlayInput): boolean {
@@ -40,7 +49,7 @@ export function isFreeKick(input: PlayInput): boolean {
 export interface KickOp {
   readonly stage: PlayStage;
   /** Call before the loop's `begin`. `assignments` are the kicking team's, team-slot order; `pressure` is D4's pressure of the moment. */
-  setPlay(input: PlayInput, assignments: readonly Assignment[], pressure: number, snap: () => SnapResult | null): void;
+  setPlay(input: PlayInput, assignments: readonly Assignment[], pressure: number, snap: () => SnapResult | null, look?: KickLook | null, kickAs?: KickKind | null): void;
   /** The slot this operation still owns (punter before the punt, holder before the place kick), or -1. */
   owner(): number;
 }
@@ -53,6 +62,7 @@ export function createKickOp(perception: Perception): KickOp {
   let snapOf: () => SnapResult | null = () => null;
   let started = false, kicked = false, op: Operation | null = null, opTimeS = 0;
   let result: { t: number; x: number; y: number; pk: PlaceKick } | null = null;
+  let look: KickLook | null = null, lookNoted = false, snapDone = false;
 
   const z = (w: TickWorld, slot: number, attr: string): number => issToZ(slot >= 0 ? (w.slots[slot]!.player.attributes[attr] ?? 50) : 50);
   const aimLat = (w: TickWorld): number => {
@@ -137,10 +147,42 @@ export function createKickOp(perception: Perception): KickOp {
     if (d.shank) w.emit({ type: 'detail', t: roundSimS(w.tick * TICK_S), code: 'kickOp.shank', playerIds: [w.slots[kicker]!.playerId], spot: null, value: null });
   };
 
+  /** A play from a kicking look: say so once, then complete the long snap when the ball has reached the man it was snapped to. */
+  const longSnap = (w: TickWorld): void => {
+    if (!lookNoted) {
+      lookNoted = true;
+      w.emit({ type: 'detail', t: 0, code: `kickOp.look.${look!.kind}`, playerIds: [], spot: null, value: null });
+    }
+    if (snapDone) return;
+    const snap = snapOf();
+    // No snap, or one that was in his hands at tick 0: nothing to complete.
+    if (snap === null || !(snap.arriveS > 0)) { snapDone = true; return; }
+    const b = w.ball;
+    // Something else happened to the ball on its way: it is no longer the snap.
+    if (b.kind !== 'snapInFlight') { snapDone = true; return; }
+    if ((w.tick + 1) * TICK_S + 1e-9 < snap.arriveS) return;
+    snapDone = true;
+    const r = snap.receiverSlot, info = w.slots[r]!, pl = w.players, t = roundSimS(snap.arriveS);
+    if (snap.quality === 'loose') {
+      // J5.6.2 drew it loose: it goes by him with the pace it has, live on the ground behind the formation.
+      w.emit({
+        type: 'fumble', t, marginYd: null, marginS: null, visibility: 'crowded', kind: 'bad_snap', playerId: info.playerId, side: info.side, forcedById: null,
+        spot: { x: roundYd(b.x), y: roundYd(b.y) },
+      });
+      beginLoose(w, -1, { x: b.x, y: b.y, h: b.heightYd, vx: b.velX, vy: b.velY, vh: b.velHeight }, ballParams(w.params));
+      return;
+    }
+    b.kind = 'held'; b.carrierSlot = r; b.lastPossessorSlot = r; b.heightYd = 0; b.velHeight = 0; b.passForward = null; b.kickKind = null;
+    b.x = pl.posX[r]!; b.y = pl.posY[r]!; b.velX = 0; b.velY = 0;
+    pl.hasBall[r] = 1;
+    w.emit({ type: 'possession', t, side: info.side, playerId: info.playerId, spot: { x: roundYd(b.x), y: roundYd(b.y) }, how: 'snap' });
+  };
+
   const stage: PlayStage = {
     name: 'interact',
-    begin(): void { started = false; kicked = false; op = null; opTimeS = 0; result = null; stream = null; },
+    begin(): void { started = false; kicked = false; op = null; opTimeS = 0; result = null; stream = null; lookNoted = false; snapDone = false; },
     run(w: TickWorld): void {
+      if (look !== null) { if (w.tick >= 0 && w.deadAtTick === null) longSnap(w); return; }
       if (kind === null || w.tick < 0 || w.deadAtTick !== null) return;
       if (!started) start(w);
       if (!kicked && w.tick * TICK_S + 1e-9 >= opTimeS) strike(w);
@@ -161,9 +203,11 @@ export function createKickOp(perception: Perception): KickOp {
       if (kind === null || kicked || FREE_KICKS.includes(kind)) return -1;
       return kind === 'punt' ? kicker : holder;
     },
-    setPlay(input, assignments, pressureOfMoment, snap) {
+    setPlay(input, assignments, pressureOfMoment, snap, kickLook = null, kickAs = null) {
       const c = input.calls.snapping;
-      kind = c.unit === 'kick' ? c.kickKind : null;
+      look = kickLook;
+      // A checked fake that became the kick (I4.6.1) is still an offensive call: the kick is the look's, aimed straight.
+      kind = c.unit === 'kick' ? c.kickKind : kickAs;
       aim = c.unit === 'kick' ? c.direction : null;
       const find = (type: string): number => assignments.findIndex((a) => a.behavior.type === type);
       kicker = find('kicker'); holder = find('holder'); snapper = find('snapper');
