@@ -5,7 +5,7 @@ import { FactFile, RuleKeyDef, RuleSetFile, computeStatus, ruleStatusShippable, 
 import { validateRuleSetFile } from '../../src/index.ts';
 
 const read = (p: string) => JSON.parse(readFileSync(new URL(`../../../../${p}`, import.meta.url), 'utf8'));
-const FILES = ['league', 'cap', 'college', 'injury'];
+const FILES = ['league', 'cap', 'college', 'college-keys', 'injury'];
 const rows: FactRow[] = FILES.flatMap((f) => FactFile.parse(read(`facts/${f}.json`)).rows);
 const byId = new Map(rows.map((r) => [r.id, r]));
 
@@ -19,6 +19,9 @@ const TEXTS: Record<string, string[]> = {
   'nfl-operations--draft-rules.txt': ['/mnt/project-files/research/glossary/sources/nfl-operations--draft-rules.txt'],
   'nflpa--offseason-rules.txt': ['/mnt/project-files/research/glossary/sources/nflpa--offseason-rules.txt'],
   'ncaa--age-based-eligibility.txt': ['/mnt/project-files/research/glossary/sources/ncaa--age-based-eligibility.txt'],
+  'wikipedia--redshirt-college-sports.txt': ['/mnt/project-files/research/glossary/sources/wikipedia--redshirt-college-sports.txt'],
+  'espn--transfer-portal-explained.txt': ['/mnt/project-files/research/glossary/sources/espn--transfer-portal-explained.txt'],
+  'si--transfer-portal-rules.txt': ['/mnt/project-files/research/glossary/sources/si--transfer-portal-rules.txt'],
   'nfl-health-safety--concussion-protocol.txt': ['/mnt/project-files/research/glossary/sources/nfl-health-safety--concussion-protocol.txt'],
   'nbcsports--concussion-protocol-explained.txt': ['/mnt/project-files/research/glossary/sources/nbcsports--concussion-protocol-explained.txt'],
   'clevelandclinic--high-ankle-sprain.txt': ['/mnt/project-files/research/glossary/sources/clevelandclinic--high-ankle-sprain.txt'],

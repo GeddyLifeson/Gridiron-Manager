@@ -145,6 +145,244 @@
    "unit": "wins",
    "factId": "F-college-0023",
    "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "eligibility.age_cutoff_month",
+   "value": 9,
+   "unit": "month",
+   "factId": "F-college-keys-0001"
+  },
+  {
+   "key": "eligibility.age_cutoff_day",
+   "value": 1,
+   "unit": "day",
+   "factId": "F-college-keys-0002"
+  },
+  {
+   "key": "eligibility.age_model_first_entry_year",
+   "value": 2027,
+   "unit": "season_year",
+   "factId": "F-college-keys-0003"
+  },
+  {
+   "key": "eligibility.transition_first_season",
+   "value": 2026,
+   "unit": "season_year",
+   "factId": "F-college-keys-0004"
+  },
+  {
+   "key": "eligibility.seasons_of_competition",
+   "value": 4,
+   "unit": "seasons",
+   "factId": "F-college-keys-0005",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "eligibility.seasons_clock_years",
+   "value": 5,
+   "unit": "years",
+   "factId": "F-college-keys-0006"
+  },
+  {
+   "key": "eligibility.redshirt_max_games",
+   "value": 4,
+   "unit": "games",
+   "factId": "F-college-keys-0007",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "eligibility.postseason_counts",
+   "value": false,
+   "factId": "F-college-keys-0008",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "eligibility.juco_seasons_count",
+   "value": true,
+   "factId": "F-college-keys-0009",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "academic.full_time_hours",
+   "value": 12,
+   "unit": "credit_hours",
+   "factId": "F-college-keys-0010"
+  },
+  {
+   "key": "academic.term_min_hours",
+   "value": 6,
+   "unit": "credit_hours",
+   "factId": "F-college-keys-0011"
+  },
+  {
+   "key": "academic.year_min_hours",
+   "value": 18,
+   "unit": "credit_hours",
+   "factId": "F-college-keys-0012"
+  },
+  {
+   "key": "academic.first_year_min_hours",
+   "value": 24,
+   "unit": "credit_hours",
+   "factId": "F-college-keys-0013",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "academic.fall_min_hours",
+   "value": 9,
+   "unit": "credit_hours",
+   "factId": "F-college-keys-0014"
+  },
+  {
+   "key": "academic.fall_rule_games",
+   "value": 4,
+   "unit": "games",
+   "factId": "F-college-keys-0015",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "academic.progress_pct_year3",
+   "value": 40,
+   "unit": "percent",
+   "factId": "F-college-keys-0016"
+  },
+  {
+   "key": "academic.progress_pct_year4",
+   "value": 60,
+   "unit": "percent",
+   "factId": "F-college-keys-0017"
+  },
+  {
+   "key": "academic.progress_pct_year5",
+   "value": 80,
+   "unit": "percent",
+   "factId": "F-college-keys-0018"
+  },
+  {
+   "key": "academic.gpa_year2",
+   "value": 1.8,
+   "unit": "gpa",
+   "factId": "F-college-keys-0019"
+  },
+  {
+   "key": "academic.gpa_year3",
+   "value": 1.9,
+   "unit": "gpa",
+   "factId": "F-college-keys-0020"
+  },
+  {
+   "key": "academic.gpa_year4",
+   "value": 2.0,
+   "unit": "gpa",
+   "factId": "F-college-keys-0021"
+  },
+  {
+   "key": "academic.team_rate_max",
+   "value": 1000,
+   "unit": "count",
+   "factId": "F-college-keys-0022"
+  },
+  {
+   "key": "academic.team_rate_postseason_min",
+   "value": 930,
+   "unit": "count",
+   "factId": "F-college-keys-0023"
+  },
+  {
+   "key": "transfer.postseason_extra_days",
+   "value": 5,
+   "unit": "days",
+   "factId": "F-college-keys-0024"
+  },
+  {
+   "key": "transfer.coach_change_delay_days",
+   "value": 5,
+   "unit": "days",
+   "factId": "F-college-keys-0025"
+  },
+  {
+   "key": "transfer.coach_change_window_days",
+   "value": 15,
+   "unit": "days",
+   "factId": "F-college-keys-0026"
+  },
+  {
+   "key": "transfer.max_free",
+   "value": 0,
+   "unit": "count",
+   "factId": "F-college-keys-0027",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "transfer.aid_ends_on_entry",
+   "value": false,
+   "factId": "F-college-keys-0028",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.scholarship_credit_2025_26",
+   "value": 2500000,
+   "unit": "USD",
+   "factId": "F-college-keys-0029",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.scholarship_credit_2026_27",
+   "value": 0,
+   "unit": "USD",
+   "factId": "F-college-keys-0030",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.multi_year",
+   "value": true,
+   "factId": "F-college-keys-0031",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "pay.agent_fee_cap",
+   "value": false,
+   "factId": "F-college-keys-0032"
+  },
+  {
+   "key": "pay.agent_fee_cap_pct",
+   "value": 5,
+   "unit": "percent",
+   "factId": "F-college-keys-0033"
+  },
+  {
+   "key": "pay.employment_status",
+   "value": "not_employee",
+   "factId": "F-college-keys-0034"
+  },
+  {
+   "key": "draft.min_years_from_high_school",
+   "value": 3,
+   "unit": "years",
+   "factId": "F-college-keys-0035"
+  },
+  {
+   "key": "draft.underclass_deadline_month",
+   "value": 1,
+   "unit": "month",
+   "factId": "F-college-keys-0036"
+  },
+  {
+   "key": "draft.underclass_deadline_day",
+   "value": 14,
+   "unit": "day",
+   "factId": "F-college-keys-0037"
+  },
+  {
+   "key": "draft.underclass_deadline_title_game_day",
+   "value": 23,
+   "unit": "day",
+   "factId": "F-college-keys-0038"
+  },
+  {
+   "key": "draft.undrafted_may_return",
+   "value": false,
+   "factId": "F-college-keys-0039"
   }
  ]
 }
