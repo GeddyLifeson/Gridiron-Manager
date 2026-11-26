@@ -121,8 +121,9 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   const resolverId = opts.resolver ?? DEFAULT_REAL_RESOLVER;
   const tick = resolverId === 'tick';
   const params = engineParamTable(tick ? ALL_ENGINE_PARAM_FILES : ENGINE_PARAM_FILES, opts.paramOverrides);
-  // One tick resolver per game runner: it keeps its stage modules and compiled assignments between plays (P6.3.1).
-  const playResolver = tick ? createRealTickResolver() : resolver.REFERENCE_RESOLVER;
+  // One tick resolver per game: it keeps its stage modules and compiled assignments between plays (P6.3.1),
+  // and a new game starts from a new one, so no state crosses from one game to the next and a game plays
+  // the same whatever this runner played before it (J13.3.2: the week pool hands games out in any order).
   const jerseys = tick ? UNIT_JERSEYS : undefined;
   const geometry = field.fieldGeometry(rules);
   const off = officiating.facade.createOfficiating();
@@ -137,7 +138,7 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   });
   const deps = (inp: GameInput): GameDeps => ({
     rules, params, geometry, streams: streamSource(seedFromHex(inp.seedHex)), math: DMATH,
-    resolver: playResolver, officiating: off,
+    resolver: tick ? createRealTickResolver() : resolver.REFERENCE_RESOLVER, officiating: off,
     deciders: [
       chart.createChartCaller({ side: 0, geometry, roster: chart.depthRoster(inp.teams[0].depth), regulationPeriods, overrides }),
       chart.createChartCaller({ side: 1, geometry, roster: chart.depthRoster(inp.teams[1].depth), regulationPeriods, overrides }),

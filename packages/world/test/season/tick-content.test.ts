@@ -145,6 +145,15 @@ describe('real game on the tick resolver', () => {
     expect(b.records[b.records.length - 1]!.stateHash).toBe(a.records[a.records.length - 1]!.stateHash);
     expect(b.final.score).toEqual(a.final.score);
   });
+  it('plays a game the same whatever the runner played before it (J13.3.2)', () => {
+    const used = createRealGameCore('college_2026');
+    used.simulate(used.input(0, '00000000000000c1'));
+    const after = used.simulate(used.input(1, '00000000000000c2'));
+    const fresh = createRealGameCore('college_2026');
+    const alone = fresh.simulate(fresh.input(1, '00000000000000c2'));
+    expect(after.records[after.records.length - 1]!.stateHash).toBe(alone.records[alone.records.length - 1]!.stateHash);
+    expect(JSON.stringify(after.events)).toBe(JSON.stringify(alone.events));
+  }, 60_000);
   it('still runs the reference resolver when asked', () => {
     const g = createRealGameCore('pro_2026', { resolver: 'reference' });
     expect(g.deps(g.input(0, '00000000000000aa')).resolver.id).not.toBe('tick');
