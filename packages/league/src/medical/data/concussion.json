@@ -1,0 +1,21 @@
+{
+ "$comment": "Return-to-participation protocol (D11.4.2, H5.4.1). Steps and content: Verified in D11.4.2 (roster_concussion.md B4; register row F-injury-0001). Practice label per step: Assumption (H5.4.1 rule 5). The symptom-day quantile table is this module's Assumption, tuned so the whole protocol reproduces the two calibration targets of D11.4.2 (median about 9 days out, about 38 percent playing the following week).",
+ "protocols": {
+  "league_five_step": {
+   "factId": "F-injury-0001",
+   "consultantConfirms": true,
+   "steps": [
+    { "step": 1, "name": "Symptom-limited activity", "practice": "dnp" },
+    { "step": 2, "name": "Aerobic exercise", "practice": "dnp" },
+    { "step": 3, "name": "Football-specific exercise (practice up to 30 minutes)", "practice": "dnp" },
+    { "step": 4, "name": "Club-based non-contact training drills", "practice": "limited" },
+    { "step": 5, "name": "Full football activity", "practice": "full" }
+   ]
+  }
+ },
+ "symptomDays": {
+  "basis": "assumption",
+  "leaf": "D11.4.2",
+  "quantiles": [[0, 0], [0.25, 0], [0.33, 1], [0.5, 3.5], [0.75, 8], [0.9, 14], [0.97, 28], [1, 50]]
+ }
+}
