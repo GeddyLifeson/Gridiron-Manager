@@ -63,5 +63,6 @@ export function crowdForPlay(env: Contract.Environment, sit: CrowdSituation, sit
 
 /** The gate's venue `noiseBase` for a level (J15 and T12 calibration games are played at a home venue). */
 export function gateNoiseBase(level: string, p: Contract.ParamTable): number {
-  return p.num(level === 'college' ? 'environment.gate.noiseBaseCollege' : 'environment.gate.noiseBasePro');
+  // One row per level, named by the rule set's level (P1.3.3: no branch on a level word).
+  return p.num(`environment.gate.noiseBase.${level}`);
 }

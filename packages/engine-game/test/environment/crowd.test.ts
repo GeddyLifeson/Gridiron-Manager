@@ -51,7 +51,7 @@ describe('crowdForPlay (J12.6.1, J12.8.1)', () => {
     expect(crowdForPlay(Contract.NEUTRAL_ENVIRONMENT, sit(1), 'neutral', PRO, P)).toEqual(QUIET);
   });
   it('gate noiseBase by level', () => {
-    expect(gateNoiseBase('pro', P)).toBe(P.num('environment.gate.noiseBasePro'));
-    expect(gateNoiseBase('college', P)).toBe(P.num('environment.gate.noiseBaseCollege'));
+    expect(gateNoiseBase('pro', P)).toBe(P.num('environment.gate.noiseBase.pro'));
+    expect(gateNoiseBase('college', P)).toBe(P.num('environment.gate.noiseBase.college'));
   });
 });

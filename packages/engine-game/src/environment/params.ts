@@ -114,8 +114,8 @@ const rows: Row[] = [
   { name: 'environment.noise.roadKnowledgeErrorPerNoise', value: 0.5, min: 0, max: 1.5, unit: 'ratio', basis: 'assumption', leaf: 'D9.4.1', constrainedBy: 'D9.4.1 "noise factor for the offense on the road"; J12.8.1 acceptance 1' },
   { name: 'environment.home.familiarityZ', value: 0.05, min: 0, max: 0.5, unit: 'z', basis: 'bible', leaf: 'J12.8.1', constrainedBy: 'J12.8.1 "starting 0.05 z", raised only until the home margin meets J15/T12; residual under 50% of the effect' },
   // Calibration games (J15, T12) are played at a home venue with this noiseBase. World venues read theirs from the stadium record.
-  { name: 'environment.gate.noiseBasePro', value: 0.85, min: 0, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.8.1 acceptance 1 (pro home margin); generated stadium noiseFactor 0.8 to 1.2 clamped to 1' },
-  { name: 'environment.gate.noiseBaseCollege', value: 0.9, min: 0, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.6.1 "college venues can carry higher noiseBase"; T12 home margin' },
+  { name: 'environment.gate.noiseBase.pro', value: 0.85, min: 0, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.8.1 acceptance 1 (pro home margin); generated stadium noiseFactor 0.8 to 1.2 clamped to 1' },
+  { name: 'environment.gate.noiseBase.college', value: 0.9, min: 0, max: 1, unit: 'ratio', basis: 'assumption', leaf: 'J12.6.1', constrainedBy: 'J12.6.1 "college venues can carry higher noiseBase"; T12 home margin' },
 ];
 
 export const PARAMS: Contract.ParamFile = {
