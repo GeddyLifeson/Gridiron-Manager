@@ -9,7 +9,7 @@ import {
   ATTRIBUTE_IDS, NEUTRAL_ENVIRONMENT,
   type GameDeps, type GameInput, type ParamFile, type ParamTable, type RuleSet, type Side, type SimPlayer, type SimTeam,
 } from '@gm/schema';
-import { DMATH, ball, carrier, contest, field, foulsInjuries, kinematics, perception, playerAi, presnap, qb, seedFromHex, streamSource, tickResolver } from '@gm/engine-core';
+import { DMATH, ball, carrier, contest, field, foulsInjuries, kinematics, perception, playerAi, presnap, qb, seedFromHex, stream, streamSource, tickResolver } from '@gm/engine-core';
 import { lang } from '@gm/football-lang';
 import { flow, stats } from '@gm/engine-game';
 import * as officiating from '@gm/officiating';
@@ -109,8 +109,41 @@ export function createRealTickResolver(): ReturnType<typeof tickResolver.createT
 export type RealResolver = 'tick' | 'reference';
 export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
 
+/**
+ * Skill of the gate's placeholder rosters by competition level. `iss` is a team's starter skill on the scale
+ * where pro starters are 50 (every attribute of the placeholder roster); `teamSd` the spread of that level
+ * between teams. With a spread, each game draws both teams' levels from its own `gate.roster_level` stream,
+ * so a batch plays a range of mismatches the way a real season does.
+ *
+ * `census` is the D13.4.1 metric 3 census of the G-17 generator: the mean primary-technique skill of a team's
+ * 22 starters. Pro starters measure 52.9 (sd 1.3 between teams), which checks the method against the scale.
+ * College (300 founding-style rosters, the top third of a tracked class by tier, X11.2.1 and D13.3.2, ages 18
+ * to 21; two world seeds agree to 0.1): starters 25.0 ISS below pro starters, team sd 1.6. Status Assumption:
+ * the generator's own output, not checked against real college spread data, and every founding school draws
+ * the same tier mix, so the spread is sampling only (no program strength yet).
+ *
+ * `gate` is what the gate plays today. College plays the census team spread around 50, not the census level:
+ * the tick engine measures skill on the absolute scale, so at 25 for both teams sacks are 30% of dropbacks and
+ * accepted fouls 16.7 per team (quarterback clocks and mental terms are per absolute z). The college level of 50
+ * is a PLACEHOLDER, not a level shift: skill stays on the pro scale (Marlon's ruling, 2026-11-26), and the gate
+ * moves to the census level once each absolute engine term has a matching defensive term, so equal low skill
+ * cancels (research/tuning/skill-response.md). With block
+ * engagements on skill difference (#299), the 1.6 spread gives a mean margin of 15.8 (real 16.3) and a home
+ * margin sd of 20.4 (real 20.3) over 40 games; without #299 the same spread gave 23.0 and 28.3.
+ */
+export interface RosterLevel { readonly iss: number; readonly teamSd: number }
+export const GATE_ROSTER_LEVEL: Readonly<Record<string, { readonly gate: RosterLevel; readonly census: RosterLevel }>> = {
+  pro: { gate: { iss: 50, teamSd: 0 }, census: { iss: 50, teamSd: 0 } },
+  college: { gate: { iss: 50, teamSd: 1.6 }, census: { iss: 25, teamSd: 1.6 } },
+};
+
 export interface RealGameOptions {
+  /** One skill level for both teams (every attribute), in place of the level's census value and spread. */
   readonly iss?: number;
+  /** Team-to-team spread of the roster level, in place of the level's value (0: equal teams). */
+  readonly teamSd?: number;
+  /** Play the level's census roster skill and spread instead of the gate's current value (GATE_ROSTER_LEVEL). */
+  readonly census?: boolean;
   readonly paramOverrides?: Readonly<Record<string, number>>;
   /** Default `tick`: every snap through the tick resolver on all three real modules and the starter content port. */
   readonly resolver?: RealResolver;
@@ -131,17 +164,29 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   const geometry = field.fieldGeometry(rules);
   const off = officiating.facade.createOfficiating();
   const regulationPeriods = rules.num('clock.periods');
-  const iss = opts.iss ?? 50;
+  const levels = GATE_ROSTER_LEVEL[rules.level];
+  const level = (opts.census ? levels?.census : levels?.gate) ?? { iss: 50, teamSd: 0 };
+  const iss = opts.iss ?? level.iss;
+  const teamSd = opts.teamSd ?? (opts.iss === undefined ? level.teamSd : 0);
+  const teamIss = (gameIndex: number, seedHex: string): [number, number] => {
+    if (teamSd <= 0) return [iss, iss];
+    const s = stream(seedFromHex(seedHex), 'gate.roster_level', [gameIndex]);
+    const one = (): number => Math.min(100, Math.max(0, Math.round((iss + teamSd * s.normal()) * 10) / 10));
+    return [one(), one()];
+  };
   // The callers read the chart through the same overrides as the parameter table, on top of the level's chart (CR-G87-5).
   const overrides = chart.chartOverrides(rules.level, opts.paramOverrides);
   // On the tick engine both staffs call from the level's starter book (G3), so every call kind has a real mix of
   // concepts under it. The reference resolver reads no content, so it runs without one (and its results do not move).
   const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level) : null;
-  const input = (gameIndex: number, seedHex: string): GameInput => ({
-    gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
-    teams: [placeholderTeam(0, iss, jerseys), placeholderTeam(1, iss, jerseys)],
-    crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
-  });
+  const input = (gameIndex: number, seedHex: string): GameInput => {
+    const [home, away] = teamIss(gameIndex, seedHex);
+    return {
+      gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
+      teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
+      crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
+    };
+  };
   const deps = (inp: GameInput): GameDeps => ({
     rules, params, geometry, streams: streamSource(seedFromHex(inp.seedHex)), math: DMATH,
     resolver: tick ? createRealTickResolver() : resolver.REFERENCE_RESOLVER, officiating: off,
