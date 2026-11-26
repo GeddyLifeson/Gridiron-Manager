@@ -158,7 +158,7 @@ describe('J7.3 judging open and deciding', () => {
     const pr = open.events.find((e) => e.type === 'pass_release')!;
     expect(pr).toMatchObject({ forward: true, throwaway: false, spike: false, underPressure: false, passerOutsidePocket: false, ballBeyondLine: false, targetId: 101, passerId: 100 });
     expect(open.world.ball.kind).toBe('passInFlight');
-    const held = runScene({ play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 30, ...covered() });
+    const held = runScene({ attrs: { coverage_reading_post_snap: 99 }, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 30, ...covered() });
     expect(held.record.throwRecord).toBeNull();
   });
   it('J7.3.2 acceptance: a risk-taking quarterback throws into windows a careful one will not, and accepts more interception risk', () => {
@@ -385,6 +385,74 @@ describe('J7.6 the throw', () => {
   });
 });
 
+describe('J7.6 edge cases: the pump fake and the ball batted at the line', () => {
+  // A defender sits under the out, so the throw is not on; nothing else to look at.
+  const sat = (seed: number, attrs: Record<string, number>, over: Partial<SceneSpec> = {}) => runScene({
+    seed, attrs, play: qb.basePlay(QB, 'gun3', [read(target(1, OUT, 1), 0.3), read(target(2, R2, 1, true), 0.9)]), maxTicks: 40, noThrow: true,
+    scripts: { 1: alongRoute(OUT, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(6, 11) }, ...over,
+  });
+  it('he pump-fakes a defender sitting on the throw at most once a play, and a better ball handler does it more', () => {
+    const used = (g: number): number => share(N, (seed) => {
+      const r = sat(seed, { play_fake_and_ball_handling: g });
+      expect(r.record.pumps.length).toBeLessThanOrEqual(1);
+      return r.record.pumps.length === 1;
+    });
+    const hi = used(90), lo = used(10);
+    expect(hi).toBeGreaterThan(lo);
+    expect(lo).toBeGreaterThan(0);
+    expect(hi).toBeLessThan(1);
+  });
+  it('a pump fake costs the release time, reports the cue, and leaves him with the ball on the same read', () => {
+    for (let seed = 1; seed <= 100; seed++) {
+      const cues: [number, number][] = [];
+      const r = sat(seed, { play_fake_and_ball_handling: 90 }, { options: { onPumpFake: (_w, _s, x, y) => { cues.push([x, y]); } } });
+      if (r.record.pumps.length === 0) continue;
+      const at = r.record.pumps[0]!.tick, tr = r.quarterback.track();
+      expect(cues.length).toBe(1);
+      expect(r.events.filter((e) => e.type === 'detail' && e.code === 'qb.pump_fake').length).toBe(1);
+      expect(r.events.some((e) => e.type === 'pass_release')).toBe(false);
+      const pumpCode = qb.QB_PHASES.indexOf('pump');
+      let ticks = 0;
+      for (let k = at; k < tr.ticks; k++) if (tr.phase[k] === pumpCode) ticks++;
+      expect(ticks).toBe(Math.round(P['throw.releaseBaseS'] / TICK_S));
+      expect(tr.look[at + ticks + 1]).toBe(1);
+      expect(r.world.ball.carrierSlot).toBe(QB);
+      return;
+    }
+    throw new Error('no pump fake in 100 plays');
+  });
+
+  // A quick throw straight ahead with a rusher standing in the lane 2 yards in front of him.
+  const quick = [{ px: 0, py: 0 }, { px: 6, py: 0 }];
+  const lane = (seed: number, defAt: readonly [number, number], batting = 50) => runScene({
+    seed, play: qb.basePlay(QB, 'gunQuick', [read(target(1, quick, -1, true))]), maxTicks: 30, stopAtThrow: true,
+    players: (s) => (s === 14 ? { attributes: { batting_passes: batting } } : {}),
+    scripts: { 1: still(6, 0), 14: still(defAt[0], defAt[1]) }, hidden: [14],
+  });
+  it('a rusher in the lane bats some passes; one out of the lane bats none; a better batter bats more', () => {
+    const rate = (defAt: readonly [number, number], batting = 50): number => share(2 * N, (seed) => lane(seed, defAt, batting).record.throwRecord?.battedBySlot === 14);
+    const inLane = rate([-3, 0.2]);
+    expect(inLane).toBeGreaterThan(0.02);
+    expect(inLane).toBeLessThan(0.6);
+    expect(rate([-3, 4])).toBe(0);
+    expect(rate([-3, 0.2], 90)).toBeGreaterThan(rate([-3, 0.2], 10));
+  });
+  it('a batted pass is reported, keeps flying as a forward pass, and no longer goes where it was thrown', () => {
+    for (let seed = 1; seed <= 400; seed++) {
+      const r = lane(seed, [-3, 0.2]);
+      if (r.record.throwRecord?.battedBySlot !== 14) continue;
+      const ev = r.events.find((e) => e.type === 'detail' && e.code === 'qb.pass_batted');
+      expect(ev).toMatchObject({ playerIds: [114, 100] });
+      expect(r.world.ball.kind).toBe('passInFlight');
+      expect(r.world.ball.passForward).toBe(true);
+      const clean = lane(seed, [-3, 9]);
+      expect(Math.hypot(r.world.ball.velX, r.world.ball.velY)).toBeLessThan(Math.hypot(clean.world.ball.velX, clean.world.ball.velY));
+      return;
+    }
+    throw new Error('no batted pass in 400 plays');
+  });
+});
+
 describe('J7.7.1 the mesh read', () => {
   const meshPlay = (onCrash: 'keep' | 'throw' = 'keep'): qb.QbPlay => ({
     ...qb.basePlay(QB, 'gunQuick', []), kind: 'mesh', eligible: [3],
@@ -408,6 +476,24 @@ describe('J7.7.1 the mesh read', () => {
     const r = runScene({ play: meshPlay('throw'), scripts: { ...back, 3: still(5, 6), 15: line(4, 6, -5, -4) }, maxTicks: 30 });
     expect(r.record.mesh?.decision).toBe('throw');
     expect(r.record.throwRecord?.targetSlot).toBe(3);
+  });
+  it('J7.7.1 edge case: the exchange is fumbled more often when the decision is late, and the ball is then loose', () => {
+    const fumbled = (key: (t: number) => readonly [number, number]): number => share(5 * N, (seed) =>
+      runScene({ seed, attrs: { play_fake_and_ball_handling: 15 }, play: meshPlay(), scripts: { ...back, 15: key }, maxTicks: 20 }).record.mesh?.fumbled === true);
+    const late = fumbled(line(1, -6, -0.3, 0.2)), clean = fumbled(line(1, -6, 0, -3));
+    expect(late).toBeGreaterThan(clean);
+    expect(late).toBeGreaterThan(0);
+    for (let seed = 1; seed <= 1000; seed++) {
+      const r = runScene({ seed, attrs: { play_fake_and_ball_handling: 15 }, play: meshPlay(), scripts: { ...back, 15: line(1, -6, -0.3, 0.2) }, maxTicks: 20 });
+      if (!r.record.mesh?.fumbled) continue;
+      expect(r.record.mesh.late).toBe(true);
+      expect(r.events.some((e) => e.type === 'fumble')).toBe(true);
+      expect(r.world.ball.kind).toBe('loose');
+      expect(r.world.players.hasBall[QB]).toBe(0);
+      expect(r.record.ran).toBeNull();
+      return;
+    }
+    throw new Error('no fumbled exchange in 1000 plays');
   });
   it('J7.7.1 acceptance: against a slow-playing key, a grade-70 reader is right more often than a grade-40 one', () => {
     const right = (g: number): number => share(2 * N, (seed) => runScene({ seed, attrs: { play_recognition: g }, play: meshPlay(), scripts: { ...back, 15: line(1, -6, -0.3, 0.2) }, maxTicks: 12 }).record.mesh?.correct === true);
@@ -511,7 +597,7 @@ describe('determinism and what he may read', () => {
     const stage = readFileSync(join(dir, 'stage.ts'), 'utf8');
     const fns = stage.split(/\n  function /).slice(1).map((b) => ({ name: b.slice(0, b.indexOf('(')), body: b }));
     const truthReaders = fns.filter((f) => /playX\(w, (?!s\b)|playY\(w, (?!s\b)|pl\.(posX|posY|velX|velY)\[(?!s\])/.test(f.body)).map((f) => f.name).sort();
-    expect(truthReaders).toEqual(['doThrow', 'interactRun', 'meshStep', 'pitchStep', 'pocketMove', 'respond', 'sense']);
+    expect(truthReaders).toEqual(['batAtLine', 'doThrow', 'interactRun', 'meshStep', 'pitchStep', 'pocketMove', 'respond', 'sense']);
   });
   it('refuses a play it cannot run', () => {
     const q = qb.createQuarterback({ view: () => new FakeView(QB), contests: CONTESTS });

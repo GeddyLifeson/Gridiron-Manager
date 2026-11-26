@@ -208,3 +208,13 @@ export function expectedPlacementError(r: number, sd: number): number {
   const e = (sd * MEAN_OVER_SD) / r;
   return e > 1 ? 1 : e;
 }
+
+/** J7.7.1 edge case: the exchange is fumbled. Ball handling lowers it; a late decision and a wet ball raise it. */
+export function meshFumbleChance(zBallHandling: number, late: boolean, wet: boolean, p: QbParams, math: DeterministicMath): number {
+  return math.logistic(p['mesh.fumbleBeta0'] - p['mesh.fumblePerZ'] * zBallHandling + (late ? p['mesh.fumbleLate'] : 0) + (wet ? p['mesh.fumbleWet'] : 0));
+}
+
+/** J7.6.1 edge case: he pump-fakes at a defender sitting on the throw. Better ball handlers use it more. */
+export function pumpFakeChance(zBallHandling: number, p: QbParams, math: DeterministicMath): number {
+  return math.logistic(p['pump.beta0'] + p['pump.perZ'] * zBallHandling);
+}

@@ -285,6 +285,22 @@ describe('B6.3 punts and scrimmage kicks', () => {
         expect(facts.violationSpots).toHaveLength(2);
       });
 
+      it('B6.3.2 on a crew error: a receivers touch nobody made (no player) counts as a touch, so the kickers recovery is their ball', () => {
+        const phantom = { ...ev.touchR(7, opp(18)), playerId: null } as TruthEvent;
+        const { outcome, facts } = punt(rules, [ev.landed(6, opp(20)), phantom, ev.poss(7, 0, opp(18), 'kick_recovery'), ev.dead(7, 'kick_recovered_by_kickers', opp(18), 0)]);
+        expect(outcome).toMatchObject({ possessionAfter: 0, changeOfPossession: true, spotX: opp(18), score: null });
+        expect(facts).toMatchObject({ receiversTouched: true, kickersRecoveredLegally: true });
+      });
+
+      it('B6.3.2 on a crew error: a downed punt seen as touched by the receivers first is the kickers ball where it was downed', () => {
+        const phantom = { ...ev.touchR(6.5, opp(15)), playerId: null } as TruthEvent;
+        const { outcome } = punt(rules, [ev.landed(6, opp(20)), phantom, ev.touchK(7, opp(12)), ev.poss(7.2, 0, opp(12), 'kick_recovery'), ev.dead(7.2, 'kick_recovered_by_kickers', opp(12), 0)]);
+        expect(outcome).toMatchObject({ possessionAfter: 0, changeOfPossession: true, spotX: opp(12) });
+        // Without the touch the same downing is the receivers ball there.
+        const plain = punt(rules, [ev.landed(6, opp(20)), ev.touchK(7, opp(12)), ev.dead(7.2, 'kick_recovered_by_kickers', opp(12), 0)]);
+        expect(plain.outcome).toMatchObject({ possessionAfter: 1, spotX: opp(12) });
+      });
+
       it('B6.3.2: returner muffs at the 20, kicking team recovers at the 18: its ball, first and 10 at the 18, no advance', () => {
         const { outcome, facts } = punt(rules, [ev.touchR(6, opp(20)), ev.poss(7, 0, opp(18), 'kick_recovery'), ev.dead(7, 'kick_recovered_by_kickers', opp(18), 0)]);
         expect(outcome).toMatchObject({ possessionAfter: 0, changeOfPossession: true, spotX: opp(18), score: null });

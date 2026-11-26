@@ -9,6 +9,7 @@ import {
   selectForInbox, inactivesPublicAt, staffNote, transactionDeadline, type Rumor,
 } from '../../src/news/index.ts';
 import { MINUTES_PER_DAY } from '../../src/calendar/date.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 void DMATH;
 const SEED = seedFromNumber(4404);
@@ -155,16 +156,19 @@ describe('X12.2.1 news reaches people through people and media', () => {
     let deg = 0, n = 0, chainOk = true;
     for (let t = 0; t < 3000; t++) {
       const d = spreadNonPublic(room, 1, [1], [edge(1, 2, 100), edge(2, 3, 100)], open, S('deg', t));
-      const h1 = d.find((x) => x.to === 2)!, h2 = d.find((x) => x.to === 3)!;
-      n++; if (h1.accuracy === 'degraded') { deg++; if (h2.accuracy !== 'degraded') chainOk = false; }
+      // A3.1 ruling 22: even a fully trusted contact may keep it to himself (floor chance), so a hop can be missing.
+      const h1 = d.find((x) => x.to === 2);
+      if (!h1) continue;
+      const h2 = d.find((x) => x.to === 3);
+      n++; if (h1.accuracy === 'degraded') { deg++; if (h2 && h2.accuracy !== 'degraded') chainOk = false; }
     }
     expect(Math.abs(deg / n - param('hopDegradeChance'))).toBeLessThan(0.02);
     expect(chainOk).toBe(true);
   });
   it('a disciplined, guarded passer passes less often', () => {
-    expect(passChance(100, 100, 0)).toBe(1);
+    expect(passChance(100, 100, 0)).toBe(1 - PROB_FLOOR);
     expect(passChance(100, 0, 100)).toBeLessThan(passChance(100, 100, 0));
-    expect(passChance(0, 100, 0)).toBe(0);
+    expect(passChance(0, 100, 0)).toBe(PROB_FLOOR);
   });
 });
 

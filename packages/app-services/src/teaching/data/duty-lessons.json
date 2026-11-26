@@ -1,0 +1,19 @@
+{
+  "leaf": "N5.5.1 rule 4",
+  "note": "Duty ids are the G-55 ladder duty list (packages/career/src/ladder/duties.json, one row per S3 leaf). Each duty lists the lessons and drills offered once when the duty is gained. A duty with no row offers nothing.",
+  "rows": [
+    { "duty": "duty:S3.2.1", "lessons": ["rules.downs", "personnel.groupings"], "drills": [] },
+    { "duty": "duty:S3.2.2", "lessons": ["personnel.groupings", "personnel.formations"], "drills": [] },
+    { "duty": "duty:S3.3.1", "lessons": ["personnel.formations", "defense.shells", "reading.rotation"], "drills": ["recognition"] },
+    { "duty": "duty:S3.3.2", "lessons": ["defense.shells", "defense.cover1", "defense.cover3"], "drills": ["recognition"] },
+    { "duty": "duty:S3.3.3", "lessons": ["week.scout_team"], "drills": [] },
+    { "duty": "duty:S3.4.1", "lessons": ["calling.self_scout"], "drills": ["recognition"] },
+    { "duty": "duty:S3.4.2", "lessons": ["calling.self_scout", "analytics.ep_wp"], "drills": [] },
+    { "duty": "duty:S3.4.4", "lessons": ["situations.fourth_down", "situations.two_point", "situations.end_of_game", "analytics.ep_wp"], "drills": ["clock"] },
+    { "duty": "duty:S3.4.5", "lessons": ["plan.game_plan", "week.scout_team"], "drills": [] },
+    { "duty": "duty:S3.5.4", "lessons": ["people.depth_chart"], "drills": [] },
+    { "duty": "duty:S3.6.1", "lessons": ["plan.game_plan", "situations.third_down", "situations.red_zone"], "drills": [] },
+    { "duty": "duty:S3.6.2#play_calling", "lessons": ["plan.game_plan", "calling.self_scout", "situations.end_of_game"], "drills": ["call_speed", "clock", "protection"] },
+    { "duty": "duty:S3.7.1", "lessons": ["situations.fourth_down", "situations.two_point", "situations.end_of_game"], "drills": ["clock"] }
+  ]
+}

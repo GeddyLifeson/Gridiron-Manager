@@ -1,7 +1,7 @@
 // Body growth from 14 to 23 (D8.1.1) with the college-age parameters of T8.1.1: height, weight and
 // strength move toward hidden adult targets; speed is nearly fixed from 18. Shares are read from
 // tables.json; effective age is age minus the maturity offset, so late developers grow later.
-import type { DeterministicMath, PlayingBlock, RandomStream } from '@gm/schema';
+import { possible, type DeterministicMath, type PlayingBlock, type RandomStream } from '@gm/schema';
 import { GROWTH_GROUP, type PositionFamily } from './classes.ts';
 import { HIDDEN, hiddenNum } from './hidden.ts';
 import { interp, num, type DevNumbers } from './params.ts';
@@ -59,7 +59,7 @@ export function drawDevelopmentTraits(n: DevNumbers, math: DeterministicMath, st
   const swing = num(n, 'growth.programSwing');
   // Triangular on [-1, 1]: most programs are near average.
   const disposition = 1 + swing * (stream.uniform() + stream.uniform() - 1);
-  const spurt = stream.chance(num(n, 'growth.lateSpurtChance')) ? stream.uniform() * num(n, 'growth.lateSpurtMaxIn') : 0;
+  const spurt = stream.chance(possible(num(n, 'growth.lateSpurtChance'))) ? stream.uniform() * num(n, 'growth.lateSpurtMaxIn') : 0;
   return {
     [HIDDEN.devRate]: devRate,
     [HIDDEN.agingTrait]: agingTrait,

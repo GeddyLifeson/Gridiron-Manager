@@ -262,28 +262,62 @@ function timeoutWindow(r: Run): boolean {
   return true;
 }
 
+/**
+ * Charged team timeouts after the calls are in and before the snap (B1.4.1 rule 2: any time the ball is dead;
+ * J11.6.1: any dead ball before the snap). The request's deadline is the play-clock value of the snap. A request
+ * that comes at or after the snap, or with the play clock at zero, is not granted (B1.4.1 edge case, J11.6.1 edge
+ * case). After a charged timeout the calls are void and are made again; when the period ran out while a coach
+ * waited, the unit ends.
+ */
+function lateTimeoutWindow(r: Run, sides: readonly Side[], snapAt: number): 'none' | 'charged' | 'period_end' {
+  const clock = r.deps.officiating.clock;
+  for (const side of sides) {
+    if (!clock.timeoutAllowed(r.state, side, r.deps).allowed) continue;
+    const d = r.ask({ type: 'timeout', side, options: [OPT.none, OPT.timeout], defaultOptionId: OPT.none, deadlinePlayClockTenths: snapAt });
+    if (d.optionId !== OPT.timeout) continue;
+    const playClock = r.state.playClockTenths;
+    const at = Math.min(playClock, d.acceptedAtPlayClockTenths ?? playClock);
+    if (at < snapAt || at <= 0) continue;
+    if (playClock > at) r.emit({ type: 'clock_advanced', tenths: playClock - at, reason: 'between_plays' });
+    if (r.state.phase === 'period_end') return 'period_end';
+    r.emit({ type: 'timeout_charged', side, kind: 'team' });
+    r.emit({ type: 'clock_advanced', tenths: r.deps.rules.num('timeout.length_seconds') * TENTHS_PER_S, reason: 'intermission' });
+    return 'charged';
+  }
+  return 'none';
+}
+
 /** One snap or kick, from the calls to the spotted ball (J11.2.1 phases `callWindow` to `deadBall`). */
 function unitPlay(r: Run): void {
   const { deps } = r;
   const off = deps.officiating;
   const freeKick = isFreeKick(r.state.nextPlayKind);
-  if (!freeKick && !timeoutWindow(r)) return;
-
-  // Calls. Both requests are open before either coach answers, so neither sees the other's call.
   const offense = r.state.possession;
-  const preview = situationOf(deps, r.state);
-  const deadline = Math.min(r.state.playClockTenths, r.num('callDeadlinePlayClockTenths'));
-  const lineup = (side: Side) => defaultLineup(deps, r.input.teams[side], r.state);
-  const reqS = r.request({ type: 'snapping_call', side: offense, deadlinePlayClockTenths: deadline });
-  const reqO = r.request({ type: 'opposing_call', side: other(offense), deadlinePlayClockTenths: deadline });
-  const dS = r.answer(reqS, { snappingCall: () => defaultSnappingCall(deps, preview, lineup(offense)) });
-  const dO = r.answer(reqO, { opposingCall: () => defaultOpposingCall(deps, preview, lineup(other(offense))) });
-  const calls: Contract.PlayCalls = { snapping: dS.snappingCall!, opposing: dO.opposingCall! };
+  let calls: Contract.PlayCalls;
+  let playClock: number;
+  let snapAt: number;
+  for (;;) {
+    if (!freeKick && !timeoutWindow(r)) return;
 
-  // The play clock always runs (I2.1.2): the call and the pre-snap procedure use it, and a running game clock with it.
-  const playClock = r.state.playClockTenths;
-  const acceptedAt = Math.min(playClock, dS.acceptedAtPlayClockTenths ?? playClock);
-  const snapAt = Math.max(0, acceptedAt - preSnapTenths(r, calls.snapping));
+    // Calls. Both requests are open before either coach answers, so neither sees the other's call.
+    const preview = situationOf(deps, r.state);
+    const deadline = Math.min(r.state.playClockTenths, r.num('callDeadlinePlayClockTenths'));
+    const lineup = (side: Side) => defaultLineup(deps, r.input.teams[side], r.state);
+    const reqS = r.request({ type: 'snapping_call', side: offense, deadlinePlayClockTenths: deadline });
+    const reqO = r.request({ type: 'opposing_call', side: other(offense), deadlinePlayClockTenths: deadline });
+    const dS = r.answer(reqS, { snappingCall: () => defaultSnappingCall(deps, preview, lineup(offense)) });
+    const dO = r.answer(reqO, { opposingCall: () => defaultOpposingCall(deps, preview, lineup(other(offense))) });
+    calls = { snapping: dS.snappingCall!, opposing: dO.opposingCall! };
+
+    // The play clock always runs (I2.1.2): the call and the pre-snap procedure use it, and a running game clock with it.
+    playClock = r.state.playClockTenths;
+    const acceptedAt = Math.min(playClock, dS.acceptedAtPlayClockTenths ?? playClock);
+    snapAt = Math.max(0, acceptedAt - preSnapTenths(r, calls.snapping));
+    // Either coach may still take a timeout until the snap; after one, the calls are made again.
+    const late = lateTimeoutWindow(r, [offense, other(offense)], snapAt);
+    if (late === 'period_end') return;
+    if (late === 'none') break;
+  }
   r.emit({ type: 'clock_advanced', tenths: playClock - snapAt, reason: 'pre_snap' });
   if (r.state.phase !== 'play') return; // the period ran out before the snap
 

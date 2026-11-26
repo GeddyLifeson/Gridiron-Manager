@@ -129,6 +129,8 @@ describe('Q1.7.3 rating-response sweeps', () => {
     ['accuracy_deep -> error', 'down', (z) => qb.accuracySdYd('deep', z, P)],
     ['accuracy_on_the_move -> moving error', 'down', (z) => qb.platformMultiplier({ ...qb.SET_PLATFORM, moving: true }, z, 0, 1, P)],
     ['accuracy_under_pressure -> hit error', 'down', (z) => qb.platformMultiplier({ ...qb.SET_PLATFORM, hit: true }, 0, z, 1, P)],
+    ['play_fake_and_ball_handling -> fumbled exchange', 'down', (z) => qb.meshFumbleChance(z, true, false, P, DMATH)],
+    ['play_fake_and_ball_handling -> pump fake used', 'up', (z) => qb.pumpFakeChance(z, P, DMATH)],
     ['play_recognition -> mesh read right', 'up', (z) => qb.meshReadChance(z, 0, P, DMATH)],
   ];
   for (const [name, dir, f] of sweeps) {
@@ -144,6 +146,13 @@ describe('Q1.7.3 rating-response sweeps', () => {
       for (let i = 1; i < v.length; i++) expect(Math.abs(v[i]! - v[i - 1]!), `${name} step at ${GRADES[i]}`).toBeLessThanOrEqual(range / 2);
     });
   }
+  it('a late decision and a wet ball both raise the chance of a fumbled exchange, and it is never 0 or 1', () => {
+    const base = qb.meshFumbleChance(0, false, false, P, DMATH);
+    expect(qb.meshFumbleChance(0, true, false, P, DMATH)).toBeGreaterThan(base);
+    expect(qb.meshFumbleChance(0, false, true, P, DMATH)).toBeGreaterThan(base);
+    expect(base).toBeGreaterThan(0);
+    expect(qb.meshFumbleChance(-5, true, true, P, DMATH)).toBeLessThan(1);
+  });
   it('a better defender discipline makes the mesh read harder', () => {
     expect(qb.meshReadChance(0, 1, P, DMATH)).toBeLessThan(qb.meshReadChance(0, -1, P, DMATH));
   });

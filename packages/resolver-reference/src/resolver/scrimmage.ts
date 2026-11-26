@@ -67,14 +67,13 @@ function run(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: number)
     c.push({ type: 'exchange', t: roundSimS(t0), kind: 'handoff', fromId: qb, toId: carrier, spot: c.spot(-depth, 0) });
     c.push({ type: 'possession', t: roundSimS(t0), side: c.sideSnap, playerId: carrier, spot: c.spot(-depth, 0), how: 'exchange' });
   }
-  // Box count moves the mean by the J15.5.1 by-box row minus the all-carries row.
+  // Box count moves the mean by the J15.5.1 by-box row minus the rows' average over the real mix of boxes.
   let boxShift = 0;
   if (defense) {
     const box = defense.boxCount;
-    const idx = box <= 6 ? 0 : box >= 9 ? 3 : box - 6;
-    boxShift = cfg.run.ypcBox[idx]! - cfg.run.ypcAll;
+    boxShift = cfg.run.boxShift[box <= 6 ? 0 : box >= 9 ? 3 : box - 6]!;
   }
-  const gain = runQuantile(cfg.run, c.rng.uniform(), c.math) + cfg.run.shift + boxShift + c.edge * cfg.run.sd;
+  const gain = runQuantile(cfg.run, c.rng.uniform(), c.math) + boxShift + c.edge * cfg.run.sd;
   const lane = call.runDirection ?? (['left', 'middle', 'right'] as const)[c.rng.int(0, 2)]!;
   const py = (lane === 'left' ? 1 : lane === 'right' ? -1 : 0) * cfg.geom.runLateral * c.rng.uniform();
   c.carry({ team: 'snapping', carrierId: carrier, fromPx: -depth, toPx: gain, py, t0, oobShare: cfg.run.oob, fumbleShare: cfg.run.fumbleLost, ownEndZoneImpetus: c.sideSnap });
@@ -145,7 +144,12 @@ function dropback(c: Ctx, call: OffenseCall, defense: DefenseCall | null, qb: nu
   if (outcome === 'catch') {
     c.push({ type: 'catch_point', t: roundSimS(tArrive), marginYd: null, marginS: null, visibility: 'open', outcome: 'catch', spot: arrive, intendedId: target, catcherId: target, defenderIds: [defender], feetInBounds: 2, contested: false });
     c.push({ type: 'possession', t: roundSimS(tArrive), side: c.sideSnap, playerId: target, spot: arrive, how: 'catch' });
-    const yac = Math.max(0, c.expo(P.yacMean) + c.edge * P.yacMean);
+    // Yards after the catch depend on the depth of the catch: far more behind the line than at 6 to 15 yards.
+    const yacMean = P.yacMean[band]!;
+    const stages = P.yacStages[band]!;
+    let run = 0;
+    for (let i = 0; i < stages; i++) run += c.expo(yacMean / stages);
+    const yac = Math.max(0, run + c.edge * yacMean);
     c.carry({ team: 'snapping', carrierId: target, fromPx: air, toPx: air + yac, py, t0: tArrive, oobShare: P.oob, fumbleShare: 0, ownEndZoneImpetus: c.sideSnap });
     return;
   }
