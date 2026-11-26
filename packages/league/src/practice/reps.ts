@@ -117,10 +117,13 @@ export function assignRep(per: Period, side: Side, slot: RepSlot, positions: rea
     const occ = seen.get(pos) ?? 0;
     seen.set(pos, occ + 1);
     const perUnit = positions.filter((p) => p === pos).length;
-    const list = ctx.depth[pos] ?? [];
+    const full = ctx.depth[pos] ?? [];
+    // Override players take exactly their share of the position's reps; the rest follow the split among the others.
+    const o = ctx.split.overrides[pos];
+    const list = o ? full.filter((x) => !(x in o)) : full;
     const forced = occ === 0 ? overrideFor(pos, slot.index - 1, ctx.split) : null;
     const listed = forced ?? list[unitIdx * perUnit + occ];
-    const order = listed ? [listed, ...list.filter((x) => x !== listed)] : [...list];
+    const order = listed ? [listed, ...full.filter((x) => x !== listed)] : [...full];
     let pick: string | null = null;
     for (const id of order) {
       if (used.has(id)) continue;
