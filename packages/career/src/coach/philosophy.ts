@@ -3,8 +3,9 @@
 // game cannot measure. His own words are free text and are never parsed. Stating, rewording or dropping
 // a commitment changes nothing outside this object (E10.1.1 acceptance); no entry grants anything.
 //
-// The first catalogue is the architect's draft (E10.1.1 open question: "Architect drafts, Marlon
-// approves"). Each entry's test lives in ./ledger.ts and reads only logged decisions.
+// The catalogue below is final: Marlon approved these nine entries on 2026-11-26 14:06 UTC ("use those
+// 9 coach commitments"), closing the E10.1.1 open question. Each entry's test lives in ./ledger.ts and
+// reads only logged decisions. Adding or removing an entry needs his approval.
 import { param } from './params.ts';
 
 export interface WorldDay { readonly seasonYear: number; readonly dayIndex: number }

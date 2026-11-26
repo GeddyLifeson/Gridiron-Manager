@@ -41,6 +41,7 @@ export * as gameplan from './read-models/gameplan/index.ts';
 export * as gameplanCommands from './commands/gameplan/index.ts';
 export * as presentationLive from './presentation/live/index.ts';
 export * as coachCalling from './coach-calling/index.ts';
+export * as sheetBridge from './sheet-bridge/index.ts';
 export * as legends from './read-models/legends/index.ts';
 export * as legendsCommands from './commands/legends/index.ts';
 export * as home from './read-models/home/index.ts';
