@@ -1,0 +1,1397 @@
+{
+ "module": "league.week",
+ "version": "0.1.0",
+ "note": "Tuning constants of the coaching week (H1, H4, H7, H8, H9). Numbers live here, not in .ts, because the league lint bans numeric literals (P1.1.2). Row: [name, value, min, max, unit, basis, leaf, constrainedBy]. basis 'bible' = the leaf states it as a starting value; 'assumption' = a design number this module chose. None of these is a real-world fact: real-world rule values are league-rules keys (data/week-keys.json until G-10 carries them).",
+ "rows": [
+  [
+   "minutes_per_hour",
+   60,
+   60,
+   60,
+   "minutes",
+   "bible",
+   "C4",
+   "calendar arithmetic"
+  ],
+  [
+   "normal_prep_days",
+   6,
+   6,
+   6,
+   "days",
+   "bible",
+   "H1.1.1",
+   "a Sunday-to-Sunday week has G-6 to G-1"
+  ],
+  [
+   "short_max_prep_days",
+   3,
+   3,
+   3,
+   "days",
+   "bible",
+   "H1.1.1",
+   "edge case: a week of fewer than 4 days uses the short shape"
+  ],
+  [
+   "game_block_minutes",
+   210,
+   150,
+   270,
+   "minutes",
+   "assumption",
+   "H1.1.1",
+   "length of the game block on game day, until the engine reports the real final whistle"
+  ],
+  [
+   "postgame_gap_minutes",
+   15,
+   0,
+   60,
+   "minutes",
+   "assumption",
+   "H7.1.1",
+   "minutes from final whistle to the post-game news conference"
+  ],
+  [
+   "media_postgame_minutes",
+   12,
+   5,
+   30,
+   "minutes",
+   "bible",
+   "H7.1.1",
+   "rule 2 starting length"
+  ],
+  [
+   "media_day_after_minutes",
+   20,
+   5,
+   45,
+   "minutes",
+   "bible",
+   "H7.1.1",
+   "rule 2 starting length"
+  ],
+  [
+   "media_mid_week_minutes",
+   15,
+   5,
+   45,
+   "minutes",
+   "bible",
+   "H7.1.1",
+   "rule 2 starting length"
+  ],
+  [
+   "media_first_breach_warning_only",
+   1,
+   0,
+   1,
+   "flag",
+   "bible",
+   "H7.1.1",
+   "rule 4: warning for the first breach in a season, fine from the C11 scale after"
+  ],
+  [
+   "facility_day_soft_minutes",
+   600,
+   480,
+   840,
+   "minutes",
+   "bible",
+   "H1.1.2",
+   "soft design cap on a players' day at the facility (10 hours, Assumption in the leaf)"
+  ],
+  [
+   "routine_change_penalty",
+   0.05,
+   0,
+   0.2,
+   "ratio",
+   "assumption",
+   "H1.4.1",
+   "rule 3 small one-week penalty on punctuality and focus checks after a mid-season routine change"
+  ],
+  [
+   "presence_attention_bonus",
+   0.03,
+   0,
+   0.1,
+   "ratio",
+   "assumption",
+   "H1.4.2",
+   "rule 2 small attention bonus when the head coach attends a block he does not lead"
+  ],
+  [
+   "involve_author_hours",
+   14,
+   0,
+   30,
+   "hours",
+   "bible",
+   "H4.3.2",
+   "hours per unit per week when the head coach authors the plan"
+  ],
+  [
+   "involve_editor_hours",
+   6,
+   0,
+   20,
+   "hours",
+   "bible",
+   "H4.3.2",
+   "editor"
+  ],
+  [
+   "involve_approver_hours",
+   2,
+   0,
+   10,
+   "hours",
+   "bible",
+   "H4.3.2",
+   "approver"
+  ],
+  [
+   "involve_hands_off_hours",
+   0,
+   0,
+   0,
+   "hours",
+   "bible",
+   "H4.3.2",
+   "hands off"
+  ],
+  [
+   "install_no_meeting",
+   0.7,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H1.2.2",
+   "rule 2 factor when the meeting exposure is missing"
+  ],
+  [
+   "install_no_walkthrough",
+   0.85,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H1.2.2",
+   "rule 2 factor when the walkthrough exposure is missing"
+  ],
+  [
+   "install_no_practice",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H1.2.2",
+   "rule 2 factor when no full-speed rep exists"
+  ],
+  [
+   "install_ratio_warning",
+   0.5,
+   0.1,
+   2,
+   "ratio",
+   "bible",
+   "H1.2.2",
+   "rule 3: warning above 1 new item per 2 available reps"
+  ],
+  [
+   "install_late_retention",
+   0.9,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H1.2.2",
+   "rule 4: items installed on G-2 or later"
+  ],
+  [
+   "install_late_from_days_before",
+   2,
+   1,
+   3,
+   "days",
+   "bible",
+   "H1.2.2",
+   "rule 4: G-2 or later"
+  ],
+  [
+   "attention_flat_minutes",
+   40,
+   20,
+   60,
+   "minutes",
+   "bible",
+   "H4.1.2",
+   "rule 3: attention 1.0 to minute 40"
+  ],
+  [
+   "attention_floor_minutes",
+   90,
+   60,
+   120,
+   "minutes",
+   "bible",
+   "H4.1.2",
+   "rule 3: falls linearly to the floor at minute 90"
+  ],
+  [
+   "attention_floor",
+   0.5,
+   0.2,
+   1,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 3 floor value"
+  ],
+  [
+   "meeting_day_cap_minutes",
+   240,
+   120,
+   360,
+   "minutes",
+   "bible",
+   "H4.1.2",
+   "rule 3: total meeting time beyond 4 hours a day"
+  ],
+  [
+   "meeting_day_over_factor",
+   0.8,
+   0.5,
+   1,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 3 factor past the daily total"
+  ],
+  [
+   "meeting_daily_new_items",
+   12,
+   6,
+   20,
+   "count",
+   "bible",
+   "H4.1.2",
+   "rule 4 daily install limit per unit"
+  ],
+  [
+   "meeting_over_cap_factor",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 4 half gain past the cap"
+  ],
+  [
+   "meeting_fatigue_shortening",
+   0.2,
+   0,
+   0.5,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 5 attention threshold shortens by up to 20 percent with season fatigue"
+  ],
+  [
+   "meeting_mentioned_minutes_per_play",
+   2,
+   1,
+   5,
+   "minutes",
+   "bible",
+   "H4.1.2",
+   "rule 6: under 2 minutes per play is a mentioned exposure"
+  ],
+  [
+   "meeting_mentioned_factor",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 6: half the meeting factor"
+  ],
+  [
+   "test_item_fraction",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.4.2",
+   "a test teaches 0.3 of an install item"
+  ],
+  [
+   "theme_effect",
+   0.03,
+   0,
+   0.1,
+   "ratio",
+   "bible",
+   "H4.2.1",
+   "rule 1 emphasis boost, relative"
+  ],
+  [
+   "theme_repeat_weeks",
+   3,
+   1,
+   6,
+   "weeks",
+   "bible",
+   "H4.2.1",
+   "rule 1: repeated more than 3 weeks running loses half"
+  ],
+  [
+   "theme_repeat_factor",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.2.1",
+   "rule 1 half effect"
+  ],
+  [
+   "night_before_cap",
+   0.02,
+   0,
+   0.05,
+   "ratio",
+   "bible",
+   "H4.2.3",
+   "starting cap on first-quarter composure checks"
+  ],
+  [
+   "night_before_mismatch",
+   -0.005,
+   -0.02,
+   0,
+   "ratio",
+   "assumption",
+   "H4.2.3",
+   "a mismatch gives nothing or a slight negative"
+  ],
+  [
+   "bulletin_board_effect",
+   0.05,
+   0,
+   0.1,
+   "ratio",
+   "bible",
+   "H7.2.4",
+   "rule 1 plus 5 percent on the opponent's team-meeting effect"
+  ],
+  [
+   "bulletin_board_uses",
+   2,
+   1,
+   5,
+   "count",
+   "bible",
+   "H7.2.4",
+   "rule 3: no added effect after the first two uses in a season"
+  ],
+  [
+   "promise_window_days",
+   60,
+   14,
+   180,
+   "days",
+   "bible",
+   "H7.1.3",
+   "rule 2 public promise window"
+  ],
+  [
+   "leak_base_daily",
+   0.03,
+   0,
+   0.2,
+   "ratio",
+   "bible",
+   "H7.2.2",
+   "rule 3 base leak chance per day"
+  ],
+  [
+   "leak_newsworthiness_bonus",
+   2,
+   0,
+   5,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 3: a leak makes the story bigger"
+  ],
+  [
+   "off_message_base",
+   0.02,
+   0,
+   0.2,
+   "ratio",
+   "bible",
+   "H7.1.2",
+   "rule 3 base rate per player session with a hot topic"
+  ],
+  [
+   "off_message_trust_weight",
+   1,
+   0,
+   3,
+   "ratio",
+   "assumption",
+   "H7.1.2",
+   "rule 3 multiplier slope for low trust"
+  ],
+  [
+   "off_message_mood_weight",
+   0.5,
+   0,
+   3,
+   "ratio",
+   "assumption",
+   "H7.1.2",
+   "rule 3 multiplier slope for low mood"
+  ],
+  [
+   "off_message_ego_weight",
+   0.5,
+   0,
+   3,
+   "ratio",
+   "assumption",
+   "H7.1.2",
+   "rule 3 multiplier slope for high ego"
+  ],
+  [
+   "off_message_guidance_cut",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "H7.1.2",
+   "rule 3 clear guidance and a strong council cut the rate"
+  ],
+  [
+   "topic_qb_change",
+   10,
+   0,
+   10,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 1 newsworthiness"
+  ],
+  [
+   "topic_failed_late_decision",
+   8,
+   0,
+   10,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 1"
+  ],
+  [
+   "topic_star_injury",
+   8,
+   0,
+   10,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 1"
+  ],
+  [
+   "topic_starter_discipline",
+   7,
+   0,
+   10,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 1"
+  ],
+  [
+   "topic_losing_streak",
+   6,
+   0,
+   10,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 1: losing streak of 3 or more"
+  ],
+  [
+   "topic_losing_streak_min",
+   3,
+   2,
+   5,
+   "games",
+   "bible",
+   "H7.2.2",
+   "rule 1 streak length"
+  ],
+  [
+   "topic_job_security",
+   6,
+   0,
+   10,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 1 when the hot seat is active"
+  ],
+  [
+   "topic_routine_review",
+   2,
+   0,
+   10,
+   "points",
+   "bible",
+   "H7.2.2",
+   "rule 1"
+  ],
+  [
+   "topic_recency_half_life_days",
+   3,
+   1,
+   14,
+   "days",
+   "assumption",
+   "H7.2.2",
+   "rule 1 recency term: weight halves every 3 days"
+  ],
+  [
+   "coordinator_media_minutes",
+   12,
+   10,
+   15,
+   "minutes",
+   "bible",
+   "H7.1.2",
+   "rule 1: 10 to 15 minutes"
+  ],
+  [
+   "locker_room_minutes",
+   45,
+   45,
+   90,
+   "minutes",
+   "bible",
+   "H7.1.2",
+   "rule 2: at least 45 minutes"
+  ],
+  [
+   "doc_hours_scouting_report",
+   20,
+   5,
+   40,
+   "hours",
+   "bible",
+   "H9.1.2",
+   "rule 1 staff-hours"
+  ],
+  [
+   "doc_hours_scout_cards_per_practice",
+   3,
+   1,
+   8,
+   "hours",
+   "bible",
+   "H9.1.2",
+   "rule 1"
+  ],
+  [
+   "doc_hours_packet_per_group",
+   4,
+   1,
+   10,
+   "hours",
+   "bible",
+   "H9.1.2",
+   "rule 1"
+  ],
+  [
+   "doc_hours_call_sheet",
+   4,
+   1,
+   10,
+   "hours",
+   "bible",
+   "H9.1.2",
+   "rule 1"
+  ],
+  [
+   "doc_hours_decision_book",
+   2,
+   0.5,
+   6,
+   "hours",
+   "bible",
+   "H9.1.2",
+   "rule 1"
+  ],
+  [
+   "doc_hours_weather_sheet",
+   0.5,
+   0.25,
+   2,
+   "hours",
+   "bible",
+   "H9.1.2",
+   "rule 1"
+  ],
+  [
+   "doc_hours_install_schedule",
+   1,
+   0.25,
+   4,
+   "hours",
+   "assumption",
+   "H9.1.2",
+   "not stated in the leaf"
+  ],
+  [
+   "doc_hours_practice_script",
+   2,
+   0.5,
+   6,
+   "hours",
+   "assumption",
+   "H9.1.2",
+   "not stated in the leaf, per practice"
+  ],
+  [
+   "doc_hours_tip_sheet",
+   1,
+   0.25,
+   4,
+   "hours",
+   "assumption",
+   "H9.1.2",
+   "not stated in the leaf, per group"
+  ],
+  [
+   "doc_hours_depth_card",
+   0.5,
+   0.25,
+   2,
+   "hours",
+   "assumption",
+   "H9.1.2",
+   "not stated in the leaf"
+  ],
+  [
+   "doc_hours_week_summary",
+   0,
+   0,
+   0,
+   "hours",
+   "bible",
+   "H9.1.1",
+   "system-produced"
+  ],
+  [
+   "doc_hours_itinerary",
+   1,
+   0.25,
+   4,
+   "hours",
+   "assumption",
+   "H9.1.2",
+   "not stated in the leaf"
+  ],
+  [
+   "doc_hours_self_scout",
+   12,
+   4,
+   30,
+   "hours",
+   "assumption",
+   "H9.1.2",
+   "not stated in the leaf"
+  ],
+  [
+   "doc_quality_floor",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H9.1.2",
+   "rule 2 floor of an overloaded author's normal quality"
+  ],
+  [
+   "doc_review_fraction",
+   0.15,
+   0.05,
+   0.5,
+   "ratio",
+   "bible",
+   "H9.1.2",
+   "rule 3 review time as a share of the document's hours"
+  ],
+  [
+   "self_scout_every_weeks",
+   4,
+   2,
+   8,
+   "weeks",
+   "bible",
+   "H9.1.1",
+   "type table: bye week, then every fourth week"
+  ],
+  [
+   "archive_saving",
+   0.3,
+   0,
+   0.6,
+   "ratio",
+   "bible",
+   "H9.4.1",
+   "rule 1 saving on report and scout cards"
+  ],
+  [
+   "archive_window_days",
+   365,
+   180,
+   730,
+   "days",
+   "bible",
+   "H9.4.1",
+   "rule 1 within 12 months"
+  ],
+  [
+   "call_sheet_min",
+   80,
+   40,
+   120,
+   "count",
+   "bible",
+   "H9.3.3",
+   "rule 3 sourced size range, warning only"
+  ],
+  [
+   "call_sheet_max",
+   150,
+   100,
+   250,
+   "count",
+   "bible",
+   "H9.3.3",
+   "rule 3"
+  ],
+  [
+   "script_min",
+   15,
+   5,
+   25,
+   "count",
+   "bible",
+   "H9.3.3",
+   "rule 3 opening script"
+  ],
+  [
+   "script_max",
+   25,
+   15,
+   40,
+   "count",
+   "bible",
+   "H9.3.3",
+   "rule 3"
+  ],
+  [
+   "wristband_max",
+   200,
+   100,
+   300,
+   "count",
+   "bible",
+   "H9.3.3",
+   "rule 3 up to about 200"
+  ],
+  [
+   "tip_sheet_lines",
+   5,
+   3,
+   10,
+   "count",
+   "bible",
+   "H9.2.4",
+   "rule 3 lines per unit"
+  ],
+  [
+   "flight_handling_hours",
+   2.5,
+   1,
+   5,
+   "hours",
+   "bible",
+   "H8.1.1",
+   "rule 1 added to a flight"
+  ],
+  [
+   "bus_handling_hours",
+   0.5,
+   0,
+   2,
+   "hours",
+   "bible",
+   "H8.1.1",
+   "rule 1 added to a bus trip"
+  ],
+  [
+   "commercial_handling_hours",
+   4,
+   2,
+   8,
+   "hours",
+   "bible",
+   "H8.5.1",
+   "rule 1 low tier commercial flights"
+  ],
+  [
+   "extended_zones",
+   3,
+   2,
+   5,
+   "zones",
+   "bible",
+   "H8.1.1",
+   "rule 2: Extended offered at 3 or more time zones"
+  ],
+  [
+   "extended_flight_hours",
+   5,
+   3,
+   8,
+   "hours",
+   "bible",
+   "H8.1.1",
+   "rule 2: or a flight longer than 5 hours"
+  ],
+  [
+   "bus_max_road_hours",
+   3,
+   1,
+   6,
+   "hours",
+   "bible",
+   "H8.1.1",
+   "rule 2: trips under 3 hours by road default to bus"
+  ],
+  [
+   "college_mid_bus_hours",
+   5,
+   2,
+   8,
+   "hours",
+   "bible",
+   "H8.5.1",
+   "rule 1 middle tier buses under 5 hours"
+  ],
+  [
+   "college_low_bus_hours",
+   8,
+   4,
+   12,
+   "hours",
+   "bible",
+   "H8.5.1",
+   "rule 1 low tier buses under 8 hours"
+  ],
+  [
+   "night_away_recovery_cut",
+   0.05,
+   0,
+   0.2,
+   "ratio",
+   "bible",
+   "H8.1.1",
+   "rule 4 first night in a new place"
+  ],
+  [
+   "early_trip_zones",
+   2,
+   1,
+   4,
+   "zones",
+   "bible",
+   "H8.1.1",
+   "AI use: Early for trips of 2 or more time zones"
+  ],
+  [
+   "adapt_per_day_on_site",
+   1,
+   0,
+   2,
+   "hours",
+   "bible",
+   "H8.2.1",
+   "rule 1"
+  ],
+  [
+   "adapt_per_shifted_day",
+   0.5,
+   0,
+   1,
+   "hours",
+   "bible",
+   "H8.2.1",
+   "rule 1"
+  ],
+  [
+   "early_body_time_minutes",
+   660,
+   540,
+   780,
+   "minutes",
+   "bible",
+   "H8.2.1",
+   "rule 2: before 11:00 body time"
+  ],
+  [
+   "altitude_threshold_m",
+   1200,
+   800,
+   2000,
+   "metres",
+   "bible",
+   "H8.2.2",
+   "rule 1"
+  ],
+  [
+   "road_stay_nights",
+   7,
+   4,
+   10,
+   "nights",
+   "bible",
+   "H8.2.4",
+   "rule 2 about 7 nights away"
+  ],
+  [
+   "curfew_base",
+   0.01,
+   0,
+   0.05,
+   "ratio",
+   "bible",
+   "H8.1.3",
+   "rule 1 base breach chance per player per road night"
+  ],
+  [
+   "curfew_check_factor",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H8.1.3",
+   "rule 1 with bed check on"
+  ],
+  [
+   "curfew_city_min",
+   0.5,
+   0.5,
+   0.5,
+   "ratio",
+   "bible",
+   "H8.1.3",
+   "rule 1 city factor range"
+  ],
+  [
+   "curfew_city_max",
+   2,
+   2,
+   2,
+   "ratio",
+   "bible",
+   "H8.1.3",
+   "rule 1 city factor range"
+  ],
+  [
+   "curfew_late_news_chance",
+   0.05,
+   0,
+   0.2,
+   "ratio",
+   "assumption",
+   "H8.1.3",
+   "rule 2: an unfound breach surfaces later with low probability"
+  ],
+  [
+   "delay_short_rate",
+   0.03,
+   0,
+   0.1,
+   "ratio",
+   "bible",
+   "H8.4.1",
+   "rule 1: 1 to 3 hours on 3 percent of flights"
+  ],
+  [
+   "delay_long_rate",
+   0.005,
+   0,
+   0.05,
+   "ratio",
+   "bible",
+   "H8.4.1",
+   "rule 1: over 3 hours on 0.5 percent"
+  ],
+  [
+   "delay_severe_weather_factor",
+   3,
+   1,
+   5,
+   "ratio",
+   "bible",
+   "H8.4.1",
+   "rule 1 tripled in severe weather"
+  ],
+  [
+   "delay_bus_rate",
+   0.01,
+   0,
+   0.05,
+   "ratio",
+   "bible",
+   "H8.4.1",
+   "rule 1 buses 1 percent"
+  ],
+  [
+   "delay_short_min_minutes",
+   60,
+   60,
+   60,
+   "minutes",
+   "bible",
+   "H8.4.1",
+   "rule 1 band"
+  ],
+  [
+   "delay_short_max_minutes",
+   180,
+   180,
+   180,
+   "minutes",
+   "bible",
+   "H8.4.1",
+   "rule 1 band"
+  ],
+  [
+   "delay_long_max_minutes",
+   360,
+   240,
+   600,
+   "minutes",
+   "assumption",
+   "H8.4.1",
+   "upper end of a long delay draw"
+  ],
+  [
+   "equipment_failure_rate",
+   0.001,
+   0,
+   0.01,
+   "ratio",
+   "bible",
+   "H8.4.1",
+   "rule 4"
+  ],
+  [
+   "meeting_in_transit_factor",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H8.4.1",
+   "rule 2 night-before meeting on the plane at half effect"
+  ],
+  [
+   "forecast_wind_sd_far",
+   8,
+   2,
+   15,
+   "mph",
+   "bible",
+   "H8.3.1",
+   "rule 1 at G-5"
+  ],
+  [
+   "forecast_wind_sd_near",
+   2,
+   0,
+   5,
+   "mph",
+   "bible",
+   "H8.3.1",
+   "rule 1 at G"
+  ],
+  [
+   "forecast_temp_sd_far",
+   8,
+   2,
+   15,
+   "F",
+   "bible",
+   "H8.3.1",
+   "rule 1 at G-5"
+  ],
+  [
+   "forecast_temp_sd_near",
+   2,
+   0,
+   5,
+   "F",
+   "bible",
+   "H8.3.1",
+   "rule 1 at G"
+  ],
+  [
+   "forecast_far_days",
+   5,
+   3,
+   10,
+   "days",
+   "bible",
+   "H8.3.1",
+   "rule 1 error shrinks from G-5"
+  ],
+  [
+   "pregame_meal_pro_hours",
+   3.5,
+   3,
+   5,
+   "hours",
+   "bible",
+   "H8.6.1",
+   "rule 2"
+  ],
+  [
+   "pregame_meal_college_hours",
+   4,
+   3,
+   5,
+   "hours",
+   "bible",
+   "H8.6.1",
+   "rule 2"
+  ],
+  [
+   "pregame_meal_band_min_hours",
+   3,
+   3,
+   3,
+   "hours",
+   "bible",
+   "H8.6.1",
+   "rule 2 zero-effect band"
+  ],
+  [
+   "pregame_meal_band_max_hours",
+   5,
+   5,
+   5,
+   "hours",
+   "bible",
+   "H8.6.1",
+   "rule 2 zero-effect band"
+  ],
+  [
+   "rung_day_hours",
+   14,
+   10,
+   16,
+   "hours",
+   "bible",
+   "H1.5.5",
+   "rule 2 working day the GA load is measured against"
+  ],
+  [
+   "rung_overload_ga",
+   1.15,
+   1,
+   1.5,
+   "ratio",
+   "bible",
+   "H1.5.5",
+   "rule 2 starting 115 percent at graduate assistant"
+  ],
+  [
+   "proposal_fail_ratio",
+   0.6,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.6.2",
+   "rule 2 loses less than he would have gained"
+  ],
+  [
+   "pregame_meal_minutes",
+   60,
+   30,
+   90,
+   "minutes",
+   "assumption",
+   "H8.6.1",
+   "length of the pregame meal block"
+  ],
+  [
+   "facility_gap_split_minutes",
+   180,
+   60,
+   360,
+   "minutes",
+   "assumption",
+   "H1.1.2",
+   "a break this long sends players away from the facility, so the soft day cap measures each stretch"
+  ],
+  [
+   "teach_min",
+   0.8,
+   0.8,
+   0.8,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 2 teaching factor range"
+  ],
+  [
+   "teach_max",
+   1.2,
+   1.2,
+   1.2,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 2 teaching factor range"
+  ],
+  [
+   "teach_w_clips",
+   0.4,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 2 weight: clips that show the point (engine truth)"
+  ],
+  [
+   "teach_w_order",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 2 weight: items in dependency order"
+  ],
+  [
+   "teach_w_time",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H4.1.2",
+   "rule 2 weight: time in proportion to call-sheet weight"
+  ],
+  [
+   "user_term_ceiling",
+   0.75,
+   0.75,
+   0.75,
+   "ratio",
+   "bible",
+   "D7.3.1",
+   "H4.1.2 rule 2: a user who meets every check reaches 1.1"
+  ],
+  [
+   "user_term_constant",
+   1,
+   1,
+   1,
+   "ratio",
+   "bible",
+   "D7.3.1",
+   "H4.1.2 rule 2: an unedited default agenda gives 1.0"
+  ],
+  [
+   "coach_show_skips_for_talk",
+   3,
+   1,
+   6,
+   "count",
+   "bible",
+   "H7.3.3",
+   "rule 1: three skips in a season trigger a contract conversation"
+  ],
+  [
+   "coach_show_stand_in_goodwill",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "bible",
+   "H7.3.3",
+   "rule 2: a stand-in keeps half the goodwill and none of the fee"
+  ],
+  [
+   "appearance_quiet_hours",
+   24,
+   12,
+   48,
+   "hours",
+   "bible",
+   "H7.3.3",
+   "rule 3: never scheduled inside the 24 hours before kickoff"
+  ],
+  [
+   "minutes_per_question",
+   4,
+   2,
+   8,
+   "minutes",
+   "assumption",
+   "H7.2.2",
+   "rule 2: N questions from session length"
+  ],
+  [
+   "rung_overload_other",
+   1,
+   0.8,
+   1.5,
+   "ratio",
+   "assumption",
+   "H1.5.5",
+   "task load at full depth for rungs the leaf gives no figure for, as a share of the working day"
+  ],
+  [
+   "task_min_share",
+   0.5,
+   0.2,
+   0.9,
+   "ratio",
+   "assumption",
+   "H1.5.5",
+   "min_hours as a share of hours_at_full_depth"
+  ]
+ ]
+}

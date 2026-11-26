@@ -1,0 +1,14 @@
+{
+  "$comment": "H7.2.1 rule 1 stance table. Effects are signs and rough sizes only; the receiving category owns and caps the size (rule 2). No stance changes a player attribute.",
+  "stances": [
+    { "id": "take_blame", "players": "small_plus", "owner_gm": "small_minus_if_repeated", "media": "neutral", "opponent": "none" },
+    { "id": "blame_player", "players": "minus_with_him_mixed_with_others", "owner_gm": "neutral", "media": "plus", "opponent": "none" },
+    { "id": "blame_unit_or_staff", "players": "minus_with_group", "owner_gm": "neutral", "media": "plus", "opponent": "none" },
+    { "id": "protect_player", "players": "plus_with_him", "owner_gm": "neutral", "media": "small_minus", "opponent": "none" },
+    { "id": "bland", "players": "none", "owner_gm": "none", "media": "small_minus_over_time", "opponent": "none" },
+    { "id": "honest_plan_detail", "players": "none", "owner_gm": "none", "media": "plus", "opponent": "information" },
+    { "id": "shot_at_opponent", "players": "small_plus", "owner_gm": "small_minus", "media": "plus", "opponent": "bulletin_board" },
+    { "id": "shot_at_front_office", "players": "plus_with_some", "owner_gm": "large_minus", "media": "large_plus", "opponent": "none" }
+  ],
+  "audienceCategory": { "players": "L1", "owner_gm": "L5", "media": "L6", "opponent": "K3" }
+}

@@ -1,0 +1,20 @@
+{
+  "$comment": "H9.1.1 document type table (owner, default author, recipients, default due) with the H9.1.2 hours. Due: days before the game (G-n) and local time; 'per_practice' documents fall due the evening before each practice. Hours name a params.json row; perGroup and perPractice multiply it. playersSee: players are recipients (D9 reads it).",
+  "types": [
+    { "id": "install_schedule", "owner": "H1.2.2", "author": "coordinators", "recipients": ["staff", "players"], "dueG": 5, "dueAt": "20:00", "hours": "doc_hours_install_schedule", "playersSee": true },
+    { "id": "practice_script", "owner": "H3.2.1", "author": "coordinators", "recipients": ["staff"], "perPractice": true, "dueAt": "20:00", "hours": "doc_hours_practice_script", "playersSee": false },
+    { "id": "scout_cards", "owner": "H3.2.2", "author": "quality_control", "recipients": ["scout_team_coaches"], "perPractice": true, "dueAt": "20:00", "hours": "doc_hours_scout_cards_per_practice", "playersSee": false },
+    { "id": "staff_scouting_report", "owner": "H2.5.1", "author": "quality_control", "recipients": ["staff"], "dueG": 5, "dueAt": "08:00", "hours": "doc_hours_scouting_report", "playersSee": false, "planScaled": true },
+    { "id": "players_packet", "owner": "H4.4.3", "author": "position_coaches", "recipients": ["players"], "dueG": 4, "dueAt": "08:00", "hours": "doc_hours_packet_per_group", "perGroup": true, "playersSee": true },
+    { "id": "tip_sheet", "owner": "H4.4.3", "author": "position_coaches", "recipients": ["players"], "dueG": 1, "dueAt": "12:00", "hours": "doc_hours_tip_sheet", "perGroup": true, "playersSee": true },
+    { "id": "depth_card", "owner": "I1.2.5", "author": "head_coach", "recipients": ["staff", "booth"], "dueG": 1, "dueAt": "18:00", "hours": "doc_hours_depth_card", "playersSee": false },
+    { "id": "call_sheet", "owner": "G7", "author": "play_caller", "recipients": ["callers", "quarterbacks", "signallers"], "dueG": 1, "dueAt": "18:00", "hours": "doc_hours_call_sheet", "playersSee": false },
+    { "id": "decision_book", "owner": "I1.4.2", "author": "analyst", "recipients": ["head_coach", "game_management"], "dueG": 1, "dueAt": "18:00", "hours": "doc_hours_decision_book", "playersSee": false },
+    { "id": "weather_sheet", "owner": "H9.3.2", "author": "operations", "recipients": ["head_coach", "coordinators", "kicking_coach"], "dueG": 1, "dueAt": "18:00", "hours": "doc_hours_weather_sheet", "playersSee": false },
+    { "id": "week_summary", "owner": "H1.4.3", "author": "system", "recipients": ["head_coach"], "dueG": 2, "dueAt": "06:00", "hours": "doc_hours_week_summary", "playersSee": false },
+    { "id": "travel_itinerary", "owner": "H8.1.2", "author": "operations", "recipients": ["travel_party"], "dueG": 2, "dueAt": "18:00", "hours": "doc_hours_itinerary", "playersSee": true, "awayOnly": true },
+    { "id": "self_scout", "owner": "G8", "author": "quality_control", "recipients": ["head_coach", "coordinators"], "dueG": 2, "dueAt": "18:00", "hours": "doc_hours_self_scout", "playersSee": false, "cadence": "self_scout" },
+    { "id": "travel_roster", "owner": "H6.6.1", "author": "operations", "recipients": ["staff"], "dueG": 2, "dueAt": "18:00", "hours": "doc_hours_itinerary", "playersSee": false, "awayOnly": true, "countableOnly": true },
+    { "id": "academic_availability", "owner": "T5", "author": "operations", "recipients": ["staff"], "dueG": 5, "dueAt": "08:00", "hours": "doc_hours_depth_card", "playersSee": false, "countableOnly": true }
+  ]
+}
