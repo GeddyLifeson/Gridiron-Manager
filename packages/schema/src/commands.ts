@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { pub, own } from './field.ts';
 import { Calendar, Level } from './entities.ts';
 import { GameplanData } from './read-models/gameplan.ts';
+import { GAME_DAY_COMMAND_SPECS } from './game-day-commands.ts';
 import { FILM_MODEL_SCHEMAS, FILM_COMMAND_SPECS } from './read-models/film.ts';
 import { LEGENDS_SCHEMAS } from './read-models/legends.ts';
 import { ANALYTICS_SCHEMAS } from './read-models/analytics.ts';
@@ -83,6 +84,8 @@ export const COMMANDS: readonly CommandSpec[] = [
   { type: 'GmRequest', payload: GmRequestPayload, task: 'boss.request', undoable: false, allowedInCertified: true },
   // Film room (G-63, CR-G63-0).
   ...FILM_COMMAND_SPECS,
+  // Game management, game-day frame, seats and legends (playtest PR 267).
+  ...GAME_DAY_COMMAND_SPECS,
 ];
 
 export function commandSpec(type: string): CommandSpec | undefined {
