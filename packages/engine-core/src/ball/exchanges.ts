@@ -24,18 +24,25 @@ export function passLaunch(fromX: number, fromY: number, s: PassSolution, p: Bal
 }
 
 /**
+ * A snap through the air that reaches the receiver's hands `timeS` after it leaves (J9.1.2). It leaves
+ * and arrives at hand height, so a slower snap is a higher one.
+ */
+export function snapFlight(fromX: number, fromY: number, toX: number, toY: number, timeS: number, p: BallParams): FlightLaunch {
+  const dx = toX - fromX, dy = toY - fromY, h = p['snap.handHeightYd']!;
+  // The flight integrator (semi-implicit Euler, step dt) after n steps has fallen g dt^2 n (n + 1) / 2,
+  // so vh = g dt (n + 1) / 2 with n = t / dt lands it on the hands.
+  const vh = (GRAVITY_YPS2 * FLIGHT_DT_S * (timeS / FLIGHT_DT_S + 1)) / 2;
+  return { x: fromX, y: fromY, h, vx: timeS > 0 ? dx / timeS : 0, vy: timeS > 0 ? dy / timeS : 0, vh };
+}
+
+/**
  * A shotgun snap travels flat at 15 yd/s to the receiver's hands (J9.1.2): a 5 yd snap takes about
  * 0.35 s. Returns the launch from the ball's spot and the travel time. Under-centre snaps are exchanges.
  */
 export function shotgunSnap(fromX: number, fromY: number, toX: number, toY: number, p: BallParams): { launch: FlightLaunch; timeS: number } {
   const dx = toX - fromX, dy = toY - fromY, d = dSqrt(dx * dx + dy * dy);
-  const v = p['snap.shotgunSpeedYps']!, h = p['snap.handHeightYd']!;
-  const ux = d > 0 ? dx / d : 0, uy = d > 0 ? dy / d : 0;
-  const timeS = d / v;
-  // Leaves and arrives at hand height. The flight integrator (semi-implicit Euler, step dt) after n
-  // steps has fallen g dt^2 n (n + 1) / 2, so vh = g dt (n + 1) / 2 with n = t / dt lands it on the hands.
-  const vh = (GRAVITY_YPS2 * FLIGHT_DT_S * (timeS / FLIGHT_DT_S + 1)) / 2;
-  return { launch: { x: fromX, y: fromY, h, vx: ux * v, vy: uy * v, vh }, timeS };
+  const timeS = d / p['snap.shotgunSpeedYps']!;
+  return { launch: snapFlight(fromX, fromY, toX, toY, timeS, p), timeS };
 }
 
 /** A handoff is possible when both players are within `exchange.handoffRangeYd`; it lasts `exchange.handoffTicks` (J9.1.2). */

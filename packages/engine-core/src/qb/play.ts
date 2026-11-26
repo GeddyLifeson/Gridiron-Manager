@@ -95,6 +95,12 @@ export interface QbPlay {
   readonly badSnapS: number;
   /** Lateral position of the launch point. Null: straight behind where he takes the snap. */
   readonly launchPy: number | null;
+  /**
+   * Depth of the launch point as play-frame px (negative is behind the line), for a passer the drop
+   * table does not describe: a punter or a holder who takes a long snap deep and throws from near
+   * where he stands (F12.7.1). Null or absent: the drop's table depth (J7.1.1).
+   */
+  readonly launchPx?: number | null;
   readonly movement: MovementAction | null;
   /** Reads in the order the play gives for his believed coverage (J7.2.1 step 1 is done by J5.4). */
   readonly reads: readonly QbRead[];

@@ -838,7 +838,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   function onPossession(w: TickWorld, v: PerceivedView, t: number): void {
     const p = P!, play = cur!;
     gotBallT = t;
-    launchPx = -dropDepthYd(play.drop, p); launchPy = play.launchPy ?? v.self.py;
+    launchPx = play.launchPx ?? -dropDepthYd(play.drop, p); launchPy = play.launchPy ?? v.self.py;
     tSet = setTimeS(play.drop, zFoot, play.playActionS, play.badSnapS, p);
     if (tSet < t) tSet = t;
     if (play.kind === 'kneel') { launchPx = v.self.px - p['kneel.lossYd']; launchPy = v.self.py; phase = SCRIPTED; }
