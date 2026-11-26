@@ -1,0 +1,20 @@
+{
+ "$comment": "X3.4.1 record categories as content. Counting records need no minimum. Rate records name a numerator, a denominator and a qualifier fact row: season qualifiers are per team game (rule 2), career qualifiers are totals. Statistic ids are D14 ids as the awards module uses them.",
+ "categories": [
+  { "id": "pass_yards", "label": "legends.rec.pass_yards", "statistic": "pass_yards", "holder": "player" },
+  { "id": "pass_touchdowns", "label": "legends.rec.pass_touchdowns", "statistic": "pass_touchdowns", "holder": "player" },
+  { "id": "rush_yards", "label": "legends.rec.rush_yards", "statistic": "rush_yards", "holder": "player" },
+  { "id": "rush_touchdowns", "label": "legends.rec.rush_touchdowns", "statistic": "rush_touchdowns", "holder": "player" },
+  { "id": "receiving_yards", "label": "legends.rec.receiving_yards", "statistic": "receiving_yards", "holder": "player" },
+  { "id": "receptions", "label": "legends.rec.receptions", "statistic": "receptions", "holder": "player" },
+  { "id": "sacks", "label": "legends.rec.sacks", "statistic": "sacks", "holder": "player" },
+  { "id": "interceptions", "label": "legends.rec.interceptions", "statistic": "interceptions", "holder": "player" },
+  { "id": "team_points", "label": "legends.rec.team_points", "statistic": "points", "holder": "team" },
+  { "id": "yards_per_pass", "label": "legends.rec.yards_per_pass", "statistic": "pass_yards", "per": "pass_attempts", "holder": "player", "seasonFact": "F-legends-0001", "careerFact": "F-legends-0006" },
+  { "id": "completion_share", "label": "legends.rec.completion_share", "statistic": "pass_completions", "per": "pass_attempts", "holder": "player", "seasonFact": "F-legends-0001", "careerFact": "F-legends-0006" },
+  { "id": "yards_per_carry", "label": "legends.rec.yards_per_carry", "statistic": "rush_yards", "per": "rush_attempts", "holder": "player", "seasonFact": "F-legends-0002", "careerFact": "F-legends-0007" },
+  { "id": "yards_per_reception", "label": "legends.rec.yards_per_reception", "statistic": "receiving_yards", "per": "receptions", "holder": "player", "seasonFact": "F-legends-0003", "careerFact": "F-legends-0008" },
+  { "id": "field_goal_share", "label": "legends.rec.field_goal_share", "statistic": "field_goals_made", "per": "field_goal_attempts", "holder": "player", "seasonFact": "F-legends-0004", "careerFact": "F-legends-0009" },
+  { "id": "punt_average", "label": "legends.rec.punt_average", "statistic": "punt_yards", "per": "punts", "holder": "player", "seasonFact": "F-legends-0005", "careerFact": "F-legends-0010" }
+ ]
+}
