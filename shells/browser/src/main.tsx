@@ -3,6 +3,7 @@ import { App } from '@gm/app-ui';
 import { runGolden, compareGolden, goldenInputs, WorldService, type GoldenReport, type Platform } from '@gm/app-services';
 import golden from '../../../golden/golden.json';
 import { BrowserPlatform } from './platform-browser.ts';
+import { registerOffline } from './offline.ts';
 import { DesktopPlatform, isDesktop } from './platform-desktop.ts';
 
 declare global { interface Window { __GATE_RESULT__?: unknown } }
@@ -56,6 +57,7 @@ async function gateMode(platform: Platform): Promise<boolean> {
 }
 
 async function main() {
+  if (!isDesktop()) void registerOffline();
   const platform: Platform = isDesktop() ? new DesktopPlatform() : await BrowserPlatform.create();
   if (await gateMode(platform)) return;
   createRoot(document.getElementById('root')!).render(<App platform={platform} golden={golden as GoldenReport} />);
