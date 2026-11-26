@@ -6160,6 +6160,186 @@
      }
     ]
    }
+  },
+  {
+   "key": "comm.c2p_designated_offense",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Players a team may designate to carry a helmet radio on offense (0 means no designation limit)",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "career/gameday"
+   ],
+   "pro": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 3",
+      "q": "Each team is permitted to have a maximum of three active radio receivers to be used on offense by its quarterbacks",
+      "line": 1426
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "absent": "the exception was read in full; it limits radio players on the field to one per team at a time and names no count of designated players or receivers."
+     }
+    ]
+   }
+  },
+  {
+   "key": "comm.c2p_designated_defense",
+   "type": "number",
+   "unit": "count",
+   "meaning": "Players a team may designate to carry a helmet radio on defense (0 means no designation limit)",
+   "ownerLeaf": "B13.13.1",
+   "readBy": [
+    "career/gameday"
+   ],
+   "pro": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 5, Section 3, Article 3",
+      "q": "a maximum of three active radio receivers to be used on defense by players who have been designated as primary and backup users",
+      "line": 1427
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 1, Section 4, Article 11-b, Exception",
+      "absent": "the exception was read in full; it limits radio players on the field to one per team at a time and names no count of designated players or receivers."
+     }
+    ]
+   }
+  },
+  {
+   "key": "toss.minutes_before_kickoff",
+   "type": "number",
+   "unit": "min",
+   "meaning": "Minutes before the scheduled kickoff of the first half when the coin is tossed",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "career/gameday"
+   ],
+   "pro": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 4, Section 2, Article 2",
+      "q": "Not more than three minutes before the kickoff of the first half, the Referee, in the presence of",
+      "line": 959
+     }
+    ],
+    "note": "The rule book states a limit (\"not more than three minutes\"); the toss is placed at that limit."
+   },
+   "college": {
+    "v": 3,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 1-e",
+      "q": "Three minutes before the scheduled starting time, the referee shall toss a",
+      "line": 2098
+     }
+    ]
+   }
+  },
+  {
+   "key": "toss.field_presence_minutes",
+   "type": "number",
+   "unit": "min",
+   "meaning": "Minutes before the scheduled kickoff by which both teams must be on the field (0 means no such rule)",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "career/gameday"
+   ],
+   "pro": {
+    "v": 10,
+    "src": [
+     {
+      "cite": "Rule 4, Section 2, Article 1",
+      "q": "both teams are required to appear on the field at least 10 minutes prior to the scheduled",
+      "line": 952
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 1",
+      "absent": "the article on starting each period was read in full and the text searched for 'on the field' and 'minutes'; it times the coin toss and requires a coach on the field when squad members enter, and sets no deadline for teams to appear."
+     }
+    ]
+   }
+  },
+  {
+   "key": "toss.late_field_penalty_yd",
+   "type": "number",
+   "unit": "yd",
+   "meaning": "Yards from the first-half kickoff spot for a team not on the field by the field-presence deadline (it also loses its coin-toss options); 0 means no such rule",
+   "ownerLeaf": "B1.1.2",
+   "readBy": [
+    "career/gameday"
+   ],
+   "pro": {
+    "v": 15,
+    "src": [
+     {
+      "cite": "Rule 4, Section 2, Article 1, Penalty (b)",
+      "q": "toss option for both halves and overtime, and loss of 15 yards from the spot of the kickoff for the first half.",
+      "line": 958
+     }
+    ]
+   },
+   "college": {
+    "v": 0,
+    "src": [
+     {
+      "cite": "Rule 3, Section 1, Article 1",
+      "absent": "no field-presence deadline exists (see toss.field_presence_minutes), so no penalty for missing one."
+     }
+    ]
+   }
+  },
+  {
+   "key": "replay.challenge_designee_allowed",
+   "type": "boolean",
+   "meaning": "The head coach may name a pregame challenge designee who may also throw the challenge flag",
+   "ownerLeaf": "I1",
+   "readBy": [
+    "career/gameday"
+   ],
+   "pro": {
+    "v": true,
+    "src": [
+     {
+      "cite": "Rule 15, Section 1, Article 1",
+      "q": "The head coach or head coach’s pregame challenge designee can initiate a challenge by throwing a red flag onto the field of",
+      "line": 3960
+     }
+    ]
+   },
+   "college": {
+    "v": false,
+    "src": [
+     {
+      "cite": "Rule 12, Section 5",
+      "q": "A head coach initiates this challenge by taking a team timeout before the",
+      "line": 5306
+     },
+     {
+      "cite": "Rule 12",
+      "absent": "the instant replay rule was searched for 'designee'; the challenge belongs to the head coach, through a team timeout, and no designee is named."
+     }
+    ]
+   }
   }
  ]
 }
