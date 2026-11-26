@@ -41,7 +41,7 @@ function topAt(players: readonly LabelPlayer[], role: UnitRole): number[] {
 /**
  * The position coach's proposal (D6.3.1 rule): starter if his best role grade is in the top N at a base
  * role (N = starting slots); situational starter if he tops a package role only; role player if he tops a
- * named role; developmental if his projection beats his best current role grade by 5 ISS or more and he
+ * named role; developmental if his projection beats his best current role grade in that unit by 5 ISS or more and he
  * is under 24; special teams only when his one job is on teams; else backup. One label per unit he
  * belongs to (acceptance), so a player can start on special teams and back up on defense (edge case).
  */
@@ -50,9 +50,9 @@ export function proposeLabels(players: readonly LabelPlayer[], roles: readonly U
   const tops = new Map(roles.map((r) => [r.id, new Set(topAt(players, r))]));
   const stStarter = (id: number) => roles.some((r) => r.unit === 'special_teams' && tops.get(r.id)!.has(id));
   for (const p of [...players].sort((a, b) => a.personId - b.personId)) {
-    const best = Math.max(Number.NEGATIVE_INFINITY, ...Object.values(p.roleGrades).map((g) => g.mean));
     for (const unit of [...new Set(p.units)].sort()) {
       const mine = roles.filter((r) => r.unit === unit).sort((a, b) => a.id.localeCompare(b.id));
+      const best = Math.max(Number.NEGATIVE_INFINITY, ...mine.filter((r) => p.roleGrades[r.id]).map((r) => p.roleGrades[r.id]!.mean));
       const won = (kind: UnitRole['kind']) => mine.find((r) => r.kind === kind && tops.get(r.id)!.has(p.personId));
       let label: RoleLabel;
       const base = won('base'), pkg = won('package'), role = won('role');

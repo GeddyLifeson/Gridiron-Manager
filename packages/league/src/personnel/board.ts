@@ -19,8 +19,8 @@ export function assignClubs(scouts: readonly Scout[], clubIds: readonly number[]
   const ids = [...scouts].map((s) => s.staffId).sort((a, b) => a - b);
   if (ids.length === 0) return { assignments, warnings: clubIds.length ? ['no pro scouts: every club shows only the public estimate'] : [] };
   for (const id of ids) assignments[String(id)] = [];
-  const per = Math.ceil(clubIds.length / ids.length);
-  clubIds.forEach((c, i) => { assignments[String(ids[Math.min(ids.length - 1, Math.floor(i / per))]!)]!.push(c); });
+  // Contiguous, even blocks: scout k takes clubs from floor(k n / s) up to floor((k + 1) n / s).
+  clubIds.forEach((c, i) => { assignments[String(ids[Math.floor((i * ids.length) / clubIds.length)]!)]!.push(c); });
   for (const id of ids) {
     const n = assignments[String(id)]!.length;
     if (n < P.clubsPerScoutMin || n > P.clubsPerScoutMax) warnings.push(`scout ${id} covers ${n} clubs (starting range ${P.clubsPerScoutMin} to ${P.clubsPerScoutMax})`);
