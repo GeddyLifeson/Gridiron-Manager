@@ -4,7 +4,11 @@
 // flow (WP-06) and statistics (WP-07) land, tests drive it with fakes of the same interfaces.
 import type { GameInput, GameDeps, GameFlow, StatsModule, GameSummary, PlayByPlayRow } from '@gm/schema';
 import type { CalibrationSample } from './measures.ts';
-import { mix32 } from './chart-caller.ts';
+import { season } from '@gm/world';
+
+const { chart } = season;
+
+const { mix32 } = chart;
 
 export interface BatchSpec {
   readonly games: number;
@@ -47,7 +51,12 @@ export function runBatch(spec: BatchSpec): BatchResult {
     const score = res.final.score;
     const tie = finalEvent && finalEvent.type === 'game_final' ? finalEvent.tie : score[0] === score[1];
     const stateHash = res.records.length ? res.records[res.records.length - 1]!.stateHash : '';
-    group.summaries.push(spec.stats.summary(res.records, res.drives, { score, tie, stateHash, ruleSetId: input.ruleSetId, seedHex }));
+    // Timeouts are game events, not play records: count the charged team timeouts for the summary.
+    const timeoutsUsed: [number, number] = [0, 0];
+    for (const e of res.events) if (e.type === 'timeout_charged' && e.kind === 'team' && e.side !== null) timeoutsUsed[e.side]++;
+    // The contract type of `summary` does not list `timeoutsUsed` yet (change request to the integrator); the statistics module reads it.
+    const final = { score, tie, stateHash, ruleSetId: input.ruleSetId, seedHex, timeoutsUsed };
+    group.summaries.push(spec.stats.summary(res.records, res.drives, final));
   }
   return { groups, seeds };
 }

@@ -25,10 +25,10 @@ import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
+import * as people from '../../../src/people/index.ts';
 import * as compliance from '../../../src/compliance/index.ts';
 import * as records from '../../../src/records/index.ts';
 import * as news from '../../../src/news/index.ts';
-import * as people from '../../../src/people/index.ts';
 import * as health from '../../../src/health/index.ts';
 import { medical } from '@gm/league';
 
@@ -53,7 +53,9 @@ const levelLookup = (level: string): generation.RuleLookup => (level === 'pro' ?
 const s = setup({ seedHex: SEED, size: SIZE, firstSeasonYear: TODAY - SEASONS, historySeasons: SEASONS });
 const tBuild = performance.now();
 const w = loop.createWorld({
-  setup: s, content, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...health.HEALTH_EVENT_TYPES, ...records.RECORDS_EVENT_TYPES, ...people.peopleEventTypes()], notabilityOf: records.worldNotability(),
+  setup: s, content, names: NAMES,
+  eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...health.HEALTH_EVENT_TYPES, ...records.RECORDS_EVENT_TYPES, ...people.peopleEventTypes()],
+  notabilityOf: records.worldNotability(),
   foundingCurves: generation.defaultFoundingCurves(), lostClubs: LOST > 0 ? { fraction: LOST } : undefined,
 });
 const buildMs = performance.now() - tBuild;
