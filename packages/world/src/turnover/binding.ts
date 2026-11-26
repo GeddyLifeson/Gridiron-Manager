@@ -2,7 +2,7 @@
 import { development } from '@gm/league';
 import { scouting } from '@gm/people';
 import { stream } from '@gm/engine-core';
-import type { PersonRecord } from '@gm/schema';
+import type { PersonRecord, PlayingBlock } from '@gm/schema';
 import type { LevelSpec, WorldContent } from '../generation/content.ts';
 import { scaleMix } from '../generation/founding.ts';
 import type { LiveWorld, StepContext } from '../loop/types.ts';
@@ -63,7 +63,29 @@ export interface TurnoverBinding {
   readonly content: WorldContent;
   readonly rule: RuleRead;
   readonly policy?: RosterPolicy;
+  /**
+   * Optional: runs many players' development years at once (a worker pool the composition root binds; the
+   * world itself stays single-threaded and pure). It must return, in job order, exactly the block
+   * `developmentJobResult` gives for each job; the step applies them in person id order either way.
+   */
+  readonly developBatch?: DevelopmentBatchPort;
 }
+
+/** One player's development year as plain data, so another thread can run it (D7, D8). */
+export interface DevelopmentJob {
+  readonly personId: number;
+  /** The season just played: the stream scope is [personId, season, step]. */
+  readonly season: number;
+  readonly seed: { readonly hi: number; readonly lo: number };
+  readonly position: string;
+  /** D1.1.1 age entering the next season. */
+  readonly ageYears: number;
+  readonly playing: PlayingBlock;
+  readonly facets: Readonly<Record<string, number>>;
+  readonly role: 'starter' | 'backup';
+}
+
+export type DevelopmentBatchPort = (jobs: readonly DevelopmentJob[]) => readonly PlayingBlock[];
 
 export interface GradeContext {
   readonly world: LiveWorld;

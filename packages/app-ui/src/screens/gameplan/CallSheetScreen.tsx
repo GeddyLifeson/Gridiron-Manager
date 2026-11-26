@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import { v } from '../../tokens/index.ts';
 import { Action, Badge, panel, Warnings } from './GamePlanScreen.tsx';
-import { gt, PAPERS, readinessText, SHEET_TABS, type CardView, type GameplanIntent, type GameplanView, type SheetBoxRow, type SheetTab } from './view.ts';
+import { cellAt, gt, PAPERS, readinessText, SHEET_TABS, type CardView, type GameplanIntent, type GameplanView, type SheetBoxRow, type SheetTab } from './view.ts';
 
 export interface CallSheetScreenProps {
   view: GameplanView | null;
@@ -13,7 +13,14 @@ export interface CallSheetScreenProps {
   readOnly: boolean;
   onTab(tab: SheetTab): void;
   onIntent(intent: GameplanIntent): void;
+  /** The host holds a sheet from last week for this unit: show "start from last week's sheet". */
+  canStartFromLastWeek?: boolean;
 }
+
+/** Drag payloads: an entry (box and entry ids) or a whole box. */
+const DRAG_ENTRY = 'application/x-gm-entry';
+const DRAG_BOX = 'application/x-gm-box';
+type DragEv = { preventDefault(): void; stopPropagation(): void; dataTransfer: { setData(k: string, v: string): void; getData(k: string): string } };
 
 const pct = (x: number, of: number) => `${(x / of) * 100}%`;
 
@@ -23,14 +30,46 @@ function BoxView({ b, view, readOnly, onIntent }: { b: SheetBoxRow; view: Gamepl
   const editable = !readOnly && view.locks.build.allowed && view.sheet.lockedAt === null;
   return (
     <section className="gp-box" data-box={b.id} aria-label={b.title}
+      {...(editable ? {
+        onDragOver: (ev: DragEv) => ev.preventDefault(),
+        onDrop: (ev: DragEv) => {
+          const [fromBoxId, entryId] = ev.dataTransfer.getData(DRAG_ENTRY).split('\n');
+          if (!fromBoxId || !entryId) return;
+          ev.preventDefault(); ev.stopPropagation();
+          onIntent({ kind: 'drop_entry', fromBoxId, entryId, toBoxId: b.id, at: b.entries.length });
+        },
+      } : {})}
       style={{ position: 'absolute', left: pct(b.col, page.cols), top: pct(b.row, page.rows), width: pct(b.w, page.cols), height: pct(b.h, page.rows), border: `1px solid ${v('line.default')}`, borderTop: `4px solid ${b.colour}`, background: v('surface.raised'), overflow: 'auto', fontSize: '11px' }}>
-      <header><kbd>{b.key}</kbd> <strong>{b.title}</strong>
+      <header
+        {...(editable ? { draggable: true, onDragStart: (ev: DragEv) => ev.dataTransfer.setData(DRAG_BOX, b.id) } : {})}
+        data-drag-box={editable ? b.id : undefined}><kbd>{b.key}</kbd> <strong>{b.title}</strong>
+        {editable ? (
+          <span className="gp-box-move">
+            {' '}<button type="button" aria-label={gt('gp.box.left', { box: b.title })} disabled={b.col === 0} onClick={() => onIntent({ kind: 'move_box', boxId: b.id, side: b.side, col: b.col - 1, row: b.row, w: b.w, h: b.h })}>←</button>
+            <button type="button" aria-label={gt('gp.box.right', { box: b.title })} disabled={b.col + b.w >= page.cols} onClick={() => onIntent({ kind: 'move_box', boxId: b.id, side: b.side, col: b.col + 1, row: b.row, w: b.w, h: b.h })}>→</button>
+            <button type="button" aria-label={gt('gp.box.upMove', { box: b.title })} disabled={b.row === 0} onClick={() => onIntent({ kind: 'move_box', boxId: b.id, side: b.side, col: b.col, row: b.row - 1, w: b.w, h: b.h })}>↑</button>
+            <button type="button" aria-label={gt('gp.box.downMove', { box: b.title })} disabled={b.row + b.h >= page.rows} onClick={() => onIntent({ kind: 'move_box', boxId: b.id, side: b.side, col: b.col, row: b.row + 1, w: b.w, h: b.h })}>↓</button>
+            <button type="button" aria-label={gt('gp.box.otherSide', { box: b.title })} onClick={() => onIntent({ kind: 'move_box', boxId: b.id, side: b.side === 0 ? 1 : 0, col: b.col, row: b.row, w: b.w, h: b.h })}>⇄</button>
+          </span>
+        ) : null}
         {b.expectedSnaps !== null ? <span className="gm-line"> {gt('gp.box.expected', { snaps: b.expectedSnaps, source: gt(`gp.source.${b.expectedSource ?? 'league'}`), games: b.expectedGames ?? 0 })}</span> : null}
         {b.depthMark ? <> <Badge colour={b.depthMark === 'thin' ? 'state.caution' : 'state.neutral'}>{gt(`gp.box.${b.depthMark}`)}</Badge></> : null}
       </header>
       <ol>
         {b.entries.map((e, i) => (
-          <li key={e.id} data-entry={e.id} data-broken={e.broken ? 'true' : undefined} data-off-plan={e.notInPlan ? 'true' : undefined}>
+          <li key={e.id} data-entry={e.id}
+            {...(editable ? {
+              draggable: true,
+              onDragStart: (ev: DragEv) => { ev.stopPropagation(); ev.dataTransfer.setData(DRAG_ENTRY, `${b.id}\n${e.id}`); },
+              onDragOver: (ev: DragEv) => ev.preventDefault(),
+              onDrop: (ev: DragEv) => {
+                const [fromBoxId, entryId] = ev.dataTransfer.getData(DRAG_ENTRY).split('\n');
+                if (!fromBoxId || !entryId) return;
+                ev.preventDefault(); ev.stopPropagation();
+                if (entryId !== e.id) onIntent({ kind: 'drop_entry', fromBoxId, entryId, toBoxId: b.id, at: i });
+              },
+            } : {})}
+            data-broken={e.broken ? 'true' : undefined} data-off-plan={e.notInPlan ? 'true' : undefined}>
             <kbd>{e.key}</kbd> {e.call}
             {e.bandNumber ? <span className="gm-line"> #{e.bandNumber}</span> : null}
             <span className="gm-line"> {readinessText(e.readinessEstimate)} · {gt('gp.entry.called', { n: e.timesCalled })}</span>
@@ -60,8 +99,18 @@ function BoxView({ b, view, readOnly, onIntent }: { b: SheetBoxRow; view: Gamepl
   );
 }
 
-function Layout({ view, readOnly, onIntent }: { view: GameplanView; readOnly: boolean; onIntent(i: GameplanIntent): void }) {
+function Layout({ view, readOnly, onIntent, canStartFromLastWeek }: { view: GameplanView; readOnly: boolean; onIntent(i: GameplanIntent): void; canStartFromLastWeek: boolean }) {
   const s = view.sheet;
+  const editable = !readOnly && view.locks.build.allowed && s.lockedAt === null;
+  const dropBox = (side: 0 | 1) => (ev: DragEv & { clientX: number; clientY: number; currentTarget: { getBoundingClientRect(): { left: number; top: number; width: number; height: number } } }) => {
+    const id = ev.dataTransfer.getData(DRAG_BOX);
+    const b = id ? s.boxes.find((x) => x.id === id) : undefined;
+    if (!b) return;
+    ev.preventDefault();
+    const r = ev.currentTarget.getBoundingClientRect();
+    const at = cellAt(ev.clientX - r.left, ev.clientY - r.top, r.width, r.height, s.page, b.w, b.h);
+    onIntent({ kind: 'move_box', boxId: b.id, side, col: at.col, row: at.row, w: b.w, h: b.h });
+  };
   const ratio = s.page.orientation === 'landscape' ? '11 / 8.5' : '8.5 / 11';
   return (
     <>
@@ -72,9 +121,12 @@ function Layout({ view, readOnly, onIntent }: { view: GameplanView; readOnly: bo
         {s.layoutProblems.map((p, i) => <div key={i} data-problem={p.kind}><Badge colour="state.bad">{gt(`gp.layout.${p.kind}`, { boxes: p.boxes.join(', ') })}</Badge></div>)}
         {s.tooLongKeys.length ? <div><Badge colour="state.caution">{gt('gp.keys.tooLong', { list: s.tooLongKeys.join(', ') })}</Badge></div> : null}
         <Warnings list={s.warnings} />
+        {editable ? <p className="gm-line">{gt('gp.drag.hint')}</p> : null}
+        {editable && canStartFromLastWeek ? <p><button type="button" data-start-last-week onClick={() => onIntent({ kind: 'start_from_last_week' })}>{gt('gp.action.startLastWeek')}</button></p> : null}
       </section>
-      {[0, 1].map((side) => (
-        <div key={side} className="gp-side" data-side={side} aria-label={gt('gp.side', { n: side + 1 })} style={{ position: 'relative', width: '100%', aspectRatio: ratio, border: `2px solid ${v('line.default')}`, margin: '8px 0', background: v('surface.panel') }}>
+      {([0, 1] as const).map((side) => (
+        <div key={side} className="gp-side" data-side={side}
+          {...(editable ? { onDragOver: (ev: DragEv) => ev.preventDefault(), onDrop: dropBox(side) } : {})} aria-label={gt('gp.side', { n: side + 1 })} style={{ position: 'relative', width: '100%', aspectRatio: ratio, border: `2px solid ${v('line.default')}`, margin: '8px 0', background: v('surface.panel') }}>
           {s.boxes.filter((b) => b.side === side).map((b) => <BoxView key={b.id} b={b} view={view} readOnly={readOnly} onIntent={onIntent} />)}
         </div>
       ))}
@@ -240,14 +292,14 @@ function Print({ view, onIntent }: { view: GameplanView; onIntent(i: GameplanInt
   );
 }
 
-export function CallSheetScreen({ view, tab, readOnly, onTab, onIntent }: CallSheetScreenProps) {
+export function CallSheetScreen({ view, tab, readOnly, onTab, onIntent, canStartFromLastWeek = false }: CallSheetScreenProps) {
   if (!view) return <p className="gm-line">{gt('gp.none')}</p>;
   return (
     <div className="gp-sheet-screen" data-unit={view.unit}>
       <div role="tablist" aria-label={gt('gp.tabs')}>
         {SHEET_TABS.map((t) => <button key={t} type="button" role="tab" aria-selected={t === tab} onClick={() => onTab(t)}>{gt(`gp.tab.${t}`)}</button>)}
       </div>
-      {tab === 'layout' ? <Layout view={view} readOnly={readOnly} onIntent={onIntent} /> : null}
+      {tab === 'layout' ? <Layout view={view} readOnly={readOnly} onIntent={onIntent} canStartFromLastWeek={canStartFromLastWeek} /> : null}
       {tab === 'coverage' ? <Coverage view={view} /> : null}
       {tab === 'script' ? <Script view={view} /> : null}
       {tab === 'wristband' ? <Wristband view={view} readOnly={readOnly} onIntent={onIntent} /> : null}

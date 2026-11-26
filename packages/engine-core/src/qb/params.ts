@@ -29,8 +29,13 @@ const CLOCK = 'J7.8.1 acceptance';
 const FREE = 'J7.8.2 acceptance (free-play air yards at least twice normal)';
 const N2 = 'N2 expected points model (replaces this stand-in)';
 const STRUCT = 'none: structural';
+const LEVEL = 'equal rosters at 25, 40, 50 and 75: sack, pressure and completion rates do not move with the level (ruling 2026-11-26)';
 
 const ROWS = [
+  // Ruling 2026-11-26: the share of the other eleven's reading grades set against each quarterback grade that has no
+  // opponent term of its own (accuracy, pocket movement, anticipation, the reads of coverage and blitz, football
+  // intelligence, ball handling, composure). 1: equal rosters play the 50 v 50 game at any level. 0: the leaf's formulas.
+  ['oppose.gradeShare', 1, 0, 1, 'ratio', 'assumption', 'J7.1.1', LEVEL],
   // J7.1.1 drops: set time and depth at grade 50
   ['drop.gunQuick.setS', 0.9, 0.6, 1.2, 's', 'bible', 'J7.1.1', TTT],
   ['drop.gunQuick.depthYd', 5, 4, 6, 'yd', 'bible', 'J7.1.1', TTT],
@@ -43,6 +48,8 @@ const ROWS = [
   ['drop.uc7.setS', 2.7, 2.4, 3.0, 's', 'bible', 'J7.1.1', TTT],
   ['drop.uc7.depthYd', 9, 8, 10, 'yd', 'bible', 'J7.1.1', TTT],
   ['drop.footworkPerZS', 0.05, 0, 0.1, 's/z', 'bible', 'J7.1.1', TTT],
+  // The other side of the drop: seconds per z of the rush he is dropping away from. Same size as his own slope.
+  ['drop.rushPerZS', 0.05, 0, 0.1, 's/z', 'assumption', 'J7.1.1', LEVEL],
   // He is "at" the launch point inside this distance (J7.1.1 acceptance tolerance).
   ['drop.arriveYd', 0.5, 0.2, 1, 'yd', 'bible', 'J7.1.1', STRUCT],
 
@@ -57,8 +64,11 @@ const ROWS = [
   // J7.2.1 progression
   ['read.tReadBaseS', 0.55, 0.4, 0.7, 's', 'bible', 'J7.2.1', PROG],
   ['read.tReadPerZS', 0.08, 0, 0.15, 's/z', 'bible', 'J7.2.1', PROG],
+  // The other side of a read: seconds per z of the coverage he is sorting out. Same size as his own slope.
+  ['read.coveragePerZS', 0.08, 0, 0.15, 's/z', 'assumption', 'J7.2.1', LEVEL],
   ['read.tReadFloorS', 0.30, 0.2, 0.4, 's', 'bible', 'J7.2.1', PROG],
-  ['read.checkdownAfter', 2, 1, 3, 'reads', 'bible', 'J7.3.3', PROG],
+  // Tuned from the bible's 2 against J15.4.1 sacks per pressure: with a rusher on him he may dump it to the back from his first read on.
+  ['read.checkdownAfter', 1, 1, 3, 'reads', 'bible', 'J7.3.3', PROG],
   ['read.maxPasses', 2, 1, 3, 'count', 'assumption', 'J7.2.1', TTT],
   // J7.2.1 step 4: reading the key defender right.
   ['read.keyBeta0', 1.2, 0, 3, 'logit', 'assumption', 'J7.2.1', EST],
@@ -70,7 +80,9 @@ const ROWS = [
   ['judge.sepSdPerZYd', 0.25, 0, 0.5, 'yd/z', 'bible', 'J7.3.1', EST],
   ['judge.sepSdFloorYd', 0.3, 0.1, 0.6, 'yd', 'bible', 'J7.3.1', EST],
   // What he assumes about a defender he is watching. League-typical guesses, never the defender's true values.
-  ['judge.defenderSpeedYps', 7.5, 6, 9, 'yd/s', 'assumption', 'J7.3.1', EST],
+  // Tuned from 7.5 (Assumption): he rated every trailing defender slower than the receiver, so a man a step behind
+  // fell out of the play in his head on any throw over a second in the air.
+  ['judge.defenderSpeedYps', 9, 6, 9, 'yd/s', 'assumption', 'J7.3.1', EST],
   ['judge.defenderReactS', 0.25, 0.1, 0.5, 's', 'assumption', 'J7.3.1', EST],
   ['judge.accelLagS', 0.35, 0, 0.8, 's', 'assumption', 'J7.3.1', EST],
   ['judge.routeSpeedYps', 7, 5, 9, 'yd/s', 'assumption', 'J7.3.1', EST],
@@ -91,8 +103,14 @@ const ROWS = [
   ['judge.lanePickShare', 0.35, 0.1, 0.7, 'probability', 'assumption', 'J7.3.1', RATES],
   // J6.5 reach test "given where he can get to": how far he expects the receiver to adjust to the ball in flight.
   ['judge.reachAdjustYd', 1.0, 0, 2.5, 'yd', 'assumption', 'J7.3.1', 'J7.3.1 acceptance; J15 completion by depth (DP-1)'],
-  ['judge.missPickContested', 0.10, 0, 0.3, 'probability', 'assumption', 'J7.3.1', RATES],
+  // A receiver running at the sideline turns up it this far inside (football-lang `route.sidelineRoomYd`).
+  ['judge.sidelineRoomYd', 2, 0.5, 5, 'yd', 'assumption', 'J7.3.1', STRUCT],
+  // Tuned from 0.10 (Assumption) against J15.4.1 interceptions by depth: an off-target ball into coverage is picked far
+  // more often than one on target, and at 0.10 a covered deep throw still rated above his threshold.
+  ['judge.missPickContested', 0.25, 0, 0.3, 'probability', 'assumption', 'J7.3.1', RATES],
   ['judge.missPickOpen', 0.02, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
+  // Added share of off-target balls picked per yard of air beyond the short band, receiver judged open (J15 interceptions by depth).
+  ['judge.missPickOpenPerYd', 0.002, 0, 0.01, 'probability/yd', 'assumption', 'J7.3.1', RATES],
   ['judge.positionTolYd', 0.5, 0.2, 1.5, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.undercutLateralYd', 2, 1, 4, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.yacBaseYd', 2, 0, 5, 'yd', 'assumption', 'J7.3.1', 'J15 yards after catch (N2)'],
@@ -104,6 +122,9 @@ const ROWS = [
   // Stand-in for the N2 expected points model.
   ['value.epPerYd', 0.065, 0.03, 0.1, 'EP/yd', 'assumption', 'J7.3.1', N2],
   ['value.turnoverCostEp', 4, 2, 6, 'EP', 'assumption', 'J7.3.1', N2],
+  // What the lost down costs when a throw is neither caught nor intercepted. At 0 a covered deep throw (one chance
+  // in four for 25 yards) rated above his threshold; tuned against J15.4.1 air yards per attempt and completion (1 of 3, 2 of 3).
+  ['value.incompleteCostEp', 0.3, 0, 0.8, 'EP', 'assumption', 'J7.3.1', N2],
   ['value.conversionBonusEp', 0.9, 0, 2, 'EP', 'assumption', 'J7.3.2', N2],
   ['value.conversionDownFrom', 3, 2, 4, 'down', 'assumption', 'J7.3.2', N2],
 
@@ -150,9 +171,12 @@ const ROWS = [
   ['resp.escapeEp', -0.10, -0.5, 0.5, 'EP', 'assumption', 'J7.4.2', RATES],
   ['resp.escapePerZEp', 0.07, 0, 0.2, 'EP/z', 'assumption', 'J7.4.2', RATES],
   ['resp.escapeCodPerZEp', 0.03, 0, 0.1, 'EP/z', 'assumption', 'J7.4.2', RATES],
-  ['resp.throwAwayEp', -0.15, -0.6, 0.2, 'EP', 'assumption', 'J7.4.2', RATES],
+  // Tuned from -0.15 (Assumption) against J15.4.1 sacks per pressure.
+  ['resp.throwAwayEp', 0.2, -0.6, 0.2, 'EP', 'assumption', 'J7.4.2', RATES], // tuned from 0: a pressured passer threw it away too rarely (pressured completion 58.5% against real 48.1%, sacks per pressure 0.27 against 0.155)
   ['resp.sackEp', -0.45, -1.5, 0, 'EP', 'assumption', 'J7.4.2', RATES],
   ['resp.protectBallEp', 0.15, 0, 0.5, 'EP', 'assumption', 'J7.4.2', RATES],
+  // Seconds after a pocket move before the same rusher, on him again, gets a second answer (throw now, throw away or go down).
+  ['resp.secondAnswerS', 0.5, 0.1, 0.8, 's', 'assumption', 'J7.4.2', RATES],
   ['pocket.stepYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.4.2', SACK],
   ['pocket.minBehindLineYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.4.2', STRUCT],
   ['pocket.defaultHalfWidthYd', 4.5, 3, 6, 'yd', 'assumption', 'J7.5.2', GRD],
@@ -166,7 +190,8 @@ const ROWS = [
   ['arrival.hitAfterReleaseS', 0.3, 0.1, 0.6, 's', 'assumption', 'J6.2.5', 'J15 quarterback hits per game'],
 
   // J7.5.1 scramble
-  ['scramble.s0', -3.6, -6, 0, 'logit', 'assumption', 'J7.5.1', SCR],
+  // Tuned from -3.6 (Assumption) against J15.4.1 scramble share: he weighs a run only when his reads run out.
+  ['scramble.s0', -2.4, -6, 0, 'logit', 'assumption', 'J7.5.1', SCR],
   ['scramble.s1', 0.5, 0, 1.5, 'logit/z', 'bible', 'J7.5.1', SCR],
   ['scramble.s2', 1.0, 0, 2, 'logit', 'bible', 'J7.5.1', SCR],
   ['scramble.s3', 0.8, 0, 2, 'logit', 'bible', 'J7.5.1', SCR],
@@ -201,9 +226,14 @@ const ROWS = [
   // J7.6.1 release and ball speed
   ['throw.releaseBaseS', 0.40, 0.3, 0.5, 's', 'bible', 'J7.6.1', TTT],
   ['throw.releasePerZS', 0.03, 0, 0.06, 's/z', 'bible', 'J7.6.1', TTT],
+  // The other side of the release: seconds per z of the rush closing on him. Same size as his own slope.
+  ['throw.releaseRushPerZS', 0.03, 0, 0.06, 's/z', 'assumption', 'J7.6.1', LEVEL],
   ['throw.releaseFloorS', 0.2, 0.1, 0.3, 's', 'assumption', 'J7.6.1', STRUCT],
   ['throw.vBallBaseYps', 26, 22, 30, 'yd/s', 'bible', 'J7.6.1', ARM],
   ['throw.vBallPerZYps', 1.5, 0.5, 3, 'yd/s/z', 'bible', 'J7.6.1', ARM],
+  // The other side of ball speed: yd/s per z of the eleven it is thrown against, same size as his own slope, so the
+  // race between the ball and the men breaking on it is the same at any level. How far he can throw stays his own arm.
+  ['throw.vBallDefensePerZYps', 1.5, 0, 3, 'yd/s/z', 'assumption', 'J7.6.1', LEVEL],
   ['throw.vBallFloorYps', 15, 10, 20, 'yd/s', 'assumption', 'J7.6.1', STRUCT],
   ['throw.touchRoomYd', 3, 1.5, 6, 'yd', 'assumption', 'J7.6.1', ACC],
   ['throw.driveSepYd', 3, 1, 5, 'yd', 'assumption', 'J7.6.1', ACC],
@@ -211,19 +241,21 @@ const ROWS = [
   // J7.6.2 accuracy
   ['acc.sdShortYd', 0.6, 0.3, 1, 'yd', 'bible', 'J7.6.2', ACC],
   ['acc.sdMidYd', 1.0, 0.6, 1.5, 'yd', 'bible', 'J7.6.2', ACC],
-  ['acc.sdDeepYd', 1.8, 1.2, 2.6, 'yd', 'bible', 'J7.6.2', ACC],
+  // Tuned from the bible's 1.8 (so an Assumption now) against J15.4.1 completion by depth: deep balls were almost never
+  // uncatchable (3 of 93 in a trace) and completed 49% at 21+ yards (real 29 to 37%, 1 of 3).
+  ['acc.sdDeepYd', 2.6, 1.2, 2.6, 'yd', 'assumption', 'J7.6.2', ACC],
   ['acc.midFromYd', 10, 10, 10, 'yd', 'bible', 'J7.6.2', STRUCT],
   ['acc.deepFromYd', 20, 20, 20, 'yd', 'bible', 'J7.6.2', STRUCT],
   ['acc.perZ', 0.12, 0, 0.25, 'share/z', 'bible', 'J7.6.2', ACC],
   ['acc.minShare', 0.3, 0.1, 0.6, 'share', 'assumption', 'J7.6.2', STRUCT],
   ['acc.movingMult', 1.3, 1, 1.8, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.movingThrowSideMult', 1.15, 1, 1.5, 'ratio', 'bible', 'J7.6.2', ACC],
-  ['acc.hitMult', 1.8, 1.2, 2.5, 'ratio', 'bible', 'J7.6.2', ACC],
-  ['acc.faceMult', 1.25, 1, 1.6, 'ratio', 'bible', 'J7.6.2', ACC],
+  ['acc.hitMult', 1.8, 1.2, 2.5, 'ratio', 'bible', 'J7.6.2', ACC], // bible value; 2.5 was tried and changed nothing measurable (a hit throw's error does not reach the gate)
+  ['acc.faceMult', 1.6, 1, 1.6, 'ratio', 'bible', 'J7.6.2', ACC], // tuned from 1.25 with acc.hitMult
   ['acc.wetMult', 1.1, 1, 1.3, 'ratio', 'bible', 'J7.6.2', ACC],
   ['acc.unsetMult', 1.15, 1, 1.5, 'ratio', 'assumption', 'J7.1.1', ACC],
   ['acc.multPerZ', 0.10, 0, 0.2, 'share/z', 'bible', 'J7.6.2', ACC],
-  ['acc.deepAlongRatio', 1.4, 1, 2, 'ratio', 'assumption', 'J7.6.2', ACC],
+  ['acc.deepAlongRatio', 2, 1, 2, 'ratio', 'assumption', 'J7.6.2', ACC], // tuned from 1.4 with acc.sdDeepYd: a deep ball misses long or short far more than wide
   ['acc.heightSdShare', 0.5, 0, 1, 'ratio', 'assumption', 'J7.6.2', ACC],
   ['acc.leadYd', 0.6, 0, 1.5, 'yd', 'assumption', 'J7.6.2', ACC],
   ['acc.leadPerZ', 0.15, 0, 0.4, 'share/z', 'assumption', 'J7.6.2', ACC],

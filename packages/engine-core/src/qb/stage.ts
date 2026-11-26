@@ -21,6 +21,7 @@ import { pickOutcome, type Contests } from '../contest/index.ts';
 import { PI, dAtan2, dCos, dSqrt } from '../dmath.ts';
 import { cutMultiplier, kinParams } from '../kinematics/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
+import { COVERING, READING, RUSHING, opposingElevenZ, opposingZ } from '../tick/opposition.ts';
 import {
   accuracySdYd, anticipationEarlyS, blindsideFeelChance, clip, depthBand, dropDepthYd, eyesDownfieldChance, falsePressureChance, freePlaySeenChance,
   hotSeenChance, interceptionCeiling, keyReadChance, knowsGroundingChance, maxBallSpeedYps, meshFumbleChance, meshReadChance, platformMultiplier, pumpFakeChance, readTimeS, releaseTimeS,
@@ -158,6 +159,10 @@ export interface Quarterback {
 
 function hyp(x: number, y: number): number { return dSqrt(x * x + y * y); }
 
+// The grades on the other side of his clocks. The rush is the four the block contest reads (J6.2.1); the coverage
+// is how fast its men sort the play out (`READING`).
+const RUSH_GRADES = ['get_off', 'power_rush', 'hand_moves', 'speed_rush_and_bend'] as const;
+
 /**
  * Flight times from the J9 solver in still air, by distance and trajectory, for one arm in one air
  * (J7.6.1: "flight time comes from J9 and was already used in the estimate"). Solving is slow, so a
@@ -171,10 +176,12 @@ const flightTables = new WeakMap<BallParams, Map<string, FlightTable>>();
 function flightTable(vBallYps: number, k: number, maxRangeYd: number, bp: BallParams): FlightTable {
   let byArm = flightTables.get(bp);
   if (byArm === undefined) { byArm = new Map(); flightTables.set(bp, byArm); }
-  const key = `${vBallYps}|${k}`;
+  // The row count is part of the key: a table first built for a shorter field must not answer a longer
+  // one, or a throw's flight would depend on which plays came before it (and on garbage collection).
+  const n = Math.floor(maxRangeYd / FLIGHT_STEP_YD) + 2;
+  const key = `${vBallYps}|${k}|${n}`;
   const hit = byArm.get(key);
   if (hit !== undefined) return hit;
-  const n = Math.floor(maxRangeYd / FLIGHT_STEP_YD) + 2;
   const row = (): FlightRow => ({ timeS: new Float64Array(n), tan: new Float64Array(n) });
   const made: FlightTable = { n, releaseH: bp['pass.releaseHeightYd']!, catchH: bp['pass.catchHeightYd']!, firm: row(), drive: row(), touch: row() };
   for (let i = 1; i < n; i++) {
@@ -190,6 +197,13 @@ function flightTable(vBallYps: number, k: number, maxRangeYd: number, bp: BallPa
   byArm.set(key, made);
   return made;
 }
+/** Step along a throwaway's flight when checking who can reach it (J7.5.2). */
+const AWAY_STEP_YD = 1;
+/** Yards he keeps inside the vicinity for a throw out of bounds over a receiver at the sideline. */
+const AWAY_LEGAL_SPARE_YD = 1;
+/** Eight directions around a receiver for a throwaway's landing spot (exact values, no platform trig). */
+const RING_X = [1, Math.SQRT1_2, 0, -Math.SQRT1_2, -1, -Math.SQRT1_2, 0, Math.SQRT1_2];
+const RING_Y = [0, Math.SQRT1_2, 1, Math.SQRT1_2, 0, -Math.SQRT1_2, -1, -Math.SQRT1_2];
 function flightFrom(t: FlightTable, distYd: number, trajectory: Trajectory): number {
   if (distYd <= 0) return 0;
   const row = t[trajectory].timeS, at = distYd / FLIGHT_STEP_YD, i = Math.floor(at);
@@ -232,10 +246,11 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   let phase = WAIT, level = NONE, everHad = false, gotBallT = 0, tSet = 0, launchPx = 0, launchPy = 0, setPx: number | null = null, setPy: number | null = null;
   let idx = 0, look = 0, passes = 0, visitStart = 0, waitStart = 0, evaluating = false, blockUntil = 0, restarted = false, firstPass = true;
   let eyesDown = false, hotSeen = false, hotDone = false, falseDrawn = false, falseDone = false, freeSeen = false, knowsRule = true, deepestRead = -1;
-  let threat = -1, threatTtc = Infinity, threatPx = 0, threatPy = 0, respondedTo = -1, pressureNear = false, inFace = false, takeSack = false, dodge = false;
+  let threat = -1, threatTtc = Infinity, threatPx = 0, threatPy = 0, respondedTo = -1, respondedAt = 0, answers = 0, pressureNear = false, inFace = false, takeSack = false, dodge = false;
   let response: PressureResponse | null = null, extendSide = 0, everOutside = false, scrambleDraw = 0, keyDraw = 0;
   let releaseAt = 0, relTarget: QbTarget | null = null, relKind: ThrowRecord['kind'] = 'pass', relRead = -1, relHot = false, relAnticipated = false, relUnset = false, relMoving = false;
-  let relP = 0, relI = 0, relV = 0, relThr = 0, awayPx = 0, awayPy = 0;
+  let relP = 0, relI = 0, relV = 0, relThr = 0, awayPx = 0, awayPy = 0, awayH: number | undefined = 0;
+  let awayTraj: Trajectory = 'firm';
   let underPressureNow = false, carrierOwns = false, runPy = 0, stumbleUntil = 0;
   let meshSum = 0, meshN = 0, meshDecided = false, meshLate = false, pitchDone = false;
   let throwRecord: ThrowRecord | null = null, sack: QbPlayRecord['sack'] = null, kneel: QbPlayRecord['kneel'] = null, ran: QbPlayRecord['ran'] = null;
@@ -265,7 +280,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     cur = next;
     phase = WAIT; level = NONE; everHad = false; setPx = null; setPy = null; ticksTracked = 0;
     idx = 0; look = -1; passes = 0; evaluating = false; blockUntil = 0; restarted = false; firstPass = true; eyesDown = false;
-    hotDone = false; falseDone = false; threat = -1; respondedTo = -1; takeSack = false; dodge = false; response = null; extendSide = 0; everOutside = false;
+    hotDone = false; falseDone = false; threat = -1; respondedTo = -1; respondedAt = 0; answers = 0; takeSack = false; dodge = false; response = null; extendSide = 0; everOutside = false;
     scrambleDraw = 0; keyDraw = 0; relTarget = null; underPressureNow = false; carrierOwns = false; stumbleUntil = 0;
     meshSum = 0; meshN = 0; meshDecided = false; meshLate = false; pitchDone = false;
     throwRecord = null; sack = null; kneel = null; ran = null; hazard = null; mesh = null; handoff = null;
@@ -276,14 +291,22 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const p = P = qbParams(w.params), bp = BP = ballParams(w.params), s = play.qbSlot;
     const info = w.slots[s]!, a = info.player.attributes, pl = w.players;
     const body = pl.dFatigueZ[s]! + pl.dInjuryZ[s]!, mind = body + pl.dKnowledgeZ[s]!;
+    // Ruling 2026-11-26 (one pro scale, no level of play): his grades are read against the eleven he is playing.
+    // The three clocks and the ball have their own opponents (the rush, the coverage); every other grade is read
+    // against how fast the other eleven sorts a play out. Nobody has a behavior before the snap, so all of them.
+    const zEleven = opposingElevenZ(w, s, READING), opposed = p['oppose.gradeShare'] * zEleven;
     const zb = (id: string): number => issToZ(a[id]!) - body, zm = (id: string): number => issToZ(a[id]!) - mind;
-    zFoot = zb('footwork_and_drop'); zPocket = zb('pocket_movement'); zScramble = zb('scramble_and_run_skill'); zRelease = zb('release_time'); zArm = zb('arm_strength');
-    zAccShort = zb('accuracy_short'); zAccMid = zb('accuracy_intermediate'); zAccDeep = zb('accuracy_deep'); zMove = zb('accuracy_on_the_move'); zUnderPressure = zb('accuracy_under_pressure');
+    const zbo = (id: string): number => zb(id) - opposed, zmo = (id: string): number => zm(id) - opposed;
+    zFoot = zb('footwork_and_drop'); zPocket = zbo('pocket_movement'); zScramble = zbo('scramble_and_run_skill'); zRelease = zb('release_time'); zArm = zb('arm_strength');
+    zAccShort = zbo('accuracy_short'); zAccMid = zbo('accuracy_intermediate'); zAccDeep = zbo('accuracy_deep'); zMove = zbo('accuracy_on_the_move'); zUnderPressure = zbo('accuracy_under_pressure');
     zCod = info.player.tests.changeOfDirectionZ - body;
-    zProc = zm('processing_speed'); zCov = zm('coverage_reading_post_snap'); zBlitz = zm('blitz_recognition'); zAnt = zm('anticipation'); zMeshRead = zm('play_recognition');
-    zFi = zm('football_intelligence'); zHandling = zb('play_fake_and_ball_handling'); zComposure = zm('composure');
-    decisionRisk = a['decision_risk']!; composure = a['composure']!;
-    tReadS = readTimeS(zProc, p); earlyS = anticipationEarlyS(zAnt, p); releaseS = releaseTimeS(zRelease, p); vBall = maxBallSpeedYps(zArm, p);
+    zProc = zm('processing_speed'); zCov = zmo('coverage_reading_post_snap'); zBlitz = zmo('blitz_recognition'); zAnt = zmo('anticipation'); zMeshRead = zmo('play_recognition');
+    zFi = zmo('football_intelligence'); zHandling = zbo('play_fake_and_ball_handling'); zComposure = zmo('composure');
+    decisionRisk = a['decision_risk']!; composure = a['composure']! - 10 * opposed;
+    tReadS = readTimeS(zProc, p); earlyS = anticipationEarlyS(zAnt, p); releaseS = releaseTimeS(zRelease, p);
+    // Ball speed is read against the eleven it is thrown at.
+    const vArm = maxBallSpeedYps(zArm, p);
+    vBall = maxBallSpeedYps(zArm, p, zEleven);
     riskOffset = riskOffsetEp(decisionRisk, play.instructions.risk, p);
     wet = w.environment.precip !== 'none' || w.environment.derived.grip < 1;
     gustMult = gustAimMultiplier(w.environment, bp['wind.gustAimGain']!);
@@ -308,7 +331,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     intCeil = freeSeen ? 1 : interceptionCeiling(trailing, oneScore, sit.period, sit.clockTenths * TICK_S, p);
 
     seq = play.reads.slice();
-    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+    if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
     deepestRead = -1;
     if (freeSeen) {
       let deep = -Infinity;
@@ -320,12 +343,15 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       if (deepestRead > 0) { const r = seq.splice(deepestRead, 1)[0]!; seq.unshift(r); deepestRead = 0; }
     }
     const k = airDrag(bp['pass.dragPerYd']!, w.environment);
-    const far = solvePassFrom(0, 0, 300, 0, vBall, 'drive', k, NO_WIND, bp);
+    // His range is his own arm's, and never more than the ball he throws on this play can cover.
+    const far = solvePassFrom(0, 0, 300, 0, vArm < vBall ? vArm : vBall, 'drive', k, NO_WIND, bp);
     const table = flightTable(vBall, k, far.arrival.x, bp);
     const kp = kinParams(w.params);
     ctx = {
       p, catchPoint, math: w.math, value: play.value ?? standInValue(p, sit.down, sit.distanceYd),
       releaseS, vBallYps: vBall, dragPerYd: k, maxRangeYd: far.arrival.x, wet, allowOutOfRange: play.kind === 'hailMary',
+      loPy: Math.min((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
+      hiPy: Math.max((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
       accuracySdYd: (airYd) => errorSd(airYd, platformNow(false, false)),
       flightS: (distYd, trajectory) => flightFrom(table, distYd, trajectory),
       heightYd: (distYd, alongYd, trajectory) => heightFrom(table, distYd, alongYd, trajectory),
@@ -380,6 +406,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const play = cur!;
     if (play.hot && play.hot.target.slot === slot) return play.hot.target;
     if (play.mesh && play.mesh.throwTarget && play.mesh.throwTarget.slot === slot) return play.mesh.throwTarget;
+    if (play.checkdown && play.checkdown.slot === slot) return play.checkdown;
     return null;
   }
   function lookAtPoint(w: TickWorld, px: number, py: number): void {
@@ -472,6 +499,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     ran = { tick: w.tick, why };
     carrierOwns = options.onRun ? options.onRun(w, cur!.qbSlot, why) : false;
     detail(w, `qb.${why}`);
+    // The stat line reads the shared code (contract decision D-16): without it no scramble was ever counted.
+    if (why === 'scramble') detail(w, 'scramble');
     note(w, why);
   }
 
@@ -488,33 +517,97 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   // ---------------------------------------------------------------------------------------------------
   // J7.5.2 throwing it away
 
-  /** Finds the throwaway he would make now. Returns 1 legal, 0 none, -1 one he wrongly believes is legal. */
+  /**
+   * Finds the throwaway he would make now. Returns 1 legal, 0 none, -1 one he wrongly believes is legal.
+   *
+   * A throwaway is thrown where nobody can catch it (J7.5.2). It is aimed at the ground, never at catch
+   * height, so it does not fly on through a defender's hands:
+   *   - outside the pocket, a high ball that comes down beyond the sideline past the line of scrimmage
+   *     extended (NFL Rule 8-2-1 Item 1, the pocket exception);
+   *   - inside the pocket, into the direction and vicinity of an originally eligible receiver (Rule 8-2-1
+   *     Article 1): a drive into the ground short of his feet, at them or around him, or a high ball over
+   *     him that comes down out of bounds when he is at the sideline.
+   * Of all those throws he takes the one he judges safest (`tryAway`).
+   */
   function findThrowaway(w: TickWorld, v: PerceivedView): number {
-    const p = P!, play = cur!;
+    const p = P!, play = cur!, margin = p['throwaway.oobMarginYd'];
+    const south = (0 - w.frame.originY) * w.frame.attackDir, north = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
+    const lo = south < north ? south : north, hi = south < north ? north : south;
+    awayH = 0;
     if (everOutside) {
       // Out of bounds past the line on his side: the pocket exception (B5.4.1).
-      const south = (0 - w.frame.originY) * w.frame.attackDir, north = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
-      const lo = south < north ? south : north, hi = south < north ? north : south;
-      const near = hi - v.self.py < v.self.py - lo ? hi + p['throwaway.oobMarginYd'] : lo - p['throwaway.oobMarginYd'];
-      awayPx = (v.self.px > 0 ? v.self.px : 0) + p['throwaway.pastLineYd']; awayPy = near;
+      const near = hi - v.self.py < v.self.py - lo ? hi + margin : lo - margin;
+      awayPx = (v.self.px > 0 ? v.self.px : 0) + p['throwaway.pastLineYd']; awayPy = near; awayTraj = 'touch';
       return 1;
     }
-    // In the direction and vicinity of an eligible receiver: at the feet of the nearest one he can see.
-    let best = Infinity, bx = 0, by = 0;
+    // Each eligible receiver where he will be as the ball leaves: where he sees him, else where the drawn
+    // route puts him (as his eyes do, J7.3.1 step 1).
+    const vicinity = p['throwaway.vicinityYd'], short = p['throwaway.shortYd'], ring = vicinity - short;
+    bestAway = -Infinity;
     for (let i = 0; i < play.eligible.length; i++) {
-      const e = v.entity(play.eligible[i]!);
-      if (e === null) continue;
-      const d = hyp(e.px - v.self.px, e.py - v.self.py);
-      if (d < best) { best = d; bx = e.px; by = e.py; }
+      const slot = play.eligible[i]!, e = v.entity(slot);
+      let rx: number, ry: number, nowX: number, nowY: number;
+      if (e !== null) { nowX = e.px; nowY = e.py; rx = e.px + e.velPx * releaseS; ry = e.py + e.velPy * releaseS; } else {
+        const t = knownTarget(slot);
+        if (t === null || t.route.length < 2 || ctx === null) continue;
+        walkRoute(t, ctx, t.route[0]!.px, t.route[0]!.py, 0, (v.tSinceSnapS > 0 ? v.tSinceSnapS : 0) + releaseS, lookBuf);
+        rx = lookBuf[0]!; ry = lookBuf[1]!; nowX = rx; nowY = ry;
+      }
+      // He keeps it inside the vicinity both of where he sees the man now and of where he expects him as it
+      // leaves; for a man he knows only from the drawn route, who may be yards off it, closer still.
+      awayRx = rx; awayRy = ry; awayNx = nowX; awayNy = nowY; awayRing = e !== null ? ring : short;
+      const dx = rx - v.self.px, dy = ry - v.self.py, d = hyp(dx, dy);
+      if (d <= 0) continue;
+      const ux = dx / d, uy = dy / d, sh = short < d ? short : d / 2;
+      // Fired into the ground: short of his feet, at them, or around him. A drive is down before anyone can
+      // get to it; a firm or touch ball into the ground hangs where the men around the receiver can.
+      tryAway(v, rx - ux * sh, ry - uy * sh, 'drive');
+      tryAway(v, rx, ry, 'drive');
+      for (let k = 0; k < RING_X.length; k++) tryAway(v, rx + RING_X[k]! * ring, ry + RING_Y[k]! * ring, 'drive');
+      // High over him and down out of bounds, when the sideline is inside the vicinity.
+      const toSide = hi - ry < ry - lo ? hi - ry : ry - lo;
+      awayRing = vicinity - AWAY_LEGAL_SPARE_YD;
+      if (toSide >= 0 && toSide + margin <= awayRing) tryAway(v, rx, hi - ry < ry - lo ? hi + margin : lo - margin, 'touch');
     }
-    if (best < Infinity && best > 0) {
-      const short = p['throwaway.shortYd'] < best ? p['throwaway.shortYd'] : best / 2;
-      awayPx = bx - ((bx - v.self.px) / best) * short; awayPy = by - ((by - v.self.py) / best) * short;
-      return 1;
-    }
+    if (bestAway > -Infinity) return 1;
     // Nothing legal. A quarterback who does not know the rule throws it into the ground ahead of him anyway.
-    awayPx = v.self.px + p['throwaway.pastLineYd']; awayPy = v.self.py;
+    awayPx = v.self.px + p['throwaway.pastLineYd']; awayPy = v.self.py; awayTraj = 'firm';
     return knowsRule ? 0 : -1;
+  }
+
+  /**
+   * Scores one throwaway into the ground at (x, y) and keeps it when it is the best so far. The score is a
+   * margin in yards, the smaller of two (J7.3.1 steps 2 to 4 lane picture, with the ball going to ground):
+   *   - over the defenders he sees and each yard of the flight low enough to get a hand to, the yards the
+   *     defender must cover less the yards he can run before the ball gets there;
+   *   - for a defender he has not seen, who may be under any of it past the line, minus the length of that
+   *     low stretch short of the last `throwaway.shortYd` (where the ball is going into the ground).
+   */
+  let bestAway = -Infinity, awayRx = 0, awayRy = 0, awayNx = 0, awayNy = 0, awayRing = -1;
+  function tryAway(v: PerceivedView, x: number, y: number, trajectory: Trajectory): void {
+    const p = P!, c = ctx!, qx = v.self.px, qy = v.self.py;
+    const dist = hyp(x - qx, y - qy);
+    if (dist <= 0 || dist > c.maxRangeYd) return;
+    if (hyp(x - awayRx, y - awayRy) > awayRing + 1e-9 || hyp(x - awayNx, y - awayNy) > awayRing + 1e-9) return;
+    const flight = c.flightS(dist, trajectory), catchH = BP!['pass.catchHeightYd']!;
+    const reachH = p['judge.laneReachHeightYd'], speed = p['judge.defenderSpeedYps'], react = p['judge.defenderReactS'];
+    const tail = dist - p['throwaway.shortYd'];
+    let worst = Infinity, low = 0;
+    for (let s = p['judge.laneNearYd']; s <= dist + 1e-9; s += AWAY_STEP_YD) {
+      // The table's flight ends at catch height; this one ends on the ground.
+      const f = s / dist, h = c.heightYd(dist, s, trajectory) - catchH * f * f;
+      if (h > reachH) continue;
+      const bx = qx + (x - qx) * f, by = qy + (y - qy) * f, run = releaseS + flight * f - react, r = run > 0 ? run : 0;
+      if (s < tail && bx > 0) low += AWAY_STEP_YD;
+      for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
+        const e = v.entity(d);
+        if (e === null) continue;
+        const m = hyp(e.px - bx, e.py - by) - speed * r;
+        if (m < worst) worst = m;
+      }
+    }
+    if (low > 0 && -low < worst) worst = -low;
+    if (worst > bestAway) { bestAway = worst; awayPx = x; awayPy = y; awayTraj = trajectory; }
   }
 
   // ---------------------------------------------------------------------------------------------------
@@ -567,12 +660,12 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const qx = v.self.px, qy = v.self.py, t = w.tick * TICK_S;
     unsetNow = relUnset;
     const pf = platformNow(hit, relAnticipated);
-    let aimPx = awayPx, aimPy = awayPy, trajectory: Trajectory = 'firm', sd = 0, along = 0, across = 0, height = 0;
+    let aimPx = awayPx, aimPy = awayPy, trajectory: Trajectory = awayTraj, aimH: number | undefined = awayH, sd = 0, along = 0, across = 0, height = 0;
     if (relTarget !== null && relKind === 'pass') {
       // He aims where his eyes put the receiver at arrival, led away from the nearest defender (J7.6.2).
       // The ball leaves now: no release time is left to add.
       judgeTarget(v, relTarget, ctx!, 0, false, estThrow, 0);
-      aimPx = estThrow.aimPx; aimPy = estThrow.aimPy; trajectory = estThrow.trajectory;
+      aimPx = estThrow.aimPx; aimPy = estThrow.aimPy; trajectory = estThrow.trajectory; aimH = undefined;
       if (play.kind === 'hailMary' && play.landmark) { aimPx = play.landmark.px; aimPy = play.landmark.py; trajectory = 'touch'; }
       else if (estThrow.nearestDefender >= 0 && catchPoint.isContested(estThrow.sepYd)) {
         const e = v.entity(estThrow.nearestDefender);
@@ -594,7 +687,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const toPx = aimPx + ux * along - uy * across, toPy = aimPy + uy * along + ux * across;
     const fx = pl.posX[s]!, fy = pl.posY[s]!;
     // He allows for the steady wind; the flight feels the real air (J9.1.1, J9.7.1).
-    const sol = solvePassFrom(fx, fy, fieldX(w, toPx), fieldY(w, toPy), vBall, trajectory, ctx!.dragPerYd, windFromEnvironment(w.environment), bp);
+    const sol = solvePassFrom(fx, fy, fieldX(w, toPx), fieldY(w, toPy), vBall, trajectory, ctx!.dragPerYd, windFromEnvironment(w.environment), bp, aimH);
     const forward = (sol.arrival.x - fx) * dir > 0;
     const landPx = (sol.arrival.x - w.frame.originX) * dir, landPy = (sol.arrival.y - w.frame.originY) * dir;
     // J7.5.2: the throw meets the grounding rule's conditions. Positions are truth: this is what happened, for J10 and B11.
@@ -657,7 +750,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   }
 
   function baseOf(i: number): number {
-    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'];
+    // With nobody left to look at, the other choice is throwing it away, and a throwaway is an incompletion.
+    return i + 1 < seq.length ? seq[i + 1]!.priorValue : P!['resp.throwAwayEp'] - P!['value.incompleteCostEp'];
   }
 
   function noiseOf(i: number): number { return nBegin[N_SEP + ((passes * seq.length + i) % SEP_LOOKS)]! * separationSdYd(zCov, P!); }
@@ -670,6 +764,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     // J7.1.2: he throws once the receiver has broken, or up to `earlyS` before it if he trusts the timing.
     if (!(out.broken || out.toBreakS <= earlyS)) return NaN;
     if (!out.seen && earlyS <= 0) return NaN;
+    // On a free play an incompletion costs nothing: the penalty is there to take.
+    if (freeSeen) { const inc = 1 - out.pHat - out.iHat; if (inc > 0) out.v += inc * p['value.incompleteCostEp']; }
     if (freeSeen && i === deepestRead) out.v += p['freePlay.deepBonusEp'];
     return throwThresholdEp(baseOf(i), riskOffset, t - tSet, pressureNear, p);
   }
@@ -694,7 +790,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     if (!restarted && play.correctedReads !== null && t >= tSet) {
       restarted = true;
       seq = play.correctedReads.slice();
-      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] });
+      if (play.checkdown) seq.push({ kind: 'receiver', target: play.checkdown, priorValue: p['resp.throwAwayEp'] - p['value.incompleteCostEp'] });
       idx = 0; newVisit(w, t); blockUntil = t + tReadS;
       note(w, 'restart');
     }
@@ -702,6 +798,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     lookAtSlot(w, targetOf(w, v, idx).slot);
     if (t < blockUntil - EPS) return;
     const thr = judgeRead(w, v, idx, t, est);
+    // A receiver already past his arm's reach only gets farther away: he comes off him at once and does not wait
+    // out the read. Waiting cost him the next receiver, who had run out of his window by the time he looked.
+    if (thr !== thr && est.outOfRange) { idx++; newVisit(w, t); if (idx < seq.length) note(w, 'read', seq[idx]!.target.slot, idx); return; }
     if (thr === thr) {
       if (!evaluating) { evaluating = true; visitStart = t > blockUntil ? t : blockUntil; }
       if (!options.test?.noThrow && est.v >= thr && est.iHat <= intCeil) { startRelease(w, t, targetOf(w, v, idx), 'pass', idx, false, est, thr); return; }
@@ -725,30 +824,58 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
 
   function respond(w: TickWorld, v: PerceivedView, t: number): void {
     const p = P!, play = cur!, temp = p['pressure.softmaxTempEp'];
-    respondedTo = threat;
+    // A second answer to the same rusher (he moved, and the man is on him again): the ball has to come out now.
+    const again = respondedTo === threat;
+    respondedTo = threat; respondedAt = t; answers++;
     const scores: number[] = [], which: number[] = [];
     // Throw now: the read he is on, or the checkdown once it is available (J7.3.3).
     let throwIdx = -1, thr = NaN;
-    if (phase !== DROP && idx < seq.length) { thr = judgeRead(w, v, idx, t, est); if (thr === thr && est.iHat <= intCeil) throwIdx = idx; }
+    // In his drop he has no throw (the hot throw, J7.3.3, is the answer to a rusher that early).
+    const canThrow = phase !== DROP;
+    if (canThrow && idx < seq.length) { thr = judgeRead(w, v, idx, t, est); if (thr === thr && est.iHat <= intCeil) throwIdx = idx; }
     if (throwIdx < 0 && play.checkdown && (phase === EXTEND || idx >= p['read.checkdownAfter'])) {
       const cd = seq.length - 1;
       thr = judgeRead(w, v, cd, t, est);
       if (thr === thr && est.iHat <= intCeil) throwIdx = cd;
     }
+    // No throw on the read he is on: another receiver in the progression he can judge now, the best one. On his second
+    // answer the ball has to come out, so he takes the best throw anywhere even with one on his own read. Held to the
+    // one read he had no throw in two answers out of three, and those ended as sacks or throwaways (15 to 18% of
+    // dropbacks together against 10.4% real). Rating every receiver on the first answer went too far the other way
+    // (sacks 3.4%): he cannot look the whole field over in the half second he has.
+    if (canThrow && (throwIdx < 0 || again)) {
+      let bestV = throwIdx >= 0 ? est.v : -Infinity, bestI = throwIdx;
+      for (let i = 0; i < seq.length; i++) {
+        if (i === throwIdx) continue;
+        const th = judgeRead(w, v, i, t, estAlt);
+        if (th === th && estAlt.iHat <= intCeil && estAlt.v > bestV) { bestV = estAlt.v; bestI = i; }
+      }
+      if (bestI !== throwIdx) { throwIdx = bestI; thr = judgeRead(w, v, throwIdx, t, est); }
+    }
+    // With the rusher on him there is no next read to wait for: the other choice is throwing it away, so the throw is
+    // rated against that and not against the read he would have looked at next. Rated against the next read he threw
+    // it away with a receiver he rated a completion: one dropback in five ended as a throwaway.
+    if (throwIdx >= 0) thr = p['resp.throwAwayEp'] - p['value.incompleteCostEp'];
     if (throwIdx >= 0 && !options.test?.noThrow) { scores.push((est.v - thr) / temp); which.push(0); }
-    if (phase === POCKET || phase === DROP) { scores.push((p['resp.pocketEp'] + p['resp.pocketPerZEp'] * zPocket) / temp); which.push(1); }
+    if (!again && (phase === POCKET || phase === DROP)) { scores.push((p['resp.pocketEp'] + p['resp.pocketPerZEp'] * zPocket) / temp); which.push(1); }
     // Escape needs somewhere to go: no rusher he senses on the side away from the threat.
     const away = threatPy >= v.self.py ? -1 : 1;
     let open = true;
     for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) if (sensed[d] === 1 && d !== threat && (playY(w, d) - v.self.py) * away > 0) open = false;
-    if (open && phase !== EXTEND) { scores.push((p['resp.escapeEp'] + p['resp.escapePerZEp'] * zScramble + p['resp.escapeCodPerZEp'] * zCod) / temp); which.push(2); }
+    if (open && phase !== EXTEND && !again) { scores.push((p['resp.escapeEp'] + p['resp.escapePerZEp'] * zScramble + p['resp.escapeCodPerZEp'] * zCod) / temp); which.push(2); }
     const legal = findThrowaway(w, v);
     const dump = legal === 0 && uBegin[U_DUMP]! < riskyDumpChance(zComposure, p, w.math);
-    if ((legal !== 0 || dump) && !options.test?.noThrow) { scores.push(p['resp.throwAwayEp'] / temp); which.push(3); }
+    // Throwing it away costs the down, the same cost every aimed throw is charged for an incompletion. Scored without
+    // it the throwaway outranked moving in the pocket and escaping, and half of all answers with no throw on were
+    // throwaways (11% of dropbacks; charted throwaways are 3.5 to 3.6% of dropbacks, FTN 2023 and 2024).
+    if ((legal !== 0 || dump) && !options.test?.noThrow) { scores.push((p['resp.throwAwayEp'] - p['value.incompleteCostEp']) / temp); which.push(3); }
+    // A second answer with neither a throw nor a throwaway on is no answer: he keeps moving.
+    if (again && scores.length === 0) return;
     scores.push((p['resp.sackEp'] + (play.instructions.protectBall ? p['resp.protectBallEp'] : 0)) / temp); which.push(4);
     const pick = which[pickOutcome(contests.math.outcomeProbabilities(scores, w.math), uTick[3]!)]!;
-    response = PRESSURE_RESPONSES[pick]!;
-    note(w, `pressure: ${response}`, threat, threatTtc);
+    // The record keeps his first answer; a second answer to the same rusher shows in the notes and in what he did.
+    if (!again) response = PRESSURE_RESPONSES[pick]!;
+    note(w, `pressure: ${PRESSURE_RESPONSES[pick]!}`, threat, threatTtc);
     if (pick === 0) startRelease(w, t, targetOf(w, v, throwIdx), 'pass', throwIdx, false, est, thr);
     else if (pick === 1) dodge = true;
     else if (pick === 2) toExtend(w, v, away);
@@ -951,7 +1078,12 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const p = P!, play = cur!;
     gotBallT = t;
     launchPx = play.launchPx ?? -dropDepthYd(play.drop, p); launchPy = play.launchPy ?? v.self.py;
-    tSet = setTimeS(play.drop, zFoot, play.playActionS, play.badSnapS, p);
+    // The other side of his three clocks, read once, when he has the ball and the defense has declared (the player
+    // AI has set this tick's behaviors): the rush his drop and release race, and the coverage his reads sort out.
+    const s = play.qbSlot, zRush = opposingZ(w, s, RUSHING, RUSH_GRADES), zCoverage = opposingZ(w, s, COVERING, READING);
+    tReadS = readTimeS(zProc, p, zCoverage); releaseS = releaseTimeS(zRelease, p, zRush);
+    if (ctx !== null) ctx.releaseS = releaseS;
+    tSet = setTimeS(play.drop, zFoot, play.playActionS, play.badSnapS, p, zRush);
     if (tSet < t) tSet = t;
     if (play.kind === 'kneel') { launchPx = v.self.px - p['kneel.lossYd']; launchPy = v.self.py; phase = SCRIPTED; }
     else if (play.kind === 'spike') phase = SCRIPTED;
@@ -1007,7 +1139,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     }
     if (seq.length > 0) lookAtSlot(w, seq[0]!.target.slot);
     if (there || level === IMMINENT || t >= gotBallT + p['hailMary.holdMaxS']) startRelease(w, t, seq.length > 0 ? seq[0]!.target : null, seq.length > 0 ? 'pass' : 'throwaway', 0, false, null, 0);
-    if (seq.length === 0) { awayPx = lm.px; awayPy = lm.py; }
+    if (seq.length === 0) { awayPx = lm.px; awayPy = lm.py; awayH = undefined; awayTraj = 'firm'; }
   }
 
   function decideRun(w: TickWorld): void {
@@ -1069,7 +1201,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     }
 
     if (takeSack) { stay(w, v); track(w); return; }
-    if (level === IMMINENT && threat !== respondedTo) {
+    if (level === IMMINENT && (threat !== respondedTo || (answers === 1 && response === 'pocketMovement' && phase !== DROP && t >= respondedAt + p['resp.secondAnswerS'] - EPS))) {
       respond(w, v, t);
       if (phase === RELEASE || takeSack) { stay(w, v); track(w); return; }
     }
@@ -1117,7 +1249,9 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
       if (pl.moveMode[d] === M_DOWN || w.tick < pl.onGroundUntilTick[d]!) continue;
       const c = pl.engagement[d]!;
-      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < 0)) continue;
+      // Free, or winning his block by the margin the quarterback's own read uses (J7.4.1): a man still locked up
+      // a yard from an under-center quarterback at the snap is not pressure.
+      if (c >= 0 && !(c < w.contests.length && w.contests[c]!.advantage < p['pressure.feltAdvantage'])) continue;
       const dx = pl.posX[d]! - qx, dy = pl.posY[d]! - qy, dist = hyp(dx, dy), gap = dist - rQ - w.slots[d]!.movement.bodyRadiusYd;
       const closing = dist > 0 ? -((pl.velX[d]! - pl.velX[s]!) * dx + (pl.velY[d]! - pl.velY[s]!) * dy) / dist : 0;
       const ttc = gap <= 0 ? 0 : closing > 0 ? gap / closing : Infinity;
@@ -1127,6 +1261,13 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
         if (pressured[d] === 0) { pressured[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'pressure', rusherId, passerId: qbId, spot }); }
       }
       if (gap > p['arrival.contactGapYd'] || w.tick < rearm[d]!) continue;
+      if (has && play.kind === 'kneel' && kneel === null) {
+        // A kneel-down ends when he is touched: he is going to the ground anyway (J7.8.1), so this is the kneel, not a sack.
+        kneel = { tick: w.tick, x: qx, y: qy };
+        detail(w, 'qb.kneel');
+        phase = OVER;
+        return;
+      }
       if (!has) {
         // Contact just after the release is a hit on the passer and changes nothing about the throw (J6.2.5).
         if (hitDone[d] === 0) { hitDone[d] = 1; w.emit({ type: 'pressure', t: roundSimS(t), kind: 'hit', rusherId, passerId: qbId, spot }); }
@@ -1136,7 +1277,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       for (let o = SLOTS_PER_TEAM; o < SLOT_COUNT; o++) {
         if (o === d || pl.moveMode[o] === M_DOWN) continue;
         const oc = pl.engagement[o]!;
-        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < 0)) continue;
+        if (oc >= 0 && !(oc < w.contests.length && w.contests[oc]!.advantage < p['pressure.feltAdvantage'])) continue;
         if (hyp(pl.posX[o]! - qx, pl.posY[o]! - qy) <= p['arrival.secondRusherYd']) second = true;
       }
       const dInfo = w.slots[d]!, da = dInfo.player.attributes;

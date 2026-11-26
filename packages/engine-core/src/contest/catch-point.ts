@@ -79,7 +79,9 @@ export function createCatchPoint(n: ContestNum, math: DeterministicMath): CatchP
     const blind = i.ballLocated ? 0 : 1;
     const sCatch = c0 + cDz * dz + cPlace * i.placementError + (i.hitAtCatch ? cHit : 0) + (i.wet ? cWet : 0);
     const sBreakup = (i.position === 'inPhase' ? bIn : i.position === 'undercut' ? bUnder : bTrail) + bBlind * blind + bDz * dz;
-    const sInt = i0 + iSkill * i.zBallSkills + (i.position === 'inPhase' ? iIn : i.position === 'undercut' ? iUnder : iTrail)
+    // His ball skills are read against the receiver's at the same ball, like the catch and the breakup (ruling
+    // 2026-11-26): two men of the same grade contest it the same way at any level.
+    const sInt = i0 - iSkill * dz + (i.position === 'inPhase' ? iIn : i.position === 'undercut' ? iUnder : iTrail)
       + iBlind * blind + iPlace * i.placementError;
     return CONTEST_MATH.outcomeProbabilities([sCatch, sBreakup, sInt], math);
   };

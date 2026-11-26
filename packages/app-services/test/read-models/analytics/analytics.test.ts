@@ -9,7 +9,7 @@ import {
 import { analyticsReadModels, ANALYTICS_MODELS, seesTeam, type AnalyticsFunctions, type AnalyticsSources } from '../../../src/read-models/analytics/index.ts';
 import { ObservedWorld } from '../../../src/observer/index.ts';
 import { fixtureTables, HOME, AWAY, USER, AWAY_COACH } from '../../observer/fixture-world.ts';
-import { ANALYTICS_SCHEMAS } from './schemas.ts';
+import { ANALYTICS_SCHEMAS } from '@gm/schema';
 
 type Access = { teamId: number; tracking: 'full' | 'practice_only' | 'none'; analysts: number; reports: { report: 'decision_chart'; delivery: 'on_schedule' | 'user_builds'; hours: number }[] };
 

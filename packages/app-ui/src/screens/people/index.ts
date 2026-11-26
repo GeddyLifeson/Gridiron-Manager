@@ -59,3 +59,8 @@ export function peopleRoutes(host: PeopleHost): RouteTable {
     [PEOPLE_SCREEN_IDS.owner]: { render: (p) => createElement(OwnerScreen, { view: host.owner(), text, readOnly: p.readOnly, onIntent: sink(p.navigate) }) },
   };
 }
+
+// Delegation (O4.3.2) and meetings with the staff one-on-one (O4.4.2): routes in work-routes.ts.
+export * from './work-view.ts';
+export { DelegationScreen, MeetingScreen, type DelegationScreenProps, type MeetingScreenProps } from './WorkScreens.tsx';
+export { peopleWorkRoutes, PEOPLE_WORK_SCREEN_IDS, type PeopleWorkHost } from './work-routes.ts';

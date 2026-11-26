@@ -47,12 +47,19 @@ export const PARAMS: ParamFile = {
       ['passBlock.kappa', 0.9, 0.3, 2.0, '1/s', 'b'],
       ['passBlock.lambda', 0.3, 0, 1.5, '1/s', 'b'],
       ['passBlock.sigma', 0.45, 0.1, 1.0, 'A/sqrt(s)', 'b'],
+      // Share of the two players' effective-z difference that reaches the engagement drift. J6.1.2 as written
+      // (share 1) lets a blocker 1 z worse lose 93% of rushes inside 2.5 s; ESPN's 2024 win rates put a top-ten
+      // edge near 20 to 25% and a top-ten tackle near 95%, about 0.4 logit per z. 0.067 gives that slope and
+      // leaves the even matchup, help and start terms where they were. Status of the real slope: 1 of 3.
+      ['passBlock.skillGain', 0.067, 0.02, 1, 'share', 'a'],
       // "Interior rushers ... same form, own parameter row": the row starts equal to the edge row.
       ['passBlock.interior.kappa', 0.9, 0.3, 2.0, '1/s', 'a'],
       ['passBlock.interior.lambda', 0.3, 0, 1.5, '1/s', 'a'],
       ['passBlock.interior.sigma', 0.45, 0.1, 1.0, 'A/sqrt(s)', 'a'],
       ['passBlock.gLosing', 1.0, 0.8, 1.0, 'share of free speed', 'b'],
-      ['passBlock.gEven', 0.35, 0.1, 0.7, 'share of free speed', 'b'],
+      // J6.2.1 states 0.35. Tuned to 0.15 against the pro sack rate (48 tick-engine games: 0.35 gave 10.0% sacks,
+      // 0.15 gave 8.4%; real 6.9%), so the row is no longer the bible's number and is marked as this module's.
+      ['passBlock.gEven', 0.1, 0.1, 0.7, 'share of free speed', 'a'], // tuned from 0.15 with pressure.*: pressure 51% to 38% of dropbacks (J15.4.2)
       ['passBlock.gWinning', 0, 0, 0.2, 'share of free speed', 'b'],
       ['passBlock.counterThreshold', 0.4, 0.2, 0.8, 'A', 'b'],
       ['passBlock.counterHoldS', 0.5, 0.2, 1.0, 's', 'b'],
@@ -92,9 +99,9 @@ export const PARAMS: ParamFile = {
     ]),
     // J6.2.5 pressure and the sack draw
     ...group('pressure and sack', 'J6.2.5', RUSH, [
-      ['pressure.distYd', 2.0, 1.0, 3.0, 'yd', 'b'],
-      ['pressure.timeS', 0.6, 0.3, 1.0, 's', 'b'],
-      ['sack.beta0', 1.4, 0, 2.5, 'logit', 'b'],
+      ['pressure.distYd', 1.2, 1.0, 3.0, 'yd', 'b'], // tuned from 2.0: a rusher two yards off a quarterback who completes 62% was not charted pressure (real pressured completion 48.1%)
+      ['pressure.timeS', 0.3, 0.3, 1.0, 's', 'b'], // tuned from 0.6 with pressure.distYd
+      ['sack.beta0', 0.5, 0, 2.5, 'logit', 'b'], // tuned from 1.4: with the throwaway answer, sack rate 8.9% against real 6.9% (J15)
       ['sack.beta1', 0.5, 0.1, 1.2, 'logit/z', 'b'],
       ['sack.blindside', 0.6, 0, 1.5, 'logit', 'b'],
       ['sack.movingAway', -0.5, -1.5, 0, 'logit', 'b'],
@@ -106,8 +113,11 @@ export const PARAMS: ParamFile = {
       ['runBlock.kappa', 0.8, 0.3, 2.0, '1/s', 'b'],
       ['runBlock.lambda', 0.4, 0, 1.5, '1/s', 'b'],
       ['runBlock.sigma', 0.40, 0.1, 1.0, 'A/sqrt(s)', 'b'],
+      // As passBlock.skillGain. ESPN 2024 run block and run stop win rates: top-ten players sit about 8 to 10
+      // points above the team averages (71.5% and 30.5%), again about 0.4 logit per z.
+      ['runBlock.skillGain', 0.07, 0.02, 1, 'share', 'a'],
       ['runBlock.displacementYps', 1.5, 0.5, 3.0, 'yd/s', 'b'],
-      ['runBlock.gapControlMaxA', 0.3, 0, 0.6, 'A', 'b'],
+      ['runBlock.gapControlMaxA', 0.45, 0, 0.6, 'A', 'b'], // tuned from 0.3 against J15.4.1 yards per carry after runners stopped circling back to path points
       // J6.3.1 says one-gap technique has higher sigma and two-gap lower, without sizes.
       ['runBlock.sigmaOneGapMult', 1.15, 1.0, 1.5, 'ratio', 'a'],
       ['runBlock.sigmaTwoGapMult', 0.85, 0.5, 1.0, 'ratio', 'a'],
@@ -172,7 +182,10 @@ export const PARAMS: ParamFile = {
       ['catch.radiusPerZYd', 0.1, 0, 0.25, 'yd/z', 'b'],
       ['catch.uncontestedDistYd', 1.0, 0.5, 2.0, 'yd', 'b'],
       ['catch.beta0', 3.0, 1.5, 4.5, 'logit', 'b'],
-      ['catch.hands', 0.5, 0.1, 1.2, 'logit/z', 'b'],
+      // J6.5.1 states 0.5. Fitted to the real spread of drop rates between receivers: drops per catchable ball,
+      // 2018 to 2025, true-talent sd 1.77 points on 6.43%, 0.29 logit per player sd (PFR advanced receiving, one
+      // charting source: 1 of 3). 104 tick games at 55 v 45: 0.5 gave 0.50 logit per z, 0.3 gives 0.27.
+      ['catch.hands', 0.3, 0.1, 1.2, 'logit/z', 'a'],
       ['catch.placement', -1.2, -3.0, 0, 'logit per unit error', 'b'],
       ['catch.hit', -0.6, -2.0, 0, 'logit', 'b'],
       ['catch.wet', -0.3, -1.0, 0, 'logit', 'b'],
@@ -181,17 +194,17 @@ export const PARAMS: ParamFile = {
     ]),
     // J6.5.1 step 3 names the inputs of the contested softmax and its ordering, not the weights.
     ...group('contested catch softmax', 'J6.5.1', CATCH, [
-      ['contested.catch0', 0.6, -1, 2, 'score', 'a'],
+      ['contested.catch0', 0.4, -1, 2, 'score', 'a'], // tuned from 0.6 against J15.4.1 completion by depth (1 of 3)
       ['contested.catchDz', 0.5, 0.1, 1.2, 'score/z', 'a'],
       ['contested.catchPlacement', -1.0, -3.0, 0, 'score per unit error', 'a'],
       ['contested.catchHit', -0.6, -2.0, 0, 'score', 'a'],
       ['contested.catchWet', -0.3, -1.0, 0, 'score', 'a'],
       ['contested.breakupInPhase', 0.4, -1, 2, 'score', 'a'],
       ['contested.breakupUndercut', 0.2, -1, 2, 'score', 'a'],
-      ['contested.breakupTrail', -0.8, -3, 1, 'score', 'a'],
+      ['contested.breakupTrail', -0.2, -3, 1, 'score', 'a'], // tuned from -0.8 against J15.4.1 completion by depth (1 of 3): a trailing defender in reach still plays the hands
       ['contested.breakupBlind', -0.6, -2, 0, 'score', 'a'],
       ['contested.breakupDz', -0.3, -1.0, 0, 'score/z', 'a'],
-      ['contested.int0', -2.2, -4, 0, 'score', 'a'],
+      ['contested.int0', -2.8, -4, 0, 'score', 'a'], // tuned from -2.2 against J15.4.1 interceptions per attempt (2 of 3)
       ['contested.intBallSkills', 0.4, 0, 1.2, 'score/z', 'a'],
       ['contested.intInPhase', 0.3, -1, 2, 'score', 'a'],
       ['contested.intUndercut', 1.2, 0, 3, 'score', 'a'],
@@ -201,7 +214,7 @@ export const PARAMS: ParamFile = {
       ['contested.tipShare', 0.2, 0, 0.6, 'share of breakups', 'a'],
     ]),
     ...group('defender alone at the ball', 'J6.5.1', CATCH, [
-      ['alone.int0', -0.4, -2, 2, 'logit', 'a'],
+      ['alone.int0', -1.0, -2, 2, 'logit', 'a'], // tuned from -0.4: a ball inside a running defender's reach is not a ball in his hands
       ['alone.intHands', 0.5, 0.1, 1.2, 'logit/z', 'a'],
     ]),
     ...group('feet in bounds and the ground', 'J6.5.1', CATCH, [
@@ -210,14 +223,20 @@ export const PARAMS: ParamFile = {
       ['feet.perExtraFoot', -0.9, -2.5, 0, 'logit per foot beyond one', 'a'],
       ['feet.tightness', -1.5, -4, 0, 'logit', 'a'],
       ['ground.beta0', 3.5, 2, 5, 'logit', 'a'],
-      ['ground.hands', 0.4, 0, 1.2, 'logit/z', 'a'],
+      // Moved with catch.hands (same attribute, same real spread): 0.4 * 0.3 / 0.5.
+      ['ground.hands', 0.24, 0, 1.2, 'logit/z', 'a'],
       ['ground.hit', -0.8, -2.5, 0, 'logit', 'a'],
     ]),
 
     // J6.6.1 tackle attempt
     ...group('tackle attempt', 'J6.6.1', TACKLE, [
       ['tackle.beta0', 1.7, 0.5, 3.0, 'logit', 'b'],
-      ['tackle.beta1', 0.5, 0.1, 1.2, 'logit/z', 'b'],
+      // J6.6.1 states 0.5. Fitted to the real spread between players (PFR advanced tables, 2018 to 2025, one
+      // charting source: 1 of 3): missed tackle rate true-talent sd 2.53 points on 8.97%, 0.31 logit per defender
+      // sd; broken tackles per rush 0.35 logit per back sd (0.59 per reception). 104 tick games at 55 v 45: 0.5
+      // (with move.beta1 0.6) gave 0.52 per z of tackling and 0.46 per z of the carrier; 0.35 (with 0.42) gives
+      // 0.38 and 0.41. Tool: research/tuning/fit-tools/player_spread.py.
+      ['tackle.beta1', 0.35, 0.1, 1.2, 'logit/z', 'a'],
       // The leaf names g_angle, g_mom, g_help, g_space, g_move and the strip trade-off without values.
       ['tackle.angle', 0.8, 0, 2.0, 'logit', 'a'],
       ['tackle.momentum', -0.6, -2.0, 0, 'logit per unit ratio', 'a'],

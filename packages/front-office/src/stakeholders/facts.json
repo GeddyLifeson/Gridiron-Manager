@@ -29,7 +29,7 @@
      "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
     }
    ],
-   "notes": "The source's own counts are not fully consistent for 2023 and 2025 (E4.3.1). One source only: PROVISIONAL."
+   "notes": "The source's own counts are not fully consistent for 2023 and 2025 (E4.3.1). One source only: PROVISIONAL. Cross-check, not counted as a source because it confirms only the floor: WBAL-TV (Hearst data team, 2025-01-10, https://www.wbaltv.com/article/are-nfl-coaches-getting-fired-more-often-heres-the-data/63364672) says 'Since 2015, at least five head coaches have been fired each season' and '58 coaches' in the 2010s (5.8 a season). The SI table was read directly on 2026-11-26 (inkl copy): 7, 8, 5, 7, 8, 5, 9, 7, 8 for 2017 to 2025, mean 7.1."
   },
   {
    "id": "F-stakeholders-0002",
@@ -117,18 +117,32 @@
      "independenceGroup": "deseret-yahoo-carousel",
      "primary": false,
      "value": 12
+    },
+    {
+     "citation": "Wikipedia, '2023 NCAA Division I FBS football season', Coaching changes section (https://en.wikipedia.org/wiki/2023_NCAA_Division_I_FBS_football_season)",
+     "locator": "Coaching changes: in-season table (6 rows with reason 'Fired') and end-of-season table (6 rows with reason 'Fired')",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-fbs-season",
+     "primary": false,
+     "value": 12
     }
    ],
-   "status": "1 of 3",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Second independent source: the Wikipedia 2023 FBS season page lists 12 head coaches with reason 'Fired' (read by the coach turnover thread)."
     }
    ],
-   "notes": "The breakdown has one source; only the total has two. PROVISIONAL."
+   "notes": "The breakdown has one source; only the total has two. PROVISIONAL. Wikipedia's 2023 page counts 6 of the 12 firings in season (from May 1) and 6 at season end; its 2022 page lists 15 firings (9 in season, 6 at season end). So the real college in-season share is about half, above the 15% to 40% assumption band of E4.7.2 (not triple verified)."
   },
   {
    "id": "F-stakeholders-0005",
@@ -168,6 +182,56 @@
     }
    ],
    "notes": "Derived by listing coaches; 2025 partial as of 2026-01-06. Season shares range 25% to 60%. No college share was found, so the college in-season share stays an Assumption. PROVISIONAL (2 of 3)."
+  },
+  {
+   "id": "F-stakeholders-0006",
+   "level": "college",
+   "domain": "career",
+   "statement": "Share of FBS head coach firings made during the season, with regular-season games left for an interim (summer firings left out): at least half in the 2024 season. Over 2022 to 2024 the share was 53%, 45% and 67% (23 of 41, about 56%), the calibration target of E4.3.3 at the college level (MA-77).",
+   "value": 0.5,
+   "unit": "ratio (lower bound)",
+   "validFor": "2024 season (lower bound); 2022 to 2024 (pooled target)",
+   "sources": [
+    {
+     "citation": "Wikipedia, '2024 NCAA Division I FBS football season', coaching changes tables: firings dated Oct 20 to Nov 24 with an interim named (East Carolina, Southern Miss, Rice, Kennesaw State, Ball State, Temple, UMass, Florida Atlantic, Charlotte, Tulsa) = 10 of 15 (Utah State's July firing left out; North Carolina Nov 26 counted as after)",
+     "locator": "https://en.wikipedia.org/wiki/2024_NCAA_Division_I_FBS_football_season",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia-fbs-season",
+     "primary": false,
+     "value": 0.5
+    },
+    {
+     "citation": "CollegeFootballPoll.com, 'Coaching Changes', 2024 in-season table: the same 10 firings dated Oct 20 to Nov 24, each with an interim and the interim's record (Kennesaw State marked disputed), of 14 firings listed",
+     "locator": "https://www.collegefootballpoll.com/coaching-changes/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "collegefootballpoll",
+     "primary": false,
+     "value": 0.5
+    },
+    {
+     "citation": "For The Win (USA Today), reprinted by Yahoo Sports, 'Tracking 2024 college football coach firings and changes' (updated Dec 12, 2024): 7 of 14 firings dated before the last regular-season weekend (Southern Miss and East Carolina Oct 20, Rice Oct 27, Kennesaw State Nov 10, Temple Nov 17, FAU Nov 18, Tulsa Nov 24); Charlotte and Ball State undated",
+     "locator": "https://sports.yahoo.com/tracking-college-football-coach-firings-202010934.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "usatoday-ftw",
+     "primary": false,
+     "value": 0.5
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [
+    "ownerModel.college.inSeasonScale"
+   ],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "New row: three independent 2024 lists each put at least half of the firings in season."
+    }
+   ],
+   "notes": "Derived by listing coaches. The lower bound is Verified for 2024 only. The pooled 56% target rests on Wikipedia for 2022 (8 of 15: Nebraska, Arizona State, Georgia Tech, Colorado, Wisconsin, Charlotte, Auburn, South Florida) and 2023 (5 of 11: Michigan State, Texas A&M, Boise State, Mississippi State, Syracuse; Northwestern's July firing left out), with a partial cross-check from Front Porch Sports (Craig Meyer, 2025-10-17): 7 firings before November in 2022 and 1 in 2023, matching Wikipedia's dates. So the pooled target is 1 of 3 plus a partial check; the 2024 bound is Verified. Kennesaw State 2024 is disputed (school: stepped down; coach: fired); without it the USA Today list gives 6 of 13 (46%). Wikipedia's own 'in season' split counts from May 1, so summer firings were removed by hand. The design band before MA-77 was an Assumption of 15% to 40%."
   }
  ]
 }

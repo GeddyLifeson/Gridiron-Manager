@@ -363,14 +363,15 @@ function recruitByOffers(c: Cycle, order: readonly number[], ready0: readonly nu
   const offersOf = c.b.policy?.recruitOffers;
   if (!offersOf) return [...ready];
   const offers = new Map<number, number[]>();
+  const prestige = new Map(c.world.teams.map((t) => [t.id, t.prestige]));
+  const byGrade = [...ready].sort((x, y) => c.grades.publicGrade(y) - c.grades.publicGrade(x) || x - y);
+  const lists = shortlists(c, order, byGrade, limit, prestige);
   for (const teamId of order) {
     const open = limit(teamId) - (c.world.rosters.get(teamId) ?? []).length;
     if (open <= 0) continue;
-    for (const id of offersOf(c, teamId, ready, open) ?? []) offers.set(id, [...(offers.get(id) ?? []), teamId]);
+    for (const id of offersOf(c, teamId, lists.get(teamId) ?? [], open) ?? []) offers.set(id, [...(offers.get(id) ?? []), teamId]);
   }
-  const prestige = new Map(c.world.teams.map((t) => [t.id, t.prestige]));
   const left: number[] = [];
-  const byGrade = [...ready].sort((x, y) => c.grades.publicGrade(y) - c.grades.publicGrade(x) || x - y);
   for (const id of byGrade) {
     const s = stream(c.world.seed, STREAM_MOVES, ['recruit_choice', id, c.season]);
     const open = (offers.get(id) ?? []).filter((t) => (c.world.rosters.get(t) ?? []).length < limit(t)).sort((x, y) => x - y);
@@ -383,6 +384,27 @@ function recruitByOffers(c: Cycle, order: readonly number[], ready0: readonly nu
     sign(c, top, id, 'recruit');
   }
   return left;
+}
+
+/**
+ * Each program's shortlist of the late market (ruling 2026-11-26, T4.3.1): the recruits a staff grades,
+ * not the whole pool. A program aims at the recruits it can land: programs are taken by prestige, each
+ * expects its signings to come after the places of the programs above it, and its list is the window of
+ * the public order around that point, about its offers times `college.shortlistPerOffer` names long.
+ */
+function shortlists(c: Cycle, order: readonly number[], byGrade: readonly number[], limit: (teamId: number) => number, prestige: ReadonlyMap<number, number>): Map<number, readonly number[]> {
+  const out = new Map<number, readonly number[]>();
+  const ranked = [...order].sort((x, y) => (prestige.get(y) ?? 0) - (prestige.get(x) ?? 0) || x - y);
+  let slot = 0;
+  for (const teamId of ranked) {
+    const open = limit(teamId) - (c.world.rosters.get(teamId) ?? []).length;
+    if (open <= 0) continue;
+    const size = Math.ceil(open * param('college.offersPerSignee') * param('college.shortlistPerOffer'));
+    const start = Math.max(0, Math.min(slot - Math.floor(size / 2), byGrade.length - size));
+    out.set(teamId, byGrade.slice(start, start + size));
+    slot += open;
+  }
+  return out;
 }
 
 /** T4.5.2 letters from the recruiting system (`recruitSignings`): each signs with his school while it has a place. Returns the rest. */

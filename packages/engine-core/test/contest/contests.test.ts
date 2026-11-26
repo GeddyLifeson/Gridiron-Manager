@@ -93,7 +93,7 @@ describe('Q1.7.3 rating-response sweeps: every grade input, 0 to 100 in steps of
 describe('Q1.7.1 base rates at equal grades (each event contest, 100,000 neutral draws)', () => {
   const N = 100_000;
   const cases: [string, number, (i: number) => boolean][] = [
-    ['sack at arrival', logistic(1.4), (i) => passRush.resolveArrival(arrival, contestStream(i, 'sack')) === 'sack'],
+    ['sack at arrival', logistic(0.5), (i) => passRush.resolveArrival(arrival, contestStream(i, 'sack')) === 'sack'],
     ['clean stunt pass-off', logistic(1.2), (i) => passRush.resolveStunt(stunt, contestStream(i, 'stuntExchange')).outcome === 'clean'],
     ['uncontested catch', logistic(3.0), (i) => catchPoint.resolveUncontested({ zHands: 0, placementError: 0, hitAtCatch: false, wet: false }, contestStream(i, 'catchPoint')) === 'catch'],
     ['tackle made', logistic(1.7), (i) => tackle.resolveTackle(tk, contestStream(i, 'tackle')).outcome === 'made'],
@@ -131,7 +131,7 @@ describe('pass rush (J6.2)', () => {
   const homeBy = (dz: number, seconds: number, help: 'none' | 'double' = 'none') => share(5000, (i) => timeHome(dz, i, help) <= seconds);
 
   it('even a stalemated rusher collapses the pocket, and cumulative pressure rises with time held', () => {
-    expect(passRush.rushSpeedFactor(0)).toBe(0.35);
+    expect(passRush.rushSpeedFactor(0)).toBe(0.1);
     expect(passRush.rushSpeedFactor(-1)).toBe(1);
     expect(passRush.rushSpeedFactor(1)).toBe(0);
     const curve = [1.5, 2.0, 2.5, 3.0, 3.5, 4.0].map((t) => homeBy(0, t));
@@ -210,9 +210,10 @@ describe('pass rush (J6.2)', () => {
   });
 
   it('pressure, and the arrival draw (J6.2.5)', () => {
-    expect(passRush.isPressure(1.9, 5, true)).toBe(true);
-    expect(passRush.isPressure(4, 0.5, true)).toBe(true);
-    expect(passRush.isPressure(4, 0.7, true)).toBe(false);
+    // Tuned from J6.2.5's 2 yd and 0.6 s to 1.2 yd and 0.3 s (charted pressure rate and pressured completion, J15.4.2).
+    expect(passRush.isPressure(1.1, 5, true)).toBe(true);
+    expect(passRush.isPressure(4, 0.25, true)).toBe(true);
+    expect(passRush.isPressure(4, 0.35, true)).toBe(false);
     expect(passRush.isPressure(1, 0.1, false)).toBe(false);
     const p0 = passRush.sackProbability(arrival);
     expect(passRush.sackProbability({ ...arrival, blindside: true })).toBeGreaterThan(p0);
@@ -239,8 +240,8 @@ describe('run blocking (J6.3)', () => {
     expect(runBlock.displacementYps(0.5)).toBe(0.75);
     expect(runBlock.displacementYps(1)).toBe(1.5);
     expect(runBlock.displacementYps(-0.5)).toBe(0);
-    expect(runBlock.controlsGap(true, 0.29)).toBe(true);
-    expect(runBlock.controlsGap(true, 0.3)).toBe(false);
+    expect(runBlock.controlsGap(true, 0.44)).toBe(true);
+    expect(runBlock.controlsGap(true, 0.45)).toBe(false);
     expect(runBlock.controlsGap(false, -0.9)).toBe(false);
     expect(runBlock.shed('oneGap', -1, 1)).toEqual({ side: -1, delayS: 0 });
     expect(runBlock.shed('twoGap', -1, 1).side).toBe(1);

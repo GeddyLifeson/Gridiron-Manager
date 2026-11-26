@@ -43,7 +43,8 @@ const LEGALITY_KEYS = ['numbering.eligible_low_max', 'numbering.eligible_high_mi
 
 export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): PresnapStages {
   const targets: { px: number; py: number }[] = [];
-  for (let s = 0; s < SLOT_COUNT; s++) targets.push({ px: 0, py: 0 });
+  const faces: { px: number; py: number }[] = [];
+  for (let s = 0; s < SLOT_COUNT; s++) { targets.push({ px: 0, py: 0 }); faces.push({ px: 0, py: 0 }); }
   let snapResult: SnapResult | null = null;
   const qbTs = snapReceiverOf(input.offense.assignments, input.snap ?? null), centreTs = snapperOf(input.offense.assignments);
 
@@ -75,7 +76,11 @@ export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): Pre
         const isMotion = s === plan.motionSlot && w.tick >= plan.motionStartTick;
         const vmax = w.slots[s]!.movement.vMaxYps;
         it.target = tg as PlayPoint;
-        it.faceTarget = null;
+        // A man at his spot squares up to the line of scrimmage (J5.1): hips follow the feet on the way there, and a
+        // defender who jogged back to his depth would otherwise start the play with his back to the ball.
+        const atSpot = dx * dx + dy * dy < 0.01 && !isMotion;
+        if (atSpot) { const fc = faces[s]!; fc.px = px + (s < SLOTS_PER_TEAM ? 10 : -10); fc.py = py; it.faceTarget = fc as PlayPoint; }
+        else it.faceTarget = null;
         it.effort = isMotion ? 1 : (jog < vmax ? jog / vmax : 1);
         it.arrival = isMotion ? 'through' : 'arrive';
         it.moveMode = dx * dx + dy * dy > 0 || isMotion ? 'run' : 'stance';
@@ -108,6 +113,12 @@ export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): Pre
           w.emit({ type: 'detail', t: roundSimS(t), code: `presnap.${e.status}.${e.action}`, playerIds: [], spot: null, value: e.side });
         }
         for (const s of plan.missing) w.emit({ type: 'detail', t: roundSimS(t), code: 'presnap.short_handed', playerIds: [w.slots[s]!.playerId], spot: null, value: null });
+        // J5.4.1: the quarterback read the coverage wrong before the snap (J7.2.1 starts him on the wrong side).
+        if (plan.qb.made && qbTs >= 0 && (!plan.qb.shellCorrect || !plan.qb.manCorrect)) w.emit({ type: 'detail', t: roundSimS(t), code: 'presnap.qb_misread', playerIds: [w.slots[qbTs]!.playerId], spot: null, value: null });
+        // G2.5.1: who changed his assignment on a completed check, for film and the self-scout.
+        for (const c of plan.checks) {
+          if (c.patched.length > 0) w.emit({ type: 'detail', t: roundSimS(t), code: 'presnap.check_patched', playerIds: c.patched.map((ts) => w.slots[SLOTS_PER_TEAM + ts]!.playerId), spot: null, value: null });
+        }
       }
       if (w.tick !== -1) return;
       // Last pre-snap tick. Dead-ball fouls kill the play before it starts.
@@ -137,7 +148,7 @@ export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): Pre
           });
           slotOf.push(s);
         }
-        const report = legality.analyseAlignment(players, w.rules, w.params);
+        const report = legality.analyseAlignment(players, w.rules, w.params, null, null, { scrimmageKickFormation: input.snapFoulPhase === 'scrimmage_kick' });
         // B4.2.1, B5: who is an eligible receiver on this down, by position and number, for every later stage (`SimArrays.eligible`).
         for (let k = 0; k < slotOf.length; k++) ms.eligible[slotOf[k]!] = report.eligible[k] ? 1 : 0;
         const seen = new Set<string>();

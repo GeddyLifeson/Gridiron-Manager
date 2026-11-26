@@ -40,20 +40,36 @@ export const PARAMS: ParamFile = {
     p('bunch.widthYd', 3, 1.5, 5, 'yd', 'J4.1.2'),
     p('backfield.depthYd', 1.0, 0.5, 2, 'yd', 'J4.1.2'),
     p('trail.offsetYd', 1.0, 0.3, 3, 'yd', 'J4.1.3'),
+    // Off coverage: how far ahead of his man's movement a defender on top plays him, and the cushion he keeps. Design values.
+    p('trail.offLeadS', 1.0, 0.3, 2, 's', 'J4.1.3'),
+    p('trail.offCushionYd', 2, 0.5, 5, 'yd', 'J4.1.3'),
+    // A deep zone defender ranges over receivers within this lateral distance of his landmark. Design value.
+    p('deepZone.halfWidthYd', 12, 5, 20, 'yd', 'J4.2.1'),
     p('shoulder.offsetYd', 0.5, 0.2, 1, 'yd', 'J4.1.3'),
     p('contain.widthYd', 2, 0.5, 5, 'yd', 'J4.1.3'),
     p('rush.trackOffsetYd', 1.5, 0.5, 4, 'yd', 'J4.1.3'),
     p('spy.depthYd', 5, 2, 9, 'yd', 'J4.1.3'),
     p('passSet.depthYd', 2, 0.5, 5, 'yd', 'J4.1.3'),
+    // The point a pass blocker keeps himself in front of, and how far from the rusher's middle he stays once the
+    // rusher is at his set depth (about two body radii, so the block stays in contact). Design values.
+    p('passSet.pocketDepthYd', 7, 4, 10, 'yd', 'J4.1.3'),
+    p('passSet.mirrorGapYd', 0.9, 0.5, 1.5, 'yd', 'J4.1.3'),
     p('combo.holdS', 1.0, 0.3, 2.5, 's', 'J4.1.3'),
     p('chip.holdS', 0.4, 0.1, 1.2, 's', 'J4.1.3'),
     p('scan.rangeYd', 6, 3, 12, 'yd', 'J4.1.3'),
     p('climb.minDepthYd', 3, 1.5, 6, 'yd', 'J4.1.3'),
     p('pursue.leadS', 0.5, 0, 1.5, 's', 'J4.1.3'),
+    // Longest time ahead a pursuer aims when he solves for where he can meet the carrier. Design value.
+    p('pursue.maxLeadS', 3, 0.5, 6, 's', 'J4.1.3'),
+    // How far ahead of the carrier he sees a pursuer plays him (what he sees is a key delay old), and the range
+    // inside which he stops breaking down and goes through the man. Design values.
+    p('pursue.anticipateS', 0.3, 0, 0.6, 's', 'J4.1.3'),
+    p('pursue.attackYd', 3, 1, 6, 'yd', 'J4.1.3'),
     p('pursue.cutbackYd', 2, 0.5, 5, 'yd', 'J4.1.3'),
     p('kick.clearanceYd', 10, 4, 20, 'yd', 'J4.1.3'),
     p('secure.effort', 0.85, 0.5, 1, 'ratio', 'J4.1.3'),
     p('sideline.runYd', 30, 10, 60, 'yd', 'J4.1.3'),
+    p('route.sidelineRoomYd', 2, 0.5, 5, 'yd', 'J4.1.3'),
   ],
 };
 
@@ -64,10 +80,10 @@ export interface Consts {
   readonly leverageMargin: number; readonly zoneHalfWidth: number; readonly zoneHalfDepth: number; readonly boxHalfWidth: number; readonly boxDepth: number;
   readonly onLineDepth: number; readonly headUp: number; readonly shade: number; readonly gap: number; readonly walkedUpDepth: number; readonly engageRange: number;
   readonly moveSpeed: number; readonly deepDepth: number; readonly pocketHalfWidth: number; readonly scrambleSpeed: number; readonly ballArea: number; readonly eyesConeCos: number;
-  readonly bunchWidth: number; readonly backfieldDepth: number; readonly trailOffset: number; readonly shoulderOffset: number; readonly containWidth: number;
-  readonly rushTrackOffset: number; readonly spyDepth: number; readonly passSetDepth: number; readonly comboHoldS: number; readonly chipHoldS: number;
-  readonly scanRange: number; readonly climbMinDepth: number; readonly pursueLeadS: number; readonly pursueCutback: number; readonly kickClearance: number;
-  readonly secureEffort: number; readonly sidelineRun: number;
+  readonly bunchWidth: number; readonly backfieldDepth: number; readonly trailOffset: number; readonly offLeadS: number; readonly offCushion: number; readonly deepZoneHalfWidth: number; readonly shoulderOffset: number; readonly containWidth: number;
+  readonly rushTrackOffset: number; readonly spyDepth: number; readonly passSetDepth: number; readonly passSetPocketDepth: number; readonly passSetMirrorGap: number; readonly comboHoldS: number; readonly chipHoldS: number;
+  readonly scanRange: number; readonly climbMinDepth: number; readonly pursueLeadS: number; readonly pursueMaxLeadS: number; readonly pursueAnticipateS: number; readonly pursueAttackYd: number; readonly pursueCutback: number; readonly kickClearance: number;
+  readonly secureEffort: number; readonly sidelineRun: number; readonly sidelineRoom: number;
 }
 
 export function constsOf(t: ParamTable): Consts {
@@ -78,9 +94,9 @@ export function constsOf(t: ParamTable): Consts {
     leverageMargin: n('leverage.marginYd'), zoneHalfWidth: n('zone.halfWidthYd'), zoneHalfDepth: n('zone.halfDepthYd'), boxHalfWidth: n('box.halfWidthYd'), boxDepth: n('box.depthYd'),
     onLineDepth: n('front.onLineDepthYd'), headUp: n('front.headUpYd'), shade: n('front.shadeYd'), gap: n('front.gapYd'), walkedUpDepth: n('front.walkedUpDepthYd'), engageRange: n('front.engageRangeYd'),
     moveSpeed: n('read.moveSpeedYps'), deepDepth: n('safety.deepDepthYd'), pocketHalfWidth: n('pocket.halfWidthYd'), scrambleSpeed: n('qb.scrambleSpeedYps'), ballArea: n('ball.areaRadiusYd'), eyesConeCos: n('eyes.coneCos'),
-    bunchWidth: n('bunch.widthYd'), backfieldDepth: n('backfield.depthYd'), trailOffset: n('trail.offsetYd'), shoulderOffset: n('shoulder.offsetYd'), containWidth: n('contain.widthYd'),
-    rushTrackOffset: n('rush.trackOffsetYd'), spyDepth: n('spy.depthYd'), passSetDepth: n('passSet.depthYd'), comboHoldS: n('combo.holdS'), chipHoldS: n('chip.holdS'),
-    scanRange: n('scan.rangeYd'), climbMinDepth: n('climb.minDepthYd'), pursueLeadS: n('pursue.leadS'), pursueCutback: n('pursue.cutbackYd'), kickClearance: n('kick.clearanceYd'),
-    secureEffort: n('secure.effort'), sidelineRun: n('sideline.runYd'),
+    bunchWidth: n('bunch.widthYd'), backfieldDepth: n('backfield.depthYd'), trailOffset: n('trail.offsetYd'), offLeadS: n('trail.offLeadS'), offCushion: n('trail.offCushionYd'), deepZoneHalfWidth: n('deepZone.halfWidthYd'), shoulderOffset: n('shoulder.offsetYd'), containWidth: n('contain.widthYd'),
+    rushTrackOffset: n('rush.trackOffsetYd'), spyDepth: n('spy.depthYd'), passSetDepth: n('passSet.depthYd'), passSetPocketDepth: n('passSet.pocketDepthYd'), passSetMirrorGap: n('passSet.mirrorGapYd'), comboHoldS: n('combo.holdS'), chipHoldS: n('chip.holdS'),
+    scanRange: n('scan.rangeYd'), climbMinDepth: n('climb.minDepthYd'), pursueLeadS: n('pursue.leadS'), pursueMaxLeadS: n('pursue.maxLeadS'), pursueAnticipateS: n('pursue.anticipateS'), pursueAttackYd: n('pursue.attackYd'), pursueCutback: n('pursue.cutbackYd'), kickClearance: n('kick.clearanceYd'),
+    secureEffort: n('secure.effort'), sidelineRun: n('sideline.runYd'), sidelineRoom: n('route.sidelineRoomYd'),
   };
 }

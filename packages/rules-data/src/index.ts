@@ -79,8 +79,11 @@ export function ruleSetValues(id: string): readonly RuleSetFile['values'][number
   return [...flatten(file, RULE_SET_FILES).values()];
 }
 
-/** League-rules files arrive with C5 and T5 (phase 4 and later). Phase 0 names the ids only. */
+/** League-rules ids a competition may name; `resolveLeagueRules` joins and checks their files (data/league). */
 export const LEAGUE_RULES_IDS = ['pro_league_2026', 'college_league_2026'] as const;
+
+// League-rules resolver: LEAGUE_FILES, resolveLeagueRules, validateLeagueFiles.
+export * from './league/index.ts';
 
 
 // Foul catalogue loader (WP-01, D-06): FOUL_IDS, checkFoulCatalogue, foulRow, foulCatalogue.
@@ -95,3 +98,6 @@ export const KEY_MAP: {
 } = keyMapJson as never;
 /** Catalogue foul ids (and the fouling role, when the label fixes one) behind a stat-source foul label. An unknown label is taken as a catalogue id. */
 export function foulStatLabel(label: string): FoulStatLabel { return KEY_MAP.statLabels[label] ?? { ids: [label] }; }
+
+// League-rules files by level (C5, C6, T5), read by the world setup in the app.
+export * as league from './league/index.ts';

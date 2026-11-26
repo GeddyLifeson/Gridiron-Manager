@@ -30,6 +30,10 @@ export interface World {
   gaze: Record<number, number>;
   kick: 'punt' | 'fieldGoal' | 'kickoff' | 'onside' | null;
   landing: [number, number] | null;
+  /** The sidelines, [lo, hi], or null when the view does not give them. */
+  sidelines?: [number, number] | null;
+  /** The opponent he is locked up with in a block, when the view tells him. */
+  locked?: number;
   facts: string[];
 }
 
@@ -55,6 +59,8 @@ export function viewOf(w: World, slot: number): PerceivedViewExt {
     gazeOf: (s) => w.gaze[s] ?? null,
     kickKind: () => w.kick,
     landingPoint: () => (w.landing === null ? null : { px: w.landing[0], py: w.landing[1] }),
+    ...(w.sidelines ? { sidelines: () => ({ lo: w.sidelines![0], hi: w.sidelines![1] }) } : {}),
+    ...(w.locked !== undefined ? { lockedWith: () => w.locked! } : {}),
     fact: (name) => w.facts.includes(name),
   };
 }

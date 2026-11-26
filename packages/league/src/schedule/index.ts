@@ -17,3 +17,4 @@ export {
   type CollegeTeam, type CollegeConference, type Rivalry, type NeutralVenue, type Meeting, type MeetingHistory,
   type Contract, type CollegeSeasonInput, type CollegeSchedule,
 } from './college.ts';
+export { distanceKm, zoneOffset } from './util.ts';

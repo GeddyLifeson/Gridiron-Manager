@@ -1,9 +1,6 @@
 // Constants of player contracts in the off-screen world (C6, C8.3.1). Rule values (cap, minimums, rookie
-// lengths, the floor percent) are read by key from the league rules, never stored here. The floor periods
-// are rule values with no league-rules key yet: they sit in floor-periods.json with their fact row until
-// the integrator adds keys (see the README).
+// lengths, the floor periods and percents) are read by key from the league rules, never stored here.
 import type { ParamFile, TuningParam } from '@gm/schema';
-import periodsFile from './floor-periods.json' with { type: 'json' };
 
 type Row = readonly [string, number, number, number, string, 'bible' | 'assumption', string, string];
 
@@ -31,9 +28,5 @@ export function param(name: string): number {
   return v;
 }
 
-/** One minimum-cash-spending period, first and last league year inclusive (C6.2.3 rule 2). */
-export interface FloorPeriod { readonly from: number; readonly to: number }
-
-/** The periods the CBA names (Art. 12 s.9(b), F-cap-0001), oldest first. */
-export const KNOWN_FLOOR_PERIODS: readonly FloorPeriod[] = periodsFile.periods.map((p) => ({ from: p.from, to: p.to }));
-export const FLOOR_PERIODS_FACT: string = periodsFile.factId;
+/** One minimum-cash-spending period, first and last league year inclusive (C6.2.3 rule 2), and its percent of the caps. */
+export interface FloorPeriod { readonly from: number; readonly to: number; readonly pct: number }

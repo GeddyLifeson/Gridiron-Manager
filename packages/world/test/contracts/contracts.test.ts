@@ -41,17 +41,24 @@ const minFor = (w: loop.LiveWorld, id: number, k: number) =>
 
 describe('floor periods (C6.2.3 rule 2, CBA Art. 12 s.9)', () => {
   it('reads the CBA periods as written', () => {
-    expect(contracts.floorPeriodOf(2021)).toEqual({ from: 2021, to: 2023 });
-    expect(contracts.floorPeriodOf(2026)).toEqual({ from: 2024, to: 2026 });
-    expect(contracts.floorPeriodOf(2030)).toEqual({ from: 2027, to: 2030 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 2021)).toMatchObject({ from: 2021, to: 2023 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 2026)).toMatchObject({ from: 2024, to: 2026 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 2030)).toMatchObject({ from: 2027, to: 2030 });
   });
 
   it('keeps four-year periods past 2030 and before 2021; the backward period lands on the CBA\'s own 2017 to 2020 period (Art. 12 s.9(a))', () => {
-    expect(contracts.floorPeriodOf(2031)).toEqual({ from: 2031, to: 2034 });
-    expect(contracts.floorPeriodOf(2042)).toEqual({ from: 2039, to: 2042 });
-    expect(contracts.floorPeriodOf(2017)).toEqual({ from: 2017, to: 2020 });
-    expect(contracts.floorPeriodOf(2020)).toEqual({ from: 2017, to: 2020 });
-    expect(contracts.floorPeriodOf(1900)).toEqual({ from: 1897, to: 1900 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 2031)).toMatchObject({ from: 2031, to: 2034 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 2042)).toMatchObject({ from: 2039, to: 2042 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 2017)).toMatchObject({ from: 2017, to: 2020 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 2020)).toMatchObject({ from: 2017, to: 2020 });
+    expect(contracts.floorPeriodOf(binding, 'pro', 1900)).toMatchObject({ from: 1897, to: 1900 });
+  });
+
+  it('reads each named period\'s own percent from its key, and today\'s percent outside them', () => {
+    expect(contracts.floorPeriodOf(binding, 'pro', 2018)!.pct).toBe(PRO_LOOKUP('cap.min_cash_period_2017_2020_pct'));
+    expect(contracts.floorPeriodOf(binding, 'pro', 2025)!.pct).toBe(PRO_LOOKUP('cap.min_cash_period_2024_2026_pct'));
+    expect(contracts.floorPeriodOf(binding, 'pro', 2040)!.pct).toBe(PRO_LOOKUP(contracts.FLOOR_PCT_KEY));
+    expect(contracts.floorPeriodOf(binding, 'college', 2025)).toBeNull();
   });
 });
 
@@ -179,10 +186,10 @@ describe('contracts over offseasons (C6.4.2, C8, C6.2.3)', () => {
 
   it('checks each floor period that closed, once, and pays a shortfall to the period\'s players, logged', () => {
     const closed = new Set<string>();
-    for (let y = first; y < year; y++) { const p = contracts.floorPeriodOf(y); if (p.to < year) closed.add(`${p.from}-${p.to}`); }
+    for (let y = first; y < year; y++) { const p = contracts.floorPeriodOf(binding, 'pro', y)!; if (p.to < year) closed.add(`${p.from}-${p.to}`); }
     expect([...st.checkedPeriods].sort()).toEqual([...closed].sort());
     expect(closed.size).toBeGreaterThan(0);
-    const firstPeriod = contracts.floorPeriodOf(first);
+    const firstPeriod = contracts.floorPeriodOf(binding, 'pro', first)!;
     const check = st.floorChecks.find((c) => c.teamId === stingy && c.from === firstPeriod.from)!;
     expect(check.shortfallCents).toBeGreaterThan(0);
     expect(check.shortfallCents).toBe(Math.max(0, check.requiredCents - check.spentCents));

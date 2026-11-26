@@ -19,7 +19,8 @@ import { openRequest, playClockAt, type ConsoleConfig, type ConsoleCommand, type
 import { callDecision, defaultDecision, optionDecision, type LineupFor } from './decision.ts';
 import { ConsoleKeyDriver, type ConsoleKeyDriverOptions } from './driver.ts';
 import { initialConsole } from './console.ts';
-import type { SheetSituation } from './sheet.ts';
+import type { SheetEntry, SheetSituation, Unit } from './sheet.ts';
+import { addInGameCall } from './in-game.ts';
 
 type GameState = ReturnType<typeof flow.newGame>;
 
@@ -108,6 +109,24 @@ export class GameCallingSession {
   }
 
   get final(): boolean { return this.game.phase === 'final'; }
+
+  /** The public situation of the next snap (scoreboard facts only, J1.6.1), for the console strip. */
+  situation(): GameSituation { return flow.situationOf(this.deps, this.game); }
+
+  /** The field geometry of this game, for the strip's spot and hash wording. */
+  get geometry(): GameDeps['geometry'] { return this.deps.geometry; }
+
+  /** The side the console calls for. */
+  get userSide(): Side { return this.o.userSide; }
+
+  /** The game's rule set (strip clock lengths, challenge counts). */
+  get rules(): GameDeps['rules'] { return this.deps.rules; }
+
+  /** The game's parameter table (the statistics module reads it for the play-by-play rows). */
+  get params(): GameDeps['params'] { return this.deps.params; }
+
+  /** The user's personnel group on the field now (I3.1.1). */
+  get personnelOnField(): string { return this.personnel; }
 
   /** Runs the game to the first request for the user's team. */
   start(): void { this.step(); }
@@ -281,6 +300,16 @@ export class GameCallingSession {
     this.pending = { request: req, preview, openedAtMs: atMs, playClockTenths: clock };
     this.driver.state = openRequest(this.driver.state, input);
     this.driver.wait(0);
+  }
+
+  /**
+   * Puts a call found by the playbook search, or drawn on the sideline, on the sheet's in-game box and selects
+   * it (in-game.ts). The play clock keeps running: this only moves the console's state.
+   */
+  addCall(unit: Unit, entry: SheetEntry): boolean {
+    const r = addInGameCall(this.driver.state, unit, entry, this.driver.nowMs);
+    this.driver.state = r.state;
+    return r.handled;
   }
 
   /** Turns the console's new commands into answers and steps the flow on. */

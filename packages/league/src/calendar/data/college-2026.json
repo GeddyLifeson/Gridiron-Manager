@@ -92,7 +92,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Dec. 1 through Jan. 4 dead period (Jan. 1-4 is quiet only for transfer prospects enrolling midyear)"
   },
   {
    "id": "recruiting_1_close",
@@ -101,7 +101,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Dec. 1 through Jan. 4 dead period (Jan. 1-4 is quiet only for transfer prospects enrolling midyear)"
   },
   {
    "id": "recruiting_2_open",
@@ -110,124 +110,196 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 5-31 contact period"
   },
   {
    "id": "recruiting_2_close",
+   "rule": {
+    "date": "2026-01-10"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 5-31 contact period"
+  },
+  {
+   "id": "recruiting_3_open",
+   "rule": {
+    "date": "2026-01-11"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 11 quiet period"
+  },
+  {
+   "id": "recruiting_3_close",
+   "rule": {
+    "date": "2026-01-11"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 11 quiet period"
+  },
+  {
+   "id": "recruiting_4_open",
+   "rule": {
+    "date": "2026-01-12"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 12-14 dead period"
+  },
+  {
+   "id": "recruiting_4_close",
+   "rule": {
+    "date": "2026-01-14"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 12-14 dead period"
+  },
+  {
+   "id": "recruiting_5_open",
+   "rule": {
+    "date": "2026-01-15"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 5-31 contact period"
+  },
+  {
+   "id": "recruiting_5_close",
    "rule": {
     "date": "2026-01-31"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Jan. 5-31 contact period"
   },
   {
-   "id": "recruiting_3_open",
+   "id": "recruiting_6_open",
+   "rule": {
+    "date": "2026-02-01"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Feb. 1 quiet period"
+  },
+  {
+   "id": "recruiting_6_close",
+   "rule": {
+    "date": "2026-02-01"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Feb. 1 quiet period"
+  },
+  {
+   "id": "recruiting_7_open",
    "rule": {
     "date": "2026-02-02"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Feb. 2 through March 1 dead period (service academies quiet from Feb. 6)"
   },
   {
-   "id": "recruiting_3_close",
+   "id": "recruiting_7_close",
    "rule": {
     "date": "2026-03-01"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): Feb. 2 through March 1 dead period (service academies quiet from Feb. 6)"
   },
   {
-   "id": "recruiting_4_open",
+   "id": "recruiting_8_open",
    "rule": {
     "date": "2026-03-02"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): March 2 through April 14 quiet period"
   },
   {
-   "id": "recruiting_4_close",
+   "id": "recruiting_8_close",
    "rule": {
     "date": "2026-04-14"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): March 2 through April 14 quiet period"
   },
   {
-   "id": "recruiting_5_open",
+   "id": "recruiting_9_open",
    "rule": {
     "date": "2026-04-15"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): April 15 through May 23 contact period, 140 recruiting-person days (180 for service academies)"
   },
   {
-   "id": "recruiting_5_close",
+   "id": "recruiting_9_close",
    "rule": {
     "date": "2026-05-23"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): April 15 through May 23 contact period, 140 recruiting-person days (180 for service academies)"
   },
   {
-   "id": "recruiting_6_open",
+   "id": "recruiting_10_open",
    "rule": {
     "date": "2026-05-24"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): May 24-27 dead period"
   },
   {
-   "id": "recruiting_6_close",
+   "id": "recruiting_10_close",
    "rule": {
     "date": "2026-05-27"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): May 24-27 dead period"
   },
   {
-   "id": "recruiting_7_open",
+   "id": "recruiting_11_open",
    "rule": {
     "date": "2026-05-28"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): May 28 through June 21 quiet period"
   },
   {
-   "id": "recruiting_7_close",
+   "id": "recruiting_11_close",
    "rule": {
     "date": "2026-06-21"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): May 28 through June 21 quiet period"
   },
   {
-   "id": "recruiting_8_open",
+   "id": "recruiting_12_open",
    "rule": {
     "date": "2026-06-22"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): June 22 through July 31 dead period"
   },
   {
-   "id": "recruiting_8_close",
+   "id": "recruiting_12_close",
    "rule": {
     "date": "2026-07-31"
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+   "source": "T4.2.1: 2025-26 official FBS calendar (NCAA, 2025-26D1Rec_FBSMFBRecruitingCalendar.pdf, read 2026-11-26): June 22 through July 31 dead period"
   },
   {
    "id": "recruiting_f1_open",
@@ -236,7 +308,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+   "source": "T4.2.1: 2026-27 official FBS calendar (NCAA, 2026-27D1Rec_FBSRecruitingCalendar.pdf, read 2026-11-26): AUG 1-31 dead period; quiet only from 48 hours before a home contest to 48 hours after it (game-dependent, not a fixed window)"
   },
   {
    "id": "recruiting_f1_close",
@@ -245,7 +317,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+   "source": "T4.2.1: 2026-27 official FBS calendar (NCAA, 2026-27D1Rec_FBSRecruitingCalendar.pdf, read 2026-11-26): AUG 1-31 dead period; quiet only from 48 hours before a home contest to 48 hours after it (game-dependent, not a fixed window)"
   },
   {
    "id": "recruiting_f2_open",
@@ -254,7 +326,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+   "source": "T4.2.1: 2026-27 official FBS calendar (NCAA, 2026-27D1Rec_FBSRecruitingCalendar.pdf, read 2026-11-26): SEP 1 - NOV 29 evaluation period, 33 days"
   },
   {
    "id": "recruiting_f2_close",
@@ -263,7 +335,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+   "source": "T4.2.1: 2026-27 official FBS calendar (NCAA, 2026-27D1Rec_FBSRecruitingCalendar.pdf, read 2026-11-26): SEP 1 - NOV 29 evaluation period, 33 days"
   },
   {
    "id": "recruiting_f3_open",
@@ -272,7 +344,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+   "source": "T4.2.1: 2026-27 official FBS calendar (NCAA, 2026-27D1Rec_FBSRecruitingCalendar.pdf, read 2026-11-26): NOV 30 - DEC 31 dead period"
   },
   {
    "id": "recruiting_f3_close",
@@ -281,7 +353,7 @@
    },
    "status": "Rulebook only",
    "leaf": "T4.2.1",
-   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+   "source": "T4.2.1: 2026-27 official FBS calendar (NCAA, 2026-27D1Rec_FBSRecruitingCalendar.pdf, read 2026-11-26): NOV 30 - DEC 31 dead period"
   }
  ],
  "windows": [
@@ -306,65 +378,101 @@
   {
    "id": "recruiting_3",
    "kind": "window",
-   "label": "Recruiting dead period",
+   "label": "Recruiting quiet period",
    "leaf": "T4.2.1",
    "opens": "recruiting_3_open",
    "closes": "recruiting_3_close",
-   "period": "dead"
+   "period": "quiet"
   },
   {
    "id": "recruiting_4",
    "kind": "window",
-   "label": "Recruiting quiet period",
+   "label": "Recruiting dead period",
    "leaf": "T4.2.1",
    "opens": "recruiting_4_open",
    "closes": "recruiting_4_close",
-   "period": "quiet"
+   "period": "dead"
   },
   {
    "id": "recruiting_5",
    "kind": "window",
-   "label": "Recruiting evaluation period",
+   "label": "Recruiting contact period",
    "leaf": "T4.2.1",
    "opens": "recruiting_5_open",
    "closes": "recruiting_5_close",
-   "period": "evaluation"
+   "period": "contact"
   },
   {
    "id": "recruiting_6",
    "kind": "window",
-   "label": "Recruiting dead period",
+   "label": "Recruiting quiet period",
    "leaf": "T4.2.1",
    "opens": "recruiting_6_open",
    "closes": "recruiting_6_close",
-   "period": "dead"
+   "period": "quiet"
   },
   {
    "id": "recruiting_7",
    "kind": "window",
-   "label": "Recruiting quiet period",
+   "label": "Recruiting dead period",
    "leaf": "T4.2.1",
    "opens": "recruiting_7_open",
    "closes": "recruiting_7_close",
-   "period": "quiet"
+   "period": "dead"
   },
   {
    "id": "recruiting_8",
    "kind": "window",
-   "label": "Recruiting dead period",
+   "label": "Recruiting quiet period",
    "leaf": "T4.2.1",
    "opens": "recruiting_8_open",
    "closes": "recruiting_8_close",
+   "period": "quiet"
+  },
+  {
+   "id": "recruiting_9",
+   "kind": "window",
+   "label": "Recruiting contact period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_9_open",
+   "closes": "recruiting_9_close",
+   "period": "contact"
+  },
+  {
+   "id": "recruiting_10",
+   "kind": "window",
+   "label": "Recruiting dead period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_10_open",
+   "closes": "recruiting_10_close",
+   "period": "dead"
+  },
+  {
+   "id": "recruiting_11",
+   "kind": "window",
+   "label": "Recruiting quiet period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_11_open",
+   "closes": "recruiting_11_close",
+   "period": "quiet"
+  },
+  {
+   "id": "recruiting_12",
+   "kind": "window",
+   "label": "Recruiting dead period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_12_open",
+   "closes": "recruiting_12_close",
    "period": "dead"
   },
   {
    "id": "recruiting_f1",
    "kind": "window",
-   "label": "Recruiting quiet period",
+   "label": "Recruiting dead period",
    "leaf": "T4.2.1",
    "opens": "recruiting_f1_open",
    "closes": "recruiting_f1_close",
-   "period": "quiet"
+   "period": "dead"
   },
   {
    "id": "recruiting_f2",

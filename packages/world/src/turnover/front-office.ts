@@ -183,7 +183,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const own = new Map<string, number[]>();
     for (const id of pc.world.rosters.get(teamId) ?? []) {
       const pos = pc.world.people.get(id)?.playing?.position;
-      if (pos) own.set(pos, [...(own.get(pos) ?? []), pc.grades.grade(teamId, id)]);
+      if (pos) { const l = own.get(pos); if (l) l.push(pc.grades.grade(teamId, id)); else own.set(pos, [pc.grades.grade(teamId, id)]); }
     }
     const all = [...own.values()].flat();
     const replacement = new Map<string, number>();
@@ -268,7 +268,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
       const byPos = new Map<string, number[]>();
       for (const id of ids) {
         const pos = pc.world.people.get(id)?.playing?.position;
-        if (pos) byPos.set(pos, [...(byPos.get(pos) ?? []), pc.grades.publicGrade(id)]);
+        if (pos) { const l = byPos.get(pos); if (l) l.push(pc.grades.publicGrade(id)); else byPos.set(pos, [pc.grades.publicGrade(id)]); }
       }
       for (const [pos, gs] of byPos) {
         const k = Math.max(1, Math.round((targets[pos] ?? 0) * param('role.starterShareOfMix')));
@@ -326,7 +326,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const grades = new Map<string, number[]>();
     for (const id of pc.world.pools.get(POOL.proEntry) ?? []) {
       const pos = pc.world.people.get(id)?.playing?.position;
-      if (pos) grades.set(pos, [...(grades.get(pos) ?? []), pc.grades.grade(teamId, id)]);
+      if (pos) { const l = grades.get(pos); if (l) l.push(pc.grades.grade(teamId, id)); else grades.set(pos, [pc.grades.grade(teamId, id)]); }
     }
     const out = new Map<string, number>();
     for (const [pos, gs] of grades) {
@@ -389,7 +389,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
         const prospects = pool.map(prospectOf);
         return gm.buildBoard(t.profile, prospects, needs, t.ctx, phase.round ?? 1, phase.rounds ?? 1, rookieYears(pc, level, phase.round ?? 1))[0]?.personId ?? null;
       }
-      if (phase.kind === 'undrafted') return gm.undraftedBoard(t.profile, pool, needs, t.ctx)[0] ?? null;
+      if (phase.kind === 'undrafted') return gm.undraftedTop(t.profile, pool, needs, t.ctx);
       // K7.4.2: he targets only players worth more than replacement; with none left he signs nobody.
       return faBoard(pc, teamId, pool, needs, t).ranked[0]?.personId ?? 'pass';
     },
@@ -434,7 +434,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
       // Replacement level for a class is the low end of the class itself, as this staff grades it: against the
       // club's own roster almost no freshman would rate above replacement.
       const byPos = new Map<string, number[]>();
-      for (const v of pool) byPos.set(v.position, [...(byPos.get(v.position) ?? []), v.grade.mean]);
+      for (const v of pool) { const l = byPos.get(v.position); if (l) l.push(v.grade.mean); else byPos.set(v.position, [v.grade.mean]); }
       const allGrades = pool.map((v) => v.grade.mean);
       // The quantile is a pure function of the class, so each position's is computed once per board.
       const replacement = new Map<string, number>();
