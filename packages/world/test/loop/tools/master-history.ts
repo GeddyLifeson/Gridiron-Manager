@@ -25,6 +25,8 @@ import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
+import * as compliance from '../../../src/compliance/index.ts';
+import * as records from '../../../src/records/index.ts';
 import * as health from '../../../src/health/index.ts';
 import { medical } from '@gm/league';
 
@@ -49,7 +51,7 @@ const levelLookup = (level: string): generation.RuleLookup => (level === 'pro' ?
 const s = setup({ seedHex: SEED, size: SIZE, firstSeasonYear: TODAY - SEASONS, historySeasons: SEASONS });
 const tBuild = performance.now();
 const w = loop.createWorld({
-  setup: s, content, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...health.HEALTH_EVENT_TYPES],
+  setup: s, content, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...health.HEALTH_EVENT_TYPES, ...records.RECORDS_EVENT_TYPES], notabilityOf: records.worldNotability(),
   foundingCurves: generation.defaultFoundingCurves(), lostClubs: LOST > 0 ? { fraction: LOST } : undefined,
 });
 const buildMs = performance.now() - tBuild;
@@ -96,7 +98,7 @@ const systems = loop.systemsFrom({
   leaving: timed('leaving', loop.leavingStep()),
   // Log compaction has no counter list yet (X2.4.1 owner); the slot drops dead playing blocks (archive.ts).
   compaction: timed('compaction', loop.slimStep()),
-  hall: timed('hall', loop.hallStep({ halls: loop.defaultHalls({ pro: 'pro', college: 'college' }, PRO_LOOKUP('standings.tie_win_value') ?? 0.5) })),
+  hall: timed('hall', loop.hallStep({ halls: loop.defaultHalls({ pro: 'pro', college: 'college' }, PRO_LOOKUP('standings.tie_win_value') ?? 0.5), honours: records.honoursOf })),
   cohorts: timed('cohorts', loop.cohortStep({
     // Recruit classes follow the college teams alive this season; the draft pool follows the clubs alive.
     scale: (world) => {
@@ -108,6 +110,10 @@ const systems = loop.systemsFrom({
   })),
   development: timed('development', turnover.developmentStep(binding)),
   moves: timed('moves', turnover.rosterMovesStep(binding)),
+  compliance: timed('compliance', compliance.complianceStep(compliance.complianceBindingFrom(binding, 'pro'))),
+  statistics: timed('statistics', records.statisticsStep({ schedule })),
+  notability: timed('notability', records.notabilityStep()),
+  labels: timed('labels', records.labelsStep()),
 }, 'master run: owning system not bound yet');
 
 const unbound = loop.unboundSteps(systems);
