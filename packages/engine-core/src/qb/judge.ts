@@ -31,6 +31,9 @@ export interface JudgeContext {
   /** His own error for a throw of these air yards from his current platform (J7.6.2). He knows his arm. */
   accuracySdYd(airYd: number): number;
   wet: boolean;
+  /** The sidelines in the play frame, when the caller knows them: he does not expect a receiver to run out of bounds. */
+  loPy?: number;
+  hiPy?: number;
   /** A Hail Mary or free play is thrown even past his range. */
   allowOutOfRange: boolean;
   /**
@@ -279,6 +282,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
       } else {
         ax = rx + vx * arrive; ay = ry + vy * arrive;
         if (speed > 0) { dirX = vx / speed; dirY = vy / speed; }
+      }
+      if (ctx.loPy !== undefined && ctx.hiPy !== undefined) {
+        const lo = ctx.loPy + p['judge.sidelineRoomYd'], hi = ctx.hiPy - p['judge.sidelineRoomYd'];
+        if (lo < hi) ay = ay < lo ? lo : ay > hi ? hi : ay;
       }
       dist = hyp(ax - qx, ay - qy);
       flight = ctx.flightS(dist, trajectory);

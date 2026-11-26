@@ -69,6 +69,7 @@ export const PARAMS: ParamFile = {
     p('kick.clearanceYd', 10, 4, 20, 'yd', 'J4.1.3'),
     p('secure.effort', 0.85, 0.5, 1, 'ratio', 'J4.1.3'),
     p('sideline.runYd', 30, 10, 60, 'yd', 'J4.1.3'),
+    p('route.sidelineRoomYd', 2, 0.5, 5, 'yd', 'J4.1.3'),
   ],
 };
 
@@ -82,7 +83,7 @@ export interface Consts {
   readonly bunchWidth: number; readonly backfieldDepth: number; readonly trailOffset: number; readonly offLeadS: number; readonly offCushion: number; readonly deepZoneHalfWidth: number; readonly shoulderOffset: number; readonly containWidth: number;
   readonly rushTrackOffset: number; readonly spyDepth: number; readonly passSetDepth: number; readonly passSetPocketDepth: number; readonly passSetMirrorGap: number; readonly comboHoldS: number; readonly chipHoldS: number;
   readonly scanRange: number; readonly climbMinDepth: number; readonly pursueLeadS: number; readonly pursueMaxLeadS: number; readonly pursueAnticipateS: number; readonly pursueAttackYd: number; readonly pursueCutback: number; readonly kickClearance: number;
-  readonly secureEffort: number; readonly sidelineRun: number;
+  readonly secureEffort: number; readonly sidelineRun: number; readonly sidelineRoom: number;
 }
 
 export function constsOf(t: ParamTable): Consts {
@@ -96,6 +97,6 @@ export function constsOf(t: ParamTable): Consts {
     bunchWidth: n('bunch.widthYd'), backfieldDepth: n('backfield.depthYd'), trailOffset: n('trail.offsetYd'), offLeadS: n('trail.offLeadS'), offCushion: n('trail.offCushionYd'), deepZoneHalfWidth: n('deepZone.halfWidthYd'), shoulderOffset: n('shoulder.offsetYd'), containWidth: n('contain.widthYd'),
     rushTrackOffset: n('rush.trackOffsetYd'), spyDepth: n('spy.depthYd'), passSetDepth: n('passSet.depthYd'), passSetPocketDepth: n('passSet.pocketDepthYd'), passSetMirrorGap: n('passSet.mirrorGapYd'), comboHoldS: n('combo.holdS'), chipHoldS: n('chip.holdS'),
     scanRange: n('scan.rangeYd'), climbMinDepth: n('climb.minDepthYd'), pursueLeadS: n('pursue.leadS'), pursueMaxLeadS: n('pursue.maxLeadS'), pursueAnticipateS: n('pursue.anticipateS'), pursueAttackYd: n('pursue.attackYd'), pursueCutback: n('pursue.cutbackYd'), kickClearance: n('kick.clearanceYd'),
-    secureEffort: n('secure.effort'), sidelineRun: n('sideline.runYd'),
+    secureEffort: n('secure.effort'), sidelineRun: n('sideline.runYd'), sidelineRoom: n('route.sidelineRoomYd'),
   };
 }

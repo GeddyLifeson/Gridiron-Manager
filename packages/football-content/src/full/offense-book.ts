@@ -40,9 +40,9 @@ export const BOOK_PLAYS: readonly PlayDef[] = [
     qb(TR, 'spacing', 'threeStepFromGun', 'oneOnOneThenInOut', ['role:Y', 'role:H', 'role:Z'], 1.5),
     slot(TR, 'Z', route('spacing', [through(5, 17), settle(5, 16)], { params: { route: 'hitch' } })),
     slot(TR, 'H', route('spacing', [through(5, 11), settle(5.5, 10.5)], { params: { route: 'sit' } })),
-    slot(TR, 'Y', route('spacing', [through(1, 5), through(2, 2)], { params: { route: 'flatIn' } })),
+    slot(TR, 'Y', route('spacing', [through(1, 5), settle(2, 3)], { params: { route: 'flatIn' } })),
     slot(TR, 'X', route('spacing', [through(5, -17), settle(5, -16)], { params: { route: 'hitch' } })),
-    slot(TR, 'R', route('spacing', [through(-3, -6), through(0, -10)], { params: { route: 'swing' } })),
+    slot(TR, 'R', route('spacing', [through(-3, -6), settle(0, -10)], { params: { route: 'swing' } })),
   ], ['Receivers about 6 to 8 yd apart sideways stretch the flat and hook defenders.', 'Take any one-on-one first; otherwise read in-out or out-in in quick-game time.'], [
     { claim: 'Spacing: a horizontal stretch of the flat and hook defenders in zone, in quick-game timing', status: 'Verified', sources: ['stein-spacing', 'zitnik-spacing', 'bowen-combos'] },
     { claim: 'Spacing read: full field, in-out or out-in, one-on-one first', status: '2 of 3', sources: ['stein-spacing', 'zitnik-spacing'] },

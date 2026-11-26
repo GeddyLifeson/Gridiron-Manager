@@ -91,6 +91,8 @@ const ROWS = [
   ['judge.lanePickShare', 0.35, 0.1, 0.7, 'probability', 'assumption', 'J7.3.1', RATES],
   // J6.5 reach test "given where he can get to": how far he expects the receiver to adjust to the ball in flight.
   ['judge.reachAdjustYd', 1.0, 0, 2.5, 'yd', 'assumption', 'J7.3.1', 'J7.3.1 acceptance; J15 completion by depth (DP-1)'],
+  // A receiver running at the sideline turns up it this far inside (football-lang `route.sidelineRoomYd`).
+  ['judge.sidelineRoomYd', 2, 0.5, 5, 'yd', 'assumption', 'J7.3.1', STRUCT],
   ['judge.missPickContested', 0.10, 0, 0.3, 'probability', 'assumption', 'J7.3.1', RATES],
   ['judge.missPickOpen', 0.02, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
   ['judge.positionTolYd', 0.5, 0.2, 1.5, 'yd', 'assumption', 'J7.3.1', STRUCT],

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { PlayerView } from '../../src/perception/view.ts';
 import { ParamFile, SLOT_COUNT, type TickStage, type TickWorld } from '@gm/schema';
 import {
   createPerception, keyDelayS, attentionCapacity, readThreshold, keyWeight, anticipationChance, coverageRecognitionS, callDeliveryChance,
@@ -136,7 +137,7 @@ describe('J3.1.1 the perceived world', () => {
     expect(JSON.stringify(see.view(VIEWER))).toBe(before);
     // The view's methods are the contract's and no more.
     expect(Object.getOwnPropertyNames(Object.getPrototypeOf(see.view(VIEWER))).sort()).toEqual(
-      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'playRead', 'receiverNumber', 'setSide'].sort());
+      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'landingPoint', 'playRead', 'receiverNumber', 'setSide', 'sidelines'].sort());
   });
   it('starts from the pre-snap picture and drops a track not refreshed for 1.5 s (edge cases)', () => {
     const { w, see } = stage();
@@ -376,7 +377,19 @@ describe('J3.5 the ball', () => {
       if (x.tick === 5) { x.ball.kind = 'passInFlight'; see.notifyBallInAir(x, 0, landX, landY, 20); }
       err[x.tick] = see.landingEstimate(x, VIEWER, out) ? Math.hypot(out[0]! - 20, out[1]! - 6) : null;
       late[x.tick] = see.landingEstimate(x, 12, out);
+      // What he acts on is the same estimate, in his view, from the tick he has one.
+      const lp = (see.view(VIEWER) as PlayerView).landingPoint();
+      if (x.tick >= 9 && x.tick <= 20) { expect(lp).not.toBeNull(); expect(Math.hypot(lp!.px - out[0]!, lp!.py - out[1]!) >= 0).toBe(true); expect(Math.hypot(lp!.px - 20, lp!.py - 6)).toBeLessThanOrEqual((err[x.tick - 1] ?? Infinity) + 1e-9); }
+      if (x.tick <= 6) expect(lp).toBeNull();
     });
+    // The ball is caught or down: he has no landing point any more.
+    w.ball.kind = 'held'; w.ball.carrierSlot = 0;
+    runTicks(w, [see.stage], 1);
+    expect((see.view(VIEWER) as PlayerView).landingPoint()).toBeNull();
+    // He knows where the sidelines are, in his own frame.
+    const sl = (see.view(VIEWER) as PlayerView).sidelines();
+    expect(sl.hi - sl.lo).toBeCloseTo(w.geometry.widthYd, 9);
+    expect(sl.lo).toBeLessThan(0); expect(sl.hi).toBeGreaterThan(0);
     expect(err[7]).toBeNull(); expect(err[8]).not.toBeNull(); // 0.25 s after release: 3 ticks
     expect(late[9]).toBe(false); expect(late[10]).toBe(true); // 0.2 s more without eyes on the passer
     expect(err[8]!).toBeGreaterThan(0);

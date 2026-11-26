@@ -122,8 +122,9 @@ describe('tick resolver: determinism (J13)', () => {
   });
   it('B7.7.1: a kick fielded and downed in the end zone is the kicking team\'s impetus, not the returner\'s', () => {
     let downedIn = 0;
-    for (let seed = 1; seed <= 80; seed++) {
-      const t = resolver.simulatePlay(playInput({ kind: 'kickoff', seed })).truth;
+    // Kicked from 10 yards further up than usual, so that the fixture's kicks reach the end zone.
+    for (let seed = 1; seed <= 40; seed++) {
+      const t = resolver.simulatePlay(playInput({ kind: 'kickoff', seed, ballX: 45 })).truth;
       const dead = eventsOf(t, 'dead_ball')[0], kick = eventsOf(t, 'kick')[0];
       if (!dead || !kick || t.endZoneImpetus === null) continue;
       // The kicker has no possession: every possession on a kickoff is the receiving team's.

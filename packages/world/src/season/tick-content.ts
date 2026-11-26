@@ -310,11 +310,19 @@ function receivingUnit(frontPx: number, secondPx: number, deepPx: number, halfWi
 
 const ROUTE = 'route';
 
+/** Boot launch point (provisional design values): depth behind the line, and width as a multiple of the tackle's split. */
+export const BOOT_DEPTH_YD = 6;
+export const BOOT_WIDTH = 2.5;
+/** The pop pass's token fake, seconds (provisional design value). */
+export const POP_FAKE_S = 0.3;
+
 function dropOf(word: unknown, shotgun: boolean): DropType {
   if (word === 'threeStepFromGun') return 'gun3';
   if (word === 'sevenStep') return 'uc7';
   if (word === 'fiveStep' || word === 'fiveStepFromGun') return 'uc5';
   if (word === 'threeStep') return 'uc3';
+  // One step and throw: the quick screens from the gun, and the pop pass off a run fake.
+  if (word === 'oneStepFromGun' || word === 'quickPop') return 'gunQuick';
   return shotgun ? 'gun3' : 'uc5';
 }
 
@@ -358,7 +366,14 @@ function qbPlayOf(def: starter.PlayDef, O: readonly Assignment[], defenseSlotOf:
     case 'playAction': case 'boot': case 'handoffThenReceiveBack': {
       const back = O[backSlot];
       const checkdown = back && back.behavior.type === ROUTE ? tickResolver.qbTargetOf(backSlot, back) : null;
-      return { ...base, playActionS: 0.5, checkdown, eligible, pocket };
+      const quick = q.behavior.params['drop'] === 'quickPop';
+      // A boot is thrown from outside the tackle on the side he rolls to, not from the pocket: standing in it
+      // behind run blocks he was sacked on two plays in three. Design value until the content draws his path.
+      const side = q.behavior.params['side'];
+      const roll = action === 'boot' && (side === 'left' || side === 'right')
+        ? { launchPx: -BOOT_DEPTH_YD, launchPy: (side === 'right' ? O[4]! : O[0]!).preSnap.align.py * BOOT_WIDTH }
+        : {};
+      return { ...base, underCenter: !def.shotgun, playActionS: quick ? POP_FAKE_S : 0.5, checkdown, eligible, pocket, ...roll };
     }
     default: {
       const back = O[backSlot];

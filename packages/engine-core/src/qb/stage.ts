@@ -328,6 +328,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     ctx = {
       p, catchPoint, math: w.math, value: play.value ?? standInValue(p, sit.down, sit.distanceYd),
       releaseS, vBallYps: vBall, dragPerYd: k, maxRangeYd: far.arrival.x, wet, allowOutOfRange: play.kind === 'hailMary',
+      loPy: Math.min((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
+      hiPy: Math.max((0 - w.frame.originY) * w.frame.attackDir, (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir),
       accuracySdYd: (airYd) => errorSd(airYd, platformNow(false, false)),
       flightS: (distYd, trajectory) => flightFrom(table, distYd, trajectory),
       heightYd: (distYd, alongYd, trajectory) => heightFrom(table, distYd, alongYd, trajectory),
