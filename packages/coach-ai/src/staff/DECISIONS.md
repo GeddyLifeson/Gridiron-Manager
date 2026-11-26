@@ -45,3 +45,14 @@ Nothing in `params.json` is a real-world fact. Every row is a bible starting val
 - **K6.5 the boss:** G-78.
 - **Whole-game tests need PR 107's rule keys.** On `main` before that merge they are skipped with a stated reason; with PR 107 merged locally all 43 tests pass.
 - **N3 rows.** `StaffDecisionRow` is the feed (`decidedBy`, basis, instructions, error tag). app-services maps it onto `models.decisions` records (attribution basis `delegated`).
+
+## Adapter notes from the K4 and K5 owners (2026-11-26)
+
+No adapter is written yet; these land after PR 138 (calling) and PR 139 (management) merge.
+
+- K4 `createCaller(setup).call(request)` returns a sheet call id, `callTimeS` and a record. The adapter builds the call object from the content id and converts `callTimeS` to play clock tenths. `ctx.permits` maps to `request.constraint.allows`.
+- K4 asks for draws by kind (call, tempo, script, timing, booth, disguise, adjust). The adapter must key the last draw scope field by that kind, not the single 'call' tag.
+- K4 has no side-effect-free preview yet, so `CallerPort.suggest` is owed by G-58.
+- K5 `fourthDown` returns unit 'offense' | 'field_goal' | 'punt' ('offense' is 'go' here) and has no allowed-units filter: filter after, or call `decide()` with only the allowed options.
+- K5 functions return `thinkingS`, not play clock tenths. Call them directly: `createManagementDecider` drops `errorId`.
+- K5 `modelLine(options, habit)` is the advisor line; the generic line is the weekly chart with `coach.advisor` false.
