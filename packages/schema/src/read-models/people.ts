@@ -1,5 +1,5 @@
 // The zod schemas of the people and office read models (G-72), with a visibility class on every field.
-// Moved here unchanged from app-services/test/read-models/people/data-schema.ts (CR-G72-1); registered in
+// Moved here from app-services/test/read-models/people/data-schema.ts (CR-G72-1; the local `Date` renamed `Day` for the purity lint); registered in
 // READ_MODELS as playerCard, rosterTable, staff, coachCard, lockerRoom, ownerView and home. Classes:
 //  public            names, positions, roster lists, report designations, measured values, seats
 //  own_team          the club's contract lines, notes, inbox, requests to the general manager
@@ -15,7 +15,7 @@ const text = () => pub(z.string());
 const flag = () => pub(z.boolean());
 const ids = () => pub(z.array(z.number().int()), 'id');
 const keys = () => pub(z.array(z.string()));
-const Date = pub(z.object({ seasonYear: pub(int(), 'season_year'), dayIndex: pub(int(), 'day_index') }).strict());
+const Day = pub(z.object({ seasonYear: pub(int(), 'season_year'), dayIndex: pub(int(), 'day_index') }).strict());
 const OwnDate = own(z.object({ seasonYear: own(int(), 'season_year'), dayIndex: own(int(), 'day_index') }).strict());
 
 const Reason = z.object({ textKey: est(z.string()), eventId: est(int(), 'id') }).strict();
@@ -32,7 +32,7 @@ const Grade = z.union([
 
 const HealthRow = z.object({
   injuryId: id(), typeId: text(), bodyRegion: text(), designation: text().nullable(),
-  returnDays: est(z.tuple([z.number().int().min(0), z.number().int().min(0)]), 'count').nullable(), status: text(), occurred: Date,
+  returnDays: est(z.tuple([z.number().int().min(0), z.number().int().min(0)]), 'count').nullable(), status: text(), occurred: Day,
 }).strict();
 
 const Medical = est(z.object({
@@ -41,14 +41,14 @@ const Medical = est(z.object({
 }).strict());
 
 const Knowledge = z.object({
-  conceptId: text(), word: est(z.enum(['new', 'learning', 'knows', 'masters'])), lastPractised: Date.nullable(),
+  conceptId: text(), word: est(z.enum(['new', 'learning', 'knows', 'masters'])), lastPractised: Day.nullable(),
   mentalErrors: pub(z.array(z.object({ gameId: id(), playIndex: pub(int(), 'index') }).strict())), readyThisWeek: est(z.boolean()),
 }).strict();
 
 const Person = z.object({
   rolePromisedKey: own(z.string()).nullable(), roleGivenKey: own(z.string()).nullable(),
   morale: Read.nullable(), trust: Read.nullable(), respect: Read.nullable(),
-  openPromises: pub(z.array(z.object({ promiseId: id(), subjectKey: text(), made: Date, due: Date.nullable() }).strict())),
+  openPromises: pub(z.array(z.object({ promiseId: id(), subjectKey: text(), made: Day, due: Day.nullable() }).strict())),
   personality: est(z.array(z.object({ traitKey: est(z.string()), readKey: est(z.string()), confidenceKey: est(z.string()) }).strict())).optional(),
   standingKey: est(z.string()).nullable(), closestTeammates: est(z.array(int()), 'id'),
   meetings: own(z.array(z.object({ date: OwnDate, subjectKey: own(z.string()), outcomeKey: own(z.string()) }).strict())),
@@ -137,7 +137,7 @@ const Moment = own(z.object({ date: OwnDate, minute: own(int(), 'min') }).strict
 export const HomeData = z.object({
   personId: id(),
   today: own(z.object({
-    date: Date, phaseKey: text(), dayLabelKey: own(z.string()).nullable(), daysToGame: count().nullable(),
+    date: Day, phaseKey: text(), dayLabelKey: own(z.string()).nullable(), daysToGame: count().nullable(),
     opponent: pub(z.object({ teamId: id(), name: text() }).strict()).nullable(), mode: own(z.enum(['normal', 'game_day', 'empty'])),
     blocks: own(z.array(z.object({
       blockId: own(z.string()), labelKey: own(z.string()), startMinute: own(int(), 'min'), minutes: own(int(), 'min'), runBy: own(z.enum(['coach', 'delegate'])),
