@@ -21,6 +21,7 @@ import { pickOutcome, type Contests } from '../contest/index.ts';
 import { PI, dAtan2, dCos, dSqrt } from '../dmath.ts';
 import { cutMultiplier, kinParams } from '../kinematics/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
+import { COVERING, READING, RUSHING, opposingElevenZ, opposingZ } from '../tick/opposition.ts';
 import {
   accuracySdYd, anticipationEarlyS, blindsideFeelChance, clip, depthBand, dropDepthYd, eyesDownfieldChance, falsePressureChance, freePlaySeenChance,
   hotSeenChance, interceptionCeiling, keyReadChance, knowsGroundingChance, maxBallSpeedYps, meshFumbleChance, meshReadChance, platformMultiplier, pumpFakeChance, readTimeS, releaseTimeS,
@@ -158,6 +159,10 @@ export interface Quarterback {
 
 function hyp(x: number, y: number): number { return dSqrt(x * x + y * y); }
 
+// The grades on the other side of his clocks. The rush is the four the block contest reads (J6.2.1); the coverage
+// is how fast its men sort the play out (`READING`).
+const RUSH_GRADES = ['get_off', 'power_rush', 'hand_moves', 'speed_rush_and_bend'] as const;
+
 /**
  * Flight times from the J9 solver in still air, by distance and trajectory, for one arm in one air
  * (J7.6.1: "flight time comes from J9 and was already used in the estimate"). Solving is slow, so a
@@ -286,14 +291,22 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const p = P = qbParams(w.params), bp = BP = ballParams(w.params), s = play.qbSlot;
     const info = w.slots[s]!, a = info.player.attributes, pl = w.players;
     const body = pl.dFatigueZ[s]! + pl.dInjuryZ[s]!, mind = body + pl.dKnowledgeZ[s]!;
+    // Ruling 2026-11-26 (one pro scale, no level of play): his grades are read against the eleven he is playing.
+    // The three clocks and the ball have their own opponents (the rush, the coverage); every other grade is read
+    // against how fast the other eleven sorts a play out. Nobody has a behavior before the snap, so all of them.
+    const zEleven = opposingElevenZ(w, s, READING), opposed = p['oppose.gradeShare'] * zEleven;
     const zb = (id: string): number => issToZ(a[id]!) - body, zm = (id: string): number => issToZ(a[id]!) - mind;
-    zFoot = zb('footwork_and_drop'); zPocket = zb('pocket_movement'); zScramble = zb('scramble_and_run_skill'); zRelease = zb('release_time'); zArm = zb('arm_strength');
-    zAccShort = zb('accuracy_short'); zAccMid = zb('accuracy_intermediate'); zAccDeep = zb('accuracy_deep'); zMove = zb('accuracy_on_the_move'); zUnderPressure = zb('accuracy_under_pressure');
+    const zbo = (id: string): number => zb(id) - opposed, zmo = (id: string): number => zm(id) - opposed;
+    zFoot = zb('footwork_and_drop'); zPocket = zbo('pocket_movement'); zScramble = zbo('scramble_and_run_skill'); zRelease = zb('release_time'); zArm = zb('arm_strength');
+    zAccShort = zbo('accuracy_short'); zAccMid = zbo('accuracy_intermediate'); zAccDeep = zbo('accuracy_deep'); zMove = zbo('accuracy_on_the_move'); zUnderPressure = zbo('accuracy_under_pressure');
     zCod = info.player.tests.changeOfDirectionZ - body;
-    zProc = zm('processing_speed'); zCov = zm('coverage_reading_post_snap'); zBlitz = zm('blitz_recognition'); zAnt = zm('anticipation'); zMeshRead = zm('play_recognition');
-    zFi = zm('football_intelligence'); zHandling = zb('play_fake_and_ball_handling'); zComposure = zm('composure');
-    decisionRisk = a['decision_risk']!; composure = a['composure']!;
-    tReadS = readTimeS(zProc, p); earlyS = anticipationEarlyS(zAnt, p); releaseS = releaseTimeS(zRelease, p); vBall = maxBallSpeedYps(zArm, p);
+    zProc = zm('processing_speed'); zCov = zmo('coverage_reading_post_snap'); zBlitz = zmo('blitz_recognition'); zAnt = zmo('anticipation'); zMeshRead = zmo('play_recognition');
+    zFi = zmo('football_intelligence'); zHandling = zbo('play_fake_and_ball_handling'); zComposure = zmo('composure');
+    decisionRisk = a['decision_risk']!; composure = a['composure']! - 10 * opposed;
+    tReadS = readTimeS(zProc, p); earlyS = anticipationEarlyS(zAnt, p); releaseS = releaseTimeS(zRelease, p);
+    // Ball speed is read against the eleven it is thrown at.
+    const vArm = maxBallSpeedYps(zArm, p);
+    vBall = maxBallSpeedYps(zArm, p, zEleven);
     riskOffset = riskOffsetEp(decisionRisk, play.instructions.risk, p);
     wet = w.environment.precip !== 'none' || w.environment.derived.grip < 1;
     gustMult = gustAimMultiplier(w.environment, bp['wind.gustAimGain']!);
@@ -330,7 +343,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       if (deepestRead > 0) { const r = seq.splice(deepestRead, 1)[0]!; seq.unshift(r); deepestRead = 0; }
     }
     const k = airDrag(bp['pass.dragPerYd']!, w.environment);
-    const far = solvePassFrom(0, 0, 300, 0, vBall, 'drive', k, NO_WIND, bp);
+    // His range is his own arm's, and never more than the ball he throws on this play can cover.
+    const far = solvePassFrom(0, 0, 300, 0, vArm < vBall ? vArm : vBall, 'drive', k, NO_WIND, bp);
     const table = flightTable(vBall, k, far.arrival.x, bp);
     const kp = kinParams(w.params);
     ctx = {
@@ -1064,7 +1078,12 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     const p = P!, play = cur!;
     gotBallT = t;
     launchPx = play.launchPx ?? -dropDepthYd(play.drop, p); launchPy = play.launchPy ?? v.self.py;
-    tSet = setTimeS(play.drop, zFoot, play.playActionS, play.badSnapS, p);
+    // The other side of his three clocks, read once, when he has the ball and the defense has declared (the player
+    // AI has set this tick's behaviors): the rush his drop and release race, and the coverage his reads sort out.
+    const s = play.qbSlot, zRush = opposingZ(w, s, RUSHING, RUSH_GRADES), zCoverage = opposingZ(w, s, COVERING, READING);
+    tReadS = readTimeS(zProc, p, zCoverage); releaseS = releaseTimeS(zRelease, p, zRush);
+    if (ctx !== null) ctx.releaseS = releaseS;
+    tSet = setTimeS(play.drop, zFoot, play.playActionS, play.badSnapS, p, zRush);
     if (tSet < t) tSet = t;
     if (play.kind === 'kneel') { launchPx = v.self.px - p['kneel.lossYd']; launchPy = v.self.py; phase = SCRIPTED; }
     else if (play.kind === 'spike') phase = SCRIPTED;
