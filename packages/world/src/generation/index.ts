@@ -3,6 +3,7 @@
 export { MODULE, PARAMS, param } from './params.ts';
 export { sha256, bytesToHex } from './sha256.ts';
 export { foundingCurveRows, defaultFoundingCurves, type FoundingCurveRow } from './founding-curves.ts';
+export { STREAM_LOST_CLUBS, lostClubData, lostClubCount, lostClubSpans, addLostClubs, type LostClubData, type LostClubSpan, type LostClubsResult } from './lost-clubs.ts';
 export {
   SIZE_PRESETS, SETUP_FIELDS, FORBIDDEN_SETUP_WORDS, historyPresets, seedHexFromText, setupFieldProblems, setupProblems, createSetup,
   canonicalSetup, setupHashHex, setupSeed, setupAsGeneratorOptions, type SizePreset, type PackRef, type SetupRecord,

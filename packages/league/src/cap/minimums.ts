@@ -25,11 +25,15 @@ function bands(rules: RuleSet): Band[] {
  * Years after the last rule-set year continue the C6.4.1 yearly step (assumption, the agreement ends 2030).
  */
 export function minimumSalary(rules: RuleSet, leagueYear: number, creditedSeasons: number, params: ParamTable = paramTable()): number {
+  if (!Number.isSafeInteger(creditedSeasons) || creditedSeasons < 0) throw new Error(`league.cap: credited seasons must be a whole number from 0, not ${creditedSeasons}`);
   const all = bands(rules);
   if (all.length === 0) throw new Error('league.cap: rule set has no minimum salary table');
   const years = [...new Set(all.map((b) => b.year))].sort((a, b) => a - b);
   const last = years[years.length - 1]!;
-  const year = leagueYear > last ? last : leagueYear;
+  // Years before the first table (the history run plays modern rules back to 1869) use the first table, unstepped
+  // (assumption, as for years after the agreement; break test #6).
+  const first = years[0]!;
+  const year = leagueYear > last ? last : leagueYear < first ? first : leagueYear;
   const band = all.find((b) => b.year === year && creditedSeasons >= b.from && creditedSeasons <= b.to);
   if (!band) throw new Error(`league.cap: no minimum salary for ${leagueYear} with ${creditedSeasons} credited seasons`);
   const step = leagueYear > last ? (leagueYear - last) * Math.round(params.num('league.cap.minSalaryStepUsd') * CENTS_PER_USD) : 0;
