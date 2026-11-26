@@ -199,10 +199,11 @@ export function withPreSnapRead(play: QbPlay, plan: PresnapPlan | null): QbPlay 
   if (plan === null || !plan.qb.made) return play;
   // F5.2.2, F5.6.1: a protection that declared a hot rusher gives the quarterback his hot throw, the first read to
   // that rusher's side (else his first read). The receiver runs the route as drawn: the sight adjust is not built.
-  const declared = plan.protection.binding !== null && plan.protection.hot ? plan.protection.binding.hot[0] : undefined;
+  const prot = plan.protection as PresnapPlan['protection'] | undefined; // a plan built by hand may carry none
+  const declared = prot !== undefined && prot.binding != null && prot.hot ? prot.binding.hot[0] : undefined;
   let bound: QbPlay['hot'] = null;
   if (play.hot === null && declared !== undefined && play.kind === 'pass') {
-    const side = plan.protection.hotSide;
+    const side = prot?.hotSide ?? 0;
     const to = play.reads.find((r) => r.kind === 'receiver' && Math.sign(r.target.route[0]?.py ?? 0) === side) ?? play.reads.find((r) => r.kind === 'receiver');
     if (to !== undefined) bound = { rusherSlot: declared, target: to.target, expectedPreSnap: true };
   }
