@@ -3,6 +3,7 @@ import {
   INVARIANTS, NOT_CHECKED, PARAMS, UNAVAILABLE, driftReport, fitLine, loopTarget, measureAdvance, param, runLongRun, runStabilitySuite,
   testRecords, testSeries, type LongRunTarget, type SeasonPoint,
 } from '../../src/long-run/index.ts';
+import { REAL_TOLERANCES } from '../../src/long-run/tolerances.ts';
 import { doubleTarget, type DoubleWorld } from './double.ts';
 
 /** A clock that moves `step` ms each read, so run times are steady in tests. */
@@ -145,7 +146,8 @@ describe('Q1.6.2 imported-people protection', () => {
 
 describe('Q1.6.4 drift', () => {
   it('the steady world keeps its age series flat and its records falling off', () => {
-    const r = runLongRun({ target: doubleTarget(), now: fakeClock(1) });
+    // The toy double has few players and whole-year ages, so it takes a wider age band than the real league's 1.7%.
+    const r = runLongRun({ target: doubleTarget(), now: fakeClock(1), drift: { bandShares: { 'age.rostered.mean.pro.all': 0.05 } } });
     const ages = ageSeries(r);
     expect(ages.length).toBeGreaterThan(10);
     expect(ages.filter((s) => !s.pass)).toEqual([]);
@@ -158,6 +160,13 @@ describe('Q1.6.4 drift', () => {
     const all = r.drift.series.find((s) => s.series === 'age.rostered.mean.pro.all')!;
     expect(all.pass).toBe(false);
     expect(all.slope).toBeGreaterThan(all.slopeLimit);
+  });
+
+  it('the pro league-wide series use the real NFL tolerances, other series the assumption defaults', () => {
+    const flat: SeasonPoint[] = Array.from({ length: 30 }, (_, i) => ({ season: 2000 + i, values: { 'age.rostered.mean.pro.all': 26, 'age.rostered.mean.college.all': 26 } }));
+    expect(testSeries('age.rostered.mean.pro.all', flat)!.slopeLimit).toBeCloseTo(0.0011 * 26, 6);
+    expect(testSeries('age.rostered.mean.college.all', flat)!.slopeLimit).toBeCloseTo(0.005 * 26, 6);
+    expect(REAL_TOLERANCES['stats.points_per_game']!.factIds.length).toBe(2);
   });
 
   it('fits a line and tests slope and band from season 5', () => {
@@ -201,7 +210,7 @@ describe('Q1.6.4 drift', () => {
 describe('suite verdict and the 20-season advance', () => {
   // The toy double's class, turnover, talent and career series wobble (it is not the game); the real run reads them all.
   it('runs every seed and checks completion, invariants, time, size, protection and drift', () => {
-    const v = runStabilitySuite({ seeds: ['00000000000000a1', '00000000000000a2'], makeTarget: (seedHex) => doubleTarget({ seedHex }), cores: 4, now: fakeClock(1), seasons: 30, drift: { ignore: ['class.', 'turnover.', 'talent.', 'career.'] } });
+    const v = runStabilitySuite({ seeds: ['00000000000000a1', '00000000000000a2'], makeTarget: (seedHex) => doubleTarget({ seedHex }), cores: 4, now: fakeClock(1), seasons: 30, drift: { ignore: ['class.', 'turnover.', 'talent.', 'career.'], bandShares: { 'age.rostered.mean.pro.all': 0.05 } } });
     expect(v.seeds).toHaveLength(2);
     expect(v.checks.filter((c) => !c.pass)).toEqual([]);
     expect(v.pass).toBe(true);
