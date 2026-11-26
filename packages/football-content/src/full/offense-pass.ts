@@ -21,7 +21,7 @@ export const FULL_PASSES: readonly PlayDef[] = [
     ...lineProtect(G2, 'slantFlat'),
     qb(G2, 'slantFlat', 'threeStepFromGun', 'flatDefender', ['role:Y', 'role:Z']),
     slot(G2, 'Z', route('slantFlat', [through(2, 16), cut(6, 11)], { params: { route: 'slant' } })),
-    slot(G2, 'Y', route('slantFlat', [through(0, 10), through(0.5, 14)], { params: { route: 'flat' } })),
+    slot(G2, 'Y', route('slantFlat', [through(0, 10), settle(0.5, 14)], { params: { route: 'flat' } })),
     slot(G2, 'X', route('slantFlat', [through(12, -17), through(25, -17)], { params: { route: 'go' } })),
     slot(G2, 'H', route('slantFlat', [through(5, -7.5), settle(6, -7)], { params: { route: 'check' } })),
     backPickup(G2, 'slantFlat'),
@@ -34,9 +34,9 @@ export const FULL_PASSES: readonly PlayDef[] = [
     ...lineProtect(G2, 'curlFlat'),
     qb(G2, 'curlFlat', 'fiveStepFromGun', 'curlFlatDefenderHighToLow', ['role:Z', 'role:Y']),
     slot(G2, 'Z', route('curlFlat', [through(13, 17), settle(11, 17)], { params: { route: 'curl' } })),
-    slot(G2, 'Y', route('curlFlat', [through(0, 10), through(0.5, 14)], { params: { route: 'flat' } })),
+    slot(G2, 'Y', route('curlFlat', [through(0, 10), settle(0.5, 14)], { params: { route: 'flat' } })),
     slot(G2, 'X', route('curlFlat', [through(13, -17), settle(11, -17)], { params: { route: 'curl' } })),
-    slot(G2, 'H', route('curlFlat', [through(0, -10), through(0.5, -14)], { params: { route: 'flat' } })),
+    slot(G2, 'H', route('curlFlat', [through(0, -10), settle(0.5, -14)], { params: { route: 'flat' } })),
     backPickup(G2, 'curlFlat'),
   ], ['Read the curl-flat defender from high to low: if he takes the flat, throw the curl; if he sits on the curl, throw the flat.', 'Strong against three-deep, four-under zone.'], [
     { claim: 'Curl-flat reads the curl-flat defender from high to low', status: 'Verified', sources: ['bowen-curlflat', 'dunn-slantflat', 'hewitt-reads'] },
@@ -49,7 +49,7 @@ export const FULL_PASSES: readonly PlayDef[] = [
     qb(TR, 'snag', 'threeStepFromGun', 'flatThenSnagThenCorner', ['role:Y', 'role:H', 'role:Z']),
     slot(TR, 'Z', route('snag', [through(9, 17), cut(12, 21)], { params: { route: 'corner' } })),
     slot(TR, 'H', route('snag', [through(6, 11), settle(6, 11.5)], { params: { route: 'snag' } })),
-    slot(TR, 'Y', route('snag', [through(1, 9), through(1, 13)], { params: { route: 'flat' } })),
+    slot(TR, 'Y', route('snag', [through(1, 9), settle(1, 13)], { params: { route: 'flat' } })),
     slot(TR, 'X', route('snag', [through(12, -17), through(25, -17)], { params: { route: 'go' } })),
     backPickup(TR, 'snag'),
   ], ['Corner, snag and flat form a triangle on the flat defender and the corner.', 'Read the flat defender first, then the snag, with the corner as the alert.'], [
@@ -76,7 +76,7 @@ export const FULL_PASSES: readonly PlayDef[] = [
     qb(G2, 'sail', 'fiveStepFromGun', 'highToLowThreeLevels', ['role:Z', 'role:Y', 'role:R']),
     slot(G2, 'Z', route('sail', [through(10, 17), through(30, 17)], { params: { route: 'go' } })),
     slot(G2, 'Y', route('sail', [through(12, 8), cut(14, 16)], { params: { route: 'sail' } })),
-    slot(G2, 'R', { behavior: 'route', params: { route: 'flat' }, path: [through(-2, 6), through(1, 12)], concept: 'sail', keys: ['qb'], gaze: 'quarterback' }),
+    slot(G2, 'R', { behavior: 'route', params: { route: 'flat' }, path: [through(-2, 6), settle(1, 12)], concept: 'sail', keys: ['qb'], gaze: 'quarterback' }),
     slot(G2, 'X', route('sail', [through(12, -17), cut(12, -9), through(13, -2)], { params: { route: 'cross' } })),
     slot(G2, 'H', route('sail', [through(5, -7.5), settle(6, -7)], { params: { route: 'check' } })),
   ], ['Go, deep out and flat put three levels on one side and strain the deep-third corner and the flat defender.', 'Read from deep to shallow on a clean look; a back-side crosser is the alert.'], [
@@ -103,7 +103,7 @@ export const FULL_PASSES: readonly PlayDef[] = [
   pass('pass_shallow_cross', 'Shallow Cross Right', 'dropback_pass', G2, true, '11', 'base', [
     ...lineProtect(G2, 'shallowCross'),
     qb(G2, 'shallowCross', 'fiveStepFromGun', 'shallowThenDigThenPostThenBack', ['role:H', 'role:Y', 'role:Z']),
-    slot(G2, 'H', route('shallowCross', [through(2, -7), through(2, 0), through(2.5, 9)], { params: { route: 'shallow' } })),
+    slot(G2, 'H', route('shallowCross', [through(3, -7), through(3, 0), through(3.5, 9)], { params: { route: 'shallow' } })),
     slot(G2, 'Y', route('shallowCross', [through(11, 8), cut(11, -4), through(11, -12)], { params: { route: 'dig' } })),
     slot(G2, 'Z', route('shallowCross', [through(10, 17), cut(22, 10)], { params: { route: 'post' } })),
     slot(G2, 'X', route('shallowCross', [through(12, -17), through(25, -17)], { params: { route: 'clear' } })),
@@ -111,6 +111,7 @@ export const FULL_PASSES: readonly PlayDef[] = [
   ], ['One shallow crosser near the line and a dig behind from the other side; too deep a shallow lets the Will or nickel cover both.', 'A post from the far side holds the safety.'], [
     { claim: 'Shallow cross: one shallow and a dig behind from the other side', status: 'Verified', sources: ['campbell-shallow', 'fox-mesh', 'wilhite-smash', 'streelman-shallow'] },
     { claim: 'The shallow is at 1 to 3 yd (Fox) or 2 yd on the linemen\'s heels (Streelman); the dig at 10 to 12 yd', status: '2 of 3', sources: ['fox-mesh', 'streelman-shallow'] },
+    { claim: 'The shallow is drawn at 3 yd, the top of the sourced range, so it clears the line it crosses', status: 'Assumption', sources: [] },
     { claim: 'Read order: shallow, dig, post, back (Streelman); post, drag, basic, back (Campbell)', status: 'Conflict', sources: ['streelman-shallow', 'campbell-shallow'] },
     ROUTE_DEPTH, DESIGN_VALUES]),
 
@@ -133,7 +134,7 @@ export const FULL_PASSES: readonly PlayDef[] = [
     qb(UC, 'yankee', 'sevenStep', 'postThenCrosserThenFlat', ['role:X', 'role:Y', 'role:Z'], {}, 2),
     slot(UC, 'X', route('yankee', [through(10, -17), cut(22, -9), through(35, -4)], { params: { route: 'skinnyPost' } })),
     slot(UC, 'Y', route('yankee', [through(8, 3), cut(19, -3), through(20, -12)], { params: { route: 'deepOver' } })),
-    slot(UC, 'Z', route('yankee', [through(0, 18), through(2, 21)], { params: { route: 'flat' } })),
+    slot(UC, 'Z', route('yankee', [through(0, 18), settle(2, 21)], { params: { route: 'flat' } })),
     slot(UC, 'H', route('yankee', [through(5, -7.5), settle(6, -7)], { params: { route: 'check' } })),
     backPickup(UC, 'yankee'),
   ], ['A deep over from one side and a deep post from the other bind a single-high safety: he cannot protect the post and drive on the cross.', 'Against two-high, go underneath.'], [

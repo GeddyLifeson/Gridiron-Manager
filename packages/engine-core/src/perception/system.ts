@@ -57,7 +57,8 @@ export interface PerceptionConfig {
   dComplexityS?: number;
   dKnowledgeS?: number;
   /** J3.4.1 where his eyes start the play: with his hips (the default) or on the ball (a zone defender's eyes). */
-  gaze?: 'hips' | 'ball';
+  /** 'key' is his first key: a man defender's eyes stay on his man (J3.4.1). With no key it is the hips. */
+  gaze?: 'hips' | 'ball' | 'key';
   /** True for a defender who reads a run-pass key (J3.2.2). */
   readsKeys?: boolean;
   /** Starting evidence from the situation prior (J3.3.1): positive leans run. */
@@ -218,6 +219,9 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       v.read.read = 'unknown'; v.read.side = 'none'; v.read.confidence = 0;
       v.carrier = carrier; v.heardCalls.length = 0; v.ballKindCode = BALL_STATES.indexOf(w.ball.kind);
       v.tSinceSnapS = roundSimS(w.tick * TICK_S);
+      v.landOn = false; v.lockedSlot = -1;
+      { const south = (0 - w.frame.originY) * w.frame.attackDir, north = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
+        v.bounds.lo = south < north ? south : north; v.bounds.hi = south < north ? north : south; }
       for (let e = 0; e < SLOT_COUNT; e++) {
         const ent = v.entities[e]!;
         ent.px = (pl.posX[e]! - frame.originX) * dir + 0; ent.py = (pl.posY[e]! - frame.originY) * dir + 0;
@@ -292,6 +296,9 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
         let tx = 0, ty = 0;
         if (gk === G_SLOT && v.valid[gazeSlot[s]!] === 1) { tx = v.entities[gazeSlot[s]!]!.px; ty = v.entities[gazeSlot[s]!]!.py; has = true; }
         else if (gk === G_BALL && v.valid[BALL_ENTITY] === 1) { tx = v.entities[BALL_ENTITY]!.px; ty = v.entities[BALL_ENTITY]!.py; has = true; }
+        // A man told to find the ball who has lost it looks back to where the play started: the ball comes from there.
+        // Without this a receiver with his back to the passer could never turn his eyes to a ball he did not already see.
+        else if (gk === G_BALL) { tx = 0; ty = 0; has = true; }
         else if (gk === G_POINT) { tx = gazePx[s]!; ty = gazePy[s]!; has = true; }
         if (has) {
           if (gk !== G_HEADING) {
@@ -402,10 +409,19 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
         if (stale > staleDrop) { v.valid[BALL_ENTITY] = 0; v.ballKindCode = UNKNOWN_BALL; } else v.entities[BALL_ENTITY]!.staleTicks = stale;
       }
 
+      // The man he is locked up with in a block is known to him by touch. A helper on a double team is not locked up.
+      { const ci = w.players.engagement[s]!, k = ci >= 0 && ci < w.contests.length ? w.contests[ci]! : null;
+        v.lockedSlot = k === null ? -1 : k.defenseSlot === s ? k.offenseSlot : k.offenseSlot === s ? k.defenseSlot : -1; }
+
       // J3.5.1 landing-point error: drawn once, when he first sees the ball in the air.
       if (airActive && airDrawn[s] === 0 && tick >= airSeenAt[s]!) {
         airErrX[s] = noNoise ? 0 : rng.normal(); airErrY[s] = noNoise ? 0 : rng.normal(); airDrawn[s] = 1;
       }
+      // What he acts on: where he thinks it comes down, sharper as the flight goes on, while the ball is in the air.
+      if (airActive && airDrawn[s] === 1 && (ballKindNow === PASS_FLIGHT || ballKindNow === KICK_FLIGHT)) {
+        const sd = landingErrorSdYd((tick - airRelease) / airFlight, zTrack[s]!, p);
+        v.landOn = true; v.land.px = airLandPx + airErrX[s]! * sd; v.land.py = airLandPy + airErrY[s]! * sd;
+      } else v.landOn = false;
 
       // J3.2.2 run-pass key reading.
       if (readsKeys[s] === 1 && evidenceSource !== null && tick >= 0 && tick * TICK_S + 1e-9 >= kd && primary >= 0) {
@@ -453,7 +469,11 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       if (c.prior !== undefined) prior[slot] = c.prior;
       if (c.aggression !== undefined) aggression[slot] = c.aggression;
       if (c.boxDefender !== undefined) boxDefender[slot] = c.boxDefender ? 1 : 0;
-      if (c.gaze !== undefined) setGaze(slot, c.gaze === 'ball' ? G_BALL : G_HEADING, 0, 0, 0);
+      if (c.gaze !== undefined) {
+        const key = keys[slot]!.length > 0 ? keys[slot]![0]! : -1;
+        if (c.gaze === 'key' && key >= 0 && key < SLOT_COUNT) setGaze(slot, G_SLOT, key, 0, 0);
+        else setGaze(slot, c.gaze === 'ball' ? G_BALL : G_HEADING, 0, 0, 0);
+      }
     },
     gazeAtSlot: (slot, target) => setGaze(slot, G_SLOT, target, 0, 0),
     gazeAtBall: (slot) => setGaze(slot, G_BALL, 0, 0, 0),

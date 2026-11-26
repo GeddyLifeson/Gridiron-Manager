@@ -1,9 +1,11 @@
 // State hash and hash chain (P1.1.5, P5.3.2).
 import { canonicalBytes } from './canonical.ts';
+import { withCanonicalBytes } from './canonical-writer.ts';
 import { hash64Hex, utf8 } from './hash.ts';
 
+/** Hash of the canonical bytes, read in place from the writer's buffer (no copy; G-97). */
 export function stateHash(state: unknown): string {
-  return hash64Hex(canonicalBytes(state));
+  return withCanonicalBytes(state, hash64Hex);
 }
 
 export interface ChainLink {

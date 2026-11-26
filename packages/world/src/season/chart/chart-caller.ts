@@ -15,6 +15,7 @@ import type {
   Decider, DecisionView, Decision, DecisionRequest, FieldGeometry, FieldedPlayer, GameSituation, Side,
   OffenseCall, DefenseCall, KickCall, ReturnCall, SnappingCall, OpposingCall,
 } from '@gm/schema';
+import { full } from '@gm/football-content';
 import { chartParams, PASS_PHASE_NAMES, PASS_MARGIN_NAMES, PASS_MARGIN_UPPER, PASS_DOWN_NAMES, PASS_TOGO_NAMES, PASS_TOGO_UPPER, FOURTH_TOGO_NAMES, FOURTH_TOGO_UPPER, FOURTH_ZONE_NAMES, FOURTH_ZONE_UPPER } from './params.ts';
 
 export type CallUnit = 'offense' | 'defense' | 'kick' | 'return';
@@ -39,6 +40,12 @@ export interface ChartCallerOptions {
   readonly regulationPeriods: number;
   /** Overrides of chart parameters by name (tuning runs). */
   readonly overrides?: Readonly<Record<string, number>>;
+  /**
+   * The staff's starter book (G3). With a book, every scrimmage call names a play or defensive call from the menu of
+   * the chosen kind or coverage family (by weight, by its own hash), so a dropback pass is one of many concepts and not
+   * always the same one. Without one, calls carry no content id (the resolver then uses its default per kind).
+   */
+  readonly book?: full.StarterBook | null;
 }
 
 /** 32-bit mix (splitmix32 finaliser) of integers; integer arithmetic only, so every platform agrees. */
@@ -64,7 +71,7 @@ function pick<T>(r: number, items: readonly (readonly [T, number])[]): T {
   return items[items.length - 1]![0];
 }
 
-const SALT = { kind: 1, family: 2, personnel: 3, dir: 4, shotgun: 5, tempo: 6, fourth: 7, cover: 8, rush: 9, two: 10, box: 11, hurry: 12, timeout: 13, motion: 14, fourthKick: 15, fourthLate: 16 } as const;
+const SALT = { kind: 1, family: 2, personnel: 3, dir: 4, shotgun: 5, tempo: 6, fourth: 7, cover: 8, rush: 9, two: 10, box: 11, hurry: 12, timeout: 13, motion: 14, fourthKick: 15, fourthLate: 16, play: 17, call: 18 } as const;
 
 export function createChartCaller(opts: ChartCallerOptions): Decider {
   const P = chartParams(opts.overrides);
@@ -76,6 +83,10 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
   const lastPeriodLate = (s: GameSituation, tenths: number): boolean => !s.overtime && s.period === opts.regulationPeriods && s.clockTenths <= tenths;
   const ytg = (s: GameSituation): number => (s.distanceYd === null ? 10 : s.distanceYd);
   const r = (s: GameSituation, req: DecisionRequest, salt: number): number => u01(s.gameId, s.playNumber, req.requestId, side, salt);
+  const book = opts.book ?? null;
+  /** The book situation (J11): goal line inside the 3, short yardage on third or fourth and 1 (Assumption). */
+  const situationOf = (s: GameSituation): full.BookSituation =>
+    s.playKind === 'scrimmage' && yardsToGoal(s) <= 3 ? 'goalLine' : s.playKind === 'scrimmage' && s.down !== null && s.down >= 3 && ytg(s) <= 1 ? 'shortYardage' : 'any';
 
   /**
    * Fourth-down chart for the team with the ball (also used by the defense to predict it). The draws leave the side and
@@ -157,6 +168,15 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
     } else kind = 'run';
     const isRun = kind === 'run' || kind === 'kneel';
     const dir = kind === 'run' ? pick(r(s, req, SALT.dir), [['left', P('chart.run.leftShare')], ['middle', P('chart.run.middleShare')], ['right', Math.max(0, 1 - P('chart.run.leftShare') - P('chart.run.middleShare'))]] as const) : null;
+    const play = book !== null && kind !== 'kneel' ? full.bookPlay(book, kind, dir, situationOf(s), r(s, req, SALT.play)) : null;
+    if (play !== null) {
+      // The play carries its own personnel and shotgun choice (G1): the chart's personnel draw stands only without a book.
+      return {
+        unit: 'offense', playContentId: play.id, contentHash: null, kind, personnelCode: play.personnel, formationId: play.formationId, strength: null,
+        motionId: r(s, req, SALT.motion) < P(isRun ? 'chart.motion.runShare' : 'chart.motion.passShare') ? 'chart_motion' : null,
+        protectionId: null, tags: [], runDirection: dir, shotgun: play.shotgun, tempo: tempoOf(s, req), players: opts.roster('offense', play.personnel),
+      };
+    }
     return {
       unit: 'offense', playContentId: null, contentHash: null, kind, personnelCode: personnel, formationId: null, strength: null,
       motionId: kind !== 'kneel' && r(s, req, SALT.motion) < P(isRun ? 'chart.motion.runShare' : 'chart.motion.passShare') ? 'chart_motion' : null,
@@ -202,6 +222,14 @@ export function createChartCaller(opts: ChartCallerOptions): Decider {
       ['cover3', Math.max(0, 1 - P('chart.cover.cover1') - P('chart.cover.cover2') - P('chart.cover.cover4') - P('chart.cover.cover0') - P('chart.cover.cover6') - P('chart.cover.twoMan'))]] as const);
     const rushers = fam === 'cover0' ? 6 : pick(r(s, req, SALT.rush), [[3, P('chart.rush.three')], [5, P('chart.rush.five')], [6, P('chart.rush.six')], [7, P('chart.rush.seven')],
       [4, Math.max(0, 1 - P('chart.rush.three') - P('chart.rush.five') - P('chart.rush.six') - P('chart.rush.seven'))]] as const);
+    const call = book !== null ? full.bookCall(book, fam, situationOf(s), r(s, req, SALT.call)) : null;
+    if (call !== null) {
+      // The named call sets its own rush and box (its content draws them); the chart's rush and box draws stand only without a book.
+      return {
+        unit: 'defense', callContentId: call.id, contentHash: null, packageId: null, frontId: null, coverageId: null, pressureId: null,
+        coverageFamily: call.coverageFamily === 'other' ? fam : call.coverageFamily, rushers: call.rushers, players: opts.roster('defense', null), boxCount: call.boxCount,
+      };
+    }
     return {
       unit: 'defense', callContentId: null, contentHash: null, packageId: null, frontId: null, coverageId: null, pressureId: null,
       coverageFamily: fam, rushers, players: opts.roster('defense', null),

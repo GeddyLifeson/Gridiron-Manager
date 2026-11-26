@@ -72,6 +72,18 @@ describe('J3.2.2 key evidence from what the offense did', () => {
     expect(late.read(QB)[0]).toBe(Q['keyRead.qbDropEvidence']);
     expect(late.read(BACK)[0]).toBe(Q['keyRead.qbDropEvidence']);
   });
+  it('lets a quarterback gone back with the ball after the mesh outweigh the low hat a lineman showed', () => {
+    const s = scene();
+    s.at(0);
+    s.at(1, (w) => place(w, LT, -0.39 + Q['keyRead.lineStepYd']!, 2.8));
+    expect(s.read(LT)[0]).toBe(Q['keyRead.lineRunEvidence']);
+    const mesh = Math.round(s.w.params.num('tickResolver.keyRead.meshS') / 0.1);
+    // Still at the mesh point after the mesh time: the line's first step is all the key shows.
+    s.at(mesh);
+    expect(s.read(LT)[0]).toBe(Q['keyRead.lineRunEvidence']);
+    s.at(mesh + 1, (w) => place(w, QB, -1 - Q['keyRead.qbDropStepYd']!, 0));
+    expect(s.read(LT)[0]).toBe(Q['keyRead.qbDropEvidence']);
+  });
   it('reads a receiver who has run his stem while the quarterback holds the ball as pass', () => {
     const s = scene();
     s.at(0);

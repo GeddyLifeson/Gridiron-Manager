@@ -47,7 +47,14 @@ export function quarterbackPlug(): QuarterbackPlug {
       const build = (contests: Contests): Quarterback => createQuarterback({
         view: services.perception.view, contests,
         gaze: { gazeAtSlot: (slot, target) => { services.perception.gazeAtSlot(slot, target); watch(slot, target); }, gazeAtPoint: (slot, px, py) => services.perception.gazeAtPoint(slot, px, py) },
-        ballInAir: (world, passer, x, y, ticks) => services.perception.notifyBallInAir(world, passer, x, y, ticks),
+        ballInAir: (world, passer, x, y, ticks) => {
+          services.perception.notifyBallInAir(world, passer, x, y, ticks);
+          // His eligible teammates look for the ball when it is thrown (J3.4.1). A receiver who ran his whole route
+          // looking back lost speed to it (J2.3.1) and was yards short of every deep throw; one who never looked never
+          // saw the throw and never played it.
+          const side = passer < SLOT_COUNT / 2 ? 0 : SLOT_COUNT / 2;
+          for (let s = side; s < side + SLOT_COUNT / 2; s++) if (s !== passer && world.players.eligible[s] === 1) services.perception.gazeAtBall(s);
+        },
         topSpeed: (world, slot, mode) => services.movement.modeTopSpeed(world, slot, mode),
         stripAttempt: (slot) => services.playerAi.stripAttempt(slot),
         onRun: (world, slot, why) => { const r = services.runner(); return r === null ? false : r.onRun(world, slot, why); },

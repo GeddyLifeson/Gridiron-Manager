@@ -103,6 +103,12 @@ describe('B9.1.1 the coach\'s challenge', () => {
     expect(challengeAccounting(req, { allowed: true, reversed: [3] }, ctx({ rules: { 'challenge.overturn_refunds_timeout': false } }))).toEqual({ timeoutCharged: true, challengeLost: false });
     expect(challengeAccounting(booth, { allowed: true, reversed: [] }, c)).toEqual({ timeoutCharged: false, challengeLost: false });
   });
+  it('a team with no timeout left is never charged one for a challenge (break test #1; rule 5 fouls it instead)', () => {
+    const none = ctx({ before: { timeoutsLeft: [0, 3] } });
+    const req = challenge(['catch']);
+    expect(challengeAccounting(req, { allowed: false, reversed: [] }, none)).toEqual({ timeoutCharged: false, challengeLost: true });
+    expect(challengeAccounting(req, { allowed: true, reversed: [] }, none)).toEqual({ timeoutCharged: false, challengeLost: true });
+  });
   it('a challenge succeeds if any reviewable aspect is changed, even one the coach did not name (rule 7, B9.2.1 rule 2)', () => {
     const truth = plays.runFumble();
     const rulings = [ruling('fumble_before_down', 2, 'fumble', 'down')];

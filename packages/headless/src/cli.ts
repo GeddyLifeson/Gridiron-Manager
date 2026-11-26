@@ -143,7 +143,8 @@ async function validate(): Promise<number> {
 
 /**
  * Q2 calibrate: a batch of real games (flow, tick resolver by default, officiating facade, chart caller) measured against
- * the target file of the rule set. Options: --rules id --games n --groups n --seed 16hex --resolver tick|reference --out file.
+ * the target file of the rule set. Options: --rules id --games n --groups n --seed 16hex --resolver tick|reference --book on|off --out file.
+ * `--book off` runs the tick engine on the one-play-per-kind defaults instead of the level's starter book.
  * Exit code 0 only when every certify row passes.
  */
 async function calibrate(): Promise<number> {
@@ -153,9 +154,10 @@ async function calibrate(): Promise<number> {
   const started = Date.now();
   const which = arg('resolver', season.DEFAULT_REAL_RESOLVER)!;
   if (which !== 'tick' && which !== 'reference') { console.error(`--resolver must be tick or reference, not ${which}`); return 2; }
-  const batch = createRealGame(rulesId, { resolver: which }).batch(games, groups, seed, (i) => { if (i > 0 && i % 500 === 0) console.error(`  ${i} of ${games} games`); });
+  const book = arg('book', 'on') !== 'off';
+  const batch = createRealGame(rulesId, { resolver: which, book }).batch(games, groups, seed, (i) => { if (i > 0 && i % 500 === 0) console.error(`  ${i} of ${games} games`); });
   const report = buildReport(loadTargets(ROOT, rulesId), batch.groups, {
-    build: 'working tree', paramsHash: which === 'tick' ? 'tickParamTable defaults' : 'engineParamTable defaults', resolverId: which === 'tick' ? `tick ${tickResolver.TICK_RESOLVER_VERSION} (all three real modules, starter content port)` : `reference ${resolver.REFERENCE_RESOLVER_VERSION}`, seeds: `master ${seed}`, games, seedGroups: groups,
+    build: 'working tree', paramsHash: which === 'tick' ? 'tickParamTable defaults' : 'engineParamTable defaults', resolverId: which === 'tick' ? `tick ${tickResolver.TICK_RESOLVER_VERSION} (all three real modules, starter content port, ${book ? 'starter book' : 'one play per kind'})` : `reference ${resolver.REFERENCE_RESOLVER_VERSION}`, seeds: `master ${seed}`, games, seedGroups: groups,
   });
   const text = formatReport(report) + `\n(${((Date.now() - started) / 1000).toFixed(0)} s)\n`;
   const out = arg('out');
@@ -190,7 +192,7 @@ async function main(): Promise<number> {
     default:
       if (sub && delegated[sub]) return delegate(delegated[sub]);
       if (sub && later[sub]) { console.error(`'${sub}' is built in ${later[sub]}.`); return 2; }
-      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate, calibrate [--rules id --games n --groups n --seed 16hex --resolver tick|reference --out f]');
+      console.error('subcommands: gate [--write-golden] [--out f], games [--rules id --count n --seed s --out f.jsonl], replay <file.gmsave>, validate, calibrate [--rules id --games n --groups n --seed 16hex --resolver tick|reference --book on|off --out f]');
       console.error(`also: ${Object.keys(delegated).join(', ')} (each takes --help or see its cli.ts header)`);
       console.error(`later: ${Object.keys(later).join(', ')}`);
       return 2;

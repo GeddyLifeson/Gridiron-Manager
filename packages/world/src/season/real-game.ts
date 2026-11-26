@@ -14,6 +14,7 @@ import { lang } from '@gm/football-lang';
 import { flow, stats } from '@gm/engine-game';
 import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
+import { full } from '@gm/football-content';
 import { resolveRuleSet } from '@gm/rules-data';
 import * as chart from './chart/index.ts';
 import { UNIT_JERSEYS, createStarterContentPort } from './tick-content.ts';
@@ -146,6 +147,8 @@ export interface RealGameOptions {
   readonly paramOverrides?: Readonly<Record<string, number>>;
   /** Default `tick`: every snap through the tick resolver on all three real modules and the starter content port. */
   readonly resolver?: RealResolver;
+  /** Default true on the tick engine: call from the level's starter book. False runs the one-play-per-kind defaults. */
+  readonly book?: boolean;
 }
 
 /** The real game for a rule set: inputs, dependencies (both sides on the chart caller) and a whole-game run. */
@@ -173,20 +176,23 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   };
   // The callers read the chart through the same overrides as the parameter table, on top of the level's chart (CR-G87-5).
   const overrides = chart.chartOverrides(rules.level, opts.paramOverrides);
+  // On the tick engine both staffs call from the level's starter book (G3), so every call kind has a real mix of
+  // concepts under it. The reference resolver reads no content, so it runs without one (and its results do not move).
+  const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level) : null;
   const input = (gameIndex: number, seedHex: string): GameInput => {
     const [home, away] = teamIss(gameIndex, seedHex);
     return {
-    gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
-    teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
-    crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
+      gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
+      teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
+      crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
     };
   };
   const deps = (inp: GameInput): GameDeps => ({
     rules, params, geometry, streams: streamSource(seedFromHex(inp.seedHex)), math: DMATH,
     resolver: tick ? createRealTickResolver() : resolver.REFERENCE_RESOLVER, officiating: off,
     deciders: [
-      chart.createChartCaller({ side: 0, geometry, roster: chart.depthRoster(inp.teams[0].depth), regulationPeriods, overrides }),
-      chart.createChartCaller({ side: 1, geometry, roster: chart.depthRoster(inp.teams[1].depth), regulationPeriods, overrides }),
+      chart.createChartCaller({ side: 0, geometry, roster: chart.depthRoster(inp.teams[0].depth), regulationPeriods, overrides, book }),
+      chart.createChartCaller({ side: 1, geometry, roster: chart.depthRoster(inp.teams[1].depth), regulationPeriods, overrides, book }),
     ],
   });
   return { rules, params, resolverId, input, deps, simulate: (inp) => flow.simulateGame(inp, deps(inp)) };
