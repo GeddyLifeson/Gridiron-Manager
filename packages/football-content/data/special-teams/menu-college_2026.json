@@ -1,0 +1,830 @@
+{
+ "ruleset": "college_2026",
+ "personnelNote": "fixture personnel 11 on offensive calls; the console passes the depth chart code",
+ "groups": [
+  {
+   "kind": "kickoff",
+   "title": "Kickoff",
+   "items": [
+    {
+     "id": "st.ko.deep",
+     "label": "Kickoff: deep",
+     "call": {
+      "unit": "kick",
+      "kickKind": "kickoff",
+      "callContentId": "st.ko.deep",
+      "contentHash": "00392001",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.ko.squib",
+     "label": "Kickoff: squib",
+     "call": {
+      "unit": "kick",
+      "kickKind": "kickoff",
+      "callContentId": "st.ko.squib",
+      "contentHash": "55597ec5",
+      "direction": "middle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.ko.sky",
+     "label": "Kickoff: sky",
+     "call": {
+      "unit": "kick",
+      "kickKind": "kickoff",
+      "callContentId": "st.ko.sky",
+      "contentHash": "bc050a73",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.ko.pooch",
+     "label": "Kickoff: pooch",
+     "call": {
+      "unit": "kick",
+      "kickKind": "kickoff",
+      "callContentId": "st.ko.pooch",
+      "contentHash": "5135fd65",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.ko.directional_left",
+     "label": "Kickoff: directional left",
+     "call": {
+      "unit": "kick",
+      "kickKind": "kickoff",
+      "callContentId": "st.ko.directional_left",
+      "contentHash": "f1c545b5",
+      "direction": "left"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.ko.directional_right",
+     "label": "Kickoff: directional right",
+     "call": {
+      "unit": "kick",
+      "kickKind": "kickoff",
+      "callContentId": "st.ko.directional_right",
+      "contentHash": "57cd9a73",
+      "direction": "right"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    }
+   ]
+  },
+  {
+   "kind": "kickoff_return",
+   "title": "Kickoff return",
+   "items": [
+    {
+     "id": "st.kr.middle",
+     "label": "Kick return middle",
+     "call": {
+      "unit": "return",
+      "returnKind": "kick_return",
+      "callContentId": "st.kr.middle",
+      "contentHash": "38011b2b"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.kr.sideline_left",
+     "label": "Kick return left",
+     "call": {
+      "unit": "return",
+      "returnKind": "kick_return",
+      "callContentId": "st.kr.sideline_left",
+      "contentHash": "28ec8ced"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.kr.sideline_right",
+     "label": "Kick return right",
+     "call": {
+      "unit": "return",
+      "returnKind": "kick_return",
+      "callContentId": "st.kr.sideline_right",
+      "contentHash": "fcfc0f8c"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.kr.reverse",
+     "label": "Kick return reverse",
+     "call": {
+      "unit": "return",
+      "returnKind": "kick_return",
+      "callContentId": "st.kr.reverse",
+      "contentHash": "99b7f293"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    }
+   ]
+  },
+  {
+   "kind": "punt",
+   "title": "Punt",
+   "items": [
+    {
+     "id": "st.punt.spread",
+     "label": "Spread punt",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.spread",
+      "contentHash": "64816ce7",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.shield",
+     "label": "Shield punt",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.shield",
+      "contentHash": "48ea603c",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.rugby",
+     "label": "Rugby punt",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.rugby",
+      "contentHash": "61b9d2a7",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.directional_left",
+     "label": "Directional punt left",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.directional_left",
+      "contentHash": "a7cbcd31",
+      "direction": "left"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.directional_right",
+     "label": "Directional punt right",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.directional_right",
+      "contentHash": "43ce9333",
+      "direction": "right"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.pooch",
+     "label": "Pooch punt",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.pooch",
+      "contentHash": "2e1f4c7f",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.coffin_left",
+     "label": "Coffin corner left",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.coffin_left",
+      "contentHash": "f5d05f03",
+      "direction": "left"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.coffin_right",
+     "label": "Coffin corner right",
+     "call": {
+      "unit": "kick",
+      "kickKind": "punt",
+      "callContentId": "st.punt.coffin_right",
+      "contentHash": "42f65487",
+      "direction": "right"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.punt.fake_pp_pass",
+     "label": "Fake punt: protector pass",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.punt.fake_pp_pass",
+      "contentHash": "a4e37259",
+      "kind": "quick_pass",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "fake",
+       "from_punt"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": true,
+     "fakeShare": 0.01,
+     "requiredLook": "wing released uncovered"
+    },
+    {
+     "id": "st.punt.fake_punter_pass",
+     "label": "Fake punt: punter pass",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.punt.fake_punter_pass",
+      "contentHash": "d8894fd6",
+      "kind": "dropback_pass",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "fake",
+       "from_punt"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": true,
+     "fakeShare": 0.01,
+     "requiredLook": "gunner or slot uncovered"
+    },
+    {
+     "id": "st.punt.fake_run",
+     "label": "Fake punt: run",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.punt.fake_run",
+      "contentHash": "f62a71cd",
+      "kind": "run",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "fake",
+       "from_punt"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": true,
+     "fakeShare": 0.01,
+     "requiredLook": "rush leaves the edge open"
+    }
+   ]
+  },
+  {
+   "kind": "punt_return",
+   "title": "Punt return or rush",
+   "items": [
+    {
+     "id": "st.pr.wall_left",
+     "label": "Wall return left",
+     "call": {
+      "unit": "return",
+      "returnKind": "punt_return",
+      "callContentId": "st.pr.wall_left",
+      "contentHash": "2e41bac1"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.pr.wall_right",
+     "label": "Wall return right",
+     "call": {
+      "unit": "return",
+      "returnKind": "punt_return",
+      "callContentId": "st.pr.wall_right",
+      "contentHash": "8bea680f"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.pr.middle",
+     "label": "Middle return",
+     "call": {
+      "unit": "return",
+      "returnKind": "punt_return",
+      "callContentId": "st.pr.middle",
+      "contentHash": "fa089780"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.pr.block",
+     "label": "Punt block",
+     "call": {
+      "unit": "return",
+      "returnKind": "punt_block",
+      "callContentId": "st.pr.block",
+      "contentHash": "7403ab9f"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.pr.safe",
+     "label": "Punt safe",
+     "call": {
+      "unit": "return",
+      "returnKind": "punt_return",
+      "callContentId": "st.pr.safe",
+      "contentHash": "f3094c7a"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    }
+   ]
+  },
+  {
+   "kind": "field_goal",
+   "title": "Field goal and try",
+   "items": [
+    {
+     "id": "st.fg.field_goal",
+     "label": "Field goal",
+     "call": {
+      "unit": "kick",
+      "kickKind": "field_goal",
+      "callContentId": "st.fg.field_goal",
+      "contentHash": "66180a5f",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.fg.try_kick",
+     "label": "Extra point",
+     "call": {
+      "unit": "kick",
+      "kickKind": "try_kick",
+      "callContentId": "st.fg.try_kick",
+      "contentHash": "7d7e6301",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.fg.fair_catch_kick",
+     "label": "Fair catch kick",
+     "call": {
+      "unit": "kick",
+      "kickKind": "fair_catch_kick",
+      "callContentId": "st.fg.fair_catch_kick",
+      "contentHash": "3878d019",
+      "direction": null
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.fg.fake_holder_run",
+     "label": "Fake field goal: holder run",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.fg.fake_holder_run",
+      "contentHash": "d9568318",
+      "kind": "run",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "fake",
+       "from_field_goal"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": true,
+     "fakeShare": 0.01,
+     "requiredLook": "edge rushers inside the wing"
+    },
+    {
+     "id": "st.fg.fake_holder_pass",
+     "label": "Fake field goal: holder pass",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.fg.fake_holder_pass",
+      "contentHash": "ac58ab9f",
+      "kind": "movement_pass",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "fake",
+       "from_field_goal"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": true,
+     "fakeShare": 0.01,
+     "requiredLook": "wing or end released uncovered"
+    },
+    {
+     "id": "st.fg.swinging_gate",
+     "label": "Swinging gate",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.fg.swinging_gate",
+      "contentHash": "2894e541",
+      "kind": "trick",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "fake",
+       "from_field_goal"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": true,
+     "fakeShare": 0.01,
+     "requiredLook": "defense does not match the gate"
+    }
+   ]
+  },
+  {
+   "kind": "field_goal_block",
+   "title": "Field goal block",
+   "items": [
+    {
+     "id": "st.fgb.edge_left",
+     "label": "Edge block left",
+     "call": {
+      "unit": "return",
+      "returnKind": "field_goal_block",
+      "callContentId": "st.fgb.edge_left",
+      "contentHash": "6f7011e0"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.fgb.edge_right",
+     "label": "Edge block right",
+     "call": {
+      "unit": "return",
+      "returnKind": "field_goal_block",
+      "callContentId": "st.fgb.edge_right",
+      "contentHash": "057f58ce"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.fgb.middle",
+     "label": "Middle block",
+     "call": {
+      "unit": "return",
+      "returnKind": "field_goal_block",
+      "callContentId": "st.fgb.middle",
+      "contentHash": "586df453"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.fgb.safe",
+     "label": "Field goal safe",
+     "call": {
+      "unit": "return",
+      "returnKind": "field_goal_block",
+      "callContentId": "st.fgb.safe",
+      "contentHash": "dd993a16"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    }
+   ]
+  },
+  {
+   "kind": "onside",
+   "title": "Onside",
+   "items": [
+    {
+     "id": "st.onside.high_bounce",
+     "label": "Onside: high bounce",
+     "call": {
+      "unit": "kick",
+      "kickKind": "onside_kick",
+      "callContentId": "st.onside.high_bounce",
+      "contentHash": "8a67ff60",
+      "direction": "right"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.onside.drive",
+     "label": "Onside: drive",
+     "call": {
+      "unit": "kick",
+      "kickKind": "onside_kick",
+      "callContentId": "st.onside.drive",
+      "contentHash": "e04ea986",
+      "direction": "middle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.onside.dribble",
+     "label": "Onside: dribble",
+     "call": {
+      "unit": "kick",
+      "kickKind": "onside_kick",
+      "callContentId": "st.onside.dribble",
+      "contentHash": "85cd7837",
+      "direction": "left"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.onside.surprise",
+     "label": "Onside: surprise",
+     "call": {
+      "unit": "kick",
+      "kickKind": "onside_kick",
+      "callContentId": "st.onside.surprise",
+      "contentHash": "0f917e4f",
+      "direction": "right"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    }
+   ]
+  },
+  {
+   "kind": "hands_team",
+   "title": "Hands team",
+   "items": [
+    {
+     "id": "st.kr.hands",
+     "label": "Hands team",
+     "call": {
+      "unit": "return",
+      "returnKind": "hands_team",
+      "callContentId": "st.kr.hands",
+      "contentHash": "ef9eb20e"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    }
+   ]
+  },
+  {
+   "kind": "try",
+   "title": "Two-point plays",
+   "items": [
+    {
+     "id": "st.two.pick",
+     "label": "Two-point pick",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.two.pick",
+      "contentHash": "59e66b50",
+      "kind": "quick_pass",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "from_try"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.two.sprint_out",
+     "label": "Two-point sprint out",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.two.sprint_out",
+      "contentHash": "9b16a413",
+      "kind": "movement_pass",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "from_try"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.two.fade",
+     "label": "Two-point fade",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.two.fade",
+      "contentHash": "63e8d996",
+      "kind": "quick_pass",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "from_try"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.two.jumbo_play_action",
+     "label": "Two-point jumbo play action",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.two.jumbo_play_action",
+      "contentHash": "dcab1069",
+      "kind": "play_action",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "from_try"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.two.qb_power",
+     "label": "Two-point quarterback power or option",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.two.qb_power",
+      "contentHash": "46d9bcf7",
+      "kind": "qb_run",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "from_try"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    },
+    {
+     "id": "st.two.power",
+     "label": "Two-point power run",
+     "call": {
+      "unit": "offense",
+      "playContentId": "st.two.power",
+      "contentHash": "e15e5acb",
+      "kind": "run",
+      "personnelCode": "11",
+      "formationId": null,
+      "strength": null,
+      "motionId": null,
+      "protectionId": null,
+      "tags": [
+       "from_try"
+      ],
+      "runDirection": null,
+      "shotgun": false,
+      "tempo": "huddle"
+     },
+     "fake": false,
+     "fakeShare": null,
+     "requiredLook": null
+    }
+   ]
+  }
+ ]
+}
