@@ -119,4 +119,31 @@ describe('football desk', () => {
     expect(v.looks.length).toBeGreaterThan(0);
     expect(d.defenseDesigner({ callId: 'nope', lookId: 'nope', slot: null, family: 'insideZone' }).callId).toBe(calls[0]!.id);
   });
+
+  it('the coach files plays in his own folders, and the playbook view shows them in his order', () => {
+    const d = desk();
+    const ids = d.playbookView('offense', {}).rows.slice(0, 2).map((r) => r.id);
+    expect(d.runPlaybook('offense', { kind: 'create_folder', name: 'Red zone' }).ok).toBe(true);
+    const folder = d.playbookView('offense', {}).folders[0]!;
+    expect(folder.name).toBe('Red zone');
+    expect(d.runPlaybook('offense', { kind: 'file_plays', folderId: folder.id, playIds: [ids[1]!, ids[0]!] }).ok).toBe(true);
+    expect(d.playbookView('offense', {}).folders[0]!.playIds).toEqual([ids[1], ids[0]]);
+    expect(d.playbookView('offense', { folder: folder.id }).rows.map((r) => r.id)).toEqual([ids[1], ids[0]]);
+  });
+
+  it("a new game can start from last game's sheet, edits included", () => {
+    const d = desk();
+    d.prepare('1');
+    expect(d.hasLastWeek('offense')).toBe(false);
+    expect(d.startFromLastWeek('offense').ok).toBe(false);
+    const box = d.sheets().offense.boxes.find((b) => b.entries.length > 1)!;
+    d.runGameplan('offense', { kind: 'remove_box', boxId: box.id });
+    d.prepare('2');
+    expect(d.sheets().offense.boxes.some((b) => b.id === box.id)).toBe(true);
+    expect(d.hasLastWeek('offense')).toBe(true);
+    expect(d.hasLastWeek('special_teams')).toBe(false);
+    expect(d.startFromLastWeek('offense').ok).toBe(true);
+    expect(d.sheets().offense.boxes.some((b) => b.id === box.id)).toBe(false);
+    expect(d.sheets().offense.gameId).toBe('2');
+  });
 });

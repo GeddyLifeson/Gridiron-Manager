@@ -130,6 +130,8 @@ export class FootballDesk {
     special_teams: { placed: {}, alwaysUp: [], listed: [] },
   };
   private stamp = 0;
+  /** Last game's sheets as exported text, per unit. */
+  private readonly lastWeek: Partial<Record<DraftUnit, string>> = {};
   private seq = 0;
   /** Bumps on every change, so a host can redraw. */
   version = 0;
@@ -182,8 +184,27 @@ export class FootballDesk {
     if (this.week.gameId === null && gameId !== null) {
       const own = (st: GameplanState): GameplanState => ({ ...st, sheet: { ...st.sheet, gameId } });
       this.week = { gameId, plans: { offense: own(this.week.plans.offense), defense: own(this.week.plans.defense) } };
-    } else this.week = this.freshWeek(gameId);
+    } else {
+      // The game just prepared for is last week's now: its sheets are kept as files to start the next from (G-68).
+      if (this.week.gameId !== null) {
+        for (const unit of DRAFT_UNITS) {
+          const r = this.runGameplan(unit, { kind: 'export_sheet' });
+          if (r.ok && r.file !== undefined) this.lastWeek[unit] = r.file;
+        }
+      }
+      this.week = this.freshWeek(gameId);
+    }
     this.version++;
+  }
+
+  /** True once a game's sheet for this unit is kept (a game has been prepared for before this one). */
+  hasLastWeek(unit: GameplanUnit): boolean { return unit !== 'special_teams' && this.lastWeek[unit] !== undefined; }
+
+  /** Starts this game's sheet from last game's: layout, entries, scripts, audibles and notes (start_from_sheet). */
+  startFromLastWeek(unit: GameplanUnit): DeskResult {
+    const text = unit === 'special_teams' ? undefined : this.lastWeek[unit];
+    if (text === undefined) return this.changed({ ok: false, refusal: 'no sheet from last week is kept', rule: 'G7.1.1' });
+    return this.runGameplan(unit, { kind: 'start_from_sheet', text });
   }
 
   private changed(r: DeskResult): DeskResult { this.last = r; this.version++; return r; }
@@ -254,6 +275,7 @@ export class FootballDesk {
       book: this.book.book, words: this.book.words, template: this.template(side), holder: this.holder, links: this.book.links,
       // N3 call records and G5.4.1 estimates are not kept by the season yet: no usage shown.
       usage: () => undefined, cutoffS: this.cutoffS(),
+      ...(this.book.folders ? { folders: this.book.folders } : {}),
     };
   }
 
