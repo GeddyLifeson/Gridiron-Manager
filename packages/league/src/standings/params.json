@@ -1,0 +1,42 @@
+{
+  "module": "league.standings",
+  "version": "0.1.0",
+  "params": [
+    {
+      "name": "standings.clinch.nodeBudget",
+      "value": 200000,
+      "min": 1000,
+      "max": 5000000,
+      "unit": "count",
+      "belongsTo": "league.standings",
+      "basis": "bible",
+      "leaf": "C3.3.2",
+      "constrainedBy": "league standings test \"clinch never claims a spot that brute force can miss\"",
+      "status": "starting"
+    },
+    {
+      "name": "standings.odds.simulations",
+      "value": 2000,
+      "min": 100,
+      "max": 100000,
+      "unit": "count",
+      "belongsTo": "league.standings",
+      "basis": "bible",
+      "leaf": "C3.3.3",
+      "constrainedBy": "league standings test \"playoff odds calibration\"",
+      "status": "starting"
+    },
+    {
+      "name": "standings.display.lastGames",
+      "value": 5,
+      "min": 5,
+      "max": 5,
+      "unit": "count",
+      "belongsTo": "league.standings",
+      "basis": "bible",
+      "leaf": "C3.1.2",
+      "constrainedBy": "league standings test \"standings columns match the answer file\" (the column is named last five)",
+      "status": "frozen"
+    }
+  ]
+}

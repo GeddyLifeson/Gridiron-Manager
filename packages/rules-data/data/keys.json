@@ -8,8 +8,7 @@
    "meaning": "Periods in regulation",
    "ownerLeaf": "B1",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
-   ]
+    "engine-game (phase 0 dummy game)", "models.ep", "models.wp"]
   },
   {
    "key": "clock.period_length_s",
@@ -18,8 +17,7 @@
    "meaning": "Length of one period",
    "ownerLeaf": "B1",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
-   ]
+    "engine-game (phase 0 dummy game)", "models.ep", "models.wp"]
   },
   {
    "key": "clock.halftime_min",
@@ -38,8 +36,7 @@
    "meaning": "Play clock after a dead ball",
    "ownerLeaf": "B1",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
-   ]
+    "engine-game (phase 0 dummy game)", "models.ep", "models.wp"]
   },
   {
    "key": "clock.play_clock_after_stoppage_s",
@@ -68,8 +65,7 @@
    "meaning": "Downs in a series",
    "ownerLeaf": "B3",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
-   ]
+    "engine-game (phase 0 dummy game)", "models.ep", "models.wp"]
   },
   {
    "key": "series.yards_to_gain",
@@ -108,8 +104,7 @@
    "meaning": "Players per team on the field",
    "ownerLeaf": "B2",
    "readBy": [
-    "officiating (phase 1)"
-   ]
+    "officiating (phase 1)", "engine-game.bench"]
   },
   {
    "key": "score.touchdown",
@@ -118,8 +113,7 @@
    "meaning": "Points for a touchdown",
    "ownerLeaf": "B7",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
-   ]
+    "engine-game (phase 0 dummy game)", "models.ep", "models.wp"]
   },
   {
    "key": "score.field_goal",
@@ -128,8 +122,7 @@
    "meaning": "Points for a field goal",
    "ownerLeaf": "B7",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
-   ]
+    "engine-game (phase 0 dummy game)", "models.ep", "models.wp"]
   },
   {
    "key": "score.safety",
@@ -138,8 +131,7 @@
    "meaning": "Points for a safety",
    "ownerLeaf": "B7",
    "readBy": [
-    "engine-game (phase 0 dummy game)"
-   ]
+    "engine-game (phase 0 dummy game)", "models.ep", "models.wp"]
   },
   {
    "key": "try.kick_points",

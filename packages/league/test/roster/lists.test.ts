@@ -113,6 +113,17 @@ describe('practice squad size and eligibility (C5.3.1)', () => {
     if (!r.ok) { expect(r.rule).toBe('C5.3.1'); expect(r.message).toMatch(/veterans/); }
   });
 
+  it('an eleventh group B player is refused; group A players fill the rest (CBA Art. 33 sec. 4, 2022 numbers)', () => {
+    let s = base();
+    s = setFacts(s, Array.from({ length: 11 }, (_, i) => facts(900001 + i, { accruedSeasons: 2 })));
+    s = signPs(s, Array.from({ length: 10 }, (_, i) => 900001 + i));
+    const r = tx(s, { type: 'sign_practice_squad', clubId: 1, personId: 900011 });
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.message).toMatch(/group B/);
+    s = signPs(s, [900012, 900013, 900014, 900015, 900016, 900017]);
+    expect(tx(s, { type: 'sign_practice_squad', clubId: 1, personId: 900018 }).ok).toBe(false);
+  });
+
   it('a league whose rules carry no practice squad refuses the filing', () => {
     expect(tx(base(), { type: 'sign_practice_squad', clubId: 1, personId: 900001 }, { ...PRO, practiceSquad: null }).ok).toBe(false);
   });

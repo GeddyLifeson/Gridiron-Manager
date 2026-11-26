@@ -5,7 +5,7 @@
 // can play) pass as legal filings and come back as `breakable` for L8.2.5 (G-28).
 import type { RosterRules } from './keys.ts';
 import { HOURS_PER_DAY, P } from './params.ts';
-import { practiceSquadGroup, practiceSquadVeteranCap, subjectToWaivers } from './eligibility.ts';
+import { practiceSquadGroup, practiceSquadGroupCaps, subjectToWaivers } from './eligibility.ts';
 import {
   LIST, type Accepted, type BreakableAct, type ClubRoster, type Instant, type LeagueRosters, type ListKey,
   type PlayerFacts, type Refusal, type ReserveList, type RosterEntry, type RosterEvent, type Transaction,
@@ -52,6 +52,7 @@ export interface ClubCounts {
   roster: number;
   practiceSquad: number;
   practiceSquadInternational: number;
+  practiceSquadGroupB: number;
   practiceSquadVeterans: number;
   elevationsNextGame: number;
   protectionsThisWeek: number;
@@ -65,14 +66,16 @@ function counted(e: { list: ListKey; personId: number }, players: LeagueRosters[
 }
 
 export function clubCounts(club: ClubRoster, players: LeagueRosters['players'], rules: RosterRules): ClubCounts {
-  const c: ClubCounts = { roster: 0, practiceSquad: 0, practiceSquadInternational: 0, practiceSquadVeterans: 0, elevationsNextGame: 0, protectionsThisWeek: 0 };
+  const c: ClubCounts = { roster: 0, practiceSquad: 0, practiceSquadInternational: 0, practiceSquadGroupB: 0, practiceSquadVeterans: 0, elevationsNextGame: 0, protectionsThisWeek: 0 };
   for (const e of club.entries) {
     if (counted(e, players, rules)) c.roster += 1;
     if (e.list !== LIST.practiceSquad) continue;
     const p = players[String(e.personId)];
     c.practiceSquad += 1;
     if (p?.internationalPathway) c.practiceSquadInternational += 1;
-    if (p && practiceSquadGroup(p, rules) === 'C') c.practiceSquadVeterans += 1;
+    const group = p ? practiceSquadGroup(p, rules) : null;
+    if (group === 'B') c.practiceSquadGroupB += 1;
+    if (group === 'C') c.practiceSquadVeterans += 1;
     if (e.elevatedForGame === club.gamesPlayed && (!e.elevatedAsEmergencyQb || P.emergencyQbElevationCountsPerGame > 0)) c.elevationsNextGame += 1;
     if (e.protectedForGame === club.gamesPlayed) c.protectionsThisWeek += 1;
   }
@@ -105,8 +108,9 @@ function checkClubLimits(d: Draft, club: DClub, rules: RosterRules, before: Club
   if (ps) {
     const placesAllowed = ps.size + Math.min(c.practiceSquadInternational, ps.internationalSlots);
     if (c.practiceSquad > placesAllowed) return refuse('C5.3.1', 'limit', `practice squad would hold ${c.practiceSquad}; ${placesAllowed} places are allowed`, 'release a practice squad player first');
-    const vetCap = practiceSquadVeteranCap(rules);
-    if (c.practiceSquadVeterans > vetCap) return refuse('C5.3.1', 'limit', `practice squad would hold ${c.practiceSquadVeterans} veterans of any service; at most ${vetCap}`, 'sign a player with at most two accrued seasons, or release a veteran');
+    const caps = practiceSquadGroupCaps(rules);
+    if (c.practiceSquadGroupB > caps.B) return refuse('C5.3.1', 'limit', `practice squad would hold ${c.practiceSquadGroupB} group B players (at most two accrued seasons); at most ${caps.B}`, 'sign a group A player, or release a group B player');
+    if (c.practiceSquadVeterans > caps.C) return refuse('C5.3.1', 'limit', `practice squad would hold ${c.practiceSquadVeterans} veterans of any service; at most ${caps.C}`, 'sign a player with at most two accrued seasons, or release a veteran');
     if (c.elevationsNextGame > ps.elevationsPerGame) return refuse('C5.3.2', 'limit', `elevations for the next game would be ${c.elevationsNextGame}; at most ${ps.elevationsPerGame}`, 'sign the player to the roster instead');
     if (c.protectionsThisWeek > ps.protectionsPerWeek) return refuse('C5.3.3', 'limit', `protections this week would be ${c.protectionsThisWeek}; at most ${ps.protectionsPerWeek}`, 'protect fewer players');
   }

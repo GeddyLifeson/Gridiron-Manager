@@ -13,7 +13,7 @@
     "roster.emergency_qb_from_practice_squad": [true, "NEW C5.2.2"],
     "roster.practice_squad_size": [16, "F-league-0027"],
     "roster.practice_squad_international_slot": [1, "F-league-0028"],
-    "roster.practice_squad_young_min": [10, "F-league-0029"],
+    "roster.practice_squad_group_b_max": [10, "NEW C5.3.1 (CBA Art. 33 sec. 4 iii, May 2022 amendment)"],
     "roster.practice_squad_veteran_slots": [6, "F-league-0030"],
     "roster.practice_squad_group_a_max_accrued": [1, "NEW C5.3.1"],
     "roster.practice_squad_group_a_active_games_below": [9, "NEW C5.3.1"],
