@@ -185,7 +185,20 @@ export interface GamePlayed {
    * (the placeholder rosters and the reference resolver make none); an empty list means none happened.
    */
   readonly injuries?: readonly GameInjury[];
+  /**
+   * Every statistic of every person who played (D14.1.1 credits summed over the game), when the game's
+   * rosters are world people. Absent means this port does not report player lines (placeholder rosters).
+   */
+  readonly lines?: readonly GameLine[];
 }
+
+/** One statistic of one world person in one game. */
+export interface GameLine { readonly personId: number; readonly teamId: number; readonly statId: string; readonly value: number }
+
+/** `LiveWorld.systemState` key where the games step leaves the week's player lines (X3.4.1 statistics step input). */
+export const GAME_LINES_KEY = 'games.lines';
+/** The week's player lines, in game id order, then person, then statistic. */
+export interface WeekLines { readonly seasonYear: number; readonly week: number; readonly reportedGames: number; readonly lines: readonly (GameLine & { readonly gameId: number })[] }
 
 /** One J10.6.1 injury event of a game, with the engine's player id mapped to the world person (D11 input). */
 export interface GameInjury {

@@ -3,5 +3,5 @@ export { loadJobRunner, type Json, type JobModuleRef, type JobRunner, type Creat
 export { createSyncPool, type SyncPool, type SyncPoolOptions } from './pool.ts';
 export {
   REAL_WEEK_MODULE, realWeekRef, createJobRunner, jobOf, realWeekPort,
-  type WeekGameJob, type WeekGameOutcome, type RealWeekOptions, type WeekRequestLike,
+  type WeekGameJob, type WeekGameOutcome, type RealWeekOptions, type WeekRequestLike, type WeekStatLine, type WeekInjury, type TeamsOf,
 } from './real-week.ts';

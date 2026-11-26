@@ -7,10 +7,11 @@ import { history } from '@gm/league';
 import type { WorldTier } from '@gm/schema';
 import { TITLE_WON } from './events.ts';
 import { isActive } from './lifecycle.ts';
+import { addGameLines } from './player-stats.ts';
 import { param } from './params.ts';
 import {
-  GAME_INJURIES_KEY, SEASON_POINT_ORDER, WEEKLY_ORDER,
-  type GameBatchPort, type GameInjury, type WeekInjuries, type GamePort, type GameRequest, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
+  GAME_INJURIES_KEY, GAME_LINES_KEY, SEASON_POINT_ORDER, WEEKLY_ORDER,
+  type GameBatchPort, type GameInjury, type GameLine, type WeekInjuries, type WeekLines, type GamePort, type GameRequest, type GameResult, type LiveWorld, type SchedulePort, type SeasonSummary, type StepContext, type StepDigest, type StepHandler, type StepId, type WorldSystems,
 } from './types.ts';
 
 const FAR_TIER: WorldTier = 3;
@@ -174,6 +175,8 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
     let points = 0;
     let reportedGames = 0;
     const injuries: (GameInjury & { gameId: number })[] = [];
+    let linedGames = 0;
+    const lines: (GameLine & { gameId: number })[] = [];
     reqs.forEach((req, i) => {
       const game = req.game, r = played[i]!;
       const row: GameResult = {
@@ -187,6 +190,11 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
         reportedGames++;
         for (const inj of r.injuries) injuries.push({ ...inj, gameId: game.gameId });
       }
+      if (r.lines) {
+        linedGames++;
+        for (const l of r.lines) lines.push({ ...l, gameId: game.gameId });
+        addGameLines(world, game.kind, r.lines);
+      }
       if (game.title && r.homePoints !== r.awayPoints) {
         const [winner, loser, wp, lp] = r.homePoints > r.awayPoints ? [game.homeTeamId, game.awayTeamId, r.homePoints, r.awayPoints] : [game.awayTeamId, game.homeTeamId, r.awayPoints, r.homePoints];
         ctx.emit({
@@ -197,7 +205,12 @@ export function gamesStepBatch(schedule: SchedulePort, playAll: GameBatchPort): 
     });
     // Left only when a port reports injuries, so a world whose games report none hashes as before.
     if (reportedGames > 0) world.systemState.set(GAME_INJURIES_KEY, { seasonYear: world.date.seasonYear, week: world.week, reportedGames, injuries } satisfies WeekInjuries);
-    return { games: games.length, points };
+    // The same for player lines: a week with none leaves the key as it was (the statistics step consumes it).
+    if (linedGames > 0) world.systemState.set(GAME_LINES_KEY, { seasonYear: world.date.seasonYear, week: world.week, reportedGames: linedGames, lines } satisfies WeekLines);
+    const digest: Record<string, number> = { games: games.length, points };
+    // Only worlds whose games report lines add these, so the pass hash of a placeholder world is unchanged.
+    if (linedGames > 0) { digest.linedGames = linedGames; digest.injuries = injuries.length; }
+    return digest;
   };
 }
 

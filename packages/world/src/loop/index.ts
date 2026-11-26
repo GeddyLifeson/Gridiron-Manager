@@ -6,10 +6,10 @@ export {
   TEAM_FOUNDED, TEAM_FOLDED, TITLE_WON, WORLD_EVENT_TYPES, RELEASED_FALLBACK, TITLE_WON_FALLBACK, worldEventTypes,
 } from './events.ts';
 export {
-  WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER, GAME_INJURIES_KEY,
+  WEEKLY_ORDER, SEASON_POINT_ORDER, STEP_OWNER, GAME_INJURIES_KEY, GAME_LINES_KEY,
   type WeeklyStep, type SeasonStep, type StepId, type PersonStatus, type Scalar, type GameResult, type StaffSeason, type SeasonSummary, type TeamRecordLine,
   type LiveWorld, type StepContext, type StepDigest, type StepHandler, type WorldSystems, type SchedulePort, type ScheduledGame,
-  type GameRequest, type GamePlayed, type GameInjury, type WeekInjuries, type GamePort, type GameBatchPort,
+  type GameRequest, type GamePlayed, type GameInjury, type WeekInjuries, type GameLine, type WeekLines, type GamePort, type GameBatchPort,
 } from './types.ts';
 export { createWorld, steppedSeed, type CreateWorldInput } from './world.ts';
 export {
@@ -37,3 +37,7 @@ export {
 } from './hall.ts';
 export { STREAM_HISTORY_SCHEDULE, seasonOrder, circleRound, roundsFor, historySchedule, type HistoryScheduleBinding } from './history-schedule.ts';
 export { slimmable, slimRetired, slimStep, withSlimming, ARCHIVE_KEY, archivePerson, archivedCount, archivedPerson, type ArchiveState, type ArchivedPerson } from './archive.ts';
+export {
+  PLAYER_STATS_KEY, GAMES_PLAYED, playerStatsOf, closeStatSeason, addGameLines, seasonLineOf, careerOf,
+  type PlayerStats, type PersonSeason, type PersonCareer, type StatTotals,
+} from './player-stats.ts';

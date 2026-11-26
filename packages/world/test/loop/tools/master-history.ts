@@ -4,11 +4,14 @@
 //
 // Run on a many-core PC (Node 22+, from the repo root):
 //   npx tsx packages/world/test/loop/tools/master-history.ts --out=master-run [--seed=HEX] [--workers=N]
-//       [--seasons=157] [--size=full] [--games=real|test] [--lost=1]
+//       [--seasons=157] [--size=full] [--games=real|test] [--lost=1] [--rosters=world|placeholder]
 //
 // --workers defaults to the core count minus one; the calling thread plays games too. --games=test swaps
 // in the TEST DOUBLE game port for a quick dry run of the whole pipeline; every output then says so, and
 // such a run must never be baked. --seasons shortens the span (it always ends the season before today).
+// --rosters=world (the default) plays every real game with the clubs' own people (world/gameday: staff-graded
+// depth charts, D11 out list), so stats and J10 injuries reach world people; placeholder keeps the old
+// one-value rosters (no lines, no injuries) for timing comparisons only.
 //
 // Output folder (one file per kind, all rewritten after every season, so a stopped run keeps what it reached):
 //   progress.jsonl  one line per season: summary, step times, heap, people, active teams, hall members
@@ -26,6 +29,7 @@ import { join } from 'node:path';
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
 import * as health from '../../../src/health/index.ts';
+import * as gameday from '../../../src/gameday/index.ts';
 import { medical } from '@gm/league';
 
 const arg = (k: string, d: string): string => process.argv.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3) ?? d;
@@ -35,6 +39,8 @@ const SEASONS = Number(arg('seasons', String(generation.fullHistorySeasons(new D
 const SIZE = arg('size', 'full') as generation.SizePreset;
 const GAMES = arg('games', 'real');
 const LOST = Number(arg('lost', '1'));
+const ROSTERS = arg('rosters', 'world');
+if (ROSTERS !== 'world' && ROSTERS !== 'placeholder') throw new Error(`--rosters must be world or placeholder, not ${ROSTERS}`);
 const WORKERS = Number(arg('workers', String(Math.max(0, availableParallelism() - 1))));
 const TODAY = new Date().getUTCFullYear();
 
@@ -65,7 +71,7 @@ if (GAMES === 'real') {
   const ref = wp.realWeekRef();
   const main = await wp.loadJobRunner(ref);
   pool = wp.createSyncPool({ module: ref, workers: WORKERS, mainRunner: main }) as Pool;
-  gamePort = wp.realWeekPort((jobs: readonly unknown[]) => pool!.run(jobs)) as loop.GameBatchPort;
+  gamePort = wp.realWeekPort((jobs: readonly unknown[]) => pool!.run(jobs), ROSTERS === 'world' ? gameday.worldTeamsOf() : undefined) as loop.GameBatchPort;
 } else if (GAMES === 'test') {
   gamePort = loop.batchOf(testGamePort());
 } else throw new Error(`--games must be real or test, not ${GAMES}`);
@@ -89,9 +95,24 @@ const healthBinding: health.HealthBinding = {
   catalogue: medical.catalogueFrom(JSON.parse(readFileSync(new URL('../../../../football-content/data/injuries/catalogue.json', import.meta.url), 'utf8')).rows),
   rules: (lvl) => medicalRules[lvl].rules, levelOfTeam: (world, id) => turnover.levelOfTeam(world, id),
 };
+// J15.7.2 check: "Out" episodes (a player kept out of a game week by a D11 case he was not out for the week
+// before), counted on pro rosters, per season. Measurement only; it changes nothing in the world.
+const seasonCounts = { outEpisodes: 0, proTeamSeasons: 0 };
+let outBefore = new Set<number>();
+function withOutCount(h: loop.StepHandler): loop.StepHandler {
+  return (ctx) => {
+    const now = gameday.outThisWeek(ctx.world);
+    for (const [teamId, ids] of ctx.world.rosters) {
+      if (turnover.levelOfTeam(ctx.world, teamId) !== 'pro') continue;
+      for (const id of ids) if (now.has(id) && !outBefore.has(id)) seasonCounts.outEpisodes++;
+    }
+    outBefore = now;
+    return h(ctx);
+  };
+}
 const systems = loop.systemsFrom({
   lifecycle: timed('lifecycle', loop.lifecycleStep({ content, names: NAMES, built: w })),
-  games: timed('games', loop.gamesStepBatch(schedule, gamePort)),
+  games: timed('games', withOutCount(loop.gamesStepBatch(schedule, gamePort))),
   health: timed('health', health.healthStep(healthBinding)),
   leaving: timed('leaving', loop.leavingStep()),
   // Log compaction has no counter list yet (X2.4.1 owner); the slot drops dead playing blocks (archive.ts).
@@ -116,6 +137,7 @@ const head = {
   formatVersion: 1,
   kind: GAMES === 'real' ? 'MASTER DATA RUN' : 'DRY RUN WITH THE TEST DOUBLE GAME PORT: NOT FOR BAKING',
   seedHex: SEED, size: SIZE, firstSeasonYear: s.firstSeasonYear, seasons: SEASONS, games: GAMES, workers: GAMES === 'real' ? WORKERS : 0,
+  rosters: GAMES === 'real' ? ROSTERS : 'test double',
   lostClubsFraction: LOST, worldCode: generation.worldCode(s, 'gridiron-manager', content.contentVersion), teams: w.teams.length, proClubsWithLost: proClubs,
   peopleAtFounding: w.people.size, buildMs: Math.round(buildMs), unbound,
   medicalRuleFallbacks: { pro: medicalRules.pro.fallbackKeys, college: medicalRules.college.fallbackKeys },
@@ -154,6 +176,20 @@ function snapshot(status: 'running' | 'stopped' | 'finished', seasonsRun: number
   return { worldHash, failures: validation.failures };
 }
 
+// Per season: injuries opened, Out episodes per pro club (J15.7.2 target about 15.6), players with lines.
+let openedBefore = 0;
+function playerRow(season: number): Record<string, number> {
+  const h = health.healthOf(w);
+  const ps = loop.playerStatsOf(w);
+  const pro = w.teams.filter((t) => turnover.levelOfTeam(w, t.id) === 'pro' && loop.isActive(w, t.id, season)).length;
+  const row = {
+    injuriesOpened: h.opened - openedBefore, outEpisodesPerProClub: pro > 0 ? Math.round((seasonCounts.outEpisodes / pro) * 10) / 10 : 0,
+    playersWithLines: ps.seasonYear === season ? Object.keys(ps.season).length : 0,
+  };
+  openedBefore = h.opened; seasonCounts.outEpisodes = 0;
+  return row;
+}
+
 // ---------- the run ----------
 let last = t0;
 const report = loop.runHistory(w, systems, {
@@ -166,6 +202,7 @@ const report = loop.runHistory(w, systems, {
       teamsActive: w.teams.filter((t) => loop.isActive(w, t.id, summary.seasonYear)).length, hallMembers: w.hall.members.length,
       games: summary.games, points: summary.points, passPlays: summary.passPlays, runPlays: summary.runPlays,
       champions: summary.champions, peopleByStatus: summary.people, pools: summary.pools,
+      ...playerRow(summary.seasonYear),
     };
     appendFileSync(join(OUT, 'progress.jsonl'), `${JSON.stringify(row)}\n`);
     if (done % 5 === 0 || done === SEASONS) console.log(JSON.stringify({ season: row.season, done, ms: row.ms, heapMB: row.heapMB, people: row.people, hall: row.hallMembers }));
