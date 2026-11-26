@@ -6,6 +6,7 @@ import regionsJson from './data/regions.json' with { type: 'json' };
 import shapeJson from './data/roster-shape.json' with { type: 'json' };
 import { clamp, type ProspectFactory, type StreamFor } from './context.ts';
 import { P } from './params.ts';
+import { prospectsChanged } from './indexes.ts';
 import {
   POSITION_GROUPS, PREFERENCE_KEYS,
   type CircleMember, type CircleRelation, type PositionGroup, type Preferences, type Prospect, type ProspectSource,
@@ -183,6 +184,7 @@ export function addProspect(state: RecruitingState, p: Prospect): void {
   state.prospects[p.personId] = p;
   const st: ProspectStatus = { status: 'open', teamId: null, sinceDay: null, decommits: 0, droppedBy: [], signedDay: null, signedEarly: false, waitsForFebruary: null };
   state.status[p.personId] = st;
+  prospectsChanged(state);
 }
 
 /**
