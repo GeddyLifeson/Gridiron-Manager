@@ -14,6 +14,9 @@ const ROWS: readonly Row[] = [
   ['grade.rosteredUnits', 1, 0.1, 10, 'season share', 'assumption', 'D6.4.2', 'One season of stats per look. No source read'],
   // D6.1.2: one workout (combine or pro day) for a prospect or free agent.
   ['grade.workoutUnits', 1, 0.1, 10, 'session', 'assumption', 'D6.1.2', 'One workout per look. No source read'],
+  // TO-21, D6.1.1: a look at a rostered pro pools the film of his seasons in the league, up to this many. At 4 the
+  // look's sd is half a one-season look's, about D6.4.1's prior sd of 6 for an established starter.
+  ['grade.pooledSeasonsMax', 4, 1, 20, 'seasons', 'assumption', 'D6.1.1', 'Seasons of film a look at a veteran pools (D6.1.1 precision-weighted update). Cap chosen to meet the D6.4.1 established-starter sd. No source read'],
   // K7.2.1: a position below its share of the real roster mix is worth this much more on the board.
   ['need.weight', 4, 0, 20, 'iss', 'assumption', 'K7.2.1', 'Need bonus on the board until front-office gm.needs is bound. No source read'],
   // M2: players at a position up to its mix count are starters for the development reps (D7.7.1 role).

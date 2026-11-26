@@ -101,3 +101,26 @@ export function marketPrice(x: PriceInput): market.ExpectedContract {
     productiveYearsLeft: sourcedYears(x.percentile, x.age), injuryFlag: false, capCents: x.capCents, minimumCents: x.minimumCents,
   }, x.time);
 }
+
+/**
+ * TO-18 (world turnover README): how much the real market pays for being better at each position, as a weight around 1. A position's
+ * spread is the mean share of the cap its above-median players are paid over its median player (pay-scale.json,
+ * PC-11); the weights are the spreads over their mean across `mix` (positions weighted by their roster counts).
+ * Read as wins per ISS point, it makes the front office value a better quarterback over a worse one by about
+ * what the league pays for that difference, instead of one rate for every position.
+ */
+export function positionValueWeights(mix: Readonly<Record<string, number>>): Record<string, number> {
+  const spread = (position: string): number => {
+    const sh = sourcedScale(position).shares;
+    const mid = Math.floor((sh.length - 1) / 2);
+    let s = 0;
+    for (let i = 0; i < mid; i++) s += sh[i]! - sh[mid]!;
+    return mid > 0 ? s / mid : 0;
+  };
+  const positions = Object.keys(mix).sort();
+  const total = positions.reduce((a, p) => a + (mix[p] ?? 0), 0);
+  const mean = total > 0 ? positions.reduce((a, p) => a + (mix[p] ?? 0) * spread(p), 0) / total : 0;
+  const out: Record<string, number> = {};
+  for (const p of positions) out[p] = mean > 0 ? spread(p) / mean : 1;
+  return out;
+}

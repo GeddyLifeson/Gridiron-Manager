@@ -5,8 +5,9 @@
 // the truth. Mechanics stay in moves.ts (the draft order, signings, rosters); this file only chooses.
 //
 // What the world cannot give him yet, and the stand-in used (each flagged in README.md, TO-06 to TO-09):
-// - the J14.6.1 contribution table (engine batch runs): one wins-per-ISS for every position, replacement
-//   level from the club's own roster, slot weights from the position mix;
+// - the J14.6.1 contribution table (engine batch runs): wins per ISS weighted by what the real market pays
+//   for being better at each position (TO-18), replacement level from the club's own roster, slot weights
+//   from the position mix;
 // - contracts and the cap (C6): with the contracts module bound, a player's cost is his contract's salary
 //   by year and the going rate per win is last market's (TO-07); without contracts in the world every cost
 //   is empty, so value equals surplus;
@@ -20,8 +21,8 @@ import { complianceOf, complianceRules, dispositionOf, generalManagerOf, partyOf
 import { ageIn, levelOfTeam, positionTargets, specOf, type Level, type PolicyContext, type Phase, type RosterPolicy } from './binding.ts';
 import { POOL, ruleSetOf } from './moves.ts';
 import { ruleSetFor, type ContractsBinding } from '../contracts/binding.ts';
-import { marketPrice, publicPercentiles } from '../contracts/scale.ts';
-import { contractsOf, salaryIn, type PlayerContract } from '../contracts/state.ts';
+import { marketPrice, positionValueWeights, publicPercentiles } from '../contracts/scale.ts';
+import { contractsOf, lastYear, salaryIn, type PlayerContract } from '../contracts/state.ts';
 import { capFromRules } from '../money/club.ts';
 import { param } from './params.ts';
 
@@ -70,9 +71,11 @@ interface CycleState {
   /** The going rate per win this cycle (TO-07), once computed. */
   centsPerWin: number | null;
   /** The C8.3.1 market line of each free agent this cycle (PC-11): team independent. */
-  readonly market: Map<number, { readonly years: number; readonly guaranteeShare: number; readonly minimumCents: number }>;
+  readonly market: Map<number, { readonly years: number; readonly guaranteeShare: number; readonly minimumCents: number; readonly apyCents: number }>;
   /** Active contracts by player, read once per cycle. */
   contracts: Map<number, PlayerContract> | null;
+  /** Street signings' market price above the minimum, by club, this cycle (capState counts them at the minimum). */
+  readonly street: Map<number, number>;
 }
 
 /** What the front office reads from the contracts module, when the world holds contracts. */
@@ -91,7 +94,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
 
   const cycleOf = (pc: PolicyContext): CycleState => {
     let c = cycles.get(pc);
-    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map(), views: new Map(), bases: new Map(), centsPerWin: null, market: new Map(), contracts: null }; cycles.set(pc, c); }
+    if (!c) { c = { teams: new Map(), draws: new Map(), baseline: new Map(), views: new Map(), bases: new Map(), centsPerWin: null, market: new Map(), contracts: null, street: new Map() }; cycles.set(pc, c); }
     return c;
   };
 
@@ -138,7 +141,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const p = pc.world.people.get(id)!;
     const capCents = cb ? capFromRules(cb.rule, cb.rulesYear)(pc.world, teamId, pc.season) : undefined;
     if (!cb || capCents === undefined || contractMap(pc).size === 0) {
-      const none = { years: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0 };
+      const none = { years: gm.P('value.horizonYears'), guaranteeShare: 0, minimumCents: 0, apyCents: 0 };
       cyc.market.set(id, none);
       return none;
     }
@@ -151,7 +154,7 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const minimumCents = cap.minimumSalary(rules, cb.rulesYear, p.playing!.eligibility.pro.creditedSeasons);
     const age = ageIn(p, pc.season);
     const line = marketPrice({ position, percentile: pct, suitors: 0, age, primeEndAge: curve.primeEndAge(position), capCents, minimumCents, time: 1 });
-    const out = { years: line.years, guaranteeShare: line.guaranteeShare, minimumCents };
+    const out = { years: line.years, guaranteeShare: line.guaranteeShare, minimumCents, apyCents: line.apyCents.mid };
     cyc.market.set(id, out);
     return out;
   };
@@ -188,8 +191,10 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     const all = [...own.values()].flat();
     const replacement = new Map<string, number>();
     const weights = new Map<string, readonly number[]>();
+    // TO-18: the market's price of being better at each position sets its wins per ISS point.
+    const posWeight = positionValueWeights(spec.rosterMix);
     const table: gm.ContributionTable = {
-      winsPerIss: () => param('gm.winsPerIss'),
+      winsPerIss: (position) => param('gm.winsPerIss') * (posWeight[position] ?? 1),
       replacementIss: (position) => {
         let r = replacement.get(position);
         if (r === undefined) { r = quantile(own.get(position) ?? all, param('gm.replacementQuantile')); replacement.set(position, r); }
@@ -370,6 +375,60 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     return out;
   };
 
+  // K7.4.1 rule 2 with CBA Art. 13 s.6(d)(iv): this league year's team salary if the club keeps `roster`, and
+  // what cutting each player changes it by. Under contract: his salary this year counts; a release saves it but
+  // brings every guaranteed salary still owed into this year (PC-06 pays it now). Not yet under contract (a
+  // pick, a signing of this cycle, an expiring veteran): his minimum at least, which PC-13 never prices below.
+  const capState = (pc: PolicyContext, teamId: number, roster: readonly number[]) => {
+    const cb = opts.contracts;
+    const capCents = cb ? capFromRules(cb.rule, cb.rulesYear)(pc.world, teamId, pc.season) : undefined;
+    if (!cb || capCents === undefined || contractMap(pc).size === 0) return undefined;
+    const rules = ruleSetFor(cb, levelOfTeam(pc.world, teamId));
+    let salary = 0;
+    const deltaIfCutCents = new Map<number, number>();
+    for (const id of roster) {
+      const p = pc.world.people.get(id)?.playing;
+      if (!p) continue;
+      const c = contractMap(pc).get(id);
+      if (c && c.teamId === teamId && lastYear(c) >= pc.season) {
+        const now = salaryIn(c, pc.season);
+        const owed = c.terms.years.filter((y) => y.leagueYear >= pc.season && y.baseSalary.guarantee.skill).reduce((a, y) => a + y.baseSalary.amountCents, 0);
+        salary += now;
+        deltaIfCutCents.set(id, owed - now);
+      } else {
+        const min = cap.minimumSalary(rules, cb.rulesYear, p.eligibility.pro.creditedSeasons);
+        salary += min;
+        deltaIfCutCents.set(id, -min);
+      }
+    }
+    // Players this club already released this cycle still owe their guarantees now (PC-06), and a street
+    // signing costs his market price, not the minimum counted for him above.
+    const on = new Set(roster);
+    for (const c of contractMap(pc).values()) {
+      if (c.teamId !== teamId || on.has(c.personId) || lastYear(c) < pc.season || pc.world.status.get(c.personId) !== 'active') continue;
+      salary += c.terms.years.filter((y) => y.leagueYear >= pc.season && y.baseSalary.guarantee.skill).reduce((a, y) => a + y.baseSalary.amountCents, 0);
+    }
+    salary += cycleOf(pc).street.get(teamId) ?? 0;
+    return { roomCents: capCents - salary, deltaIfCutCents };
+  };
+
+  // TO-19: a player signed this cycle has no contract until the contract year opens after the cutdown, so at
+  // the cutdown he carries the deal he is about to sign: a pick or an undrafted rookie his rookie length at the
+  // minimum (PC-05), anyone else his C8.3.1 market line (PC-11). Without contracts bound, nothing.
+  const expectedCost = (pc: PolicyContext, teamId: number, id: number): readonly number[] => {
+    const cb = opts.contracts;
+    const p = pc.world.people.get(id)?.playing;
+    if (!cb || !p || contractMap(pc).size === 0) return [];
+    const level = levelOfTeam(pc.world, teamId);
+    const rules = ruleSetFor(cb, level);
+    const credited = p.eligibility.pro.creditedSeasons;
+    const min = (k: number) => cap.minimumSalary(rules, cb.rulesYear, credited + k);
+    const round = pc.draftedRound.get(id);
+    if (round !== undefined || credited === 0) return Array.from({ length: rookieYears(pc, level, round ?? null) }, (_, k) => min(k));
+    const m = marketLine(pc, teamId, id);
+    return Array.from({ length: Math.max(1, m.years) }, (_, k) => Math.max(m.apyCents, min(k)));
+  };
+
   const isPro = (pc: PolicyContext, teamId: number) => pc.b.rule(levelOfTeam(pc.world, teamId), 'eligibility.seasons_of_competition') === undefined;
 
   const rookieYears = (pc: PolicyContext, level: Level, round: number | null): number => {
@@ -452,12 +511,55 @@ export function gmPolicy(opts: GmPolicyOptions = {}): RosterPolicy {
     cutdown(pc, teamId, roster, limit, minByPosition) {
       if (!isPro(pc, teamId) || gmOut(pc, teamId)) return null;
       const t = teamOf(pc, teamId);
+      // TO-19: this season's pay is spent whether he stays or goes. The market has closed, and PC-13 spends the
+      // owner's budget on the players kept, so a cut buys nothing this year; only later years' pay is saved.
+      // The cap still binds this year (the repair pass of K7.4.1 rule 2).
+      const laterOnly = (xs: readonly number[]): number[] => xs.map((x, y) => (y === 0 ? 0 : x));
+      const dead = new Map([...deadOf(pc, teamId, roster)].map(([id, d]) => [id, laterOnly(d)]));
+      const views = roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => {
+        const v = view(pc, teamId, id);
+        return { ...v, costCentsByYear: laterOnly(v.costCentsByYear.length > 0 ? v.costCentsByYear : expectedCost(pc, teamId, id)) };
+      });
       const result = gm.cutdown(t.profile, {
-        roster: roster.filter((id) => pc.world.people.get(id)?.playing).map((id) => view(pc, teamId, id)),
-        limit, minByPosition, coachRank: new Map(), draftedRound: pc.draftedRound, deadCentsByYear: deadOf(pc, teamId, roster),
+        roster: views,
+        limit, minByPosition, coachRank: new Map(), draftedRound: pc.draftedRound, deadCentsByYear: dead,
         rounds: pc.b.rule(levelOfTeam(pc.world, teamId), 'league_rules.draft.rounds') ?? 0,
+        ...(capState(pc, teamId, roster) ? { cap: capState(pc, teamId, roster)! } : {}),
       }, t.ctx);
       return result.keep;
+    },
+    streetSign(pc, teamId, candidates) {
+      if (!isPro(pc, teamId) || candidates.length === 0 || gmOut(pc, teamId)) return null;
+      const t = teamOf(pc, teamId);
+      const ids = (pc.world.rosters.get(teamId) ?? []).filter((id) => pc.world.people.get(id)?.playing);
+      const roster = ids.map((id) => view(pc, teamId, id));
+      const cs = capState(pc, teamId, ids);
+      const dead = deadOf(pc, teamId, ids);
+      // K7.4.5 rule 3 score of each kept player: surplus plus the dead money a release would still cost.
+      const keepScore = (v: View) => gm.playerWorth(t.profile, v, t.ctx).surplus + gm.costWins(t.profile, dead.get(v.personId) ?? [], t.ctx);
+      const worst = new Map<string, { v: View; s: number }>();
+      for (const v of roster) {
+        const s = keepScore(v);
+        const w = worst.get(v.position);
+        if (!w || s < w.s || (s === w.s && v.personId < w.v.personId)) worst.set(v.position, { v, s });
+      }
+      let best: { sign: number; drop: number; gain: number; extra: number } | null = null;
+      for (const id of [...candidates].sort((a, b) => a - b)) {
+        const w = worst.get(pc.world.people.get(id)?.playing?.position ?? '');
+        if (!w) continue;
+        // C8.3.1: he signs at the market line; the club must fit him under the cap after the release (K7.4.1 rule 2).
+        const m = marketLine(pc, teamId, id);
+        const price = Math.max(m.apyCents, m.minimumCents);
+        if (cs && cs.roomCents - (cs.deltaIfCutCents.get(w.v.personId) ?? 0) - price < 0) continue;
+        const fa: View = { ...view(pc, teamId, id), costCentsByYear: Array.from({ length: Math.max(1, m.years) }, () => price) };
+        if (gm.playerWorth(t.profile, fa, t.ctx).surplus <= w.s) continue;
+        const gain = gm.rosterDelta(t.profile, roster, [fa], [w.v.personId], t.ctx) - gm.costWins(t.profile, dead.get(w.v.personId) ?? [], t.ctx);
+        if (gain > gm.P('roster.claimMargin') && (!best || gain > best.gain)) best = { sign: id, drop: w.v.personId, gain, extra: price - m.minimumCents };
+      }
+      if (!best) return null;
+      const street = cycleOf(pc).street;
+      street.set(teamId, (street.get(teamId) ?? 0) + best.extra);
+      return { sign: best.sign, drop: best.drop };
     },
   };
 }
