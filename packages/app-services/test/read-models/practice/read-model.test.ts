@@ -29,7 +29,7 @@ describe('practice desk read model (P1.3.2, Q1.4.2)', () => {
   it('passes the crawler for every seat', () => {
     const world = tablesOf(fixtureTables());
     const observers = [USER, ASSISTANT, AWAY_COACH].map((id) => ({ name: `person ${id}`, observer: observerFor(world, id) })).concat([{ name: 'public', observer: PUBLIC_OBSERVER }]);
-    const r = crawlReadModels({ registry: registryFor, source: world, observers, params: () => [{ teamId: HOME }, { teamId: HOME, season: 2026 }, { teamId: AWAY }] });
+    const r = crawlReadModels({ registry: registryFor, source: world, observers, params: () => [{ teamId: HOME, season: null }, { teamId: HOME, season: 2026 }, { teamId: AWAY, season: null }] });
     expect(r.errors).toEqual([]);
     expect(r.schemaHits).toEqual([]);
     expect(r.sentinelHits).toEqual([]);
