@@ -14,14 +14,17 @@
 //                    a holder after a bobble, a punter whose operation failed.
 //   foulsInjuries (WP-22, J10)   `foulsInjuriesPlug` as it is: it needs nothing from the assembly but
 //                    the shared services, and it keeps the play's one hit-load ledger (resolver.ts).
-import { BEHAVIORS, SLOT_COUNT, TICK_S, roundSimS, roundYd, type Assignment, type TickWorld } from '@gm/schema';
+import { BEHAVIORS, SLOT_COUNT, TICK_S, roundSimS, roundYd, type Assignment, type MovementParams, type ParamTable, type TickWorld } from '@gm/schema';
+import { PI, dAtan2, dSqrt } from '../dmath.ts';
+import { codZOf, cutMultiplier, kinParams } from '../kinematics/index.ts';
 import type { Contests } from '../contest/index.ts';
 import { carrierStages, CARRIER_VERSION, type CarrierPlugExtras } from '../carrier/plug.ts';
 import type { Carrier } from '../carrier/stage.ts';
 import { foulsInjuriesPlug } from '../fouls-injuries/index.ts';
-import { createQuarterback, type QbTarget, type Quarterback } from '../qb/index.ts';
+import { createQuarterback, type QbPlay, type QbRead, type QbTarget, type Quarterback } from '../qb/index.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import { declareDead } from './finish.ts';
+import { tickResolverParams } from './params.ts';
 import type { PlayServices, PlugStages, StagePlug } from './ports.ts';
 
 export const QB_PLUG_VERSION = 'qb-adapter-1';
@@ -43,13 +46,82 @@ export function quarterbackPlug(): QuarterbackPlug {
       // module runs him at the lane itself and rates the lane itself.
       const build = (contests: Contests): Quarterback => createQuarterback({
         view: services.perception.view, contests,
-        gaze: { gazeAtSlot: (slot, target) => services.perception.gazeAtSlot(slot, target), gazeAtPoint: (slot, px, py) => services.perception.gazeAtPoint(slot, px, py) },
+        gaze: { gazeAtSlot: (slot, target) => { services.perception.gazeAtSlot(slot, target); watch(slot, target); }, gazeAtPoint: (slot, px, py) => services.perception.gazeAtPoint(slot, px, py) },
         ballInAir: (world, passer, x, y, ticks) => services.perception.notifyBallInAir(world, passer, x, y, ticks),
         topSpeed: (world, slot, mode) => services.movement.modeTopSpeed(world, slot, mode),
         stripAttempt: (slot) => services.playerAi.stripAttempt(slot),
         onRun: (world, slot, why) => { const r = services.runner(); return r === null ? false : r.onRun(world, slot, why); },
         laneQuality: services.runner() === null ? null : (world, slot) => services.runner()!.laneQuality(world, slot),
       });
+      // J7.3.1 inputs: "perceived positions of the receiver and the defenders near the throw lane and
+      // catch point". Left alone, the attention set (J3.1.2) fills with the nearest bodies, which for a
+      // man in the pocket are his own line and the rush, and he never sees the coverage on the man he
+      // throws to. So the receiver he looks at and the defenders nearest that receiver are his keys
+      // while he looks. Whom to watch is his choice; what he then knows of them still arrives through
+      // perception, late and with its error. Keys the content port gave him are left alone.
+      let nowWorld: TickWorld | null = null, ownKeys = false, keyedSlot = -1;
+      const keyBuf: number[] = [], pathX = new Float64Array(8), pathY = new Float64Array(8);
+      /** The drawn route of a receiver he may throw to this play, play frame, or null. */
+      const routeOf = (target: number): QbTarget['route'] | null => {
+        const play = services.setup().qb;
+        if (!play) return null;
+        for (const r of play.reads) { if (r.target.slot === target) return r.target.route; if (r.ifDrives?.slot === target) return r.ifDrives.route; }
+        if (play.checkdown?.slot === target) return play.checkdown.route;
+        if (play.hot?.target.slot === target) return play.hot.target.route;
+        return null;
+      };
+      const watch = (slot: number, target: number): void => {
+        const w = nowWorld;
+        if (w === null || !ownKeys) return;
+        const pl = w.players, f = w.frame, q = tickResolverParams(w.params), n = q['qb.watchDefenders']!, ahead = q['qb.watchAheadYd']!;
+        const rx = (pl.posX[target]! - f.originX) * f.attackDir, ry = (pl.posY[target]! - f.originY) * f.attackDir;
+        // Where the ball can go: the receiver, and his route for the next yards.
+        const route = routeOf(target);
+        let m = 0;
+        pathX[m] = rx; pathY[m++] = ry;
+        if (route !== null && route.length >= 2) {
+          let seg = 0, best = Infinity;
+          for (let i = 0; i + 1 < route.length; i++) {
+            const a = route[i]!, c = route[i + 1]!, dx = c.px - a.px, dy = c.py - a.py, len2 = dx * dx + dy * dy;
+            let u = len2 > 0 ? ((rx - a.px) * dx + (ry - a.py) * dy) / len2 : 0;
+            u = u < 0 ? 0 : u > 1 ? 1 : u;
+            const ex = a.px + dx * u - rx, ey = a.py + dy * u - ry, d = ex * ex + ey * ey;
+            if (d < best) { best = d; seg = i; }
+          }
+          let left = ahead, x = rx, y = ry;
+          for (let i = seg + 1; i < route.length && left > 0 && m < pathX.length; i++) {
+            const dx = route[i]!.px - x, dy = route[i]!.py - y, len = dSqrt(dx * dx + dy * dy);
+            if (len <= 0) continue;
+            const go = len < left ? len : left;
+            x += (dx / len) * go; y += (dy / len) * go; left -= go;
+            pathX[m] = x; pathY[m++] = y;
+          }
+        }
+        const first = slot < SLOT_COUNT / 2 ? SLOT_COUNT / 2 : 0;
+        keyBuf.length = 0; keyBuf.push(target);
+        for (let k = 0; k < n; k++) {
+          let pick = -1, pickD = Infinity;
+          for (let d = first; d < first + SLOT_COUNT / 2; d++) {
+            if (keyBuf.includes(d)) continue;
+            const px = (pl.posX[d]! - f.originX) * f.attackDir, py = (pl.posY[d]! - f.originY) * f.attackDir;
+            let near = Infinity;
+            for (let i = 0; i < m; i++) {
+              let dd: number;
+              if (i + 1 < m) {
+                const dx = pathX[i + 1]! - pathX[i]!, dy = pathY[i + 1]! - pathY[i]!, len2 = dx * dx + dy * dy;
+                let u = len2 > 0 ? ((px - pathX[i]!) * dx + (py - pathY[i]!) * dy) / len2 : 0;
+                u = u < 0 ? 0 : u > 1 ? 1 : u;
+                const ex = pathX[i]! + dx * u - px, ey = pathY[i]! + dy * u - py;
+                dd = ex * ex + ey * ey;
+              } else { const ex = pathX[i]! - px, ey = pathY[i]! - py; dd = ex * ex + ey * ey; }
+              if (dd < near) near = dd;
+            }
+            if (near < pickD) { pickD = near; pick = d; }
+          }
+          if (pick >= 0) keyBuf.push(pick);
+        }
+        services.perception.configure(slot, { keys: keyBuf });
+      };
       services.claimPasser(() => {
         if (!active || q === null) return -1;
         const ph = q.phase();
@@ -58,7 +130,7 @@ export function quarterbackPlug(): QuarterbackPlug {
       const decide: PlayStage = {
         name: 'decide',
         begin(w: TickWorld): void { ended = false; q!.decide.begin?.(w); },
-        run(w: TickWorld, dt: number): void { if (active) q!.decide.run(w, dt); },
+        run(w: TickWorld, dt: number): void { if (active) { nowWorld = w; q!.decide.run(w, dt); } },
       };
       const interact: PlayStage = {
         name: 'interact',
@@ -90,16 +162,47 @@ export function quarterbackPlug(): QuarterbackPlug {
       };
       return {
         stages: [decide, interact],
-        setPlay(): void {
+        setPlay(w: TickWorld): void {
           const contests = services.contests();
           if (q === null || builtFor !== contests) { q = build(contests); builtFor = contests; }
           const play = services.setup().qb ?? null;
           active = play !== null;
-          q.setPlay(play);
+          // His keys of the last play do not carry into this one (J13.1.1), and keys from the content port win.
+          if (keyedSlot >= 0 && services.setup().perception[keyedSlot]?.keys === undefined) services.perception.configure(keyedSlot, { keys: [] });
+          keyedSlot = -1; ownKeys = false; nowWorld = null;
+          if (play !== null && services.setup().perception[play.qbSlot]?.keys === undefined) { ownKeys = true; keyedSlot = play.qbSlot; }
+          q.setPlay(play === null ? null : withReceiverLegs(play, w, services.setup().presnap.offense.assignments));
         },
         explain: () => (q === null || !active ? [] : [{ record: q.record(), notes: q.notes().slice() }]),
       };
     },
+  };
+}
+
+/**
+ * The quarterback's play with what he knows of each receiver's legs from practice filled in (J7.3.1
+ * step 1): a target the content port left without them gets the top speed, acceleration and braking
+ * of the man in that slot, and the speed he carries through each cut of his drawn route (J2.1.3).
+ * His own side's knowledge only.
+ */
+export function withReceiverLegs(play: QbPlay, w: TickWorld, offense: readonly Assignment[]): QbPlay {
+  const fill = (t: QbTarget): QbTarget => {
+    if (t.topSpeedYps !== undefined) return t;
+    const info = w.slots[t.slot], a = offense[t.slot];
+    if (info === undefined) return t;
+    const legs = { movement: info.movement, params: w.params };
+    if (a !== undefined && t.route.length >= 2 && t.route.length === a.behavior.path.length + 1) {
+      const full = qbTargetOf(t.slot, a, legs);
+      return { ...t, topSpeedYps: full.topSpeedYps!, accelTauS: full.accelTauS!, brakeYps2: full.brakeYps2!, ...(full.cutShare ? { cutShare: full.cutShare } : {}) };
+    }
+    return { ...t, topSpeedYps: info.movement.vMaxYps, accelTauS: info.movement.tauS, brakeYps2: info.movement.aBrakeYps2 };
+  };
+  const read = (r: QbRead): QbRead => ({ ...r, target: fill(r.target), ...(r.ifDrives ? { ifDrives: fill(r.ifDrives) } : {}) });
+  return {
+    ...play, reads: play.reads.map(read), correctedReads: play.correctedReads === null ? null : play.correctedReads.map(read),
+    checkdown: play.checkdown === null ? null : fill(play.checkdown),
+    hot: play.hot === null ? null : { ...play.hot, target: fill(play.hot.target) },
+    mesh: play.mesh === null || play.mesh.throwTarget === undefined ? play.mesh : { ...play.mesh, throwTarget: fill(play.mesh.throwTarget) },
   };
 }
 
@@ -157,10 +260,27 @@ export function availablePlugs(): StagePlug[] { return [quarterbackPlug(), ballC
  * A `QbTarget` from a receiver's own assignment: the route as drawn (alignment first), the first cut
  * as the break he is thrown to, and whether the route ends by sitting down. For content ports.
  */
-export function qbTargetOf(slot: number, a: Assignment): QbTarget {
+/**
+ * A quarterback target from a drawn route. With `legs` (the receiver's movement parameters and the
+ * kinematics rows) it also carries what the quarterback knows of his own receiver from practice: his
+ * top speed, how he accelerates and brakes, and the speed he carries through each cut (J2.1.3), so
+ * the throw is timed to the man who runs the route (J7.3.1 step 1).
+ */
+export function qbTargetOf(slot: number, a: Assignment, legs?: { readonly movement: MovementParams; readonly params: ParamTable }): QbTarget {
   const route = [{ px: a.preSnap.align.px, py: a.preSnap.align.py }];
   let breakIndex = -1;
   for (const pt of a.behavior.path) { route.push({ px: pt.px, py: pt.py }); if (breakIndex < 0 && pt.kind === 'cut') breakIndex = route.length - 1; }
   const last = a.behavior.path[a.behavior.path.length - 1];
-  return { slot, route: route.length > 1 ? route : [], breakIndex, settles: last !== undefined && last.kind === 'settle' };
+  const base = { slot, route: route.length > 1 ? route : [], breakIndex, settles: last !== undefined && last.kind === 'settle' };
+  if (legs === undefined || route.length < 2) return base;
+  const kp = kinParams(legs.params), z = codZOf(legs.movement, kp), cutShare: number[] = [1];
+  for (let i = 1; i < route.length; i++) {
+    let share = 1;
+    if (i + 1 < route.length && a.behavior.path[i - 1]!.kind === 'cut') {
+      const ax = route[i]!.px - route[i - 1]!.px, ay = route[i]!.py - route[i - 1]!.py, cx = route[i + 1]!.px - route[i]!.px, cy = route[i + 1]!.py - route[i]!.py;
+      if ((ax !== 0 || ay !== 0) && (cx !== 0 || cy !== 0)) share = cutMultiplier(dAtan2(ax * cy - ay * cx, ax * cx + ay * cy), z, kp, PI);
+    }
+    cutShare.push(share);
+  }
+  return { ...base, topSpeedYps: legs.movement.vMaxYps, accelTauS: legs.movement.tauS, brakeYps2: legs.movement.aBrakeYps2, cutShare };
 }

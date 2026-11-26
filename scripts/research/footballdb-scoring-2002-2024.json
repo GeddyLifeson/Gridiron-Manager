@@ -1,0 +1,121 @@
+{
+ "source": "footballdb.com team scoring tables, regular season, read 2026-11-26 in the PC browser (footballdb.com/statistics/nfl/team-stats/scoring/YEAR/regular-season); team games and team points summed over 32 teams",
+ "note": "Points per game, both teams = points / (team games / 2). Matches the nflverse series to 3 decimals in all 23 seasons.",
+ "seasons": {
+  "2002": {
+   "teamGames": 512,
+   "teamPoints": 11097,
+   "pointsPerGameBothTeams": 43.348
+  },
+  "2003": {
+   "teamGames": 512,
+   "teamPoints": 10666,
+   "pointsPerGameBothTeams": 41.664
+  },
+  "2004": {
+   "teamGames": 512,
+   "teamPoints": 11000,
+   "pointsPerGameBothTeams": 42.969
+  },
+  "2005": {
+   "teamGames": 512,
+   "teamPoints": 10556,
+   "pointsPerGameBothTeams": 41.234
+  },
+  "2006": {
+   "teamGames": 512,
+   "teamPoints": 10577,
+   "pointsPerGameBothTeams": 41.316
+  },
+  "2007": {
+   "teamGames": 512,
+   "teamPoints": 11104,
+   "pointsPerGameBothTeams": 43.375
+  },
+  "2008": {
+   "teamGames": 512,
+   "teamPoints": 11279,
+   "pointsPerGameBothTeams": 44.059
+  },
+  "2009": {
+   "teamGames": 512,
+   "teamPoints": 10991,
+   "pointsPerGameBothTeams": 42.934
+  },
+  "2010": {
+   "teamGames": 512,
+   "teamPoints": 11283,
+   "pointsPerGameBothTeams": 44.074
+  },
+  "2011": {
+   "teamGames": 512,
+   "teamPoints": 11356,
+   "pointsPerGameBothTeams": 44.359
+  },
+  "2012": {
+   "teamGames": 512,
+   "teamPoints": 11651,
+   "pointsPerGameBothTeams": 45.512
+  },
+  "2013": {
+   "teamGames": 512,
+   "teamPoints": 11985,
+   "pointsPerGameBothTeams": 46.816
+  },
+  "2014": {
+   "teamGames": 512,
+   "teamPoints": 11565,
+   "pointsPerGameBothTeams": 45.176
+  },
+  "2015": {
+   "teamGames": 512,
+   "teamPoints": 11680,
+   "pointsPerGameBothTeams": 45.625
+  },
+  "2016": {
+   "teamGames": 512,
+   "teamPoints": 11661,
+   "pointsPerGameBothTeams": 45.551
+  },
+  "2017": {
+   "teamGames": 512,
+   "teamPoints": 11120,
+   "pointsPerGameBothTeams": 43.438
+  },
+  "2018": {
+   "teamGames": 512,
+   "teamPoints": 11952,
+   "pointsPerGameBothTeams": 46.688
+  },
+  "2019": {
+   "teamGames": 512,
+   "teamPoints": 11680,
+   "pointsPerGameBothTeams": 45.625
+  },
+  "2020": {
+   "teamGames": 512,
+   "teamPoints": 12692,
+   "pointsPerGameBothTeams": 49.578
+  },
+  "2021": {
+   "teamGames": 544,
+   "teamPoints": 12502,
+   "pointsPerGameBothTeams": 45.963
+  },
+  "2022": {
+   "teamGames": 542,
+   "teamPoints": 11860,
+   "pointsPerGameBothTeams": 43.764
+  },
+  "2023": {
+   "teamGames": 544,
+   "teamPoints": 11842,
+   "pointsPerGameBothTeams": 43.537
+  },
+  "2024": {
+   "teamGames": 544,
+   "teamPoints": 12464,
+   "pointsPerGameBothTeams": 45.824
+  }
+ }
+}

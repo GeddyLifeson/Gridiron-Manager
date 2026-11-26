@@ -33,6 +33,7 @@ export * as seats from './read-models/seats/index.ts';
 export * as seatsCommands from './commands/seats/index.ts';
 export * as gameplan from './read-models/gameplan/index.ts';
 export * as gameplanCommands from './commands/gameplan/index.ts';
+export * as presentationLive from './presentation/live/index.ts';
 export * as coachCalling from './coach-calling/index.ts';
 export * as legends from './read-models/legends/index.ts';
 export * as legendsCommands from './commands/legends/index.ts';

@@ -168,99 +168,85 @@
    "key": "roster.practice_squad_size",
    "value": 16,
    "unit": "count",
-   "factId": "F-league-0027",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0027"
   },
   {
    "key": "roster.practice_squad_international_slot",
    "value": 1,
    "unit": "count",
-   "factId": "F-league-0028",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0028"
   },
   {
    "key": "roster.practice_squad_group_b_max",
    "value": 10,
    "unit": "count",
-   "factId": "F-league-0029",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0029"
   },
   {
    "key": "roster.practice_squad_veteran_slots",
    "value": 6,
    "unit": "count",
-   "factId": "F-league-0030",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0030"
   },
   {
    "key": "roster.elevations_max_per_player_season",
    "value": 3,
    "unit": "count",
-   "factId": "F-league-0031",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0031"
   },
   {
    "key": "roster.ir_min_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-league-0032",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0032"
   },
   {
    "key": "roster.ir_return_designations",
    "value": 8,
    "unit": "count",
-   "factId": "F-league-0033",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0033"
   },
   {
    "key": "roster.ir_return_designations_postseason",
    "value": 2,
    "unit": "count",
-   "factId": "F-league-0034",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0034"
   },
   {
    "key": "roster.ir_returns_per_player",
    "value": 2,
    "unit": "count",
-   "factId": "F-league-0035",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0035"
   },
   {
    "key": "roster.ir_practice_window_days",
    "value": 21,
    "unit": "days",
-   "factId": "F-league-0036",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0036"
   },
   {
    "key": "roster.pup_min_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-league-0037",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0037"
   },
   {
    "key": "roster.nfi_min_games",
    "value": 4,
    "unit": "games",
-   "factId": "F-league-0038",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0038"
   },
   {
    "key": "waivers.claim_period_hours",
    "value": 24,
    "unit": "hours",
-   "factId": "F-league-0039",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0039"
   },
   {
    "key": "waivers.vested_min_seasons",
    "value": 4,
    "unit": "seasons",
-   "factId": "F-league-0040",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0040"
   },
   {
    "key": "trade.deadline_after_week",
@@ -296,29 +282,25 @@
    "key": "league_rules.draft.clock.r1_min",
    "value": 8,
    "unit": "min",
-   "factId": "F-league-0046",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "factId": "F-league-0046"
   },
   {
    "key": "league_rules.draft.clock.r2_min",
    "value": 7,
    "unit": "min",
-   "factId": "F-league-0047",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0047"
   },
   {
    "key": "league_rules.draft.clock.r3_6_min",
    "value": 5,
    "unit": "min",
-   "factId": "F-league-0048",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0048"
   },
   {
    "key": "league_rules.draft.clock.r7_min",
    "value": 4,
    "unit": "min",
-   "factId": "F-league-0049",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0049"
   },
   {
    "key": "league_rules.draft.comp_max_per_club",
@@ -372,8 +354,7 @@
    "key": "service.credited_games",
    "value": 3,
    "unit": "games",
-   "factId": "F-league-0058",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0058"
   },
   {
    "key": "league_rules.draft.eligibility_seasons",
@@ -592,34 +573,29 @@
    "key": "playoff.field_size",
    "value": 7,
    "unit": "count",
-   "factId": "F-league-0104",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0104"
   },
   {
    "key": "playoff.grouping",
    "value": "conference",
-   "factId": "F-league-0105",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0105"
   },
   {
    "key": "playoff.byes",
    "value": 1,
    "unit": "count",
-   "factId": "F-league-0106",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0106"
   },
   {
    "key": "playoff.reseed",
    "value": true,
-   "factId": "F-league-0107",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0107"
   },
   {
    "key": "playoff.campus_rounds",
    "value": 3,
    "unit": "count",
-   "factId": "F-league-0108",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-league-0108"
   },
   {
    "key": "compliance.work_rules_practice.fine_head_coach_first_cents",
@@ -1502,43 +1478,37 @@
    "key": "cap.amount_2021",
    "value": 182500000,
    "unit": "USD",
-   "factId": "F-cap-0043",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-cap-0043"
   },
   {
    "key": "cap.amount_2022",
    "value": 208200000,
    "unit": "USD",
-   "factId": "F-cap-0044",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-cap-0044"
   },
   {
    "key": "cap.amount_2023",
    "value": 224800000,
    "unit": "USD",
-   "factId": "F-cap-0045",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-cap-0045"
   },
   {
    "key": "cap.amount_2024",
    "value": 255400000,
    "unit": "USD",
-   "factId": "F-cap-0046",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-cap-0046"
   },
   {
    "key": "cap.veteran_benefit_2026",
    "value": 187500,
    "unit": "USD",
-   "factId": "F-cap-0047",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-cap-0047"
   },
   {
    "key": "cap.four_year_qualifying_2026",
    "value": 1550000,
    "unit": "USD",
-   "factId": "F-cap-0048",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-cap-0048"
   },
   {
    "key": "rookie.undrafted_pool_2024_usd",
@@ -1551,8 +1521,7 @@
    "key": "rookie.option_tiers",
    "value": 4,
    "unit": "count",
-   "factId": "F-cap-0050",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "factId": "F-cap-0050"
   },
   {
    "key": "cap.top51_excess_multiple",

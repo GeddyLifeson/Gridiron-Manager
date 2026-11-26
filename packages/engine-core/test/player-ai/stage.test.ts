@@ -629,5 +629,56 @@ describe('K1.4.1 learning feeds the gamble', () => {
   });
 });
 
+describe('a ball in the air (J3.5.1 landing estimate): men go to where they judge it comes down', () => {
+  // `landAt` stands for the perception module's estimate; null means he has not found the ball.
+  function flight(setup: (b: Bench) => void, landAt: (slot: number) => readonly [number, number] | null) {
+    const b = bench();
+    const { createPlayerAi } = requireAi();
+    const ai = createPlayerAi({ view: (s) => b.views[s]!, landing: (_w, slot, out) => { const at = landAt(slot); if (at === null) return false; out[0] = at[0]; out[1] = at[1]; return true; } });
+    const plays = new Array<SlotPlay | null>(SLOT_COUNT).fill(null);
+    plays[3] = slotPlay(goTo('route', 30, 10)); plays[4] = slotPlay(goTo('passSet', -4, 2)); plays[D] = slotPlay(goTo('zoneDrop', 8, 0));
+    b.views[3]!.at(10, 10); b.views[4]!.at(-4, 2); b.views[D]!.at(8, 0);
+    setup(b);
+    ai.setPlay(plays, { qbSlot: 0 });
+    for (let n = 1; n < 500; n++) {
+      (b.world.situation as { playNumber: number }).playNumber = n; b.world.tick = 0; b.world.events.length = 0;
+      ai.stage.begin!(b.world); ai.stage.run(b.world, 0.1);
+      if (ai.errorOf(3) === null && ai.errorOf(4) === null && ai.errorOf(D) === null && ai.deviations().length === 0) return b;
+    }
+    throw new Error('no clean play');
+  }
+  // A ball 1 s from landing at (14, 6): 20 yd/s, 20 yd out.
+  const inAir = (b: Bench): void => { for (const s of [3, 4, D]) { b.views[s]!.kind = 'passInFlight'; b.views[s]!.seeBall(-6, 6, 20, 0); } };
+  it('a defender who has found the ball leaves his drop for the landing spot, flat out', () => {
+    const b = flight(inAir, () => [14, 6]);
+    expect(b.world.intents[D]!.target).toEqual({ px: 14, py: 6 });
+    expect(b.world.intents[D]!.arrival).toBe('through');
+  });
+  it('a defender who has not found it keeps his assignment', () => {
+    const b = flight(inAir, (slot) => (slot === D ? null : [14, 6]));
+    expect(b.world.intents[D]!.target).toEqual({ px: 8, py: 0 });
+  });
+  it('a receiver who can get there leaves his route for the ball; one who cannot stays on it', () => {
+    expect(flight(inAir, () => [14, 6]).world.intents[3]!.target).toEqual({ px: 14, py: 6 });
+    expect(flight(inAir, () => [14, -30]).world.intents[3]!.target).toEqual({ px: 30, py: 10 });
+  });
+  it('a blocker does not chase it', () => {
+    expect(flight(inAir, () => [14, 6]).world.intents[4]!.target).toEqual({ px: -4, py: 2 });
+  });
+  it('with time to spare he gets under it and settles instead of running through the spot', () => {
+    const b = flight((x) => { inAir(x); x.views[D]!.at(13, 6); }, () => [14, 6]);
+    expect(b.world.intents[D]!.target).toEqual({ px: 14, py: 6 });
+    expect(b.world.intents[D]!.arrival).toBe('arrive');
+  });
+  it('nobody moves for a ball that is not a pass in flight, or when no estimate is plugged in', () => {
+    const held = flight((x) => { for (const s of [3, D]) x.views[s]!.seeBall(-6, 6, 20, 0); }, () => [14, 6]);
+    expect(held.world.intents[D]!.target).toEqual({ px: 8, py: 0 });
+    const b = bench();
+    b.plays[D] = slotPlay(goTo('zoneDrop', 8, 0)); b.views[D]!.at(8, 0); b.views[D]!.kind = 'passInFlight'; b.views[D]!.seeBall(-6, 6, 20, 0);
+    b.play(clean(b, [D]));
+    expect(b.world.intents[D]!.target).toEqual({ px: 8, py: 0 });
+  });
+});
+
 function requireAi() { return aiModule; }
 import * as aiModule from '../../src/player-ai/index.ts';
