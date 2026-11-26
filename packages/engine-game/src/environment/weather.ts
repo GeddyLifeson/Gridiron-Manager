@@ -3,7 +3,7 @@
 // the game's `weather` stream: period 0 draws from weather[game, 0], each later period from
 // weather[game, period]. Nothing is stored between periods, so a replay or a reload rebuilds the same
 // snapshots (J12.2.2 acceptance) and the flow only needs the Environment in its state.
-import type { Contract } from '@gm/engine-core';
+import { Contract } from '@gm/engine-core';
 import { deriveMultipliers } from './derive.ts';
 import type {
   ClimateNormals, ClimateStatus, EnvironmentDeps, GameEnvironmentInput, OutdoorState, PeriodEnvironment, Precip,
@@ -62,7 +62,8 @@ export function climateAt(normals: ClimateNormals | null, month: number, day: nu
 
 /** Chance of precipitation at kickoff from the month's normal precipitation (J12.2.1). */
 export function precipChance(c: ClimateAt, p: Contract.ParamTable): number {
-  return clamp(c.precipIn * p.num('environment.precip.chancePerInch'), 0, p.num('environment.precip.chanceMax'));
+  // A3.1 ruling 22: rain is possible in the driest month (floor chance).
+  return Contract.possible(clamp(c.precipIn * p.num('environment.precip.chancePerInch'), 0, p.num('environment.precip.chanceMax')));
 }
 
 /** Local hour at the start of a period. Period 0 (T minus 90 snapshot) and period 1 use the kickoff hour. */
