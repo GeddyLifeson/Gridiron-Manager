@@ -19,3 +19,4 @@ export {
   type FilmStock, type FilmLookSettings, type UniformDraw, type FilmLayer, type FilmLayerInput, type LeaderCard,
 } from './film.ts';
 export { LampText, type LampColour, SegmentClock, CgText, LowerThird, LeaderCardView, type LampTextProps, type SegmentClockProps, type CgTextProps, type LowerThirdProps, type LeaderCardViewProps } from './components.tsx';
+export { filmLookCanvas, VIGNETTE_BANDS, type FilmCanvas, type FilmLookCanvas, type LeaderWords } from './film-canvas.ts';

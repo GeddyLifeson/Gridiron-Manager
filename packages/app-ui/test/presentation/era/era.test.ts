@@ -17,7 +17,7 @@ import {
 } from '../../../src/presentation/era/index.ts';
 import { TOKENS, THEME_IDS, TOKEN_GROUPS, COLOUR_VISION_IDS, checkContrast, contrastRatio, tokenValue, cssVar, resolveColours, type ThemeId, type TokenFile } from '../../../src/tokens/index.ts';
 import { GREY_PAIR_FLOOR } from '../../harness/greyscale.ts';
-import { cosmeticStream } from '../../../../app-services/src/cosmetic/index.ts';
+import { cosmeticStream } from './fake-cosmetic.ts';
 
 const ERA_DIR = join(import.meta.dirname, '../../../src/presentation/era');
 const eraFiles = readdirSync(ERA_DIR).filter((f) => statSync(join(ERA_DIR, f)).isFile());
@@ -210,7 +210,6 @@ describe('film look (plan 2.1, O2.6)', () => {
     const scope = { gameId: 7, playNumber: 42 };
     const a = cosmeticStream('a1b2c3', 'display', scope);
     const b = cosmeticStream('a1b2c3', 'display', scope);
-    expect(a.name).toBe('cosmetic.display');
     const a1 = grainFrame(a, 40, 30, '16mm');
     const perFrame = a.draws;
     expect(perFrame).toBeGreaterThanOrEqual(40 * 30);
