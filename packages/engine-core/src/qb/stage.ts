@@ -10,27 +10,28 @@
 //
 // Draws: stream `qb`, keyed [game, play, player] (J13.2.1). A fixed block is taken at `begin`
 // (QB_BEGIN_DRAWS); after that exactly four uniforms are taken on every tick he holds the ball, used
-// or not, so a decision never shifts a later draw. Arrival and strip-sack draws use `contest`.
+// or not, so a decision never shifts a later draw. Arrival and strip-sack draws use `contest`; a ball
+// batted at the line draws from the flight's `ball` stream (J9.2.1).
 import {
   MOVE_MODES, SLOTS_PER_TEAM, SLOT_COUNT, TICK_S, issToZ, roundSimS, roundYd,
   type MoveMode, type PerceivedView, type RandomStream, type TickWorld, type TruthEvent,
 } from '@gm/schema';
-import { GRAVITY_YPS2, airDrag, ballParams, beginLoose, gustAimMultiplier, launchPass, passLaunch, solvePassFrom, windFromEnvironment, NO_WIND, type BallParams } from '../ball/index.ts';
+import { GRAVITY_YPS2, airDrag, airState, ballParams, ballStream, batChance, batLane, beginLoose, deflect, handsUpChance, setFlightVelocity, gustAimMultiplier, launchPass, passLaunch, solvePassFrom, windFromEnvironment, NO_WIND, type BallParams } from '../ball/index.ts';
 import { pickOutcome, type Contests } from '../contest/index.ts';
 import { dAtan2, dCos, dSqrt } from '../dmath.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import {
   accuracySdYd, anticipationEarlyS, blindsideFeelChance, clip, depthBand, dropDepthYd, eyesDownfieldChance, falsePressureChance, freePlaySeenChance,
-  hotSeenChance, interceptionCeiling, keyReadChance, knowsGroundingChance, maxBallSpeedYps, meshReadChance, platformMultiplier, readTimeS, releaseTimeS,
+  hotSeenChance, interceptionCeiling, keyReadChance, knowsGroundingChance, maxBallSpeedYps, meshFumbleChance, meshReadChance, platformMultiplier, pumpFakeChance, readTimeS, releaseTimeS,
   riskOffsetEp, riskyDumpChance, scrambleChance, separationSdYd, setTimeS, throwThresholdEp, type Platform,
 } from './formulas.ts';
 import { judgeTarget, newEstimate, standInValue, type Estimate, type JudgeContext, type Trajectory } from './judge.ts';
 import { qbParams, type QbParams } from './params.ts';
 import { qbPlayProblems, type QbPlay, type QbRead, type QbTarget } from './play.ts';
 
-export const QB_PHASES = ['wait', 'mesh', 'drop', 'pocket', 'release', 'extend', 'run', 'scripted', 'over'] as const;
+export const QB_PHASES = ['wait', 'mesh', 'drop', 'pocket', 'release', 'extend', 'run', 'scripted', 'over', 'pump'] as const;
 export type QbPhase = (typeof QB_PHASES)[number];
-const WAIT = 0, MESH = 1, DROP = 2, POCKET = 3, RELEASE = 4, EXTEND = 5, RUN = 6, SCRIPTED = 7, OVER = 8;
+const WAIT = 0, MESH = 1, DROP = 2, POCKET = 3, RELEASE = 4, EXTEND = 5, RUN = 6, SCRIPTED = 7, OVER = 8, PUMP = 9;
 
 export const PRESSURE_LEVELS = ['none', 'felt', 'imminent'] as const;
 export type PressureLevel = (typeof PRESSURE_LEVELS)[number];
@@ -40,12 +41,12 @@ const NONE = 0, FELT = 1, IMMINENT = 2;
 export const PRESSURE_RESPONSES = ['throwNow', 'pocketMovement', 'escape', 'throwAway', 'takeSack'] as const;
 export type PressureResponse = (typeof PRESSURE_RESPONSES)[number];
 
-/** Raw draws taken at `begin`, in this order: 15 uniforms (2 raw each) then 19 normals (4 raw each). */
-export const QB_BEGIN_UNIFORMS = 15;
+/** Raw draws taken at `begin`, in this order: 17 uniforms (2 raw each) then 19 normals (4 raw each). */
+export const QB_BEGIN_UNIFORMS = 17;
 export const QB_BEGIN_NORMALS = 19;
 export const QB_TICK_UNIFORMS = 4;
 const SEP_LOOKS = 16, SCRAMBLE_DRAWS = 4, KEY_DRAWS = 4;
-const U_HOT = 0, U_FALSE = 1, U_FREE = 2, U_KNOW = 3, U_DUMP = 4, U_MESH = 5, U_PITCH = 6, U_KEY = 7, U_SCRAMBLE = 11;
+const U_HOT = 0, U_FALSE = 1, U_FREE = 2, U_KNOW = 3, U_DUMP = 4, U_MESH = 5, U_PITCH = 6, U_KEY = 7, U_SCRAMBLE = 11, U_PUMP = 15, U_MESH_FUMBLE = 16;
 const N_SEP = 0, N_AIM = 16;
 
 const M_DOWN = MOVE_MODES.indexOf('down');
@@ -74,6 +75,11 @@ export interface QuarterbackOptions {
    * from here; otherwise this module runs him straight at the lane.
    */
   readonly onRun?: ((world: TickWorld, slot: number, why: RunReason) => boolean) | null;
+  /**
+   * J7.6.1 edge case: he pump-faked toward a field point. The perception and player AI modules present the
+   * "ball thrown" cue to defenders watching him; whether each bites is their own `mental` draw.
+   */
+  readonly onPumpFake?: ((world: TickWorld, slot: number, aimX: number, aimY: number) => void) | null;
   /** J7.2.1 acceptance: work the reads and never throw. Never set in a game. */
   readonly test?: { readonly noThrow?: boolean };
 }
@@ -101,6 +107,8 @@ export interface ThrowRecord {
   readonly hot: boolean;
   /** His estimate when he decided. Engine values: shown only in the coaching school (N5). */
   readonly pHat: number; readonly iHat: number; readonly value: number; readonly threshold: number;
+  /** Slot of the defender who batted it at the line (J9.2.1), or -1. The landing spot above is then where it was thrown, not where it went. */
+  readonly battedBySlot: number;
 }
 
 /** One change of his eyes or mind, for the film overlay (J7.2.1) and the explain record. */
@@ -123,7 +131,9 @@ export interface QbPlayRecord {
   readonly freePlaySeen: boolean;
   readonly everOutsidePocket: boolean;
   readonly response: PressureResponse | null;
-  readonly mesh: { readonly decision: 'give' | 'keep' | 'throw'; readonly correct: boolean; readonly ambiguous: boolean; readonly late: boolean } | null;
+  readonly mesh: { readonly decision: 'give' | 'keep' | 'throw'; readonly correct: boolean; readonly ambiguous: boolean; readonly late: boolean; readonly fumbled: boolean } | null;
+  /** Pump fakes this play: when, and at whom. */
+  readonly pumps: readonly { readonly tick: number; readonly targetSlot: number }[];
   /** Ticks at which he first looked at each read of the first pass through the progression. */
   readonly readTicks: readonly number[];
 }
@@ -154,14 +164,15 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   const trackPhase = new Uint8Array(TRACK), trackLook = new Int8Array(TRACK), trackPressure = new Uint8Array(TRACK);
   const est = newEstimate(), estAlt = newEstimate(), estThrow = newEstimate();
   const tgt = { px: 0, py: 0 }, face = { px: 0, py: 0 };
-  const noteLog: QbNote[] = [], readTicks: number[] = [];
+  const noteLog: QbNote[] = [], readTicks: number[] = [], pumps: { tick: number; targetSlot: number }[] = [];
+  const batAir = airState(0, 0, 0, 0, 0, 0);
 
   let next: QbPlay | null = null, cur: QbPlay | null = null;
   let P: QbParams | null = null, BP: BallParams | null = null, rng: RandomStream | null = null, ctx: JudgeContext | null = null;
   let seq: QbRead[] = [];
   // Grades as z, resolved once per play.
   let zFoot = 0, zProc = 0, zCov = 0, zBlitz = 0, zPocket = 0, zComposure = 0, zScramble = 0, zCod = 0, zRelease = 0, zArm = 0;
-  let zAccShort = 0, zAccMid = 0, zAccDeep = 0, zMove = 0, zUnderPressure = 0, zAnt = 0, zMeshRead = 0, zFi = 0, decisionRisk = 50, composure = 50;
+  let zAccShort = 0, zAccMid = 0, zAccDeep = 0, zMove = 0, zUnderPressure = 0, zAnt = 0, zMeshRead = 0, zFi = 0, zHandling = 0, decisionRisk = 50, composure = 50;
   let tReadS = 0, earlyS = 0, releaseS = 0, vBall = 0, riskOffset = 0, intCeil = 0, gustMult = 1, wet = false;
   let oneScore = 0, groundingExists = true, leftPy = 0, rightPy = 0;
   // Per-play state.
@@ -176,7 +187,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
   let meshSum = 0, meshN = 0, meshDecided = false, meshLate = false, pitchDone = false;
   let throwRecord: ThrowRecord | null = null, sack: QbPlayRecord['sack'] = null, kneel: QbPlayRecord['kneel'] = null, ran: QbPlayRecord['ran'] = null;
   let hazard: QbPlayRecord['groundingHazard'] = null, mesh: QbPlayRecord['mesh'] = null;
-  let ticksTracked = 0;
+  let ticksTracked = 0, pumpUntil = 0, pumpFrom = POCKET, pumped = false;
 
   const note = (w: TickWorld, text: string, slot = -1, value = 0): void => { noteLog.push({ tick: w.tick, note: text, slot, value }); };
   const detail = (w: TickWorld, code: string, value: number | null = null): void => {
@@ -204,7 +215,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     scrambleDraw = 0; keyDraw = 0; relTarget = null; underPressureNow = false; carrierOwns = false; stumbleUntil = 0;
     meshSum = 0; meshN = 0; meshDecided = false; meshLate = false; pitchDone = false;
     throwRecord = null; sack = null; kneel = null; ran = null; hazard = null; mesh = null;
-    noteLog.length = 0; readTicks.length = 0;
+    noteLog.length = 0; readTicks.length = 0; pumps.length = 0; pumped = false;
     felt.fill(0); sensed.fill(0); pressured.fill(0); hitDone.fill(0); rearm.fill(-2147483648);
     const play = cur;
     if (!play) return;
@@ -216,7 +227,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     zAccShort = zb('accuracy_short'); zAccMid = zb('accuracy_intermediate'); zAccDeep = zb('accuracy_deep'); zMove = zb('accuracy_on_the_move'); zUnderPressure = zb('accuracy_under_pressure');
     zCod = info.player.tests.changeOfDirectionZ - body;
     zProc = zm('processing_speed'); zCov = zm('coverage_reading_post_snap'); zBlitz = zm('blitz_recognition'); zAnt = zm('anticipation'); zMeshRead = zm('play_recognition');
-    zFi = zm('football_intelligence'); zComposure = zm('composure');
+    zFi = zm('football_intelligence'); zHandling = zb('play_fake_and_ball_handling'); zComposure = zm('composure');
     decisionRisk = a['decision_risk']!; composure = a['composure']!;
     tReadS = readTimeS(zProc, p); earlyS = anticipationEarlyS(zAnt, p); releaseS = releaseTimeS(zRelease, p); vBall = maxBallSpeedYps(zArm, p);
     riskOffset = riskOffsetEp(decisionRisk, play.instructions.risk, p);
@@ -441,6 +452,39 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     note(w, kind === 'throwaway' ? 'throwaway' : hot ? 'hot' : 'throw', target ? target.slot : -1, relV);
   }
 
+  /**
+   * J7.6.2 edge case, J9.2.1: a defender at the line gets a hand on it. Engine truth, like any contest.
+   * Each defender whose position overlaps the first yards of the flight below his reach takes two
+   * uniforms from the flight's `ball` stream, in slot order (hands up, then the bat); the first bat
+   * takes the three deflection draws and the pass flies on from his hands, still a forward pass.
+   */
+  function batAtLine(w: TickWorld, launch: { x: number; y: number; h: number; vx: number; vy: number; vh: number }): number {
+    const p = P!, bp = BP!, pl = w.players;
+    for (let d = SLOTS_PER_TEAM; d < SLOT_COUNT; d++) {
+      if (pl.moveMode[d] === M_DOWN || w.tick < pl.onGroundUntilTick[d]!) continue;
+      const lane = batLane(launch.x, launch.y, launch.h, launch.vx, launch.vy, launch.vh, pl.posX[d]!, pl.posY[d]!, bp);
+      const info = w.slots[d]!, reach = (info.player.heightIn / 36) * p['bat.reachPerHeight'];
+      if (lane.overlap <= 0 || lane.heightYd > reach || lane.heightYd < 0) continue;
+      const rng = ballStream(w), uHands = rng.uniform(), uBat = rng.uniform();
+      const zBat = issToZ(info.player.attributes['batting_passes']!) - pl.dFatigueZ[d]! - pl.dInjuryZ[d]!;
+      const up = uHands < handsUpChance(zBat, bp) ? 1 : 0;
+      if (uBat >= batChance(up, lane.overlap, lane.heightYd, reach, bp)) continue;
+      // The ball is taken to his hands along the launch line and deflected there.
+      const vxy = hyp(launch.vx, launch.vy), along = ((pl.posX[d]! - launch.x) * launch.vx + (pl.posY[d]! - launch.y) * launch.vy) / vxy;
+      batAir.x = launch.x + (launch.vx / vxy) * along; batAir.y = launch.y + (launch.vy / vxy) * along; batAir.h = lane.heightYd;
+      batAir.vx = launch.vx; batAir.vy = launch.vy; batAir.vh = launch.vh - GRAVITY_YPS2 * (along / vxy);
+      deflect(batAir, rng, bp);
+      setFlightVelocity(w, batAir);
+      w.emit({
+        type: 'detail', t: roundSimS(w.tick * TICK_S + along / vxy), code: 'qb.pass_batted', playerIds: [info.playerId, w.slots[cur!.qbSlot]!.playerId],
+        spot: { x: roundYd(batAir.x), y: roundYd(batAir.y) }, value: roundYd(lane.heightYd),
+      });
+      note(w, 'batted', d, lane.heightYd);
+      return d;
+    }
+    return -1;
+  }
+
   function doThrow(w: TickWorld, v: PerceivedView, hit: boolean): void {
     const p = P!, bp = BP!, play = cur!, s = play.qbSlot, pl = w.players, math = w.math, dir = w.frame.attackDir;
     const qx = v.self.px, qy = v.self.py, t = w.tick * TICK_S;
@@ -486,7 +530,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       hazard = { tick: w.tick, x: roundYd(sol.arrival.x), y: roundYd(sol.arrival.y) };
       detail(w, 'qb.grounding_hazard');
     }
-    launchPass(w, s, passLaunch(fx, fy, sol, bp), forward, bp);
+    const launch = passLaunch(fx, fy, sol, bp);
+    launchPass(w, s, launch, forward, bp);
     const beyond = qx > 0;
     w.emit({
       type: 'pass_release', t: roundSimS(t), marginYd: roundYd(qx < 0 ? -qx : qx), marginS: null, visibility: 'open',
@@ -495,12 +540,13 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       landingSpot: { x: roundYd(sol.arrival.x), y: roundYd(sol.arrival.y) }, airYd: roundYd(landPx),
       throwaway: relKind === 'throwaway', spike: false, underPressure: underPressureNow, passerOutsidePocket: everOutside, ballBeyondLine: beyond,
     });
-    if (options.ballInAir) options.ballInAir(w, s, sol.arrival.x, sol.arrival.y, Math.ceil(sol.flightTimeS / TICK_S));
+    const batted = forward ? batAtLine(w, launch) : -1;
+    if (batted < 0 && options.ballInAir) options.ballInAir(w, s, sol.arrival.x, sol.arrival.y, Math.ceil(sol.flightTimeS / TICK_S));
     throwRecord = {
       tick: w.tick, timeS: t, targetSlot: relTarget ? relTarget.slot : -1, kind: relKind, forward,
       aimX: fieldX(w, aimPx), aimY: fieldY(w, aimPy), landingX: sol.arrival.x, landingY: sol.arrival.y,
       missYd: hyp(along, across), heightErrorYd: height, errorSdYd: sd, trajectory, flightS: sol.flightTimeS, inRange: sol.inRange,
-      platform: { ...pf }, readIndex: relRead, hot: relHot, pHat: relP, iHat: relI, value: relV, threshold: relThr,
+      platform: { ...pf }, readIndex: relRead, hot: relHot, pHat: relP, iHat: relI, value: relV, threshold: relThr, battedBySlot: batted,
     };
     phase = OVER;
     void math;
@@ -581,6 +627,16 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     if (thr === thr) {
       if (!evaluating) { evaluating = true; visitStart = t > blockUntil ? t : blockUntil; }
       if (!options.test?.noThrow && est.v >= thr && est.iHat <= intCeil) { startRelease(w, t, targetOf(w, v, idx), 'pass', idx, false, est, thr); return; }
+      // J7.6.1 edge case: a defender sitting on the throw (undercutting it, or in the lane) gets a pump fake, once a play.
+      if (!pumped && level === NONE && est.nearestDefender >= 0 && (est.defenderPosition === 'undercut' || est.laneClearYd < p['judge.laneRadiusYd'])
+        && uBegin[U_PUMP]! < pumpFakeChance(zHandling, p, w.math)) {
+        pumped = true; pumpFrom = phase; phase = PUMP; pumpUntil = t + releaseS;
+        pumps.push({ tick: w.tick, targetSlot: seq[idx]!.target.slot });
+        detail(w, 'qb.pump_fake', est.nearestDefender);
+        note(w, 'pump fake', seq[idx]!.target.slot, est.v);
+        if (options.onPumpFake) options.onPumpFake(w, cur!.qbSlot, fieldX(w, est.aimPx), fieldY(w, est.aimPy));
+        return;
+      }
     }
     const due = evaluating ? visitStart + tReadS : waitStart + p['read.maxWaitS'] + tReadS;
     if (t + TICK_S >= due - EPS) { idx++; newVisit(w, due); if (idx < seq.length) note(w, 'read', seq[idx]!.target.slot, idx); }
@@ -662,12 +718,24 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       const correct = !ambiguous || uBegin[U_MESH]! < meshReadChance(zMeshRead, zDef, p, w.math);
       const seesCrash = correct ? crash : !crash;
       const decision = seesCrash ? m.onCrash : 'give';
-      meshLate = t > m.endS + p['mesh.lateS'];
-      mesh = { decision, correct, ambiguous, late: meshLate };
+      // A key he could not read cleanly is a decision made late (J7.7.1 edge case).
+      meshLate = ambiguous || t > m.endS + p['mesh.lateS'];
+      mesh = { decision, correct, ambiguous, late: meshLate, fumbled: false };
       detail(w, `qb.mesh.${decision}`, correct ? 1 : 0);
       note(w, `mesh: ${decision}`, m.keySlot, mean);
     }
     const decision = mesh!.decision;
+    // The exchange itself: one draw, made when the ball is pulled or handed (give, keep or throw alike).
+    const exchanging = decision !== 'give' || hyp(w.players.posX[m.backSlot]! - w.players.posX[s]!, w.players.posY[m.backSlot]! - w.players.posY[s]!) <= BP!['exchange.handoffRangeYd']!;
+    if (exchanging && uBegin[U_MESH_FUMBLE]! < meshFumbleChance(zHandling, mesh!.late, wet, p, w.math)) {
+      mesh = { ...mesh!, fumbled: true };
+      const at = { x: roundYd(w.players.posX[s]!), y: roundYd(w.players.posY[s]!) };
+      w.emit({ type: 'fumble', t: roundSimS(t), marginYd: null, marginS: null, visibility: 'crowded', kind: 'fumble', playerId: w.slots[s]!.playerId, side: w.slots[s]!.side, forcedById: null, spot: at });
+      detail(w, 'qb.mesh.fumble', mesh.late ? 1 : 0);
+      beginLoose(w, s, { x: w.players.posX[s]!, y: w.players.posY[s]!, h: BP!['snap.handHeightYd']!, vx: w.players.velX[s]! / 2, vy: w.players.velY[s]! / 2, vh: 0 }, BP!);
+      phase = OVER;
+      return;
+    }
     if (decision === 'throw') { unsetNow = true; startRelease(w, t, m.throwTarget!, 'pass', -1, false, null, 0); return; }
     const spot = { x: roundYd(w.players.posX[s]!), y: roundYd(w.players.posY[s]!) };
     const qbId = w.slots[s]!.playerId, backId = w.slots[m.backSlot]!.playerId;
@@ -715,7 +783,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     });
     throwRecord = {
       tick: w.tick, timeS: t, targetSlot: pitch.toSlot, kind: 'pitch', forward, aimX: tx, aimY: ty, landingX: tx, landingY: ty, missYd: 0, heightErrorYd: 0, errorSdYd: 0,
-      trajectory: 'firm', flightS: time, inRange: true, platform: { ...platformNow(false, false) }, readIndex: -1, hot: false, pHat: 0, iHat: 0, value: 0, threshold: 0,
+      trajectory: 'firm', flightS: time, inRange: true, platform: { ...platformNow(false, false) }, readIndex: -1, hot: false, pHat: 0, iHat: 0, value: 0, threshold: 0, battedBySlot: -1,
     };
     phase = OVER;
   }
@@ -749,7 +817,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     });
     throwRecord = {
       tick: w.tick, timeS: t, targetSlot: -1, kind: 'spike', forward: true, aimX: landX, aimY: fy, landingX: landX, landingY: fy, missYd: 0, heightErrorYd: 0, errorSdYd: 0,
-      trajectory: 'drive', flightS: fall, inRange: true, platform: { ...platformNow(false, false) }, readIndex: -1, hot: false, pHat: 0, iHat: 0, value: 0, threshold: 0,
+      trajectory: 'drive', flightS: fall, inRange: true, platform: { ...platformNow(false, false) }, readIndex: -1, hot: false, pHat: 0, iHat: 0, value: 0, threshold: 0, battedBySlot: -1,
     };
     phase = OVER;
   }
@@ -850,6 +918,14 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     }
     // Past the line he is a runner and may not throw forward (B5, J7.5.1).
     if (v.self.px > 0 && phase !== RELEASE) { startRun(w, v, 'scramble'); track(w); return; }
+
+    // A pump fake is a release started and stopped: it costs the release time, then he is back on the same read.
+    if (phase === PUMP) {
+      stay(w, v);
+      if (t >= pumpUntil - EPS) { phase = pumpFrom; newVisit(w, t); }
+      track(w);
+      return;
+    }
 
     if (phase === RELEASE) {
       if (movingNow) move(w, tgt.px, tgt.py, 'run', 1, 'arrive'); else stay(w, v);
@@ -996,7 +1072,7 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     currentRead: () => (phase === POCKET || phase === EXTEND) && idx < seq.length ? idx : -1,
     record: () => ({
       tSetS: tSet, launchPx, launchPy, setPx, setPy, throwRecord, sack, kneel, ran, groundingHazard: hazard, restarted, hotSeen, falsePressure: falseDone,
-      freePlaySeen: freeSeen, everOutsidePocket: everOutside, response, mesh, readTicks: readTicks.slice(),
+      freePlaySeen: freeSeen, everOutsidePocket: everOutside, response, mesh, readTicks: readTicks.slice(), pumps: pumps.slice(),
     }),
     notes: () => noteLog,
     track: () => ({ phase: trackPhase, look: trackLook, pressure: trackPressure, ticks: ticksTracked }),
