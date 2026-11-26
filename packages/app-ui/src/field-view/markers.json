@@ -1,0 +1,30 @@
+{
+  "$comment": "O6.3.1 marker table (ui/markers.json in the bible). Shapes are a display choice (Assumption, design), not a league standard. The user may edit this table. Defensive triangles point at the offense.",
+  "groups": {
+    "OL": { "shape": "circle", "fill": "filled", "outline": "normal", "mark": "none" },
+    "C": { "shape": "square", "fill": "filled", "outline": "normal", "mark": "none" },
+    "QB": { "shape": "circle", "fill": "open", "outline": "normal", "mark": "bar" },
+    "B": { "shape": "circle", "fill": "open", "outline": "normal", "mark": "dot" },
+    "TE": { "shape": "circle", "fill": "open", "outline": "heavy", "mark": "none" },
+    "WR": { "shape": "circle", "fill": "open", "outline": "normal", "mark": "none" },
+    "DL": { "shape": "triangle", "fill": "filled", "outline": "normal", "mark": "none" },
+    "LB": { "shape": "triangle", "fill": "open", "outline": "normal", "mark": "bar" },
+    "CB": { "shape": "triangle", "fill": "open", "outline": "normal", "mark": "none" },
+    "S": { "shape": "diamond", "fill": "open", "outline": "normal", "mark": "none" },
+    "ST": { "shape": "smallSquare", "fill": "filled", "outline": "normal", "mark": "none" }
+  },
+  "roles": {
+    "LT": "OL", "LG": "OL", "RG": "OL", "RT": "OL", "OL": "OL", "OT": "OL", "OG": "OL", "T": "OL", "G": "OL",
+    "C": "C",
+    "QB": "QB",
+    "RB": "B", "HB": "B", "TB": "B", "FB": "B",
+    "TE": "TE", "Y": "TE", "H": "TE",
+    "WR": "WR", "X": "WR", "Z": "WR", "SL": "WR",
+    "DE": "DL", "DT": "DL", "NT": "DL", "DL": "DL", "EDGE": "DL",
+    "LB": "LB", "ILB": "LB", "MLB": "LB", "OLB": "LB", "SAM": "LB", "MIKE": "LB", "WILL": "LB",
+    "CB": "CB", "NB": "CB", "NCB": "CB", "DB": "CB",
+    "S": "S", "FS": "S", "SS": "S",
+    "K": "ST", "P": "ST", "LS": "ST", "KR": "ST", "PR": "ST", "HOLD": "ST"
+  },
+  "fallback": { "offense": "WR", "defense": "CB" }
+}
