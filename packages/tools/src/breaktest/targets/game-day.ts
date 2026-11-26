@@ -78,7 +78,7 @@ export class GameDayTarget implements BreakTarget {
       case 'press': s.press(a.args['key'] as string); break;
       case 'burst': s.pressAll(a.args['keys'] as string[]); break;
       case 'wait': s.wait(a.args['ms'] as number); break;
-      case 'settle': s.driver.settle(a.args['stepMs'] as number); break;
+      case 'settle': s.driver.settle(a.args['stepMs'] as number); s.wait(0); break; // the host's raw frame step, then the session catches up
       default: return { accepted: false, reason: `unknown action ${a.kind}` };
     }
     if (wasFinal && this.hash() !== before) return { accepted: true, note: 'state changed after the final whistle' };
@@ -95,16 +95,16 @@ export class GameDayTarget implements BreakTarget {
     if (p?.late || !p || !st.open) { s.wait(1000); return; }
     if (st.step === 'prompt') { s.press(p.request.type === 'challenge' ? 'Digit1' : 'Enter'); return; }
     if (st.step === 'fourth') { s.press(st.open.situation.toGoal <= 35 ? 'Digit3' : roll < 0.15 ? 'Digit1' : 'Digit2'); return; }
-    if (st.step !== 'select') { s.driver.settle(); return; }
-    if (st.notice === 'console.queuedReady' && st.selected) { s.press('Enter'); s.driver.settle(); return; }
+    if (st.step !== 'select') { s.settle(); return; }
+    if (st.notice === 'console.queuedReady' && st.selected) { s.press('Enter'); s.settle(); return; }
     const sheet = st.cfg.sheets[st.open.unit];
     const b = sheet?.boxes.find((x) => x.id === st.focus.boxId);
     const count = Math.min(b?.entries.length ?? 0, 9);
-    if (count === 0) { s.driver.settle(); return; }
+    if (count === 0) { s.settle(); return; }
     s.press(`Digit${1 + Math.floor(roll * count)}`);
     if (!s.driver.state.open) return;
     s.press('Enter');
-    s.driver.settle();
+    s.settle();
   }
 
   invariants(): Violation[] {
