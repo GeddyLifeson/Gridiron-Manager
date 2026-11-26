@@ -66,7 +66,16 @@ const ROWS: readonly ParamRow[] = [
   ['pickDelayMaxS', 0.4, 0.2, 0.8, 's', 'bible', 'J2.5.3', 'J2.5.3 mesh test'],
   ['pickCrossYd', 0.5, 0.2, 1.5, 'yd', 'bible', 'J2.5.3', 'J2.5.3 mesh test'],
   ['blindsideDeg', 100, 70, 150, 'deg', 'bible', 'J2.6.1', 'J10 injury and fumble hazards'],
-  ['hitEnergyScale', 1, 0.01, 100, 'ratio', 'assumption', 'J2.6.1', 'J6.6: a league-typical open-field tackle is 1.0'],
+  ['hitEnergyScale', 1, 0.01, 100, 'ratio', 'assumption', 'J2.6.1', 'J6.6: multiplies the normalised energy; 1 keeps the typical tackle at 1.0'],
+  // J2.6.1 says hit energy is in units where a league-typical open-field tackle is 1.0. These two rows define
+  // that tackle; contactNumbers divides by their reduced mass times closing speed squared (102 * 5^2 = 2550
+  // lb yd^2/s^2). Before they existed the raw lb yd^2/s^2 value went out, about 2,500 times too big.
+  // Cross-checks (both Assumption, not triple verified): a 210 lb carrier met by a 200 lb tackler gives a reduced
+  // mass of 102 lb; NFL tracking puts a ball carrier at about 5 yd/s at first contact (Nguyen et al. 2024,
+  // arXiv 2403.14769). A helmet-to-helmet hard hit closes at 9.3 m/s = 10.2 yd/s (Viano and Pellman 2005,
+  // Neurosurgery 56:266; Pellman et al. 2003, Neurosurgery 53:799), about 4 on this scale.
+  ['typicalReducedLb', 102, 60, 160, 'lb', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
+  ['typicalClosingYps', 5, 3, 8, 'yd/s', 'assumption', 'J2.6.1', 'J6.6 (typical open-field tackle = 1.0)'],
 ];
 
 export const PARAMS: ParamFile = defineParams('kinematics', '0.1.0', ROWS);
