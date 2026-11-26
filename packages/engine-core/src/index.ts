@@ -19,3 +19,5 @@ export * as playerAi from './player-ai/index.ts';
 export * as ball from './ball/index.ts';
 export * as qb from './qb/index.ts';
 export * as tickResolver from './tick-resolver/index.ts';
+export * as carrier from './carrier/index.ts';
+export * as foulsInjuries from './fouls-injuries/index.ts';

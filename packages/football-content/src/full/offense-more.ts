@@ -211,4 +211,28 @@ function goalLinePower(): PlayDef {
     DESIGN_VALUES]);
 }
 
-export const MORE_PLAYS: readonly PlayDef[] = [insideVeer(), midline(), trap(), wham(), pinPull(), bunchTrail(), emptyStick(), goalLinePower()];
+// ---- Speed option --------------------------------------------------------------------------------
+function speedOption(): PlayDef {
+  const F = 'gun_2x2_11';
+  const c = 'speedOptionRight';
+  const reach = (role: string) => slot(F, role, { behavior: 'runBlock', params: { scheme: 'outsideZone', job: 'reach' }, concept: c, rules: [blockMan('Reach the man on my play-side shoulder; climb if uncovered', 'reach')] });
+  return mk('qb_speed_option_right', 'Speed Option Right', 'qb_run', F, true, '11', 'right', 'constraint', [
+    reach('LT'), reach('LG'), reach('C'), reach('RG'),
+    slot(F, 'RT', { behavior: 'runBlock', params: { scheme: 'outsideZone', job: 'arc', leave: 'endMan' }, concept: c, rules: [climb('Leave the end man for the quarterback; arc to the second level')] }),
+    slot(F, 'Q', { behavior: 'quarterback', params: { action: 'speedOption', read1: 'endManOnLine', pitch: 'role:R', attack: 'outsideShoulder', pitchWhen: 'readTakesQb', keep: 'readTakesPitch' }, path: [through(-3.5, 2), through(-1.5, 3.5), through(2, 4.5)], concept: c, load: 2, gaze: 'key',
+      rules: [clause('End man takes me: pitch and drift toward the pitch man', test('myManStunts', { dir: 'in' }), [act('continue')]), clause('End man widens to the pitch: keep and turn up', test('myManStunts', { dir: 'out' }), [act('continue')])] }),
+    slot(F, 'R', { behavior: 'ballCarrier', params: { track: 'pitch', relation: 'fiveByOne' }, path: [through(-5, 4), through(-4.5, 8), through(1, 11)], concept: c, load: 1.5,
+      rules: [clause('Keep the pitch relationship; outflank the last man on the line, then get vertical', test('timeGt', { s: 0 }), [act('runPath')])] }),
+    slot(F, 'Y', { behavior: 'runBlock', params: { scheme: 'speedOption', job: 'arc' }, path: [through(1, 8.5), through(4, 9)], concept: c, rules: [clause('Arc release to block for the pitch back; climb to the safety if nobody comes', test('timeGt', { s: 0 }), [act('block', { target: 'nearestDefender', type: 'lead' })])] }),
+    stalk(F, 'Z', c, 'Stalk: attack the defender\'s outside shoulder'), stalk(F, 'X', c), stalk(F, 'H', c),
+  ], ['The quarterback attacks the outside shoulder of the end man and pitches the moment he takes the quarterback; keeps if he widens to the pitch.', 'The line zone-blocks and leaves the end man; the slot arcs for the pitch back; the receivers stalk.'], [
+    { claim: 'Speed option: no dive; the quarterback attacks the end man on the line and pitches if he takes the quarterback, keeps if he takes the pitch back', status: 'Verified', sources: ['brinkley-speed', 'annese-speed', 'richters-veer'] },
+    { claim: 'The quarterback attacks the end man\'s outside shoulder and plants the instant he widens or goes upfield', status: '1 of 3', sources: ['brinkley-speed'] },
+    { claim: 'The pitch back keeps about a five-yard pitch relationship (5x1), outflanks the last man on the line, then gets vertical', status: 'Verified', sources: ['richters-veer', 'psu-drills', 'annese-speed'] },
+    { claim: 'Zone blocking leaves the last man on the line; play-side linemen arc to the second level', status: 'Verified', sources: ['brinkley-speed', 'annese-speed', 'richters-veer'] },
+    { claim: 'The slot or tight end arc-releases for the pitch back, the receivers stalk', status: '2 of 3', sources: ['brinkley-speed', 'psu-drills'] },
+    { claim: 'Running it from gun doubles with the back beside the quarterback is a design choice (the pages use gun, pro and empty sets)', status: 'Assumption', sources: [] },
+    NO_READ_SELECTOR, DESIGN_VALUES]);
+}
+
+export const MORE_PLAYS: readonly PlayDef[] = [insideVeer(), midline(), trap(), wham(), pinPull(), bunchTrail(), emptyStick(), goalLinePower(), speedOption()];

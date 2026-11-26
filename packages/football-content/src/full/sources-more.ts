@@ -43,4 +43,17 @@ export const MORE_SOURCES: readonly Source[] = [
   s('fdpb-goalline', 'fdpb', `FirstDown PlayBook (no byline), "Backs on the wall: what's your call," 2021-03-05, teaser only (${DF('GD')})`, 'https://firstdown.playbooktech.com/coaches-community/backs-on-the-wall-whats-your-call', 'secondary'),
   s('coiner-goalline', 'coiner', `Charlie Coiner, "Preparing for goal line offense and defense," FirstDown PlayBook, 2024-08-28 (${DF('GE')})`, 'https://firstdown.playbooktech.com/coaches-community/preparing-for-goal-line-offense-defense'),
   s('mitchell-gorilla', 'mitchell', `William Mitchell (Lewisville HS, SC), goal line "GORILLA" unit, X&O Labs, undated, cut before the alignments (${DF('GF')})`, 'https://www.xandolabs.com/?p=6634'),
+  // ---- Second pass: speed option, short-yardage defense, quarters variants ----
+  s('brinkley-speed', 'brinkley', `Brinkley Football Systems (no byline), "Different ways to run speed option," undated (${DF('SA')})`, 'https://brinkleyfootballsystems.substack.com/p/different-ways-to-run-speed-option', 'secondary'),
+  s('annese-speed', 'annese', `Tony Annese (Ferris State) via Glazier Football, "Running a successful speed option," 2021-11-04 (${DF('SB')})`, 'https://glazierclinics.com/football-coach-resources/running-a-successful-speed-option'),
+  s('richters-veer', 'richters', `Alex Richters (Royal HS, TX), "34 Veer," Gridiron Strategies play of the week, undated (${DF('SC')})`, 'https://gridironstrategies.com/play/34-veer'),
+  s('psu-drills', 'psu-hs', `Penn State high school coaching site (no byline), "2019 Offensive Drill Teaching" (PDF) (${DF('SD')})`, 'https://sites.psu.edu/hefcoach14/files/2019/06/NEW-2019-O-Drill-Teaching.pdf', 'secondary'),
+  s('long-bear', 'long', `Jeff Long (Moravian University), bear front article, X&O Labs, undated, cut after the intro (${DF('SE')})`, 'https://www.xandolabs.com/?p=133564'),
+  s('smalley-bear', 'smalley', `Kai Smalley (Snohomish HS), "Defending Option and Gap Schemes with the Bear Front," X&O Labs, 2017-06-26, cut mid-article (${DF('SF')})`, 'https://www.xandolabs.com/?p=17748'),
+  s('coiner-oregon', 'coiner', `Charlie Coiner, "Oregon short yardage 4I technique pays off," FirstDown PlayBook, 2023-10-31 (${DF('SG')})`, 'https://firstdown.playbooktech.com/coaches-community/oregon-short-yardage-4i-technique-pays-off'),
+  s('davidson-shortyardage', 'davidson', `Dean Davidson, short yardage and goal line package, Wide Zone Warriors, 2024-06-28, paywalled after the intro (${DF('SH')})`, 'https://widezonewarriors.substack.com/p/developing-a-short-yardage-goal-line'),
+  s('grabowski-pruitt', 'grabowski', `Keith Grabowski, "Defending 3x1 formations with Jeremy Pruitt," USA Football, 2020-01-31 (${DF('QC')})`, 'https://blogs.usafootball.com/blog/7803/defending-3x1-formations-with-jeremy-pruitt'),
+  s('kuchar-solo', 'kuchar', `Mike Kuchar with Rich Nagy, "Solo coverage: Lehigh's quarters run fit to defend 3x1 runs/RPOs," X&O Labs, 2026-03-09, teaser (${DF('QD')})`, 'https://www.xandolabs.com/?p=155881'),
+  s('kou-trips', 'kou', `Coach Kou, "Pass defense: defending trips and 3x1 with combination coverage," 2023-06-09 (${DF('QE')})`, 'https://coachkoufootball.substack.com/p/pass-defense-defending-trips-and'),
+  s('coyote-cover4', 'coyote', `Space Coyote, "Football Fundamentals: Cover 4 defense coverage," Breakdown Sports, 2015-05-06 (${DF('QF')})`, 'https://breakdownsports.blogspot.com/2015/05/football-fundamentals-cover-4-defense-playbook.html'),
 ];

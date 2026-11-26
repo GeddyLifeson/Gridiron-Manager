@@ -13,7 +13,7 @@ import { isActive } from '../loop/lifecycle.ts';
 import { RELEASED } from '../loop/events.ts';
 import { param as loopParam } from '../loop/params.ts';
 import type { LiveWorld, StepContext, StepHandler } from '../loop/types.ts';
-import { ageIn, gradeContext, levelOfTeam, positionTargets, rosteredSet, specOf, type GradeContext, type Level, type TurnoverBinding } from './binding.ts';
+import { ageIn, gradeContext, levelOfTeam, positionTargets, rosteredSet, specOf, type GradeContext, type Level, type Phase, type PolicyContext, type TurnoverBinding } from './binding.ts';
 import { hasEligibility } from './development.ts';
 import { ELIGIBILITY_ENDED, LEFT_UNSIGNED, PLAYER_DRAFTED, PLAYER_RETIRED, PLAYER_SIGNED } from './events.ts';
 import { param, RULE_KEY } from './params.ts';
@@ -34,13 +34,14 @@ export function ruleSetOf(b: TurnoverBinding, level: Level, seasonYear: number):
 
 const pid = (id: number) => ({ kind: 'person' as const, id });
 
-interface Cycle {
+interface Cycle extends PolicyContext {
   readonly ctx: StepContext;
   readonly world: LiveWorld;
   readonly b: TurnoverBinding;
   readonly season: number;
   readonly grades: GradeContext;
   readonly counts: Record<string, number>;
+  readonly draftedRound: Map<number, number>;
 }
 
 function bump(c: Cycle, k: string, by = 1): void { c.counts[k] = (c.counts[k] ?? 0) + by; }
@@ -79,8 +80,11 @@ function score(c: Cycle, teamId: number, id: number): number {
   return c.b.policy?.boardScore?.(c.grades, teamId, id, need) ?? c.grades.grade(teamId, id) + param('need.weight') * need;
 }
 
-/** Best available for a team from a candidate list (ties to the lower id). */
-function best(c: Cycle, teamId: number, ids: readonly number[]): number | null {
+/** Best available for a team from a candidate list: the policy's pick, else the default board (ties to the lower id). */
+function best(c: Cycle, teamId: number, ids: readonly number[], phase: Phase): number | null {
+  const chosen = c.b.policy?.pick?.(c, teamId, ids, phase) ?? null;
+  if (chosen === 'pass') return null;
+  if (chosen !== null && ids.includes(chosen)) return chosen;
   let top: number | null = null, topScore = -Infinity;
   for (const id of ids) {
     const s = score(c, teamId, id);
@@ -187,13 +191,16 @@ function dropFromPools(world: LiveWorld, id: number): void {
 /** Round-robin signings: each team in order signs its best candidate until it reaches `upTo` or the list is empty. */
 function fill(c: Cycle, order: readonly number[], candidates: number[], upTo: (teamId: number) => number, kind: string, onSign?: (id: number) => void): number[] {
   const left = [...candidates];
+  // A team that takes nobody is done for this round of signings (K7.4.2: he signs only players worth more than replacement).
+  const done = new Set<number>();
   let moved = true;
   while (moved && left.length > 0) {
     moved = false;
     for (const teamId of order) {
       if ((c.world.rosters.get(teamId) ?? []).length >= upTo(teamId) || left.length === 0) continue;
-      const id = best(c, teamId, left);
-      if (id === null) continue;
+      if (done.has(teamId)) continue;
+      const id = best(c, teamId, left, { kind: kind as Phase['kind'] });
+      if (id === null) { done.add(teamId); continue; }
       left.splice(left.indexOf(id), 1);
       onSign?.(id);
       sign(c, teamId, id, kind);
@@ -209,6 +216,12 @@ function cutdown(c: Cycle, teamId: number): void {
   const targets = positionTargets(spec);
   const ids = [...(c.world.rosters.get(teamId) ?? [])].sort((x, y) => c.grades.grade(teamId, y) - c.grades.grade(teamId, x) || x - y);
   if (ids.length <= spec.rosterLimit) return;
+  const chosen = c.b.policy?.cutdown?.(c, teamId, ids, spec.rosterLimit, targets) ?? null;
+  if (chosen !== null && chosen.length <= spec.rosterLimit && chosen.every((id) => ids.includes(id))) {
+    const keep = new Set(chosen);
+    for (const id of ids) if (!keep.has(id)) release(c, teamId, id);
+    return;
+  }
   const kept = new Set<number>();
   const have: Record<string, number> = {};
   for (const id of ids) {
@@ -230,10 +243,12 @@ function runDraft(c: Cycle, level: Level, order: readonly number[], shares: Map<
   const selections = draft.selectionOrder(slots, shares, ledger, rules);
   const pool = take(c.world, POOL.proEntry).filter((id) => available(c.world, id));
   const drafted: number[] = [];
+  const rounds = rules.num(RULE_KEY.draftRounds);
   for (const s of selections) {
-    const id = best(c, s.ownerClubId, pool.filter((x) => !drafted.includes(x)));
+    const id = best(c, s.ownerClubId, pool.filter((x) => !drafted.includes(x)), { kind: 'draft', round: s.round, rounds });
     if (id === null) break;
     drafted.push(id);
+    c.draftedRound.set(id, s.round);
     c.world.rosters.set(s.ownerClubId, [...(c.world.rosters.get(s.ownerClubId) ?? []), id]);
     c.ctx.emit({ type: PLAYER_DRAFTED, date: c.world.date, subjects: [pid(id)], payload: { round: s.round, overall: s.overall, team: s.ownerClubId }, witnesses: { kind: 'public' }, tier: c.ctx.tierOfTeam(s.ownerClubId) });
     bump(c, 'drafted');
@@ -287,7 +302,8 @@ function collegeSignings(c: Cycle, level: Level): void {
   for (const [pool, kind] of [[POOL.recruits, 'recruit'], [POOL.walkOns, 'walk_on']] as const) {
     const ids = c.world.pools.get(pool) ?? [];
     const ready = ids.filter((id) => available(c.world, id) && ageIn(c.world.people.get(id)!, c.season) >= enrol);
-    const left = new Set(fill(c, order, ready, limit, kind));
+    const offered = kind === 'recruit' ? recruitByOffers(c, order, ready, limit) : ready;
+    const left = new Set(fill(c, order, offered, limit, kind));
     // Recruits not signed at enrolment age play somewhere the world does not hold: they leave its football.
     for (const id of left) leaveFootball(c, id);
     bump(c, `unsigned_${kind}`, left.size);
@@ -296,11 +312,43 @@ function collegeSignings(c: Cycle, level: Level): void {
   }
 }
 
+/**
+ * K7.5.1 offers, then the recruit's choice (TO-08): each program offers down its own board; recruits, best
+ * public grade first, take the offer from the program they rank highest (prestige plus their own noise) that
+ * still has a place. Returns the recruits nobody signed, for the default fill. Without the policy hook every
+ * ready recruit goes to the default fill.
+ */
+function recruitByOffers(c: Cycle, order: readonly number[], ready: readonly number[], limit: (teamId: number) => number): number[] {
+  const offersOf = c.b.policy?.recruitOffers;
+  if (!offersOf) return [...ready];
+  const offers = new Map<number, number[]>();
+  for (const teamId of order) {
+    const open = limit(teamId) - (c.world.rosters.get(teamId) ?? []).length;
+    if (open <= 0) continue;
+    for (const id of offersOf(c, teamId, ready, open) ?? []) offers.set(id, [...(offers.get(id) ?? []), teamId]);
+  }
+  const prestige = new Map(c.world.teams.map((t) => [t.id, t.prestige]));
+  const left: number[] = [];
+  const byGrade = [...ready].sort((x, y) => c.grades.publicGrade(y) - c.grades.publicGrade(x) || x - y);
+  for (const id of byGrade) {
+    const s = stream(c.world.seed, STREAM_MOVES, ['recruit_choice', id, c.season]);
+    const open = (offers.get(id) ?? []).filter((t) => (c.world.rosters.get(t) ?? []).length < limit(t)).sort((x, y) => x - y);
+    let top: number | null = null, topPull = -Infinity;
+    for (const t of open) {
+      const pull = (prestige.get(t) ?? 0) + s.normal() * param('recruit.prestigeNoiseSd');
+      if (pull > topPull) { top = t; topPull = pull; }
+    }
+    if (top === null) { left.push(id); continue; }
+    sign(c, top, id, 'recruit');
+  }
+  return left;
+}
+
 export function rosterMovesStep(b: TurnoverBinding): StepHandler {
   return (ctx) => {
     const { world } = ctx;
     if (world.week !== 0 || world.seasons.length === 0) return { offseason: false };
-    const c: Cycle = { ctx, world, b, season: world.date.seasonYear, grades: gradeContext(world, rosteredSet(world)), counts: {} };
+    const c: Cycle = { ctx, world, b, season: world.date.seasonYear, grades: gradeContext(world, rosteredSet(world)), counts: {}, draftedRound: new Map() };
     const levels = Object.keys(b.content.levels).sort() as Level[];
     for (const level of levels) endEligibility(c, level);
     for (const level of levels) if (b.rule(level, RULE_KEY.seasonsOfCompetition) === undefined) proOffseason(c, level);

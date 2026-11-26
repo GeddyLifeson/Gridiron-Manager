@@ -1,6 +1,7 @@
 // Field markings in field-frame yards (I9.1.1, O2.3.1). Built once per geometry and cached; the
 // renderer only maps them through the camera. Field size, goal lines and hashes come from the rule
 // set (FieldGeometry); the finer markings come from markings.json until rule keys exist (CR-G03-3).
+// Pro and college sets differ (sideline ticks, number placement, try line); pick one with `markingsFor`.
 import data from './markings.json' with { type: 'json' };
 import type { FieldGeometryLike } from './types.ts';
 
@@ -10,19 +11,30 @@ const SOURCES_FOR_VERIFIED = 3;
 
 export interface MarkingSet {
   readonly sources: readonly { title: string; where: string; read: string }[];
+  /** Fields the rule text does not state: display choices, listed so the status line can say so. */
+  readonly assumed: readonly string[];
   readonly yardLineEveryYd: number;
   readonly hashEveryYd: number;
+  readonly inboundsHashLengthFt: number;
   readonly sidelineTickFromSidelineFt: number;
   readonly sidelineTickLengthFt: number;
   readonly numbersEveryYd: number;
   readonly numbersBottomFromSidelineYd: number;
   readonly numeralLengthYd: number;
-  readonly tryLineFromGoalLineYd: number;
-  readonly tryLineLengthYd: number;
+  /** Null where the rule text names no try line (college). */
+  readonly tryLineFromGoalLineYd: number | null;
+  readonly tryLineLengthYd: number | null;
+  /** End-zone decoration (the team name) keeps this far from every line (NCAA 1-2-1-d). */
+  readonly endZoneDecorationClearFt: number;
 }
 
 export const PRO_MARKINGS = data.pro_2026 as MarkingSet;
-export const INBOUNDS_HASH_LENGTH_FT = data.assumptions.inboundsHashLengthFt;
+export const COLLEGE_MARKINGS = data.college_2026 as MarkingSet;
+
+/** The marking set for a level of play. */
+export function markingsFor(level: 'pro' | 'college'): MarkingSet {
+  return level === 'college' ? COLLEGE_MARKINGS : PRO_MARKINGS;
+}
 
 /** Computed from the sources, never typed (Q6.1.2). */
 export function markingStatus(m: MarkingSet): 'PROVISIONAL' | 'Verified' {
@@ -42,6 +54,10 @@ export interface FieldMarkings {
   /** Goal posts seen from above: the crossbar at each end line, x, ySouth, yNorth. */
   readonly posts: readonly (readonly [number, number, number])[];
   readonly numeralLengthYd: number;
+  /** Mowing-stripe bands (x0, x1), every other 5-yard band between the goal lines (plan 3.1). */
+  readonly stripes: readonly (readonly [number, number])[];
+  /** End-zone decoration clearance in yards. */
+  readonly endZoneClearYd: number;
 }
 
 export function buildMarkings(g: FieldGeometryLike, m: MarkingSet = PRO_MARKINGS): FieldMarkings {
@@ -55,7 +71,7 @@ export function buildMarkings(g: FieldGeometryLike, m: MarkingSet = PRO_MARKINGS
   for (let x = gw + m.yardLineEveryYd; x < ge - 1e-9; x += m.yardLineEveryYd) seg(lines, x, 0, x, W);
 
   const ticks: number[] = [];
-  const hashHalf = INBOUNDS_HASH_LENGTH_FT / FT_PER_YD / 2;
+  const hashHalf = m.inboundsHashLengthFt / FT_PER_YD / 2;
   const sideFrom = m.sidelineTickFromSidelineFt / FT_PER_YD, sideLen = m.sidelineTickLengthFt / FT_PER_YD;
   const steps = Math.round((ge - gw) / m.hashEveryYd);
   const perLine = Math.round(m.yardLineEveryYd / m.hashEveryYd);
@@ -67,10 +83,15 @@ export function buildMarkings(g: FieldGeometryLike, m: MarkingSet = PRO_MARKINGS
     seg(ticks, x, sideFrom, x, sideFrom + sideLen);
     seg(ticks, x, W - sideFrom - sideLen, x, W - sideFrom);
   }
-  // Try lines: 1 yd long, 2 yd from the middle of each goal line, in the field of play.
-  const tl = m.tryLineLengthYd / 2;
-  seg(ticks, gw + m.tryLineFromGoalLineYd, g.centreY - tl, gw + m.tryLineFromGoalLineYd, g.centreY + tl);
-  seg(ticks, ge - m.tryLineFromGoalLineYd, g.centreY - tl, ge - m.tryLineFromGoalLineYd, g.centreY + tl);
+  // Try lines (pro): 1 yd long, 2 yd from the middle of each goal line, in the field of play.
+  if (m.tryLineFromGoalLineYd !== null && m.tryLineLengthYd !== null) {
+    const tl = m.tryLineLengthYd / 2, d = m.tryLineFromGoalLineYd;
+    seg(ticks, gw + d, g.centreY - tl, gw + d, g.centreY + tl);
+    seg(ticks, ge - d, g.centreY - tl, ge - d, g.centreY + tl);
+  }
+
+  const stripes: [number, number][] = [];
+  for (let x = gw, k = 0; x < ge - 1e-9; x += m.yardLineEveryYd, k++) if (k % 2 === 1) stripes.push([x, Math.min(x + m.yardLineEveryYd, ge)]);
 
   // Yard numbers every 10 yd, named by J1.1.1's rule (west team's 0 to 50, east team's 50 to 0).
   const numbers: YardNumber[] = [];
@@ -89,5 +110,7 @@ export function buildMarkings(g: FieldGeometryLike, m: MarkingSet = PRO_MARKINGS
     numbers,
     posts: [[0, g.uprightSouthY, g.uprightNorthY], [L, g.uprightSouthY, g.uprightNorthY]],
     numeralLengthYd: m.numeralLengthYd,
+    stripes,
+    endZoneClearYd: m.endZoneDecorationClearFt / FT_PER_YD,
   };
 }
