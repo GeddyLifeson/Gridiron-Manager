@@ -474,7 +474,7 @@
    "value": 4,
    "unit": "count",
    "factId": "F-league-0078",
-   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+   "note": "PROVISIONAL: status 2 of 3; CONFLICT with F-league-0221 (0, protections ended after 2021, Verified by inference from CBA Art. 33 silence). Kept at 4 until the Art. 33 section text and one more independent source settle it (Q6.3.1)."
   },
   {
    "key": "waivers.vested_measure",
@@ -1633,6 +1633,103 @@
    "unit": "USD",
    "factId": "F-cap-0068",
    "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "league.officiating_review.max_plays",
+   "value": 9,
+   "unit": "count",
+   "factId": "F-league-0218",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "comm.c2p_equity_on_failure",
+   "value": true,
+   "factId": "F-league-0219",
+   "note": "PROVISIONAL: Rulebook only (league Football Operations primary page; not in the playing rules, so a league key) (Q6.3.1)"
+  },
+  {
+   "key": "cap.amount_2020",
+   "value": 198200000,
+   "unit": "USD",
+   "factId": "F-cap-0083",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "cap.player_cost_media_pct",
+   "value": 55,
+   "unit": "percent",
+   "factId": "F-cap-0069",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.player_cost_ventures_pct",
+   "value": 45,
+   "unit": "percent",
+   "factId": "F-cap-0070",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.player_cost_local_pct",
+   "value": 40,
+   "unit": "percent",
+   "factId": "F-cap-0071",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.player_cost_joint_contribution_pct",
+   "value": 47.5,
+   "unit": "percent",
+   "factId": "F-cap-0072",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.player_cost_ceiling_pct_ar",
+   "value": 48.5,
+   "unit": "percent",
+   "factId": "F-cap-0073",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.player_cost_floor_pct_ar",
+   "value": 48,
+   "unit": "percent",
+   "factId": "F-cap-0074",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.min_cash_period_2017_2020_pct",
+   "value": 89,
+   "unit": "percent",
+   "factId": "F-cap-0078",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.min_cash_period_2021_2023_pct",
+   "value": 90,
+   "unit": "percent",
+   "factId": "F-cap-0079",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.min_cash_period_2024_2026_pct",
+   "value": 90,
+   "unit": "percent",
+   "factId": "F-cap-0080",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.min_cash_period_2027_2030_pct",
+   "value": 90,
+   "unit": "percent",
+   "factId": "F-cap-0081",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
+  },
+  {
+   "key": "cap.league_wide_cash_pct",
+   "value": 95,
+   "unit": "percent",
+   "factId": "F-cap-0082",
+   "note": "PROVISIONAL: Rulebook only (CBA 2020 Art. 12 primary text, one source) (Q6.3.1)"
   }
  ]
 }
