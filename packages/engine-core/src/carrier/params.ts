@@ -52,8 +52,8 @@ const ROWS = [
   ['look.screenDepthYd', 1.0, 0, 3, 'yd', 'assumption', 'J8.1.1', VISION],
   // Projection: a hard cut keeps cos(angle) of his speed, floored here (J2.1.3 cut cost, simplified for scoring only).
   ['look.cutKeepMin', 0.35, 0.1, 0.6, 'share of speed', 'assumption', 'J8.1.1', VISION],
-  // A lane that crosses the sideline inside the horizon loses this much unless the plan wants him out.
-  ['look.outOfBoundsYd', 4, 1, 10, 'yd', 'assumption', 'J8.4.2', CLOCK],
+  // A lane that crosses the sideline ends there; it loses this much more (the yards and the play given up) unless the plan wants him out.
+  ['look.outOfBoundsYd', 0, -2, 6, 'yd', 'assumption', 'J8.4.2', CLOCK],
   // J8.3.2: chance a blocker ahead makes the block on a threat he can reach first (open-field blocking against shedding).
   ['block.beta0', 0.4, -1, 2, 'logit', 'assumption', 'J8.3.2', SCREEN],
   ['block.perZ', 0.6, 0, 1.5, 'logit/z', 'assumption', 'J8.3.2', SCREEN],

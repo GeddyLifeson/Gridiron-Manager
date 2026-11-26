@@ -350,6 +350,16 @@ export function createCarrier(options: CarrierOptions): Carrier {
     return n < k ? n : k;
   }
 
+  /**
+   * How far a defender can get in `t` seconds: what he keeps of his current speed plus the rest of his top
+   * speed reached at his acceleration (J2.2.1 sprint model, closed form).
+   */
+  function reachYd(w: TickWorld, s: number, vx: number, vy: number, t: number): number {
+    const m = w.slots[s]!.movement, v = hyp(vx, vy), vMax = m.vMaxYps, tau = m.tauS > 0 ? m.tauS : 0.5;
+    const v0 = v < vMax ? v : vMax;
+    return v0 * t + (vMax - v0) * (t - tau * (1 - dExp(-t / tau)));
+  }
+
   /** J8.3.2 chance that a free teammate ahead blocks threat `s` before it reaches a point at time `tHit`. */
   function blockCover(w: TickWorld, c: number, view: PerceivedView, s: number, sx: number, sy: number, tHit: number): number {
     const q = P(), side = w.slots[c]!.side, cx = px(w, c);
@@ -400,18 +410,24 @@ export function createCarrier(options: CarrierOptions): Carrier {
       // A cut away from his current direction keeps cos of the angle of his speed, floored (J2.1.3, simplified).
       const turn = sp > 1 ? ch * (vx / sp) + sh * (vy / sp) : 1;
       const keep = turn > q['look.cutKeepMin'] ? turn : q['look.cutKeepMin'];
-      const dist = H * vTop * (0.5 + 0.5 * keep);
+      const full = H * vTop * (0.5 + 0.5 * keep);
+      // A lane that leaves the field ends the run where it crosses the sideline: no yards or hits beyond it.
+      const endFy = w.frame.originY + (cy + sh * full) * fd(w);
+      const startFy = w.players.posY[c]!;
+      let fOut = 1;
+      if (endFy < r && startFy > r) fOut = (startFy - r) / (startFy - endFy);
+      else if (endFy > g.widthYd - r && startFy < g.widthYd - r) fOut = (g.widthYd - r - startFy) / (endFy - startFy);
+      const out = fOut < 1, dist = full * fOut, Hl = H * fOut;
       const ex = cx + ch * dist, ey = cy + sh * dist;
       laneEndPx[i] = ex; laneEndPy[i] = ey;
       let score = q['look.gainPerYd'] * (ex - cx) * gd;
       // Threats who can reach the path within the horizon, discounted by a blocker who gets there first.
       for (let j = 0; j < nThreat; j++) {
         const s = threat[j]!, e = view.entity(s)!;
-        const vd = w.slots[s]!.movement.vMaxYps;
         let tHit = -1;
         for (let m = 1; m <= samples; m++) {
-          const f = m / samples, qx = cx + ch * dist * f, qy = cy + sh * dist * f, tq = H * f;
-          if (hyp(e.px - qx, e.py - qy) - q['look.reachYd'] <= vd * tq) { tHit = tq; break; }
+          const f = m / samples, qx = cx + ch * dist * f, qy = cy + sh * dist * f, tq = Hl * f;
+          if (hyp(e.px - qx, e.py - qy) - q['look.reachYd'] <= reachYd(w, s, e.velPx, e.velPy, tq)) { tHit = tq; break; }
         }
         if (tHit < 0) continue;
         score -= q['look.threatYd'] * (1 - blockCover(w, c, view, s, e.px, e.py, tHit));
@@ -427,10 +443,14 @@ export function createCarrier(options: CarrierOptions): Carrier {
         }
       }
       // Sideline and situation terms (J8.4.2).
-      const fy = w.frame.originY + ey * fd(w), out = fy < r || fy > g.widthYd - r;
+      const fy = w.frame.originY + ey * fd(w);
       const toSide = (fy < g.widthYd / 2 ? fy : g.widthYd - fy);
       if (out) score -= q['look.outOfBoundsYd'];
-      if (aware && instr.rule === 'getOutOfBounds') score += out ? q['look.outOfBoundsYd'] + q['aware.sidelineTermYd'] : q['aware.sidelineTermYd'] * clip(1 - toSide / (g.widthYd / 2), 0, 1);
+      if (aware && instr.rule === 'getOutOfBounds') {
+        // Out is the goal: full term for a lane that gets there, part of it for one that closes on the sideline.
+        const nowSide = startFy < g.widthYd / 2 ? startFy : g.widthYd - startFy;
+        score += out ? q['look.outOfBoundsYd'] + q['aware.sidelineTermYd'] : 0.5 * q['aware.sidelineTermYd'] * clip((nowSide - toSide) / (nowSide > 1 ? nowSide : 1), 0, 1);
+      }
       if (aware && instr.rule === 'stayInBounds' && toSide < q['aware.sidelineZoneYd']) score -= q['aware.sidelineTermYd'];
       if (noisy) {
         // J8.2.2 bounce bias on outside lanes, by his time edge over the nearest threat to the lane's end.
