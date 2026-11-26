@@ -39,5 +39,5 @@ export function docsToView(docs: readonly Doc[]): string {
  * the Classic tokens, read by name, so a token change carries through to print.
  */
 export const PAPER_TOKENS = {
-  paper: 'text.ink', ink: 'surface.bg', rule: 'line.strong', faint: 'text.muted', bar: 'era.cgBar', barAlt: 'era.cgBarAlt', barInk: 'era.cgText', mark: 'accent.default',
+  paper: 'text.ink', ink: 'surface.bg', rule: 'line.strong', faint: 'line.default', bar: 'era.cgBar', barAlt: 'era.cgBarAlt', barInk: 'era.cgText', mark: 'accent.default',
 } as const;

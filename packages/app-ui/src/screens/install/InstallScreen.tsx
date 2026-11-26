@@ -15,7 +15,7 @@ export interface InstallScreenProps {
   onIntent(intent: InstallIntent): void;
 }
 
-const panel = { border: `1px solid ${v('line.default')}`, background: v('surface.panel'), padding: '8px', margin: '8px 0' };
+const panel = { border: `1px solid ${v('line.default')}`, background: v('surface.panel'), color: v('text.ink'), padding: '8px', margin: '8px 0' };
 const DRAG_TYPE = 'text/x-gm-install-unit';
 
 function Badge({ colour, children }: { colour: string; children: ReactNode }) {
