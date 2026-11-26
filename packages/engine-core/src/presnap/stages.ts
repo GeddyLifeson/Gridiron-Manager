@@ -142,7 +142,7 @@ export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): Pre
           });
           slotOf.push(s);
         }
-        const report = legality.analyseAlignment(players, w.rules, w.params);
+        const report = legality.analyseAlignment(players, w.rules, w.params, null, null, { scrimmageKickFormation: input.snapFoulPhase === 'scrimmage_kick' });
         // B4.2.1, B5: who is an eligible receiver on this down, by position and number, for every later stage (`SimArrays.eligible`).
         for (let k = 0; k < slotOf.length; k++) ms.eligible[slotOf[k]!] = report.eligible[k] ? 1 : 0;
         const seen = new Set<string>();
