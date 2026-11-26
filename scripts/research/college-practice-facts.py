@@ -3,6 +3,8 @@ import json
 SRC = {
  'offseason': ('NCAA Legislative Services Database, Bylaw 17.1.7.2 (b) Bowl Subdivision Football (revised 8/3/26), https://web3.ncaa.org/lsdbi/bylaw?ruleId=14', 'Bylaw 17.1.7.2(b); page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-bylaw-17.1.7.2-ruleId14.txt'),
  'spring': ('NCAA Legislative Services Database, Bylaw 17.13.7.5 Spring Practice [FBS/FCS], https://web3.ncaa.org/lsdbi/bylaw?ruleId=163', 'Bylaw 17.13.7.5; page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-bylaw-17.13.7.5-ruleId163.txt'),
+ 'preseason': ('NCAA Legislative Services Database, Division I Proposal 2025-11 (Adopted Final 2025-06-06, effective 2025-07-01), Bylaw 17.12.3.1 First Practice Date (football, as renumbered from 17.11.3.1), https://web3.ncaa.org/lsdbi/search/proposalView?id=108635', 'Bylaw 17.12.3.1; page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-proposal-108635-football-preseason.txt'),
+ 'playing': ('NCAA Legislative Services Database, Division I Proposal ER-2020-9 (Adopted Final 2020-07-13), reprinting Bylaw 17.1.7.1 Daily and Weekly Hour Limitations -- Playing Season, https://web3.ncaa.org/lsdbi/search/proposalView?id=105065', 'Bylaw 17.1.7.1 as reprinted in 2020; page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-proposal-105065-playing-season-hours.txt. Later revision history of 17.1.7.1 not read; the 2026 spring bylaw 17.13.7.5(j) states the same figures.'),
  'dayoff': ('NCAA Legislative Services Database, Bylaw 17.1.7.4 Required Day Off -- Playing Season, https://web3.ncaa.org/lsdbi/bylaw?ruleId=106', 'Bylaw 17.1.7.4; page text saved at /mnt/project-files/research/college/ncaa-primary/lsdbi-bylaw-17.1.7.4-ruleId106.txt'),
 }
 R = [
@@ -17,6 +19,10 @@ R = [
  ('spring', 'Football spring practice: at most 75 minutes of full contact in any one on-field session (other than the three mostly 11-on-11 sessions).', 75, 'minutes', 'shall not conduct more than a total of 75 minutes of full contact (tackling to the ground) within any one on-field practice session', '75 minutes of full contact'),
  ('spring', 'Football spring practice: a student-athlete may take part in at most 4 hours per day and 20 hours per week of countable activities.', 20, 'hours per week', 'shall be limited to a maximum of four hours per day and 20 hours per week.', 'four hours per day and 20 hours per week'),
  ('dayoff', 'Playing season: one calendar day per week with no countable athletically related activities (not during conference or postseason championships and bowl games).', 1, 'days per week', 'all countable athletically related activities (per Bylaw 17.02.1) shall be prohibited during one calendar day per week', 'prohibited during one calendar day per week'),
+ ('preseason', 'Football preseason: official practice may not begin before 31 days before the first scheduled game.', 31, 'days', 'before 31 days before its first scheduled intercollegiate game', 'before 31 days before its first scheduled intercollegiate game'),
+ ('preseason', 'Football preseason: at most 25 on-field practices before the first scheduled game.', 25, 'count', 'an institution may not engage in more than 25 on-field practices.', 'more than 25 on-field practices'),
+ ('playing', 'Playing season: countable athletically related activities are limited to 4 hours per day.', 4, 'hours per day', 'limited to a maximum of four hours per day and 20 hours per week', 'four hours per day'),
+ ('playing', 'Playing season: countable athletically related activities are limited to 20 hours per week.', 20, 'hours per week', 'limited to a maximum of four hours per day and 20 hours per week', 'four hours per day and 20 hours per week'),
 ]
 rows = []
 for i, (k, st, v, u, quote, _) in enumerate(R, 1):
