@@ -10,6 +10,7 @@ import { practice as pr, recruiting as lrec } from '@gm/league';
 import { generation, loop, recruiting as wrec, season as seasons, turnover } from '@gm/world';
 import { CareerYear, STAFF_WEEK, type PracticePlan } from '../../src/play/index.ts';
 import { appWorldContent } from '../../src/newgame/content.ts';
+import { bindSystems } from '../../src/newgame/binding.ts';
 
 const ROOT = resolvePath(import.meta.dirname, '../../../..');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -95,13 +96,18 @@ describe('career desks', () => {
   }, 600_000);
 
   it('takes a college career program out of the AI programs and takes the acts the user queues', () => {
+    // A world made without its history has no recruit pool yet: one season point brings the classes in.
     const world = freshWorld();
+    const pre = bindSystems(world, { games: doubleGames, recruiting: true });
+    while (world.week < pre.schedule.weeksInSeason(world)) loop.runWeek(world, pre.systems);
+    loop.runSeasonPoint(world, pre.systems);
     const seat = teamAt(world, 'college');
     const y = CareerYear.start({ world, content: CONTENT, seatTeamId: seat, games: doubleGames });
     expect(y.level).toBe('college');
     let r = wrec.recruitingOf(world);
-    for (let i = 0; i < 20 && Object.keys(r.state.prospects).length === 0; i++) { y.delegateWeek(); r = wrec.recruitingOf(world); }
-    const open = Object.values(r.state.prospects).filter((p) => r.classes.includes(p.classYear) && r.state.status[p.personId]?.status === 'open');
+    const openNow = () => Object.values(r.state.prospects).filter((p) => r.classes.includes(p.classYear) && r.state.status[p.personId]?.status === 'open');
+    for (let i = 0; i < 52 && openNow().length === 0 && y.delegateWeek(); i++) r = wrec.recruitingOf(world);
+    const open = openNow();
     expect(open.length).toBeGreaterThan(0);
     // No AI week acted for the user's program: its board holds no class the AI built.
     expect(lrec.boardOf(r.state, seat).builtClasses).toEqual([]);

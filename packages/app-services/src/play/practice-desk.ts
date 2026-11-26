@@ -163,31 +163,36 @@ export class PracticeDesk {
    */
   runWeek(world: loop.LiveWorld, teamId: number): readonly PracticeRecord[] {
     const year = world.date.seasonYear, week = world.week;
-    const day = wrec.dayOfWorld(world.date);
     const by: 'user' | 'staff' = this.plans.length > 0 ? 'user' : 'staff';
-    const plans = this.plans.length > 0 ? this.plans : [this.staffPlan(day, year, week)];
-    const out: PracticeRecord[] = [];
-    plans.forEach((plan, i) => {
-      const rng = stream(world.seed, 'career.practice', [year, week, i]);
-      const ctx = assignContextOf(world, teamId);
-      const result = pr.resolvePractice({
-        practice: plan.practice, scripts: scriptMap(plan), ctx, rng,
-        teachingTerm: (per) => (per.leader.user ? pr.userTeachingTerm(null) : pr.teachingTermOf(1)),
-      });
-      const report = pr.writeReport(plan.practice, result, new Map(), () => 0.5, rng);
-      const reps: Record<string, number> = {}, fullSpeed: Record<string, number> = {};
-      for (const [id, l] of [...result.load.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
-        const n = l.liveReps + l.thudReps + l.teamReps + l.walkThroughReps;
-        if (n > 0) reps[id] = n;
-        if (l.liveReps + l.thudReps > 0) fullSpeed[id] = l.liveReps + l.thudReps;
-      }
-      if (result.paddedUsed) this.padded++;
-      const rec: PracticeRecord = { seasonYear: year, week, by, report, reps, fullSpeed, paddedUsed: result.paddedUsed };
-      this.records.push(rec);
-      out.push(rec);
-    });
+    const plans = this.plans.length > 0 ? this.plans : [this.staffPlan(wrec.dayOfWorld(world.date), year, week)];
+    const out = plans.map((plan, i) => this.runBlock(world, teamId, plan, i, by));
     this.plans = [];
     return out;
+  }
+
+  /**
+   * Resolves one practice block for the seat team (the week loop calls this per practice or walkthrough
+   * block): reps on the world roster, the leaders' report, the record kept in the history. `index` numbers
+   * the block inside the week, so each block draws from its own stream.
+   */
+  runBlock(world: loop.LiveWorld, teamId: number, plan: PracticePlan, index: number, by: 'user' | 'staff' = 'user'): PracticeRecord {
+    const year = world.date.seasonYear, week = world.week;
+    const rng = stream(world.seed, 'career.practice', [year, week, index]);
+    const result = pr.resolvePractice({
+      practice: plan.practice, scripts: scriptMap(plan), ctx: assignContextOf(world, teamId), rng,
+      teachingTerm: (per) => (per.leader.user ? pr.userTeachingTerm(null) : pr.teachingTermOf(1)),
+    });
+    const report = pr.writeReport(plan.practice, result, new Map(), () => 0.5, rng);
+    const reps: Record<string, number> = {}, fullSpeed: Record<string, number> = {};
+    for (const [id, l] of [...result.load.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
+      const n = l.liveReps + l.thudReps + l.teamReps + l.walkThroughReps;
+      if (n > 0) reps[id] = n;
+      if (l.liveReps + l.thudReps > 0) fullSpeed[id] = l.liveReps + l.thudReps;
+    }
+    if (result.paddedUsed) this.padded++;
+    const rec: PracticeRecord = { seasonYear: year, week, by, report, reps, fullSpeed, paddedUsed: result.paddedUsed };
+    this.records.push(rec);
+    return rec;
   }
 
   /** A new season: the padded counter starts again (H3.6.1). Records stay as the career's practice history. */
