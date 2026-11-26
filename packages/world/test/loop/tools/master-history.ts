@@ -25,6 +25,7 @@ import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
+import * as news from '../../../src/news/index.ts';
 
 const arg = (k: string, d: string): string => process.argv.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3) ?? d;
 const OUT = arg('out', 'master-run');
@@ -98,6 +99,9 @@ const systems = loop.systemsFrom({
   })),
   development: timed('development', turnover.developmentStep(binding)),
   moves: timed('moves', turnover.rosterMovesStep(binding)),
+  // X12.2.1: last in the week, so it reads every row the week wrote (labels included once bound). No X7 edges
+  // are kept off-screen yet, so only public news moves; items wait on notability scores (X4) for all but coach changes.
+  news: timed('news', news.newsStep()),
 }, 'master run: owning system not bound yet');
 
 const unbound = loop.unboundSteps(systems);
