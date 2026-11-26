@@ -8306,6 +8306,2189 @@
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
     }
    ]
+  },
+  {
+   "id": "F-measured-rate-0278",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Points per team per game: 26.82 (college, 2022-2025).",
+   "value": 26.82,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 26.82
+    },
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py; 26.68 over 2,976 games; scope differs slightly (2,976 against 2,998 games), so no value is attached",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0279",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Points per team per game, standard deviation: 13.57 (college, 2022-2025).",
+   "value": 13.57,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 13.57
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0280",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Total points per game, both teams: 53.4 (college, 2022-2025).",
+   "value": 53.4,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 53.4
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0281",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Total points per game, standard deviation: 16.9 (college, 2022-2025).",
+   "value": 16.9,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 16.9
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0282",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Scrimmage plays per team per game: 66.0987 (college, 2022-2025).",
+   "value": 66.0987,
+   "unit": "plays",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 66.0987
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0283",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Drives per team per game: 11.05 (college, 2022-2025).",
+   "value": 11.05,
+   "unit": "count",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 11.05
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0284",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Games that end tied: 0.0 (college, 2022-2025).",
+   "value": 0.0,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.0
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0285",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Games decided by 3 points or fewer: 0.174 (college, 2022-2025).",
+   "value": 0.174,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.174
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0286",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Games decided by 8 points or fewer: 0.38 (college, 2022-2025).",
+   "value": 0.38,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.38
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0287",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Games decided by 17 points or more: 0.429 (college, 2022-2025).",
+   "value": 0.429,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.429
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0288",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Games decided by 28 points or more: 0.195 (college, 2022-2025).",
+   "value": 0.195,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.195
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0289",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Mean absolute final margin: 16.3 (college, 2022-2025).",
+   "value": 16.3,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 16.3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0290",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Home win share, non-neutral games: 0.588 (college, 2022-2025).",
+   "value": 0.588,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.588
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0291",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Home win share, conference games only: 0.557 (college, 2022-2025).",
+   "value": 0.557,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.557
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0292",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Home margin, raw: 4.64 (college, 2022-2025).",
+   "value": 4.64,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 4.64
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0293",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Home margin, standard deviation: 20.3 (college, 2022-2025).",
+   "value": 20.3,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 20.3
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0294",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Home margin, conference games only: 2.49 (college, 2022-2025).",
+   "value": 2.49,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 2.49
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0295",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Home edge with team strength removed: 2.5 (college, 2022-2025).",
+   "value": 2.5,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 2.5
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0296",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Standard deviation of team rating: 9.2 (college, 2022-2025).",
+   "value": 9.2,
+   "unit": "points",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 9.2
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0297",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Standard deviation of team win share: 0.215 (college, 2022-2025).",
+   "value": 0.215,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.215
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0298",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Team-seasons with 6 or more wins: 0.618 (college, 2022-2025).",
+   "value": 0.618,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.618
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0299",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Team-seasons with 10 or more wins: 0.151 (college, 2022-2025).",
+   "value": 0.151,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.151
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0300",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Team-seasons with 2 or fewer wins: 0.058 (college, 2022-2025).",
+   "value": 0.058,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.058
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0301",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Conference games, share of FBS against FBS games: 0.708 (college, 2022-2025).",
+   "value": 0.708,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.708
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0302",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Neutral-site games, share of FBS against FBS games: 0.025 (college, 2022-2025).",
+   "value": 0.025,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.025
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0303",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by same-season rating gap, gap 0 to 3 points: 0.547 (college, 2022-2025).",
+   "value": 0.547,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.547
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0304",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by same-season rating gap, gap 3 to 7 points: 0.717 (college, 2022-2025).",
+   "value": 0.717,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.717
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0305",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by same-season rating gap, gap 7 to 10 points: 0.814 (college, 2022-2025).",
+   "value": 0.814,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.814
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0306",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by same-season rating gap, gap 10 to 14 points: 0.903 (college, 2022-2025).",
+   "value": 0.903,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.903
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0307",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by same-season rating gap, gap 14 to 21 points: 0.951 (college, 2022-2025).",
+   "value": 0.951,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.951
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0308",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by same-season rating gap, gap 21 to 28 points: 1.0 (college, 2022-2025).",
+   "value": 1.0,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 1.0
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0309",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by same-season rating gap, gap 28 to more points: 1.0 (college, 2022-2025).",
+   "value": 1.0,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 1.0
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0310",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by prior-season rating gap, gap 0 to 3 points: 0.519 (college, 2023-2025).",
+   "value": 0.519,
+   "unit": "share",
+   "validFor": "2023-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.519
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0311",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by prior-season rating gap, gap 3 to 7 points: 0.576 (college, 2023-2025).",
+   "value": 0.576,
+   "unit": "share",
+   "validFor": "2023-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.576
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0312",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by prior-season rating gap, gap 7 to 10 points: 0.682 (college, 2023-2025).",
+   "value": 0.682,
+   "unit": "share",
+   "validFor": "2023-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.682
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0313",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by prior-season rating gap, gap 10 to 14 points: 0.706 (college, 2023-2025).",
+   "value": 0.706,
+   "unit": "share",
+   "validFor": "2023-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.706
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0314",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by prior-season rating gap, gap 14 to 21 points: 0.811 (college, 2023-2025).",
+   "value": 0.811,
+   "unit": "share",
+   "validFor": "2023-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.811
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0315",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Favourite win share by prior-season rating gap, gap 21 to more points: 0.88 (college, 2023-2025).",
+   "value": 0.88,
+   "unit": "share",
+   "validFor": "2023-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.88
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0316",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Power-tier teams beat other top-subdivision teams: 0.866 (college, 2022-2025).",
+   "value": 0.866,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.866
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0317",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Top-subdivision teams beat lower-subdivision teams: 0.935 (college, 2022-2025).",
+   "value": 0.935,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "ESPN college schedules (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_game_shape.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "espn-cfb-schedules",
+     "primary": false,
+     "value": 0.935
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0318",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Pass rate, dropbacks over plays: 0.4977 (college, 2022-2025).",
+   "value": 0.4977,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.4977
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0319",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Completion share: 0.6097 (college, 2022-2025).",
+   "value": 0.6097,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.6097
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0320",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Yards per attempt: 7.5262 (college, 2022-2025).",
+   "value": 7.5262,
+   "unit": "yards",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 7.5262
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0321",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Touchdown per attempt: 0.0501 (college, 2022-2025).",
+   "value": 0.0501,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.0501
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0322",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Interception per attempt: 0.0256 (college, 2022-2025).",
+   "value": 0.0256,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.0256
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0323",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Sack per dropback: 0.0602 (college, 2022-2025).",
+   "value": 0.0602,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.0602
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0324",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Yards per rush, sacks excluded: 5.1491 (college, 2022-2025).",
+   "value": 5.1491,
+   "unit": "yards",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 5.1491
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0325",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Rush touchdown rate: 0.0475 (college, 2022-2025).",
+   "value": 0.0475,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.0475
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0326",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Rushes of 10 or more yards: 0.1445 (college, 2022-2025).",
+   "value": 0.1445,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.1445
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0327",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Third-down conversion: 0.4061 (college, 2022-2025).",
+   "value": 0.4061,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.4061
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0328",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Fourth-down go rate: 0.251 (college, 2022-2025).",
+   "value": 0.251,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.251
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0329",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Fourth-down go rate, 1 to 2 yards to go: 0.6541 (college, 2022-2025).",
+   "value": 0.6541,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.6541
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0330",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Fourth-down go rate, 3 to 5 yards to go: 0.2728 (college, 2022-2025).",
+   "value": 0.2728,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.2728
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0331",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Fourth-down go rate, 6 or more yards to go: 0.1092 (college, 2022-2025).",
+   "value": 0.1092,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.1092
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0332",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Fourth-down conversion: 0.5382 (college, 2022-2025).",
+   "value": 0.5382,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.5382
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0333",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Punts per team per game: 4.4285 (college, 2022-2025).",
+   "value": 4.4285,
+   "unit": "count",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 4.4285
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0334",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Field goal tries per team per game: 1.568 (college, 2022-2025).",
+   "value": 1.568,
+   "unit": "count",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 1.568
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0335",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Field goal share made: 0.7619 (college, 2022-2025).",
+   "value": 0.7619,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.7619
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0336",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Kickoff touchback rate: 0.6926 (college, 2022-2025).",
+   "value": 0.6926,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.6926
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0337",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Plays per drive: 5.7751 (college, 2022-2025).",
+   "value": 5.7751,
+   "unit": "plays",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 5.7751
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0338",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Yards per drive: 33.5151 (college, 2022-2025).",
+   "value": 33.5151,
+   "unit": "yards",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 33.5151
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0339",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Seconds per drive: 166.3529 (college, 2022-2025).",
+   "value": 166.3529,
+   "unit": "seconds",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 166.3529
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0340",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Drives ending in: touchdown: 0.2831 (college, 2022-2025).",
+   "value": 0.2831,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.2831
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0341",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Drives ending in: field goal made: 0.1061 (college, 2022-2025).",
+   "value": 0.1061,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.1061
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0342",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Drives ending in: punt: 0.3801 (college, 2022-2025).",
+   "value": 0.3801,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.3801
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0343",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Drives ending in: turnover: 0.1141 (college, 2022-2025).",
+   "value": 0.1141,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.1141
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0344",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Drives ending in: turnover on downs: 0.0784 (college, 2022-2025).",
+   "value": 0.0784,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.0784
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0345",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Drives reaching the red zone: 0.3085 (college, 2022-2025).",
+   "value": 0.3085,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.3085
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0346",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Red-zone touchdown rate: 0.6317 (college, 2022-2025).",
+   "value": 0.6317,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.6317
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0347",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Red-zone scoring rate: 0.8528 (college, 2022-2025).",
+   "value": 0.8528,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.8528
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0348",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Spread in possession time between teams: 4.9114 (college, 2022-2025).",
+   "value": 4.9114,
+   "unit": "minutes",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 4.9114
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0349",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Accepted fouls per team per game: 5.1785 (college, 2022-2025).",
+   "value": 5.1785,
+   "unit": "count",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 5.1785
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0350",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Foul yards per team per game: 42.7185 (college, 2022-2025).",
+   "value": 42.7185,
+   "unit": "yards",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 42.7185
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0351",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Yards per accepted foul: 8.25 (college, 2022-2025).",
+   "value": 8.25,
+   "unit": "yards",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py; T12.6.1 table",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 8.25
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
+  },
+  {
+   "id": "F-measured-rate-0352",
+   "level": "college",
+   "domain": "measured-rate",
+   "statement": "Fumbles lost per play: 0.0071 (college, 2022-2025).",
+   "value": 0.0071,
+   "unit": "share",
+   "validFor": "2022-2025",
+   "sources": [
+    {
+     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
+     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-pbp",
+     "primary": false,
+     "value": 0.0071
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    }
+   ]
   }
  ]
 }
