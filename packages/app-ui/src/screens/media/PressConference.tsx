@@ -34,12 +34,13 @@ const btn = { background: v('surface.raised'), color: v('text.ink'), border: `1p
 
 /** The answer clock (O4.5.2). Restarts on each new question; at zero it sends the bland default once. */
 function useAnswerClock(limit: number, questionN: number | null, onExpire: () => void): number {
-  const [left, setLeft] = useState(limit);
-  useEffect(() => { setLeft(limit); }, [questionN, limit]);
+  const [clock, setClock] = useState<{ n: number | null; left: number }>({ n: questionN, left: limit });
+  // A new question restarts the clock in the same render, so a stale zero can never expire it twice.
+  const left = clock.n === questionN ? clock.left : limit;
   useEffect(() => {
     if (questionN === null) return undefined;
     if (left <= 0) { onExpire(); return undefined; }
-    const t = setTimeout(() => setLeft((x) => x - 1), 1000);
+    const t = setTimeout(() => setClock({ n: questionN, left: left - 1 }), 1000);
     return () => clearTimeout(t);
   }, [left, questionN]);
   return left;

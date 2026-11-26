@@ -52,10 +52,11 @@ describe('meetings (H4)', () => {
   const all = v.days.flatMap((d) => d.meetings);
 
   it('lists every meeting block of the week with its type', () => {
-    const n = blocks.filter((b) => ['staff_meeting', 'team_meeting', 'unit_meeting', 'position_meeting', 'game_planning'].includes(b.type)).length;
+    const n = blocks.filter((b) => ['staff_meeting', 'team_meeting', 'unit_meeting', 'position_meeting'].includes(b.type)).length;
     expect(all.length).toBe(n);
     expect(all.length).toBeGreaterThan(0);
     for (const m of all) expect(m.type.length).toBeGreaterThan(0);
+    expect(all.some((m) => m.type === 'game_planning')).toBe(false);
   });
   it('the user edits meetings he leads and reviews the others (H4.1.1)', () => {
     expect(all.find((m) => m.blockId === team.id)!.editable).toBe(team.leader === 'head_coach');

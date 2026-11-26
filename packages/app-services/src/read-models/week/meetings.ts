@@ -10,8 +10,11 @@ import type { AgendaInput, AgendaRowView, AgendaWarning, MeetingDayView, Meeting
 type Week = wk.Week;
 type Block = wk.Block;
 
-/** Block types the meetings screen lists (H1.1.1 owner H4, plus the game-plan meeting of H4.3.2). */
-const MEETING_BLOCKS: ReadonlySet<string> = new Set(['staff_meeting', 'team_meeting', 'unit_meeting', 'position_meeting', 'game_planning']);
+/**
+ * Block types the meetings screen lists: the H4-owned blocks (H1.1.1 rule 5). Game-planning blocks are
+ * the staff's G6 work days, not meetings, and open the game plan screen instead.
+ */
+const MEETING_BLOCKS: ReadonlySet<string> = new Set(['staff_meeting', 'team_meeting', 'unit_meeting', 'position_meeting']);
 
 /** Attendee groups that are players: their meeting minutes count toward the daily total (H4.1.2 rule 3). */
 const PLAYER_GROUPS: ReadonlySet<string> = new Set(['team', 'offense', 'defense', 'quarterbacks', 'leaders']);
@@ -22,14 +25,12 @@ export const ITEM_KINDS: Readonly<Record<string, readonly string[]>> = {
   team: ['theme', 'corrections', 'situational', 'opponent_overview', 'accountability', 'recognition', 'schedule_rules', 'rules_review', 'break'],
   night_before: ['keys', 'reminders', 'highlight_tape', 'guest_speaker'],
   staff: ['personnel_injury', 'schedule', 'plan_summaries', 'practice_emphasis', 'roster_decisions', 'open_floor'],
-  game_plan: ['plan_review', 'tempo', 'complementary', 'fourth_down_intent', 'special_teams_needs'],
 };
 
 /** The H4.1.1 meeting type a block stands for. */
 export function meetingType(b: Block, gMinus: number): string {
   switch (b.type) {
     case 'staff_meeting': return 'staff';
-    case 'game_planning': return 'game_plan';
     case 'team_meeting':
       if (gMinus === 1 && b.start.minute >= weekParam('meeting.night_before_from_minute')) return 'night_before';
       return b.attendees.includes('leaders') ? 'leadership_council' : 'team';
