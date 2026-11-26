@@ -23,8 +23,8 @@ describe('content as the AI reads it', () => {
   it('holds every play and call of the full set, starter ids included', () => {
     expect(book.plays.size).toBe(full.FULL_PLAYS.length);
     expect(book.defense.size).toBe(full.FULL_DEFENSE.length);
-    expect(book.plays.size).toBe(38);
-    expect(book.defense.size).toBe(17);
+    expect(book.plays.size).toBeGreaterThanOrEqual(38); // WP-25: 12 starter + 26 added, and later packages on top
+    expect(book.defense.size).toBeGreaterThanOrEqual(17);
     for (const id of ['run_inside_zone_right', 'kneel_victory', 'pass_mesh', 'def_cover2_zone', 'def_34_cover3']) expect(sheetCallOf(book, id)).not.toBeNull();
     expect(sheetCallOf(book, 'no_such_play')).toBeNull();
   });
@@ -47,7 +47,7 @@ describe('content as the AI reads it', () => {
   });
   it('gives the K3 planner one option per content item with its family', () => {
     const opts = callOptions(book, (id) => (id === 'pass_mills' ? 0.4 : 1));
-    expect(opts.length).toBe(55);
+    expect(opts.length).toBe(book.plays.size + book.defense.size);
     expect(opts.find((o) => o.callId === 'pass_mills')).toMatchObject({ unit: 'offense', conceptFamily: 'dropback_pass', tags: ['deepShot', 'pass'], readiness: 0.4, fits: null });
     expect(opts.find((o) => o.callId === 'def_cover0_six_man')).toMatchObject({ unit: 'defense', conceptFamily: 'cover0+pressure', kind: 'cover0' });
   });
@@ -87,7 +87,10 @@ describe('K5 order fits from content', () => {
     for (const c of all.filter(ai.allows!)) expect(['run', 'draw', 'qb_run', 'kneel']).toContain(play(c.callId).kind);
     expect(all.filter(ai.allows!).length).toBeGreaterThan(5);
     const ib = calling.joinK5({ clock: { mode: 'burn', kneel: false, spike: false, constraints: ['stay_in_bounds'] }, fits })!;
-    expect(all.filter(ib.allows!).map((c) => c.callId).sort()).toEqual(['draw_rb', 'kneel_victory']);
+    const inside = [...book.plays.values()].filter((p) => p.kind === 'kneel' || p.kind === 'draw' || ((p.kind === 'run' || p.kind === 'qb_run') && (p.runDirection === 'middle' || p.runDirection === null))).map((p) => p.id).sort();
+    expect(all.filter(ib.allows!).map((c) => c.callId).sort()).toEqual(inside);
+    expect(inside).toEqual(expect.arrayContaining(['draw_rb', 'kneel_victory']));
+    expect(inside).not.toContain('run_wide_zone_right');
   });
 });
 
