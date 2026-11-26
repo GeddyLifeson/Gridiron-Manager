@@ -1,4 +1,4 @@
-import { calendar } from '@gm/league';
+import { calendar, recruiting } from '@gm/league';
 import { describe, expect, it } from 'vitest';
 import { COLLEGE_LOOKUP, NAMES, PRO_LOOKUP, loop, setup, testGamePort, testSchedule, trimmed } from '../fixtures.ts';
 import * as turnover from '../../src/turnover/index.ts';
@@ -7,12 +7,13 @@ import * as rec from '../../src/recruiting/index.ts';
 const content = trimmed();
 const base: turnover.TurnoverBinding = { content, rule: (lvl, k) => (lvl === 'pro' ? PRO_LOOKUP : COLLEGE_LOOKUP)(k) };
 
-function build(opts: { seedHex?: string; policy?: boolean } = {}) {
+function build(opts: { seedHex?: string; policy?: boolean; user?: rec.RecruitingBinding['user'] } = {}) {
   const calls = { offers: 0 };
   const gmPolicy = rec.gmRecruitingPolicy();
   const rb: rec.RecruitingBinding = {
     turnover: base, calendarFiles: calendar.CALENDAR_FILES,
     policy: opts.policy === false ? undefined : () => ({ ...gmPolicy, offersWanted: (q) => { calls.offers++; return gmPolicy.offersWanted!(q); } }),
+    ...(opts.user ? { user: opts.user } : {}),
   };
   const binding: turnover.TurnoverBinding = { ...base, policy: rec.lettersPolicy(undefined) };
   const w = loop.createWorld({ setup: setup(opts.seedHex ? { seedHex: opts.seedHex } : {}), content, names: NAMES, eventTypes: turnover.TURNOVER_EVENT_TYPES });
@@ -79,5 +80,42 @@ describe('off-screen recruiting (T4, X12.1.1)', () => {
     const programs = w.teams.filter((t) => turnover.levelOfTeam(w, t.id) !== 'pro').length;
     console.log(`recruiting world: ${programs} programs, 4 seasons in ${ms} ms`);
     expect(ms).toBeGreaterThan(0);
+  });
+});
+
+describe('the user\'s own program (T4 user binding)', () => {
+  let userTeam = -1;
+  const days: number[] = [];
+  let looked: number | null = null;
+  const { w, sys } = build({
+    user: (world) => {
+      if (userTeam < 0) userTeam = world.teams.find((t) => turnover.levelOfTeam(world, t.id) === 'college')!.id;
+      return {
+        teamIds: [userTeam],
+        act: (d) => {
+          days.push(d.day);
+          if (looked !== null) return;
+          const p = Object.values(d.state.prospects).find((x) => x.classYear === d.classYear);
+          if (!p) return;
+          looked = p.personId;
+          recruiting.takeLook(d.state, d.ctx, userTeam, p.personId, 'full_film', d.day, { skill: 0.5, competition: 1, byPositionCoach: false });
+          recruiting.makeOffer(d.state, d.ctx, userTeam, p.personId, d.day, false);
+        },
+      };
+    },
+  });
+  for (let i = 0; i < 2; i++) loop.runSeason(w, sys, testSchedule);
+  const r = rec.recruitingOf(w);
+
+  it('is asked on every recruiting day and its acts land on the board', () => {
+    expect(days.length).toBeGreaterThan(0);
+    expect(looked).not.toBeNull();
+    expect(recruiting.gradeOf(r.state, userTeam, looked!).looks.full_film).toBe(1);
+  });
+
+  it('is not run as an AI program', () => {
+    expect(recruiting.boardOf(r.state, userTeam).builtClasses).toEqual([]);
+    const other = w.teams.find((t) => t.id !== userTeam && turnover.levelOfTeam(w, t.id) === 'college')!.id;
+    expect(recruiting.boardOf(r.state, other).builtClasses.length).toBeGreaterThan(0);
   });
 });

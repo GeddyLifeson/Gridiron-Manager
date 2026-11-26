@@ -34,7 +34,24 @@ export interface FilterReport {
 export const newReport = (): FilterReport => ({ dropped: [] });
 
 const DROP = Symbol('drop');
+/** Schema types whose values are never objects or arrays. */
+const SCALAR_TYPES: ReadonlySet<string> = new Set(['string', 'number', 'int', 'bigint', 'boolean', 'enum', 'literal', 'nan', 'null', 'undefined', 'symbol', 'template_literal']);
 type Out = unknown | typeof DROP;
+
+const TYPEOF: Readonly<Record<string, string>> = { string: 'string', template_literal: 'string', number: 'number', int: 'number', nan: 'number', bigint: 'bigint', boolean: 'boolean' };
+/**
+ * Does a scalar value have the kind its schema names? A value of another kind (a string where a number is
+ * declared, an object anywhere) is unreadable: the field's class describes the declared value, not whatever
+ * was put in its place.
+ */
+function scalarFits(p: ReturnType<typeof peel>, value: unknown): boolean {
+  if (typeof value === 'object') return false;
+  const t = TYPEOF[p.type];
+  if (t) return typeof value === t;
+  if (p.type === 'enum') return Object.values(p.def.entries as Record<string, unknown>).includes(value);
+  if (p.type === 'literal') return (p.def.values as unknown[]).includes(value);
+  return p.type === 'null' || p.type === 'undefined' ? value == null : false;
+}
 
 interface Ctx {
   observer: Observer;
@@ -83,14 +100,18 @@ function node(schema: Schema, value: unknown, path: string, isField: boolean, fr
       if (rule) {
         // A shape with its own rule starts a new ownership context, unless a parent scope already set one for it.
         const scoped = frame.rule?.scopes?.[frame.rel];
-        const own = scoped ? frame.own : (path === '$' && ctx.rootOwn) || isOwner(ctx.observer, rule.owners(value, ctx.env));
+        // A rule that cannot read the row (a row of the wrong shape) fails closed: the row is unreadable.
+        let own: boolean;
+        try { own = scoped ? frame.own : (path === '$' && ctx.rootOwn) || isOwner(ctx.observer, rule.owners(value, ctx.env)); }
+        catch { ctx.report?.dropped.push({ path, reason: 'unreadable' }); return DROP; }
         if (!scoped && rule.hideUnlessOwner && !own) { ctx.report?.dropped.push({ path, reason: 'hidden_row' }); return DROP; }
         f = { own, rule, row: value, rel: '' };
       }
       const shape = p.def.shape as Record<string, Schema>;
       const out: Record<string, unknown> = {};
       for (const key of Object.keys(value)) {
-        if (!(key in shape)) { ctx.report?.dropped.push({ path: `${path}.${key}`, reason: 'unknown_key' }); continue; }
+        // Own keys only: `constructor`, `toString` and `__proto__` are `in` every object and are not fields.
+        if (!Object.hasOwn(shape, key)) { ctx.report?.dropped.push({ path: `${path}.${key}`, reason: 'unknown_key' }); continue; }
         const r = child(shape[key]!, value[key], `${path}.${key}`, `.${key}`, true, f, ctx);
         if (r !== DROP) out[key] = r;
       }
@@ -128,7 +149,13 @@ function node(schema: Schema, value: unknown, path: string, isField: boolean, fr
       return out;
     }
     case 'union': {
-      if (typeof value !== 'object') return value;
+      if (typeof value !== 'object') {
+        // A scalar is kept only when some option of the union is a scalar shape it fits.
+        const options = p.def.options as Schema[];
+        if (options.some((o) => { const q = peel(o); return q.type === 'unknown' || q.type === 'any' || (SCALAR_TYPES.has(q.type) && scalarFits(q, value)); })) return value;
+        ctx.report?.dropped.push({ path, reason: 'unreadable' });
+        return DROP;
+      }
       const opt = pickOption(p.def.options as Schema[], p.def.discriminator as string | undefined, value);
       if (!opt) { ctx.report?.dropped.push({ path, reason: 'unreadable' }); return DROP; }
       return node(opt, value, path, false, frame, ctx);
@@ -137,7 +164,9 @@ function node(schema: Schema, value: unknown, path: string, isField: boolean, fr
       ctx.report?.dropped.push({ path, reason: 'unreadable' });
       return DROP;
     default:
-      // Scalars, enums, literals, and `unknown` leaves the contract classed as a whole.
+      // Scalars, enums, literals, and `unknown` leaves the contract classed as a whole. A scalar shape that holds
+      // an object or an array is unreadable: keeping it would pass whatever is nested inside to every observer.
+      if (SCALAR_TYPES.has(p.type) && !scalarFits(p, value)) { ctx.report?.dropped.push({ path, reason: 'unreadable' }); return DROP; }
       return plainClone(value, path);
   }
 }
@@ -150,7 +179,8 @@ function child(schema: Schema, value: unknown, path: string, step: string, isFie
   if (forced) next.forced = forced;
   const scope = frame.rule?.scopes?.[rel];
   if (scope && value !== null && value !== undefined) {
-    next.own = isOwner(ctx.observer, scope.owners(value, frame.row, ctx.env));
+    try { next.own = isOwner(ctx.observer, scope.owners(value, frame.row, ctx.env)); }
+    catch { ctx.report?.dropped.push({ path, reason: 'unreadable' }); return DROP; }
     if (scope.hideUnlessOwner && !next.own) { ctx.report?.dropped.push({ path, reason: 'hidden_row' }); return DROP; }
   }
   return node(schema, value, path, isField, next, ctx);

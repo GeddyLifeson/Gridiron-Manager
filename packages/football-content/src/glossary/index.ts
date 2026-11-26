@@ -3,3 +3,4 @@ export * from './types.ts';
 export { TERMS, BLOCK_LIST } from './data.ts';
 export { createGlossary, glossary, type Glossary } from './glossary.ts';
 export { validateGlossary, type GlossaryProblem } from './validate.ts';
+export { GLOSSARY_FACTS, glossaryFact, glossaryFactStatus } from './facts.ts';

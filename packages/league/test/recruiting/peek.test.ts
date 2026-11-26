@@ -1,3 +1,4 @@
+// February 10, 2026 sits in the FBS dead period (February 2 to March 1 in the sourced calendar, PR 254).
 // peekBreaches / peekAct (read models): the same rules as breachesOf without changing the state; and the
 // date of the latest look kept on the board grade (MA-48).
 import { describe, expect, it } from 'vitest';
@@ -16,7 +17,7 @@ function setup() {
 describe('peekBreaches', () => {
   it('lists the same rules as breachesOf and leaves the state as it was', () => {
     const { ctx, state, id } = setup();
-    const acts: ActRef[] = ([['contact_off_campus', D('2026-05-06')], ['call', D('2026-09-10')], ['evaluation', D('2026-12-20')]] as const)
+    const acts: ActRef[] = ([['contact_off_campus', D('2026-02-10')], ['call', D('2026-09-10')], ['evaluation', D('2026-12-20')]] as const)
       .map(([kind, day]) => ({ kind, teamId: 1, staffId: 101, prospectId: id, day }));
     const before = JSON.stringify(state);
     const peeked = acts.map((a) => peekBreaches(state, ctx, a).map((b) => b.rule));

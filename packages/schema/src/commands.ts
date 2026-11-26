@@ -5,6 +5,7 @@ import { Calendar, Level } from './entities.ts';
 import { GameplanData } from './read-models/gameplan.ts';
 import { PlaybookData } from './read-models/playbook.ts';
 import { InstallData } from './read-models/install.ts';
+import { PracticeDeskData } from './read-models/practice.ts';
 import { DraftRoomData, FreeAgencyData } from './read-models/draft-room.ts';
 import { RecruitingBoardData } from './read-models/recruiting.ts';
 import { SchoolData } from './read-models/school.ts';
@@ -146,6 +147,7 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   // PLAYBOOK_MODEL, INSTALL_MODEL (PR 251), DRAFT_ROOM_MODEL, FREE_AGENCY_MODEL (PR 268), RECRUITING_BOARD_MODEL (PR 257).
   playbook: readModelOf(PlaybookData),
   install: readModelOf(InstallData),
+  practiceDesk: readModelOf(PracticeDeskData),
   draftRoom: readModelOf(DraftRoomData),
   freeAgency: readModelOf(FreeAgencyData),
   recruitingBoard: readModelOf(RecruitingBoardData),

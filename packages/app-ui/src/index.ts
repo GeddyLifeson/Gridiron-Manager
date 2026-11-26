@@ -31,3 +31,4 @@ export * as practice from './screens/practice/index.ts';
 export * as legends from './screens/legends/index.ts';
 export * as home from './screens/home/index.ts';
 export * as people from './screens/people/index.ts';
+export * as newGame from './screens/new-game/index.ts';

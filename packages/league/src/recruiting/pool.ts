@@ -319,7 +319,9 @@ export function dropClass(state: RecruitingState, classYear: number, keepUsageFr
     }
     state.daysUsed = used;
   }
-  state.violations = state.violations.filter((v) => v.prospectId === null || !gone.has(v.prospectId));
+  // A violation about no prospect (a camp, a day-pool breach) is dropped with the day-pool usage of its time;
+  // the act itself stays in the compliance log and its archive (G-28), which is what history reads.
+  state.violations = state.violations.filter((v) => (v.prospectId === null ? keepUsageFromDay === undefined || v.day >= keepUsageFromDay : !gone.has(v.prospectId)));
   state.memory = state.memory.filter((m) => !gone.has(m.holderId));
   state.promises = state.promises.filter((p) => !gone.has(p.prospectId));
   state.claims = state.claims.filter((c) => !gone.has(c.prospectId));

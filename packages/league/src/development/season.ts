@@ -2,10 +2,10 @@
 // windows. The world loop (G-81) owns the calendar and the streams; this is the per-person step it
 // calls, and the headless default when no practice plan exists.
 import type { AttributeId, DeterministicMath, PlayingBlock, RandomStream } from '@gm/schema';
-import { agingRollover, applyAgingFraction } from './aging.ts';
-import { applyBody } from './body.ts';
+import { agedIndex, agingRollover, applyAgingFraction, drawAgingYear, rolloverShare } from './aging.ts';
+import { applyBody, applyBodyInPlace } from './body.ts';
 import { familyOf, type PositionFamily } from './classes.ts';
-import { developSpan, drawSurroundings, FACET } from './gain.ts';
+import { developSpan, developSpanInPlace, drawSurroundings, FACET, type MutableBlock } from './gain.ts';
 import { HIDDEN } from './hidden.ts';
 import { growBody } from './growth.ts';
 import { num, type DevNumbers } from './params.ts';
@@ -58,6 +58,42 @@ export function defaultYearPlan(n: DevNumbers, role: Role): WindowPlan[] {
  * rollover, 1.. the windows in order. In-season aging months are applied after the season window.
  */
 export function developYear(n: DevNumbers, math: DeterministicMath, who: PersonForDevelopment, plan: readonly WindowPlan[], streamFor: (step: number) => RandomStream, heavyLoadLastSeason = false): PlayingBlock {
+  // The same steps as rollover, developSpan and agingMonth in the same order, on one owned copy of the
+  // block instead of a fresh copy per step (the per-step functions above are the reference; the step
+  // tests hold the two paths equal).
+  const family = familyOf(who.position);
+  const stream0 = streamFor(0);
+  const body = growBody(n, who.playing, who.ageYears, family);
+  const p = {
+    ...who.playing, heightIn: body.heightIn, weightLb: body.weightLb,
+    attributes: { ...who.playing.attributes }, ceilings: { ...who.playing.ceilings }, tests: { ...who.playing.tests }, hidden: { ...who.playing.hidden },
+  } as MutableBlock;
+  p.hidden[HIDDEN.heavyLoad] = heavyLoadLastSeason ? 1 : 0;
+  p.hidden[HIDDEN.agingYearDelta] = drawAgingYear(n, p, family, who.ageYears, stream0);
+  p.hidden[HIDDEN.agingIndex] = agedIndex(n, p, rolloverShare(n));
+  p.hidden[HIDDEN.surroundings] = drawSurroundings(n, math, stream0);
+  applyBodyInPlace(n, p, who.ageYears, family);
+  const months = num(n, 'aging.seasonMonths');
+  const monthly = num(n, 'aging.monthlyShare');
+  for (let i = 0; i < plan.length; i++) {
+    const w = plan[i]!;
+    const reps = w.reps ?? defaultWeeklyReps(n, family, w.window, w.role, who.facets[FACET.workEthic]);
+    developSpanInPlace(n, math, p, {
+      ageYears: who.ageYears, weeks: w.weeks, reps, teaching: w.teaching, coachingPoints: w.coachingPoints,
+      freshness: w.freshness, facets: who.facets,
+    }, streamFor(i + 1));
+    if (w.window === 'inSeason') {
+      for (let m = 0; m < months; m++) {
+        p.hidden[HIDDEN.agingIndex] = agedIndex(n, p, monthly);
+        applyBodyInPlace(n, p, who.ageYears, family);
+      }
+    }
+  }
+  return p;
+}
+
+/** The reference path of `developYear`, one fresh block per step (kept for the equality test). */
+export function developYearByStep(n: DevNumbers, math: DeterministicMath, who: PersonForDevelopment, plan: readonly WindowPlan[], streamFor: (step: number) => RandomStream, heavyLoadLastSeason = false): PlayingBlock {
   const family = familyOf(who.position);
   let p = rollover(n, math, who, streamFor(0), heavyLoadLastSeason);
   plan.forEach((w, i) => {
