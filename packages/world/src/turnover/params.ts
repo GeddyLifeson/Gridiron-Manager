@@ -37,6 +37,32 @@ const ROWS: readonly Row[] = [
   ['coach.aliveWinShare', 0.5, 0, 1, 'win share', 'assumption', 'E4.3.3', 'A team that can still finish at this win share is alive for the postseason. No source read'],
   ['coach.formerPlayerMaxAge', 35, 22, 60, 'years', 'assumption', 'E2.1.1', 'Oldest former player who starts at rungs 0 to 2 when the coach pools run dry. No source read'],
   ['coach.needsMiddle', 0.5, 0, 1, 'weight', 'assumption', 'L4.2.3', 'X5 need weights of an off-screen candidate until needs are bound (every need at the middle). No source read'],
+  // Player-to-coach pipeline (D13.3.5 rules 3a and 4, pipeline.ts). Facts: F-pipeline-0001 (a quarter to a third of NFL head
+  // coaches played in the NFL, Verified), F-pipeline-0002 (position shares of head coaches who played, Verified),
+  // F-pipeline-0003 (9 percent of ex-NFL players coach at any level, 1 of 3). No source gives an entry rate by level.
+  ['pipeline.proBase', 0.06, 0, 0.5, 'chance', 'bible', 'D13.3.5', 'D13.3.5 starting value 6 percent; under the 9 percent of ex-NFL players coaching at any level (F-pipeline-0003, 1 of 3); fitted toward F-pipeline-0001 by the calibration run'],
+  ['pipeline.collegeBase', 0.03, 0, 0.5, 'chance', 'bible', 'D13.3.5', 'D13.3.5 starting value 3 percent. No source read for finishing college players'],
+  ['pipeline.pos.QB', 5.6, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002: share of head coaches who played QB over the QB roster share (Sickos 2025, SI 2024 agrees)'],
+  ['pipeline.pos.RB', 0.82, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002 (RB and FB)'],
+  ['pipeline.pos.WR', 0.83, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002'],
+  ['pipeline.pos.TE', 0.61, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002'],
+  ['pipeline.pos.OL', 0.59, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002'],
+  ['pipeline.pos.DL', 0.4, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002'],
+  ['pipeline.pos.LB', 1.26, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002'],
+  ['pipeline.pos.DB', 1.12, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002'],
+  ['pipeline.pos.ST', 0.14, 0.1, 20, 'odds ratio', 'bible', 'D13.3.5', 'F-pipeline-0002 (kickers, punters, snappers)'],
+  ['pipeline.iqSlope', 0.25, 0, 2, 'log odds per 10 iss', 'assumption', 'D13.3.5', 'D4 football intelligence raises the chance (rule 3a names it); size not sourced'],
+  ['pipeline.leadershipSlope', 0.25, 0, 2, 'log odds per 10 facet points', 'assumption', 'D13.3.5', 'D5 leadership raises the chance (rule 3a names it); size not sourced'],
+  ['pipeline.loveSlope', 0.2, 0, 2, 'log odds per 10 facet points', 'assumption', 'D8.4.1', 'Love of football (D8.4.1 keeps players playing; the same pull keeps them in football); size not sourced'],
+  ['pipeline.goalOdds', 3, 1, 20, 'odds ratio', 'assumption', 'X1.1.4', 'A player holding the coach_after_playing goal. No source read'],
+  ['pipeline.proSeasonSlope', 0.08, 0, 1, 'log odds per season', 'assumption', 'D13.3.5', 'Career length raises the chance (rule 3a); ex-NFL head coaches averaged 7.5 NFL seasons (33rd Team, 1 of 3) against a mean career near 6 (Harvard FPHS cohort 6.7)'],
+  ['pipeline.proSeasonsMean', 4, 0, 20, 'seasons', 'assumption', 'D13.3.5', 'Centre of the career-length term. No source read for the world mean'],
+  ['pipeline.waitSeasons', 3, 0, 10, 'seasons', 'assumption', 'X11.1.3', 'Seasons a would-be coach waits for a first chair before leaving football for good. No source read'],
+  ['pipeline.collegeEntryRung', 2, 0, 9, 'rung', 'assumption', 'E2.1.1', 'Finishing college players start as graduate assistants (catalogue rung 2)'],
+  ['pipeline.proEntryRung', 3, 0, 9, 'rung', 'assumption', 'E2.1.1', 'Former pro players can start at quality control (rung 3)'],
+  ['pipeline.veteranSeasons', 8, 1, 20, 'seasons', 'assumption', 'E1.2.1', 'A pro career this long can start at assistant position coach (E1 former_pro_player origin plays 2 to 10 seasons). No source read'],
+  ['pipeline.veteranEntryRung', 4, 0, 9, 'rung', 'assumption', 'E2.1.1', 'Assistant position coach (catalogue rung 4)'],
+  ['pipeline.playedUnderTiePerSeason', 15, 0, 100, 'edge points', 'assumption', 'D13.3.5', 'Rule 4: a coach knows the players he coached; per season together, capped at 100. Below a staff season (coach.tiePerSeason 25). No source read'],
 ];
 
 export const PARAMS: ParamFile = {
