@@ -40,7 +40,7 @@ function qbStandIn(services: PlayServices): PlugStages {
   };
 }
 
-function carrierStandIn(): PlugStages {
+function carrierStandIn(services: PlayServices): PlugStages {
   return {
     stages: [{
       name: 'interact',
@@ -49,6 +49,8 @@ function carrierStandIn(): PlugStages {
         const q = tickResolverParams(w.params), pl = w.players, b = w.ball, t = (w.tick + 1) * TICK_S;
         if (b.kind === 'held' && b.carrierSlot >= 0) {
           const c = b.carrierSlot, side = w.slots[c]!.side;
+          // A passer in the pocket is the quarterback module's: its arrival contest decides sack, hit or escape (J6.2.5).
+          if (c === services.protectedPasser()) return;
           for (let s = 0; s < SLOT_COUNT; s++) {
             if (w.slots[s]!.side === side || isDown(w, s) || pl.engagement[s]! >= 0) continue;
             const dx = pl.posX[s]! - pl.posX[c]!, dy = pl.posY[s]! - pl.posY[c]!;
@@ -85,7 +87,7 @@ function carrierStandIn(): PlugStages {
 }
 
 const BUILD: Readonly<Record<PlugId, (services: PlayServices) => PlugStages>> = {
-  qb: qbStandIn, carrier: () => carrierStandIn(), foulsInjuries: () => ({ stages: [] }),
+  qb: qbStandIn, carrier: carrierStandIn, foulsInjuries: () => ({ stages: [] }),
 };
 
 export function standInPlug(id: PlugId): StagePlug {

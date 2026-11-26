@@ -10,7 +10,7 @@ import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
 import { resolveRuleSet } from '@gm/rules-data';
 import { ATTRIBUTE_IDS, NEUTRAL_ENVIRONMENT, type Decision, type GameDeps, type GameInput, type ParamFile, type ParamTable, type Side, type SimTeam } from '@gm/schema';
-import { GameCallingSession, type LineupFor } from '../../src/commands/game-calling/index.ts';
+import { GameCallingSession, playClockAt, type LineupFor } from '../../src/commands/game-calling/index.ts';
 import { resolve, testConsoleConfig } from './fixtures.ts';
 
 const PARAM_FILES: readonly ParamFile[] = [
@@ -69,11 +69,12 @@ function setup(seedHex: string) {
 }
 
 const KEY_MS = 250; // virtual time per key press: a named test assumption, not a measured value
+const LIVE_MS = 6000; // virtual time from a committed call to the next dead ball: a named test assumption
 
 describe('G-60 full game through the console keys', () => {
   it('plays a whole pro_2026 game with side 0 called only by keys, and the play clock never stops', () => {
     const { input, deps, lineup } = setup('6d0c9a1f3b2e4c5d');
-    const session = new GameCallingSession({ input, deps, userSide: 0, console: testConsoleConfig(), lineup, resolve, keyIntervalMs: KEY_MS, startMs: 0 });
+    const session = new GameCallingSession({ input, deps, userSide: 0, console: testConsoleConfig(), lineup, resolve, keyIntervalMs: KEY_MS, startMs: 0, liveMs: () => LIVE_MS, bookLine: () => '4th and 1: go. Longer: kick' });
     session.start();
 
     const confirms = new Map<number, { openClock: number; openMs: number; enterMs: number }>();
@@ -83,10 +84,37 @@ describe('G-60 full game through the console keys', () => {
     let pick = 0;
     let lastOpen = -1;
     let stuck = 0;
+    let queuedSent = 0;
+    let alertedFourths = 0;
+    let lateWindows = 0;
+    let lateTimeouts = 0;
+    let lateTimeoutAt: { at: number; granted: boolean; deadline: number | null } | null = null;
 
-    for (let guard = 0; guard < 5000 && !session.final; guard++) {
+    for (let guard = 0; guard < 20000 && !session.final; guard++) {
       const s = session.driver.state;
+      // The play is running on screen: queue the next call for the second-down and third-down boxes (I2.3.6).
+      if (session.holding) {
+        const keys = s.cfg.keys.offense!;
+        if (s.sent?.unit === 'offense' && s.queue.length === 0) session.pressAll([...keys.box['second']!, 'Digit2', ...keys.box['third']!, 'Digit1']);
+        session.wait(LIVE_MS);
+        continue;
+      }
       const p = session.pending;
+      // The late-timeout window (after the calls, before the snap; engine PR 146): one timeout in the third quarter.
+      if (p?.late) {
+        lateWindows++;
+        if (lateTimeouts === 0 && session.game.period === 3 && s.open && !s.timeoutThisDeadBall) {
+          const before = session.events.filter((e) => e.type === 'timeout_charged' && e.side === 0).length;
+          const at = playClockAt(s, session.driver.nowMs + KEY_MS);
+          session.press('KeyT');
+          const charged = session.events.filter((e) => e.type === 'timeout_charged' && e.side === 0).length;
+          lateTimeoutAt = { at, granted: charged > before, deadline: p.request.deadlinePlayClockTenths };
+          lateTimeouts++;
+          continue;
+        }
+        session.wait(1000);
+        continue;
+      }
       if (!p || !s.open) throw new Error('session waits with no open request');
       const id = p.request.requestId;
       if (id === lastOpen) { if (++stuck > 3) { session.settle(); continue; } } else { stuck = 0; lastOpen = id; }
@@ -103,6 +131,17 @@ describe('G-60 full game through the console keys', () => {
       }
       if (s.step !== 'select') { session.settle(); continue; }
       units.add(s.open.unit);
+      if (s.alerted !== null && s.open.kind === 'fourth_down') alertedFourths++;
+      // Third down far from the goal: pre-commit the punt (I4.1.1).
+      if (s.open.request.type === 'snapping_call' && s.open.situation.down === 3 && s.open.situation.toGoal > 45 && s.precommit === 'decide_then') session.press('KeyK');
+      // Queued call preselected: one key sends it.
+      if (s.notice === 'console.queuedReady' && s.selected) {
+        session.press('Enter');
+        confirms.set(id, { openClock: p.playClockTenths, openMs: p.openedAtMs, enterMs: session.driver.nowMs });
+        queuedSent++;
+        session.settle();
+        continue;
+      }
       // One timeout in the second quarter, from the offense's console while the timeout window is open.
       if (timeouts === 0 && p.preview && session.game.period === 2 && s.open.unit === 'offense') {
         session.press(s.open.insideTwoMinute ? 'Hold+KeyT' : 'KeyT');
@@ -123,15 +162,27 @@ describe('G-60 full game through the console keys', () => {
       session.settle();
     }
 
+    if (!session.final) { const s = session.driver.state; throw new Error(JSON.stringify({ step: s.step, unit: s.open?.unit, kind: s.open?.kind, req: session.pending?.request, focus: s.focus, sel: s.selected, notice: s.notice, log: s.log.slice(-12) })); }
     expect(session.final).toBe(true);
     expect([...units].sort()).toEqual(['defense', 'offense', 'special']);
     expect(prompts.has('toss_call') || prompts.has('toss_choice') || prompts.has('try_choice')).toBe(true);
     expect(timeouts).toBe(1);
+    expect(queuedSent).toBeGreaterThan(5);
+    expect(alertedFourths).toBeGreaterThan(0);
     expect(session.events.some((e) => e.type === 'timeout_charged' && e.side === 0)).toBe(true);
 
     // Every user call: accepted at the open reading minus the elapsed key time, as the engine logged it.
     const made = new Map<number, Decision>();
     for (const e of session.events) if (e.type === 'decision_made') made.set(e.decision.requestId, e.decision);
+    // With the engine's late timeout (PR 146) the window opens before every snap and T in it is granted.
+    // Required, not optional: if the session answers the late request itself (as "none"), the user loses the
+    // late timeout (I2.1.3, O2.4.1) and this test must fail rather than skip the check.
+    expect(lateWindows).toBeGreaterThan(0);
+    expect(lateTimeouts).toBe(1);
+    expect(lateTimeoutAt).not.toBeNull();
+    expect(lateTimeoutAt!.granted).toBe(lateTimeoutAt!.at >= (lateTimeoutAt!.deadline ?? 0) && lateTimeoutAt!.at > 0);
+    const lateDecision = [...made.values()].find((d) => d.side === 0 && d.type === 'timeout' && d.optionId === 'timeout' && d.acceptedAtPlayClockTenths === lateTimeoutAt!.at);
+    expect(lateDecision).toBeDefined();
     let checked = 0;
     let late = 0;
     for (const a of session.answers) {

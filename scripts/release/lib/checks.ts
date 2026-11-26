@@ -13,8 +13,9 @@ import type { NameHit, NameSource, ResearchHit } from './people.ts';
 export interface ScanResults {
   shippedFiles: number;
   buildArtifact: string | null;
-  marks: { listPath: string; listStatus: string; hits: MarkHit[] } | null;
-  names: { source: NameSource; hits: NameHit[] };
+  marks: { listPath: string; listStatus: string; hits: MarkHit[]; permitted?: Record<string, number> } | null;
+  names: { source: NameSource; hits: NameHit[]; permitted?: Record<string, number> };
+  licences: { ok: boolean; errors: string[]; rows: number; files: number } | null;
   research: { pathHits: ResearchHit[]; tokenHits: ResearchHit[]; copyHits: ResearchHit[]; researchFiles: number; dirs: string[] };
   provisional: ProvisionalReport;
 }
@@ -49,6 +50,7 @@ function tracked(c: Check, inp: Inputs, fallback: () => { status: CheckStatus; d
 
 /** Source metadata (fact rows, calibration targets, citation lists) versus game content, so the report shows where a hit lives. */
 export const SOURCE_METADATA = /(facts[^/]*\.json|fact-rows\.json|fact-ids\.json|\/sources\.ts|content\/calibration\/)/;
+const permittedText = (p?: Record<string, number>) => { const e = Object.entries(p ?? {}); return e.length ? `; permitted by the scan policy: ${e.map(([k, n]) => `${n} ${k}`).join(', ')}` : ''; };
 const byKind = (hits: { file: string }[]) => {
   const meta = hits.filter((h) => SOURCE_METADATA.test(h.file)).length;
   return `${hits.length - meta} in game content, ${meta} in source metadata (fact rows, calibration targets, citations)`;
@@ -106,16 +108,16 @@ export function releaseGateChecks(inp: Inputs, suites: readonly CheckResult[]): 
   out.push(res(mk('release:6a-mark-scan', 'automated', 'No team, school, league or event mark in the release (A6.2.2 scan)', 'R1.2.10 item 6, A6.2.2', 'The release build contains no team or league mark (A6.2.2 scan, zero hits).', 'G-11'),
     !m ? 'MISSING' : m.hits.length ? 'FAIL' : m.listStatus.toUpperCase() === 'PROVISIONAL' ? 'PENDING' : 'PASS',
     !m ? 'blocked-terms list not found (packages/football-content/data/world/blocked-terms.json)'
-      : m.hits.length ? `${m.hits.length} hits in ${where} (${byKind(m.hits)}): ${fmtHits(m.hits)}`
+      : m.hits.length ? `${m.hits.length} hits in ${where} (${byKind(m.hits)}): ${fmtHits(m.hits)}${permittedText(m.permitted)}`
       : m.listStatus.toUpperCase() === 'PROVISIONAL' ? `0 hits in ${where}, but the blocked-terms list is PROVISIONAL (entries not yet read from logged public sources), so a clean scan cannot pass`
-      : `0 hits in ${where}`));
+      : `0 hits in ${where}${permittedText(m.permitted)}`));
   const n = scans.names;
   out.push(res(mk('release:6b-name-scan', 'automated', "No real person's name in the release", 'R1.2.10 item 6, A6.3', "The release build contains no real person's name."),
     n.source.kind === 'none' ? 'MISSING' : n.hits.length ? 'FAIL' : n.source.kind === 'current-people-guard' ? 'PENDING' : 'PASS',
     n.source.kind === 'none' ? 'no list of real names on this machine (people database or G-18 guard)'
-      : n.hits.length ? `${n.hits.length} real full names in ${where} (${byKind(n.hits)}): ${fmtHits(n.hits)}`
+      : n.hits.length ? `${n.hits.length} real full names in ${where} (${byKind(n.hits)}): ${fmtHits(n.hits)}${permittedText(n.permitted)}`
       : n.source.kind === 'current-people-guard' ? `0 hits against ${n.source.people} current people only (G-18 guard); the people database (GM_PEOPLE_DIR) is needed for every real person`
-      : `0 hits against ${n.source.people} real people from ${n.source.path}, in ${where}`));
+      : `0 hits against ${n.source.people} real people from ${n.source.path}, in ${where}${permittedText(n.permitted)}`));
   const r = scans.research;
   out.push(res(mk('release:6c-research-paths', 'automated', 'No research path or raw dataset file in the release (A6.4.1 path check)', 'R1.2.10 item 6, A6.4.1', 'No file under the research paths is included.'),
     r.pathHits.length ? 'FAIL' : 'PASS', r.pathHits.length ? fmtHits(r.pathHits, 8) : `0 research paths or raw dataset files in ${where}`));
@@ -124,6 +126,12 @@ export function releaseGateChecks(inp: Inputs, suites: readonly CheckResult[]): 
     r.tokenHits.length || r.copyHits.length ? fmtHits([...r.copyHits, ...r.tokenHits], 8)
       : r.dirs.length ? `0 source-record ids or urls; 0 byte-identical copies of ${r.researchFiles} research files (${r.dirs.join(', ')})`
       : '0 source-record ids or urls; research folders not on this machine, so the copy check did not run (set GM_RESEARCH_DIR)'));
+  const lic = scans.licences;
+  out.push(res(mk('release:6f-asset-licences', 'automated', 'Every shipped asset has a licence row and the register passes the checker (PV-15)', 'R1.2.10 item 6, A6.2.2', 'assets/LICENSES.json lists every asset, each with an allowed licence and its sources.', 'PV-15'),
+    !lic ? 'MISSING' : lic.ok ? 'PASS' : 'FAIL',
+    !lic ? 'scripts/assets/check-licences.mjs not found at this commit'
+      : lic.ok ? `${lic.rows} register rows cover ${lic.files} asset files; 0 findings`
+      : `${lic.errors.length} findings: ${lic.errors.slice(0, 5).join('; ')}${lic.errors.length > 5 ? `; and ${lic.errors.length - 5} more` : ''}`));
   out.push(tracked(mk('release:6e-similarity', 'tracked', 'No shipped file exceeds the similarity threshold against the people data (A6.4.1 item 4)', 'R1.2.10 item 6, A6.4.1', 'No shipped file exceeds a similarity threshold against the people data.'), inp,
     () => ({ status: 'PENDING', detail: 'name, id and byte-copy checks run above; a per-record numeric similarity measure and its threshold are not defined in the bible yet (A6.4.1 gives no number)' })));
   return out;

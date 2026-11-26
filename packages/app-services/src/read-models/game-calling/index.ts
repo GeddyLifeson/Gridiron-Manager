@@ -68,11 +68,17 @@ export interface ConsoleView {
   readonly prompt: { readonly kind: 'options' | 'fourth'; readonly options: readonly { readonly key: string | null; readonly labelKey: string; readonly isDefault: boolean }[] } | null;
   readonly hint: readonly { readonly key: string; readonly action: string }[];
   readonly notice: string | null;
+  /** I2.3.6 queued next calls: the box and the call, in the order queued. */
+  readonly queue: readonly { readonly box: string; readonly label: string }[];
+  /** I4.1.1 third-down pre-commit with the decision book's line; null off third down. */
+  readonly precommit: { readonly choice: string; readonly bookLine: string | null; readonly key: string | null } | null;
+  /** I4.1.1 the fourth-down unit was alerted on third down (`alerted`) or the user changed his mind (`reversal`). */
+  readonly unitAlert: { readonly alerted: string | null; readonly reversal: boolean } | null;
 }
 
 const HINTS: Record<string, readonly string[]> = {
-  select: ['call.entry_1', 'call.flip', 'call.motion_tag', 'call.protection_tag', 'call.route_tag', 'call.personnel', 'call.confirm', 'call.timeout', 'call.tempo_cycle', 'call.relay_cycle'],
-  sent: ['call.clear', 'call.timeout', 'call.challenge', 'booth.list'],
+  select: ['call.entry_1', 'call.flip', 'call.motion_tag', 'call.protection_tag', 'call.route_tag', 'call.personnel', 'call.confirm', 'call.timeout', 'call.tempo_cycle', 'call.relay_cycle', 'call.precommit_cycle'],
+  sent: ['call.clear', 'call.timeout', 'call.challenge', 'booth.list', 'call.precommit_cycle'],
   prompt: ['call.entry_1', 'call.confirm', 'call.timeout'],
   fourth: ['call.entry_1', 'call.timeout'],
   idle: ['call.timeout', 'call.challenge', 'booth.list', 'playback.skip'],
@@ -136,5 +142,12 @@ export function buildConsoleView(i: ConsoleViewInput): ConsoleView {
     prompt,
     hint: (HINTS[c.step] ?? []).map((action) => ({ action, key: i.keyFor(action) ?? '' })).filter((h) => h.key !== ''),
     notice: c.notice,
+    queue: c.queue.map((q) => {
+      const b = c.cfg.sheets[q.unit]?.boxes.find((x) => x.id === q.boxId);
+      return { box: b?.title ?? q.boxId, label: b?.entries.find((e) => e.id === q.entryId)?.label ?? q.entryId };
+    }),
+    precommit: c.open && c.open.request.type === 'snapping_call' && c.open.situation.down === 3 && c.open.kind !== 'option'
+      ? { choice: `console.precommit.${c.precommit}`, bookLine: c.open.bookLine ?? null, key: i.keyFor('call.precommit_cycle') } : null,
+    unitAlert: c.open?.kind === 'fourth_down' ? { alerted: c.alerted, reversal: c.reversal } : null,
   };
 }

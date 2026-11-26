@@ -8,3 +8,4 @@ export * as gameFrame from './screens/game-frame/index.ts';
 export * as scouting from './screens/scouting/index.ts';
 export * as analytics from './screens/analytics/index.ts';
 export * as week from './screens/week/index.ts';
+export * as film from './screens/film/index.ts';

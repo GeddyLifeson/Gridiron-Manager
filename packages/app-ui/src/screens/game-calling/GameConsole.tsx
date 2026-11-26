@@ -35,6 +35,9 @@ export interface ConsoleViewModel {
   prompt: { kind: 'options' | 'fourth'; options: readonly { key: string | null; labelKey: string; isDefault: boolean }[] } | null;
   hint: readonly { key: string; action: string }[];
   notice: string | null;
+  queue?: readonly { box: string; label: string }[];
+  precommit?: { choice: string; bookLine: string | null; key: string | null } | null;
+  unitAlert?: { alerted: string | null; reversal: boolean } | null;
 }
 
 const sec = (tenths: number): string => (tenths / 10).toFixed(1);
@@ -118,6 +121,13 @@ function Sideline({ v, panel }: { v: ConsoleViewModel; panel?: ReactNode }): Rea
       <div>{ct('console.booth')}: {s.booth ? `${s.booth.role}: ${s.booth.text.slice(0, 60)}` : '-'}</div>
       <div>{ct('console.tendency')}: {s.tendency ? `${s.tendency.text} (${ct('console.sample', { n: s.tendency.sample })})` : '-'}</div>
       <div>{ct('console.tempo')}: {s.tempo} | {ct('console.relay')}: {s.relay}{s.cadence ? ` | ${ct('console.cadence')}: ${s.cadence}` : ''}</div>
+      {v.precommit && (
+        <div data-part="precommit">{v.precommit.key ?? ''} {ct('console.ifShort')}: {ct(v.precommit.choice)}{v.precommit.bookLine ? ` | ${ct('console.book')}: ${v.precommit.bookLine}` : ''}</div>
+      )}
+      {v.unitAlert?.reversal && <div data-part="reversal">{ct('console.reversal')}</div>}
+      {v.queue && v.queue.length > 0 && (
+        <div data-part="queue">{ct('console.queue')}: {v.queue.map((q) => `${q.box}: ${q.label}`).join(' | ')}</div>
+      )}
       {panel ?? (<>
         <Control id="console.timeout" c={s.timeout} command="game.timeout" />
         <Control id="console.challenge" c={s.challenge} command="game.challenge" />

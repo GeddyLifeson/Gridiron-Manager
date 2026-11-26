@@ -152,6 +152,8 @@ const ROWS = [
   ['pocket.minBehindLineYd', 1.5, 0.5, 3, 'yd', 'assumption', 'J7.4.2', STRUCT],
   ['pocket.defaultHalfWidthYd', 4.5, 3, 6, 'yd', 'assumption', 'J7.5.2', GRD],
   // J6.2.5 arrival: a rusher who just missed cannot try again at once; two hands on the ball; the stumble.
+  // Bodies that collide never overlap (J2.6), so "reached him" is a small gap between the body circles, not zero.
+  ['arrival.contactGapYd', 0.1, 0, 0.5, 'yd', 'assumption', 'J6.2.5', SACK],
   ['arrival.rearmS', 0.5, 0.2, 1, 's', 'assumption', 'J6.2.5', SACK],
   ['arrival.secondRusherYd', 2, 1, 4, 'yd', 'assumption', 'J6.2.5', SACK],
   ['arrival.twoHandsZ', 1, 0, 2, 'z', 'assumption', 'J7.4.2', SACK],

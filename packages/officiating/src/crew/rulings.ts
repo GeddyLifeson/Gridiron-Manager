@@ -10,16 +10,18 @@
 //   forward or backward pass both directions, when the pass reached the ground
 //   score                    both directions for a runner at the goal line
 //   spot                     continuous error on every runner-down spot
-//   touching of a kick       a true touch not seen; never a touch that did not happen
+//   touching of a kick       both directions: a true touch not seen, and a touch by the receivers that
+//                            did not happen, ruled when the kickers recover or down the kick (the only
+//                            time it changes the ruling: B6.3.2 item 4). The play runs on as it did.
 //   field goal or try        both directions
 //   in bounds                recorded, never wrong (a missed step out of bounds needs continuing action)
 //   possession of a loose ball  not ruled: the possession event carries no margin
 import {
   possible, roundYd, yardsToGoal,
-  type OfficialPosition, type PlayTruth, type RandomStream, type Ruling, type RulingAspect, type RulingContext, type TruthEventOf,
+  type OfficialPosition, type PlayTruth, type Side, type RandomStream, type Ruling, type RulingAspect, type RulingContext, type TruthEventOf,
 } from '@gm/schema';
 import { CREW, errorScaleSParam, errorScaleYdParam, reviewableKey, type MarginAspect } from './params.ts';
-import { attackDirOf, deadBallIndex } from './seen.ts';
+import { attackDirOf, deadBallIndex, possessionSideBefore } from './seen.ts';
 import { viewOf, type OfficialSpot } from './zones.ts';
 
 type Dead = TruthEventOf<'dead_ball'>;
@@ -32,6 +34,7 @@ export const RUNNER_DOWN_REASONS: readonly Dead['reason'][] = [
 ];
 
 const min = (a: number, b: number) => (a < b ? a : b);
+const NOT_CLOSE: Judged = { marginYd: null, marginS: null, visibility: 'open' };
 
 function errorSight(visibility: Judged['visibility'], ctx: RulingContext): number {
   const name = visibility === 'open' ? CREW.errorSightOpenFactor : visibility === 'crowded' ? CREW.errorSightCrowdedFactor : CREW.errorSightPileFactor;
@@ -85,6 +88,10 @@ export function decideRulings(truth: PlayTruth, ctx: RulingContext, spots: reado
 
   let stopped = false;
   let deadRuled = false;
+  /** Kick state for a touch that did not happen: the kicking team, whether the receivers touched or held the ball, the last landing. */
+  let kickers: Side | null = null;
+  let receiversTouched = false;
+  let landing: Judged = NOT_CLOSE;
   for (let i = 0; i < ev.length && !stopped; i++) {
     const e = ev[i]!;
     if (dead && i > deadIndex) break;
@@ -131,7 +138,24 @@ export function decideRulings(truth: PlayTruth, ctx: RulingContext, spots: reado
         add('score', i, 'score', wrong ? 'short' : 'score', e, by.position, canReview('score'));
         if (wrong) deadRuled = true;
       }
+    } else if (e.type === 'kick') {
+      kickers = possessionSideBefore(truth, i, ctx.situation.offense);
+      receiversTouched = false;
+      landing = NOT_CLOSE;
+    } else if (e.type === 'kick_touch' && e.kind === 'landed') {
+      landing = e;
+    } else if (e.type === 'possession' && kickers !== null && !receiversTouched && e.side !== kickers) {
+      receiversTouched = true;
+    } else if (kickers !== null && !receiversTouched
+      && ((e.type === 'possession' && e.side === kickers) || (e.type === 'dead_ball' && e.reason === 'kick_recovered_by_kickers' && e.side === kickers))) {
+      // B11.3.2 rule 2 and A3.1 ruling 22: the receivers are ruled to have touched the kick before the kickers got
+      // it, by recovering it or by downing it (a dead ball recovered by the kickers with no possession event).
+      // The margin is the landing's, when the resolver gives one; otherwise only the floor chance.
+      const by = official(e.spot.x, e.spot.y);
+      if (mistaken('touching', landing, by)) add('touching', i, 'untouched', 'touched', landing, by.position, canReview('touching'));
+      kickers = null;
     } else if (e.type === 'kick_touch' && (e.kind === 'touched_by_receivers' || e.kind === 'touched_by_kickers')) {
+      if (e.kind === 'touched_by_receivers') receiversTouched = true;
       const by = official(e.spot.x, e.spot.y);
       const wrong = mistaken('touching', e, by);
       add('touching', i, 'touched', wrong ? 'untouched' : 'touched', e, by.position, canReview('touching'));

@@ -69095,7 +69095,7 @@
    "id": "F-rule-2013",
    "level": "pro",
    "domain": "rule",
-   "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (NCAA 3-4-3-b).: false (pro, 2026 rules).",
+   "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (college rule 3-4-3-b).: false (pro, 2026 rules).",
    "value": false,
    "validFor": "2026",
    "sources": [
@@ -69127,7 +69127,7 @@
    "id": "F-rule-2014",
    "level": "college",
    "domain": "rule",
-   "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (NCAA 3-4-3-b).: true (college, 2026 rules).",
+   "statement": "After the two-minute timeout in the second or fourth period, when the clock is stopped to complete a penalty for a foul by the team ahead (or either team if tied), the offended team may choose to start the game clock on the snap (college rule 3-4-3-b).: true (college, 2026 rules).",
    "value": true,
    "validFor": "2026",
    "sources": [

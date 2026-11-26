@@ -1,0 +1,136 @@
+{
+  "$comment": "Design defaults of the personnel module (G-57). Not football facts: each block names the bible leaf that states it as a starting value or an Assumption. Kept out of .ts because league source holds no number but 0 and 1 (P1.1.2).",
+  "template53": {
+    "$comment": "M1.3.1 rule 1: starting pro 53. 'These are a design default, not a fact' (Assumption, labelled so on screen).",
+    "rows": {
+      "QB": 3,
+      "RB": 4,
+      "WR": 6,
+      "TE": 3,
+      "OL": 9,
+      "DL": 9,
+      "LB": 6,
+      "CB": 6,
+      "S": 4,
+      "ST": 3
+    }
+  },
+  "tierShares": {
+    "$comment": "M3.1.2 rule 1: league-wide share of rostered players per colour tier (starting values, Assumption).",
+    "blue": 0.05,
+    "red": 0.3,
+    "purple": 0.4,
+    "orange": 0.25
+  },
+  "tierCuts": {
+    "$comment": "D6.2.1 colour-tier scale: Blue ISS 65 and up, Red 55, Purple 45, Orange 35 (starting values). M3.1.2 makes them per position; calibrateTierCuts() refits from the shares above.",
+    "blue": 65,
+    "red": 55,
+    "purple": 45,
+    "orange": 35
+  },
+  "contactExposure": {
+    "$comment": "M6.2.3: injury exposure per rep as a share of a game snap, walkthrough, jog-through, thud, live (starting multipliers 0.05, 0.2, 0.6, 1.0).",
+    "walkthrough": 0.05,
+    "jog": 0.2,
+    "thud": 0.6,
+    "live": 1.0
+  },
+  "contactTechniqueGain": {
+    "$comment": "M6.2.3: tackling and finishing improve only in thud (partly) and live (fully). 'Partly' is read as half (Assumption, P-57-7).",
+    "walkthrough": 0,
+    "jog": 0,
+    "thud": 0.5,
+    "live": 1.0
+  },
+  "battleDecisionDay": {
+    "$comment": "M6.2.2 rule 3: default decision dates (tuning knob, Assumption): quarterback the day after the second preseason game, other starters the day after the third, specialists the week of cutdown (-1 means the cutdown week).",
+    "quarterback": 2,
+    "starter": 3,
+    "specialist": -1
+  },
+  "preseasonStyle": {
+    "$comment": "M6.3.1 rule 1: series starters play per preseason game by camp style (Assumption). 'light' plays one or two series in game two (two used); 'traditional' plays one series, a quarter (about three series), a half (about six series); series counts for a quarter and a half are this module's reading (P-57-8).",
+    "rest": [
+      0,
+      0,
+      0
+    ],
+    "light": [
+      0,
+      2,
+      0
+    ],
+    "traditional": [
+      1,
+      3,
+      6
+    ]
+  },
+  "staffCalendar": {
+    "$comment": "M6.1.1 rule 5: the staff's starting calendar for a three-preseason-game year, day 0 = veterans' report day, opener on day 47 (Assumption built inside rule 4). Three padded runs of 3 in weeks 2 and 3 (9), 2 padded in each of the next two preseason weeks (13), one in the third preseason week and one in the bye week (15), one kept in reserve. Days off: 9, the least that meets rule 4 with games on days 24, 31 and 38 under this module's reading (P-57-3).",
+    "days": [
+      "report",
+      "acclimation",
+      "acclimation",
+      "acclimation",
+      "acclimation",
+      "off",
+      "full_speed",
+      "padded",
+      "padded",
+      "padded",
+      "full_speed",
+      "off",
+      "full_speed",
+      "padded",
+      "padded",
+      "padded",
+      "full_speed",
+      "off",
+      "full_speed",
+      "padded",
+      "padded",
+      "padded",
+      "full_speed",
+      "walkthrough",
+      "preseason_game",
+      "off",
+      "padded",
+      "padded",
+      "full_speed",
+      "full_speed",
+      "walkthrough",
+      "preseason_game",
+      "off",
+      "padded",
+      "padded",
+      "full_speed",
+      "padded",
+      "walkthrough",
+      "preseason_game",
+      "off",
+      "off",
+      "off",
+      "padded",
+      "full_speed",
+      "full_speed",
+      "off",
+      "walkthrough"
+    ]
+  },
+  "facilityDayHours": {
+    "$comment": "M6.1.1 rule 4: hours on site per day type in the staff draft (Assumption, P-57-3); checked against the facility limit by key.",
+    "report": 10,
+    "acclimation": 10,
+    "padded": 10,
+    "full_speed": 10,
+    "walkthrough": 9,
+    "joint_padded": 10,
+    "joint_full_speed": 10,
+    "preseason_game": 0,
+    "off": 0,
+    "travel": 0,
+    "mock_game": 10
+  }
+}

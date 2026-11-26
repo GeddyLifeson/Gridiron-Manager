@@ -1,0 +1,30 @@
+[
+  {
+    "in": "assets/music/scores/title.musicxml",
+    "out": [
+      "assets/music/title.ogg",
+      "assets/music/scores/title.mscz"
+    ]
+  },
+  {
+    "in": "assets/music/scores/weekHub.musicxml",
+    "out": [
+      "assets/music/weekHub.ogg",
+      "assets/music/scores/weekHub.mscz"
+    ]
+  },
+  {
+    "in": "assets/music/scores/career.musicxml",
+    "out": [
+      "assets/music/career.ogg",
+      "assets/music/scores/career.mscz"
+    ]
+  },
+  {
+    "in": "assets/music/scores/offseason.musicxml",
+    "out": [
+      "assets/music/offseason.ogg",
+      "assets/music/scores/offseason.mscz"
+    ]
+  }
+]

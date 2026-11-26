@@ -40,7 +40,7 @@ const SPECS: readonly RowSpec[] = [
   ['openers', 'Openers (script)', null, null, 'script', null, null, 1],
   ['first_10', 'First and 10', null, [d(1), dist(10, 10)], null, null, 1, 1],
   ['first_long', 'First and long (after a penalty or sack)', null, [d(1), dist(11)], null, null, 2, 1],
-  ['second_short', 'Second and short', null, [d(2), dist(1, 3)], null, null, 2, 1],
+  ['second_short', 'Second and short', null, [d(2), dist(1, 3)], null, null, 1, 1], // tier 1 by MA-64 (3.4 snaps a game)
   ['second_medium', 'Second and medium', null, [d(2), dist(4, 6)], null, null, 1, 1],
   ['second_long', 'Second and long', null, [d(2), dist(7)], null, null, 1, 1],
   ['third_short', 'Third and short', null, [d(3), dist(1, 3)], null, null, 1, 2],

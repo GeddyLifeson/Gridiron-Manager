@@ -291,13 +291,15 @@ export function createMovement(options: MovementOptions = {}): Movement {
 
     // J2.5.3 "the wash": if two body circles would overlap after the move, the lower-priority player
     // (not the ball carrier, then the higher slot) is held and loses speed. Pairs in fixed slot order.
+    // Values fixed for the whole pair sweep are read once (G-97); the arithmetic and its order are unchanged.
+    const downFrac = p.downRadiusFrac!, spacingFrac = p.minSpacingFrac!;
     for (let a = 0; a < SLOT_COUNT; a++) {
+      const ea = pl.engagement[a]!, aDown = pl.moveMode[a] === M_DOWN, ra = radius[a]! * (aDown ? downFrac : 1);
       for (let b = a + 1; b < SLOT_COUNT; b++) {
-        const ea = pl.engagement[a]!;
         if (ea >= 0 && ea === pl.engagement[b]) continue;
-        const aDown = pl.moveMode[a] === M_DOWN, bDown = pl.moveMode[b] === M_DOWN;
+        const bDown = pl.moveMode[b] === M_DOWN;
         if (aDown && bDown) continue;
-        const reach = radius[a]! * (aDown ? p.downRadiusFrac! : 1) + radius[b]! * (bDown ? p.downRadiusFrac! : 1);
+        const reach = ra + radius[b]! * (bDown ? downFrac : 1);
         const dx = nx[b]! - nx[a]!, dy = ny[b]! - ny[a]!;
         const d2 = dx * dx + dy * dy;
         if (d2 >= reach * reach) continue;
@@ -319,7 +321,7 @@ export function createMovement(options: MovementOptions = {}): Movement {
         nvx[loser] = nvx[loser]! * (1 - p.washSpeedLoss!); nvy[loser] = nvy[loser]! * (1 - p.washSpeedLoss!);
         // Never closer than the spacing floor: push him straight out to it.
         const fx = nx[loser]! - nx[other]!, fy = ny[loser]! - ny[other]!;
-        const fd = Math.sqrt(fx * fx + fy * fy), floor = reach * p.minSpacingFrac!;
+        const fd = Math.sqrt(fx * fx + fy * fy), floor = reach * spacingFrac;
         if (fd < floor) {
           if (fd > 0) { nx[loser] = nx[other]! + (fx / fd) * floor; ny[loser] = ny[other]! + (fy / fd) * floor; }
           else { nx[loser] = nx[other]! + (loser > other ? floor : -floor); }
@@ -334,12 +336,12 @@ export function createMovement(options: MovementOptions = {}): Movement {
     for (let pass = 0; pass < SLOT_COUNT + 2; pass++) {
       let changed = false;
       for (let a = 0; a < SLOT_COUNT; a++) {
+        const ea = pl.engagement[a]!, aDown = pl.moveMode[a] === M_DOWN, ra = radius[a]! * (aDown ? downFrac : 1);
         for (let b = a + 1; b < SLOT_COUNT; b++) {
-          const ea = pl.engagement[a]!;
           if (ea >= 0 && ea === pl.engagement[b]) continue;
-          const aDown = pl.moveMode[a] === M_DOWN, bDown = pl.moveMode[b] === M_DOWN;
+          const bDown = pl.moveMode[b] === M_DOWN;
           if (aDown && bDown) continue;
-          const floor = (radius[a]! * (aDown ? p.downRadiusFrac! : 1) + radius[b]! * (bDown ? p.downRadiusFrac! : 1)) * p.minSpacingFrac!;
+          const floor = (ra + radius[b]! * (bDown ? downFrac : 1)) * spacingFrac;
           const dx = nx[b]! - nx[a]!, dy = ny[b]! - ny[a]!;
           const d2 = dx * dx + dy * dy;
           if (d2 >= floor * floor) continue;

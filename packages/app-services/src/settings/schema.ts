@@ -64,6 +64,9 @@ export const SETTINGS: readonly SettingDef[] = [
   vol('whistleCrowd', 100), on('audio.whistleCrowdOn', 'audio', true, ['O5.3.2']),
   vol('alerts', 100), on('audio.alertsOn', 'audio', true, ['O5.3.2']),
   vol('playClockTick', 100), on('audio.playClockTickOn', 'audio', false, ['O5.3.2']),
+  // Menu music (PV-11, MB-11): off until Marlon decides (presentation plan section 9). Never plays
+  // during a game or in the film room.
+  on('audio.menuMusicOn', 'audio', false, ['O5.3.2']),
   // Controls (O5.2.1, O5.2.2): overrides are stored as differences from the default key map.
   { key: 'controls.keyProfile', group: 'controls', scope: 'user', type: 'string', default: 'default', maxLength: 64, help: 'settings.controls.keyProfile', bible: ['O5.2.2'], lockedInCertified: false },
   { key: 'controls.keyOverrides', group: 'controls', scope: 'user', type: 'record', default: {}, help: 'settings.controls.keyOverrides', bible: ['O5.2.2'], lockedInCertified: false },

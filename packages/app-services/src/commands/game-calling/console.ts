@@ -6,7 +6,7 @@
 import type { DecisionRequest } from '@gm/schema';
 import { param } from './params.ts';
 import { focusBox, gridOrder, type CallSheet, type Focus, type SheetEntry, type SheetKeys, type SheetSituation, type TagKind, type Unit, type Relay } from './sheet.ts';
-import { RELAYS, TEMPOS, defenseMarkers, offenseMarkers, type ConsoleTempo, type Markers } from './cycle.ts';
+import { RELAYS, TEMPOS, defenseMarkers, offenseMarkers, relayTenths, type ConsoleTempo, type Markers } from './cycle.ts';
 
 type Table = Parameters<typeof param>[1];
 export type Step = 'idle' | 'fourth' | 'select' | 'sent' | 'prompt';
@@ -23,8 +23,17 @@ export interface ConsoleConfig {
   readonly defaultTempo: ConsoleTempo;
   readonly defaultRelay: Relay;
   readonly radioCutoffTenths: number | null;
+  /** I2.3.6 "send queued calls at once" for hurry-up: a matching queued call is sent without a confirm. */
+  readonly sendQueuedAtOnce?: boolean;
   readonly table?: Table;
 }
+
+/** I2.3.6: a queued next call, kept for one box of the sheet. */
+export interface QueueEntry { readonly unit: Unit; readonly boxId: string; readonly entryId: string }
+
+/** I4.1.1: the third-down pre-commit for the coming fourth down. */
+export type Precommit = 'decide_then' | 'punt' | 'field_goal' | 'go';
+export const PRECOMMITS: readonly Precommit[] = ['decide_then', 'punt', 'field_goal', 'go'];
 
 /** What the host knows when it opens a request (the dead-ball record as the caller sees it). */
 export interface OpenInput {
@@ -53,6 +62,10 @@ export interface OpenInput {
   readonly suggestion: string | null;
   /** The request belongs to the same dead-ball period as the last one: one team timeout per period (B1). */
   readonly sameDeadBall?: boolean;
+  /** A turnover, score or penalty on the last play clears the next-call queue (I2.3.6). */
+  readonly clearQueue?: boolean;
+  /** The decision book's line for the coming fourth down, shown on third down (I4.1.1, I1.4.2); null when none. */
+  readonly bookLine?: string | null;
 }
 
 export interface Selection { readonly unit: Unit; readonly boxId: string; readonly entryId: string }
@@ -104,6 +117,14 @@ export interface ConsoleState {
   readonly notice: string | null;
   readonly nowMs: number;
   readonly log: readonly ConsoleLogEntry[];
+  /** I2.3.6 queued next calls (at most `queueMax`) and the box named for the next queue entry. */
+  readonly queue: readonly QueueEntry[];
+  readonly queueBox: { readonly boxId: string; readonly atMs: number } | null;
+  /** I4.1.1 pre-commit made on third down, and the one this fourth down was alerted for. */
+  readonly precommit: Precommit;
+  readonly alerted: Precommit | null;
+  /** The user changed his mind after the alerted unit started onto the field (I4.1.1). */
+  readonly reversal: boolean;
 }
 
 export interface StepResult { readonly state: ConsoleState; readonly commands: readonly ConsoleCommand[]; readonly handled: boolean }
@@ -115,6 +136,7 @@ export function initialConsole(cfg: ConsoleConfig): ConsoleState {
     cfg, open: null, step: 'idle', focus: NO_FOCUS, boxPrefix: null, pendingBox: null, armed: null, personnelDigits: '',
     selected: null, tags: [], preTags: [], personnel: null, tempo: cfg.defaultTempo, relay: cfg.defaultRelay, cadence: null,
     sent: null, timeoutThisDeadBall: false, challengeThisDeadBall: false, notice: null, nowMs: 0, log: [],
+    queue: [], queueBox: null, precommit: 'decide_then', alerted: null, reversal: false,
   };
 }
 
@@ -150,13 +172,32 @@ export function openRequest(prev: ConsoleState, o: OpenInput): ConsoleState {
     tempo: o.situation.noHuddle && prev.tempo === 'huddle' ? 'no_huddle' : prev.tempo,
   };
   const log = [...prev.log, { atMs: o.atMs, playClockTenths: o.playClockTenths, what: 'open', detail: `${o.request.type}#${o.request.requestId}` }];
+  // Prompts between plays (a challenge window, a penalty choice) leave the queue and the pre-commit alone.
   if (o.kind === 'option') return { ...base, step: 'prompt', focus: NO_FOCUS, log };
-  if (o.kind === 'fourth_down') return { ...base, step: 'fourth', focus: NO_FOCUS, log };
+  const callBase: ConsoleState = { ...base, queue: [], queueBox: null, alerted: null, reversal: false, log };
+  const userFourth = o.kind === 'fourth_down' && o.request.type === 'snapping_call';
+  // I4.1.1: a third down opens a fresh pre-commit; the fourth down after it uses the one made.
+  const precommit: Precommit = sameDeadBall && o.kind !== 'fourth_down' ? prev.precommit : 'decide_then';
+  if (o.kind === 'fourth_down') {
+    const carried = userFourth && prev.precommit !== 'decide_then' ? prev.precommit : null;
+    const fourth: ConsoleState = { ...callBase, precommit, step: 'fourth', focus: NO_FOCUS };
+    if (!carried) return fourth;
+    const pick = carried === 'go' ? 1 : carried === 'punt' ? 2 : 3;
+    const r = chooseUnit({ ...fourth, alerted: carried }, pick, o.atMs);
+    return { ...r.state, notice: 'console.unitReady' };
+  }
   const sheet = sheetOf(base, unit);
   const kick = (o.kind === 'own_kick' || o.kind === 'opponent_kick') && o.kickKind ? o.kickKind : null;
   const focus = kick ? kickFocus(sheet, kick) : sheet ? focusBox(sheet, o.situation) : NO_FOCUS;
-  let s: ConsoleState = { ...base, step: 'select', focus, log, notice: focus.empty ? 'console.boxEmpty' : null };
+  let s: ConsoleState = { ...callBase, precommit, step: 'select', focus, notice: focus.empty ? 'console.boxEmpty' : null };
   if (o.suggestion) s = { ...s, notice: s.notice ?? 'console.suggestionReady' };
+  // I2.3.6: the queued call for the box that occurred is preselected; the others are cleared.
+  const hit = o.clearQueue ? undefined : prev.queue.find((q) => q.unit === unit && q.boxId === focus.boxId);
+  const e = hit ? entryById(sheet, hit.boxId, hit.entryId) : null;
+  if (hit && e) {
+    s = logged({ ...s, selected: { unit, boxId: hit.boxId, entryId: hit.entryId }, notice: e.replacement ? 'console.replacement' : 'console.queuedReady' }, o.atMs, 'queued_preselect', e.id);
+    if (s.cfg.sendQueuedAtOnce && s.tempo === 'hurry_up' && !e.replacement) return send(s, o.atMs).state;
+  }
   return s;
 }
 
@@ -184,10 +225,24 @@ export function markers(s: ConsoleState): Markers | null {
   const spoken = (e?.spokenTenths ?? 0) + (e ? e.tags.filter((t) => s.tags.includes(t.id)).reduce((a, t) => a + t.spokenTenths, 0) : 0);
   const want = s.personnel ?? (e && e.call.unit === 'offense' ? e.call.personnelCode : null);
   const substitution = want !== null && want !== s.open.personnelOnField;
+  const kick = e && e.call.unit === 'kick' ? e.call.kickKind : null;
+  if (s.open.unit === 'special' && s.open.kind === 'fourth_down' && (kick === 'punt' || kick === 'field_goal')) {
+    return { latestTenths: relayTenths(s.relay, spoken, s.cfg.table) + unitChangeTenths(kick, s.alerted, s.reversal, s.cfg.table) + param('minPresnapTenths', s.cfg.table), radioTenths: null };
+  }
   if (s.open.unit === 'defense') {
     return defenseMarkers({ spokenTenths: spoken, relay: s.relay, offenseSetTenths: s.open.offenseSetTenths, substitution, atSideline: s.open.afterTimeout }, s.cfg.table);
   }
   return offenseMarkers({ spokenTenths: spoken, relay: s.relay, tempo: s.tempo, substitution, afterTimeout: s.open.afterTimeout, radioCutoffTenths: s.cfg.radioCutoffTenths }, s.cfg.table);
+}
+
+/**
+ * I4.1.1 stage 5 for a kicking unit on fourth down: dead ball to set when alerted, more when not, and the full
+ * run-off and run-on when the user changed his mind after the alerted unit started out.
+ */
+export function unitChangeTenths(kick: 'punt' | 'field_goal', alerted: Precommit | null, reversal: boolean, t?: Table): number {
+  const base = param(kick === 'punt' ? 'puntUnitTenths' : 'fieldGoalUnitTenths', t);
+  const wasAlerted = alerted === kick;
+  return base + (wasAlerted ? 0 : param('unalertedUnitTenths', t)) + (reversal ? param('reversalTenths', t) : 0);
 }
 
 function logged(s: ConsoleState, atMs: number, what: string, detail?: string): ConsoleState {
@@ -295,7 +350,56 @@ function chooseUnit(s: ConsoleState, d: number | null, atMs: number): StepResult
   const [unit, kick] = pick;
   const sheet = sheetOf(s, unit);
   const focus = kick ? kickFocus(sheet, kick) : sheet ? focusBox(sheet, open.situation) : NO_FOCUS;
-  return { state: logged({ ...s, open: { ...open, unit }, step: 'select', focus }, atMs, 'unit', kick ?? unit), commands: [], handled: true };
+  const chosen: Precommit = kick === 'punt' ? 'punt' : kick === 'field_goal' ? 'field_goal' : 'go';
+  // A different unit after the alerted one started out is a reversal (I4.1.1); a kick unit preselects its first call.
+  const reversal = s.reversal || (s.alerted !== null && s.alerted !== chosen && backedOut(s));
+  const first = kick && focus.boxId ? sheet?.boxes.find((b) => b.id === focus.boxId)?.entries[0] ?? null : null;
+  const selected = first ? { unit, boxId: focus.boxId!, entryId: first.id } : null;
+  return { state: logged({ ...s, open: { ...open, unit }, step: 'select', focus, reversal, selected, tags: [], personnel: null }, atMs, 'unit', kick ?? unit), commands: [], handled: true };
+}
+
+/** The user backed out of the alerted unit since this request opened. */
+function backedOut(s: ConsoleState): boolean {
+  for (let i = s.log.length - 1; i >= 0; i--) { const w = s.log[i]!.what; if (w === 'unit_back') return true; if (w === 'open') return false; }
+  return false;
+}
+
+/** I4.1.1: on third down the offense's caller cycles the pre-commit for the coming fourth down. */
+function precommitCycle(s: ConsoleState, atMs: number): StepResult {
+  const o = s.open;
+  if (!o || o.request.type !== 'snapping_call' || o.situation.down !== 3) return { state: { ...s, notice: 'console.precommitThirdOnly' }, commands: [], handled: true };
+  const next = PRECOMMITS[(PRECOMMITS.indexOf(s.precommit) + 1) % PRECOMMITS.length]!;
+  return { state: logged({ ...s, precommit: next, notice: null }, atMs, 'precommit', next), commands: [], handled: true };
+}
+
+/**
+ * I2.3.6: while the call is relayed and the play runs, a box letter then an entry key queue that entry for that
+ * box. One entry per box, at most `queueMax`. The live key map's digits name the entry, as in the box itself.
+ */
+function queueKey(s: ConsoleState, action: string | undefined, code: string, atMs: number): StepResult {
+  const none: StepResult = { state: s, commands: [], handled: false };
+  const unit = s.sent?.unit ?? s.open?.unit;
+  if (!unit) return none;
+  const sheet = sheetOf(s, unit);
+  const keys = s.cfg.keys[unit];
+  if (!sheet || !keys) return none;
+  if (s.queueBox) {
+    const box = sheet.boxes.find((b) => b.id === s.queueBox!.boxId);
+    const hit = box?.entries.find((e) => keys.entry[e.id] === code);
+    if (hit) {
+      const rest = s.queue.filter((q) => !(q.unit === unit && q.boxId === box!.id));
+      if (rest.length >= param('queueMax', s.cfg.table)) return { state: { ...s, queueBox: null, notice: 'console.queueFull' }, commands: [], handled: true };
+      return { state: logged({ ...s, queue: [...rest, { unit, boxId: box!.id, entryId: hit.id }], queueBox: null, boxPrefix: null, notice: null }, atMs, 'queue', hit.id), commands: [], handled: true };
+    }
+  }
+  if (/^Key[A-Z]$/.test(code) && action === undefined) {
+    const codes = [...(s.boxPrefix?.codes ?? []), code];
+    const exact = Object.entries(keys.box).find(([, c]) => c.length === codes.length && c.every((x, i) => x === codes[i]));
+    if (exact) return { state: { ...s, queueBox: { boxId: exact[0], atMs }, boxPrefix: null }, commands: [], handled: true };
+    const prefix = Object.values(keys.box).some((c) => c.length > codes.length && c.slice(0, codes.length).every((x, i) => x === codes[i]));
+    if (prefix) return { state: { ...s, boxPrefix: { codes, atMs } }, commands: [], handled: true };
+  }
+  return none;
 }
 
 const CYCLE = <T>(list: readonly T[], cur: T | null): T | null => (list.length === 0 ? null : list[(cur === null ? 0 : list.indexOf(cur) + 1) % list.length]!);
@@ -347,7 +451,9 @@ export function pressKey(s0: ConsoleState, action: string | undefined, code: str
   if (s.step === 'sent') {
     // Recall until the latest-call marker, at the time cost of a new call (O2.2.3, I2.1.3).
     if (action === 'call.clear' && s.sent && !s.sent.committed) return { state: logged({ ...s, step: 'select', sent: null }, atMs, 'recall'), commands: [], handled: true };
-    return none;
+    if (action === 'call.clear') return { state: logged({ ...s, queue: [], queueBox: null }, atMs, 'queue_clear'), commands: [], handled: true };
+    if (action === 'call.precommit_cycle') return precommitCycle(s, atMs);
+    return queueKey(s, action, code, atMs);
   }
 
   // Step 'select'.
@@ -364,6 +470,11 @@ export function pressKey(s0: ConsoleState, action: string | undefined, code: str
   }
   if (s.armed && s.armed !== 'personnel' && d !== null) return { state: toggleTag(s, s.armed, (d === 0 ? 10 : d) - 1), commands: [], handled: true };
 
+  if (action === 'call.precommit_cycle') return precommitCycle(s, atMs);
+  // I4.1.1: back out of the alerted unit to the fourth-down choice; a different unit then costs the reversal.
+  if (action === 'call.clear' && open.kind === 'fourth_down' && s.alerted !== null && !s.reversal) {
+    return { state: logged({ ...s, step: 'fourth', selected: null, focus: NO_FOCUS }, atMs, 'unit_back'), commands: [], handled: true };
+  }
   switch (action) {
     case 'call.personnel': return { state: { ...s, armed: 'personnel', personnelDigits: '' }, commands: [], handled: true };
     case 'call.flip': return { state: toggleTag(s, 'flip', 0), commands: [], handled: true };

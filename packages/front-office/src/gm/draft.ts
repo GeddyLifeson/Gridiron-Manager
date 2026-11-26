@@ -54,6 +54,11 @@ export interface ClockInput {
   readonly offers: readonly DownOffer[];
   /** Public consensus rank of each available player (rule 4). */
   readonly consensusRank: ReadonlyMap<PersonId, number>;
+  /**
+   * Chance each player is taken before his next pick, from the public needs of the clubs ahead (M3.4.1
+   * `chanceGone`, built in `personnel.ts`). Where given it replaces the consensus-rank test.
+   */
+  readonly chanceGone?: ReadonlyMap<PersonId, number>;
   /** True when it is his pick now; false when he is waiting and may move up. */
   readonly onClock: boolean;
   /** Picks until his next selection (0 when on the clock). */
@@ -77,7 +82,8 @@ export function onTheClock(input: ClockInput): ClockChoice {
   }
   const next = input.board[1];
   const standsAlone = !next || top.score >= next.score * (1 + P('draft.tradeUpGap'));
-  const gone = (input.consensusRank.get(top.personId) ?? Infinity) <= input.picksUntilMine;
+  const chance = input.chanceGone?.get(top.personId);
+  const gone = chance === undefined ? (input.consensusRank.get(top.personId) ?? Infinity) <= input.picksUntilMine : chance >= P('draft.goneChance');
   if (standsAlone && gone && next) return { kind: 'seek_trade_up', personId: top.personId, worthUpTo: top.value - next.value, fallback: top.personId };
   return { kind: 'pick', personId: top.personId, passedOn: [] };
 }
