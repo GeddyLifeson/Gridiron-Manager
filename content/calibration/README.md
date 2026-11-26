@@ -22,3 +22,4 @@ Contract change requests (for the integrator, plans/engine-build-plan.md section
 - `CalibrationTarget.value` cannot be null for a missing row (rows use `[]`).
 - The fact lint's `usedBy` check ignores calibration targets, so `usedBy` stays empty on measured-rate rows.
 - `PlayByPlayRow` has no explicit completion flag; the harness reads `resultType` (a completed pass that is then fumbled counts when it carries yards after catch). WP-07 should confirm.
+- College penalty rows (2026-11-26, integrator): `foul.acceptedPerTeam` and `foul.yardsPerTeam` and their fact rows F-measured-rate-0349/0350 now hold the publishers' box-score count (5.9571, 52.221), per the standing ruling; the cfbfastR play-by-play values are in the row notes. `authoring/college.py` still writes the play-by-play values and, rerun today, also undoes the G-10 second and third source pass (PR 229). Do not rerun it until it reads those rows; edit the JSON instead.

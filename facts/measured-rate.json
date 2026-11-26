@@ -10656,20 +10656,11 @@
    "id": "F-measured-rate-0349",
    "level": "college",
    "domain": "measured-rate",
-   "statement": "Accepted fouls per team per game: 5.1785 (college, 2022-2025).",
-   "value": 5.1785,
+   "statement": "Accepted fouls per team per game: 5.9571 (college, publishers' box-score count, FBS against FBS regular season 2022-2025).",
+   "value": 5.9571,
    "unit": "count",
    "validFor": "2022-2025",
    "sources": [
-    {
-     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
-     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
-     "dateRead": "2026-11-25",
-     "howRead": "dataset computed",
-     "independenceGroup": "cfbfastr-pbp",
-     "primary": false,
-     "value": 5.1785
-    },
     {
      "citation": "ESPN college football game box scores (summary pages), every FBS against FBS regular-season game 2022 to 2025, read in the PC browser; computed by the project",
      "locator": "research/college/verify-targets-2026-11-26/results.md; 35,719 penalties over 5,996 team-games = 5.957 per team-game (6.01, 5.84, 5.97, 6.01 by season)",
@@ -10685,11 +10676,10 @@
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
      "independenceGroup": "ncaa-stat-feed",
-     "primary": false,
-     "value": 5.9462
+     "primary": false
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
@@ -10711,28 +10701,24 @@
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "Diagnosis added: the baseline filter explains about 0.4 of the 0.7 gap."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Integrator, per the standing ruling to use the publishers' count (5.95) for the college penalty target: the row now holds the ESPN box-score value. The cfbfastR play-by-play figure (5.1785) measures a filtered subset and is kept in the notes, not as a source; NCAA.com is the same independence group and a wider scope, so it carries no value. One independent group."
     }
    ],
-   "notes": "Two independent publishers read 5.95 to 5.96 accepted penalties per team game; the cfbfastR play-by-play count is 13 percent lower. Do not certify until the cause is found. Recounting the baseline play-by-play (2024): the baseline filter gives 5.27; every flagged play 5.69; every foul mention on accepted-flag plays 5.65; the publishers 5.98. About 0.4 of the gap is the baseline's own filter, about 5 percent is fouls the play-by-play never records."
+   "notes": "Two independent publishers read 5.95 to 5.96 accepted penalties per team game; the cfbfastR play-by-play count is 13 percent lower. Do not certify until the cause is found. Recounting the baseline play-by-play (2024): the baseline filter gives 5.27; every flagged play 5.69; every foul mention on accepted-flag plays 5.65; the publishers 5.98. About 0.4 of the gap is the baseline's own filter, about 5 percent is fouls the play-by-play never records. Integrator 2026-11-26: the cfbfastR play-by-play figure 5.1785 (bible/_sources/calibration.college_top.v1.json, research/college/college_baselines.py) undercounts; it is no longer a source of this row."
   },
   {
    "id": "F-measured-rate-0350",
    "level": "college",
    "domain": "measured-rate",
-   "statement": "Foul yards per team per game: 42.7185 (college, 2022-2025).",
-   "value": 42.7185,
+   "statement": "Foul yards per team per game: 52.221 (college, publishers' box-score count, FBS against FBS regular season 2022-2025).",
+   "value": 52.221,
    "unit": "yards",
    "validFor": "2022-2025",
    "sources": [
-    {
-     "citation": "cfbfastR play-by-play (sportsdataverse-data releases), FBS against FBS regular season 2022 to 2025; computed by the project",
-     "locator": "bible/_sources/calibration.college_top.v1.json; research/college/college_baselines.py",
-     "dateRead": "2026-11-25",
-     "howRead": "dataset computed",
-     "independenceGroup": "cfbfastr-pbp",
-     "primary": false,
-     "value": 42.7185
-    },
     {
      "citation": "ESPN college football game box scores (summary pages), every FBS against FBS regular-season game 2022 to 2025, read in the PC browser; computed by the project",
      "locator": "research/college/verify-targets-2026-11-26/results.md; 313,117 penalty yards over 5,996 team-games = 52.22 per team-game",
@@ -10748,11 +10734,10 @@
      "dateRead": "2026-11-26",
      "howRead": "dataset computed",
      "independenceGroup": "ncaa-stat-feed",
-     "primary": false,
-     "value": 52.2899
+     "primary": false
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
@@ -10769,9 +10754,14 @@
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "Regrouped: NCAA.com game statistics and ESPN box scores carry the same numbers (plays per game 68.616 against 68.616 for 2022), so they are one independence group, not two. The Conflict stands."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Integrator, per the standing ruling to use the publishers' count (52.2) for the college penalty target: the row now holds the ESPN box-score value. The cfbfastR play-by-play figure (42.7185) measures a filtered subset and is kept in the notes, not as a source; NCAA.com is the same independence group and a wider scope, so it carries no value. One independent group."
     }
    ],
-   "notes": "Two independent publishers read 52.2 to 52.3 penalty yards per team game; the cfbfastR play-by-play sum is 18 percent lower. Do not certify until the cause is found."
+   "notes": "Two independent publishers read 52.2 to 52.3 penalty yards per team game; the cfbfastR play-by-play sum is 18 percent lower. Do not certify until the cause is found. Integrator 2026-11-26: the cfbfastR play-by-play figure 42.7185 (bible/_sources/calibration.college_top.v1.json, research/college/college_baselines.py) undercounts; it is no longer a source of this row."
   },
   {
    "id": "F-measured-rate-0351",

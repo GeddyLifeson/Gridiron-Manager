@@ -1715,8 +1715,8 @@
    "quantity": "Accepted fouls per team per game",
    "unit": "count",
    "filter": "game.penaltiesAcceptedPerTeam",
-   "definition": "Accepted penalties per team game. Source: cfbfastR play-by-play, FBS against FBS regular season 2022 to 2025, script research/college/college_baselines.py, csv label 'penalties_per_team_game'.",
-   "value": 5.1785,
+   "definition": "Accepted penalties per team game. Source: ESPN box scores, every FBS against FBS regular-season game 2022 to 2025 (35,719 penalties over 5,996 team-games); NCAA.com team statistics agree (5.946). The cfbfastR play-by-play count (5.1785) undercounts and is not used.",
+   "value": 5.9571,
    "n": 2998,
    "seasons": "2022-2025",
    "tolerance": {
@@ -1728,7 +1728,7 @@
    "factId": "F-measured-rate-0349",
    "tier": "tune",
    "ruleSetDependent": true,
-   "note": "College teams are flagged less in this data; may be how fouls are recorded in the source. Tune with a wide band until a second source agrees. By season 2022 5.0702, 2023 4.9413, 2024 5.2699, 2025 5.4259. Power tier 5.1372, other tier 5.2615 (by the offense's conference). Pro value from the same script 5.9104 (shown for comparison only, never used as a college value)."
+   "note": "Publishers' count per the standing ruling (college penalty target 5.95 and 52.2). By season (ESPN) 6.01, 5.84, 5.97, 6.01. Pro value from the same play-by-play script 5.9104 (shown for comparison only, never used as a college value)."
   },
   {
    "id": "foul.yardsPerTeam",
@@ -1739,8 +1739,8 @@
    "quantity": "Foul yards per team per game",
    "unit": "yards",
    "filter": "game.penaltyYardsPerTeam",
-   "definition": "Yards of accepted penalties per team game. Source: cfbfastR play-by-play, FBS against FBS regular season 2022 to 2025, script research/college/college_baselines.py, csv label 'penalty_yds_per_team_game'.",
-   "value": 42.7185,
+   "definition": "Yards of accepted penalties per team game. Source: ESPN box scores, every FBS against FBS regular-season game 2022 to 2025 (313,117 yards over 5,996 team-games); NCAA.com agrees (52.29). The cfbfastR play-by-play sum (42.7185) undercounts and is not used.",
+   "value": 52.221,
    "n": 2998,
    "seasons": "2022-2025",
    "tolerance": {
@@ -1752,7 +1752,7 @@
    "factId": "F-measured-rate-0350",
    "tier": "watch",
    "ruleSetDependent": true,
-   "note": "By season 2022 41.4673, 2023 40.5473, 2024 45.4581, 2025 43.357. Power tier 42.2849, other tier 43.5071 (by the offense's conference). Pro value from the same script 48.3957 (shown for comparison only, never used as a college value)."
+   "note": "Publishers' count per the standing ruling (college penalty target 5.95 and 52.2)."
   },
   {
    "id": "foul.yardsPerAccepted",
