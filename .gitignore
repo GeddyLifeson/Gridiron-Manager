@@ -6,4 +6,5 @@ out/
 shells/desktop/src-tauri/target/
 shells/desktop/src-tauri/gen/
 .vite/
-test-results/tmp-saves/
+# Check results are local output. Tracked until 2026-11-26; they conflicted on every merge.
+test-results/

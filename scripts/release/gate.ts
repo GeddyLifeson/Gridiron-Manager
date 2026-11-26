@@ -8,10 +8,11 @@
 // (--report-only always exits 0 after writing the report). No GitHub Actions: run it on the test machines.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { headCommit, sourceDirty, trackedFiles } from './lib/git.ts';
 import { findBibleDir, readBible, readPhaseGates, type BibleLeaf, type GateItem } from './lib/bible.ts';
 import { loadPlans } from './lib/plans.ts';
+import { loadPolicy, permitReason } from './lib/policy.ts';
 import { shippedTree, SCAN_REFERENCE_FILES, TEXT_EXT } from './lib/shipped.ts';
 import { buildMatcher, scanMarks, type BlockedTerms, type MarkHit } from './lib/marks.ts';
 import { loadRealNames, scanNames, researchPathHits, recordTokenHits, researchCopyHits, type NameHit, type ResearchHit } from './lib/people.ts';
@@ -29,6 +30,7 @@ const OUT = resolve(ROOT, opt('--out') ?? 'scripts/release/report');
 const SNAPSHOT = join(ROOT, 'scripts/release/data/bible-criteria.json');
 const BLOCKED = 'packages/football-content/data/world/blocked-terms.json';
 const ALLOWED = join(ROOT, 'scripts/release/data/allowed.json');
+const POLICY = join(ROOT, 'scripts/release/data/policy.json');
 interface AllowEntry { file: string; term: string; reason: string; reviewedBy: string }
 interface Allowed { marks: AllowEntry[]; names: AllowEntry[] }
 
@@ -53,6 +55,13 @@ function bibleInputs(notes: string[]): { leaves: BibleLeaf[]; gates: GateItem[];
   return { leaves: [], gates: [], source: 'none' };
 }
 
+async function licenceCheck(root: string): Promise<ScanResults['licences']> {
+  const f = join(root, 'scripts/assets/check-licences.mjs');
+  if (!existsSync(f)) return null;
+  const mod = (await import(pathToFileURL(f).href)) as { checkLicences: (root: string) => { ok: boolean; errors: string[]; rows: number; files: number } };
+  return mod.checkLicences(root);
+}
+
 function scan(ctx: GateContext, notes: string[]): ScanResults {
   const tree = shippedTree(ctx.root);
   const textFiles = tree.files.filter((f) => TEXT_EXT.test(f) && !SCAN_REFERENCE_FILES.has(f));
@@ -74,23 +83,34 @@ function scan(ctx: GateContext, notes: string[]): ScanResults {
   const allowedMarks = markHits.filter((h) => isAllowed(allowed.marks, h.file, h.term));
   const allowedNames = nameHits.filter((h) => isAllowed(allowed.names, h.file, h.name));
   if (allowedMarks.length || allowedNames.length) notes.push(`reviewed and allowed (data/allowed.json): ${allowedMarks.length} mark hits, ${allowedNames.length} name hits`);
+  // Scan policy (data/policy.json): hits on surfaces a player never sees are permitted and counted by reason.
+  const policy = loadPolicy(POLICY);
+  const lineCache = new Map<string, string[]>();
+  const lineOf = (f: string, n: number) => { if (!n) return undefined; if (!lineCache.has(f)) lineCache.set(f, readFileSync(join(ctx.root, f), 'utf8').split(/\r?\n/)); return lineCache.get(f)![n - 1]; };
+  const permitted = { marks: {} as Record<string, number>, names: {} as Record<string, number> };
+  const failMarks = markHits.filter((h) => !allowedMarks.includes(h)).filter((h) => { const r = permitReason(policy, h.file, lineOf(h.file, h.line), h.term, 'mark'); if (r) permitted.marks[r] = (permitted.marks[r] ?? 0) + 1; return !r; });
+  const failNames = nameHits.filter((h) => !allowedNames.includes(h)).filter((h) => { const r = permitReason(policy, h.file, lineOf(h.file, h.line), h.name, 'name'); if (r) permitted.names[r] = (permitted.names[r] ?? 0) + 1; return !r; });
+  const fmtP = (o: Record<string, number>) => Object.entries(o).map(([k, n]) => `${n} ${k}`).join(', ') || 'none';
+  notes.push(`scan policy (data/policy.json): permitted mark hits ${fmtP(permitted.marks)}; permitted name hits ${fmtP(permitted.names)}`);
   const copies = researchCopyHits(ctx.root, tree.files);
   const provisional = provisionalReport(ctx.root, factFiles(trackedFiles(ctx.root)));
   return {
     shippedFiles: tree.files.length,
     buildArtifact: tree.buildArtifact,
-    marks: blocked ? { listPath: BLOCKED, listStatus: blocked.status ?? 'unknown', hits: markHits.filter((h) => !allowedMarks.includes(h)) } : null,
-    names: { source: names, hits: nameHits.filter((h) => !allowedNames.includes(h)) },
+    marks: blocked ? { listPath: BLOCKED, listStatus: blocked.status ?? 'unknown', hits: failMarks, permitted: permitted.marks } : null,
+    names: { source: names, hits: failNames, permitted: permitted.names },
     research: { pathHits: researchPathHits(tree.files), tokenHits, copyHits: copies.hits, researchFiles: copies.researchFiles, dirs: copies.dirs },
     provisional,
+    licences: null,
   };
 }
 
-function main(): number {
+async function main(): Promise<number> {
   const ctx: GateContext = { root: ROOT, commit: headCommit(ROOT), dirty: sourceDirty(ROOT) };
   const notes: string[] = [];
   const bible = bibleInputs(notes);
   const scans = scan(ctx, notes);
+  scans.licences = await licenceCheck(ctx.root);
   const all = runChecks({ ctx, leaves: bible.leaves, gates: bible.gates, wps: loadPlans(ROOT), evidence: loadEvidence(join(ROOT, EVIDENCE_FILE)), suites: collectSuiteRecords(ROOT), scans });
   const v = verdict(all, ctx);
   mkdirSync(OUT, { recursive: true });
@@ -99,7 +119,7 @@ function main(): number {
   writeFileSync(join(OUT, 'BIBLE-CHECKLIST.md'), bibleMarkdown(all, meta));
   writeFileSync(join(OUT, 'PROVISIONAL.md'), provisionalMarkdown(scans.provisional, ctx.commit));
   writeFileSync(join(OUT, 'results.json'), JSON.stringify({ commit: ctx.commit, dirty: ctx.dirty, pass: v.pass, reasons: v.reasons, generatedAt: meta.generatedAt, bible: bible.source, notes, counts: counts(all),
-    scans: { shippedFiles: scans.shippedFiles, buildArtifact: scans.buildArtifact, markHits: scans.marks?.hits ?? null, nameSource: { kind: scans.names.source.kind, path: scans.names.source.path, people: scans.names.source.people }, nameHits: scans.names.hits, research: scans.research },
+    scans: { shippedFiles: scans.shippedFiles, buildArtifact: scans.buildArtifact, markHits: scans.marks?.hits ?? null, nameSource: { kind: scans.names.source.kind, path: scans.names.source.path, people: scans.names.source.people }, nameHits: scans.names.hits, licences: scans.licences, research: scans.research },
     checks: all }, null, 1) + '\n');
   const c = counts(all);
   console.log(`release gate: ${v.pass ? 'PASS' : 'HOLD'} at ${ctx.commit.slice(0, 12)}${ctx.dirty ? ' (dirty)' : ''}`);
@@ -110,4 +130,4 @@ function main(): number {
   return args.includes('--report-only') ? 0 : v.pass ? 0 : 1;
 }
 
-process.exit(main());
+main().then((c) => process.exit(c));

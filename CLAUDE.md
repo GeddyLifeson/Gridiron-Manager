@@ -14,4 +14,4 @@ Shared rules live in the project's master file (`/mnt/project-files/masterclaude
 - Every rule value in `packages/rules-data/data/*.json` cites a row in `facts/*.json` (Q6). Rule rows must be at least "Rulebook only". Status is computed from sources, never typed.
 - Binding rulings: no coach points, XP, skill trees, perks or picked traits; people are described by demonstrated behaviour; one difficulty (real life); the play clock always runs. The forbidden-key lint enforces the schema side.
 - Golden hashes (`golden/golden.json`) change only in a commit that says why (Q1.3.1).
-- One command runs everything: `npm run check`. Results go to `test-results/` and are committed with the change until a CI host is chosen.
+- One command runs everything: `npm run check`. Results go to `test-results/`, which is not tracked (it conflicted on every merge); quote the summary in the pull request instead.

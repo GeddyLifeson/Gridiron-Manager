@@ -15,8 +15,9 @@ const box: React.CSSProperties = { border: '1px solid var(--line)', borderRadius
 
 function randomSeedHex(): string {
   // The wall clock and platform random are allowed here: world creation is outside the core (J13.4.1).
-  const a = Math.floor(Math.random() * 0xffffffff) >>> 0;
-  const b = (Date.now() >>> 0) ^ Math.floor(Math.random() * 0xffffffff);
+  // Marked for the PV-01 lint: fresh entropy for a new world seed, never presentation.
+  const a = Math.floor(Math.random() * 0xffffffff) >>> 0; // allow-platform-random: J13.4.1
+  const b = (Date.now() >>> 0) ^ Math.floor(Math.random() * 0xffffffff); // allow-platform-random: J13.4.1
   return a.toString(16).padStart(8, '0') + (b >>> 0).toString(16).padStart(8, '0');
 }
 

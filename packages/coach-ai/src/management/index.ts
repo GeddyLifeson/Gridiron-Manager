@@ -2,7 +2,7 @@
 // tosses and rest decisions for an AI head coach, and for the user's staff when he delegates (K6.2.2).
 export * from './types.ts';
 export { RULE_KEYS, PARAMS, ERROR_LIST, ERROR_IDS, param, type ErrorId, type ParamRow, type RuleKeyRow } from './params.ts';
-export { decide, ManagementError, PTS, type MethodInput, type MethodResult } from './method.ts';
+export { decide, modelLine, ManagementError, PTS, type MethodInput, type MethodResult } from './method.ts';
 export { errorChance, errorHappens, type ErrorContext } from './errors.ts';
 export { chartBase, chartRules, kickoffToOpponent, oneScore, scoresApart, scrimmageState, wpOf, type StateChange } from './state.ts';
 export { fourthDown, fourthDownOffsetPts, twoDownTerritory, type FourthDownInput, type FourthDownResult } from './fourth-down.ts';

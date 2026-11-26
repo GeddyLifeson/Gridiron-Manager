@@ -55,3 +55,9 @@ A hit that may stay (a licence credit, say) goes in `data/allowed.json` with fil
 ## Inputs found on the machine
 
 Bible: `GM_BIBLE_DIR` or `/mnt/project-files/bible` (else the committed snapshot `data/bible-criteria.json`). Real names: `GM_PEOPLE_DIR` or `/mnt/project-files/data/people` (else G-18's guard of current people only, reported as PENDING). Research folders for the copy check: `GM_RESEARCH_DIR`, `/mnt/project-files/research`, `/mnt/project-files/data/people`.
+
+## Scan policy (release gate cleanup, 2026-11-26)
+
+`data/policy.json` decides which mark and name hits stay because they sit on a surface a player never sees: fact rows, calibration targets and starter-playbook source citations (provenance files), code comments, JSON annotation keys (`$comment`, `source`, `quote`, ...), code identifiers that are all-capital abbreviations outside a quoted string, and the ordinary word "playoff". Every other hit fails, and a reviewed coincidence (a surname, a town, a Unicode form) goes in `data/allowed.json` with a reason. Permitted hits are counted by reason in the report notes and check lines, never hidden. `test/policy.test.ts` pins the rules and checks that no presentation-layer file imports a provenance file. Anything new that can reach a player is player-facing by default.
+
+`tools/sync-status.ts <fact file>...` copies the computed status over a stored status word that differs (Q6.1.2) and logs why in statusHistory.

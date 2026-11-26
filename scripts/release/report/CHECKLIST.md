@@ -1,26 +1,28 @@
 # Release gate checklist (G-100)
 
-**Verdict: HOLD.** 2755 blocking checks are not PASS.
+**Verdict: HOLD.** uncommitted source changes: results cannot be tied to one commit. 2755 blocking checks are not PASS.
 
-Commit `bf531871d555`. Generated 2026-11-26T04:04:16.580Z by `npx tsx scripts/release/gate.ts`. Bible: live from /mnt/project-files/bible, hash 07f8dab8da6b4882, 2513 leaves.
+Commit `301f83eaab96` (uncommitted source changes). Generated 2026-11-26T05:16:40.318Z by `npx tsx scripts/release/gate.ts`. Bible: live from /mnt/project-files/bible, hash 2ff8f895556e8d69, 2514 leaves.
 
 A check is PASS only when it was verified at this commit: an automated check that ran here, or a recorded verification with three independent confirmations (scripts/release/data/evidence.json). MISSING means the module or input does not exist yet; PENDING means it exists but nothing has verified it at this commit; STALE means the only evidence is from another commit.
 
-- the bible changed since the snapshot (047eddde0d1d65c5 -> 07f8dab8da6b4882); the live bible was used. Refresh: gate.ts --refresh-bible
+- the bible changed since the snapshot (047eddde0d1d65c5 -> 2ff8f895556e8d69); the live bible was used. Refresh: gate.ts --refresh-bible
 - scan reference files excluded from the text scans (they hold marks or hashes on purpose, checked by G-11 and G-18 tests): packages/football-content/data/world/blocked-terms.json, packages/football-content/data/names/real-name-guard.json
 - mark scan reading of "case-blind": all-capital abbreviations of 2 to 4 letters match case-sensitively so ordinary words (sec, acc) stay usable; everything else is case-blind, with one-edit near spellings for words of 7+ letters that keep their first letter (shorter or first-letter edits matched real towns and surnames such as Solon, Penn Hills and Weisman)
+- reviewed and allowed (data/allowed.json): 17 mark hits, 2 name hits
+- scan policy (data/policy.json): permitted mark hits 225 provenance-file, 142 generic-term, 11 comment, 23 identifier, 46 annotation-key; permitted name hits 35 provenance-file, 1 comment
 
 ## Summary
 
 | Group | PASS | FAIL | MISSING | STALE | PENDING | NOT_APPLICABLE | Total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Release gate items (R1.2.10) | 3 | 3 | 3 | 0 | 3 | 0 | 12 |
+| Release gate items (R1.2.10) | 5 | 1 | 2 | 0 | 5 | 0 | 13 |
 | Q1.8.1 "Before a release" suites by platform | 0 | 0 | 61 | 5 | 0 | 0 | 66 |
 | Earlier phase gates (R1.2.1 to R1.2.9) | 0 | 0 | 0 | 0 | 45 | 2 | 47 |
-| Engine work packages (plans/engine-build-plan.md) | 0 | 0 | 6 | 0 | 20 | 0 | 26 |
-| Game work packages (plans/game-build-plan.md) | 0 | 0 | 36 | 0 | 65 | 0 | 101 |
-| Bible acceptance criteria (every leaf) | 0 | 2 | 651 | 0 | 1855 | 5 | 2513 |
-| **All** | **3** | **5** | **757** | **5** | **1988** | **7** | **2765** |
+| Engine work packages (plans/engine-build-plan.md) | 0 | 0 | 3 | 0 | 23 | 0 | 26 |
+| Game work packages (plans/game-build-plan.md) | 0 | 0 | 18 | 0 | 83 | 0 | 101 |
+| Bible acceptance criteria (every leaf) | 0 | 1 | 249 | 0 | 2259 | 5 | 2514 |
+| **All** | **5** | **2** | **333** | **5** | **2415** | **7** | **2767** |
 
 ## Release gate items (R1.2.10)
 
@@ -28,15 +30,16 @@ A check is PASS only when it was verified at this commit: an automated check tha
 | --- | --- | --- | --- |
 | Everything in the Q1.8.1 "Before a release" row passes, both rule sets (R1.2.10 item 1) | **MISSING** | automated | suites by platform: 61 MISSING, 5 STALE |
 | Q4 full exploit search is clean on the release commit (R1.2.10 item 2) | **MISSING** | automated | exploit search module (packages/headless/src/exploit, G-86) does not exist yet |
-| No rule value below "Rulebook only"; no Conflict row in use (R1.2.10 item 3, Q6.3.1) | **FAIL** | automated | 52 rule rows below Rulebook only, 6 Conflict rows: F-cap-0043 (1 of 3), F-cap-0044 (1 of 3), F-cap-0045 (1 of 3), F-cap-0046 (1 of 3), F-cap-0047 (1 of 3), F-cap-0048 (1 of 3), F-cap-0049 (1 of 3), F-cap-0050 (1 of 3) |
-| Provisional fact list printed (R1.2.10 item 3, Q6.3.1) | **PASS** | automated | 2876 of 2951 rows are PROVISIONAL; list in PROVISIONAL.md, hash 104e4bcab7f9b465 |
-| Marlon accepts the provisional list or holds the release (R1.2.10 item 3) | **PENDING** | tracked | waiting for Marlon's decision on list 104e4bcab7f9b465 |
-| Q5 status stated; public wording matches the evidence level (Q5.5.1) (R1.2.10 item 4) | **MISSING** | tracked | coach validation tooling (packages/headless/src/validation, G-99) does not exist yet |
+| No rule value below "Rulebook only"; no Conflict row in use (R1.2.10 item 3, Q6.3.1) | **FAIL** | automated | 79 rule rows below Rulebook only, 0 Conflict rows: F-cap-0043 (1 of 3), F-cap-0044 (1 of 3), F-cap-0045 (1 of 3), F-cap-0046 (1 of 3), F-cap-0049 (1 of 3), F-cap-0066 (1 of 3), F-cap-0067 (1 of 3), F-cap-0068 (1 of 3) |
+| Provisional fact list printed (R1.2.10 item 3, Q6.3.1) | **PASS** | automated | 3040 of 3198 rows are PROVISIONAL; list in PROVISIONAL.md, hash e7ae1f85dd27c0ec |
+| Marlon accepts the provisional list or holds the release (R1.2.10 item 3) | **PENDING** | tracked | waiting for Marlon's decision on list e7ae1f85dd27c0ec |
+| Q5 status stated; public wording matches the evidence level (Q5.5.1) (R1.2.10 item 4) | **PENDING** | tracked | validation tooling exists; no Q5 status recorded at this commit |
 | Legal review done if the release is public (A6.5.1) (R1.2.10 item 5) | **PENDING** | tracked | commercial or personal release is an open decision (A3.3.1, Marlon); record either the review or the personal-build ruling |
-| No team, school, league or event mark in the release (A6.2.2 scan) (R1.2.10 item 6, A6.2.2) | **FAIL** | automated | 432 hits in 1111 shipped files (no browser build present; source tree only) (214 in game content, 218 in source metadata (fact rows, calibration targets, citations)): content/calibration/college/extra-targets.json:22 FBS; content/calibration/college/extra-targets.json:27 FBS; content/calibration/college/extra-targets.json:46 FBS; content/calibration/college/extra-targets.json:51 FBS; content/calibration/targets.college_2026.json:14 FBS; and 427 more |
-| No real person's name in the release (R1.2.10 item 6, A6.3) | **FAIL** | automated | 36 real full names in 1111 shipped files (no browser build present; source tree only) (4 in game content, 32 in source metadata (fact rows, calibration targets, citations)): packages/career/src/reputation/facts.json:24 Bill Belichick; packages/engine-core/src/hash.ts:1 Austin Appleby; packages/football-content/data/injuries/facts.json:735 Henry Ford; packages/football-content/data/names/surnames.json:1 Van Valkenburg; packages/football-content/data/world/reference-locations.json:3713 WILL ROGERS; and 31 more |
-| No research path or raw dataset file in the release (A6.4.1 path check) (R1.2.10 item 6, A6.4.1) | **PASS** | automated | 0 research paths or raw dataset files in 1111 shipped files (no browser build present; source tree only) |
-| No per-person source record in the release (A6.4.1 item 3) (R1.2.10 item 6, A6.4.1) | **PASS** | automated | 0 source-record ids or urls; 0 byte-identical copies of 438 research files (/mnt/project-files/research, /mnt/project-files/data/people) |
+| No team, school, league or event mark in the release (A6.2.2 scan) (R1.2.10 item 6, A6.2.2) | **PENDING** | automated | 0 hits in 1388 shipped files (no browser build present; source tree only), but the blocked-terms list is PROVISIONAL (entries not yet read from logged public sources), so a clean scan cannot pass |
+| No real person's name in the release (R1.2.10 item 6, A6.3) | **PASS** | automated | 0 hits against 170619 real people from /mnt/project-files/data/people, in 1388 shipped files (no browser build present; source tree only); permitted by the scan policy: 35 provenance-file, 1 comment |
+| No research path or raw dataset file in the release (A6.4.1 path check) (R1.2.10 item 6, A6.4.1) | **PASS** | automated | 0 research paths or raw dataset files in 1388 shipped files (no browser build present; source tree only) |
+| No per-person source record in the release (A6.4.1 item 3) (R1.2.10 item 6, A6.4.1) | **PASS** | automated | 0 source-record ids or urls; 0 byte-identical copies of 449 research files (/mnt/project-files/research, /mnt/project-files/data/people) |
+| Every shipped asset has a licence row and the register passes the checker (PV-15) (R1.2.10 item 6, A6.2.2) | **PASS** | automated | 0 register rows cover 0 asset files; 0 findings |
 | No shipped file exceeds the similarity threshold against the people data (A6.4.1 item 4) (R1.2.10 item 6, A6.4.1) | **PENDING** | tracked | name, id and byte-copy checks run above; a per-record numeric similarity measure and its threshold are not defined in the bible yet (A6.4.1 gives no number) |
 
 ## Q1.8.1 "Before a release" suites by platform
@@ -143,13 +146,13 @@ Details per suite and platform are in results.json. macOS is recorded as not tes
 | WP-17 Environment | PENDING | J12 acceptance cases; neutral input gives `NEUTRAL_ENVIRONMENT` | module present (2/2 owned paths); acceptance not verified at this commit |
 | WP-18 Fatigue and substitution | PENDING | D10 acceptance cases; Q1.2.2 (never more than `substitution.max_players`, read by key) | module present (2/2 owned paths); acceptance not verified at this commit |
 | WP-19 Player AI | PENDING | K1 acceptance cases; Q1.4.1 | module present (2/2 owned paths); acceptance not verified at this commit |
-| WP-20 Quarterback model | MISSING | Q3.2.1, Q3.2.2 items; Q1.7.3 | module not built: packages/engine-core/src/qb/, packages/engine-core/test/qb/ |
+| WP-20 Quarterback model | PENDING | Q3.2.1, Q3.2.2 items; Q1.7.3 | module present (2/2 owned paths); acceptance not verified at this commit |
 | WP-21 Ball carrier and tackling | MISSING | Q3.2.3 items; Q1.7.1 tackle contests | module not built: packages/engine-core/src/carrier/, packages/engine-core/test/carrier/ |
 | WP-22 Fouls and injuries from play | MISSING | J10 acceptance cases; rates as parameters against J15.7 rows | module not built: packages/engine-core/src/fouls-injuries/, packages/engine-core/test/fouls-injuries/ |
-| WP-23 Tick resolver | MISSING | `playTruthProblems` empty on every play; P6.1.1 play budget 50 ms; Q1.3.1 | module not built: packages/engine-core/src/tick-resolver/, packages/engine-core/test/tick-resolver/ |
-| WP-24 Fast simulation and diff runner | PENDING | Q1.3.2; batch result is independent of worker count | module present (1/3 owned paths); acceptance not verified at this commit; absent: packages/headless/src/batch/, packages/headless/src/diff/ |
+| WP-23 Tick resolver | PENDING | `playTruthProblems` empty on every play; P6.1.1 play budget 50 ms; Q1.3.1 | module present (2/2 owned paths); acceptance not verified at this commit |
+| WP-24 Fast simulation and diff runner | PENDING | Q1.3.2; batch result is independent of worker count | module present (3/3 owned paths); acceptance not verified at this commit |
 | WP-25 Full content set | MISSING | Q1.2.1, Q1.1.3, Q5.1.1 review list | module not built: packages/football-content/src/full/, packages/football-content/test/full/ |
-| WP-26 Play-level calibration | MISSING | Q1.7.2 play level, both rule sets | module not built: packages/headless/src/calibration-play/, packages/headless/test/calibration-play/ |
+| WP-26 Play-level calibration | PENDING | Q1.7.2 play level, both rule sets | module present (2/2 owned paths); acceptance not verified at this commit |
 
 ## Game work packages (plans/game-build-plan.md)
 
@@ -210,51 +213,51 @@ Details per suite and platform are in results.json. macOS is recorded as not tes
 | G-52 Reputation and legacy | PENDING | Reputation held by observers and traceable to log rows (X2.3); coaching tree | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-53 Time, energy, health, family | PENDING | Weekly hour budget and delegation (E7.3); health events and relocation (E8) | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-54 Coaching skills record | PENDING | Descriptions drawn only from the demonstrated record; no skill points (E9.6 retired ideas) | module present (1/1 owned paths); acceptance not verified at this commit |
-| G-55 Ladder rungs and the duty system | MISSING | Every rung's duty list exists as data and can be performed in a headless run | module not built: packages/career/src/ladder/ |
+| G-55 Ladder rungs and the duty system | PENDING | Every rung's duty list exists as data and can be performed in a headless run | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-56 Depth chart and roles | PENDING | Packages, rotations, special teams units, position battles per M2 | module present (1/1 owned paths); acceptance not verified at this commit |
-| G-57 Roster needs, pro scouting, camp and cutdown | MISSING | Needs board, ready list, workouts, waiver review, camp plan and cutdown per M1, M3, M6 | module not built: packages/league/src/personnel/ |
-| G-58 Coach AI play calling | MISSING | Q3 calling items; K4.7 exploit list holds; calls depend only on the decision view | module not built: packages/coach-ai/src/calling/ |
+| G-57 Roster needs, pro scouting, camp and cutdown | PENDING | Needs board, ready list, workouts, waiver review, camp plan and cutdown per M1, M3, M6 | module present (1/1 owned paths); acceptance not verified at this commit |
+| G-58 Coach AI play calling | PENDING | Q3 calling items; K4.7 exploit list holds; calls depend only on the decision view | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-59 Coach AI game management | MISSING | Fourth-down, try and timeout rates meet their J15 rows (modern rates measured first, R3.2.1); Q3.2.4 | module not built: packages/coach-ai/src/management/ |
-| G-60 Game-day console: calling offense, defense, special teams | MISSING | A full game called by keyboard alone (Q1.5.2); play clock never stops outside rule-book stoppages (R1.2.6 gate item 6) | module not built: packages/app-ui/src/screens/game-calling/ |
+| G-60 Game-day console: calling offense, defense, special teams | PENDING | A full game called by keyboard alone (Q1.5.2); play clock never stops outside rule-book stoppages (R1.2.6 gate item 6) | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-61 Game management and sideline screens | MISSING | Every I5 decision point prompts in time; sideline information is observed only | module not built: packages/app-ui/src/screens/game-management/ |
 | G-62 Pregame, halftime, postgame | PENDING | Pregame timeline, toss, talk, halftime adjustments, postgame media flow per leaves | module present (2/2 owned paths); acceptance not verified at this commit |
-| G-63 Film room and play viewer | MISSING | Cut-ups, tagging, player grades, corrections per N1 | module not built: packages/app-ui/src/screens/film/ |
+| G-63 Film room and play viewer | PENDING | Cut-ups, tagging, player grades, corrections per N1 | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-64 Scheme knowledge and install | MISSING | Knowledge gain and decay, install units, readiness feeding mental errors (D9.4) | module not built: packages/league/src/knowledge/ |
 | G-65 Practice planning | MISSING | Periods, scripts, scout looks, reps; college limits read by key (PROVISIONAL rows flagged) | module not built: packages/app-ui/src/screens/practice/, packages/league/src/practice/ |
 | G-66 Opponent scouting and self-scout | PENDING | Tendency tables from logged plays only; tells and predictability per G8 | module present (2/2 owned paths); acceptance not verified at this commit |
 | G-67 Playbook manager and terminology | PENDING | Library, series, call strings and wristband codes per G3 and G4 | module present (1/2 owned paths); acceptance not verified at this commit; absent: packages/app-ui/src/screens/playbook/ |
-| G-68 Game plan and call sheet | MISSING | Menu, matchups, sheet layout, script, wristband per G6 and G7; plan locks per G6.6 | module not built: packages/app-ui/src/screens/gameplan/, packages/football-content/src/gameplan/ |
+| G-68 Game plan and call sheet | PENDING | Menu, matchups, sheet layout, script, wristband per G6 and G7; plan locks per G6.6 | module present (1/2 owned paths); acceptance not verified at this commit; absent: packages/app-ui/src/screens/gameplan/ |
 | G-69 The week: schedule, meetings, documents, media, travel | PENDING | Normal and irregular weeks run; documents generated; travel and media obligations per leaves | module present (2/2 owned paths); acceptance not verified at this commit |
 | G-70 Roster moves in season screens | PENDING | Weekly roster cycle and active list done on screen within the rules | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-71 Analytics screens and team strength | PENDING | Decision chart, tracking data views and team strength; staff access limits per N2.7 | module present (2/2 owned paths); acceptance not verified at this commit |
 | G-72 Home and people screens | MISSING | Player card, roster, staff, relationship and owner screens show estimates only | module not built: packages/app-ui/src/screens/home/ |
 | G-73 Interface test harness | PENDING | Keyboard-only and screen-reach tests runnable for every registered route | module present (2/2 owned paths); acceptance not verified at this commit |
-| G-74 Coach AI preparation | MISSING | AI builds plans and sheets the same way the user does; Q3.2.5 items | module not built: packages/coach-ai/src/preparation/ |
+| G-74 Coach AI preparation | PENDING | AI builds plans and sheets the same way the user does; Q3.2.5 items | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-75 Staff AI on the user's team and simulating his week | MISSING | Staff act and advise when delegated; good staff means less work (K6.1) | module not built: packages/coach-ai/src/staff/ |
-| G-76 Front office AI | MISSING | Needs and value, in-season and offseason moves, college roster building; no exploitable trade loop (Q4.3) | module not built: packages/front-office/src/gm/ |
+| G-76 Front office AI | PENDING | Needs and value, in-season and offseason moves, college roster building; no exploitable trade loop (Q4.3) | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-77 Owner, media, agent and fan models | PENDING | Confidence, firing and hiring decisions read results per K8.2; college AD, president, boosters | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-78 The boss and evaluations | MISSING | Trust, autonomy, work grades, overruling and promotion per S4 | module not built: packages/coach-ai/src/boss/ |
 | G-79 Game day below head coach | MISSING | Every sideline and booth seat playable with its channels | module not built: packages/app-ui/src/screens/seats/, packages/career/src/seats/ |
-| G-80 Job market, hiring and firing | MISSING | Openings, interviews, offers, hot seat and firing per leaves; offers trace to log rows | module not built: packages/career/src/market/ |
-| G-81 World generation, history run, off-screen loop | MISSING | A new world builds with a pre-career history; the loop runs every system in one fixed order and replays to the same hash | module not built: packages/world/src/generation/, packages/world/src/loop/ |
+| G-80 Job market, hiring and firing | PENDING | Openings, interviews, offers, hot seat and firing per leaves; offers trace to log rows | module present (1/1 owned paths); acceptance not verified at this commit |
+| G-81 World generation, history run, off-screen loop | PENDING | A new world builds with a pre-career history; the loop runs every system in one fixed order and replays to the same hash | module present (2/2 owned paths); acceptance not verified at this commit |
 | G-82 Fidelity tiers | MISSING | Tier boundaries set by measurement (X13.3); no visible seam; full engine for every game (A3.1.1 row 20) | module not built: packages/world/src/tiers/ |
 | G-83 Save retention and migrations | MISSING | Migration fixtures pass; save size at season 30 measured against P5.4.1 | module not built: packages/store/src/retention/, packages/store/src/migrations/ |
 | G-84 Legends browser and chronicle | MISSING | Pages, chronicle, trees and rivalries, records and search per X3 | module not built: packages/app-ui/src/screens/legends/ |
-| G-85 Career screens by rung and the coach's own screens | MISSING | Every rung's duty list reachable on screen (R1.2.9 gate item 3) | module not built: packages/app-ui/src/screens/career/ |
+| G-85 Career screens by rung and the coach's own screens | PENDING | Every rung's duty list reachable on screen (R1.2.9 gate item 3) | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-86 Exploit search | MISSING | No dominant strategy and no information leak found (R1.2.6 gate item 1) | module not built: packages/headless/src/exploit/ |
 | G-87 Season runner and gate harnesses | MISSING | A season plays at the head coach seat at both levels; Q1.7.2 season level report; Q3 battery runner | module not built: packages/world/src/season/, packages/headless/src/season-gate/ |
-| G-88 30-season run and stability | MISSING | 30 seasons with no invariant failure; stability measures; 20-season advance time measured | module not built: packages/headless/src/long-run/ |
-| G-89 Scripted career runs and the career loop search | MISSING | Rung 0 to pro head coach run and a fired-and-rehired run both replay identically | module not built: packages/headless/src/career-run/ |
-| G-90 Play designer and test bench | MISSING | Every G1 part editable; illegal plays run and draw flags; test bench runs on the tick resolver | module not built: packages/app-ui/src/screens/play-designer/ |
-| G-91 Defensive call designer | MISSING | Fronts, pressures, coverages, checks and disguise per G2 | module not built: packages/app-ui/src/screens/defense-designer/ |
+| G-88 30-season run and stability | PENDING | 30 seasons with no invariant failure; stability measures; 20-season advance time measured | module present (1/1 owned paths); acceptance not verified at this commit |
+| G-89 Scripted career runs and the career loop search | PENDING | Rung 0 to pro head coach run and a fired-and-rehired run both replay identically | module present (1/1 owned paths); acceptance not verified at this commit |
+| G-90 Play designer and test bench | PENDING | Every G1 part editable; illegal plays run and draw flags; test bench runs on the tick resolver | module present (1/1 owned paths); acceptance not verified at this commit |
+| G-91 Defensive call designer | PENDING | Fronts, pressures, coverages, checks and disguise per G2 | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-92 Player designer | MISSING | Designed players pass the same drift guards as generated ones | module not built: packages/app-ui/src/screens/player-designer/ |
 | G-93 Glossary content and links | MISSING | Every A4 term present with source; every on-screen term links | module not built: packages/football-content/data/glossary/ |
-| G-94 Coaching school and teaching | MISSING | Lessons from the user's own patterns (N5.4); time slows only in practice tools | module not built: packages/app-ui/src/screens/school/, packages/app-services/src/teaching/ |
-| G-95 Coaching rating, certified mode, exportable record | MISSING | Score computed per N4.2; certified save rejects tampering; export round-trips | module not built: packages/models/src/rating/, packages/store/src/certified/ |
+| G-94 Coaching school and teaching | PENDING | Lessons from the user's own patterns (N5.4); time slows only in practice tools | module present (2/2 owned paths); acceptance not verified at this commit |
+| G-95 Coaching rating, certified mode, exportable record | PENDING | Score computed per N4.2; certified save rejects tampering; export round-trips | module present (2/2 owned paths); acceptance not verified at this commit |
 | G-96 Modding and editors | MISSING | User content folder loads safely; bad packs refused with reasons | module not built: packages/app-ui/src/screens/editors/, packages/tools/src/editors/ |
 | G-97 Performance pass and benchmarks | MISSING | Every P6.1 budget measured on the target machine and met or reported | module not built: packages/headless/src/bench/ |
 | G-98 Accessibility, input and playback settings | MISSING | O5.5 accessibility checks; key map remapping; playback settings | module not built: packages/app-ui/src/screens/settings/ |
-| G-99 Coach validation tooling | MISSING | Blind film test and skill separation runs produce the Q5 reports | module not built: packages/headless/src/validation/ |
+| G-99 Coach validation tooling | PENDING | Blind film test and skill separation runs produce the Q5 reports | module present (1/1 owned paths); acceptance not verified at this commit |
 | G-100 Release gate | PENDING | Name and mark scans clean; provisional fact list printed for Marlon; release row of Q1.8.1 runs on Windows, Linux, browser | this gate: passes when every other check passes on Windows, Linux and the browser at one commit |
 
 ## Bible acceptance criteria (every leaf)
@@ -263,25 +266,25 @@ Every leaf, one line each, is in BIBLE-CHECKLIST.md. By area:
 
 | Area | PASS | FAIL | MISSING | STALE | PENDING | NOT_APPLICABLE | Total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| A | 0 | 1 | 18 | 0 | 39 | 0 | 58 |
+| A | 0 | 0 | 18 | 0 | 40 | 0 | 58 |
 | B | 0 | 0 | 0 | 0 | 177 | 1 | 178 |
 | C | 0 | 0 | 0 | 0 | 116 | 0 | 116 |
 | D | 0 | 0 | 9 | 0 | 127 | 0 | 136 |
-| E | 0 | 0 | 43 | 0 | 134 | 0 | 177 |
+| E | 0 | 0 | 0 | 0 | 177 | 0 | 177 |
 | F | 0 | 0 | 0 | 0 | 239 | 0 | 239 |
-| G | 0 | 0 | 78 | 0 | 38 | 0 | 116 |
+| G | 0 | 0 | 8 | 0 | 108 | 0 | 116 |
 | H | 0 | 0 | 15 | 0 | 120 | 0 | 135 |
-| I | 0 | 0 | 123 | 0 | 46 | 0 | 169 |
-| J | 0 | 0 | 42 | 0 | 166 | 0 | 208 |
-| K | 0 | 0 | 62 | 0 | 52 | 0 | 114 |
+| I | 0 | 0 | 59 | 0 | 110 | 0 | 169 |
+| J | 0 | 0 | 25 | 0 | 183 | 0 | 208 |
+| K | 0 | 0 | 22 | 0 | 92 | 0 | 114 |
 | L | 0 | 0 | 0 | 0 | 147 | 0 | 147 |
-| M | 0 | 0 | 33 | 0 | 29 | 0 | 62 |
-| N | 0 | 0 | 32 | 0 | 23 | 0 | 55 |
-| O | 0 | 0 | 68 | 0 | 34 | 1 | 103 |
-| P | 0 | 0 | 15 | 0 | 52 | 2 | 69 |
-| Q | 0 | 1 | 21 | 0 | 32 | 1 | 55 |
+| M | 0 | 0 | 0 | 0 | 62 | 0 | 62 |
+| N | 0 | 0 | 1 | 0 | 54 | 0 | 55 |
+| O | 0 | 0 | 34 | 0 | 69 | 1 | 104 |
+| P | 0 | 0 | 10 | 0 | 57 | 2 | 69 |
+| Q | 0 | 1 | 9 | 0 | 44 | 1 | 55 |
 | R | 0 | 0 | 1 | 0 | 65 | 0 | 66 |
-| S | 0 | 0 | 56 | 0 | 21 | 0 | 77 |
+| S | 0 | 0 | 16 | 0 | 61 | 0 | 77 |
 | T | 0 | 0 | 0 | 0 | 84 | 0 | 84 |
 | U | 0 | 0 | 0 | 0 | 32 | 0 | 32 |
-| X | 0 | 0 | 35 | 0 | 82 | 0 | 117 |
+| X | 0 | 0 | 22 | 0 | 95 | 0 | 117 |

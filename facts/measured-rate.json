@@ -650,26 +650,23 @@
      "independenceGroup": "design-doc-game-set",
      "primary": false,
      "value": 12.59
-    },
-    {
-     "citation": "sportsbookreview forum (about 13 to 13.9) and Football Perspective 1978 to 2016 (about 13.0); weak and old",
-     "locator": "research/injuries-and-calibration.md section 4",
-     "dateRead": "2026-11-25",
-     "howRead": "secondary summary",
-     "independenceGroup": "spread-residual-outside",
-     "primary": false,
-     "value": "13.0 to 13.9"
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Conflict\" did not match the status computed from the sources (Q6.1.2)."
     }
-   ]
+   ],
+   "notes": "Release gate cleanup: outside figures (forum posts about 13 to 13.9; Football Perspective 1978 to 2016) are other periods and informal samples, not this measurement; kept here as context only, not as a source. One source, so 1 of 3."
   },
   {
    "id": "F-measured-rate-0020",
@@ -3326,26 +3323,23 @@
      "independenceGroup": "nflverse",
      "primary": false,
      "value": 0.298
-    },
-    {
-     "citation": "The 33rd Team, league pressure rate 2023 (TruMedia)",
-     "locator": "research/injuries-and-calibration.md section 5; research/audit-r-calibration-verify.md section 4; broader published definition",
-     "dateRead": "2026-11-25",
-     "howRead": "secondary summary",
-     "independenceGroup": "trumedia",
-     "primary": false,
-     "value": 0.353
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Conflict\" did not match the status computed from the sources (Q6.1.2)."
     }
-   ]
+   ],
+   "notes": "Release gate cleanup: the published TruMedia 0.353 is a different definition (row F-measured-rate-0110); the two are separate quantities, not a disagreement."
   },
   {
    "id": "F-measured-rate-0110",
@@ -3372,26 +3366,23 @@
      "howRead": "secondary summary",
      "independenceGroup": "next-gen-stats",
      "primary": false
-    },
-    {
-     "citation": "nflverse play-by-play, regular seasons 2022 to 2024 (815 games), github.com/nflverse/nflverse-data releases; computed by the project",
-     "locator": "research/nflverse_baselines.py; recomputed in research/audit-r-calibration-verify.md; feed flag definition",
-     "dateRead": "2026-11-25",
-     "howRead": "dataset computed",
-     "independenceGroup": "nflverse",
-     "primary": false,
-     "value": 0.298
     }
    ],
-   "status": "Conflict",
+   "status": "2 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Release gate cleanup: stored word \"Conflict\" did not match the status computed from the sources (Q6.1.2)."
     }
-   ]
+   ],
+   "notes": "Release gate cleanup: the nflverse flag rate 0.298 is a different definition (row F-measured-rate-0109), not a rival value for this one."
   },
   {
    "id": "F-measured-rate-0111",
@@ -5100,7 +5091,7 @@
    "level": "pro",
    "domain": "measured-rate",
    "statement": "Punts per game, both teams: 8.0 (pro, 2022-2024).",
-   "value": 8.0,
+   "value": 8,
    "unit": "count",
    "validFor": "2022-2024",
    "sources": [
@@ -5111,7 +5102,7 @@
      "howRead": "dataset computed",
      "independenceGroup": "nflverse",
      "primary": false,
-     "value": 8.0
+     "value": 8
     }
    ],
    "status": "1 of 3",
@@ -6612,26 +6603,23 @@
      "independenceGroup": "nflverse-injury-reports",
      "primary": false,
      "value": 0.007
-    },
-    {
-     "citation": "Footballguys, game-status designations 2017 to 2024 (skill positions only)",
-     "locator": "bible J15.7.2 Football facts used; research/injuries-and-calibration.md",
-     "dateRead": "2026-11-25",
-     "howRead": "secondary summary",
-     "independenceGroup": "footballguys",
-     "primary": false,
-     "value": "5.9% to 6.9%"
     }
    ],
-   "status": "Conflict",
+   "status": "1 of 3",
    "usedBy": [],
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "Conflict",
      "reason": "First load of the calibration targets from the bible (WP-13). Sources are the ones the bible and the research files record; no outside page was re-opened in this load."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Conflict\" did not match the status computed from the sources (Q6.1.2)."
     }
-   ]
+   ],
+   "notes": "Release gate cleanup: Footballguys 5.9% to 6.9% covers skill positions only, 2017 to 2024, and a different status mix; context only, not a source for this all-positions figure."
   },
   {
    "id": "F-measured-rate-0219",
@@ -6878,7 +6866,7 @@
    "level": "pro",
    "domain": "measured-rate",
    "statement": "ACL tears per 10,000 player-plays, offensive line: 2.0 (pro, 2015-2019).",
-   "value": 2.0,
+   "value": 2,
    "unit": "per 10,000 player-plays",
    "validFor": "2015-2019",
    "sources": [
@@ -6889,7 +6877,7 @@
      "howRead": "secondary summary",
      "independenceGroup": "ajsm-2021-acl",
      "primary": false,
-     "value": 2.0
+     "value": 2
     }
    ],
    "status": "1 of 3",
@@ -6936,7 +6924,7 @@
    "level": "pro",
    "domain": "measured-rate",
    "statement": "Stingers per 100,000 player-plays, running back: 18.0 (pro, study window (Sports Health 2024)).",
-   "value": 18.0,
+   "value": 18,
    "unit": "per 100,000 player-plays",
    "validFor": "study window (Sports Health 2024)",
    "sources": [
@@ -6947,7 +6935,7 @@
      "howRead": "secondary summary",
      "independenceGroup": "sports-health-2024-stingers",
      "primary": false,
-     "value": 18.0
+     "value": 18
     }
    ],
    "status": "1 of 3",
@@ -8494,7 +8482,7 @@
    "level": "college",
    "domain": "measured-rate",
    "statement": "Games that end tied: 0.0 (college, 2022-2025).",
-   "value": 0.0,
+   "value": 0,
    "unit": "share",
    "validFor": "2022-2025",
    "sources": [
@@ -8505,7 +8493,7 @@
      "howRead": "dataset computed",
      "independenceGroup": "espn-cfb-schedules",
      "primary": false,
-     "value": 0.0
+     "value": 0
     }
    ],
    "status": "1 of 3",
@@ -9190,7 +9178,7 @@
    "level": "college",
    "domain": "measured-rate",
    "statement": "Favourite win share by same-season rating gap, gap 21 to 28 points: 1.0 (college, 2022-2025).",
-   "value": 1.0,
+   "value": 1,
    "unit": "share",
    "validFor": "2022-2025",
    "sources": [
@@ -9201,7 +9189,7 @@
      "howRead": "dataset computed",
      "independenceGroup": "espn-cfb-schedules",
      "primary": false,
-     "value": 1.0
+     "value": 1
     }
    ],
    "status": "1 of 3",
@@ -9219,7 +9207,7 @@
    "level": "college",
    "domain": "measured-rate",
    "statement": "Favourite win share by same-season rating gap, gap 28 to more points: 1.0 (college, 2022-2025).",
-   "value": 1.0,
+   "value": 1,
    "unit": "share",
    "validFor": "2022-2025",
    "sources": [
@@ -9230,7 +9218,7 @@
      "howRead": "dataset computed",
      "independenceGroup": "espn-cfb-schedules",
      "primary": false,
-     "value": 1.0
+     "value": 1
     }
    ],
    "status": "1 of 3",
