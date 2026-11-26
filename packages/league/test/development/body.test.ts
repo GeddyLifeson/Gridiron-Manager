@@ -11,7 +11,7 @@ import { MATH, N, makePlayer, meanOf, rng } from './helpers.ts';
 function ageThrough(p: PlayingBlock, family: PositionFamily, from: number, to: number, seed: number): PlayingBlock[] {
   const out = [p];
   let q = p;
-  for (let a = from + 1; a <= to; a++) { q = rollover(N, { position: family, ageYears: a, playing: q, facets: {} }, rng(seed, 'roll', a)); out.push(q); }
+  for (let a = from + 1; a <= to; a++) { q = rollover(N, MATH, { position: family, ageYears: a, playing: q, facets: {} }, rng(seed, 'roll', a)); out.push(q); }
   return out;
 }
 
@@ -87,8 +87,8 @@ describe('D8.2.1 prime and decline by position', () => {
   });
   it('a heavy-load season adds 0.1 to next year\'s multiplier', () => {
     const p = makePlayer(rng(13, 'h'), { family: 'RB', ageYears: 29, neutral: true });
-    const a = rollover(N, { position: 'RB', ageYears: 30, playing: p, facets: {} }, rng(13, 'r'), false);
-    const b = rollover(N, { position: 'RB', ageYears: 30, playing: p, facets: {} }, rng(13, 'r'), true);
+    const a = rollover(N, MATH, { position: 'RB', ageYears: 30, playing: p, facets: {} }, rng(13, 'r'), false);
+    const b = rollover(N, MATH, { position: 'RB', ageYears: 30, playing: p, facets: {} }, rng(13, 'r'), true);
     const da = hiddenNum(a, HIDDEN.agingYearDelta, 0), db = hiddenNum(b, HIDDEN.agingYearDelta, 0);
     expect(db - da).toBeCloseTo(curvePercent(N, 'RB', 30) * 0.1, 9);
   });
@@ -118,7 +118,7 @@ describe('D8.3.1 how decline shows', () => {
     const d: number[] = [];
     for (let i = 0; i < 100; i++) {
       const p = makePlayer(rng(16, i), { family: 'RB', ageYears: 31 });
-      const q = rollover(n0, { position: 'RB', ageYears: 32, playing: p, facets: {} }, rng(16, 'r', i));
+      const q = rollover(n0, MATH, { position: 'RB', ageYears: 32, playing: p, facets: {} }, rng(16, 'r', i));
       d.push(q.tests.fortyS / p.tests.fortyS - 1);
     }
     expect(Math.abs(meanOf(d))).toBeLessThan(0.002);

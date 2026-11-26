@@ -5,10 +5,12 @@ import type { AttributeId, PlayingBlock } from '@gm/schema';
 import type { BodyAttribute } from './classes.ts';
 
 export const HIDDEN = {
-  /** D7.4.1 development rate trait (0.6 to 1.5, mean 1). */
+  /** D7.4.1 development rate trait (mean 1, uncapped). */
   devRate: 'dev.rate',
-  /** D7.4.2 development form term (0.5 to 1.5). */
+  /** D7.4.2 development form term (mean 1, uncapped). */
   form: 'dev.form',
+  /** D7.4.2 ruling: this year's surroundings multiplier (mean 1, uncapped), drawn at the rollover. */
+  surroundings: 'dev.surroundings',
   /** D8.2.1 individual aging trait (mean 1, sd 0.25). */
   agingTrait: 'aging.trait',
   /** D8.2.1 physical index: 1 at the adult peak, falls with age. */
