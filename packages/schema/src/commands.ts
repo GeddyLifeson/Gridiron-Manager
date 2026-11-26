@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { pub, own } from './field.ts';
 import { Calendar, Level } from './entities.ts';
 import { GameplanData } from './read-models/gameplan.ts';
+import { FILM_MODEL_SCHEMAS, FILM_COMMAND_SPECS } from './read-models/film.ts';
 import { LEGENDS_SCHEMAS } from './read-models/legends.ts';
 import { ANALYTICS_SCHEMAS } from './read-models/analytics.ts';
 import { RosterMovesData } from './read-models/roster-moves.ts';
@@ -80,6 +81,8 @@ export const COMMANDS: readonly CommandSpec[] = [
   { type: 'WriteNote', payload: WriteNotePayload, task: 'evaluation.notes', undoable: true, allowedInCertified: true },
   { type: 'RequestMeeting', payload: RequestMeetingPayload, task: 'meeting.request', undoable: false, allowedInCertified: true },
   { type: 'GmRequest', payload: GmRequestPayload, task: 'boss.request', undoable: false, allowedInCertified: true },
+  // Film room (G-63, CR-G63-0).
+  ...FILM_COMMAND_SPECS,
 ];
 
 export function commandSpec(type: string): CommandSpec | undefined {
@@ -151,4 +154,9 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   pregameView: readModelOf(GAME_FRAME_SCHEMAS.pregameView),
   halftimeView: readModelOf(GAME_FRAME_SCHEMAS.halftimeView),
   postgameView: readModelOf(GAME_FRAME_SCHEMAS.postgameView),
+  filmPlay: readModelOf(FILM_MODEL_SCHEMAS.play),
+  filmPlayList: readModelOf(FILM_MODEL_SCHEMAS.playList),
+  filmGradeSheet: readModelOf(FILM_MODEL_SCHEMAS.gradeSheet),
+  filmCorrections: readModelOf(FILM_MODEL_SCHEMAS.corrections),
+  filmCutUps: readModelOf(FILM_MODEL_SCHEMAS.cutUps),
 };

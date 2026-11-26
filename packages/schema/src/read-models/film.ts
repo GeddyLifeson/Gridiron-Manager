@@ -1,13 +1,36 @@
-// DRAFT for @gm/schema (CR-G63-0): the film room's zod schemas, to move into packages/schema/src/world/film.ts.
+// The film room's zod schemas (G-63). Moved here from app-services/test/read-models/film/schemas.ts (CR-G63-0);
+// read models registered in READ_MODELS (film*), command payloads in COMMANDS.
 // app-services may not import zod (P1.2.2), so its code takes these as parameters. Read-model shapes (P1.3.2, P3.1.2). Every field has a visibility class and none is
 // truth, so the read-model registry accepts them and the Q1.4.2 scan can walk them. Classes:
 //  public            film itself, the public play-by-play, the club's own published grades
 //  own_team          the club's own calls, assignments, notes and correction list
 //  observer_estimate a staff member's chart, grade or attribution (it can be wrong)
 import { z } from 'zod';
-import { pub, own, est, type CommandSpec } from '@gm/schema';
-import { FILM_COMMAND_TABLE } from '../../../src/commands/film/index.ts';
-import { CAUSE_TYPES, COACHING_FIELDS, type CoachingField } from '../../../src/read-models/film/types.ts';
+import { pub, own, est } from '../field.ts';
+import type { CommandSpec } from '../commands.ts';
+
+// Copies of app-services' film vocabularies (read-models/film/types.ts) and command table
+// (commands/film/index.ts): schema may not import app-services. The film test checks they are equal.
+export const FILM_CAUSE_TYPES = ['physical', 'technique', 'mental', 'communication', 'alignment', 'effort', 'scheme', 'freelance', 'adjustment'] as const;
+export const FILM_COACHING_FIELDS = ['personnel', 'defPersonnel', 'front', 'coverage', 'pressure', 'protection', 'concept', 'runScheme', 'target'] as const;
+type CoachingField = (typeof FILM_COACHING_FIELDS)[number];
+const CAUSE_TYPES = FILM_CAUSE_TYPES;
+const COACHING_FIELDS = FILM_COACHING_FIELDS;
+export const FILM_COMMAND_TABLE: readonly Omit<CommandSpec, 'payload'>[] = [
+  { type: 'FilmTagPlay', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmUntagPlay', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmSetNote', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmDraw', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmEraseDrawing', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmChartPlay', task: 'film.chart', undoable: true, allowedInCertified: true },
+  { type: 'FilmSaveCutUp', task: 'film.review', undoable: true, allowedInCertified: true },
+  { type: 'FilmSendCutUp', task: 'film.review', undoable: false, allowedInCertified: true },
+  { type: 'FilmGradeSnap', task: 'film.grade', undoable: true, allowedInCertified: true },
+  { type: 'FilmAssignBust', task: 'film.grade', undoable: true, allowedInCertified: true },
+  { type: 'FilmSetCorrection', task: 'film.corrections', undoable: true, allowedInCertified: true },
+  { type: 'FilmSetGradePolicy', task: 'film.policy', undoable: true, allowedInCertified: true },
+  { type: 'FilmWatchPlay', task: 'film.review', undoable: false, allowedInCertified: true },
+];
 
 const int = () => z.number().int();
 const SideS = z.union([z.literal(0), z.literal(1)]);
@@ -205,7 +228,7 @@ export const PlayRowS = z.object({
   tags: own(z.array(z.string())),
   slotsPersonIds: pub(z.array(int()), 'id'),
 }).strict();
-export type PlayRow = z.infer<typeof PlayRowS>;
+export type FilmPlayRow = z.infer<typeof PlayRowS>;
 
 /** A trajectory on the wire: read models are plain data (P1.3.2), so the bytes travel as base64. */
 export const TrajectoryWireS = z.object({
