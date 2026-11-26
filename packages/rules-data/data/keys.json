@@ -104,8 +104,7 @@
    "meaning": "Players per team on the field",
    "ownerLeaf": "B2",
    "readBy": [
-    "officiating (phase 1)"
-   ]
+    "officiating (phase 1)", "engine-game.bench"]
   },
   {
    "key": "score.touchdown",

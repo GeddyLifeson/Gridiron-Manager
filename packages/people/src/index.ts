@@ -2,3 +2,4 @@
 // Each module is re-exported under a namespace: modules export PARAMS, and a plain `export *` drops
 // clashing names without an error. Integrator-owned.
 export * as pack from './pack/index.ts';
+export * as scouting from './scouting/index.ts';
