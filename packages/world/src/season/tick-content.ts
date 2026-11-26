@@ -20,7 +20,7 @@ import {
   type Assignment, type CoverageFamily, type KickCall, type PlayCalls, type PlayInput, type ReturnCall, type RuleSet,
 } from '@gm/schema';
 import { perception as perceptionModule, qb as qbModule, tickResolver } from '@gm/engine-core';
-import { starter } from '@gm/football-content';
+import { full, starter } from '@gm/football-content';
 import { lang } from '@gm/football-lang';
 
 type PlaySetup = tickResolver.PlaySetup;
@@ -47,7 +47,8 @@ export const UNIT_JERSEYS: Readonly<Record<'offense' | 'defense' | 'kick' | 'ret
 /** The provisional choices of this port, for the run reports. */
 export const PROVISIONAL: readonly string[] = [
   'kick, return and free-kick unit spots are design values (Assumption); dynamic-kickoff lines come from the rule set',
-  'a call without a content id gets the starter play of its kind (run: inside zone, middle: draw; one play per pass kind)',
+  'a call without a content id gets the starter play of its kind (run: inside zone, middle: draw; one play per pass kind); the real game names a play from the level\'s starter book',
+  'a defensive call outside its coverage family\'s role order keeps the fixed role order: a nickel back or a fourth linebacker takes the slot of the role the call lacks',
   'run left mirrors the play; passes are always drawn to the right',
   'drop words: threeStepFromGun = gun3, fiveStepFromGun = uc5 (he starts 4.5 yd deep, so five steps from the gun take the time and depth of five from under centre), sevenStep = uc7',
   'read order: the quarterback key roles, else routes as drawn; read values 0.6 falling by 0.1',
@@ -334,7 +335,10 @@ function qbPlayOf(def: starter.PlayDef, O: readonly Assignment[], defenseSlotOf:
     const ix = keyed.indexOf(x.s), iy = keyed.indexOf(y.s);
     return (ix < 0 ? 99 : ix) - (iy < 0 ? 99 : iy) || depthOf(x.a) - depthOf(y.a) || Math.abs(x.a.preSnap.align.py) - Math.abs(y.a.preSnap.align.py) || x.s - y.s;
   });
-  const reads: QbRead[] = ordered.map((x, i) => ({ kind: 'receiver', target: tickResolver.qbTargetOf(x.s, x.a), priorValue: Math.max(0.1, 0.6 - 0.1 * i) }));
+  // A play whose quarterback reads only the back (the screen) has one read. With the clear-out routes behind it as
+  // later reads he held the ball for a better throw than a screen ever looks like, and took the sack.
+  const only = q.behavior.params['read'] === 'back' ? ordered.filter((x) => x.s === backSlot) : [];
+  const reads: QbRead[] = (only.length > 0 ? only : ordered).map((x, i) => ({ kind: 'receiver', target: tickResolver.qbTargetOf(x.s, x.a), priorValue: Math.max(0.1, 0.6 - 0.1 * i) }));
   const eligible = routes.map((x) => x.s);
   const base = qbModule.basePlay(qbSlot, dropOf(q.behavior.params['drop'], def.shotgun), reads);
   const pocket = { leftPy: O[0]!.preSnap.align.py, rightPy: O[4]!.preSnap.align.py };
@@ -402,8 +406,11 @@ export function createStarterContentPort(): StarterContentPort {
   const defense = new Map<string, Assignment[]>();
   const units = new Map<string, { O: Assignment[]; D: Assignment[] }>();
   const playByKind = new Map(starter.PLAYS.map((p) => [p.kind as string, p]));
-  const playById = new Map(starter.PLAYS.map((p) => [p.id, p]));
+  // Content ids resolve over the full set (WP-25 plus the starter books), so a caller that names a play from a book
+  // gets that play; a call without an id still gets the starter play of its kind.
+  const playById = new Map(full.FULL_PLAYS.map((p) => [p.id, p]));
   const defenseByFamily = new Map(starter.DEFENSE.map((d) => [d.coverageFamily as string, d]));
+  const defenseById = new Map(full.FULL_DEFENSE.map((d) => [d.id, d]));
   const defenseSlotOf = (role: string): number => SLOTS_PER_TEAM + DEFENSE_ROLES.indexOf(role as (typeof DEFENSE_ROLES)[number]);
 
   const playDefOf = (calls: PlayCalls): starter.PlayDef | null => {
@@ -425,12 +432,14 @@ export function createStarterContentPort(): StarterContentPort {
     }
     return p;
   };
-  const defenseOf = (family: string): Assignment[] => {
-    let d = defense.get(family);
+  const defenseOf = (family: string, callId: string | null): Assignment[] => {
+    const named = callId !== null ? defenseById.get(callId) : undefined;
+    const key = named !== undefined ? `id|${named.id}` : family;
+    let d = defense.get(key);
     if (d === undefined) {
-      const def = defenseByFamily.get(family) ?? defenseByFamily.get('cover3')!;
+      const def = named ?? defenseByFamily.get(family) ?? defenseByFamily.get('cover3')!;
       d = bound(inOrder(starter.assignmentsOf(def).map(withRally).map(withDropPath), DEFENSE_ROLES));
-      defense.set(family, d);
+      defense.set(key, d);
     }
     return d;
   };
@@ -501,7 +510,7 @@ export function createStarterContentPort(): StarterContentPort {
           // The other side read the down as a kick (the chart predicts the kick from its side) and sent its
           // return or block unit out against an offensive play: those eleven play the snap as they stand.
           D = o.returnKind === 'punt_return' || o.returnKind === 'punt_block' ? returnUnitsOf('punt') : returnUnitsOf('field_goal');
-        } else D = defenseOf(o.coverageFamily);
+        } else D = defenseOf(o.coverageFamily, o.callContentId);
         if (o.unit === 'defense' && MAN_FAMILIES.has(o.coverageFamily)) {
           coverage = 'man';
           D.forEach((a, i) => {
@@ -519,11 +528,11 @@ export function createStarterContentPort(): StarterContentPort {
       const qbSlot = qb === null ? -1 : qb.qbSlot;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
       const slots: PlaySetup['slots'] = Array.from({ length: SLOT_COUNT }, (_, w) => ({ conceptId: (w < SLOTS_PER_TEAM ? O[w]! : D[w - SLOTS_PER_TEAM]!).conceptId }));
-      // Eyes (J3.4.1): a zone defender plays with his on the ball, and so does a receiver in his route, who looks
-      // for the ball over his shoulder. Without it a man running downfield never saw the throw and never played it.
+      // Eyes (J3.4.1): a zone defender plays with his on the ball. Receivers turn to look when the ball is thrown
+      // (the quarterback plug does that), not before: looking back all route long costs them speed.
       const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => {
         if (s.unit !== 'offense') return {};
-        if (w < SLOTS_PER_TEAM) return O[w]!.behavior.type === 'route' ? { gaze: 'ball' as const } : {};
+        if (w < SLOTS_PER_TEAM) return {};
         const a = D[w - SLOTS_PER_TEAM]!;
         return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}) };
       });
