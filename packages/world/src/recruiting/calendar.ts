@@ -1,10 +1,29 @@
 // The recruiting calendar off-screen (T4.2.1, G-12) and the map from the loop's weeks to calendar days.
 //
-// RC-04: recruiting periods (contact, evaluation, quiet, dead) are dated data only, and only one college
-// year holds a full year of them. Under the ruling that the rules have always been the rules, every other
-// year takes that year's periods moved by whole weeks (so a Monday stays a Monday). A year with dated
-// periods of its own keeps them; the projected periods fill only the days after its last dated one.
-// Status of every projected period: Assumption.
+// RC-04: recruiting periods (contact, evaluation, quiet, dead) are dated data, and the league files hold
+// them only for college 2026 and January 2027. Every other year is built from the rule the official FBS
+// recruiting calendars follow, read from the NCAA 2023-24, 2024-25 and 2025-26 FBS calendars and the
+// Bylaw 13.17.5.1 formula in the 2021-22 Division I Manual (the rule set's "football calendar formula"):
+//
+//   January 1 to the day before the first Monday on or after January 5     dead      (2 of 3: 2024-25, 2025-26)
+//   that Monday to the Saturday before the regular signing week            contact   (2 of 3)
+//     except the second Sunday of January quiet, and the Monday to
+//     Wednesday after it dead (the coaches' convention week)               (2 of 3)
+//   the Sunday before the week of the first Wednesday in February          quiet     (Verified: three calendars and the bylaw)
+//   that week's Monday to the day before the first Monday in March         dead      (Verified)
+//   the first Monday in March to April 14                                  quiet     (Verified)
+//   April 15 to the Saturday before Memorial Day                           contact   (Verified: three calendars)
+//   the Sunday before Memorial Day to the Wednesday after                  dead      (Verified)
+//   the Thursday after Memorial Day to the day before the Monday before
+//     the last Wednesday in June                                           quiet     (Verified)
+//   that Monday to July 31, and August 1 to 31                             dead      (Verified for the June rule; July 25 to 31
+//                                                                                       was quiet in 2023-24: Conflict)
+//   September 1 to the Sunday after the last Saturday in November          evaluation (Verified)
+//   the Monday after to December 31                                        dead      (Conflict: 2024-25 had a quiet
+//                                                                                       December 9 to 22; 2025-26 is used)
+//
+// The August home-game quiet window (48 hours either side of a home game) is not built. A year with dated
+// periods of its own keeps them; the built periods fill only the days after its last dated one.
 //
 // RC-05: the world date is the P3.1.2 calendar date (January 1 = day 0), and the loop moves it a week per
 // pass. Recruiting weeks are Wednesdays. A pass runs every recruiting Wednesday the world date has passed;
@@ -17,75 +36,88 @@ import { param } from './params.ts';
 type CalendarFile = calendar.CalendarFile;
 type Anchor = calendar.CalendarFile['anchors'][number];
 type WindowDef = NonNullable<calendar.CalendarFile['windows']>[number];
+type Period = NonNullable<WindowDef['period']>;
+type Status = 'Verified' | '2 of 3' | 'Conflict';
 
 const LEVEL = 'college';
-const PROJECTED_PREFIX = 'projected_';
+const BUILT_PREFIX = 'built_';
+const W = calendar.WEEKDAY;
+const DAY = 1;
 
-function isPeriod(w: WindowDef): boolean { return w.period !== undefined; }
+const SOURCE = 'NCAA FBS recruiting calendars 2023-24, 2024-25, 2025-26 (ncaaorg.s3.amazonaws.com/compliance/recruiting/calendar) and Bylaw 13.17.5.1 (2021-22 Division I Manual); world recruiting RC-04';
 
-function dateOf(a: Anchor | undefined): number | null {
-  const r = a?.rule as { date?: string } | undefined;
-  return r?.date ? calendar.parseIso(r.date) : null;
+interface Span { readonly id: string; readonly open: number; readonly close: number; readonly period: Period; readonly status: Status }
+
+function md(y: number, m: number, d: number): number { return calendar.dayNumber({ y, m, d }); }
+function lastWeekday(y: number, m: number, wd: number): number { return calendar.nthWeekday(y, m, wd, -1); }
+
+/** The recruiting periods of one calendar year by the formula above, in date order, covering January 1 to December 31. */
+export function formulaPeriods(y: number): Span[] {
+  const contactOpen = calendar.onOrAfter(md(y, 1, 5), W.mon);
+  const conventionSunday = calendar.nthWeekday(y, 1, W.sun, 2);
+  const signing = calendar.nthWeekday(y, 2, W.wed, 1);
+  const signingMonday = signing - (W.wed - W.mon);
+  const marchMonday = calendar.nthWeekday(y, 3, W.mon, 1);
+  const memorial = lastWeekday(y, 5, W.mon);
+  const juneMonday = lastWeekday(y, 6, W.wed) - (W.wed - W.mon);
+  const evalClose = lastWeekday(y, 11, W.sat) + DAY;
+  const out: Span[] = [];
+  const add = (id: string, open: number, close: number, period: Period, status: Status) => { if (close >= open) out.push({ id, open, close, period, status }); };
+  add('jan_dead', md(y, 1, 1), contactOpen - DAY, 'dead', '2 of 3');
+  // January contact, broken by the convention-week quiet Sunday and dead Monday to Wednesday where they fall inside it.
+  const contactClose = signingMonday - 2 * DAY;
+  const conv = conventionSunday >= contactOpen && conventionSunday + 3 * DAY <= contactClose;
+  if (conv) {
+    add('jan_contact_1', contactOpen, conventionSunday - DAY, 'contact', '2 of 3');
+    add('convention_quiet', conventionSunday, conventionSunday, 'quiet', '2 of 3');
+    add('convention_dead', conventionSunday + DAY, conventionSunday + 3 * DAY, 'dead', '2 of 3');
+    add('jan_contact_2', conventionSunday + 4 * DAY, contactClose, 'contact', '2 of 3');
+  } else add('jan_contact_1', contactOpen, contactClose, 'contact', '2 of 3');
+  add('signing_quiet', signingMonday - DAY, signingMonday - DAY, 'quiet', 'Verified');
+  add('signing_dead', signingMonday, marchMonday - DAY, 'dead', 'Verified');
+  add('spring_quiet', marchMonday, md(y, 4, 14), 'quiet', 'Verified');
+  add('spring_contact', md(y, 4, 15), memorial - 2 * DAY, 'contact', 'Verified');
+  add('memorial_dead', memorial - DAY, memorial + 2 * DAY, 'dead', 'Verified');
+  add('summer_quiet', memorial + 3 * DAY, juneMonday - DAY, 'quiet', 'Verified');
+  add('summer_dead', juneMonday, md(y, 7, 31), 'dead', 'Conflict');
+  add('august_dead', md(y, 8, 1), md(y, 8, 31), 'dead', 'Verified');
+  add('fall_evaluation', md(y, 9, 1), evalClose, 'evaluation', 'Verified');
+  add('december_dead', evalClose + DAY, md(y, 12, 31), 'dead', 'Conflict');
+  return out;
 }
 
-/** The dated college file with the most recruiting periods: the year every other year is projected from. */
-export function baseRecruitingFile(files: readonly CalendarFile[]): CalendarFile {
-  let best: CalendarFile | null = null;
-  let n = -1;
-  for (const f of files) {
-    if (f.level !== LEVEL || f.kind !== 'dated' || f.season === undefined) continue;
-    const k = (f.windows ?? []).filter(isPeriod).length;
-    if (k > n || (k === n && best !== null && f.season < best.season!)) { best = f; n = k; }
-  }
-  if (!best) throw new Error('recruiting: no dated college calendar file holds recruiting periods');
-  return best;
-}
-
-/** Whole weeks between January 1 of two years, in days. */
-function weekShift(from: number, to: number): number {
-  const d = calendar.yearStart(to) - calendar.yearStart(from);
-  return Math.round(d / calendar.DAYS_PER_WEEK) * calendar.DAYS_PER_WEEK;
-}
-
-/** The base year's periods moved to year `year`, keeping only periods that open after `after` (a day), with ids prefixed. */
-function projected(base: CalendarFile, year: number, after: number | null): { anchors: Anchor[]; windows: WindowDef[] } {
-  const shift = weekShift(base.season!, year);
-  const byId = new Map(base.anchors.map((a) => [a.id, a]));
+/** The formula's periods for a year as calendar anchors and windows, keeping only periods that close after `after` (a day). */
+function built(year: number, after: number | null): { anchors: Anchor[]; windows: WindowDef[] } {
   const anchors: Anchor[] = [];
   const windows: WindowDef[] = [];
-  for (const w of (base.windows ?? []).filter(isPeriod)) {
-    const open = dateOf(byId.get(w.opens));
-    const close = dateOf(byId.get(w.closes!));
-    if (open === null || close === null) continue;
-    const o = open + shift, c = close + shift;
-    if (after !== null && c <= after) continue;
-    const o2 = after !== null && o <= after ? after + 1 : o;
-    const source = `Projected from the ${base.season} periods by ${shift / calendar.DAYS_PER_WEEK} weeks (world recruiting RC-04)`;
-    anchors.push({ id: `${PROJECTED_PREFIX}${w.opens}`, rule: { date: calendar.iso(o2) }, status: 'Assumption', leaf: 'T4.2.1', source } as Anchor);
-    anchors.push({ id: `${PROJECTED_PREFIX}${w.closes}`, rule: { date: calendar.iso(c) }, status: 'Assumption', leaf: 'T4.2.1', source } as Anchor);
-    windows.push({ ...w, id: `${PROJECTED_PREFIX}${w.id}`, opens: `${PROJECTED_PREFIX}${w.opens}`, closes: `${PROJECTED_PREFIX}${w.closes}` });
+  for (const sp of formulaPeriods(year)) {
+    if (after !== null && sp.close <= after) continue;
+    const open = after !== null && sp.open <= after ? after + DAY : sp.open;
+    const id = `${BUILT_PREFIX}${sp.id}`;
+    anchors.push({ id: `${id}_open`, rule: { date: calendar.iso(open) }, status: sp.status, leaf: 'T4.2.1', source: SOURCE } as Anchor);
+    anchors.push({ id: `${id}_close`, rule: { date: calendar.iso(sp.close) }, status: sp.status, leaf: 'T4.2.1', source: SOURCE } as Anchor);
+    windows.push({ id, kind: 'window', label: `Recruiting ${sp.period} period`, leaf: 'T4.2.1', opens: `${id}_open`, closes: `${id}_close`, period: sp.period } as WindowDef);
   }
   return { anchors, windows };
 }
 
 /** The calendar files with recruiting periods for every college year from `first` to `last`. */
 export function projectedFiles(files: readonly CalendarFile[], rules: calendar.RuleLookup, first: number, last: number): CalendarFile[] {
-  const base = baseRecruitingFile(files);
   const real = new calendar.CalendarEngine({ files, rules, levels: [LEVEL] });
-  const out = files.filter((f) => !(f.level === LEVEL && f.kind === 'dated' && f.season !== base.season && f.season !== undefined && f.season >= first && f.season <= last));
+  const own = (y: number) => files.find((f) => f.level === LEVEL && f.kind === 'dated' && f.season === y);
+  const out = files.filter((f) => !(f.level === LEVEL && f.kind === 'dated' && f.season !== undefined && f.season >= first && f.season <= last));
   for (let y = first; y <= last; y++) {
-    if (y === base.season) continue;
-    const own = files.find((f) => f.level === LEVEL && f.kind === 'dated' && f.season === y);
-    if (!own) {
-      const p = projected(base, y, null);
+    const f = own(y);
+    if (!f) {
+      const p = built(y, null);
       out.push({ level: LEVEL, kind: 'dated', season: y, anchors: p.anchors, windows: p.windows });
       continue;
     }
-    // A year with dated periods of its own keeps them; projection fills the days after its last one.
-    const periods = real.resolver(LEVEL).season(y).windows.filter((w) => w.def.period !== undefined);
+    // A year with dated periods of its own keeps them; the formula fills the days after its last one.
+    const periods = real.resolver(LEVEL).season(y).windows.filter((w) => w.def.period !== undefined && calendar.civil(w.closeDay).y === y);
     const lastDay = periods.length === 0 ? null : Math.max(...periods.map((w) => w.closeDay));
-    const p = projected(base, y, lastDay);
-    out.push({ ...own, anchors: [...own.anchors, ...p.anchors], windows: [...(own.windows ?? []), ...p.windows] });
+    const p = built(y, lastDay);
+    out.push({ ...f, anchors: [...f.anchors, ...p.anchors], windows: [...(f.windows ?? []), ...p.windows] });
   }
   return out;
 }

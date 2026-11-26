@@ -4,12 +4,14 @@ import type { BlobCodec } from '../snapshot/codec.ts';
 import type { ChainFns, ChainKind } from '../snapshot/chain.ts';
 import type { SnapshotMeta } from '../snapshot/snapshots.ts';
 import type { SnapshotRetention } from '../snapshot/params.ts';
+import type { PackSpec } from '../snapshot/state-tables.ts';
 
 /**
  * Save format written by this module. Format 1 was the phase 0 layout (one JSON row for the world).
+ * Format 2 is the save core (G-01). Format 3 adds packed tables: play rows compressed per game.
  * The header schema's SAVE_FORMAT_VERSION in @gm/schema is the integrator's to move.
  */
-export const SAVE_CORE_FORMAT_VERSION = 2;
+export const SAVE_CORE_FORMAT_VERSION = 3;
 
 export interface ApplyAccepted<S> { ok: true; state: S; events: readonly unknown[] }
 export interface ApplyRejected { ok: false; reason: string; code?: string }
@@ -62,6 +64,12 @@ export interface SaveOptions {
   retention?: SnapshotRetention;
   /** `PRAGMA integrity_check` on load (P5.8.1 "database consistency check"). Default true. */
   databaseCheck?: boolean;
+  /**
+   * World tables stored as one compressed blob per group (format 3). Default DEFAULT_PACKED_TABLES: the
+   * play-row tables, one blob per game. An empty list stores every table as plain rows. Changing the
+   * list on an existing save moves the tables at the next commit; no hash changes either way.
+   */
+  packedTables?: readonly PackSpec[];
 }
 
 export type NewSaveHeader = Omit<SaveHeader, 'saveFormatVersion' | 'hashChainHead'>;
