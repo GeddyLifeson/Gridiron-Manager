@@ -19,7 +19,7 @@ const SIDES: readonly PlaybookInput['side'][] = ['offense', 'defense', 'special_
 
 export function filterOf(p: PlaybookParams): PlaybookFilter {
   const f: Record<string, unknown> = {};
-  for (const k of ['text', 'formation', 'concept', 'personnel', 'role', 'situation', 'status', 'readinessAtLeast', 'includeRetired'] as const) {
+  for (const k of ['text', 'formation', 'concept', 'personnel', 'role', 'situation', 'status', 'readinessAtLeast', 'includeRetired', 'folder'] as const) {
     const v = p[k];
     if (v !== undefined && v !== null && v !== '') f[k] = v;
   }

@@ -161,7 +161,9 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   // A hazard's grades, read against the other eleven (`opposedShare`): what tests a man's discipline and technique is
   // the men across from him. Injury terms keep the plain grade.
   const oppZ: [number, number] = [0, 0];
-  const zt = (w: TickWorld, s: number, a: string): number => z(w, s, a) - oppZ[s < SLOTS_PER_TEAM ? 0 : 1];
+  // `skillScale`: how strongly the grade gap moves the hazard, fitted to how much real favourites' flag counts differ.
+  let skillScale = 1;
+  const zt = (w: TickWorld, s: number, a: string): number => skillScale * (z(w, s, a) - oppZ[s < SLOTS_PER_TEAM ? 0 : 1]);
   const dist = (w: TickWorld, a: number, b: number): number => {
     const dx = w.players.posX[a]! - w.players.posX[b]!, dy = w.players.posY[a]! - w.players.posY[b]!;
     return dSqrt(dx * dx + dy * dy);
@@ -689,6 +691,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
     name: 'interact',
     begin(w: TickWorld): void {
       p = foulsInjuriesParams(w.params); kp = kinParams(w.params);
+      skillScale = p.skillScale;
       oppZ[0] = p.opposedShare * opposingElevenZ(w, 0, READING); oppZ[1] = p.opposedShare * opposingElevenZ(w, SLOTS_PER_TEAM, READING);
       // The reference tackle through kinematics' own formula: carrier at the origin, tackler one yard east, closing head-on.
       contactNumbers(0, 0, 0, 0, p['energy.typicalCarrierLb'], 0, 1, 0, -p['energy.typicalClosingYps'], 0, p['energy.typicalTacklerLb'], kp, cn);

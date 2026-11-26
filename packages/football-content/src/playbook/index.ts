@@ -21,6 +21,7 @@ export * from './relearn.ts';
 export * from './versions.ts';
 export * from './permissions.ts';
 export * from './search.ts';
+export * from './folders.ts';
 export * from './generate.ts';
 export * from './starter-book.ts';
 export { powInt, powReal } from './dmath.ts';

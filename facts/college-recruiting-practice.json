@@ -1,0 +1,83 @@
+{
+ "domain": "coaching-convention",
+ "rows": [
+  {
+   "id": "F-recruiting-practice-0001",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "Power-conference programs send hundreds of scholarship offers per class (typically about 150 to 240, some over 400) to sign a class of about 20 to 27; that is roughly 6 to 10 offers per signee.",
+   "unit": "offers per class",
+   "validFor": "2019-2025",
+   "sources": [
+    {
+     "citation": "Ross Dellenger, Sports Illustrated, Recruiting's Biggest Bait-and-Switch: The Uncommittable Scholarship Offer (2019-02-05, https://www.si.com/college/2019/02/05/uncommittable-offers-recruiting-national-signing-day)",
+     "locator": "offer counts 2012-2019 (247Sports data)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "That's an average of about 237 offers per school per year"
+    },
+    {
+     "citation": "Dallas Morning News, Inside the dirty underbelly of college football recruiting's boom of non-committable offers (2019-02-01, republished 2019-07-15, https://sportsday.dallasnews.com/high-school/high-schools/2019/07/15/inside-dirty-underbelly-college-football-recruitings-boom-non-committable-offers-non-binding-promises)",
+     "locator": "2018 and 2019 cycles, Texas Power Five programs",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "dallasnews",
+     "primary": false,
+     "quote": "offered an average of about 144 scholarships, according to 247Sports.com"
+    },
+    {
+     "citation": "On3, Breaking down early 2025 offers nationally (Iowa team site, https://www.on3.com/teams/iowa-hawkeyes/news/breaking-down-early-2025-offers-nationally/)",
+     "locator": "table 2025 OFFERS, 70 Power programs (median 171.5, mean 186, range 33 to 461, computed from the table)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "on3",
+     "primary": false,
+     "quote": "breaking down the number of scholarships each program has offered in the Class of 2025"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Three independent publishers (SI and Dallas Morning News both count from 247Sports offer lists, On3 from its own database; treated as separate groups because each did its own count for a different year). SI 2020 (John Garcia Jr.) adds: more than half of the 65 Power programs at 150 or more offers for the 2021 class by February 2020. Class size: Dallas Morning News, 'signing just 20 to 30 players a year'. The game already holds offers per signee as front-office college.offersPerSignee 8.5 and league offer.perPlaceTop 8. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the recruiting shortlist thread from pages read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-recruiting-practice-0002",
+   "level": "college",
+   "domain": "coaching-convention",
+   "statement": "A program's recruiting board holds about 500 names at the start of a cycle for about 25 places, about 20 names per place, so a staff evaluates roughly two names for every offer it sends.",
+   "value": 500,
+   "unit": "names per class",
+   "validFor": "2019-2025",
+   "sources": [
+    {
+     "citation": "Lance O's Recruiting Network, The Recruiting Board: How College Coaches Rank 500 Prospects for 25 Roster Spots (2026-11-21, https://www.lanceosrecruitingnetwork.com/post/the-recruiting-board-how-college-coaches-rank-500-prospects-for-25-roster-spots)",
+     "locator": "board section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "lanceos",
+     "primary": false,
+     "quote": "A typical program might have 500 names on that board at the start of a cycle.",
+     "value": 500
+    }
+   ],
+   "usedBy": [],
+   "notes": "FLAGGED, 1 of 3: only one page states a board size, and it is a commercial recruiting service blog. Context read the same day, not the same number so not counted: Athlon Sports 2014 (Penn State coordinator 'has already watched film of 150 safeties in the Class of 2015', one position); IMG Academy (master lists 800 to 8,000, evaluation lists of 20 to 300 athletes, all sports); SI 2025 (Tommy Reamon Jr.: 'For a single spot, a staff might offer eight, nine, even 10 players'). The ratio of two names per offer (500 names against the 237 offer average of F-recruiting-practice-0001) is this thread's arithmetic. Owed: a staff interview or program document stating board size. Web quote as returned by the cloud web fetch on 2026-11-26 (page not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by the recruiting shortlist thread from pages read this session."
+    }
+   ]
+  }
+ ]
+}

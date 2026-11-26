@@ -1352,6 +1352,8 @@
 "T4.4.1",
 "\"trailing\"; beyond, \"no real chance\""
 ],
+["read.rivalsKept", 5, 1, 100, "count", "assumption", "T4.4.1", "Rival schools a staff read keeps, the most recently named, newest last (a staff tracks its few main competitors for a prospect; bounds the saved state, shortlist ruling 2026-11-26). Not sourced: flagged"],
+["read.evidenceKept", 4, 1, 100, "count", "assumption", "T4.4.1", "Evidence events a staff read keeps, newest last; the read's standing, reasons and rivals each keep their own basis and date, so older events add nothing to the page (bounds the saved state, shortlist ruling 2026-11-26)"],
 [
 "read.pleaserShare",
 0.15,
@@ -2012,6 +2014,9 @@
 "T4.4.5",
 "Highest rating a lower program boards outside its home state"
 ],
+["shortlist.perOffer", 2, 1, 5, "ratio", "assumption", "T4.3.1", "Names a staff puts a first-pass grade on per offer it plans: about 500 board names a class (F-recruiting-practice-0002, 1 of 3, flagged) against about 237 offers (F-recruiting-practice-0001, Verified)"],
+["shortlist.homeBonus", 1, 0, 3, "stars", "assumption", "T4.3.1", "A prospect from the program's own region ranks one star higher when the staff draws up its shortlist (local coaches and camps, T4.6.1)"],
+["shortlist.findSpread", 1, 0, 3, "stars", "assumption", "T4.3.1", "Spread of a staff's own finds (camps, coaches' tips) when it draws up its shortlist, in stars: below-rated prospects can make the list"],
 [
 "ai.overSignAllowance",
 1,

@@ -14,6 +14,7 @@ import {
 } from '@gm/schema';
 import { dCos, dSin, PI, TWO_PI } from '../dmath.ts';
 import type { PlayStage } from '../tick/loop.ts';
+import { COVERING, COVER_GRADES, RECEIVING, ROUTE_GRADES, bodyZ, opposingZ } from '../tick/opposition.ts';
 import { perceptionParams, type PerceptionParams } from './params.ts';
 import {
   attentionCapacity, callDeliveryChance, evidenceGain, evidenceNoiseSd, keyWeight, landingErrorSdYd, readThreshold,
@@ -166,13 +167,23 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
     return inside ? Z_PERIPHERAL : Z_BEHIND;
   };
 
+  /**
+   * D3.6 coverage technique against D3.4 route running: a man in coverage reads the routes in front of him later or
+   * sooner by how his coverage grades stand against the route grades of the receivers he is covering (the
+   * opposition rule of tick/opposition.ts: equal grades cost nothing, at any level). Zero for everyone else.
+   */
+  const coverLag = (w: TickWorld, s: number, p: PerceptionParams): number => {
+    if ((COVERING & (1 << w.players.behavior[s]!)) === 0) return 0;
+    return p.coverLagPerZS! * (opposingZ(w, s, RECEIVING, ROUTE_GRADES) - bodyZ(w, s, COVER_GRADES));
+  };
+
   /** J3.2.1 key delay into `delayNow[s]`. The same arithmetic as `keyDelayS` in formulas.ts, written out so no number crosses a call (a test holds the two equal). */
   const setKeyDelay = (w: TickWorld, s: number, p: PerceptionParams): void => {
     if (fixedDelay !== undefined) { delayNow[s] = fixedDelay; return; }
     let fat = w.players.fatigueNow[s]!;
     fat = fat < 0 ? 0 : fat > 1 ? 1 : fat;
     const d = p.keyDelayBaseS! * (p.keyDelayRecIntercept! - recIss[s]! / p.keyDelayRecDivisor!) * (1 - p.keyDelayPrepCut! * prep[s]!)
-      + p.keyDelayFatigueS! * fat * fat + dComplexity[s]! + dKnowledge[s]!;
+      + p.keyDelayFatigueS! * fat * fat + dComplexity[s]! + dKnowledge[s]! + coverLag(w, s, p);
     delayNow[s] = d < p.keyDelayFloorS! ? p.keyDelayFloorS! : d > p.delayCapS! ? p.delayCapS! : d;
   };
 

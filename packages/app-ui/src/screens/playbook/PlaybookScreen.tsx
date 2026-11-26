@@ -4,7 +4,7 @@
 // button (Q1.5.2). A control the user's job does not hold names its holder and offers a suggestion.
 import { useState, type ReactNode } from 'react';
 import { v } from '../../tokens/index.ts';
-import { pt, ROLES, STATUSES, TABS, SORT_KEYS, sortRows, type PlaybookIntent, type PlaybookUi, type SavedFilter, type SortKey, type Tab, type UiFilter, type UiLock, type UiRow, type UiSort } from './view.ts';
+import { pt, ROLES, STATUSES, TABS, SORT_KEYS, sortRows, stepIndex, type PlaybookIntent, type PlaybookUi, type SavedFilter, type SortKey, type Tab, type UiFilter, type UiLock, type UiRow, type UiSort, type UiFolder } from './view.ts';
 
 export interface PlaybookScreenProps {
   view: PlaybookUi | null;
@@ -20,6 +20,8 @@ export interface PlaybookScreenProps {
   onSelectPlay?(id: string | null): void;
   /** Saved filter sets (O3.3.1), a user preference the host keeps. */
   savedFilters?: readonly SavedFilter[];
+  /** Open one folder in the library (filter and tab change together). */
+  onOpenFolder?(folderId: string): void;
 }
 
 const WARN_COLOUR = { none: 'state.good', amber: 'state.caution', red: 'state.bad' } as const;
@@ -86,9 +88,18 @@ function Filters({ view, onFilter, onIntent, saved }: { view: PlaybookUi; onFilt
   );
 }
 
-function Row({ r, view, readOnly, selected, open, onSelect, onOpen, onIntent }: { r: UiRow; view: PlaybookUi; readOnly: boolean; selected: boolean; open: boolean; onSelect(on: boolean): void; onOpen(): void; onIntent(i: PlaybookIntent): void }) {
+/** Folder controls of one row when a folder is open: drag to reorder, or the arrow buttons by keyboard. */
+interface RowFolder { folder: UiFolder; at: number; onDrop(fromId: string, at: number): void }
+
+function Row({ r, view, readOnly, selected, open, onSelect, onOpen, onIntent, inFolder }: { r: UiRow; view: PlaybookUi; readOnly: boolean; selected: boolean; open: boolean; onSelect(on: boolean): void; onOpen(): void; onIntent(i: PlaybookIntent): void; inFolder?: RowFolder }) {
+  const drag = inFolder && !readOnly ? {
+    draggable: true,
+    onDragStart: (e: { dataTransfer: { setData(k: string, v: string): void } }) => e.dataTransfer.setData('text/plain', r.id),
+    onDragOver: (e: { preventDefault(): void }) => e.preventDefault(),
+    onDrop: (e: { preventDefault(): void; dataTransfer: { getData(k: string): string } }) => { e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); if (id && id !== r.id) inFolder.onDrop(id, inFolder.at); },
+  } : {};
   return (
-    <tr data-play={r.id} data-status={r.status} data-over={r.overLimit ? 'true' : undefined} aria-current={open ? 'true' : undefined}>
+    <tr data-play={r.id} data-status={r.status} data-over={r.overLimit ? 'true' : undefined} aria-current={open ? 'true' : undefined} {...drag}>
       <td><input type="checkbox" aria-label={pt('pb.select', { call: r.call })} checked={selected} onChange={(e) => onSelect(e.target.checked)} /></td>
       <th scope="row"><button type="button" className="pb-open" title={pt('pb.detail.open', { call: r.call })} onClick={onOpen}>{r.call}</button>{r.tags.length ? <span className="gm-line"> {r.tags.join(' ')}</span> : null}</th>
       <td>{r.family}</td>
@@ -113,7 +124,16 @@ function Row({ r, view, readOnly, selected, open, onSelect, onOpen, onIntent }: 
         {r.overLimit ? <> <Badge colour="state.bad">{pt('pb.overLimit')}</Badge></> : null}
         {r.latestStartS !== null ? <span className="gm-line"> {pt('pb.latestStart', { seconds: r.latestStartS })}</span> : null}
       </td>
-      <td><Action lock={view.locks.draft_play} readOnly={readOnly} label={pt('pb.action.duplicate', { call: r.call })} onClick={() => onIntent({ kind: 'duplicate', playId: r.id })} /></td>
+      <td>
+        <Action lock={view.locks.draft_play} readOnly={readOnly} label={pt('pb.action.duplicate', { call: r.call })} onClick={() => onIntent({ kind: 'duplicate', playId: r.id })} />
+        {inFolder && !readOnly ? (
+          <span className="pb-folder-row" data-folder-at={inFolder.at}>
+            {' '}<button type="button" disabled={inFolder.at === 0} onClick={() => onIntent({ kind: 'file_plays', folderId: inFolder.folder.id, playIds: [r.id], index: stepIndex(inFolder.at, -1, inFolder.folder.playIds.length) })}>{pt('pb.folders.playUp', { call: r.call })}</button>
+            {' '}<button type="button" disabled={inFolder.at === inFolder.folder.playIds.length - 1} onClick={() => onIntent({ kind: 'file_plays', folderId: inFolder.folder.id, playIds: [r.id], index: stepIndex(inFolder.at, 1, inFolder.folder.playIds.length) })}>{pt('pb.folders.playDown', { call: r.call })}</button>
+            {' '}<button type="button" onClick={() => onIntent({ kind: 'unfile_plays', folderId: inFolder.folder.id, playIds: [r.id] })}>{pt('pb.folders.remove', { call: r.call })}</button>
+          </span>
+        ) : null}
+      </td>
     </tr>
   );
 }
@@ -164,11 +184,18 @@ function Library({ view, readOnly, onFilter, onIntent, sort, onSort, selectedPla
   const toggle = (id: string, on: boolean) => setPicked((p) => (on ? [...p.filter((x) => x !== id), id] : p.filter((x) => x !== id)));
   const retiredSel = sel.filter((id) => view.rows.find((r) => r.id === id)?.status === 'retired');
   const liveSel = sel.filter((id) => !retiredSel.includes(id));
+  const folder = view.filter.folder ? view.folders.find((x) => x.id === view.filter.folder) ?? null : null;
+  const inFolder = (id: string): RowFolder | undefined => {
+    if (!folder) return undefined;
+    const at = folder.playIds.indexOf(id);
+    return at < 0 ? undefined : { folder, at, onDrop: (from, to) => onIntent({ kind: 'file_plays', folderId: folder.id, playIds: [from], index: to }) };
+  };
   return (
     <section aria-label={pt('pb.tab.library')}>
       <Filters view={view} onFilter={onFilter} onIntent={onIntent} saved={saved} />
       <p role="status" data-counter="plays">{pt('pb.count', { shown: view.rows.length, total: view.total })}</p>
       {readOnly ? <p className="gm-line">{pt('pb.readOnly')}</p> : null}
+      {folder ? <p role="note" data-open-folder={folder.id}>{pt('pb.folders.showing', { name: folder.name })}</p> : null}
       <nav aria-label={pt('pb.sections')}>
         <ul className="pb-sections">{view.sections.map((s) => <li key={s.key} data-section={s.key}>{s.key} ({s.count})</li>)}</ul>
       </nav>
@@ -177,7 +204,15 @@ function Library({ view, readOnly, onFilter, onIntent, sort, onSort, selectedPla
         <Action lock={view.locks.edit_side_playbook} readOnly={readOnly} disabled={!retiredSel.length} label={pt('pb.action.restore', { count: retiredSel.length })} onClick={() => onIntent({ kind: 'restore', playIds: retiredSel })} />{' '}
         <Action lock={view.locks.edit_side_playbook} readOnly={readOnly} disabled={!liveSel.length} label={pt('pb.action.addToInstall', { count: liveSel.length })} onClick={() => onIntent({ kind: 'add_to_install', playIds: liveSel })} />{' '}
         <Action lock={view.locks.build_plan_and_sheet} readOnly={readOnly} disabled={!liveSel.length} label={pt('pb.action.addToPlan', { count: liveSel.length })} onClick={() => onIntent({ kind: 'add_to_plan', playIds: liveSel })} />{' '}
-        <Action lock={view.locks.view} readOnly={false} disabled={!sel.length} label={pt('pb.action.export', { count: sel.length })} onClick={() => onIntent({ kind: 'export', playIds: sel })} />
+        <Action lock={view.locks.view} readOnly={false} disabled={!sel.length} label={pt('pb.action.export', { count: sel.length })} onClick={() => onIntent({ kind: 'export', playIds: sel })} />{' '}
+        {!readOnly && view.folders.length ? (
+          <label>{pt('pb.folders.addTo', { count: sel.length })}{' '}
+            <select data-add-to-folder="true" value="" disabled={!sel.length} onChange={(e) => { if (e.target.value) onIntent({ kind: 'file_plays', folderId: e.target.value, playIds: sel }); }}>
+              <option value="">{pt('pb.folders.pick')}</option>
+              {view.folders.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
+            </select>
+          </label>
+        ) : null}
       </div>
       {open ? <Detail r={open} view={view} readOnly={readOnly} onIntent={onIntent} onClose={() => onSelectPlay(null)} /> : null}
       <table data-table="library">
@@ -185,9 +220,44 @@ function Library({ view, readOnly, onFilter, onIntent, sort, onSort, selectedPla
           {COLS.map(header)}
         </tr></thead>
         <tbody>
-          {rows.map((r) => <Row key={r.id} r={r} view={view} readOnly={readOnly} selected={sel.includes(r.id)} open={open?.id === r.id} onSelect={(on) => toggle(r.id, on)} onOpen={() => onSelectPlay(r.id)} onIntent={onIntent} />)}
+          {rows.map((r) => <Row key={r.id} r={r} view={view} readOnly={readOnly} selected={sel.includes(r.id)} open={open?.id === r.id} onSelect={(on) => toggle(r.id, on)} onOpen={() => onSelectPlay(r.id)} onIntent={onIntent} inFolder={inFolder(r.id)} />)}
         </tbody>
       </table>
+    </section>
+  );
+}
+
+/** "My folders" (G3.1.1 labels, kept the coach's way): make, rename, order, delete and open folders. */
+function Folders({ view, readOnly, onIntent, onOpen }: { view: PlaybookUi; readOnly: boolean; onIntent(i: PlaybookIntent): void; onOpen(id: string): void }) {
+  const [name, setName] = useState('');
+  const [names, setNames] = useState<Record<string, string>>({});
+  const n = view.folders.length;
+  return (
+    <section aria-label={pt('pb.folders.title')}>
+      {!readOnly ? (
+        <p>
+          <label>{pt('pb.folders.newName')}{' '}<input value={name} onChange={(e) => setName(e.target.value)} /></label>{' '}
+          <button type="button" disabled={!name.trim()} onClick={() => { onIntent({ kind: 'create_folder', name: name.trim() }); setName(''); }}>{pt('pb.folders.create')}</button>
+        </p>
+      ) : null}
+      {n === 0 ? <p className="gm-line">{pt('pb.folders.none')}</p> : null}
+      <ol data-board="folders">
+        {view.folders.map((f, i) => (
+          <li key={f.id} data-folder={f.id} style={box}>
+            <button type="button" onClick={() => onOpen(f.id)}>{pt('pb.folders.open', { name: f.name })}</button>{' '}
+            <span className="gm-line">{pt('pb.folders.count', { count: f.playIds.length })}</span>
+            {!readOnly ? (
+              <span>
+                {' '}<button type="button" disabled={i === 0} onClick={() => onIntent({ kind: 'reorder_folder', folderId: f.id, index: stepIndex(i, -1, n) })}>{pt('pb.folders.up', { name: f.name })}</button>
+                {' '}<button type="button" disabled={i === n - 1} onClick={() => onIntent({ kind: 'reorder_folder', folderId: f.id, index: stepIndex(i, 1, n) })}>{pt('pb.folders.down', { name: f.name })}</button>
+                {' '}<input aria-label={pt('pb.folders.rename', { name: f.name })} value={names[f.id] ?? ''} onChange={(e) => setNames({ ...names, [f.id]: e.target.value })} />
+                {' '}<button type="button" disabled={!(names[f.id] ?? '').trim()} onClick={() => { onIntent({ kind: 'rename_folder', folderId: f.id, name: (names[f.id] ?? '').trim() }); setNames({ ...names, [f.id]: '' }); }}>{pt('pb.folders.rename', { name: f.name })}</button>
+                {' '}<button type="button" onClick={() => onIntent({ kind: 'delete_folder', folderId: f.id })}>{pt('pb.folders.delete', { name: f.name })}</button>
+              </span>
+            ) : null}
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }
@@ -256,7 +326,7 @@ function Size({ view }: { view: PlaybookUi }) {
   );
 }
 
-export function PlaybookScreen({ view, tab, readOnly, onTab, onFilter, onIntent, sort = null, onSort = () => {}, selectedPlay = null, onSelectPlay = () => {}, savedFilters = [] }: PlaybookScreenProps) {
+export function PlaybookScreen({ view, tab, readOnly, onTab, onFilter, onIntent, sort = null, onSort = () => {}, selectedPlay = null, onSelectPlay = () => {}, savedFilters = [], onOpenFolder }: PlaybookScreenProps) {
   if (!view) return <p className="gm-line">{pt('pb.empty')}</p>;
   return (
     <div className="pb-screen" data-team={view.teamId} data-side={view.side}>
@@ -266,6 +336,7 @@ export function PlaybookScreen({ view, tab, readOnly, onTab, onFilter, onIntent,
       </div>
       <div role="tabpanel">
         {tab === 'library' ? <Library view={view} readOnly={readOnly} onFilter={onFilter} onIntent={onIntent} sort={sort} onSort={onSort} selectedPlay={selectedPlay} onSelectPlay={onSelectPlay} saved={savedFilters} /> : null}
+        {tab === 'folders' ? <Folders view={view} readOnly={readOnly} onIntent={onIntent} onOpen={(id) => (onOpenFolder ? onOpenFolder(id) : onFilter({ folder: id }))} /> : null}
         {tab === 'families' ? <Families view={view} /> : null}
         {tab === 'words' ? <Words view={view} readOnly={readOnly} onIntent={onIntent} /> : null}
         {tab === 'size' ? <Size view={view} /> : null}

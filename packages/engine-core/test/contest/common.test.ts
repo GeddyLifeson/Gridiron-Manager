@@ -36,13 +36,13 @@ describe('contest parameter file (J6.8.1)', () => {
     const want: Record<string, number> = {
       'passBlock.kappa': 0.9, 'passBlock.lambda': 0.3, 'passBlock.sigma': 0.45,
       'runBlock.kappa': 0.8, 'runBlock.lambda': 0.4, 'runBlock.sigma': 0.4, 'release.kappa': 1.6, 'release.lambda': 0,
-      'release.sigma': 0.6, 'stunt.beta0': 1.2, 'sack.beta0': 1.4, 'catch.beta0': 3.0, 'tackle.beta0': 1.7,
+      'release.sigma': 0.6, 'stunt.beta0': 1.2, 'sack.beta0': 0.5, 'catch.beta0': 3.0, 'tackle.beta0': 1.7,
       'fumble.beta0': -5.0, 'recovery.fall': 0.85, 'recovery.scoop': 0.55, 'separation.baseS': 0.25, 'separation.floorS': 0.08,
     };
     for (const k of Object.keys(want)) expect(paramValue(k), k).toBe(want[k]);
     for (const p of PARAMS.params) if (Object.keys(want).includes(p.name.replace('contest.', ''))) expect(p.basis).toBe('bible');
-    // The even-block speed share is tuned away from J6.2.1's 0.35 (sack rate), so it is no longer a bible row.
-    expect(paramValue('passBlock.gEven')).toBe(0.15);
+    // The even-block speed share is tuned away from J6.2.1's 0.35 (sack rate, then pressure rate), so it is no longer a bible row.
+    expect(paramValue('passBlock.gEven')).toBe(0.1);
     expect(PARAMS.params.find((p) => p.name === 'contest.passBlock.gEven')!.basis).toBe('assumption');
   });
 

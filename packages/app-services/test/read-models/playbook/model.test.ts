@@ -123,3 +123,27 @@ describe('playbook commands (G3.4.3, O3.3.1)', () => {
     expect(pb.fromJson(e.file!).plays.map((p) => p.id)).toEqual([id]);
   });
 });
+
+describe('the coach\'s folders (commands and "My folders" view)', () => {
+  const state = (): PlaybookState => { const s = starter(); return { book: s.book, words: s.words, links: [], history: pb.emptyHistory() }; };
+  const ctx = (holder = COORDINATOR, newId = 'f.1'): CommandContext => ({ holder, side: 'offense', validate, stamp: 1, newId, userId: 'u1' });
+  it('creates a folder, files plays in the coach\'s order and the view shows only them, in that order', () => {
+    const s0 = state();
+    const ids = [...s0.book.plays.values()].filter((p) => p.book === 'offense').map((p) => p.id).slice(0, 3);
+    const a = runPlaybookCommand(s0, ctx(), { kind: 'create_folder', name: 'Openers' });
+    if (!a.ok) throw new Error(a.refusal);
+    const b = runPlaybookCommand(a.state, ctx(), { kind: 'file_plays', folderId: 'f.1', playIds: [ids[2]!, ids[0]!, ids[1]!] });
+    if (!b.ok) throw new Error(b.refusal);
+    const v = view({ folder: 'f.1' }, { folders: b.state.folders });
+    expect(v.folders).toEqual([{ id: 'f.1', name: 'Openers', playIds: [ids[2], ids[0], ids[1]] }]);
+    expect(v.rows.map((r) => r.id)).toEqual([ids[2], ids[0], ids[1]]);
+    expect(filterOf({ teamId: 1, side: 'offense', folder: 'f.1' })).toEqual({ folder: 'f.1' });
+  });
+  it('a position coach may keep his own folders; bad edits are refused', () => {
+    const r = runPlaybookCommand(state(), ctx(POSITION_COACH), { kind: 'create_folder', name: 'Mine' });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const dup = runPlaybookCommand(r.state, ctx(POSITION_COACH, 'f.2'), { kind: 'create_folder', name: 'mine' });
+    expect(dup.ok).toBe(false);
+  });
+});

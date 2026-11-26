@@ -21,7 +21,7 @@ function parses(cmd: GameplanCommand): boolean {
 
 describe('game plan commands are registered (P1.3.1, G-68)', () => {
   it('every union kind has a COMMANDS row, and no row is stale', () => {
-    expect(kinds.length).toBe(28);
+    expect(kinds.length).toBe(30);
     expect(kinds.filter((k) => !commandSpec(gameplanCommandType(k)))).toEqual([]);
     expect(Object.keys(GAMEPLAN_PAYLOADS).sort()).toEqual([...kinds].sort());
   });
