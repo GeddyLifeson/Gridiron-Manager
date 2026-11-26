@@ -14,6 +14,7 @@ import {
   countByLevel, unplacedLeavers, param, type CohortKind, type WorldScale,
 } from '../../src/cohorts/index.ts';
 import { rng } from '../generator/helpers.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 const R = rng(44044);
 const open = (name: string, scope: readonly (string | number)[]): RandomStream => R.open(name, scope);
@@ -215,7 +216,7 @@ describe('X11.2.3 stock balance', () => {
     expect(proAgeBandProblems({ finalSeasonAges: [33], careerSeasons: [9], rosterAges: [31] })).toHaveLength(3);
   });
   it('coach retirement chance starts at 55 and caps at 40 percent', () => {
-    expect(coachRetirementChance(54)).toBe(0);
+    expect(coachRetirementChance(54)).toBe(PROB_FLOOR);
     expect(coachRetirementChance(55)).toBeCloseTo(0.03);
     expect(coachRetirementChance(60)).toBeCloseTo(0.13);
     expect(coachRetirementChance(80)).toBeCloseTo(0.4);

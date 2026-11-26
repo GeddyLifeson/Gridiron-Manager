@@ -3,6 +3,7 @@ import {
   afterDraft, collegeRules, declarationDeadline, declare, declareChance, draftEligibleByYears, eligibilityStatus, optOutChance,
 } from '../../src/college/index.ts';
 import { RULES, day, rec, ruleSet } from './helpers.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 describe('early entry (T8.5.1)', () => {
   it('eligible to declare three years after high school', () => {
@@ -37,7 +38,7 @@ describe('early entry (T8.5.1)', () => {
     expect(declareChance({ ...base, expectedDraftValue: 20000000 })).toBeGreaterThan(declareChance(base));
     expect(declareChance({ ...base, stayMoney: 3000000 })).toBeLessThan(declareChance(base));
     expect(declareChance({ ...base, advice: 'push_to_stay' })).toBeLessThan(declareChance(base));
-    expect(declareChance({ ...base, expectedDraftValue: 0, injuryRisk: 0 })).toBe(0);
+    expect(declareChance({ ...base, expectedDraftValue: 0, injuryRisk: 0 })).toBe(PROB_FLOOR);
   });
 });
 
@@ -47,7 +48,7 @@ describe('opt-outs (T8.5.2)', () => {
     expect(optOutChance(2, false, 'generated')).toBe(0.5);
     expect(optOutChance(4, false, 'generated')).toBeLessThan(0.5);
     expect(optOutChance(1, true, 'generated')).toBeLessThan(0.05);
-    expect(optOutChance(null, false, 'generated')).toBe(0);
+    expect(optOutChance(null, false, 'generated')).toBe(PROB_FLOOR);
     expect(optOutChance(1, false, 'imported')).toBe(0);
   });
 });
