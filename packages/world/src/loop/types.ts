@@ -126,6 +126,12 @@ export interface LiveWorld {
   passHash: string;
   passes: number;
   userPersonId: number | null;
+  /**
+   * State a bound system carries from pass to pass, by system name (absent until a system first writes it).
+   * Each system folds a digest of its own entry into its step digest, so the pass hash covers it. Saves
+   * must carry it (owed to the save owner, G-83).
+   */
+  systemState?: Map<string, unknown>;
 }
 
 export interface StepContext {

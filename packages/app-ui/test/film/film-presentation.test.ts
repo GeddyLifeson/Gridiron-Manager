@@ -267,7 +267,7 @@ describe('film room only (route rule: none of this reaches the live field)', () 
   it('only the film screens and the package barrel import the film screens or their presentation', () => {
     for (const f of files) {
       const rel = relative(src, join(src, f)).replace(/\\/g, '/');
-      // The route table (routes.ts) wires the film routes into the shell; that is the one other allowed importer.
+      // routes.ts is the composition root: it binds the film routes to their ids and draws nothing itself.
       if (rel.startsWith('screens/film/') || rel === 'index.ts' || rel === 'routes.ts') continue;
       const text = readFileSync(join(src, f), 'utf8');
       expect(text, rel).not.toMatch(/screens\/film|film\/presentation/);
