@@ -4,7 +4,7 @@
 // class and date. Row ids are unique and rise. So two logs whose rows at the same place carry the same ids
 // hold the same actors, classes and dates up to there, and one index serves a whole line of growth: each
 // entry keeps its place in the log, and a read of a log with n rows takes only places below n.
-import type { ViolationLogRow } from './types.ts';
+import type { LeagueRecordEntry, ViolationLogRow } from './types.ts';
 import type { WorldDate } from '@gm/schema';
 
 interface Entry { readonly at: number; readonly date: WorldDate }
@@ -58,6 +58,58 @@ export function someActorClassRow(log: readonly ViolationLogRow[], personId: num
   if (!rows) return false;
   const n = log.length;
   for (const e of rows) {
+    if (e.at >= n) break;
+    if (test(e.date)) return true;
+  }
+  return false;
+}
+
+// The league record (L8.2.3) indexed the same way, by party and class, for the repeat check (C11.2.4). The
+// record only grows at its end and its entries are never copied into new objects, so two records whose
+// entries at the same place are the same objects agree up to there, and one index serves a line of growth.
+interface RecordIndex {
+  readonly entries: LeagueRecordEntry[];
+  readonly byKey: Map<string, Entry[]>;
+}
+
+const RECORD_INDEX = new WeakMap<readonly LeagueRecordEntry[], RecordIndex>();
+let latestRecord: RecordIndex | null = null;
+
+function recordKey(kind: string, id: number, classId: string): string { return `${kind}:${id}:${classId}`; }
+
+function recordServes(ix: RecordIndex, rec: readonly LeagueRecordEntry[]): boolean {
+  const common = Math.min(ix.entries.length, rec.length);
+  if (common === 0) return true;
+  return ix.entries[0] === rec[0] && ix.entries[common - 1] === rec[common - 1];
+}
+
+function recordIndexOf(rec: readonly LeagueRecordEntry[]): RecordIndex {
+  let ix = RECORD_INDEX.get(rec);
+  if (!ix) {
+    ix = latestRecord && recordServes(latestRecord, rec) ? latestRecord : { entries: [], byKey: new Map() };
+    RECORD_INDEX.set(rec, ix);
+  }
+  for (let i = ix.entries.length; i < rec.length; i++) {
+    const e = rec[i]!;
+    ix.entries.push(e);
+    const k = recordKey(e.party.kind, e.party.id, e.classId);
+    let list = ix.byKey.get(k);
+    if (!list) { list = []; ix.byKey.set(k, list); }
+    list.push({ at: i, date: e.date });
+  }
+  latestRecord = ix;
+  return ix;
+}
+
+/**
+ * True when some record entry has this party and class and a date `d` with `test(d)` true. The same answer as
+ * `record.some(e => e.party.kind === kind && e.party.id === id && e.classId === classId && test(e.date))`.
+ */
+export function someRecordEntry(rec: readonly LeagueRecordEntry[], kind: string, id: number, classId: string, test: (d: WorldDate) => boolean): boolean {
+  const list = recordIndexOf(rec).byKey.get(recordKey(kind, id, classId));
+  if (!list) return false;
+  const n = rec.length;
+  for (const e of list) {
     if (e.at >= n) break;
     if (test(e.date)) return true;
   }

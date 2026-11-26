@@ -1249,6 +1249,56 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-college-0029",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "NCAA Division I infractions have a four-year statute of limitations: allegations may cover only violations from four years before the notice of inquiry, except violations affecting a current student-athlete's eligibility, a pattern of willful violations continuing into the window, blatant disregard of fundamental recruiting, extra-benefit, academic or ethical-conduct rules, or concealment.",
+   "value": 4,
+   "validFor": "2019-",
+   "sources": [
+    {
+     "citation": "NCAA, Division I Proposal 2019-3, Bylaw 19.5.11 Statute of Limitations, Adopted Final (https://web3.ncaa.org/lsdbi/search/proposalView?id=103444)",
+     "locator": "Bylaw 19.5.11",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "not earlier than four years before the date the notice of inquiry is provided to the institution",
+     "value": 4
+    },
+    {
+     "citation": "NCAA, Division I Proposal 2012-16, Enforcement -- New Enforcement Program, Bylaw 32.6.3 Statute of Limitations, Adopted Final (https://web3.ncaa.org/lsdbi/search/proposalView?id=3039)",
+     "locator": "Bylaw 32.6.3 (pre-2019 numbering)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ncaa",
+     "primary": true,
+     "quote": "not earlier than four years before the date the notice of inquiry is provided to the institution",
+     "value": 4
+    },
+    {
+     "citation": "NCAA, Enforcement process: charging (FAQ) (https://www.ncaa.org/enforcement/enforcement-process-charging)",
+     "locator": "Charging FAQ",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ncaa",
+     "primary": false,
+     "quote": "generally are based on violations that have occurred four or fewer years before the time an institution is notified of an investigation",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Three NCAA texts agree (two adopted bylaw texts, 2012 and 2019, and the current charging FAQ), so one independence group: Rulebook only. The current Division I Manual was not read (its hosts are blocked here); the 2019 proposal also changed the blatant-disregard follow-up period from one year to 18 months, not confirmed in adopted wording. Bible T9.5.1 rule 4 recalled college detect_window_years = 4 (0 of 3); this row supports it. Used by the compliance log retirement only through compliance.detect_window_years once a college rule set holds it.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load from NCAA bylaw texts read this session (bound violation log thread)."
+    }
+   ]
   }
  ]
 }
