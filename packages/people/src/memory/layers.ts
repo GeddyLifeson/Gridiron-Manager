@@ -109,7 +109,7 @@ export function promoteAtSeasonEnd(rows: readonly HeldMemory[], kinds: KindTable
     const p: HeldMemory = { ...c, layer: 'permanent' };
     if (perm.length < cap) { perm = [...perm, p]; promoted.push(p); continue; }
     const weakest = perm.reduce((w, r) => (effectiveStrength(r, rows, kinds, now) < effectiveStrength(w, rows, kinds, now) ? r : w));
-    if (c.strength > effectiveStrength(weakest, rows, kinds, now)) {
+    if (effectiveStrength(p, rows, kinds, now) > effectiveStrength(weakest, rows, kinds, now)) {
       perm = [...perm.filter((r) => r !== weakest), p];
       promoted.push(p);
     }
