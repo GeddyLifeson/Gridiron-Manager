@@ -9,21 +9,25 @@
 // or from the pool by the head coach's own search (X8.4.2, K7.6.1). Nobody reads a hidden coach value:
 // candidates are seen through their public record, rung and shared seasons only.
 import { DMATH, stream } from '@gm/engine-core';
-import { market, positions, staff as staffSearch } from '@gm/career';
+import { interviews, market, positions, staff as staffSearch } from '@gm/career';
 import { stakeholders } from '@gm/front-office';
 import { strength } from '@gm/models';
 import { possible, type EventTypeDef, type JobRecord, type PersonRecord, type WorldTier } from '@gm/schema';
 import { COACH_POOL } from '../generation/placement.ts';
 import { param as genParam } from '../generation/params.ts';
 import { isActive } from '../loop/lifecycle.ts';
+import { reactivate } from '../loop/leaving.ts';
 import { param as loopParam } from '../loop/params.ts';
 import type { GameResult, LiveWorld, StepContext, StepHandler } from '../loop/types.ts';
 import { ageIn, levelOfTeam, specOf, type Level, type TurnoverBinding } from './binding.ts';
 import { LEFT_UNSIGNED } from './events.ts';
 import { param } from './params.ts';
+import * as pipeline from './pipeline.ts';
 
 export const COACH_STATE = 'world.turnover.coaches';
 export const STREAM_COACHES = 'world.turnover.coaches';
+/** Interview draws: each person's stances (keyed by person only, so a person believes the same things every year). */
+export const STREAM_INTERVIEWS = 'world.turnover.interviews';
 /** The pool cohort entrants wait in (X11 `coach_staff_entry`), read beside the coach pool. */
 export const ENTRY_POOL = 'coach_staff_entry';
 const HEAD = 'pos:head_coach';
@@ -128,7 +132,31 @@ export function coachOpenings(world: LiveWorld): readonly { season: number; leve
   });
 }
 
+/** Job rows by team and by holder, kept in step with every write this step makes (the world has 10,000+ rows). */
+class JobIndex {
+  readonly team = new Map<number, number[]>();
+  readonly held = new Map<number, Set<number>>();
+  constructor(private readonly world: LiveWorld) {
+    for (const j of [...world.jobs.values()].sort((a, b) => a.id - b.id)) {
+      this.team.set(j.teamId, [...(this.team.get(j.teamId) ?? []), j.id]);
+      if (j.holderPersonId !== null) this.add(j.holderPersonId, j.id);
+    }
+  }
+  private add(p: number, id: number): void { let x = this.held.get(p); if (!x) { x = new Set(); this.held.set(p, x); } x.add(id); }
+  set(j: JobRecord): void {
+    const old = this.world.jobs.get(j.id);
+    if (old?.holderPersonId != null) this.held.get(old.holderPersonId)?.delete(j.id);
+    if (!this.team.has(j.teamId)) this.team.set(j.teamId, []);
+    if (!old) this.team.get(j.teamId)!.push(j.id);
+    this.world.jobs.set(j.id, j);
+    if (j.holderPersonId !== null) this.add(j.holderPersonId, j.id);
+  }
+  jobsOfTeam(teamId: number): JobRecord[] { return (this.team.get(teamId) ?? []).map((id) => this.world.jobs.get(id)!).filter(Boolean); }
+  heldBy(p: number): JobRecord[] { return [...(this.held.get(p) ?? [])].sort((a, b) => a - b).map((id) => this.world.jobs.get(id)!); }
+}
+
 interface Cycle {
+  readonly ix: JobIndex;
   readonly ctx: StepContext;
   readonly world: LiveWorld;
   readonly b: TurnoverBinding;
@@ -162,17 +190,18 @@ function record(c: Cycle, type: string, teamId: number, personId: number | null,
 
 // ---------- staff charts over the world's job rows ----------
 
-function jobsOf(world: LiveWorld, teamId: number): JobRecord[] {
-  return [...world.jobs.values()].filter((j) => j.teamId === teamId).sort((a, b) => a.id - b.id);
+function jobsOf(c: Cycle, teamId: number): JobRecord[] {
+  return c.ix.jobsOfTeam(teamId);
 }
 
-function headJob(world: LiveWorld, teamId: number): JobRecord | undefined {
-  return jobsOf(world, teamId).find((j) => j.positionId === HEAD);
+function headJob(c: Cycle, teamId: number): JobRecord | undefined {
+  return jobsOf(c, teamId).find((j) => j.positionId === HEAD);
 }
 
 /** The positions module's chart rebuilt from the team's job rows (one seat per row). */
-function staffOf(world: LiveWorld, teamId: number): positions.Staff {
-  const rows = jobsOf(world, teamId);
+function staffOf(c: Cycle, teamId: number): positions.Staff {
+  const world = c.world;
+  const rows = jobsOf(c, teamId);
   const seats: positions.Seat[] = rows.map((j) => {
     const row = positions.CATALOGUE.job(j.catalogueId);
     return {
@@ -188,16 +217,17 @@ function staffOf(world: LiveWorld, teamId: number): positions.Staff {
   return { teamId, level, seats, callers: { offense: callerOf('offense'), defense: callerOf('defense'), special_teams: callerOf('special_teams') } };
 }
 
-function writeStaff(world: LiveWorld, s: positions.Staff): void {
-  for (const seat of s.seats) world.jobs.set(seat.seatId, positions.toJobRecord(s, seat));
+function writeStaff(c: Cycle, s: positions.Staff): void {
+  for (const seat of s.seats) {
+    const old = c.world.jobs.get(seat.seatId);
+    if (old && old.holderPersonId === seat.holderPersonId && old.holding === seat.holding && old.vacantSince === seat.vacantSince) continue;
+    c.ix.set(positions.toJobRecord(s, seat));
+  }
 }
 
-function holderSeats(world: LiveWorld): Map<number, JobRecord[]> {
+function holderSeats(c: Cycle): Map<number, JobRecord[]> {
   const out = new Map<number, JobRecord[]>();
-  for (const j of [...world.jobs.values()].sort((a, b) => a.id - b.id)) {
-    if (j.holderPersonId === null) continue;
-    { const l = out.get(j.holderPersonId); if (l) l.push(j); else out.set(j.holderPersonId, [j]); }
-  }
+  for (const [p, ids] of [...c.ix.held].sort((a, b) => a[0] - b[0])) if (ids.size > 0) out.set(p, c.ix.heldBy(p));
   return out;
 }
 
@@ -209,8 +239,8 @@ function sideOf(j: JobRecord): Side {
 
 /** Vacate every chair a person holds and note his last rung, for the pool. */
 function vacatePerson(c: Cycle, personId: number): JobRecord[] {
-  const held = [...c.world.jobs.values()].filter((j) => j.holderPersonId === personId).sort((a, b) => b.rung - a.rung || a.id - b.id);
-  for (const j of held) c.world.jobs.set(j.id, { ...j, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent', callsPlays: j.callsPlays });
+  const held = c.ix.heldBy(personId).sort((a, b) => b.rung - a.rung || a.id - b.id);
+  for (const j of held) c.ix.set({ ...j, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent', callsPlays: j.callsPlays });
   if (held.length > 0) c.st.careers.set(personId, { lastRung: held[0]!.rung, side: sideOf(held[0]!), outSince: null });
   return held;
 }
@@ -414,24 +444,25 @@ function inSeason(c: Cycle): void {
 }
 
 function fireHead(c: Cycle, teamId: number, midSeason: boolean): void {
-  const job = headJob(c.world, teamId);
+  const job = headJob(c, teamId);
   if (!job || job.holderPersonId === null) return;
   const id = job.holderPersonId;
   vacatePerson(c, id);
   toPool(c, id);
   open(c, teamId, job.rung, 'fired');
+  firedThisCycle(c).set(teamId, id);
   record(c, market.EVENT.fired, teamId, id, { seatId: job.id, forCause: false, midSeason }, { kind: 'person', id });
   bump(c, midSeason ? 'fired_in_season' : 'fired');
 }
 
 /** E4.3.3: an in-season firing names an interim, the senior assistant (highest rung, then first seat); his chairs wait for the offseason. */
 function nameInterim(c: Cycle, teamId: number, prev: HeadState): void {
-  const job = headJob(c.world, teamId)!;
-  const cand = jobsOf(c.world, teamId).filter((j) => j.positionId !== HEAD && j.holderPersonId !== null && j.holderPersonId !== c.world.userPersonId).sort((a, b) => b.rung - a.rung || a.id - b.id)[0];
+  const job = headJob(c, teamId)!;
+  const cand = jobsOf(c, teamId).filter((j) => j.positionId !== HEAD && j.holderPersonId !== null && j.holderPersonId !== c.world.userPersonId).sort((a, b) => b.rung - a.rung || a.id - b.id)[0];
   if (!cand) { c.st.heads.delete(teamId); return; }
   const id = cand.holderPersonId!;
   for (const j of vacatePerson(c, id)) open(c, teamId, j.rung, 'promoted');
-  c.world.jobs.set(job.id, { ...c.world.jobs.get(job.id)!, holderPersonId: id, holderSince: c.world.date, vacantSince: null, holding: 'interim' });
+  c.ix.set({ ...c.world.jobs.get(job.id)!, holderPersonId: id, holderSince: c.world.date, vacantSince: null, holding: 'interim' });
   record(c, positions.EVENT.interim, teamId, id, { seatId: job.id, holding: 'interim', step: 0 }, { kind: 'job', id: job.id });
   const h = newHead(id, 'interim', prev.situation, prev);
   h.games = prev.games; h.wins = prev.wins; h.expected = prev.expected; h.recent = [...prev.recent];
@@ -459,7 +490,7 @@ function seasonLines(games: readonly GameResult[]): Map<number, SeasonLine> {
 function mainReviews(c: Cycle, lines: Map<number, SeasonLine>): void {
   for (const teamId of [...c.st.heads.keys()].sort((a, b) => a - b)) {
     const h = c.st.heads.get(teamId)!;
-    const job = headJob(c.world, teamId);
+    const job = headJob(c, teamId);
     if (!isActive(c.world, teamId) || !job || job.holderPersonId !== h.personId) { c.st.heads.delete(teamId); continue; }
     if (h.personId === c.world.userPersonId) continue;
     const l = lines.get(teamId);
@@ -493,7 +524,7 @@ function unitReviews(c: Cycle, lines: Map<number, SeasonLine>): void {
   }
   for (const t of [...c.world.teams].sort((a, b) => a.id - b.id)) {
     const l = lines.get(t.id), m = compMean.get(t.competitionId);
-    const head = headJob(c.world, t.id);
+    const head = headJob(c, t.id);
     if (!l || !m || l.games === 0 || !head || head.holderPersonId === null || head.holderPersonId === c.world.userPersonId) continue;
     const u = c.st.units.get(t.id) ?? { offense: 0, defense: 0 };
     u.offense = l.pf / l.games < m.pf - param('coach.unitBelowPoints') ? u.offense + 1 : 0;
@@ -501,7 +532,7 @@ function unitReviews(c: Cycle, lines: Map<number, SeasonLine>): void {
     c.st.units.set(t.id, u);
     for (const side of ['offense', 'defense'] as const) {
       if (!staffSearch.aiFiresAssistant(u[side], false)) continue;
-      const coord = jobsOf(c.world, t.id).find((j) => j.positionId === (side === 'offense' ? 'pos:offensive_coordinator' : 'pos:defensive_coordinator'));
+      const coord = jobsOf(c, t.id).find((j) => j.positionId === (side === 'offense' ? 'pos:offensive_coordinator' : 'pos:defensive_coordinator'));
       if (!coord || coord.holderPersonId === null || coord.holderPersonId === c.world.userPersonId || coord.holderPersonId === head.holderPersonId) continue;
       const id = coord.holderPersonId;
       for (const j of vacatePerson(c, id)) open(c, t.id, j.rung, 'released');
@@ -515,7 +546,7 @@ function unitReviews(c: Cycle, lines: Map<number, SeasonLine>): void {
 
 /** E2.3.4 rule 4: retirement by age and years without a job (TO-13: no health or wealth state off-screen yet). */
 function retirements(c: Cycle): void {
-  const held = holderSeats(c.world);
+  const held = holderSeats(c);
   let exits = 0, inJob = 0;
   for (const [id, seats] of held) {
     const p = c.world.people.get(id);
@@ -553,11 +584,80 @@ const coachRole = (p: PersonRecord): boolean => p.roles.includes('coach') || p.r
 
 /** Renew deals that ran out for people still in a chair (TO-12: lengths only, no pay). */
 function renewals(c: Cycle): void {
-  for (const id of [...holderSeats(c.world).keys()]) {
+  for (const id of [...holderSeats(c).keys()]) {
     const end = c.world.staffContractEndYear.get(id);
     if (end === undefined || end >= c.season) continue;
     c.world.staffContractEndYear.set(id, c.season - 1 + stream(c.world.seed, STREAM_COACHES, ['renew', id, c.season]).int(1, genParam('contract.staffMaxYears')));
   }
+}
+
+// ---------- fit-based interviews (career/interviews; Marlon 2026-11-26 14:26, 14:27) ----------
+// Every hire runs referrals, an interview with no right answers and offers. The people hiring are the
+// seat's boss up the reporting line (the head coach sits in on senior seats only), or the appointer and
+// general manager for a head coach. They hire whoever's views fit their own. The user is never a panel
+// member or applicant here: his interviews run on his screens with his own answers.
+
+const BELIEFS = new WeakMap<Cycle, Map<number, interviews.Beliefs>>();
+/** A person's coaching views, drawn once from his trait block on a stream keyed by him alone. Null for the user. */
+function beliefsOf(c: Cycle, id: number): interviews.Beliefs | null {
+  if (id === c.world.userPersonId) return null;
+  let m = BELIEFS.get(c);
+  if (!m) { m = new Map(); BELIEFS.set(c, m); }
+  const hit = m.get(id);
+  if (hit) return hit;
+  const b = coachViews(c.world, id)!;
+  m.set(id, b);
+  return b;
+}
+
+/** A person's coaching views (truth, never shown): what he answers in an interview and wants when he hires. Null for the user. */
+export function coachViews(world: LiveWorld, id: number): interviews.Beliefs | null {
+  if (id === world.userPersonId) return null;
+  return interviews.drawBeliefs(world.people.get(id)?.traitBlock ?? null, stream(world.seed, STREAM_INTERVIEWS, ['beliefs', id]));
+}
+
+/** A person's hidden craft z (truth): how well he does the graded interview work (practical.ts). Null for the user. */
+export function coachCraft(world: LiveWorld, id: number): number | null {
+  if (id === world.userPersonId) return null;
+  return interviews.drawCraft(stream(world.seed, STREAM_INTERVIEWS, ['craft', id]));
+}
+
+const FIRED = new WeakMap<Cycle, Map<number, number>>();
+/** Head coaches fired in this cycle by team: the appointer looks for the other end of what they believed (E2.3.2). */
+function firedThisCycle(c: Cycle): Map<number, number> {
+  let m = FIRED.get(c);
+  if (!m) { m = new Map(); FIRED.set(c, m); }
+  return m;
+}
+
+function openingOf(s: positions.Staff, seat: positions.Seat): interviews.Opening {
+  const rung = seat.rung ?? 0;
+  const side = seat.side === 'offense' || seat.side === 'defense' || seat.side === 'special_teams' ? seat.side : 'any';
+  return { seatId: seat.seatId, positionId: seat.positionId, rung, group: interviews.roleGroupOf(seat.positionId, rung), side, level: s.level };
+}
+
+function panelOf(c: Cycle, s: positions.Staff, seatId: number): interviews.PanelMember[] {
+  const ids = interviews.panelFor(s.seats, seatId, appointerOf(c.world, s.teamId));
+  const fired = positions.seat(s, seatId).positionId === HEAD ? firedThisCycle(c).get(s.teamId) : undefined;
+  const firedViews = fired === undefined ? null : beliefsOf(c, fired);
+  const out: interviews.PanelMember[] = [];
+  for (const id of ids) {
+    const own = beliefsOf(c, id);
+    if (own === null) continue;
+    out.push({ personId: id, wants: firedViews === null ? own : interviews.wantsAfterFiring(own, firedViews), lead: out.length === 0 });
+  }
+  return out;
+}
+
+/** S6.2.1: coaches who worked with him vouch for him; the hirer listens by his own tie to each. A former player's coach (`via`) vouches first. */
+function referralsOf(v: Views, id: number, leadId: number, via: number | null): interviews.Referral[] {
+  const max = interviews.param('referral.maxReferees');
+  const refs: number[] = via === null ? [] : [via];
+  for (const r of v.colleagues(id)) {
+    if (refs.length >= max) break;
+    if (r !== leadId && !refs.includes(r)) refs.push(r);
+  }
+  return refs.map((r) => ({ refereeId: r, regard: r === via ? 1 : v.tie(r, id) / 100, tieToHirer: v.tie(r, leadId) }));
 }
 
 // ---------- searches ----------
@@ -574,7 +674,7 @@ function offerTo(c: Cycle, job: JobRecord, personId: number, prospects: number):
 
 function currentRung(c: Cycle, personId: number): number {
   let best = -1;
-  for (const j of c.world.jobs.values()) if (j.holderPersonId === personId && j.rung > best) best = j.rung;
+  for (const j of c.ix.heldBy(personId)) if (j.rung > best) best = j.rung;
   return best >= 0 ? best : c.st.careers.get(personId)?.lastRung ?? 0;
 }
 
@@ -591,34 +691,56 @@ function lastShare(c: Cycle, teamId: number): number {
 }
 
 /**
- * TO-15: players who left football in the last two seasons and are young enough start at rungs 0 to 2
- * (catalogue `job:outside.former_player`), beside the cohort entrants, so the bottom rungs never run dry.
+ * TO-15 and D13.3.5 rule 3a: former players who want to coach and are still waiting for a first chair
+ * (pipeline.ts), with the highest rung each can start at. Built once per cycle; hires drop out of it.
  */
-function formerPlayers(c: Cycle): number[] {
-  const out: number[] = [];
-  for (const [id, since] of c.world.outOfFootballSince) {
-    const p = c.world.people.get(id);
-    if (!p || since < c.season - 2 || c.world.status.get(id) !== 'active' || !p.roles.includes('player') || id === c.world.userPersonId) continue;
-    if (ageIn(p, c.season) > param('coach.formerPlayerMaxAge')) continue;
-    out.push(id);
+const FORMER = new WeakMap<Cycle, Map<number, number>>();
+function formerPlayers(c: Cycle): Map<number, number> {
+  let hit = FORMER.get(c);
+  if (!hit) {
+    hit = new Map(pipeline.waitingFormerPlayers(c.world, c.season).map((f) => [f.id, f.maxRung]));
+    FORMER.set(c, hit);
   }
-  return out.sort((a, b) => a - b);
+  for (const id of [...hit.keys()]) if (!c.world.outOfFootballSince.has(id)) hit.delete(id);
+  return hit;
+}
+
+/** D13.3.5 rule 4: seasons each waiting former player spent on rosters each coach worked, read once per cycle. */
+const PLAYED = new WeakMap<Cycle, Map<number, Map<number, number>>>();
+function playedUnderOf(c: Cycle): Map<number, Map<number, number>> {
+  let hit = PLAYED.get(c);
+  if (!hit) {
+    hit = pipeline.playedUnder(c.world, new Set(formerPlayers(c).keys()), c.season - 1, param('pipeline.waitSeasons') + param('coach.tieSeasons'));
+    PLAYED.set(c, hit);
+  }
+  return hit;
+}
+
+/** Tie of a hiring head coach with a former player: the stronger of seasons as colleagues and seasons coaching him (him or his current staff). */
+function formerPlayerTie(c: Cycle, headId: number, staffIds: readonly number[], playerId: number): number {
+  const m = playedUnderOf(c).get(playerId);
+  if (!m) return 0;
+  let best = pipeline.playedUnderTie(m.get(headId) ?? 0);
+  for (const s of staffIds) best = Math.max(best, pipeline.playedUnderTie(m.get(s) ?? 0) / 2);
+  return best;
 }
 
 function hire(c: Cycle, teamId: number, job: JobRecord, personId: number, years: number): void {
   const p = c.world.people.get(personId);
   if (p && !coachRole(p)) {
     c.world.people.set(personId, { ...p, roles: [...p.roles, 'coach'] });
+    reactivate(c.ctx, personId, 'hired');
     c.world.outOfFootballSince.delete(personId);
     bump(c, 'former_player_hired');
+    bump(c, `former_${pipeline.levelPlayed(p) ?? 'none'}_player_hired`);
   }
-  const fromSeats = [...c.world.jobs.values()].filter((j) => j.holderPersonId === personId && j.id !== job.id);
+  const fromSeats = c.ix.heldBy(personId).filter((j) => j.id !== job.id);
   for (const j of fromSeats) {
-    c.world.jobs.set(j.id, { ...j, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent' });
+    c.ix.set({ ...j, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent' });
     open(c, j.teamId, j.rung, j.teamId === teamId ? 'promoted' : j.positionId === HEAD ? 'left' : 'promoted');
   }
   fromPools(c, personId);
-  c.world.jobs.set(job.id, { ...c.world.jobs.get(job.id)!, holderPersonId: personId, holderSince: c.world.date, vacantSince: null, holding: 'permanent' });
+  c.ix.set({ ...c.world.jobs.get(job.id)!, holderPersonId: personId, holderSince: c.world.date, vacantSince: null, holding: 'permanent' });
   c.world.staffContractEndYear.set(personId, c.season - 1 + years);
   c.st.careers.set(personId, { lastRung: job.rung, side: sideOf(job), outSince: null });
   record(c, staffSearch.EVENT.hired, teamId, personId, { seatId: job.id, years }, { kind: 'job', id: job.id });
@@ -626,9 +748,9 @@ function hire(c: Cycle, teamId: number, job: JobRecord, personId: number, years:
 
 /** K8.4.2: the owner (or athletic director) fills an open or interim head chair. Teams whose chairs a hire empties are returned. */
 function headSearch(c: Cycle, teamId: number, v: Views): number[] {
-  const job = headJob(c.world, teamId)!;
+  const job = headJob(c, teamId)!;
   const interim = job.holding === 'interim' ? job.holderPersonId : null;
-  const held = holderSeats(c.world);
+  const held = holderSeats(c);
   const pool = new Set<number>(poolIds(c));
   for (const [id, seats] of held) {
     if (id === c.world.userPersonId) continue;
@@ -653,25 +775,44 @@ function headSearch(c: Cycle, teamId: number, v: Views): number[] {
   });
   const prospects = prospectsOf(c, teamId);
   const s = stream(c.world.seed, STREAM_COACHES, ['head_search', teamId, c.season]);
+  // K8.4.2 interview list, then the fit-based interview: the appointer (and GM) score each answer by their own views.
+  const staff = staffOf(c, teamId);
+  const panel = panelOf(c, staff, job.id);
+  const opening = openingOf(staff, positions.seat(staff, job.id));
+  const qs = interviews.slate(opening, panel);
+  const listed = new Set(stakeholders.interviewList(prefs, cands));
+  if (interim !== null) listed.add(interim);
+  const reads = new Map<number, number>();
+  const interviewed = cands.filter((x) => listed.has(x.personId)).map((x) => {
+    const b = beliefsOf(c, x.personId);
+    if (b === null) return x;
+    reads.set(x.personId, interviews.candidateRead(opening, panel, b));
+    // Graded work (board work, game management) and fit with the panel's views, blended by the hire weights.
+    const work = interviews.practicalScore(opening.group, undefined, coachCraft(c.world, x.personId), s).score;
+    const fit = interviews.fitScaled(interviews.scoreInterview(qs, interviews.answerAll(qs, b), panel).fit);
+    const wp = interviews.param('hire.practicalWeight'); const wf = interviews.param('hire.fitWeight');
+    return { ...x, interview: (wp * work + wf * fit) / (wp + wf) };
+  });
+  bump(c, 'head_interviews', interviewed.length);
   let years = 1;
-  const out = stakeholders.runSearch(prefs, cands, (id) => {
+  const out = stakeholders.runSearch(prefs, interviewed, (id) => {
     if (id === interim) { years = s.int(1, genParam('contract.staffMaxYears')); return true; }
     const o = offerTo(c, job, id, prospects);
     years = o.offer.years;
-    return staffSearch.decideOffer(o.offer, o.view, s);
+    return s.chance(possible(interviews.acceptWithFit(staffSearch.acceptChance(o.offer, o.view), reads.get(id) ?? interviews.param('accept.fitNeutral'))));
   });
   let chosen = out.hired;
   if (chosen === null) {
     // Nobody took it: keep the interim, else the senior assistant, else whoever ranks first (K7.6.1 edge case).
-    chosen = interim ?? jobsOf(c.world, teamId).filter((j) => j.positionId !== HEAD && j.holderPersonId !== null && j.holderPersonId !== c.world.userPersonId).sort((a, b) => b.rung - a.rung || a.id - b.id)[0]?.holderPersonId
+    chosen = interim ?? jobsOf(c, teamId).filter((j) => j.positionId !== HEAD && j.holderPersonId !== null && j.holderPersonId !== c.world.userPersonId).sort((a, b) => b.rung - a.rung || a.id - b.id)[0]?.holderPersonId
       ?? stakeholders.rankCandidates(prefs, cands)[0]?.personId ?? poolIds(c)[0] ?? null;
     if (chosen === null) { bump(c, 'head_unfilled'); return []; }
     years = s.int(1, genParam('contract.staffMaxYears'));
   }
-  const emptied = [...c.world.jobs.values()].filter((j) => j.holderPersonId === chosen && j.id !== job.id && j.teamId !== teamId && j.positionId === HEAD).map((j) => j.teamId);
+  const emptied = c.ix.heldBy(chosen).filter((j) => j.id !== job.id && j.teamId !== teamId && j.positionId === HEAD).map((j) => j.teamId);
   const prior = c.st.heads.get(teamId);
   if (interim !== null && chosen !== interim) {
-    c.world.jobs.set(job.id, { ...c.world.jobs.get(job.id)!, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent' });
+    c.ix.set({ ...c.world.jobs.get(job.id)!, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent' });
     toPool(c, interim);
   }
   hire(c, teamId, job, chosen, years);
@@ -685,7 +826,7 @@ function headSearch(c: Cycle, teamId: number, v: Views): number[] {
 
 /** E2.3.4 rule 2 and X8.4.1: the new head coach offers chairs to former colleagues, then reviews the staff he inherits. */
 function newStaff(c: Cycle, teamId: number, headId: number, v: Views): void {
-  const s0 = staffOf(c.world, teamId);
+  const s0 = staffOf(c, teamId);
   const used = new Set<number>([headId]);
   const bring: { seatId: number; personId: number; accepted: boolean }[] = [];
   const colleagues = v.colleagues(headId).filter((id) => c.world.status.get(id) === 'active' && id !== c.world.userPersonId && c.world.people.get(id) && coachRole(c.world.people.get(id)!));
@@ -701,13 +842,13 @@ function newStaff(c: Cycle, teamId: number, headId: number, v: Views): void {
   }
   // Followers leave their old chairs (and pools) before the review fills the new ones.
   for (const [who] of followers) {
-    for (const j of [...c.world.jobs.values()].filter((x) => x.holderPersonId === who)) {
-      c.world.jobs.set(j.id, { ...j, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent' });
+    for (const j of c.ix.heldBy(who)) {
+      c.ix.set({ ...j, holderPersonId: null, holderSince: null, vacantSince: c.world.date, holding: 'permanent' });
       open(c, j.teamId, j.rung, 'followed_boss');
     }
     fromPools(c, who);
   }
-  const s1 = staffOf(c.world, teamId);
+  const s1 = staffOf(c, teamId);
   const res = positions.firingCascade({
     staff: s1, newHeadCoachId: headId, reviewStart: c.world.date, bring,
     view: () => ({ strongPositiveEdge: false, negativeEdge: false, unitTopQuarter: false, sameSchemeFamily: false, requiredByAppointer: false }),
@@ -715,7 +856,7 @@ function newStaff(c: Cycle, teamId: number, headId: number, v: Views): void {
     addDays: (d, days) => ({ seasonYear: d.seasonYear, dayIndex: d.dayIndex + days }),
     meta: { date: c.world.date, competitionId: null, tier: c.ctx.tierOfTeam(teamId), source: c.ctx.source },
   });
-  writeStaff(c.world, res.staff);
+  writeStaff(c, res.staff);
   for (const d of res.decisions) {
     if (d.outcome === 'released' && d.incumbentId !== null && !onStaff(res.staff, d.incumbentId)) {
       c.st.careers.set(d.incumbentId, { lastRung: s1.seats.find((x) => x.seatId === d.seatId)?.rung ?? 0, side: 'offense', outSince: null });
@@ -735,46 +876,83 @@ function newStaff(c: Cycle, teamId: number, headId: number, v: Views): void {
 }
 
 const onStaff = (s: positions.Staff, id: number): boolean => s.seats.some((x) => x.holderPersonId === id);
-const isHeadAnywhere = (c: Cycle, id: number): boolean => [...c.world.jobs.values()].some((j) => j.holderPersonId === id && j.positionId === HEAD);
+const isHeadAnywhere = (c: Cycle, id: number): boolean => c.ix.heldBy(id).some((j) => j.positionId === HEAD);
 
 /** X8.4.2 and K7.6.1: fill each open chair, inside first or from the pool, by the head coach's own ranking. */
 function fillStaff(c: Cycle, teamId: number, v: Views): void {
-  const head = headJob(c.world, teamId);
+  const head = headJob(c, teamId);
   const headId = head?.holderPersonId ?? null;
   if (headId === null || headId === c.world.userPersonId) return;
   const prospects = prospectsOf(c, teamId);
-  let staff = staffOf(c.world, teamId);
+  let staff = staffOf(c, teamId);
   const openSeats = staff.seats.filter((x) => x.holderPersonId === null && x.positionId !== HEAD).sort((a, b) => (b.rung ?? 0) - (a.rung ?? 0) || a.seatId - b.seatId);
   const taken = new Set<number>();
+  const staffIdsOf = staff.seats.filter((x) => x.holderPersonId !== null && x.holderPersonId !== headId).map((x) => x.holderPersonId!);
   for (const seat0 of openSeats) {
     const external = new Map<number, number>();
+    const routes = new Map<number, pipeline.Route>();
+    const vias = new Map<number, number | null>();
     const decide = (s: positions.Staff, seatId: number): positions.VacancyDecision => {
       const seat = positions.seat(s, seatId);
       const rung = seat.rung ?? 0;
       const job = c.world.jobs.get(seatId)!;
       const inside = s.seats.filter((x) => x.holderPersonId !== null && x.holderPersonId !== headId && x.holderPersonId !== c.world.userPersonId && x.seatId !== seatId && (x.rung ?? 0) < rung && (x.rung ?? 0) >= rung - param('coach.stepsBelow')).map((x) => x.holderPersonId!);
-      const outside = [...poolIds(c), ...(rung <= 2 ? formerPlayers(c) : [])].filter((id) => !taken.has(id) && (rung <= 2 || (c.st.careers.get(id)?.lastRung ?? 0) >= rung - param('coach.stepsBelow')));
+      // D13.3.5 rule 4 and S6: a waiting former player reaches this opening only through a coach who
+      // coached him (on this staff, or tied to this head coach) or, rarely, a cold application.
+      const former = formerPlayers(c);
+      const hiringIds = new Set<number>([headId, ...staffIdsOf]);
+      const fresh: number[] = [];
+      for (const [id, max] of former) {
+        if (rung > max || taken.has(id)) continue;
+        const r = pipeline.routeTo(c.world, seatId, c.season, id, playedUnderOf(c).get(id), hiringIds, headId, v.tie);
+        if (r === null) continue;
+        routes.set(id, r.route);
+        vias.set(id, r.via);
+        fresh.push(id);
+      }
+      const outside = [...poolIds(c).filter((id) => rung <= 2 || (c.st.careers.get(id)?.lastRung ?? 0) >= rung - param('coach.stepsBelow')), ...fresh].filter((id) => !taken.has(id));
       const ids = [...new Set([...inside, ...outside])].sort((a, b) => a - b);
       if (ids.length === 0) return { kind: 'post' };
-      const ranked = staffSearch.rankCandidates(ids.map((id) => {
-        const r = v.record(id);
-        return { personId: id, input: { sameFamily: false, termOverlap: 0, viewOfQuality: r === null ? 0.5 : r, tie: Math.max(v.tie(headId, id), inside.includes(id) ? param('coach.tiePerSeason') : 0), askCents: 0, budgetLeftCents: 1 } };
+      // Referrals, shortlist, interview with the seat's own panel, offers (career/interviews).
+      const panel = panelOf(c, s, seatId);
+      const leadId = panel[0]?.personId ?? headId;
+      const pool: interviews.Applicant[] = ids.map((id) => ({
+        personId: id, beliefs: null, record: v.record(id) ?? 0.5,
+        tie: Math.max(v.tie(leadId, id), inside.includes(id) ? param('coach.tiePerSeason') : 0, routes.has(id) ? formerPlayerTie(c, headId, staffIdsOf, id) : 0),
+        referrals: referralsOf(v, id, leadId, vias.get(id) ?? null),
       }));
+      const opening = openingOf(s, seat);
+      const listed = interviews.shortlist(opening, pool).map((a) => ({ ...a, beliefs: beliefsOf(c, a.personId), craft: coachCraft(c.world, a.personId) }));
       const sr = stream(c.world.seed, STREAM_COACHES, ['staff_search', seatId, c.season]);
-      const res = staffSearch.runSearch(ranked, (id) => offerTo(c, job, id, prospects), sr);
-      const who = res.hiredPersonId ?? ranked[0] ?? null;
+      const res = interviews.runSearch({
+        opening, panel, pool: listed, stream: sr,
+        offer: (id, read) => { const o = offerTo(c, job, id, prospects); return sr.chance(possible(interviews.acceptWithFit(staffSearch.acceptChance(o.offer, o.view), read))); },
+      });
+      bump(c, 'staff_interviews', res.interviewed.length);
+      // Craft and fit of the hire against the mean of those interviewed, in thousandths (read by the turnover test).
+      const crafts = listed.map((x) => x.craft ?? 0);
+      if (res.hired !== null && crafts.length > 1) {
+        bump(c, 'interview_searches');
+        const fits = res.interviewed.map((x) => x.result.fit);
+        bump(c, 'interview_fit_edge_milli', Math.round(1000 * ((res.interviewed.find((x) => x.personId === res.hired)?.result.fit ?? 0) - fits.reduce((x, y) => x + y, 0) / fits.length)));
+        bump(c, 'interview_craft_edge_milli', Math.round(1000 * ((coachCraft(c.world, res.hired) ?? 0) - crafts.reduce((x, y) => x + y, 0) / crafts.length)));
+      }
+      const best = [...res.interviewed].sort((a, b) => b.score - a.score || a.personId - b.personId)[0]?.personId ?? null;
+      const who = res.hired ?? best;
       if (who === null) return { kind: 'post' };
-      if (res.hiredPersonId === null) bump(c, 'filled_from_who_is_left');
+      if (res.hired === null) bump(c, 'filled_from_who_is_left');
       if (inside.includes(who)) return { kind: 'promote', personId: who };
       external.set(seatId, who);
       taken.add(who);
+      const route = routes.get(who);
+      if (route) bump(c, `former_player_hired_${route}`);
       return { kind: 'post' };
     };
     if (positions.seat(staff, seat0.seatId).holderPersonId !== null) continue;
     const r = positions.fillVacancy(staff, seat0.seatId, c.world.date, decide, { date: c.world.date, competitionId: null, tier: c.ctx.tierOfTeam(teamId), source: c.ctx.source });
     staff = r.staff;
     for (const e of r.events) if (e.type === positions.EVENT.promoted) { bump(c, 'promoted_within'); const a = e.actors[0]; if (a) record(c, positions.EVENT.promoted, teamId, a.personId, e.payload as Record<string, number | null>, e.subjects[0] ? { kind: 'job', id: e.subjects[0].id } : null); }
-    writeStaff(c.world, staff);
+    writeStaff(c, staff);
     for (const seatId of r.posted) {
       const who = external.get(seatId);
       const job = c.world.jobs.get(seatId)!;
@@ -783,7 +961,7 @@ function fillStaff(c: Cycle, teamId: number, v: Views): void {
       hire(c, teamId, job, who, offerTo(c, job, who, prospects).offer.years);
       bump(c, 'staff_hired');
     }
-    staff = staffOf(c.world, teamId);
+    staff = staffOf(c, teamId);
   }
   for (const s of staff.seats) if (s.holderPersonId !== null && !c.world.staffContractEndYear.has(s.holderPersonId)) {
     c.world.staffContractEndYear.set(s.holderPersonId, c.season - 1 + stream(c.world.seed, STREAM_COACHES, ['years', s.seatId, s.holderPersonId, c.season]).int(1, genParam('contract.staffMaxYears')));
@@ -813,7 +991,7 @@ function offseason(c: Cycle, last: readonly GameResult[]): void {
     for (const t of headSearch(c, teamId, v)) queue.push(t);
   }
   for (const teamId of order) if (!c.st.heads.has(teamId)) {
-    const job = headJob(c.world, teamId);
+    const job = headJob(c, teamId);
     if (job?.holderPersonId != null) c.st.heads.set(teamId, newHead(job.holderPersonId, 'hired', 'steady', undefined));
   }
   for (const teamId of order) fillStaff(c, teamId, v);
@@ -822,7 +1000,7 @@ function offseason(c: Cycle, last: readonly GameResult[]): void {
 }
 
 function needsHead(c: Cycle, teamId: number): boolean {
-  const job = headJob(c.world, teamId);
+  const job = headJob(c, teamId);
   if (!job || !isActive(c.world, teamId)) return false;
   if (job.holderPersonId === c.world.userPersonId && job.holderPersonId !== null) return false;
   return job.holderPersonId === null || job.holding === 'interim';
@@ -831,7 +1009,7 @@ function needsHead(c: Cycle, teamId: number): boolean {
 /** The first time the step runs: every sitting head coach starts as hired (E4.2.1 rule 1). */
 function seed(c: Cycle): void {
   for (const t of [...c.world.teams].sort((a, b) => a.id - b.id)) {
-    const job = headJob(c.world, t.id);
+    const job = headJob(c, t.id);
     if (job?.holderPersonId != null && !c.st.heads.has(t.id)) c.st.heads.set(t.id, newHead(job.holderPersonId, 'hired', 'steady', undefined));
   }
 }
@@ -845,7 +1023,7 @@ export function coachMovesStep(b: TurnoverBinding): StepHandler {
   return (ctx) => {
     const { world } = ctx;
     const st = coachState(world);
-    const c: Cycle = { ctx, world, b, st, season: world.date.seasonYear, counts: {}, deciders };
+    const c: Cycle = { ix: new JobIndex(world), ctx, world, b, st, season: world.date.seasonYear, counts: {}, deciders };
     if (st.heads.size === 0) seed(c);
     let offseasonRan = false;
     if (st.results !== null && st.results !== world.results) {

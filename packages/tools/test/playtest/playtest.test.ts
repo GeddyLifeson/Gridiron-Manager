@@ -26,7 +26,7 @@ describe('headless career playtest', () => {
   it('runs a short career end to end, deterministically, and reports the missing hookups', async () => {
     const dir = mkdtempSync(join(tmpdir(), 'gm-playtest-test-'));
     try {
-      const o = { ...DEFAULT_OPTIONS, saveDir: dir, seasons: 4, gamesPerSeason: 1 };
+      const o = { ...DEFAULT_OPTIONS, saveDir: dir, seasons: 4, gamesPerSeason: 1, worldSeasons: 0 };
       const a = await runPlaytestCareer('00000000c0ffee00', o);
       const b = await runPlaytestCareer('00000000c0ffee00', o);
       expect(a.findings.filter((f) => BAD.has(f.kind))).toEqual([]);

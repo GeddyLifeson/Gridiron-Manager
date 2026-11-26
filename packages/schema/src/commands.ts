@@ -5,8 +5,10 @@ import { Calendar, Level } from './entities.ts';
 import { GameplanData } from './read-models/gameplan.ts';
 import { PlaybookData } from './read-models/playbook.ts';
 import { InstallData } from './read-models/install.ts';
+import { PracticeDeskData } from './read-models/practice.ts';
 import { DraftRoomData, FreeAgencyData } from './read-models/draft-room.ts';
 import { RecruitingBoardData } from './read-models/recruiting.ts';
+import { ScoutingTableData, ScoutingPersonnelData } from './read-models/scouting.ts';
 import { GAME_DAY_COMMAND_SPECS } from './game-day-commands.ts';
 import { GAMEPLAN_COMMAND_SPECS } from './gameplan-commands.ts';
 import { FILM_MODEL_SCHEMAS, FILM_COMMAND_SPECS } from './read-models/film.ts';
@@ -15,6 +17,7 @@ import { ANALYTICS_SCHEMAS } from './read-models/analytics.ts';
 import { RosterMovesData } from './read-models/roster-moves.ts';
 import { GameManagementData } from './read-models/game-management.ts';
 import { GAME_FRAME_SCHEMAS } from './read-models/game-frame.ts';
+import { CAREER_SCREEN_SCHEMAS } from './read-models/career.ts';
 import { PlayerCardData, RosterTableData, StaffData, CoachCardData, LockerRoomData, OwnerViewData, HomeData } from './read-models/people.ts';
 
 export const Actor = z.object({
@@ -143,9 +146,12 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   // PLAYBOOK_MODEL, INSTALL_MODEL (PR 251), DRAFT_ROOM_MODEL, FREE_AGENCY_MODEL (PR 268), RECRUITING_BOARD_MODEL (PR 257).
   playbook: readModelOf(PlaybookData),
   install: readModelOf(InstallData),
+  practiceDesk: readModelOf(PracticeDeskData),
   draftRoom: readModelOf(DraftRoomData),
   freeAgency: readModelOf(FreeAgencyData),
   recruitingBoard: readModelOf(RecruitingBoardData),
+  scoutingTable: readModelOf(ScoutingTableData),
+  scoutingPersonnel: readModelOf(ScoutingPersonnelData),
   playerCard: readModelOf(PlayerCardData),
   rosterTable: readModelOf(RosterTableData),
   staff: readModelOf(StaffData),
@@ -153,6 +159,14 @@ export const READ_MODELS: Record<string, z.ZodType> = {
   lockerRoom: readModelOf(LockerRoomData),
   ownerView: readModelOf(OwnerViewData),
   home: readModelOf(HomeData),
+  // The coach's own screens and the assignment list (app-services CAREER_MODELS).
+  coachCareer: readModelOf(CAREER_SCREEN_SCHEMAS.career),
+  coachJobMarket: readModelOf(CAREER_SCREEN_SCHEMAS.jobMarket),
+  coachContract: readModelOf(CAREER_SCREEN_SCHEMAS.contract),
+  coachRecord: readModelOf(CAREER_SCREEN_SCHEMAS.record),
+  coachFinance: readModelOf(CAREER_SCREEN_SCHEMAS.finance),
+  coachLife: readModelOf(CAREER_SCREEN_SCHEMAS.life),
+  coachAssignments: readModelOf(CAREER_SCREEN_SCHEMAS.assignments),
   // Model names as the app-services specs name them (LEGENDS_MODELS, ANALYTICS_MODELS, ROSTER_MOVES_MODEL,
   // GAME_MANAGEMENT_MODEL, GAME_FRAME_SCHEMAS keys).
   legendsPage: readModelOf(LEGENDS_SCHEMAS.page),
