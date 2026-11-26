@@ -1,8 +1,8 @@
 // The zod schema of the playbook library read model, with a visibility class on every field. It belongs in
-// @gm/schema (READ_MODELS) because app-services may not import zod: CR-G67-S1 asks the integrator to move
-// this file there unchanged. The book is the club's own (own_team); readiness is the staff's estimate.
+// @gm/schema (READ_MODELS) because app-services may not import zod. Moved here from app-services/test/read-models/playbook/data-schema.ts unchanged but for the field import.
+// The book is the club's own (own_team); readiness is the staff's estimate.
 import { z } from 'zod';
-import { own, est } from '@gm/schema';
+import { own, est } from '../field.ts';
 
 const text = () => own(z.string());
 const count = () => own(z.number().int().min(0), 'count');

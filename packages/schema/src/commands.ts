@@ -3,6 +3,10 @@ import { z } from 'zod';
 import { pub, own } from './field.ts';
 import { Calendar, Level } from './entities.ts';
 import { GameplanData } from './read-models/gameplan.ts';
+import { PlaybookData } from './read-models/playbook.ts';
+import { InstallData } from './read-models/install.ts';
+import { DraftRoomData, FreeAgencyData } from './read-models/draft-room.ts';
+import { RecruitingBoardData } from './read-models/recruiting.ts';
 import { GAME_DAY_COMMAND_SPECS } from './game-day-commands.ts';
 import { GAMEPLAN_COMMAND_SPECS } from './gameplan-commands.ts';
 import { FILM_MODEL_SCHEMAS, FILM_COMMAND_SPECS } from './read-models/film.ts';
@@ -136,6 +140,12 @@ export type WorldSummaryModel = z.infer<typeof WorldSummaryModel>;
 export const READ_MODELS: Record<string, z.ZodType> = {
   worldSummary: WorldSummaryModel,
   gameplan: readModelOf(GameplanData),
+  // PLAYBOOK_MODEL, INSTALL_MODEL (PR 251), DRAFT_ROOM_MODEL, FREE_AGENCY_MODEL (PR 268), RECRUITING_BOARD_MODEL (PR 257).
+  playbook: readModelOf(PlaybookData),
+  install: readModelOf(InstallData),
+  draftRoom: readModelOf(DraftRoomData),
+  freeAgency: readModelOf(FreeAgencyData),
+  recruitingBoard: readModelOf(RecruitingBoardData),
   playerCard: readModelOf(PlayerCardData),
   rosterTable: readModelOf(RosterTableData),
   staff: readModelOf(StaffData),
