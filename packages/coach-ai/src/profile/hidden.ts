@@ -3,7 +3,7 @@
 // person (E9.5.2). Strings (families, playbook, side, role, league), memory and lineage do not fit a
 // number map: they travel in `CoachProfileRest` until the integrator gives them a home (contract
 // request CR-G26-1 in DECISIONS.md).
-import { BEHAVIOR_KEYS, DEFENSE_RATE_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, TENDENCY_KEYS } from './keys.ts';
+import { BEHAVIOR_KEYS, DEFENSE_RATE_KEYS, EMPHASIS_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, TENDENCY_KEYS } from './keys.ts';
 import type { BehaviorBlock, CoachProfile, DefenseRates, OffenseRates, PersonnelKey, TendencyBlock } from './types.ts';
 
 export type CoachProfileRest = Omit<CoachProfile, 'tendencies' | 'behavior' | 'system'> & {
@@ -21,6 +21,7 @@ export function toHiddenMap(p: CoachProfile): Record<string, number> {
   out['system.sheetSize.offenseCalls'] = p.system.sheetSize.offenseCalls;
   out['system.sheetSize.defenseCalls'] = p.system.sheetSize.defenseCalls;
   for (const k of TENDENCY_KEYS) out[`tendencies.${k}`] = p.tendencies[k];
+  for (const k of EMPHASIS_KEYS) out[`tendencies.emphasis.${k}`] = p.tendencies.emphasis[k];
   for (const k of BEHAVIOR_KEYS) out[`behavior.${k}`] = p.behavior[k];
   return out;
 }
@@ -46,6 +47,8 @@ export function fromHiddenMap(m: Readonly<Record<string, number>>, rest: CoachPr
   for (const k of PERSONNEL_KEYS) personnelWeights[k] = need(m, `system.personnelWeights.${k}`);
   const tendencies = {} as TendencyBlock;
   for (const k of TENDENCY_KEYS) tendencies[k] = need(m, `tendencies.${k}`);
+  tendencies.emphasis = { takeaway: 0, tackleAttack: 0, rushLanes: 0, cornerJump: 0 };
+  for (const k of EMPHASIS_KEYS) tendencies.emphasis[k] = need(m, `tendencies.emphasis.${k}`);
   const behavior = {} as BehaviorBlock;
   for (const k of BEHAVIOR_KEYS) behavior[k] = need(m, `behavior.${k}`);
   const noHuddle = need(m, 'system.tempoBase.noHuddleShare');
