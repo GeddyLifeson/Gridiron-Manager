@@ -23,6 +23,8 @@ export interface CompileOptions {
 export interface Compiled extends CompiledAssignment {
   /** Forgets everything about the last play. `decide` also does this itself when the snap clock goes back. */
   reset(): void;
+  /** Binds (or with null clears) the protection's block target for this play; see `Ctx.blockTarget`. It stays until set again: the host sets it for every play. */
+  setBlockTarget(target: (() => number) | null): void;
   /** `firedRule` values at and above this number are universal events: this number plus the index in `UNIVERSAL_EVENTS`. */
   readonly eventBase: number;
   /** This tick's value of each rule's trigger, by rule index: 0 false, 1 true, 2 unknown (J4.6.2 "condition values"). */
@@ -150,7 +152,7 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
     mem: new Float64Array(cells), side: 1,
     self: { slot: 0, px: 0, py: 0, velPx: 0, velPy: 0, staleTicks: 0 },
     intent, tp: { px: 0, py: 0 }, fp: { px: 0, py: 0 },
-    path: assignedPath, pathIndex: 0, stemDone: false, atTarget: false, man: startMan,
+    path: assignedPath, pathIndex: 0, stemDone: false, atTarget: false, man: startMan, blockTarget: null,
     behavior: startBehavior, stateIndex: 0, technique: { ...a.technique }, calls: [], ticks: 0, startPx: 0, startPy: 0,
   };
   const out = { intent, behavior: c.behavior, behaviorState: 0, firedRule: -1, calls: c.calls as readonly string[], technique: c.technique as Readonly<Record<string, string>> };
@@ -289,5 +291,5 @@ export function compileAssignment(a: Assignment, opts: CompileOptions): Compiled
     return out;
   };
 
-  return { role: a.role, attention: attentionOf(a), decide, reset, eventBase, whenValues, probeValues };
+  return { role: a.role, attention: attentionOf(a), decide, reset, setBlockTarget: (target) => { c.blockTarget = target; }, eventBase, whenValues, probeValues };
 }

@@ -20,6 +20,11 @@ export const RUSHING = behaviorMask(['passRush', 'blitz', 'rushKick']);
 /** The men in coverage this tick. */
 export const COVERING = behaviorMask(['zoneDrop', 'manCover', 'deepZone', 'spy']);
 
+/** A man's coverage technique (D3.6.1): the grades that keep him on a receiver through a break. */
+export const COVER_GRADES = ['man_coverage_off', 'man_coverage_trail', 'zone_coverage', 'pattern_matching', 'backpedal_and_transition', 'break_on_the_ball'] as const;
+/** A receiver's route technique (D3.4.1): the grades that make a break hard to read and react to. */
+export const ROUTE_GRADES = ['route_running_short', 'route_running_intermediate', 'route_running_deep', 'route_pace_and_stems', 'release_against_press'] as const;
+
 /** The men running routes this tick. */
 export const RECEIVING = behaviorMask(['route']);
 

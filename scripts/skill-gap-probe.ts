@@ -67,6 +67,7 @@ for (let i = i0; i < i1; i++) {
     else if (e.type === 'contest' && String(e.contest).startsWith('move.')) add(teamOf(e.winnerId), 'ev:move:' + (teamOf(e.winnerId) === teamOf(e.loserId) ? 'x' : 'w'));
     else if (e.type === 'contest') add(teamOf(e.winnerId), 'ev:' + e.contest + ':won');
     else if (e.type === 'detail' && String(e.code).startsWith('presnap.') && /check|disguise|misread/.test(String(e.code))) add(0, 'ev:' + e.code);
+    else if (e.type === 'detail' && (String(e.code).startsWith('protection.') || String(e.code).startsWith('presnap.protection_'))) add(0, 'ev:' + e.code);
     else if (e.type === 'fumble') add(teamOf(e.playerId ?? e.carrierId), 'ev:fumble');
   }
   res.records.forEach((rec: any, k: number) => {
