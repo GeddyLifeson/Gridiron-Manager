@@ -1,0 +1,1 @@
+{ "$comment": "Reviewed scan hits that may stay in the release, one per file and term or name, each with the reason and who reviewed it (G-100). An entry hides nothing: allowed hits are still listed in the report. Empty until someone reviews a hit.", "marks": [], "names": [] }

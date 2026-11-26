@@ -4,6 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import * as pb from '../../src/playbook/index.ts';
 import { book500, lcg, part, play, CONCEPT_WORDS } from './fixtures.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 describe('G4.1.1 call parts and order', () => {
   it('for a 500-play book every play renders to a unique string and parsing each returns the original play', () => {
@@ -299,8 +300,8 @@ describe('G4.4.2 code words', () => {
 });
 
 describe('G4.4.3 signals', () => {
-  it('decode chance is zero for a signal set never used in a game', () => {
-    expect(pb.decodeChance({ n: 0, effort: 2, signs: 1, dummies: 0 })).toBe(0);
+  it('decode chance is only the floor for a signal set never used in a game', () => {
+    expect(pb.decodeChance({ n: 0, effort: 2, signs: 1, dummies: 0 })).toBe(PROB_FLOOR);
   });
   // Holds for per-game exposure of one call up to about 20 showings; above that 1 - (1 - q)^n saturates for the
   // single-sign case and the ratio rises past a quarter (noted to the bible fixes thread).

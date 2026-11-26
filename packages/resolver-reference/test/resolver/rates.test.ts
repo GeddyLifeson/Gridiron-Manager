@@ -232,13 +232,18 @@ describe('reference resolver: kicks land on the rows in the parameter file', () 
   it('kickoffs: touchback share and returns; onside kicks: recovery share', () => {
     const free = { ballX: 45, playKind: 'kickoff', down: null, distanceYd: null, lineToGainX: null } as const;
     const rs = runMany({ snapping: kickCall(0, 'kickoff'), opposing: returnCall(1) }, N, free);
-    let touchbacks = 0, returns = 0, start = 0;
+    let touchbacks = 0, returns = 0, start = 0, lostFumbles = 0;
     for (const r of rs) {
       const d = deadBallOf(r.truth);
       expect(eventsOf(r.truth, 'snap')).toEqual([]);
       if (d.reason === 'ball_dead_in_end_zone') touchbacks++;
-      else if (d.reason !== 'ball_out_of_bounds') { returns++; start += 110 - d.spot.x; expect(d.side).toBe(1); }
+      else if (d.reason !== 'ball_out_of_bounds') {
+        // A3.1 ruling 22: a return can end in a fumble the kickers recover (floor chance only).
+        if (d.side !== 1) { lostFumbles++; expect(eventsOf(r.truth, 'fumble')).toHaveLength(1); continue; }
+        returns++; start += 110 - d.spot.x;
+      }
     }
+    expect(lostFumbles / N).toBeLessThan(0.002);
     expect(Math.abs(touchbacks / N - P('kickoff.touchbackShare'))).toBeLessThan(tol(P('kickoff.touchbackShare')));
     // Mean catch depth plus mean return, less the few returns that reach the far goal line.
     const expected = P('kickoff.catchMaxYd') / 2 + P('kickoff.returnMinYd') + P('kickoff.returnTailMeanYd');

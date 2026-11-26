@@ -126,8 +126,8 @@ export function simulate(o: SimOptions): SimResult {
         }));
         t.conf = u.state;
         recent.push(result);
-        if (!firedThis.has(t.coachId) && g < o.games - 1 && needsEmergencyReview(t.conf.value, kept)) {
-          const out = review(t.dm, model, { ...reviewInputs(t, o, 'emergency'), inSeason: { gamesPlayed: g + 1, gamesInSeason: o.games, gamesOnJob: t.conf.gamesOnJob, interimWithHeadCoachExperience: false, aliveForPostseason: wins + (o.games - g - 1) >= Math.ceil(o.games * o.postseasonWinShare) } }, draws);
+        if (!firedThis.has(t.coachId) && g < o.games - 1 && needsEmergencyReview(t.conf.value)) {
+          const out = review(t.dm, model, { ...reviewInputs(t, o, 'emergency'), inSeason: { gamesPlayed: g + 1, gamesInSeason: o.games, gamesOnJob: t.conf.gamesOnJob, interimWithHeadCoachExperience: false, aliveForPostseason: wins + (o.games - g - 1) >= Math.ceil(o.games * o.postseasonWinShare), keptAtEmergencyThisSeason: kept } }, draws);
           if (out.outcome !== 'fire') kept = true;
           if (out.outcome === 'fire') { fired++; inSeasonFired++; firedThis.add(t.coachId); rows.push({ team: teams.indexOf(t), season, winShare: wins / (g + 1), fired: true, yearOnJob: t.year, coachId: t.coachId, publicEstimate: t.est }); fire(t, season); }
         }

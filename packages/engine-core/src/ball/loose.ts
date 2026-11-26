@@ -1,7 +1,7 @@
 // J9.2.1 deflections and J9.3.1 bounces and rolls. Pure functions over a mutable `AirState` and a
 // caller-supplied `ball` stream (J13.2.1, scope [game, play, flightIndex]). Each function documents a
 // fixed number of raw draws, so a bounce never shifts a later draw by taking a different path.
-import type { Environment, RandomStream } from '@gm/schema';
+import { possible, type Environment, type RandomStream } from '@gm/schema';
 import { dAtan2, dCos, dSin, dSqrt, logistic } from '../dmath.ts';
 import type { AirState } from './flight.ts';
 import { DEG, GRAVITY_YPS2, type BallParams } from './params.ts';
@@ -18,9 +18,9 @@ export function handsUpChance(zBatting: number, p: BallParams): number {
  * passes above his reach. `handsUp` is 0 or 1 (the hands-up draw already made); `laneOverlap` is 0 to 1.
  */
 export function batChance(handsUp: number, laneOverlap: number, ballHeightYd: number, reachYd: number, p: BallParams): number {
-  if (ballHeightYd > reachYd) return 0;
+  if (ballHeightYd > reachYd) return 0; // out of reach: physically impossible, so no floor (A3.1 ruling 22)
   const o = laneOverlap < 0 ? 0 : laneOverlap > 1 ? 1 : laneOverlap;
-  return p['bat.b0']! * handsUp * o;
+  return possible(p['bat.b0']! * handsUp * o);
 }
 
 /**

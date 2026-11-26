@@ -1,5 +1,6 @@
 // G4.3 spoken length and its cost, and the huddle procedure (G4.1.2). Length in seconds is what I2 charges
 // against the play clock. Both models are placeholders until a timing study exists (G4.3.1).
+import { possible } from '@gm/schema';
 import { param } from './params.ts';
 import type { Rendered } from './grammar.ts';
 import { wordCount } from './grammar.ts';
@@ -55,7 +56,7 @@ export function mishearChance(lengthS: number, noise: number, labelKnowledge: nu
   const k = Math.min(1, Math.max(0, labelKnowledge));
   const p = (param('huddle.mishearBase') + param('huddle.mishearPerNoise') * n + param('huddle.mishearPerSecond') * lengthS) * (1 + param('huddle.mishearLowKnowledge') * (1 - k)) * interference;
   const r = repeats === 2 ? p * param('huddle.twiceMishearFactor') : p;
-  return Math.min(1, r);
+  return possible(Math.min(1, r));
 }
 
 /** With the line breaking early, linemen do not hear parts after their own: only parts that change their job matter. */

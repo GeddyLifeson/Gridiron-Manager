@@ -12,6 +12,7 @@ import {
   PARAMS, lp, type CaseRecord, type CaptainCandidate, type RoomLostState,
 } from '../../src/locker-room/index.ts';
 import { COLLEGE_2026, PRO_2026, ruleSet, seeded, ties } from './fixtures.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 const PRO = disciplineRules(ruleSet(PRO_2026));
 const COL = disciplineRules(ruleSet(COLLEGE_2026));
@@ -161,7 +162,7 @@ describe('leadership council (L2.2.2)', () => {
     expect(Math.abs(hits / 10000 - p)).toBeLessThan(0.01);
   });
   it('a council with no tie into the room is blind to it', () => {
-    expect(surfacingProbability(members, issue, ties())).toBe(0);
+    expect(surfacingProbability(members, issue, ties())).toBe(PROB_FLOOR);
   });
   it('act, explain and an item deferred twice is closed', () => {
     const item = { issueId: 1, deferrals: 0, closed: false };

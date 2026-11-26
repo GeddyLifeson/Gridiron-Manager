@@ -3,6 +3,7 @@ import {
   ageClockStart, ageClockYear, collegeRules, eligibilityStatus, modelsFor, redshirtWatch, satOutChance, seasonUsed, withSeason,
 } from '../../src/college/index.ts';
 import { RULES, SEASONS_RULES, day, rec, ruleSet, season } from './helpers.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 describe('the redshirt line (T5.2.1 acceptance, seasons model)', () => {
   it('a 2026 enrollee who plays 4 regular-season games and 2 playoff games keeps the season', () => {
@@ -110,9 +111,9 @@ describe('the player\'s say at the line (T5.2.2)', () => {
     expect(satOutChance({ ...base, brokenPromises: 2 }, SEASONS_RULES)).toBeGreaterThan(satOutChance(base, SEASONS_RULES));
     expect(satOutChance({ ...base, loyalty: 1, positionCoachTie: 1 }, SEASONS_RULES)).toBeLessThan(satOutChance(base, SEASONS_RULES));
   });
-  it('nothing under the age model, for a content player, or for an imported person', () => {
+  it('nothing under the age model or for an imported person; only the floor for a content player', () => {
     expect(satOutChance({ ...base, governing: 'age' }, RULES)).toBe(0);
-    expect(satOutChance({ ...base, satisfaction: 0.9 }, SEASONS_RULES)).toBe(0);
+    expect(satOutChance({ ...base, satisfaction: 0.9 }, SEASONS_RULES)).toBe(PROB_FLOOR);
     expect(satOutChance({ ...base, origin: 'imported' }, SEASONS_RULES)).toBe(0);
   });
 });

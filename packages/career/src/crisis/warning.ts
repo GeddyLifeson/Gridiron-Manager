@@ -1,7 +1,7 @@
 // L9.1.3 early warning. Most trouble is visible to someone first; whether it reaches the coach depends
 // on who trusts him. No awareness value is stored on the coach: every chance is read from other
 // people's records toward him at the moment of the draw.
-import type { WorldDate } from '@gm/schema';
+import { possible, type WorldDate } from '@gm/schema';
 import { compliance } from '@gm/league';
 import type { CrisisCatalogue } from './catalogue.ts';
 import { param } from './params.ts';
@@ -39,6 +39,11 @@ export interface Warning {
 
 /** The chance one channel passes a pending trigger on this week (L9.1.3 rules, starting values). */
 export function passOnChance(ch: Channel, pending: Pick<PendingTrigger, 'health'>, date: WorldDate): number {
+  // A3.1 ruling 22: a channel that is closed this week is unlikely to pass word on, never unable to.
+  return possible(rawPassOnChance(ch, pending, date));
+}
+
+function rawPassOnChance(ch: Channel, pending: Pick<PendingTrigger, 'health'>, date: WorldDate): number {
   switch (ch.kind) {
     case 'council': {
       if (ch.councilMetOn === null) return 0;

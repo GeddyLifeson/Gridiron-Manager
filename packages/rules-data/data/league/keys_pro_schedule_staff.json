@@ -1,0 +1,133 @@
+{
+ "keys": [
+  {
+   "key": "schedule.regular_season_games",
+   "type": "number",
+   "meaning": "Regular-season games per club.",
+   "ownerLeaf": "C2.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.weeks",
+   "type": "number",
+   "meaning": "Regular-season weeks.",
+   "ownerLeaf": "C2.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.bye_window_first_week",
+   "type": "number",
+   "meaning": "First week a bye may fall.",
+   "ownerLeaf": "C2.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "week"
+  },
+  {
+   "key": "schedule.bye_window_last_week",
+   "type": "number",
+   "meaning": "Last week a bye may fall.",
+   "ownerLeaf": "C2.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "week"
+  },
+  {
+   "key": "schedule.no_bye_week",
+   "type": "number",
+   "meaning": "Week with no byes (Thanksgiving week).",
+   "ownerLeaf": "C2.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "week"
+  },
+  {
+   "key": "schedule.final_week_division_only",
+   "type": "boolean",
+   "meaning": "The final week holds only division games.",
+   "ownerLeaf": "C2.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "schedule.max_short_week_thursdays",
+   "type": "number",
+   "meaning": "Short-week Thursday games per club per season.",
+   "ownerLeaf": "C2.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.flex_sunday_night_limited_max",
+   "type": "number",
+   "meaning": "Sunday night flexes allowed in the early window (Weeks 5-10).",
+   "ownerLeaf": "C2.3.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.flex_thursday_max",
+   "type": "number",
+   "meaning": "Thursday night flexes per season.",
+   "ownerLeaf": "C2.3.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.flex_thursday_notice_days",
+   "type": "number",
+   "meaning": "Notice for a Thursday flex.",
+   "ownerLeaf": "C2.3.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "day"
+  },
+  {
+   "key": "schedule.week18_saturday_games",
+   "type": "number",
+   "meaning": "Saturday games in the final week.",
+   "ownerLeaf": "C2.3.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.international_games",
+   "type": "number",
+   "meaning": "Games at international sites per season.",
+   "ownerLeaf": "C2.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "schedule.preseason_games",
+   "type": "number",
+   "meaning": "Preseason games per club.",
+   "ownerLeaf": "C2.5.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  }
+ ]
+}
