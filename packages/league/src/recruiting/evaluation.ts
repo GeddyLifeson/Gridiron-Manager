@@ -7,7 +7,7 @@ import type { RecruitingContext } from './context.ts';
 import { clamp, powInt } from './context.ts';
 import { P } from './params.ts';
 import { boardOf } from './interest.ts';
-import type { BandFamily, BoardGrade, LookKind, RecruitingState } from './types.ts';
+import type { BandFamily, Board, BoardGrade, LookKind, PositionGroup, RecruitingState } from './types.ts';
 
 const FAMILIES: readonly BandFamily[] = ['production', 'athletic', 'measurables', 'character'];
 
@@ -34,9 +34,44 @@ export function priorGrade(state: RecruitingState, prospectId: number): BoardGra
 export function gradeOf(state: RecruitingState, teamId: number, prospectId: number): BoardGrade {
   const b = boardOf(state, teamId);
   let g = b.grades[prospectId];
-  if (!g) { g = priorGrade(state, prospectId); b.grades[prospectId] = g; }
+  if (!g) { g = priorGrade(state, prospectId); b.grades[prospectId] = g; boardChanged(b); }
   return g;
 }
+
+const BOARD_VERSION = new WeakMap<Board, number>();
+function boardChanged(b: Board): void { BOARD_VERSION.set(b, (BOARD_VERSION.get(b) ?? 0) + 1); }
+
+interface Rooms { readonly version: number; readonly grades: Board['grades']; readonly byClass: Map<number, Map<PositionGroup, number[]>> }
+const ROOMS = new WeakMap<Board, Rooms>();
+
+/**
+ * A staff's board for one class and position, best grade first (ties to the lower id): `boardOrder` kept
+ * between weeks. `gradeOf` and `takeLook` are the only writers of a grade, and each marks the board changed,
+ * so the same list comes back, as the same array, until a grade on the board moves. Signed prospects stay
+ * on it; the caller skips them. Do not change the list.
+ */
+export function boardRoom(state: RecruitingState, teamId: number, classYear: number, position: PositionGroup): readonly number[] {
+  const b = boardOf(state, teamId);
+  const version = BOARD_VERSION.get(b) ?? 0;
+  let rooms = ROOMS.get(b);
+  if (!rooms || rooms.version !== version || rooms.grades !== b.grades) { rooms = { version, grades: b.grades, byClass: new Map() }; ROOMS.set(b, rooms); }
+  let byPosition = rooms.byClass.get(classYear);
+  if (!byPosition) {
+    byPosition = new Map();
+    for (const key in b.grades) {
+      const id = Number(key);
+      const p = state.prospects[id];
+      if (!p || p.classYear !== classYear) continue;
+      let room = byPosition.get(p.position);
+      if (!room) { room = []; byPosition.set(p.position, room); }
+      room.push(id);
+    }
+    for (const room of byPosition.values()) room.sort((x, y) => b.grades[y]!.mean - b.grades[x]!.mean || x - y);
+    rooms.byClass.set(classYear, byPosition);
+  }
+  return byPosition.get(position) ?? NO_IDS;
+}
+const NO_IDS: readonly number[] = [];
 
 /** Optional port to the scouting package (G-19): the world loop updates the person view with the same look. */
 export type GradeSink = (teamId: number, prospectId: number, look: LookKind, day: number) => void;
@@ -72,6 +107,7 @@ export function takeLook(
   const observed = p.trueQuality + sd * r.normal();
   const weight = P('look.meanWeight') * factor * (kind === 'full_film' || kind === 'first_pass_film' ? clamp(opts.competition, P('look.minCompetition'), 1) : 1);
   g.mean = clamp(g.mean + weight * (observed - g.mean), 0, P('grade.max'));
+  boardChanged(boardOf(state, teamId));
   if (opts.byPositionCoach) g.setBy = 'position_coach';
   else if (g.setBy === 'public') g.setBy = 'first_pass';
   opts.sink?.(teamId, prospectId, kind, day);

@@ -17,6 +17,11 @@ NF = 'National Football Foundation, College Football Hall of Fame criteria and v
 NA = 'National Football Foundation, College Football Hall of Fame about page (https://footballfoundation.org/sports/2018/7/31/college-football-hall-of-fame.aspx; no page date, (c) 2026)'
 WC = 'Wikipedia, College Football Hall of Fame (https://en.wikipedia.org/wiki/College_Football_Hall_of_Fame)'
 WD = 'Wikipedia, List of defunct NFL franchises (https://en.wikipedia.org/wiki/List_of_defunct_NFL_franchises)'
+IDMAP = []
+def next_id(existing, wanted):
+    prefix = wanted.rsplit('-', 1)[0]
+    n = max(int(r['id'].rsplit('-', 1)[1]) for r in existing if r['id'].startswith(prefix + '-'))
+    return f'{prefix}-{n + 1:04d}'
 rows = {'league.json': [], 'college.json': []}
 def add(f, i, level, st, v, u, valid, srcs, notes):
     r = dict(id=i, level=level, domain='league-rule', statement=st)
@@ -56,6 +61,6 @@ for f, rs in rows.items():
     p = os.path.join(ROOT, f); d = json.load(open(p)); have = {r['statement'] for r in d['rows']}; ids = {r['id'] for r in d['rows']}
     for r in rs:
         if r['statement'] in have: continue
-        assert r['id'] not in ids, r['id']
+        r['id'] = next_id(d['rows'], r['id']); IDMAP.append((r['id']))
         d['rows'].append(r); print(f, r['id'], r['status'])
     json.dump(d, open(p, 'w'), indent=1, ensure_ascii=False); open(p, 'a').write('\n')

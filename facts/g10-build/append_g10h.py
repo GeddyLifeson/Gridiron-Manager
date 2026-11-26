@@ -19,6 +19,11 @@ GUIDE = 'NCAA, 2019-20 Two-Year Transfer Guide, Division I charts pp. 11-13 ("Up
 NFCA = 'NFCA and other coaches associations, letter to the NCAA Division I Board and Council (2025-03-11, https://nfca.org/web_docs/Coaches-Association-Letter-NCAA-Two-Year-Transfers.pdf)'
 JUCO_NOTE = ('This is the Division I two-year-transfer rule as it stood BEFORE the May 2026 change. F-recruiting-0037 (NCAA AEC report, 2026-05-08) says the May 2026 change eliminates the 12-hour average and the 48/72-hour requirement for nonqualifiers, effective 2026-27, so this value is NOT the 2026-27 rule; the 2026 rule set should not take it unless the key is dated to 2025-26 and earlier. The replacement test ("based on enrollment history", NJCAA) is still unread. The sources are one NCAA rule restated by a school handout (2012), the NCAA guide (2018) and a coaches letter (2025); each is its own group. The letter quotes a marked-up bylaw whose strikethroughs did not survive extraction, so it was used only for the sentence naming the current rule. ' + FETCH)
 
+IDMAP = []
+def next_id(existing, wanted):
+    prefix = wanted.rsplit('-', 1)[0]
+    n = max(int(r['id'].rsplit('-', 1)[1]) for r in existing if r['id'].startswith(prefix + '-'))
+    return f'{prefix}-{n + 1:04d}'
 rows = {'league.json': [], 'college-recruiting.json': [], 'college-keys.json': []}
 def add(file, id_, level, statement, value, unit, valid, sources, notes):
     r = dict(id=id_, level=level, domain='league-rule', statement=statement)
@@ -75,20 +80,11 @@ juco(41, 'juco.qualifier_full_time_terms', 'Before May 2026, a Division I two-ye
 juco(42, 'juco.qualifier_hours_per_term', 'Before May 2026, a Division I two-year-college qualifier had to average 12 transferable hours for each full-time term attended.', 12, 'hours per term',
      ['Must satisfactorily complete an average of 12 semester hours of transferable credit for each full-time semester at the two-year college.', 'Complete an average of 12 transferable credit hours in each term you attended full time?', 'average of at least 12-semester or quarter hours of transferable-degree credit'])
 
-# ---- college keys: scholarship credit
-add('college-keys.json', 'F-college-keys-0040', 'college',
- '2026-27: up to $2.5 million of added scholarship cost (athletics aid above the 2024-25 team limit) counts toward the revenue-sharing cap; overage above the cap is fined $0.20 per $1.', 2500000, 'USD', '2026-27',
- [src('College Sports Commission, Revenue Sharing (https://www.collegesportscommission.org/focus-areas/revenue-sharing/; undated)', 'Cap table row "Athletically related financial aid in excess of the 2024-25 AY team limit" marked as counting against the cap; footnote', 'primary text', 'csc-official', True,
-   '*In 2026-27, a fine of $0.20 for every $1 by which an institution exceeds the cap due to spending on new scholarships', 2500000),
-  src('JD Supra / Eversheds Sutherland, Film Room: CSC announcements and NIL deal flow report (2026-01-14, https://www.jdsupra.com/legalnews/film-room-csc-announcements-and-nil-9990032/)', 'Article text', 'secondary summary', 'eversheds', False,
-   'requires that increased athletic scholarship amounts up to $2.5 million be counted against the institutional cap.', 2500000)],
- FETCH + 'Replaces the reading in F-college-keys-0030 (value 0, Conflict), which rests on a Columbus Dispatch line and reads the CSC footnote as "not counted in 2026-27". The CSC page itself places the added aid in its "counts against cap" column for 2026-27, and says the overage stops counting only "during the 2027-28 school year and beyond" (subject to NCAA approval). Caveats: the JD Supra article describes the January 2026 policy ($1 fine per $1 in 2025-26), which the CSC page later softened to $0.20; the CSC page does not say outright whether the first $2.5M below the cap still counts in 2027-28 (open); the CSC "Rules & Policies" page and the Eversheds-hosted incremental scholarship policy were not read; the NCAA Q&A (Feb and May 2026) was read only as far as page 16, so its Section D is unread. The key pay.scholarship_credit_2026_27 should cite this row (2,500,000) and not 0030.')
-
 for f, rs in rows.items():
     p = os.path.join(ROOT, f); d = json.load(open(p))
     have = {r['statement'] for r in d['rows']}; ids = {r['id'] for r in d['rows']}
     for r in rs:
         if r['statement'] in have: continue
-        assert r['id'] not in ids, r['id']
+        r['id'] = next_id(d['rows'], r['id']); IDMAP.append((r['id']))
         d['rows'].append(r); print(f, r['id'], r['status'])
     json.dump(d, open(p, 'w'), indent=1, ensure_ascii=False); open(p, 'a').write('\n')

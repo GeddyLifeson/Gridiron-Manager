@@ -52,6 +52,7 @@
     "league.transactions": { "kind": "public" },
     "league.news": { "kind": "public" },
     "league.records": { "kind": "public" },
+    "league.legends": { "kind": "public" },
     "league.recruiting": { "kind": "staff", "levels": ["college"] },
     "coach.career": { "kind": "self" },
     "coach.contract": { "kind": "self" },

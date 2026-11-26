@@ -17,7 +17,8 @@ import { chainAppend, type ChainKind, type ChainRow } from '../snapshot/chain.ts
 import { defaultCodec, type BlobCodec } from '../snapshot/codec.ts';
 import { retentionFor, type SnapshotRetention } from '../snapshot/params.ts';
 import { SnapshotError, listSnapshots, pruneStatements, readSnapshot, snapshotInsert, type SnapshotKind, type SnapshotMeta } from '../snapshot/snapshots.ts';
-import { STATE_TABLES_DDL, StateTracker, readStateRows, replaceStateStatements, stateStatements } from '../snapshot/state-tables.ts';
+import { STATE_TABLES_DDL, StateTracker, encodeStateWrites, readStateRows, replaceStateStatements, type PackSpec } from '../snapshot/state-tables.ts';
+import { packedTablesFor } from '../snapshot/packed-rows.ts';
 import { CHAIN_DDL } from '../snapshot/chain.ts';
 import { SNAPSHOT_DDL } from '../snapshot/snapshots.ts';
 import { LOG_DDL } from '../log/rows.ts';
@@ -58,6 +59,9 @@ const headerUpdate = (h: SaveHeader): SqlStatement => ({ sql: 'UPDATE header SET
 
 interface PendingSnapshot<S> { kind: 'week' | 'season'; logSeq: number; seasonYear: number; stateHash: string; digest: string; state: S; headerJson: string }
 
+/** The tables a save stores packed: the option, or the default for the save's retention profile. */
+export const packingOf = (options: SaveOptions, profile = 'standard'): readonly PackSpec[] => options.packedTables ?? packedTablesFor(profile);
+
 interface Link { undoes?: number; redoes?: number; expectDigest?: string }
 
 export class SaveFile<S> {
@@ -88,13 +92,13 @@ export class SaveFile<S> {
   static async create<S>(driver: SqlDriver, deps: SaveCoreDeps<S>, init: NewSave<S>, options: SaveOptions = {}): Promise<SaveFile<S>> {
     await driver.exec(SAVE_DDL + STATE_TABLES_DDL + LOG_DDL + CHAIN_DDL + SNAPSHOT_DDL);
     if ((await driver.all('SELECT id FROM header')).length) throw new SaveStateError('this file already holds a career');
-    const { statements, tracker, digest } = replaceStateStatements(deps.bytesHash, init.state);
+    const codec = options.codec ?? defaultCodec();
+    const { statements, tracker, digest } = await replaceStateStatements(deps.bytesHash, init.state, codec, packingOf(options, init.header.settings.retentionProfile));
     const stateHash = deps.stateHash(init.state);
     const link = chainAppend(deps, { prev: deps.genesis, stateHash, logSeq: 0, kind: 'creation', ...init.versions });
     const base: SaveHeader = { ...init.header, saveFormatVersion: SAVE_CORE_FORMAT_VERSION, hashChainHead: link.head };
     const header = nextHeader(deps, SaveHeader.parse(base), init.state, link.head, options.appVersion);
     const headerJson = JSON.stringify(header);
-    const codec = options.codec ?? defaultCodec();
     const snap = await snapshotInsert({ kind: 'creation', logSeq: 0, seasonYear: header.calendar.seasonYear, stateHash, digest, state: init.state, headerJson }, codec, deps.bytesHash);
     await driver.transaction([
       { sql: 'INSERT INTO header (id, save_format_version, json) VALUES (1, ?, ?)', params: [header.saveFormatVersion, headerJson] },
@@ -115,6 +119,7 @@ export class SaveFile<S> {
   static async open<S>(driver: SqlDriver, deps: SaveCoreDeps<S>, options: SaveOptions = {}): Promise<SaveFile<S>> {
     const c = await checkFile(driver, deps, options.databaseCheck !== false);
     if (!c.report.ok || !c.header || c.state === null || !c.tracker) throw new SaveDamagedError(c.report);
+    c.tracker.setPacking(packingOf(options, c.header.settings.retentionProfile));
     return new SaveFile(driver, deps, options, c.state, c.tracker, c.header, c.report.lastSeq, c.window, c.windowBase, undoWindow(c.window));
   }
 
@@ -238,7 +243,7 @@ export class SaveFile<S> {
       undoes: link.undoes ?? null, redoes: link.redoes ?? null, inverse,
     };
     const header = nextHeader(this.deps, this.head, r.state, chainHead, this.options.appVersion);
-    statements.push(logInsert(row), ...stateStatements(statePlan.writes), headerUpdate(header), ...contentStatements(plan.content));
+    statements.push(logInsert(row), ...(await encodeStateWrites(statePlan.writes, this.codec, this.deps.bytesHash)), headerUpdate(header), ...contentStatements(plan.content));
 
     let pending: PendingSnapshot<S> | null = null;
     if (plan.snapshot && stateHash !== null) {
@@ -388,8 +393,8 @@ export class SaveFile<S> {
   async verifyLive(): Promise<string[]> {
     const problems: string[] = [];
     try {
-      const { fields, rows } = await readStateRows((sql) => this.driver.all(sql));
-      const loaded = StateTracker.load(this.deps.bytesHash, fields, rows);
+      const { fields, rows, packed } = await readStateRows((sql) => this.driver.all(sql), this.deps.bytesHash);
+      const loaded = StateTracker.load(this.deps.bytesHash, fields, rows, packed);
       if (loaded.tracker.digest() !== this.tracker.digest()) problems.push('the world tables differ from the state in memory');
       if (JSON.stringify(loaded.state) !== JSON.stringify(this.current)) problems.push('the world tables do not read back in the order the state was written');
     } catch (e) {
@@ -514,7 +519,7 @@ export class SaveFile<S> {
       }
       let header = nextHeader(deps, baseHeader, out.state, chainHead, options.appVersion);
       if (certificationBroken && header.certified) header = SaveHeader.parse({ ...header, certified: false, certifiedBrokenReason: reason });
-      const replaced = replaceStateStatements(deps.bytesHash, out.state);
+      const replaced = await replaceStateStatements(deps.bytesHash, out.state, options.codec ?? defaultCodec(), packingOf(options, baseHeader.settings.retentionProfile));
       statements.push(...replaced.statements);
       statements.push({ sql: 'INSERT INTO header (id, save_format_version, json) VALUES (1, ?, ?) ON CONFLICT(id) DO UPDATE SET save_format_version = excluded.save_format_version, json = excluded.json', params: [header.saveFormatVersion, JSON.stringify(header)] });
       if (c.baseDigest === null && meta.logSeq === 0) statements.push({ sql: 'INSERT OR REPLACE INTO save_meta (key, value) VALUES (?, ?)', params: [META_BASE_DIGEST, meta.digest] });

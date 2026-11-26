@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import { App } from '@gm/app-ui';
-import { runGolden, compareGolden, goldenInputs, WorldService, type GoldenReport, type Platform } from '@gm/app-services';
+import { App, soundStage as sound } from '@gm/app-ui';
+import { runGolden, compareGolden, goldenInputs, settings, WorldService, type GoldenReport, type Platform } from '@gm/app-services';
 import golden from '../../../golden/golden.json';
 import { BrowserPlatform } from './platform-browser.ts';
 import { registerOffline } from './offline.ts';
@@ -57,11 +57,29 @@ async function gateMode(platform: Platform): Promise<boolean> {
   return true;
 }
 
+/**
+ * The sound stack (engine, crowd, cadence, ambience, menu music, captions) from the user's settings,
+ * kept in step with every later change. Silent, never fatal, where there is no Web Audio.
+ */
+async function startSound(): Promise<sound.SoundStage | null> {
+  try {
+    const { store } = await settings.SettingsStore.open(settings.keyValueSettingsBackend(window.localStorage));
+    const stage = sound.createBrowserSoundStage(sound.settingsGetter(store.all()));
+    if (!stage) return null;
+    store.onChange(() => stage.applySettings(sound.settingsGetter(store.all())));
+    sound.unlockOnFirstInput(stage);
+    return stage;
+  } catch (e) {
+    console.warn('sound stage not started:', e);
+    return null;
+  }
+}
+
 async function main() {
   if (!isDesktop()) void registerOffline();
   else captureWebViewErrors();
   const platform: Platform = isDesktop() ? new DesktopPlatform() : await BrowserPlatform.create();
   if (await gateMode(platform)) return;
-  createRoot(document.getElementById('root')!).render(<App platform={platform} golden={golden as GoldenReport} />);
+  createRoot(document.getElementById('root')!).render(<App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} />);
 }
 void main();

@@ -59,10 +59,28 @@ export interface ScrimmageDef extends Common {
   readonly fake: boolean;
   /** OffensePlayKind the play resolves as. */
   readonly playKind: OffensePlayKind;
-  /** The look that must be present to run it (G7.7.2 fakes). Null for two-point plays. */
+  /** The look that must be present to run it (G7.7.2 fakes), in words for the sheet. Null for two-point plays. */
   readonly requiredLook: string | null;
+  /**
+   * The same look as terms the engine checks (I4.6.1 trigger read): every term must hold. Null for two-point
+   * plays. The content port binds the roles to the formation's team slots (engine-core `bindFakeLook`).
+   */
+  readonly look: readonly FakeLookTerm[] | null;
   /** Coordinator floor share for a fake (K4.6.1 `fakeShare`); a design value, never an outcome. */
   readonly fakeShare: number | null;
 }
 
 export type SpecialCallDef = KickDef | ReturnDef | ScrimmageDef;
+
+/** The men a fake's look can name (engine-core `FakeRole`; app-services test fake-looks checks the menu against it). */
+export type FakeRole = 'wing' | 'end' | 'gunner' | 'slot';
+
+/** One term of a fake's look by role (engine-core `FakeLookTerm`). Thresholds are design values. */
+export type FakeLookTerm =
+  /** One of the men in `who` is uncovered: nobody within `lateralYd` of him across and `depthYd` downfield. */
+  | { readonly kind: 'uncovered'; readonly who: readonly FakeRole[]; readonly lateralYd: number; readonly depthYd: number }
+  /** On the side of one man playing `outsideOf`, nobody is lined up more than `marginYd` outside him within `depthYd`. */
+  | { readonly kind: 'edgeOpen'; readonly outsideOf: FakeRole; readonly marginYd: number; readonly depthYd: number }
+  /** The defense does not match an overloaded side: fewer defenders than offensive men beyond `gapYd` on that side within `depthYd`. */
+  | { readonly kind: 'outnumbered'; readonly gapYd: number; readonly depthYd: number }
+  | { readonly kind: 'boxAtMost'; readonly count: number; readonly halfWidthYd: number; readonly depthYd: number };

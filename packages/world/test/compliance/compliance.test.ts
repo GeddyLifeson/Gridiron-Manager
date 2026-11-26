@@ -151,3 +151,72 @@ describe('gm.raise from the offseason: early contact before free agency (K7.7.1)
     expect(loop.worldHash(again.w)).toBe(loop.worldHash(loose.w));
   });
 });
+
+describe('penalties cost clubs in the world (L8.2.5 orders)', () => {
+  it('carries each order once: fines on the books, suspensions counted down by games, forfeits waiting for the draft', () => {
+    const { w } = build();
+    const teamId = proTeams(w)[0]!;
+    const gmId = compliance.generalManagerOf(w, teamId)!;
+    compliance.setCompliance(w, {
+      ...league.emptyCompliance(), orders: [
+        { caseId: 1, order: { kind: 'fine', party: { kind: 'person', id: gmId }, cents: 150000000, tier: null, mayBeRepaidByClub: false } },
+        { caseId: 1, order: { kind: 'fine', party: { kind: 'team', id: teamId }, cents: null, tier: 'fine_tier_2', mayBeRepaidByClub: true } },
+        { caseId: 1, order: { kind: 'pick_forfeit', teamId, round: 1 } },
+        { caseId: 1, order: { kind: 'suspension', personId: gmId, games: 2 } },
+        { caseId: 1, order: { kind: 'probation', teamId, years: 2 } },
+      ],
+    });
+    const sys = loop.systemsFrom({ games: loop.gamesStep(testSchedule, testGamePort()), compliance: compliance.complianceStep(cb) }, 'test: not bound');
+    loop.runWeek(w, sys);
+    let s = compliance.penaltiesOf(w);
+    expect(s.applied).toBe(5);
+    expect(compliance.finesOf(w, { kind: 'person', id: gmId })).toBe(150000000);
+    expect(compliance.finesOf(w, { kind: 'team', id: teamId })).toBe(0);
+    expect(s.forfeits).toEqual([{ caseId: 1, teamId, round: 1 }]);
+    expect(s.recorded.map((r) => r.order.kind)).toEqual(['probation']);
+    expect(compliance.isSuspended(w, gmId)).toBe(true);
+    // Running more weeks never applies an order twice; the suspension ends after two of his club's games.
+    for (let i = 0; i < 6; i++) loop.runWeek(w, sys);
+    s = compliance.penaltiesOf(w);
+    expect(s.fines.length).toBe(2);
+    const games = w.results.filter((g) => g.week > 0 && (g.homeTeamId === teamId || g.awayTeamId === teamId)).length;
+    expect(compliance.isSuspended(w, gmId)).toBe(games < 2);
+  });
+
+  it('takes a detected tampering case from the act to a lost first-round pick at the next draft', () => {
+    const { w, sys } = build();
+    const teamId = proTeams(w)[0]!;
+    w.tiers.set(teamId, 1);
+    loop.runSeason(w, sys, testSchedule);
+    const gmId = compliance.generalManagerOf(w, teamId)!;
+    let ctxSink: league.EventSink | null = null;
+    loop.runWeek(w, { ...sys, labels: (ctx) => { ctxSink = compliance.sinkFor(ctx); } });
+    const done = league.commitAct(compliance.complianceOf(w), {
+      classId: 'tampering_players', actor: compliance.partyOf(w, gmId, 'general_manager', teamId), orderedBy: null, knew: [gmId], date: w.date,
+      competitionId: w.teams.find((t) => t.id === teamId)!.competitionId, gain: 0.5, tier: 1, source: 'sim', certainTrace: true,
+    }, cb.rules(w), ctxSink!);
+    expect(done.ok).toBe(true);
+    if (done.ok) compliance.setCompliance(w, done.state);
+    // A major case runs the league `case_weeks_major`; then one more offseason holds the draft.
+    // runWeek never turns the season; a season point is run when the schedule's weeks are used up.
+    for (let i = 0; i < 200 && !compliance.complianceOf(w).cases.some((c) => c.status === 'closed'); i++) {
+      if (w.week >= testSchedule.weeksInSeason(w)) loop.runSeasonPoint(w, sys); else loop.runWeek(w, sys);
+    }
+    console.log('cases', JSON.stringify(compliance.complianceOf(w).cases), 'log', compliance.complianceOf(w).log.length);
+    const orders = compliance.complianceOf(w).orders.map((o) => o.order);
+    console.log('orders from the pro rule set', JSON.stringify(orders));
+    // Pro rule set values: compliance.tampering_players.pick_round_first and fine_executive_first_cents.
+    expect(orders).toContainEqual({ kind: 'pick_forfeit', teamId, round: PRO_LOOKUP('compliance.tampering_players.pick_round_first') });
+    expect(compliance.finesOf(w, { kind: 'person', id: gmId })).toBe(PRO_LOOKUP('compliance.tampering_players.fine_executive_first_cents'));
+    const draftYear = w.date.seasonYear + 1;
+    loop.runSeason(w, sys, testSchedule);
+    loop.runWeek(w, sys);
+    const firstRound = w.log.rows().filter((e) => e.type === turnover.PLAYER_DRAFTED && e.when.date.seasonYear === draftYear && e.payload.round === 1);
+    expect(firstRound.length).toBe(proTeams(w).length - 1);
+    expect(firstRound.some((e) => e.payload.team === teamId)).toBe(false);
+    expect(compliance.penaltiesOf(w).forfeited).toEqual([draft(draftYear, teamId)]);
+    expect(compliance.penaltiesOf(w).forfeits).toEqual([]);
+  });
+});
+
+const draft = (year: number, teamId: number) => `${year}-r1-c${teamId}`;
