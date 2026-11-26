@@ -10,3 +10,4 @@ export type { TrajectoryRecord, FieldGeometry, MoveMode, BallStateKind } from '@
 export { TICKS_PER_SECOND, MOVE_MODES, BALL_STATES } from '@gm/schema';
 // Modules are re-exported under a namespace (modules export PARAMS). Integrator-owned.
 export * as settings from './settings/index.ts';
+export * as observer from './observer/index.ts';
