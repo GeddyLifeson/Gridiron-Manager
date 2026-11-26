@@ -23,6 +23,11 @@ function commit(state: ComplianceState, a: Parameters<typeof act>[0], sink = new
 }
 
 describe('catalogue (L8.2.5 class table, T9.5.1, I11.8.1, K7.7.1)', () => {
+  it('MA-40 inspection rates: shading 10% / 60% by mismatch type (H5.2.3), concussion breach 0.95 (D11.4.1)', () => {
+    const ins = (id: string) => CLASSES.find((c) => c.id === id)!.inspection;
+    expect(ins('injury_report_shading')).toMatchObject({ p: 0.1, pMajor: 0.6, leaf: 'H5.2.3' });
+    expect(ins('concussion_protocol')).toMatchObject({ p: 0.95, leaf: 'D11.4.1' });
+  });
   it('every row is valid and ids are unique', () => {
     expect(CLASSES.length).toBe(classesJson.classes.length);
     for (const r of classesJson.classes) expect(classProblems(r)).toEqual([]);

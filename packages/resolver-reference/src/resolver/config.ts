@@ -3,7 +3,7 @@
 // read-only. Nothing here depends on a play, so the memo cannot change a result.
 import type { DeterministicMath, ParamTable } from '@gm/schema';
 import {
-  PREFIX, RUN_QUANTILE_NAMES, RUN_QUANTILE_PROBS, RUSHER_NAMES, DEPTH_BAND_NAMES, FG_BAND_NAMES, FOUL_ROWS,
+  PREFIX, RUN_QUANTILE_NAMES, RUN_QUANTILE_PROBS, RUN_BOX_NAMES, RUSHER_NAMES, DEPTH_BAND_NAMES, FG_BAND_NAMES, FOUL_ROWS,
   type FoulRow, type FoulWindow,
 } from './params.ts';
 
@@ -12,12 +12,13 @@ export interface FoulChance { readonly row: FoulRow; readonly p: number }
 export interface Config {
   readonly shiftSdPerZ: number;
   readonly run: {
-    readonly q: readonly number[]; readonly floor: number; readonly tailMean: number; readonly shift: number;
+    readonly q: readonly number[]; readonly floor: number; readonly tailMean: number;
     /** Standard deviation of the base gain distribution, derived from the table. */
     readonly sd: number;
-    /** Mean of the base gain distribution before `shift`, derived from the table. */
+    /** Mean of the base gain distribution, derived from the table. */
     readonly baseMean: number;
-    readonly ypcAll: number; readonly ypcBox: readonly number[];
+    /** Yards the mean moves at each box-count row: the row minus the rows' average over the real mix of boxes. */
+    readonly boxShift: readonly number[];
     readonly fumbleLost: number; readonly oob: number;
   };
   readonly pass: {
@@ -27,7 +28,9 @@ export interface Config {
     readonly sackLossMean: number; readonly sackLossSd: number; readonly fumbleGivenSack: number;
     readonly scramble: number; readonly scrambleMean: number;
     readonly depthShare: readonly number[]; readonly completion: readonly number[]; readonly interception: readonly number[];
-    readonly deepTailMean: number; readonly yacMean: number;
+    readonly deepTailMean: number;
+    /** Yards after the catch by depth band: mean and number of exponential stages. */
+    readonly yacMean: readonly number[]; readonly yacStages: readonly number[];
     readonly throwawayGivenIncomplete: number; readonly dropGivenIncomplete: number; readonly breakup: number;
     readonly oob: number; readonly intReturnMean: number; readonly timeToThrow: number;
   };
@@ -100,6 +103,14 @@ export function configFor(params: ParamTable, math: DeterministicMath): Config {
   const baseMean = sum / MOMENT_STEPS;
   const sd = math.sqrt(Math.max(0, sumSq / MOMENT_STEPS - baseMean * baseMean));
 
+  const ypcBox = RUN_BOX_NAMES.map((k) => n(`run.ypc${k[0]!.toUpperCase()}${k.slice(1)}`));
+  const boxShare = RUN_BOX_NAMES.map((k) => n(`run.boxShare.${k}`));
+  let boxTotal = 0;
+  let boxMean = 0;
+  for (let i = 0; i < ypcBox.length; i++) { boxTotal += boxShare[i]!; boxMean += boxShare[i]! * ypcBox[i]!; }
+  boxMean = boxTotal > 0 ? boxMean / boxTotal : ypcBox[1]!;
+  const boxShift = ypcBox.map((v) => v - boxMean);
+
   const sack = RUSHER_NAMES.map((k) => n(`pass.sackShare.${k}`));
   const pressure = RUSHER_NAMES.map((k) => n(`pass.pressureShare.${k}`));
   const sackAll = n('pass.sackShareAll');
@@ -158,8 +169,7 @@ export function configFor(params: ParamTable, math: DeterministicMath): Config {
   const cfg: Config = {
     shiftSdPerZ: n('rating.shiftSdPerZ'),
     run: {
-      ...runTable, shift: n('run.shiftYd'), sd, baseMean, ypcAll: n('run.ypcAll'),
-      ypcBox: [n('run.ypcBox6'), n('run.ypcBox7'), n('run.ypcBox8'), n('run.ypcBox9')],
+      ...runTable, sd, baseMean, boxShift,
       fumbleLost: n('run.fumbleLostShare'), oob: n('run.outOfBoundsShare'),
     },
     pass: {
@@ -168,7 +178,9 @@ export function configFor(params: ParamTable, math: DeterministicMath): Config {
       fumbleGivenSack: sackAll > 0 ? Math.min(1, n('pass.fumbleLostPerDropback') / sackAll) : 0,
       scramble, scrambleMean: n('pass.scrambleMeanYd'),
       depthShare, completion, interception,
-      deepTailMean: n('pass.deepTailMeanYd'), yacMean: n('pass.yacMeanYd'),
+      deepTailMean: n('pass.deepTailMeanYd'),
+      yacMean: DEPTH_BAND_NAMES.map((k) => n(`pass.yacMeanYd.${k}`)),
+      yacStages: DEPTH_BAND_NAMES.map((k) => Math.max(1, Math.round(n(`pass.yacStages.${k}`)))),
       throwawayGivenIncomplete: ofIncompletions(n('pass.throwawayPerDropback')),
       dropGivenIncomplete: ofIncompletions(n('pass.dropPerDropback')),
       breakup: n('pass.breakupShare'), oob: n('pass.outOfBoundsShare'),
