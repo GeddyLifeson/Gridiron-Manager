@@ -93,7 +93,8 @@ export function advance(world: LiveWorld, systems: WorldSystems, schedule: Sched
     days++;
     if (world.dayInWeek === weekDays) {
       world.dayInWeek = 0;
-      if (world.week < schedule.weeksInSeason(world)) runWeek(world, systems, opts); else runSeasonPoint(world, systems, opts);
+      const weeks = schedule.weeksInSeason(world);
+      if (world.week < weeks) runWeek(world, systems, opts); else runSeasonPoint(world, systems, { ...opts, weeksInSeason: weeks });
     }
   }
   return { daysAdvanced: days, stoppedFor: null, lapsed };

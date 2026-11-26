@@ -9,6 +9,7 @@ import { ObservedWorld, ReadModelRegistry, buildReadModel, observerFor } from '.
 import { applyNotebookAction, buildLedgerView, buildNotebook, exportNotebookText, type LedgerView, type NotebookAction, type NotebookFilter, type NotebookNamer, type NotebookView } from '../notebook/index.ts';
 import { careerSourcesOf, type TeamSeasonLine } from './live.ts';
 import { liveCareerTables } from './live-tables.ts';
+import { coachScreenInputs, ensureCoachState } from './coach-state.ts';
 import { CAREER_MODELS } from './spec.ts';
 import { careerSpecs } from './spec.ts';
 import type { AssignmentsView, CareerView, ContractView, FinanceView, JobMarketView, LifeView, RecordView } from './types.ts';
@@ -98,8 +99,10 @@ export function careerHost(world: LiveWorld, opts: CareerHostOptions = {}): Care
     const observer = observerFor(source, personId);
     const observed = new ObservedWorld(source, observer);
     const week = opts.week?.(world) ?? (world.week === 0 ? 'offseason' : 'game');
+    const file = ensureCoachState(world, personId);
+    const coachOpt = file ? { personId, inputs: coachScreenInputs(world, file, opts.catalogue), hoursCulture: file.boss.hoursCulture } : undefined;
     const src = careerSourcesOf(observed, {
-      how, week, seasonYear: world.date.seasonYear, catalogue: opts.catalogue,
+      how, week, seasonYear: world.date.seasonYear, catalogue: opts.catalogue, ...(coachOpt ? { coach: coachOpt } : {}),
       teamSeason: (teamId, y) => { const l = teamSeasonOf(world, teamId, y); return l ? { ...l, finish: opts.finish?.(teamId, y) ?? null } : null; },
     });
     const registry = new ReadModelRegistry();

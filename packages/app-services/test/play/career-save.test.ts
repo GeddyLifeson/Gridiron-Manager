@@ -7,7 +7,7 @@ import initSqlJs from 'sql.js';
 import { SqlJsDriver, type SqlDriver } from '@gm/store';
 import { generation, loop, season as seasons, turnover } from '@gm/world';
 import { WorldService, type Platform } from '../../src/index.ts';
-import { CareerYear, LIVE_WORLD_TABLE } from '../../src/play/index.ts';
+import { CareerYear, LIVE_WORLD_BLOB_TABLE, LIVE_WORLD_TABLE } from '../../src/play/index.ts';
 import { appWorldContent } from '../../src/newgame/content.ts';
 
 const ROOT = resolvePath(import.meta.dirname, '../../../..');
@@ -80,9 +80,36 @@ describe('live world in the save file', () => {
     expect(meta2.worldWeek).toBe(meta.worldWeek + 1);
     await svc2.close();
 
-    // A save whose world does not match its recorded hash is refused.
+    // Version 2: world chunks are stored compressed, and they are much smaller than their JSON.
     const SQL = await initSqlJs();
     const db = new SQL.Database(p.files.get('c'));
+    const plainWorld = db.exec(`SELECT COUNT(*) FROM ${LIVE_WORLD_TABLE} WHERE part LIKE 'world:%'`)[0]!.values[0]![0];
+    expect(plainWorld).toBe(0);
+    const [stored, raw] = db.exec(`SELECT SUM(length(blob)), SUM(raw_len) FROM ${LIVE_WORLD_BLOB_TABLE}`)[0]!.values[0]! as number[];
+    expect(stored! * 3).toBeLessThan(raw!);
+
+    // A version 1 save (every part plain JSON in one table) still opens with the same world.
+    const v1 = new SQL.Database(p.files.get('c'));
+    const rows = await (await p.openSave('c', false)).all<{ part: string }>(`SELECT part FROM ${LIVE_WORLD_BLOB_TABLE}`);
+    const svc4 = await WorldService.load(p, 'c');
+    const y4 = (await svc4.loadCareerYear({ content: CONTENT, games: doubleGames }))!;
+    await svc4.close();
+    const plain = new Map<string, string>();
+    for (const r of rows) {
+      const blob = v1.exec(`SELECT blob FROM ${LIVE_WORLD_BLOB_TABLE} WHERE part = ?`, [r.part])[0]!.values[0]![0] as Uint8Array;
+      const { inflateRawSync } = await import('node:zlib');
+      plain.set(r.part, inflateRawSync(blob).toString('utf8'));
+    }
+    v1.run(`DROP TABLE ${LIVE_WORLD_BLOB_TABLE}`);
+    for (const [part, json] of plain) v1.run(`INSERT INTO ${LIVE_WORLD_TABLE} (part, json) VALUES (?, ?)`, [part, json]);
+    const m1 = JSON.parse(String(v1.exec(`SELECT json FROM ${LIVE_WORLD_TABLE} WHERE part = 'meta'`)[0]!.values[0]![0]));
+    v1.run(`UPDATE ${LIVE_WORLD_TABLE} SET json = ? WHERE part = 'meta'`, [JSON.stringify({ ...m1, version: 1 })]);
+    p.files.set('v1', v1.export());
+    const svc5 = await WorldService.load(p, 'v1');
+    expect((await svc5.loadCareerYear({ content: CONTENT, games: doubleGames }))!.view().worldHash).toBe(y4.view().worldHash);
+    await svc5.close();
+
+    // A save whose world does not match its recorded hash is refused.
     const m = JSON.parse(String(db.exec(`SELECT json FROM ${LIVE_WORLD_TABLE} WHERE part = 'meta'`)[0]!.values[0]![0]));
     db.run(`UPDATE ${LIVE_WORLD_TABLE} SET json = ? WHERE part = 'meta'`, [JSON.stringify({ ...m, worldHash: 'not-the-hash' })]);
     p.files.set('c', db.export());

@@ -1,0 +1,1250 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-post-0001",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "From 1990 to 2019 six clubs from each conference made the playoffs (three wild cards to 2001; four division winners and two wild cards from 2002).",
+   "value": 6,
+   "unit": "count",
+   "validFor": "1990-2019",
+   "sources": [
+    {
+     "citation": "Chicago Bears, History of how NFL playoffs have expanded (2020-03-17, https://www.chicagobears.com/news/history-of-how-nfl-playoffs-have-expanded)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "chicagobears",
+     "primary": false,
+     "quote": "In 1990, a third wild card was added in each conference, increasing the playoff field to six teams in each conference.",
+     "value": 6
+    },
+    {
+     "citation": "Sports Illustrated, NFL Playoff Format, Dates, History and Predictions (2024-11-13, https://www.si.com/nfl/nfl-playoff-format-dates-history-and-predictions)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "From 1990\u20132019, 12 teams made the playoffs, six from each conference.",
+     "value": 6
+    },
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "the four division winners and two wild cards in both conferences are seeded 1\u20136, respectively,",
+     "value": 6
+    },
+    {
+     "citation": "Wikipedia, NFL playoff results (https://en.wikipedia.org/wiki/NFL_playoff_results)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The playoffs expanded to 12 teams for the 1990 season, and again to 14 teams for the 2020 season"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0002",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "From 1990 to 2019 the top two seeds in each conference had a first-round bye.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "1990-2019",
+   "sources": [
+    {
+     "citation": "Chicago Bears, History of how NFL playoffs have expanded (2020-03-17, https://www.chicagobears.com/news/history-of-how-nfl-playoffs-have-expanded)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "chicagobears",
+     "primary": false,
+     "quote": "With the top two seeds earning a first-round bye,",
+     "value": 2
+    },
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "with the top two seeds receiving byes",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia states the byes only for the 2002-2019 format; the 1990-2001 byes rest on the Bears page alone. A third source is owed.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0003",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Since 2020 seven clubs from each conference make the playoffs: four division winners and three wild cards.",
+   "value": 7,
+   "unit": "count",
+   "validFor": "2020-",
+   "sources": [
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "Since the 2020 season, seven teams from each of the league's two conferences qualify for the playoffs",
+     "value": 7
+    },
+    {
+     "citation": "FOX Sports, NFL playoff format: How does the NFL postseason work? (https://www.foxsports.com/stories/nfl/nfl-playoff-format-how-does-the-nfl-postseason-work)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "This is broken out with four division winners in each conference as well as three wild-card teams.",
+     "value": 7
+    },
+    {
+     "citation": "CBS Sports, NFL playoff expansion: Teams that would have been No. 7 seed (2020-04, https://www.cbssports.com/nfl/news/nfl-playoff-expansion-teams-from-afc-nfc-that-would-have-been-no-7-seed-if-new-format-was-in-place)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "quote": "seven teams from each conference will make the playoffs with only the No. 1 seed earning a first-round bye",
+     "value": 7
+    },
+    {
+     "citation": "Sports Illustrated, NFL Playoff Format, Dates, History and Predictions (2024-11-13, https://www.si.com/nfl/nfl-playoff-format-dates-history-and-predictions)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Starting in 2020, the field expanded to 14 teams."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0004",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Since 2020 only the top seed in each conference has a first-round bye.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2020-",
+   "sources": [
+    {
+     "citation": "Chicago Bears, History of how NFL playoffs have expanded (2020-03-17, https://www.chicagobears.com/news/history-of-how-nfl-playoffs-have-expanded)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "chicagobears",
+     "primary": false,
+     "quote": "But now only the No. 1 seed in each conference will earn the first weekend off.",
+     "value": 1
+    },
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The top team in each conference receives a first-round bye",
+     "value": 1
+    },
+    {
+     "citation": "FOX Sports, NFL playoff format: How does the NFL postseason work? (https://www.foxsports.com/stories/nfl/nfl-playoff-format-how-does-the-nfl-postseason-work)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "The No. 1 seed in each conference receives a bye and advances automatically to the divisional round.",
+     "value": 1
+    },
+    {
+     "citation": "CBS Sports, NFL playoff expansion: Teams that would have been No. 7 seed (2020-04, https://www.cbssports.com/nfl/news/nfl-playoff-expansion-teams-from-afc-nfc-that-would-have-been-no-7-seed-if-new-format-was-in-place)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs",
+     "primary": false,
+     "quote": "seven teams from each conference will make the playoffs with only the No. 1 seed earning a first-round bye",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0005",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "From 1998 to 2013 the national title game matched the top two teams of the BCS standings.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "1998-2013",
+   "sources": [
+    {
+     "citation": "Saturday Down South, College Football Playoff history (https://www.saturdaydownsouth.com/college-football/playoff/history)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "saturdaydownsouth",
+     "primary": false,
+     "quote": "Computers ranked the Top 25 teams, with No. 1 playing No. 2 in the BCS National Championship Game.",
+     "value": 2
+    },
+    {
+     "citation": "Wikipedia, Bowl Championship Series (https://en.wikipedia.org/wiki/BCS_Poll)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "an opportunity for the top two teams to compete in a national championship game",
+     "value": 2
+    },
+    {
+     "citation": "NBC New York, History of college football championship games (https://www.nbcnewyork.com/news/sports/ncaaf/history-of-college-football-championship-games/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc",
+     "primary": false,
+     "quote": "the top two teams squared off for the national championship via a rotating group of four elite bowls",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0006",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The BCS title game was a single game between the top two teams: no byes.",
+   "value": 0,
+   "unit": "count",
+   "validFor": "1998-2013",
+   "sources": [
+    {
+     "citation": "Saturday Down South, College Football Playoff history (https://www.saturdaydownsouth.com/college-football/playoff/history)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "saturdaydownsouth",
+     "primary": false,
+     "quote": "Computers ranked the Top 25 teams, with No. 1 playing No. 2 in the BCS National Championship Game."
+    },
+    {
+     "citation": "Wikipedia, Bowl Championship Series (https://en.wikipedia.org/wiki/BCS_Poll)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "an opportunity for the top two teams to compete in a national championship game"
+    },
+    {
+     "citation": "NBC New York, History of college football championship games (https://www.nbcnewyork.com/news/sports/ncaaf/history-of-college-football-championship-games/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc",
+     "primary": false,
+     "quote": "the top two teams squared off for the national championship via a rotating group of four elite bowls"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0007",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "No place in the BCS title game was automatic: the top two of the standings met, champions or not.",
+   "validFor": "1998-2013",
+   "sources": [
+    {
+     "citation": "Saturday Down South, College Football Playoff history (https://www.saturdaydownsouth.com/college-football/playoff/history)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "saturdaydownsouth",
+     "primary": false,
+     "quote": "Computers ranked the Top 25 teams, with No. 1 playing No. 2 in the BCS National Championship Game."
+    },
+    {
+     "citation": "Wikipedia, Bowl Championship Series (https://en.wikipedia.org/wiki/BCS_Poll)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "an opportunity for the top two teams to compete in a national championship game"
+    },
+    {
+     "citation": "NBC New York, History of college football championship games (https://www.nbcnewyork.com/news/sports/ncaaf/history-of-college-football-championship-games/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc",
+     "primary": false,
+     "quote": "the top two teams squared off for the national championship via a rotating group of four elite bowls"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0008",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The BCS title game was played at a bowl site, never on campus.",
+   "value": 0,
+   "unit": "count",
+   "validFor": "1998-2013",
+   "sources": [
+    {
+     "citation": "Wikipedia, College Football Playoff (https://en.wikipedia.org/wiki/College_Football_Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "combined BCS National Championship Game rotated amongst the four largest, most profitable bowl games",
+     "value": 0
+    },
+    {
+     "citation": "NBC New York, History of college football championship games (https://www.nbcnewyork.com/news/sports/ncaaf/history-of-college-football-championship-games/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc",
+     "primary": false,
+     "quote": "the top two teams squared off for the national championship via a rotating group of four elite bowls",
+     "value": 0
+    },
+    {
+     "citation": "Wikipedia, Bowl Championship Series (https://en.wikipedia.org/wiki/BCS_Poll)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "was a separate game from the 2006 to 2013 seasons"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Wikipedia pages count as one independence group.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0009",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The BCS standings (polls and computer rankings) are modelled by the committee ranking.",
+   "validFor": "1998-2013",
+   "sources": [
+    {
+     "citation": "Saturday Down South, College Football Playoff history (https://www.saturdaydownsouth.com/college-football/playoff/history)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "saturdaydownsouth",
+     "primary": false,
+     "quote": "Computers ranked the Top 25 teams, with No. 1 playing No. 2 in the BCS National Championship Game."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The real BCS formula blended human polls and computer rankings and changed several times; the game uses its committee ranking in its place. Assumption: The committee ranking stands in for the BCS standings formula.",
+   "assumption": true,
+   "status": "Assumption",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0010",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "From 2014 to 2023 the playoff was four teams in two semifinals and a title game.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2014-2023",
+   "sources": [
+    {
+     "citation": "Encyclopaedia Britannica, College Football Playoff (https://www.britannica.com/sports/College-Football-Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "britannica",
+     "primary": false,
+     "quote": "a committee of university presidents replaced the BCS with the four-team College Football Playoff in 2014",
+     "value": 4
+    },
+    {
+     "citation": "NBC New York, History of college football championship games (https://www.nbcnewyork.com/news/sports/ncaaf/history-of-college-football-championship-games/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc",
+     "primary": false,
+     "quote": "the CFP put the top four ranked teams in a single-elimination bracket",
+     "value": 4
+    },
+    {
+     "citation": "Wikipedia, Bowl Championship Series (https://en.wikipedia.org/wiki/BCS_Poll)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The four-team playoffs consist of two semifinal games",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0011",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The four-team playoff had no byes: all four teams played the semifinals.",
+   "value": 0,
+   "unit": "count",
+   "validFor": "2014-2023",
+   "sources": [
+    {
+     "citation": "Wikipedia, Bowl Championship Series (https://en.wikipedia.org/wiki/BCS_Poll)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The four-team playoffs consist of two semifinal games"
+    },
+    {
+     "citation": "NBC New York, History of college football championship games (https://www.nbcnewyork.com/news/sports/ncaaf/history-of-college-football-championship-games/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc",
+     "primary": false,
+     "quote": "The winners of the two semifinals would then match up in the CFP National Championship."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0012",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The four-team field was chosen and seeded by a 13-member selection committee: no automatic places.",
+   "validFor": "2014-2023",
+   "sources": [
+    {
+     "citation": "Encyclopaedia Britannica, College Football Playoff (https://www.britannica.com/sports/College-Football-Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "britannica",
+     "primary": false,
+     "quote": "a 13-member selection committee composed of former college administrators and coaches"
+    },
+    {
+     "citation": "Wikipedia, Bowl Championship Series (https://en.wikipedia.org/wiki/BCS_Poll)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "A 13-member committee chooses and seeds the teams for the two playoff games"
+    },
+    {
+     "citation": "NBC New York, History of college football championship games (https://www.nbcnewyork.com/news/sports/ncaaf/history-of-college-football-championship-games/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc",
+     "primary": false,
+     "quote": "the CFP put the top four ranked teams in a single-elimination bracket"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Saturday Down South says a 12-person committee; the count does not change the rule.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0013",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "In the four-team playoff the semifinals were bowl games and the title game a separately chosen site: no campus rounds.",
+   "value": 0,
+   "unit": "count",
+   "validFor": "2014-2023",
+   "sources": [
+    {
+     "citation": "Wikipedia, College Football Playoff (https://en.wikipedia.org/wiki/College_Football_Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "From 2014 through 2023, the two semifinal games rotated among the six New Year's Day bowl games:",
+     "value": 0
+    },
+    {
+     "citation": "Encyclopaedia Britannica, College Football Playoff (https://www.britannica.com/sports/College-Football-Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "britannica",
+     "primary": false,
+     "quote": "The national championship game is held at a predetermined site that is chosen from bids"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0014",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 2024 playoff was the first 12-team field.",
+   "value": 12,
+   "unit": "count",
+   "validFor": "2024-2025",
+   "sources": [
+    {
+     "citation": "FOX Sports/AP, College Football Playoff shifts to straight seeding model (2025-05-22, https://www.foxsports.com/articles/cfb/college-football-playoff-shifts-to-straight-seeding-model-no-automatic-byes-for-top-league-champs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "After evaluating the first year of the 12-team Playoff, the CFP Management Committee felt it was in the best interest of the game to make this adjustment,",
+     "value": 12
+    },
+    {
+     "citation": "theScore, College Football Playoff moving to straight seeding model (2025-05-22, https://www.thescore.com/ncaaf/news/3289851/college-football-playoff-moving-to-straight-seeding-model)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "In last season's playoff, the first under the 12-team format,",
+     "value": 12
+    },
+    {
+     "citation": "Encyclopaedia Britannica, College Football Playoff (https://www.britannica.com/sports/College-Football-Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "britannica",
+     "primary": false,
+     "quote": "The original format featured 4 teams, but it expanded to 12 teams with the 2024\u201325 season.",
+     "value": 12
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0015",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "In 2024 and 2025 the five highest-ranked conference champions had automatic places.",
+   "value": 5,
+   "unit": "count",
+   "validFor": "2024-2025",
+   "sources": [
+    {
+     "citation": "FOX Sports/AP, College Football Playoff shifts to straight seeding model (2025-05-22, https://www.foxsports.com/articles/cfb/college-football-playoff-shifts-to-straight-seeding-model-no-automatic-byes-for-top-league-champs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "The five highest-ranked conference champions will still be guaranteed spots in the playoff",
+     "value": 5
+    },
+    {
+     "citation": "theScore, College Football Playoff moving to straight seeding model (2025-05-22, https://www.thescore.com/ncaaf/news/3289851/college-football-playoff-moving-to-straight-seeding-model)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "The five highest-ranked conference champions will still receive automatic bids into the playoff",
+     "value": 5
+    },
+    {
+     "citation": "College Football Playoff, seeding revision release (2025-05-22, https://collegefootballplayoff.com/news/2025/5/22/2526-seeding-rev.aspx)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "will guarantee the five highest-ranked conference champions a place in the Playoff",
+     "value": 5
+    },
+    {
+     "citation": "Encyclopaedia Britannica, College Football Playoff (https://www.britannica.com/sports/College-Football-Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "britannica",
+     "primary": false,
+     "quote": "Guaranteed bids are given to the five highest-ranked conference champions.",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0016",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "In 2024 and 2025 no automatic place was reserved for a named conference: the five went to the highest-ranked champions of any conference.",
+   "validFor": "2024-2025",
+   "sources": [
+    {
+     "citation": "FOX Sports/AP, College Football Playoff shifts to straight seeding model (2025-05-22, https://www.foxsports.com/articles/cfb/college-football-playoff-shifts-to-straight-seeding-model-no-automatic-byes-for-top-league-champs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "The five highest-ranked conference champions will still be guaranteed spots in the playoff"
+    },
+    {
+     "citation": "theScore, College Football Playoff moving to straight seeding model (2025-05-22, https://www.thescore.com/ncaaf/news/3289851/college-football-playoff-moving-to-straight-seeding-model)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "The five highest-ranked conference champions will still receive automatic bids into the playoff"
+    },
+    {
+     "citation": "College Football Playoff, seeding revision release (2025-05-22, https://collegefootballplayoff.com/news/2025/5/22/2526-seeding-rev.aspx)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "will guarantee the five highest-ranked conference champions a place in the Playoff"
+    },
+    {
+     "citation": "Encyclopaedia Britannica, College Football Playoff (https://www.britannica.com/sports/College-Football-Playoff)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "britannica",
+     "primary": false,
+     "quote": "Guaranteed bids are given to the five highest-ranked conference champions."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0017",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 12-team playoff gives four first-round byes.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2024-2025",
+   "sources": [
+    {
+     "citation": "theScore, College Football Playoff moving to straight seeding model (2025-05-22, https://www.thescore.com/ncaaf/news/3289851/college-football-playoff-moving-to-straight-seeding-model)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "the top four seeds and accompanying byes were automatically given to the four highest-ranked conference champions.",
+     "value": 4
+    },
+    {
+     "citation": "Saturday Down South, College Football Playoff history (https://www.saturdaydownsouth.com/college-football/playoff/history)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "saturdaydownsouth",
+     "primary": false,
+     "quote": "In 2024-25, the 4 highest ranked conference champions were rewarded with the top 4 seeds",
+     "value": 4
+    },
+    {
+     "citation": "College Football Playoff, seeding revision release (2025-05-22, https://collegefootballplayoff.com/news/2025/5/22/2526-seeding-rev.aspx)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "with the four highest-ranked teams receiving a first-round bye",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0018",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "In 2024 the four byes (seeds 1 to 4) went to the four highest-ranked conference champions.",
+   "value": true,
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "theScore, College Football Playoff moving to straight seeding model (2025-05-22, https://www.thescore.com/ncaaf/news/3289851/college-football-playoff-moving-to-straight-seeding-model)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "the top four seeds and accompanying byes were automatically given to the four highest-ranked conference champions.",
+     "value": true
+    },
+    {
+     "citation": "Saturday Down South, College Football Playoff history (https://www.saturdaydownsouth.com/college-football/playoff/history)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "saturdaydownsouth",
+     "primary": false,
+     "quote": "In 2024-25, the 4 highest ranked conference champions were rewarded with the top 4 seeds",
+     "value": true
+    },
+    {
+     "citation": "AP via KSAT, College Football Playoff shifts to straight seeding model (2025-05-22, https://www.ksat.com/sports/2025/05/22/college-football-playoff-shifts-to-straight-seeding-model-no-automatic-byes-for-top-league-champs/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "The new format will no longer guarantee an opening bye week for the four highest-ranked league champions",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0019",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "From 2025 the byes go to the four highest-ranked teams whether or not they won their conference (straight seeding).",
+   "value": false,
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "theScore, College Football Playoff moving to straight seeding model (2025-05-22, https://www.thescore.com/ncaaf/news/3289851/college-football-playoff-moving-to-straight-seeding-model)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore",
+     "primary": false,
+     "quote": "awarding first-round byes to the top four programs regardless of whether they won their conference.",
+     "value": false
+    },
+    {
+     "citation": "FOX Sports/AP, College Football Playoff shifts to straight seeding model (2025-05-22, https://www.foxsports.com/articles/cfb/college-football-playoff-shifts-to-straight-seeding-model-no-automatic-byes-for-top-league-champs)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "reserving that benefit for the four top-ranked teams in general.",
+     "value": false
+    },
+    {
+     "citation": "Saturday Down South, College Football Playoff history (https://www.saturdaydownsouth.com/college-football/playoff/history)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "saturdaydownsouth",
+     "primary": false,
+     "quote": "In 2025-26, the seeds will mirror the committee's ranking, 1 through 12.",
+     "value": false
+    },
+    {
+     "citation": "College Football Playoff, seeding revision release (2025-05-22, https://collegefootballplayoff.com/news/2025/5/22/2526-seeding-rev.aspx)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "with the four highest-ranked teams receiving a first-round bye",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0020",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "From 2027 one automatic place goes to the highest-ranked team of the other six conferences.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2027-",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "will consist of the Power 4 conference champions -- ACC, Big 12, Big Ten, SEC -- plus the highest-ranked Group of 6 team and 19 at-large selections",
+     "value": 1
+    },
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt",
+     "value": 1
+    },
+    {
+     "citation": "FBSchedules, College Football Playoff officially expanding to 24 teams in 2027 (2026-11-09, https://fbschedules.com/college-football-playoff-officially-expanding-to-24-teams-in-2027/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "19 at-large selections, the four champions of the Autonomy Four (A4) conferences"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0021",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 2027 field has no automatic place for an independent: four champions, one other-conference team, 19 at-large.",
+   "value": 0,
+   "unit": "rank",
+   "validFor": "2027-",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "will consist of the Power 4 conference champions -- ACC, Big 12, Big Ten, SEC -- plus the highest-ranked Group of 6 team and 19 at-large selections"
+    },
+    {
+     "citation": "FBSchedules, College Football Playoff officially expanding to 24 teams in 2027 (2026-11-09, https://fbschedules.com/college-football-playoff-officially-expanding-to-24-teams-in-2027/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "19 at-large selections, the four champions of the Autonomy Four (A4) conferences"
+    },
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0022",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "From 2027 two rounds are on campus: seeds 9-16 host round one and seeds 1-8 host round two.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2027-",
+   "sources": [
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 9-16 will each host a CFP First Round game on campus."
+    },
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Seeds 1-8 will each earn a CFP First Round bye and will host a CFP Second Round game on campus."
+    },
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "Teams seeded Nos. 1-8 earn a first-round bye followed by a home game."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0023",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 2027 at-large teams are not limited to a ranked cut-off (no top-25 pool stated).",
+   "value": 0,
+   "unit": "rank",
+   "validFor": "2027-",
+   "sources": [
+    {
+     "citation": "ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "will consist of the Power 4 conference champions -- ACC, Big 12, Big Ten, SEC -- plus the highest-ranked Group of 6 team and 19 at-large selections"
+    },
+    {
+     "citation": "College Football Playoff, About the 24-Team CFP Format (Beginning 2027-28) (https://collegefootballplayoff.com/sports/2026/11/9/24-team-format)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "1 Automatic Bid Highest-ranked team from the American, Conference USA, MAC, Mountain West, Pac-12 or Sun Belt"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). F-college-0024 notes that neither page states a top-25 pool; the bible T3.5.1 table says \"from the committee's top 25\". Kept at 0 (any position) until a source states the pool.",
+   "assumption": true,
+   "status": "Assumption",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0024",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The AP poll has about 63 voters.",
+   "value": 63,
+   "unit": "count",
+   "validFor": "2023",
+   "sources": [
+    {
+     "citation": "FOX Sports/AP, The AP Top 25 has been around since 1936. Who votes and how does it work? (2023-09-21, https://www.foxsports.com/articles/cfb/the-ap-top-25-has-been-around-since-1936-who-votes-and-how-does-it-work)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "In recent years, the number of voters has been around 63, and they come from all over the country.",
+     "value": 63
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0025",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "Poll ballots are 25 places: 25 points for first down to 1 for 25th (AP and coaches' polls).",
+   "value": 25,
+   "unit": "count",
+   "validFor": "2023-",
+   "sources": [
+    {
+     "citation": "FOX Sports/AP, The AP Top 25 has been around since 1936. Who votes and how does it work? (2023-09-21, https://www.foxsports.com/articles/cfb/the-ap-top-25-has-been-around-since-1936-who-votes-and-how-does-it-work)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-ap",
+     "primary": false,
+     "quote": "There is a 1-25 point system, with a team voted No. 1 receiving 25 points down to 1 for a 25th-place vote.",
+     "value": 25
+    },
+    {
+     "citation": "American Football Coaches Association, Coaches Poll (https://afca.com/polls/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "afca",
+     "primary": true,
+     "quote": "Each coach submits a Top 25 with a first-place vote worth 25 points",
+     "value": 25
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-post-0026",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The coaches' poll panel is FBS head coaches drawn at random, conference by conference plus independents.",
+   "validFor": "2025",
+   "sources": [
+    {
+     "citation": "American Football Coaches Association, Coaches Poll (https://afca.com/polls/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "afca",
+     "primary": true,
+     "quote": "The panel is chosen by random draw, conference by conference plus independents"
+    },
+    {
+     "citation": "American Football Coaches Association, Coaches Poll (https://afca.com/polls/)",
+     "locator": "page text",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "afca",
+     "primary": true,
+     "quote": "using a panel of head coaches at FBS schools"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by the tiebreaks, seeds, rankings and bowls thread from sources read this session."
+    }
+   ]
+  }
+ ]
+}

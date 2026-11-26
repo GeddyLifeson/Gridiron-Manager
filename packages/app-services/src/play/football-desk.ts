@@ -12,6 +12,7 @@
 import { defenseDesigner as dd, gameplan as gp, playbook as pb } from '@gm/football-content';
 import { knowledge, week as leagueWeek } from '@gm/league';
 import { resolveRuleSet } from '@gm/rules-data';
+import type { designer } from '@gm/football-lang';
 import type { RuleSet } from '@gm/schema';
 import { runGameplanCommand, type GameplanCommand, type GameplanState } from '../commands/gameplan/index.ts';
 import { runInstallCommand, type InstallCommand, type InstallState } from '../commands/install/index.ts';
@@ -47,6 +48,11 @@ export interface FootballDeskOptions {
 export type DeskResult = { readonly ok: true; readonly notes: readonly string[]; readonly file?: string } | { readonly ok: false; readonly refusal: string; readonly rule?: string };
 
 const DRAFT_UNITS: readonly DraftUnit[] = ['offense', 'defense'];
+/** Book section of a designed play by its kind (G3.1.1 OFFENSE_SECTIONS). */
+const DESIGN_SECTION: Readonly<Record<string, string>> = {
+  run: 'run', draw: 'run', qb_run: 'run', dropback_pass: 'dropback', quick_pass: 'quick', play_action: 'play_action',
+  movement_pass: 'movement', screen: 'screen', rpo: 'rpo', trick: 'trick', kneel: 'two_minute', spike: 'two_minute',
+};
 const USER_ID = 'user';
 /** Sheet game id while the seat's next game is not known yet (a bye week ahead of it). */
 const NEXT_GAME = 'next';
@@ -269,6 +275,31 @@ export class FootballDesk {
   }
 
   // ---------------------------------------------------------------- playbook (G-67)
+
+  /**
+   * A play published in the play designer goes into the book (G3.1.1: the designer is where plays are made).
+   * Its parts are the book's own where the draft names one (personnel by its code, formation by its part id);
+   * a republished draft replaces its earlier version. It has no content play yet, so the staff do not draft it
+   * onto a sheet until the content side can run a drawn play (football-lang to-engine).
+   */
+  addDesigned(play: designer.PlayDraft, version: number): pb.PlayEntry {
+    const parts: Partial<Record<pb.CallSlot, string>> = {};
+    const personnel = [...this.book.book.parts.values()].find((x) => x.type === 'personnel' && x.content === play.personnel);
+    if (personnel) parts.personnel = personnel.id;
+    if (play.formation.id && this.book.book.parts.has(play.formation.id)) parts.formation = play.formation.id;
+    if (play.protection && this.book.book.parts.has(play.protection.id)) parts.protection = play.protection.id;
+    const said = [play.name.formation, play.name.strength, play.name.motion, play.name.protection, play.name.concept, ...play.name.tags].filter((w) => w).join(' ');
+    const entry: pb.PlayEntry = {
+      id: `design:${play.id}`, book: 'offense', section: [DESIGN_SECTION[play.kind] ?? 'trick'],
+      labels: [said || `Designed play ${play.id}`], status: 'valid', parts, tags: [], role: play.intent.role,
+      // G1.7.1: a play is one learning unit on top of its parts.
+      units: 1, beats: [...play.intent.beats], situations: [], origin: `design:${play.id}:v${version}`,
+    };
+    const had = this.book.book.plays.has(entry.id);
+    this.book = { ...this.book, book: had ? pb.replacePlay(this.book.book, entry) : pb.addPlay(this.book.book, entry) };
+    this.version++;
+    return entry;
+  }
 
   playbookSource(side: DeskSide): Omit<PlaybookInput, 'teamId' | 'side' | 'filter'> {
     return {

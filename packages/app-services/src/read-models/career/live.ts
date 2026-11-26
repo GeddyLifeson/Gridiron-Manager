@@ -1,7 +1,7 @@
 // CareerSources from the save as the coach himself may read it (P1.3.2, K9.1.1). Every input is built from an
 // ObservedWorld for his own observer, so a field the filter withholds (truth, another team's own rows) never
 // reaches a screen. What the save does not hold yet (CR-CS-2) comes back null and the screen shows its empty
-// state: contract terms (the world keeps only a staff contract's end year), the job market, money and life.
+// state. Contract, job market, money and life come from his own file (career.coach, coach-state.ts).
 // The record's family lines are computed from his events in the log, never stored (E9.1.2 rule 1).
 import { ladder, life, positions, record } from '@gm/career';
 import type { JobHistoryRow, JobRecord, PersonRecord, TeamRecord, WorldDate, WorldEvent } from '@gm/schema';
@@ -13,6 +13,7 @@ import { param } from './params.ts';
 import type { RecordInput, SeasonInput } from './record.ts';
 import type { CareerSources } from './spec.ts';
 import { howKey } from './live-tables.ts';
+import type { CoachScreenInputs } from './coach-state.ts';
 
 type Level = positions.CatalogueLevel;
 
@@ -28,6 +29,8 @@ export interface LiveCareerOptions {
   readonly seasonYear: number;
   readonly week: ladder.WeekKind;
   readonly catalogue?: positions.Catalogue;
+  /** The coach's own file (career.coach): contract, market, money and life inputs, and his boss's hours expectation. */
+  readonly coach?: { readonly personId: number; readonly inputs: CoachScreenInputs; readonly hoursCulture: number };
 }
 
 const nameOf = (p: Pick<PersonRecord, 'name'> | undefined): string => (p?.name ? `${p.name.first} ${p.name.last}`.trim() : '');
@@ -111,11 +114,15 @@ export function careerSourcesOf(world: ObservedWorld, opts: LiveCareerOptions): 
         audiences: [], enrolment: null, catalogue: cat,
       };
     },
-    jobMarket: () => null,
+    jobMarket(personId) {
+      const c = opts.coach;
+      return c && c.personId === personId && people.get(personId) ? c.inputs.jobMarket(rightsOf(personId)) : null;
+    },
     contract(personId): ContractInput | null {
       if (!people.get(personId)) return null;
       const j = jobOf(personId);
-      return { rights: rightsOf(personId), contract: null, team: j ? teamName(teams.get(j.teamId)) : null, jobTitle: titleOf(j), leagueYear: opts.seasonYear };
+      const c = opts.coach;
+      return { rights: rightsOf(personId), contract: c && c.personId === personId ? c.inputs.contract() : null, team: j ? teamName(teams.get(j.teamId)) : null, jobTitle: titleOf(j), leagueYear: opts.seasonYear };
     },
     record(personId): RecordInput | null {
       if (!people.get(personId)) return null;
@@ -136,18 +143,24 @@ export function careerSourcesOf(world: ObservedWorld, opts: LiveCareerOptions): 
         window: { fromSeason: first, toSeason: opts.seasonYear }, certified: [],
       };
     },
-    finance: () => null,
-    life: () => null,
+    finance(personId) {
+      const c = opts.coach;
+      return c && c.personId === personId && people.get(personId) ? c.inputs.finance(rightsOf(personId)) : null;
+    },
+    life(personId) {
+      const c = opts.coach;
+      return c && c.personId === personId && people.get(personId) ? c.inputs.life(rightsOf(personId), opts.week !== 'offseason') : null;
+    },
     assignments(personId): AssignmentsInput | null {
       const seat = seatOf(personId);
       const j = jobOf(personId);
       if (!seat || !j) return null;
       const boss = j.reportsToJobId === null ? null : jobById.get(j.reportsToJobId);
       const inSeason = opts.week !== 'offseason';
-      // E7.7.2 required hours at the boss's hours culture, then S9 discretionary hours. The boss's culture is not
-      // in the save yet: the midpoint is a named assumption (careerScreens.hoursCulture).
+      // E7.7.2 required hours at the boss's hours culture, then S9 discretionary hours. The culture is kept in his
+      // file (career.coach); without one the flagged default reads (careerScreens.hoursCulture, CS-3).
       let required = 0;
-      if (life.RUNGS.includes(j.rung)) required = life.requiredHours(j.rung, inSeason, param('careerScreens.hoursCulture'));
+      if (life.RUNGS.includes(j.rung)) required = life.requiredHours(j.rung, inSeason, opts.coach?.personId === personId ? opts.coach.hoursCulture : param('careerScreens.hoursCulture'));
       return {
         seat, week: opts.week, jobTitle: titleOf(j) ?? '',
         bossName: boss?.holderPersonId ? nameOf(people.get(boss.holderPersonId)) || null : null,
