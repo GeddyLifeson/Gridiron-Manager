@@ -1378,16 +1378,31 @@
      "primary": false,
      "quote": "Players with four or more seasons accrued are considered vested veterans and are not subject to waivers",
      "value": 4
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 29 Section 1(a) (text copy cba_2020.txt, line 9117)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "fourth year of credited service",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Whether the measure is accrued or pension-credited seasons (bible C5.5.1 conflict) is not settled by this source.",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Whether the measure is accrued or pension-credited seasons (bible C5.5.1 conflict) is not settled by this source. Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },
@@ -2006,16 +2021,31 @@
      "primary": false,
      "quote": "A player earns one when he was on, or should have been on, full pay status for at least three regular season games.",
      "value": 3
+    },
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 26 Section 2 (text copy cba_2020.txt, line 8545)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a total of three or more regular season games",
+     "value": 3
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Primary CBA text added by the release-gate cleanup.",
+   "status": "Verified",
    "statusHistory": [
     {
      "date": "2026-11-26",
      "status": "1 of 3",
      "reason": "First load by G-10 from sources read this session."
+    },
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: primary CBA text read directly and added as a source."
     }
    ]
   },

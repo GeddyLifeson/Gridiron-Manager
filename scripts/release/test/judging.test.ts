@@ -88,13 +88,18 @@ describe('the gate never passes what it did not verify', () => {
       wps: [{ id: 'G-01', title: 'Save', plan: 'game', owns: ['packages/store/src/save/'], bible: ['Z1'], needs: '', acceptance: 'a' }],
       evidence: [], suites: [],
       scans: { shippedFiles: 0, buildArtifact: null, marks: { listPath: 'l', listStatus: 'verified', hits: [] }, names: { source: { kind: 'people-database', path: 'p', people: 1, hashes: new Set() }, hits: [] },
-        research: { pathHits: [], tokenHits: [], copyHits: [], researchFiles: 1, dirs: ['d'] }, provisional: provisionalReport(f.root, f.files) },
+        research: { pathHits: [], tokenHits: [], copyHits: [], researchFiles: 1, dirs: ['d'] }, provisional: provisionalReport(f.root, f.files), licences: { ok: true, errors: [], rows: 0, files: 0 } },
     };
     const all = runChecks(inp);
     expect(all.filter((c) => c.kind === 'tracked' && c.status === 'PASS')).toEqual([]);
     expect(all.find((c) => c.id === 'plan:G-01')!.status).toBe('MISSING');
     expect(all.find((c) => c.id === 'bible:Z1.1.1')!.status).toBe('MISSING');
     expect(verdict(all, inp.ctx).pass).toBe(false);
+    // PV-15: the licence checker's ok:false is a FAIL and lists its errors; a missing checker is MISSING.
+    const licFail = runChecks({ ...inp, scans: { ...inp.scans, licences: { ok: false, errors: ['assets/x.png has no row'], rows: 0, files: 1 } } });
+    expect(licFail.find((c) => c.id === 'release:6f-asset-licences')).toMatchObject({ status: 'FAIL' });
+    expect(licFail.find((c) => c.id === 'release:6f-asset-licences')!.detail).toContain('assets/x.png has no row');
+    expect(runChecks({ ...inp, scans: { ...inp.scans, licences: null } }).find((c) => c.id === 'release:6f-asset-licences')!.status).toBe('MISSING');
     // With evidence at this commit the tracked check passes.
     const withEv = runChecks({ ...inp, evidence: [rec({ check: 'bible:Z1.1.1' })] });
     expect(withEv.find((c) => c.id === 'bible:Z1.1.1')!.status).toBe('PASS');
