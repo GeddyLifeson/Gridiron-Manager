@@ -198,5 +198,7 @@ describe('the week\'s other games in a pool (unbuilt-work item 15)', () => {
     const html = renderToStaticMarkup(createElement(WeekProgressLine, { progress: { done: 5, total: 15 } }));
     expect(html).toContain('5 of 15');
     expect(html).toContain('data-week-progress');
+    // Before the pool has counted the batch: no "0 of 0".
+    expect(renderToStaticMarkup(createElement(WeekProgressLine, { progress: { done: 0, total: 0 } }))).not.toContain('0 of 0');
   });
 });

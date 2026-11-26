@@ -52,7 +52,7 @@ export function SeasonPanel({ today, canDelegate, onDelegate }: { today: SeasonT
 export function WeekProgressLine({ progress }: { progress: WeekProgress }): ReactNode {
   return (
     <p data-week-progress role="status" aria-live="polite" className="gm-line">
-      {rt('root.weekProgress', { done: progress.done, total: progress.total })}{' '}
+      {progress.total > 0 ? rt('root.weekProgress', { done: progress.done, total: progress.total }) : rt('root.weekStarting')}{' '}
       <progress max={Math.max(1, progress.total)} value={progress.done} />
     </p>
   );
