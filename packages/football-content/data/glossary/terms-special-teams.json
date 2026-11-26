@@ -1,0 +1,1053 @@
+{
+ "leaf": "A4.5.4",
+ "terms": [
+  {
+   "id": "term.blocked-kick",
+   "term": "Blocked kick",
+   "aliases": [],
+   "definition": "A field goal or try kick that a defender deflects or stops before it passes the line.",
+   "domain": "special-teams",
+   "subdomain": "fg",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0116"
+  },
+  {
+   "id": "term.blocked-punt",
+   "term": "Blocked punt",
+   "aliases": [
+    "punt block",
+    "block the punt"
+   ],
+   "definition": "A punt that a defender gets a hand on before it travels normally, so it is deflected or stopped.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0117"
+  },
+  {
+   "id": "term.coffin-corner",
+   "term": "Coffin corner",
+   "aliases": [
+    "corner punt"
+   ],
+   "definition": "A punt aimed to go out of bounds near the opponent's goal line so the receiving team must start deep in its own end.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0190",
+   "variants": [
+    "Active.com: between the end zone and the 5-yard line",
+    "Wikipedia glossary: end zone to the 10-yard line"
+   ]
+  },
+  {
+   "id": "term.declared-onside-kick-pro",
+   "term": "Declared onside kick",
+   "aliases": [
+    "announced onside"
+   ],
+   "definition": "An NFL onside kick that the kicking team must announce to the Referee before the play clock starts; under the 2026 rules it may be declared at any time in the game.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0266",
+   "variants": [
+    "NFL 2024 and 2025: declared, and only in the fourth quarter when trailing"
+   ]
+  },
+  {
+   "id": "term.designated-holder-pro",
+   "term": "Designated holder",
+   "aliases": [
+    "kickoff holder"
+   ],
+   "definition": "A uniformed kicking-team player allowed to hold the ball for a kickoff or safety kick; he may be the 12th man on the field but must leave right after the kick.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0287"
+  },
+  {
+   "id": "term.directional-kickoff",
+   "term": "Directional kickoff",
+   "aliases": [
+    "directional kick"
+   ],
+   "definition": "A kickoff aimed toward one side of the field rather than down the middle, with the coverage team overloaded to that side.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0297"
+  },
+  {
+   "id": "term.directional-punt",
+   "term": "Directional punt",
+   "aliases": [
+    "placed punt"
+   ],
+   "definition": "A punt aimed toward a chosen side of the field, to avoid the returner or use the sideline as an extra defender.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0298"
+  },
+  {
+   "id": "term.downing-a-punt",
+   "term": "Downing a punt",
+   "aliases": [
+    "downed punt",
+    "down it"
+   ],
+   "definition": "The coverage team touches or stops the punt so the play ends without a return.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0324"
+  },
+  {
+   "id": "term.dynamic-kickoff-pro",
+   "term": "Dynamic kickoff",
+   "aliases": [
+    "2024 kickoff",
+    "new kickoff"
+   ],
+   "definition": "The NFL kickoff format, adopted in 2024, in which the kicker is the only kicking-team player behind the 40 and the receiving team sets up in a defined setup zone, with most players held still until the ball lands, so the play looks more like a scrimmage play.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0335",
+   "variants": [
+    "NFL only; no equivalent set-up in the 2026 NCAA free-kick rules"
+   ]
+  },
+  {
+   "id": "term.extra-point",
+   "term": "Extra point",
+   "aliases": [
+    "PAT",
+    "point after touchdown",
+    "point after",
+    "PAT distance",
+    "extra point distance"
+   ],
+   "definition": "The one-point kick after a touchdown, snapped from the 15-yard line in the NFL (a kick of about 33 yards); in college the try is snapped from the 3-yard line.",
+   "domain": "special-teams",
+   "subdomain": "try",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0366",
+   "variants": [
+    "NCAA: try snapped from the opponent's 3-yard line"
+   ]
+  },
+  {
+   "id": "term.fake-field-goal",
+   "term": "Fake field goal",
+   "aliases": [
+    "trick FG"
+   ],
+   "definition": "A play from field goal formation in which the holder or kicker runs or throws instead of kicking.",
+   "domain": "special-teams",
+   "subdomain": "fg",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0376"
+  },
+  {
+   "id": "term.fake-punt",
+   "term": "Fake punt",
+   "aliases": [
+    "trick punt"
+   ],
+   "definition": "A play from punt formation in which a player other than the punter runs or throws instead of kicking.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0377"
+  },
+  {
+   "id": "term.field-goal-distance",
+   "term": "Field goal distance",
+   "aliases": [],
+   "definition": "Distance of a field goal attempt: yards from the spot of the kick to the goal line plus the 10-yard end zone, with the kick spot about 7 yards behind the line of scrimmage, so a snap at the 20 is roughly a 37-yard attempt.",
+   "domain": "special-teams",
+   "subdomain": "fg",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0385"
+  },
+  {
+   "id": "term.field-goal-operation",
+   "term": "Field goal operation",
+   "aliases": [
+    "FG operation"
+   ],
+   "definition": "The whole snap, hold and kick sequence of a field goal or extra point, which units time and drill to keep quick.",
+   "domain": "special-teams",
+   "subdomain": "fg",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0386"
+  },
+  {
+   "id": "term.field-goal-percentage",
+   "term": "Field goal percentage",
+   "aliases": [
+    "kicker accuracy"
+   ],
+   "definition": "The percentage of field goal attempts that are made.",
+   "domain": "special-teams",
+   "subdomain": "stats",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0387"
+  },
+  {
+   "id": "term.field-goal-range",
+   "term": "Field goal range",
+   "aliases": [
+    "FG range"
+   ],
+   "definition": "The distance from which a kicker can reasonably score; about 45 yards at the professional level, per Wikipedia.",
+   "domain": "special-teams",
+   "subdomain": "fg",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0388"
+  },
+  {
+   "id": "term.field-position",
+   "term": "Field position",
+   "aliases": [],
+   "definition": "How far a team is from scoring or where its possession starts; kicking plays are used to improve it.",
+   "domain": "special-teams",
+   "subdomain": "general",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0391"
+  },
+  {
+   "id": "term.gross-punt",
+   "term": "Gross punt",
+   "aliases": [
+    "gross average",
+    "gross punting yards"
+   ],
+   "definition": "A punt's raw distance before any return or touchback adjustment; averaged, it is the punt average.",
+   "domain": "special-teams",
+   "subdomain": "stats",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0470"
+  },
+  {
+   "id": "term.gunner",
+   "term": "Gunner",
+   "aliases": [
+    "shooter",
+    "flyer",
+    "headhunter",
+    "mule"
+   ],
+   "definition": "A fast player split wide on kickoff and punt coverage who races down the sideline to tackle the returner.",
+   "domain": "special-teams",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0475",
+   "variants": [
+    "Gridiron Strategies also calls gunners 'mules'",
+    "Wikipedia lists shooter, flyer, headhunter and kamikaze"
+   ]
+  },
+  {
+   "id": "term.hands-team",
+   "term": "Hands team",
+   "aliases": [
+    "onside recovery team"
+   ],
+   "definition": "The group of sure-handed players, mostly receivers and tight ends, put on the field to secure an onside kick.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0488"
+  },
+  {
+   "id": "term.hang-time",
+   "term": "Hang time",
+   "aliases": [],
+   "definition": "How long a kick stays in the air; punters aim for roughly one second for every ten yards, so the coverage team can arrive with the ball.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0489",
+   "variants": [
+    "NFL punters 4.5 to 5.0 seconds; college 4.0 to 4.5 (ITP)"
+   ]
+  },
+  {
+   "id": "term.ice-the-kicker",
+   "term": "Ice the kicker",
+   "aliases": [
+    "freeze the kicker",
+    "icing"
+   ],
+   "definition": "Calling a timeout just before the snap on a kick to disrupt the kicker's rhythm.",
+   "domain": "special-teams",
+   "subdomain": "kicking",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0518"
+  },
+  {
+   "id": "term.illegal-touching",
+   "term": "Illegal touching",
+   "aliases": [
+    "first touching",
+    "kicking team penalty"
+   ],
+   "definition": "A kicking-team player touching a kick before the receiving team has touched it (or before it passes the restraining line); the receivers may take the ball at that spot.",
+   "domain": "special-teams",
+   "subdomain": "kicking",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0532"
+  },
+  {
+   "id": "term.inside-the-20",
+   "term": "Inside the 20",
+   "aliases": [
+    "pinned inside the 20"
+   ],
+   "definition": "A punt downed or going out at or inside the opponent's 20-yard line, a common punting stat.",
+   "domain": "special-teams",
+   "subdomain": "stats",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0563"
+  },
+  {
+   "id": "term.jammer",
+   "term": "Jammer",
+   "aliases": [
+    "vice",
+    "vise",
+    "vice man",
+    "press man"
+   ],
+   "definition": "A punt-return player who lines up across from a gunner and tries to slow or block him at the line so the returner has more time.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0581",
+   "variants": [
+    "PFF spells it 'vise'",
+    "Wikipedia, Steelers Depot, Under Armour: jammer"
+   ]
+  },
+  {
+   "id": "term.kamikaze-kickoff-coverage",
+   "term": "Kamikaze (kickoff coverage)",
+   "aliases": [
+    "kamikaze"
+   ],
+   "definition": "A kickoff-coverage player who starts farther back, gets a running start and attacks the ball carrier with no lane responsibility.",
+   "domain": "special-teams",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0591"
+  },
+  {
+   "id": "term.kick-return-touchdown",
+   "term": "Kick return touchdown",
+   "aliases": [],
+   "definition": "A touchdown scored by returning a kickoff or punt.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0594"
+  },
+  {
+   "id": "term.kick-returner",
+   "term": "Kick returner",
+   "aliases": [
+    "returner",
+    "return man",
+    "return specialist",
+    "KR",
+    "PR",
+    "punt returner"
+   ],
+   "definition": "The specialist who catches a kickoff or punt and runs it back; many teams use one player for both, others split kickoff and punt returners.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0595"
+  },
+  {
+   "id": "term.kick-six",
+   "term": "Kick six",
+   "aliases": [],
+   "definition": "A touchdown scored by returning a missed or blocked field goal (or a blocked punt, or a kickoff or punt) for a touchdown.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0596"
+  },
+  {
+   "id": "term.kicker-s-restraining-line",
+   "term": "Kicker's restraining line",
+   "aliases": [
+    "kicker's line"
+   ],
+   "definition": "The line the kicker's kicking foot may not pass when the ball is kicked: the kicking team's 35-yard line on a kickoff and its 20-yard line on a safety kick, unless moved by a penalty.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0598",
+   "variants": [
+    "NCAA rule 6-1-1 uses a single 'kicking team's restraining line' (35 on a kickoff, 20 after a safety)"
+   ]
+  },
+  {
+   "id": "term.kicking-team-alignment-on-kickoff",
+   "term": "Kicking team alignment on kickoff",
+   "aliases": [],
+   "definition": "The legal pre-kick formation: in the NFL the kicker plus ten players with a front foot on the receiving 40, with at least two players in each of three bands across the field; in the NCAA at least four kicking-team players on each side of the kicker.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0599"
+  },
+  {
+   "id": "term.kicking-team-s-restraining-line-pro",
+   "term": "Kicking team's restraining line",
+   "aliases": [
+    "alignment line at the 40"
+   ],
+   "definition": "The line at the receiving team's 40-yard line on which the ten kicking-team players other than the kicker set their front foot on an NFL kickoff.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0600"
+  },
+  {
+   "id": "term.kicking-tee",
+   "term": "Kicking tee",
+   "aliases": [
+    "tee"
+   ],
+   "definition": "The league-approved device that holds the ball for a free kick; it may not raise the ball more than one inch off the ground, and tees are not allowed on field goals or tries.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0601"
+  },
+  {
+   "id": "term.kickoff-return",
+   "term": "Kickoff return",
+   "aliases": [
+    "free kick return"
+   ],
+   "definition": "A runback after receiving a kickoff.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0603"
+  },
+  {
+   "id": "term.kickoff-safety",
+   "term": "Kickoff safety",
+   "aliases": [
+    "safety man",
+    "last man"
+   ],
+   "definition": "The deep kickoff-coverage player, often the kicker, who is the last defender if the returner breaks through the first wave.",
+   "domain": "special-teams",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0604"
+  },
+  {
+   "id": "term.kickoff-specialist-pro",
+   "term": "Kickoff specialist",
+   "aliases": [],
+   "definition": "A kicker used only on kickoffs.",
+   "domain": "special-teams",
+   "subdomain": "kicking",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0605"
+  },
+  {
+   "id": "term.kickoff-touchback",
+   "term": "Kickoff touchback",
+   "aliases": [
+    "touchback"
+   ],
+   "definition": "A kickoff that ends dead in or behind the receiving team's end zone; in the 2026 NFL rulebook the ball is spotted at the 20 if the kick touched the ground or a player in the landing zone first and otherwise at the 35, and in the NCAA at the 25.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0606",
+   "variants": [
+    "NFL 2024 rule: 30-yard line when the kick missed the landing zone (NFL.com)",
+    "NCAA: 25-yard line"
+   ]
+  },
+  {
+   "id": "term.l1-r1-punt-return-position-labels-college",
+   "term": "L1 / R1 (punt return position labels)",
+   "aliases": [
+    "L1",
+    "R1",
+    "left lane",
+    "right lane"
+   ],
+   "definition": "On one coach's punt-return scheme, positions are labeled L or R plus a number 1 to 4, counted from the outside in, naming the coverage player each blocker must align on.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "college",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0610"
+  },
+  {
+   "id": "term.landing-zone-pro",
+   "term": "Landing zone",
+   "aliases": [
+    "Landing zone"
+   ],
+   "definition": "The area from the receiving team's 20-yard line to its goal line; on an NFL kickoff a kick that lands in front of it is penalised, and a kick that lands in it must be returned or downed.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0611"
+  },
+  {
+   "id": "term.lane-responsibility",
+   "term": "Lane responsibility",
+   "aliases": [
+    "lane",
+    "lane integrity"
+   ],
+   "definition": "The assigned path a kickoff-coverage player runs downfield so no gap is left; a few players are freed from lanes as 'kamikazes'.",
+   "domain": "special-teams",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0612"
+  },
+  {
+   "id": "term.long-snapper",
+   "term": "Long snapper",
+   "aliases": [
+    "LS",
+    "deep snapper"
+   ],
+   "definition": "A specialist center who snaps the ball back to the punter or holder on kicks.",
+   "domain": "special-teams",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0640"
+  },
+  {
+   "id": "term.missed-field-goal-spot",
+   "term": "Missed field goal spot",
+   "aliases": [
+    "spot of the kick"
+   ],
+   "definition": "Where the defense takes over after a missed field goal: the spot of the kick in the NFL (or the 20 if the kick was from inside the 20), and the previous spot, the line of scrimmage, in the NCAA (or the 20 if that spot is inside the 20).",
+   "domain": "special-teams",
+   "subdomain": "fg",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0668"
+  },
+  {
+   "id": "term.muffed-punt",
+   "term": "Muffed punt",
+   "aliases": [
+    "muff",
+    "muffed kick"
+   ],
+   "definition": "A returner touches a kick without gaining possession; if he never had full possession it is a muff and not a fumble.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0680"
+  },
+  {
+   "id": "term.net-punt",
+   "term": "Net punt",
+   "aliases": [
+    "net average",
+    "net punting yardage"
+   ],
+   "definition": "Punt distance adjusted for returns, touchbacks and other outcomes.",
+   "domain": "special-teams",
+   "subdomain": "stats",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0689"
+  },
+  {
+   "id": "term.offside-on-kickoff",
+   "term": "Offside on kickoff",
+   "aliases": [
+    "offside"
+   ],
+   "definition": "A kicking or receiving player past his restraining line when the ball is kicked; five yards in both the NFL and NCAA rulebooks.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0725"
+  },
+  {
+   "id": "term.onside-kick",
+   "term": "Onside kick",
+   "aliases": [
+    "onside kick situation",
+    "onside situation"
+   ],
+   "definition": "A short free kick the kicking team tries to recover; in the NFL it must travel 10 yards unless a receiver touches it first.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0731"
+  },
+  {
+   "id": "term.operation-time",
+   "term": "Operation time",
+   "aliases": [
+    "op time",
+    "get-off time"
+   ],
+   "definition": "The time from the snap to the kick leaving the foot, which units time and drill; one coaching site lists 1.2 to 1.35 seconds for pro field goal kickers.",
+   "domain": "special-teams",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0738",
+   "variants": [
+    "Kicking System: 'Field Goals: Operation Times'",
+    "USA Football gives punt timings (1.3 seconds to catch and release on a normal punt)"
+   ]
+  },
+  {
+   "id": "term.placekicker",
+   "term": "Placekicker",
+   "aliases": [
+    "kicker",
+    "K"
+   ],
+   "definition": "The specialist who kicks field goals, extra points and kickoffs.",
+   "domain": "special-teams",
+   "subdomain": "kicking",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0802"
+  },
+  {
+   "id": "term.pooch-kick",
+   "term": "Pooch kick",
+   "aliases": [
+    "pooch kickoff"
+   ],
+   "definition": "A kick, usually a kickoff, deliberately struck short and high or with less than full force so the return team cannot get a full return; some sources also use the word for a short punt.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0825"
+  },
+  {
+   "id": "term.pooch-punt",
+   "term": "Pooch punt",
+   "aliases": [
+    "pooch",
+    "short punt"
+   ],
+   "definition": "A punt deliberately kicked short and high or softly so the returner has little or no return, often to pin the opponent deep.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0826",
+   "variants": [
+    "Wikipedia's punt article calls the quarterback quick kick a pooch punt"
+   ]
+  },
+  {
+   "id": "term.punt-coverage",
+   "term": "Punt coverage",
+   "aliases": [
+    "cover team",
+    "coverage team"
+   ],
+   "definition": "The punting team's tackle-chasing unit after the kick, led by the gunners.",
+   "domain": "special-teams",
+   "subdomain": "coverage",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0871"
+  },
+  {
+   "id": "term.punt-protection",
+   "term": "Punt protection",
+   "aliases": [
+    "protection call"
+   ],
+   "definition": "The blocking scheme that holds off the rush for the punter; the main types are spread (match-up zone) and shield.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0872"
+  },
+  {
+   "id": "term.punt-return",
+   "term": "Punt return",
+   "aliases": [],
+   "definition": "A runback after catching a punt.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0873"
+  },
+  {
+   "id": "term.punter",
+   "term": "Punter",
+   "aliases": [
+    "P"
+   ],
+   "definition": "The specialist who takes the snap and kicks the ball to the other team, usually on fourth down.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0874"
+  },
+  {
+   "id": "term.quick-kick",
+   "term": "Quick kick",
+   "aliases": [
+    "quick punt"
+   ],
+   "definition": "A surprise punt from a regular offensive formation, often by the quarterback on an early down.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0885"
+  },
+  {
+   "id": "term.receiving-team-s-restraining-line",
+   "term": "Receiving team's restraining line",
+   "aliases": [],
+   "definition": "The line the receiving team must be on or behind when the ball is kicked: its 35-yard line in the NFL dynamic kickoff, and 10 yards beyond the kicking team's line in the NCAA.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0895"
+  },
+  {
+   "id": "term.return-team-alignment-on-kickoff",
+   "term": "Return team alignment on kickoff",
+   "aliases": [],
+   "definition": "The legal receiving formation: at least nine players in the setup zone (at least five on the 35-yard restraining line, six if more than nine are in the zone), at least three outside the inbounds line on each side, and up to two returners deeper in the landing zone.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0923",
+   "variants": [
+    "NCAA: all receiving players behind the receiving restraining line (6-1-2-c-7)"
+   ]
+  },
+  {
+   "id": "term.rugby-punt",
+   "term": "Rugby punt",
+   "aliases": [
+    "rugby-style punt"
+   ],
+   "definition": "A punt kicked on the move after a running approach to the left or right, giving the punter control of direction.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-0957"
+  },
+  {
+   "id": "term.setup-zone-pro",
+   "term": "Setup zone",
+   "aliases": [
+    "set-up zone"
+   ],
+   "definition": "The 5-yard strip between the receiving team's 35 and 30-yard lines in which at least nine receiving players must line up on a kickoff or safety kick.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1010",
+   "variants": [
+    "the onside kick setup zone is a separate area, 15 yards behind the receiving restraining line (6-1-6-h)"
+   ]
+  },
+  {
+   "id": "term.shield-punt-college",
+   "term": "Shield punt",
+   "aliases": [
+    "shield formation",
+    "shield",
+    "shield blocker"
+   ],
+   "definition": "A punt formation with the linemen split wide (about 2 to 4 yards) and a wall of three blockers, the shield, standing about six yards behind them to block rushers who get through.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "college",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1015",
+   "variants": [
+    "Inside the Pylon says it is college-only"
+   ]
+  },
+  {
+   "id": "term.sky-kick",
+   "term": "Sky kick",
+   "aliases": [
+    "high kick"
+   ],
+   "definition": "A high kickoff meant to limit return yardage by forcing a shorter return.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1040"
+  },
+  {
+   "id": "term.special-teams",
+   "term": "Special teams",
+   "aliases": [
+    "kicking game",
+    "third phase"
+   ],
+   "definition": "The units on the field for kickoffs, punts, free kicks and field goal attempts, and their returns.",
+   "domain": "special-teams",
+   "subdomain": "general",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1057"
+  },
+  {
+   "id": "term.special-teams-ace-pro",
+   "term": "Special teams ace",
+   "aliases": [
+    "core special teams player",
+    "special teamer"
+   ],
+   "definition": "A roster player whose main value is on special teams, especially as a gunner or on coverage units.",
+   "domain": "special-teams",
+   "subdomain": "general",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1058"
+  },
+  {
+   "id": "term.spread-punt",
+   "term": "Spread punt",
+   "aliases": [
+    "spread formation",
+    "spread punt formation"
+   ],
+   "definition": "The standard punt formation, with the line in tight splits like a normal offensive line, wings, wide gunners and a personal protector deep, protecting with match-up zone rules.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1076",
+   "variants": [
+    "NFL teams typically use it (ITP)"
+   ]
+  },
+  {
+   "id": "term.squib-kick",
+   "term": "Squib kick",
+   "aliases": [
+    "squib"
+   ],
+   "definition": "A low kickoff that bounces along the ground, used to keep the ball away from a dangerous returner and shorten the return.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1080"
+  },
+  {
+   "id": "term.surprise-onside-kick",
+   "term": "Surprise onside kick",
+   "aliases": [
+    "surprise onside"
+   ],
+   "definition": "An onside kick tried when the receiving team is not expecting it, such as early in a game or while leading.",
+   "domain": "special-teams",
+   "subdomain": "kickoff",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1104"
+  },
+  {
+   "id": "term.touchback-on-a-punt",
+   "term": "Touchback on a punt",
+   "aliases": [
+    "punt touchback"
+   ],
+   "definition": "A punt that ends dead in or behind the receiving team's end zone, giving the receivers the ball at their 20-yard line.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1160"
+  },
+  {
+   "id": "term.two-point-conversion",
+   "term": "Two-point conversion",
+   "aliases": [
+    "2-pointer",
+    "2PT",
+    "go for two",
+    "two-point try",
+    "two-point try decision"
+   ],
+   "definition": "A try from scrimmage after a touchdown that is worth two points if the offense scores a touchdown, from the 2-yard line in the NFL and the 3-yard line in the NCAA.",
+   "domain": "special-teams",
+   "subdomain": "try",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1194"
+  },
+  {
+   "id": "term.upback",
+   "term": "Upback",
+   "aliases": [
+    "up back",
+    "personal protector",
+    "PP"
+   ],
+   "definition": "A player who lines up a few yards behind the line in punt and field goal formations, blocking rushers who get through, calling the protection and sometimes taking a direct snap on a fake; also called the personal protector.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1205",
+   "variants": [
+    "Steelers Depot and Wikipedia positions: upback = personal protector",
+    "Gridiron Strategies: PP"
+   ]
+  },
+  {
+   "id": "term.upman",
+   "term": "Upman",
+   "aliases": [
+    "upmen",
+    "up man"
+   ],
+   "definition": "On a kickoff, every receiving-team player except the one or two deep returners.",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1207"
+  },
+  {
+   "id": "term.uprights",
+   "term": "Uprights",
+   "aliases": [
+    "goalposts",
+    "posts"
+   ],
+   "definition": "The two vertical posts above the crossbar that a kick must pass between; 18 feet 6 inches apart in both the NFL and the NCAA, and the NFL uprights extend 35 feet above the crossbar.",
+   "domain": "special-teams",
+   "subdomain": "fg",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1208"
+  },
+  {
+   "id": "term.wedge-buster-pro",
+   "term": "Wedge buster",
+   "aliases": [
+    "wedge breaker"
+   ],
+   "definition": "A kickoff-coverage player whose job is to break up the return blockers' wedge or run a lane down the field.",
+   "domain": "special-teams",
+   "subdomain": "coverage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1236"
+  },
+  {
+   "id": "term.wedge-pro",
+   "term": "Wedge",
+   "aliases": [
+    "wedge block",
+    "wedge return"
+   ],
+   "definition": "A group of kickoff-return blockers who link up shoulder to shoulder in front of the returner; banned in the NFL (three or more in 2009; in the 2026 rulebook two or more within two yards moving forward together).",
+   "domain": "special-teams",
+   "subdomain": "returns",
+   "level": "pro",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1237",
+   "variants": [
+    "NFL 2009 ban: three or more blockers",
+    "2026 rulebook 6-2-1-d: two or more"
+   ]
+  },
+  {
+   "id": "term.wing-punt-team",
+   "term": "Wing (punt team)",
+   "aliases": [
+    "wingback",
+    "wing",
+    "wings"
+   ],
+   "definition": "A blocker lined up just outside the tackle on the punt and field goal units who protects the edge.",
+   "domain": "special-teams",
+   "subdomain": "punt",
+   "level": "both",
+   "ownerLeaf": "A4.5.4",
+   "factRow": "F-glossary-1249"
+  }
+ ]
+}

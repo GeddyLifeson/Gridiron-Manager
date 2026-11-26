@@ -1,0 +1,1042 @@
+{
+ "leaf": "A4.5.5",
+ "terms": [
+  {
+   "id": "term.adjusted-line-yards-pro",
+   "term": "Adjusted line yards",
+   "aliases": [
+    "ALY"
+   ],
+   "definition": "Football Outsiders' run-blocking measure that credits the offensive line more for short gains and losses and less for long runs.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0056"
+  },
+  {
+   "id": "term.adot-pro",
+   "term": "aDOT",
+   "aliases": [
+    "average depth of target",
+    "average depth of throw"
+   ],
+   "definition": "The average distance downfield of a quarterback's targets, in air yards.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0057",
+   "variants": "NGS: 'Average Intended Air Yards' and 'Average Targeted Air Yards'."
+  },
+  {
+   "id": "term.air-yards-pro",
+   "term": "Air yards",
+   "aliases": [
+    "intended air yards",
+    "completed air yards"
+   ],
+   "definition": "The distance a pass travels downfield in the air, measured from the line of scrimmage to where it is caught or aimed.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0062"
+  },
+  {
+   "id": "term.at-spotter-pro",
+   "term": "AT spotter",
+   "aliases": [
+    "booth ATC spotter",
+    "athletic trainer spotter"
+   ],
+   "definition": "A certified athletic trainer in the stadium booth who watches for injuries and can call for a player to be examined.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0078"
+  },
+  {
+   "id": "term.backed-up",
+   "term": "Backed up",
+   "aliases": [
+    "pinned deep",
+    "backed up deep"
+   ],
+   "definition": "An offense starting a possession or a down near its own goal line, with little room behind it.",
+   "domain": "situational",
+   "subdomain": "field-zone",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0088"
+  },
+  {
+   "id": "term.bench-area-pro",
+   "term": "Bench area",
+   "aliases": [
+    "team area"
+   ],
+   "definition": "The sideline zone behind the white border where a team's players, coaches and staff stand, with only credentialed people allowed.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0106"
+  },
+  {
+   "id": "term.blitz-rate-pro",
+   "term": "Blitz rate",
+   "aliases": [
+    "blitz percentage"
+   ],
+   "definition": "The share of dropbacks on which the defense blitzes, meaning it rushes more players than usual.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0113"
+  },
+  {
+   "id": "term.captains-pro",
+   "term": "Captains",
+   "aliases": [
+    "team captains"
+   ],
+   "definition": "Up to six players per team (active, inactive or honorary) named before kickoff to take part in the coin toss and speak for the team.",
+   "domain": "situational",
+   "subdomain": "decision",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0150"
+  },
+  {
+   "id": "term.coach-to-player-communication-pro",
+   "term": "Coach-to-player communication",
+   "aliases": [
+    "helmet radio",
+    "speaker in helmet",
+    "quarterback radio cutoff"
+   ],
+   "definition": "A one-way radio that lets a coach talk to one offensive player and one defensive player through a helmet speaker until the play clock hits 15 seconds or the snap.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0186"
+  },
+  {
+   "id": "term.coaches-booth-pro",
+   "term": "Coaches' booth",
+   "aliases": [
+    "coaching booth",
+    "coaches' box",
+    "booth"
+   ],
+   "definition": "The elevated room where assistant coaches and analysts watch the game and pass information to the sideline.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0188"
+  },
+  {
+   "id": "term.concussion-protocol-game-day-pro",
+   "term": "Concussion protocol (game day)",
+   "aliases": [
+    "sideline concussion protocol"
+   ],
+   "definition": "The NFL's procedure for a player hit in the head: removal for a sideline exam by team physician and UNC with video review, then locker-room exam if symptoms appear.",
+   "domain": "situational",
+   "subdomain": "medical",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0209"
+  },
+  {
+   "id": "term.cpoe-pro",
+   "term": "CPOE",
+   "aliases": [
+    "Completion Percentage Over Expected",
+    "completion percentage above expectation"
+   ],
+   "definition": "A quarterback's actual completion rate minus the rate expected from the difficulty of his throws (depth, separation, pressure and so on).",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0237",
+   "variants": "NFL Next Gen Stats calls it 'Completion Percentage Above Expectation'."
+  },
+  {
+   "id": "term.dead-zone",
+   "term": "Dead zone",
+   "aliases": [
+    "four-down territory",
+    "no man's land",
+    "fringe",
+    "fringe area"
+   ],
+   "definition": "The stretch of the opponent's half that is too far for a reliable field goal yet too close for a punt to gain much, so teams often go for it on fourth down.",
+   "domain": "situational",
+   "subdomain": "field-zone",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0263",
+   "variants": "College range can run from about the opponent's 33 to 43; shrinks as NFL kickers improve. 'Fringe' is the draft's name; sources say dead zone or four-down territory."
+  },
+  {
+   "id": "term.defer",
+   "term": "Defer",
+   "aliases": [
+    "defer to the second half"
+   ],
+   "definition": "The team that wins the opening coin toss waits until the second half to choose between receiving or kicking and which goal to defend.",
+   "domain": "situational",
+   "subdomain": "decision",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0281"
+  },
+  {
+   "id": "term.drive-success-rate-pro",
+   "term": "Drive success rate",
+   "aliases": [
+    "series success rate"
+   ],
+   "definition": "The share of drives on which the offense either gains a first down or scores.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0330"
+  },
+  {
+   "id": "term.dvoa-pro",
+   "term": "DVOA",
+   "aliases": [
+    "Defense-adjusted Value Over Average"
+   ],
+   "definition": "Football Outsiders' rating of how much better or worse a team or unit is than league average on each play, adjusted for down and distance and opponent strength.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0333"
+  },
+  {
+   "id": "term.dyar-pro",
+   "term": "DYAR",
+   "aliases": [
+    "Defense-adjusted Yards Above Replacement"
+   ],
+   "definition": "A player's total value above a replacement-level player, expressed in yards, over a season rather than per play.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0334",
+   "variants": "Earlier called DPAR (points)."
+  },
+  {
+   "id": "term.expected-points",
+   "term": "Expected points",
+   "aliases": [
+    "EP"
+   ],
+   "definition": "The average points the team with the ball can expect to score next, given down, distance, field position and time remaining.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0361",
+   "variants": "ESPN's scale runs from about minus 3 to 7."
+  },
+  {
+   "id": "term.expected-points-added",
+   "term": "Expected points added",
+   "aliases": [
+    "EPA"
+   ],
+   "definition": "The change in expected points from the start of a play to the start of the next, used to value each play.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0362"
+  },
+  {
+   "id": "term.explosive-play",
+   "term": "Explosive play",
+   "aliases": [
+    "big play",
+    "explosive pass",
+    "explosive run"
+   ],
+   "definition": "A run or pass that gains a large chunk of yards; the cutoff varies (commonly 10 or more on runs, 15 or more on passes).",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0363",
+   "variants": "4for4: 10+ rush, 15+ pass. Sumer: 15+ pass. PFF 'breakaway' run: 15+. College Football Data uses 'explosiveness' to mean average PPA on successful plays, a different measure."
+  },
+  {
+   "id": "term.first-and-ten",
+   "term": "First and ten",
+   "aliases": [
+    "1st and 10",
+    "first down and ten"
+   ],
+   "definition": "The usual first-down situation: a new series of four downs where the line to gain is 10 yards from the snap spot.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0398"
+  },
+  {
+   "id": "term.game-plan",
+   "term": "Game plan",
+   "aliases": [
+    "gameplan"
+   ],
+   "definition": "The strategy of plays a team prepares to beat the opponent it is about to face.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0449"
+  },
+  {
+   "id": "term.garbage-time",
+   "term": "Garbage time",
+   "aliases": [],
+   "definition": "The late stretch of a game that is already decided, whose yards and points are weighted less in analytics.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0453"
+  },
+  {
+   "id": "term.go-for-it",
+   "term": "Go for it",
+   "aliases": [
+    "go-for-it",
+    "going for it",
+    "fourth down conversion"
+   ],
+   "definition": "Using a fourth down for a run or pass to get a first down instead of punting or kicking a field goal.",
+   "domain": "situational",
+   "subdomain": "decision",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0459"
+  },
+  {
+   "id": "term.havoc-rate-college",
+   "term": "Havoc rate",
+   "aliases": [
+    "havoc"
+   ],
+   "definition": "The share of defensive plays that end in a tackle for loss, forced fumble, pass breakup or similar disruption.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "college",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0493"
+  },
+  {
+   "id": "term.hurry",
+   "term": "Hurry",
+   "aliases": [
+    "QB hurry",
+    "pressure"
+   ],
+   "definition": "A pass rush that does not finish in a sack but makes the quarterback throw early or move before he wants to.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0514"
+  },
+  {
+   "id": "term.intentional-fouls-to-manipulate-the-clock-pro",
+   "term": "Intentional fouls to manipulate the clock",
+   "aliases": [
+    "clock-manipulation fouls"
+   ],
+   "definition": "Committing several fouls on one down to run time off the clock is itself a foul, costing 15 yards and resetting the clock to the snap.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0567"
+  },
+  {
+   "id": "term.intentional-safety",
+   "term": "Intentional safety",
+   "aliases": [
+    "safety strategy",
+    "take a safety"
+   ],
+   "definition": "A team lets the other side score a safety on purpose, for example to run the clock out or avoid a risky punt from its own end zone.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0569"
+  },
+  {
+   "id": "term.kneel",
+   "term": "Kneel",
+   "aliases": [
+    "victory formation",
+    "take a knee"
+   ],
+   "definition": "A play where the quarterback takes the snap and kneels to end the play and keep the clock running, used by a leading team to run out the clock.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0608",
+   "variants": "victory formation"
+  },
+  {
+   "id": "term.kneel-down",
+   "term": "Kneel down",
+   "aliases": [
+    "victory formation",
+    "take a knee",
+    "kneel",
+    "genuflect offense"
+   ],
+   "definition": "A play where the quarterback takes the snap and kneels, ending the play at once with little risk so the clock keeps running.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0609"
+  },
+  {
+   "id": "term.net-yards-per-attempt-pro",
+   "term": "Net yards per attempt",
+   "aliases": [
+    "NY/A",
+    "net yards gained per passing attempt"
+   ],
+   "definition": "Passing yards minus sack yards, divided by pass attempts plus sacks.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0690",
+   "variants": "ANY/A adds 20 yards per touchdown and subtracts 45 per interception."
+  },
+  {
+   "id": "term.no-huddle",
+   "term": "No-huddle",
+   "aliases": [
+    "no-huddle offense",
+    "hurry-up offense"
+   ],
+   "definition": "An offense that lines up and snaps the ball without a full huddle, to save time or to catch the defense before it can substitute.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0700",
+   "variants": "Wikipedia separates the hurry-up no-huddle (HUNH) style from the two-minute drill, which is the clock-driven version."
+  },
+  {
+   "id": "term.open-field-yards-college",
+   "term": "Open-field yards",
+   "aliases": [
+    "open field yards"
+   ],
+   "definition": "Rushing yards gained more than 10 yards past the line of scrimmage.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "college",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0735"
+  },
+  {
+   "id": "term.overtime-coin-toss-pro",
+   "term": "Overtime coin toss",
+   "aliases": [
+    "overtime toss"
+   ],
+   "definition": "A separate coin toss at the start of overtime; the winner chooses between receiving or kicking and which goal to defend.",
+   "domain": "situational",
+   "subdomain": "decision",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0756"
+  },
+  {
+   "id": "term.passing-down",
+   "term": "Passing down",
+   "aliases": [
+    "passing downs",
+    "obvious passing down"
+   ],
+   "definition": "A down with enough yardage to go that the offense is expected to pass: second-and-7 or 8 and longer, or third or fourth down with 5 or more yards.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0773",
+   "variants": "FSH: second-and-7+; CFBD: second-and-8+."
+  },
+  {
+   "id": "term.period-extension-pro",
+   "term": "Period extension",
+   "aliases": [
+    "untimed down",
+    "extra down at end of period"
+   ],
+   "definition": "One extra untimed down given at the end of a period or half when the defense commits an accepted live-ball foul on the last play, among other cases.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0786"
+  },
+  {
+   "id": "term.points-per-drive",
+   "term": "Points per drive",
+   "aliases": [
+    "PPD"
+   ],
+   "definition": "Points scored divided by the number of drives.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0824",
+   "variants": "4for4 leaves out drives that end in kneel-downs."
+  },
+  {
+   "id": "term.power-success-college",
+   "term": "Power success",
+   "aliases": [
+    "power success rate"
+   ],
+   "definition": "The share of runs on third or fourth down with two or fewer yards to go that get a first down or touchdown.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "college",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0840"
+  },
+  {
+   "id": "term.press-box",
+   "term": "Press box",
+   "aliases": [],
+   "definition": "The elevated media area of the stadium, where reporters and broadcasters work.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0848"
+  },
+  {
+   "id": "term.pressure-rate-pro",
+   "term": "Pressure rate",
+   "aliases": [
+    "pressure percentage"
+   ],
+   "definition": "The share of a quarterback's dropbacks on which the defense hurries, hits or sacks him.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0849",
+   "variants": "PFF defines 'under pressure' as any time the passer is disturbed from his normal throwing motion."
+  },
+  {
+   "id": "term.proe-pro",
+   "term": "PROE",
+   "aliases": [
+    "pass rate over expected"
+   ],
+   "definition": "How much more (or less) often a team passes than a model expects for the situation.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0862"
+  },
+  {
+   "id": "term.red-zone",
+   "term": "Red zone",
+   "aliases": [
+    "scoring zone",
+    "red area",
+    "inside the 20"
+   ],
+   "definition": "The stretch of field from the defense's 20-yard line to its goal line, used mainly to track how well offenses finish drives.",
+   "domain": "situational",
+   "subdomain": "field-zone",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0903"
+  },
+  {
+   "id": "term.red-zone-efficiency",
+   "term": "Red zone efficiency",
+   "aliases": [
+    "red zone percentage",
+    "red zone touchdown rate"
+   ],
+   "definition": "The share of a team's trips inside the 20 that end in a touchdown.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0904"
+  },
+  {
+   "id": "term.replacement-level",
+   "term": "Replacement level",
+   "aliases": [
+    "replacement player"
+   ],
+   "definition": "The baseline of what a freely available bench-level player would produce, against which players are measured.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0912"
+  },
+  {
+   "id": "term.sack-rate-pro",
+   "term": "Sack rate",
+   "aliases": [
+    "sack percentage"
+   ],
+   "definition": "How often a quarterback's dropbacks end in a sack.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0970"
+  },
+  {
+   "id": "term.second-and-long",
+   "term": "Second and long",
+   "aliases": [
+    "2nd and long"
+   ],
+   "definition": "Second down with a lot of yardage still needed for the line to gain; analytics sources set the cutoff at 7 or 8 yards.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0995",
+   "variants": "Football Study Hall counts 'second-and-7 or more' as a passing down; College Football Data counts 'second-and-8 or longer'."
+  },
+  {
+   "id": "term.second-and-short",
+   "term": "Second and short",
+   "aliases": [
+    "2nd and short"
+   ],
+   "definition": "Second down needing only a few yards; analytics sources class second down as a standard down when seven or fewer yards remain.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0996"
+  },
+  {
+   "id": "term.second-level-yards-college",
+   "term": "Second-level yards",
+   "aliases": [
+    "second level yards"
+   ],
+   "definition": "Rushing yards gained between 5 and 10 yards past the line of scrimmage.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "college",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-0998"
+  },
+  {
+   "id": "term.series",
+   "term": "Series",
+   "aliases": [
+    "series of downs"
+   ],
+   "definition": "The four consecutive downs an offense gets to reach the line to gain, starting at first down.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1005"
+  },
+  {
+   "id": "term.short-yardage",
+   "term": "Short yardage",
+   "aliases": [
+    "short-yardage situation",
+    "power situation"
+   ],
+   "definition": "A down where only a yard or two is needed for a first down or touchdown, usually met with power runs.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1019"
+  },
+  {
+   "id": "term.sideline-viewing-system-pro",
+   "term": "Sideline Viewing System",
+   "aliases": [
+    "SVS",
+    "sideline tablet",
+    "sideline still photos"
+   ],
+   "definition": "The NFL's team-sideline system (now Microsoft Surface PCs) that lets coaches and players review plays and data instead of the old paper photos.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1026"
+  },
+  {
+   "id": "term.signals-pro",
+   "term": "Signals",
+   "aliases": [
+    "signal",
+    "signal call"
+   ],
+   "definition": "The numbers and coded words called by the quarterback in the huddle or at the line of scrimmage before each play; defenses call them too, usually through a linebacker.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1027"
+  },
+  {
+   "id": "term.six-foot-white-border-pro",
+   "term": "Six-foot white border",
+   "aliases": [
+    "white border",
+    "solid white border"
+   ],
+   "definition": "The solid white band six feet wide around the field; only officials may stand inside it while play is on.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1036"
+  },
+  {
+   "id": "term.snap-count-playing-time-pro",
+   "term": "Snap count (playing time)",
+   "aliases": [
+    "snaps"
+   ],
+   "definition": "The number of plays a player is on the field, counted as snaps; contracts and rules use percentages of a team's snaps.",
+   "domain": "situational",
+   "subdomain": "usage",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1050"
+  },
+  {
+   "id": "term.spike",
+   "term": "Spike",
+   "aliases": [
+    "clock play",
+    "clock spike",
+    "spike the ball"
+   ],
+   "definition": "The quarterback immediately throws the ball into the ground after the snap to stop the clock, at the cost of a down.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1063"
+  },
+  {
+   "id": "term.standard-down",
+   "term": "Standard down",
+   "aliases": [
+    "standard downs"
+   ],
+   "definition": "A down where the distance is manageable (first down, or second-and-7 or fewer, third-and-4 or fewer) so the offense may run or pass.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1083",
+   "variants": "College Football Data: passing downs are second-and-8+ and third or fourth-and-5+; everything else is standard."
+  },
+  {
+   "id": "term.stuff-rate-college",
+   "term": "Stuff rate",
+   "aliases": [
+    "stuffed rate"
+   ],
+   "definition": "The share of runs stopped at or behind the line of scrimmage.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "college",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1097"
+  },
+  {
+   "id": "term.success-rate",
+   "term": "Success rate",
+   "aliases": [
+    "play success rate"
+   ],
+   "definition": "The share of plays judged successful; the test differs by publisher (positive EPA, or gaining a set share of the needed yards).",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1101",
+   "variants": "Football Outsiders style: 40% of needed yards on first down, 60% on second, 100% on third or fourth. Sumer and 4for4: positive EPA."
+  },
+  {
+   "id": "term.target",
+   "term": "Target",
+   "aliases": [
+    "targeted"
+   ],
+   "definition": "A pass thrown toward a given receiver, counted whether or not it is caught.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1124"
+  },
+  {
+   "id": "term.ten-second-runoff-pro",
+   "term": "Ten-second runoff",
+   "aliases": [
+    "10-second runoff"
+   ],
+   "definition": "After the two-minute warning, certain clock-saving acts by the offense (or some replay and nullified-foul cases) cost 10 seconds off the game clock; the offense may burn a timeout instead.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1133"
+  },
+  {
+   "id": "term.third-and-long",
+   "term": "Third and long",
+   "aliases": [
+    "3rd and long",
+    "obvious passing down"
+   ],
+   "definition": "Third down with many yards to go, where a conversion usually needs a pass; analytics sources start the passing-down label at about five yards.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1136"
+  },
+  {
+   "id": "term.third-and-short",
+   "term": "Third and short",
+   "aliases": [
+    "3rd and short"
+   ],
+   "definition": "Third down needing only about a yard or two, where one play can move the chains.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1137"
+  },
+  {
+   "id": "term.three-and-out",
+   "term": "Three-and-out",
+   "aliases": [
+    "three and out",
+    "3-and-out"
+   ],
+   "definition": "A drive that ends in a punt after three plays without a first down.",
+   "domain": "situational",
+   "subdomain": "drive",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1139",
+   "variants": "Canadian football: 'two and out'."
+  },
+  {
+   "id": "term.time-of-possession",
+   "term": "Time of possession",
+   "aliases": [
+    "TOP",
+    "TOP advantage"
+   ],
+   "definition": "How long each team holds the ball; the two shares add up to the game's playing time.",
+   "domain": "situational",
+   "subdomain": "drive",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1147"
+  },
+  {
+   "id": "term.time-to-throw-pro",
+   "term": "Time to throw",
+   "aliases": [
+    "TTT",
+    "time to release"
+   ],
+   "definition": "Seconds from the snap to the release of a pass, averaged over attempts (sacks left out in Next Gen Stats).",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1148",
+   "variants": "PFF's closest stat is 'time in pocket', described as snap to throw."
+  },
+  {
+   "id": "term.timeouts-per-half",
+   "term": "Timeouts per half",
+   "aliases": [
+    "team timeouts"
+   ],
+   "definition": "Each NFL team gets three charged timeouts in each half, and two in a regular-season overtime period.",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1150",
+   "variants": "Postseason overtime: three per half of overtime."
+  },
+  {
+   "id": "term.total-offense",
+   "term": "Total offense",
+   "aliases": [
+    "total yards"
+   ],
+   "definition": "A team's or player's rushing yards plus passing yards (in the NFL, less sack yards for the passer).",
+   "domain": "situational",
+   "subdomain": "drive",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1156"
+  },
+  {
+   "id": "term.total-qbr-pro",
+   "term": "Total QBR",
+   "aliases": [
+    "QBR",
+    "Total Quarterback Rating"
+   ],
+   "definition": "ESPN's 0-100 quarterback rating built from every play's expected points added, giving the quarterback credit for passes, runs, sacks, turnovers and penalties.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1157"
+  },
+  {
+   "id": "term.turnover",
+   "term": "Turnover",
+   "aliases": [
+    "giveaway",
+    "takeaway",
+    "turnover differential"
+   ],
+   "definition": "The offense loses the ball to the defense by interception or fumble.",
+   "domain": "situational",
+   "subdomain": "drive",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1180",
+   "variants": "Wikipedia also uses 'turnover' loosely for a turnover on downs."
+  },
+  {
+   "id": "term.turnover-on-downs",
+   "term": "Turnover on downs",
+   "aliases": [
+    "turn the ball over on downs"
+   ],
+   "definition": "The offense uses all four downs without a first down or score, and the other team takes the ball where the last play ended.",
+   "domain": "situational",
+   "subdomain": "down-distance",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1181"
+  },
+  {
+   "id": "term.two-minute-warning",
+   "term": "Two-minute warning",
+   "aliases": [
+    "two-minute timeout"
+   ],
+   "definition": "An automatic timeout in the second and fourth quarters when the clock reaches two minutes (after the play in progress).",
+   "domain": "situational",
+   "subdomain": "clock",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1192",
+   "variants": "The NCAA has called its version the two-minute timeout since 2024."
+  },
+  {
+   "id": "term.win-probability",
+   "term": "Win probability",
+   "aliases": [
+    "WP"
+   ],
+   "definition": "An estimate of a team's chance to win at a given game state, built from how teams in the same spot did historically.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1247"
+  },
+  {
+   "id": "term.win-probability-added",
+   "term": "Win probability added",
+   "aliases": [
+    "WPA"
+   ],
+   "definition": "How much a play changed a team's chance to win, from before to after the play.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "both",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1248"
+  },
+  {
+   "id": "term.yards-per-route-run-pro",
+   "term": "Yards per route run",
+   "aliases": [
+    "YPRR"
+   ],
+   "definition": "Receiving yards divided by the number of pass routes the player ran.",
+   "domain": "situational",
+   "subdomain": "analytics",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1264"
+  },
+  {
+   "id": "term.yellow-line-pro",
+   "term": "Yellow line",
+   "aliases": [
+    "coaches' line",
+    "restraining line"
+   ],
+   "definition": "A solid yellow line six feet behind the white border in the bench area; players (except one charting the game) stay behind it, leaving the strip for coaches.",
+   "domain": "situational",
+   "subdomain": "sideline",
+   "level": "pro",
+   "ownerLeaf": "A4.5.5",
+   "factRow": "F-glossary-1266",
+   "variants": "A broken yellow line also runs along the sideline outside the bench areas."
+  }
+ ]
+}

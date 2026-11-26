@@ -1,0 +1,1194 @@
+{
+ "leaf": "A4.5.9",
+ "terms": [
+  {
+   "id": "term.all-22",
+   "term": "All-22",
+   "aliases": [
+    "All-22 film",
+    "coaches film",
+    "coaches tape"
+   ],
+   "definition": "Coaches' game film shot so that all 22 players on the field can be seen at the same time, instead of the broadcast view that follows the ball.",
+   "domain": "scouting",
+   "subdomain": "film",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0064"
+  },
+  {
+   "id": "term.alligator-arms",
+   "term": "Alligator arms",
+   "aliases": [
+    "T-rex arms",
+    "T. rex arms"
+   ],
+   "definition": "A receiver who will not extend his arms for a catch for fear of contact; also called T-rex arms.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0065"
+  },
+  {
+   "id": "term.anchor",
+   "term": "Anchor",
+   "aliases": [],
+   "definition": "A lineman's ability to stand his ground and not be moved back, especially against a bull rush.",
+   "domain": "scouting",
+   "subdomain": "technique",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0067"
+  },
+  {
+   "id": "term.anticipation",
+   "term": "Anticipation",
+   "aliases": [],
+   "definition": "Throwing or reacting before the play shows itself, such as a quarterback releasing the ball before the receiver comes out of his break.",
+   "domain": "scouting",
+   "subdomain": "mental",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0070"
+  },
+  {
+   "id": "term.arm-talent",
+   "term": "Arm talent",
+   "aliases": [],
+   "definition": "A quarterback's overall throwing ability: arm strength, quick release, accuracy, touch and the ability to throw from different platforms.",
+   "domain": "scouting",
+   "subdomain": "quarterback",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0074"
+  },
+  {
+   "id": "term.ball-placement",
+   "term": "Ball placement",
+   "aliases": [],
+   "definition": "Putting the pass where only the receiver can get it and where he can keep running, such as the outside shoulder or in stride.",
+   "domain": "scouting",
+   "subdomain": "quarterback",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0093"
+  },
+  {
+   "id": "term.ball-skills",
+   "term": "Ball skills",
+   "aliases": [],
+   "definition": "A defender's or receiver's ability to find, track and play the ball in the air, including high-pointing and making interceptions or catches.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0095"
+  },
+  {
+   "id": "term.bend",
+   "term": "Bend",
+   "aliases": [
+    "natural bender",
+    "knee bend",
+    "bend and burst"
+   ],
+   "definition": "The ability to flex the ankles, knees and hips so a player can stay low, keep leverage and turn the corner; linemen bend at the knees rather than the waist.",
+   "domain": "scouting",
+   "subdomain": "body",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0108"
+  },
+  {
+   "id": "term.body-catcher",
+   "term": "Body catcher",
+   "aliases": [],
+   "definition": "A receiver who traps the ball against his body instead of catching it with his hands.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0124"
+  },
+  {
+   "id": "term.bubble",
+   "term": "Bubble",
+   "aliases": [
+    "bubble butt",
+    "big bubble"
+   ],
+   "definition": "Scouts' word for a prospect's rear end; a big bubble means a powerful lower body.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0134"
+  },
+  {
+   "id": "term.burp-the-baby",
+   "term": "Burp the baby",
+   "aliases": [],
+   "definition": "A quarterback who pats the ball too long before throwing, so a defensive back jumps the route.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0139"
+  },
+  {
+   "id": "term.burst",
+   "term": "Burst",
+   "aliases": [
+    "bend and burst",
+    "get-off",
+    "explosiveness"
+   ],
+   "definition": "Sudden acceleration from a standing start or a cut, the speed that closes the gap.",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0140"
+  },
+  {
+   "id": "term.bust",
+   "term": "Bust",
+   "aliases": [],
+   "definition": "A drafted player, usually a high pick, who fails to meet the expectations of the team that drafted him.",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0141"
+  },
+  {
+   "id": "term.camp-body",
+   "term": "Camp body",
+   "aliases": [],
+   "definition": "A prospect or player with no long-term NFL future who fills out a training camp roster.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0144"
+  },
+  {
+   "id": "term.catch-tackler",
+   "term": "Catch tackler",
+   "aliases": [
+    "catch-tackler"
+   ],
+   "definition": "A defender who lets the ball carrier run into him and hopes he goes down, instead of striking through him.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0156"
+  },
+  {
+   "id": "term.ceiling",
+   "term": "Ceiling",
+   "aliases": [
+    "Upside",
+    "high ceiling"
+   ],
+   "definition": "The best level a prospect could realistically reach if he develops fully; a high ceiling usually means he is not yet a finished player. Also called upside.",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0158"
+  },
+  {
+   "id": "term.change-of-direction",
+   "term": "Change of direction",
+   "aliases": [
+    "COD",
+    "agility"
+   ],
+   "definition": "A player's ability to switch directions sharply without losing balance or speed; the 3-cone and shuttle drills test it.",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0166"
+  },
+  {
+   "id": "term.character",
+   "term": "Character",
+   "aliases": [
+    "off-field issues",
+    "character concerns",
+    "life-skills issues"
+   ],
+   "definition": "A catch-all for a prospect's off-field conduct and personal qualities, which teams research before the draft.",
+   "domain": "scouting",
+   "subdomain": "makeup",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0169"
+  },
+  {
+   "id": "term.click-and-close",
+   "term": "Click and close",
+   "aliases": [],
+   "definition": "A defensive back's ability to plant, change direction and rapidly close on the ball.",
+   "domain": "scouting",
+   "subdomain": "defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0180"
+  },
+  {
+   "id": "term.coachability",
+   "term": "Coachability",
+   "aliases": [],
+   "definition": "How well a player accepts and applies coaching.",
+   "domain": "scouting",
+   "subdomain": "makeup",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0187"
+  },
+  {
+   "id": "term.college-advisory-committee-pro",
+   "term": "College Advisory Committee",
+   "aliases": [
+    "CAC"
+   ],
+   "definition": "The league panel that gives underclassmen a free evaluation: a first-round grade, a second-round grade, or advice to stay in school.",
+   "domain": "scouting",
+   "subdomain": "eligibility",
+   "level": "pro",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0192"
+  },
+  {
+   "id": "term.combine-medical-pro",
+   "term": "Combine medical",
+   "aliases": [],
+   "definition": "The medical and injury exam every combine invitee goes through, which teams treat as the most important part of the event.",
+   "domain": "scouting",
+   "subdomain": "medical",
+   "level": "pro",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0196"
+  },
+  {
+   "id": "term.contact-balance",
+   "term": "Contact balance",
+   "aliases": [
+    "balance"
+   ],
+   "definition": "A runner's ability to stay on his feet and keep moving after being hit.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0215"
+  },
+  {
+   "id": "term.contested-catch",
+   "term": "Contested catch",
+   "aliases": [
+    "catch in traffic",
+    "contested-catch ability"
+   ],
+   "definition": "A catch made while a defender is in position to break it up; scouts rate how often a receiver wins these.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0219"
+  },
+  {
+   "id": "term.cow-on-ice",
+   "term": "Cow on ice",
+   "aliases": [],
+   "definition": "Slang for a player with poor balance and clumsy, awkward footwork.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0236"
+  },
+  {
+   "id": "term.dancing-bear",
+   "term": "Dancing bear",
+   "aliases": [],
+   "definition": "A very large lineman who moves with surprising agility and good feet.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0253"
+  },
+  {
+   "id": "term.day-one-starter",
+   "term": "Day-one starter",
+   "aliases": [
+    "plug and play",
+    "Day 1 starter",
+    "immediate starter"
+   ],
+   "definition": "A rookie advanced enough in technique or talent to start from his first season (also called plug and play).",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0255"
+  },
+  {
+   "id": "term.declare-pro",
+   "term": "Declare",
+   "aliases": [],
+   "definition": "A college underclassman's formal notice that he is entering the NFL draft, which ends his remaining college eligibility.",
+   "domain": "scouting",
+   "subdomain": "eligibility",
+   "level": "pro",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0264"
+  },
+  {
+   "id": "term.downhill-runner",
+   "term": "Downhill runner",
+   "aliases": [
+    "north-south runner",
+    "downhill"
+   ],
+   "definition": "A back who attacks upfield quickly with forward lean and no sideways hesitation (north-south runner).",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0323"
+  },
+  {
+   "id": "term.durability",
+   "term": "Durability",
+   "aliases": [],
+   "definition": "How likely a player is to stay healthy and available; scouts and coaches mark injury-prone players down.",
+   "domain": "scouting",
+   "subdomain": "medical",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0332"
+  },
+  {
+   "id": "term.early-entrant-pro",
+   "term": "Early entrant",
+   "aliases": [
+    "underclassman",
+    "early declare"
+   ],
+   "definition": "A college player who enters the NFL draft before using up his college eligibility, with league approval.",
+   "domain": "scouting",
+   "subdomain": "eligibility",
+   "level": "pro",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0338"
+  },
+  {
+   "id": "term.extra-gear",
+   "term": "Extra gear",
+   "aliases": [
+    "go-home gear"
+   ],
+   "definition": "A top speed or burst a player shows only when he needs it, so he pulls away from coverage after seeming to have reached his limit.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0365"
+  },
+  {
+   "id": "term.eyes",
+   "term": "Eyes",
+   "aliases": [
+    "eye discipline"
+   ],
+   "definition": "Where a quarterback or defender looks; quarterbacks use their eyes to read the field or to manipulate safeties, and keeping eyes up under pressure is a plus.",
+   "domain": "scouting",
+   "subdomain": "mental",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0367"
+  },
+  {
+   "id": "term.first-step",
+   "term": "First step",
+   "aliases": [
+    "get-off",
+    "suddenness"
+   ],
+   "definition": "How quick and how correct a player's first move is after the snap or after seeing the play.",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0401"
+  },
+  {
+   "id": "term.flexibility",
+   "term": "Flexibility",
+   "aliases": [],
+   "definition": "How freely a player's joints move; scouts look for loose hips and knee bend, and stiffness shows up as linear or tight movement.",
+   "domain": "scouting",
+   "subdomain": "body",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0410"
+  },
+  {
+   "id": "term.floor",
+   "term": "Floor",
+   "aliases": [
+    "high floor"
+   ],
+   "definition": "The least a team can reasonably expect from a prospect; a high floor means a safe pick who is unlikely to flop.",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0412"
+  },
+  {
+   "id": "term.football-iq",
+   "term": "Football IQ",
+   "aliases": [
+    "cerebral",
+    "football intelligence",
+    "high football IQ"
+   ],
+   "definition": "How well a player understands the game and applies it: reading plays, processing quickly, adjusting. Often grouped with instincts and the word cerebral.",
+   "domain": "scouting",
+   "subdomain": "mental",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0413"
+  },
+  {
+   "id": "term.footwork",
+   "term": "Footwork",
+   "aliases": [],
+   "definition": "How a player's feet move and set, such as a quarterback's drops and balance or a lineman's steps and base.",
+   "domain": "scouting",
+   "subdomain": "technique",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0415"
+  },
+  {
+   "id": "term.freak",
+   "term": "Freak",
+   "aliases": [
+    "freakish athlete",
+    "freakishly athletic"
+   ],
+   "definition": "A prospect whose athleticism is far beyond what is normal for his position.",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0431"
+  },
+  {
+   "id": "term.functional-strength",
+   "term": "Functional strength",
+   "aliases": [
+    "field strength",
+    "play strength"
+   ],
+   "definition": "Strength that shows up on the field, as opposed to weight-room numbers such as combine bench reps.",
+   "domain": "scouting",
+   "subdomain": "body",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0444"
+  },
+  {
+   "id": "term.game-manager",
+   "term": "Game manager",
+   "aliases": [],
+   "definition": "A quarterback who makes few mistakes for a team that relies on its defense and running game to win.",
+   "domain": "scouting",
+   "subdomain": "labels",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0448"
+  },
+  {
+   "id": "term.glass-eater",
+   "term": "Glass eater",
+   "aliases": [
+    "glass-eater"
+   ],
+   "definition": "Slang for an offensive lineman who plays with a relentless, vicious mentality; 'needs some glass in his diet' means he plays soft.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0458"
+  },
+  {
+   "id": "term.grade",
+   "term": "Grade",
+   "aliases": [],
+   "definition": "A scout's or team's rating of a prospect, either a numeric score on his traits or a tier that says where he should be drafted (for example a first-round grade).",
+   "domain": "scouting",
+   "subdomain": "grading",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0465"
+  },
+  {
+   "id": "term.hand-placement",
+   "term": "Hand placement",
+   "aliases": [],
+   "definition": "Where a blocker or defender puts his hands on the opponent; blockers want them inside the defender's shoulders.",
+   "domain": "scouting",
+   "subdomain": "technique",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0483"
+  },
+  {
+   "id": "term.hand-usage",
+   "term": "Hand usage",
+   "aliases": [
+    "hand use",
+    "active hands",
+    "violent hands"
+   ],
+   "definition": "How well a lineman or defender uses his hands: timing, placement and strength of strikes, grabs and sheds.",
+   "domain": "scouting",
+   "subdomain": "technique",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0484"
+  },
+  {
+   "id": "term.hands-catcher",
+   "term": "Hands catcher",
+   "aliases": [],
+   "definition": "A receiver who extends his arms and catches the ball away from his body with his hands.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0487"
+  },
+  {
+   "id": "term.high-point",
+   "term": "High-point",
+   "aliases": [
+    "high-pointing",
+    "high-point catcher",
+    "highest point"
+   ],
+   "definition": "Catching or breaking up a pass at its highest reachable point, usually with a jump, above the defender.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0499"
+  },
+  {
+   "id": "term.hip-fluidity",
+   "term": "Hip fluidity",
+   "aliases": [
+    "fluid hips",
+    "oily hips",
+    "loose hips"
+   ],
+   "definition": "Loose, flexible hips that let a player turn and change direction smoothly without losing speed; the opposite is stiff or tight hips.",
+   "domain": "scouting",
+   "subdomain": "body",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0501",
+   "variants": "fluid hips; oily hips; tight hips (opposite); linear (Defector's opposite)"
+  },
+  {
+   "id": "term.instincts",
+   "term": "Instincts",
+   "aliases": [
+    "good instincts"
+   ],
+   "definition": "A natural feel for where the play is going and how to react to it quickly.",
+   "domain": "scouting",
+   "subdomain": "mental",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0565"
+  },
+  {
+   "id": "term.intangibles",
+   "term": "Intangibles",
+   "aliases": [],
+   "definition": "A prospect's non-physical qualities such as leadership, toughness, work habits and competitiveness.",
+   "domain": "scouting",
+   "subdomain": "makeup",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0566"
+  },
+  {
+   "id": "term.joker",
+   "term": "Joker",
+   "aliases": [],
+   "definition": "A stand-up end or strong-side linebacker who rushes the passer; Fox also notes it can describe a tight end as a moveable chess piece.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0584"
+  },
+  {
+   "id": "term.just-a-guy",
+   "term": "Just a guy",
+   "aliases": [
+    "JAG",
+    "J.A.G."
+   ],
+   "definition": "An ordinary player with no standout trait, not expected to be more than average at his level.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0589"
+  },
+  {
+   "id": "term.length",
+   "term": "Length",
+   "aliases": [],
+   "definition": "Long arms and overall reach for his position; teams measure arm length and prize it in pass rushers, tackles and cornerbacks.",
+   "domain": "scouting",
+   "subdomain": "body",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0623"
+  },
+  {
+   "id": "term.long-speed",
+   "term": "Long speed",
+   "aliases": [
+    "straight-line speed",
+    "deep speed"
+   ],
+   "definition": "Top running speed over a long distance (straight-line speed), as opposed to quickness over a few steps.",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0641"
+  },
+  {
+   "id": "term.measurables",
+   "term": "Measurables",
+   "aliases": [],
+   "definition": "The numbers recorded at the combine and pro days: height, weight, arm length, hand size, and times and jumps.",
+   "domain": "scouting",
+   "subdomain": "testing",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0656"
+  },
+  {
+   "id": "term.motor",
+   "term": "Motor",
+   "aliases": [
+    "high motor",
+    "high-motor guy"
+   ],
+   "definition": "How hard and how long a player keeps playing at full effort on every snap.",
+   "domain": "scouting",
+   "subdomain": "effort",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0678"
+  },
+  {
+   "id": "term.overachiever",
+   "term": "Overachiever",
+   "aliases": [
+    "underachiever"
+   ],
+   "definition": "A player with limited athleticism who is productive through work ethic and intangibles; the underachiever has more talent than output.",
+   "domain": "scouting",
+   "subdomain": "labels",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0755"
+  },
+  {
+   "id": "term.pad-level",
+   "term": "Pad level",
+   "aliases": [
+    "plays too high",
+    "plays with his pads too high",
+    "playing under your pads"
+   ],
+   "definition": "How low a player keeps his shoulder pads; staying low wins leverage and playing too upright loses it.",
+   "domain": "scouting",
+   "subdomain": "technique",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0760"
+  },
+  {
+   "id": "term.pass-protection-running-back",
+   "term": "Pass protection (running back)",
+   "aliases": [],
+   "definition": "A back's ability to block rushers and pick up blitzes to protect the quarterback.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0769"
+  },
+  {
+   "id": "term.phone-booth",
+   "term": "Phone booth",
+   "aliases": [],
+   "definition": "An offensive lineman with below-average feet who is effective only in tight spaces.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0794"
+  },
+  {
+   "id": "term.play-speed",
+   "term": "Play speed",
+   "aliases": [
+    "plays faster than his 40 time",
+    "faster on film",
+    "game speed"
+   ],
+   "definition": "How fast a player looks in real game action compared with his timed speed (plays faster than his 40 time).",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0807"
+  },
+  {
+   "id": "term.plays-until-he-hears-glass-break",
+   "term": "Plays until he hears glass break",
+   "aliases": [],
+   "definition": "A phrase for a player who keeps playing until the whistle.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0815"
+  },
+  {
+   "id": "term.pocket-presence",
+   "term": "Pocket presence",
+   "aliases": [
+    "pocket feel",
+    "pocket poise"
+   ],
+   "definition": "A quarterback's feel for pressure that lets him move within the pocket, step up or slide, and keep his eyes downfield.",
+   "domain": "scouting",
+   "subdomain": "quarterback",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0821"
+  },
+  {
+   "id": "term.processing",
+   "term": "Processing",
+   "aliases": [
+    "mental processing",
+    "processing speed"
+   ],
+   "definition": "How quickly a player takes in what he sees, recognizes it and reacts; for quarterbacks it covers reading the defense before and after the snap.",
+   "domain": "scouting",
+   "subdomain": "mental",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0860"
+  },
+  {
+   "id": "term.production",
+   "term": "Production",
+   "aliases": [],
+   "definition": "What a player actually did in games (statistics and results), as opposed to physical traits and testing numbers.",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0861"
+  },
+  {
+   "id": "term.punch",
+   "term": "Punch",
+   "aliases": [
+    "arm punch",
+    "good punch",
+    "hand punch"
+   ],
+   "definition": "A lineman's quick strike with both hands into the opponent's chest to stop his charge or move him back.",
+   "domain": "scouting",
+   "subdomain": "technique",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0869"
+  },
+  {
+   "id": "term.quicker-than-fast",
+   "term": "Quicker than fast",
+   "aliases": [],
+   "definition": "A player who is sharp in short areas but lacks long-distance speed (the opposite is a straight-line runner).",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0886"
+  },
+  {
+   "id": "term.read-and-react",
+   "term": "Read and react",
+   "aliases": [
+    "key and diagnose",
+    "read",
+    "keys"
+   ],
+   "definition": "Reading the keys of a developing play, diagnosing it and reacting; also called keying and diagnosing.",
+   "domain": "scouting",
+   "subdomain": "mental",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0890"
+  },
+  {
+   "id": "term.recovery-speed",
+   "term": "Recovery speed",
+   "aliases": [],
+   "definition": "How quickly a defensive back closes back on the ball or receiver after falling behind.",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0897"
+  },
+  {
+   "id": "term.relative-athletic-score",
+   "term": "Relative Athletic Score",
+   "aliases": [
+    "RAS"
+   ],
+   "definition": "A 0 to 10 score of how a prospect's combine or pro day measurements compare with others at his position since 1987.",
+   "domain": "scouting",
+   "subdomain": "metrics",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0908"
+  },
+  {
+   "id": "term.release-package",
+   "term": "Release package",
+   "aliases": [
+    "release"
+   ],
+   "definition": "How a receiver gets off the line of scrimmage, especially against press coverage; usually just called his release.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0909"
+  },
+  {
+   "id": "term.return-to-school",
+   "term": "Return to school",
+   "aliases": [],
+   "definition": "A college underclassman's decision not to declare and to play another college season.",
+   "domain": "scouting",
+   "subdomain": "eligibility",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0926"
+  },
+  {
+   "id": "term.road-grader",
+   "term": "Road grader",
+   "aliases": [],
+   "definition": "A lineman who drives defenders off the ball in the running game.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0934"
+  },
+  {
+   "id": "term.route-running",
+   "term": "Route running",
+   "aliases": [],
+   "definition": "A receiver's skill at running precise routes, selling fakes and making sharp breaks to get open.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0954"
+  },
+  {
+   "id": "term.run-support",
+   "term": "Run support",
+   "aliases": [],
+   "definition": "A defensive back's or safety's willingness and ability to come up and help stop the run.",
+   "domain": "scouting",
+   "subdomain": "defense",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0961"
+  },
+  {
+   "id": "term.scheme-fit",
+   "term": "Scheme fit",
+   "aliases": [],
+   "definition": "How well a player's skills match the blocking, coverage or other system a particular team runs.",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-0979"
+  },
+  {
+   "id": "term.separation",
+   "term": "Separation",
+   "aliases": [],
+   "definition": "The space a receiver gets between himself and the defender covering him.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1004"
+  },
+  {
+   "id": "term.short-area-quickness",
+   "term": "Short-area quickness",
+   "aliases": [],
+   "definition": "How fast a player can accelerate and change direction in a few yards, which matters more for linemen and slot players than 40-yard speed.",
+   "domain": "scouting",
+   "subdomain": "athleticism",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1018"
+  },
+  {
+   "id": "term.sleeper",
+   "term": "Sleeper",
+   "aliases": [],
+   "definition": "A prospect who is expected to be picked later than his ability deserves, or who gets little attention but may outplay his draft slot.",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1042"
+  },
+  {
+   "id": "term.space-player",
+   "term": "Space player",
+   "aliases": [],
+   "definition": "A skill player who excels in open areas through speed and athleticism.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1054"
+  },
+  {
+   "id": "term.special-eligibility-pro",
+   "term": "Special eligibility",
+   "aliases": [],
+   "definition": "League approval for a player who is not yet draft-eligible under the normal rule, such as an underclassman petitioning to enter; the player must meet the three-year rule and give up his college eligibility.",
+   "domain": "scouting",
+   "subdomain": "eligibility",
+   "level": "pro",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1056"
+  },
+  {
+   "id": "term.speed-score",
+   "term": "Speed score",
+   "aliases": [
+    "weight-adjusted 40"
+   ],
+   "definition": "A metric for running backs that scales 40-yard time by weight, using (weight x 200) / (40 time to the fourth power); a heavy back with a fast time scores high.",
+   "domain": "scouting",
+   "subdomain": "metrics",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1061"
+  },
+  {
+   "id": "term.tape",
+   "term": "Tape",
+   "aliases": [
+    "film",
+    "game tape",
+    "game film"
+   ],
+   "definition": "The recorded video of a player's games that scouts and coaches study to judge him; 'film' is the older word and means the same.",
+   "domain": "scouting",
+   "subdomain": "film",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1123"
+  },
+  {
+   "id": "term.three-year-rule-pro",
+   "term": "Three-year rule",
+   "aliases": [],
+   "definition": "A prospect must be at least three years out of high school to be eligible for the NFL draft.",
+   "domain": "scouting",
+   "subdomain": "eligibility",
+   "level": "pro",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1142"
+  },
+  {
+   "id": "term.tight-skin",
+   "term": "Tight skin",
+   "aliases": [],
+   "definition": "A thin, wiry player who may struggle to add muscle and size; generally a negative.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1145"
+  },
+  {
+   "id": "term.touch",
+   "term": "Touch",
+   "aliases": [],
+   "definition": "A quarterback's ability to vary the speed and trajectory of a pass so it drops softly over or between defenders.",
+   "domain": "scouting",
+   "subdomain": "quarterback",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1158"
+  },
+  {
+   "id": "term.traits",
+   "term": "Traits",
+   "aliases": [],
+   "definition": "The individual physical and mental qualities scouts grade a prospect on (arm strength, footwork, speed, instincts), as distinct from his game results.",
+   "domain": "scouting",
+   "subdomain": "evaluation",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1166"
+  },
+  {
+   "id": "term.tweener",
+   "term": "Tweener",
+   "aliases": [],
+   "definition": "A player whose size or skills fall between two positions, so teams are unsure where he fits (for example too light for end and too slow for linebacker).",
+   "domain": "scouting",
+   "subdomain": "labels",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1182"
+  },
+  {
+   "id": "term.twitchy",
+   "term": "Twitchy",
+   "aliases": [
+    "quick twitch"
+   ],
+   "definition": "Describes sudden quickness and explosive movement in all directions (quick twitch).",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1185"
+  },
+  {
+   "id": "term.velocity",
+   "term": "Velocity",
+   "aliases": [],
+   "definition": "How fast the quarterback's pass travels when it arrives, as distinct from how far he can throw it.",
+   "domain": "scouting",
+   "subdomain": "quarterback",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1212"
+  },
+  {
+   "id": "term.vision",
+   "term": "Vision",
+   "aliases": [],
+   "definition": "A runner's ability to see daylight and cut to open lanes; for receivers, Bleacher Report uses it for finding and tracking the ball.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1220"
+  },
+  {
+   "id": "term.waist-bender",
+   "term": "Waist bender",
+   "aliases": [
+    "heavy-legged waist bender"
+   ],
+   "definition": "An offensive or defensive lineman who bends at the waist instead of the knees and so loses balance and leverage.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1224"
+  },
+  {
+   "id": "term.washcloth-tackler",
+   "term": "Washcloth tackler",
+   "aliases": [],
+   "definition": "A tackler who briefly sticks to the ball carrier then slides off.",
+   "domain": "scouting",
+   "subdomain": "slang",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1233"
+  },
+  {
+   "id": "term.work-ethic",
+   "term": "Work ethic",
+   "aliases": [],
+   "definition": "How hard a player prepares and trains, judged from tape, coaches and references.",
+   "domain": "scouting",
+   "subdomain": "makeup",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1255"
+  },
+  {
+   "id": "term.workout-warrior",
+   "term": "Workout warrior",
+   "aliases": [],
+   "definition": "A prospect whose draft stock rises on strong combine testing despite an average or poor college career.",
+   "domain": "scouting",
+   "subdomain": "labels",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1257"
+  },
+  {
+   "id": "term.yac-ability",
+   "term": "YAC ability",
+   "aliases": [
+    "yards after catch",
+    "YAC"
+   ],
+   "definition": "A receiver's or back's ability to gain yards after the catch by speed, agility and breaking tackles.",
+   "domain": "scouting",
+   "subdomain": "skill",
+   "level": "both",
+   "ownerLeaf": "A4.5.9",
+   "factRow": "F-glossary-1260"
+  }
+ ]
+}

@@ -1,0 +1,1195 @@
+{
+ "note": "A4.5.11: real-sounding terms that no page actually read could source. No screen, lesson or template may use them until a source is found.",
+ "terms": [
+  {
+   "term": "recruiting class ranking",
+   "domain": "college",
+   "level": "college"
+  },
+  {
+   "term": "prep school",
+   "domain": "college",
+   "level": "college"
+  },
+  {
+   "term": "off-field staff",
+   "domain": "staff",
+   "level": "college"
+  },
+  {
+   "term": "spring game",
+   "domain": "college",
+   "level": "college"
+  },
+  {
+   "term": "walk-on scholarship",
+   "domain": "college",
+   "level": "college"
+  },
+  {
+   "term": "area recruiter",
+   "domain": "staff",
+   "level": "college"
+  },
+  {
+   "term": "service academies",
+   "domain": "college",
+   "level": "college"
+  },
+  {
+   "term": "passing game coordinator",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "run game coordinator",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "assistant head coach",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "offensive assistant",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "senior assistant",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "head athletic trainer",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "salary cap analyst",
+   "domain": "staff",
+   "level": "pro"
+  },
+  {
+   "term": "chief of staff",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "director of football operations",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "team chaplain",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "coaching tree",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "interview window",
+   "domain": "staff",
+   "level": "pro"
+  },
+  {
+   "term": "contract buyout",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "fired",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "interim head coach",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "assistant strength coach",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "director of player development",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "director of sports medicine",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "head of analytics",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "coach on the hot seat",
+   "domain": "staff",
+   "level": "both"
+  },
+  {
+   "term": "bowl eligibility",
+   "domain": "college",
+   "level": "college"
+  },
+  {
+   "term": "Spur",
+   "domain": "defense",
+   "level": "college"
+  },
+  {
+   "term": "Viper",
+   "domain": "defense",
+   "level": "college"
+  },
+  {
+   "term": "Dollar",
+   "domain": "defense",
+   "level": "college"
+  },
+  {
+   "term": "overhang",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "gap integrity",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "wrong arm",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "pirate",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "cross-chop",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "two-hand swipe",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "counter move",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "delayed rush",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "creeper",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "cross dog",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "double A-gap",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "key blitz",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "replace",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "Mable",
+   "domain": "defense",
+   "level": "college"
+  },
+  {
+   "term": "robot",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "rock and roll",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "check vs trips",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "empty",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "bend but don't break",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "Dom Capers 3-4",
+   "domain": "defense",
+   "level": "pro"
+  },
+  {
+   "term": "Gene Chizik defense",
+   "domain": "defense",
+   "level": "college"
+  },
+  {
+   "term": "Gary Patterson 4-2-5",
+   "domain": "defense",
+   "level": "college"
+  },
+  {
+   "term": "light box",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "Charlie",
+   "domain": "defense",
+   "level": "pro"
+  },
+  {
+   "term": "under tackle",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "Over shade",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "Split",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "quarters run support",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "hang",
+   "domain": "defense",
+   "level": "both"
+  },
+  {
+   "term": "Wolf",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "apex",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "defensive halfback",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "double eagle",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "reduced front",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Seattle front",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "inside eye",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "read technique",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "alley",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "scrape",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "run fit",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "cutback",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "jet rush",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "long-arm",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "speed-to-power",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "rush lane",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "mush rush",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "green dog",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "simulated pressure",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "overload blitz",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "A-gap mug",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "edge pressure",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "6-man pressure",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "peel",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Cover 3 Sky",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Cover 3 Buzz",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Cover 9",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "read steps",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "flat foot",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "hook-curl",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "sink",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "motion adjustment",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "lock and unlock",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "check vs empty",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "bunch",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Fangio defense",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Belichick defense",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Rex Ryan defense",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Steel Curtain defense",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Lovie Smith Tampa 2",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Jim Johnson blitz",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Bill Parcells 3-4",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "ET stunt",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "flow",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "hold the gap",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "run defense",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "3-4 Over",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Under shade",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Pinch",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "wrong shoulder",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "Cover 4 Palms",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "goal line 5-3",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "loose man",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "man under",
+   "domain": "defense",
+   "level": ""
+  },
+  {
+   "term": "big nickel",
+   "domain": "personnel",
+   "level": "both"
+  },
+  {
+   "term": "goal line defense",
+   "domain": "personnel",
+   "level": "both"
+  },
+  {
+   "term": "Power I",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Ace formation",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Sugar huddle",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Point of attack",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Gaps (A to D)",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Fold block",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Scoop block",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Drive block",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Screen block",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Opening the gate",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Half slide",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Check-release",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Double read",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Empty protection",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Pass drop",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Five-step and seven-step drops",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Y-Option",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Timing route",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "One-back formation",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Trio",
+   "domain": "offense",
+   "level": "pro"
+  },
+  {
+   "term": "Counting system",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Y-Cross",
+   "domain": "offense",
+   "level": "pro"
+  },
+  {
+   "term": "Four verticals",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Halfback pass",
+   "domain": "offense",
+   "level": "both"
+  },
+  {
+   "term": "Recovery (training)",
+   "domain": "rule",
+   "level": "both"
+  },
+  {
+   "term": "Leverage (technique)",
+   "domain": "rule",
+   "level": "both"
+  },
+  {
+   "term": "Leverage (win probability)",
+   "domain": "rule",
+   "level": "both"
+  },
+  {
+   "term": "Period (practice)",
+   "domain": "rule",
+   "level": "both"
+  },
+  {
+   "term": "sideline infraction",
+   "domain": "rule",
+   "level": "college"
+  },
+  {
+   "term": "marked off",
+   "domain": "rule",
+   "level": "both"
+  },
+  {
+   "term": "End zone view",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Broadcast copy",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Grading scale",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Plus/minus grading",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Loaf",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Effort grade",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Tools",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Reach",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Value pick",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Positional versatility",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Ankle flexion",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Power at the point of attack",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Mirror",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Catch radius",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Field general",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Tackling angles",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Open-field tackling",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Trigger",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Medical grade",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Injury history",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Athletic profile",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Comps",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Projection",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Rotational player",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Developmental",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Practice squad candidate",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Core special teamer",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Scheme-specific",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Chess piece",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Height-weight-speed",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Verified measurements",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Junior eligibility",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Redshirt sophomore eligibility",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "All-star game",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Pro liaison",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Bounce dryer sheets",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Raw steak",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Pacifier",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Eddie Haskell",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Stick figure",
+   "domain": "scouting",
+   "level": "both"
+  },
+  {
+   "term": "Fourth and inches",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Coming out",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Minus territory",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Plus territory",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "High red zone",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Low red zone",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Green zone",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Gold zone",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Four-minute offense",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Burn timeouts",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "End of half",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Last shot",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Neutral situation",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "VOA",
+   "domain": "situational",
+   "level": "pro"
+  },
+  {
+   "term": "Field position value",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Turnover margin",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Early-down pass rate",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Fourth-down bot",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Two-point chart",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Headset",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Call sheet",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Wristband",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Signaler",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Dummy signaler",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Eye in the sky",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Opening script",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Halftime adjustments",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Tendency",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Self-scout",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Medical tent",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "X-ray",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Get-back coach",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Get-back line",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Sideline warning",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Sideline pass",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Third-down conversion rate",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Pass rush win rate",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Run stop win rate",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "QB hit",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Early downs",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Late downs",
+   "domain": "situational",
+   "level": "both"
+  },
+  {
+   "term": "Return wall",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Punt safe",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Rangers punt",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Touchback percentage",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Field goal block unit",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Edge block",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Swinging gate",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Net kickoff",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Special teams DVOA",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Hidden special teams value",
+   "domain": "special-teams",
+   "level": "both"
+  },
+  {
+   "term": "Special teams tackle",
+   "domain": "special-teams",
+   "level": "both"
+  }
+ ]
+}

@@ -1,0 +1,753 @@
+{
+ "leaf": "A4.5.10",
+ "terms": [
+  {
+   "id": "term.21-day-window-pro",
+   "term": "21-day window",
+   "aliases": [
+    "21-day practice window"
+   ],
+   "definition": "The three-week period a player designated to return from injured reserve has, once he begins practicing, to be activated to the roster or else stay on reserve for the season.",
+   "domain": "medical",
+   "subdomain": "availability",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0014"
+  },
+  {
+   "id": "term.acclimation-period-pro",
+   "term": "Acclimation period",
+   "aliases": [
+    "five-day acclimation period",
+    "five-day on-field acclimation period"
+   ],
+   "definition": "The first five on-field days of training camp for each player after he reports, with no live contact, limited gear that grows from none to shells and spiders, and two sessions of which only one may be full speed.",
+   "domain": "practice",
+   "subdomain": "camp",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0052"
+  },
+  {
+   "id": "term.active-inactive-list-pro",
+   "term": "Active/Inactive list",
+   "aliases": [
+    "inactives",
+    "inactive list",
+    "active list"
+   ],
+   "definition": "The game-day split of a club's roster into players available to play and players not dressed; a club's active/inactive list may not exceed 53 players, and inactives are announced about 90 minutes before kickoff.",
+   "domain": "medical",
+   "subdomain": "availability",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0055"
+  },
+  {
+   "id": "term.atc-spotter-pro",
+   "term": "ATC spotter",
+   "aliases": [
+    "booth ATC spotter",
+    "booth athletic trainer spotter"
+   ],
+   "definition": "A certified athletic trainer in a stadium booth with video access who watches the game for injuries, radios the club's medical staff and referee, and can call a medical timeout.",
+   "domain": "medical",
+   "subdomain": "game-day",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0079"
+  },
+  {
+   "id": "term.boards-pro",
+   "term": "Boards",
+   "aliases": [
+    "board drill",
+    "OL/DL in-line run blocking drill"
+   ],
+   "definition": "A banned padded-practice drill in which two linemen engage inside an artificially confined space, such as between boards, in a one-on-one test of strength.",
+   "domain": "practice",
+   "subdomain": "drills",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0122"
+  },
+  {
+   "id": "term.cleared-pro",
+   "term": "Cleared",
+   "aliases": [
+    "medically cleared",
+    "clearance"
+   ],
+   "definition": "A physician's release stating that a player may take part in practice or games; under the CBA the Head Team Physician has final authority, and a concussed player also needs the independent consultant's confirmation.",
+   "domain": "medical",
+   "subdomain": "availability",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0179"
+  },
+  {
+   "id": "term.concussion",
+   "term": "Concussion",
+   "aliases": [
+    "sport-related concussion",
+    "SRC"
+   ],
+   "definition": "A traumatic brain injury caused by biomechanical forces, usually from a blow to the head or body that sends force to the head, with a brief change in brain function that often shows nothing on standard imaging.",
+   "domain": "medical",
+   "subdomain": "concussion",
+   "level": "both",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0208"
+  },
+  {
+   "id": "term.concussion-protocol-pro",
+   "term": "Concussion protocol",
+   "aliases": [
+    "NFL concussion protocol",
+    "Game Day Concussion Protocol",
+    "concussion checklist"
+   ],
+   "definition": "The league-mandated steps for evaluating a possible concussion during a game (sideline and locker-room exams, with independent consultants and spotters involved) and for managing the player afterward.",
+   "domain": "medical",
+   "subdomain": "concussion",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0210"
+  },
+  {
+   "id": "term.day-off-pro",
+   "term": "Day off",
+   "aliases": [
+    "days off"
+   ],
+   "definition": "A day on which players cannot be required to work; the CBA guarantees at least one per week in season and set numbers in camp.",
+   "domain": "practice",
+   "subdomain": "rules",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0254"
+  },
+  {
+   "id": "term.did-not-participate-pro",
+   "term": "Did not participate",
+   "aliases": [
+    "DNP"
+   ],
+   "definition": "An injury-report practice status meaning the player did not take part in practice that day.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0291"
+  },
+  {
+   "id": "term.doubtful-pro",
+   "term": "Doubtful",
+   "aliases": [
+    "D"
+   ],
+   "definition": "A game-status designation meaning the player is unlikely to play.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0318"
+  },
+  {
+   "id": "term.full-participation-pro",
+   "term": "Full participation",
+   "aliases": [
+    "FP",
+    "full"
+   ],
+   "definition": "An injury-report practice status meaning the player completed his normal practice workload.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0439"
+  },
+  {
+   "id": "term.game-status-pro",
+   "term": "Game status",
+   "aliases": [
+    "Game Status Report"
+   ],
+   "definition": "The injury-report entry that tells the public whether each injured player is expected to play in the club's next game: out, doubtful or questionable.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0450"
+  },
+  {
+   "id": "term.helmets-only-pro",
+   "term": "Helmets only",
+   "aliases": [
+    "helmets, no pads"
+   ],
+   "definition": "A practice level in which players wear helmets but no pads; the CBA permits helmets at minicamps but no pads or contact.",
+   "domain": "practice",
+   "subdomain": "gear",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0497"
+  },
+  {
+   "id": "term.in-game-injury-reporting-pro",
+   "term": "In-game injury reporting",
+   "aliases": [
+    "in-game injury updates"
+   ],
+   "definition": "The rule that clubs must promptly and accurately announce injuries during a game, naming the body part and updating the player's status.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0543"
+  },
+  {
+   "id": "term.independent-neurological-consultant-pro",
+   "term": "Independent neurological consultant",
+   "aliases": [
+    "INC",
+    "independent neurologic consultant"
+   ],
+   "definition": "A neurology-trained physician with no team affiliation, designated by each club at the start of the league year, who must examine and confirm a concussed player's clearance before he returns to contact practice or play.",
+   "domain": "medical",
+   "subdomain": "concussion",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0551"
+  },
+  {
+   "id": "term.injury-report-pro",
+   "term": "Injury report",
+   "aliases": [
+    "NFL injury report",
+    "practice report"
+   ],
+   "definition": "The league's required weekly public report of injured players' practice participation and game status, submitted by clubs Wednesday through Friday for a Sunday game.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0558"
+  },
+  {
+   "id": "term.injury-settlement-pro",
+   "term": "Injury settlement",
+   "aliases": [],
+   "definition": "An agreement under which a club releases an injured player and pays him some of his salary instead of carrying him on injured reserve.",
+   "domain": "medical",
+   "subdomain": "availability",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0559"
+  },
+  {
+   "id": "term.joint-practices-pro",
+   "term": "Joint practices",
+   "aliases": [
+    "joint workouts",
+    "joint camp"
+   ],
+   "definition": "Practice sessions in which two clubs train together, often before a preseason game; under the media policy they must be fully open to local media.",
+   "domain": "practice",
+   "subdomain": "camp",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0583"
+  },
+  {
+   "id": "term.limited-participation-pro",
+   "term": "Limited participation",
+   "aliases": [
+    "LP",
+    "limited"
+   ],
+   "definition": "An injury-report practice status meaning the player took part but fewer than all of his normal practice reps.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0628"
+  },
+  {
+   "id": "term.mandatory-minicamp-pro",
+   "term": "Mandatory minicamp",
+   "aliases": [
+    "mandatory veteran minicamp"
+   ],
+   "definition": "The one required veteran minicamp each club may hold in week three or four of Phase Three, lasting up to three practice days plus one physical-exam day, with no pads and no live contact.",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0652"
+  },
+  {
+   "id": "term.media-availability-pro",
+   "term": "Media availability",
+   "aliases": [
+    "availability"
+   ],
+   "definition": "A scheduled time when players or coaches must be open to reporters' questions; the policy requires player availability on Monday, Wednesday, Thursday and Friday of game weeks.",
+   "domain": "media",
+   "subdomain": "access",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0657"
+  },
+  {
+   "id": "term.medical-care-and-treatment-pro",
+   "term": "Medical care and treatment",
+   "aliases": [
+    "Article 39"
+   ],
+   "definition": "The CBA article that governs player medical care: club physician and trainer credentials, the right to a second opinion and to choose a surgeon, and concussion protocol enforcement.",
+   "domain": "medical",
+   "subdomain": "staff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0658"
+  },
+  {
+   "id": "term.medical-timeout-pro",
+   "term": "Medical timeout",
+   "aliases": [
+    "medical time-out"
+   ],
+   "definition": "A stoppage called through the referee at the request of the booth ATC spotter when a player who appears to need concussion evaluation is about to stay in the game without being checked.",
+   "domain": "medical",
+   "subdomain": "game-day",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0659"
+  },
+  {
+   "id": "term.open-locker-room-pro",
+   "term": "Open locker room",
+   "aliases": [
+    "locker room access"
+   ],
+   "definition": "Reporters' access to speak with players in the locker room; the policy requires open locker room sessions of at least 45 minutes on Wednesday, Thursday and Friday.",
+   "domain": "media",
+   "subdomain": "access",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0736"
+  },
+  {
+   "id": "term.otas-pro",
+   "term": "OTAs",
+   "aliases": [
+    "Organized Team Activities",
+    "organized team practice activity",
+    "OTA days"
+   ],
+   "definition": "Ten voluntary offseason practice days that each club may hold during Phase Three of the offseason program, with all coaches on the field and 11-on-11 work allowed but no live contact.",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0743"
+  },
+  {
+   "id": "term.out-injury-report-designation-pro",
+   "term": "Out (injury report designation)",
+   "aliases": [],
+   "definition": "A game-status designation meaning the player will not play.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0746"
+  },
+  {
+   "id": "term.out-injury-report-pro",
+   "term": "Out (injury report)",
+   "aliases": [
+    "Out"
+   ],
+   "definition": "A game-status designation meaning the player will not play.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0747"
+  },
+  {
+   "id": "term.padded-practice-pro",
+   "term": "Padded practice",
+   "aliases": [
+    "full pads",
+    "pads on",
+    "padded practices"
+   ],
+   "definition": "A practice in which players are required to wear helmets and shoulder pads in addition to any other club-required gear; the CBA caps how many a club may hold.",
+   "domain": "practice",
+   "subdomain": "gear",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0761"
+  },
+  {
+   "id": "term.phase-one-pro",
+   "term": "Phase One",
+   "aliases": [],
+   "definition": "The first two weeks of the nine-week offseason program, limited to strength, conditioning and rehab with no helmets and only strength coaches allowed on the field.",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0791"
+  },
+  {
+   "id": "term.phase-three-pro",
+   "term": "Phase Three",
+   "aliases": [],
+   "definition": "The final four weeks of the offseason program, when the ten OTA days (and the mandatory veteran minicamp) are held; helmets may be required but there is no live contact and no shells.",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0792"
+  },
+  {
+   "id": "term.phase-two-pro",
+   "term": "Phase Two",
+   "aliases": [],
+   "definition": "The next three weeks of the offseason program, when all coaches may be on the field for individual and perfect-play drills (offense or defense only), with no offense versus defense work.",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0793"
+  },
+  {
+   "id": "term.physical-examination-pro",
+   "term": "Physical examination",
+   "aliases": [
+    "physical",
+    "preseason physical",
+    "report-day physical"
+   ],
+   "definition": "The medical exam club doctors give each player on report day to camp and before minicamps; the CBA sets a standard minimum preseason exam.",
+   "domain": "medical",
+   "subdomain": "staff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0795"
+  },
+  {
+   "id": "term.postgame-press-conference-pro",
+   "term": "Postgame press conference",
+   "aliases": [
+    "post-game news conference"
+   ],
+   "definition": "The news conference a head coach must hold after every game.",
+   "domain": "media",
+   "subdomain": "press-conference",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0835"
+  },
+  {
+   "id": "term.practice-limits-pro",
+   "term": "Practice limits",
+   "aliases": [],
+   "definition": "The CBA's caps on practice: padded-practice counts, on-field hours per day (for example three hours in the regular season) and required rest days.",
+   "domain": "practice",
+   "subdomain": "rules",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0841"
+  },
+  {
+   "id": "term.practice-viewing-pro",
+   "term": "Practice viewing",
+   "aliases": [
+    "open practice"
+   ],
+   "definition": "The league's rule on how much of practice must be open to the media: at least the first 30 minutes (or until team work begins) on practice days, and all of training-camp practices.",
+   "domain": "media",
+   "subdomain": "access",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0844"
+  },
+  {
+   "id": "term.pro-bowl-practice-pace-pro",
+   "term": "Pro Bowl practice pace",
+   "aliases": [
+    "acceptable walkthrough pace"
+   ],
+   "definition": "The CBA's reference speed for walkthrough-style drills, defined by a video that the NFL and NFLPA jointly approved.",
+   "domain": "practice",
+   "subdomain": "tempo",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0854"
+  },
+  {
+   "id": "term.probable-pro",
+   "term": "Probable",
+   "aliases": [],
+   "definition": "A former game-status designation meaning the player was likely to play (generally at least 75 percent); the NFL eliminated it in 2016.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0858"
+  },
+  {
+   "id": "term.prohibited-drills-pro",
+   "term": "Prohibited drills",
+   "aliases": [
+    "banned drills"
+   ],
+   "definition": "Drills the CBA bans in padded practices: bull in the ring or king of the circle, the Oklahoma drill, OL-vs-DL in-line run blocking or board drills, and half line, pods and 3-spot drills.",
+   "domain": "practice",
+   "subdomain": "drills",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0864"
+  },
+  {
+   "id": "term.questionable-pro",
+   "term": "Questionable",
+   "aliases": [
+    "Q"
+   ],
+   "definition": "A game-status designation meaning it is uncertain whether the player will play.",
+   "domain": "medical",
+   "subdomain": "reporting",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0883"
+  },
+  {
+   "id": "term.return-to-participation-protocol-pro",
+   "term": "Return-to-participation protocol",
+   "aliases": [
+    "return-to-participation protocol",
+    "return to participation protocol",
+    "five-step return protocol"
+   ],
+   "definition": "The five-step graduated program a concussed player must pass before full practice or play: rest and recovery, light aerobic exercise, continued aerobic exercise with strength training, football-specific non-contact activity, then full football activity and clearance.",
+   "domain": "medical",
+   "subdomain": "concussion",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0924"
+  },
+  {
+   "id": "term.return-to-play-pro",
+   "term": "Return to play",
+   "aliases": [
+    "return to participation"
+   ],
+   "definition": "The graded process, and the physician's decision, by which an injured player goes back to practice and games.",
+   "domain": "medical",
+   "subdomain": "availability",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0925"
+  },
+  {
+   "id": "term.rookie-football-development-program-pro",
+   "term": "Rookie football development program",
+   "aliases": [
+    "Rookie Football Development Program",
+    "RFDP"
+   ],
+   "definition": "The seven-week program after the draft, starting on or about May 16, in which rookies work out five days a week with limited on-field time and a per-day payment.",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0938"
+  },
+  {
+   "id": "term.rookie-minicamp-pro",
+   "term": "Rookie minicamp",
+   "aliases": [
+    "post-Draft Rookie Minicamp",
+    "rookie camp"
+   ],
+   "definition": "A single three-day minicamp held on the first or second weekend after the draft for rookies (plus a few invited first-year players and tryout veterans).",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0939"
+  },
+  {
+   "id": "term.roster-cutdown-pro",
+   "term": "Roster cutdown",
+   "aliases": [
+    "cutdown",
+    "cut-down day",
+    "roster reduction"
+   ],
+   "definition": "The deadline when each club must reduce its training-camp roster (90 players) to the 53-man regular-season limit.",
+   "domain": "practice",
+   "subdomain": "camp",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0946"
+  },
+  {
+   "id": "term.scrimmage",
+   "term": "Scrimmage",
+   "aliases": [
+    "intrasquad scrimmage",
+    "practice scrimmage"
+   ],
+   "definition": "A practice-style game in which teams, or units of one team, run many of the plays of a game without keeping a formal score.",
+   "domain": "practice",
+   "subdomain": "camp",
+   "level": "both",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0985"
+  },
+  {
+   "id": "term.season-ending-press-conference-pro",
+   "term": "Season-ending press conference",
+   "aliases": [
+    "season-ending news conference"
+   ],
+   "definition": "The news conference every club must hold during the week after its season ends, preceded by an open locker room the day after the final game.",
+   "domain": "media",
+   "subdomain": "press-conference",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0993"
+  },
+  {
+   "id": "term.second-opinion-pro",
+   "term": "Second opinion",
+   "aliases": [
+    "second medical opinion"
+   ],
+   "definition": "A player's right to have another board-certified physician examine him; the club pays only if the player consults the club physician first and the second doctor reports back to him.",
+   "domain": "medical",
+   "subdomain": "staff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-0999"
+  },
+  {
+   "id": "term.shells-pro",
+   "term": "Shells",
+   "aliases": [
+    "shell practice",
+    "practice shells"
+   ],
+   "definition": "A ramp-up practice level in which players wear helmets and light shoulder pads (spiders) but not full pads, permitted on days four and five of camp.",
+   "domain": "practice",
+   "subdomain": "gear",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1014"
+  },
+  {
+   "id": "term.spiders-pro",
+   "term": "Spiders",
+   "aliases": [
+    "spider pads"
+   ],
+   "definition": "Lighter shoulder pads that clubs may wear with helmets in shell practices during the later acclimation days.",
+   "domain": "practice",
+   "subdomain": "gear",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1062"
+  },
+  {
+   "id": "term.team-doctor-pro",
+   "term": "Team doctor",
+   "aliases": [
+    "Head Team Physician",
+    "club physician"
+   ],
+   "definition": "A physician retained by the club to treat players; each club must have a board-certified orthopedic surgeon and a primary-care sports medicine physician, one of whom is the Head Team Physician with final say on clearance.",
+   "domain": "medical",
+   "subdomain": "staff",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1128"
+  },
+  {
+   "id": "term.two-a-days-pro",
+   "term": "Two-a-days",
+   "aliases": [
+    "two-a-day practices",
+    "two-a-day"
+   ],
+   "definition": "Two on-field practice sessions in one day; after the acclimation period the CBA allows them with at most four on-field hours, at most one padded practice of 2.5 hours, 90 minutes between sessions, and a no-helmet walkthrough-pace second session.",
+   "domain": "practice",
+   "subdomain": "camp",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1186"
+  },
+  {
+   "id": "term.unaffiliated-neurotrauma-consultant-pro",
+   "term": "Unaffiliated neurotrauma consultant",
+   "aliases": [
+    "UNC",
+    "booth UNC",
+    "sideline UNC",
+    "unaffiliated neurological consultant"
+   ],
+   "definition": "An independent physician with no club affiliation, assigned by the league to each game to help spot and evaluate possible head injuries; two stand on the sidelines and a third watches video from the booth.",
+   "domain": "medical",
+   "subdomain": "concussion",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1197"
+  },
+  {
+   "id": "term.voluntary-minicamp-pro",
+   "term": "Voluntary minicamp",
+   "aliases": [
+    "additional voluntary veteran minicamp"
+   ],
+   "definition": "An extra, optional veteran minicamp that only a club with a new head coach may hold, before the draft.",
+   "domain": "practice",
+   "subdomain": "offseason",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1222"
+  },
+  {
+   "id": "term.waived-injured-pro",
+   "term": "Waived/injured",
+   "aliases": [
+    "waived-injured",
+    "waived/injured designation"
+   ],
+   "definition": "A designation on an injured player who is waived: another team may claim him, or, if unclaimed, he goes onto his original team's injured reserve (or the team releases him with an injury settlement).",
+   "domain": "medical",
+   "subdomain": "availability",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1225"
+  },
+  {
+   "id": "term.walkthrough-pro",
+   "term": "Walkthrough",
+   "aliases": [
+    "walk-through"
+   ],
+   "definition": "A slow-tempo, no-helmet practice session that rehearses assignments and alignments without contact, held at the CBA's 'Pro Bowl practice pace'.",
+   "domain": "practice",
+   "subdomain": "tempo",
+   "level": "pro",
+   "ownerLeaf": "A4.5.10",
+   "factRow": "F-glossary-1231"
+  }
+ ]
+}

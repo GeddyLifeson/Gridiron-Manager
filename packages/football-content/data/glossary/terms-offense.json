@@ -1,0 +1,3077 @@
+{
+ "leaf": "A4.5.2",
+ "terms": [
+  {
+   "id": "term.00-01-and-02-personnel-pro",
+   "term": "00, 01 and 02 personnel",
+   "aliases": [],
+   "definition": "Groupings with no running back, where the field is filled with wide receivers on obvious passing downs (00 = five receivers).",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0002"
+  },
+  {
+   "id": "term.10-personnel",
+   "term": "10 personnel",
+   "aliases": [
+    "10 package"
+   ],
+   "definition": "One running back, no tight ends and four wide receivers (first digit running backs, second digit tight ends).",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0004"
+  },
+  {
+   "id": "term.11-personnel",
+   "term": "11 personnel",
+   "aliases": [
+    "eleven personnel"
+   ],
+   "definition": "One running back, one tight end and three wide receivers; the most-used grouping in the modern NFL.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0006"
+  },
+  {
+   "id": "term.11-personnel-pro",
+   "term": "11* personnel",
+   "aliases": [],
+   "definition": "Personnel shorthand where an asterisk after the two digits marks an extra offensive lineman beyond the usual five, replacing a skill player.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0007"
+  },
+  {
+   "id": "term.12-personnel",
+   "term": "12 personnel",
+   "aliases": [
+    "12 package"
+   ],
+   "definition": "One running back, two tight ends and two wide receivers.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0008"
+  },
+  {
+   "id": "term.13-personnel-pro",
+   "term": "13 personnel",
+   "aliases": [],
+   "definition": "One running back, three tight ends and one wide receiver, a heavy grouping.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0009"
+  },
+  {
+   "id": "term.2-4-5",
+   "term": "2-4-5",
+   "aliases": [],
+   "definition": "A nickel variation with two down linemen, four linebackers and five defensive backs.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0010"
+  },
+  {
+   "id": "term.20-personnel",
+   "term": "20 personnel",
+   "aliases": [
+    "20 package"
+   ],
+   "definition": "Two running backs, no tight ends and three wide receivers.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0012"
+  },
+  {
+   "id": "term.21-personnel-pro",
+   "term": "21 personnel",
+   "aliases": [],
+   "definition": "Two running backs (usually a halfback and a fullback), one tight end and two wide receivers.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0015"
+  },
+  {
+   "id": "term.22-personnel",
+   "term": "22 personnel",
+   "aliases": [
+    "22 package"
+   ],
+   "definition": "Two running backs, two tight ends and one wide receiver, used mainly in short yardage and at the goal line.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0016"
+  },
+  {
+   "id": "term.23-personnel-pro",
+   "term": "23 personnel",
+   "aliases": [
+    "jumbo package"
+   ],
+   "definition": "Two running backs, three tight ends and no wide receivers; a goal-line or jumbo package.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0017"
+  },
+  {
+   "id": "term.3-3-5",
+   "term": "3-3-5",
+   "aliases": [
+    "3-3-5 nickel"
+   ],
+   "definition": "A nickel-type defense with three down linemen, three linebackers and five defensive backs.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0022"
+  },
+  {
+   "id": "term.3-4-defense",
+   "term": "3-4 defense",
+   "aliases": [
+    "3-4",
+    "three-four"
+   ],
+   "definition": "A defensive front of three linemen and four linebackers, usually with four defensive backs behind them.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0023"
+  },
+  {
+   "id": "term.31-personnel",
+   "term": "31 personnel",
+   "aliases": [
+    "31 package"
+   ],
+   "definition": "Three running backs, one tight end and one wide receiver.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0028"
+  },
+  {
+   "id": "term.4-2-5",
+   "term": "4-2-5",
+   "aliases": [],
+   "definition": "A nickel base defense with four linemen, two linebackers and five defensive backs.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0029"
+  },
+  {
+   "id": "term.4-3-defense",
+   "term": "4-3 defense",
+   "aliases": [
+    "forty-three defense"
+   ],
+   "definition": "A defensive front of four down linemen and three linebackers, normally with four defensive backs.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0030"
+  },
+  {
+   "id": "term.5-2-defense",
+   "term": "5-2 defense",
+   "aliases": [
+    "Oklahoma defense",
+    "5-2 Oklahoma"
+   ],
+   "definition": "A front of five defensive linemen and two linebackers, devised at Oklahoma in the 1940s and also known as the Oklahoma defense.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0036",
+   "variants": "Oklahoma defense"
+  },
+  {
+   "id": "term.5-3-defense-pro",
+   "term": "5-3 defense",
+   "aliases": [],
+   "definition": "A defensive front of five linemen and three linebackers, which appeared in the 1930s as a response to stronger passing attacks.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0037"
+  },
+  {
+   "id": "term.6-1-defense",
+   "term": "6-1 defense",
+   "aliases": [],
+   "definition": "A goal-line alignment built on six defensive linemen and one linebacker (the 'pinch' front), with four defenders left in the secondary.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0041",
+   "variants": [
+    "6-1 pinch"
+   ]
+  },
+  {
+   "id": "term.6-2-defense",
+   "term": "6-2 defense",
+   "aliases": [],
+   "definition": "A front of six defensive linemen and two linebackers, popular in the 1930s as passing attacks improved.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0042"
+  },
+  {
+   "id": "term.7-1-2-1",
+   "term": "7-1-2-1",
+   "aliases": [
+    "7-1-2-1 defense"
+   ],
+   "definition": "An early defensive formation with seven linemen, one linebacker and three defensive backs, invented in 1903.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0044"
+  },
+  {
+   "id": "term.air-coryell-pro",
+   "term": "Air Coryell",
+   "aliases": [],
+   "definition": "A vertical passing system created by Don Coryell that combines power running with mid-range and deep passing and uses motion.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0060",
+   "variants": [
+    "Coryell offense",
+    "vertical offense"
+   ]
+  },
+  {
+   "id": "term.air-raid-offense",
+   "term": "Air raid offense",
+   "aliases": [
+    "Air Raid"
+   ],
+   "definition": "A pass-heavy, shotgun-based offense that de-emphasizes the run and builds on a small set of quick, medium and screen pass concepts, usually with four or five receivers.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0061"
+  },
+  {
+   "id": "term.angle-block-down-block",
+   "term": "Angle block (down block)",
+   "aliases": [
+    "down block"
+   ],
+   "definition": "A block made on a defender from an angle, not head-on (often a down block toward the inside).",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0068"
+  },
+  {
+   "id": "term.attack-offense-pro",
+   "term": "Attack offense",
+   "aliases": [],
+   "definition": "A no-huddle style with shortened huddles held much closer to the line of scrimmage, associated with the 1988 Cincinnati Bengals.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0080"
+  },
+  {
+   "id": "term.audible",
+   "term": "Audible",
+   "aliases": [
+    "check",
+    "check at the line"
+   ],
+   "definition": "A play change the quarterback calls at the line of scrimmage after seeing the defense, replacing the play called in the huddle.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0081",
+   "variants": "check"
+  },
+  {
+   "id": "term.back-shoulder-fade-pro",
+   "term": "Back-shoulder fade",
+   "aliases": [],
+   "definition": "A fade thrown behind or to the back shoulder of the receiver, away from the defender, usually against man coverage.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0087"
+  },
+  {
+   "id": "term.backfield",
+   "term": "Backfield",
+   "aliases": [
+    "offensive backfield"
+   ],
+   "definition": "The area behind the line of scrimmage, and the offensive players (quarterback and backs) who line up there.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0089"
+  },
+  {
+   "id": "term.base-block",
+   "term": "Base block",
+   "aliases": [],
+   "definition": "A solo block by an offensive lineman, squared up to the defender.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0098"
+  },
+  {
+   "id": "term.base-defense",
+   "term": "base defense",
+   "aliases": [],
+   "definition": "The defensive alignment a team uses by default (for example a 4-3 or 3-4 front) before it changes personnel for a particular offensive look.",
+   "domain": "personnel",
+   "subdomain": "front",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0099"
+  },
+  {
+   "id": "term.base-nickel",
+   "term": "base nickel",
+   "aliases": [],
+   "definition": "A team that uses the nickel package (five defensive backs) as its normal base defense instead of a 4-3 or 3-4.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0100"
+  },
+  {
+   "id": "term.bob-protection-pro",
+   "term": "BOB protection",
+   "aliases": [
+    "big on big"
+   ],
+   "definition": "Big on big / back on backer: linemen block the down linemen and the backs block linebackers.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0123"
+  },
+  {
+   "id": "term.bomb",
+   "term": "Bomb",
+   "aliases": [
+    "long bomb"
+   ],
+   "definition": "A long, high-arcing deep pass.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0125",
+   "variants": "long bomb"
+  },
+  {
+   "id": "term.bootleg",
+   "term": "Bootleg",
+   "aliases": [
+    "boot"
+   ],
+   "definition": "A play in which the quarterback fakes a handoff one way and then runs or rolls the other way to pass or run.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0127",
+   "variants": "boot"
+  },
+  {
+   "id": "term.bubble-screen",
+   "term": "Bubble screen",
+   "aliases": [],
+   "definition": "A quick screen to an inside or slot receiver who steps forward and moves toward the sideline, with other receivers blocking.",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0135"
+  },
+  {
+   "id": "term.cadence",
+   "term": "Cadence",
+   "aliases": [
+    "snap count"
+   ],
+   "definition": "The quarterback's spoken pattern of signals and rhythm that tells the line when the ball will be snapped.",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0143"
+  },
+  {
+   "id": "term.center",
+   "term": "Center",
+   "aliases": [
+    "C"
+   ],
+   "definition": "The middle offensive lineman, who snaps the ball to the quarterback and calls blocking assignments for the line.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0159"
+  },
+  {
+   "id": "term.chair-route",
+   "term": "Chair route",
+   "aliases": [],
+   "definition": "An out route followed by a fly route.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0163"
+  },
+  {
+   "id": "term.check-down",
+   "term": "Check-down",
+   "aliases": [
+    "checkdown",
+    "dump-off"
+   ],
+   "definition": "A short pass to a back or tight end thrown as a last resort in the quarterback's read progression.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0173",
+   "variants": "checkdown"
+  },
+  {
+   "id": "term.closed-side",
+   "term": "Closed side",
+   "aliases": [
+    "strong side"
+   ],
+   "definition": "Another name for the strong side of the formation, usually the side where the tight end lines up.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0184",
+   "variants": "strong side"
+  },
+  {
+   "id": "term.comeback",
+   "term": "Comeback",
+   "aliases": [
+    "comeback route"
+   ],
+   "definition": "A route in which the receiver runs deep, then breaks back toward the sideline at about 45 degrees to catch the ball near the boundary.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0199"
+  },
+  {
+   "id": "term.corner-route",
+   "term": "Corner route",
+   "aliases": [
+    "corner",
+    "flag route"
+   ],
+   "definition": "A deep route in which the receiver breaks toward the sideline at about 45 degrees toward the corner of the end zone.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0222",
+   "variants": "flag route"
+  },
+  {
+   "id": "term.coryell-route-numbering-pro",
+   "term": "Coryell route numbering",
+   "aliases": [
+    "Air Coryell numbering"
+   ],
+   "definition": "A play-calling system in which each digit of a numbered call is a code for one of nine routes for a receiver.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0224"
+  },
+  {
+   "id": "term.counter",
+   "term": "Counter",
+   "aliases": [
+    "counter run",
+    "counter trap"
+   ],
+   "definition": "A run where the back steps one way, then takes the handoff the other way, with backside blockers (a guard, sometimes a tackle too) pulling to lead through the hole.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0225",
+   "variants": [
+    "counter trap",
+    "GT counter (guard-tackle pull)"
+   ]
+  },
+  {
+   "id": "term.crossing-route",
+   "term": "Crossing route",
+   "aliases": [
+    "crossers"
+   ],
+   "definition": "A route (or pair of routes) where a receiver crosses the field, such as a drag or slant.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0242"
+  },
+  {
+   "id": "term.curl",
+   "term": "Curl",
+   "aliases": [],
+   "definition": "An intermediate route where the receiver runs upfield about 12 to 15 yards, then turns back toward the quarterback and sits in open space.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0244",
+   "variants": [
+    "hitch",
+    "hook",
+    "button hook",
+    "4 route"
+   ]
+  },
+  {
+   "id": "term.curl-route",
+   "term": "Curl route",
+   "aliases": [
+    "curl"
+   ],
+   "definition": "A route in which the receiver runs upfield (about 12 to 15 yards) and turns back inside toward the quarterback.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0246"
+  },
+  {
+   "id": "term.cut-block",
+   "term": "Cut block",
+   "aliases": [
+    "block below the waist",
+    "low block"
+   ],
+   "definition": "A block that takes a defender down by hitting him below the waist; legal only in limited situations, and the NFL bars it against receivers in several cases.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0248"
+  },
+  {
+   "id": "term.dagger",
+   "term": "Dagger",
+   "aliases": [
+    "seam read"
+   ],
+   "definition": "A pass concept pairing a vertical clear-out route with a deep dig (square-in) behind it.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0252"
+  },
+  {
+   "id": "term.dig",
+   "term": "Dig",
+   "aliases": [
+    "in route",
+    "square-in"
+   ],
+   "definition": "A deep inside-breaking route in which the receiver breaks across the field at about 90 degrees, 10 to 15 yards downfield.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0292",
+   "variants": "square-in"
+  },
+  {
+   "id": "term.dime",
+   "term": "dime",
+   "aliases": [
+    "dime package",
+    "dime back (sixth DB)"
+   ],
+   "definition": "A defensive package with six defensive backs on the field, used in obvious passing situations; the sixth back is the dime back.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0293"
+  },
+  {
+   "id": "term.direct-snap",
+   "term": "Direct snap",
+   "aliases": [],
+   "definition": "A snap from the center straight to a player other than the quarterback.",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0296"
+  },
+  {
+   "id": "term.dive",
+   "term": "Dive",
+   "aliases": [
+    "dive play",
+    "plunge"
+   ],
+   "definition": "A quick handoff to a back attacking straight ahead into the interior of the defense.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0308",
+   "variants": "plunge; buck; gut"
+  },
+  {
+   "id": "term.divide-routes",
+   "term": "Divide routes",
+   "aliases": [],
+   "definition": "Any route combination designed to stress the safety.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0309"
+  },
+  {
+   "id": "term.dog-pro",
+   "term": "Dog",
+   "aliases": [],
+   "definition": "West Coast playbook word for a blitz.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0310"
+  },
+  {
+   "id": "term.double-out",
+   "term": "Double out",
+   "aliases": [],
+   "definition": "A route in which the receiver runs 5 to 8 yards, cuts outside, and then turns vertically upfield.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0312"
+  },
+  {
+   "id": "term.double-reverse",
+   "term": "Double reverse",
+   "aliases": [],
+   "definition": "A play in which the ball reverses direction twice behind the line of scrimmage, usually with two or three handoffs.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0313"
+  },
+  {
+   "id": "term.double-slot",
+   "term": "Double slot",
+   "aliases": [],
+   "definition": "A formation with two slot receivers inside two outside receivers (a four-receiver look), as in the air raid and run and shoot.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0314"
+  },
+  {
+   "id": "term.double-team",
+   "term": "Double team",
+   "aliases": [
+    "combo block"
+   ],
+   "definition": "Two blockers engage one defender together, often before one climbs to the next level.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0315"
+  },
+  {
+   "id": "term.double-wing-college",
+   "term": "Double wing",
+   "aliases": [],
+   "definition": "A formation with two tight ends and two wingbacks in which the snap goes to a quarterback or halfback moderately deep in the backfield.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "college",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0317"
+  },
+  {
+   "id": "term.drag",
+   "term": "Drag",
+   "aliases": [
+    "shallow cross"
+   ],
+   "definition": "A shallow crossing route over the middle that starts very short and may drift deeper across the field.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0328"
+  },
+  {
+   "id": "term.draw",
+   "term": "Draw",
+   "aliases": [
+    "draw play"
+   ],
+   "definition": "A run disguised as a pass: the quarterback drops back, then hands off to a back or keeps it.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0329"
+  },
+  {
+   "id": "term.empty-backfield",
+   "term": "Empty backfield",
+   "aliases": [
+    "empty set",
+    "empty formation"
+   ],
+   "definition": "A formation with no running back in the backfield with the quarterback, so every other eligible receiver is split out or on the line.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0346"
+  },
+  {
+   "id": "term.end-around",
+   "term": "End around",
+   "aliases": [
+    "end-around"
+   ],
+   "definition": "A play where a receiver motions into the backfield, takes a direct handoff from the quarterback and runs around the opposite end; often confused with a reverse.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0349"
+  },
+  {
+   "id": "term.erhardt-perkins-offense-pro",
+   "term": "Erhardt-Perkins offense",
+   "aliases": [
+    "E-P"
+   ],
+   "definition": "A play-calling system that names plays by concept and formation rather than by route numbers, so players learn tasks from their starting alignment.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0354"
+  },
+  {
+   "id": "term.f-f-back",
+   "term": "F (F-back)",
+   "aliases": [
+    "F",
+    "F back"
+   ],
+   "definition": "A flexible letter for the fourth skill player: the fullback in two-back sets, or the second tight end in one-back sets with two tight ends.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0368"
+  },
+  {
+   "id": "term.fade",
+   "term": "Fade",
+   "aliases": [
+    "fade route"
+   ],
+   "definition": "A vertical route down the sideline in which the receiver tries to get on top of the defender, often with a ball thrown to the outside or back shoulder.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0370",
+   "variants": "go; fly; streak"
+  },
+  {
+   "id": "term.flanker",
+   "term": "Flanker",
+   "aliases": [
+    "Z",
+    "Z receiver"
+   ],
+   "definition": "A wide receiver who lines up off the line of scrimmage outside another receiver; the term is largely replaced by Z receiver.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0405",
+   "variants": "Z receiver"
+  },
+  {
+   "id": "term.flat-route",
+   "term": "Flat route",
+   "aliases": [
+    "flat",
+    "the flat"
+   ],
+   "definition": "A short route to the sideline within a few yards of the line, usually run by a back (or a slot receiver or tight end from inside the numbers).",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0407",
+   "variants": [
+    "1 route"
+   ]
+  },
+  {
+   "id": "term.flea-flicker",
+   "term": "Flea flicker",
+   "aliases": [],
+   "definition": "A trick play: a back takes a handoff, tosses it back to the quarterback, who then throws downfield.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0408"
+  },
+  {
+   "id": "term.flexbone-college",
+   "term": "Flexbone",
+   "aliases": [],
+   "definition": "A three-back option formation with a fullback behind the quarterback and two slotbacks near the ends of the line, used mainly by service academies.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "college",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0409"
+  },
+  {
+   "id": "term.formation",
+   "term": "Formation",
+   "aliases": [
+    "alignment"
+   ],
+   "definition": "The way the offense or defense lines its players up before the snap.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0418"
+  },
+  {
+   "id": "term.formation-tags-yo-yoyo-nasty-nastier-book-open-pro",
+   "term": "Formation tags (Yo, Yoyo, Nasty, Nastier, Book, Open)",
+   "aliases": [],
+   "definition": "Short words at the end of a formation call that set receiver splits: Yo = the Y end takes a five-yard split, Yoyo = Y splits out wide, Nasty = the weak-side X takes a five-yard split, Nastier = both ends take five-yard splits, Book = all receivers inside the numbers, Open = widest receivers halfway between numbers and sideline.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0419",
+   "variants": [
+    "Yo",
+    "Yoyo",
+    "Nasty",
+    "Nastier",
+    "Book",
+    "Open"
+   ]
+  },
+  {
+   "id": "term.free-release-pro",
+   "term": "Free release",
+   "aliases": [],
+   "definition": "A back or tight end who runs a route right off the snap with no blocking responsibility.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0435"
+  },
+  {
+   "id": "term.fullback",
+   "term": "Fullback",
+   "aliases": [
+    "FB"
+   ],
+   "definition": "A back who lines up behind the quarterback, typically ahead of the tailback, and mainly blocks, with some carries and catches.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0440"
+  },
+  {
+   "id": "term.fumblerooski",
+   "term": "Fumblerooski",
+   "aliases": [],
+   "definition": "A trick play in which the quarterback deliberately places the ball on the ground so another player, usually a lineman, picks it up and advances it.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0443"
+  },
+  {
+   "id": "term.g-lead-pro",
+   "term": "G Lead",
+   "aliases": [],
+   "definition": "A run play with the frontside guard pulling and trapping or leading through the hole.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0445"
+  },
+  {
+   "id": "term.gap-protection-pro",
+   "term": "Gap protection",
+   "aliases": [],
+   "definition": "A pass protection in which linemen step away from the call toward the back side and protect the gap there.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0452"
+  },
+  {
+   "id": "term.give-keep-read",
+   "term": "Give/keep read",
+   "aliases": [],
+   "definition": "The quarterback's decision on a read option: hand the ball off (give) or pull it and run (keep), based on how the read defender reacts.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0457"
+  },
+  {
+   "id": "term.go-route",
+   "term": "Go route",
+   "aliases": [
+    "9 route",
+    "fly",
+    "fly route",
+    "streak",
+    "streak route"
+   ],
+   "definition": "A deep route in which the receiver runs straight down the field as fast and deep as he can.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0460",
+   "variants": "fly; streak; 9 route"
+  },
+  {
+   "id": "term.guard",
+   "term": "Guard",
+   "aliases": [
+    "LG",
+    "RG",
+    "offensive guard"
+   ],
+   "definition": "An offensive lineman who lines up on either side of the center, between the center and the tackles.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0474"
+  },
+  {
+   "id": "term.h-back",
+   "term": "H-back",
+   "aliases": [
+    "H back"
+   ],
+   "definition": "A hybrid between a fullback and a tight end who lines up a few yards behind the line and blocks or catches passes.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0476"
+  },
+  {
+   "id": "term.h-h-back-letter",
+   "term": "H (H-back letter)",
+   "aliases": [],
+   "definition": "The letter for the primary or featured running back (halfback) in a pro-style formation call.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0477"
+  },
+  {
+   "id": "term.hail-mary",
+   "term": "Hail Mary",
+   "aliases": [
+    "Hail Mary pass"
+   ],
+   "definition": "A long desperation pass thrown toward a group of receivers near the end zone, used as a last resort when time is running out.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0478"
+  },
+  {
+   "id": "term.halfback",
+   "term": "Halfback",
+   "aliases": [
+    "tailback",
+    "running back",
+    "HB"
+   ],
+   "definition": "The ball-carrying running back; also called a tailback, and in some systems the H back.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0480"
+  },
+  {
+   "id": "term.halfback-option",
+   "term": "Halfback option",
+   "aliases": [
+    "halfback option pass"
+   ],
+   "definition": "A trick play in which the halfback can either throw a pass or run with the ball.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0481"
+  },
+  {
+   "id": "term.handoff",
+   "term": "Handoff",
+   "aliases": [
+    "hand-off"
+   ],
+   "definition": "Giving the ball directly from one player to another, most commonly the quarterback to a running back.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0486"
+  },
+  {
+   "id": "term.hard-count",
+   "term": "Hard count",
+   "aliases": [],
+   "definition": "A strategy where the quarterback uses an irregular, accented snap-count cadence, hoping the defense jumps offside.",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0490"
+  },
+  {
+   "id": "term.heavy",
+   "term": "Heavy",
+   "aliases": [
+    "heavy set",
+    "heavy personnel",
+    "jumbo"
+   ],
+   "definition": "A personnel group with extra tight ends or backs (a 'jumbo' set), used to run the ball and drawing a base defense.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0496",
+   "variants": "jumbo"
+  },
+  {
+   "id": "term.hitch",
+   "term": "Hitch",
+   "aliases": [
+    "curl",
+    "hook",
+    "buttonhook"
+   ],
+   "definition": "A short route (about 5 to 8 yards) in which the receiver stops and turns back toward the quarterback.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0502",
+   "variants": "curl; hook; button hook"
+  },
+  {
+   "id": "term.hole-numbering-pro",
+   "term": "Hole numbering",
+   "aliases": [],
+   "definition": "A numbering of the gaps along the line for run calls, with even numbers to the right and odd to the left.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0505"
+  },
+  {
+   "id": "term.hook-and-ladder",
+   "term": "Hook and ladder",
+   "aliases": [],
+   "definition": "A trick play in which one receiver runs a hook route, catches the ball and laterals it to a teammate.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0507"
+  },
+  {
+   "id": "term.hot",
+   "term": "Hot",
+   "aliases": [
+    "hot read"
+   ],
+   "definition": "A receiver or back who takes a quick pass when his assigned defender blitzes (the quarterback's hot read).",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0509"
+  },
+  {
+   "id": "term.hot-route",
+   "term": "Hot route",
+   "aliases": [
+    "hot read"
+   ],
+   "definition": "A route change by a receiver or back, made when the quarterback sees a blitz, so the ball comes out quickly.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0510",
+   "variants": "hot read"
+  },
+  {
+   "id": "term.huddle",
+   "term": "Huddle",
+   "aliases": [
+    "huddle (rule)"
+   ],
+   "definition": "A meeting of two or more players on the field, instead of taking their positions for the snap, to receive instructions for the next play.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0512"
+  },
+  {
+   "id": "term.hurry-up-offense",
+   "term": "Hurry-up offense",
+   "aliases": [
+    "hurry-up",
+    "no-huddle",
+    "no-huddle offense"
+   ],
+   "definition": "An offensive style that avoids delay between plays, often with no huddle, to run many plays quickly and limit defensive substitutions and adjustments.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0515"
+  },
+  {
+   "id": "term.hut",
+   "term": "Hut",
+   "aliases": [
+    "hike"
+   ],
+   "definition": "The word shouted by the quarterback as part of the snap count; it replaced 'hike' in the second half of the 20th century.",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0516",
+   "variants": "hike"
+  },
+  {
+   "id": "term.i-formation",
+   "term": "I formation",
+   "aliases": [
+    "I-formation",
+    "I form"
+   ],
+   "definition": "A formation with the fullback and the tailback in a line directly behind a quarterback who is under center, the fullback in front.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0517"
+  },
+  {
+   "id": "term.indirect-snap",
+   "term": "Indirect snap",
+   "aliases": [
+    "direct snap (contrast)"
+   ],
+   "definition": "A snap taken by the quarterback, who then hands or passes the ball on; opposite of a direct snap to another ball carrier.",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0552"
+  },
+  {
+   "id": "term.inside-zone",
+   "term": "Inside zone",
+   "aliases": [
+    "IZ"
+   ],
+   "definition": "A zone run aimed inside the tackles; more of a downhill play than outside zone.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0564"
+  },
+  {
+   "id": "term.interior-offensive-line",
+   "term": "Interior offensive line",
+   "aliases": [
+    "interior line"
+   ],
+   "definition": "The center and the two guards.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0572"
+  },
+  {
+   "id": "term.jailbreak-screen",
+   "term": "Jailbreak screen",
+   "aliases": [
+    "wide receiver screen"
+   ],
+   "definition": "A wide receiver screen where the linemen sprint out in front of the receiver as blockers.",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0579"
+  },
+  {
+   "id": "term.jerk-pro",
+   "term": "Jerk",
+   "aliases": [],
+   "definition": "A shallow crossing route with a stutter step.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0582"
+  },
+  {
+   "id": "term.jumbo",
+   "term": "Jumbo",
+   "aliases": [
+    "jumbo package",
+    "heavy jumbo"
+   ],
+   "definition": "A short-yardage or goal-line package that adds extra tight ends and backs (or other big bodies) in place of receivers.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0585"
+  },
+  {
+   "id": "term.k-gun-pro",
+   "term": "K-Gun",
+   "aliases": [],
+   "definition": "The Buffalo Bills' full-time hurry-up, no-huddle offense of the early 1990s, named for tight end Keith McKeller.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0590"
+  },
+  {
+   "id": "term.kickslide-pro",
+   "term": "Kickslide",
+   "aliases": [],
+   "definition": "A 45-degree slide step offensive tackles use off the snap in pass protection.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0607"
+  },
+  {
+   "id": "term.lateral",
+   "term": "Lateral",
+   "aliases": [
+    "backward pass",
+    "lateral pass",
+    "lateral play",
+    "pitch"
+   ],
+   "definition": "A pass thrown sideways or backward; teams may lateral any number of times.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0614",
+   "variants": "backward pass"
+  },
+  {
+   "id": "term.lonesome-polecat-college",
+   "term": "Lonesome Polecat",
+   "aliases": [],
+   "definition": "A formation devised by Tiger Ellison that overloaded one side of the offensive line for a scrambling quarterback; a forerunner of the run and shoot.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "college",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0639"
+  },
+  {
+   "id": "term.man-blocking",
+   "term": "Man blocking",
+   "aliases": [
+    "man-blocking scheme"
+   ],
+   "definition": "A run-blocking approach where blockers are paired with defenders by rules to create a running lane.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0648"
+  },
+  {
+   "id": "term.maryland-i",
+   "term": "Maryland I",
+   "aliases": [],
+   "definition": "An I formation with three running backs lined up in a straight line behind the quarterback.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0653",
+   "variants": [
+    "Stack I",
+    "Golden I"
+   ]
+  },
+  {
+   "id": "term.max-protect",
+   "term": "Max protect",
+   "aliases": [
+    "maximum protection"
+   ],
+   "definition": "A pass play where the tight end and both backs stay in to block instead of running routes, giving the quarterback extra time but only two receivers.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0655"
+  },
+  {
+   "id": "term.mesh",
+   "term": "Mesh",
+   "aliases": [
+    "mesh concept"
+   ],
+   "definition": "A pass concept in which two receivers run shallow crossing routes close to each other, creating a pick-like traffic problem for man defenders.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0661"
+  },
+  {
+   "id": "term.mesh-point-college",
+   "term": "Mesh point",
+   "aliases": [
+    "mesh"
+   ],
+   "definition": "The point in an option play where the quarterback and dive back hold the ball together while the quarterback decides whether to give or keep.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "college",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0662"
+  },
+  {
+   "id": "term.middle-screen",
+   "term": "Middle screen",
+   "aliases": [],
+   "definition": "A screen where the receiver continues up the middle of the field (similar to a bubble screen).",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0663"
+  },
+  {
+   "id": "term.motion",
+   "term": "Motion",
+   "aliases": [
+    "pre-snap motion",
+    "man in motion",
+    "motion man"
+   ],
+   "definition": "Movement of one eligible player before the snap, as a lone player moving parallel to or away from the line (NFL: from the backfield; NCAA: one back not moving toward the opponent's goal line).",
+   "domain": "offense",
+   "subdomain": "motion",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0675"
+  },
+  {
+   "id": "term.motion-from-calls-hound-fox-pro",
+   "term": "Motion-from calls (Hound, Fox)",
+   "aliases": [],
+   "definition": "Motion calls built from a letter plus a spot number (Fox for the F back, Hound for the H back, and a Z version) that send that player in motion to a named location.",
+   "domain": "offense",
+   "subdomain": "motion",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0676"
+  },
+  {
+   "id": "term.motion-to-call",
+   "term": "Motion-to call",
+   "aliases": [
+    "motion-to"
+   ],
+   "definition": "A call placed at the front of the play that sends a receiver, usually the Z, by motion into a named formation.",
+   "domain": "offense",
+   "subdomain": "motion",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0677"
+  },
+  {
+   "id": "term.naked-bootleg",
+   "term": "Naked bootleg",
+   "aliases": [],
+   "definition": "A bootleg where the quarterback has no blockers: he fakes a handoff and runs the other way to pass or run.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0682"
+  },
+  {
+   "id": "term.nasty-split",
+   "term": "Nasty split",
+   "aliases": [
+    "reduced split"
+   ],
+   "definition": "A receiver alignment much tighter to the formation than normal, such as a very small gap between the wide receiver and the tight end or tackle.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0683",
+   "variants": "reduced split"
+  },
+  {
+   "id": "term.nickel",
+   "term": "nickel",
+   "aliases": [
+    "nickel defense",
+    "nickel package"
+   ],
+   "definition": "A defensive package that puts five defensive backs on the field, the extra one being the nickelback, usually in place of a linebacker.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0694",
+   "variants": [
+    "4-2-5",
+    "3-3-5"
+   ]
+  },
+  {
+   "id": "term.no-huddle-offense",
+   "term": "No-huddle offense",
+   "aliases": [
+    "no huddle"
+   ],
+   "definition": "An offense that lines up and runs the next play without first huddling, to save time or keep the defense from substituting.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0701"
+  },
+  {
+   "id": "term.number-one-and-number-two-receivers",
+   "term": "Number-one and number-two receivers",
+   "aliases": [
+    "#1 receiver",
+    "#2 receiver"
+   ],
+   "definition": "Receivers numbered from the outside in, with the widest receiver as number one and the next one in as number two.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0708"
+  },
+  {
+   "id": "term.offensive-line",
+   "term": "Offensive line",
+   "aliases": [
+    "O-line",
+    "OL"
+   ],
+   "definition": "The five blockers in the middle of the offense: left tackle, left guard, center, right guard and right tackle.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0714"
+  },
+  {
+   "id": "term.offset-i",
+   "term": "Offset I",
+   "aliases": [],
+   "definition": "An I formation in which the fullback lines up to one side of the line between the quarterback and the halfback.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0722"
+  },
+  {
+   "id": "term.open-side",
+   "term": "Open side",
+   "aliases": [
+    "weak side"
+   ],
+   "definition": "The weak side of the formation, away from the tight end.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0737"
+  },
+  {
+   "id": "term.option-route",
+   "term": "Option route",
+   "aliases": [
+    "choice route",
+    "read route"
+   ],
+   "definition": "A route in which the receiver chooses his path after the snap by reading the defender's leverage.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0740"
+  },
+  {
+   "id": "term.option-run",
+   "term": "Option run",
+   "aliases": [
+    "option"
+   ],
+   "definition": "A play in which the ball carrier is chosen after the snap by reading a defender, the quarterback choosing to hand off, keep or pitch.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0741"
+  },
+  {
+   "id": "term.out",
+   "term": "Out",
+   "aliases": [],
+   "definition": "A route that breaks hard toward the sideline after a vertical stem (about 10 to 15 yards, depending on the author).",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0745",
+   "variants": [
+    "deep out",
+    "quick out",
+    "5 route"
+   ]
+  },
+  {
+   "id": "term.outside-zone",
+   "term": "Outside zone",
+   "aliases": [
+    "stretch",
+    "outside zone run"
+   ],
+   "definition": "A zone run that stretches the defense laterally toward the edge, also called a stretch play, with the lanes read by the runner.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0753"
+  },
+  {
+   "id": "term.pancake-block",
+   "term": "Pancake block",
+   "aliases": [
+    "pancake",
+    "cake"
+   ],
+   "definition": "A block that hits the defender so hard he is driven to the ground.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0764"
+  },
+  {
+   "id": "term.personnel-grouping",
+   "term": "Personnel grouping",
+   "aliases": [
+    "personnel",
+    "personnel package"
+   ],
+   "definition": "A two-digit shorthand for the offense's skill players on the field: the first digit is the number of running backs and the second is the number of tight ends, with the rest of the five eligible spots being wide receivers.",
+   "domain": "personnel",
+   "subdomain": "grouping",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0788"
+  },
+  {
+   "id": "term.peter-block-pro",
+   "term": "Peter block",
+   "aliases": [],
+   "definition": "A nickname for a low (cut) block used in pass protection.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0790"
+  },
+  {
+   "id": "term.pin-and-pull",
+   "term": "Pin and pull",
+   "aliases": [],
+   "definition": "An outside-zone technique where linemen pin a backside defender while the next backside lineman pulls around toward the second level.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0797"
+  },
+  {
+   "id": "term.pistol",
+   "term": "Pistol",
+   "aliases": [],
+   "definition": "A short-shotgun formation: the quarterback lines up a few yards behind the center and the running back sits directly behind him.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0798"
+  },
+  {
+   "id": "term.pitch",
+   "term": "Pitch",
+   "aliases": [
+    "option pitch",
+    "lateral toss"
+   ],
+   "definition": "A toss from the quarterback to a trailing running back, as on an option play.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0799"
+  },
+  {
+   "id": "term.pivot-route-pro",
+   "term": "Pivot route",
+   "aliases": [
+    "shark",
+    "zig"
+   ],
+   "definition": "A route where the receiver cuts, pivots and turns back the other way (the 'zig' or 'shark' route, similar to an out).",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0800"
+  },
+  {
+   "id": "term.play-action",
+   "term": "Play action",
+   "aliases": [
+    "play-action pass",
+    "play fake"
+   ],
+   "definition": "A fake handoff to the running back before the quarterback passes, to draw defenders toward the run.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0804"
+  },
+  {
+   "id": "term.play-action-protection-h2-f2-pro",
+   "term": "Play-action protection (H2, F2)",
+   "aliases": [],
+   "definition": "A play-action protection series where a back fakes into a gap while the other back and the line protect (H2/F2/F3 name which back fakes and which gap).",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0805"
+  },
+  {
+   "id": "term.playside-and-backside",
+   "term": "Playside and backside",
+   "aliases": [
+    "frontside and backside"
+   ],
+   "definition": "Playside is the side a play is designed to go toward; backside is the opposite side.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0816"
+  },
+  {
+   "id": "term.pocket-protection",
+   "term": "Pocket protection",
+   "aliases": [
+    "pass protection",
+    "pass blocking"
+   ],
+   "definition": "Pass blocking by the line, tight ends and backs that keeps rushers out of the pocket so the quarterback has time and space to throw.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0822",
+   "variants": "pass protection"
+  },
+  {
+   "id": "term.pocket-tackle-box",
+   "term": "Pocket (tackle box)",
+   "aliases": [
+    "pocket",
+    "tackle box"
+   ],
+   "definition": "The area behind the line between the two offensive tackles where the blockers shield the quarterback during a pass play.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0823",
+   "variants": "tackle box"
+  },
+  {
+   "id": "term.post",
+   "term": "Post",
+   "aliases": [
+    "post route",
+    "post pattern"
+   ],
+   "definition": "A deep route in which the receiver runs up the field and breaks at about 45 degrees toward the goalposts in the middle of the field.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0830"
+  },
+  {
+   "id": "term.post-corner",
+   "term": "Post-corner",
+   "aliases": [
+    "post corner"
+   ],
+   "definition": "A double move combining a post and a corner: the receiver fakes the post and then breaks to the corner.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0831"
+  },
+  {
+   "id": "term.power",
+   "term": "Power",
+   "aliases": [
+    "power O",
+    "power run"
+   ],
+   "definition": "A gap run featuring a single pulling offensive lineman from the backside of the play.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0838",
+   "variants": "power O"
+  },
+  {
+   "id": "term.pro-set",
+   "term": "Pro set",
+   "aliases": [
+    "split backs"
+   ],
+   "definition": "A formation with two running backs side by side two to three yards behind the quarterback.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0857"
+  },
+  {
+   "id": "term.progression",
+   "term": "Progression",
+   "aliases": [
+    "reads"
+   ],
+   "definition": "The order in which the quarterback checks his receivers on a pass play.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0863"
+  },
+  {
+   "id": "term.pull-block",
+   "term": "Pull block",
+   "aliases": [
+    "pulling"
+   ],
+   "definition": "A block by an offensive lineman who steps back out of the line and runs along it to block a defender, usually on a trap or sweep.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0867",
+   "variants": "pulling"
+  },
+  {
+   "id": "term.pump-fake",
+   "term": "Pump fake",
+   "aliases": [],
+   "definition": "A feint of a throw by the quarterback who keeps the ball, trying to fool the defense.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0868"
+  },
+  {
+   "id": "term.quarter-defense",
+   "term": "quarter defense",
+   "aliases": [],
+   "definition": "A defensive package of three linemen, one linebacker and seven defensive backs.",
+   "domain": "personnel",
+   "subdomain": "package",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0879",
+   "variants": [
+    "seven-back defense"
+   ]
+  },
+  {
+   "id": "term.quarterback",
+   "term": "Quarterback",
+   "aliases": [
+    "QB"
+   ],
+   "definition": "The offensive player who takes the snap from the center and hands off, passes or runs the ball; the leader of the offense.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0880"
+  },
+  {
+   "id": "term.quarterback-sneak",
+   "term": "Quarterback sneak",
+   "aliases": [
+    "QB sneak",
+    "sneak"
+   ],
+   "definition": "A short-yardage play in which the quarterback takes the snap and immediately runs forward behind or beside the center.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0882"
+  },
+  {
+   "id": "term.quick-game",
+   "term": "Quick game",
+   "aliases": [
+    "three-step game"
+   ],
+   "definition": "Short, fast-developing throws such as slants and hitches released on one-, two- or three-step drops.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0884",
+   "variants": "three-step game"
+  },
+  {
+   "id": "term.railroad-track",
+   "term": "Railroad track",
+   "aliases": [],
+   "definition": "A coaching image for zone blocking: picture a railroad track parallel to the running back's path.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0888"
+  },
+  {
+   "id": "term.reach-block",
+   "term": "Reach block",
+   "aliases": [],
+   "definition": "A lineman makes contact and gets outside leverage to seal the defender inside.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0889"
+  },
+  {
+   "id": "term.read-key",
+   "term": "Read key",
+   "aliases": [
+    "key",
+    "read"
+   ],
+   "definition": "The defender (often the end, or a linebacker/safety in an RPO) whose movement tells the quarterback whether to hand off, keep, pitch or throw.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0891"
+  },
+  {
+   "id": "term.read-option",
+   "term": "Read option",
+   "aliases": [
+    "zone read"
+   ],
+   "definition": "An option run where the quarterback reads a defender (the end on the side of the play) and either hands off or pulls the ball and runs.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0892",
+   "variants": "zone read"
+  },
+  {
+   "id": "term.read-route",
+   "term": "Read route",
+   "aliases": [
+    "option route"
+   ],
+   "definition": "A route that changes depending on how the defender plays it (an option route).",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0893"
+  },
+  {
+   "id": "term.reverse",
+   "term": "Reverse",
+   "aliases": [],
+   "definition": "A play where a back carries toward one side, then hands or tosses to a teammate (usually a wide receiver) running the opposite way.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0928"
+  },
+  {
+   "id": "term.route-tree",
+   "term": "Route tree",
+   "aliases": [
+    "passing tree"
+   ],
+   "definition": "A numbering system that organizes a team's pass routes (for example flat 1, slant 2, comeback 3, curl 4, out 5, dig 6, corner 7, post 8, fade 9), also drawn as one diagram.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0955"
+  },
+  {
+   "id": "term.run-and-shoot",
+   "term": "Run and shoot",
+   "aliases": [
+    "run and gun"
+   ],
+   "definition": "An offense that emphasizes receiver motion, splits receivers out, and has them choose routes by reading the defenders instead of following a fixed plan.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0958",
+   "variants": "run and gun"
+  },
+  {
+   "id": "term.run-pass-option",
+   "term": "Run-pass option",
+   "aliases": [
+    "RPO"
+   ],
+   "definition": "A play in which the quarterback chooses to run or pass after the snap based on a read.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0959",
+   "variants": "RPO"
+  },
+  {
+   "id": "term.running-back",
+   "term": "Running back",
+   "aliases": [
+    "RB",
+    "halfback",
+    "tailback"
+   ],
+   "definition": "An offensive player in the backfield who carries the ball, catches passes and blocks; the term covers halfbacks, tailbacks and fullbacks.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0963",
+   "variants": "halfback; tailback"
+  },
+  {
+   "id": "term.running-back-screen",
+   "term": "Running back screen",
+   "aliases": [
+    "RB screen"
+   ],
+   "definition": "A screen to a running back in the flat, built to let pass rushers through before the back catches the ball behind blockers.",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0964"
+  },
+  {
+   "id": "term.running-out-the-clock",
+   "term": "Running out the clock",
+   "aliases": [
+    "chewing the clock",
+    "killing the clock",
+    "kneel-down",
+    "milking the clock",
+    "time-wasting"
+   ],
+   "definition": "Using simple plays that keep the game clock running (including quarterback kneels) late in a game, usually by the leading team, to end the game sooner and deny the opponent possessions.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0966"
+  },
+  {
+   "id": "term.sail-concept",
+   "term": "Sail concept",
+   "aliases": [
+    "flood"
+   ],
+   "definition": "A three-level passing concept that overloads one side of the defense with a deep, an intermediate and a short route.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0974",
+   "variants": "flood"
+  },
+  {
+   "id": "term.scat-protection-pro",
+   "term": "Scat protection",
+   "aliases": [],
+   "definition": "A protection call that releases a back to run a route right off the snap with no blocking duty.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0978"
+  },
+  {
+   "id": "term.scramble",
+   "term": "Scramble",
+   "aliases": [
+    "QB scramble"
+   ],
+   "definition": "A quarterback running out of the pocket on a called pass play to avoid a sack, buy time or gain yards.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0983"
+  },
+  {
+   "id": "term.screen-pass",
+   "term": "Screen pass",
+   "aliases": [],
+   "definition": "A short forward pass to a receiver, usually a running back, who has blockers set up in front of him.",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0984"
+  },
+  {
+   "id": "term.scripted-plays-pro",
+   "term": "Scripted plays",
+   "aliases": [],
+   "definition": "A pre-planned list of opening plays (Bill Walsh scripted about the first 15) practised in advance.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0990"
+  },
+  {
+   "id": "term.seam-route",
+   "term": "Seam route",
+   "aliases": [
+    "seam"
+   ],
+   "definition": "A vertical route run up the middle of the field, between the areas covered by two defenders, to exploit the open space.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0992"
+  },
+  {
+   "id": "term.second-level",
+   "term": "Second level",
+   "aliases": [
+    "next level"
+   ],
+   "definition": "The area behind the defensive line where the linebackers play; blockers climb to it.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-0997"
+  },
+  {
+   "id": "term.series-number-west-coast-pro",
+   "term": "Series number (West Coast)",
+   "aliases": [],
+   "definition": "A number that names a West Coast pass-protection series; the 100 series is the three-step drop.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1006"
+  },
+  {
+   "id": "term.set",
+   "term": "Set",
+   "aliases": [],
+   "definition": "The requirement that all offensive players be motionless in position for at least one second before the snap (and after any shift).",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1008"
+  },
+  {
+   "id": "term.shallow-cross",
+   "term": "Shallow cross",
+   "aliases": [
+    "shallow",
+    "drive"
+   ],
+   "definition": "A short crossing route that stays within a few yards of the line of scrimmage and runs across the formation under deeper routes.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1013",
+   "variants": "shallow drive"
+  },
+  {
+   "id": "term.shift",
+   "term": "Shift",
+   "aliases": [
+    "shift (rule)"
+   ],
+   "definition": "A simultaneous change of position or stance by two or more offensive players after the ball is ready for play and before the snap; all shifting players must then come to a complete stop.",
+   "domain": "offense",
+   "subdomain": "motion",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1016"
+  },
+  {
+   "id": "term.shotgun",
+   "term": "Shotgun",
+   "aliases": [
+    "shotgun formation"
+   ],
+   "definition": "A formation in which the quarterback takes the snap standing several yards behind the center rather than directly behind him.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1020"
+  },
+  {
+   "id": "term.shovel-pass",
+   "term": "Shovel pass",
+   "aliases": [],
+   "definition": "A short forward pass in which the quarterback palms the ball and shovels it directly forward to the receiver.",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1021"
+  },
+  {
+   "id": "term.single-wing",
+   "term": "Single wing",
+   "aliases": [
+    "single-wing"
+   ],
+   "definition": "An older formation with an unbalanced line, a direct snap to a back deep in the formation, and a wingback.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1035"
+  },
+  {
+   "id": "term.skinny-post-pro",
+   "term": "Skinny post",
+   "aliases": [],
+   "definition": "A shorter, tighter post where the receiver cuts toward the middle at a shallower angle.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1038"
+  },
+  {
+   "id": "term.skip-pull-pro",
+   "term": "Skip pull",
+   "aliases": [],
+   "definition": "An advanced pulling technique that needs difficult footwork.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1039"
+  },
+  {
+   "id": "term.slide-protection-pro",
+   "term": "Slide protection",
+   "aliases": [
+    "slide"
+   ],
+   "definition": "A pass protection where linemen slide laterally to a called side while the others block the remaining rushers.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1043"
+  },
+  {
+   "id": "term.slot-receiver",
+   "term": "Slot receiver",
+   "aliases": [
+    "slotback",
+    "slot back"
+   ],
+   "definition": "A receiver who lines up in the slot, between the split end and the rest of the offensive line, usually a step off the line.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1045",
+   "variants": "slotback"
+  },
+  {
+   "id": "term.sluggo",
+   "term": "Sluggo",
+   "aliases": [
+    "slant-and-go",
+    "sluggo route"
+   ],
+   "definition": "A route in which the receiver runs a slant and then turns upfield on a go; the name is a compression of 'slant and go'.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1046",
+   "variants": "slant and go"
+  },
+  {
+   "id": "term.smash",
+   "term": "Smash",
+   "aliases": [
+    "smash concept"
+   ],
+   "definition": "A pass concept designed to stress the cornerback in Cover 2, built on a short route with a corner route above it.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1047"
+  },
+  {
+   "id": "term.smashmouth-offense",
+   "term": "Smashmouth offense",
+   "aliases": [
+    "smash-mouth"
+   ],
+   "definition": "A run-heavy offensive strategy that relies on a strong running game.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1048"
+  },
+  {
+   "id": "term.snap",
+   "term": "Snap",
+   "aliases": [
+    "snapping the ball"
+   ],
+   "definition": "The backward pass from the center that puts the ball in play and starts a scrimmage down.",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1049"
+  },
+  {
+   "id": "term.snap-count-signal",
+   "term": "Snap count (signal)",
+   "aliases": [
+    "count",
+    "cadence"
+   ],
+   "definition": "The signal or cadence the quarterback uses to tell the line when the ball will be snapped, often varied to draw the defense offside.",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1051"
+  },
+  {
+   "id": "term.speed-out",
+   "term": "Speed out",
+   "aliases": [
+    "arrow route",
+    "quick out"
+   ],
+   "definition": "A short, quick out route in which the receiver breaks toward the sideline right after a short stem.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1060",
+   "variants": "arrow route"
+  },
+  {
+   "id": "term.split-end",
+   "term": "Split end",
+   "aliases": [
+    "X receiver",
+    "X"
+   ],
+   "definition": "A receiver who lines up on the line of scrimmage, several yards outside the interior offensive linemen.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1068",
+   "variants": "X"
+  },
+  {
+   "id": "term.split-t-college",
+   "term": "Split-T",
+   "aliases": [
+    "split T"
+   ],
+   "definition": "A T-formation variant in which the gaps between guards and tackles are about twice as wide as those between the center and guards.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "college",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1069"
+  },
+  {
+   "id": "term.spot-concept",
+   "term": "Spot concept",
+   "aliases": [
+    "spot"
+   ],
+   "definition": "A pass combination of a curl and a flat route, often with a corner route added.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1070"
+  },
+  {
+   "id": "term.spread-offense",
+   "term": "Spread offense",
+   "aliases": [],
+   "definition": "An offense that uses the shotgun and several receivers to spread the defense across the width of the field.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1075"
+  },
+  {
+   "id": "term.square-out",
+   "term": "Square out",
+   "aliases": [],
+   "definition": "A hard 90-degree break to the sideline from a vertical stem, about 10 to 12 yards deep.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1079"
+  },
+  {
+   "id": "term.stem",
+   "term": "Stem",
+   "aliases": [],
+   "definition": "The first part of a route before the break, usually a vertical push that sets up the cut and the defender's leverage.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1086"
+  },
+  {
+   "id": "term.stick",
+   "term": "Stick",
+   "aliases": [],
+   "definition": "A short concept where an inside receiver runs about five to six yards and sits down between zone defenders, or breaks away against man; used in the quick game.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1087",
+   "variants": [
+    "turn"
+   ]
+  },
+  {
+   "id": "term.stop-and-go",
+   "term": "Stop-and-go",
+   "aliases": [
+    "hitch-and-go",
+    "pump-and-go"
+   ],
+   "definition": "A route that fakes a stop (or a hitch or pump) and then continues upfield on a go.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1088"
+  },
+  {
+   "id": "term.stretch",
+   "term": "Stretch",
+   "aliases": [
+    "outside zone",
+    "OZ",
+    "stretch play"
+   ],
+   "definition": "A zone run designed to get the defense moving laterally; the landmark is just inside the last offensive player (outside zone is the same play family).",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1091",
+   "variants": "outside zone"
+  },
+  {
+   "id": "term.swap-tags-yax-zax-fax-yaz-fay-fez-change",
+   "term": "Swap tags (Yax, Zax, Fax, Yaz, Fay, Fez, Change)",
+   "aliases": [
+    "Yax",
+    "Zax",
+    "Fax",
+    "Yaz",
+    "Fay",
+    "Fez"
+   ],
+   "definition": "Short tags that tell two named players to exchange alignment spots, such as Yax meaning Y and X change places.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1108"
+  },
+  {
+   "id": "term.sweep",
+   "term": "Sweep",
+   "aliases": [
+    "power sweep"
+   ],
+   "definition": "A run to the outside with blockers leading the back; sometimes called a power sweep.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1109"
+  },
+  {
+   "id": "term.swing-route",
+   "term": "Swing route",
+   "aliases": [
+    "swing"
+   ],
+   "definition": "A route run by the running back, who swings out of the backfield into the flat.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1111"
+  },
+  {
+   "id": "term.switch-route",
+   "term": "Switch route",
+   "aliases": [],
+   "definition": "A concept where the two outside receivers switch places as they run downfield.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1112"
+  },
+  {
+   "id": "term.tackle-trick-screen",
+   "term": "Tackle trick screen",
+   "aliases": [],
+   "definition": "A trick variant of the screen pass that involves an offensive tackle as the receiver.",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1117"
+  },
+  {
+   "id": "term.tag-play-call-suffix",
+   "term": "Tag (play-call suffix)",
+   "aliases": [
+    "tag"
+   ],
+   "definition": "A word or short call added to a play or formation call that modifies it (for example a split, a flip or an added route).",
+   "domain": "offense",
+   "subdomain": "snap",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1120"
+  },
+  {
+   "id": "term.three-step-drop",
+   "term": "Three-step drop",
+   "aliases": [
+    "3-step drop"
+   ],
+   "definition": "A quick dropback of three steps that gets the ball out fast.",
+   "domain": "offense",
+   "subdomain": "protection",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1141"
+  },
+  {
+   "id": "term.tight-end",
+   "term": "Tight end",
+   "aliases": [
+    "TE",
+    "Y receiver"
+   ],
+   "definition": "A player who lines up at the end of the offensive line, blocks on runs, and runs pass routes.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1143"
+  },
+  {
+   "id": "term.toss",
+   "term": "Toss",
+   "aliases": [
+    "toss sweep"
+   ],
+   "definition": "A run where the quarterback tosses the ball to a back who curves out toward the sideline.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1154"
+  },
+  {
+   "id": "term.tosser-pro",
+   "term": "Tosser",
+   "aliases": [],
+   "definition": "A New England Erhardt-Perkins call for the double-slant concept.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1155"
+  },
+  {
+   "id": "term.trade",
+   "term": "Trade",
+   "aliases": [],
+   "definition": "A letter-system shift that moves the Y to the opposite side while the X and Z adjust their alignments.",
+   "domain": "offense",
+   "subdomain": "motion",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1163"
+  },
+  {
+   "id": "term.trap",
+   "term": "Trap",
+   "aliases": [
+    "trap run"
+   ],
+   "definition": "A run in which a defender is allowed through the line and then blocked by a pulling lineman, usually a guard coming from the back side.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1171"
+  },
+  {
+   "id": "term.trap-block",
+   "term": "Trap block",
+   "aliases": [],
+   "definition": "A block by a pulling lineman, normally a guard, on a defender who was allowed through the line.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1172"
+  },
+  {
+   "id": "term.triple-option-college",
+   "term": "Triple option",
+   "aliases": [
+    "option"
+   ],
+   "definition": "An option run with three possible ball carriers: a dive back, the quarterback and a trailing pitch back.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "college",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1173"
+  },
+  {
+   "id": "term.tunnel-screen",
+   "term": "Tunnel screen",
+   "aliases": [],
+   "definition": "A wide receiver screen thrown to a receiver moving back toward the quarterback, behind blocking receivers.",
+   "domain": "offense",
+   "subdomain": "screen",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1179"
+  },
+  {
+   "id": "term.twins",
+   "term": "Twins",
+   "aliases": [
+    "twins alignment"
+   ],
+   "definition": "An alignment with two receivers on the same side of the formation.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1183"
+  },
+  {
+   "id": "term.two-minute-drill",
+   "term": "Two-minute drill",
+   "aliases": [
+    "hurry-up",
+    "two-minute offense"
+   ],
+   "definition": "A late-half or late-game offense run at speed with a focus on clock stoppage, favoring passes near the sideline and receivers getting out of bounds, to get as many scoring plays as possible.",
+   "domain": "offense",
+   "subdomain": "tempo",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1190"
+  },
+  {
+   "id": "term.under-center",
+   "term": "Under center",
+   "aliases": [],
+   "definition": "The quarterback lines up directly behind the center and takes the snap straight from him.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1198"
+  },
+  {
+   "id": "term.veer",
+   "term": "Veer",
+   "aliases": [],
+   "definition": "A triple-option run where a dive back attacks inside while the quarterback reads the defensive end and either keeps or pitches.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1211",
+   "variants": [
+    "inside veer",
+    "outside veer"
+   ]
+  },
+  {
+   "id": "term.west-coast-offense-pro",
+   "term": "West Coast offense",
+   "aliases": [
+    "WCO"
+   ],
+   "definition": "An offense built on short, high-percentage passes and timing routes (developed by Bill Walsh), with play calls that name the primary receiver's route.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1238"
+  },
+  {
+   "id": "term.west-coast-play-call-structure-pro",
+   "term": "West Coast play-call structure",
+   "aliases": [
+    "West Coast terminology"
+   ],
+   "definition": "A play-call format in which the call names the formation, then the hole (one of nine numbered gaps) and the blocking scheme and path.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1239"
+  },
+  {
+   "id": "term.wheel",
+   "term": "Wheel",
+   "aliases": [],
+   "definition": "A route that starts toward the sideline, then turns upfield; run by a receiver or running back.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1240"
+  },
+  {
+   "id": "term.whip-pro",
+   "term": "Whip",
+   "aliases": [
+    "return route"
+   ],
+   "definition": "A route that looks like an in-breaking cut or slant, then breaks to the sideline underneath.",
+   "domain": "offense",
+   "subdomain": "route",
+   "level": "pro",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1241"
+  },
+  {
+   "id": "term.wide-receiver",
+   "term": "Wide receiver",
+   "aliases": [
+    "WR",
+    "wideout"
+   ],
+   "definition": "A player who lines up wide of the formation and runs routes to catch forward passes.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1243",
+   "variants": "wideout"
+  },
+  {
+   "id": "term.wide-splits",
+   "term": "Wide splits",
+   "aliases": [],
+   "definition": "Offensive linemen spaced wider than normal (about a half to a full yard or more apart) to open passing lanes; the same word also describes where receivers line up (plus, numbers, reduced splits).",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1244"
+  },
+  {
+   "id": "term.wildcat",
+   "term": "Wildcat",
+   "aliases": [
+    "wildcat formation"
+   ],
+   "definition": "A formation in which the ball is snapped directly to a running back (not the quarterback), who can run or pass, with the quarterback often split out as a receiver.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1245"
+  },
+  {
+   "id": "term.wing-t",
+   "term": "Wing-T",
+   "aliases": [
+    "wing T"
+   ],
+   "definition": "An offense with a wingback, much misdirection running and wishbone-style option concepts.",
+   "domain": "offense",
+   "subdomain": "system",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1250"
+  },
+  {
+   "id": "term.wingback",
+   "term": "Wingback",
+   "aliases": [],
+   "definition": "A back who lines up outside and slightly behind the end of the line, used in single-wing, double-wing and wing-T offenses.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1251"
+  },
+  {
+   "id": "term.winning-the-leverage-battle",
+   "term": "Winning the leverage battle",
+   "aliases": [
+    "leverage"
+   ],
+   "definition": "Getting lower than the opponent.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1252"
+  },
+  {
+   "id": "term.wishbone-college",
+   "term": "Wishbone",
+   "aliases": [
+    "bone"
+   ],
+   "definition": "A formation with the quarterback, a fullback behind him and two halfbacks lined up deeper in a Y shape, built for the triple option.",
+   "domain": "offense",
+   "subdomain": "formation",
+   "level": "college",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1253",
+   "variants": "bone"
+  },
+  {
+   "id": "term.x-receiver",
+   "term": "X receiver",
+   "aliases": [
+    "split end"
+   ],
+   "definition": "In letter-based systems, the X is the split end: the receiver on the line of scrimmage, usually away from the tight end.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1258"
+  },
+  {
+   "id": "term.y-receiver",
+   "term": "Y receiver",
+   "aliases": [
+    "Y",
+    "Y-receiver"
+   ],
+   "definition": "In letter-based play calling, the Y is the tight end (the player who lines up on the end of the line); in some systems it is the offense's third receiver.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1259"
+  },
+  {
+   "id": "term.yankee",
+   "term": "Yankee",
+   "aliases": [
+    "Yankee concept"
+   ],
+   "definition": "A deep two-man crossing combination: one receiver on a deep over route and another on a deep post over the top, often off play-action.",
+   "domain": "offense",
+   "subdomain": "concept",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1261"
+  },
+  {
+   "id": "term.yards-after-catch",
+   "term": "Yards after catch",
+   "aliases": [
+    "YAC"
+   ],
+   "definition": "Yards gained by a receiver after the catch.",
+   "domain": "offense",
+   "subdomain": "pass",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1263"
+  },
+  {
+   "id": "term.z-receiver",
+   "term": "Z receiver",
+   "aliases": [
+    "flanker"
+   ],
+   "definition": "In letter-based systems, the Z is the flanker: the receiver who lines up a yard off the line of scrimmage, usually to the tight end's side.",
+   "domain": "offense",
+   "subdomain": "position",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1267"
+  },
+  {
+   "id": "term.zap-motion",
+   "term": "Zap motion",
+   "aliases": [
+    "Zap"
+   ],
+   "definition": "A motion call telling the Z to start in the called formation, cross to the offside guard and return to his original spot.",
+   "domain": "offense",
+   "subdomain": "motion",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1268"
+  },
+  {
+   "id": "term.zone-blocking",
+   "term": "Zone blocking",
+   "aliases": [
+    "zone scheme"
+   ],
+   "definition": "A run-blocking scheme in which linemen block together to create lanes for the runner, with no hole assigned in advance.",
+   "domain": "offense",
+   "subdomain": "blocking",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1271"
+  },
+  {
+   "id": "term.zone-read",
+   "term": "Zone read",
+   "aliases": [
+    "QB choice",
+    "QB wrap",
+    "read option"
+   ],
+   "definition": "A read option run: the line zone-blocks one way while the quarterback reads a defensive end and either hands off or keeps.",
+   "domain": "offense",
+   "subdomain": "run",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1273"
+  },
+  {
+   "id": "term.zoom-motion",
+   "term": "Zoom motion",
+   "aliases": [],
+   "definition": "A motion call in which the Z starts in the called formation and motions across to the other side.",
+   "domain": "offense",
+   "subdomain": "motion",
+   "level": "both",
+   "ownerLeaf": "A4.5.2",
+   "factRow": "F-glossary-1274"
+  }
+ ]
+}

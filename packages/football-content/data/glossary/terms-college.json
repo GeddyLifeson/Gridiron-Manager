@@ -1,0 +1,1023 @@
+{
+ "leaf": "A4.5.7",
+ "terms": [
+  {
+   "id": "term.247sports-college",
+   "term": "247Sports",
+   "aliases": [
+    "247"
+   ],
+   "definition": "A network of recruiting-focused websites for college football and basketball that rates prospects; it also runs the 247Sports Composite.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0018"
+  },
+  {
+   "id": "term.academic-progress-rate-college",
+   "term": "academic progress rate",
+   "aliases": [
+    "APR"
+   ],
+   "definition": "An NCAA Division I measure of a team's academic eligibility and retention per term (max 1,000), with penalties for low scores and a 930 multi-year benchmark for postseason eligibility.",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0049"
+  },
+  {
+   "id": "term.academic-redshirt-college",
+   "term": "academic redshirt",
+   "aliases": [],
+   "definition": "A signee who meets a school's admission rules but not the NCAA's core-course GPA standard, so he may get aid and practice but may not play, without losing a year of eligibility.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0050"
+  },
+  {
+   "id": "term.age-based-eligibility-five-year-period-college",
+   "term": "age-based eligibility (five-year period)",
+   "aliases": [
+    "five-year eligibility clock",
+    "five-year eligibility period",
+    "5 for 5"
+   ],
+   "definition": "The NCAA Division I and II model, starting 2026-27, giving up to five years of eligibility that begin at the earlier of first full-time college enrollment or the academic year after the 19th birthday, then run continuously.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0058",
+   "variants": "NCAA says \"5 for 5\" is not accurate"
+  },
+  {
+   "id": "term.blue-chip-ratio-college",
+   "term": "blue-chip ratio",
+   "aliases": [
+    "blue chip ratio"
+   ],
+   "definition": "The percentage of a roster or recruiting class made up of blue-chip (usually four- and five-star) recruits.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0120"
+  },
+  {
+   "id": "term.blueshirt-college",
+   "term": "blueshirt",
+   "aliases": [
+    "blue shirt"
+   ],
+   "definition": "A walk-on the NCAA does not classify as a recruited student-athlete (no official visit, scholarship offer, etc.); he may receive a scholarship after enrolling, and that aid counts against the school's scholarship quota the next year.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0121"
+  },
+  {
+   "id": "term.booster-college",
+   "term": "booster",
+   "aliases": [
+    "rep of athletics interests"
+   ],
+   "definition": "A fan or donor connected to a school's athletics; boosters fund NIL collectives, and the new College Sports Commission can bar NIL pay from 'associated entities or individuals', which seems to mean boosters.",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0126"
+  },
+  {
+   "id": "term.bowl-game-college",
+   "term": "bowl game",
+   "aliases": [
+    "bowl"
+   ],
+   "definition": "A postseason game, traditionally an exhibition between two invited FBS teams; today six bowls host CFP quarterfinals and semifinals and the rest form the postseason for teams outside the Playoff.",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0130"
+  },
+  {
+   "id": "term.college-football-playoff-college",
+   "term": "College Football Playoff",
+   "aliases": [
+    "CFP",
+    "playoff"
+   ],
+   "definition": "The 12-team postseason tournament that decides the FBS national champion; automatic bids go to the ACC, Big Ten, Big 12 and SEC champions and the top-ranked champion from the other conferences (2026-27).",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0193"
+  },
+  {
+   "id": "term.college-sports-commission-college",
+   "term": "College Sports Commission",
+   "aliases": [
+    "CSC"
+   ],
+   "definition": "The organization launched by the power conferences in 2025 that oversees the House settlement rules, the NIL clearinghouse and the revenue-sharing cap, and punishes violations.",
+   "domain": "college",
+   "subdomain": "money",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0194"
+  },
+  {
+   "id": "term.committable-offer-college",
+   "term": "committable offer",
+   "aliases": [
+    "commitable offer"
+   ],
+   "definition": "A scholarship offer a recruit can accept right away and be guaranteed a spot; an uncommittable offer is one the school may not honor.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0201",
+   "variants": "uncommittable offer"
+  },
+  {
+   "id": "term.compliance-college",
+   "term": "compliance",
+   "aliases": [
+    "compliance office",
+    "compliance officer"
+   ],
+   "definition": "The school office that checks the program follows NCAA rules and handles paperwork such as entering a player's name into the transfer portal.",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0206"
+  },
+  {
+   "id": "term.composite-rating-college",
+   "term": "composite rating",
+   "aliases": [
+    "composite",
+    "industry ranking"
+   ],
+   "definition": "A rating that blends several recruiting services' ratings into one score for a prospect.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0207",
+   "variants": "247Sports Composite; Rivals Industry Ranking"
+  },
+  {
+   "id": "term.conference-championship",
+   "term": "conference championship",
+   "aliases": [
+    "conference title"
+   ],
+   "definition": "The title decided among a college conference's teams; in 2026-27 the ACC, Big Ten, Big 12 and SEC champions earn automatic College Football Playoff bids.",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "both",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0212"
+  },
+  {
+   "id": "term.conference-realignment-college",
+   "term": "conference realignment",
+   "aliases": [],
+   "definition": "Schools changing conferences, which reshaped college football (for example the Pac-12 shrinking to two members after the 2023 season).",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0213"
+  },
+  {
+   "id": "term.contact-period-college",
+   "term": "contact period",
+   "aliases": [],
+   "definition": "A recruiting-calendar period when coaches may meet recruits in person, including on campus, at tournaments, at home and at school.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0216"
+  },
+  {
+   "id": "term.covid-year-college",
+   "term": "COVID year",
+   "aliases": [
+    "COVID-19 eligibility year",
+    "bonus year"
+   ],
+   "definition": "An extra season of eligibility the NCAA granted to athletes who met certain criteria because of the COVID-19 pandemic.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0235"
+  },
+  {
+   "id": "term.dead-period-college",
+   "term": "dead period",
+   "aliases": [],
+   "definition": "The most restrictive recruiting-calendar period: no in-person contact or visits, though electronic and written communication is allowed.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0262"
+  },
+  {
+   "id": "term.decommit-college",
+   "term": "decommit",
+   "aliases": [
+    "decommitment"
+   ],
+   "definition": "A recruit withdraws a previous verbal commitment, often to flip to another school.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0268"
+  },
+  {
+   "id": "term.designated-student-athlete-college",
+   "term": "Designated Student-Athlete",
+   "aliases": [
+    "DSA"
+   ],
+   "definition": "A player who lost his roster spot to the new roster limits and, as a DSA, does not count against a roster limit at his current or a new school for the rest of his college career.",
+   "domain": "college",
+   "subdomain": "roster",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0288"
+  },
+  {
+   "id": "term.early-enrollee-college",
+   "term": "early enrollee",
+   "aliases": [
+    "midyear enrollee",
+    "January enrollee"
+   ],
+   "definition": "A recruit who enrolls before the fall semester, often in January, to join the program early.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0337",
+   "variants": "midyear enrollee"
+  },
+  {
+   "id": "term.early-signing-period-college",
+   "term": "early signing period",
+   "aliases": [],
+   "definition": "A signing window before the traditional February date that lets recruits formalize their choice in December (the 2025 cycle began Dec. 4, 2024).",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0339"
+  },
+  {
+   "id": "term.eligibility-waiver-college",
+   "term": "eligibility waiver",
+   "aliases": [
+    "waiver"
+   ],
+   "definition": "An NCAA-granted exception that excuses an athlete from an eligibility rule, such as a waiver for immediate eligibility after a transfer; most categories are eliminated for D-I and D-II from 2026-27.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0343"
+  },
+  {
+   "id": "term.evaluation-period-college",
+   "term": "evaluation period",
+   "aliases": [],
+   "definition": "A recruiting-calendar period when coaches may watch a recruit play or visit his school, but may not speak with him or his parents in person off campus.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0355"
+  },
+  {
+   "id": "term.fbs-college",
+   "term": "FBS",
+   "aliases": [
+    "Football Bowl Subdivision",
+    "Division I-A"
+   ],
+   "definition": "The Football Bowl Subdivision, the top level of college football, whose teams play in the College Football Playoff and other bowl games.",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0379",
+   "variants": "historically Division I-A"
+  },
+  {
+   "id": "term.fcs-college",
+   "term": "FCS",
+   "aliases": [
+    "Football Championship Subdivision",
+    "Division I-AA"
+   ],
+   "definition": "The Football Championship Subdivision, the second level of Division I football, with limited scholarships and its own NCAA playoff.",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0380",
+   "variants": "historically Division I-AA"
+  },
+  {
+   "id": "term.fifth-year-senior-college",
+   "term": "fifth-year senior",
+   "aliases": [
+    "redshirt senior"
+   ],
+   "definition": "A player in his fifth year as an undergraduate; under the pre-2026 rules this meant one with five years of eligibility (a 'redshirt senior' was a fifth-year using a fourth year of eligibility).",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0393"
+  },
+  {
+   "id": "term.flip-college",
+   "term": "flip",
+   "aliases": [
+    "flipped"
+   ],
+   "definition": "When a school persuades a recruit committed elsewhere to switch to it.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0411"
+  },
+  {
+   "id": "term.four-game-redshirt-rule-college",
+   "term": "four-game redshirt rule",
+   "aliases": [
+    "four-game rule",
+    "4-game rule"
+   ],
+   "definition": "A rule (FBS and FCS, from the 2018 season) letting a player appear in up to four regular-season games and still keep that season as a redshirt year; historical for D-I from 2026-27.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0427",
+   "variants": "Division II uses a three-game rule (from 2023)"
+  },
+  {
+   "id": "term.graduate-transfer-college",
+   "term": "graduate transfer",
+   "aliases": [
+    "grad transfer"
+   ],
+   "definition": "A player who has earned his degree at one school and moves to another using remaining eligibility, with immediate eligibility.",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0467"
+  },
+  {
+   "id": "term.grayshirt-college",
+   "term": "grayshirt",
+   "aliases": [
+    "greyshirt",
+    "gray shirt"
+   ],
+   "definition": "A recruit who delays full-time enrollment (for example to the winter or spring term) so the eligibility clock starts later; the pre-2026 rules that governed this are replaced by the age-based model.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0468",
+   "variants": "greyshirt (draft spelling), grayshirt"
+  },
+  {
+   "id": "term.group-of-six-college",
+   "term": "Group of Six",
+   "aliases": [
+    "Group of Five",
+    "G6",
+    "G5"
+   ],
+   "definition": "The six FBS conferences outside the Power Four (American, Conference USA, MAC, Mountain West, Pac-12, Sun Belt); 'Group of Five' is the older term from when the Pac-12 was a power conference.",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0471",
+   "variants": "Group of Five (historical, still used in 2026 by some outlets)"
+  },
+  {
+   "id": "term.hardship-waiver-college",
+   "term": "hardship waiver",
+   "aliases": [
+    "medical hardship waiver",
+    "medical redshirt"
+   ],
+   "definition": "A request to restore a season lost to injury or other hardship, historically for athletes who got hurt after playing in under 30% of games; eliminated for Division I and II by the 2026-27 age-based rules.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0491"
+  },
+  {
+   "id": "term.house-settlement-college",
+   "term": "House settlement",
+   "aliases": [
+    "House v. NCAA"
+   ],
+   "definition": "The class-action settlement of House v. NCAA (approved June 6, 2025) that lets schools opt in to revenue sharing with athletes, sets roster limits in place of scholarship limits, and created the NIL clearinghouse.",
+   "domain": "college",
+   "subdomain": "money",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0511"
+  },
+  {
+   "id": "term.immediate-eligibility-college",
+   "term": "immediate eligibility",
+   "aliases": [
+    "no sit-out year"
+   ],
+   "definition": "A transferring athlete may play at the new school right away, without sitting out a year in residence.",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0539"
+  },
+  {
+   "id": "term.impermissible-benefit-college",
+   "term": "impermissible benefit",
+   "aliases": [
+    "impermissible inducement"
+   ],
+   "definition": "A payment, favor or recruiting inducement to a player or recruit that breaks NCAA rules (for example a school paying for unofficial visit expenses).",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0540"
+  },
+  {
+   "id": "term.independent-college",
+   "term": "independent",
+   "aliases": [
+    "FBS independent"
+   ],
+   "definition": "An FBS school that plays football outside a conference; in 2026 there are two, and Notre Dame is one that may earn an automatic CFP bid by ranking in the top 12.",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0550"
+  },
+  {
+   "id": "term.junior-college-college",
+   "term": "junior college",
+   "aliases": [
+    "JUCO",
+    "juco",
+    "two-year college"
+   ],
+   "definition": "A two-year college; players can start there and move to a four-year school, and time at one counts toward NCAA eligibility under the pre-2026 rules (and full-time enrollment there starts the new five-year clock).",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0587",
+   "variants": "JUCO transfer; NJCAA"
+  },
+  {
+   "id": "term.national-letter-of-intent-college",
+   "term": "National Letter of Intent",
+   "aliases": [
+    "NLI"
+   ],
+   "definition": "A binding agreement to attend a school (since 1964) that the NCAA eliminated in October 2024, replacing it with a financial aid agreement.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0684",
+   "variants": "athletics financial aid agreement; athletic aid agreement"
+  },
+  {
+   "id": "term.national-signing-day-college",
+   "term": "National Signing Day",
+   "aliases": [
+    "NSD",
+    "signing day"
+   ],
+   "definition": "The traditional February date, the start of the traditional signing period, when high school seniors sign with schools (Feb. 5 in the 2025 cycle).",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0686"
+  },
+  {
+   "id": "term.ncaa-division-college",
+   "term": "NCAA division",
+   "aliases": [
+    "Division I",
+    "Division II",
+    "Division III"
+   ],
+   "definition": "The NCAA's three competitive levels (Divisions I, II, III); in football, Division I is split into FBS and FCS.",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0687"
+  },
+  {
+   "id": "term.ncaa-eligibility-center-college",
+   "term": "NCAA Eligibility Center",
+   "aliases": [
+    "Eligibility Center",
+    "NCAA Clearinghouse"
+   ],
+   "definition": "The NCAA office that certifies initial eligibility, and from fall 2026 also administers and certifies the five-year eligibility period.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0688",
+   "variants": "NCAA Initial-Eligibility Clearinghouse (older name)"
+  },
+  {
+   "id": "term.nil-collective-college",
+   "term": "NIL collective",
+   "aliases": [
+    "collective"
+   ],
+   "definition": "A booster-funded organization that pools money to arrange or fund NIL deals for a school's athletes; some schools are folding collectives into the athletic department since the House settlement.",
+   "domain": "college",
+   "subdomain": "money",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0697"
+  },
+  {
+   "id": "term.nil-college",
+   "term": "NIL",
+   "aliases": [
+    "name, image and likeness",
+    "name image likeness"
+   ],
+   "definition": "A player's right to earn money from the use of his name, image and likeness, such as endorsements and sponsorships; allowed nationwide since July 1, 2021.",
+   "domain": "college",
+   "subdomain": "money",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0698"
+  },
+  {
+   "id": "term.nil-go-college",
+   "term": "NIL Go",
+   "aliases": [
+    "NIL clearinghouse"
+   ],
+   "definition": "The online platform, built with Deloitte, through which athletes submit third-party NIL deals above $600 to the clearinghouse for a fair-market-value and valid-business-purpose check.",
+   "domain": "college",
+   "subdomain": "money",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0699"
+  },
+  {
+   "id": "term.offer-college",
+   "term": "offer",
+   "aliases": [
+    "scholarship offer"
+   ],
+   "definition": "A school's recruiting signal to a prospect that it wants him, usually with a scholarship; its force varies (verbal, committable, or written).",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0717",
+   "variants": "verbal offer"
+  },
+  {
+   "id": "term.official-visit-college",
+   "term": "official visit",
+   "aliases": [
+    "OV"
+   ],
+   "definition": "A campus visit by a recruit that is arranged under NCAA recruiting rules and may include school-provided expenses.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0720"
+  },
+  {
+   "id": "term.on3-college",
+   "term": "On3",
+   "aliases": [
+    "On3 Consensus",
+    "Rivals"
+   ],
+   "definition": "A recruiting and transfer-tracking media service that publishes rankings, a transfer portal wire and NIL valuations; its Rivals brand publishes the Rivals Industry Ranking.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0728"
+  },
+  {
+   "id": "term.one-time-transfer-rule-college",
+   "term": "one-time transfer rule",
+   "aliases": [
+    "one-time transfer exception"
+   ],
+   "definition": "A 2021 NCAA rule that let an athlete transfer once without sitting out a year; replaced in April 2024 by unlimited immediate-eligibility transfers.",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0730"
+  },
+  {
+   "id": "term.pavia-ruling-college",
+   "term": "Pavia ruling",
+   "aliases": [
+    "Pavia injunction"
+   ],
+   "definition": "A December 2024 federal preliminary injunction for former JUCO player Diego Pavia on how the NCAA counts non-NCAA seasons toward eligibility; the NCAA then gave a blanket extra year for 2025-26.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0776"
+  },
+  {
+   "id": "term.pay-for-play-college",
+   "term": "pay-for-play",
+   "aliases": [],
+   "definition": "Paying athletes directly for playing or to recruit them; the NCAA long banned it, and revenue sharing since July 2025 lets schools pay players directly.",
+   "domain": "college",
+   "subdomain": "money",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0778"
+  },
+  {
+   "id": "term.portal-class-college",
+   "term": "portal class",
+   "aliases": [],
+   "definition": "The group of transfer players a school adds during a transfer cycle.",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0827",
+   "variants": "portal commitment"
+  },
+  {
+   "id": "term.postseason-ban-college",
+   "term": "postseason ban",
+   "aliases": [],
+   "definition": "A sanction or consequence that bars a team from postseason play; low APR scores can cost a team postseason eligibility.",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0837"
+  },
+  {
+   "id": "term.power-four-college",
+   "term": "Power Four",
+   "aliases": [
+    "power conferences",
+    "autonomy conferences",
+    "Power 4"
+   ],
+   "definition": "The four most prominent FBS conferences: ACC, Big Ten, Big 12 and SEC (formerly the Power Five before the Pac-12 collapsed).",
+   "domain": "college",
+   "subdomain": "structure",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0839",
+   "variants": "Power Five (historical), BCS conferences"
+  },
+  {
+   "id": "term.preferred-walk-on-college",
+   "term": "preferred walk-on",
+   "aliases": [
+    "PWO"
+   ],
+   "definition": "A non-scholarship player the program invites to join, who often has a clearer roster path than an ordinary walk-on.",
+   "domain": "college",
+   "subdomain": "roster",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0845"
+  },
+  {
+   "id": "term.probation-college",
+   "term": "probation",
+   "aliases": [
+    "NCAA probation"
+   ],
+   "definition": "A period of added monitoring and restrictions after an NCAA violation (here three years, with limits on visits and recruiting contacts).",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0859"
+  },
+  {
+   "id": "term.quiet-period-college",
+   "term": "quiet period",
+   "aliases": [],
+   "definition": "A recruiting-calendar period when coaches may not meet recruits or parents face to face off the college campus and may not watch them compete; campus visits are where contact happens.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0887"
+  },
+  {
+   "id": "term.recruiting-class-college",
+   "term": "recruiting class",
+   "aliases": [
+    "signing class",
+    "recruiting cycle class"
+   ],
+   "definition": "The group of players a school signs or adds during one recruiting cycle.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0898"
+  },
+  {
+   "id": "term.redshirt-college",
+   "term": "redshirt",
+   "aliases": [
+    "redshirt year",
+    "red-shirt"
+   ],
+   "definition": "A season in which a player practices with the team but plays little or not at all, so the season does not use up a year of eligibility; for NCAA Division I and II this concept is eliminated by the age-based model starting 2026-27 (historical).",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0905",
+   "variants": "redshirt freshman, redshirt sophomore, redshirt senior"
+  },
+  {
+   "id": "term.revenue-sharing-college",
+   "term": "revenue sharing",
+   "aliases": [
+    "rev share",
+    "rev-share"
+   ],
+   "definition": "Direct payments from schools to athletes, allowed since July 1, 2025 under the House settlement for schools that opt in, up to a per-school cap (about $20.5 million in 2025-26).",
+   "domain": "college",
+   "subdomain": "money",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0927"
+  },
+  {
+   "id": "term.roster-limit-college",
+   "term": "roster limit",
+   "aliases": [
+    "roster cap",
+    "roster size limit"
+   ],
+   "definition": "A cap on how many players a team may carry; for football the House settlement set 105 for schools that opt in, and each of those players may receive a scholarship.",
+   "domain": "college",
+   "subdomain": "roster",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0948"
+  },
+  {
+   "id": "term.scholarship-college",
+   "term": "scholarship",
+   "aliases": [
+    "athletic scholarship",
+    "athletics aid"
+   ],
+   "definition": "Financial aid from a school to an athlete for playing a sport; under the House roster-limit model, every player inside a team's roster cap may receive one.",
+   "domain": "college",
+   "subdomain": "aid",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0980"
+  },
+  {
+   "id": "term.scout-team-college",
+   "term": "scout team",
+   "aliases": [],
+   "definition": "Practice players who simulate the upcoming opponent's schemes for the starting offense or defense.",
+   "domain": "college",
+   "subdomain": "practice",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-0981"
+  },
+  {
+   "id": "term.show-cause-penalty-college",
+   "term": "show-cause penalty",
+   "aliases": [
+    "show-cause order"
+   ],
+   "definition": "An NCAA sanction on an individual (usually a coach or staffer) that bars him from working in college athletics until the order expires.",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1022"
+  },
+  {
+   "id": "term.silent-commit-college",
+   "term": "silent commit",
+   "aliases": [],
+   "definition": "A recruit who has privately committed to a school but has not announced it publicly.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1031"
+  },
+  {
+   "id": "term.soft-commit-college",
+   "term": "soft commit",
+   "aliases": [
+    "soft verbal"
+   ],
+   "definition": "A recruit who has committed to a school but is still considering or visiting other schools.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1053"
+  },
+  {
+   "id": "term.star-rating-college",
+   "term": "star rating",
+   "aliases": [
+    "stars",
+    "star ranking"
+   ],
+   "definition": "A recruiting service's grade that groups prospects into levels such as five-star, four-star and three-star.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1085",
+   "variants": "2-to-5-star scale"
+  },
+  {
+   "id": "term.transfer-portal-college",
+   "term": "transfer portal",
+   "aliases": [
+    "NCAA transfer portal",
+    "portal"
+   ],
+   "definition": "An NCAA online database of athletes who have said they want to change schools; once a name is in it, other schools may contact the athlete.",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1167"
+  },
+  {
+   "id": "term.transfer-portal-entry-college",
+   "term": "transfer portal entry",
+   "aliases": [
+    "entering the portal"
+   ],
+   "definition": "A player's formal notice to his school's compliance office that he wants to transfer, after which the school must enter his name in the portal within two business days (SI) or 48 hours (ESPN, On3).",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1168"
+  },
+  {
+   "id": "term.transfer-portal-window-college",
+   "term": "transfer portal window",
+   "aliases": [
+    "transfer window",
+    "portal window"
+   ],
+   "definition": "The set dates in which a football player must enter the portal; from 2026 FBS and FCS football has a single 15-day window, Jan. 2-16.",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1169",
+   "variants": "earlier: winter window in December plus a spring window (2024-25: Dec. 9-28 and Apr. 16-25)"
+  },
+  {
+   "id": "term.true-freshman-college",
+   "term": "true freshman",
+   "aliases": [],
+   "definition": "A first-year college player who has not redshirted.",
+   "domain": "college",
+   "subdomain": "eligibility",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1176"
+  },
+  {
+   "id": "term.unofficial-visit-college",
+   "term": "unofficial visit",
+   "aliases": [
+    "UV"
+   ],
+   "definition": "A campus visit by a recruit that is not funded the way an official visit is (the recruit's family pays).",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1202"
+  },
+  {
+   "id": "term.vacated-wins-college",
+   "term": "vacated wins",
+   "aliases": [
+    "vacated victories",
+    "vacate"
+   ],
+   "definition": "Wins erased from a team's record as a penalty for using ineligible players or other violations.",
+   "domain": "college",
+   "subdomain": "compliance",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1210",
+   "variants": "forfeited wins"
+  },
+  {
+   "id": "term.verbal-commitment-college",
+   "term": "verbal commitment",
+   "aliases": [
+    "verbal",
+    "oral commitment",
+    "commit",
+    "commitment"
+   ],
+   "definition": "A recruit's public, non-binding promise to attend a school.",
+   "domain": "college",
+   "subdomain": "recruiting",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1213",
+   "variants": "oral commit (older name)"
+  },
+  {
+   "id": "term.walk-on-college",
+   "term": "walk-on",
+   "aliases": [
+    "walk on"
+   ],
+   "definition": "A college player who is on the team without having been awarded an athletic scholarship.",
+   "domain": "college",
+   "subdomain": "roster",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1229"
+  },
+  {
+   "id": "term.year-in-residence-college",
+   "term": "year in residence",
+   "aliases": [
+    "sit-out year"
+   ],
+   "definition": "The old rule that a transferring underclassman had to sit out a year at the new school before playing, unless he got an NCAA waiver.",
+   "domain": "college",
+   "subdomain": "transfer",
+   "level": "college",
+   "ownerLeaf": "A4.5.7",
+   "factRow": "F-glossary-1265"
+  }
+ ]
+}
