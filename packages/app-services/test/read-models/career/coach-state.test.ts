@@ -32,7 +32,7 @@ describe('the coach file (career.coach)', () => {
     expect(s.money.savingsRate).toBe(0);
     expect(s.market.applications).toEqual([]);
   });
-  it('the contract is drafted for his seat at the seat\'s pay, ending no later than the world's contract end', () => {
+  it('the contract is drafted for his seat at the seat\'s pay, ending no later than the world contract end', () => {
     const { w, user } = fixture;
     const s = ensureCoachState(w, user)!;
     const job = seatOf(w, user)!;

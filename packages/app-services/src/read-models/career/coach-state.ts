@@ -118,11 +118,13 @@ export function draftFor(world: LiveWorld, personId: number, job: JobRecord): co
     .reduce<number | null>((y, h) => (y === null || h.started.seasonYear > y ? h.started.seasonYear : y), null) ?? world.date.seasonYear;
   const end = world.staffContractEndYear.get(personId);
   const rng = stream(world.seed, STREAM_CONTRACT, [personId, job.id, started]);
-  return contract.draftContract({
+  // He already holds the seat, so the drafted terms are the ones he signed (E3 state "active").
+  const drafted = contract.draftContract({
     id: job.id, coachId: personId, employerId: job.teamId, jobId: job.id, seatId: job.catalogueId,
     tier: tier as contract.ContractTier, seat: job.positionId === HEAD_COACH ? 'head_coach' : 'assistant', rung: job.rung,
     startYear: started, firstYearPayCents: pay, ...(end !== undefined && end >= started ? { years: end - started + 1 } : {}),
   }, { next: () => rng.uniform() });
+  return { ...drafted, state: 'active' };
 }
 
 /**
