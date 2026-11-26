@@ -116,10 +116,11 @@ export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
  *
  * `census` is the D13.4.1 metric 3 census of the G-17 generator: the mean primary-technique skill of a team's
  * 22 starters. Pro starters measure 52.9 (sd 1.3 between teams), which checks the method against the scale.
- * College (300 founding-style rosters, the top third of a tracked class by tier, X11.2.1 and D13.3.2, ages 18
- * to 21; two world seeds agree to 0.1): starters 25.0 ISS below pro starters, team sd 1.6. Status Assumption:
- * the generator's own output, not checked against real college spread data, and every founding school draws
- * the same tier mix, so the spread is sampling only (no program strength yet).
+ * College is the top division of a founded standard world (scripts/talent-census.ts, two seeds), where each
+ * program's tiers follow its strength (founding `programStrength`, fitted to 247Sports 2025 blue-chip counts by
+ * roster rank, research/tuning/talent-spread.md): starters 19.6 ISS below pro starters (33.1 against 52.7),
+ * team sd 3.9 to 4.0. The second division sits at 26.0, sd 1.2. The shape is 2 of 3; the fit is an Assumption.
+ * Before program strength every school drew one tier mix and the sd was 1.6 (sampling only).
  *
  * `gate` is what the gate plays today. College plays the census team spread around 50, not the census level:
  * the tick engine measures skill on the absolute scale, so at 25 for both teams sacks are 30% of dropbacks and
@@ -128,11 +129,17 @@ export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
  * proposed in research/tuning/skill-response.md until skill is measured against the level of play. With block
  * engagements on skill difference (#299), the 1.6 spread gives a mean margin of 15.8 (real 16.3) and a home
  * margin sd of 20.4 (real 20.3) over 40 games; without #299 the same spread gave 23.0 and 28.3.
+ *
+ * The gate keeps 1.6, not the census 4.0, because the engine answers a skill point with about twice the real
+ * margin: 54 v 46 college gives +37.6 (4.7 points per ISS), 52 v 48 pro +22.6 (5.6), 40 games each, while the
+ * real rating sd (9.2 college, T12.2.1; about 4.0 per pro team, derived) over the census spreads needs about
+ * 2.3 and 2.9. At 4.0 today the mean margin is 22.0 and the home margin sd 28.1. Move `gate.teamSd` to the
+ * census value when skill response comes down (equal teams also score about 36 points each, real 22).
  */
 export interface RosterLevel { readonly iss: number; readonly teamSd: number }
 export const GATE_ROSTER_LEVEL: Readonly<Record<string, { readonly gate: RosterLevel; readonly census: RosterLevel }>> = {
   pro: { gate: { iss: 50, teamSd: 0 }, census: { iss: 50, teamSd: 0 } },
-  college: { gate: { iss: 50, teamSd: 1.6 }, census: { iss: 25, teamSd: 1.6 } },
+  college: { gate: { iss: 50, teamSd: 1.6 }, census: { iss: 30.4, teamSd: 4.0 } },
 };
 
 export interface RealGameOptions {
