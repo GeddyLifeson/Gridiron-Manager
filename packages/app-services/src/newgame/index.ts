@@ -6,10 +6,10 @@ export { FALLBACK_BAKED, MEASURED_SECONDS_PER_SEASON_SMALL, bakedFingerprint, ty
 export {
   GAME_VERSION, RULE_SET_OF_LEVEL, historyChoices, worldChoiceProblems, estimate, runDraft, reviewOf, creationWorld, coachRules, validateCoach, startCareer,
   type HistoryChoice, type WorldChoice, type Estimate, type Progress, type Draft, type DraftReview, type ReviewTeam, type ReviewSeason, type ReviewCoach,
-  type ReviewHall, type CareerStart, type StartResult,
+  type ReviewHall, type CareerStart, type StartResult, type CreationChoices, type CreationValidation, coachCards,
 } from './session.ts';
 export { draftLegends, draftSearchIndex, type DraftLegendsData, type DraftLegendsQuery, type DraftLink } from './legends.ts';
 export {
   createHandler, workerClient, serveWorker, inlineClient,
-  type CoachOptions, type HandlerOptions, type Request, type Message, type StartReply, type WorkerLike, type StartOutcome, type NewGameClient,
+  type CoachOptions, type HandlerOptions, type Request, type Message, type StartReply, type WorkerLike, type StartOutcome, type StartedWorld, type NewGameClient,
 } from './client.ts';

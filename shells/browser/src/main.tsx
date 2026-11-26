@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { App, soundStage as sound } from '@gm/app-ui';
-import { runGolden, compareGolden, goldenInputs, settings, WorldService, type GoldenReport, type Platform } from '@gm/app-services';
+import { runGolden, compareGolden, goldenInputs, settings, WorldService, newgame, type GoldenReport, type Platform } from '@gm/app-services';
 import golden from '../../../golden/golden.json';
 import { BrowserPlatform } from './platform-browser.ts';
 import { registerOffline } from './offline.ts';
@@ -80,6 +80,12 @@ async function main() {
   else captureWebViewErrors();
   const platform: Platform = isDesktop() ? new DesktopPlatform() : await BrowserPlatform.create();
   if (await gateMode(platform)) return;
-  createRoot(document.getElementById('root')!).render(<App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} />);
+  // The new-game history runs in its own worker; a cancel ends that worker and starts a fresh one.
+  const newGame = {
+    client: newgame.workerClient(() => new Worker(new URL('./new-game-worker.ts', import.meta.url), { type: 'module' }) as unknown as newgame.WorkerLike),
+    careerStartYear: new Date().getUTCFullYear(),
+    now: () => performance.now(),
+  };
+  createRoot(document.getElementById('root')!).render(<App platform={platform} golden={golden as GoldenReport} soundStage={await startSound()} newGame={newGame} />);
 }
 void main();

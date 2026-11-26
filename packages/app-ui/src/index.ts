@@ -27,3 +27,4 @@ export * as soundStage from './audio/stage/index.ts';
 export * as livePlay from './presentation/live/index.ts';
 export * as strip from './presentation/strip/index.ts';
 export * as banners from './presentation/banners/index.ts';
+export * as newGame from './screens/new-game/index.ts';

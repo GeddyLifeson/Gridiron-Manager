@@ -93,6 +93,9 @@ export interface WorkerLike {
   terminate(): void;
 }
 
+/** The generated world as the career receives it. */
+export type StartedWorld = loop.LiveWorld;
+
 export type StartOutcome =
   | { readonly ok: true; readonly start: CareerStart; readonly world: loop.LiveWorld }
   | { readonly ok: false; readonly problems: readonly career.coach.CreationProblem[]; readonly notices: readonly career.coach.CreationNotice[] };

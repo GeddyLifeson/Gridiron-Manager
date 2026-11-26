@@ -55,9 +55,13 @@ describe('a draft of the past, rerun, and the start', { timeout: 300_000 }, () =
     // A first try that fails validation is redone once with seed plus 1 (X10.3.2); progress says which try.
     // (The trimmed world fails the rivalry check, so both tries run here and failedTwice is set.)
     const lastTry = progress.filter((p) => p.seedStep === a.seedStep);
-    expect(lastTry.map((p) => p.done)).toEqual([1, 2]);
-    expect(lastTry[0]!.seasonYear).toBe(2024);
-    expect(progress.every((p) => p.champions.length >= 1)).toBe(true);
+    const ends = lastTry.filter((p) => p.week === -1);
+    expect(ends.map((p) => p.done)).toEqual([1, 2]);
+    expect(ends[0]!.seasonYear).toBe(2024);
+    // Week reports come before each season's end, with the games count rising.
+    expect(lastTry.filter((p) => p.week >= 0 && p.seasonYear === 2024).length).toBeGreaterThan(1);
+    expect(ends[1]!.gamesPlayed).toBeGreaterThan(ends[0]!.gamesPlayed);
+    expect(ends.every((p) => p.champions.length >= 1)).toBe(true);
     expect(a.seasonsRun).toBe(2);
     expect(a.firstSeasonYear).toBe(2024);
     expect(a.seedHex).toBe(CHOICE.seedHex);
@@ -125,7 +129,7 @@ describe('the worker protocol', { timeout: 300_000 }, () => {
     const client = newgame.workerClient(spawn);
     const seen: newgame.Progress[] = [];
     const r = await client.run({ ...CHOICE, historySeasons: 1 }, 0, (p) => seen.push(p));
-    expect(seen.filter((p) => p.seedStep === r.seedStep).map((p) => p.done)).toEqual([1]);
+    expect(seen.filter((p) => p.seedStep === r.seedStep && p.week === -1).map((p) => p.done)).toEqual([1]);
     expect(r.seasonsRun).toBe(1);
     const started = await client.start({ ...career.coach.choicesFromOrigin('college_player_staying_on', 'college', 7), name: { first: 'Pat', last: 'Doe' } }, 'career-1');
     expect(started.ok).toBe(true);

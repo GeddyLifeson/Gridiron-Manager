@@ -4,7 +4,7 @@
 // career in the modern day. Everything is fictional. Baked master data is only read.
 import * as engineCore from '@gm/engine-core';
 import * as career from '@gm/career';
-import { generation, loop, turnover } from '@gm/world';
+import { generation, loop, season, turnover } from '@gm/world';
 import { appWorldContent } from './content.ts';
 import { bindDraft, draftSetup, type BindingOptions } from './binding.ts';
 import type { BakedHistory } from './baked.ts';
@@ -57,9 +57,13 @@ export interface Progress {
   readonly rerun: number;
   /** 0, or 1 when the first try failed validation and the run is redone with seed plus 1 (X10.3.2). */
   readonly seedStep: number;
+  /** Seasons finished. */
   readonly done: number;
   readonly of: number;
+  /** The season being played (or just finished) and its week; games played so far in this try. */
   readonly seasonYear: number;
+  readonly week: number;
+  readonly gamesPlayed: number;
   /** Champions of the season just played, by competition, with names (the ticker on the progress screen). */
   readonly champions: readonly { readonly competition: string; readonly team: string }[];
   readonly teamsActive: number;
@@ -94,23 +98,37 @@ export function runDraft(
   const t0 = now();
   let current: loop.LiveWorld | null = null;
   let currentStep = 0;
+  let done = 0, games = 0, lastWeek = -1, lastChampions: Progress['champions'] = [];
   const setupOf = (seedHex: string) => draftSetup({ ...c, seedHex });
+  const base = opts.binding?.games ?? season.historyGamePort();
+  const report = (seasonYear: number, week: number, of: number) => {
+    const w = current!;
+    opts.onProgress?.({
+      rerun, seedStep: currentStep, done, of, seasonYear, week, gamesPlayed: games, champions: lastChampions,
+      teamsActive: w.teams.filter((t) => loop.isActive(w, t.id, seasonYear)).length,
+      people: w.people.size, hallMembers: w.hall.members.length, elapsedMs: now() - t0,
+    });
+  };
+  // Progress inside a season too: one report as each week's first game starts (a season takes minutes).
+  const games$: loop.GamePort = (req) => {
+    if (req.week !== lastWeek) { lastWeek = req.week; report(req.seasonYear, req.week, c.historySeasons); }
+    games++;
+    return base(req);
+  };
   const make = bindDraft(setupOf, {
     ...opts.binding,
-    onSeason: (s, done, of) => {
+    games: games$,
+    onSeason: (s, d) => {
       const w = current!;
-      opts.onProgress?.({
-        rerun, seedStep: currentStep, done, of, seasonYear: s.seasonYear,
-        champions: Object.entries(s.champions).map(([cid, tid]) => ({ competition: compName(w, Number(cid)), team: teamName(w, tid) })),
-        teamsActive: w.teams.filter((t) => loop.isActive(w, t.id, s.seasonYear)).length,
-        people: w.people.size, hallMembers: w.hall.members.length, elapsedMs: now() - t0,
-      });
+      done = d; lastWeek = -1;
+      lastChampions = Object.entries(s.champions).map(([cid, tid]) => ({ competition: compName(w, Number(cid)), team: teamName(w, tid) }));
+      report(s.seasonYear, -1, c.historySeasons);
     },
   });
   const draft = loop.draftHistory(c.seedHex, rerun, (seedHex, step) => {
     const parts = make(seedHex, step);
     current = parts.world;
-    currentStep = step;
+    currentStep = step; done = 0; games = 0; lastWeek = -1; lastChampions = [];
     return parts;
   });
   const setup = draft.built.world.setup;
@@ -281,3 +299,22 @@ export function startCareer(d: Draft, choices: career.coach.CreationChoices, sav
     },
   };
 }
+
+// ---------- coach cards for the screen (app-ui reads app-services only) ----------
+
+export type CreationChoices = career.coach.CreationChoices;
+export type CreationValidation = career.coach.Validation;
+/** Origin cards (S2.1.1) and archetype presets (E1.7.2), and how each fills the creation choices. */
+export const coachCards = {
+  origins: career.coach.ORIGINS.map((o) => ({ id: o.id, ageMin: o.ageMin, ageMax: o.ageMax, costKey: o.costKey })),
+  presets: career.coach.PRESETS.map((p) => ({ id: p.id, start: p.start, level: p.level, age: p.age, patternKey: p.patternKey })),
+  levels: career.coach.LEVELS,
+  fromOrigin: (id: string, level: career.coach.Level, seed: number): CreationChoices => career.coach.choicesFromOrigin(id, level, seed),
+  fromPreset: (id: string, seed: number, firstTeamId: number | null, openJobsOnly: boolean): CreationChoices => {
+    const p = career.coach.PRESETS.find((x) => x.id === id);
+    if (!p) throw new Error(`coach: unknown preset ${id}`);
+    return career.coach.choicesFromPreset(p, seed, firstTeamId, openJobsOnly);
+  },
+  /** Starts that place the coach in a chosen team's job (E1.6.2). */
+  needsFirstTeam: (c: CreationChoices): boolean => c.start === 'coordinator' || c.start === 'head_coach',
+};
