@@ -7,7 +7,7 @@ import { resolveRuleSet } from '@gm/rules-data';
 import {
   DEFENSE_ROLES, OFFENSE_ROLES, UNIT_JERSEYS, createRealGameCore, createStarterContentPort, tickParamTable,
 } from '../../src/season/index.ts';
-import { READ_STEP_S } from '../../src/season/tick-content.ts';
+import { BOOT_DEPTH_YD, BOOT_WIDTH, POP_FAKE_S, READ_STEP_S } from '../../src/season/tick-content.ts';
 
 const params = tickParamTable();
 const pro = resolveRuleSet('pro_2026');
@@ -71,6 +71,18 @@ describe('starter content port', () => {
         expect(JSON.stringify([a.keys, a.behavior.params]), `${kind} ${a.role}`).not.toMatch(/role:/);
       }
     }
+  });
+  it('throws a boot from outside the tackle on the side it rolls to, and the pop pass off one step', () => {
+    const named = (id: string): PlayCalls => { const c = offenseCalls('play_action', null); return { ...c, snapping: { ...c.snapping, playContentId: id } } as PlayCalls; };
+    const boot = port.setup(inputOf(named('movement_boot_flood')))!;
+    const rt = boot.presnap.offense.assignments[OFFENSE_ROLES.indexOf('RT')]!.preSnap.align.py;
+    expect(boot.qb!.launchPx).toBe(-BOOT_DEPTH_YD);
+    expect(boot.qb!.launchPy).toBeCloseTo(rt * BOOT_WIDTH, 9);
+    const pop = port.setup(inputOf(named('pa_pop_pass')))!;
+    expect(pop.qb!.drop).toBe('gunQuick');
+    expect(pop.qb!.playActionS).toBe(POP_FAKE_S);
+    expect(pop.qb!.underCenter).toBe(true);
+    expect(pop.qb!.launchPy ?? null).toBeNull();
   });
   it('gives the screen one read, the back: the clear-out routes are not throws', () => {
     const s = port.setup(inputOf(offenseCalls('screen', null)))!;

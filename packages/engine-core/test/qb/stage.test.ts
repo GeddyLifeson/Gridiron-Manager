@@ -160,6 +160,14 @@ describe('J7.3 judging open and deciding', () => {
     const near = qb.judgeTarget(v, { slot: 1, route: [], breakIndex: -1, settles: true }, ctx({ maxRangeYd: 60 }), 0, false, qb.newEstimate());
     expect([near.ok, near.outOfRange]).toEqual([true, false]);
   });
+  it('he does not expect a receiver to run out of bounds: the aim point stays inside the sideline', () => {
+    const flat = [{ px: 0, py: 10 }, { px: 3, py: 14 }, { px: 3, py: 40 }];
+    const v = new FakeView(QB).at(-5, 0).see(1, 3, 20, 0, 7.5);
+    const open = qb.judgeTarget(v, { slot: 1, route: flat, breakIndex: -1, settles: false }, ctx(), 0, false, qb.newEstimate());
+    expect(open.aimPy).toBeGreaterThan(26);
+    const fenced = qb.judgeTarget(v, { slot: 1, route: flat, breakIndex: -1, settles: false }, ctx({ loPy: -26, hiPy: 26 }), 0, false, qb.newEstimate());
+    expect(fenced.aimPy).toBeCloseTo(26 - P['judge.sidelineRoomYd'], 9);
+  });
   it('he comes off a receiver who is past his arm at once, and does not wait out the read', () => {
     const reads = threeReads().map((r) => ({ ...r, target: { ...r.target, breakIndex: -1 } }));
     const base = runScene({ play: qb.basePlay(QB, 'gun3', reads), noThrow: true, maxTicks: 40, ...covered() });
@@ -198,9 +206,11 @@ describe('J7.3 judging open and deciding', () => {
   });
   it('J7.3.2 acceptance: a risk-taking quarterback throws into windows a careful one will not, and accepts more interception risk', () => {
     // A defender sits under the out; a second read worth more is still to come. Decision risk 80 against 20, 200 plays each.
+    // The out starts 8 yd further inside than `OUT`, so a late throw to it is still to a man in bounds.
+    const out = OUT.map((q) => ({ px: q.px, py: q.py - 8 }));
     const scene = (seed: number, g: number) => runScene({
-      seed, attrs: { decision_risk: g }, play: qb.basePlay(QB, 'gun3', [read(target(1, OUT, 1), 0.3), read(target(2, R2, 1, true), 0.6)]), maxTicks: 60,
-      scripts: { 1: alongRoute(OUT, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(10.5, 17) },
+      seed, attrs: { decision_risk: g }, play: qb.basePlay(QB, 'gun3', [read(target(1, out, 1), 0.3), read(target(2, R2, 1, true), 0.6)]), maxTicks: 60,
+      scripts: { 1: alongRoute(out, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(10.5, 9) },
     });
     const first = (g: number): number => share(N, (seed) => { const th = scene(seed, g).record.throwRecord; return th !== null && th.readIndex === 0; });
     expect(first(80)).toBeGreaterThan(first(20));
@@ -392,7 +402,7 @@ describe('J7.6 the throw', () => {
   });
   it('J7.6.1 acceptance: arm strength 70 completes more 15-yard outs to the far sideline than arm strength 40', () => {
     // The corner breaks on the ball from 5 yards off at the release; a faster ball gives him less time.
-    const far = [{ px: 0, py: 12 }, { px: 15, py: 12 }, { px: 15, py: 30 }];
+    const far = [{ px: 0, py: 12 }, { px: 15, py: 12 }, { px: 15, py: 27 }];
     const comp = (g: number): number => mean(N, (seed) => {
       const r = runScene({ seed, attrs: { arm_strength: g }, qbAt: [-5, -8], play: qb.basePlay(QB, 'gun3', [read(target(1, far, 1))]), scripts: { 1: alongRoute(far, 7.5) }, maxTicks: 80 });
       const th = r.record.throwRecord;

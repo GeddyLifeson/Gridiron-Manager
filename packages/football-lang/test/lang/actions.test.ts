@@ -278,6 +278,18 @@ describe('actions: blocking', () => {
 });
 
 describe('actions: the ball', () => {
+  it('runPath: past his last point a receiver heading for the sideline turns up the field inside it', () => {
+    const flat = { behavior: { type: 'route', params: {}, path: [pt(3, 18.5), pt(3.2, 19)] } };
+    // Well inside: he aims at the spot short of the sideline on his line.
+    const far = runAction(act('runPath'), world({ self: [3.2, 19], sidelines: [-26, 26] }), O, flat);
+    expect(target(far)[1]).toBeCloseTo(26 - K.sidelineRoom, 9);
+    expect(target(far)[0]).toBeGreaterThan(3.2);
+    // There: he goes straight up the field along it.
+    const there = runAction(act('runPath'), world({ self: [3.2, 26 - K.sidelineRoom], sidelines: [-26, 26] }), O, { behavior: { type: 'route', params: {}, path: [pt(3, 25.5 - K.sidelineRoom), pt(3.2, 26 - K.sidelineRoom)] } });
+    expect(target(there)).toEqual([3.2 + K.extend, 26 - K.sidelineRoom]);
+    // A view with no sidelines leaves the old behaviour: he keeps his heading.
+    expect(target(runAction(act('runPath'), world({ self: [3.2, 19] }), O, flat))[1]).toBeGreaterThan(26);
+  });
   it('breakOnBall: a receiver who knows the ball is up but not yet where it comes down keeps running his route', () => {
     const o = runAction(act('breakOnBall'), world({ self: [10, 8], kind: 'passInFlight', ball: [0, 0, 20, 4] }), O, { behavior: { type: 'route', params: {}, path: [pt(30, 8)] } });
     expect(target(o)).toEqual([30, 8]);

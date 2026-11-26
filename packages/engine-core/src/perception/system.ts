@@ -218,6 +218,9 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       v.read.read = 'unknown'; v.read.side = 'none'; v.read.confidence = 0;
       v.carrier = carrier; v.heardCalls.length = 0; v.ballKindCode = BALL_STATES.indexOf(w.ball.kind);
       v.tSinceSnapS = roundSimS(w.tick * TICK_S);
+      v.landOn = false;
+      { const south = (0 - w.frame.originY) * w.frame.attackDir, north = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
+        v.bounds.lo = south < north ? south : north; v.bounds.hi = south < north ? north : south; }
       for (let e = 0; e < SLOT_COUNT; e++) {
         const ent = v.entities[e]!;
         ent.px = (pl.posX[e]! - frame.originX) * dir + 0; ent.py = (pl.posY[e]! - frame.originY) * dir + 0;
@@ -409,6 +412,11 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       if (airActive && airDrawn[s] === 0 && tick >= airSeenAt[s]!) {
         airErrX[s] = noNoise ? 0 : rng.normal(); airErrY[s] = noNoise ? 0 : rng.normal(); airDrawn[s] = 1;
       }
+      // What he acts on: where he thinks it comes down, sharper as the flight goes on, while the ball is in the air.
+      if (airActive && airDrawn[s] === 1 && (ballKindNow === PASS_FLIGHT || ballKindNow === KICK_FLIGHT)) {
+        const sd = landingErrorSdYd((tick - airRelease) / airFlight, zTrack[s]!, p);
+        v.landOn = true; v.land.px = airLandPx + airErrX[s]! * sd; v.land.py = airLandPy + airErrY[s]! * sd;
+      } else v.landOn = false;
 
       // J3.2.2 run-pass key reading.
       if (readsKeys[s] === 1 && evidenceSource !== null && tick >= 0 && tick * TICK_S + 1e-9 >= kd && primary >= 0) {

@@ -21,6 +21,8 @@ export interface PerceivedViewExt extends PerceivedView {
   kickKind?(): 'punt' | 'fieldGoal' | 'kickoff' | 'onside' | null;
   /** His estimate of where the ball in the air comes down (J3.5.1), play frame. */
   landingPoint?(): { readonly px: number; readonly py: number } | null;
+  /** The sidelines in his play frame: lateral position of the lower and the higher one. */
+  sidelines?(): { readonly lo: number; readonly hi: number };
   /** A fact he has perceived by sight or signal: `fairCatchSignal`, `kickTouchedByReceivers`, `kickRolling`, `kickDeadByRule`. */
   fact?(name: string): boolean;
 }

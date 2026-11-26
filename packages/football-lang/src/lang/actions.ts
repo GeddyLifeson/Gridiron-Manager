@@ -51,7 +51,18 @@ function followPath(c: Ctx): boolean {
   const fromX = n > 1 ? path[n - 2]!.px : c.startPx, fromY = n > 1 ? path[n - 2]!.py : c.startPy;
   const len = dist(last.px, last.py, fromX, fromY);
   if (len === 0) { aim(c, last.px, last.py); c.intent.arrival = 'arrive'; return true; }
-  aim(c, last.px + ((last.px - fromX) / len) * k.extend, last.py + ((last.py - fromY) / len) * k.extend);
+  let tx = last.px + ((last.px - fromX) / len) * k.extend, ty = last.py + ((last.py - fromY) / len) * k.extend;
+  // He does not run out of bounds: short of the sideline he turns up the field along it.
+  const sl = c.view.sidelines?.();
+  if (sl !== undefined) {
+    const lo = sl.lo + k.sidelineRoom, hi = sl.hi - k.sidelineRoom;
+    const t = ty > hi ? (hi - c.self.py) / (ty - c.self.py) : ty < lo ? (lo - c.self.py) / (ty - c.self.py) : 1;
+    if (t < 1) {
+      if (t > 0 && dist(c.self.px + (tx - c.self.px) * t, c.self.py + (ty - c.self.py) * t, c.self.px, c.self.py) > k.passRadius) { tx = c.self.px + (tx - c.self.px) * t; ty = ty > hi ? hi : lo; }
+      else { tx = c.self.px + (c.offense ? 1 : -1) * k.extend; ty = ty > hi ? hi : lo; }
+    }
+  }
+  aim(c, tx, ty);
   c.intent.arrival = 'through';
   return false;
 }
@@ -477,7 +488,7 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
       }
       // Until he has picked the ball up in the air he has no landing point: a receiver keeps running his route. Aiming
       // at the ball itself turned him back toward the passer for the first part of every deep throw.
-      if (c.offense && c.view.ballKind() === 'passInFlight' && (c.view.landingPoint?.() ?? null) === null) { followPath(c); faceBall(c); return false; }
+      if (c.offense && c.view.ballKind() === 'passInFlight' && (c.view.landingPoint?.() ?? null) === null) { followPath(c); return false; }
       toBall(c); return false;
     };
   },
