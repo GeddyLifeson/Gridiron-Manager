@@ -152,3 +152,29 @@ for lvl in ('pro', 'college'):
     json.dump(dict(ruleset_id=f'{lvl}schedstaff_2026', level=lvl, season_year=2026, source=dict(document='Fact register rows F-sched (facts/schedule-staff.json)', date='2026'), schema_version=1, values=vals), open(f'{d}/{lvl}league_schedule_staff_2026.json', 'w'), indent=1); open(f'{d}/{lvl}league_schedule_staff_2026.json', 'a').write('\n')
 from collections import Counter
 for r in REG.rows: print(r['id'], r['status'], r['value'], r['statement'][:70])
+
+# ---------------- head coach firing timing (bible E4.3.3 target check)
+web('si_fire', 'Sports Illustrated, NFL Head Coach Firings By Year (published and modified 2026-01-06, https://www.si.com/nfl/nfl-head-coach-firings-by-year)', 'si')
+web('nbc_bm', 'NBC New York, History of Black Monday NFL coaches fired (2026-01-05, updated 2026-01-19, https://www.nbcnewyork.com/news/sports/nfl/history-black-monday-nfl-coaches-fired/)', 'nbc-news')
+web('skeeda', 'Sportskeeda, How many NFL coaches fired mid season (undated, https://www.sportskeeda.com/nfl/how-many-nfl-coaches-fired-mid-season)', 'sportskeeda')
+web('outkick', 'OutKick, College Football Teams Are Firing Coaches More Quickly Than Ever (2025-10-28, citing The Athletic, https://www.outkick.com/sports/college-football-coaching-carousel-reaches-new-unprecedented-level-10-early-season-firings)', 'outkick')
+web('yahoo_fbs', 'Deseret News via Yahoo, Nearly a quarter of FBS coaching jobs were open this cycle (2024-02-17, https://www.yahoo.com/news/nearly-quarter-fbs-coaching-jobs-194010505.html)', 'deseret')
+FIRE = Reg('measured-rate', 'firing')
+def frow(level, stmt, value, unit, valid, sources, notes):
+    FIRE.row(level, stmt, value, unit, valid, sources, notes=notes + ' ' + NW); FIRE.rows[-1].pop('_key', None)
+frow('pro', 'Share of NFL head coach firings that happen during the regular season rather than after it: 16 of 44 over the 2020 to 2025 seasons (36 percent).', 0.36, 'ratio', '2020-2025',
+  [S('si_fire', 'per-season totals 2020-2025 (7, 8, 5, 9, 7, 8 = 44)', 'The amount of total head coach firings range from five to nine over the past nine seasons.', 0.36),
+   S('nbc_bm', 'per-season in-season firings (3, 2, 3, 3, 3, 2 = 16)', 'Three teams fired their coaches during the 2024 regular season', 0.36)],
+  'DERIVED by listing coaches: in-season firings named by NBC (2020: Patricia, Quinn, O\'Brien; 2021: Meyer, Gruden; 2022: Rhule, Reich, Hackett; 2023: McDaniels, Reich, Staley; 2024: Saleh, Allen, Eberflus; 2025: Callahan, Daboll) over SI season totals; 2025 is partial (as of 2026-01-06). 2017 to 2019 cannot be split from the pages read. Season-level shares range 25 percent (2025) to 60 percent (2022). Sits inside the bible E4.3.3 band of 15 to 40 percent; the sim\'s 8 percent is well below it. Does not count resignations or retirements.')
+frow('pro', 'NFL head coaches fired in the middle of an active season since 2000: 34 (about 1.3 a season over 26 seasons); 88 since the 1970 merger.', 34, 'count', '2000-2025',
+  [S('skeeda', 'aggregate sentence', '34 of them have been fired since 2000', 34)],
+  'ONE SOURCE, undated page. Cross-check only: 34 in 26 seasons is about 1.3 a season, against 2.7 a season (16 in 6) in 2020 to 2025, so the recent rate is double the long-run rate. No per-year breakdown for 2000 to 2016 was readable.')
+frow('college', 'FBS head coaches fired between Week 1 and November 1: 10 across the 2010 to 2013 seasons (2.5 a season); 10 in 2025 by October 28.', 10, 'count', '2010-2013',
+  [S('outkick', '2025-10-28', 'From 2010 through 2013, there were 10 head coaches fired between Week 1 and November 1 of each individual season.', 10)],
+  'ONE SOURCE (citing The Athletic); the sentence is ambiguous between 10 in total and 10 each season, read as 10 in total because the same page says 2025 is already a record at 10. The FBS in-season SHARE of all firings could not be computed: no page read gives in-season and total firings for the same year. Partial figures: 31 FBS jobs opened in the 2023-24 cycle, 12 by termination (39 percent of openings, Yahoo/Deseret, 2024-02-17); Power 5 midseason changes 36 in the playoff era (ESPN 2022-11-01); six Power Four in-season firings by 2025-10-22 (Fox/AP). No FBS share is claimed.')
+frow('college', 'FBS jobs opened in the 2023-24 cycle: 31, of which 12 were terminations (39 percent).', 12, 'count', '2023-24',
+  [S('yahoo_fbs', '2024-02-17', '12 of the coaching changes were due to the termination of coaches.', 12)],
+  'ONE SOURCE. Cycle total includes the season and the offseason; the page does not split in-season from after-season terminations.')
+for r in FIRE.rows: r['status'] = status(r); r['statusHistory'] = [dict(date='2026-11-26', status=r['status'], reason='First load by the schedule and staff facts pass from sources read this session.')]
+json.dump(dict(domain='measured-rate', rows=FIRE.rows), open(os.path.join(root, 'coach-firing-timing.json'), 'w'), indent=1, ensure_ascii=False); open(os.path.join(root, 'coach-firing-timing.json'), 'a').write('\n')
+for r in FIRE.rows: print(r['id'], r['status'], r['value'], r['statement'][:70])

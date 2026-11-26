@@ -6,6 +6,7 @@ import { validateRuleSetFile } from '../../src/index.ts';
 
 const read = (p: string) => JSON.parse(readFileSync(new URL(`../../../../${p}`, import.meta.url), 'utf8'));
 const rows = FactFile.parse(read('facts/schedule-staff.json')).rows;
+const firing = FactFile.parse(read('facts/coach-firing-timing.json')).rows;
 const byId = new Map(rows.map((r) => [r.id, r]));
 
 describe('schedule and staff fact rows', () => {
@@ -15,6 +16,13 @@ describe('schedule and staff fact rows', () => {
       expect(computeStatus(r), r.id).toBe(r.status);
       for (const s of r.sources) if (s.value !== undefined && r.value !== undefined) expect(s.value, r.id).toBe(r.value);
     }
+  });
+});
+
+describe('coach firing timing rows', () => {
+  it('has stored statuses equal to computed ones', () => {
+    expect(firing.length).toBeGreaterThan(0);
+    for (const r of firing) expect(computeStatus(r), r.id).toBe(r.status);
   });
 });
 
