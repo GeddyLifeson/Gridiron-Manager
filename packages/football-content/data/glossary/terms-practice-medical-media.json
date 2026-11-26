@@ -336,7 +336,7 @@
    "subdomain": "access",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0736"
+   "factRow": "F-glossary-0734"
   },
   {
    "id": "term.otas-pro",
@@ -351,7 +351,7 @@
    "subdomain": "offseason",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0743"
+   "factRow": "F-glossary-0741"
   },
   {
    "id": "term.out-injury-report-designation-pro",
@@ -362,7 +362,7 @@
    "subdomain": "reporting",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0746"
+   "factRow": "F-glossary-0744"
   },
   {
    "id": "term.out-injury-report-pro",
@@ -375,7 +375,7 @@
    "subdomain": "reporting",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0747"
+   "factRow": "F-glossary-0745"
   },
   {
    "id": "term.padded-practice-pro",
@@ -390,7 +390,7 @@
    "subdomain": "gear",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0761"
+   "factRow": "F-glossary-0759"
   },
   {
    "id": "term.phase-one-pro",
@@ -401,7 +401,7 @@
    "subdomain": "offseason",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0791"
+   "factRow": "F-glossary-0789"
   },
   {
    "id": "term.phase-three-pro",
@@ -412,7 +412,7 @@
    "subdomain": "offseason",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0792"
+   "factRow": "F-glossary-0790"
   },
   {
    "id": "term.phase-two-pro",
@@ -423,7 +423,7 @@
    "subdomain": "offseason",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0793"
+   "factRow": "F-glossary-0791"
   },
   {
    "id": "term.physical-examination-pro",
@@ -438,7 +438,7 @@
    "subdomain": "staff",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0795"
+   "factRow": "F-glossary-0793"
   },
   {
    "id": "term.postgame-press-conference-pro",
@@ -451,7 +451,7 @@
    "subdomain": "press-conference",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0835"
+   "factRow": "F-glossary-0833"
   },
   {
    "id": "term.practice-limits-pro",
@@ -462,7 +462,7 @@
    "subdomain": "rules",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0841"
+   "factRow": "F-glossary-0839"
   },
   {
    "id": "term.practice-viewing-pro",
@@ -475,7 +475,7 @@
    "subdomain": "access",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0844"
+   "factRow": "F-glossary-0842"
   },
   {
    "id": "term.pro-bowl-practice-pace-pro",
@@ -488,7 +488,7 @@
    "subdomain": "tempo",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0854"
+   "factRow": "F-glossary-0852"
   },
   {
    "id": "term.probable-pro",
@@ -499,7 +499,7 @@
    "subdomain": "reporting",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0858"
+   "factRow": "F-glossary-0856"
   },
   {
    "id": "term.prohibited-drills-pro",
@@ -512,7 +512,7 @@
    "subdomain": "drills",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0864"
+   "factRow": "F-glossary-0862"
   },
   {
    "id": "term.questionable-pro",
@@ -525,7 +525,7 @@
    "subdomain": "reporting",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0883"
+   "factRow": "F-glossary-0881"
   },
   {
    "id": "term.return-to-participation-protocol-pro",
@@ -540,7 +540,7 @@
    "subdomain": "concussion",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0924"
+   "factRow": "F-glossary-0922"
   },
   {
    "id": "term.return-to-play-pro",
@@ -553,7 +553,7 @@
    "subdomain": "availability",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0925"
+   "factRow": "F-glossary-0923"
   },
   {
    "id": "term.rookie-football-development-program-pro",
@@ -567,7 +567,7 @@
    "subdomain": "offseason",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0938"
+   "factRow": "F-glossary-0936"
   },
   {
    "id": "term.rookie-minicamp-pro",
@@ -581,7 +581,7 @@
    "subdomain": "offseason",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0939"
+   "factRow": "F-glossary-0937"
   },
   {
    "id": "term.roster-cutdown-pro",
@@ -596,7 +596,7 @@
    "subdomain": "camp",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0946"
+   "factRow": "F-glossary-0944"
   },
   {
    "id": "term.scrimmage",
@@ -610,7 +610,7 @@
    "subdomain": "camp",
    "level": "both",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0985"
+   "factRow": "F-glossary-0983"
   },
   {
    "id": "term.season-ending-press-conference-pro",
@@ -623,7 +623,7 @@
    "subdomain": "press-conference",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0993"
+   "factRow": "F-glossary-0991"
   },
   {
    "id": "term.second-opinion-pro",
@@ -636,7 +636,7 @@
    "subdomain": "staff",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-0999"
+   "factRow": "F-glossary-0997"
   },
   {
    "id": "term.shells-pro",
@@ -650,7 +650,7 @@
    "subdomain": "gear",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1014"
+   "factRow": "F-glossary-1012"
   },
   {
    "id": "term.spiders-pro",
@@ -663,7 +663,7 @@
    "subdomain": "gear",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1062"
+   "factRow": "F-glossary-1060"
   },
   {
    "id": "term.team-doctor-pro",
@@ -677,7 +677,7 @@
    "subdomain": "staff",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1128"
+   "factRow": "F-glossary-1126"
   },
   {
    "id": "term.two-a-days-pro",
@@ -691,7 +691,7 @@
    "subdomain": "camp",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1186"
+   "factRow": "F-glossary-1184"
   },
   {
    "id": "term.unaffiliated-neurotrauma-consultant-pro",
@@ -707,7 +707,7 @@
    "subdomain": "concussion",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1197"
+   "factRow": "F-glossary-1194"
   },
   {
    "id": "term.voluntary-minicamp-pro",
@@ -720,7 +720,7 @@
    "subdomain": "offseason",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1222"
+   "factRow": "F-glossary-1219"
   },
   {
    "id": "term.waived-injured-pro",
@@ -734,7 +734,7 @@
    "subdomain": "availability",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1225"
+   "factRow": "F-glossary-1222"
   },
   {
    "id": "term.walkthrough-pro",
@@ -747,7 +747,7 @@
    "subdomain": "tempo",
    "level": "pro",
    "ownerLeaf": "A4.5.10",
-   "factRow": "F-glossary-1231"
+   "factRow": "F-glossary-1228"
   }
  ]
 }

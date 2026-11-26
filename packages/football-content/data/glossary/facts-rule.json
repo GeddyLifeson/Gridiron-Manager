@@ -9252,7 +9252,7 @@
    ]
   },
   {
-   "id": "F-glossary-0732",
+   "id": "F-glossary-0730",
    "level": "college",
    "domain": "rule",
    "statement": "onside kick: A short free kick the kicking team tries to recover; Team A may not touch the kick until it has touched a receiver or has reached the receivers' restraining line 10 yards from the kicking line.",
@@ -9300,7 +9300,7 @@
    "notes": "College row. The NCAA book has no separate article titled 'onside kick'; the sense is built from 6-1-1 and 6-1-3 plus consumer glossaries."
   },
   {
-   "id": "F-glossary-0733",
+   "id": "F-glossary-0731",
    "level": "pro",
    "domain": "rule",
    "statement": "onside kick: A free kick the kicking team deliberately tries to legally recover; the NFL defines it by the distance from the kicking team's restraining line to the furthest point of the onside kick setup zone.",
@@ -9348,7 +9348,7 @@
    "notes": "Merged duplicate row 'Onside kick'. In 2026 the NFL kicking team may declare an onside kick at any time during the game (6-1-6). UA and ACTIVE describe the 10-yard distance, which matches the older rule and the NCAA rule, not the 2026 NFL setup-zone definition."
   },
   {
-   "id": "F-glossary-0734",
+   "id": "F-glossary-0732",
    "level": "pro",
    "domain": "rule",
    "statement": "onside kick setup zone: The area between the receiving team's restraining line and a spot 15 yards behind it, where eight or nine receiving-team players must line up before an NFL onside kick.",
@@ -9387,7 +9387,7 @@
    "notes": "Merged duplicate row 'Onside kick setup zone'. The draft definition (area in front of the kicking team's line) did not match 6-1-6(h), so it was rewritten. Single source (NFL rulebook). | Other batch definition: On an NFL onside kick, the area from the receiving team's restraining line back 15 yards, where eight or nine receiving players must stand."
   },
   {
-   "id": "F-glossary-0744",
+   "id": "F-glossary-0742",
    "level": "pro",
    "domain": "rule",
    "statement": "other Try spot: The yard line of the other Try option, as determined by any previously enforced penalties.",
@@ -9417,7 +9417,7 @@
    "notes": "Single source (NFL rulebook)."
   },
   {
-   "id": "F-glossary-0748",
+   "id": "F-glossary-0746",
    "level": "both",
    "domain": "rule",
    "statement": "out of bounds: A player or official is out of bounds when he touches a boundary line or anything on or outside it, except another player, an official or (NFL) a pylon; a runner who is out of bounds is down and the ball is dead.",
@@ -9474,7 +9474,7 @@
    "notes": "Merged duplicate row 'Out of bounds'. Its clock-stopping claim is not defined in the rulebook article; the ball-dead rule in 7-2-1(e) is cited instead and clock rules are covered elsewhere."
   },
   {
-   "id": "F-glossary-0749",
+   "id": "F-glossary-0747",
    "level": "both",
    "domain": "rule",
    "statement": "out of bounds spot: The place where the ball became dead by going or being declared out of bounds; for a loose ball the NFL uses the forward point of the ball when it crosses the sideline.",
@@ -9521,7 +9521,7 @@
    ]
   },
   {
-   "id": "F-glossary-0757",
+   "id": "F-glossary-0755",
    "level": "college",
    "domain": "rule",
    "statement": "overtime: In NCAA football a tied game is decided by extra periods in which each team gets a possession series from the opponent's 25-yard line.",
@@ -9560,7 +9560,7 @@
    "notes": "Merged 'extra period' into the college overtime row; two publishers (NCAA book and Epic Sports)."
   },
   {
-   "id": "F-glossary-0758",
+   "id": "F-glossary-0756",
    "level": "pro",
    "domain": "rule",
    "statement": "overtime: An extra period played when the score is tied after regulation; the NFL uses modified sudden-death overtime of 10 minutes in the regular season and 15 in the postseason.",
@@ -9599,7 +9599,7 @@
    "notes": "Merged duplicate row 'Overtime' (which had no source). Level split from the college extra period."
   },
   {
-   "id": "F-glossary-0763",
+   "id": "F-glossary-0761",
    "level": "pro",
    "domain": "rule",
    "statement": "palpably unfair act: An act that interferes with play and is so unfair that the Referee may impose any penalty he deems equitable, up to awarding a score or disqualifying the player.",
@@ -9629,7 +9629,7 @@
    "notes": "Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-0766",
+   "id": "F-glossary-0764",
    "level": "both",
    "domain": "rule",
    "statement": "pass: The movement of the ball caused by a player intentionally throwing it (the NFL also counts a shovel).",
@@ -9685,7 +9685,7 @@
    ]
   },
   {
-   "id": "F-glossary-0768",
+   "id": "F-glossary-0766",
    "level": "both",
    "domain": "rule",
    "statement": "pass interference: A foul when a player significantly hinders an eligible receiver's opportunity to catch a forward pass thrown from behind the line (NFL: act more than one yard beyond the line); defensive pass interference is a spot foul with an automatic first down in the NFL.",
@@ -9750,7 +9750,7 @@
    ]
   },
   {
-   "id": "F-glossary-0772",
+   "id": "F-glossary-0770",
    "level": "both",
    "domain": "rule",
    "statement": "passer: The player who throws a forward pass.",
@@ -9806,7 +9806,7 @@
    ]
   },
   {
-   "id": "F-glossary-0774",
+   "id": "F-glossary-0772",
    "level": "both",
    "domain": "rule",
    "statement": "passing play: A play that begins with the snap and ends when a forward pass thrown from behind the line is caught or falls incomplete (NFL), or the interval between the snap and a legal forward pass being completed, incomplete or intercepted (NCAA).",
@@ -9845,7 +9845,7 @@
    "notes": "Rulebook text only for both levels. Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-0780",
+   "id": "F-glossary-0778",
    "level": "pro",
    "domain": "rule",
    "statement": "peel-back block: A block initiated on the side and below the waist by a blocker moving toward his own end line and approaching the opponent from behind or the side; penalty 15 yards.",
@@ -9884,7 +9884,7 @@
    "notes": "Wikipedia's glossary describes the defender as the one moving toward 'the defender's end zone', which does not match the rulebook (the blocker is the one moving toward his own end line); the rulebook text was followed. Not found in the 2026 NCAA text."
   },
   {
-   "id": "F-glossary-0781",
+   "id": "F-glossary-0779",
    "level": "both",
    "domain": "rule",
    "statement": "penalty: The result imposed on a team that commits a foul, which may include loss of yardage, loss of down, an automatic first down, a charged timeout, loss of time, disqualification or the award of a score.",
@@ -9940,7 +9940,7 @@
    ]
   },
   {
-   "id": "F-glossary-0785",
+   "id": "F-glossary-0783",
    "level": "both",
    "domain": "rule",
    "statement": "period: One of the four 15-minute segments of regulation play.",
@@ -9979,7 +9979,7 @@
    "notes": "The practice sense of \"Period\" (draft row 146) is dropped from this batch. Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-0787",
+   "id": "F-glossary-0785",
    "level": "both",
    "domain": "rule",
    "statement": "personal foul: A foul involving illegal physical contact that endangers another player's safety; in the NFL the 15-yard fouls in Rule 12, Section 2 are personal fouls.",
@@ -10036,7 +10036,7 @@
    "notes": "Draft cited NFL 12-2-19, which only classifies unlisted 15-yard fouls; the clearest definition is NCAA 2-10-2. The NFL book has no stand-alone definition sentence."
   },
   {
-   "id": "F-glossary-0801",
+   "id": "F-glossary-0799",
    "level": "both",
    "domain": "rule",
    "statement": "place kick: A kick made while the ball is in a fixed position on the ground, held by a teammate (or on a free kick, on an approved tee).",
@@ -10092,7 +10092,7 @@
    ]
   },
   {
-   "id": "F-glossary-0803",
+   "id": "F-glossary-0801",
    "level": "college",
    "domain": "rule",
    "statement": "planned loose ball: A planned loose ball advanced by Team A near the snapper is a foul in the NCAA book, costing five yards and loss of down.",
@@ -10122,7 +10122,7 @@
    "notes": "Term shortened to match the NCAA article heading 'Planned Loose Ball'. Single source (NCAA book)."
   },
   {
-   "id": "F-glossary-0806",
+   "id": "F-glossary-0804",
    "level": "both",
    "domain": "rule",
    "statement": "play clock: The visible timer that limits the time between plays: 40 seconds normally and 25 seconds after certain administrative stoppages; failing to snap in time is delay of game.",
@@ -10206,7 +10206,7 @@
    "notes": "Merged draft rows 137 and 138. | Other batch definition: The countdown between plays: 40 seconds after most plays, 25 after timeouts and some stoppages; missing it is delay of game."
   },
   {
-   "id": "F-glossary-0808",
+   "id": "F-glossary-0806",
    "level": "both",
    "domain": "rule",
    "statement": "player: A participant of either team who is in the game; the NCAA adds that he is not a substitute or replaced player.",
@@ -10253,7 +10253,7 @@
    ]
   },
   {
-   "id": "F-glossary-0809",
+   "id": "F-glossary-0807",
    "level": "pro",
    "domain": "rule",
    "statement": "player on the line of scrimmage: An offensive player on the line must face the opponent's goal with his helmet breaking a vertical plane through the snapper's beltline and no part of him in the neutral zone; a defender within one yard of the neutral zone counts as on the line.",
@@ -10283,7 +10283,7 @@
    "notes": "Single source (NFL rulebook)."
   },
   {
-   "id": "F-glossary-0810",
+   "id": "F-glossary-0808",
    "level": "college",
    "domain": "rule",
    "statement": "player possession: The state of a ball held firmly in a player's grasp by holding or controlling it with hand(s) or arm(s) while contacting the ground inbounds.",
@@ -10331,7 +10331,7 @@
    "notes": "College row split from the NFL row because the NCAA text has no separate feet-down and act-common step in the possession definition itself (those appear in its catch rule, 2-4-3)."
   },
   {
-   "id": "F-glossary-0811",
+   "id": "F-glossary-0809",
    "level": "pro",
    "domain": "rule",
    "statement": "player possession: The state of a player who is inbounds and has control of the ball with his hand(s) or arm(s); to gain possession of a caught, intercepted or recovered ball he must also have both feet (or another non-hand body part) down inbounds and then perform an act common to the game.",
@@ -10370,7 +10370,7 @@
    "notes": "Split from the college sense. Wikipedia glossary defines possession loosely as 'Physical control of the ball after a pass or fumble'. The NFL Operations quote comes from its Catch entry."
   },
   {
-   "id": "F-glossary-0812",
+   "id": "F-glossary-0810",
    "level": "college",
    "domain": "rule",
    "statement": "player vacancy: A situation in which a team has fewer than 11 players in the game.",
@@ -10409,7 +10409,7 @@
    "notes": "Two publishers only (NCAA book and Epic Sports)."
   },
   {
-   "id": "F-glossary-0813",
+   "id": "F-glossary-0811",
    "level": "college",
    "domain": "rule",
    "statement": "playing enclosure: The area bounded by the stadium, dome, stands, fences or other structures within which the game is played (scoreboards excluded).",
@@ -10448,7 +10448,7 @@
    "notes": "Two publishers only (NCAA book and Epic Sports)."
   },
   {
-   "id": "F-glossary-0814",
+   "id": "F-glossary-0812",
    "level": "college",
    "domain": "rule",
    "statement": "playing surface: The material or substance within the field of play, including the end zones.",
@@ -10478,7 +10478,7 @@
    "notes": "Flag: only 1 distinct publisher(s) (NCAA rulebook)."
   },
   {
-   "id": "F-glossary-0820",
+   "id": "F-glossary-0818",
    "level": "pro",
    "domain": "rule",
    "statement": "pocket area: The rule-book area between the outside edges of the normal tackle positions extending back to the offensive team's end line; it ceases to exist if the ball or the passer leaves it.",
@@ -10534,7 +10534,7 @@
    ]
   },
   {
-   "id": "F-glossary-0829",
+   "id": "F-glossary-0827",
    "level": "college",
    "domain": "rule",
    "statement": "possession series: A team's continuous possession of the ball in an extra period, which can include one or more series.",
@@ -10573,7 +10573,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (Epic Sports, NCAA rulebook)."
   },
   {
-   "id": "F-glossary-0834",
+   "id": "F-glossary-0832",
    "level": "pro",
    "domain": "rule",
    "statement": "post-possession foul: A foul by the receiving team during a scrimmage kick that crosses the line, provided the receiving team does not lose possession during the rest of the down.",
@@ -10603,7 +10603,7 @@
    "notes": "Rulebook text only (3-26; see 9-4 and 14-5-2). Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-0836",
+   "id": "F-glossary-0834",
    "level": "college",
    "domain": "rule",
    "statement": "postscrimmage kick spot: The basic spot used when postscrimmage kick enforcement applies, normally where the kick ends.",
@@ -10642,7 +10642,7 @@
    "notes": "Two publishers only (NCAA book and Epic Sports)."
   },
   {
-   "id": "F-glossary-0851",
+   "id": "F-glossary-0849",
    "level": "both",
    "domain": "rule",
    "statement": "previous spot: The spot at which the ball was last put in play.",
@@ -10681,7 +10681,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-0870",
+   "id": "F-glossary-0868",
    "level": "both",
    "domain": "rule",
    "statement": "punt: A kick by a player who drops the ball and kicks it before it touches the ground; it is a scrimmage kick, usually on fourth down.",
@@ -10774,7 +10774,7 @@
    "notes": "Merged draft rows 52 and 53. | Other batch definition: A kick by a player who drops the ball and kicks it before it hits the ground, usually on fourth down."
   },
   {
-   "id": "F-glossary-0875",
+   "id": "F-glossary-0873",
    "level": "college",
    "domain": "rule",
    "statement": "pushing: Blocking an opponent with open hands.",
@@ -10804,7 +10804,7 @@
    "notes": "Flag: only 1 distinct publisher(s) (NCAA rulebook)."
   },
   {
-   "id": "F-glossary-0876",
+   "id": "F-glossary-0874",
    "level": "college",
    "domain": "rule",
    "statement": "pylon: The marker at each corner where the goal line meets the sideline; the NCAA plane of the goal line includes the pylons, which are out of bounds.",
@@ -10834,7 +10834,7 @@
    "notes": "College row. The NCAA text both counts the pylons in the end zone and calls them out of bounds (2-12-2, 2-31-3); the rulebook is the only source here."
   },
   {
-   "id": "F-glossary-0877",
+   "id": "F-glossary-0875",
    "level": "pro",
    "domain": "rule",
    "statement": "pylon: The corner marker at each intersection of the goal line and sideline; in the NFL it is part of the end zone and a player touching it is not out of bounds.",
@@ -10873,7 +10873,7 @@
    "notes": "Split by level because the out-of-bounds treatment differs."
   },
   {
-   "id": "F-glossary-0894",
+   "id": "F-glossary-0892",
    "level": "pro",
    "domain": "rule",
    "statement": "receiver (kick): Any Team B player during a down in which there is a scrimmage kick, free kick or fair catch kick.",
@@ -10903,7 +10903,7 @@
    "notes": "Single source: the NFL rulebook is the only text found that defines this kick-specific sense; the NCAA book has no equivalent definition."
   },
   {
-   "id": "F-glossary-0896",
+   "id": "F-glossary-0894",
    "level": "both",
    "domain": "rule",
    "statement": "recovery (ball): Gaining player possession of a loose ball that is still live after it has touched the ground (the ball-recovery sense, as in a fumble recovery).",
@@ -10951,7 +10951,7 @@
    "notes": "Merged sense split: the training sense of \"Recovery\" (draft row 9) is not a rule term and is dropped here."
   },
   {
-   "id": "F-glossary-0906",
+   "id": "F-glossary-0904",
    "level": "both",
    "domain": "rule",
    "statement": "referee: The crew chief, who has general oversight and control of the game and final authority on the score; in the NFL the Referee decides disagreements on the down, any decision, or the application or interpretation of the rules.",
@@ -10998,7 +10998,7 @@
    ]
   },
   {
-   "id": "F-glossary-0907",
+   "id": "F-glossary-0905",
    "level": "pro",
    "domain": "rule",
    "statement": "referee's timeout: A timeout the Referee may call, without penalty to either team, when playing time is being consumed by an unusual delay (equipment, measurement, injury and the like); it is not charged to a team.",
@@ -11037,7 +11037,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-0911",
+   "id": "F-glossary-0909",
    "level": "college",
    "domain": "rule",
    "statement": "replaced player: A player who took part in the previous down, has been replaced by a substitute and has left the field of play and the end zones.",
@@ -11076,7 +11076,7 @@
    "notes": "Epic Sports only gives the related 'player' entry; essentially a single-source row (NCAA book)."
   },
   {
-   "id": "F-glossary-0913",
+   "id": "F-glossary-0911",
    "level": "both",
    "domain": "rule",
    "statement": "replay official: The official who watches the video and initiates or decides replay reviews; in the NFL only the Replay Official (or the Senior Vice President of Officiating) may initiate certain reviews, and in college the replay official may stop the game when he believes an error was made.",
@@ -11115,7 +11115,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-0914",
+   "id": "F-glossary-0912",
    "level": "both",
    "domain": "rule",
    "statement": "replay review: A review of a play on video to confirm or reverse an on-field ruling; in the NFL it starts with a coach's challenge (red flag) or a replay official's request, in the NCAA with a coach's challenge or the replay official.",
@@ -11171,7 +11171,7 @@
    ]
   },
   {
-   "id": "F-glossary-0919",
+   "id": "F-glossary-0917",
    "level": "both",
    "domain": "rule",
    "statement": "restraining line: A line (part of a vertical plane) that limits the alignment of the kicking and receiving teams during a free kick or fair catch kick.",
@@ -11218,7 +11218,7 @@
    ]
   },
   {
-   "id": "F-glossary-0922",
+   "id": "F-glossary-0920",
    "level": "college",
    "domain": "rule",
    "statement": "return kick: A kick by a player of the team in possession after a change of team possession during a down; it is an illegal kick and a live-ball foul that ends the down.",
@@ -11248,7 +11248,7 @@
    "notes": "Flag: only 1 distinct publisher(s) (NCAA rulebook)."
   },
   {
-   "id": "F-glossary-0929",
+   "id": "F-glossary-0927",
    "level": "both",
    "domain": "rule",
    "statement": "reviewable play: A ruling the rules list as subject to replay review, such as possession, touching, goal line, boundary lines, line of scrimmage, line to gain and number of players.",
@@ -11287,7 +11287,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-0950",
+   "id": "F-glossary-0948",
    "level": "both",
    "domain": "rule",
    "statement": "roughing the holder: A foul for illegal contact against the holder of a place kick, costing 15 yards and an automatic first down in the NFL.",
@@ -11335,7 +11335,7 @@
    "notes": "Level changed from pro to both: NCAA 9-1-16 also protects the holder."
   },
   {
-   "id": "F-glossary-0951",
+   "id": "F-glossary-0949",
    "level": "both",
    "domain": "rule",
    "statement": "roughing the kicker: A foul when a defender contacts a kicker's plant leg while the kicking leg is in the air, slides into him with both feet on the ground, or otherwise roughs him; 15 yards and an automatic first down in the NFL.",
@@ -11410,7 +11410,7 @@
    "notes": "Merged duplicate row 'Roughing the kicker', which had no source in the draft. Dummies.com says 'punter' only. | Other batch definition: A foul for hitting the kicker, including the punter, in certain ways; in the NFL it costs 15 yards and an automatic first down."
   },
   {
-   "id": "F-glossary-0952",
+   "id": "F-glossary-0950",
    "level": "both",
    "domain": "rule",
    "statement": "roughing the passer: A foul for hitting a passer after the ball has been thrown or in a prohibited way, such as landing on him with body weight, hitting his head or neck, or low contact on the knees; 15 yards and an automatic first down.",
@@ -11466,7 +11466,7 @@
    ]
   },
   {
-   "id": "F-glossary-0953",
+   "id": "F-glossary-0951",
    "level": "both",
    "domain": "rule",
    "statement": "roughing the snapper: A foul for contact against the snapper on a scrimmage kick before he has had time to regain balance and defend himself; the NFL lists him as a defenseless player and the NCAA bars contact until one second after the snap.",
@@ -11513,7 +11513,7 @@
    ]
   },
   {
-   "id": "F-glossary-0962",
+   "id": "F-glossary-0960",
    "level": "both",
    "domain": "rule",
    "statement": "runner: The offensive player who is in possession of a live ball, holding it or carrying it in any direction; NCAA also treats a player simulating possession as a runner, and calls a runner who actually has the ball a ball carrier.",
@@ -11560,7 +11560,7 @@
    ]
   },
   {
-   "id": "F-glossary-0965",
+   "id": "F-glossary-0963",
    "level": "both",
    "domain": "rule",
    "statement": "running into the kicker: A lesser foul when a defender runs into the kicker (or holder) without roughing him, costing five yards without an automatic first down; roughing the kicker is the 15-yard personal foul.",
@@ -11635,7 +11635,7 @@
    "notes": "Merged draft rows 116 and 117. | Other batch definition: A lesser foul for contacting the kicker's kicking leg or foot or sliding under him; five yards in the NFL, with no automatic first down."
   },
   {
-   "id": "F-glossary-0967",
+   "id": "F-glossary-0965",
    "level": "both",
    "domain": "rule",
    "statement": "running play: Any live-ball action other than a free kick, scrimmage kick or legal forward pass play; in the NFL it begins at the snap or when a forward pass is caught or a kick is blocked behind the line.",
@@ -11692,7 +11692,7 @@
    "notes": "Definition rewritten to follow the NCAA wording; the NFL text lists when a running play begins (snap without a later kick or pass; catch of a forward pass thrown from behind the line, and so on)."
   },
   {
-   "id": "F-glossary-0971",
+   "id": "F-glossary-0969",
    "level": "both",
    "domain": "rule",
    "statement": "safety: A two-point score for the defense when the ball is dead on or behind a team's own goal line and the impetus came from that team; it is also a safety if the offense fouls behind its own goal line and the defense takes the penalty there.",
@@ -11758,7 +11758,7 @@
    "notes": "Merged duplicate row 'Safety' (two senses exist: the score and the defensive position; this row is the score)."
   },
   {
-   "id": "F-glossary-0973",
+   "id": "F-glossary-0971",
    "level": "both",
    "domain": "rule",
    "statement": "safety kick: The free kick that puts the ball in play after a safety, made by the team that gave up the safety (NFL: from its 20-yard line, by punt, drop kick or place kick).",
@@ -11833,7 +11833,7 @@
    "notes": "Merged draft rows 57 and 58. | Other batch definition: The free kick used to put the ball in play after a safety; it may be a punt, drop kick or place kick."
   },
   {
-   "id": "F-glossary-0986",
+   "id": "F-glossary-0984",
    "level": "both",
    "domain": "rule",
    "statement": "scrimmage down: A down that starts with a snap; \"from scrimmage\" covers action from the snap until the down ends or Team B secures possession.",
@@ -11880,7 +11880,7 @@
    ]
   },
   {
-   "id": "F-glossary-0987",
+   "id": "F-glossary-0985",
    "level": "both",
    "domain": "rule",
    "statement": "scrimmage kick: A punt, drop kick or place kick made from on or behind the line of scrimmage during a scrimmage down.",
@@ -11946,7 +11946,7 @@
    "notes": "Merged draft rows 59 and 60. | Other batch definition: A punt, drop kick or place kick made from on or behind the line of scrimmage, as opposed to a free kick."
   },
   {
-   "id": "F-glossary-0988",
+   "id": "F-glossary-0986",
    "level": "both",
    "domain": "rule",
    "statement": "scrimmage kick formation: A formation with no player in position to receive a hand-to-hand snap and with a kicker (or holder and kicker) deep enough behind the neutral zone that a kick is obviously possible.",
@@ -11993,7 +11993,7 @@
    ]
   },
   {
-   "id": "F-glossary-0989",
+   "id": "F-glossary-0987",
    "level": "both",
    "domain": "rule",
    "statement": "scrimmage kick play: A play that begins with the snap and ends when a kicked ball comes into player possession or the ball is dead by rule.",
@@ -12032,7 +12032,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-1003",
+   "id": "F-glossary-1001",
    "level": "pro",
    "domain": "rule",
    "statement": "senior vice president of officiating: The NFL league officiating executive who conducts replay reviews (or a designee), may initiate a review of a play, and may instruct crews on disqualifications.",
@@ -12062,7 +12062,7 @@
    "notes": "Single source (NFL rulebook); an NFL job title rather than a football term."
   },
   {
-   "id": "F-glossary-1007",
+   "id": "F-glossary-1005",
    "level": "both",
    "domain": "rule",
    "statement": "series of downs: Up to four consecutive scrimmage downs given to a team to reach the line to gain and keep the ball.",
@@ -12119,7 +12119,7 @@
    "notes": "Merged duplicate row 'Series of downs'. NFL counts only charged downs (not nullified by a penalty)."
   },
   {
-   "id": "F-glossary-1011",
+   "id": "F-glossary-1009",
    "level": "pro",
    "domain": "rule",
    "statement": "seven-official crew: The standard NFL crew of seven: Referee, Umpire, Down Judge, Line Judge, Field Judge, Side Judge and Back Judge.",
@@ -12166,7 +12166,7 @@
    ]
   },
   {
-   "id": "F-glossary-1023",
+   "id": "F-glossary-1021",
    "level": "both",
    "domain": "rule",
    "statement": "side judge: A deep official who works downfield behind the defensive secondary and is the backup timekeeper in the NFL, taking over timing if the stadium clock fails.",
@@ -12213,7 +12213,7 @@
    ]
   },
   {
-   "id": "F-glossary-1024",
+   "id": "F-glossary-1022",
    "level": "college",
    "domain": "rule",
    "statement": "side zone: The area between the hash marks and the near sideline.",
@@ -12243,7 +12243,7 @@
    "notes": "Flag: only 1 distinct publisher(s) (NCAA rulebook)."
   },
   {
-   "id": "F-glossary-1025",
+   "id": "F-glossary-1023",
    "level": "both",
    "domain": "rule",
    "statement": "sideline: The line along each side of the field that separates the field of play from out of bounds.",
@@ -12290,7 +12290,7 @@
    ]
   },
   {
-   "id": "F-glossary-1032",
+   "id": "F-glossary-1030",
    "level": "college",
    "domain": "rule",
    "statement": "simultaneous possession: A simultaneous catch or recovery: joint possession of a live ball by opposing players inbounds; on a forward pass the NCAA makes the ball dead and gives it to the passing team.",
@@ -12329,7 +12329,7 @@
    "notes": "College row split from NFL because the outcome rule differs (NCAA: ball dead and awarded to the passing team on a pass; NFL: ball to the team last in possession)."
   },
   {
-   "id": "F-glossary-1033",
+   "id": "F-glossary-1031",
    "level": "pro",
    "domain": "rule",
    "statement": "simultaneous possession: A case where two opponents jointly control a live ball at the same time; the NFL gives the ball to the team last in possession (or the receivers after a kick), and the NCAA kills the ball.",
@@ -12359,7 +12359,7 @@
    "notes": "NFL sense only. Single primary source (the rulebook text); no outside page found that defines it."
   },
   {
-   "id": "F-glossary-1052",
+   "id": "F-glossary-1050",
    "level": "both",
    "domain": "rule",
    "statement": "snapper: The offensive player who starts a scrimmage down by handing or passing the ball backward from its position on the ground.",
@@ -12415,7 +12415,7 @@
    ]
   },
   {
-   "id": "F-glossary-1071",
+   "id": "F-glossary-1069",
    "level": "pro",
    "domain": "rule",
    "statement": "spot of a backward pass or fumble: The spot where the backward pass or fumble occurred during a down in which there was a foul, used as an enforcement spot.",
@@ -12445,7 +12445,7 @@
    "notes": "Rulebook text only for the NFL. Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1072",
+   "id": "F-glossary-1070",
    "level": "pro",
    "domain": "rule",
    "statement": "spot of change of possession: The spot where possession is gained by or awarded to the opponent, used as an enforcement spot.",
@@ -12475,7 +12475,7 @@
    "notes": "Rulebook text only (3-13-3(g)). Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1073",
+   "id": "F-glossary-1071",
    "level": "both",
    "domain": "rule",
    "statement": "spot of the foul: The place where a foul occurred or, by rule, is considered to have occurred.",
@@ -12522,7 +12522,7 @@
    ]
   },
   {
-   "id": "F-glossary-1074",
+   "id": "F-glossary-1072",
    "level": "college",
    "domain": "rule",
    "statement": "spot where run ends: The point where a run ends: where the ball is declared dead in player possession, where possession is lost on a fumble, where the ball is handed, or where an illegal forward or backward pass is thrown.",
@@ -12561,7 +12561,7 @@
    "notes": "Two publishers only (NCAA book and Epic Sports). The NFL book uses 'the spot of a backward pass or a fumble' (3-13-3-c) for related enforcement."
   },
   {
-   "id": "F-glossary-1078",
+   "id": "F-glossary-1076",
    "level": "college",
    "domain": "rule",
    "statement": "squad member: A member of the group of potential players, in uniform, organized for participation in the ensuing football game or plays.",
@@ -12600,7 +12600,7 @@
    "notes": "Two publishers only (NCAA book and Epic Sports)."
   },
   {
-   "id": "F-glossary-1092",
+   "id": "F-glossary-1090",
    "level": "both",
    "domain": "rule",
    "statement": "striking: A foul for hitting an opponent with fists, forearm or elbows, or kicking or kneeing him.",
@@ -12639,7 +12639,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-1099",
+   "id": "F-glossary-1097",
    "level": "both",
    "domain": "rule",
    "statement": "substitute: A player who replaces a player or fills a vacancy; he becomes a player when he participates in a play (NFL) or enters the field and communicates, joins the huddle or is placed in a formation (NCAA).",
@@ -12678,7 +12678,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-1100",
+   "id": "F-glossary-1098",
    "level": "both",
    "domain": "rule",
    "statement": "succeeding spot: The spot at which the ball will next be put in play: the spot after enforcement for a foul or, if no foul, where the ball became dead.",
@@ -12717,7 +12717,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-1102",
+   "id": "F-glossary-1100",
    "level": "pro",
    "domain": "rule",
    "statement": "sudden death: An overtime format in which the next score ends the game; the NFL uses a modified version in which both teams must get a possession unless the team kicking off gives up a safety on the receiver's first drive.",
@@ -12747,7 +12747,7 @@
    "notes": "Rulebook text only; no explainer page that defines the term was found in the saved sources. Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1105",
+   "id": "F-glossary-1103",
    "level": "both",
    "domain": "rule",
    "statement": "survive the ground: The requirement that a receiver who goes to the ground while making a catch must keep control through contact with the ground, otherwise there is no possession and the pass is incomplete.",
@@ -12786,7 +12786,7 @@
    "notes": "Only the NFL rulebook uses the exact phrase; no explainer page saved so far uses it. Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-1107",
+   "id": "F-glossary-1105",
    "level": "pro",
    "domain": "rule",
    "statement": "suspended player: A player who must be withdrawn under Rule 5 for correction of illegal equipment.",
@@ -12816,7 +12816,7 @@
    "notes": "Rulebook text only (3-32; 5-4). Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1114",
+   "id": "F-glossary-1112",
    "level": "pro",
    "domain": "rule",
    "statement": "T-formation quarterback: A quarterback aligned one yard or less behind the snapper; the NFL rules give him special motion and downfield rules.",
@@ -12846,7 +12846,7 @@
    "notes": "Rulebook text only (3-42 definition; 7-4-2, 7-4-7, 7-4-8, 8-3-1 apply special rules). No explainer page was found. Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1118",
+   "id": "F-glossary-1116",
    "level": "college",
    "domain": "rule",
    "statement": "tackling (college): Grasping or encircling an opponent with the hand(s) or arm(s).",
@@ -12885,7 +12885,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (Epic Sports, NCAA rulebook)."
   },
   {
-   "id": "F-glossary-1119",
+   "id": "F-glossary-1117",
    "level": "pro",
    "domain": "rule",
    "statement": "tackling (pro): An attempt by a defensive player to hold a runner, halting his advance or bringing him to the ground.",
@@ -12924,7 +12924,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NFL rulebook, Wikipedia)."
   },
   {
-   "id": "F-glossary-1125",
+   "id": "F-glossary-1123",
    "level": "college",
    "domain": "rule",
    "statement": "targeting: A foul in which a player takes aim at an opponent and makes forcible contact beyond a legal tackle or block, such as leading with the crown of the helmet or hitting the head or neck of a defenseless player; reviewed by replay and punished by ejection.",
@@ -12971,7 +12971,7 @@
    ]
   },
   {
-   "id": "F-glossary-1126",
+   "id": "F-glossary-1124",
    "level": "both",
    "domain": "rule",
    "statement": "taunting: Using baiting or taunting acts or words that may cause ill will between teams; the NFL calls it a dead-ball foul that can be flagged at any time.",
@@ -13018,7 +13018,7 @@
    ]
   },
   {
-   "id": "F-glossary-1127",
+   "id": "F-glossary-1125",
    "level": "both",
    "domain": "rule",
    "statement": "Team A and Team B: Labels used in the rules: Team A is the team that puts the ball in play and Team B is its opponent; the labels hold even when possession changes during the down.",
@@ -13065,7 +13065,7 @@
    ]
   },
   {
-   "id": "F-glossary-1130",
+   "id": "F-glossary-1128",
    "level": "college",
    "domain": "rule",
    "statement": "team possession: The state of a team whose player has the ball (including a kicker setting up a kick), whose forward pass is in flight, who last had player possession of a loose ball, or who is next to snap or free kick.",
@@ -13112,7 +13112,7 @@
    ]
   },
   {
-   "id": "F-glossary-1132",
+   "id": "F-glossary-1130",
    "level": "both",
    "domain": "rule",
    "statement": "tee: A device that elevates the ball for a place kick; the NFL allows an approved tee only on a free kick, and the NCAA caps the lift at one inch.",
@@ -13151,7 +13151,7 @@
    "notes": "Only the two rulebooks define it; no outside page found."
   },
   {
-   "id": "F-glossary-1138",
+   "id": "F-glossary-1136",
    "level": "both",
    "domain": "rule",
    "statement": "three-and-one principle: A method of choosing the enforcement spot by comparing the basic spot with the spot of the foul; NCAA applies it when a penalty statement gives no spot, and the NFL applies it to fouls during a run, backward pass or fumble.",
@@ -13190,7 +13190,7 @@
    "notes": "Flag: only 2 distinct publisher(s) (NCAA rulebook, NFL rulebook)."
   },
   {
-   "id": "F-glossary-1144",
+   "id": "F-glossary-1142",
    "level": "pro",
    "domain": "rule",
    "statement": "tight end box: A rectangle enclosed by lines two yards outside the normal tackle positions and five yards on either side of the line of scrimmage, in which blocks below the waist are allowed; it continues to exist after the ball leaves.",
@@ -13220,7 +13220,7 @@
    "notes": "Rulebook text only (3-33). No explainer page found. Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1146",
+   "id": "F-glossary-1144",
    "level": "pro",
    "domain": "rule",
    "statement": "time in: Any interval during which the game clock is running.",
@@ -13250,7 +13250,7 @@
    "notes": "Single source (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1149",
+   "id": "F-glossary-1147",
    "level": "both",
    "domain": "rule",
    "statement": "timeout: Any interval in which the game clock is stopped, including intermission; during it all playing rules stay in force. Each team has three charged timeouts per half in the NFL.",
@@ -13298,7 +13298,7 @@
    "notes": "Merged duplicate row 'Timeout', which gave the three-per-half count only."
   },
   {
-   "id": "F-glossary-1152",
+   "id": "F-glossary-1150",
    "level": "both",
    "domain": "rule",
    "statement": "too many men on the field: A foul when a team has more than 11 players in its formation before the snap (the offense for more than three seconds) or on the field when the ball is in play; five yards.",
@@ -13345,7 +13345,7 @@
    ]
   },
   {
-   "id": "F-glossary-1159",
+   "id": "F-glossary-1157",
    "level": "both",
    "domain": "rule",
    "statement": "touchback: A dead ball on or behind a goal line a team is defending, when the force that put it there came from the opponent and it is not a score or an incomplete pass; the defending team then puts the ball in play.",
@@ -13410,7 +13410,7 @@
    ]
   },
   {
-   "id": "F-glossary-1161",
+   "id": "F-glossary-1159",
    "level": "both",
    "domain": "rule",
    "statement": "touchdown: A score worth six points made when a player in possession gets any part of the ball on, above or behind the opponent's goal line, or an inbounds player secures a loose ball there.",
@@ -13466,7 +13466,7 @@
    ]
   },
   {
-   "id": "F-glossary-1162",
+   "id": "F-glossary-1160",
    "level": "both",
    "domain": "rule",
    "statement": "touching the ball: Any contact with the ball by any part of a player's body, including hair, with no distinction between hands and other parts unless a rule says so.",
@@ -13513,7 +13513,7 @@
    ]
   },
   {
-   "id": "F-glossary-1174",
+   "id": "F-glossary-1172",
    "level": "both",
    "domain": "rule",
    "statement": "tripping: Using the leg or foot to obstruct an opponent; the NFL includes the runner, the NCAA says intentionally and below the knees; it costs 15 yards.",
@@ -13560,7 +13560,7 @@
    ]
   },
   {
-   "id": "F-glossary-1177",
+   "id": "F-glossary-1175",
    "level": "both",
    "domain": "rule",
    "statement": "try: An untimed scrimmage down after a touchdown in which the scoring team can add one point by kicking or two points by running or passing the ball into the end zone.",
@@ -13617,7 +13617,7 @@
    "notes": "Merged draft rows 70 and 71."
   },
   {
-   "id": "F-glossary-1191",
+   "id": "F-glossary-1189",
    "level": "college",
    "domain": "rule",
    "statement": "two-minute timeout (college): The NCAA stoppage of the game clock with exactly two minutes remaining in the second and fourth quarters (at the next dead ball if the ball is live); first downs stop the clock only after it.",
@@ -13648,63 +13648,6 @@
   },
   {
    "id": "F-glossary-1193",
-   "level": "pro",
-   "domain": "rule",
-   "statement": "two-minute warning: An automatic timeout at the end of the last down snapped or kicked before two minutes remain on the game clock in the second and fourth periods.",
-   "validFor": "2026 NFL and NCAA rulebooks and CBA",
-   "sources": [
-    {
-     "citation": "NFL 2026 Official Playing Rules, Rule 3-41 (NFL rulebook)",
-     "locator": "file:///mnt/project-files/nfl-rules/rulebook_2026.txt",
-     "dateRead": "2026-11-26",
-     "howRead": "primary text",
-     "independenceGroup": "nfl",
-     "primary": true,
-     "quote": "The two-minute warning is an automatic timeout that occurs at the conclusion of the last down for which the ball"
-    },
-    {
-     "citation": "NFL Football Operations | Football Terms (NFL Football Operations)",
-     "locator": "https://operations.nfl.com/rules-officiating/nfl-football-basics/football-terms",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "nfl",
-     "primary": false,
-     "quote": "Two-Minute Warning: An automatic official timeout that occurs at the end of the last play that began before the game"
-    },
-    {
-     "citation": "Glossary of Football Terms | ACTIVE.com (ACTIVE.com (Active Network))",
-     "locator": "https://www.active.com/football/articles/glossary-of-football-terms",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "active",
-     "primary": false,
-     "quote": "Two-Minute Warning: When two minutes are remaining in each half, officials will stop play for teams to regroup."
-    },
-    {
-     "citation": "Glossary of American football terms - Wikipedia (Wikipedia)",
-     "locator": "https://en.wikipedia.org/wiki/Glossary_of_American_football",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "wikipedia",
-     "primary": false,
-     "quote": "two-minute warning Main article: Two-minute warning A free time out given to both teams when there are two minutes left"
-    }
-   ],
-   "status": "Verified",
-   "usedBy": [
-    "term.two-minute-warning-pro"
-   ],
-   "statusHistory": [
-    {
-     "date": "2026-11-26",
-     "status": "Verified",
-     "reason": "First load (G-93)."
-    }
-   ],
-   "notes": "Merged draft rows 141 and 142 and set to pro: the draft marked row 141 as both, but the NCAA book calls its version the Two-Minute Timeout and describes it differently."
-  },
-  {
-   "id": "F-glossary-1196",
    "level": "both",
    "domain": "rule",
    "statement": "umpire: The official who works in the area of the offensive line or defensive backfield watching blocking, holding and equipment and helping mark off penalties.",
@@ -13751,7 +13694,7 @@
    ]
   },
   {
-   "id": "F-glossary-1201",
+   "id": "F-glossary-1198",
    "level": "both",
    "domain": "rule",
    "statement": "unnecessary roughness: A personal foul for needless or excessive contact, such as late hits, hits on runners out of bounds, hits on defenseless players and other contact the rules prohibit; 15 yards.",
@@ -13807,7 +13750,7 @@
    ]
   },
   {
-   "id": "F-glossary-1204",
+   "id": "F-glossary-1201",
    "level": "both",
    "domain": "rule",
    "statement": "unsportsmanlike conduct: A foul for acts contrary to the principles of sportsmanship, such as abusive language, throwing a punch, taunting or simulated gun gestures; 15 yards.",
@@ -13872,7 +13815,7 @@
    ]
   },
   {
-   "id": "F-glossary-1209",
+   "id": "F-glossary-1206",
    "level": "pro",
    "domain": "rule",
    "statement": "use of a helmet as a weapon: A foul for using a helmet that is no longer worn by anyone to strike, swing at or throw at an opponent; 15 yards and automatic disqualification.",
@@ -13902,7 +13845,7 @@
    "notes": "Rulebook text only (12-2-17). Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1219",
+   "id": "F-glossary-1216",
    "level": "both",
    "domain": "rule",
    "statement": "violation: A rule infraction for which no penalty is prescribed; because it is not a foul it cannot offset a foul.",
@@ -13949,7 +13892,7 @@
    ]
   },
   {
-   "id": "F-glossary-1235",
+   "id": "F-glossary-1232",
    "level": "pro",
    "domain": "rule",
    "statement": "wedge block: A block by two or more players who intentionally line up shoulder to shoulder within two yards of each other and move forward together on a kickoff, which is not permitted.",
@@ -13979,7 +13922,7 @@
    "notes": "Rulebook text only (6-2-1(d), 6-2-2(d), 6-3-1(e)). No explainer page found. Flag: only 1 distinct publisher(s) (NFL rulebook)."
   },
   {
-   "id": "F-glossary-1262",
+   "id": "F-glossary-1259",
    "level": "both",
    "domain": "rule",
    "statement": "yard line: Any line in the field of play parallel to the end line, marked or unmarked, named by its distance in yards from a team's own goal line.",

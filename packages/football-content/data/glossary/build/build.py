@@ -21,7 +21,7 @@ def is_primary(s):
     q = ((s.get('publisher') or '') + ' ' + (s.get('title') or '')).lower()
     k = (s.get('kind') or '').lower()
     return bool(re.search(r'rulebook|collective bargaining|\bcba\b', q)) and (k in ('rulebook', 'cba', 'primary-rule-text', 'rule-text') or 'primary' in q or 'official' in q or 'rulebook' in k)
-rows = [json.loads(l) for l in open(research + '/final/glossary-terms.jsonl')]
+rows = sorted((json.loads(l) for l in open(research + '/final/glossary-terms.jsonl')), key=lambda r: r['id'])
 dropped = [json.loads(l) for l in open(research + '/final/dropped-terms.jsonl')]
 # ownerLeaf from the bible A4.5 tables
 leaf = {}; sec = None
@@ -43,6 +43,21 @@ def compute_status(srcs):  # mirrors computeStatus in packages/schema/src/facts.
     if len(groups) >= 3 or (primary and len(groups) >= 2): return 'Verified'
     if primary: return 'Rulebook only'
     return '2 of 3' if len(groups) == 2 else '1 of 3'
+# MA-69: three rows overlapped at one level. Merge into one record each (the surviving id is the one other content already names).
+def uni(a, b, key): 
+    seen = {key(x) for x in a}; return a + [x for x in b if key(x) not in seen]
+byid = {r['id']: r for r in rows}
+def merge(keep, gone):
+    k, g = byid[keep], byid[gone]
+    k['sources'] = uni(k['sources'], g['sources'], lambda x: x['url'])
+    k['aliases'] = sorted(set(k['aliases']) | set(g['aliases']) - {k['term']})
+    k['notes'] = ((k.get('notes') or '') + f' Merged with {gone} (MA-69): its sources and aliases are folded in.').strip()
+    rows.remove(g)
+merge('term.two-minute-warning', 'term.two-minute-warning-pro')
+merge('term.okie-front', 'term.okie-front-pro')
+# onside kick: the pro and college rules differ, so both level rows stay; the mixed 'both' row is retired.
+rows.remove(byid['term.onside-kick'])
+RETIRED = {'term.two-minute-warning-pro': 'term.two-minute-warning', 'term.okie-front-pro': 'term.okie-front', 'term.onside-kick': 'term.onside-kick-pro, term.onside-kick-college'}
 terms = collections.defaultdict(list); facts = collections.defaultdict(list); n = 0
 missing = []
 for r in sorted(rows, key=lambda r: r['id']):
@@ -76,10 +91,16 @@ assert not missing, missing[:10]
 for k, v in terms.items(): json.dump({'leaf': [a for a, b in FILES.items() if b == k][0], 'terms': v}, open(f'{out}/terms-{k}.json', 'w'), indent=1, ensure_ascii=False)
 for k, v in facts.items(): json.dump({'domain': k, 'rows': v}, open(f'{out}/facts-{k}.json', 'w'), indent=1, ensure_ascii=False)
 shipped = {r['term'].lower() for r in rows} | {a.lower() for r in rows for a in r['aliases']}
+ALLOWED = {  # MA-69: the game's own feature names, defined and sourced by a leaf, are not blocked
+ 'call sheet': ['G7'], 'wristband': ['G4'], 'opening script': ['G7'], 'halftime adjustments': ['I8'],
+ 'tendency': ['H2', 'G8', 'K2'], 'self-scout': ['G8'], 'two-point chart': ['G7', 'I5'],
+ 'projection': ['E6'],  # the retirement projection band (E6), ordinary English
+ 'empty': [], 'tools': []}  # plain English words in screen strings, not football terms here
+allowed = [{'term': d['term'], 'leaves': ALLOWED[d['term'].lower()]} for d in dropped if d['term'].lower() in ALLOWED]
 ns = []; seen_ns = set()
 for d in dropped:
     k = d['term'].lower()
-    if k in shipped or k in seen_ns: continue  # a term that was later sourced is not blocked
+    if k in shipped or k in seen_ns or k in ALLOWED: continue  # a term that was later sourced is not blocked
     seen_ns.add(k); ns.append({'term': d['term'], 'domain': d['domain'], 'level': d['level']})
-json.dump({'note': 'A4.5.11: real-sounding terms that no page actually read could source. No screen, lesson or template may use them until a source is found.', 'terms': ns}, open(f'{out}/not-shipped.json', 'w'), indent=1, ensure_ascii=False)
+json.dump({'note': 'A4.5.11: real-sounding terms that no page actually read could source. No screen, lesson or template may use them until a source is found.', 'allowed': allowed, 'retiredIds': RETIRED, 'terms': ns}, open(f'{out}/not-shipped.json', 'w'), indent=1, ensure_ascii=False)
 print(n, {k: len(v) for k, v in terms.items()}, len(ns))

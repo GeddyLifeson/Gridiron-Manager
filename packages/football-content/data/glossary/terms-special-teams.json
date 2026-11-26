@@ -631,20 +631,6 @@
    "factRow": "F-glossary-0725"
   },
   {
-   "id": "term.onside-kick",
-   "term": "Onside kick",
-   "aliases": [
-    "onside kick situation",
-    "onside situation"
-   ],
-   "definition": "A short free kick the kicking team tries to recover; in the NFL it must travel 10 yards unless a receiver touches it first.",
-   "domain": "special-teams",
-   "subdomain": "kickoff",
-   "level": "both",
-   "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0731"
-  },
-  {
    "id": "term.operation-time",
    "term": "Operation time",
    "aliases": [
@@ -656,7 +642,7 @@
    "subdomain": "snap",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0738",
+   "factRow": "F-glossary-0736",
    "variants": [
     "Kicking System: 'Field Goals: Operation Times'",
     "USA Football gives punt timings (1.3 seconds to catch and release on a normal punt)"
@@ -674,7 +660,7 @@
    "subdomain": "kicking",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0802"
+   "factRow": "F-glossary-0800"
   },
   {
    "id": "term.pooch-kick",
@@ -687,7 +673,7 @@
    "subdomain": "kickoff",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0825"
+   "factRow": "F-glossary-0823"
   },
   {
    "id": "term.pooch-punt",
@@ -701,7 +687,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0826",
+   "factRow": "F-glossary-0824",
    "variants": [
     "Wikipedia's punt article calls the quarterback quick kick a pooch punt"
    ]
@@ -718,7 +704,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0871"
+   "factRow": "F-glossary-0869"
   },
   {
    "id": "term.punt-protection",
@@ -731,7 +717,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0872"
+   "factRow": "F-glossary-0870"
   },
   {
    "id": "term.punt-return",
@@ -742,7 +728,7 @@
    "subdomain": "returns",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0873"
+   "factRow": "F-glossary-0871"
   },
   {
    "id": "term.punter",
@@ -755,7 +741,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0874"
+   "factRow": "F-glossary-0872"
   },
   {
    "id": "term.quick-kick",
@@ -768,7 +754,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0885"
+   "factRow": "F-glossary-0883"
   },
   {
    "id": "term.receiving-team-s-restraining-line",
@@ -779,7 +765,7 @@
    "subdomain": "kickoff",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0895"
+   "factRow": "F-glossary-0893"
   },
   {
    "id": "term.return-team-alignment-on-kickoff",
@@ -790,7 +776,7 @@
    "subdomain": "kickoff",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0923",
+   "factRow": "F-glossary-0921",
    "variants": [
     "NCAA: all receiving players behind the receiving restraining line (6-1-2-c-7)"
    ]
@@ -806,7 +792,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-0957"
+   "factRow": "F-glossary-0955"
   },
   {
    "id": "term.setup-zone-pro",
@@ -819,7 +805,7 @@
    "subdomain": "kickoff",
    "level": "pro",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1010",
+   "factRow": "F-glossary-1008",
    "variants": [
     "the onside kick setup zone is a separate area, 15 yards behind the receiving restraining line (6-1-6-h)"
    ]
@@ -837,7 +823,7 @@
    "subdomain": "punt",
    "level": "college",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1015",
+   "factRow": "F-glossary-1013",
    "variants": [
     "Inside the Pylon says it is college-only"
    ]
@@ -853,7 +839,7 @@
    "subdomain": "kickoff",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1040"
+   "factRow": "F-glossary-1038"
   },
   {
    "id": "term.special-teams",
@@ -867,7 +853,7 @@
    "subdomain": "general",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1057"
+   "factRow": "F-glossary-1055"
   },
   {
    "id": "term.special-teams-ace-pro",
@@ -881,7 +867,7 @@
    "subdomain": "general",
    "level": "pro",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1058"
+   "factRow": "F-glossary-1056"
   },
   {
    "id": "term.spread-punt",
@@ -895,7 +881,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1076",
+   "factRow": "F-glossary-1074",
    "variants": [
     "NFL teams typically use it (ITP)"
    ]
@@ -911,7 +897,7 @@
    "subdomain": "kickoff",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1080"
+   "factRow": "F-glossary-1078"
   },
   {
    "id": "term.surprise-onside-kick",
@@ -924,7 +910,7 @@
    "subdomain": "kickoff",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1104"
+   "factRow": "F-glossary-1102"
   },
   {
    "id": "term.touchback-on-a-punt",
@@ -937,7 +923,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1160"
+   "factRow": "F-glossary-1158"
   },
   {
    "id": "term.two-point-conversion",
@@ -954,7 +940,7 @@
    "subdomain": "try",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1194"
+   "factRow": "F-glossary-1191"
   },
   {
    "id": "term.upback",
@@ -969,7 +955,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1205",
+   "factRow": "F-glossary-1202",
    "variants": [
     "Steelers Depot and Wikipedia positions: upback = personal protector",
     "Gridiron Strategies: PP"
@@ -987,7 +973,7 @@
    "subdomain": "returns",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1207"
+   "factRow": "F-glossary-1204"
   },
   {
    "id": "term.uprights",
@@ -1001,7 +987,7 @@
    "subdomain": "fg",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1208"
+   "factRow": "F-glossary-1205"
   },
   {
    "id": "term.wedge-buster-pro",
@@ -1014,7 +1000,7 @@
    "subdomain": "coverage",
    "level": "pro",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1236"
+   "factRow": "F-glossary-1233"
   },
   {
    "id": "term.wedge-pro",
@@ -1028,7 +1014,7 @@
    "subdomain": "returns",
    "level": "pro",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1237",
+   "factRow": "F-glossary-1234",
    "variants": [
     "NFL 2009 ban: three or more blockers",
     "2026 rulebook 6-2-1-d: two or more"
@@ -1047,7 +1033,7 @@
    "subdomain": "punt",
    "level": "both",
    "ownerLeaf": "A4.5.4",
-   "factRow": "F-glossary-1249"
+   "factRow": "F-glossary-1246"
   }
  ]
 }

@@ -973,7 +973,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0739"
+   "factRow": "F-glossary-0737"
   },
   {
    "id": "term.original-round-tender-pro",
@@ -986,7 +986,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0742"
+   "factRow": "F-glossary-0740"
   },
   {
    "id": "term.paragraph-5-pro",
@@ -999,7 +999,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0765"
+   "factRow": "F-glossary-0763"
   },
   {
    "id": "term.pay-cut-pro",
@@ -1013,7 +1013,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0777"
+   "factRow": "F-glossary-0775"
   },
   {
    "id": "term.per-game-roster-bonus-pro",
@@ -1027,7 +1027,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0783"
+   "factRow": "F-glossary-0781"
   },
   {
    "id": "term.performance-based-pool-pro",
@@ -1040,7 +1040,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0784",
+   "factRow": "F-glossary-0782",
    "variants": "Performance Based Pool"
   },
   {
@@ -1056,7 +1056,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0796",
+   "factRow": "F-glossary-0794",
    "variants": "active/PUP; reserve/PUP"
   },
   {
@@ -1070,7 +1070,7 @@
    "subdomain": "practice",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0832"
+   "factRow": "F-glossary-0830"
   },
   {
    "id": "term.post-june-1-designation-pro",
@@ -1084,7 +1084,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0833"
+   "factRow": "F-glossary-0831"
   },
   {
    "id": "term.practice-squad-elevation-pro",
@@ -1098,7 +1098,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0842",
+   "factRow": "F-glossary-0840",
    "variants": "Standard Elevation Addendum"
   },
   {
@@ -1113,7 +1113,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0843",
+   "factRow": "F-glossary-0841",
    "variants": "taxi squad (old name)"
   },
   {
@@ -1127,7 +1127,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0852"
+   "factRow": "F-glossary-0850"
   },
   {
    "id": "term.prior-year-salary-pro",
@@ -1140,7 +1140,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0853",
+   "factRow": "F-glossary-0851",
    "variants": "PYS"
   },
   {
@@ -1154,7 +1154,7 @@
    "subdomain": "scouting",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0855"
+   "factRow": "F-glossary-0853"
   },
   {
    "id": "term.proration-pro",
@@ -1168,7 +1168,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0865"
+   "factRow": "F-glossary-0863"
   },
   {
    "id": "term.proven-performance-escalator-pro",
@@ -1182,7 +1182,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0866",
+   "factRow": "F-glossary-0864",
    "variants": "PPE; Level One, Two, Three"
   },
   {
@@ -1196,7 +1196,7 @@
    "subdomain": "replay",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0901"
+   "factRow": "F-glossary-0899"
   },
   {
    "id": "term.red-flag-scouting-pro",
@@ -1211,7 +1211,7 @@
    "subdomain": "scouting",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0902"
+   "factRow": "F-glossary-0900"
   },
   {
    "id": "term.release-pro",
@@ -1227,7 +1227,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0910"
+   "factRow": "F-glossary-0908"
   },
   {
    "id": "term.report-date-pro",
@@ -1241,7 +1241,7 @@
    "subdomain": "camp",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0915"
+   "factRow": "F-glossary-0913"
   },
   {
    "id": "term.reporting-bonus-pro",
@@ -1254,7 +1254,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0916"
+   "factRow": "F-glossary-0914"
   },
   {
    "id": "term.reserve-future-contract-pro",
@@ -1268,7 +1268,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0917",
+   "factRow": "F-glossary-0915",
    "variants": "futures contract"
   },
   {
@@ -1282,7 +1282,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0918"
+   "factRow": "F-glossary-0916"
   },
   {
    "id": "term.restricted-free-agent-pro",
@@ -1295,7 +1295,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0920"
+   "factRow": "F-glossary-0918"
   },
   {
    "id": "term.restructure-pro",
@@ -1309,7 +1309,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0921"
+   "factRow": "F-glossary-0919"
   },
   {
    "id": "term.right-of-first-refusal-pro",
@@ -1322,7 +1322,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0930"
+   "factRow": "F-glossary-0928"
   },
   {
    "id": "term.right-of-first-refusal-tender-pro",
@@ -1336,7 +1336,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0931"
+   "factRow": "F-glossary-0929"
   },
   {
    "id": "term.rookie-contract-pro",
@@ -1350,7 +1350,7 @@
    "subdomain": "draft",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0937"
+   "factRow": "F-glossary-0935"
   },
   {
    "id": "term.rookie-pool-pro",
@@ -1364,7 +1364,7 @@
    "subdomain": "draft",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0940"
+   "factRow": "F-glossary-0938"
   },
   {
    "id": "term.rookie-premiere-pro",
@@ -1377,7 +1377,7 @@
    "subdomain": "practice",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0941",
+   "factRow": "F-glossary-0939",
    "variants": "NFL Players Rookie Premiere"
   },
   {
@@ -1391,7 +1391,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0942"
+   "factRow": "F-glossary-0940"
   },
   {
    "id": "term.rookie-wage-scale-pro",
@@ -1405,7 +1405,7 @@
    "subdomain": "draft",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0943"
+   "factRow": "F-glossary-0941"
   },
   {
    "id": "term.roster-bonus-pro",
@@ -1419,7 +1419,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0945"
+   "factRow": "F-glossary-0943"
   },
   {
    "id": "term.roster-exemption-pro",
@@ -1432,7 +1432,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0947"
+   "factRow": "F-glossary-0945"
   },
   {
    "id": "term.salary-cap-pro",
@@ -1446,7 +1446,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0975"
+   "factRow": "F-glossary-0973"
   },
   {
    "id": "term.salary-escalator-pro",
@@ -1459,7 +1459,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-0976"
+   "factRow": "F-glossary-0974"
   },
   {
    "id": "term.second-round-tender-pro",
@@ -1472,7 +1472,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1000"
+   "factRow": "F-glossary-0998"
   },
   {
    "id": "term.signing-bonus-pro",
@@ -1485,7 +1485,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1028"
+   "factRow": "F-glossary-1026"
   },
   {
    "id": "term.signing-deadline-rookies-pro",
@@ -1498,7 +1498,7 @@
    "subdomain": "draft",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1029"
+   "factRow": "F-glossary-1027"
   },
   {
    "id": "term.signing-period-pro",
@@ -1511,7 +1511,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1030"
+   "factRow": "F-glossary-1028"
   },
   {
    "id": "term.skill-guarantee-pro",
@@ -1524,7 +1524,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1037"
+   "factRow": "F-glossary-1035"
   },
   {
    "id": "term.special-compensatory-pick-pro",
@@ -1537,7 +1537,7 @@
    "subdomain": "draft",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1055"
+   "factRow": "F-glossary-1053"
   },
   {
    "id": "term.split-contract-pro",
@@ -1551,7 +1551,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1067"
+   "factRow": "F-glossary-1065"
   },
   {
    "id": "term.supplemental-draft-pro",
@@ -1564,7 +1564,7 @@
    "subdomain": "draft",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1103"
+   "factRow": "F-glossary-1101"
   },
   {
    "id": "term.suspended-list-pro",
@@ -1577,7 +1577,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1106",
+   "factRow": "F-glossary-1104",
    "variants": "Reserve/Suspended"
   },
   {
@@ -1591,7 +1591,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1113"
+   "factRow": "F-glossary-1111"
   },
   {
    "id": "term.team-salary-pro",
@@ -1605,7 +1605,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1131"
+   "factRow": "F-glossary-1129"
   },
   {
    "id": "term.tender-pro",
@@ -1619,7 +1619,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1134"
+   "factRow": "F-glossary-1132"
   },
   {
    "id": "term.termination-pay-pro",
@@ -1632,7 +1632,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1135"
+   "factRow": "F-glossary-1133"
   },
   {
    "id": "term.three-cone-drill-pro",
@@ -1646,7 +1646,7 @@
    "subdomain": "combine",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1140",
+   "factRow": "F-glossary-1138",
    "variants": "3-cone; L-drill"
   },
   {
@@ -1660,7 +1660,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1153"
+   "factRow": "F-glossary-1151"
   },
   {
    "id": "term.training-camp-pro",
@@ -1675,7 +1675,7 @@
    "subdomain": "camp",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1165"
+   "factRow": "F-glossary-1163"
   },
   {
    "id": "term.transition-tag-pro",
@@ -1688,7 +1688,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1170"
+   "factRow": "F-glossary-1168"
   },
   {
    "id": "term.ufa-tender-pro",
@@ -1701,7 +1701,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1195",
+   "factRow": "F-glossary-1192",
    "variants": "UFA Tender"
   },
   {
@@ -1716,7 +1716,7 @@
    "subdomain": "draft",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1200",
+   "factRow": "F-glossary-1197",
    "variants": "CBA term: Undrafted Rookie"
   },
   {
@@ -1730,7 +1730,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1203"
+   "factRow": "F-glossary-1200"
   },
   {
    "id": "term.upgraded-tender-pro",
@@ -1743,7 +1743,7 @@
    "subdomain": "free-agency",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1206",
+   "factRow": "F-glossary-1203",
    "variants": "(c)(i) and (c)(ii) Upgraded Tender"
   },
   {
@@ -1757,7 +1757,7 @@
    "subdomain": "combine",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1214"
+   "factRow": "F-glossary-1211"
   },
   {
    "id": "term.vested-veteran-pro",
@@ -1770,7 +1770,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1215"
+   "factRow": "F-glossary-1212"
   },
   {
    "id": "term.vesting-guarantee-pro",
@@ -1784,7 +1784,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1216"
+   "factRow": "F-glossary-1213"
   },
   {
    "id": "term.veteran-salary-benefit-pro",
@@ -1798,7 +1798,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1217",
+   "factRow": "F-glossary-1214",
    "variants": "Qualifying Contract; Four-Year Player Qualifying Contract"
   },
   {
@@ -1813,7 +1813,7 @@
    "subdomain": "cap",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1221",
+   "factRow": "F-glossary-1218",
    "variants": "dummy years"
   },
   {
@@ -1827,7 +1827,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1226"
+   "factRow": "F-glossary-1223"
   },
   {
    "id": "term.waiver-priority-pro",
@@ -1841,7 +1841,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1227"
+   "factRow": "F-glossary-1224"
   },
   {
    "id": "term.waivers-pro",
@@ -1855,7 +1855,7 @@
    "subdomain": "roster",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1228"
+   "factRow": "F-glossary-1225"
   },
   {
    "id": "term.wonderlic-pro",
@@ -1869,7 +1869,7 @@
    "subdomain": "combine",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1254"
+   "factRow": "F-glossary-1251"
   },
   {
    "id": "term.workout-bonus-pro",
@@ -1883,7 +1883,7 @@
    "subdomain": "contracts",
    "level": "pro",
    "ownerLeaf": "A4.5.6",
-   "factRow": "F-glossary-1256"
+   "factRow": "F-glossary-1253"
   }
  ]
 }

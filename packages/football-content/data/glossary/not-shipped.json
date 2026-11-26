@@ -1,5 +1,71 @@
 {
  "note": "A4.5.11: real-sounding terms that no page actually read could source. No screen, lesson or template may use them until a source is found.",
+ "allowed": [
+  {
+   "term": "empty",
+   "leaves": []
+  },
+  {
+   "term": "Tools",
+   "leaves": []
+  },
+  {
+   "term": "Projection",
+   "leaves": [
+    "E6"
+   ]
+  },
+  {
+   "term": "Two-point chart",
+   "leaves": [
+    "G7",
+    "I5"
+   ]
+  },
+  {
+   "term": "Call sheet",
+   "leaves": [
+    "G7"
+   ]
+  },
+  {
+   "term": "Wristband",
+   "leaves": [
+    "G4"
+   ]
+  },
+  {
+   "term": "Opening script",
+   "leaves": [
+    "G7"
+   ]
+  },
+  {
+   "term": "Halftime adjustments",
+   "leaves": [
+    "I8"
+   ]
+  },
+  {
+   "term": "Tendency",
+   "leaves": [
+    "H2",
+    "G8",
+    "K2"
+   ]
+  },
+  {
+   "term": "Self-scout",
+   "leaves": [
+    "G8"
+   ]
+  }
+ ],
+ "retiredIds": {
+  "term.two-minute-warning-pro": "term.two-minute-warning",
+  "term.okie-front-pro": "term.okie-front",
+  "term.onside-kick": "term.onside-kick-pro, term.onside-kick-college"
+ },
  "terms": [
   {
    "term": "recruiting class ranking",
@@ -238,11 +304,6 @@
   },
   {
    "term": "check vs trips",
-   "domain": "defense",
-   "level": "both"
-  },
-  {
-   "term": "empty",
    "domain": "defense",
    "level": "both"
   },
@@ -762,11 +823,6 @@
    "level": "both"
   },
   {
-   "term": "Tools",
-   "domain": "scouting",
-   "level": "both"
-  },
-  {
    "term": "Reach",
    "domain": "scouting",
    "level": "both"
@@ -838,11 +894,6 @@
   },
   {
    "term": "Comps",
-   "domain": "scouting",
-   "level": "both"
-  },
-  {
-   "term": "Projection",
    "domain": "scouting",
    "level": "both"
   },
@@ -1022,22 +1073,7 @@
    "level": "both"
   },
   {
-   "term": "Two-point chart",
-   "domain": "situational",
-   "level": "both"
-  },
-  {
    "term": "Headset",
-   "domain": "situational",
-   "level": "both"
-  },
-  {
-   "term": "Call sheet",
-   "domain": "situational",
-   "level": "both"
-  },
-  {
-   "term": "Wristband",
    "domain": "situational",
    "level": "both"
   },
@@ -1053,26 +1089,6 @@
   },
   {
    "term": "Eye in the sky",
-   "domain": "situational",
-   "level": "both"
-  },
-  {
-   "term": "Opening script",
-   "domain": "situational",
-   "level": "both"
-  },
-  {
-   "term": "Halftime adjustments",
-   "domain": "situational",
-   "level": "both"
-  },
-  {
-   "term": "Tendency",
-   "domain": "situational",
-   "level": "both"
-  },
-  {
-   "term": "Self-scout",
    "domain": "situational",
    "level": "both"
   },

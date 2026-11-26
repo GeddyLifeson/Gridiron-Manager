@@ -2745,7 +2745,7 @@
    "notes": "Merged the two draft rows. Clubs with a new head coach get nine total weeks (eight consecutive) over a twelve-week window; others nine consecutive weeks over ten (Art. 21 Sec. 2(a)). Minimum daily pay is $340 in 2026-27 (Art. 21 Sec. 3(a)); NFLPA page also says $340."
   },
   {
-   "id": "F-glossary-0739",
+   "id": "F-glossary-0737",
    "level": "pro",
    "domain": "league-rule",
    "statement": "option bonus: A payment made when a club (or at times a player) exercises an option in the contract; the CBA treats it as signing bonus and prorates it.",
@@ -2793,7 +2793,7 @@
    "notes": "Option bonuses are prohibited in rookie contracts (Art. 7 Sec. 3(d)); the first-round fifth-year option is a separate CBA mechanism (see fifth-year option)."
   },
   {
-   "id": "F-glossary-0742",
+   "id": "F-glossary-0740",
    "level": "pro",
    "domain": "league-rule",
    "statement": "original-round tender: A restricted-free-agent tender that gives the club a pick in the round the player was originally drafted in if it does not match an offer sheet.",
@@ -2841,7 +2841,7 @@
    "notes": "Price: the greater of a cap-indexed base ($2,025,000 in 2020 CBA text; $2.540M in 2022) or 110% of the prior-year Paragraph 5 salary."
   },
   {
-   "id": "F-glossary-0765",
+   "id": "F-glossary-0763",
    "level": "pro",
    "domain": "league-rule",
    "statement": "Paragraph 5: The clause of the standard NFL Player Contract that lists the player's yearly salary.",
@@ -2879,7 +2879,7 @@
    ]
   },
   {
-   "id": "F-glossary-0777",
+   "id": "F-glossary-0775",
    "level": "pro",
    "domain": "league-rule",
    "statement": "pay cut: A player agrees to a lower salary, often to avoid being released; unlike a restructure, the player really gives up money.",
@@ -2918,7 +2918,7 @@
    "notes": "The CBA bars only raises within 12 months of the last renegotiation (Art. 13 Sec. 8(a)(i)); it does not limit reductions. No third publisher found."
   },
   {
-   "id": "F-glossary-0783",
+   "id": "F-glossary-0781",
    "level": "pro",
    "domain": "league-rule",
    "statement": "per-game roster bonus: A roster bonus paid for each game a player is on the club's game-day active list (or active/inactive list, depending on the contract).",
@@ -2957,7 +2957,7 @@
    "notes": "NFL.com example: with 17 games, $1.7M per-game bonus = $100,000 per game active."
   },
   {
-   "id": "F-glossary-0784",
+   "id": "F-glossary-0782",
    "level": "pro",
    "domain": "league-rule",
    "statement": "performance-based pool: A league-funded pool, taken out of the cap like a player benefit, that is paid to players each year; to qualify a player must play at least one down in a regular season game.",
@@ -2996,7 +2996,7 @@
    "notes": "$8.5M per club in 2020, $10M in 2021, then adjusted by revenue change (max 5%) (Art. 28 Sec. 2). The distribution formula (Sec. 5) was not read, so the draft's 'based on playing time and pay' is unconfirmed."
   },
   {
-   "id": "F-glossary-0796",
+   "id": "F-glossary-0794",
    "level": "pro",
    "domain": "league-rule",
    "statement": "physically unable to perform: A list for a player with a football injury who cannot yet practice: on the active/PUP list at camp he counts against the roster and can return any time he is cleared; on reserve/PUP he is off the roster for at least the first four games. He is paid his full salary.",
@@ -3044,7 +3044,7 @@
    "notes": "Current-season check (2025-26 sources) not completed: the web fetch tool was rate-limited and the saved pages date from 2022-2023. Merged two draft rows. The draft's Art. 20/21 cites check out for pay (Art. 20 Sec. 2). In the final contract year the contract is tolled if the player is still unable at the sixth game (Art. 20 Sec. 2). A player cannot be put on PUP after practicing once or playing a preseason game (AP)."
   },
   {
-   "id": "F-glossary-0832",
+   "id": "F-glossary-0830",
    "level": "pro",
    "domain": "league-rule",
    "statement": "post-draft rookie minicamp: A three-day minicamp each club may hold on the first or second weekend after the draft for its rookies (and invited first-year players).",
@@ -3074,7 +3074,7 @@
    "notes": "Single publisher."
   },
   {
-   "id": "F-glossary-0833",
+   "id": "F-glossary-0831",
    "level": "pro",
    "domain": "league-rule",
    "statement": "post-June 1 designation: A club may name up to two players a year, before June 2, whose release is treated for the cap as if it happened on June 2: this year's proration stays on the cap and the later years' unamortized bonus moves to the next League Year.",
@@ -3131,7 +3131,7 @@
    "notes": "Spotrac: designation works for releases and retirements, not trades; the full cap charge stays on the books until June 2. The CBA rule does not apply in the Final League Year (2030) and a plain release after June 1 gets the same split without a designation (Art. 13 Sec. 6(b)(ii)(2)). Draft note that the CBA shows June 1 only for guarantees was wrong; Art. 13 Sec. 6(b)(ii) is the source."
   },
   {
-   "id": "F-glossary-0842",
+   "id": "F-glossary-0840",
    "level": "pro",
    "domain": "league-rule",
    "statement": "practice squad elevation: A club may move a practice squad player up to its game-day roster for a game without a new contract; he reverts to the practice squad the next business day without waivers, and each player can be elevated for only a limited number of games a year.",
@@ -3170,7 +3170,7 @@
    "notes": "Current-season check (2025-26 sources) not completed: the web fetch tool was rate-limited and the saved pages date from 2022-2023. 2020 CBA and NFL.com (2022): two games per player per season, two players per game. A later change (for example to three elevations) is possible but was not found in any page read."
   },
   {
-   "id": "F-glossary-0843",
+   "id": "F-glossary-0841",
    "level": "pro",
    "domain": "league-rule",
    "statement": "practice squad: A group of extra players who practice with a club but are not on its active/inactive list; the CBA caps it at 14 per club from 2022, with an added International Player slot when the league elects.",
@@ -3209,7 +3209,7 @@
    "notes": "Current-season check (2025-26 sources) not completed: the web fetch tool was rate-limited and the saved pages date from 2022-2023. 2020 CBA figure: 12 in 2020-21, 14 from 2022. Web search returned page titles (not text) such as 'NFL practice squads expand to 16 players' (Fantasy Nerds, 2026-08-31) and 'NFL, NFLPA Agree to Changes to Injured Reserve, Practice Squad' (SI), which suggest the 14 was later raised to 16; neither was read, so 16 is NOT confirmed. NFL.com 2022 adds eligibility rules (no accrued seasons, up to four veterans)."
   },
   {
-   "id": "F-glossary-0852",
+   "id": "F-glossary-0850",
    "level": "pro",
    "domain": "league-rule",
    "statement": "principal terms: The parts of an offer sheet the old club must match to keep the player: the dollar amounts (signing bonus, base salary, reporting and roster bonuses), certain likely incentives and honors, and requested non-pay contract changes such as guarantees and no-trade clauses.",
@@ -3248,7 +3248,7 @@
    "notes": "Incentives to be matched may not exceed 15% of the offer sheet's salary (Art. 9 Sec. 3(e)(i))."
   },
   {
-   "id": "F-glossary-0853",
+   "id": "F-glossary-0851",
    "level": "pro",
    "domain": "league-rule",
    "statement": "prior year salary: The total of a player's base salary, roster and reporting bonuses, prorated signing bonus and similar pay for the last year of his latest contract (excluding other performance bonuses); the base for tag and tender math.",
@@ -3287,7 +3287,7 @@
    "notes": "Used for the UFA tender (110%), RFA tenders (110%) and franchise or transition tags (120%)."
   },
   {
-   "id": "F-glossary-0855",
+   "id": "F-glossary-0853",
    "level": "pro",
    "domain": "league-rule",
    "statement": "pro day: A workout held at a prospect's own college where NFL scouts watch tests and drills; the league monitors the rules for them.",
@@ -3317,7 +3317,7 @@
    "notes": "Only one source found with a definition (NFL operations page). The draft marked it both pro and college; the source is NFL-side, so level is pro. A college-side source is needed for level 'both'. Single source. | Other batch definition: A workout held at a college where NFL scouts come to observe that school's prospects."
   },
   {
-   "id": "F-glossary-0865",
+   "id": "F-glossary-0863",
    "level": "pro",
    "domain": "league-rule",
    "statement": "proration: Straight-line spreading of a signing bonus (and items treated like one) over the contract years for cap purposes, up to five years for veteran contracts and four for rookie contracts.",
@@ -3365,7 +3365,7 @@
    "notes": "Void years let a club prorate over more years than the real contract length (see void years)."
   },
   {
-   "id": "F-glossary-0866",
+   "id": "F-glossary-0864",
    "level": "pro",
    "domain": "league-rule",
    "statement": "proven performance escalator: A rule that raises a second- to seventh-round pick's fourth-year salary if he meets playing-time (or Pro Bowl) thresholds in his first three seasons; first-rounders and undrafted players cannot earn it.",
@@ -3404,7 +3404,7 @@
    "notes": "Level One: 60% (round 2) or 35% (rounds 3-7) of offensive/defensive snaps in two of three seasons or on average; Level Two: 55% in each of three seasons; Level Three: Pro Bowl (CBA Art. 7 Sec. 4(d), NFL.com)."
   },
   {
-   "id": "F-glossary-0901",
+   "id": "F-glossary-0899",
    "level": "pro",
    "domain": "league-rule",
    "statement": "red flag (replay): The red flag a head coach throws onto the field before the next snap to start a replay challenge.",
@@ -3443,7 +3443,7 @@
    "notes": "Belongs to the rules domain; kept here because it was in the batch. Rulebook 2026 Rule 15 lines read: challenge by throwing a red flag before the next legal snap or kick."
   },
   {
-   "id": "F-glossary-0902",
+   "id": "F-glossary-0900",
    "level": "pro",
    "domain": "league-rule",
    "statement": "red flag (scouting): A warning sign scouts note about a prospect, such as a test result worse than the usual range for his position.",
@@ -3473,7 +3473,7 @@
    "notes": "Merged three draft rows (two scouting, one replay; replay is separate below). ESPN covers only combine-result red flags; the draft's medical and character senses were not found in any saved source. Single publisher."
   },
   {
-   "id": "F-glossary-0910",
+   "id": "F-glossary-0908",
    "level": "pro",
    "domain": "league-rule",
    "statement": "release: A club ends a player's contract. A player with four or more credited seasons is simply free to sign anywhere (between the Monday after the Super Bowl and the trade deadline); other players first go through waivers.",
@@ -3521,7 +3521,7 @@
    "notes": "Fox/AP says 'released' versus 'waived' by the vested-veteran line (four seasons accrued); the CBA wording is the fourth year of credited service under the Bert Bell/Pete Rozelle Plan (pension credit), NFL.com says credited seasons. Sources use three names for roughly the same test. CBA Appendix A para. 11 is the club's termination right."
   },
   {
-   "id": "F-glossary-0915",
+   "id": "F-glossary-0913",
    "level": "pro",
    "domain": "league-rule",
    "statement": "report date: The date veterans must arrive at training camp: 47 days before a Thursday or Sunday opener (48 for a Monday opener), with rookies and first-year players allowed to report seven days earlier.",
@@ -3560,7 +3560,7 @@
    "notes": "Merged the two draft rows. Draft said quarterbacks and injured players report five days earlier; the CBA lines read exclude them from the veteran date but do not give a date, so that claim is dropped. 2026-27 calendar dates not verified."
   },
   {
-   "id": "F-glossary-0916",
+   "id": "F-glossary-0914",
    "level": "pro",
    "domain": "league-rule",
    "statement": "reporting bonus: A bonus earned by reporting to team activities by a set date.",
@@ -3599,7 +3599,7 @@
    "notes": "The CBA treats a guaranteed reporting bonus as signing bonus for cap proration (Art. 13 Sec. 6(b)(iii))."
   },
   {
-   "id": "F-glossary-0917",
+   "id": "F-glossary-0915",
    "level": "pro",
    "domain": "league-rule",
    "statement": "reserve/future contract: A contract a club signs with a player in January, after his team's season, for the coming League Year.",
@@ -3629,7 +3629,7 @@
    "notes": "Only OTC (2016) mentions futures contracts and only in passing. The draft's claim of no cap hit until the new League Year is not in any page read; CBA Art. 13 Sec. 5(a) counts contract amounts 'covering a particular League Year'. 'Reserve/future' list name not found. Single source."
   },
   {
-   "id": "F-glossary-0918",
+   "id": "F-glossary-0916",
    "level": "pro",
    "domain": "league-rule",
    "statement": "reserve/retired: A roster list for a retired player; a veteran with four or more credited seasons who is on it and later reinstated can opt for free agency instead of being sent back via recall waivers.",
@@ -3659,7 +3659,7 @@
    "notes": "Weak support: the CBA names the list only in the recall-waiver rule (Art. 29 Sec. 7) and says a player placed on it in the preseason is not subject to recall waivers on reinstatement. No source defining the list outright was found; single source."
   },
   {
-   "id": "F-glossary-0920",
+   "id": "F-glossary-0918",
    "level": "pro",
    "domain": "league-rule",
    "statement": "restricted free agent: A veteran with exactly three accrued seasons whose contract has expired; any club may sign him, but his old club can match the offer if it tendered him a qualifying offer.",
@@ -3707,7 +3707,7 @@
    "notes": "OTC (2016) says 'at least three' accrued seasons; the CBA limits RFA to exactly three. Under the 2020 CBA drafted rookies finish four-year deals, so RFAs are mostly undrafted players."
   },
   {
-   "id": "F-glossary-0921",
+   "id": "F-glossary-0919",
    "level": "pro",
    "domain": "league-rule",
    "statement": "restructure: A mid-contract change, usually turning base salary into signing bonus, that lowers this year's cap hit and spreads the money over later years.",
@@ -3755,7 +3755,7 @@
    "notes": "OTC stresses that a restructure is not a pay cut. Renegotiation limits are in CBA Art. 13 Sec. 8."
   },
   {
-   "id": "F-glossary-0930",
+   "id": "F-glossary-0928",
    "level": "pro",
    "domain": "league-rule",
    "statement": "right of first refusal: A club's right to keep a player by matching the terms of an offer sheet he signs with another club.",
@@ -3803,7 +3803,7 @@
    "notes": "Applies to restricted free agents and to transition and non-exclusive franchise players; the club has five days to match (Art. 9 Sec. 3)."
   },
   {
-   "id": "F-glossary-0931",
+   "id": "F-glossary-0929",
    "level": "pro",
    "domain": "league-rule",
    "statement": "right of first refusal tender: The lowest restricted-free-agent tender: the club may match any offer sheet but receives no draft pick if it lets the player go.",
@@ -3851,7 +3851,7 @@
    "notes": "$2,025,000 is the 2020 CBA base before cap-growth increases; NFL.com lists $2.433M for 2022. Current-year amount not verified."
   },
   {
-   "id": "F-glossary-0937",
+   "id": "F-glossary-0935",
    "level": "pro",
    "domain": "league-rule",
    "statement": "rookie contract: A player's first NFL contract: four years for drafted players (first-rounders carry a club option for a fifth year, later-round picks the proven performance escalator) and three years for undrafted players.",
@@ -3899,7 +3899,7 @@
    "notes": "Contract length is fixed and cannot be changed; option bonuses and void years are prohibited (Art. 7 Sec. 3(d)). NFL.com: drafted rookies cannot be renegotiated until after the third season, undrafted after the second."
   },
   {
-   "id": "F-glossary-0940",
+   "id": "F-glossary-0938",
    "level": "pro",
    "domain": "league-rule",
    "statement": "rookie pool: The league-wide limit on rookie salary, set both for the whole contracts (Total pool) and for year one (Year-One pool); each club gets a share based on its picks plus a reserve for undrafted signings.",
@@ -3929,7 +3929,7 @@
    "notes": "Draft said it is a cap each club has; it is a league-wide limit divided into club allocations (Year-One Rookie Allocation, Total Rookie Allocation). $1.43B total and $260M year-one are 2020 League Year figures; later years grow with the cap (Art. 7 Sec. 2(a)(ii))."
   },
   {
-   "id": "F-glossary-0941",
+   "id": "F-glossary-0939",
    "level": "pro",
    "domain": "league-rule",
    "statement": "rookie premiere: An annual May event, up to four days including a weekend, that clubs may allow invited rookies to attend; the NFLPA tells the league the dates.",
@@ -3959,7 +3959,7 @@
    "notes": "Draft called it league-run media training; the CBA only sets scheduling limits and shows the NFLPA supplies the dates, so the content claim is dropped. Single publisher."
   },
   {
-   "id": "F-glossary-0942",
+   "id": "F-glossary-0940",
    "level": "pro",
    "domain": "league-rule",
    "statement": "rookie redistribution fund: A fund the union may set up each year (from 2021) that is treated as a player benefit cost; it pays the 17th-game check in 17-game seasons and then goes to other player benefits, including a boost for minimum-salary players from 2026.",
@@ -3989,7 +3989,7 @@
    "notes": "Draft said it pays out unspent rookie pool money; the CBA does not say so. Maximum $64M in 2021, rising with rookie pool growth plus $32M in 2026. Single publisher."
   },
   {
-   "id": "F-glossary-0943",
+   "id": "F-glossary-0941",
    "level": "pro",
    "domain": "league-rule",
    "statement": "rookie wage scale: The system that fixes what drafted rookies can be paid: each pick has a fixed share of a league-wide rookie pool, contract terms are tightly limited, and yearly raises are capped.",
@@ -4028,7 +4028,7 @@
    "notes": "The CBA does not use the phrase 'wage scale'; it uses Rookie Compensation Pool, Year-One Formula Allotment (the pick's share, agreed by NFL and NFLPA) and Rookie Salary. The slot dollar values are not printed in the CBA text read."
   },
   {
-   "id": "F-glossary-0945",
+   "id": "F-glossary-0943",
    "level": "pro",
    "domain": "league-rule",
    "statement": "roster bonus: Money earned by being on the club's roster on a date named in the contract.",
@@ -4067,7 +4067,7 @@
    "notes": "NFL.com: counts in full against the cap in the year earned unless fully guaranteed at signing. The CBA does not define the term; it only regulates how roster bonuses are counted (Art. 13 Sec. 6)."
   },
   {
-   "id": "F-glossary-0947",
+   "id": "F-glossary-0945",
    "level": "pro",
    "domain": "league-rule",
    "statement": "roster exemption: Permission to carry a player outside the roster limit for a short time (no more than two weeks of the regular season), used for unsigned veterans signed after final cuts and for contract players or restricted players who report late.",
@@ -4097,7 +4097,7 @@
    "notes": "Draft said it is often for international or returning players; the CBA text covers unsigned UFA/transition/franchise players and late-reporting players under contract or restricted. Exempt restricted players get no pay (Sec. 4(c)(ix)). The exception in Sec. 4(c) allows up to three games, so the two-week limit applies to the other cases. Only the CBA was found."
   },
   {
-   "id": "F-glossary-0975",
+   "id": "F-glossary-0973",
    "level": "pro",
    "domain": "league-rule",
    "statement": "salary cap: The most Salary a club may have on its books in a League Year, set each year from a share of league revenue after player benefits and divided equally among the clubs.",
@@ -4145,7 +4145,7 @@
    "notes": "CBA Art. 12 Sec. 6(c) builds the Player Cost Amount from 55% of League Media AR, 45% of Ventures/Postseason AR and 40% of Local AR, held between 48% and 48.5% of projected AR from 2021 on. NFLPA (2021) says players get at least 48% of revenue. The $208.2M figure is the 2022 cap only; no current-year cap figure was verified in this pass."
   },
   {
-   "id": "F-glossary-0976",
+   "id": "F-glossary-0974",
    "level": "pro",
    "domain": "league-rule",
    "statement": "salary escalator: A contract term that raises pay in a later year when the player reaches set performance marks; unlike an incentive it can raise a future salary that may not be guaranteed.",
@@ -4184,7 +4184,7 @@
    "notes": "The proven performance escalator is a separate, CBA-set version for rookies (see that row)."
   },
   {
-   "id": "F-glossary-1000",
+   "id": "F-glossary-0998",
    "level": "pro",
    "domain": "league-rule",
    "statement": "second-round tender: A restricted-free-agent tender that gives the club a second-round pick if it does not match an offer sheet.",
@@ -4232,7 +4232,7 @@
    "notes": "Price: greater of a cap-indexed base ($3,095,000 in 2020 CBA text; $3.986M in 2022) or 110% of the prior-year Paragraph 5 salary."
   },
   {
-   "id": "F-glossary-1028",
+   "id": "F-glossary-1026",
    "level": "pro",
    "domain": "league-rule",
    "statement": "signing bonus: A lump sum paid to a player for signing, counted against the cap in equal slices over the contract years (at most five), not all in the year it is paid.",
@@ -4280,7 +4280,7 @@
    "notes": "The CBA also treats other items as signing bonus (guaranteed reporting bonuses, option exercise fees, some guaranteed workout bonuses; Art. 13 Sec. 6(b)(iii))."
   },
   {
-   "id": "F-glossary-1029",
+   "id": "F-glossary-1027",
    "level": "pro",
    "domain": "league-rule",
    "statement": "signing deadline (rookies): A drafted rookie may sign until 4 p.m. New York time on the Tuesday after week 10 of the regular season; after that he cannot play that year, and his club's rights run to the next draft.",
@@ -4310,7 +4310,7 @@
    "notes": "Draft said he loses rights; the CBA says the club keeps exclusive rights until the next draft, when the player re-enters it (the drafting club excluded). Rights cannot be traded after the 30th day before the first regular season game. Single publisher."
   },
   {
-   "id": "F-glossary-1030",
+   "id": "F-glossary-1028",
    "level": "pro",
    "domain": "league-rule",
    "statement": "signing period: The window that limits a tagged or expiring player's market: a transition player unsigned by July 22 may deal only with his old club, and a tagged player must sign by the Tuesday after week 10 or sit out the season.",
@@ -4349,7 +4349,7 @@
    "notes": "Draft described it as the window to sign an offer sheet; the CBA uses 'Signing Period' for the deadlines in Art. 9 Sec. 1(b) (UFA tender), Art. 10 Sec. 14 (transition) and Sec. 15 (franchise). CBA Art. 10 Sec. 2(k): a franchise player may get a multiyear deal until 4 p.m. ET July 15 (next Monday if a weekend); after that only a one-year contract. Restricted-free-agent signing period: at least 35 days, ending at least five days before the draft (Art. 9 Sec. 2(e))."
   },
   {
-   "id": "F-glossary-1037",
+   "id": "F-glossary-1035",
    "level": "pro",
    "domain": "league-rule",
    "statement": "skill guarantee: Protection that makes a player's money owed even if the club cuts him because it judges his skill or performance lacking compared with others at his position.",
@@ -4388,7 +4388,7 @@
    "notes": "Appendix A para. 11 is the club's termination right the guarantee overrides."
   },
   {
-   "id": "F-glossary-1055",
+   "id": "F-glossary-1053",
    "level": "pro",
    "domain": "league-rule",
    "statement": "special compensatory pick: A third-round pick awarded to a club that loses a person of color or a woman (employed there at least two seasons) to another club as head coach or primary football executive.",
@@ -4418,7 +4418,7 @@
    "notes": "NFL operations page only; not found in the CBA text. Single source."
   },
   {
-   "id": "F-glossary-1067",
+   "id": "F-glossary-1065",
    "level": "pro",
    "domain": "league-rule",
    "statement": "split contract: A contract that pays one salary while the player is on the active/inactive list and a lower one when he is not (for example on injured reserve).",
@@ -4448,7 +4448,7 @@
    "notes": "Only the CBA was found. Art. 27 Sec. 8 protects a restricted-free-agent signee with four or more accrued seasons from being paid the lower inactive salary once he has been active."
   },
   {
-   "id": "F-glossary-1103",
+   "id": "F-glossary-1101",
    "level": "pro",
    "domain": "league-rule",
    "statement": "supplemental draft: An extra draft the league may hold before the first training camp for players who became draft-eligible after the regular draft; the club that picks one loses its pick in that round the next year.",
@@ -4478,7 +4478,7 @@
    "notes": "Draft wording ('did not qualify because of eligibility issues') was too vague: the CBA ties it to players who become eligible after the Draft date. Single publisher."
   },
   {
-   "id": "F-glossary-1106",
+   "id": "F-glossary-1104",
    "level": "pro",
    "domain": "league-rule",
    "statement": "suspended list: A roster category for players serving a league suspension; they do not count against the roster limit and are not paid for the missed weeks.",
@@ -4517,7 +4517,7 @@
    "notes": "The draft said 'league or club suspension'; the sources describe league suspensions. CBA Art. 29 Sec. 6 lists the roster categories (Active, Inactive, Reserve Injured, Reserve PUP, Exempt Commissioner Permission, Non Football Illness/Injury, Practice Squad) and does not name Reserve/Suspended."
   },
   {
-   "id": "F-glossary-1113",
+   "id": "F-glossary-1111",
    "level": "pro",
    "domain": "league-rule",
    "statement": "system arbitrator: The neutral arbitrator who decides disputes over cap, rookie pool, free agency and collusion rules (Articles 1, 4, 6-19, 26-28, 31, 65-67 of the CBA).",
@@ -4547,7 +4547,7 @@
    "notes": "Single publisher. Appeals go to an Appeals Panel (Art. 15 Sec. 8)."
   },
   {
-   "id": "F-glossary-1131",
+   "id": "F-glossary-1129",
    "level": "pro",
    "domain": "league-rule",
    "statement": "team salary: The total of everything counted against a club under the cap rules in a League Year: player contracts valued by CBA rules, tenders, practice squad pay, termination pay and similar items.",
@@ -4577,7 +4577,7 @@
    "notes": "Only the CBA was found for the exact term; trade pages say 'cap charges' or 'cap number'. Before the regular season only the 51 highest-valued contracts count in full (Art. 13 Sec. 5-6)."
   },
   {
-   "id": "F-glossary-1134",
+   "id": "F-glossary-1132",
    "level": "pro",
    "domain": "league-rule",
    "statement": "tender: A one-year contract offer a club must make to keep rights to a player (a draftee, exclusive rights or restricted player, or a tagged player), with the rights depending on the tender type.",
@@ -4625,7 +4625,7 @@
    "notes": "A drafting club is deemed to have tendered a four-year contract at the minimum (Art. 6 Sec. 3)."
   },
   {
-   "id": "F-glossary-1135",
+   "id": "F-glossary-1133",
    "level": "pro",
    "domain": "league-rule",
    "statement": "termination pay: Pay owed to a player with four or more years of credited service who is released after his club's first regular season game (having made the active/inactive list): the unpaid balance of that year's Paragraph 5 salary, less any guaranteed salary.",
@@ -4655,7 +4655,7 @@
    "notes": "Claimed after the regular season, by Feb. 1; once per career unless the first payment is six weeks of salary or less (Art. 30 Sec. 1(c)-(d)). Only the CBA was found."
   },
   {
-   "id": "F-glossary-1140",
+   "id": "F-glossary-1138",
    "level": "pro",
    "domain": "league-rule",
    "statement": "three-cone drill: An agility drill around three cones set 5 yards apart in an L shape that tests how well a player changes direction and bends around cones.",
@@ -4703,7 +4703,7 @@
    "notes": "Draft described the shape only vaguely; Seahawks gives the L shape and 5-yard spacing."
   },
   {
-   "id": "F-glossary-1153",
+   "id": "F-glossary-1151",
    "level": "pro",
    "domain": "league-rule",
    "statement": "top 51 rule: From the start of the League Year until the regular season, only a club's 51 highest-valued contracts (plus tenders and offer sheets) count in full toward the cap; for the rest only salary above set thresholds counts.",
@@ -4742,7 +4742,7 @@
    "notes": "Thresholds: for others only the amount above the minimum (undrafted rookies) or above twice the minimum counts. Only two publishers."
   },
   {
-   "id": "F-glossary-1165",
+   "id": "F-glossary-1163",
    "level": "pro",
    "domain": "league-rule",
    "statement": "training camp: The late-summer period, from the veteran reporting date through the Sunday before the first regular season game, in which clubs open with 90 players and cut to 53.",
@@ -4790,7 +4790,7 @@
    "notes": "Merged the two draft rows. CBA Art. 23 Sec. 5: veterans report 47 days before the opener (48 for a Monday opener). Wikipedia says camps start in late July and that the CBA limits contact and bars two-a-days."
   },
   {
-   "id": "F-glossary-1170",
+   "id": "F-glossary-1168",
    "level": "pro",
    "domain": "league-rule",
    "statement": "transition tag: A designation that lets the player shop himself while his club keeps a right of first refusal, with no draft compensation, at a tender equal to the greater of the top-ten positional average or 120% of his salary.",
@@ -4829,7 +4829,7 @@
    "notes": "Art. 10 Sec. 3(a) is worded so that a club may designate a transition player alongside or in lieu of a franchise player; NFL.com says one tag per team per offseason. Unresolved, verify before coding a limit."
   },
   {
-   "id": "F-glossary-1195",
+   "id": "F-glossary-1192",
    "level": "pro",
    "domain": "league-rule",
    "statement": "UFA tender: A one-year offer an old club may make by the Monday after the draft to an unrestricted free agent still unsigned; if he stays unsigned after July 22 he may sign only with that club, at 110% of his prior-year salary.",
@@ -4859,7 +4859,7 @@
    "notes": "Single publisher. The tender counts on Team Salary from July 15 or the first day of camp, whichever is later (Art. 13 Sec. 5(b)(iv))."
   },
   {
-   "id": "F-glossary-1200",
+   "id": "F-glossary-1197",
    "level": "pro",
    "domain": "league-rule",
    "statement": "undrafted free agent: A player who was eligible for the draft but not picked, free to sign with any club after the draft; his first contract runs three years.",
@@ -4898,7 +4898,7 @@
    "notes": "'UDFA' is press usage; the CBA term is Undrafted Rookie."
   },
   {
-   "id": "F-glossary-1203",
+   "id": "F-glossary-1200",
    "level": "pro",
    "domain": "league-rule",
    "statement": "unrestricted free agent: A veteran with four or more accrued seasons whose contract has expired, free to sign with any club with no compensation owed.",
@@ -4946,7 +4946,7 @@
    "notes": "A club may keep an unsigned UFA's rights through the 110% UFA Tender (Art. 9 Sec. 1(b)(i)) and may use the franchise or transition tag on him."
   },
   {
-   "id": "F-glossary-1206",
+   "id": "F-glossary-1203",
    "level": "pro",
    "domain": "league-rule",
    "statement": "upgraded tender: A rule that if a club tenders a lower-round restricted free agent at the first-round (or second-round) level, it can only get a second-round (or third-round) pick for its own higher-drafted restricted free agents unless they get an equal tender.",
@@ -4984,7 +4984,7 @@
    ]
   },
   {
-   "id": "F-glossary-1214",
+   "id": "F-glossary-1211",
    "level": "pro",
    "domain": "league-rule",
    "statement": "vertical jump: A standing jump measured by how high the athlete reaches, a test of lower-body explosiveness.",
@@ -5032,7 +5032,7 @@
    "notes": "Seahawks text covers both vertical and broad jump in one sentence. Wikipedia lists the test among combine tests."
   },
   {
-   "id": "F-glossary-1215",
+   "id": "F-glossary-1212",
    "level": "pro",
    "domain": "league-rule",
    "statement": "vested veteran: A player with four or more years of credited service, who if released between the Monday after the Super Bowl and the trade deadline is not subject to waivers and can sign with any club at once.",
@@ -5080,7 +5080,7 @@
    "notes": "Fox/AP and NFL.com call the test four accrued/credited seasons; the CBA uses credited service under the Bert Bell/Pete Rozelle Plan. 'Vested' is press usage and not a defined CBA term."
   },
   {
-   "id": "F-glossary-1216",
+   "id": "F-glossary-1213",
    "level": "pro",
    "domain": "league-rule",
    "statement": "vesting guarantee: A guarantee (usually injury-only at first) that becomes fully guaranteed on a set date if the player is still on the roster then.",
@@ -5119,7 +5119,7 @@
    "notes": "OTC lists typical vest dates (days after the Super Bowl, early League Year days, April 1). Two publishers only."
   },
   {
-   "id": "F-glossary-1217",
+   "id": "F-glossary-1214",
    "level": "pro",
    "domain": "league-rule",
    "statement": "veteran salary benefit: A rule that lets a club sign a veteran with four or more credited seasons to a one-year minimum contract (plus a capped extra) while counting only the minimum for a two-year veteran against its cap; the gap is counted as a league-wide player benefit.",
@@ -5158,7 +5158,7 @@
    "notes": "Draft said the league pays the difference; the CBA counts it as a Player Benefit (Art. 27 Sec. 6), which lowers the cap. Extra compensation allowed: $137,500 (2020-21), $152,500 (2022-23), $167,500 (2024-25), $187,500 (2026-27) (Art. 27 Sec. 2(b)). Four-Year Qualifying Contract allows up to $1.25M more base salary for players kept four straight years (Sec. 7)."
   },
   {
-   "id": "F-glossary-1221",
+   "id": "F-glossary-1218",
    "level": "pro",
    "domain": "league-rule",
    "statement": "void years: Extra years written into a contract that void automatically on a set date, so a bonus can be spread over more years; the unspent proration lands on the cap when the years void.",
@@ -5197,7 +5197,7 @@
    "notes": "The CBA names them 'Automatic Voidable Year' in the Additional Game Check rule; voidable years are barred in rookie contracts (Art. 7 Sec. 3(d)). Draft cited Art. 7 only. OTC is the only non-CBA publisher found."
   },
   {
-   "id": "F-glossary-1226",
+   "id": "F-glossary-1223",
    "level": "pro",
    "domain": "league-rule",
    "statement": "waiver claim: A club's request, during the waiver period, to take over a waived player's contract and be awarded him.",
@@ -5245,7 +5245,7 @@
    "notes": "CBA Art. 29 Sec. 2 bars other clubs' staff from contacting a player on waivers until he is released. A claiming club takes the contract as it stands."
   },
   {
-   "id": "F-glossary-1227",
+   "id": "F-glossary-1224",
    "level": "pro",
    "domain": "league-rule",
    "statement": "waiver priority: The ranking of clubs that decides who is awarded a claimed player when several claim him; the highest-priority club gets him.",
@@ -5275,7 +5275,7 @@
    "notes": "Only one source states that priority decides the award. How the order is set (draft-order or standings based) was not found in the CBA, rulebook or saved pages; no definition of the order is claimed. Single source."
   },
   {
-   "id": "F-glossary-1228",
+   "id": "F-glossary-1225",
    "level": "pro",
    "domain": "league-rule",
    "statement": "waivers: The league process that lets other clubs claim a released player's contract before he can sign anywhere; it applies to players with fewer than four credited seasons, and to all players after the trade deadline.",
@@ -5332,7 +5332,7 @@
    "notes": "'Waived/injured' (Wikipedia glossary): before the cutdown to 53, an injured non-vested player must be waived first; if unclaimed he goes on the waiving club's injured reserve. NFL.com: vested veterans are not subject to waivers from the day after the Super Bowl through the trade deadline."
   },
   {
-   "id": "F-glossary-1254",
+   "id": "F-glossary-1251",
    "level": "pro",
    "domain": "league-rule",
    "statement": "Wonderlic: A short written cognitive test that was among the tests given to draft prospects at the combine.",
@@ -5362,7 +5362,7 @@
    "notes": "Merged the two draft rows. Only Wikipedia (combine page) lists it; claims in the draft that the NFL stopped giving it, that S2 replaced it, or that it began in the 1970s were not confirmed in any saved source. Single source."
   },
   {
-   "id": "F-glossary-1256",
+   "id": "F-glossary-1253",
    "level": "pro",
    "domain": "league-rule",
    "statement": "workout bonus: Pay for attending an agreed share of the club's voluntary offseason workouts; for veterans with four or more accrued seasons the contract may require at most 84.375% of the workouts.",

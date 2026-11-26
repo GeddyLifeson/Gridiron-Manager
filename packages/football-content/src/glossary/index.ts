@@ -2,4 +2,4 @@
 export * from './types.ts';
 export { TERMS, BLOCK_LIST } from './data.ts';
 export { createGlossary, glossary, type Glossary } from './glossary.ts';
-export { validateGlossary, KNOWN_LEVEL_OVERLAPS, type GlossaryProblem } from './validate.ts';
+export { validateGlossary, type GlossaryProblem } from './validate.ts';

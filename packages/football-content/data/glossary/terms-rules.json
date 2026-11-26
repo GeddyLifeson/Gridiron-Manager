@@ -2623,7 +2623,7 @@
    "subdomain": "kicks",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0732"
+   "factRow": "F-glossary-0730"
   },
   {
    "id": "term.onside-kick-pro",
@@ -2636,7 +2636,7 @@
    "subdomain": "kicks",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0733"
+   "factRow": "F-glossary-0731"
   },
   {
    "id": "term.onside-kick-setup-zone-pro",
@@ -2649,7 +2649,7 @@
    "subdomain": "kicks",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0734"
+   "factRow": "F-glossary-0732"
   },
   {
    "id": "term.other-try-spot-pro",
@@ -2660,7 +2660,7 @@
    "subdomain": "spots",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0744"
+   "factRow": "F-glossary-0742"
   },
   {
    "id": "term.out-of-bounds",
@@ -2673,7 +2673,7 @@
    "subdomain": "field-geometry",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0748"
+   "factRow": "F-glossary-0746"
   },
   {
    "id": "term.out-of-bounds-spot",
@@ -2684,7 +2684,7 @@
    "subdomain": "spots",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0749"
+   "factRow": "F-glossary-0747"
   },
   {
    "id": "term.overtime-college",
@@ -2698,7 +2698,7 @@
    "subdomain": "overtime",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0757",
+   "factRow": "F-glossary-0755",
    "variants": "From the third extra period a possession series is a single two-point try from the three-yard line; from the second extra period a touchdown must be followed by a two-point try."
   },
   {
@@ -2712,7 +2712,7 @@
    "subdomain": "overtime",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0758"
+   "factRow": "F-glossary-0756"
   },
   {
    "id": "term.palpably-unfair-act-pro",
@@ -2723,7 +2723,7 @@
    "subdomain": "conduct-foul",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0763",
+   "factRow": "F-glossary-0761",
    "variants": "NCAA 9-4 covers the comparable unfair act."
   },
   {
@@ -2737,7 +2737,7 @@
    "subdomain": "pass",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0766",
+   "factRow": "F-glossary-0764",
    "variants": "NCAA: a pass continues to be a pass until it is caught or intercepted or the ball becomes dead."
   },
   {
@@ -2751,7 +2751,7 @@
    "subdomain": "pass-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0768",
+   "factRow": "F-glossary-0766",
    "variants": "NFL 8-5-1: any act more than one yard beyond the line of scrimmage that significantly hinders an eligible player's opportunity to catch the ball. NCAA 7-3-8: contact beyond the neutral zone that interferes during a legal forward pass that crosses the neutral zone; NCAA also prohibits illegal contact by either team from the snap until the pass is touched."
   },
   {
@@ -2765,7 +2765,7 @@
    "subdomain": "possession",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0772",
+   "factRow": "F-glossary-0770",
    "variants": "NFL: passer until the play ends. NCAA: from release until the pass is complete, incomplete or intercepted, or until he moves to participate in the play."
   },
   {
@@ -2777,7 +2777,7 @@
    "subdomain": "play-classification",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0774"
+   "factRow": "F-glossary-0772"
   },
   {
    "id": "term.peel-back-block-pro",
@@ -2790,7 +2790,7 @@
    "subdomain": "blocking-foul",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0780"
+   "factRow": "F-glossary-0778"
   },
   {
    "id": "term.penalty",
@@ -2801,7 +2801,7 @@
    "subdomain": "penalty",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0781"
+   "factRow": "F-glossary-0779"
   },
   {
    "id": "term.period",
@@ -2814,7 +2814,7 @@
    "subdomain": "clock",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0785",
+   "factRow": "F-glossary-0783",
    "variants": "NFL 4-1-1: 60 minutes in four 15-minute periods. NCAA 3-2-1: 60 minutes in four 15-minute periods with one-minute intermissions between the first and second and between the third and fourth."
   },
   {
@@ -2828,7 +2828,7 @@
    "subdomain": "penalty",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0787",
+   "factRow": "F-glossary-0785",
    "variants": "The NCAA also defines a flagrant personal foul (2-10-3): contact so extreme or deliberate that it places an opponent in danger of catastrophic injury."
   },
   {
@@ -2840,7 +2840,7 @@
    "subdomain": "kicks",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0801",
+   "factRow": "F-glossary-0799",
    "variants": "NCAA limits a tee to one inch off the ground (2-16-4); a field-goal place kick requires a teammate holding the ball on the ground."
   },
   {
@@ -2854,7 +2854,7 @@
    "subdomain": "formation-foul",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0803"
+   "factRow": "F-glossary-0801"
   },
   {
    "id": "term.play-clock",
@@ -2869,7 +2869,7 @@
    "subdomain": "clock",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0806",
+   "factRow": "F-glossary-0804",
    "variants": "NFL 4-6-1/4-6-2. NCAA 2-29-2 requires a visual play clock capable of counting down from both 40 and 25 seconds."
   },
   {
@@ -2881,7 +2881,7 @@
    "subdomain": "personnel-rule",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0808"
+   "factRow": "F-glossary-0806"
   },
   {
    "id": "term.player-on-the-line-of-scrimmage-pro",
@@ -2894,7 +2894,7 @@
    "subdomain": "formation",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0809",
+   "factRow": "F-glossary-0807",
    "variants": "NCAA uses 'lineman' and 'back', with the head breaking the plane of the snapper's waistline (see 'back')."
   },
   {
@@ -2908,7 +2908,7 @@
    "subdomain": "possession",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0810",
+   "factRow": "F-glossary-0808",
    "variants": "NCAA also defines team possession (a team is in possession while its player has the ball, during a loose ball its player last held, or while it is next to snap or free kick)."
   },
   {
@@ -2923,7 +2923,7 @@
    "subdomain": "possession",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0811",
+   "factRow": "F-glossary-0809",
    "variants": "NFL possession rule is the 'catch' standard with three elements: control, feet down, act common to the game."
   },
   {
@@ -2935,7 +2935,7 @@
    "subdomain": "personnel-foul",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0812"
+   "factRow": "F-glossary-0810"
   },
   {
    "id": "term.playing-enclosure-college",
@@ -2946,7 +2946,7 @@
    "subdomain": "field-geometry",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0813"
+   "factRow": "F-glossary-0811"
   },
   {
    "id": "term.playing-surface-college",
@@ -2957,7 +2957,7 @@
    "subdomain": "field-geometry",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0814"
+   "factRow": "F-glossary-0812"
   },
   {
    "id": "term.pocket-area-pro",
@@ -2970,7 +2970,7 @@
    "subdomain": "blocking",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0820",
+   "factRow": "F-glossary-0818",
    "variants": "In common usage the pocket is the protected area formed by the passer's blockers (NFL Football Operations; Dictionary.com). The NCAA book uses the tackle box (Rule 2-31 area) instead; Epic Sports defines tackle box."
   },
   {
@@ -2982,7 +2982,7 @@
    "subdomain": "downs",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0829",
+   "factRow": "F-glossary-0827",
    "variants": "NFL overtime uses possession and opportunity-to-possess language (16-1) without this defined term."
   },
   {
@@ -2994,7 +2994,7 @@
    "subdomain": "spots",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0834"
+   "factRow": "F-glossary-0832"
   },
   {
    "id": "term.postscrimmage-kick-spot-college",
@@ -3007,7 +3007,7 @@
    "subdomain": "spots",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0836",
+   "factRow": "F-glossary-0834",
    "variants": "The NFL book has its own post-possession enforcement rules (9-5) but no named spot."
   },
   {
@@ -3019,7 +3019,7 @@
    "subdomain": "spots",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0851"
+   "factRow": "F-glossary-0849"
   },
   {
    "id": "term.punt",
@@ -3032,7 +3032,7 @@
    "subdomain": "kicks",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0870"
+   "factRow": "F-glossary-0868"
   },
   {
    "id": "term.pushing-college",
@@ -3043,7 +3043,7 @@
    "subdomain": "blocking",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0875",
+   "factRow": "F-glossary-0873",
    "variants": "NFL rulebook has no defined term \"pushing\" in Rule 3; its rules speak of pushing in specific fouls."
   },
   {
@@ -3057,7 +3057,7 @@
    "subdomain": "field-geometry",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0876"
+   "factRow": "F-glossary-0874"
   },
   {
    "id": "term.pylon-pro",
@@ -3070,7 +3070,7 @@
    "subdomain": "field-geometry",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0877"
+   "factRow": "F-glossary-0875"
   },
   {
    "id": "term.receiver-kick-pro",
@@ -3084,7 +3084,7 @@
    "subdomain": "special-teams-rule",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0894",
+   "factRow": "F-glossary-0892",
    "variants": "Pass receivers are a different usage (Rule 8, eligible receivers)."
   },
   {
@@ -3099,7 +3099,7 @@
    "subdomain": "possession",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0896",
+   "factRow": "F-glossary-0894",
    "variants": "NFL 3-2-7 lists recovered with catch and interception as player possession and requires the same control, feet-inbounds and act-common-to-the-game steps. NCAA 2-4-3-g: a player recovers a ball by meeting the catch criteria for a ball still alive after hitting the ground."
   },
   {
@@ -3114,7 +3114,7 @@
    "subdomain": "officials",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0906"
+   "factRow": "F-glossary-0904"
   },
   {
    "id": "term.referee-s-timeout-pro",
@@ -3127,7 +3127,7 @@
    "subdomain": "clock",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0907",
+   "factRow": "F-glossary-0905",
    "variants": "NFL 4-5-5. The NCAA book uses referee-declared timeouts such as media, discretionary and unforeseen-delay timeouts (3-3-2)."
   },
   {
@@ -3139,7 +3139,7 @@
    "subdomain": "personnel-rule",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0911"
+   "factRow": "F-glossary-0909"
   },
   {
    "id": "term.replay-official",
@@ -3150,7 +3150,7 @@
    "subdomain": "replay",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0913"
+   "factRow": "F-glossary-0911"
   },
   {
    "id": "term.replay-review",
@@ -3163,7 +3163,7 @@
    "subdomain": "replay",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0914",
+   "factRow": "F-glossary-0912",
    "variants": "NFL: all reviews are decided by the Senior Vice President of Officiating or designee (15-2). NCAA: the replay official must see clear and obvious evidence to overturn (12-1-3)."
   },
   {
@@ -3175,7 +3175,7 @@
    "subdomain": "kicks",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0919",
+   "factRow": "F-glossary-0917",
    "variants": "NFL kickoff lines: kicker's line is the 35-yard line, receiving team's line is its own 35 (6-1-2). NCAA: receiving line 10 yards beyond the kicking line."
   },
   {
@@ -3187,7 +3187,7 @@
    "subdomain": "ball-foul",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0922"
+   "factRow": "F-glossary-0920"
   },
   {
    "id": "term.reviewable-play",
@@ -3198,7 +3198,7 @@
    "subdomain": "replay",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0929"
+   "factRow": "F-glossary-0927"
   },
   {
    "id": "term.roughing-the-holder",
@@ -3209,7 +3209,7 @@
    "subdomain": "personal-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0950"
+   "factRow": "F-glossary-0948"
   },
   {
    "id": "term.roughing-the-kicker",
@@ -3224,7 +3224,7 @@
    "subdomain": "personal-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0951",
+   "factRow": "F-glossary-0949",
    "variants": "NFL separates roughing the kicker (15 yards) from running into the kicker (5 yards); NCAA covers both in 9-1-16 and also protects the holder."
   },
   {
@@ -3236,7 +3236,7 @@
    "subdomain": "personal-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0952"
+   "factRow": "F-glossary-0950"
   },
   {
    "id": "term.roughing-the-snapper",
@@ -3247,7 +3247,7 @@
    "subdomain": "personal-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0953",
+   "factRow": "F-glossary-0951",
    "variants": "NFL 12-2-9 (defenseless player list). NCAA 9-1-14: a defender may not initiate contact with the snapper until one second has elapsed after the snap when the team is in scrimmage kick formation."
   },
   {
@@ -3261,7 +3261,7 @@
    "subdomain": "possession",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0962"
+   "factRow": "F-glossary-0960"
   },
   {
    "id": "term.running-into-the-kicker",
@@ -3274,7 +3274,7 @@
    "subdomain": "personal-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0965",
+   "factRow": "F-glossary-0963",
    "variants": "NFL 12-2-12: running into the kicker is five yards from the previous spot, not a personal foul. NCAA 9-1-16: roughing is a live-ball personal foul; running into is a lesser foul."
   },
   {
@@ -3288,7 +3288,7 @@
    "subdomain": "play-classification",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0967",
+   "factRow": "F-glossary-0965",
    "variants": "NCAA also defines a 'run' as the segment while a ball carrier has possession, and the 'spot where the run ends'."
   },
   {
@@ -3302,7 +3302,7 @@
    "subdomain": "scoring",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0971",
+   "factRow": "F-glossary-0969",
    "variants": "After a safety the scored-upon team puts the ball in play by a free kick."
   },
   {
@@ -3317,7 +3317,7 @@
    "subdomain": "kicks",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0973",
+   "factRow": "F-glossary-0971",
    "variants": "NCAA has no separate term: a free kick after a safety may be a punt, drop kick or place kick (2-16-5-b)."
   },
   {
@@ -3329,7 +3329,7 @@
    "subdomain": "downs",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0986",
+   "factRow": "F-glossary-0984",
    "variants": "NCAA adds that a try down is a scrimmage down beginning when the referee declares the ball ready for play (2-21-1 Note)."
   },
   {
@@ -3343,7 +3343,7 @@
    "subdomain": "kicks",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0987",
+   "factRow": "F-glossary-0985",
    "variants": "NCAA 2-16-7: legal when made by Team A in or behind the neutral zone before team possession changes."
   },
   {
@@ -3359,7 +3359,7 @@
    "subdomain": "kicks",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0988",
+   "factRow": "F-glossary-0986",
    "variants": "NFL: punt formation needs a player 10 or more yards behind the neutral zone. NCAA also needs five linemen numbered 50-79 (or the numbering exception) and requires that it be obvious a kick will be attempted."
   },
   {
@@ -3371,7 +3371,7 @@
    "subdomain": "play-classification",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-0989"
+   "factRow": "F-glossary-0987"
   },
   {
    "id": "term.senior-vice-president-of-officiating-pro",
@@ -3384,7 +3384,7 @@
    "subdomain": "officials",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1003"
+   "factRow": "F-glossary-1001"
   },
   {
    "id": "term.series-of-downs",
@@ -3398,7 +3398,7 @@
    "subdomain": "downs",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1007",
+   "factRow": "F-glossary-1005",
    "variants": "NCAA also defines a 'possession series': a team's continuous possession in an extra period."
   },
   {
@@ -3412,7 +3412,7 @@
    "subdomain": "officials",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1011",
+   "factRow": "F-glossary-1009",
    "variants": "Wikipedia: since 2015 Division I college conferences use eight officials (a center judge)."
   },
   {
@@ -3424,7 +3424,7 @@
    "subdomain": "officials",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1023",
+   "factRow": "F-glossary-1021",
    "variants": "In college the side judge may be responsible for the game clock or play clock, operated by an assistant under his direction (Wikipedia)."
   },
   {
@@ -3436,7 +3436,7 @@
    "subdomain": "field-geometry",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1024",
+   "factRow": "F-glossary-1022",
    "variants": "NFL rulebook has no side zone term."
   },
   {
@@ -3448,7 +3448,7 @@
    "subdomain": "field-geometry",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1025"
+   "factRow": "F-glossary-1023"
   },
   {
    "id": "term.simultaneous-possession-college",
@@ -3461,7 +3461,7 @@
    "subdomain": "possession",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1032"
+   "factRow": "F-glossary-1030"
   },
   {
    "id": "term.simultaneous-possession-pro",
@@ -3476,7 +3476,7 @@
    "subdomain": "possession",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1033"
+   "factRow": "F-glossary-1031"
   },
   {
    "id": "term.snapper",
@@ -3489,7 +3489,7 @@
    "subdomain": "personnel-rule",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1052",
+   "factRow": "F-glossary-1050",
    "variants": "NCAA: a player becomes the snapper by taking a position behind the ball and touching or simulating touching it (2-27-8)."
   },
   {
@@ -3501,7 +3501,7 @@
    "subdomain": "spots",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1071",
+   "factRow": "F-glossary-1069",
    "variants": "NCAA uses \"spot where run ends\" for a related idea (2-25-8)."
   },
   {
@@ -3513,7 +3513,7 @@
    "subdomain": "spots",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1072"
+   "factRow": "F-glossary-1070"
   },
   {
    "id": "term.spot-of-the-foul",
@@ -3524,7 +3524,7 @@
    "subdomain": "spots",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1073"
+   "factRow": "F-glossary-1071"
   },
   {
    "id": "term.spot-where-run-ends-college",
@@ -3535,7 +3535,7 @@
    "subdomain": "spots",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1074"
+   "factRow": "F-glossary-1072"
   },
   {
    "id": "term.squad-member-college",
@@ -3546,7 +3546,7 @@
    "subdomain": "personnel-rule",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1078"
+   "factRow": "F-glossary-1076"
   },
   {
    "id": "term.striking",
@@ -3557,7 +3557,7 @@
    "subdomain": "personal-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1092"
+   "factRow": "F-glossary-1090"
   },
   {
    "id": "term.substitute",
@@ -3568,7 +3568,7 @@
    "subdomain": "personnel-rule",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1099"
+   "factRow": "F-glossary-1097"
   },
   {
    "id": "term.succeeding-spot",
@@ -3579,7 +3579,7 @@
    "subdomain": "spots",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1100"
+   "factRow": "F-glossary-1098"
   },
   {
    "id": "term.sudden-death-pro",
@@ -3592,7 +3592,7 @@
    "subdomain": "overtime",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1102",
+   "factRow": "F-glossary-1100",
    "variants": "NFL 16-1 (regular season 10-minute and postseason 15-minute extra period). College overtime is a different possession-series system (NCAA 3-1-3), not sudden death."
   },
   {
@@ -3604,7 +3604,7 @@
    "subdomain": "possession",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1105",
+   "factRow": "F-glossary-1103",
    "variants": "The phrase \"survive the ground\" appears in the NFL rulebook note (3-2-7 Note 2; also 8-1-3); NCAA states the same requirement without the phrase as complete and continuous control through the process of contacting the ground (2-4-3-b)."
   },
   {
@@ -3616,7 +3616,7 @@
    "subdomain": "personnel-rule",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1107"
+   "factRow": "F-glossary-1105"
   },
   {
    "id": "term.t-formation-quarterback-pro",
@@ -3627,7 +3627,7 @@
    "subdomain": "personnel-rule",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1114",
+   "factRow": "F-glossary-1112",
    "variants": "NFL only; the NCAA book has no equivalent defined term."
   },
   {
@@ -3642,7 +3642,7 @@
    "subdomain": "tackling",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1118"
+   "factRow": "F-glossary-1116"
   },
   {
    "id": "term.tackling-pro-pro",
@@ -3656,7 +3656,7 @@
    "subdomain": "tackling",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1119"
+   "factRow": "F-glossary-1117"
   },
   {
    "id": "term.targeting-college",
@@ -3667,7 +3667,7 @@
    "subdomain": "personal-foul",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1125",
+   "factRow": "F-glossary-1123",
    "variants": "NFL has no \"targeting\" foul in 2026 Rule 12; it covers the contact under impermissible use of the helmet (12-2-10) and defenseless players (12-2-9). Wikipedia notes the NFL and NCAA stopped calling the spearing foul \"spearing\" and use \"targeting with the crown of the helmet\"."
   },
   {
@@ -3681,7 +3681,7 @@
    "subdomain": "conduct-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1126",
+   "factRow": "F-glossary-1124",
    "variants": "NFL penalty 15 yards (from the succeeding spot), with an automatic first down if by the defense; NCAA lists taunting under unsportsmanlike conduct."
   },
   {
@@ -3695,7 +3695,7 @@
    "subdomain": "possession",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1127",
+   "factRow": "F-glossary-1125",
    "variants": "NFL: labels last until the down ends. NCAA: until the ball is next ready for play."
   },
   {
@@ -3707,7 +3707,7 @@
    "subdomain": "possession",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1130",
+   "factRow": "F-glossary-1128",
    "variants": "NFL has no defined term; it says a loose ball is considered in possession of the team that kicked, passed or fumbled it (3-2-4) and speaks of the offense as the team in possession (3-35-1)."
   },
   {
@@ -3721,7 +3721,7 @@
    "subdomain": "kicks",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1132",
+   "factRow": "F-glossary-1130",
    "variants": "NFL: a manufactured tee may hold the ball no more than one inch from the ground (6-1-1 Note); no device may elevate a scrimmage place kick in the NCAA."
   },
   {
@@ -3735,7 +3735,7 @@
    "subdomain": "spots",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1138"
+   "factRow": "F-glossary-1136"
   },
   {
    "id": "term.tight-end-box-pro",
@@ -3746,7 +3746,7 @@
    "subdomain": "blocking",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1144"
+   "factRow": "F-glossary-1142"
   },
   {
    "id": "term.time-in-pro",
@@ -3759,7 +3759,7 @@
    "subdomain": "clock",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1146"
+   "factRow": "F-glossary-1144"
   },
   {
    "id": "term.timeout",
@@ -3772,7 +3772,7 @@
    "subdomain": "clock",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1149",
+   "factRow": "F-glossary-1147",
    "variants": "NFL gives two timeouts in a regular-season overtime period (4-5-1 Item 1)."
   },
   {
@@ -3787,7 +3787,7 @@
    "subdomain": "personnel-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1152",
+   "factRow": "F-glossary-1150",
    "variants": "NFL: more than 11 in the formation is five yards from the succeeding spot; more than 11 on the field when the ball is snapped is a live-ball foul."
   },
   {
@@ -3799,7 +3799,7 @@
    "subdomain": "scoring",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1159",
+   "factRow": "F-glossary-1157",
    "variants": "NFL 6-1-5 and 11-6-3: restart at the 20 (or 35 after certain kickoffs and safety kicks). NCAA 8-6-2: at the 20, or the 25 after a free kick. NFL Football Operations' saved glossary page still says the 25-yard line, which predates the 2025 kickoff rewrite."
   },
   {
@@ -3811,7 +3811,7 @@
    "subdomain": "scoring",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1161"
+   "factRow": "F-glossary-1159"
   },
   {
    "id": "term.touching-the-ball",
@@ -3825,7 +3825,7 @@
    "subdomain": "ball-status",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1162",
+   "factRow": "F-glossary-1160",
    "variants": "NCAA adds forced touching: contact caused by being blocked into the ball, or by the ball being batted or illegally kicked into a player, counts as no touch; when in question the ball is treated as untouched."
   },
   {
@@ -3837,7 +3837,7 @@
    "subdomain": "conduct-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1174",
+   "factRow": "F-glossary-1172",
    "variants": "NFL penalty: loss of 15 yards (12-2-14)."
   },
   {
@@ -3854,7 +3854,7 @@
    "subdomain": "scoring",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1177",
+   "factRow": "F-glossary-1175",
    "variants": "NFL 11-3-1: kick from the 15-yard line or run or pass from the 2. NCAA 8-3: try from the three-yard line (NCAA 2-pt try 10-2-6 reference)."
   },
   {
@@ -3868,22 +3868,8 @@
    "subdomain": "clock",
    "level": "college",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1191",
+   "factRow": "F-glossary-1189",
    "variants": "NCAA 3-3-5; the media timeout is held back to coincide with it. 3-3-2-e-1: after the Two-Minute Timeout, a first down by Team A stops the clock, which restarts on the referee's signal."
-  },
-  {
-   "id": "term.two-minute-warning-pro",
-   "term": "two-minute warning",
-   "aliases": [
-    "Two-minute warning"
-   ],
-   "definition": "An automatic timeout at the end of the last down snapped or kicked before two minutes remain on the game clock in the second and fourth periods.",
-   "domain": "rule",
-   "subdomain": "clock",
-   "level": "pro",
-   "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1193",
-   "variants": "College uses a different mechanism, the Two-Minute Timeout (NCAA 3-3-5), listed as its own row."
   },
   {
    "id": "term.umpire",
@@ -3894,7 +3880,7 @@
    "subdomain": "officials",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1196",
+   "factRow": "F-glossary-1193",
    "variants": "The NFL umpire lines up in the offensive backfield about 10-12 yards behind the line of scrimmage (NFL Football Operations); Wikipedia says the umpire traditionally stands behind the defensive line. The NFL moved the umpire to the offensive backfield in 2016."
   },
   {
@@ -3906,7 +3892,7 @@
    "subdomain": "personal-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1201",
+   "factRow": "F-glossary-1198",
    "variants": "NFL 12-2-8 lists specific examples (leg whip, runner out of bounds, and so on). NCAA 9-1-7 covers piling on and contact on a runner out of bounds or after the ball is dead; flagrant contact is a flagrant personal foul (2-10-3)."
   },
   {
@@ -3918,7 +3904,7 @@
    "subdomain": "conduct-foul",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1204"
+   "factRow": "F-glossary-1201"
   },
   {
    "id": "term.use-of-a-helmet-as-a-weapon-pro",
@@ -3929,7 +3915,7 @@
    "subdomain": "personal-foul",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1209"
+   "factRow": "F-glossary-1206"
   },
   {
    "id": "term.violation",
@@ -3940,7 +3926,7 @@
    "subdomain": "penalty",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1219"
+   "factRow": "F-glossary-1216"
   },
   {
    "id": "term.wedge-block-pro",
@@ -3951,7 +3937,7 @@
    "subdomain": "blocking-foul",
    "level": "pro",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1235"
+   "factRow": "F-glossary-1232"
   },
   {
    "id": "term.yard-line",
@@ -3962,7 +3948,7 @@
    "subdomain": "field-geometry",
    "level": "both",
    "ownerLeaf": "A4.5.1",
-   "factRow": "F-glossary-1262"
+   "factRow": "F-glossary-1259"
   }
  ]
 }

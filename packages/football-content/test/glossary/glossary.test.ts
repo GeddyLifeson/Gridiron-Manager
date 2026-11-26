@@ -20,9 +20,9 @@ const LEAVES = new Set(Array.from({ length: 10 }, (_, i) => `A4.5.${i + 1}`));
 const repoRoot = new URL('../../../../', import.meta.url).pathname;
 
 describe('G-93 glossary data', () => {
-  it('holds all 1,274 A4.5 terms with unique ids and sensible fields', () => {
-    expect(TERMS.length).toBe(1274);
-    expect(new Set(TERMS.map((t) => t.id)).size).toBe(1274);
+  it('holds all 1,271 A4.5 terms with unique ids and sensible fields', () => {
+    expect(TERMS.length).toBe(1271);
+    expect(new Set(TERMS.map((t) => t.id)).size).toBe(1271);
     for (const t of TERMS) {
       expect(t.definition.length, t.id).toBeGreaterThan(10);
       expect(Array.isArray(t.aliases), t.id).toBe(true);
@@ -31,10 +31,16 @@ describe('G-93 glossary data', () => {
   it('passes the A4.1 acceptance checks (ids, owner leaf, one term per level, block list)', () => {
     expect(validateGlossary(TERMS, LEAVES, BLOCK_LIST)).toEqual([]);
   });
-  it('the known level overlaps are real and nothing else overlaps', () => {
-    const bad = validateGlossary(TERMS, LEAVES, BLOCK_LIST, []);
-    expect(bad.length).toBeGreaterThan(0);
-    for (const b of bad) expect(b.message).toMatch(/shares the term "(okie front|onside kick|two-minute warning)"/i);
+  it('the three rows that overlapped at one level are merged (MA-69)', () => {
+    const ids = new Set(TERMS.map((t) => t.id));
+    for (const id of ['term.two-minute-warning-pro', 'term.okie-front-pro', 'term.onside-kick']) expect(ids.has(id), id).toBe(false);
+    for (const id of ['term.two-minute-warning', 'term.okie-front', 'term.onside-kick-pro', 'term.onside-kick-college']) expect(ids.has(id), id).toBe(true);
+  });
+  it('the game feature names a leaf defines are allowed, and none is on the block list or a record term', () => {
+    const allowed = (load('not-shipped.json').allowed as { term: string; leaves: string[] }[]).map((a) => a.term.toLowerCase());
+    for (const w of ['call sheet', 'wristband', 'opening script', 'halftime adjustments', 'tendency', 'self-scout']) expect(allowed).toContain(w);
+    for (const w of allowed) expect(BLOCK_LIST.some((b) => b.term.toLowerCase() === w), w).toBe(false);
+    expect(glossary.blocked('Open the call sheet and the wristband at halftime adjustments')).toEqual([]);
   });
   it('every term has a fact row that cites at least one source, and every fact row is used once', () => {
     const used = new Set<string>();
@@ -78,7 +84,7 @@ describe('G-93 glossary data', () => {
     const mix: Record<string, number> = {};
     for (const r of facts.values()) mix[r.status] = (mix[r.status] ?? 0) + 1;
     console.log('glossary status mix', JSON.stringify(mix));
-    expect(Object.values(mix).reduce((a, b) => a + b, 0)).toBe(1274);
+    expect(Object.values(mix).reduce((a, b) => a + b, 0)).toBe(1271);
   });
   it('no block-list term is shipped as a record term', () => {
     const shipped = new Set(TERMS.map((t) => t.term.toLowerCase()));
@@ -100,10 +106,14 @@ describe('G-93 glossary data', () => {
     if (!existsSync(p)) return;
     const rows = readFileSync(p, 'utf8').trim().split('\n').map((l) => JSON.parse(l));
     const byId = new Map(TERMS.map((t) => [t.id, t]));
-    expect(rows.length).toBe(TERMS.length);
+    const retired = Object.keys(load('not-shipped.json').retiredIds);
+    const merged = new Set(['term.two-minute-warning', 'term.okie-front']);
+    expect(rows.length).toBe(TERMS.length + retired.length);
     for (const r of rows) {
+      if (retired.includes(r.id)) continue;
       const t = byId.get(r.id);
       expect(t, r.id).toBeDefined();
+      if (merged.has(r.id)) continue; // sources folded in from the retired row; status is recomputed
       expect(t!.definition).toBe(r.definition);
       expect(t!.level).toBe(r.level);
       expect(facts.get(t!.factRow)!.status, r.id).toBe(r.status);

@@ -19019,28 +19019,7 @@
      "independenceGroup": "on3",
      "primary": false,
      "quote": "3-4 Okie front"
-    }
-   ],
-   "status": "2 of 3",
-   "usedBy": [
-    "term.okie-front"
-   ],
-   "statusHistory": [
-    {
-     "date": "2026-11-26",
-     "status": "2 of 3",
-     "reason": "First load (G-93)."
-    }
-   ],
-   "notes": "Weak. Wikipedia only names the original 5-2 Oklahoma; the On3 KSR page says Okie sends both outside linebackers up the field (as summarized by the fetch tool). Viqtory lists 'Tite/Okie' as one heading. Draft's nose-over-center detail was not found."
-  },
-  {
-   "id": "F-glossary-0727",
-   "level": "pro",
-   "domain": "coaching-convention",
-   "statement": "Okie front: The traditional two-gap 3-4: ends in 5-techniques, nose head-up on the center, inside linebackers over the bubbles.",
-   "validFor": "current usage, read 2026-11-26",
-   "sources": [
+    },
     {
      "citation": "NFL 101: The Basics of the 3-4 Defensive Front (Bleacher Report)",
      "locator": "https://bleacherreport.com/articles/2007958-nfl-101-the-basics-of-the-3-4-defensive-front",
@@ -19051,21 +19030,21 @@
      "quote": "both defensive ends and the nose tackle using a “2-gap” technique"
     }
    ],
-   "status": "1 of 3",
+   "status": "Verified",
    "usedBy": [
-    "term.okie-front-pro"
+    "term.okie-front"
    ],
    "statusHistory": [
     {
      "date": "2026-11-26",
-     "status": "1 of 3",
+     "status": "Verified",
      "reason": "First load (G-93)."
     }
    ],
-   "notes": "Added; one publisher."
+   "notes": "Weak. Wikipedia only names the original 5-2 Oklahoma; the On3 KSR page says Okie sends both outside linebackers up the field (as summarized by the fetch tool). Viqtory lists 'Tite/Okie' as one heading. Draft's nose-over-center detail was not found. Merged with term.okie-front-pro (MA-69): its sources and aliases are folded in."
   },
   {
-   "id": "F-glossary-0728",
+   "id": "F-glossary-0727",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "On3: A recruiting and transfer-tracking media service that publishes rankings, a transfer portal wire and NIL valuations; its Rivals brand publishes the Rivals Industry Ranking.",
@@ -19104,7 +19083,7 @@
    "notes": "Both sources are On3's own pages (one publisher). Proper name; flagged low value."
   },
   {
-   "id": "F-glossary-0729",
+   "id": "F-glossary-0728",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "one-gap: A technique where a lineman is responsible for attacking one gap, instead of holding two.",
@@ -19158,7 +19137,7 @@
    ]
   },
   {
-   "id": "F-glossary-0730",
+   "id": "F-glossary-0729",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "one-time transfer rule: A 2021 NCAA rule that let an athlete transfer once without sitting out a year; replaced in April 2024 by unlimited immediate-eligibility transfers.",
@@ -19206,91 +19185,7 @@
    "notes": "Historical; adopted April 14, 2021 (On3)."
   },
   {
-   "id": "F-glossary-0731",
-   "level": "both",
-   "domain": "coaching-convention",
-   "statement": "Onside kick: A short free kick the kicking team tries to recover; in the NFL it must travel 10 yards unless a receiver touches it first.",
-   "validFor": "current usage, read 2026-11-26",
-   "sources": [
-    {
-     "citation": "NFL Rulebook 2026 (NFL Rulebook)",
-     "locator": "https://operations.nfl.com/the-rules/ (local copy /mnt/project-files/nfl-rules/rulebook_2026.txt)",
-     "dateRead": "2026-11-26",
-     "howRead": "primary text",
-     "independenceGroup": "nfl",
-     "primary": true,
-     "quote": "An onside kick is defined as a free kick that the kicking team attempts to legally recover"
-    },
-    {
-     "citation": "American Football Terms Glossary (UA Playbooks) (Under Armour)",
-     "locator": "https://www.underarmour.com/en-us/t/playbooks/football/football-terms-glossary/",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "underarmour",
-     "primary": false,
-     "quote": "purposely tries to kick the ball only 10 yards"
-    },
-    {
-     "citation": "Glossary of Football Terms (ACTIVE.com)",
-     "locator": "https://www.active.com/football/articles/glossary-of-football-terms",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "active",
-     "primary": false,
-     "quote": "When the kicking team attempts to get the ball back during the kickoff by tapping a short kick."
-    },
-    {
-     "citation": "CFBTrack: College Football Special Teams Glossary (CFBTrack)",
-     "locator": "https://cfbtrack.com/glossary/category/special-teams",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "cfbtrack",
-     "primary": false,
-     "quote": "A short kickoff designed to give the kicking team a chance to recover the ball."
-    },
-    {
-     "citation": "Wikipedia: Onside kick (Wikipedia)",
-     "locator": "https://en.wikipedia.org/wiki/Onside_kick",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "wikipedia",
-     "primary": false,
-     "quote": "The kicking team may only recover and retain possession of the kicked ball, but not advance it."
-    },
-    {
-     "citation": "NFL 2026 Rulebook Rule 6-1-6 (NFL Rulebook (primary))",
-     "locator": "/mnt/project-files/nfl-rules/rulebook_2026.txt",
-     "dateRead": "2026-11-26",
-     "howRead": "primary text",
-     "independenceGroup": "nfl",
-     "primary": true,
-     "quote": "At any time during the game, the kicking team may declare an onside kick by notifying the Referee"
-    },
-    {
-     "citation": "2024 NFL Season: Explaining rules for new dynamic kickoff (superseded) (NFL)",
-     "locator": "https://www.nfl.com/news/2024-nfl-season-explaining-rules-for-new-dynamic-kickoff",
-     "dateRead": "2026-11-26",
-     "howRead": "secondary summary",
-     "independenceGroup": "nfl",
-     "primary": false,
-     "quote": "Teams are now only permitted to onside kick in the fourth quarter when trailing and must be declared to the"
-    }
-   ],
-   "status": "Verified",
-   "usedBy": [
-    "term.onside-kick"
-   ],
-   "statusHistory": [
-    {
-     "date": "2026-11-26",
-     "status": "Verified",
-     "reason": "First load (G-93)."
-    }
-   ],
-   "notes": "Added. The 2026 NCAA rulebook text I searched does not use the phrase 'onside kick'. | Other batch definition: A kickoff deliberately kicked short so the kicking team can try to recover it; in the 2026 rulebook the kicking team may declare it at any time during the game."
-  },
-  {
-   "id": "F-glossary-0735",
+   "id": "F-glossary-0733",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Open-field yards: Rushing yards gained more than 10 yards past the line of scrimmage.",
@@ -19320,7 +19215,7 @@
    "notes": "Single source. The Football Outsiders ALY description (Wikipedia) treats 11+ yard runs as the back's credit, which fits."
   },
   {
-   "id": "F-glossary-0736",
+   "id": "F-glossary-0734",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Open locker room: Reporters' access to speak with players in the locker room; the policy requires open locker room sessions of at least 45 minutes on Wednesday, Thursday and Friday.",
@@ -19350,7 +19245,7 @@
    "notes": "Postgame access opens after a 10-15 minute wait; training and treatment rooms stay off limits."
   },
   {
-   "id": "F-glossary-0737",
+   "id": "F-glossary-0735",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Open side: The weak side of the formation, away from the tight end.",
@@ -19398,7 +19293,7 @@
    "notes": "The Steelers Depot quote ties 'open' to the weak side entry; Bleacher Report uses 'open side' in a route context without defining it. Flag: usage only for the third source."
   },
   {
-   "id": "F-glossary-0738",
+   "id": "F-glossary-0736",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Operation time: The time from the snap to the kick leaving the foot, which units time and drill; one coaching site lists 1.2 to 1.35 seconds for pro field goal kickers.",
@@ -19437,7 +19332,7 @@
    "notes": "The abbreviation 'op time' and 'OT' were not found in any page I opened (only the full phrase 'Operation Times' in the Kicking System title). The Kicking System figures for professionals are printed '1.2-135' (a typo). Thinly sourced."
   },
   {
-   "id": "F-glossary-0740",
+   "id": "F-glossary-0738",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Option route: A route in which the receiver chooses his path after the snap by reading the defender's leverage.",
@@ -19484,7 +19379,7 @@
    ]
   },
   {
-   "id": "F-glossary-0741",
+   "id": "F-glossary-0739",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Option run: A play in which the ball carrier is chosen after the snap by reading a defender, the quarterback choosing to hand off, keep or pitch.",
@@ -19529,7 +19424,7 @@
    ]
   },
   {
-   "id": "F-glossary-0743",
+   "id": "F-glossary-0741",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "OTAs: Ten voluntary offseason practice days that each club may hold during Phase Three of the offseason program, with all coaches on the field and 11-on-11 work allowed but no live contact.",
@@ -19586,7 +19481,7 @@
    "notes": "CBA Art. 21 Sec. 2(c)(iii): max three OTA days in each of the first two weeks of Phase Three, max four in either the third or fourth week (the other week holds the mandatory minicamp). Sec. 5(b): up to 6 hours at the facility and 2 hours on the field on OTA days. Wikipedia's 'late May and early June' timing is approximate; the CBA ties OTAs to Phase Three of a nine-week program that cannot start before the third Monday in April."
   },
   {
-   "id": "F-glossary-0745",
+   "id": "F-glossary-0743",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Out: A route that breaks hard toward the sideline after a vertical stem (about 10 to 15 yards, depending on the author).",
@@ -19643,7 +19538,7 @@
    "notes": "Depth disagrees: 10 yards (vIQtory) vs 12-15 (Bleacher Report); Throw Deep only has a 'quick out' (about five yards)."
   },
   {
-   "id": "F-glossary-0750",
+   "id": "F-glossary-0748",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "outside eye: Lining up on the outside shoulder of the player across from you; a defender with 'outside leverage' aligns on the outside eye of the receiver.",
@@ -19690,7 +19585,7 @@
    "notes": "Used for both linemen and defensive backs. 'eye' and 'shoulder' are used interchangeably in Bowen's pieces."
   },
   {
-   "id": "F-glossary-0751",
+   "id": "F-glossary-0749",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "outside leverage: Lining up on the outside shoulder of the receiver to force him inside.",
@@ -19720,7 +19615,7 @@
    "notes": "Single publisher; the term 'outside leverage' itself appears in Weekly Spiral for the Cone call."
   },
   {
-   "id": "F-glossary-0752",
+   "id": "F-glossary-0750",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "outside linebacker: A linebacker aligned outside the box tackles: responsible for outside containment, blitzing and covering the flats; in a 3-4 he is often the main edge rusher.",
@@ -19776,7 +19671,7 @@
    ]
   },
   {
-   "id": "F-glossary-0753",
+   "id": "F-glossary-0751",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Outside zone: A zone run that stretches the defense laterally toward the edge, also called a stretch play, with the lanes read by the runner.",
@@ -19815,7 +19710,7 @@
    "notes": "Draft detail 'one cut after reading the edge defender' is not in the sources read; removed. Wikipedia text is a paraphrase from my read, not exact quote; weakest of the two. Two publishers."
   },
   {
-   "id": "F-glossary-0754",
+   "id": "F-glossary-0752",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Over front: A 4-3 front shifted to the strong (tight end, closed) side: the 3-technique tackle lines up on the strong side and the nose on the weak side in a 0 shade or 2i.",
@@ -19845,7 +19740,7 @@
    "notes": "One publisher (Bleacher Report/Bowen). Wikipedia 4-3 page (via summariser) does not define it."
   },
   {
-   "id": "F-glossary-0755",
+   "id": "F-glossary-0753",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Overachiever: A player with limited athleticism who is productive through work ethic and intangibles; the underachiever has more talent than output.",
@@ -19875,7 +19770,7 @@
    "notes": "Single publisher (Defector)."
   },
   {
-   "id": "F-glossary-0756",
+   "id": "F-glossary-0754",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Overtime coin toss: A separate coin toss at the start of overtime; the winner chooses between receiving or kicking and which goal to defend.",
@@ -19905,7 +19800,7 @@
    "notes": "Second quote concerns the third postseason overtime period. Another toss occurs at the end of a fourth overtime period (16-1-4(i)). Rulebook only."
   },
   {
-   "id": "F-glossary-0759",
+   "id": "F-glossary-0757",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "owner: The person or family that owns the franchise; top football executives such as the general manager report to the owner or chairman.",
@@ -19953,7 +19848,7 @@
    "notes": "Draft's 'hires top executives' only partly shown (GM hires head coach, BR)."
   },
   {
-   "id": "F-glossary-0760",
+   "id": "F-glossary-0758",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pad level: How low a player keeps his shoulder pads; staying low wins leverage and playing too upright loses it.",
@@ -20000,7 +19895,7 @@
    ]
   },
   {
-   "id": "F-glossary-0761",
+   "id": "F-glossary-0759",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Padded practice: A practice in which players are required to wear helmets and shoulder pads in addition to any other club-required gear; the CBA caps how many a club may hold.",
@@ -20030,7 +19925,7 @@
    "notes": "Merged the draft row 'Full pads'. Post-acclimation camp: max one padded practice per day, 2.5 on-field hours, no more than three in a row. Regular season: 14 (11 in first eleven weeks, 3 in the last six), one per week in the postseason. QB, kicker, punter, long snapper helmet/pad wear by choice does not make it a padded practice (Art. 23 Sec. 7(e))."
   },
   {
-   "id": "F-glossary-0762",
+   "id": "F-glossary-0760",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Palms: A split-field coverage from a Cover 2 look where the corner reads the number-two receiver's release and jumps the first outside route, with a safety deep over the top; also called 2-Trap.",
@@ -20087,7 +19982,7 @@
    "notes": "Draft said 'quarters rules'; sources describe a Cover 2 variant (trap) with the corner reading No. 2."
   },
   {
-   "id": "F-glossary-0764",
+   "id": "F-glossary-0762",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pancake block: A block that hits the defender so hard he is driven to the ground.",
@@ -20126,7 +20021,7 @@
    "notes": "Draft said 'puts defender on his back'; Under Armour says 'brings them to the ground'."
   },
   {
-   "id": "F-glossary-0767",
+   "id": "F-glossary-0765",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "pass defense: Defending against passing plays through coverage and pass rush.",
@@ -20165,7 +20060,7 @@
    "notes": "Generic phrase; no formal entry. Weak."
   },
   {
-   "id": "F-glossary-0769",
+   "id": "F-glossary-0767",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pass protection (running back): A back's ability to block rushers and pick up blitzes to protect the quarterback.",
@@ -20195,7 +20090,7 @@
    "notes": "Only a checklist mention found (Norris, in Ringer 2017). Single source, no definition sentence."
   },
   {
-   "id": "F-glossary-0770",
+   "id": "F-glossary-0768",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "pass rush: The defenders' effort to reach and pressure the quarterback on a pass play, usually by the four down linemen plus any blitzers.",
@@ -20242,7 +20137,7 @@
    "notes": "Generic term; no formal definition line."
   },
   {
-   "id": "F-glossary-0771",
+   "id": "F-glossary-0769",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "pass strength: The side of the formation with the most passing threats, where the defense adds a coverage player.",
@@ -20289,7 +20184,7 @@
    ]
   },
   {
-   "id": "F-glossary-0773",
+   "id": "F-glossary-0771",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Passing down: A down with enough yardage to go that the offense is expected to pass: second-and-7 or 8 and longer, or third or fourth down with 5 or more yards.",
@@ -20328,7 +20223,7 @@
    "notes": "Added; companion of Standard down."
   },
   {
-   "id": "F-glossary-0775",
+   "id": "F-glossary-0773",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "pattern match: A zone-looking coverage in which defenders switch to man-style responsibilities based on how the receivers' routes develop.",
@@ -20375,7 +20270,7 @@
    "notes": "Added."
   },
   {
-   "id": "F-glossary-0776",
+   "id": "F-glossary-0774",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Pavia ruling: A December 2024 federal preliminary injunction for former JUCO player Diego Pavia on how the NCAA counts non-NCAA seasons toward eligibility; the NCAA then gave a blanket extra year for 2025-26.",
@@ -20405,7 +20300,7 @@
    "notes": "Draft called it a court case; Wikipedia describes a preliminary injunction. Single publisher; flagged."
   },
   {
-   "id": "F-glossary-0778",
+   "id": "F-glossary-0776",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "pay-for-play: Paying athletes directly for playing or to recruit them; the NCAA long banned it, and revenue sharing since July 2025 lets schools pay players directly.",
@@ -20444,7 +20339,7 @@
    "notes": "Draft said 'partly allowed through revenue sharing'; CBS says direct pay for performance is allowed for opt-in schools."
   },
   {
-   "id": "F-glossary-0779",
+   "id": "F-glossary-0777",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "pedal: A defender moving backward with short, quick steps while keeping his eyes on the receiver or quarterback.",
@@ -20483,7 +20378,7 @@
    "notes": "One publisher (Bowen)."
   },
   {
-   "id": "F-glossary-0782",
+   "id": "F-glossary-0780",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "penetrate: To charge through a gap into the backfield with speed and quickness to disrupt the play, as the 3-technique and rush end do in a 4-3.",
@@ -20529,7 +20424,7 @@
    "notes": "Meaning by usage; no glossary line found."
   },
   {
-   "id": "F-glossary-0786",
+   "id": "F-glossary-0784",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Period extension: One extra untimed down given at the end of a period or half when the defense commits an accepted live-ball foul on the last play, among other cases.",
@@ -20559,7 +20454,7 @@
    "notes": "Rulebook only (WG has a navbox link 'Untimed play' but no definition read)."
   },
   {
-   "id": "F-glossary-0788",
+   "id": "F-glossary-0786",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Personnel grouping: A two-digit shorthand for the offense's skill players on the field: the first digit is the number of running backs and the second is the number of tight ends, with the rest of the five eligible spots being wide receivers.",
@@ -20616,7 +20511,7 @@
    "notes": "All four agree on the digit rule. Wide receivers are the remainder of the five eligibles (inferred from 10 personnel = four receivers in Steelers Depot)."
   },
   {
-   "id": "F-glossary-0789",
+   "id": "F-glossary-0787",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Pete Carroll defense: The 4-3 Under, Leo end and Cover 3 with a safety dropping near linebacker depth, put together by Pete Carroll and Dan Quinn at Seattle.",
@@ -20664,7 +20559,7 @@
    "notes": "Wikipedia credits Carroll and Quinn and the Kiffin 4-3 Under base."
   },
   {
-   "id": "F-glossary-0790",
+   "id": "F-glossary-0788",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Peter block: A nickname for a low (cut) block used in pass protection.",
@@ -20694,7 +20589,7 @@
    "notes": "NFL.com names it a nickname within its 'going low' discussion (after cut block) but does not define it; meaning inferred. Draft said 'meant to bring the rusher down'. Flag: single publisher, partly inferred."
   },
   {
-   "id": "F-glossary-0791",
+   "id": "F-glossary-0789",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Phase One: The first two weeks of the nine-week offseason program, limited to strength, conditioning and rehab with no helmets and only strength coaches allowed on the field.",
@@ -20733,7 +20628,7 @@
    "notes": "CBA allows a few exceptions to the dead-ball rule (QBs throwing uncovered, kickers/punters, returners, JUGGS machines). NFLPA page says 90 minutes max on the field and a 4-hour facility cap."
   },
   {
-   "id": "F-glossary-0792",
+   "id": "F-glossary-0790",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Phase Three: The final four weeks of the offseason program, when the ten OTA days (and the mandatory veteran minicamp) are held; helmets may be required but there is no live contact and no shells.",
@@ -20772,7 +20667,7 @@
    "notes": "Team offense vs. team defense is allowed in Phase Three provided no live contact occurs; one-on-one offense vs. defense drills are barred except simulated press coverage using hand placement outside the 10-yard line."
   },
   {
-   "id": "F-glossary-0793",
+   "id": "F-glossary-0791",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Phase Two: The next three weeks of the offseason program, when all coaches may be on the field for individual and perfect-play drills (offense or defense only), with no offense versus defense work.",
@@ -20811,7 +20706,7 @@
    "notes": "CBA permits offense-vs-offense and defense-vs-defense lineups of eleven or fewer at walkthrough pace (the 'Pro Bowl practice pace')."
   },
   {
-   "id": "F-glossary-0794",
+   "id": "F-glossary-0792",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Phone booth: An offensive lineman with below-average feet who is effective only in tight spaces.",
@@ -20841,7 +20736,7 @@
    "notes": "Single publisher (Mayock via NFL.com)."
   },
   {
-   "id": "F-glossary-0797",
+   "id": "F-glossary-0795",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pin and pull: An outside-zone technique where linemen pin a backside defender while the next backside lineman pulls around toward the second level.",
@@ -20871,7 +20766,7 @@
    "notes": "Only Wikipedia found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0798",
+   "id": "F-glossary-0796",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pistol: A short-shotgun formation: the quarterback lines up a few yards behind the center and the running back sits directly behind him.",
@@ -20919,7 +20814,7 @@
    "notes": "Sources disagree on depth: glossary and Spread offense say about three yards; Pistol offense says four yards (running back three yards behind him). Popularised by Chris Ault at Nevada. All Wikipedia: flag single publisher."
   },
   {
-   "id": "F-glossary-0799",
+   "id": "F-glossary-0797",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pitch: A toss from the quarterback to a trailing running back, as on an option play.",
@@ -20957,7 +20852,7 @@
    ]
   },
   {
-   "id": "F-glossary-0800",
+   "id": "F-glossary-0798",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Pivot route: A route where the receiver cuts, pivots and turns back the other way (the 'zig' or 'shark' route, similar to an out).",
@@ -20987,7 +20882,7 @@
    "notes": "Only Wikipedia found. Draft wording ('spins and continues the opposite way') is not confirmed. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0802",
+   "id": "F-glossary-0800",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Placekicker: The specialist who kicks field goals, extra points and kickoffs.",
@@ -21035,7 +20930,7 @@
    "notes": "Three publishers agree. Wikipedia notes some teams use a separate kickoff specialist."
   },
   {
-   "id": "F-glossary-0804",
+   "id": "F-glossary-0802",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Play action: A fake handoff to the running back before the quarterback passes, to draw defenders toward the run.",
@@ -21082,7 +20977,7 @@
    ]
   },
   {
-   "id": "F-glossary-0805",
+   "id": "F-glossary-0803",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Play-action protection (H2, F2): A play-action protection series where a back fakes into a gap while the other back and the line protect (H2/F2/F3 name which back fakes and which gap).",
@@ -21112,7 +21007,7 @@
    "notes": "Only one source found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0807",
+   "id": "F-glossary-0805",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Play speed: How fast a player looks in real game action compared with his timed speed (plays faster than his 40 time).",
@@ -21160,7 +21055,7 @@
    "notes": "Ringer 2017 ties play speed to processing: seeing things quickly makes a player look faster."
   },
   {
-   "id": "F-glossary-0815",
+   "id": "F-glossary-0813",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Plays until he hears glass break: A phrase for a player who keeps playing until the whistle.",
@@ -21190,7 +21085,7 @@
    "notes": "Single publisher (Draft Insiders)."
   },
   {
-   "id": "F-glossary-0816",
+   "id": "F-glossary-0814",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Playside and backside: Playside is the side a play is designed to go toward; backside is the opposite side.",
@@ -21229,7 +21124,7 @@
    "notes": "Neither source gives a one-line definition; the meaning is taken from how both use the pair (backside = away from the play, playside = where it goes). Flag: usage evidence only."
   },
   {
-   "id": "F-glossary-0817",
+   "id": "F-glossary-0815",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "plug: To close a gap, often a lineman holding it against a run while linebackers flow around him.",
@@ -21258,7 +21153,7 @@
    "notes": "One publisher, weak: usage not definition. Kept flagged."
   },
   {
-   "id": "F-glossary-0818",
+   "id": "F-glossary-0816",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "poach: A safety on the back side of a coverage helps on the front side.",
@@ -21288,7 +21183,7 @@
    "notes": "Single publisher."
   },
   {
-   "id": "F-glossary-0819",
+   "id": "F-glossary-0817",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "pocket: The area behind the offensive line created by pass blockers where the quarterback stands to throw.",
@@ -21344,7 +21239,7 @@
    ]
   },
   {
-   "id": "F-glossary-0821",
+   "id": "F-glossary-0819",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pocket presence: A quarterback's feel for pressure that lets him move within the pocket, step up or slide, and keep his eyes downfield.",
@@ -21400,7 +21295,7 @@
    ]
   },
   {
-   "id": "F-glossary-0822",
+   "id": "F-glossary-0820",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pocket protection: Pass blocking by the line, tight ends and backs that keeps rushers out of the pocket so the quarterback has time and space to throw.",
@@ -21446,7 +21341,7 @@
    ]
   },
   {
-   "id": "F-glossary-0823",
+   "id": "F-glossary-0821",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pocket (tackle box): The area behind the line between the two offensive tackles where the blockers shield the quarterback during a pass play.",
@@ -21502,7 +21397,7 @@
    "notes": "Wikipedia glossary separately defines tackle box as the area between the two offensive tackles before the snap."
   },
   {
-   "id": "F-glossary-0824",
+   "id": "F-glossary-0822",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Points per drive: Points scored divided by the number of drives.",
@@ -21541,7 +21436,7 @@
    "notes": "Two publishers; neither gives a formula sentence, only the stat's name and scope."
   },
   {
-   "id": "F-glossary-0825",
+   "id": "F-glossary-0823",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pooch kick: A kick, usually a kickoff, deliberately struck short and high or with less than full force so the return team cannot get a full return; some sources also use the word for a short punt.",
@@ -21589,7 +21484,7 @@
    "notes": "Sources disagree on scope: Under Armour limits it to kickoffs, Wikipedia says punt or kickoff, USA Football uses it for punts. See Pooch punt."
   },
   {
-   "id": "F-glossary-0826",
+   "id": "F-glossary-0824",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pooch punt: A punt deliberately kicked short and high or softly so the returner has little or no return, often to pin the opponent deep.",
@@ -21637,7 +21532,7 @@
    "notes": "Sources disagree: Wikipedia's punt article uses 'pooch punt' as another name for a quick kick; Game Haus describes a low line drive; USA Football describes a high, end-over-end kick. Draft said 'inside the 10', which no source stated. Treat as a short, soft punt meant to avoid a return."
   },
   {
-   "id": "F-glossary-0827",
+   "id": "F-glossary-0825",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "portal class: The group of transfer players a school adds during a transfer cycle.",
@@ -21667,7 +21562,7 @@
    "notes": "Single publisher; flagged."
   },
   {
-   "id": "F-glossary-0828",
+   "id": "F-glossary-0826",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "position coach: An assistant coach in charge of one position group, such as quarterbacks or defensive line.",
@@ -21705,7 +21600,7 @@
    ]
   },
   {
-   "id": "F-glossary-0830",
+   "id": "F-glossary-0828",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Post: A deep route in which the receiver runs up the field and breaks at about 45 degrees toward the goalposts in the middle of the field.",
@@ -21759,7 +21654,7 @@
    ]
   },
   {
-   "id": "F-glossary-0831",
+   "id": "F-glossary-0829",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Post-corner: A double move combining a post and a corner: the receiver fakes the post and then breaks to the corner.",
@@ -21789,7 +21684,7 @@
    "notes": "Single source; fake-then-break order is the standard reading of the name and is not spelled out in the retrieved quote."
   },
   {
-   "id": "F-glossary-0835",
+   "id": "F-glossary-0833",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Postgame press conference: The news conference a head coach must hold after every game.",
@@ -21819,7 +21714,7 @@
    "notes": "Single publisher."
   },
   {
-   "id": "F-glossary-0837",
+   "id": "F-glossary-0835",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "postseason ban: A sanction or consequence that bars a team from postseason play; low APR scores can cost a team postseason eligibility.",
@@ -21849,7 +21744,7 @@
    "notes": "Single publisher; sources read do not describe a standalone infractions-based ban. NCAA page says a postseason ban is 'not considered a penalty for poor academic performance'. Flagged, weakly sourced."
   },
   {
-   "id": "F-glossary-0838",
+   "id": "F-glossary-0836",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Power: A gap run featuring a single pulling offensive lineman from the backside of the play.",
@@ -21897,7 +21792,7 @@
    "notes": "Predetermined point of attack in the draft was not found in sources."
   },
   {
-   "id": "F-glossary-0839",
+   "id": "F-glossary-0837",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Power Four: The four most prominent FBS conferences: ACC, Big Ten, Big 12 and SEC (formerly the Power Five before the Pac-12 collapsed).",
@@ -21945,7 +21840,7 @@
    "notes": "Term not defined by the NCAA (Wikipedia). NCAA.com does not use the label itself."
   },
   {
-   "id": "F-glossary-0840",
+   "id": "F-glossary-0838",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Power success: The share of runs on third or fourth down with two or fewer yards to go that get a first down or touchdown.",
@@ -21984,7 +21879,7 @@
    "notes": "Both pages are college-data sources."
   },
   {
-   "id": "F-glossary-0841",
+   "id": "F-glossary-0839",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Practice limits: The CBA's caps on practice: padded-practice counts, on-field hours per day (for example three hours in the regular season) and required rest days.",
@@ -22023,7 +21918,7 @@
    "notes": "Offseason (Art. 21): 90 on-field minutes in Phases One/Two, two hours on OTA days. Camp (Art. 23): 2.5-hour padded practice, four on-field hours with two-a-days. NFLPA page 'Maximum 4 w/o per week' abbreviates workouts."
   },
   {
-   "id": "F-glossary-0844",
+   "id": "F-glossary-0842",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Practice viewing: The league's rule on how much of practice must be open to the media: at least the first 30 minutes (or until team work begins) on practice days, and all of training-camp practices.",
@@ -22053,7 +21948,7 @@
    "notes": "Single publisher (NFL policy via PFWA)."
   },
   {
-   "id": "F-glossary-0845",
+   "id": "F-glossary-0843",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "preferred walk-on: A non-scholarship player the program invites to join, who often has a clearer roster path than an ordinary walk-on.",
@@ -22083,7 +21978,7 @@
    "notes": "Only one publisher defined it among pages read; flagged. Alias 'PWO' is common usage but not seen in a source."
   },
   {
-   "id": "F-glossary-0846",
+   "id": "F-glossary-0844",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "president: The club executive over the business side: finances, marketing, ticket prices and similar; some teams combine president and CEO.",
@@ -22122,7 +22017,7 @@
    "notes": "Draft said 'and sometimes football operations'; not supported here. Both sources are club-level; Chiefs is an NFL property, BR is a separate publisher."
   },
   {
-   "id": "F-glossary-0847",
+   "id": "F-glossary-0845",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "press: A defender lines up on the receiver at the line to jam him and disrupt the route at the snap.",
@@ -22169,7 +22064,7 @@
    ]
   },
   {
-   "id": "F-glossary-0848",
+   "id": "F-glossary-0846",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Press box: The elevated media area of the stadium, where reporters and broadcasters work.",
@@ -22217,7 +22112,7 @@
    "notes": "Wikipedia adds that some coaches work from the press box."
   },
   {
-   "id": "F-glossary-0849",
+   "id": "F-glossary-0847",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Pressure rate: The share of a quarterback's dropbacks on which the defense hurries, hits or sacks him.",
@@ -22264,7 +22159,7 @@
    ]
   },
   {
-   "id": "F-glossary-0850",
+   "id": "F-glossary-0848",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "prevent defense: A deep zone defense, used to protect a lead late in a half or game, that gives up short gains to stop long ones.",
@@ -22339,7 +22234,7 @@
    "notes": "Absorbs draft row 'prevent'. | Other batch definition: A defensive alignment with five or more defensive backs playing deep to stop long passes and running the clock, used by a team protecting a lead or facing third-and-very-long."
   },
   {
-   "id": "F-glossary-0854",
+   "id": "F-glossary-0852",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Pro Bowl practice pace: The CBA's reference speed for walkthrough-style drills, defined by a video that the NFL and NFLPA jointly approved.",
@@ -22369,7 +22264,7 @@
    "notes": "The video itself is not in the CBA text."
   },
   {
-   "id": "F-glossary-0856",
+   "id": "F-glossary-0854",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "pro scout: A scout who evaluates players on other teams' rosters, used for trades and free agency.",
@@ -22408,7 +22303,7 @@
    "notes": "BR links pro scouts to the director of pro personnel; 'trades and free agency' is the draft's wording, only partly supported (free-agent contracts, BR)."
   },
   {
-   "id": "F-glossary-0857",
+   "id": "F-glossary-0855",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pro set: A formation with two running backs side by side two to three yards behind the quarterback.",
@@ -22438,7 +22333,7 @@
    "notes": "Only Wikipedia glossary found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0859",
+   "id": "F-glossary-0857",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "probation: A period of added monitoring and restrictions after an NCAA violation (here three years, with limits on visits and recruiting contacts).",
@@ -22476,7 +22371,7 @@
    ]
   },
   {
-   "id": "F-glossary-0860",
+   "id": "F-glossary-0858",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Processing: How quickly a player takes in what he sees, recognizes it and reacts; for quarterbacks it covers reading the defense before and after the snap.",
@@ -22523,7 +22418,7 @@
    ]
   },
   {
-   "id": "F-glossary-0861",
+   "id": "F-glossary-0859",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Production: What a player actually did in games (statistics and results), as opposed to physical traits and testing numbers.",
@@ -22580,7 +22475,7 @@
    "notes": "Defector uses 'productive' for an overachiever; PFF treats production as separate from athletic measurables."
   },
   {
-   "id": "F-glossary-0862",
+   "id": "F-glossary-0860",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "PROE: How much more (or less) often a team passes than a model expects for the situation.",
@@ -22619,7 +22514,7 @@
    "notes": "Weak: a glossary line plus a package listing that confirms the model exists."
   },
   {
-   "id": "F-glossary-0863",
+   "id": "F-glossary-0861",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Progression: The order in which the quarterback checks his receivers on a pass play.",
@@ -22667,7 +22562,7 @@
    "notes": "No source gives a one-line dictionary definition; meaning taken from use (Wikipedia: QB 'makes three reads'). Flag: usage-based."
   },
   {
-   "id": "F-glossary-0864",
+   "id": "F-glossary-0862",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Prohibited drills: Drills the CBA bans in padded practices: bull in the ring or king of the circle, the Oklahoma drill, OL-vs-DL in-line run blocking or board drills, and half line, pods and 3-spot drills.",
@@ -22697,7 +22592,7 @@
    "notes": "Art. 23 Sec. 7(f) defines each banned drill; the board and half-line drills are barred only in padded OL-vs-DL / offense-vs-defense work and may be run without pads at a walking or jogging pace."
   },
   {
-   "id": "F-glossary-0867",
+   "id": "F-glossary-0865",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pull block: A block by an offensive lineman who steps back out of the line and runs along it to block a defender, usually on a trap or sweep.",
@@ -22734,7 +22629,7 @@
    ]
   },
   {
-   "id": "F-glossary-0868",
+   "id": "F-glossary-0866",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Pump fake: A feint of a throw by the quarterback who keeps the ball, trying to fool the defense.",
@@ -22763,7 +22658,7 @@
    "notes": "Single source."
   },
   {
-   "id": "F-glossary-0869",
+   "id": "F-glossary-0867",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Punch: A lineman's quick strike with both hands into the opponent's chest to stop his charge or move him back.",
@@ -22810,7 +22705,7 @@
    ]
   },
   {
-   "id": "F-glossary-0871",
+   "id": "F-glossary-0869",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Punt coverage: The punting team's tackle-chasing unit after the kick, led by the gunners.",
@@ -22849,7 +22744,7 @@
    "notes": "Two publishers; CFBTrack's 'Coverage Team' is not punt-specific."
   },
   {
-   "id": "F-glossary-0872",
+   "id": "F-glossary-0870",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Punt protection: The blocking scheme that holds off the rush for the punter; the main types are spread (match-up zone) and shield.",
@@ -22897,7 +22792,7 @@
    "notes": "Draft alias 'punt block' was a different term and was removed."
   },
   {
-   "id": "F-glossary-0873",
+   "id": "F-glossary-0871",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Punt return: A runback after catching a punt.",
@@ -22936,7 +22831,7 @@
    "notes": "Two publishers."
   },
   {
-   "id": "F-glossary-0874",
+   "id": "F-glossary-0872",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Punter: The specialist who takes the snap and kicks the ball to the other team, usually on fourth down.",
@@ -22993,7 +22888,7 @@
    "notes": "Four publishers agree."
   },
   {
-   "id": "F-glossary-0878",
+   "id": "F-glossary-0876",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "quality control coach: An entry-level coach who analyzes game film for statistical breakdowns to prepare the team for upcoming opponents.",
@@ -23032,7 +22927,7 @@
    "notes": "Wikipedia is about the NFL career path; SMWW shows quality-control staff in college. Two publishers."
   },
   {
-   "id": "F-glossary-0879",
+   "id": "F-glossary-0877",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "quarter defense: A defensive package of three linemen, one linebacker and seven defensive backs.",
@@ -23071,7 +22966,7 @@
    "notes": "Only Wikipedia (two pages, one publisher) found. Wikipedia also says pro teams may lack the roster depth to use it and that wide receivers sometimes fill in. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0880",
+   "id": "F-glossary-0878",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Quarterback: The offensive player who takes the snap from the center and hands off, passes or runs the ball; the leader of the offense.",
@@ -23118,7 +23013,7 @@
    ]
   },
   {
-   "id": "F-glossary-0881",
+   "id": "F-glossary-0879",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "quarterback coach: An assistant who works with the quarterback's footwork, drop and throwing motion and watches his mental and physical habits.",
@@ -23157,7 +23052,7 @@
    "notes": "Rooney Rule text (NFL.com) lists quarterback coach among positions needing one candidate interview."
   },
   {
-   "id": "F-glossary-0882",
+   "id": "F-glossary-0880",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Quarterback sneak: A short-yardage play in which the quarterback takes the snap and immediately runs forward behind or beside the center.",
@@ -23204,7 +23099,7 @@
    ]
   },
   {
-   "id": "F-glossary-0884",
+   "id": "F-glossary-0882",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Quick game: Short, fast-developing throws such as slants and hitches released on one-, two- or three-step drops.",
@@ -23252,7 +23147,7 @@
    "notes": "No page defines 'quick game' directly; meaning is assembled from usage (flagged)."
   },
   {
-   "id": "F-glossary-0885",
+   "id": "F-glossary-0883",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Quick kick: A surprise punt from a regular offensive formation, often by the quarterback on an early down.",
@@ -23300,7 +23195,7 @@
    "notes": "The rulebook quote is from the roughing the kicker rule exceptions (12-2-12-c). 'by the quarterback' comes from Wikipedia's punt article (pooch punt, also known as a quick kick)."
   },
   {
-   "id": "F-glossary-0886",
+   "id": "F-glossary-0884",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Quicker than fast: A player who is sharp in short areas but lacks long-distance speed (the opposite is a straight-line runner).",
@@ -23357,7 +23252,7 @@
    "notes": "Draft Insiders gives a test: a short shuttle time faster than his 40 time minus 0.05 means quicker than fast."
   },
   {
-   "id": "F-glossary-0887",
+   "id": "F-glossary-0885",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "quiet period: A recruiting-calendar period when coaches may not meet recruits or parents face to face off the college campus and may not watch them compete; campus visits are where contact happens.",
@@ -23396,7 +23291,7 @@
    "notes": "ACTIVE lists the quiet period but does not define it. Two publishers."
   },
   {
-   "id": "F-glossary-0888",
+   "id": "F-glossary-0886",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Railroad track: A coaching image for zone blocking: picture a railroad track parallel to the running back's path.",
@@ -23426,7 +23321,7 @@
    "notes": "Single source with a partial quote; draft called it a drill, the page gives it as an imagery cue."
   },
   {
-   "id": "F-glossary-0889",
+   "id": "F-glossary-0887",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Reach block: A lineman makes contact and gets outside leverage to seal the defender inside.",
@@ -23456,7 +23351,7 @@
    "notes": "Only Steelers Depot found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0890",
+   "id": "F-glossary-0888",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Read and react: Reading the keys of a developing play, diagnosing it and reacting; also called keying and diagnosing.",
@@ -23495,7 +23390,7 @@
    "notes": "Absorbed the 'Key and diagnose' row."
   },
   {
-   "id": "F-glossary-0891",
+   "id": "F-glossary-0889",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Read key: The defender (often the end, or a linebacker/safety in an RPO) whose movement tells the quarterback whether to hand off, keep, pitch or throw.",
@@ -23525,7 +23420,7 @@
    "notes": "Only Wikipedia found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0892",
+   "id": "F-glossary-0890",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Read option: An option run where the quarterback reads a defender (the end on the side of the play) and either hands off or pulls the ball and runs.",
@@ -23563,7 +23458,7 @@
    "notes": "Wikipedia only (two pages)."
   },
   {
-   "id": "F-glossary-0893",
+   "id": "F-glossary-0891",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Read route: A route that changes depending on how the defender plays it (an option route).",
@@ -23602,7 +23497,7 @@
    "notes": "The sources call it an 'option route'; Wikipedia's American football plays article also describes it but I did not capture a verbatim line. Two publishers."
   },
   {
-   "id": "F-glossary-0895",
+   "id": "F-glossary-0893",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Receiving team's restraining line: The line the receiving team must be on or behind when the ball is kicked: its 35-yard line in the NFL dynamic kickoff, and 10 yards beyond the kicking team's line in the NCAA.",
@@ -23650,7 +23545,7 @@
    "notes": "Draft gave only the NFL position and no college level; the NCAA text puts the receivers' line 10 yards past the kicker's line."
   },
   {
-   "id": "F-glossary-0897",
+   "id": "F-glossary-0895",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Recovery speed: How quickly a defensive back closes back on the ball or receiver after falling behind.",
@@ -23688,7 +23583,7 @@
    ]
   },
   {
-   "id": "F-glossary-0898",
+   "id": "F-glossary-0896",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "recruiting class: The group of players a school signs or adds during one recruiting cycle.",
@@ -23718,7 +23613,7 @@
    "notes": "Draft term 'signing class' folded in as an alias. Single source; flagged."
   },
   {
-   "id": "F-glossary-0899",
+   "id": "F-glossary-0897",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "recruiting coordinator: The assistant coach a program tabs to run its recruiting; at major programs this work has moved to larger recruiting departments.",
@@ -23757,7 +23652,7 @@
    "notes": "Single source for the coordinator role proper; flagged."
   },
   {
-   "id": "F-glossary-0900",
+   "id": "F-glossary-0898",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "red dog: An old term for a linebacker rush that made six rushers against five blockers.",
@@ -23787,7 +23682,7 @@
    "notes": "Single publisher."
   },
   {
-   "id": "F-glossary-0903",
+   "id": "F-glossary-0901",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Red zone: The stretch of field from the defense's 20-yard line to its goal line, used mainly to track how well offenses finish drives.",
@@ -23853,7 +23748,7 @@
    "notes": "Wikipedia says the concept is used identically in NCAA and NFL football and is a statistical line, not a painted zone. Two draft rows with this term were merged."
   },
   {
-   "id": "F-glossary-0904",
+   "id": "F-glossary-0902",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Red zone efficiency: The share of a team's trips inside the 20 that end in a touchdown.",
@@ -23892,7 +23787,7 @@
    "notes": "Sumer's closest stat is 'Red Zone Conversion Rate' (not defined in the text read)."
   },
   {
-   "id": "F-glossary-0905",
+   "id": "F-glossary-0903",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "redshirt: A season in which a player practices with the team but plays little or not at all, so the season does not use up a year of eligibility; for NCAA Division I and II this concept is eliminated by the age-based model starting 2026-27 (historical).",
@@ -23940,7 +23835,7 @@
    "notes": "HISTORICAL for D-I/D-II from 2026-27: NCAA says athletics redshirt rules are eliminated; athletes with eligibility left after 2025-26 or first enrolling in 2026-27 may use old or new rules, whichever is better; enrolling fall 2027 or later: new rule only. Term still used for pre-2026 careers."
   },
   {
-   "id": "F-glossary-0908",
+   "id": "F-glossary-0906",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Relative Athletic Score: A 0 to 10 score of how a prospect's combine or pro day measurements compare with others at his position since 1987.",
@@ -23988,7 +23883,7 @@
    "notes": "Created by Kent Lee Platte. A player needs at least six recorded measurables to get a score (Steelers Depot). The draft's claim that 5.00 is average was not found and is removed."
   },
   {
-   "id": "F-glossary-0909",
+   "id": "F-glossary-0907",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Release package: How a receiver gets off the line of scrimmage, especially against press coverage; usually just called his release.",
@@ -24027,7 +23922,7 @@
    "notes": "The words 'release package' were not found; both sources just say 'release'."
   },
   {
-   "id": "F-glossary-0912",
+   "id": "F-glossary-0910",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Replacement level: The baseline of what a freely available bench-level player would produce, against which players are measured.",
@@ -24066,7 +23961,7 @@
    "notes": "Defined only inside the DYAR descriptions; no standalone glossary entry found."
   },
   {
-   "id": "F-glossary-0923",
+   "id": "F-glossary-0921",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Return team alignment on kickoff: The legal receiving formation: at least nine players in the setup zone (at least five on the 35-yard restraining line, six if more than nine are in the zone), at least three outside the inbounds line on each side, and up to two returners deeper in the landing zone.",
@@ -24114,7 +24009,7 @@
    "notes": "NFL.com (2024) says seven of the nine must be on the restraining line; the 2026 rulebook (rule 6-1-3, modified in 2026) says at least five. The 2026 rulebook supersedes. The two R quotes are from the same rulebook article."
   },
   {
-   "id": "F-glossary-0926",
+   "id": "F-glossary-0924",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Return to school: A college underclassman's decision not to declare and to play another college season.",
@@ -24144,7 +24039,7 @@
    "notes": "Single source, used there for the College Advisory Committee's 'stay in school' advice. NFL.com's eligibility post also refers to remaining eligibility being renounced."
   },
   {
-   "id": "F-glossary-0927",
+   "id": "F-glossary-0925",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "revenue sharing: Direct payments from schools to athletes, allowed since July 1, 2025 under the House settlement for schools that opt in, up to a per-school cap (about $20.5 million in 2025-26).",
@@ -24201,7 +24096,7 @@
    "notes": "Cap for 2026-27 stated as $21.6M only by Wikipedia (single source, unverified). Participation is optional (CBS, Dougherty). Players are not employees (CBS)."
   },
   {
-   "id": "F-glossary-0928",
+   "id": "F-glossary-0926",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Reverse: A play where a back carries toward one side, then hands or tosses to a teammate (usually a wide receiver) running the opposite way.",
@@ -24240,7 +24135,7 @@
    "notes": "Wikipedia distinguishes an end-around (direct handoff to a receiver)."
   },
   {
-   "id": "F-glossary-0932",
+   "id": "F-glossary-0930",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Rip/Liz: A Saban-originated Cover 3 match call: rip or liz tells which way the safety rotates (to the right or left), and the match rules handle the receivers, especially against four verticals.",
@@ -24288,7 +24183,7 @@
    "notes": "Draft had two rows: paired call words and 'one back checks ILB then OLB'. The second was not found in any source; dropped. Only one publisher beyond USA Football (Steelers Depot)."
   },
   {
-   "id": "F-glossary-0933",
+   "id": "F-glossary-0931",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "rip move: A pass-rush move where the rusher drives his inside arm up under the blocker's arm to win leverage.",
@@ -24326,7 +24221,7 @@
    ]
   },
   {
-   "id": "F-glossary-0934",
+   "id": "F-glossary-0932",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Road grader: A lineman who drives defenders off the ball in the running game.",
@@ -24365,7 +24260,7 @@
    "notes": "Mayock says any offensive lineman; Fox says guard or center."
   },
   {
-   "id": "F-glossary-0935",
+   "id": "F-glossary-0933",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "robber: A safety (sometimes a linebacker) who starts deep or shows another coverage, then drops into the underneath middle of the field in man-free coverage to undercut crossing, slant, in and dig routes.",
@@ -24422,7 +24317,7 @@
    "notes": "Draft said 'safety or linebacker'; the sources read describe a safety (ITP, Fantasy Points, 33rd Team)."
   },
   {
-   "id": "F-glossary-0936",
+   "id": "F-glossary-0934",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "roll: Changing the coverage after the snap from the look shown before it.",
@@ -24452,7 +24347,7 @@
    "notes": "Single publisher. The ITP page describes the rotation example only. Wikipedia glossary 'roll' hits were not about coverage."
   },
   {
-   "id": "F-glossary-0938",
+   "id": "F-glossary-0936",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Rookie football development program: The seven-week program after the draft, starting on or about May 16, in which rookies work out five days a week with limited on-field time and a per-day payment.",
@@ -24482,7 +24377,7 @@
    "notes": "CBA caps club activities at eight hours per day; no weekend activities except the post-Draft Rookie Minicamp."
   },
   {
-   "id": "F-glossary-0939",
+   "id": "F-glossary-0937",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Rookie minicamp: A single three-day minicamp held on the first or second weekend after the draft for rookies (plus a few invited first-year players and tryout veterans).",
@@ -24521,7 +24416,7 @@
    "notes": "Draft row said 'no limit': the CBA limits the post-Draft Rookie Minicamp to one three-day camp. The 'no limitation' language in Art. 22 Sec. 1 refers to minicamps held within the seven-week Rookie Football Development Program."
   },
   {
-   "id": "F-glossary-0944",
+   "id": "F-glossary-0942",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Rooney Rule: An NFL policy requiring clubs to interview at least two external candidates who are persons of color and/or women for head coach, GM and coordinator openings (and one for quarterback coach and senior executive jobs).",
@@ -24569,7 +24464,7 @@
    "notes": "NFL.com text (July 2026) is current; Wikipedia's wording is older and narrower. Adopted 2003 (NFL.com). The NFL operations page is one NFL publisher."
   },
   {
-   "id": "F-glossary-0946",
+   "id": "F-glossary-0944",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Roster cutdown: The deadline when each club must reduce its training-camp roster (90 players) to the 53-man regular-season limit.",
@@ -24617,7 +24512,7 @@
    "notes": "CBA Art. 25 Sec. 2 leaves the preseason cutdown dates and limits to the clubs; the 53 limit is the regular-season active/inactive cap (54 or 55 with practice-squad elevations)."
   },
   {
-   "id": "F-glossary-0948",
+   "id": "F-glossary-0946",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "roster limit: A cap on how many players a team may carry; for football the House settlement set 105 for schools that opt in, and each of those players may receive a scholarship.",
@@ -24665,7 +24560,7 @@
    "notes": "Applies to schools that opted into the House settlement; the 85-scholarship limit is the older model."
   },
   {
-   "id": "F-glossary-0949",
+   "id": "F-glossary-0947",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "rotation: Moving the safeties (and sometimes corners) before or after the snap so the coverage shell changes, often to disguise it.",
@@ -24712,7 +24607,7 @@
    "notes": "Absorbs 'spin' and 'spin the safeties' only as examples of rotation."
   },
   {
-   "id": "F-glossary-0954",
+   "id": "F-glossary-0952",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Route running: A receiver's skill at running precise routes, selling fakes and making sharp breaks to get open.",
@@ -24750,7 +24645,7 @@
    ]
   },
   {
-   "id": "F-glossary-0955",
+   "id": "F-glossary-0953",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Route tree: A numbering system that organizes a team's pass routes (for example flat 1, slant 2, comeback 3, curl 4, out 5, dig 6, corner 7, post 8, fade 9), also drawn as one diagram.",
@@ -24806,7 +24701,7 @@
    "notes": "Bleacher Report numbers flat=1 through fade=9; the Viqtory page contradicts itself on odd vs even numbers, so numbering is team-specific."
   },
   {
-   "id": "F-glossary-0956",
+   "id": "F-glossary-0954",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Rover: A hybrid safety-linebacker used near the line who has both defensive back and linebacker duties; the name is more common in college than the NFL.",
@@ -24854,7 +24749,7 @@
    "notes": "Other batch definition: A hybrid safety with dual duties as a defensive back and linebacker, more common in college."
   },
   {
-   "id": "F-glossary-0957",
+   "id": "F-glossary-0955",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Rugby punt: A punt kicked on the move after a running approach to the left or right, giving the punter control of direction.",
@@ -24884,7 +24779,7 @@
    "notes": "Only one publisher (Wikipedia). Thinly sourced."
   },
   {
-   "id": "F-glossary-0958",
+   "id": "F-glossary-0956",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Run and shoot: An offense that emphasizes receiver motion, splits receivers out, and has them choose routes by reading the defenders instead of following a fixed plan.",
@@ -24923,7 +24818,7 @@
    "notes": "Wikipedia only."
   },
   {
-   "id": "F-glossary-0959",
+   "id": "F-glossary-0957",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Run-pass option: A play in which the quarterback chooses to run or pass after the snap based on a read.",
@@ -24962,7 +24857,7 @@
    "notes": "Single source for the definition (the second quote is only context). Flagged."
   },
   {
-   "id": "F-glossary-0960",
+   "id": "F-glossary-0958",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "run strength: The side of the offensive formation where the tight end lines up (or that has the most blockers), toward which the defense sets its run strength.",
@@ -25001,7 +24896,7 @@
    "notes": "Two publishers."
   },
   {
-   "id": "F-glossary-0961",
+   "id": "F-glossary-0959",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Run support: A defensive back's or safety's willingness and ability to come up and help stop the run.",
@@ -25031,7 +24926,7 @@
    "notes": "Single publisher; the phrase 'run support' was not found verbatim, usage is 'coming up to play the run'."
   },
   {
-   "id": "F-glossary-0963",
+   "id": "F-glossary-0961",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Running back: An offensive player in the backfield who carries the ball, catches passes and blocks; the term covers halfbacks, tailbacks and fullbacks.",
@@ -25077,7 +24972,7 @@
    ]
   },
   {
-   "id": "F-glossary-0964",
+   "id": "F-glossary-0962",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Running back screen: A screen to a running back in the flat, built to let pass rushers through before the back catches the ball behind blockers.",
@@ -25123,7 +25018,7 @@
    ]
   },
   {
-   "id": "F-glossary-0966",
+   "id": "F-glossary-0964",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Running out the clock: Using simple plays that keep the game clock running (including quarterback kneels) late in a game, usually by the leading team, to end the game sooner and deny the opponent possessions.",
@@ -25171,7 +25066,7 @@
    "notes": "Both Wikipedia: flag single publisher. | Other batch definition: A leading team uses low-risk plays, mostly runs and kneels, to let the game clock expire."
   },
   {
-   "id": "F-glossary-0968",
+   "id": "F-glossary-0966",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Saban pattern-match coverage: Nick Saban's system of pattern-matching coverage, in which defenders use rules based on what routes do to decide whom to cover rather than only spot-dropping or playing straight man.",
@@ -25224,7 +25119,7 @@
    "notes": "Draft said 'Saban defense: 3-4 base and pattern-match quarters'. The pages read support the pattern-match coverage only; the 3-4 base is not confirmed for Saban here. Summary-only support; verify against Matchquarters/Smart Football before use."
   },
   {
-   "id": "F-glossary-0969",
+   "id": "F-glossary-0967",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "sack: A tackle of the quarterback behind the line of scrimmage before he throws.",
@@ -25280,7 +25175,7 @@
    ]
   },
   {
-   "id": "F-glossary-0970",
+   "id": "F-glossary-0968",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Sack rate: How often a quarterback's dropbacks end in a sack.",
@@ -25319,7 +25214,7 @@
    "notes": "Weak: the Wikipedia quote supports sacks but not the rate. PFF's 'sack percentage' (sacks while under pressure) is a different stat."
   },
   {
-   "id": "F-glossary-0972",
+   "id": "F-glossary-0970",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "safety blitz: A blitz in which a safety, usually the free safety, rushes the passer.",
@@ -25349,7 +25244,7 @@
    "notes": "Single publisher."
   },
   {
-   "id": "F-glossary-0974",
+   "id": "F-glossary-0972",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Sail concept: A three-level passing concept that overloads one side of the defense with a deep, an intermediate and a short route.",
@@ -25396,7 +25291,7 @@
    ]
   },
   {
-   "id": "F-glossary-0977",
+   "id": "F-glossary-0975",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Sam: The strong-side linebacker, who lines up on the tight end's side and has to handle the tight end and edge run plays.",
@@ -25452,7 +25347,7 @@
    ]
   },
   {
-   "id": "F-glossary-0978",
+   "id": "F-glossary-0976",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Scat protection: A protection call that releases a back to run a route right off the snap with no blocking duty.",
@@ -25482,7 +25377,7 @@
    "notes": "Draft said 'adjacent lineman double-reads the linebackers', not in the quote I read; removed. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0979",
+   "id": "F-glossary-0977",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Scheme fit: How well a player's skills match the blocking, coverage or other system a particular team runs.",
@@ -25521,7 +25416,7 @@
    "notes": "Only Bleacher Report (two articles) gives the usage; Ringer 2017 also stresses scheme context when watching tape. Single publisher."
   },
   {
-   "id": "F-glossary-0980",
+   "id": "F-glossary-0978",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "scholarship: Financial aid from a school to an athlete for playing a sport; under the House roster-limit model, every player inside a team's roster cap may receive one.",
@@ -25569,7 +25464,7 @@
    "notes": "Draft alias 'grant-in-aid' not found in any page read, removed. 85-scholarship cap applied before July 1, 2025 and still applies to schools that did not opt into the House settlement (inference from CBS: limits removed 'for schools that opt in')."
   },
   {
-   "id": "F-glossary-0981",
+   "id": "F-glossary-0979",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "scout team: Practice players who simulate the upcoming opponent's schemes for the starting offense or defense.",
@@ -25599,7 +25494,7 @@
    "notes": "Single publisher; flagged. Likely also an NFL practice term (not verified)."
   },
   {
-   "id": "F-glossary-0982",
+   "id": "F-glossary-0980",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "scouting director: The head of a club's scouting department, who reviews the area scouts' weekly reports and sets prospect grades.",
@@ -25638,7 +25533,7 @@
    "notes": "Many clubs use 'director of college scouting' for the same job; draft term 'director of scouting' revised to ESPN's usage."
   },
   {
-   "id": "F-glossary-0983",
+   "id": "F-glossary-0981",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Scramble: A quarterback running out of the pocket on a called pass play to avoid a sack, buy time or gain yards.",
@@ -25685,7 +25580,7 @@
    ]
   },
   {
-   "id": "F-glossary-0984",
+   "id": "F-glossary-0982",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Screen pass: A short forward pass to a receiver, usually a running back, who has blockers set up in front of him.",
@@ -25741,7 +25636,7 @@
    ]
   },
   {
-   "id": "F-glossary-0985",
+   "id": "F-glossary-0983",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Scrimmage: A practice-style game in which teams, or units of one team, run many of the plays of a game without keeping a formal score.",
@@ -25780,7 +25675,7 @@
    "notes": "Both sources are Wikipedia (one publisher). 'Scrimmage' also forms 'line of scrimmage' (different sense)."
   },
   {
-   "id": "F-glossary-0990",
+   "id": "F-glossary-0988",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Scripted plays: A pre-planned list of opening plays (Bill Walsh scripted about the first 15) practised in advance.",
@@ -25810,7 +25705,7 @@
    "notes": "Only Wikipedia found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-0991",
+   "id": "F-glossary-0989",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "seam: The vertical lane between the hashes (and the zone defenders), where vertical routes up the middle run; a defender 'runs the seam' to carry it.",
@@ -25849,7 +25744,7 @@
    "notes": "Draft said 'gap between linebackers and safeties/corners'; sources describe the vertical lane/route."
   },
   {
-   "id": "F-glossary-0992",
+   "id": "F-glossary-0990",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Seam route: A vertical route run up the middle of the field, between the areas covered by two defenders, to exploit the open space.",
@@ -25896,7 +25791,7 @@
    "notes": "Bleacher Report names the seam only in a list of slot routes; Viqtory conflates seam with fade."
   },
   {
-   "id": "F-glossary-0993",
+   "id": "F-glossary-0991",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Season-ending press conference: The news conference every club must hold during the week after its season ends, preceded by an open locker room the day after the final game.",
@@ -25926,7 +25821,7 @@
    "notes": "Single publisher."
   },
   {
-   "id": "F-glossary-0994",
+   "id": "F-glossary-0992",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Seattle Cover 3: A Cover 3 with a safety dropping to about linebacker depth, putting eight defenders near the line.",
@@ -25974,7 +25869,7 @@
    "notes": "Overlaps Pete Carroll defense."
   },
   {
-   "id": "F-glossary-0995",
+   "id": "F-glossary-0993",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Second and long: Second down with a lot of yardage still needed for the line to gain; analytics sources set the cutoff at 7 or 8 yards.",
@@ -26013,7 +25908,7 @@
    "notes": "No source defines 'second and long' as a phrase; the thresholds come from the two analytics definitions of passing downs, which disagree by one yard. No coaching source with a fixed number found."
   },
   {
-   "id": "F-glossary-0996",
+   "id": "F-glossary-0994",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Second and short: Second down needing only a few yards; analytics sources class second down as a standard down when seven or fewer yards remain.",
@@ -26052,7 +25947,7 @@
    "notes": "No source defines 'short' for second down. Thresholds above are the standard-down cutoffs from analytics glossaries (seven or fewer per Football Study Hall; College Football Data's passing-down line is eight or more). Weakly sourced."
   },
   {
-   "id": "F-glossary-0997",
+   "id": "F-glossary-0995",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Second level: The area behind the defensive line where the linebackers play; blockers climb to it.",
@@ -26091,7 +25986,7 @@
    "notes": "PFF uses the term without defining it."
   },
   {
-   "id": "F-glossary-0998",
+   "id": "F-glossary-0996",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Second-level yards: Rushing yards gained between 5 and 10 yards past the line of scrimmage.",
@@ -26121,7 +26016,7 @@
    "notes": "Single source."
   },
   {
-   "id": "F-glossary-1001",
+   "id": "F-glossary-0999",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "secondary: The defensive backs as a group, the cornerbacks and safeties, mainly responsible for pass coverage.",
@@ -26175,7 +26070,7 @@
    ]
   },
   {
-   "id": "F-glossary-1002",
+   "id": "F-glossary-1000",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "secondary coach: The assistant who coaches the defensive backs (cornerbacks and safeties) on pass coverage.",
@@ -26213,7 +26108,7 @@
    ]
   },
   {
-   "id": "F-glossary-1004",
+   "id": "F-glossary-1002",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Separation: The space a receiver gets between himself and the defender covering him.",
@@ -26260,7 +26155,7 @@
    ]
   },
   {
-   "id": "F-glossary-1005",
+   "id": "F-glossary-1003",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Series: The four consecutive downs an offense gets to reach the line to gain, starting at first down.",
@@ -26308,7 +26203,7 @@
    "notes": "Added. Under Rule 7-3 a new series is awarded after a first down, a change of possession and some kicks."
   },
   {
-   "id": "F-glossary-1006",
+   "id": "F-glossary-1004",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Series number (West Coast): A number that names a West Coast pass-protection series; the 100 series is the three-step drop.",
@@ -26338,7 +26233,7 @@
    "notes": "Draft claimed the first digit sets backfield action and the second refines it; only the series idea and the 100-series example are in the quotes. Flag: single publisher, partial."
   },
   {
-   "id": "F-glossary-1008",
+   "id": "F-glossary-1006",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Set: The requirement that all offensive players be motionless in position for at least one second before the snap (and after any shift).",
@@ -26386,7 +26281,7 @@
    "notes": "Quarterback often calls 'set' before the snap count (Wikipedia)."
   },
   {
-   "id": "F-glossary-1009",
+   "id": "F-glossary-1007",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "set the edge: To hold outside leverage against the blocker so the runner cannot get outside the tackle and is funneled back inside.",
@@ -26425,7 +26320,7 @@
    "notes": "Draft said 'hold the outside shoulder'; Inside the Pylon says maintain outside leverage."
   },
   {
-   "id": "F-glossary-1010",
+   "id": "F-glossary-1008",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Setup zone: The 5-yard strip between the receiving team's 35 and 30-yard lines in which at least nine receiving players must line up on a kickoff or safety kick.",
@@ -26473,7 +26368,7 @@
    "notes": "Draft was right. Players in the zone may not move until the ball touches the ground or a player in the landing zone or end zone."
   },
   {
-   "id": "F-glossary-1012",
+   "id": "F-glossary-1010",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "shade: Lining up on one shoulder of a blocker instead of head-up.",
@@ -26520,7 +26415,7 @@
    ]
   },
   {
-   "id": "F-glossary-1013",
+   "id": "F-glossary-1011",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Shallow cross: A short crossing route that stays within a few yards of the line of scrimmage and runs across the formation under deeper routes.",
@@ -26567,7 +26462,7 @@
    "notes": "Bleacher Report calls the shallow crosser the shallow drive; Wikipedia lists the similar drag route."
   },
   {
-   "id": "F-glossary-1014",
+   "id": "F-glossary-1012",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Shells: A ramp-up practice level in which players wear helmets and light shoulder pads (spiders) but not full pads, permitted on days four and five of camp.",
@@ -26597,7 +26492,7 @@
    "notes": "CBA does not describe the gear itself. Caution: 'shell' also means a coverage shell in defensive scheme (domain: defense), a different sense."
   },
   {
-   "id": "F-glossary-1015",
+   "id": "F-glossary-1013",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Shield punt: A punt formation with the linemen split wide (about 2 to 4 yards) and a wall of three blockers, the shield, standing about six yards behind them to block rushers who get through.",
@@ -26636,7 +26531,7 @@
    "notes": "Merged the draft's 'Shield (punt)' row. Two publishers; the AFCA mention is only incidental. Inside the Pylon (2015) says the shield punt is allowed only in college football because of the downfield-lineman rule difference; I did not verify that against the 2026 rulebooks."
   },
   {
-   "id": "F-glossary-1016",
+   "id": "F-glossary-1014",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Shift: A simultaneous change of position or stance by two or more offensive players after the ball is ready for play and before the snap; all shifting players must then come to a complete stop.",
@@ -26693,7 +26588,7 @@
    "notes": "Merged from 'Shift' and 'shift'. In both rulebooks a shift is two or more players; a single player moving is motion."
   },
   {
-   "id": "F-glossary-1017",
+   "id": "F-glossary-1015",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "shoot the gap: A defender charging into a gap at the snap.",
@@ -26739,7 +26634,7 @@
    "notes": "Wikipedia glossary has a 'Shoot the gap' entry defined as a linebacker or defensive back blitzing; PFF uses it for a lineman attacking a gap. The senses differ slightly."
   },
   {
-   "id": "F-glossary-1018",
+   "id": "F-glossary-1016",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Short-area quickness: How fast a player can accelerate and change direction in a few yards, which matters more for linemen and slot players than 40-yard speed.",
@@ -26786,7 +26681,7 @@
    ]
   },
   {
-   "id": "F-glossary-1019",
+   "id": "F-glossary-1017",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Short yardage: A down where only a yard or two is needed for a first down or touchdown, usually met with power runs.",
@@ -26834,7 +26729,7 @@
    "notes": "Two or fewer yards is the analytics cutoff (power success); the glossary only says short yardage and goal-line situations use four-point stances. Football Outsiders 'methods' page cited in the draft was not opened."
   },
   {
-   "id": "F-glossary-1020",
+   "id": "F-glossary-1018",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Shotgun: A formation in which the quarterback takes the snap standing several yards behind the center rather than directly behind him.",
@@ -26889,7 +26784,7 @@
    "notes": "Merged the two draft rows. NFL rule 7-4-2 Item 4 lets the shotgun receiver shift his feet before the snap (but not abruptly)."
   },
   {
-   "id": "F-glossary-1021",
+   "id": "F-glossary-1019",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Shovel pass: A short forward pass in which the quarterback palms the ball and shovels it directly forward to the receiver.",
@@ -26919,7 +26814,7 @@
    "notes": "Single source."
   },
   {
-   "id": "F-glossary-1022",
+   "id": "F-glossary-1020",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "show-cause penalty: An NCAA sanction on an individual (usually a coach or staffer) that bars him from working in college athletics until the order expires.",
@@ -26958,7 +26853,7 @@
    "notes": "Draft said it 'limits employment at other schools'; sources say it bars work in college athletics for its length (here 3, 5 and 6 years)."
   },
   {
-   "id": "F-glossary-1026",
+   "id": "F-glossary-1024",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Sideline Viewing System: The NFL's team-sideline system (now Microsoft Surface PCs) that lets coaches and players review plays and data instead of the old paper photos.",
@@ -26988,7 +26883,7 @@
    "notes": "Merged the draft rows 'Sideline tablet' and 'Sideline still photos'. Single publisher (Microsoft, quoting NFL staff). The brief expected more tablet pages; none were saved."
   },
   {
-   "id": "F-glossary-1027",
+   "id": "F-glossary-1025",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Signals: The numbers and coded words called by the quarterback in the huddle or at the line of scrimmage before each play; defenses call them too, usually through a linebacker.",
@@ -27018,7 +26913,7 @@
    "notes": "Draft meaning (hand signals from the sideline) is not supported by anything opened: the NFL entry describes quarterback and defender calls. No hand-signal source found. Single source."
   },
   {
-   "id": "F-glossary-1031",
+   "id": "F-glossary-1029",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "silent commit: A recruit who has privately committed to a school but has not announced it publicly.",
@@ -27057,7 +26952,7 @@
    "notes": "Second source only names the phrase."
   },
   {
-   "id": "F-glossary-1034",
+   "id": "F-glossary-1032",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "single-high: A shell with one safety deep in the middle of the field, as in Cover 1 and Cover 3.",
@@ -27104,7 +26999,7 @@
    "notes": "Used consistently across pages; no glossary line."
   },
   {
-   "id": "F-glossary-1035",
+   "id": "F-glossary-1033",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Single wing: An older formation with an unbalanced line, a direct snap to a back deep in the formation, and a wingback.",
@@ -27143,7 +27038,7 @@
    "notes": "Wikipedia also calls it a precursor of the shotgun and notes the unbalanced line had two linemen one side of the center and four on the other. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1036",
+   "id": "F-glossary-1034",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Six-foot white border: The solid white band six feet wide around the field; only officials may stand inside it while play is on.",
@@ -27173,7 +27068,7 @@
    "notes": "Rulebook only."
   },
   {
-   "id": "F-glossary-1038",
+   "id": "F-glossary-1036",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Skinny post: A shorter, tighter post where the receiver cuts toward the middle at a shallower angle.",
@@ -27203,7 +27098,7 @@
    "notes": "Only Wikipedia found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1039",
+   "id": "F-glossary-1037",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Skip pull: An advanced pulling technique that needs difficult footwork.",
@@ -27233,7 +27128,7 @@
    "notes": "Only NFL.com found; the draft's 'crossed footwork' is not in the quote. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1040",
+   "id": "F-glossary-1038",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Sky kick: A high kickoff meant to limit return yardage by forcing a shorter return.",
@@ -27263,7 +27158,7 @@
    "notes": "Only one publisher found (CFBTrack). 'Mortar kick' alias from the draft not found in any source and removed. Thinly sourced."
   },
   {
-   "id": "F-glossary-1041",
+   "id": "F-glossary-1039",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Slant: A quick inside-breaking route: a receiver takes a few steps upfield then cuts across the field at about 45 degrees.",
@@ -27311,7 +27206,7 @@
    "notes": "Offense term; included because the batch carried it."
   },
   {
-   "id": "F-glossary-1042",
+   "id": "F-glossary-1040",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Sleeper: A prospect who is expected to be picked later than his ability deserves, or who gets little attention but may outplay his draft slot.",
@@ -27350,7 +27245,7 @@
    "notes": "CBS labels its later-round, trait-leading picks 'Sleeper'; ESPN/Football Outsiders uses 'sleepers' for low-rated backs its metric likes. Both fit the definition but neither gives a one-line definition."
   },
   {
-   "id": "F-glossary-1043",
+   "id": "F-glossary-1041",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Slide protection: A pass protection where linemen slide laterally to a called side while the others block the remaining rushers.",
@@ -27389,7 +27284,7 @@
    "notes": "Two publishers."
   },
   {
-   "id": "F-glossary-1044",
+   "id": "F-glossary-1042",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "slot: The area between the split end and the rest of the offensive line, or the receiver aligned there; defenses cover it with a nickel or slot corner.",
@@ -27436,7 +27331,7 @@
    "notes": "Offensive alignment; kept because defenders are described relative to it. Mostly one real definition."
   },
   {
-   "id": "F-glossary-1045",
+   "id": "F-glossary-1043",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Slot receiver: A receiver who lines up in the slot, between the split end and the rest of the offensive line, usually a step off the line.",
@@ -27474,7 +27369,7 @@
    "notes": "'Usually off the line' is not stated in the glossary; Wikipedia's formation page says wide receivers behind the line are slot receivers if between the ends."
   },
   {
-   "id": "F-glossary-1046",
+   "id": "F-glossary-1044",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Sluggo: A route in which the receiver runs a slant and then turns upfield on a go; the name is a compression of 'slant and go'.",
@@ -27504,7 +27399,7 @@
    "notes": "Single source for the meaning; Wikipedia formation page also lists Sluggo among routes."
   },
   {
-   "id": "F-glossary-1047",
+   "id": "F-glossary-1045",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Smash: A pass concept designed to stress the cornerback in Cover 2, built on a short route with a corner route above it.",
@@ -27552,7 +27447,7 @@
    "notes": "Only Steelers Depot names smash and its purpose. The 'hitch plus corner' structure is the usual definition but I did not capture a quote for it, so the definition states only the purpose. Flag: weak."
   },
   {
-   "id": "F-glossary-1048",
+   "id": "F-glossary-1046",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Smashmouth offense: A run-heavy offensive strategy that relies on a strong running game.",
@@ -27582,7 +27477,7 @@
    "notes": "Only Wikipedia glossary found. Draft's 'handoffs to fullback or tailback' not verified; removed. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1049",
+   "id": "F-glossary-1047",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Snap: The backward pass from the center that puts the ball in play and starts a scrimmage down.",
@@ -27639,7 +27534,7 @@
    "notes": "Merged from 'Snap' and 'snap'. NFL rule says the snap need not be between the legs but must be one quick continuous motion."
   },
   {
-   "id": "F-glossary-1050",
+   "id": "F-glossary-1048",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Snap count (playing time): The number of plays a player is on the field, counted as snaps; contracts and rules use percentages of a team's snaps.",
@@ -27669,7 +27564,7 @@
    "notes": "Single source (NFL.com free agency glossary uses the snaps measure for proven performance escalators). No page read defines the term in a sentence."
   },
   {
-   "id": "F-glossary-1051",
+   "id": "F-glossary-1049",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Snap count (signal): The signal or cadence the quarterback uses to tell the line when the ball will be snapped, often varied to draw the defense offside.",
@@ -27716,7 +27611,7 @@
    "notes": "Draft row 1. A separate playing-time sense is the next row."
   },
   {
-   "id": "F-glossary-1053",
+   "id": "F-glossary-1051",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "soft commit: A recruit who has committed to a school but is still considering or visiting other schools.",
@@ -27754,7 +27649,7 @@
    ]
   },
   {
-   "id": "F-glossary-1054",
+   "id": "F-glossary-1052",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Space player: A skill player who excels in open areas through speed and athleticism.",
@@ -27784,7 +27679,7 @@
    "notes": "Single publisher (Mayock via NFL.com)."
   },
   {
-   "id": "F-glossary-1056",
+   "id": "F-glossary-1054",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Special eligibility: League approval for a player who is not yet draft-eligible under the normal rule, such as an underclassman petitioning to enter; the player must meet the three-year rule and give up his college eligibility.",
@@ -27823,7 +27718,7 @@
    "notes": "NFL.com and NFL Operations are one publisher (NFL)."
   },
   {
-   "id": "F-glossary-1057",
+   "id": "F-glossary-1055",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Special teams: The units on the field for kickoffs, punts, free kicks and field goal attempts, and their returns.",
@@ -27871,7 +27766,7 @@
    "notes": "Draft alias 'teams' dropped as too generic. 'Third phase' is used by Steelers Depot ('third phase')."
   },
   {
-   "id": "F-glossary-1058",
+   "id": "F-glossary-1056",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Special teams ace: A roster player whose main value is on special teams, especially as a gunner or on coverage units.",
@@ -27919,7 +27814,7 @@
    "notes": "Renamed from 'Core special teams player', which no source used; 'Special Teams Ace' is PFF's wording."
   },
   {
-   "id": "F-glossary-1059",
+   "id": "F-glossary-1057",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "special teams coordinator: The assistant coach in charge of the kicking game: kickers, punters, long snappers, returners and the coverage and return units.",
@@ -27958,7 +27853,7 @@
    "notes": "Wikipedia: special teams units usually have no separate position coaches, so the STC coaches the specialists directly."
   },
   {
-   "id": "F-glossary-1060",
+   "id": "F-glossary-1058",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Speed out: A short, quick out route in which the receiver breaks toward the sideline right after a short stem.",
@@ -27997,7 +27892,7 @@
    "notes": "Wikipedia sentence is ambiguous about which route it refers to; definition leans on the Throw Deep quick out page. Flagged."
   },
   {
-   "id": "F-glossary-1061",
+   "id": "F-glossary-1059",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Speed score: A metric for running backs that scales 40-yard time by weight, using (weight x 200) / (40 time to the fourth power); a heavy back with a fast time scores high.",
@@ -28036,7 +27931,7 @@
    "notes": "Created by Football Outsiders (Aaron Schatz). The average back who makes the NFL scores about 100 (ESPN)."
   },
   {
-   "id": "F-glossary-1062",
+   "id": "F-glossary-1060",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Spiders: Lighter shoulder pads that clubs may wear with helmets in shell practices during the later acclimation days.",
@@ -28066,7 +27961,7 @@
    "notes": "CBA names spiders and shells but does not describe the gear; the description rests on the draft and needs an outside source (see Shells). Flag low confidence until a second publisher is added."
   },
   {
-   "id": "F-glossary-1063",
+   "id": "F-glossary-1061",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Spike: The quarterback immediately throws the ball into the ground after the snap to stop the clock, at the cost of a down.",
@@ -28148,7 +28043,7 @@
    "notes": "Merged three draft rows. Both rulebooks allow the spike only when immediate; a delayed spike is intentional grounding (NFL 8-2-1 Item 4, NCAA 7-3-2-f). | Other batch definition: The quarterback throws the ball into the ground right after the snap to stop the clock, giving up a down."
   },
   {
-   "id": "F-glossary-1064",
+   "id": "F-glossary-1062",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "spill: To force a runner outside, toward pursuit help, instead of letting him cut up inside.",
@@ -28178,7 +28073,7 @@
    "notes": "One publisher found."
   },
   {
-   "id": "F-glossary-1065",
+   "id": "F-glossary-1063",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "spin: A rotation where a safety spins down toward the line or flat after the snap while the other safety or a corner takes the deep area.",
@@ -28208,7 +28103,7 @@
    "notes": "One publisher (Weekly Spiral, Saban's Tuff). Absorbs draft row 'spin the safeties'."
   },
   {
-   "id": "F-glossary-1066",
+   "id": "F-glossary-1064",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "spin move: A pass-rush move where the rusher turns a full circle past the blocker.",
@@ -28246,7 +28141,7 @@
    ]
   },
   {
-   "id": "F-glossary-1068",
+   "id": "F-glossary-1066",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Split end: A receiver who lines up on the line of scrimmage, several yards outside the interior offensive linemen.",
@@ -28294,7 +28189,7 @@
    "notes": "Wikipedia says the term is now rarely used and replaced by wide receiver."
   },
   {
-   "id": "F-glossary-1069",
+   "id": "F-glossary-1067",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Split-T: A T-formation variant in which the gaps between guards and tackles are about twice as wide as those between the center and guards.",
@@ -28332,7 +28227,7 @@
    "notes": "Wikipedia only."
   },
   {
-   "id": "F-glossary-1070",
+   "id": "F-glossary-1068",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Spot concept: A pass combination of a curl and a flat route, often with a corner route added.",
@@ -28370,7 +28265,7 @@
    ]
   },
   {
-   "id": "F-glossary-1075",
+   "id": "F-glossary-1073",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Spread offense: An offense that uses the shotgun and several receivers to spread the defense across the width of the field.",
@@ -28409,7 +28304,7 @@
    "notes": "Both Wikipedia: flag single publisher."
   },
   {
-   "id": "F-glossary-1076",
+   "id": "F-glossary-1074",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Spread punt: The standard punt formation, with the line in tight splits like a normal offensive line, wings, wide gunners and a personal protector deep, protecting with match-up zone rules.",
@@ -28466,7 +28361,7 @@
    "notes": "Draft said a line split wide for gunners; sources say the opposite: the spread punt is the tight-splits formation and the shield punt has the wide splits."
   },
   {
-   "id": "F-glossary-1077",
+   "id": "F-glossary-1075",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "spy: A defender who neither rushes nor drops into a normal zone, but watches and mirrors a mobile quarterback to stop scrambles.",
@@ -28522,7 +28417,7 @@
    "notes": "Absorbs the draft row 'quarterback spy'."
   },
   {
-   "id": "F-glossary-1079",
+   "id": "F-glossary-1077",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Square out: A hard 90-degree break to the sideline from a vertical stem, about 10 to 12 yards deep.",
@@ -28561,7 +28456,7 @@
    "notes": "Two publishers; vIQtory's text is for the 'out' route."
   },
   {
-   "id": "F-glossary-1080",
+   "id": "F-glossary-1078",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Squib kick: A low kickoff that bounces along the ground, used to keep the ball away from a dangerous returner and shorten the return.",
@@ -28627,7 +28522,7 @@
    "notes": "Five publishers agree. Under the NFL dynamic kickoff a kick that lands in front of the landing zone is penalised, so squibs are much less usable in the NFL now."
   },
   {
-   "id": "F-glossary-1081",
+   "id": "F-glossary-1079",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Stack: A look where linebackers line up behind the down linemen; Bowen names the 4-3 Over linebacker look 'tan-zero-tan' (tackle, zero technique, tackle).",
@@ -28657,7 +28552,7 @@
    "notes": "One publisher; the exact meaning of 'stack' varies by system. Flagged."
   },
   {
-   "id": "F-glossary-1082",
+   "id": "F-glossary-1080",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "stand-up end: A defensive end or rush linebacker who plays from a standing two-point stance; Wikipedia's Defensive end page also uses the term for the traditional containment-style end who waits rather than crashes inside.",
@@ -28703,7 +28598,7 @@
    "notes": "Two meanings in sources: the two-point-stance meaning (Bowen, Wikipedia Linebacker) and the containment-style end (Wikipedia Defensive end). Draft only had the second."
   },
   {
-   "id": "F-glossary-1083",
+   "id": "F-glossary-1081",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Standard down: A down where the distance is manageable (first down, or second-and-7 or fewer, third-and-4 or fewer) so the offense may run or pass.",
@@ -28742,7 +28637,7 @@
    "notes": "Thresholds differ by one yard on second down between the two sources."
   },
   {
-   "id": "F-glossary-1084",
+   "id": "F-glossary-1082",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "star: Saban's name for the nickel (fifth DB) slot hybrid, a cornerback-sized slot defender who also plays the run.",
@@ -28805,7 +28700,7 @@
    "notes": "Added. | Other batch definition: The college name for the nickel/slot defender, a hybrid whose job is to cover the slot and support the run, in Saban-style defenses tied to the passing strength."
   },
   {
-   "id": "F-glossary-1085",
+   "id": "F-glossary-1083",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "star rating: A recruiting service's grade that groups prospects into levels such as five-star, four-star and three-star.",
@@ -28844,7 +28739,7 @@
    "notes": "Each service uses its own method. Draft said 'one-to-five'; On3/Rivals page shows 2 to 5 in use. Two publishers."
   },
   {
-   "id": "F-glossary-1086",
+   "id": "F-glossary-1084",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Stem: The first part of a route before the break, usually a vertical push that sets up the cut and the defender's leverage.",
@@ -28874,7 +28769,7 @@
    "notes": "Single source usage; no page gives a stand-alone definition, wording inferred from how the Bleacher Report route-tree article uses stem and break."
   },
   {
-   "id": "F-glossary-1087",
+   "id": "F-glossary-1085",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Stick: A short concept where an inside receiver runs about five to six yards and sits down between zone defenders, or breaks away against man; used in the quick game.",
@@ -28922,7 +28817,7 @@
    "notes": "Draft's 'RPO' link is not in these quotes; removed."
   },
   {
-   "id": "F-glossary-1088",
+   "id": "F-glossary-1086",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Stop-and-go: A route that fakes a stop (or a hitch or pump) and then continues upfield on a go.",
@@ -28952,7 +28847,7 @@
    "notes": "Only Wikipedia found; the quote names the variants. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1089",
+   "id": "F-glossary-1087",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "strength and conditioning coach: The coach who runs a team's weight training and conditioning, and works with doctors on rehab.",
@@ -28991,7 +28886,7 @@
    "notes": "Dummies describes the NFL; SMWW college range 5-10."
   },
   {
-   "id": "F-glossary-1090",
+   "id": "F-glossary-1088",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "strength call: The defense's call naming its strong side, normally the side of the tight end (run strength).",
@@ -29029,7 +28924,7 @@
    ]
   },
   {
-   "id": "F-glossary-1091",
+   "id": "F-glossary-1089",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Stretch: A zone run designed to get the defense moving laterally; the landmark is just inside the last offensive player (outside zone is the same play family).",
@@ -29067,7 +28962,7 @@
    ]
   },
   {
-   "id": "F-glossary-1093",
+   "id": "F-glossary-1091",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "strong safety: The safety who lines up on the strong side (the tight end side), plays closer to the line than the free safety, and helps against the run.",
@@ -29123,7 +29018,7 @@
    "notes": "The WFM quote is an ellipsis-joined paraphrase of the Wikipedia Formation page text; WS entry is a summary without verbatim quote."
   },
   {
-   "id": "F-glossary-1094",
+   "id": "F-glossary-1092",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "strong side: The side of the offense with the tight end, or with the most players if there is no tight end or more than one.",
@@ -29179,7 +29074,7 @@
    ]
   },
   {
-   "id": "F-glossary-1095",
+   "id": "F-glossary-1093",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Stubbie: A split-field coverage against a 3x1 (three-receiver) side in which the corner presses the number-one receiver in man, a defender takes number two man-to-man unless number three goes to the flat, and the safety takes number three vertically or brackets number two.",
@@ -29217,7 +29112,7 @@
    "notes": "Two publishers. Draft's claim that it comes from 'the Saban and Belichick tree' is not confirmed by the pages read (Weekly Spiral ties it to Saban's system; Matchquarters lists it as a popular 3x1 coverage)."
   },
   {
-   "id": "F-glossary-1096",
+   "id": "F-glossary-1094",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "stuff: A tackle of a ball carrier on a running play behind the line of scrimmage.",
@@ -29255,7 +29150,7 @@
    ]
   },
   {
-   "id": "F-glossary-1097",
+   "id": "F-glossary-1095",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Stuff rate: The share of runs stopped at or behind the line of scrimmage.",
@@ -29294,7 +29189,7 @@
    "notes": "Draft name 'Stuffed rate' appears in neither source; both say 'stuff rate'."
   },
   {
-   "id": "F-glossary-1098",
+   "id": "F-glossary-1096",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "stunt: A pass-rush move where two rushers exchange paths so one blocker is picked or screened and a rusher gets free; a twist is the stunt where the two cross.",
@@ -29351,7 +29246,7 @@
    "notes": "Absorbs 'TE stunt' (the draft row, properly 'TEX': tackle and end cross)."
   },
   {
-   "id": "F-glossary-1101",
+   "id": "F-glossary-1099",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Success rate: The share of plays judged successful; the test differs by publisher (positive EPA, or gaining a set share of the needed yards).",
@@ -29417,7 +29312,7 @@
    "notes": "The definitions genuinely disagree: the yardage rule and the EPA rule give different answers. A game must pick one."
   },
   {
-   "id": "F-glossary-1104",
+   "id": "F-glossary-1102",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Surprise onside kick: An onside kick tried when the receiving team is not expecting it, such as early in a game or while leading.",
@@ -29456,7 +29351,7 @@
    "notes": "Only two publishers. Wikipedia's 60% figure is from 2001 to 2010. Because the NFL now requires a declaration, a true surprise attempt is no longer legal in the NFL; the term applies to earlier years and to college."
   },
   {
-   "id": "F-glossary-1108",
+   "id": "F-glossary-1106",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Swap tags (Yax, Zax, Fax, Yaz, Fay, Fez, Change): Short tags that tell two named players to exchange alignment spots, such as Yax meaning Y and X change places.",
@@ -29486,7 +29381,7 @@
    "notes": "Single source for one pro-style system."
   },
   {
-   "id": "F-glossary-1109",
+   "id": "F-glossary-1107",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Sweep: A run to the outside with blockers leading the back; sometimes called a power sweep.",
@@ -29525,7 +29420,7 @@
    "notes": "Both Wikipedia: flag single publisher. Draft's 'guards pulling' is not in these quotes."
   },
   {
-   "id": "F-glossary-1110",
+   "id": "F-glossary-1108",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "swim move: A rush move where the rusher grabs or pulls the blocker's shoulder or jersey and swings an arm over the top to get past him.",
@@ -29564,7 +29459,7 @@
    "notes": "Two publishers; one is a usage line only."
   },
   {
-   "id": "F-glossary-1111",
+   "id": "F-glossary-1109",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Swing route: A route run by the running back, who swings out of the backfield into the flat.",
@@ -29594,7 +29489,7 @@
    "notes": "Single source; the retrieved text only says the back runs it, so direction detail is not confirmed. Flagged."
   },
   {
-   "id": "F-glossary-1112",
+   "id": "F-glossary-1110",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Switch route: A concept where the two outside receivers switch places as they run downfield.",
@@ -29624,7 +29519,7 @@
    "notes": "Only Wikipedia found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1115",
+   "id": "F-glossary-1113",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "tackle box: The area in the offensive backfield between the two offensive tackles; NCAA rules define it as a rectangle bounded by the neutral zone, lines five yards each side of the snapper and the offense's end line.",
@@ -29672,7 +29567,7 @@
    "notes": "The NFL rulebook (rulebook_2026.txt) has no 'tackle box' entry (0 hits); NFL's official site gives the informal definition. NCAA is the primary rule text."
   },
   {
-   "id": "F-glossary-1116",
+   "id": "F-glossary-1114",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "tackle for loss: A tackle of a ball carrier behind the line of scrimmage, costing the offense yardage.",
@@ -29711,7 +29606,7 @@
    "notes": "Wikipedia glossary calls this a 'stuff'. Single publisher."
   },
   {
-   "id": "F-glossary-1117",
+   "id": "F-glossary-1115",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tackle trick screen: A trick variant of the screen pass that involves an offensive tackle as the receiver.",
@@ -29741,7 +29636,7 @@
    "notes": "Only Wikipedia found; draft said 'receives a lateral', which the quote does not confirm. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1120",
+   "id": "F-glossary-1118",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tag (play-call suffix): A word or short call added to a play or formation call that modifies it (for example a split, a flip or an added route).",
@@ -29780,7 +29675,7 @@
    "notes": "Two publishers, both give examples of tags rather than a one-line definition; the meaning is read from how tags work in each."
   },
   {
-   "id": "F-glossary-1121",
+   "id": "F-glossary-1119",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "tampa-2 Mike: The middle linebacker in the Tampa 2 who runs deep down the middle behind the underneath linebackers.",
@@ -29810,7 +29705,7 @@
    "notes": "Single publisher; paraphrase by the fetch tool."
   },
   {
-   "id": "F-glossary-1122",
+   "id": "F-glossary-1120",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Tampa 2: A Cover 2 zone in which the middle linebacker runs the deep middle seam, giving a three-deep look behind two deep safeties; built from a 4-3 front.",
@@ -29884,7 +29779,7 @@
    "notes": "Draft said 'drops into the deep middle' - confirmed. | Other batch definition: A Cover 2 zone in which the middle linebacker drops deep down the middle; tied to Monte Kiffin's Buccaneers."
   },
   {
-   "id": "F-glossary-1123",
+   "id": "F-glossary-1121",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tape: The recorded video of a player's games that scouts and coaches study to judge him; 'film' is the older word and means the same.",
@@ -29932,7 +29827,7 @@
    "notes": "Ringer 2017 also says 'good film scouting' (Hatman), using film and tape interchangeably."
   },
   {
-   "id": "F-glossary-1124",
+   "id": "F-glossary-1122",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Target: A pass thrown toward a given receiver, counted whether or not it is caught.",
@@ -29971,7 +29866,7 @@
    "notes": "NGS uses it inside the Targeted Air Yards definition only."
   },
   {
-   "id": "F-glossary-1129",
+   "id": "F-glossary-1127",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "team physician: The club doctor responsible for players' medical care; in the NFL concussion protocol the team physician evaluates the player on the sideline together with the unaffiliated neurotrauma consultant.",
@@ -30010,7 +29905,7 @@
    "notes": "College usage not verified. NFL and NBC pages show the role in the protocol rather than a one-line definition."
   },
   {
-   "id": "F-glossary-1133",
+   "id": "F-glossary-1131",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Ten-second runoff: After the two-minute warning, certain clock-saving acts by the offense (or some replay and nullified-foul cases) cost 10 seconds off the game clock; the offense may burn a timeout instead.",
@@ -30049,7 +29944,7 @@
    "notes": "Runoff applies only against the offense (4-5-1 Note: never against the defense). Draft wording 'conserving-time acts' matches 4-7-1 (fouls, intentional grounding, spiking after a down, illegal bat or kick)."
   },
   {
-   "id": "F-glossary-1136",
+   "id": "F-glossary-1134",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Third and long: Third down with many yards to go, where a conversion usually needs a pass; analytics sources start the passing-down label at about five yards.",
@@ -30106,7 +30001,7 @@
    "notes": "'Obvious passing down' appears as the concept behind the passing-down label; no source gives one fixed yardage for 'long'. The Patriots quote is trimmed with an ellipsis."
   },
   {
-   "id": "F-glossary-1137",
+   "id": "F-glossary-1135",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Third and short: Third down needing only about a yard or two, where one play can move the chains.",
@@ -30154,7 +30049,7 @@
    "notes": "Analytics glossaries use two or fewer yards as the short-yardage line; the draft's 'a run is common' claim is not in any source and was removed. Patriots quote trimmed with an ellipsis."
   },
   {
-   "id": "F-glossary-1139",
+   "id": "F-glossary-1137",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Three-and-out: A drive that ends in a punt after three plays without a first down.",
@@ -30193,7 +30088,7 @@
    "notes": "Only Wikipedia (two pages) found; no second publisher opened. Flagged as single-publisher."
   },
   {
-   "id": "F-glossary-1141",
+   "id": "F-glossary-1139",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Three-step drop: A quick dropback of three steps that gets the ball out fast.",
@@ -30241,7 +30136,7 @@
    "notes": "Bleacher Report only refers to the three-step game. Wikipedia says it helped the QB release faster and reduced sacks."
   },
   {
-   "id": "F-glossary-1142",
+   "id": "F-glossary-1140",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Three-year rule: A prospect must be at least three years out of high school to be eligible for the NFL draft.",
@@ -30279,7 +30174,7 @@
    ]
   },
   {
-   "id": "F-glossary-1143",
+   "id": "F-glossary-1141",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tight end: A player who lines up at the end of the offensive line, blocks on runs, and runs pass routes.",
@@ -30326,7 +30221,7 @@
    ]
   },
   {
-   "id": "F-glossary-1145",
+   "id": "F-glossary-1143",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tight skin: A thin, wiry player who may struggle to add muscle and size; generally a negative.",
@@ -30356,7 +30251,7 @@
    "notes": "Single publisher (The Ringer, quoting Lance Zierlein's use at NFL.com)."
   },
   {
-   "id": "F-glossary-1147",
+   "id": "F-glossary-1145",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Time of possession: How long each team holds the ball; the two shares add up to the game's playing time.",
@@ -30386,7 +30281,7 @@
    "notes": "Single source; no second publisher opened."
   },
   {
-   "id": "F-glossary-1148",
+   "id": "F-glossary-1146",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Time to throw: Seconds from the snap to the release of a pass, averaged over attempts (sacks left out in Next Gen Stats).",
@@ -30425,7 +30320,7 @@
    "notes": "The PFF line defines time in pocket, treated here as the same idea; flagged."
   },
   {
-   "id": "F-glossary-1150",
+   "id": "F-glossary-1148",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Timeouts per half: Each NFL team gets three charged timeouts in each half, and two in a regular-season overtime period.",
@@ -30473,7 +30368,7 @@
    "notes": "Regular-season overtime: two (16-1-3(e)); postseason overtime: three per half (16-1-4(g)). Charged timeouts last two minutes unless TV uses only 30 seconds (4-5-1)."
   },
   {
-   "id": "F-glossary-1151",
+   "id": "F-glossary-1149",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tite front: A compressed front with a nose tackle over the center and the ends in 4i alignments, mainly used to defend spread offenses and cover B gaps.",
@@ -30511,7 +30406,7 @@
    ]
   },
   {
-   "id": "F-glossary-1154",
+   "id": "F-glossary-1152",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Toss: A run where the quarterback tosses the ball to a back who curves out toward the sideline.",
@@ -30549,7 +30444,7 @@
    ]
   },
   {
-   "id": "F-glossary-1155",
+   "id": "F-glossary-1153",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Tosser: A New England Erhardt-Perkins call for the double-slant concept.",
@@ -30579,7 +30474,7 @@
    "notes": "Only Grantland found. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1156",
+   "id": "F-glossary-1154",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Total offense: A team's or player's rushing yards plus passing yards (in the NFL, less sack yards for the passer).",
@@ -30618,7 +30513,7 @@
    "notes": "Both are Wikipedia; single publisher. Wikipedia gives the NFL quarterback formula as passing + rushing - sack yards."
   },
   {
-   "id": "F-glossary-1157",
+   "id": "F-glossary-1155",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Total QBR: ESPN's 0-100 quarterback rating built from every play's expected points added, giving the quarterback credit for passes, runs, sacks, turnovers and penalties.",
@@ -30666,7 +30561,7 @@
    "notes": "Added. Wikipedia notes ESPN has not released the full formula. The 0-100 scale is not in the opened text."
   },
   {
-   "id": "F-glossary-1158",
+   "id": "F-glossary-1156",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Touch: A quarterback's ability to vary the speed and trajectory of a pass so it drops softly over or between defenders.",
@@ -30704,7 +30599,7 @@
    ]
   },
   {
-   "id": "F-glossary-1160",
+   "id": "F-glossary-1158",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Touchback on a punt: A punt that ends dead in or behind the receiving team's end zone, giving the receivers the ball at their 20-yard line.",
@@ -30761,7 +30656,7 @@
    "notes": "Draft said 'into or is downed in the end zone'; the rules require the impetus to come from the kicking team. The NCAA spot after a punt is the 20 (8-6-2); only a free kick touchback is the 25."
   },
   {
-   "id": "F-glossary-1163",
+   "id": "F-glossary-1161",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Trade: A letter-system shift that moves the Y to the opposite side while the X and Z adjust their alignments.",
@@ -30791,7 +30686,7 @@
    "notes": "Single informal coaching page; shifts like this are system specific."
   },
   {
-   "id": "F-glossary-1164",
+   "id": "F-glossary-1162",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "trail: A defender plays behind and outside the receiver, keeping him in front or to the inside.",
@@ -30839,7 +30734,7 @@
    "notes": "Draft said 'behind the receiver in man coverage'; sources use it in match/pattern coverages too."
   },
   {
-   "id": "F-glossary-1166",
+   "id": "F-glossary-1164",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Traits: The individual physical and mental qualities scouts grade a prospect on (arm strength, footwork, speed, instincts), as distinct from his game results.",
@@ -30886,7 +30781,7 @@
    ]
   },
   {
-   "id": "F-glossary-1167",
+   "id": "F-glossary-1165",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "transfer portal: An NCAA online database of athletes who have said they want to change schools; once a name is in it, other schools may contact the athlete.",
@@ -30943,7 +30838,7 @@
    "notes": "Created Oct. 15, 2018 (ESPN, On3). Database is private (On3)."
   },
   {
-   "id": "F-glossary-1168",
+   "id": "F-glossary-1166",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "transfer portal entry: A player's formal notice to his school's compliance office that he wants to transfer, after which the school must enter his name in the portal within two business days (SI) or 48 hours (ESPN, On3).",
@@ -30991,7 +30886,7 @@
    "notes": "Sources disagree on the deadline: SI says two business days; ESPN and On3 say 48 hours."
   },
   {
-   "id": "F-glossary-1169",
+   "id": "F-glossary-1167",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "transfer portal window: The set dates in which a football player must enter the portal; from 2026 FBS and FCS football has a single 15-day window, Jan. 2-16.",
@@ -31039,7 +30934,7 @@
    "notes": "Exceptions: players in games on or after Jan. 12 get a five-day window after their last game (CBS); ESPN says a new head coach triggers a 15-day window five days after the hire, replacing the earlier 30-day window. Older windows (SI: Dec. 9-24, 2024) are historical."
   },
   {
-   "id": "F-glossary-1171",
+   "id": "F-glossary-1169",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Trap: A run in which a defender is allowed through the line and then blocked by a pulling lineman, usually a guard coming from the back side.",
@@ -31085,7 +30980,7 @@
    ]
   },
   {
-   "id": "F-glossary-1172",
+   "id": "F-glossary-1170",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Trap block: A block by a pulling lineman, normally a guard, on a defender who was allowed through the line.",
@@ -31133,7 +31028,7 @@
    "notes": "Same family as the Trap run row."
   },
   {
-   "id": "F-glossary-1173",
+   "id": "F-glossary-1171",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Triple option: An option run with three possible ball carriers: a dive back, the quarterback and a trailing pitch back.",
@@ -31181,7 +31076,7 @@
    "notes": "Wikipedia says the triple option has not been used in the NFL for decades, so level is college. Under Armour defines only the generic option. Draft quote about 'three potential ballcarriers' is from Wikipedia 'Option offense' (Types)."
   },
   {
-   "id": "F-glossary-1175",
+   "id": "F-glossary-1173",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "trips: A formation with three receivers lined up to one side.",
@@ -31220,7 +31115,7 @@
    "notes": "Merged the two 'trips' draft rows. Offense term."
   },
   {
-   "id": "F-glossary-1176",
+   "id": "F-glossary-1174",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "true freshman: A first-year college player who has not redshirted.",
@@ -31259,7 +31154,7 @@
    "notes": "Becomes less meaningful as redshirts are eliminated for D-I/D-II in 2026-27."
   },
   {
-   "id": "F-glossary-1178",
+   "id": "F-glossary-1176",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Tuff: A Saban-system call for defending the single receiver on the backside of a 3x1 set: the safety spins down to the curl/flat, and the corner either stays in man-on-the-edge or inverts to the deep half, giving a Cover 6 look.",
@@ -31288,7 +31183,7 @@
    "notes": "One publisher (Weekly Spiral, via summariser). Flagged."
   },
   {
-   "id": "F-glossary-1179",
+   "id": "F-glossary-1177",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tunnel screen: A wide receiver screen thrown to a receiver moving back toward the quarterback, behind blocking receivers.",
@@ -31327,7 +31222,7 @@
    "notes": "Bleacher Report only uses it in passing. Two publishers."
   },
   {
-   "id": "F-glossary-1180",
+   "id": "F-glossary-1178",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Turnover: The offense loses the ball to the defense by interception or fumble.",
@@ -31375,7 +31270,7 @@
    "notes": "Under Armour also counts missed field goals and failure to gain a first down; the NFL and Wikipedia do not. Wikipedia also reports teams with a +1 turnover differential won 69.6% of games (2014 Harvard study). Draft row 'Turnover margin' folded in as an alias;"
   },
   {
-   "id": "F-glossary-1181",
+   "id": "F-glossary-1179",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Turnover on downs: The offense uses all four downs without a first down or score, and the other team takes the ball where the last play ended.",
@@ -31432,7 +31327,7 @@
    "notes": "Under Rule 7-3-2 the opponent gets a new series; Wikipedia notes accepted defensive penalties can turn a failed down into an automatic first down or replay."
   },
   {
-   "id": "F-glossary-1182",
+   "id": "F-glossary-1180",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Tweener: A player whose size or skills fall between two positions, so teams are unsure where he fits (for example too light for end and too slow for linebacker).",
@@ -31479,7 +31374,7 @@
    ]
   },
   {
-   "id": "F-glossary-1183",
+   "id": "F-glossary-1181",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Twins: An alignment with two receivers on the same side of the formation.",
@@ -31509,7 +31404,7 @@
    "notes": "Single source describing a pro-style system; draft saying twins = two per side (balanced) was not found."
   },
   {
-   "id": "F-glossary-1184",
+   "id": "F-glossary-1182",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "twist: A line stunt in which two rushers swap paths, one looping around behind the other.",
@@ -31548,7 +31443,7 @@
    "notes": "Wikipedia counted once; single publisher."
   },
   {
-   "id": "F-glossary-1185",
+   "id": "F-glossary-1183",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Twitchy: Describes sudden quickness and explosive movement in all directions (quick twitch).",
@@ -31586,7 +31481,7 @@
    ]
   },
   {
-   "id": "F-glossary-1186",
+   "id": "F-glossary-1184",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Two-a-days: Two on-field practice sessions in one day; after the acclimation period the CBA allows them with at most four on-field hours, at most one padded practice of 2.5 hours, 90 minutes between sessions, and a no-helmet walkthrough-pace second session.",
@@ -31625,7 +31520,7 @@
    "notes": "Sources disagree: Wikipedia's training-camp page says CBA restrictions 'prohibit such things as two-a-days', but the CBA text (Art. 23 Sec. 7(c)) expressly permits them under limits, so the CBA is followed. Offseason: two-a-days allowed on two days of the mandatory minicamp (Art. 22 Sec. 2)."
   },
   {
-   "id": "F-glossary-1187",
+   "id": "F-glossary-1185",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "two-gap: A technique where a lineman controls the blocker and is responsible for two gaps, letting linebackers run free; used by 3-4 ends and nose tackles.",
@@ -31690,7 +31585,7 @@
    "notes": "Added. | Other batch definition: A technique where a lineman controls the blocker in front of him and is responsible for either gap beside him depending on where the play goes."
   },
   {
-   "id": "F-glossary-1188",
+   "id": "F-glossary-1186",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "two-high: A defense that plays two safeties deep.",
@@ -31728,7 +31623,7 @@
    ]
   },
   {
-   "id": "F-glossary-1189",
+   "id": "F-glossary-1187",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "two-level defense: A defense with only two levels of defenders (line and one back level) instead of the usual three; usually more aggressive.",
@@ -31767,7 +31662,7 @@
    "notes": "Wikipedia pages only: one publisher."
   },
   {
-   "id": "F-glossary-1190",
+   "id": "F-glossary-1188",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Two-minute drill: A late-half or late-game offense run at speed with a focus on clock stoppage, favoring passes near the sideline and receivers getting out of bounds, to get as many scoring plays as possible.",
@@ -31824,7 +31719,7 @@
    "notes": "Merged from two 'Two-minute drill' rows. Wikipedia also says teams use timeouts to minimise time lost; Bleacher Report calls it the 'two-minute offense'. Wikipedia's two pages count as one publisher. | Other batch definition: The clock-driven offense used near the end of a half, mixing no-huddle tempo with plays that stop the clock, such as sideline passes."
   },
   {
-   "id": "F-glossary-1192",
+   "id": "F-glossary-1190",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Two-minute warning: An automatic timeout in the second and fourth quarters when the clock reaches two minutes (after the play in progress).",
@@ -31865,6 +31760,33 @@
      "independenceGroup": "active",
      "primary": false,
      "quote": "Two-Minute Warning: When two minutes are remaining in each half, officials will stop play for teams to regroup."
+    },
+    {
+     "citation": "NFL 2026 Official Playing Rules, Rule 3-41 (NFL rulebook)",
+     "locator": "file:///mnt/project-files/nfl-rules/rulebook_2026.txt",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl",
+     "primary": true,
+     "quote": "The two-minute warning is an automatic timeout that occurs at the conclusion of the last down for which the ball"
+    },
+    {
+     "citation": "NFL Football Operations | Football Terms (NFL Football Operations)",
+     "locator": "https://operations.nfl.com/rules-officiating/nfl-football-basics/football-terms",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl",
+     "primary": false,
+     "quote": "Two-Minute Warning: An automatic official timeout that occurs at the end of the last play that began before the game"
+    },
+    {
+     "citation": "Glossary of American football terms - Wikipedia (Wikipedia)",
+     "locator": "https://en.wikipedia.org/wiki/Glossary_of_American_football",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "two-minute warning Main article: Two-minute warning A free time out given to both teams when there are two minutes left"
     }
    ],
    "status": "Verified",
@@ -31878,10 +31800,10 @@
      "reason": "First load (G-93)."
     }
    ],
-   "notes": "Added. Wikipedia says it also applies in overtime when two minutes remain in a period that plays by half rules."
+   "notes": "Added. Wikipedia says it also applies in overtime when two minutes remain in a period that plays by half rules. Merged with term.two-minute-warning-pro (MA-69): its sources and aliases are folded in."
   },
   {
-   "id": "F-glossary-1194",
+   "id": "F-glossary-1191",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Two-point conversion: A try from scrimmage after a touchdown that is worth two points if the offense scores a touchdown, from the 2-yard line in the NFL and the 3-yard line in the NCAA.",
@@ -31956,7 +31878,7 @@
    "notes": "Five sources. The NCAA 3-yard quote comes from the extra-period rule text but the same 3-yard try spot is in Rule 8-3-2. | Other batch definition: After a touchdown, one play from the opponent's two-yard line; scoring on it earns two extra points, and the team may choose it instead of kicking."
   },
   {
-   "id": "F-glossary-1198",
+   "id": "F-glossary-1195",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Under center: The quarterback lines up directly behind the center and takes the snap straight from him.",
@@ -32004,7 +31926,7 @@
    "notes": "Sources use the term (in contrast to shotgun) but no page defines it in a sentence; wording inferred from the Dictionary.com shotgun entry (quarterback positioned away from the center rather than right behind). Flagged."
   },
   {
-   "id": "F-glossary-1199",
+   "id": "F-glossary-1196",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Under front: A 4-3 front where the nose tackle sits on the closed (tight end) side and the 3-technique to the open side, the opposite of the Over front.",
@@ -32061,7 +31983,7 @@
    "notes": "Added. | Other batch definition: A 4-3 front in which the 3-technique tackle is set to the side away from the tight end."
   },
   {
-   "id": "F-glossary-1202",
+   "id": "F-glossary-1199",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "unofficial visit: A campus visit by a recruit that is not funded the way an official visit is (the recruit's family pays).",
@@ -32100,7 +32022,7 @@
    "notes": "Single definitional source; flagged. CBS shows a school covering unofficial-visit expenses counted as a violation."
   },
   {
-   "id": "F-glossary-1205",
+   "id": "F-glossary-1202",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Upback: A player who lines up a few yards behind the line in punt and field goal formations, blocking rushers who get through, calling the protection and sometimes taking a direct snap on a fake; also called the personal protector.",
@@ -32157,7 +32079,7 @@
    "notes": "Merged the draft's 'Personal protector' row. The draft's kickoff-return sense of 'upback' is a different word, 'upman' (see Upman). Wikipedia's glossary also uses upback for kneel formations."
   },
   {
-   "id": "F-glossary-1207",
+   "id": "F-glossary-1204",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Upman: On a kickoff, every receiving-team player except the one or two deep returners.",
@@ -32187,7 +32109,7 @@
    "notes": "Added from Wikipedia's glossary (the draft's 'Upback' kickoff meaning). One publisher only; flagged. Draft said upbacks block and may field short kicks; the source says only that all non-returners are upmen."
   },
   {
-   "id": "F-glossary-1208",
+   "id": "F-glossary-1205",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Uprights: The two vertical posts above the crossbar that a kick must pass between; 18 feet 6 inches apart in both the NFL and the NCAA, and the NFL uprights extend 35 feet above the crossbar.",
@@ -32244,7 +32166,7 @@
    "notes": "The draft said 18 feet 6 inches in the NFL only; the NCAA rulebook gives the same width (Rule 1-2-5, goal). NCAA uprights extend at least 30 feet above the ground. The NFL rulebook describes the 18 ft 6 in as the crossbar length."
   },
   {
-   "id": "F-glossary-1210",
+   "id": "F-glossary-1207",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "vacated wins: Wins erased from a team's record as a penalty for using ineligible players or other violations.",
@@ -32282,7 +32204,7 @@
    ]
   },
   {
-   "id": "F-glossary-1211",
+   "id": "F-glossary-1208",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Veer: A triple-option run where a dive back attacks inside while the quarterback reads the defensive end and either keeps or pitches.",
@@ -32330,7 +32252,7 @@
    "notes": "All Wikipedia: flag single publisher."
   },
   {
-   "id": "F-glossary-1212",
+   "id": "F-glossary-1209",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Velocity: How fast the quarterback's pass travels when it arrives, as distinct from how far he can throw it.",
@@ -32377,7 +32299,7 @@
    ]
   },
   {
-   "id": "F-glossary-1213",
+   "id": "F-glossary-1210",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "verbal commitment: A recruit's public, non-binding promise to attend a school.",
@@ -32425,7 +32347,7 @@
    "notes": "SI notes the meaning is vague in practice (soft verbal, silent commit, placeholder commitments)."
   },
   {
-   "id": "F-glossary-1218",
+   "id": "F-glossary-1215",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "video director: The staffer who runs a team's film and video operations.",
@@ -32464,7 +32386,7 @@
    "notes": "Titles only; no source defines the job. Flagged. 'Video coordinator' as drafted was not found as a title."
   },
   {
-   "id": "F-glossary-1220",
+   "id": "F-glossary-1217",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Vision: A runner's ability to see daylight and cut to open lanes; for receivers, Bleacher Report uses it for finding and tracking the ball.",
@@ -32512,7 +32434,7 @@
    "notes": "Two senses: runner's vision (Draft Insiders, Ringer 2017) and receiver's ball tracking (Bleacher Report). Ringer quote is Zierlein calling lack of vision a deal breaker at running back."
   },
   {
-   "id": "F-glossary-1222",
+   "id": "F-glossary-1219",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Voluntary minicamp: An extra, optional veteran minicamp that only a club with a new head coach may hold, before the draft.",
@@ -32542,7 +32464,7 @@
    "notes": "Only the CBA was found as a source (CBA text is primary; no second publisher located). Interim coaches later hired as head coach also qualify as 'new head coach' under Sec. 1."
   },
   {
-   "id": "F-glossary-1223",
+   "id": "F-glossary-1220",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Wade Phillips 3-4: A one-gap 3-4 front (the 3-4 Under) run by Wade Phillips with the Texans.",
@@ -32572,7 +32494,7 @@
    "notes": "One publisher (Bleacher Report/Bowen)."
   },
   {
-   "id": "F-glossary-1224",
+   "id": "F-glossary-1221",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Waist bender: An offensive or defensive lineman who bends at the waist instead of the knees and so loses balance and leverage.",
@@ -32628,7 +32550,7 @@
    ]
   },
   {
-   "id": "F-glossary-1229",
+   "id": "F-glossary-1226",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "walk-on: A college player who is on the team without having been awarded an athletic scholarship.",
@@ -32676,7 +32598,7 @@
    "notes": "Under the House roster-limit model a walk-on still occupies one of the 105 roster spots (CBS); whether walk-ons will survive is an open question in coverage."
   },
   {
-   "id": "F-glossary-1230",
+   "id": "F-glossary-1227",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "walk-up: A linebacker or defender aligned at the line of scrimmage rather than behind it.",
@@ -32706,7 +32628,7 @@
    "notes": "Single publisher."
   },
   {
-   "id": "F-glossary-1231",
+   "id": "F-glossary-1228",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Walkthrough: A slow-tempo, no-helmet practice session that rehearses assignments and alignments without contact, held at the CBA's 'Pro Bowl practice pace'.",
@@ -32736,7 +32658,7 @@
    "notes": "A walkthrough before or after a three-hour regular-season practice does not count against that limit (Art. 24 Sec. 1(d))."
   },
   {
-   "id": "F-glossary-1232",
+   "id": "F-glossary-1229",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "wall: To 'wall off' a route: a middle-hook defender closes off inside-breaking and crossing routes underneath.",
@@ -32766,7 +32688,7 @@
    "notes": "One publisher. Draft said 'defender who jams a receiver off the line and blocks the route'; not supported."
   },
   {
-   "id": "F-glossary-1233",
+   "id": "F-glossary-1230",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Washcloth tackler: A tackler who briefly sticks to the ball carrier then slides off.",
@@ -32796,7 +32718,7 @@
    "notes": "Single publisher (ESPN)."
   },
   {
-   "id": "F-glossary-1234",
+   "id": "F-glossary-1231",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "weak side: The side of the formation away from the tight end (or with the fewest offensive players on or near the line); the opposite of the strong side.",
@@ -32844,7 +32766,7 @@
    "notes": "Absorbs the duplicate 'Weak side' row. ACT says the strong side is whichever side has more offensive players."
   },
   {
-   "id": "F-glossary-1236",
+   "id": "F-glossary-1233",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Wedge buster: A kickoff-coverage player whose job is to break up the return blockers' wedge or run a lane down the field.",
@@ -32883,7 +32805,7 @@
    "notes": "Only the Gridiron Strategies article uses the term 'wedge buster'; the NFL.com article only describes the wedge. The role faded after the wedge was banned. Thinly sourced."
   },
   {
-   "id": "F-glossary-1237",
+   "id": "F-glossary-1234",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Wedge: A group of kickoff-return blockers who link up shoulder to shoulder in front of the returner; banned in the NFL (three or more in 2009; in the 2026 rulebook two or more within two yards moving forward together).",
@@ -32931,7 +32853,7 @@
    "notes": "The draft said three or more; the 2026 rulebook defines a wedge block as two or more players and penalises it at 15 yards. The 2009 NFL.com article describes how coaches used three-, four- and five-man wedges. I found no wedge rule in the 2026 NCAA rulebook."
   },
   {
-   "id": "F-glossary-1238",
+   "id": "F-glossary-1235",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "West Coast offense: An offense built on short, high-percentage passes and timing routes (developed by Bill Walsh), with play calls that name the primary receiver's route.",
@@ -32988,7 +32910,7 @@
    "notes": "Wikipedia notes the name originally referred to Air Coryell. Wikipedia says wide receiver and tight end routes use three-digit numbers."
   },
   {
-   "id": "F-glossary-1239",
+   "id": "F-glossary-1236",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "West Coast play-call structure: A play-call format in which the call names the formation, then the hole (one of nine numbered gaps) and the blocking scheme and path.",
@@ -33018,7 +32940,7 @@
    "notes": "Single source (Wikipedia play calling system page)."
   },
   {
-   "id": "F-glossary-1240",
+   "id": "F-glossary-1237",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Wheel: A route that starts toward the sideline, then turns upfield; run by a receiver or running back.",
@@ -33066,7 +32988,7 @@
    "notes": "Bleacher Report only uses the term in an example. Wikipedia's two pages count as one publisher."
   },
   {
-   "id": "F-glossary-1241",
+   "id": "F-glossary-1238",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Whip: A route that looks like an in-breaking cut or slant, then breaks to the sideline underneath.",
@@ -33105,7 +33027,7 @@
    "notes": "Two publishers."
   },
   {
-   "id": "F-glossary-1242",
+   "id": "F-glossary-1239",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Wide 9: A front where the defensive ends line up very wide of the offensive tackle, in a 9-technique, to rush the edge; the name became popular after the Eagles.",
@@ -33152,7 +33074,7 @@
    ]
   },
   {
-   "id": "F-glossary-1243",
+   "id": "F-glossary-1240",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Wide receiver: A player who lines up wide of the formation and runs routes to catch forward passes.",
@@ -33196,7 +33118,7 @@
    ]
   },
   {
-   "id": "F-glossary-1244",
+   "id": "F-glossary-1241",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Wide splits: Offensive linemen spaced wider than normal (about a half to a full yard or more apart) to open passing lanes; the same word also describes where receivers line up (plus, numbers, reduced splits).",
@@ -33244,7 +33166,7 @@
    "notes": "Bleacher Report's third quote shows the receiver-split sense of 'split'. Two Wikipedia pages are one publisher."
   },
   {
-   "id": "F-glossary-1245",
+   "id": "F-glossary-1242",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Wildcat: A formation in which the ball is snapped directly to a running back (not the quarterback), who can run or pass, with the quarterback often split out as a receiver.",
@@ -33292,7 +33214,7 @@
    "notes": "Popularised by the 2008 Miami Dolphins, per Wikipedia, which also traces it to Pop Warner's single wing."
   },
   {
-   "id": "F-glossary-1246",
+   "id": "F-glossary-1243",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Will: The weak-side linebacker, the one who lines up away from the tight end; in a 4-3 usually the fastest of the three linebackers.",
@@ -33357,7 +33279,7 @@
    "notes": "In a 3-4 sources split: Wikipedia 3-4 page (via summariser) calls Will the more athletic inside linebacker; Bowen's 3-4 Okie diagram puts Will outside in a 6-technique; Wikipedia Linebacker page calls the 3-4 Will the smaller coverage-oriented inside linebacker."
   },
   {
-   "id": "F-glossary-1247",
+   "id": "F-glossary-1244",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Win probability: An estimate of a team's chance to win at a given game state, built from how teams in the same spot did historically.",
@@ -33405,7 +33327,7 @@
    "notes": "Wikipedia lists down and distance, score, time and field position as typical football inputs."
   },
   {
-   "id": "F-glossary-1248",
+   "id": "F-glossary-1245",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Win probability added: How much a play changed a team's chance to win, from before to after the play.",
@@ -33443,7 +33365,7 @@
    ]
   },
   {
-   "id": "F-glossary-1249",
+   "id": "F-glossary-1246",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Wing (punt team): A blocker lined up just outside the tackle on the punt and field goal units who protects the edge.",
@@ -33482,7 +33404,7 @@
    "notes": "Two publishers; 'who help protect the edge on punts/field goals' (Steelers Depot)."
   },
   {
-   "id": "F-glossary-1250",
+   "id": "F-glossary-1247",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Wing-T: An offense with a wingback, much misdirection running and wishbone-style option concepts.",
@@ -33521,7 +33443,7 @@
    "notes": "Both Wikipedia: flag single publisher. The Wing-T page does not credit a developer."
   },
   {
-   "id": "F-glossary-1251",
+   "id": "F-glossary-1248",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Wingback: A back who lines up outside and slightly behind the end of the line, used in single-wing, double-wing and wing-T offenses.",
@@ -33560,7 +33482,7 @@
    "notes": "Both Wikipedia, so one publisher; neither gives a formal definition. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1252",
+   "id": "F-glossary-1249",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Winning the leverage battle: Getting lower than the opponent.",
@@ -33590,7 +33512,7 @@
    "notes": "Only Steelers Depot found; applies to both sides of the ball. Flag: single publisher."
   },
   {
-   "id": "F-glossary-1253",
+   "id": "F-glossary-1250",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "Wishbone: A formation with the quarterback, a fullback behind him and two halfbacks lined up deeper in a Y shape, built for the triple option.",
@@ -33637,7 +33559,7 @@
    "notes": "Wikipedia only (three pages). Level set to college (draft said both); not confirmed in a pro source."
   },
   {
-   "id": "F-glossary-1255",
+   "id": "F-glossary-1252",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Work ethic: How hard a player prepares and trains, judged from tape, coaches and references.",
@@ -33675,7 +33597,7 @@
    ]
   },
   {
-   "id": "F-glossary-1257",
+   "id": "F-glossary-1254",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Workout warrior: A prospect whose draft stock rises on strong combine testing despite an average or poor college career.",
@@ -33705,7 +33627,7 @@
    "notes": "Single publisher (Wikipedia)."
   },
   {
-   "id": "F-glossary-1258",
+   "id": "F-glossary-1255",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "X receiver: In letter-based systems, the X is the split end: the receiver on the line of scrimmage, usually away from the tight end.",
@@ -33744,7 +33666,7 @@
    "notes": "Two publishers. Wikipedia glossary 'wide receiver' entry ties X to split end."
   },
   {
-   "id": "F-glossary-1259",
+   "id": "F-glossary-1256",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Y receiver: In letter-based play calling, the Y is the tight end (the player who lines up on the end of the line); in some systems it is the offense's third receiver.",
@@ -33782,7 +33704,7 @@
    "notes": "Sources use letters differently by system. Wikipedia glossary also lists Y as a play-calling designation for the third receiver (slot or tight end)."
   },
   {
-   "id": "F-glossary-1260",
+   "id": "F-glossary-1257",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "YAC ability: A receiver's or back's ability to gain yards after the catch by speed, agility and breaking tackles.",
@@ -33829,7 +33751,7 @@
    ]
   },
   {
-   "id": "F-glossary-1261",
+   "id": "F-glossary-1258",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Yankee: A deep two-man crossing combination: one receiver on a deep over route and another on a deep post over the top, often off play-action.",
@@ -33867,7 +33789,7 @@
    ]
   },
   {
-   "id": "F-glossary-1263",
+   "id": "F-glossary-1260",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Yards after catch: Yards gained by a receiver after the catch.",
@@ -33915,7 +33837,7 @@
    "notes": "Merged from two rows. The Next Gen Stats glossary also defines expected YAC from tracking data."
   },
   {
-   "id": "F-glossary-1264",
+   "id": "F-glossary-1261",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Yards per route run: Receiving yards divided by the number of pass routes the player ran.",
@@ -33953,7 +33875,7 @@
    ]
   },
   {
-   "id": "F-glossary-1265",
+   "id": "F-glossary-1262",
    "level": "college",
    "domain": "coaching-convention",
    "statement": "year in residence: The old rule that a transferring underclassman had to sit out a year at the new school before playing, unless he got an NCAA waiver.",
@@ -33992,7 +33914,7 @@
    "notes": "Historical; graduate transfers were exempt (ESPN)."
   },
   {
-   "id": "F-glossary-1266",
+   "id": "F-glossary-1263",
    "level": "pro",
    "domain": "coaching-convention",
    "statement": "Yellow line: A solid yellow line six feet behind the white border in the bench area; players (except one charting the game) stay behind it, leaving the strip for coaches.",
@@ -34022,7 +33944,7 @@
    "notes": "Draft said 'limiting coaches' - actually the line marks the coaches' area and keeps players behind it. Rulebook only."
   },
   {
-   "id": "F-glossary-1267",
+   "id": "F-glossary-1264",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Z receiver: In letter-based systems, the Z is the flanker: the receiver who lines up a yard off the line of scrimmage, usually to the tight end's side.",
@@ -34061,7 +33983,7 @@
    "notes": "Two publishers."
   },
   {
-   "id": "F-glossary-1268",
+   "id": "F-glossary-1265",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Zap motion: A motion call telling the Z to start in the called formation, cross to the offside guard and return to his original spot.",
@@ -34091,7 +34013,7 @@
    "notes": "Single informal coaching page."
   },
   {
-   "id": "F-glossary-1269",
+   "id": "F-glossary-1266",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "zero blitz: A blitz run out of Cover 0: more rushers than the offense has blockers, every receiver covered man-to-man and no deep safety.",
@@ -34147,7 +34069,7 @@
    ]
   },
   {
-   "id": "F-glossary-1270",
+   "id": "F-glossary-1267",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "zone blitz: A rush of five or more in which one or more players who normally rush (often a lineman or edge) drop into coverage while other defenders rush, behind a zone coverage.",
@@ -34212,7 +34134,7 @@
    "notes": "ORIGIN CONFLICT: Wikipedia glossary says it was invented by Dick LeBeau; the Wikipedia Zone blitz article (via summariser) says Bill Arnsparger developed it with the Dolphins in 1971 and LeBeau popularized it in the early 1990s with Pittsburgh. Absorbs the draft row 'Bill Arnsparger zone blitz'. | Other batch definition: A blitz that sends extra rushers but drops some linemen or rushers into zone coverage, so the blitzer is disguised."
   },
   {
-   "id": "F-glossary-1271",
+   "id": "F-glossary-1268",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Zone blocking: A run-blocking scheme in which linemen block together to create lanes for the runner, with no hole assigned in advance.",
@@ -34260,7 +34182,7 @@
    "notes": "Draft wording about blocking 'areas rather than defenders' is an inference from these quotes."
   },
   {
-   "id": "F-glossary-1272",
+   "id": "F-glossary-1269",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "zone coverage: Pass coverage in which each defender covers an area of the field rather than a specific receiver.",
@@ -34316,7 +34238,7 @@
    ]
   },
   {
-   "id": "F-glossary-1273",
+   "id": "F-glossary-1270",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Zone read: A read option run: the line zone-blocks one way while the quarterback reads a defensive end and either hands off or keeps.",
@@ -34355,7 +34277,7 @@
    "notes": "All Wikipedia: flag single publisher. Wikipedia says the QB 'reads' the end on the side the play is designed to go."
   },
   {
-   "id": "F-glossary-1274",
+   "id": "F-glossary-1271",
    "level": "both",
    "domain": "coaching-convention",
    "statement": "Zoom motion: A motion call in which the Z starts in the called formation and motions across to the other side.",

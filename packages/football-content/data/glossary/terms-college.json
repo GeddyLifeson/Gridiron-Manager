@@ -646,7 +646,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0728"
+   "factRow": "F-glossary-0727"
   },
   {
    "id": "term.one-time-transfer-rule-college",
@@ -659,7 +659,7 @@
    "subdomain": "transfer",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0730"
+   "factRow": "F-glossary-0729"
   },
   {
    "id": "term.pavia-ruling-college",
@@ -672,7 +672,7 @@
    "subdomain": "eligibility",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0776"
+   "factRow": "F-glossary-0774"
   },
   {
    "id": "term.pay-for-play-college",
@@ -683,7 +683,7 @@
    "subdomain": "money",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0778"
+   "factRow": "F-glossary-0776"
   },
   {
    "id": "term.portal-class-college",
@@ -694,7 +694,7 @@
    "subdomain": "transfer",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0827",
+   "factRow": "F-glossary-0825",
    "variants": "portal commitment"
   },
   {
@@ -706,7 +706,7 @@
    "subdomain": "compliance",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0837"
+   "factRow": "F-glossary-0835"
   },
   {
    "id": "term.power-four-college",
@@ -721,7 +721,7 @@
    "subdomain": "structure",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0839",
+   "factRow": "F-glossary-0837",
    "variants": "Power Five (historical), BCS conferences"
   },
   {
@@ -735,7 +735,7 @@
    "subdomain": "roster",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0845"
+   "factRow": "F-glossary-0843"
   },
   {
    "id": "term.probation-college",
@@ -748,7 +748,7 @@
    "subdomain": "compliance",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0859"
+   "factRow": "F-glossary-0857"
   },
   {
    "id": "term.quiet-period-college",
@@ -759,7 +759,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0887"
+   "factRow": "F-glossary-0885"
   },
   {
    "id": "term.recruiting-class-college",
@@ -773,7 +773,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0898"
+   "factRow": "F-glossary-0896"
   },
   {
    "id": "term.redshirt-college",
@@ -787,7 +787,7 @@
    "subdomain": "eligibility",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0905",
+   "factRow": "F-glossary-0903",
    "variants": "redshirt freshman, redshirt sophomore, redshirt senior"
   },
   {
@@ -802,7 +802,7 @@
    "subdomain": "money",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0927"
+   "factRow": "F-glossary-0925"
   },
   {
    "id": "term.roster-limit-college",
@@ -816,7 +816,7 @@
    "subdomain": "roster",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0948"
+   "factRow": "F-glossary-0946"
   },
   {
    "id": "term.scholarship-college",
@@ -830,7 +830,7 @@
    "subdomain": "aid",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0980"
+   "factRow": "F-glossary-0978"
   },
   {
    "id": "term.scout-team-college",
@@ -841,7 +841,7 @@
    "subdomain": "practice",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-0981"
+   "factRow": "F-glossary-0979"
   },
   {
    "id": "term.show-cause-penalty-college",
@@ -854,7 +854,7 @@
    "subdomain": "compliance",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1022"
+   "factRow": "F-glossary-1020"
   },
   {
    "id": "term.silent-commit-college",
@@ -865,7 +865,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1031"
+   "factRow": "F-glossary-1029"
   },
   {
    "id": "term.soft-commit-college",
@@ -878,7 +878,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1053"
+   "factRow": "F-glossary-1051"
   },
   {
    "id": "term.star-rating-college",
@@ -892,7 +892,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1085",
+   "factRow": "F-glossary-1083",
    "variants": "2-to-5-star scale"
   },
   {
@@ -907,7 +907,7 @@
    "subdomain": "transfer",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1167"
+   "factRow": "F-glossary-1165"
   },
   {
    "id": "term.transfer-portal-entry-college",
@@ -920,7 +920,7 @@
    "subdomain": "transfer",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1168"
+   "factRow": "F-glossary-1166"
   },
   {
    "id": "term.transfer-portal-window-college",
@@ -934,7 +934,7 @@
    "subdomain": "transfer",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1169",
+   "factRow": "F-glossary-1167",
    "variants": "earlier: winter window in December plus a spring window (2024-25: Dec. 9-28 and Apr. 16-25)"
   },
   {
@@ -946,7 +946,7 @@
    "subdomain": "eligibility",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1176"
+   "factRow": "F-glossary-1174"
   },
   {
    "id": "term.unofficial-visit-college",
@@ -959,7 +959,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1202"
+   "factRow": "F-glossary-1199"
   },
   {
    "id": "term.vacated-wins-college",
@@ -973,7 +973,7 @@
    "subdomain": "compliance",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1210",
+   "factRow": "F-glossary-1207",
    "variants": "forfeited wins"
   },
   {
@@ -990,7 +990,7 @@
    "subdomain": "recruiting",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1213",
+   "factRow": "F-glossary-1210",
    "variants": "oral commit (older name)"
   },
   {
@@ -1004,7 +1004,7 @@
    "subdomain": "roster",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1229"
+   "factRow": "F-glossary-1226"
   },
   {
    "id": "term.year-in-residence-college",
@@ -1017,7 +1017,7 @@
    "subdomain": "transfer",
    "level": "college",
    "ownerLeaf": "A4.5.7",
-   "factRow": "F-glossary-1265"
+   "factRow": "F-glossary-1262"
   }
  ]
 }

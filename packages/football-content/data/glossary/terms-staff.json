@@ -294,7 +294,7 @@
    "subdomain": "front-office",
    "level": "pro",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0759"
+   "factRow": "F-glossary-0757"
   },
   {
    "id": "term.position-coach",
@@ -307,7 +307,7 @@
    "subdomain": "coaching",
    "level": "both",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0828"
+   "factRow": "F-glossary-0826"
   },
   {
    "id": "term.president-pro",
@@ -320,7 +320,7 @@
    "subdomain": "front-office",
    "level": "pro",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0846",
+   "factRow": "F-glossary-0844",
    "variants": "CEO, chairman"
   },
   {
@@ -332,7 +332,7 @@
    "subdomain": "scouting",
    "level": "pro",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0856"
+   "factRow": "F-glossary-0854"
   },
   {
    "id": "term.quality-control-coach",
@@ -346,7 +346,7 @@
    "subdomain": "coaching",
    "level": "both",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0878",
+   "factRow": "F-glossary-0876",
    "variants": "offensive, defensive and special teams quality control"
   },
   {
@@ -360,7 +360,7 @@
    "subdomain": "coaching",
    "level": "both",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0881"
+   "factRow": "F-glossary-0879"
   },
   {
    "id": "term.recruiting-coordinator-college",
@@ -371,7 +371,7 @@
    "subdomain": "staff",
    "level": "college",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0899"
+   "factRow": "F-glossary-0897"
   },
   {
    "id": "term.rooney-rule-pro",
@@ -382,7 +382,7 @@
    "subdomain": "hiring",
    "level": "pro",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0944"
+   "factRow": "F-glossary-0942"
   },
   {
    "id": "term.scouting-director-pro",
@@ -395,7 +395,7 @@
    "subdomain": "scouting",
    "level": "pro",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-0982"
+   "factRow": "F-glossary-0980"
   },
   {
    "id": "term.secondary-coach",
@@ -409,7 +409,7 @@
    "subdomain": "coaching",
    "level": "both",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-1002",
+   "factRow": "F-glossary-1000",
    "variants": "defensive back coach"
   },
   {
@@ -424,7 +424,7 @@
    "subdomain": "coaching",
    "level": "both",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-1059",
+   "factRow": "F-glossary-1057",
    "variants": "merged draft rows: special teams coordinator (two copies)"
   },
   {
@@ -438,7 +438,7 @@
    "subdomain": "support",
    "level": "both",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-1089",
+   "factRow": "F-glossary-1087",
    "variants": "strength coach"
   },
   {
@@ -452,7 +452,7 @@
    "subdomain": "medical",
    "level": "pro",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-1129"
+   "factRow": "F-glossary-1127"
   },
   {
    "id": "term.video-director",
@@ -466,7 +466,7 @@
    "subdomain": "support",
    "level": "both",
    "ownerLeaf": "A4.5.8",
-   "factRow": "F-glossary-1218",
+   "factRow": "F-glossary-1215",
    "variants": "director of video operations (Chiefs title)"
   }
  ]

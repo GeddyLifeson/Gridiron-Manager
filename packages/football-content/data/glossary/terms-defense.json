@@ -1764,8 +1764,8 @@
    "id": "term.okie-front",
    "term": "Okie front",
    "aliases": [
-    "Oklahoma front",
-    "3-4 Okie"
+    "3-4 Okie",
+    "Oklahoma front"
    ],
    "definition": "A 3-4 front descended from the 5-2 Oklahoma defense.",
    "domain": "defense",
@@ -1776,22 +1776,6 @@
    "variants": [
     "Okie",
     "Tite/Okie"
-   ]
-  },
-  {
-   "id": "term.okie-front-pro",
-   "term": "Okie front",
-   "aliases": [
-    "3-4 Okie"
-   ],
-   "definition": "The traditional two-gap 3-4: ends in 5-techniques, nose head-up on the center, inside linebackers over the bubbles.",
-   "domain": "defense",
-   "subdomain": "fronts",
-   "level": "pro",
-   "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0727",
-   "variants": [
-    "3-4 Okie"
    ]
   },
   {
@@ -1806,7 +1790,7 @@
    "subdomain": "gaps",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0729",
+   "factRow": "F-glossary-0728",
    "variants": [
     "1-gap"
    ]
@@ -1823,7 +1807,7 @@
    "subdomain": "techniques",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0750",
+   "factRow": "F-glossary-0748",
    "variants": [
     "outside shade",
     "outside leverage"
@@ -1838,7 +1822,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0751"
+   "factRow": "F-glossary-0749"
   },
   {
    "id": "term.outside-linebacker",
@@ -1853,7 +1837,7 @@
    "subdomain": "positions",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0752",
+   "factRow": "F-glossary-0750",
    "variants": [
     "OLB"
    ]
@@ -1869,7 +1853,7 @@
    "subdomain": "fronts",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0754",
+   "factRow": "F-glossary-0752",
    "variants": [
     "Over",
     "4-3 Over"
@@ -1888,7 +1872,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0762",
+   "factRow": "F-glossary-0760",
    "variants": [
     "2-Trap",
     "trap",
@@ -1905,7 +1889,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0767"
+   "factRow": "F-glossary-0765"
   },
   {
    "id": "term.pass-rush",
@@ -1918,7 +1902,7 @@
    "subdomain": "pass-rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0770"
+   "factRow": "F-glossary-0768"
   },
   {
    "id": "term.pass-strength",
@@ -1931,7 +1915,7 @@
    "subdomain": "calls",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0771"
+   "factRow": "F-glossary-0769"
   },
   {
    "id": "term.pattern-match",
@@ -1945,7 +1929,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0775",
+   "factRow": "F-glossary-0773",
    "variants": [
     "match",
     "match coverage"
@@ -1963,7 +1947,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0779",
+   "factRow": "F-glossary-0777",
    "variants": [
     "backpedal"
    ]
@@ -1980,7 +1964,7 @@
    "subdomain": "pass-rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0782",
+   "factRow": "F-glossary-0780",
    "variants": [
     "penetrating"
    ]
@@ -1997,7 +1981,7 @@
    "subdomain": "schemes",
    "level": "pro",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0789",
+   "factRow": "F-glossary-0787",
    "variants": [
     "Seattle 4-3 hybrid"
    ]
@@ -2013,7 +1997,7 @@
    "subdomain": "run-defense",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0817"
+   "factRow": "F-glossary-0815"
   },
   {
    "id": "term.poach",
@@ -2024,7 +2008,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0818"
+   "factRow": "F-glossary-0816"
   },
   {
    "id": "term.pocket",
@@ -2037,7 +2021,7 @@
    "subdomain": "offense (coverage context)",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0819"
+   "factRow": "F-glossary-0817"
   },
   {
    "id": "term.press",
@@ -2051,7 +2035,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0847",
+   "factRow": "F-glossary-0845",
    "variants": [
     "bump-and-run"
    ]
@@ -2068,7 +2052,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0850",
+   "factRow": "F-glossary-0848",
    "variants": [
     "prevent",
     "Green 2"
@@ -2085,7 +2069,7 @@
    "subdomain": "blitz",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0900"
+   "factRow": "F-glossary-0898"
   },
   {
    "id": "term.rip-liz",
@@ -2100,7 +2084,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0932",
+   "factRow": "F-glossary-0930",
    "variants": [
     "Rip",
     "Liz"
@@ -2117,7 +2101,7 @@
    "subdomain": "pass rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0933",
+   "factRow": "F-glossary-0931",
    "variants": [
     "rip"
    ]
@@ -2135,7 +2119,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0935",
+   "factRow": "F-glossary-0933",
    "variants": [
     "Robber",
     "Cover 1 Robber",
@@ -2154,7 +2138,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0936",
+   "factRow": "F-glossary-0934",
    "variants": [
     "rotation"
    ]
@@ -2171,7 +2155,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0949",
+   "factRow": "F-glossary-0947",
    "variants": [
     "roll",
     "spin",
@@ -2189,7 +2173,7 @@
    "subdomain": "positions",
    "level": "college",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0956",
+   "factRow": "F-glossary-0954",
    "variants": [
     "rover"
    ]
@@ -2206,7 +2190,7 @@
    "subdomain": "alignment",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0960",
+   "factRow": "F-glossary-0958",
    "variants": [
     "strong side"
    ]
@@ -2224,7 +2208,7 @@
    "subdomain": "coach-systems",
    "level": "college",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0968",
+   "factRow": "F-glossary-0966",
    "variants": [
     "pattern match",
     "match quarters",
@@ -2242,7 +2226,7 @@
    "subdomain": "pass-rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0969",
+   "factRow": "F-glossary-0967",
    "variants": [
     "sack"
    ]
@@ -2256,7 +2240,7 @@
    "subdomain": "blitz",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0972"
+   "factRow": "F-glossary-0970"
   },
   {
    "id": "term.sam",
@@ -2270,7 +2254,7 @@
    "subdomain": "positions",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0977",
+   "factRow": "F-glossary-0975",
    "variants": [
     "Sam (SLB)"
    ]
@@ -2287,7 +2271,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0991",
+   "factRow": "F-glossary-0989",
    "variants": [
     "inside seam"
    ]
@@ -2303,7 +2287,7 @@
    "subdomain": "coverage",
    "level": "pro",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-0994"
+   "factRow": "F-glossary-0992"
   },
   {
    "id": "term.secondary",
@@ -2317,7 +2301,7 @@
    "subdomain": "positions",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1001",
+   "factRow": "F-glossary-0999",
    "variants": [
     "defensive backfield"
    ]
@@ -2333,7 +2317,7 @@
    "subdomain": "run-defense",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1009",
+   "factRow": "F-glossary-1007",
    "variants": [
     "set the edge"
    ]
@@ -2349,7 +2333,7 @@
    "subdomain": "techniques",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1012",
+   "factRow": "F-glossary-1010",
    "variants": [
     "inside shade",
     "outside shade"
@@ -2366,7 +2350,7 @@
    "subdomain": "run-defense",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1017",
+   "factRow": "F-glossary-1015",
    "variants": [
     "shoot"
    ]
@@ -2384,7 +2368,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1034",
+   "factRow": "F-glossary-1032",
    "variants": [
     "one-high",
     "single-high safety"
@@ -2401,7 +2385,7 @@
    "subdomain": "offense (coverage context)",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1041"
+   "factRow": "F-glossary-1039"
   },
   {
    "id": "term.slot",
@@ -2415,7 +2399,7 @@
    "subdomain": "alignment",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1044",
+   "factRow": "F-glossary-1042",
    "variants": [
     "slotback"
    ]
@@ -2431,7 +2415,7 @@
    "subdomain": "run-defense",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1064"
+   "factRow": "F-glossary-1062"
   },
   {
    "id": "term.spin",
@@ -2445,7 +2429,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1065",
+   "factRow": "F-glossary-1063",
    "variants": [
     "spin down"
    ]
@@ -2461,7 +2445,7 @@
    "subdomain": "pass rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1066"
+   "factRow": "F-glossary-1064"
   },
   {
    "id": "term.spy",
@@ -2476,7 +2460,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1077",
+   "factRow": "F-glossary-1075",
    "variants": [
     "QB spy",
     "green dog (related)"
@@ -2494,7 +2478,7 @@
    "subdomain": "fronts",
    "level": "pro",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1081",
+   "factRow": "F-glossary-1079",
    "variants": [
     "stack",
     "tan-zero-tan"
@@ -2512,7 +2496,7 @@
    "subdomain": "positions",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1082",
+   "factRow": "F-glossary-1080",
    "variants": [
     "stand-up rusher"
    ]
@@ -2530,7 +2514,7 @@
    "subdomain": "positions",
    "level": "college",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1084",
+   "factRow": "F-glossary-1082",
    "variants": [
     "Star",
     "nickel"
@@ -2547,7 +2531,7 @@
    "subdomain": "calls",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1090"
+   "factRow": "F-glossary-1088"
   },
   {
    "id": "term.strong-safety",
@@ -2561,7 +2545,7 @@
    "subdomain": "positions",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1093",
+   "factRow": "F-glossary-1091",
    "variants": [
     "SS"
    ]
@@ -2577,7 +2561,7 @@
    "subdomain": "calls",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1094",
+   "factRow": "F-glossary-1092",
    "variants": [
     "strong"
    ]
@@ -2593,7 +2577,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1095",
+   "factRow": "F-glossary-1093",
    "variants": [
     "Stubbie",
     "Stump (related)"
@@ -2611,7 +2595,7 @@
    "subdomain": "run-defense",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1096",
+   "factRow": "F-glossary-1094",
    "variants": [
     "stuff rate"
    ]
@@ -2629,7 +2613,7 @@
    "subdomain": "pass-rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1098",
+   "factRow": "F-glossary-1096",
    "variants": [
     "twist",
     "TEX",
@@ -2647,7 +2631,7 @@
    "subdomain": "pass-rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1110",
+   "factRow": "F-glossary-1108",
    "variants": [
     "swim"
    ]
@@ -2663,7 +2647,7 @@
    "subdomain": "rules",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1115"
+   "factRow": "F-glossary-1113"
   },
   {
    "id": "term.tackle-for-loss",
@@ -2677,7 +2661,7 @@
    "subdomain": "run defense",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1116",
+   "factRow": "F-glossary-1114",
    "variants": [
     "stuff"
    ]
@@ -2693,7 +2677,7 @@
    "subdomain": "coverage",
    "level": "pro",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1121"
+   "factRow": "F-glossary-1119"
   },
   {
    "id": "term.tampa-2-pro",
@@ -2707,7 +2691,7 @@
    "subdomain": "coverage",
    "level": "pro",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1122",
+   "factRow": "F-glossary-1120",
    "variants": [
     "Tampa Cover 2",
     "Cover 2 zone"
@@ -2725,7 +2709,7 @@
    "subdomain": "fronts",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1151",
+   "factRow": "F-glossary-1149",
    "variants": [
     "tight front"
    ]
@@ -2741,7 +2725,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1164"
+   "factRow": "F-glossary-1162"
   },
   {
    "id": "term.trips",
@@ -2756,7 +2740,7 @@
    "subdomain": "offense (coverage context)",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1175",
+   "factRow": "F-glossary-1173",
    "variants": [
     "3x1"
    ]
@@ -2772,7 +2756,7 @@
    "subdomain": "coverage",
    "level": "college",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1178",
+   "factRow": "F-glossary-1176",
    "variants": [
     "Tuff"
    ]
@@ -2788,7 +2772,7 @@
    "subdomain": "pass rush",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1184",
+   "factRow": "F-glossary-1182",
    "variants": [
     "loop"
    ]
@@ -2806,7 +2790,7 @@
    "subdomain": "gaps",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1187",
+   "factRow": "F-glossary-1185",
    "variants": [
     "2-gap",
     "two-gapping"
@@ -2825,7 +2809,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1188"
+   "factRow": "F-glossary-1186"
   },
   {
    "id": "term.two-level-defense",
@@ -2838,7 +2822,7 @@
    "subdomain": "fronts",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1189",
+   "factRow": "F-glossary-1187",
    "variants": [
     "2-level"
    ]
@@ -2855,7 +2839,7 @@
    "subdomain": "fronts",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1199",
+   "factRow": "F-glossary-1196",
    "variants": [
     "Under",
     "4-3 Under"
@@ -2872,7 +2856,7 @@
    "subdomain": "coach-systems",
    "level": "pro",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1223",
+   "factRow": "F-glossary-1220",
    "variants": [
     "3-4 Under"
    ]
@@ -2888,7 +2872,7 @@
    "subdomain": "alignment",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1230"
+   "factRow": "F-glossary-1227"
   },
   {
    "id": "term.wall",
@@ -2901,7 +2885,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1232",
+   "factRow": "F-glossary-1229",
    "variants": [
     "walling off"
    ]
@@ -2919,7 +2903,7 @@
    "subdomain": "alignment",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1234",
+   "factRow": "F-glossary-1231",
    "variants": [
     "open side",
     "boundary-opposite"
@@ -2937,7 +2921,7 @@
    "subdomain": "fronts",
    "level": "pro",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1242",
+   "factRow": "F-glossary-1239",
    "variants": [
     "wide-9"
    ]
@@ -2954,7 +2938,7 @@
    "subdomain": "positions",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1246",
+   "factRow": "F-glossary-1243",
    "variants": [
     "Will",
     "W"
@@ -2971,7 +2955,7 @@
    "subdomain": "blitz",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1269",
+   "factRow": "F-glossary-1266",
    "variants": [
     "Cover 0 pressure"
    ]
@@ -2988,7 +2972,7 @@
    "subdomain": "blitz",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1270",
+   "factRow": "F-glossary-1267",
    "variants": [
     "fire zone",
     "zone dog"
@@ -3005,7 +2989,7 @@
    "subdomain": "coverage",
    "level": "both",
    "ownerLeaf": "A4.5.3",
-   "factRow": "F-glossary-1272",
+   "factRow": "F-glossary-1269",
    "variants": [
     "zone"
    ]

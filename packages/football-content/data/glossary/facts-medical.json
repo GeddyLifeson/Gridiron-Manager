@@ -646,7 +646,7 @@
    "notes": "The NFL's football-terms page calls these 'injury timeouts' when called by officials or spotters; a different, official-called injury timeout also exists for ordinary injuries."
   },
   {
-   "id": "F-glossary-0746",
+   "id": "F-glossary-0744",
    "level": "pro",
    "domain": "medical",
    "statement": "Out (injury report designation): A game-status designation meaning the player will not play.",
@@ -676,7 +676,7 @@
    "notes": "Not an offense term: belongs with injury reporting. Only WebMD found in this pass (the ESPN page cited by the drafting agent did not show its article text). Flag: single publisher."
   },
   {
-   "id": "F-glossary-0747",
+   "id": "F-glossary-0745",
    "level": "pro",
    "domain": "medical",
    "statement": "Out (injury report): A game-status designation meaning the player will not play.",
@@ -706,7 +706,7 @@
    "notes": "Added: the draft listed Questionable, Doubtful and Probable but not Out, the third current game-status category."
   },
   {
-   "id": "F-glossary-0795",
+   "id": "F-glossary-0793",
    "level": "pro",
    "domain": "medical",
    "statement": "Physical examination: The medical exam club doctors give each player on report day to camp and before minicamps; the CBA sets a standard minimum preseason exam.",
@@ -736,7 +736,7 @@
    "notes": "Single primary text."
   },
   {
-   "id": "F-glossary-0858",
+   "id": "F-glossary-0856",
    "level": "pro",
    "domain": "medical",
    "statement": "Probable: A former game-status designation meaning the player was likely to play (generally at least 75 percent); the NFL eliminated it in 2016.",
@@ -766,7 +766,7 @@
    "notes": "Single publisher so far."
   },
   {
-   "id": "F-glossary-0883",
+   "id": "F-glossary-0881",
    "level": "pro",
    "domain": "medical",
    "statement": "Questionable: A game-status designation meaning it is uncertain whether the player will play.",
@@ -796,7 +796,7 @@
    "notes": "Before 2016 'questionable' meant roughly 50-50 (WebMD)."
   },
   {
-   "id": "F-glossary-0924",
+   "id": "F-glossary-0922",
    "level": "pro",
    "domain": "medical",
    "statement": "Return-to-participation protocol: The five-step graduated program a concussed player must pass before full practice or play: rest and recovery, light aerobic exercise, continued aerobic exercise with strength training, football-specific non-contact activity, then full football activity and clearance.",
@@ -844,7 +844,7 @@
    "notes": "Steps in the CBA appendix: Step Two Light Aerobic Exercise; Step Three Continued Aerobic Exercise and Introduction of Strength Training; Step Four Football Specific Activities. NBC's wording of the first phase ('symptom limited activity') differs from the CBA's 'Rest and Recovery'. There is no set timeframe; the club physician decides and the INC must confirm clearance."
   },
   {
-   "id": "F-glossary-0925",
+   "id": "F-glossary-0923",
    "level": "pro",
    "domain": "medical",
    "statement": "Return to play: The graded process, and the physician's decision, by which an injured player goes back to practice and games.",
@@ -883,7 +883,7 @@
    "notes": "Draft row had a generic definition; sources here are concussion-specific, general injury return-to-play is governed by the Head Team Physician under Art. 39 Sec. 1(d)."
   },
   {
-   "id": "F-glossary-0999",
+   "id": "F-glossary-0997",
    "level": "pro",
    "domain": "medical",
    "statement": "Second opinion: A player's right to have another board-certified physician examine him; the club pays only if the player consults the club physician first and the second doctor reports back to him.",
@@ -913,7 +913,7 @@
    "notes": "Single primary text."
   },
   {
-   "id": "F-glossary-1128",
+   "id": "F-glossary-1126",
    "level": "pro",
    "domain": "medical",
    "statement": "Team doctor: A physician retained by the club to treat players; each club must have a board-certified orthopedic surgeon and a primary-care sports medicine physician, one of whom is the Head Team Physician with final say on clearance.",
@@ -952,7 +952,7 @@
    "notes": "Wikipedia's field-presence sentence is tied to training-camp heat concerns after the 2001 death of Korey Stringer."
   },
   {
-   "id": "F-glossary-1197",
+   "id": "F-glossary-1194",
    "level": "pro",
    "domain": "medical",
    "statement": "Unaffiliated neurotrauma consultant: An independent physician with no club affiliation, assigned by the league to each game to help spot and evaluate possible head injuries; two stand on the sidelines and a third watches video from the booth.",
@@ -1000,7 +1000,7 @@
    "notes": "The UNC assists; the diagnosis and the return-to-game decision remain with the Head Team Physician or the physician managing traumatic brain injury (CBA Appendix W). The Booth UNC is separate from the Booth ATC Spotter. | Other batch definition: An independent physician assigned to each NFL game to help check head-injury evaluations; three per game (two on the sideline, one in the booth)."
   },
   {
-   "id": "F-glossary-1225",
+   "id": "F-glossary-1222",
    "level": "pro",
    "domain": "medical",
    "statement": "Waived/injured: A designation on an injured player who is waived: another team may claim him, or, if unclaimed, he goes onto his original team's injured reserve (or the team releases him with an injury settlement).",

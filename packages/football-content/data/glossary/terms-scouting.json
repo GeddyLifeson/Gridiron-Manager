@@ -720,7 +720,7 @@
    "subdomain": "labels",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0755"
+   "factRow": "F-glossary-0753"
   },
   {
    "id": "term.pad-level",
@@ -735,7 +735,7 @@
    "subdomain": "technique",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0760"
+   "factRow": "F-glossary-0758"
   },
   {
    "id": "term.pass-protection-running-back",
@@ -746,7 +746,7 @@
    "subdomain": "skill",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0769"
+   "factRow": "F-glossary-0767"
   },
   {
    "id": "term.phone-booth",
@@ -757,7 +757,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0794"
+   "factRow": "F-glossary-0792"
   },
   {
    "id": "term.play-speed",
@@ -772,7 +772,7 @@
    "subdomain": "athleticism",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0807"
+   "factRow": "F-glossary-0805"
   },
   {
    "id": "term.plays-until-he-hears-glass-break",
@@ -783,7 +783,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0815"
+   "factRow": "F-glossary-0813"
   },
   {
    "id": "term.pocket-presence",
@@ -797,7 +797,7 @@
    "subdomain": "quarterback",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0821"
+   "factRow": "F-glossary-0819"
   },
   {
    "id": "term.processing",
@@ -811,7 +811,7 @@
    "subdomain": "mental",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0860"
+   "factRow": "F-glossary-0858"
   },
   {
    "id": "term.production",
@@ -822,7 +822,7 @@
    "subdomain": "evaluation",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0861"
+   "factRow": "F-glossary-0859"
   },
   {
    "id": "term.punch",
@@ -837,7 +837,7 @@
    "subdomain": "technique",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0869"
+   "factRow": "F-glossary-0867"
   },
   {
    "id": "term.quicker-than-fast",
@@ -848,7 +848,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0886"
+   "factRow": "F-glossary-0884"
   },
   {
    "id": "term.read-and-react",
@@ -863,7 +863,7 @@
    "subdomain": "mental",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0890"
+   "factRow": "F-glossary-0888"
   },
   {
    "id": "term.recovery-speed",
@@ -874,7 +874,7 @@
    "subdomain": "athleticism",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0897"
+   "factRow": "F-glossary-0895"
   },
   {
    "id": "term.relative-athletic-score",
@@ -887,7 +887,7 @@
    "subdomain": "metrics",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0908"
+   "factRow": "F-glossary-0906"
   },
   {
    "id": "term.release-package",
@@ -900,7 +900,7 @@
    "subdomain": "skill",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0909"
+   "factRow": "F-glossary-0907"
   },
   {
    "id": "term.return-to-school",
@@ -911,7 +911,7 @@
    "subdomain": "eligibility",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0926"
+   "factRow": "F-glossary-0924"
   },
   {
    "id": "term.road-grader",
@@ -922,7 +922,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0934"
+   "factRow": "F-glossary-0932"
   },
   {
    "id": "term.route-running",
@@ -933,7 +933,7 @@
    "subdomain": "skill",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0954"
+   "factRow": "F-glossary-0952"
   },
   {
    "id": "term.run-support",
@@ -944,7 +944,7 @@
    "subdomain": "defense",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0961"
+   "factRow": "F-glossary-0959"
   },
   {
    "id": "term.scheme-fit",
@@ -955,7 +955,7 @@
    "subdomain": "evaluation",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-0979"
+   "factRow": "F-glossary-0977"
   },
   {
    "id": "term.separation",
@@ -966,7 +966,7 @@
    "subdomain": "skill",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1004"
+   "factRow": "F-glossary-1002"
   },
   {
    "id": "term.short-area-quickness",
@@ -977,7 +977,7 @@
    "subdomain": "athleticism",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1018"
+   "factRow": "F-glossary-1016"
   },
   {
    "id": "term.sleeper",
@@ -988,7 +988,7 @@
    "subdomain": "evaluation",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1042"
+   "factRow": "F-glossary-1040"
   },
   {
    "id": "term.space-player",
@@ -999,7 +999,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1054"
+   "factRow": "F-glossary-1052"
   },
   {
    "id": "term.special-eligibility-pro",
@@ -1010,7 +1010,7 @@
    "subdomain": "eligibility",
    "level": "pro",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1056"
+   "factRow": "F-glossary-1054"
   },
   {
    "id": "term.speed-score",
@@ -1023,7 +1023,7 @@
    "subdomain": "metrics",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1061"
+   "factRow": "F-glossary-1059"
   },
   {
    "id": "term.tape",
@@ -1038,7 +1038,7 @@
    "subdomain": "film",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1123"
+   "factRow": "F-glossary-1121"
   },
   {
    "id": "term.three-year-rule-pro",
@@ -1049,7 +1049,7 @@
    "subdomain": "eligibility",
    "level": "pro",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1142"
+   "factRow": "F-glossary-1140"
   },
   {
    "id": "term.tight-skin",
@@ -1060,7 +1060,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1145"
+   "factRow": "F-glossary-1143"
   },
   {
    "id": "term.touch",
@@ -1071,7 +1071,7 @@
    "subdomain": "quarterback",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1158"
+   "factRow": "F-glossary-1156"
   },
   {
    "id": "term.traits",
@@ -1082,7 +1082,7 @@
    "subdomain": "evaluation",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1166"
+   "factRow": "F-glossary-1164"
   },
   {
    "id": "term.tweener",
@@ -1093,7 +1093,7 @@
    "subdomain": "labels",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1182"
+   "factRow": "F-glossary-1180"
   },
   {
    "id": "term.twitchy",
@@ -1106,7 +1106,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1185"
+   "factRow": "F-glossary-1183"
   },
   {
    "id": "term.velocity",
@@ -1117,7 +1117,7 @@
    "subdomain": "quarterback",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1212"
+   "factRow": "F-glossary-1209"
   },
   {
    "id": "term.vision",
@@ -1128,7 +1128,7 @@
    "subdomain": "skill",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1220"
+   "factRow": "F-glossary-1217"
   },
   {
    "id": "term.waist-bender",
@@ -1141,7 +1141,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1224"
+   "factRow": "F-glossary-1221"
   },
   {
    "id": "term.washcloth-tackler",
@@ -1152,7 +1152,7 @@
    "subdomain": "slang",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1233"
+   "factRow": "F-glossary-1230"
   },
   {
    "id": "term.work-ethic",
@@ -1163,7 +1163,7 @@
    "subdomain": "makeup",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1255"
+   "factRow": "F-glossary-1252"
   },
   {
    "id": "term.workout-warrior",
@@ -1174,7 +1174,7 @@
    "subdomain": "labels",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1257"
+   "factRow": "F-glossary-1254"
   },
   {
    "id": "term.yac-ability",
@@ -1188,7 +1188,7 @@
    "subdomain": "skill",
    "level": "both",
    "ownerLeaf": "A4.5.9",
-   "factRow": "F-glossary-1260"
+   "factRow": "F-glossary-1257"
   }
  ]
 }

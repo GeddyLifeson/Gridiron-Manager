@@ -1624,7 +1624,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0737"
+   "factRow": "F-glossary-0735"
   },
   {
    "id": "term.option-route",
@@ -1638,7 +1638,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0740"
+   "factRow": "F-glossary-0738"
   },
   {
    "id": "term.option-run",
@@ -1651,7 +1651,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0741"
+   "factRow": "F-glossary-0739"
   },
   {
    "id": "term.out",
@@ -1662,7 +1662,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0745",
+   "factRow": "F-glossary-0743",
    "variants": [
     "deep out",
     "quick out",
@@ -1681,7 +1681,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0753"
+   "factRow": "F-glossary-0751"
   },
   {
    "id": "term.pancake-block",
@@ -1695,7 +1695,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0764"
+   "factRow": "F-glossary-0762"
   },
   {
    "id": "term.personnel-grouping",
@@ -1709,7 +1709,7 @@
    "subdomain": "grouping",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0788"
+   "factRow": "F-glossary-0786"
   },
   {
    "id": "term.peter-block-pro",
@@ -1720,7 +1720,7 @@
    "subdomain": "protection",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0790"
+   "factRow": "F-glossary-0788"
   },
   {
    "id": "term.pin-and-pull",
@@ -1731,7 +1731,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0797"
+   "factRow": "F-glossary-0795"
   },
   {
    "id": "term.pistol",
@@ -1742,7 +1742,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0798"
+   "factRow": "F-glossary-0796"
   },
   {
    "id": "term.pitch",
@@ -1756,7 +1756,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0799"
+   "factRow": "F-glossary-0797"
   },
   {
    "id": "term.pivot-route-pro",
@@ -1770,7 +1770,7 @@
    "subdomain": "route",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0800"
+   "factRow": "F-glossary-0798"
   },
   {
    "id": "term.play-action",
@@ -1784,7 +1784,7 @@
    "subdomain": "pass",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0804"
+   "factRow": "F-glossary-0802"
   },
   {
    "id": "term.play-action-protection-h2-f2-pro",
@@ -1795,7 +1795,7 @@
    "subdomain": "protection",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0805"
+   "factRow": "F-glossary-0803"
   },
   {
    "id": "term.playside-and-backside",
@@ -1808,7 +1808,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0816"
+   "factRow": "F-glossary-0814"
   },
   {
    "id": "term.pocket-protection",
@@ -1822,7 +1822,7 @@
    "subdomain": "protection",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0822",
+   "factRow": "F-glossary-0820",
    "variants": "pass protection"
   },
   {
@@ -1837,7 +1837,7 @@
    "subdomain": "protection",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0823",
+   "factRow": "F-glossary-0821",
    "variants": "tackle box"
   },
   {
@@ -1852,7 +1852,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0830"
+   "factRow": "F-glossary-0828"
   },
   {
    "id": "term.post-corner",
@@ -1865,7 +1865,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0831"
+   "factRow": "F-glossary-0829"
   },
   {
    "id": "term.power",
@@ -1879,7 +1879,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0838",
+   "factRow": "F-glossary-0836",
    "variants": "power O"
   },
   {
@@ -1893,7 +1893,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0857"
+   "factRow": "F-glossary-0855"
   },
   {
    "id": "term.progression",
@@ -1906,7 +1906,7 @@
    "subdomain": "pass",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0863"
+   "factRow": "F-glossary-0861"
   },
   {
    "id": "term.pull-block",
@@ -1919,7 +1919,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0867",
+   "factRow": "F-glossary-0865",
    "variants": "pulling"
   },
   {
@@ -1931,7 +1931,7 @@
    "subdomain": "pass",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0868"
+   "factRow": "F-glossary-0866"
   },
   {
    "id": "term.quarter-defense",
@@ -1942,7 +1942,7 @@
    "subdomain": "package",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0879",
+   "factRow": "F-glossary-0877",
    "variants": [
     "seven-back defense"
    ]
@@ -1958,7 +1958,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0880"
+   "factRow": "F-glossary-0878"
   },
   {
    "id": "term.quarterback-sneak",
@@ -1972,7 +1972,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0882"
+   "factRow": "F-glossary-0880"
   },
   {
    "id": "term.quick-game",
@@ -1985,7 +1985,7 @@
    "subdomain": "concept",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0884",
+   "factRow": "F-glossary-0882",
    "variants": "three-step game"
   },
   {
@@ -1997,7 +1997,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0888"
+   "factRow": "F-glossary-0886"
   },
   {
    "id": "term.reach-block",
@@ -2008,7 +2008,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0889"
+   "factRow": "F-glossary-0887"
   },
   {
    "id": "term.read-key",
@@ -2022,7 +2022,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0891"
+   "factRow": "F-glossary-0889"
   },
   {
    "id": "term.read-option",
@@ -2035,7 +2035,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0892",
+   "factRow": "F-glossary-0890",
    "variants": "zone read"
   },
   {
@@ -2049,7 +2049,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0893"
+   "factRow": "F-glossary-0891"
   },
   {
    "id": "term.reverse",
@@ -2060,7 +2060,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0928"
+   "factRow": "F-glossary-0926"
   },
   {
    "id": "term.route-tree",
@@ -2073,7 +2073,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0955"
+   "factRow": "F-glossary-0953"
   },
   {
    "id": "term.run-and-shoot",
@@ -2086,7 +2086,7 @@
    "subdomain": "system",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0958",
+   "factRow": "F-glossary-0956",
    "variants": "run and gun"
   },
   {
@@ -2100,7 +2100,7 @@
    "subdomain": "pass",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0959",
+   "factRow": "F-glossary-0957",
    "variants": "RPO"
   },
   {
@@ -2116,7 +2116,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0963",
+   "factRow": "F-glossary-0961",
    "variants": "halfback; tailback"
   },
   {
@@ -2130,7 +2130,7 @@
    "subdomain": "screen",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0964"
+   "factRow": "F-glossary-0962"
   },
   {
    "id": "term.running-out-the-clock",
@@ -2147,7 +2147,7 @@
    "subdomain": "tempo",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0966"
+   "factRow": "F-glossary-0964"
   },
   {
    "id": "term.sail-concept",
@@ -2160,7 +2160,7 @@
    "subdomain": "concept",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0974",
+   "factRow": "F-glossary-0972",
    "variants": "flood"
   },
   {
@@ -2172,7 +2172,7 @@
    "subdomain": "protection",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0978"
+   "factRow": "F-glossary-0976"
   },
   {
    "id": "term.scramble",
@@ -2185,7 +2185,7 @@
    "subdomain": "pass",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0983"
+   "factRow": "F-glossary-0981"
   },
   {
    "id": "term.screen-pass",
@@ -2196,7 +2196,7 @@
    "subdomain": "screen",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0984"
+   "factRow": "F-glossary-0982"
   },
   {
    "id": "term.scripted-plays-pro",
@@ -2207,7 +2207,7 @@
    "subdomain": "tempo",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0990"
+   "factRow": "F-glossary-0988"
   },
   {
    "id": "term.seam-route",
@@ -2220,7 +2220,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0992"
+   "factRow": "F-glossary-0990"
   },
   {
    "id": "term.second-level",
@@ -2233,7 +2233,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-0997"
+   "factRow": "F-glossary-0995"
   },
   {
    "id": "term.series-number-west-coast-pro",
@@ -2244,7 +2244,7 @@
    "subdomain": "system",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1006"
+   "factRow": "F-glossary-1004"
   },
   {
    "id": "term.set",
@@ -2255,7 +2255,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1008"
+   "factRow": "F-glossary-1006"
   },
   {
    "id": "term.shallow-cross",
@@ -2269,7 +2269,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1013",
+   "factRow": "F-glossary-1011",
    "variants": "shallow drive"
   },
   {
@@ -2283,7 +2283,7 @@
    "subdomain": "motion",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1016"
+   "factRow": "F-glossary-1014"
   },
   {
    "id": "term.shotgun",
@@ -2296,7 +2296,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1020"
+   "factRow": "F-glossary-1018"
   },
   {
    "id": "term.shovel-pass",
@@ -2307,7 +2307,7 @@
    "subdomain": "screen",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1021"
+   "factRow": "F-glossary-1019"
   },
   {
    "id": "term.single-wing",
@@ -2320,7 +2320,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1035"
+   "factRow": "F-glossary-1033"
   },
   {
    "id": "term.skinny-post-pro",
@@ -2331,7 +2331,7 @@
    "subdomain": "route",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1038"
+   "factRow": "F-glossary-1036"
   },
   {
    "id": "term.skip-pull-pro",
@@ -2342,7 +2342,7 @@
    "subdomain": "blocking",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1039"
+   "factRow": "F-glossary-1037"
   },
   {
    "id": "term.slide-protection-pro",
@@ -2355,7 +2355,7 @@
    "subdomain": "protection",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1043"
+   "factRow": "F-glossary-1041"
   },
   {
    "id": "term.slot-receiver",
@@ -2369,7 +2369,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1045",
+   "factRow": "F-glossary-1043",
    "variants": "slotback"
   },
   {
@@ -2384,7 +2384,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1046",
+   "factRow": "F-glossary-1044",
    "variants": "slant and go"
   },
   {
@@ -2398,7 +2398,7 @@
    "subdomain": "concept",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1047"
+   "factRow": "F-glossary-1045"
   },
   {
    "id": "term.smashmouth-offense",
@@ -2411,7 +2411,7 @@
    "subdomain": "system",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1048"
+   "factRow": "F-glossary-1046"
   },
   {
    "id": "term.snap",
@@ -2424,7 +2424,7 @@
    "subdomain": "snap",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1049"
+   "factRow": "F-glossary-1047"
   },
   {
    "id": "term.snap-count-signal",
@@ -2438,7 +2438,7 @@
    "subdomain": "snap",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1051"
+   "factRow": "F-glossary-1049"
   },
   {
    "id": "term.speed-out",
@@ -2452,7 +2452,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1060",
+   "factRow": "F-glossary-1058",
    "variants": "arrow route"
   },
   {
@@ -2467,7 +2467,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1068",
+   "factRow": "F-glossary-1066",
    "variants": "X"
   },
   {
@@ -2481,7 +2481,7 @@
    "subdomain": "formation",
    "level": "college",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1069"
+   "factRow": "F-glossary-1067"
   },
   {
    "id": "term.spot-concept",
@@ -2494,7 +2494,7 @@
    "subdomain": "concept",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1070"
+   "factRow": "F-glossary-1068"
   },
   {
    "id": "term.spread-offense",
@@ -2505,7 +2505,7 @@
    "subdomain": "system",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1075"
+   "factRow": "F-glossary-1073"
   },
   {
    "id": "term.square-out",
@@ -2516,7 +2516,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1079"
+   "factRow": "F-glossary-1077"
   },
   {
    "id": "term.stem",
@@ -2527,7 +2527,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1086"
+   "factRow": "F-glossary-1084"
   },
   {
    "id": "term.stick",
@@ -2538,7 +2538,7 @@
    "subdomain": "concept",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1087",
+   "factRow": "F-glossary-1085",
    "variants": [
     "turn"
    ]
@@ -2555,7 +2555,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1088"
+   "factRow": "F-glossary-1086"
   },
   {
    "id": "term.stretch",
@@ -2570,7 +2570,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1091",
+   "factRow": "F-glossary-1089",
    "variants": "outside zone"
   },
   {
@@ -2589,7 +2589,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1108"
+   "factRow": "F-glossary-1106"
   },
   {
    "id": "term.sweep",
@@ -2602,7 +2602,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1109"
+   "factRow": "F-glossary-1107"
   },
   {
    "id": "term.swing-route",
@@ -2615,7 +2615,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1111"
+   "factRow": "F-glossary-1109"
   },
   {
    "id": "term.switch-route",
@@ -2626,7 +2626,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1112"
+   "factRow": "F-glossary-1110"
   },
   {
    "id": "term.tackle-trick-screen",
@@ -2637,7 +2637,7 @@
    "subdomain": "screen",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1117"
+   "factRow": "F-glossary-1115"
   },
   {
    "id": "term.tag-play-call-suffix",
@@ -2650,7 +2650,7 @@
    "subdomain": "snap",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1120"
+   "factRow": "F-glossary-1118"
   },
   {
    "id": "term.three-step-drop",
@@ -2663,7 +2663,7 @@
    "subdomain": "protection",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1141"
+   "factRow": "F-glossary-1139"
   },
   {
    "id": "term.tight-end",
@@ -2677,7 +2677,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1143"
+   "factRow": "F-glossary-1141"
   },
   {
    "id": "term.toss",
@@ -2690,7 +2690,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1154"
+   "factRow": "F-glossary-1152"
   },
   {
    "id": "term.tosser-pro",
@@ -2701,7 +2701,7 @@
    "subdomain": "system",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1155"
+   "factRow": "F-glossary-1153"
   },
   {
    "id": "term.trade",
@@ -2712,7 +2712,7 @@
    "subdomain": "motion",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1163"
+   "factRow": "F-glossary-1161"
   },
   {
    "id": "term.trap",
@@ -2725,7 +2725,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1171"
+   "factRow": "F-glossary-1169"
   },
   {
    "id": "term.trap-block",
@@ -2736,7 +2736,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1172"
+   "factRow": "F-glossary-1170"
   },
   {
    "id": "term.triple-option-college",
@@ -2749,7 +2749,7 @@
    "subdomain": "run",
    "level": "college",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1173"
+   "factRow": "F-glossary-1171"
   },
   {
    "id": "term.tunnel-screen",
@@ -2760,7 +2760,7 @@
    "subdomain": "screen",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1179"
+   "factRow": "F-glossary-1177"
   },
   {
    "id": "term.twins",
@@ -2773,7 +2773,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1183"
+   "factRow": "F-glossary-1181"
   },
   {
    "id": "term.two-minute-drill",
@@ -2787,7 +2787,7 @@
    "subdomain": "tempo",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1190"
+   "factRow": "F-glossary-1188"
   },
   {
    "id": "term.under-center",
@@ -2798,7 +2798,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1198"
+   "factRow": "F-glossary-1195"
   },
   {
    "id": "term.veer",
@@ -2809,7 +2809,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1211",
+   "factRow": "F-glossary-1208",
    "variants": [
     "inside veer",
     "outside veer"
@@ -2826,7 +2826,7 @@
    "subdomain": "system",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1238"
+   "factRow": "F-glossary-1235"
   },
   {
    "id": "term.west-coast-play-call-structure-pro",
@@ -2839,7 +2839,7 @@
    "subdomain": "system",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1239"
+   "factRow": "F-glossary-1236"
   },
   {
    "id": "term.wheel",
@@ -2850,7 +2850,7 @@
    "subdomain": "route",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1240"
+   "factRow": "F-glossary-1237"
   },
   {
    "id": "term.whip-pro",
@@ -2863,7 +2863,7 @@
    "subdomain": "route",
    "level": "pro",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1241"
+   "factRow": "F-glossary-1238"
   },
   {
    "id": "term.wide-receiver",
@@ -2877,7 +2877,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1243",
+   "factRow": "F-glossary-1240",
    "variants": "wideout"
   },
   {
@@ -2889,7 +2889,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1244"
+   "factRow": "F-glossary-1241"
   },
   {
    "id": "term.wildcat",
@@ -2902,7 +2902,7 @@
    "subdomain": "formation",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1245"
+   "factRow": "F-glossary-1242"
   },
   {
    "id": "term.wing-t",
@@ -2915,7 +2915,7 @@
    "subdomain": "system",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1250"
+   "factRow": "F-glossary-1247"
   },
   {
    "id": "term.wingback",
@@ -2926,7 +2926,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1251"
+   "factRow": "F-glossary-1248"
   },
   {
    "id": "term.winning-the-leverage-battle",
@@ -2939,7 +2939,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1252"
+   "factRow": "F-glossary-1249"
   },
   {
    "id": "term.wishbone-college",
@@ -2952,7 +2952,7 @@
    "subdomain": "formation",
    "level": "college",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1253",
+   "factRow": "F-glossary-1250",
    "variants": "bone"
   },
   {
@@ -2966,7 +2966,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1258"
+   "factRow": "F-glossary-1255"
   },
   {
    "id": "term.y-receiver",
@@ -2980,7 +2980,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1259"
+   "factRow": "F-glossary-1256"
   },
   {
    "id": "term.yankee",
@@ -2993,7 +2993,7 @@
    "subdomain": "concept",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1261"
+   "factRow": "F-glossary-1258"
   },
   {
    "id": "term.yards-after-catch",
@@ -3006,7 +3006,7 @@
    "subdomain": "pass",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1263"
+   "factRow": "F-glossary-1260"
   },
   {
    "id": "term.z-receiver",
@@ -3019,7 +3019,7 @@
    "subdomain": "position",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1267"
+   "factRow": "F-glossary-1264"
   },
   {
    "id": "term.zap-motion",
@@ -3032,7 +3032,7 @@
    "subdomain": "motion",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1268"
+   "factRow": "F-glossary-1265"
   },
   {
    "id": "term.zone-blocking",
@@ -3045,7 +3045,7 @@
    "subdomain": "blocking",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1271"
+   "factRow": "F-glossary-1268"
   },
   {
    "id": "term.zone-read",
@@ -3060,7 +3060,7 @@
    "subdomain": "run",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1273"
+   "factRow": "F-glossary-1270"
   },
   {
    "id": "term.zoom-motion",
@@ -3071,7 +3071,7 @@
    "subdomain": "motion",
    "level": "both",
    "ownerLeaf": "A4.5.2",
-   "factRow": "F-glossary-1274"
+   "factRow": "F-glossary-1271"
   }
  ]
 }
