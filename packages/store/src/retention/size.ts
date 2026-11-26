@@ -16,6 +16,8 @@ export interface SaveSize {
   chain: number;
   content: number;
   other: number;
+  /** Bytes the packed tables would take as plain JSON text (decoded payloads); their stored bytes are in `world`. */
+  packedRaw: number;
 }
 
 const sum = async (driver: SqlDriver, sql: string): Promise<number> => {
@@ -30,6 +32,13 @@ export async function measureSave(driver: SqlDriver): Promise<SaveSize> {
   try {
     for (const r of await driver.all<{ tbl: string; n: number }>('SELECT tbl, SUM(length(key) + length(json) + 8) AS n FROM state_rows GROUP BY tbl ORDER BY tbl')) world[r.tbl] = Number(r.n);
   } catch { /* not a format 2 save */ }
+  let packedRaw = 0;
+  try {
+    for (const r of await driver.all<{ tbl: string; n: number; raw: number }>('SELECT tbl, SUM(length(blob) + length(grp) + length(hash) + length(by_field) + length(codec) + 32) AS n, SUM(raw_len) AS raw FROM packed_rows GROUP BY tbl ORDER BY tbl')) {
+      world[r.tbl] = (world[r.tbl] ?? 0) + Number(r.n);
+      packedRaw += Number(r.raw);
+    }
+  } catch { /* a save with no packed table */ }
   const out: SaveSize = {
     file: pages * pageSize,
     total: 0,
@@ -40,6 +49,7 @@ export async function measureSave(driver: SqlDriver): Promise<SaveSize> {
     chain: await sum(driver, 'SELECT SUM(length(prev) + length(state_hash) + length(head) + length(engine_version) + length(parameter_set_version) + length(kind) + COALESCE(length(note), 0) + 16) AS n FROM hash_chain'),
     content: await sum(driver, 'SELECT SUM(length(hash) + length(kind) + length(body)) AS n FROM content'),
     other: await sum(driver, "SELECT (SELECT COALESCE(SUM(length(json)), 0) FROM header) + (SELECT COALESCE(SUM(length(key) + length(value)), 0) FROM save_meta) AS n"),
+    packedRaw,
   };
   out.total = Object.values(world).reduce((a, b) => a + b, 0) + out.log + out.logArchive + out.snapshots + out.chain + out.content + out.other;
   return out;
