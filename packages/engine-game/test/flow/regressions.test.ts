@@ -1,9 +1,10 @@
 // Regression tests for engine bugs found by module testing. Each test names the report it came from.
 import { describe, expect, it } from 'vitest';
-import { Contract } from '@gm/engine-core';
+import { Contract, stateHash } from '@gm/engine-core';
 import { overtime as realOvertime } from '@gm/officiating';
-import { chartDecider, fakeGame, type FakeGameOptions, type FakeOutcome, type FakeScript } from './fakes.ts';
-import { eventsOfType, runChecked } from './harness.ts';
+import { OPT, createGameFlow, deadlinePassed, type FlowResume } from '../../src/flow/index.ts';
+import { chartDecider, fakeGame, type FakeGame, type FakeGameOptions, type FakeOutcome, type FakeScript } from './fakes.ts';
+import { eventsOfType, replayHashes, runChecked } from './harness.ts';
 
 const QUIET: Partial<FakeOutcome> = { kind: 'run', yards: 1, oob: false, foul: null, injury: false, reviewWrong: false, liveTenths: 40 };
 const scoreless: FakeScript = (_sit, calls) => (calls.snapping.unit === 'kick' ? { good: false, ret: 0, yards: 40, foul: null, injury: false } : { ...QUIET, kind: 'incomplete' });
@@ -71,5 +72,132 @@ describe('overtime starts with the real overtime rules (PR 132 and PR 140: every
     expect(p2[0]!.situation.offense).toBe(Contract.otherSide(p1[0]!.situation.offense));
     expect(r.result.final).toMatchObject({ phase: 'final', period: periods + 2 });
     expect(r.result.events[r.result.events.length - 1]).toMatchObject({ type: 'game_final', tie: false });
+  });
+});
+
+type Step = { event: Contract.GameEvent; before: Contract.GameState; after: Contract.GameState };
+function stepsOf(game: FakeGame): { steps: Step[]; result: Contract.GameResult; run: ReturnType<typeof runChecked> } {
+  const run = runChecked(game);
+  expect(run.problems).toEqual([]);
+  const steps: Step[] = [];
+  let s = run.flow.newGame(game.input, game.deps);
+  for (const event of run.result.events) { const after = run.flow.apply(s, event); steps.push({ event, before: s, after }); s = after; }
+  return { steps, result: run.result, run };
+}
+
+/**
+ * Chart deciders where `taker` asks for a timeout on play `play`, once, at the timeout request that comes AFTER
+ * its own call for that play. `at` is the play-clock value of the request, from the request's deadline (the snap).
+ */
+function lateTimeout(taker: Contract.Side, play: number, at: (snapAt: number) => number | null): FakeGameOptions['deciders'] {
+  return (env, input) => [0, 1].map((side) => {
+    const inner = chartDecider(side as Contract.Side, env, input);
+    let called = false, taken = false;
+    return { side: inner.side, decide(v: Contract.DecisionView) {
+      const d = inner.decide(v);
+      if (d === null || v.situation.playNumber !== play || side !== taker) return d;
+      if (v.request.type === 'snapping_call' || v.request.type === 'opposing_call') { called = true; return d; }
+      if (v.request.type !== 'timeout' || !called || taken) return d;
+      taken = true;
+      return { ...d, optionId: OPT.timeout, acceptedAtPlayClockTenths: at(v.request.deadlinePlayClockTenths!) };
+    } };
+  }) as [Contract.Decider, Contract.Decider];
+}
+
+describe('a team timeout while the play clock runs, after the calls and before the snap (calling console request; B1.4.1, J11.6.1)', () => {
+  const PLAY = 6;
+  for (const taker of [0, 1] as const) {
+    it(`side ${taker} takes a timeout after both calls are in: the clock stops, the calls are made again and the play is run`, () => {
+      const game = fakeGame({ seed: 2, deciders: lateTimeout(taker, PLAY, (snapAt) => snapAt + 20) });
+      const { steps, result } = stepsOf(game);
+      const charged = steps.filter((s) => s.event.type === 'timeout_charged' && s.event.kind === 'team');
+      expect(charged.length).toBe(1);
+      const c = charged[0]!;
+      expect(c.event).toMatchObject({ side: taker });
+      // Both calls were already in: the game was past the call window.
+      expect(c.before.phase).toBe('pre_snap');
+      expect(c.before.pendingDecisions).toEqual([]);
+      expect(c.after.phase).toBe('timeout');
+      expect(c.after.timeoutsLeft[taker]).toBe(c.before.timeoutsLeft[taker] - 1);
+      expect(c.after.timeoutsLeft[Contract.otherSide(taker)]).toBe(c.before.timeoutsLeft[Contract.otherSide(taker)]);
+      expect(c.after.clockStatus).toBe('stopped_start_on_snap');
+      expect(c.after.playClockTenths).toBe(game.rules.num('clock.play_clock_after_stoppage_s') * 10);
+      // The play clock ran down to 2 seconds before the snap while the coach waited, and the snap did not happen.
+      const i = steps.indexOf(c);
+      const request = [...steps.slice(0, i)].reverse().find((s) => s.event.type === 'decision_requested')!;
+      const snapAt = (request.event as Extract<Contract.GameEvent, { type: 'decision_requested' }>).request.deadlinePlayClockTenths!;
+      expect((request.event as Extract<Contract.GameEvent, { type: 'decision_requested' }>).request).toMatchObject({ type: 'timeout', side: taker });
+      expect(request.before.phase).toBe('pre_snap');
+      expect(c.before.playClockTenths).toBe(snapAt + 20);
+      expect(c.before.playCounter).toBe(PLAY - 1);
+      // After the timeout the game is back in the call window and both coaches call again.
+      const back = steps[i + 1]!;
+      expect(back.event).toMatchObject({ type: 'clock_advanced', reason: 'intermission', tenths: game.rules.num('timeout.length_seconds') * 10 });
+      expect(back.after).toMatchObject({ phase: 'call_window', playClockRunning: true, playCounter: PLAY - 1 });
+      const record = result.records.find((x) => x.index === PLAY)!;
+      expect(record.decisions.filter((d) => d.type === 'snapping_call').length).toBe(2);
+      expect(record.decisions.filter((d) => d.type === 'opposing_call').length).toBe(2);
+      expect(record.decisions.filter((d) => d.type === 'timeout' && d.optionId === OPT.timeout).length).toBe(1);
+      expect(result.final.phase).toBe('final');
+    });
+  }
+
+  it('a request at or after the snap, or with the play clock at zero, is not granted', () => {
+    // One tenth after the snap moment.
+    const late = stepsOf(fakeGame({ seed: 2, deciders: lateTimeout(0, PLAY, (snapAt) => snapAt - 1) }));
+    expect(late.steps.some((s) => s.event.type === 'timeout_charged' && s.event.kind === 'team')).toBe(false);
+    expect(late.result.records.find((x) => x.index === PLAY)!.decisions.some((d) => d.type === 'timeout' && d.optionId === OPT.timeout)).toBe(true);
+    // The offense calls with the play clock at zero, so the snap is at zero: a timeout request then comes too late.
+    const zero = stepsOf(fakeGame({ seed: 2, deciders: (env, input) => {
+      const base = lateTimeout(0, PLAY, () => 0)!(env, input);
+      return [{ side: 0, decide(v) { const d = base[0].decide(v); return d && v.request.type === 'snapping_call' && v.situation.playNumber === PLAY ? { ...d, acceptedAtPlayClockTenths: 0 } : d; } }, base[1]];
+    } }));
+    expect(zero.steps.some((s) => s.event.type === 'timeout_charged' && s.event.kind === 'team')).toBe(false);
+  });
+
+  it('a team with no timeout left is not asked', () => {
+    const game = fakeGame({ seed: 2, rulesOver: { 'timeout.per_half': 0 }, deciders: lateTimeout(0, PLAY, (snapAt) => snapAt + 20) });
+    const { result } = stepsOf(game);
+    expect(eventsOfType(result.events, 'decision_requested').some((e) => e.request.type === 'timeout')).toBe(false);
+  });
+
+  it('before a free kick: the kicking or the receiving team may take a timeout after the kick calls', () => {
+    // Play 1 is the opening kickoff.
+    const game = fakeGame({ seed: 2, deciders: lateTimeout(1, 1, (snapAt) => snapAt + 10) });
+    const { steps, result } = stepsOf(game);
+    const c = steps.find((s) => s.event.type === 'timeout_charged' && s.event.kind === 'team')!;
+    expect(c.before).toMatchObject({ phase: 'kickoff_setup', playCounter: 0 });
+    expect(c.after.phase).toBe('timeout');
+    expect(steps[steps.indexOf(c) + 1]!.after.phase).toBe('kickoff_setup');
+    expect(result.records[0]!.situation.playKind).toBe('kickoff');
+    expect(result.records[0]!.decisions.filter((d) => d.type === 'snapping_call').length).toBe(2);
+  });
+
+  it('the event log with a late timeout replays to the same hashes, and a stepped game gives the same log (J11.1.1, J14.1.1)', () => {
+    const make = () => fakeGame({ seed: 2, deciders: lateTimeout(1, PLAY, (snapAt) => snapAt + 20) });
+    const game = make();
+    const { result, run } = stepsOf(game);
+    const replay = replayHashes(game, run.flow, JSON.parse(JSON.stringify(result.events)) as Contract.GameEvent[]);
+    expect(replay.final).toBe(stateHash(result.final));
+    expect(replay.perPlay).toEqual(result.records.map((r) => r.stateHash));
+
+    // Stepped: every decider answers null the first time it is asked, so the flow stops at each request and re-runs the unit.
+    const stepped = make();
+    const asked = new Set<number>();
+    const deciders = stepped.deps.deciders.map((d) => ({ side: d.side, decide(v: Contract.DecisionView) {
+      if (!asked.has(v.request.requestId)) { asked.add(v.request.requestId); return null; }
+      return d.decide(v) ?? deadlinePassed(v.request);
+    } })) as unknown as [Contract.Decider, Contract.Decider];
+    const deps = { ...stepped.deps, deciders };
+    const flow = createGameFlow(deps);
+    let state = flow.newGame(stepped.input, deps);
+    let resume: FlowResume | null = null;
+    const events: Contract.GameEvent[] = [];
+    for (let i = 0; i < 100000 && state.phase !== 'final'; i++) {
+      const out = flow.advance(state, stepped.input, deps, resume);
+      events.push(...out.events); state = out.state; resume = out.resume;
+    }
+    expect(state.phase).toBe('final');
+    expect(stateHash(events)).toBe(stateHash(result.events));
   });
 });
