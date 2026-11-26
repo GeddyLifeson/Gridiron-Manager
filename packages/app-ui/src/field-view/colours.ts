@@ -64,6 +64,14 @@ export function resolveTeamColours(home: TeamColours, away: TeamColours, opts: {
   return done(pal.safeDark, pal.safeLight, 'colourBlindSafe');
 }
 
+/** Mixes two token colours (`#rrggbb`): `t` 0 gives `a`, 1 gives `b`. Derived colours stay on the tokens. */
+export function mixColour(a: string, b: string, t: number): string {
+  const ch = (h: string, i: number) => parseInt(h.slice(1 + 2 * i, 3 + 2 * i), 16);
+  let out = '#';
+  for (let i = 0; i < 3; i++) out += Math.round(ch(a, i) + (ch(b, i) - ch(a, i)) * t).toString(16).padStart(2, '0');
+  return out;
+}
+
 /** The ink (dark or light) that reads better on a marker fill. */
 export function inkOn(fill: string, pal: FieldPalette): string {
   return contrastRatio(fill, pal.inkDark) >= contrastRatio(fill, pal.inkLight) ? pal.inkDark : pal.inkLight;

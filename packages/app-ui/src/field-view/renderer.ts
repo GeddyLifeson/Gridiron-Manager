@@ -6,10 +6,13 @@ import { Camera, type CameraContext, type FieldBox } from './camera.ts';
 import { buildCues, activeCues, type Cue } from './cues.ts';
 import { decodeTrajectory, FILM_MOVE_MODES, type FilmFrames } from './format.ts';
 import { buildMarkings, PRO_MARKINGS, type FieldMarkings, type MarkingSet } from './markings.ts';
+import { fillBlockText, blockWidth } from './blockFont.ts';
+import { mergeNotes, layoutNotes, type FieldNote, type PlacedNote } from './fieldText.ts';
+import { buildParticles, wetTint, type CosmeticDraw, type FieldWeather, type WeatherParticles } from './weather.ts';
 import { markerFor, positionLetter, DEFAULT_MARKERS, type MarkerStyle, type MarkerTable } from './markers.ts';
 import { param } from './params.ts';
 import { newSample, sampleFrames, type FrameSample } from './sample.ts';
-import { fieldPalette, inkOn, type FieldPalette, type ResolvedColours } from './colours.ts';
+import { fieldPalette, inkOn, mixColour, contrastRatio, type FieldPalette, type ResolvedColours } from './colours.ts';
 import type { FieldGeometryLike, FilmPlay, FilmSide, Orientation, PlaybackMode, Zoom } from './types.ts';
 
 /** The subset of CanvasRenderingContext2D the renderer uses, so tests can record the calls. */
@@ -49,7 +52,25 @@ export interface RenderOptions {
   readonly showPositionLetters?: boolean;
   readonly markers?: MarkerTable;
   readonly markings?: MarkingSet;
+  /** Mowing stripes every 5 yd (plan 3.1). Off in the high-contrast theme. Default on. */
+  readonly stripes?: boolean;
+  /** Generated team names painted in each end zone, by the side that defends it (A6: generated text only). */
+  readonly endZones?: { readonly west?: EndZoneMark; readonly east?: EndZoneMark };
+  /** Public field text for this play, for example the result yards or "UNDER REVIEW" (O2.3.5, MB-4). Flags add "FLAG" themselves. */
+  readonly notes?: readonly FieldNote[];
+  /** The engine's conditions for the play (J12, presentation feed). Rain and snow draw only with `cosmetic`. */
+  readonly weather?: FieldWeather;
+  /** The play's `cosmetic.display` stream (PV-01). The only source of particle spots. */
+  readonly cosmetic?: CosmeticDraw;
+  /** Draws rain and snow particles; the wet tint stays. Off in the high-contrast theme. Default on. */
+  readonly weatherParticles?: boolean;
 }
+
+/** A team name in an end zone, in that team's colour. */
+export interface EndZoneMark { readonly text: string; readonly side: FilmSide }
+
+/** The dead-ball spot after the whistle (MB-3): drawn with the gained line until the next snap. */
+export interface Aftermath { readonly fromTick: number; readonly x: number; readonly y: number }
 
 export class OverlaySourceError extends Error {}
 
@@ -74,6 +95,11 @@ export class FieldRenderer {
   private readonly presnapBox: FieldBox | null;
   private readonly labelLift: Float64Array;
   private readonly passTargets = new Map<Cue, { x: number; y: number }>();
+  private readonly after: Aftermath;
+  private readonly notes: readonly FieldNote[];
+  private readonly particles: WeatherParticles | null;
+  private readonly stripeColour: string;
+  private placed: PlacedNote[] = [];
   private opts: RenderOptions;
   private pal: FieldPalette;
   private ink: [string, string];
@@ -108,7 +134,25 @@ export class FieldRenderer {
         this.passTargets.set(c, { x: this.frames.x[i]!, y: this.frames.y[i]! });
       }
     }
+    this.after = this.computeAftermath();
+    this.notes = [
+      ...play.events.filter((e) => e.kind === 'flag').map((e) => ({ text: 'FLAG', x: e.x, y: e.y, fromTick: e.tick })),
+      ...(opts.notes ?? []),
+    ];
+    this.particles = buildParticles(opts.weather, opts.cosmetic);
+    this.stripeColour = mixColour(this.pal.turf, this.pal.lines, param('stripeMix'));
     sampleFrames(this.frames, this.frames.firstTick, this.sample);
+  }
+
+  /** The whistle's tick (else the last stored tick) and the ball's spot there. */
+  private computeAftermath(): Aftermath {
+    const f = this.frames;
+    const last = f.firstTick + f.tickCount - 1;
+    const w = this.play.events.find((e) => e.kind === 'whistle');
+    const tick = Math.min(Math.max(w ? w.tick : last, f.firstTick), last);
+    const probe = newSample(f.slotCount, f.officialCount);
+    sampleFrames(f, tick, probe);
+    return { fromTick: tick, x: probe.ballX, y: probe.ballY };
   }
 
   /** Sets the view size in CSS pixels and frames the play at `tick` (normally on load and on seek). */
@@ -144,6 +188,12 @@ export class FieldRenderer {
   }
   /** Test hook: cues on screen now. */
   cuesShown(): Cue[] { return this.cueBuf.slice(0, activeCues(this.cues, this.sample.tick, this.cueBuf)); }
+  /** Test hook: the dead-ball spot and gained line, when shown at the current tick (MB-3). */
+  aftermathShown(): Aftermath | null { return this.sample.tick >= this.after.fromTick ? this.after : null; }
+  /** Test hook: field text boxes placed by the last draw, in CSS pixels (MB-4). */
+  notesPlaced(): readonly PlacedNote[] { return this.placed; }
+  /** Test hook: the play's weather particles (spots fixed for the play). */
+  weatherParticles(): WeatherParticles | null { return this.particles; }
   /** Marker diameter on screen in CSS pixels. */
   markerPx(): number { return param('markerDiameterYd') * this.camera.scale; }
 
@@ -156,6 +206,8 @@ export class FieldRenderer {
     ctx.fillRect(0, 0, this.viewW, this.viewH);
     this.drawField(ctx);
     this.drawSituationLines(ctx);
+    this.drawAftermath(ctx);
+    this.drawWeather(ctx);
     const d = param('markerDiameterYd');
     const r = (d / 2) * cam.scale;
     this.drawEngagements(ctx, r);
@@ -165,6 +217,7 @@ export class FieldRenderer {
     this.drawBall(ctx, r);
     this.drawCues(ctx, r);
     this.drawLabels(ctx, r);
+    this.drawNotes(ctx);
     ctx.restore();
   }
 
@@ -209,8 +262,23 @@ export class FieldRenderer {
     const g = this.geometry, mk = this.markings, s = this.camera.scale;
     ctx.fillStyle = this.pal.turf;
     ctx.beginPath(); this.polygon(ctx, [0, 0, g.lengthYd, 0, g.lengthYd, g.widthYd, 0, g.widthYd]); ctx.fill();
+    if (this.opts.stripes !== false) {
+      ctx.fillStyle = this.stripeColour;
+      ctx.beginPath();
+      for (const [x0, x1] of mk.stripes) this.polygon(ctx, [x0, 0, x1, 0, x1, g.widthYd, x0, g.widthYd]);
+      ctx.fill();
+    }
     ctx.fillStyle = this.pal.endZone;
     for (const [x0, x1] of mk.endZones) { ctx.beginPath(); this.polygon(ctx, [x0, 0, x1, 0, x1, g.widthYd, x0, g.widthYd]); ctx.fill(); }
+    const wet = wetTint(this.opts.weather);
+    if (wet > 0) {
+      // Rain darkens the turf, snow lightens it; lines are drawn after, at full strength.
+      ctx.globalAlpha = wet;
+      ctx.fillStyle = this.opts.weather!.precip.endsWith('snow') ? this.pal.lines : this.pal.shadow;
+      ctx.beginPath(); this.polygon(ctx, [0, 0, g.lengthYd, 0, g.lengthYd, g.widthYd, 0, g.widthYd]); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    this.drawEndZoneNames(ctx);
     ctx.strokeStyle = this.pal.lines;
     // Lines are drawn about 4 inches wide (Rule 1-2-1) but never thinner than one pixel.
     ctx.lineWidth = Math.max(1, s / 9);
@@ -227,23 +295,100 @@ export class FieldRenderer {
     ctx.beginPath();
     for (const [x, y0, y1] of mk.posts) this.line(ctx, x, y0, x, y1);
     ctx.stroke();
-    // Yard numbers, bottoms toward the near sideline, 2 yd tall.
+    // Yard numbers in painted block stencil (plan 2.1), bottoms toward the near sideline, 2 yd tall.
     const px = mk.numeralLengthYd * s;
     if (px >= 6) {
       ctx.fillStyle = this.pal.numbers;
-      ctx.font = `bold ${Math.round(px)}px sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
       const southRad = -Math.PI / 2;
-      for (const n of mk.numbers) {
-        const toward = n.bottomToward === 'south' ? southRad : -southRad;
-        const dx = this.camera.dirX(toward), dy = this.camera.dirY(toward);
-        ctx.save();
-        ctx.translate(this.camera.sx(n.x, n.y), this.camera.sy(n.x, n.y));
-        ctx.rotate(Math.atan2(-dx, dy));
-        ctx.fillText(n.text, 0, 0);
-        ctx.restore();
+      for (const n of mk.numbers) this.paintText(ctx, n.text, n.x, n.y, px, n.bottomToward === 'south' ? southRad : -southRad);
+    }
+  }
+
+  /** Block text painted on the field at a world spot, `px` tall, letter bottoms toward `towardRad`. */
+  private paintText(ctx: Canvas2DLike, text: string, x: number, y: number, px: number, towardRad: number): void {
+    const dx = this.camera.dirX(towardRad), dy = this.camera.dirY(towardRad);
+    ctx.save();
+    ctx.translate(this.camera.sx(x, y), this.camera.sy(x, y));
+    ctx.rotate(Math.atan2(-dx, dy));
+    fillBlockText(ctx, text, px);
+    ctx.restore();
+  }
+
+  /**
+   * Team names across each end zone in block letters, bottoms toward the field of play, kept the
+   * decoration clearance from every line (NCAA 1-2-1-d). A colour under 3:1 on the end zone falls back
+   * to the line colour (I9.1.1), so the name never disappears.
+   */
+  private drawEndZoneNames(ctx: Canvas2DLike): void {
+    const ez = this.opts.endZones;
+    if (!ez) return;
+    const g = this.geometry, mk = this.markings, s = this.camera.scale, clear = mk.endZoneClearYd;
+    const marks: [EndZoneMark | undefined, readonly [number, number], number][] = [[ez.west, mk.endZones[0]!, 0], [ez.east, mk.endZones[1]!, Math.PI]];
+    for (const [mark, [x0, x1], toward] of marks) {
+      if (!mark || !mark.text.trim()) continue;
+      const depth = Math.max(0, x1 - x0 - 2 * clear), span = Math.max(0, g.widthYd - 2 * clear);
+      const perHeight = blockWidth(mark.text, 1);
+      const hYd = Math.min(depth * param('endZoneTextFrac'), perHeight > 0 ? span / perHeight : depth);
+      if (hYd * s < 4) continue;
+      const colour = this.opts.colours.sides[mark.side];
+      ctx.fillStyle = contrastRatio(colour, this.pal.endZone) >= param('minContrast') ? colour : this.pal.lines;
+      this.paintText(ctx, mark.text, (x0 + x1) / 2, g.centreY, hYd * s, toward);
+    }
+  }
+
+  /** After the whistle: the gained line across the field at the dead-ball spot, and the spot itself (MB-3). */
+  private drawAftermath(ctx: Canvas2DLike): void {
+    const a = this.aftermathShown();
+    if (!a) return;
+    const g = this.geometry, cam = this.camera, r = Math.max(3, cam.scale * 0.4);
+    ctx.strokeStyle = this.pal.cue;
+    ctx.lineWidth = Math.max(1.5, cam.scale / 6);
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath(); this.line(ctx, a.x, 0, a.x, g.widthYd); ctx.stroke();
+    ctx.setLineDash([]);
+    const x = cam.sx(a.x, a.y), y = cam.sy(a.x, a.y);
+    ctx.fillStyle = this.pal.lines; ctx.strokeStyle = this.pal.shadow; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, y - r); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r); ctx.lineTo(x - r, y); ctx.closePath(); ctx.fill(); ctx.stroke();
+  }
+
+  /** Rain streaks or snow flakes over the view, moving with play time and the engine's wind. */
+  private drawWeather(ctx: Canvas2DLike): void {
+    const p = this.particles;
+    if (!p || this.opts.weatherParticles === false) return;
+    const cam = this.camera, W = this.viewW, H = this.viewH, sec = this.sample.tick / this.play.ticksPerSecond;
+    const wx = cam.dirX(p.windRad), wy = cam.dirY(p.windRad), drift = p.windMph * param('windDriftPerMph');
+    const fall = p.kind === 'rain' ? param('rainFallPerS') : param('snowFallPerS');
+    const du = wx * drift * sec, dv = (fall + wy * drift) * sec;
+    const wrap = (v: number) => v - Math.floor(v);
+    ctx.globalAlpha = param('weatherAlpha');
+    if (p.kind === 'rain') {
+      // Streak along the motion: straight down the screen plus the wind's push.
+      const mx = wx * drift, my = fall + wy * drift, len = Math.hypot(mx, my) || 1, k = param('streakPx') / len;
+      ctx.strokeStyle = this.pal.lines; ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let i = 0; i < p.u.length; i++) {
+        const x = wrap(p.u[i]! + du) * W, y = wrap(p.v[i]! + dv) * H;
+        ctx.moveTo(x, y); ctx.lineTo(x - mx * k, y - my * k);
       }
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = this.pal.lines;
+      for (let i = 0; i < p.u.length; i++) ctx.fillRect(wrap(p.u[i]! + du) * W - 1.5, wrap(p.v[i]! + dv) * H - 1.5, 3, 3);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  /** Field text: one pixel size at any zoom, merged repeats, never stacked (MB-4). */
+  private drawNotes(ctx: Canvas2DLike): void {
+    const merged = mergeNotes(this.notes, this.sample.tick);
+    const cam = this.camera, px = param('fieldTextPx');
+    this.placed = layoutNotes(merged, (x, y) => ({ x: cam.sx(x, y), y: cam.sy(x, y) }), px, param('fieldTextGapPx'));
+    for (const b of this.placed) {
+      // A shadow plate under caption text, the period character-generator look (plan 2.1).
+      ctx.globalAlpha = 0.75; ctx.fillStyle = this.pal.shadow;
+      ctx.fillRect(b.cx - b.w / 2, b.cy - b.h / 2, b.w, b.h);
+      ctx.globalAlpha = 1; ctx.fillStyle = this.pal.lines;
+      ctx.save(); ctx.translate(b.cx, b.cy); fillBlockText(ctx, b.text, px); ctx.restore();
     }
   }
 
