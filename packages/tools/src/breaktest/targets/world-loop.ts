@@ -174,13 +174,6 @@ export class WorldLoopTarget implements BreakTarget {
     const at: longRun.Boundary = { kind: 'week', season: w.date.seasonYear, week: w.week };
     const fails = this.checker.check({ world: w as unknown as longRun.WorldView, at, command: this.lastCommand, hashBefore: this.lastHash, eventType: (id) => this.eventTypes.get(id) as never });
     for (const f of fails) {
-      // E2 edge case: a coach may hold two titles on one staff; Q1.2.2 says one current job. Same-team pairs are
-      // reported apart, as a bible conflict to rule on, not as a world bug.
-      const m = f.invariant === 'one_current_job' ? /holds jobs (\d+) and (\d+)/.exec(f.detail) : null;
-      if (m && w.jobs.get(Number(m[1]))?.teamId === w.jobs.get(Number(m[2]))?.teamId) {
-        out.push({ code: 'q122.one_current_job.same_staff_two_titles', message: 'A coach holds two jobs on one staff. E2 allows two titles (assistant head coach and position coach) but Q1.2.2 says one current job per person: the bible needs one ruling, then the checker or the world follows it.', detail: { detail: f.detail, positions: [w.jobs.get(Number(m[1]))?.positionId, w.jobs.get(Number(m[2]))?.positionId] } });
-        continue;
-      }
       out.push({ code: `q122.${f.invariant}`, message: `Q1.2.2 ${f.invariant}: ${f.detail.replace(/\d+/g, 'N')}`, detail: { detail: f.detail, command: f.command } });
     }
     // Vacancies: a head coach chair left empty through a whole season point is a team with nobody calling games.
