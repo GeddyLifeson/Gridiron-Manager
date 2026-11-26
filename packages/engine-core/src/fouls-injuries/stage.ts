@@ -55,8 +55,8 @@ export interface FoulsInjuriesOptions {
   readonly landingEstimate?: ((world: TickWorld, slot: number, out: Float64Array) => boolean) | null;
   /** K1.3.3 deliberate fouls chosen by player AI. */
   readonly foulIntent?: ((slot: number) => { readonly foulId: string; readonly targetSlot: number; readonly tick: number } | null) | null;
-  /** L3.4.1 `team_discipline` for a side (1 = neutral). Clamped to the bible's bounds here. */
-  readonly teamDiscipline?: ((side: 0 | 1) => { readonly defCoverage: number; readonly postPlay: number }) | null;
+  /** L3.4.1 team layer for a side (1 = neutral). Clamped to the bible's bounds here. */
+  readonly teamLayer?: ((side: 0 | 1) => { readonly defCoverage: number; readonly postPlay: number }) | null;
   /** I3, I8 aggression instruction for a side, -1 to +1 (0 = neutral). */
   readonly aggression?: ((side: 0 | 1) => number) | null;
   /** I4 all-out block call on the kick being defended. */
@@ -154,7 +154,7 @@ export function createFoulsInjuries(options: FoulsInjuriesOptions = {}): FoulsIn
   const px = (w: TickWorld, s: number): number => (w.players.posX[s]! - w.frame.originX) * w.frame.attackDir;
   const py = (w: TickWorld, s: number): number => (w.players.posY[s]! - w.frame.originY) * w.frame.attackDir;
   const tNow = (w: TickWorld): number => (w.tick + 1) * TICK_S;
-  const team = (w: TickWorld, s: number) => options.teamDiscipline?.(w.slots[s]!.side as 0 | 1) ?? { defCoverage: 1, postPlay: 1 };
+  const team = (w: TickWorld, s: number) => options.teamLayer?.(w.slots[s]!.side as 0 | 1) ?? { defCoverage: 1, postPlay: 1 };
 
   const foulStream = (w: TickWorld, s: number, foulType: string): RandomStream => {
     const k = `${s}:${foulType}`;
