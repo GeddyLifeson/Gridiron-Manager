@@ -1,0 +1,1868 @@
+{
+ "formatVersion": 1,
+ "masterSize": "small",
+ "provisional": true,
+ "endYear": 2025,
+ "runs": {
+  "small": {
+   "source": {
+    "kind": "MASTER DATA RUN",
+    "seedHex": "0000000000001869",
+    "size": "small",
+    "firstSeasonYear": 1869,
+    "seasons": 157,
+    "seasonsRun": 157,
+    "games": "real",
+    "status": "finished",
+    "worldCode": "0486E-WK9CH-MQ4VV-E5NPP-2VK1C-XJQ42-V764R-JWC9D-CWRKG-BHH00-00000-000C6-K9SPH-PV8RQ-DB2M0-01Y",
+    "worldHash": "40d3bf1b207ebb46",
+    "validationPass": false,
+    "unbound": [
+     "health",
+     "statistics",
+     "notability",
+     "memory",
+     "edges",
+     "needs",
+     "compliance",
+     "labels",
+     "news",
+     "culture"
+    ],
+    "inputDigest": "3918292e1b2cb372f07d8cf1afbf693f0a127bc5a78b4623fb0f5335fc39b80b"
+   },
+   "provisional": true,
+   "provisionalReasons": [
+    "validator failed: deepest coaching tree is 1, needs 3",
+    "steps not bound: health, statistics, notability, memory, edges, needs, compliance, labels, news, culture"
+   ],
+   "seasons": [
+    {
+     "seasonYear": 1869,
+     "ms": 7,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 0,
+     "people": 0,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1870,
+     "ms": 2,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 0,
+     "people": 0,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1871,
+     "ms": 3,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 0,
+     "people": 0,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1872,
+     "ms": 1,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 0,
+     "people": 0,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1873,
+     "ms": 1,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 0,
+     "people": 0,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1874,
+     "ms": 1,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 0,
+     "people": 0,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1875,
+     "ms": 1,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 0,
+     "people": 0,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1876,
+     "ms": 171,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 1,
+     "people": 63,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1877,
+     "ms": 122,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 1,
+     "people": 126,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1878,
+     "ms": 150,
+     "games": 0,
+     "pointsPerTeamGame": 0,
+     "passRate": 0,
+     "teamsActive": 1,
+     "people": 189,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1879,
+     "ms": 2051,
+     "games": 14,
+     "pointsPerTeamGame": 19.8214,
+     "passRate": 0.5635,
+     "teamsActive": 3,
+     "people": 710,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1880,
+     "ms": 1405,
+     "games": 14,
+     "pointsPerTeamGame": 19.1071,
+     "passRate": 0.5662,
+     "teamsActive": 3,
+     "people": 791,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1881,
+     "ms": 2164,
+     "games": 28,
+     "pointsPerTeamGame": 22.0714,
+     "passRate": 0.5833,
+     "teamsActive": 5,
+     "people": 1351,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1882,
+     "ms": 4643,
+     "games": 83,
+     "pointsPerTeamGame": 23.2289,
+     "passRate": 0.568,
+     "teamsActive": 12,
+     "people": 3338,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1883,
+     "ms": 3979,
+     "games": 83,
+     "pointsPerTeamGame": 22.012,
+     "passRate": 0.5693,
+     "teamsActive": 13,
+     "people": 4004,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1884,
+     "ms": 3357,
+     "games": 83,
+     "pointsPerTeamGame": 22.0723,
+     "passRate": 0.5795,
+     "teamsActive": 13,
+     "people": 4353,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1885,
+     "ms": 3686,
+     "games": 95,
+     "pointsPerTeamGame": 22.3842,
+     "passRate": 0.5756,
+     "teamsActive": 15,
+     "people": 5142,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1886,
+     "ms": 4066,
+     "games": 95,
+     "pointsPerTeamGame": 21.8947,
+     "passRate": 0.5594,
+     "teamsActive": 15,
+     "people": 5427,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1887,
+     "ms": 4922,
+     "games": 119,
+     "pointsPerTeamGame": 22.2227,
+     "passRate": 0.5779,
+     "teamsActive": 18,
+     "people": 6715,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1888,
+     "ms": 6725,
+     "games": 167,
+     "pointsPerTeamGame": 21.8144,
+     "passRate": 0.5739,
+     "teamsActive": 26,
+     "people": 9441,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1889,
+     "ms": 9958,
+     "games": 239,
+     "pointsPerTeamGame": 22.2008,
+     "passRate": 0.5704,
+     "teamsActive": 39,
+     "people": 13794,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1890,
+     "ms": 12928,
+     "games": 311,
+     "pointsPerTeamGame": 22.2363,
+     "passRate": 0.5723,
+     "teamsActive": 50,
+     "people": 17837,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1891,
+     "ms": 12508,
+     "games": 311,
+     "pointsPerTeamGame": 22.1511,
+     "passRate": 0.5744,
+     "teamsActive": 51,
+     "people": 19472,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1892,
+     "ms": 17110,
+     "games": 383,
+     "pointsPerTeamGame": 22.5796,
+     "passRate": 0.57,
+     "teamsActive": 63,
+     "people": 23983,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1893,
+     "ms": 19489,
+     "games": 455,
+     "pointsPerTeamGame": 22.3341,
+     "passRate": 0.5737,
+     "teamsActive": 74,
+     "people": 28620,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1894,
+     "ms": 20113,
+     "games": 467,
+     "pointsPerTeamGame": 22.621,
+     "passRate": 0.5702,
+     "teamsActive": 77,
+     "people": 31453,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1895,
+     "ms": 23191,
+     "games": 503,
+     "pointsPerTeamGame": 22.4006,
+     "passRate": 0.5726,
+     "teamsActive": 82,
+     "people": 34797,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1896,
+     "ms": 27771,
+     "games": 527,
+     "pointsPerTeamGame": 22.3093,
+     "passRate": 0.5681,
+     "teamsActive": 87,
+     "people": 38087,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1897,
+     "ms": 28486,
+     "games": 527,
+     "pointsPerTeamGame": 22.5275,
+     "passRate": 0.5719,
+     "teamsActive": 87,
+     "people": 40338,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1898,
+     "ms": 25512,
+     "games": 527,
+     "pointsPerTeamGame": 22.3567,
+     "passRate": 0.5687,
+     "teamsActive": 87,
+     "people": 42601,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1899,
+     "ms": 28482,
+     "games": 551,
+     "pointsPerTeamGame": 22.4093,
+     "passRate": 0.5694,
+     "teamsActive": 91,
+     "people": 45922,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1900,
+     "ms": 28664,
+     "games": 551,
+     "pointsPerTeamGame": 22.6915,
+     "passRate": 0.5714,
+     "teamsActive": 91,
+     "people": 48106,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1901,
+     "ms": 29922,
+     "games": 563,
+     "pointsPerTeamGame": 22.0533,
+     "passRate": 0.57,
+     "teamsActive": 93,
+     "people": 50892,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1902,
+     "ms": 29357,
+     "games": 563,
+     "pointsPerTeamGame": 22.0577,
+     "passRate": 0.5689,
+     "teamsActive": 93,
+     "people": 53338,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1903,
+     "ms": 28805,
+     "games": 563,
+     "pointsPerTeamGame": 22.675,
+     "passRate": 0.5712,
+     "teamsActive": 93,
+     "people": 55742,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1904,
+     "ms": 28706,
+     "games": 563,
+     "pointsPerTeamGame": 22.1048,
+     "passRate": 0.5705,
+     "teamsActive": 93,
+     "people": 57975,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1905,
+     "ms": 33731,
+     "games": 575,
+     "pointsPerTeamGame": 22.6243,
+     "passRate": 0.5729,
+     "teamsActive": 94,
+     "people": 60550,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1906,
+     "ms": 31213,
+     "games": 575,
+     "pointsPerTeamGame": 22.2313,
+     "passRate": 0.5718,
+     "teamsActive": 95,
+     "people": 63258,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1907,
+     "ms": 31373,
+     "games": 575,
+     "pointsPerTeamGame": 22.6852,
+     "passRate": 0.5706,
+     "teamsActive": 95,
+     "people": 65754,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1908,
+     "ms": 28926,
+     "games": 575,
+     "pointsPerTeamGame": 22.4539,
+     "passRate": 0.5704,
+     "teamsActive": 95,
+     "people": 68053,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1909,
+     "ms": 33541,
+     "games": 599,
+     "pointsPerTeamGame": 22.5492,
+     "passRate": 0.5704,
+     "teamsActive": 99,
+     "people": 71503,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1910,
+     "ms": 35450,
+     "games": 599,
+     "pointsPerTeamGame": 22.1803,
+     "passRate": 0.5725,
+     "teamsActive": 99,
+     "people": 74143,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1911,
+     "ms": 36774,
+     "games": 611,
+     "pointsPerTeamGame": 22.3838,
+     "passRate": 0.5721,
+     "teamsActive": 100,
+     "people": 76985,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1912,
+     "ms": 35325,
+     "games": 611,
+     "pointsPerTeamGame": 22.59,
+     "passRate": 0.5725,
+     "teamsActive": 101,
+     "people": 79706,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1913,
+     "ms": 33057,
+     "games": 623,
+     "pointsPerTeamGame": 22.3323,
+     "passRate": 0.5674,
+     "teamsActive": 103,
+     "people": 82699,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1914,
+     "ms": 37825,
+     "games": 635,
+     "pointsPerTeamGame": 22.6819,
+     "passRate": 0.5722,
+     "teamsActive": 105,
+     "people": 86025,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1915,
+     "ms": 39677,
+     "games": 647,
+     "pointsPerTeamGame": 22.3161,
+     "passRate": 0.5738,
+     "teamsActive": 107,
+     "people": 89295,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1916,
+     "ms": 35799,
+     "games": 647,
+     "pointsPerTeamGame": 22.3338,
+     "passRate": 0.5701,
+     "teamsActive": 107,
+     "people": 92007,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1917,
+     "ms": 37695,
+     "games": 659,
+     "pointsPerTeamGame": 22.2511,
+     "passRate": 0.5709,
+     "teamsActive": 108,
+     "people": 94843,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1918,
+     "ms": 37136,
+     "games": 659,
+     "pointsPerTeamGame": 22.4249,
+     "passRate": 0.5701,
+     "teamsActive": 108,
+     "people": 97665,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1919,
+     "ms": 41758,
+     "games": 671,
+     "pointsPerTeamGame": 22.3271,
+     "passRate": 0.5722,
+     "teamsActive": 110,
+     "people": 101009,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1920,
+     "ms": 55441,
+     "games": 779,
+     "pointsPerTeamGame": 21.9801,
+     "passRate": 0.5708,
+     "teamsActive": 124,
+     "people": 105755,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1921,
+     "ms": 63058,
+     "games": 876,
+     "pointsPerTeamGame": 21.98,
+     "passRate": 0.5699,
+     "teamsActive": 134,
+     "people": 110408,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1922,
+     "ms": 63194,
+     "games": 842,
+     "pointsPerTeamGame": 21.9406,
+     "passRate": 0.5733,
+     "teamsActive": 132,
+     "people": 114457,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1923,
+     "ms": 65358,
+     "games": 859,
+     "pointsPerTeamGame": 22.4272,
+     "passRate": 0.5714,
+     "teamsActive": 134,
+     "people": 118275,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1924,
+     "ms": 65223,
+     "games": 871,
+     "pointsPerTeamGame": 21.911,
+     "passRate": 0.5696,
+     "teamsActive": 135,
+     "people": 122372,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1925,
+     "ms": 67362,
+     "games": 905,
+     "pointsPerTeamGame": 21.6392,
+     "passRate": 0.5707,
+     "teamsActive": 138,
+     "people": 126216,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1926,
+     "ms": 74561,
+     "games": 905,
+     "pointsPerTeamGame": 21.7862,
+     "passRate": 0.572,
+     "teamsActive": 139,
+     "people": 130045,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1927,
+     "ms": 60002,
+     "games": 820,
+     "pointsPerTeamGame": 21.9091,
+     "passRate": 0.5673,
+     "teamsActive": 128,
+     "people": 133541,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1928,
+     "ms": 60682,
+     "games": 803,
+     "pointsPerTeamGame": 22.0293,
+     "passRate": 0.569,
+     "teamsActive": 128,
+     "people": 137175,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1929,
+     "ms": 59535,
+     "games": 803,
+     "pointsPerTeamGame": 21.8555,
+     "passRate": 0.5695,
+     "teamsActive": 128,
+     "people": 140603,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1930,
+     "ms": 66940,
+     "games": 832,
+     "pointsPerTeamGame": 21.9375,
+     "passRate": 0.5694,
+     "teamsActive": 131,
+     "people": 144691,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1931,
+     "ms": 58515,
+     "games": 832,
+     "pointsPerTeamGame": 22.0198,
+     "passRate": 0.5711,
+     "teamsActive": 130,
+     "people": 148174,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1932,
+     "ms": 49719,
+     "games": 810,
+     "pointsPerTeamGame": 22.2562,
+     "passRate": 0.5714,
+     "teamsActive": 130,
+     "people": 152288,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1933,
+     "ms": 59592,
+     "games": 827,
+     "pointsPerTeamGame": 22.0883,
+     "passRate": 0.5711,
+     "teamsActive": 131,
+     "people": 155858,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1934,
+     "ms": 58983,
+     "games": 827,
+     "pointsPerTeamGame": 22.0067,
+     "passRate": 0.5715,
+     "teamsActive": 132,
+     "people": 159267,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1935,
+     "ms": 53779,
+     "games": 810,
+     "pointsPerTeamGame": 22.2852,
+     "passRate": 0.5712,
+     "teamsActive": 130,
+     "people": 162615,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1936,
+     "ms": 56935,
+     "games": 810,
+     "pointsPerTeamGame": 22.5142,
+     "passRate": 0.5726,
+     "teamsActive": 130,
+     "people": 165947,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1937,
+     "ms": 63690,
+     "games": 827,
+     "pointsPerTeamGame": 21.9698,
+     "passRate": 0.5693,
+     "teamsActive": 132,
+     "people": 169560,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1938,
+     "ms": 60027,
+     "games": 827,
+     "pointsPerTeamGame": 21.7563,
+     "passRate": 0.5708,
+     "teamsActive": 132,
+     "people": 172897,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1939,
+     "ms": 56378,
+     "games": 827,
+     "pointsPerTeamGame": 22.0224,
+     "passRate": 0.5697,
+     "teamsActive": 132,
+     "people": 176294,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1940,
+     "ms": 58343,
+     "games": 827,
+     "pointsPerTeamGame": 22.2642,
+     "passRate": 0.5729,
+     "teamsActive": 132,
+     "people": 179696,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1941,
+     "ms": 60190,
+     "games": 827,
+     "pointsPerTeamGame": 22.286,
+     "passRate": 0.5707,
+     "teamsActive": 132,
+     "people": 183094,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1942,
+     "ms": 57497,
+     "games": 827,
+     "pointsPerTeamGame": 22.269,
+     "passRate": 0.5708,
+     "teamsActive": 132,
+     "people": 186419,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1943,
+     "ms": 54735,
+     "games": 827,
+     "pointsPerTeamGame": 22.5073,
+     "passRate": 0.5738,
+     "teamsActive": 132,
+     "people": 189805,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1944,
+     "ms": 55258,
+     "games": 844,
+     "pointsPerTeamGame": 21.9236,
+     "passRate": 0.5718,
+     "teamsActive": 133,
+     "people": 193372,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1945,
+     "ms": 57265,
+     "games": 827,
+     "pointsPerTeamGame": 22.0599,
+     "passRate": 0.57,
+     "teamsActive": 132,
+     "people": 196726,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1946,
+     "ms": 58415,
+     "games": 856,
+     "pointsPerTeamGame": 22.1104,
+     "passRate": 0.5698,
+     "teamsActive": 134,
+     "people": 200458,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1947,
+     "ms": 55033,
+     "games": 856,
+     "pointsPerTeamGame": 21.9994,
+     "passRate": 0.5706,
+     "teamsActive": 135,
+     "people": 204061,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1948,
+     "ms": 54843,
+     "games": 856,
+     "pointsPerTeamGame": 22.0169,
+     "passRate": 0.5706,
+     "teamsActive": 135,
+     "people": 207534,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1949,
+     "ms": 70265,
+     "games": 856,
+     "pointsPerTeamGame": 22.2208,
+     "passRate": 0.5697,
+     "teamsActive": 135,
+     "people": 211130,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1950,
+     "ms": 61537,
+     "games": 856,
+     "pointsPerTeamGame": 22.1688,
+     "passRate": 0.5733,
+     "teamsActive": 135,
+     "people": 214528,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1951,
+     "ms": 62615,
+     "games": 856,
+     "pointsPerTeamGame": 22.0444,
+     "passRate": 0.5699,
+     "teamsActive": 134,
+     "people": 217962,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1952,
+     "ms": 58937,
+     "games": 856,
+     "pointsPerTeamGame": 22.0204,
+     "passRate": 0.5684,
+     "teamsActive": 134,
+     "people": 221489,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1953,
+     "ms": 60658,
+     "games": 839,
+     "pointsPerTeamGame": 22.3266,
+     "passRate": 0.5726,
+     "teamsActive": 133,
+     "people": 224934,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1954,
+     "ms": 60011,
+     "games": 851,
+     "pointsPerTeamGame": 22.4736,
+     "passRate": 0.5714,
+     "teamsActive": 135,
+     "people": 228857,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1955,
+     "ms": 61807,
+     "games": 863,
+     "pointsPerTeamGame": 22.2149,
+     "passRate": 0.5715,
+     "teamsActive": 137,
+     "people": 232807,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1956,
+     "ms": 63367,
+     "games": 863,
+     "pointsPerTeamGame": 21.9733,
+     "passRate": 0.5706,
+     "teamsActive": 137,
+     "people": 236291,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1957,
+     "ms": 61310,
+     "games": 863,
+     "pointsPerTeamGame": 21.8812,
+     "passRate": 0.5721,
+     "teamsActive": 137,
+     "people": 239873,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1958,
+     "ms": 56362,
+     "games": 863,
+     "pointsPerTeamGame": 22.0127,
+     "passRate": 0.5687,
+     "teamsActive": 137,
+     "people": 243329,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1959,
+     "ms": 64591,
+     "games": 863,
+     "pointsPerTeamGame": 22.0886,
+     "passRate": 0.5703,
+     "teamsActive": 137,
+     "people": 246816,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1960,
+     "ms": 66745,
+     "games": 931,
+     "pointsPerTeamGame": 21.6992,
+     "passRate": 0.5708,
+     "teamsActive": 145,
+     "people": 251425,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1961,
+     "ms": 70169,
+     "games": 948,
+     "pointsPerTeamGame": 21.9599,
+     "passRate": 0.5729,
+     "teamsActive": 147,
+     "people": 255414,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1962,
+     "ms": 74027,
+     "games": 948,
+     "pointsPerTeamGame": 22.0359,
+     "passRate": 0.5721,
+     "teamsActive": 147,
+     "people": 259237,
+     "hallMembers": 0
+    },
+    {
+     "seasonYear": 1963,
+     "ms": 73248,
+     "games": 948,
+     "pointsPerTeamGame": 21.9082,
+     "passRate": 0.5684,
+     "teamsActive": 147,
+     "people": 262966,
+     "hallMembers": 3
+    },
+    {
+     "seasonYear": 1964,
+     "ms": 74166,
+     "games": 948,
+     "pointsPerTeamGame": 22.1176,
+     "passRate": 0.5716,
+     "teamsActive": 147,
+     "people": 266760,
+     "hallMembers": 6
+    },
+    {
+     "seasonYear": 1965,
+     "ms": 77110,
+     "games": 948,
+     "pointsPerTeamGame": 22.0749,
+     "passRate": 0.5718,
+     "teamsActive": 147,
+     "people": 270597,
+     "hallMembers": 9
+    },
+    {
+     "seasonYear": 1966,
+     "ms": 74199,
+     "games": 965,
+     "pointsPerTeamGame": 21.8171,
+     "passRate": 0.5726,
+     "teamsActive": 148,
+     "people": 274498,
+     "hallMembers": 12
+    },
+    {
+     "seasonYear": 1967,
+     "ms": 80571,
+     "games": 982,
+     "pointsPerTeamGame": 21.9476,
+     "passRate": 0.5693,
+     "teamsActive": 151,
+     "people": 278715,
+     "hallMembers": 15
+    },
+    {
+     "seasonYear": 1968,
+     "ms": 82887,
+     "games": 982,
+     "pointsPerTeamGame": 21.9501,
+     "passRate": 0.5709,
+     "teamsActive": 151,
+     "people": 282587,
+     "hallMembers": 18
+    },
+    {
+     "seasonYear": 1969,
+     "ms": 84435,
+     "games": 982,
+     "pointsPerTeamGame": 22.1008,
+     "passRate": 0.571,
+     "teamsActive": 151,
+     "people": 286545,
+     "hallMembers": 21
+    },
+    {
+     "seasonYear": 1970,
+     "ms": 89377,
+     "games": 982,
+     "pointsPerTeamGame": 21.8997,
+     "passRate": 0.5696,
+     "teamsActive": 151,
+     "people": 290428,
+     "hallMembers": 24
+    },
+    {
+     "seasonYear": 1971,
+     "ms": 78729,
+     "games": 982,
+     "pointsPerTeamGame": 22.0163,
+     "passRate": 0.5735,
+     "teamsActive": 151,
+     "people": 294321,
+     "hallMembers": 27
+    },
+    {
+     "seasonYear": 1972,
+     "ms": 84578,
+     "games": 982,
+     "pointsPerTeamGame": 21.9328,
+     "passRate": 0.5695,
+     "teamsActive": 151,
+     "people": 298203,
+     "hallMembers": 30
+    },
+    {
+     "seasonYear": 1973,
+     "ms": 83706,
+     "games": 982,
+     "pointsPerTeamGame": 22.0433,
+     "passRate": 0.5708,
+     "teamsActive": 152,
+     "people": 302429,
+     "hallMembers": 33
+    },
+    {
+     "seasonYear": 1974,
+     "ms": 83118,
+     "games": 982,
+     "pointsPerTeamGame": 22.2836,
+     "passRate": 0.5711,
+     "teamsActive": 152,
+     "people": 306348,
+     "hallMembers": 36
+    },
+    {
+     "seasonYear": 1975,
+     "ms": 78811,
+     "games": 982,
+     "pointsPerTeamGame": 21.6991,
+     "passRate": 0.5719,
+     "teamsActive": 152,
+     "people": 310253,
+     "hallMembers": 39
+    },
+    {
+     "seasonYear": 1976,
+     "ms": 79590,
+     "games": 999,
+     "pointsPerTeamGame": 22.1301,
+     "passRate": 0.5722,
+     "teamsActive": 154,
+     "people": 314457,
+     "hallMembers": 42
+    },
+    {
+     "seasonYear": 1977,
+     "ms": 85419,
+     "games": 999,
+     "pointsPerTeamGame": 21.985,
+     "passRate": 0.5697,
+     "teamsActive": 154,
+     "people": 318478,
+     "hallMembers": 45
+    },
+    {
+     "seasonYear": 1978,
+     "ms": 89960,
+     "games": 999,
+     "pointsPerTeamGame": 21.965,
+     "passRate": 0.5731,
+     "teamsActive": 154,
+     "people": 322451,
+     "hallMembers": 48
+    },
+    {
+     "seasonYear": 1979,
+     "ms": 92855,
+     "games": 1011,
+     "pointsPerTeamGame": 22.0742,
+     "passRate": 0.5718,
+     "teamsActive": 155,
+     "people": 326659,
+     "hallMembers": 51
+    },
+    {
+     "seasonYear": 1980,
+     "ms": 84804,
+     "games": 1011,
+     "pointsPerTeamGame": 21.7977,
+     "passRate": 0.5721,
+     "teamsActive": 155,
+     "people": 330635,
+     "hallMembers": 54
+    },
+    {
+     "seasonYear": 1981,
+     "ms": 84301,
+     "games": 1011,
+     "pointsPerTeamGame": 21.8497,
+     "passRate": 0.5691,
+     "teamsActive": 155,
+     "people": 334689,
+     "hallMembers": 57
+    },
+    {
+     "seasonYear": 1982,
+     "ms": 93566,
+     "games": 1011,
+     "pointsPerTeamGame": 21.913,
+     "passRate": 0.5706,
+     "teamsActive": 155,
+     "people": 338705,
+     "hallMembers": 60
+    },
+    {
+     "seasonYear": 1983,
+     "ms": 84071,
+     "games": 1011,
+     "pointsPerTeamGame": 21.9411,
+     "passRate": 0.5753,
+     "teamsActive": 155,
+     "people": 342705,
+     "hallMembers": 63
+    },
+    {
+     "seasonYear": 1984,
+     "ms": 94781,
+     "games": 1011,
+     "pointsPerTeamGame": 21.4758,
+     "passRate": 0.5691,
+     "teamsActive": 155,
+     "people": 346675,
+     "hallMembers": 66
+    },
+    {
+     "seasonYear": 1985,
+     "ms": 90371,
+     "games": 1011,
+     "pointsPerTeamGame": 21.865,
+     "passRate": 0.5689,
+     "teamsActive": 155,
+     "people": 350728,
+     "hallMembers": 69
+    },
+    {
+     "seasonYear": 1986,
+     "ms": 85486,
+     "games": 1011,
+     "pointsPerTeamGame": 21.9298,
+     "passRate": 0.5723,
+     "teamsActive": 155,
+     "people": 354706,
+     "hallMembers": 72
+    },
+    {
+     "seasonYear": 1987,
+     "ms": 86985,
+     "games": 1011,
+     "pointsPerTeamGame": 21.9748,
+     "passRate": 0.571,
+     "teamsActive": 155,
+     "people": 358710,
+     "hallMembers": 75
+    },
+    {
+     "seasonYear": 1988,
+     "ms": 90542,
+     "games": 1011,
+     "pointsPerTeamGame": 22.2052,
+     "passRate": 0.5718,
+     "teamsActive": 155,
+     "people": 362715,
+     "hallMembers": 78
+    },
+    {
+     "seasonYear": 1989,
+     "ms": 85175,
+     "games": 1011,
+     "pointsPerTeamGame": 21.908,
+     "passRate": 0.5711,
+     "teamsActive": 155,
+     "people": 366768,
+     "hallMembers": 81
+    },
+    {
+     "seasonYear": 1990,
+     "ms": 86961,
+     "games": 1011,
+     "pointsPerTeamGame": 21.6652,
+     "passRate": 0.5705,
+     "teamsActive": 155,
+     "people": 370715,
+     "hallMembers": 84
+    },
+    {
+     "seasonYear": 1991,
+     "ms": 88052,
+     "games": 1035,
+     "pointsPerTeamGame": 21.7812,
+     "passRate": 0.5705,
+     "teamsActive": 159,
+     "people": 375783,
+     "hallMembers": 87
+    },
+    {
+     "seasonYear": 1992,
+     "ms": 91615,
+     "games": 1035,
+     "pointsPerTeamGame": 21.5802,
+     "passRate": 0.5687,
+     "teamsActive": 159,
+     "people": 379933,
+     "hallMembers": 90
+    },
+    {
+     "seasonYear": 1993,
+     "ms": 88813,
+     "games": 1035,
+     "pointsPerTeamGame": 22.0401,
+     "passRate": 0.571,
+     "teamsActive": 159,
+     "people": 384054,
+     "hallMembers": 93
+    },
+    {
+     "seasonYear": 1994,
+     "ms": 106473,
+     "games": 1035,
+     "pointsPerTeamGame": 21.7778,
+     "passRate": 0.5723,
+     "teamsActive": 159,
+     "people": 388096,
+     "hallMembers": 96
+    },
+    {
+     "seasonYear": 1995,
+     "ms": 88198,
+     "games": 1035,
+     "pointsPerTeamGame": 22.0585,
+     "passRate": 0.5701,
+     "teamsActive": 159,
+     "people": 392199,
+     "hallMembers": 99
+    },
+    {
+     "seasonYear": 1996,
+     "ms": 92222,
+     "games": 1052,
+     "pointsPerTeamGame": 21.7548,
+     "passRate": 0.567,
+     "teamsActive": 161,
+     "people": 396587,
+     "hallMembers": 102
+    },
+    {
+     "seasonYear": 1997,
+     "ms": 95825,
+     "games": 1052,
+     "pointsPerTeamGame": 21.9472,
+     "passRate": 0.5688,
+     "teamsActive": 162,
+     "people": 401054,
+     "hallMembers": 105
+    },
+    {
+     "seasonYear": 1998,
+     "ms": 92944,
+     "games": 1052,
+     "pointsPerTeamGame": 21.5889,
+     "passRate": 0.5702,
+     "teamsActive": 162,
+     "people": 405235,
+     "hallMembers": 108
+    },
+    {
+     "seasonYear": 1999,
+     "ms": 91528,
+     "games": 1052,
+     "pointsPerTeamGame": 22.0214,
+     "passRate": 0.5708,
+     "teamsActive": 162,
+     "people": 409412,
+     "hallMembers": 111
+    },
+    {
+     "seasonYear": 2000,
+     "ms": 97622,
+     "games": 1052,
+     "pointsPerTeamGame": 21.5917,
+     "passRate": 0.5687,
+     "teamsActive": 162,
+     "people": 413614,
+     "hallMembers": 114
+    },
+    {
+     "seasonYear": 2001,
+     "ms": 93538,
+     "games": 1052,
+     "pointsPerTeamGame": 21.7414,
+     "passRate": 0.5707,
+     "teamsActive": 162,
+     "people": 417778,
+     "hallMembers": 117
+    },
+    {
+     "seasonYear": 2002,
+     "ms": 92937,
+     "games": 1081,
+     "pointsPerTeamGame": 21.8853,
+     "passRate": 0.5706,
+     "teamsActive": 165,
+     "people": 422696,
+     "hallMembers": 120
+    },
+    {
+     "seasonYear": 2003,
+     "ms": 107158,
+     "games": 1093,
+     "pointsPerTeamGame": 21.9414,
+     "passRate": 0.5712,
+     "teamsActive": 166,
+     "people": 427264,
+     "hallMembers": 123
+    },
+    {
+     "seasonYear": 2004,
+     "ms": 97385,
+     "games": 1093,
+     "pointsPerTeamGame": 21.8509,
+     "passRate": 0.5723,
+     "teamsActive": 166,
+     "people": 431554,
+     "hallMembers": 126
+    },
+    {
+     "seasonYear": 2005,
+     "ms": 95585,
+     "games": 1093,
+     "pointsPerTeamGame": 21.8788,
+     "passRate": 0.5713,
+     "teamsActive": 166,
+     "people": 435832,
+     "hallMembers": 129
+    },
+    {
+     "seasonYear": 2006,
+     "ms": 100036,
+     "games": 1093,
+     "pointsPerTeamGame": 21.5558,
+     "passRate": 0.5706,
+     "teamsActive": 166,
+     "people": 440125,
+     "hallMembers": 132
+    },
+    {
+     "seasonYear": 2007,
+     "ms": 101142,
+     "games": 1093,
+     "pointsPerTeamGame": 22.0563,
+     "passRate": 0.5711,
+     "teamsActive": 166,
+     "people": 444460,
+     "hallMembers": 135
+    },
+    {
+     "seasonYear": 2008,
+     "ms": 100957,
+     "games": 1093,
+     "pointsPerTeamGame": 21.9817,
+     "passRate": 0.573,
+     "teamsActive": 166,
+     "people": 448705,
+     "hallMembers": 138
+    },
+    {
+     "seasonYear": 2009,
+     "ms": 104422,
+     "games": 1093,
+     "pointsPerTeamGame": 21.7882,
+     "passRate": 0.5691,
+     "teamsActive": 167,
+     "people": 453269,
+     "hallMembers": 141
+    },
+    {
+     "seasonYear": 2010,
+     "ms": 98526,
+     "games": 1105,
+     "pointsPerTeamGame": 22.0855,
+     "passRate": 0.5691,
+     "teamsActive": 169,
+     "people": 458141,
+     "hallMembers": 144
+    },
+    {
+     "seasonYear": 2011,
+     "ms": 95389,
+     "games": 1105,
+     "pointsPerTeamGame": 21.5647,
+     "passRate": 0.5712,
+     "teamsActive": 169,
+     "people": 462612,
+     "hallMembers": 147
+    },
+    {
+     "seasonYear": 2012,
+     "ms": 99975,
+     "games": 1105,
+     "pointsPerTeamGame": 21.9778,
+     "passRate": 0.5706,
+     "teamsActive": 169,
+     "people": 466932,
+     "hallMembers": 150
+    },
+    {
+     "seasonYear": 2013,
+     "ms": 101547,
+     "games": 1105,
+     "pointsPerTeamGame": 22.1176,
+     "passRate": 0.5712,
+     "teamsActive": 169,
+     "people": 471282,
+     "hallMembers": 153
+    },
+    {
+     "seasonYear": 2014,
+     "ms": 99474,
+     "games": 1105,
+     "pointsPerTeamGame": 22.1353,
+     "passRate": 0.5706,
+     "teamsActive": 169,
+     "people": 475582,
+     "hallMembers": 156
+    },
+    {
+     "seasonYear": 2015,
+     "ms": 105610,
+     "games": 1117,
+     "pointsPerTeamGame": 21.9633,
+     "passRate": 0.5724,
+     "teamsActive": 170,
+     "people": 480336,
+     "hallMembers": 159
+    },
+    {
+     "seasonYear": 2016,
+     "ms": 106805,
+     "games": 1117,
+     "pointsPerTeamGame": 22.0054,
+     "passRate": 0.5698,
+     "teamsActive": 170,
+     "people": 484713,
+     "hallMembers": 162
+    },
+    {
+     "seasonYear": 2017,
+     "ms": 104805,
+     "games": 1117,
+     "pointsPerTeamGame": 21.7077,
+     "passRate": 0.5707,
+     "teamsActive": 170,
+     "people": 489099,
+     "hallMembers": 165
+    },
+    {
+     "seasonYear": 2018,
+     "ms": 110389,
+     "games": 1117,
+     "pointsPerTeamGame": 21.9557,
+     "passRate": 0.5701,
+     "teamsActive": 170,
+     "people": 493400,
+     "hallMembers": 168
+    },
+    {
+     "seasonYear": 2019,
+     "ms": 110251,
+     "games": 1117,
+     "pointsPerTeamGame": 21.88,
+     "passRate": 0.571,
+     "teamsActive": 170,
+     "people": 497843,
+     "hallMembers": 171
+    },
+    {
+     "seasonYear": 2020,
+     "ms": 130481,
+     "games": 1117,
+     "pointsPerTeamGame": 22.4244,
+     "passRate": 0.5734,
+     "teamsActive": 170,
+     "people": 502302,
+     "hallMembers": 174
+    },
+    {
+     "seasonYear": 2021,
+     "ms": 111804,
+     "games": 1117,
+     "pointsPerTeamGame": 22.0228,
+     "passRate": 0.5702,
+     "teamsActive": 170,
+     "people": 506638,
+     "hallMembers": 177
+    },
+    {
+     "seasonYear": 2022,
+     "ms": 106253,
+     "games": 1117,
+     "pointsPerTeamGame": 21.8944,
+     "passRate": 0.5708,
+     "teamsActive": 170,
+     "people": 510986,
+     "hallMembers": 180
+    },
+    {
+     "seasonYear": 2023,
+     "ms": 99344,
+     "games": 1117,
+     "pointsPerTeamGame": 22.1415,
+     "passRate": 0.5739,
+     "teamsActive": 170,
+     "people": 515406,
+     "hallMembers": 183
+    },
+    {
+     "seasonYear": 2024,
+     "ms": 98400,
+     "games": 1117,
+     "pointsPerTeamGame": 21.8527,
+     "passRate": 0.5716,
+     "teamsActive": 170,
+     "people": 519858,
+     "hallMembers": 186
+    },
+    {
+     "seasonYear": 2025,
+     "ms": 93919,
+     "games": 1117,
+     "pointsPerTeamGame": 22.137,
+     "passRate": 0.5702,
+     "teamsActive": 170,
+     "people": 524217,
+     "hallMembers": 189
+    }
+   ],
+   "timing": {
+    "msPerGame": 78.5334,
+    "seasonMs": 0,
+    "totalSeconds": 9419.919
+   },
+   "parity": {
+    "decades": [
+     {
+      "competitionId": 1,
+      "decadeStart": 1920,
+      "seasons": 10,
+      "distinctChampions": 9,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 1930,
+      "seasons": 10,
+      "distinctChampions": 7,
+      "topShare": 0.3
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 1940,
+      "seasons": 10,
+      "distinctChampions": 8,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 1950,
+      "seasons": 10,
+      "distinctChampions": 8,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 1960,
+      "seasons": 10,
+      "distinctChampions": 8,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 1970,
+      "seasons": 10,
+      "distinctChampions": 8,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 1980,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 1990,
+      "seasons": 10,
+      "distinctChampions": 6,
+      "topShare": 0.3
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 2000,
+      "seasons": 10,
+      "distinctChampions": 9,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 2010,
+      "seasons": 10,
+      "distinctChampions": 8,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 1,
+      "decadeStart": 2020,
+      "seasons": 6,
+      "distinctChampions": 6,
+      "topShare": 0.1667
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1870,
+      "seasons": 1,
+      "distinctChampions": 1,
+      "topShare": 1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1880,
+      "seasons": 10,
+      "distinctChampions": 9,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1890,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1900,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1910,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1920,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1930,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1940,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1950,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1960,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1970,
+      "seasons": 10,
+      "distinctChampions": 9,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1980,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 1990,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 2000,
+      "seasons": 10,
+      "distinctChampions": 10,
+      "topShare": 0.1
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 2010,
+      "seasons": 10,
+      "distinctChampions": 9,
+      "topShare": 0.2
+     },
+     {
+      "competitionId": 2,
+      "decadeStart": 2020,
+      "seasons": 6,
+      "distinctChampions": 5,
+      "topShare": 0.3333
+     }
+    ],
+    "minDistinctChampions": 6,
+    "maxTopShare": 0.3
+   },
+   "tenures": null,
+   "hall": {
+    "members": 189,
+    "players": 176,
+    "coaches": 13,
+    "charter": 3,
+    "firstBallotSeason": 1963,
+    "classSize": {
+     "count": 62,
+     "mean": 3,
+     "p10": 3,
+     "p25": 3,
+     "p50": 3,
+     "p75": 3,
+     "p90": 3,
+     "max": 3
+    }
+   },
+   "teams": {
+    "total": 218,
+    "folded": 48,
+    "foldedLifespan": {
+     "count": 48,
+     "mean": 3.8333,
+     "p10": 1,
+     "p25": 1,
+     "p50": 2,
+     "p75": 6,
+     "p90": 8,
+     "max": 15
+    },
+    "foundedByDecade": {
+     "1870": 3,
+     "1880": 36,
+     "1890": 52,
+     "1900": 8,
+     "1910": 11,
+     "1920": 50,
+     "1930": 15,
+     "1940": 5,
+     "1950": 5,
+     "1960": 14,
+     "1970": 4,
+     "1990": 7,
+     "2000": 5,
+     "2010": 3
+    },
+    "foldedByDecade": {
+     "1920": 32,
+     "1930": 11,
+     "1940": 2,
+     "1950": 3
+    }
+   }
+  }
+ },
+ "digest": "1aaf8af20f2156f4ac2f3e3f55eecb2be9cb4f75e248c5ef357a650bca5da0c3"
+}
