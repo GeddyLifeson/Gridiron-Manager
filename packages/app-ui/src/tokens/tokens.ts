@@ -3,12 +3,12 @@
 // named here and never a literal colour (lint test in test/tokens/).
 import TOKEN_FILE from './tokens.json';
 
-export const THEME_IDS = ['light', 'dark', 'high-contrast'] as const;
+export const THEME_IDS = ['light', 'dark', 'high-contrast', 'classic'] as const;
 export type ThemeId = (typeof THEME_IDS)[number];
 export const COLOUR_VISION_IDS = ['none', 'protan', 'deutan', 'tritan'] as const;
 export type ColourVisionId = (typeof COLOUR_VISION_IDS)[number];
 
-export const TOKEN_GROUPS = ['surface', 'text', 'line', 'accent', 'state', 'team', 'field', 'overlay'] as const;
+export const TOKEN_GROUPS = ['surface', 'text', 'line', 'accent', 'state', 'team', 'field', 'overlay', 'era'] as const;
 export type TokenGroup = (typeof TOKEN_GROUPS)[number];
 export type ColourBlock = Record<TokenGroup, Record<string, string>>;
 export type PartialColourBlock = Partial<Record<TokenGroup, Record<string, string>>>;
@@ -70,12 +70,19 @@ export function contrastRatio(a: string, b: string): number {
   return (hi + WCAG_LUMINANCE.flare) / (lo + WCAG_LUMINANCE.flare);
 }
 
+/**
+ * Which colour-vision override block a theme takes. Classic (PV-18) is a dark period skin, so it takes the
+ * dark overrides; high contrast keeps its own colours.
+ */
+export const VISION_BASE: Record<ThemeId, 'light' | 'dark' | null> = { light: 'light', dark: 'dark', 'high-contrast': null, classic: 'dark' };
+
 /** The colour block for a theme, with a colour-vision palette laid over it (high contrast keeps its own). */
 export function resolveColours(theme: ThemeId, vision: ColourVisionId = 'none', file: TokenFile = TOKENS): ColourBlock {
   const base = file.themes[theme];
   const out = Object.fromEntries(TOKEN_GROUPS.map((g) => [g, { ...base[g] }])) as ColourBlock;
-  if (vision !== 'none' && theme !== 'high-contrast') {
-    const over = file.colourVision[vision][theme];
+  const visionBase = VISION_BASE[theme];
+  if (vision !== 'none' && visionBase !== null) {
+    const over = file.colourVision[vision][visionBase];
     for (const g of TOKEN_GROUPS) Object.assign(out[g], over[g] ?? {});
   }
   return out;

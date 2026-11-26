@@ -99,7 +99,7 @@ describe('accessibility checks (O5.5)', () => {
 
   it('text contrast passes in every theme and colour-vision palette (O5.5.1)', () => {
     const r = contrastAudit();
-    expect(r.combos).toBe(12);
+    expect(r.combos).toBe(16); // 4 themes (light, dark, high contrast, classic) x 4 palettes
     expect(r.failures).toEqual([]);
   });
 
