@@ -1,0 +1,61 @@
+{
+  "$comment": "PV-18 Classic era skin (plan 2.1). 'classic' is a full colour block with the same groups and keys as the base themes in tokens/tokens.json. 'era' holds the extra lamp-board, character-generator and film colours for every theme, so the score strip and banners work in the plain themes too (plain themes get plain values). 'fieldSurface' swaps the field colours for a venue's surface. Colour-vision palettes reuse the dark-theme overlays of tokens.json, because Classic is a dark theme. No literal colour lives in component code (O6.2.1).",
+  "version": 1,
+  "classic": {
+    "surface": { "bg": "#17130f", "panel": "#221c16", "raised": "#2d251d" },
+    "text": { "ink": "#f4ead2", "muted": "#c2b394", "inverse": "#17130f" },
+    "line": { "default": "#4a3f32", "strong": "#8a7a62", "focus": "#ffcf5c" },
+    "accent": { "default": "#f0a830", "onAccent": "#17130f" },
+    "state": { "good": "#8fcf6a", "caution": "#f2c14e", "bad": "#ff8f6b", "neutral": "#d2c6ad" },
+    "team": { "home": "#8fb4e8", "homeAlt": "#1f3352", "away": "#f2907a", "awayAlt": "#4c1f18", "safeDark": "#0a0a0a", "safeLight": "#f0e442" },
+    "field": {
+      "turf": "#2f5d25", "lines": "#f7f3e6", "numbers": "#f7f3e6", "scrimmage": "#9fdcff", "lineToGain": "#ffe14d",
+      "endZone": "#2a5421", "surround": "#244a1c", "ball": "#7a4a1e", "ballEdge": "#f4f0e0", "flag": "#ffd400",
+      "cue": "#f7f3e6", "shadow": "#000000", "inkDark": "#000000", "inkLight": "#ffffff", "officialLight": "#ffffff", "officialDark": "#000000"
+    },
+    "overlay": { "assignment": "#8fb4e8", "route": "#ff8f6b", "protection": "#d0b0f0", "coverage": "#f2c14e", "eyeLine": "#f4ead2" }
+  },
+  "fieldSurface": {
+    "grass": { "turf": "#2f5d25", "endZone": "#2a5421", "surround": "#244a1c" },
+    "artificial": { "turf": "#1f6b3e", "endZone": "#1c6038", "surround": "#185231" }
+  },
+  "era": {
+    "light": {
+      "lampPanel": "#1b1f1a", "lampOn": "#ffffff", "lampOnAlt": "#ffe14d", "lampOff": "#2c322b",
+      "segmentOn": "#ffe14d", "segmentOff": "#2c322b",
+      "cgBar": "#1d4f91", "cgBarAlt": "#9b2226", "cgText": "#ffffff", "cgShadow": "#000000",
+      "leaderBg": "#1b1f1a", "leaderInk": "#ffffff", "grainLight": "#ffffff", "grainDark": "#000000", "vignette": "#000000", "counterInk": "#ffffff", "counterBg": "#000000"
+    },
+    "dark": {
+      "lampPanel": "#0c0e0b", "lampOn": "#e6e9e3", "lampOnAlt": "#ffe14d", "lampOff": "#20241f",
+      "segmentOn": "#ffe14d", "segmentOff": "#20241f",
+      "cgBar": "#1d3557", "cgBarAlt": "#4a1a1c", "cgText": "#ffffff", "cgShadow": "#000000",
+      "leaderBg": "#0c0e0b", "leaderInk": "#e6e9e3", "grainLight": "#ffffff", "grainDark": "#000000", "vignette": "#000000", "counterInk": "#e6e9e3", "counterBg": "#000000"
+    },
+    "high-contrast": {
+      "lampPanel": "#000000", "lampOn": "#ffffff", "lampOnAlt": "#ffff00", "lampOff": "#000000",
+      "segmentOn": "#ffff00", "segmentOff": "#000000",
+      "cgBar": "#000000", "cgBarAlt": "#000000", "cgText": "#ffffff", "cgShadow": "#000000",
+      "leaderBg": "#000000", "leaderInk": "#ffffff", "grainLight": "#ffffff", "grainDark": "#000000", "vignette": "#000000", "counterInk": "#ffffff", "counterBg": "#000000"
+    },
+    "classic": {
+      "lampPanel": "#0e0c0a", "lampOn": "#ffb547", "lampOnAlt": "#fff4dc", "lampOff": "#2a221a",
+      "segmentOn": "#ff9a2e", "segmentOff": "#2a1d12",
+      "cgBar": "#1d3a6e", "cgBarAlt": "#7a1f1f", "cgText": "#ffffff", "cgShadow": "#000000",
+      "leaderBg": "#151515", "leaderInk": "#f2f2f2", "grainLight": "#fff8e6", "grainDark": "#000000", "vignette": "#000000", "counterInk": "#fff4dc", "counterBg": "#000000"
+    }
+  },
+  "eraContrastPairs": [
+    { "fg": "lampOn", "bg": "lampPanel", "floor": "text" },
+    { "fg": "lampOnAlt", "bg": "lampPanel", "floor": "text" },
+    { "fg": "segmentOn", "bg": "lampPanel", "floor": "text" },
+    { "fg": "lampOn", "bg": "lampOff", "floor": "text" },
+    { "fg": "lampOnAlt", "bg": "lampOff", "floor": "text" },
+    { "fg": "segmentOn", "bg": "segmentOff", "floor": "text" },
+    { "fg": "cgText", "bg": "cgBar", "floor": "text" },
+    { "fg": "cgText", "bg": "cgBarAlt", "floor": "text" },
+    { "fg": "cgText", "bg": "cgShadow", "floor": "text" },
+    { "fg": "leaderInk", "bg": "leaderBg", "floor": "text" },
+    { "fg": "counterInk", "bg": "counterBg", "floor": "text" }
+  ]
+}
