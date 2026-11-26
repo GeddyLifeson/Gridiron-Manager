@@ -13,6 +13,8 @@ export * as settings from './settings/index.ts';
 export * as observer from './observer/index.ts';
 export * as rosterMoves from './read-models/roster-moves/index.ts';
 export * as rosterMovesCommands from './commands/roster-moves/index.ts';
+export * as capSheet from './read-models/cap-sheet/index.ts';
+export * as depthChart from './read-models/depth-chart/index.ts';
 export * as gameFrame from './read-models/game-frame/index.ts';
 export * as gameFrameCommands from './commands/game-frame/index.ts';
 export * as analytics from './read-models/analytics/index.ts';

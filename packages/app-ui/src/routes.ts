@@ -22,6 +22,8 @@ import { homeRoutes } from './screens/home/index.ts';
 import { peopleRoutes } from './screens/people/index.ts';
 import { legendsRoute, LEGENDS_SCREEN_ID } from './screens/legends/index.ts';
 import { gamePlanRoute, callSheetRoute, PLAN_SCREEN_ID, SHEET_SCREEN_ID } from './screens/gameplan/index.ts';
+import { capRoute, SCREEN_ID as CAP_SCREEN_ID } from './screens/cap/index.ts';
+import { depthChartRoute, SCREEN_ID as DEPTH_CHART_SCREEN_ID } from './screens/depth-chart/index.ts';
 
 type Args<F extends (...a: never[]) => unknown> = Parameters<F>;
 
@@ -57,6 +59,10 @@ export interface RouteSources {
   /** G-84 legends browser and chronicle (X3). */
   readonly legends?: { readonly load: Args<typeof legendsRoute>[0]; readonly opts?: Args<typeof legendsRoute>[1] };
   readonly practice?: { readonly getModel: Args<typeof practicePlannerRoute>[0]; readonly onOpen?: Args<typeof practicePlannerRoute>[1] };
+  /** Cap sheet or college budget (C6, O4.2). */
+  readonly cap?: Args<typeof capRoute>[0];
+  /** Depth chart (O4.2.2, M2). */
+  readonly depthChart?: Args<typeof depthChartRoute>[0];
 }
 
 /** Office screen id that shows the assignment list below head coach (O1.2.1, O7.2.1). */
@@ -93,6 +99,8 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.people) putAll(peopleRoutes(s.people));
   if (s.legends) put(LEGENDS_SCREEN_ID, legendsRoute(s.legends.load, s.legends.opts));
   if (s.practice) put(PRACTICE_SCREEN_ID, practicePlannerRoute(s.practice.getModel, s.practice.onOpen));
+  if (s.cap) put(CAP_SCREEN_ID, capRoute(s.cap));
+  if (s.depthChart) put(DEPTH_CHART_SCREEN_ID, depthChartRoute(s.depthChart));
   if (s.gameplan) { put(PLAN_SCREEN_ID, gamePlanRoute(s.gameplan)); put(SHEET_SCREEN_ID, callSheetRoute(s.gameplan)); }
   return t;
 }
