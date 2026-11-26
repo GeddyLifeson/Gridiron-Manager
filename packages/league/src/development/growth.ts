@@ -1,7 +1,7 @@
 // Body growth from 14 to 23 (D8.1.1) with the college-age parameters of T8.1.1: height, weight and
 // strength move toward hidden adult targets; speed is nearly fixed from 18. Shares are read from
 // tables.json; effective age is age minus the maturity offset, so late developers grow later.
-import type { PlayingBlock, RandomStream } from '@gm/schema';
+import type { DeterministicMath, PlayingBlock, RandomStream } from '@gm/schema';
 import { GROWTH_GROUP, type PositionFamily } from './classes.ts';
 import { HIDDEN, hiddenNum } from './hidden.ts';
 import { interp, num, type DevNumbers } from './params.ts';
@@ -48,9 +48,11 @@ export function effectiveAge(n: DevNumbers, p: PlayingBlock, ageYears: number): 
 }
 
 /** Draw the D7/D8 hidden parameters a new person needs (for G-17 and for people created without them). */
-export function drawDevelopmentTraits(n: DevNumbers, stream: RandomStream): Record<string, number> {
+export function drawDevelopmentTraits(n: DevNumbers, math: DeterministicMath, stream: RandomStream): Record<string, number> {
   const clamp = (x: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, x));
-  const devRate = clamp(num(n, 'devRate.mean') + stream.normal() * num(n, 'devRate.sd'), num(n, 'devRate.min'), num(n, 'devRate.max'));
+  // Development rate: mean 1, log-normal, uncapped (D7.4.2 ruling).
+  const sdLog = num(n, 'devRate.sdLog');
+  const devRate = math.exp(sdLog * stream.normal() - (sdLog * sdLog) / (1 + 1));
   const agingTrait = Math.max(num(n, 'aging.traitMin'), num(n, 'aging.traitMean') + stream.normal() * num(n, 'aging.traitSd'));
   const mMax = num(n, 'growth.maturityOffsetMax');
   const maturity = clamp(stream.normal() * num(n, 'growth.maturityOffsetSd'), -mMax, mMax);
@@ -65,6 +67,7 @@ export function drawDevelopmentTraits(n: DevNumbers, stream: RandomStream): Reco
     [HIDDEN.growthDisposition]: disposition,
     [HIDDEN.lateSpurtIn]: spurt,
     [HIDDEN.form]: 1,
+    [HIDDEN.surroundings]: 1,
     [HIDDEN.agingIndex]: 1,
     [HIDDEN.agingYearDelta]: 0,
     [HIDDEN.heavyLoad]: 0,
