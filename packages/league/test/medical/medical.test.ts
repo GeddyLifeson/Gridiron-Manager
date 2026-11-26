@@ -429,6 +429,10 @@ describe('report (D11.5.1, H5.2.1 to H5.2.3)', () => {
     const flags = compareFiled(5, draft, shaded);
     expect(flags.map((f) => f.kind).sort()).toEqual(['unlisted_injury', 'wrong_participation']);
     expect(shadingAct(flags, ctx)?.classId).toBe('injury_report_shading');
+    expect(shadingAct(flags, ctx)?.severity).toBe('major');
+    const shadeOnly = compareFiled(5, draft, [{ ...draft[0]!, label: 'full' as const }, draft[1]!]);
+    expect(shadeOnly.map((f) => f.kind)).toEqual(['wrong_participation']);
+    expect(shadingAct(shadeOnly, ctx)?.severity).toBe('minor');
     expect(draftPracticeReport(facts, COLLEGE)).toEqual([]);
   });
   it('there is no "Probable"; the three statuses map to their measured play rates', () => {

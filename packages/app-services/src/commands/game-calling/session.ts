@@ -14,8 +14,8 @@
 // change listed in the integrator requests (I2.1.3, O2.4.1). Nothing here reads the wall clock: the host moves
 // the driver's `nowMs`.
 import { flow } from '@gm/engine-game';
-import { yardsToGoal, type Decider, type Decision, type DecisionRequest, type GameDeps, type GameEvent, type GameInput, type Side } from '@gm/schema';
-import { openRequest, type ConsoleConfig, type ConsoleCommand, type OpenInput, type SentCall } from './console.ts';
+import { yardsToGoal, type Decider, type Decision, type DecisionRequest, type GameDeps, type GameEvent, type GameInput, type GameSituation, type PlayRecord, type Side } from '@gm/schema';
+import { openRequest, playClockAt, type ConsoleConfig, type ConsoleCommand, type OpenInput, type SentCall } from './console.ts';
 import { callDecision, defaultDecision, optionDecision, type LineupFor } from './decision.ts';
 import { ConsoleKeyDriver, type ConsoleKeyDriverOptions } from './driver.ts';
 import { initialConsole } from './console.ts';
@@ -37,12 +37,22 @@ export interface GameSessionOptions {
   readonly flowOptions?: flow.FlowOptions;
   /** Personnel on the field before the first call (I3.1.1); later the last group the user sent. */
   readonly firstPersonnel?: string;
+  /**
+   * Real milliseconds from a committed call to the dead-ball record of the play it starts: relay, the snap, the
+   * live play and the spot (I2.1.1 stages 3 to 6 and 1). The host knows it from the play viewer (G-63). While it
+   * runs the console stays on the sent call, so the next-call queue can be filled (I2.3.6). Default 0.
+   */
+  readonly liveMs?: (record: PlayRecord | null) => number;
+  /** The decision book's fourth-down line for the situation, shown on third down (I4.1.1, I1.4.2). */
+  readonly bookLine?: (situation: GameSituation) => string | null;
 }
 
 /** A request the console is open on. `preview` marks the timeout request standing in for the coming call. */
 export interface PendingRequest {
   readonly request: DecisionRequest;
   readonly preview: boolean;
+  /** The flow's second timeout request, after the calls and before the snap (late timeout, I2.1.3, O2.4.1). */
+  readonly late?: boolean;
   readonly openedAtMs: number;
   readonly playClockTenths: number;
 }
@@ -74,6 +84,10 @@ export class GameCallingSession {
   private drained = 0;
   private personnel: string;
   private lastPlays = -1;
+  private heldSnaps = 0;
+  private lastOffense: Side | null = null;
+  private deferred: DecisionRequest | null = null;
+  private holdUntilMs = 0;
 
   constructor(o: GameSessionOptions) {
     this.o = o;
@@ -98,16 +112,59 @@ export class GameCallingSession {
   /** Runs the game to the first request for the user's team. */
   start(): void { this.step(); }
 
-  press(key: string): void { this.driver.press(key); this.drain(); }
+  /** True while the play the last call started is still running on screen (the queue window, I2.3.6). */
+  get holding(): boolean { return this.deferred !== null; }
+
+  press(key: string): void { this.driver.press(key); this.drain(); this.release(); }
   pressAll(keys: readonly string[]): void { for (const k of keys) { if (this.final) return; this.press(k); } }
-  wait(ms: number): void { this.driver.wait(ms); this.drain(); }
-  settle(): void { this.driver.settle(); this.drain(); }
+  wait(ms: number): void { this.driver.wait(ms); this.drain(); this.release(); }
+  settle(): void { this.driver.settle(); this.drain(); this.release(); }
+
+  /** Opens the held request once the play has run out on screen; closes the late-timeout window at the snap. */
+  private release(): void {
+    const p = this.pending;
+    if (p?.late && p.request.deadlinePlayClockTenths !== null && this.clockNow() <= p.request.deadlinePlayClockTenths) {
+      this.queue(p.request, optionDecision(p.request, flow.OPT.none, this.clockNow()), this.driver.nowMs);
+      this.pending = null;
+      this.step();
+    }
+    if (this.deferred && this.driver.nowMs >= this.holdUntilMs) { const r = this.deferred; this.deferred = null; this.open(r); }
+  }
 
   private count(type: GameEvent['type'], pred: (e: GameEvent) => boolean = () => true): number {
     return this.events.reduce((n, e) => n + (e.type === type && pred(e) ? 1 : 0), 0);
   }
 
   private timeoutsCharged(): number { return this.count('timeout_charged'); }
+
+  /** A team timeout was charged after the last snapping call: no snap ran (a late timeout, PR 146). */
+  private timeoutAfterLastSnap(): boolean {
+    for (let i = this.events.length - 1; i >= 0; i--) {
+      const e = this.events[i]!;
+      if (e.type === 'timeout_charged') return true;
+      if (e.type === 'decision_made' && e.decision.type === 'snapping_call') return false;
+    }
+    return false;
+  }
+
+  /** The play clock as the console shows it now. */
+  private clockNow(): number { return playClockAt(this.driver.state, this.driver.nowMs); }
+
+  /**
+   * The late timeout request comes after both calls, while the flow waits in `pre_snap` (or `kickoff_setup`
+   * before a free kick); the pre-call one comes in `call_window`.
+   */
+  private isLate(req: DecisionRequest): boolean {
+    return req.type === 'timeout' && (this.game.phase === 'pre_snap' || this.game.phase === 'kickoff_setup');
+  }
+
+  /** The late-timeout window: the console stays on the sent call and T is live until the snap reading. */
+  private openLate(req: DecisionRequest): void {
+    const st = this.driver.state;
+    if (st.open) this.driver.state = { ...st, open: { ...st.open, legal: { ...st.open.legal, timeout: true }, timeoutReason: null } };
+    this.pending = { request: req, preview: false, late: true, openedAtMs: this.driver.nowMs, playClockTenths: this.clockNow() };
+    this.release();
+  }
 
   /** Steps the flow until it waits on the user's team or the game is final. */
   private step(): void {
@@ -139,6 +196,22 @@ export class GameCallingSession {
           this.queue(req, d, h.confirmMs);
           continue;
         }
+      }
+      if (this.isLate(req)) { this.openLate(req); return; }
+      // A snap ran since the console last opened: the play runs on screen before anything after it shows,
+      // the challenge window and the penalty choice included (I2.1.1 stages 3 to 6 and 1).
+      const snaps = this.count('decision_made', (e) => e.type === 'decision_made' && e.decision.type === 'snapping_call');
+      if (this.o.liveMs && snaps > this.heldSnaps && !this.timeoutAfterLastSnap()) {
+        this.heldSnaps = snaps;
+        // The play's record when the flow logged it already (after any challenge or penalty choice it waits for).
+        let rec: PlayRecord | null = null;
+        for (let i = this.events.length - 1; i >= 0; i--) {
+          const e = this.events[i]!;
+          if (e.type === 'play_resolved') { rec = e.record; break; }
+          if (e.type === 'decision_made' && e.decision.type === 'snapping_call') break;
+        }
+        const ms = this.o.liveMs(rec);
+        if (ms > 0) { this.deferred = req; this.holdUntilMs = this.driver.nowMs + ms; this.pending = null; return; }
       }
       this.open(req);
       return;
@@ -199,6 +272,12 @@ export class GameCallingSession {
       else kind = s.playKind === 'scrimmage' && s.down === 4 ? 'fourth_down' : 'scrimmage';
     }
     const plays = this.count('play_resolved');
+    // I2.3.6: a turnover, score or penalty on the last play clears the queue.
+    const lastRec = [...this.events].reverse().find((e) => e.type === 'play_resolved');
+    const penalty = !!lastRec && lastRec.type === 'play_resolved' && lastRec.record.called.fouls.some((f) => f.called);
+    const scoreSince = (() => { for (let i = this.events.length - 1; i >= 0; i--) { const t = this.events[i]!.type; if (t === 'score_changed') return true; if (t === 'decision_requested' && i < this.events.length - 1 && this.events.slice(i).some((x) => x.type === 'play_resolved')) break; } return false; })();
+    const clearQueue = penalty || scoreSince || (this.lastOffense !== null && this.lastOffense !== s.offense);
+    this.lastOffense = s.offense;
     const sinceLastPlay = (() => { for (let i = this.events.length - 1; i >= 0; i--) { const t = this.events[i]!.type; if (t === 'play_resolved') return false; if (t === 'timeout_charged') return true; } return false; })();
     const toGoal = Math.round(yardsToGoal(this.deps.geometry, s.ballX, s.attackDir));
     const situation: SheetSituation = {
@@ -211,7 +290,8 @@ export class GameCallingSession {
       timeoutReason: preview ? null : 'console.timeoutNotLegal', challengeReason: req.type === 'challenge' ? null : 'console.challengeNotLegal',
       // The defensive marker needs the offense's set time; the flow's call deadline is the latest it can be (assumption).
       offenseSetTenths: request.deadlinePlayClockTenths ?? 0,
-      afterTimeout: sinceLastPlay, suggestion: null, sameDeadBall: plays === this.lastPlays,
+      afterTimeout: sinceLastPlay, suggestion: null, sameDeadBall: plays === this.lastPlays, clearQueue,
+      bookLine: this.o.bookLine && userOffense && s.down === 3 ? this.o.bookLine(s) : null,
     };
     this.lastPlays = plays;
     this.pending = { request: req, preview, openedAtMs: atMs, playClockTenths: clock };
@@ -251,7 +331,7 @@ export class GameCallingSession {
         else this.queue(req, defaultDecision(req), now);
         break;
       case 'timeout':
-        if (!p.preview) return false;
+        if (!p.preview && !p.late) return false;
         this.held = null;
         this.queue(req, optionDecision(req, flow.OPT.timeout, c.atPlayClockTenths), now);
         break;

@@ -84,11 +84,40 @@ export interface CallResult {
   readonly record: CallRecord;
 }
 
+/** A look at the mix without making the call (K6.2.1 suggest). Nothing is drawn: tempo is given, not chosen. */
+export type PreviewRequest = Omit<CallRequest, 'draws'> & {
+  /** The tempo to look at the box under; offense defaults to 'huddle'. Defense always previews 'huddle'. */
+  readonly tempo?: Tempo;
+};
+
+export interface PreviewLine { readonly call: SheetCall; readonly weight: number }
+
+export interface CallPreview {
+  readonly bucketId: string;
+  readonly sourceBoxId: string;
+  readonly tempo: Tempo;
+  /** Candidates in sheet order, and the final mix over them (mix4), as `call` would draw from now. */
+  readonly candidates: readonly SheetCall[];
+  readonly mix4: readonly number[];
+  /** The candidates by weight, best first (ties keep sheet order). */
+  readonly ranked: readonly PreviewLine[];
+  /** The scripted call he would take unless he leaves the script (`script.departShare`), else null. */
+  readonly scriptedCallId: string | null;
+  /** The queued second call (K4.3.4 rule 3) that would be sent, else null. */
+  readonly queuedCallId: string | null;
+}
+
 export interface AppliedChange { readonly contingency: Contingency; readonly errorFactor: number; readonly identifiedTrueProblem: boolean }
 
 export interface Caller {
   /** The call for this snap, or null when nothing on the sheet can be sent (the default applies, J11.6.1). */
   call(req: CallRequest): CallResult | null;
+  /**
+   * The candidates and final mix for this snap without calling it: no draw is taken and no script,
+   * sequence window, self-scout count, last call or late report moves. A `call` after any number of
+   * previews returns exactly what it would have returned without them. Null when nothing can be sent.
+   */
+  preview(req: PreviewRequest): CallPreview | null;
   /** What his booth saw on the last play (K4.2.2). Plays his staff did not observe are never passed. */
   observe(obs: Observation, draws: DrawSource): void;
   /** K4.5.3: `capacity` is how many changes the players can carry (I8.1.4). */
@@ -163,7 +192,74 @@ export function createCaller(setup: CallerSetup): Caller {
     });
   };
 
+  const scriptApplies = (list: ReturnType<typeof candidatesFor>, tempo: Tempo, con: ManagementConstraint | undefined): boolean =>
+    offense && script.length > 0 && tempo === 'huddle' && !list.box.clock && !con?.id;
+
+  /** The first script entry that fits this down and distance and can be sent. Reads `script`, never changes it. */
+  const scriptHit = (req: PreviewRequest, s: CallSituation, calls: readonly SheetCall[]): { k: number; at: number; scripted: SheetCall } | null => {
+    const con = req.constraint;
+    const k = script.findIndex((e) => e.downs.includes(s.down) && s.distanceYd >= e.minDistanceYd && s.distanceYd <= e.maxDistanceYd);
+    const entry = k >= 0 ? script[k]! : undefined;
+    const at = entry ? calls.findIndex((c) => c.callId === entry.callId) : -1;
+    const scripted = entry ? sheet.calls[entry.callId] : undefined;
+    if (entry && scripted && (at >= 0 || (req.available(scripted) && (con?.allows ? con.allows(scripted) : true)))) return { k, at, scripted };
+    return null;
+  };
+
+  const queuedIndex = (calls: readonly SheetCall[]): number => {
+    if (!last || last.gainYd === null) return -1;
+    const f = sheet.follows.find((x) => x.afterCallId === last!.call.callId && last!.gainYd! >= x.minGainYd);
+    return f ? calls.findIndex((c) => c.callId === f.thenCallId) : -1;
+  };
+
+  /**
+   * K4.3.2 to K4.3.5 on the mix path. With `consume` false the sequence windows are read, not run
+   * down (preview). The solved-mix cache may fill either way; it holds only what `lockSheet` data
+   * determines, so it changes no answer.
+   */
+  const mixStages = (req: PreviewRequest, list: ReturnType<typeof candidatesFor>, calls: readonly SheetCall[], rows: readonly (readonly number[])[], b: readonly number[], n: number, consume: boolean) => {
+    const s = req.situation;
+    const sigma = sigmaFor(list.box, calls, list.changed);
+    const scale = list.box.clock ? param('tilt.clockBoxScale') : 1;
+    const t = tilt({ sigma, payoff: rows.map((r) => r.map((x) => x / scale)), belief: [...b], zCallFit: z.callFit, evidence: n, n0: belief.n0, lastEpa: calls.map((c) => lastEpa.get(c.callId) ?? 0) }, math);
+    const leaned = offense
+      ? leanOffense(t.mix, calls, setup.wanted?.offenseRates ?? profile.system.offenseRates, profile.system.personnelWeights, s, setup.headCoach, math)
+      : sheet.side === 'defense' ? leanDefense(t.mix, calls, setup.wanted?.defenseRates ?? profile.system.defenseRates, s, setup.headCoach, math) : normalise(t.mix);
+    const mix2 = selfScoutPenalty(leaned, calls, ownCountsIn(list.bucketId), z.selfScout, math);
+    const boosted = new Set<string>();
+    sheet.sequences.forEach((p, i) => {
+      if (packages[i]!.activeSnaps <= 0) return;
+      const ids = [p.complementId, p.constraintId].filter((id): id is string => id !== null && calls.some((c) => c.callId === id));
+      if (ids.length === 0) return; // not a matching bucket: the window does not run down here
+      if (consume) packages[i]!.activeSnaps--;
+      ids.forEach((id) => boosted.add(id));
+    });
+    const mix3 = sequenceBoost(mix2, calls, boosted);
+    const mix4 = floorPossible(readinessCheck(mix3, calls.map((c) => req.readiness(c)), math));
+    return { tau: t.tau, sigma, mix1: t.mix, leaned, mix2, mix3, mix4 };
+  };
+
   return {
+    preview(req) {
+      const s = req.situation;
+      const con = req.constraint;
+      const tempo: Tempo = offense ? req.tempo ?? 'huddle' : 'huddle';
+      const tempoOnly = offense ? tempo !== 'huddle' : req.facingTempo === true;
+      const list = candidatesFor({ sheet, situation: s, ...(con ? { constraint: con } : {}), available: req.available, tempoOnly, overrides });
+      const calls = [...list.calls];
+      if (calls.length === 0) return null;
+      const b = beliefShares(belief, list.bucketId);
+      const rows = calls.map((c) => payoffRow(sheet, list.box, c.callId));
+      const { mix4 } = mixStages(req, list, calls, rows, b, evidence(belief, list.bucketId), false);
+      let scriptedCallId: string | null = null;
+      if (scriptApplies(list, tempo, con) && list.box.scriptable) scriptedCallId = scriptHit(req, s, calls)?.scripted.callId ?? null;
+      const q = scriptedCallId === null ? queuedIndex(calls) : -1;
+      const ranked = calls.map((call, i) => ({ call, weight: mix4[i]!, i }))
+        .sort((x, y) => y.weight - x.weight || x.i - y.i)
+        .map(({ call, weight }) => ({ call, weight }));
+      return { bucketId: list.bucketId, sourceBoxId: list.box.bucketId, tempo, candidates: calls, mix4, ranked, scriptedCallId, queuedCallId: q >= 0 ? calls[q]!.callId : null };
+    },
+
     call(req) {
       const s = req.situation;
       const con = req.constraint;
@@ -189,48 +285,27 @@ export function createCaller(setup: CallerSetup): Caller {
       // K4.5.1 the opening script: used while a scripted call's band matches; skipped in clock boxes
       // (held), dropped from the head when the situation is one the script does not cover.
       const uScript = req.draws('script').uniform();
-      if (offense && script.length > 0 && tempo === 'huddle' && !list.box.clock && !con?.id) {
+      if (scriptApplies(list, tempo, con)) {
         if (!list.box.scriptable) script = script.slice(1);
         else if (uScript >= param('script.departShare')) {
-          const k = script.findIndex((e) => e.downs.includes(s.down) && s.distanceYd >= e.minDistanceYd && s.distanceYd <= e.maxDistanceYd);
-          const entry = k >= 0 ? script[k]! : undefined;
-          const at = entry ? calls.findIndex((c) => c.callId === entry.callId) : -1;
-          const scripted = entry ? sheet.calls[entry.callId] : undefined;
-          if (entry && scripted && (at >= 0 || (req.available(scripted) && (con?.allows ? con.allows(scripted) : true)))) {
-            script = script.filter((_, i) => i !== k);
+          const hit = scriptHit(req, s, calls);
+          if (hit) {
+            script = script.filter((_, i) => i !== hit.k);
             path = 'script';
-            if (at >= 0) chosen = at;
-            else { calls.push(scripted); rows.push(payoffRow(sheet, list.box, scripted.callId)); chosen = calls.length - 1; }
+            if (hit.at >= 0) chosen = hit.at;
+            else { calls.push(hit.scripted); rows.push(payoffRow(sheet, list.box, hit.scripted.callId)); chosen = calls.length - 1; }
           }
         }
       }
       // K4.3.4 rule 3: a queued second call.
-      if (path === 'mix' && last && last.gainYd !== null) {
-        const f = sheet.follows.find((x) => x.afterCallId === last!.call.callId && last!.gainYd! >= x.minGainYd);
-        const at = f ? calls.findIndex((c) => c.callId === f.thenCallId) : -1;
+      if (path === 'mix') {
+        const at = queuedIndex(calls);
         if (at >= 0) { path = 'queued'; chosen = at; }
       }
       if (path === 'mix') {
-        const sigma = sigmaFor(list.box, calls, list.changed);
-        const scale = list.box.clock ? param('tilt.clockBoxScale') : 1;
-        const t = tilt({ sigma, payoff: rows.map((r) => r.map((x) => x / scale)), belief: b, zCallFit: z.callFit, evidence: n, n0: belief.n0, lastEpa: calls.map((c) => lastEpa.get(c.callId) ?? 0) }, math);
-        const leaned = offense
-          ? leanOffense(t.mix, calls, setup.wanted?.offenseRates ?? profile.system.offenseRates, profile.system.personnelWeights, s, setup.headCoach, math)
-          : sheet.side === 'defense' ? leanDefense(t.mix, calls, setup.wanted?.defenseRates ?? profile.system.defenseRates, s, setup.headCoach, math) : normalise(t.mix);
-        const mix2 = selfScoutPenalty(leaned, calls, ownCountsIn(list.bucketId), z.selfScout, math);
-        const boosted = new Set<string>();
-        sheet.sequences.forEach((p, i) => {
-          if (packages[i]!.activeSnaps <= 0) return;
-          const ids = [p.complementId, p.constraintId].filter((id): id is string => id !== null && calls.some((c) => c.callId === id));
-          if (ids.length === 0) return; // not a matching bucket: the window does not run down here
-          packages[i]!.activeSnaps--;
-          ids.forEach((id) => boosted.add(id));
-        });
-        const mix3 = sequenceBoost(mix2, calls, boosted);
-        const mix4 = floorPossible(readinessCheck(mix3, calls.map((c) => req.readiness(c)), math));
+        rec = mixStages(req, list, calls, rows, b, n, true);
         draw = req.draws('call').uniform();
-        chosen = drawIndex(mix4, draw);
-        rec = { tau: t.tau, sigma, mix1: t.mix, leaned, mix2, mix3, mix4 };
+        chosen = drawIndex(rec.mix4, draw);
       }
       const call = calls[chosen]!;
       const surprised = expectedBoxes.size > 0 && !expectedBoxes.has(list.bucketId);
