@@ -569,3 +569,63 @@ describe('parameters and data', () => {
     for (const p of PARAMS.params) { expect(p.value).toBeGreaterThanOrEqual(p.min); expect(p.value).toBeLessThanOrEqual(p.max); }
   });
 });
+
+describe('K6.2.1 suggest: preview without calling', () => {
+  const busy = () => sheet({
+    script: [{ callId: 'boot', downs: [1], minDistanceYd: 10, maxDistanceYd: 10 }, { callId: 'outside', downs: [2], minDistanceYd: 4, maxDistanceYd: 7 }],
+    sequences: [{ baseId: 'inside', complementId: null, constraintId: 'boot', trigger: 'pressure' }],
+    follows: [{ afterCallId: 'inside', minGainYd: 4, thenCallId: 'quick' }],
+  });
+  const snaps = (k: number): CallSituation => [sit(), sit({ down: 2, distanceYd: 5 }), sit({ down: 3, distanceYd: 8 }), sit({ insideTwoMinute: true, period: 2 })][k % 4]!;
+  const run = (g: number, withPreview: boolean) => {
+    const c = createCaller(setup(profile({ callFit: 1 }), busy(), { scout: [{ bucketId: 'first10', look: 'pressure', count: 12 }] }));
+    const out: unknown[] = [];
+    for (let k = 1; k <= 30; k++) {
+      const s = snaps(k);
+      if (withPreview) for (let i = 0; i < 3; i++) { c.preview({ situation: s, available: () => true, readiness: () => 1 }); c.preview({ situation: s, available: () => true, readiness: () => 1, tempo: 'no_huddle' }); }
+      const r = c.call(req(g, k, s));
+      out.push(r);
+      const look = LOOKS[(g + k) % 3]!;
+      c.observe({ bucketId: r?.record.bucketId ?? 'first10', down: s.down, look, ownCallId: r?.call.callId ?? null, epa: 0.1, gainYd: (k * 3) % 9, hurt: false, late: k % 5 === 0 }, drawsAt(g, k));
+    }
+    return out;
+  };
+  it('any number of previews leaves every later call unchanged (script, sequences, queue, self-scout, late reports)', () => {
+    for (let g = 1; g <= 40; g++) expect(run(g, true)).toEqual(run(g, false));
+  });
+  it('the previewed mix is the mix the next call draws from, ranked best first', () => {
+    let compared = 0;
+    for (let g = 1; g <= 60; g++) {
+      const c = createCaller(setup(profile(), sheet(), { scout: [{ bucketId: 'first10', look: 'oneHigh', count: 20 }] }));
+      const s = sit({ down: 2, distanceYd: 5 });
+      const p = c.preview({ situation: s, available: () => true, readiness: (x) => (x.callId === 'deep' ? 0.2 : 1) })!;
+      const r = c.call(req(g, 1, s, { readiness: (x) => (x.callId === 'deep' ? 0.2 : 1), substitutionInProgress: true }))!;
+      expect(p.candidates.map((x) => x.callId)).toEqual(r.record.candidates);
+      expect(p.mix4).toEqual(r.record.mix4);
+      for (let i = 1; i < p.ranked.length; i++) expect(p.ranked[i - 1]!.weight).toBeGreaterThanOrEqual(p.ranked[i]!.weight);
+      expect(p.ranked.find((l) => l.call.callId === 'deep')!.weight).toBeGreaterThan(0); // ruling 22: never impossible
+      compared++;
+    }
+    expect(compared).toBe(60);
+  });
+  it('names the scripted and queued calls without using them up', () => {
+    const c = createCaller(setup(profile(), busy()));
+    const look = { situation: sit(), available: () => true, readiness: () => 1 };
+    expect(c.preview(look)!.scriptedCallId).toBe('boot');
+    expect(c.preview(look)!.scriptedCallId).toBe('boot');
+    expect(c.preview({ ...look, tempo: 'no_huddle' })!.scriptedCallId).toBeNull(); // the script waits at tempo
+    const q = createCaller(setup(profile(), sheet({ follows: [{ afterCallId: 'inside', minGainYd: 4, thenCallId: 'quick' }] })));
+    for (let g = 1; g <= 50; g++) {
+      const first = q.call(req(g, 1, sit()))!;
+      q.observe({ bucketId: 'first10', down: 1, look: 'oneHigh', ownCallId: first.call.callId, epa: 0.2, gainYd: 6, hurt: false }, drawsAt(g, 1));
+      const p = q.preview({ situation: sit({ down: 2, distanceYd: 4 }), available: () => true, readiness: () => 1 })!;
+      expect(p.queuedCallId).toBe(first.call.callId === 'inside' ? 'quick' : null);
+      if (first.call.callId === 'inside') return;
+    }
+    throw new Error('inside never called in 50 snaps');
+  });
+  it('returns null when nothing can be sent, as call does', () => {
+    const c = createCaller(setup(profile(), sheet()));
+    expect(c.preview({ situation: sit(), available: () => false, readiness: () => 1 })).toBeNull();
+  });
+});
