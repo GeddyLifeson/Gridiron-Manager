@@ -1960,6 +1960,96 @@
    "unit": "cents"
   },
   {
+   "key": "compliance.crowd_noise.club_fine_first_cents",
+   "type": "number",
+   "meaning": "crowd noise penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.crowd_noise.pick_round_first",
+   "type": "number",
+   "meaning": "crowd noise penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
+   "key": "compliance.ball_tampering.club_fine_first_cents",
+   "type": "number",
+   "meaning": "ball tampering penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.ball_tampering.pick_round_first",
+   "type": "number",
+   "meaning": "ball tampering penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
+   "key": "compliance.ball_tampering.suspension_games_first",
+   "type": "number",
+   "meaning": "ball tampering penalty: suspension games first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "compliance.sideline_interference.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "sideline interference penalty: fine head coach first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.concussion_protocol.club_fine_first_cents",
+   "type": "number",
+   "meaning": "concussion protocol penalty: club fine first cents",
+   "ownerLeaf": "D11.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.tampering_players.fine_executive_first_cents",
+   "type": "number",
+   "meaning": "tampering players penalty: fine executive first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.tampering_players.pick_round_first",
+   "type": "number",
+   "meaning": "tampering players penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "type": "number",
    "meaning": "Minimum cash spending as percent of cap",

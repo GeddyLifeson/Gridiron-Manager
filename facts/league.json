@@ -6908,6 +6908,445 @@
      "reason": "First load by G-10 from sources read this session."
     }
    ]
+  },
+  {
+   "id": "F-league-0205",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Piped crowd noise (Falcons, 2015): club fined $350,000.",
+   "value": 35000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "Fox Sports, Falcons lose 2016 draft pick, receive fine for piping artificial noise into stadium (2015-03-30, https://foxsports.com/stories/other/falcons-lose-2016-draft-pick-receive-fine-for-piping-artificial-noise-into-stadium)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-sports",
+     "primary": false,
+     "quote": "were fined $350,000 on Monday and lost a fifth-round draft pick in 2016",
+     "value": 35000000
+    },
+    {
+     "citation": "ABC7, Falcons fined $350K, lose draft pick (2015-03-30, https://abc7.com/post/falcons-fined-$350k-lose-draft-pick/587664/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc",
+     "primary": false,
+     "quote": "have been fined $350,000 and will forfeit a 2016 draft pick",
+     "value": 35000000
+    },
+    {
+     "citation": "CBS News Detroit (AP), Falcons fined, lose draft pick for pumping in fake noise (2015-03-30, https://www.cbsnews.com/amp/detroit/news/falcons-fined-lose-draft-pick-for-pumping-in-fake-noise)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news-ap",
+     "primary": false,
+     "quote": "the Falcons have been fined $350,000 and will forfeit their fifth-round selection in the 2016 draft",
+     "value": 35000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0206",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Piped crowd noise (Falcons, 2015): a fifth-round pick forfeited.",
+   "value": 5,
+   "unit": "round",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "Fox Sports, Falcons lose 2016 draft pick, receive fine for piping artificial noise into stadium (2015-03-30, https://foxsports.com/stories/other/falcons-lose-2016-draft-pick-receive-fine-for-piping-artificial-noise-into-stadium)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-sports",
+     "primary": false,
+     "quote": "lost a fifth-round draft pick in 2016",
+     "value": 5
+    },
+    {
+     "citation": "ABC7, Falcons fined $350K, lose draft pick (2015-03-30, https://abc7.com/post/falcons-fined-$350k-lose-draft-pick/587664/)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc",
+     "primary": false,
+     "quote": "will lose a fifth-round pick in next year's draft",
+     "value": 5
+    },
+    {
+     "citation": "CBS News Detroit (AP), Falcons fined, lose draft pick for pumping in fake noise (2015-03-30, https://www.cbsnews.com/amp/detroit/news/falcons-fined-lose-draft-pick-for-pumping-in-fake-noise)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news-ap",
+     "primary": false,
+     "quote": "forfeit their fifth-round selection in the 2016 draft",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0207",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Football inflation (Patriots, 2015): club fined $1 million.",
+   "value": 100000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL releases statement on Patriots violations (2015-05-11, https://www.nfl.com/news/nfl-releases-statement-on-patriots-violations-0ap3000000492190)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "are fined $1 million and will forfeit the club's first-round selection in the 2016 NFL Draft",
+     "value": 100000000
+    },
+    {
+     "citation": "NPR, NFL suspends Tom Brady for 4 games over Deflategate scandal (2015-05-11, https://www.npr.org/sections/thetwo-way/2015/05/11/406009797/nfl-suspends-tom-brady-for-4-games-over-deflategate-scandal)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "a $1 million fine for the Patriots",
+     "value": 100000000
+    },
+    {
+     "citation": "ABC News, Deflategate: Tom Brady suspended for 4 games, Patriots fined $1 million (https://abcnews.com/Sports/deflategate-tom-brady-suspended-games/story?id=30966151)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc-news",
+     "primary": false,
+     "quote": "The Patriots will also be fined $1 million",
+     "value": 100000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0208",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Football inflation (Patriots, 2015): the first-round pick of 2016 forfeited (a 2017 fourth-round pick as well; the key holds the highest round).",
+   "value": 1,
+   "unit": "round",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL releases statement on Patriots violations (2015-05-11, https://www.nfl.com/news/nfl-releases-statement-on-patriots-violations-0ap3000000492190)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "will forfeit the club's first-round selection in the 2016 NFL Draft",
+     "value": 1
+    },
+    {
+     "citation": "NPR, NFL suspends Tom Brady for 4 games over Deflategate scandal (2015-05-11, https://www.npr.org/sections/thetwo-way/2015/05/11/406009797/nfl-suspends-tom-brady-for-4-games-over-deflategate-scandal)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "The Patriots will also lose their first-round pick in next year's draft",
+     "value": 1
+    },
+    {
+     "citation": "ABC News, Deflategate: Tom Brady suspended for 4 games, Patriots fined $1 million (https://abcnews.com/Sports/deflategate-tom-brady-suspended-games/story?id=30966151)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc-news",
+     "primary": false,
+     "quote": "will have to forfeit first-round selection in the 2016 NFL Draft",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case; the fourth-round 2017 pick is not entered.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0209",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Football inflation (Patriots, 2015): the responsible player suspended four games without pay.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL releases statement on Patriots violations (2015-05-11, https://www.nfl.com/news/nfl-releases-statement-on-patriots-violations-0ap3000000492190)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "will be suspended without pay for the first four games of the 2015 regular season",
+     "value": 4
+    },
+    {
+     "citation": "NPR, NFL suspends Tom Brady for 4 games over Deflategate scandal (2015-05-11, https://www.npr.org/sections/thetwo-way/2015/05/11/406009797/nfl-suspends-tom-brady-for-4-games-over-deflategate-scandal)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "Brady will sit out the first four games of the 2015 regular season without pay",
+     "value": 4
+    },
+    {
+     "citation": "ABC News, Deflategate: Tom Brady suspended for 4 games, Patriots fined $1 million (https://abcnews.com/Sports/deflategate-tom-brady-suspended-games/story?id=30966151)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc-news",
+     "primary": false,
+     "quote": "will be suspended without pay for the first four games of the regular 2015 NFL season",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0210",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Sideline interference (Tomlin, 2013): head coach fined $100,000.",
+   "value": 10000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Mike Tomlin fined $100,000 for actions in Steelers loss (2013-12-04, https://nfl.com/_amp/mike-tomlin-fined-100-000-for-actions-in-steelers-loss-0ap2000000292517)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "The NFL fined Pittsburgh Steelers coach Mike Tomlin $100,000",
+     "value": 10000000
+    },
+    {
+     "citation": "NPR, Steelers coach fined $100K for interfering with play (2013-12-04, https://www.npr.org/sections/thetwo-way/2013/12/04/248881870/steelers-coach-fined-100k-for-interfering-with-play)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "Pittsburgh Steelers coach Mike Tomlin has been fined $100,000 for interfering with a kickoff return",
+     "value": 10000000
+    },
+    {
+     "citation": "Sports Illustrated, Mike Tomlin fine (2013-12-04, https://www.si.com/nfl/2013/12/04/mike-tomlin-fine-pittsburgh-steelers-baltimore-ravens)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Mike Tomlin has been fined $100,000 by NFL Executive Vice President of Football Operations Ray Anderson",
+     "value": 10000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case; the club was not fined.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0211",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Concussion protocol (Seahawks, 2017): club fined $100,000 (remedial training also ordered).",
+   "value": 10000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Seahawks fined for not following concussion protocol (2017-12-21, https://www.nfl.com/news/seahawks-fined-for-not-following-concussion-protocol-0ap3000000896202)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "A joint NFL and NFL Players Association review resulted in a $100,000 fine for the team",
+     "value": 10000000
+    },
+    {
+     "citation": "CBS Sports, Seahawks fined $100K for violating concussion protocol, letting Russell Wilson play (2017-12-21; headline only, body truncated in the fetch)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-sports",
+     "primary": false,
+     "quote": "Seahawks fined $100K for violating concussion protocol, letting Russell Wilson play",
+     "value": 10000000
+    },
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL fines Seahawks $100,000 for Russell Wilson concussion protocol violation (2017-12-21; page title only, body truncated in the fetch)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "NFL fines Seahawks $100,000 for Russell Wilson concussion protocol violation",
+     "value": 10000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case. The CBA $250,000 floor for a repeat is a separate row.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0212",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Tampering (Dolphins, 2022): owner fined $1.5 million.",
+   "value": 150000000,
+   "unit": "cents",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Dolphins lose 2023 first-round draft pick, owner Stephen Ross suspended (2022-08-02, https://nfl.com/news/dolphins-lose-2023-first-round-draft-pick-owner-stephen-ross-suspended-following)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "Ross also has been fined $1.5 million, has been removed from all NFL committees indefinitely",
+     "value": 150000000
+    },
+    {
+     "citation": "NPR, NFL punishes Miami Dolphins owner over inquiry into tanking, tampering and Tom Brady (2022-08-02, https://www.npr.org/2022/08/02/1115226180/nfl-fines-miami-dolphins-owner-stephen-ross-tom-brady)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "the NFL hit Ross with a $1.5 million fine and suspended him through Oct. 17",
+     "value": 150000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case; the CBS page fetch was truncated so it is not counted.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0213",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Tampering (Dolphins, 2022): a 2023 first-round pick forfeited (a 2024 third-round pick as well; the key holds the highest round).",
+   "value": 1,
+   "unit": "round",
+   "validFor": "case",
+   "sources": [
+    {
+     "citation": "NFL.com, Dolphins lose 2023 first-round draft pick, owner Stephen Ross suspended (2022-08-02, https://nfl.com/news/dolphins-lose-2023-first-round-draft-pick-owner-stephen-ross-suspended-following)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nfl-com",
+     "primary": false,
+     "quote": "the Miami Dolphins will forfeit their 2023 first-round draft pick and 2024 third-round pick",
+     "value": 1
+    },
+    {
+     "citation": "NPR, NFL punishes Miami Dolphins owner over inquiry into tanking, tampering and Tom Brady (2022-08-02, https://www.npr.org/2022/08/02/1115226180/nfl-fines-miami-dolphins-owner-stephen-ross-tom-brady)",
+     "locator": "Article text",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "npr",
+     "primary": false,
+     "quote": "losing their first-round pick in the 2023 draft and their third-round selection in the 2024 draft",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Case-based key (not a published schedule). Value read from the case reports named; no repeat amount is published, so the repeat key stays absent. Single case.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
   }
  ]
 }

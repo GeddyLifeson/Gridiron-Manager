@@ -1191,6 +1191,62 @@
    "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
   },
   {
+   "key": "compliance.crowd_noise.club_fine_first_cents",
+   "value": 35000000,
+   "unit": "cents",
+   "factId": "F-league-0205"
+  },
+  {
+   "key": "compliance.crowd_noise.pick_round_first",
+   "value": 5,
+   "unit": "round",
+   "factId": "F-league-0206"
+  },
+  {
+   "key": "compliance.ball_tampering.club_fine_first_cents",
+   "value": 100000000,
+   "unit": "cents",
+   "factId": "F-league-0207"
+  },
+  {
+   "key": "compliance.ball_tampering.pick_round_first",
+   "value": 1,
+   "unit": "round",
+   "factId": "F-league-0208"
+  },
+  {
+   "key": "compliance.ball_tampering.suspension_games_first",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0209"
+  },
+  {
+   "key": "compliance.sideline_interference.fine_head_coach_first_cents",
+   "value": 10000000,
+   "unit": "cents",
+   "factId": "F-league-0210"
+  },
+  {
+   "key": "compliance.concussion_protocol.club_fine_first_cents",
+   "value": 10000000,
+   "unit": "cents",
+   "factId": "F-league-0211"
+  },
+  {
+   "key": "compliance.tampering_players.fine_executive_first_cents",
+   "value": 150000000,
+   "unit": "cents",
+   "factId": "F-league-0212",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "compliance.tampering_players.pick_round_first",
+   "value": 1,
+   "unit": "round",
+   "factId": "F-league-0213",
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "value": 90,
    "unit": "percent",
