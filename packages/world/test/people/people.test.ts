@@ -32,12 +32,13 @@ function run(seasons: number, seedHex?: string) {
 describe('people dynamics in the live world (X5, X6, X7, X9)', () => {
   const w = run(3);
   const edges = people.edgesOf(w);
+  const ties = [...edges.ties.values()].map(people.unpackTie);
   const mem = people.memoryOf(w);
   const needs = people.needsOf(w);
 
   it('forms ties only with a season_together basis that names both parties (X7.1.1 acceptance)', () => {
     expect(edges.ties.size).toBeGreaterThan(0);
-    for (const t of edges.ties.values()) {
+    for (const t of ties) {
       expect(t.basis.length).toBeGreaterThan(0);
       for (const b of t.basis) {
         const e = w.log.get(b.eventId)!;
@@ -50,7 +51,7 @@ describe('people dynamics in the live world (X5, X6, X7, X9)', () => {
   });
 
   it('keeps teammate ties inside a position group or among one side\'s starters (X7.1.1 rule 1)', () => {
-    for (const t of edges.ties.values()) {
+    for (const t of ties) {
       if (t.kind !== 'teammate') continue;
       const ga = people.groupOfPosition(w.people.get(t.a)?.playing?.position);
       const gb = people.groupOfPosition(w.people.get(t.b!)?.playing?.position);
@@ -59,10 +60,30 @@ describe('people dynamics in the live world (X5, X6, X7, X9)', () => {
   });
 
   it('grows a tie that lasts a second season rather than making a second one', () => {
-    const grown = [...edges.ties.values()].filter((t) => t.basis.length >= 2);
+    const grown = ties.filter((t) => t.basis.length >= 2);
     expect(grown.length).toBeGreaterThan(0);
-    const keys = new Set([...edges.ties.values()].map((t) => relationships.tieKey(t)));
-    expect(keys.size).toBe(edges.ties.size);
+    for (const [k, r] of edges.ties) expect(relationships.tieKey(people.unpackTie(r))).toBe(k);
+  });
+
+  it('packs ties exactly: unpacking and packing again gives the same row', () => {
+    for (const r of [...edges.ties.values()].slice(0, 500)) expect(people.packTie(people.unpackTie(r))).toEqual(r);
+  });
+
+  it('retires a tie only when neither party is active, and keeps a tie with one active party (README PD-05)', () => {
+    const v = run(2);
+    const st = people.edgesOf(v);
+    const [k1, r1] = [...st.ties][0]!;
+    const [k2, r2] = [...st.ties].find(([k, r]) => k !== k1 && r[people.AT.a] !== r1[people.AT.a] && r[people.AT.b] !== r1[people.AT.a]
+      && r[people.AT.a] !== r1[people.AT.b] && r[people.AT.b] !== r1[people.AT.b])!;
+    v.status.set(r1[people.AT.a]!, 'inactive'); v.status.set(r1[people.AT.b]!, 'deceased');
+    v.status.set(r2[people.AT.a]!, 'inactive');
+    // A season with no staff or roster seasons behind it: the pass only retires.
+    st.formedFor = null; v.week = 0; v.date = { seasonYear: v.date.seasonYear + 5, dayIndex: 0 };
+    const before = st.retired;
+    loop.runWeek(v, loop.systemsFrom({ edges: people.edgesStep() }, 'test: not bound'), { order: ['edges'] });
+    expect(st.ties.has(k1)).toBe(false);
+    expect(st.ties.has(k2)).toBe(true);
+    expect(st.retired).toBeGreaterThan(before);
   });
 
   it('gives witnesses memory rows within the X6 caps, and none to people who are not active', () => {

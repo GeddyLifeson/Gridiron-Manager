@@ -9,20 +9,23 @@ import type { JobRecord, WorldDate } from '@gm/schema';
 import type { LiveWorld, StepHandler } from '../loop/types.ts';
 import { param } from './params.ts';
 import { KEY, SEASON_TOGETHER, bossOf, groupOfPosition, sideOfGroup, pairContext, stateOf, taughtGroup } from './shared.ts';
+import { AT, TieCache } from './ties.ts';
 
 export interface EdgesState {
-  /** Every tie by `relationships.tieKey`, both sides in one row (X7.1.1). */
-  readonly ties: Map<string, relationships.Tie>;
+  /** Every live tie by `relationships.tieKey`, packed (ties.ts), both sides in one row (X7.1.1). */
+  readonly ties: Map<string, number[]>;
   /** Season whose shared seasons have formed ties. */
   formedFor: number | null;
+  /** Ties retired from the live rows because neither party is active any more (README PD-05). */
+  retired: number;
 }
 
 export function edgesOf(world: LiveWorld): EdgesState {
-  return stateOf<EdgesState>(world, KEY.edges, () => ({ ties: new Map(), formedFor: null }));
+  return stateOf<EdgesState>(world, KEY.edges, () => ({ ties: new Map(), formedFor: null, retired: 0 }));
 }
 
 /** True when the two people share a tie of a kind that forms off-screen, in either direction. */
-export function hasAnyTie(ties: ReadonlyMap<string, relationships.Tie>, x: number, y: number): boolean {
+export function hasAnyTie(ties: ReadonlyMap<string, unknown>, x: number, y: number): boolean {
   const lo = Math.min(x, y), hi = Math.max(x, y);
   const k = (kind: relationships.EdgeKind, a: number, b: number) => relationships.tieKey({ kind, a, b, bTeamId: null, promiseId: null });
   return ties.has(k('teammate', lo, hi)) || ties.has(k('worked_with', lo, hi))
@@ -45,9 +48,19 @@ export function edgesStep(opts: EdgesOptions = {}): StepHandler {
     const { world } = ctx;
     const state = edgesOf(world);
     const season = world.date.seasonYear - 1;
-    if (world.week !== 0 || state.formedFor === season) return { ties: state.ties.size, formed: 0, grown: 0, seasons: 0 };
+    if (world.week !== 0 || state.formedFor === season) return { ties: state.ties.size, formed: 0, grown: 0, seasons: 0, retired: 0 };
     state.formedFor = season;
-    const store = new relationships.TieStore(state.ties);
+    // README PD-05: a tie whose two people have both left active life can never be touched again (they run
+    // no weekly systems, X12.1.3 rule 1). Its record stays in the log (the season_together rows name both)
+    // and in the loop's staff and roster seasons; the live row goes, so the state tracks the living world.
+    let retired = 0;
+    for (const [k, r] of state.ties) {
+      const b = r[AT.b]!;
+      if (world.status.get(r[AT.a]!) !== 'active' && (b < 0 || world.status.get(b) !== 'active')) { state.ties.delete(k); retired++; }
+    }
+    state.retired += retired;
+    const cache = new TieCache(state.ties);
+    const store = new relationships.TieStore(cache);
     const pctx = pairContext(world);
     const starters = opts.startersOf?.(world, season) ?? null;
     const before = state.ties.size;
@@ -117,6 +130,8 @@ export function edgesStep(opts: EdgesOptions = {}): StepHandler {
         touched += relationships.coachedSeason(store, pctx, j.holderPersonId!, inGroup, forming).length;
       }
     }
-    return { ties: state.ties.size, formed: state.ties.size - before, grown: touched - (state.ties.size - before), seasons };
+    cache.flush();
+    const formed = state.ties.size - before + retired;
+    return { ties: state.ties.size, formed, grown: touched - formed, seasons, retired };
   };
 }

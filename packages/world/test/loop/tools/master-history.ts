@@ -25,6 +25,7 @@ import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { COLLEGE_LOOKUP, CONTENT, NAMES, PRO_LOOKUP, generation, loop, setup, testGamePort } from '../../fixtures.ts';
 import * as turnover from '../../../src/turnover/index.ts';
+import * as people from '../../../src/people/index.ts';
 
 const arg = (k: string, d: string): string => process.argv.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3) ?? d;
 const OUT = arg('out', 'master-run');
@@ -47,7 +48,7 @@ const levelLookup = (level: string): generation.RuleLookup => (level === 'pro' ?
 const s = setup({ seedHex: SEED, size: SIZE, firstSeasonYear: TODAY - SEASONS, historySeasons: SEASONS });
 const tBuild = performance.now();
 const w = loop.createWorld({
-  setup: s, content, names: NAMES, eventTypes: turnover.TURNOVER_EVENT_TYPES,
+  setup: s, content, names: NAMES, eventTypes: [...turnover.TURNOVER_EVENT_TYPES, ...people.peopleEventTypes()],
   foundingCurves: generation.defaultFoundingCurves(), lostClubs: LOST > 0 ? { fraction: LOST } : undefined,
 });
 const buildMs = performance.now() - tBuild;
@@ -98,6 +99,10 @@ const systems = loop.systemsFrom({
   })),
   development: timed('development', turnover.developmentStep(binding)),
   moves: timed('moves', turnover.rosterMovesStep(binding)),
+  // X6 memory, X7 edges, X5 needs and the X9 culture pass (world/src/people). Postseason goal ids are
+  // level-free placeholders until C2/T3 league-rules content names them (README PD-10).
+  ...Object.fromEntries(Object.entries(people.peopleSteps({ turnover: binding, goals: () => ({ cut: 'postseason', top: 'top_fifth' }) }))
+    .map(([k, h]) => [k, timed(k, h)])),
 }, 'master run: owning system not bound yet');
 
 const unbound = loop.unboundSteps(systems);
@@ -142,7 +147,8 @@ const report = loop.runHistory(w, systems, {
     const now = performance.now();
     const row = {
       season: summary.seasonYear, done, ms: Math.round(now - last), steps: Object.fromEntries(Object.entries(timing).map(([k, v]) => [k, Math.round(v)])),
-      heapMB: Math.round(process.memoryUsage().heapUsed / 1e6), people: w.people.size, logRows: w.log.rows().length,
+      heapMB: Math.round(process.memoryUsage().heapUsed / 1e6), people: w.people.size, logRows: w.log.size,
+      peopleState: people.stateSizes(w),
       teamsActive: w.teams.filter((t) => loop.isActive(w, t.id, summary.seasonYear)).length, hallMembers: w.hall.members.length,
       games: summary.games, points: summary.points, passPlays: summary.passPlays, runPlays: summary.runPlays,
       champions: summary.champions, peopleByStatus: summary.people, pools: summary.pools,

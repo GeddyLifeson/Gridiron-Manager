@@ -128,9 +128,11 @@ export function memoryStep(): StepHandler {
         for (const r of rows) if (r.aboutPersonId !== null && hasAnyTie(ties, holderId, r.aboutPersonId)) partners.add(r.aboutPersonId);
         const res = memory.promoteAtSeasonEnd(rows, KINDS, now, { edgePersonIds: partners });
         promoted += res.promoted.length;
-        const active = world.status.get(holderId) === 'active';
-        // X12.1.3 rule 1 and X6.5.1 edge case: an inactive or dead person keeps his permanent rows only.
-        const kept = active ? memory.pruneShort(res.rows, KINDS, now) : res.rows.filter((r) => r.layer === 'permanent');
+        const status = world.status.get(holderId);
+        // X12.1.3 rule 1 and X6.5.1 edge case: an inactive person keeps his permanent rows only. The dead
+        // hold nothing (rule 6 keeps the memories others hold of him, not his own).
+        const kept = status === 'active' ? memory.pruneShort(res.rows, KINDS, now)
+          : status === 'inactive' ? res.rows.filter((r) => r.layer === 'permanent') : [];
         if (kept.length === 0) state.rows.delete(holderId); else state.rows.set(holderId, kept as memory.HeldMemory[]);
       }
     }
