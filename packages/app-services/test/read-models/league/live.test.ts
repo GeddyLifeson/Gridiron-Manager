@@ -81,7 +81,10 @@ describe('league pages over a pro season', { timeout: 300_000 }, () => {
     const team = live.team(sp.seatTeamId)!;
     expect(team.team.name).toBe(today.seatTeamName);
     expect(team.record).toEqual({ w: today.record.wins, l: today.record.losses, t: today.record.ties });
-    expect(team.venue?.name).toBe('Marlbury Memorial Stadium');
+    expect(team.venue).toMatchObject({ name: 'Marlbury Memorial Stadium', place: 'Marlbury', roof: 'open', capacity: 77700 });
+    // A domed club's roof comes through in the schema's words (the world generator's mapping).
+    const domed = live.team(sp.built.spec.teams.find((t) => t.key === 'club.hud')!.id)!;
+    expect(domed.venue?.roof).toBe('fixed_dome');
     expect(team.groupNames.length).toBe(2);
     expect(team.results.length + team.upcoming.length).toBe(sch.teamRows.filter((r) => r.game).length);
     expect(team.rivals.length).toBeGreaterThan(0);

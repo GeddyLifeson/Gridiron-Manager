@@ -64,6 +64,9 @@ type Picture = Partial<Pick<StandingsSource, 'pro' | 'college' | 'bracket'>>;
 interface WithPicture { standingsPicture?(): Picture }
 
 const DAYS_PER_WEEK = 7;
+/** The world generator's own conversions (world generation/structures.ts). */
+const FT_PER_M = 3.28084;
+const ROOF: Readonly<Record<string, 'open' | 'closed' | 'fixed_dome'>> = { open: 'open', 'fixed dome': 'fixed_dome', retractable: 'closed' };
 
 /** Days from 1970-01-01 to 1 January of `year` (proleptic Gregorian, integers only). */
 export function epochDayOfYearStart(year: number): number {
@@ -135,12 +138,19 @@ export class LiveLeague {
     const year = spec.season;
     const inSeason = new Set(spec.teams.map((t) => t.id));
 
-    // Venues: every stadium of the content, numbered in file order.
-    const stadiums: Any[] = this.level === 'pro' ? c.proLeague?.stadiums ?? [] : (c.college?.schools ?? []).map((s: Any) => ({ ...s.stadium, city: s.city }));
+    // Venues: every stadium of the content, numbered in file order, laid out as the world generator lays them
+    // out (world generation/structures.ts: the home team's place, the roof words, altitude in feet).
+    const cityOfClub = new Map<string, string>((c.proLeague?.league?.clubs ?? []).map((k: Any) => [k.id, k.city]));
+    const stadiums: Any[] = this.level === 'pro'
+      ? (c.proLeague?.stadiums ?? []).map((s: Any) => ({ ...s, place: cityOfClub.get(s.clubId) ?? '' }))
+      : (c.college?.schools ?? []).map((s: Any) => ({ ...s.stadium, place: s.place ?? '', altitudeM: s.altitudeM }));
     const venueId = new Map<string, number>();
     const venues: Row[] = stadiums.map((s, i) => {
       venueId.set(s.id, i + 1);
-      return { id: i + 1, name: s.name, place: s.city ?? '', surfaceType: s.surface?.type ?? '', roof: s.roof ?? '', altitudeFt: 0, capacity: s.capacity ?? 0, noiseBase: 0, climateId: null };
+      return {
+        id: i + 1, name: s.name, place: s.place, surfaceType: s.surface?.type ?? '', roof: ROOF[s.roof] ?? null, altitudeFt: (s.altitudeM ?? 0) * FT_PER_M,
+        capacity: s.capacity ?? 0, noiseBase: Math.min(1, Math.max(0, s.noiseFactor ?? 0)), climateId: null,
+      };
     });
 
     // Teams: every team the season names (college guests from other levels sit in their own competition).
