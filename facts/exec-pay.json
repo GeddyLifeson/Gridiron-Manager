@@ -1,0 +1,496 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-pay-exec-0001",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Top end of NFL general manager pay: Nick Caserio (Texans) six-year deal (Jan 2021) reported as making him one of the three highest-paid GMs. Conflict on the figure: ProFootballTalk says $30M base over 6 years (=$5M/yr, max $36M = $6M/yr); Houston Chronicle (via theScore) says at least $6M/yr average.",
+   "value": "5000000-6000000",
+   "unit": "usd per year",
+   "validFor": "2021",
+   "sources": [
+    {
+     "citation": "ProFootballTalk (NBC Sports): Six years, $30 million for Nick Caserio (https://nbcsports.com/nfl/profootballtalk/rumor-mill/news/six-years-30-million-for-nick-caserio; 2021-01-06)",
+     "locator": "https://nbcsports.com/nfl/profootballtalk/rumor-mill/news/six-years-30-million-for-nick-caserio",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbcsports-com",
+     "primary": false,
+     "quote": "six-year deal with a base value of $30 million ... $36 million"
+    },
+    {
+     "citation": "theScore (citing Aaron Wilson, Houston Chronicle, and ESPN's Adam Schefter): Report: Caserio to earn $6M per year, one of 3 highest-paid GMs in NFL (https://thescore.com/nfl/news/2086409/report-caserio-to-earn-6-m-per-year-one-of-3-highest-paid-gms-in-nfl; undated (Jan 2021))",
+     "locator": "https://thescore.com/nfl/news/2086409/report-caserio-to-earn-6-m-per-year-one-of-3-highest-paid-gms-in-nfl",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thescore-com",
+     "primary": false,
+     "quote": "Caserio will average at least $6 million per year."
+    },
+    {
+     "citation": "Bleacher Report (citing Florio/PFT and Schefter): Report: Nick Caserio to Be Among Top-Paid GMs Under 6-Year Texans Contract (https://bleacherreport.com/articles/2925793-report-nick-caserio-to-be-among-top-paid-gms-under-6-year-texans-contract; 2021-01-06)",
+     "locator": "https://bleacherreport.com/articles/2925793-report-nick-caserio-to-be-among-top-paid-gms-under-6-year-texans-contract",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacherreport-com",
+     "primary": false,
+     "quote": "According to Mike Florio of ProFootballTalk, Caserio's deal has a base value of $30 million and can max out at $36 million."
+    },
+    {
+     "citation": "WEEI (Audacy): Nick Caserio's contract details with Texans a bit surprising (https://www.audacy.com/weei/sports/patriots/nick-caserios-contract-details-with-texans-a-bit-surprising; 2021-01-06)",
+     "locator": "https://www.audacy.com/weei/sports/patriots/nick-caserios-contract-details-with-texans-a-bit-surprising",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "audacy-com",
+     "primary": false,
+     "quote": "The deal is for six years and makes him one of the three highest-paid GMs in the league."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-nfl-gm-top. CONFLICT: $5M/yr base (PFT/Florio) vs 'at least $6M' (Houston Chronicle/Wilson). Max per PFT is also $6M/yr, so the two agree on $6M as a ceiling. 'Top-3 highest paid' comes from ESPN Schefter, relayed by 3 outlets (single underlying source). NFL GM pay is not disclosed by teams; all figures are leaks. Count: 2 independent figure sources (PFT, Houston Chronicle), 1 for ranking (ESPN). No newer top GM figure found. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0002",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Typical NFL GM pay range reported in general-audience pieces: about $1M (low) to $3M; one undated listicle says up to $7.5M (but its top entry is Bill Belichick, a head coach with GM powers).",
+   "value": "1000000-3000000",
+   "unit": "usd per year",
+   "validFor": "c.2011-2013 (BR); undated c.2023 (Sportskeeda)",
+   "sources": [
+    {
+     "citation": "Bleacher Report: How Much Money Do NFL Front-Office Executives Make? (https://bleacherreport.com/articles/1638485-how-much-money-do-nfl-front-office-execs-make; 2013-05-14)",
+     "locator": "https://bleacherreport.com/articles/1638485-how-much-money-do-nfl-front-office-execs-make",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacherreport-com",
+     "primary": false,
+     "quote": "General Manager: $1 Million-$3 Million Salary ... Dolphins general manager Jeff Ireland is believed to have made about $2.8 million in 2011."
+    },
+    {
+     "citation": "Sportskeeda: NFL GM Salary: How much do NFL General Managers make? (https://www.sportskeeda.com/nfl/nfl-gm-salary-how-much-nfl-general-managers-make; undated (c. Jan 2023))",
+     "locator": "https://www.sportskeeda.com/nfl/nfl-gm-salary-how-much-nfl-general-managers-make",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "sportskeeda-com",
+     "primary": false,
+     "quote": "General managers typically make around $1 million per year on the lower end of the spectrum, up to $7.5 million."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-nfl-gm-range. ANECDOTAL ONLY. Neither source cites primary data. Sportskeeda's list (Schneider $3.75M, Elway $3M, Gutekunst $2.5M, Newsome $2M) is unsourced and unreliable; do not use the names as facts. Jeff Ireland ~$2.8M (2011) is called unofficial by BR. Low end ~$1M appears in both. 2 weak sources; not triple-verified. Recommend treating NFL GM 'typical' as ~$2-4M with low confidence and flagging it. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0003",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Low end of NFL GM pay: about $1M per year (two general-audience sources); A.J. Smith (Chargers) 2008 five-year extension around $11M (~$2.2M/yr).",
+   "value": 1000000,
+   "unit": "usd per year",
+   "validFor": "c.2008-2023",
+   "sources": [
+    {
+     "citation": "Bleacher Report: How Much Money Do NFL Front-Office Executives Make? (https://bleacherreport.com/articles/1638485-how-much-money-do-nfl-front-office-execs-make; 2013-05-14)",
+     "locator": "https://bleacherreport.com/articles/1638485-how-much-money-do-nfl-front-office-execs-make",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacherreport-com",
+     "primary": false,
+     "quote": "At the time former Chargers GM A.J. Smith was re-upped for five years in 2008, his contract was for around $11 million."
+    },
+    {
+     "citation": "Sportskeeda: NFL GM Salary: How much do NFL General Managers make? (https://www.sportskeeda.com/nfl/nfl-gm-salary-how-much-nfl-general-managers-make; undated (c. Jan 2023))",
+     "locator": "https://www.sportskeeda.com/nfl/nfl-gm-salary-how-much-nfl-general-managers-make",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "sportskeeda-com",
+     "primary": false,
+     "quote": "General managers typically make around $1 million per year on the lower end of the spectrum",
+     "value": 1000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-nfl-gm-low. ANECDOTAL. Same two weak sources as pay-nfl-gm-range. Not triple-verified. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0004",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Pay of non-owner NFL team presidents/CEOs (e.g. Packers' Mark Murphy).",
+   "value": "NOT FOUND",
+   "unit": "usd per year",
+   "validFor": "",
+   "sources": [],
+   "usedBy": [],
+   "notes": "Key pay-nfl-team-president. NOT FOUND. Searched Packers/Mark Murphy compensation (Form 990/annual report, Journal Sentinel, Press-Gazette), Sportico/Front Office Sports team-exec pay. Only content-farm and Comparably pages appear; no reputable figure. Teams are private and do not disclose. Bleacher Report's 2013 front-office pay article does not cover presidents. Context only (league, not team): NFL commissioner Goodell $63,900,050 in each of 2019-20 and 2020-21, per NYT (row pay-nfl-commissioner-context). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Unverified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Unverified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0005",
+   "level": "pro",
+   "domain": "career",
+   "statement": "Context ceiling for NFL executive pay: Commissioner Roger Goodell was paid $63,900,050 in each of fiscal 2019-20 and 2020-21 (~$128M over two years), mostly bonus.",
+   "value": 63900050,
+   "unit": "usd per year",
+   "validFor": "2019-20, 2020-21",
+   "sources": [
+    {
+     "citation": "CBS News MoneyWatch (citing NYT): Goodell $63 million salary (https://www.cbsnews.com/news/goodell-63-million-salary-nfl-commissioner; 2021-10-29)",
+     "locator": "https://www.cbsnews.com/news/goodell-63-million-salary-nfl-commissioner",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbsnews-com",
+     "primary": false,
+     "quote": "Goodell made $63,900,050 in both 2019-20 and 2020-21",
+     "value": 63900050
+    },
+    {
+     "citation": "Bleacher Report (citing NYT): Report: NFL Commissioner Roger Goodell Earned Nearly $128M Over Past 2 Fiscal Years (https://bleacherreport.com/articles/10016544-report-nfl-commissioner-roger-goodell-earned-nearly-128m-over-past-2-fiscal-years; 2021-10-28)",
+     "locator": "https://bleacherreport.com/articles/10016544-report-nfl-commissioner-roger-goodell-earned-nearly-128m-over-past-2-fiscal-years",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "bleacherreport-com",
+     "primary": false,
+     "quote": "earned approximately $128 million over the past two fiscal years.",
+     "value": 128000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-nfl-commissioner-context. League office, not a team. All reports trace back to one NYT report (Ken Belson), so it counts as 1 independent source relayed twice. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0006",
+   "level": "college",
+   "domain": "career",
+   "statement": "Highest-paid FBS athletic directors 2024-25: Chris Del Conte (Texas) $2.9M base in FY2025-26 under a deal averaging ~$3.53M/yr; Danny White (Tennessee) $2.75M/yr after Aug 2024 extension, total compensation $3.35M in the last fiscal year (per FOS).",
+   "value": "2750000-3350000",
+   "unit": "usd per year",
+   "validFor": "2024-2025",
+   "sources": [
+    {
+     "citation": "Front Office Sports: Texas AD Del Conte signs $38M deal but still not highest-paid AD (https://frontofficesports.com/texas-ad-del-conte-signs-38m-deal-but-still-not-highest-paid-ad/; 2025-08-19)",
+     "locator": "https://frontofficesports.com/texas-ad-del-conte-signs-38m-deal-but-still-not-highest-paid-ad/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "frontofficesports-com",
+     "primary": false,
+     "quote": "Del Conte's new deal will pay him a $2.9 million base salary this fiscal year. ... Tennessee AD Danny White, whose total compensation reached $3.35 million this past fiscal year."
+    },
+    {
+     "citation": "Fox Sports (AP): Tennessee rewards athletic director Danny White with pay raise, contract incentives (https://www.foxsports.com/articles/cfb/tennessee-rewards-athletic-director-danny-white-with-pay-raise-contract-incentives; 2024-08-29)",
+     "locator": "https://www.foxsports.com/articles/cfb/tennessee-rewards-athletic-director-danny-white-with-pay-raise-contract-incentives",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "foxsports-com",
+     "primary": false,
+     "quote": "bumping his pay to $2.75 million a year."
+    },
+    {
+     "citation": "Sportsnaut via Yahoo Sports: Highest Paid Athletic Directors 2025: Texas, Tennessee, Michigan Lead 10 Top AD Salaries (https://sports.yahoo.com/article/highest-paid-athletic-directors-2025-153522857.html; 2025-09-09)",
+     "locator": "https://sports.yahoo.com/article/highest-paid-athletic-directors-2025-153522857.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "yahoo-com",
+     "primary": false,
+     "quote": "Top 10 list: Del Conte $2.8M; Danny White $2.75M; Warde Manuel $2.3M; Trev Alberts $2.2M; Scott Stricklin $2.075M; Greg Byrne $2.09M; Ross Bjork $2M; Scott Woodward $1.85M; Kirby Hocutt $1.64M; Josh Whitman $1.5M (summarised table, not verbatim)"
+    },
+    {
+     "citation": "KUT 90.5 (on KWBU): UT regents approve $38.8 million contract for athletic director, keeping him in Austin through 2036 (https://www.kwbu.org/news-from-across-texas/2025-08-22/ut-regents-approve-38-8-million-contract-for-athletic-director-keeping-him-in-austin-through-2036; 2025-08-22)",
+     "locator": "https://www.kwbu.org/news-from-across-texas/2025-08-22/ut-regents-approve-38-8-million-contract-for-athletic-director-keeping-him-in-austin-through-2036",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kwbu-org",
+     "primary": false,
+     "quote": "guarantees $38.8 million and more than $5 million in performance incentives."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fbs-ad-top. Top of FBS AD market ~ $2.75M-$3.5M. Del Conte: FOS $2.9M base; Sportsnaut lists $2.8M (2025 salary, citing Daily Texan); KUT confirms $38.8M guaranteed through 2036. Danny White: Fox Sports $2.75M/yr; Sportsnaut $2.75M (citing ESPN); FOS $3.35M total comp. Minor conflicts reflect base vs total. 3 independent publishers for White ($2.75M); 3 for Del Conte (FOS, Sportsnaut/Daily Texan, KUT total). Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0007",
+   "level": "college",
+   "domain": "career",
+   "statement": "Typical Power-conference AD pay: Power 5 ADs averaged about $1.1M fixed compensation in 2020-21; 25 of 58 surveyed had contracts of at least $1M; every P5 AD had at least $500K. Top-10 in 2025 ranged $1.5M-$2.8M.",
+   "value": 1100000,
+   "unit": "usd per year",
+   "validFor": "2020-21",
+   "sources": [
+    {
+     "citation": "AthleticDirectorU: 2020-21 Power 5 Athletics Directors' Compensation Survey (https://athleticdirectoru.com/articles/2021-fbs-athletics-directors-compensation-survey/; 2021-09-12)",
+     "locator": "https://athleticdirectoru.com/articles/2021-fbs-athletics-directors-compensation-survey/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "athleticdirectoru-com",
+     "primary": false,
+     "quote": "Annual fixed compensation for Power 5 ADs is approximately $1,100,000 ($1,098,000 at the time of the analysis).",
+     "value": 1098000
+    },
+    {
+     "citation": "Front Office Sports: FOS College: Power 5's Millionaire AD Club (https://frontofficesports.com/newsletter/fos-college-p5-millionaire-ad-club/; 2021-09-15)",
+     "locator": "https://frontofficesports.com/newsletter/fos-college-p5-millionaire-ad-club/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "frontofficesports-com",
+     "primary": false,
+     "quote": "25 had contracts awarding at least $1 million in total 2020-21 compensation. ... Texas AD Chris Del Conte had the highest contract in 2020-21 at $2.4 million"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fbs-ad-power-typical. Both 2020-21 figures come from the same USA Today/Newhouse survey analysed by AthleticDirectorU, so 1 underlying dataset (2 publishers). No newer P4 median found. Pay has risen since (top-10 low end $1.5M in 2025). Not triple-verified. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0008",
+   "level": "college",
+   "domain": "career",
+   "statement": "Older USA Today/AthleticDirectorU FBS AD database (c.2016-17): 115 of 130 FBS ADs; 17 at $1M+; top Jack Swarbrick (Notre Dame) $3.05M total. Average bonus available to an FBS AD $134,409.",
+   "value": 3050000,
+   "unit": "usd per year",
+   "validFor": "2016-17",
+   "sources": [
+    {
+     "citation": "FootballScoop: The highest paid ADs in college sports are.... (https://www.footballscoop.com/2025/03/04/the-highest-paid-ads-in-college-sports-are-athletic-directors-salary-database-jack-swarbrick; undated (URL 2025-03-04; content c.2017))",
+     "locator": "https://www.footballscoop.com/2025/03/04/the-highest-paid-ads-in-college-sports-are-athletic-directors-salary-database-jack-swarbrick",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballscoop-com",
+     "primary": false,
+     "quote": "Notre Dame's Jack Swarbrick is the highest-paid, raking in $994,000 in salary."
+    },
+    {
+     "citation": "AthleticDirectorU: FBS Athletic Directors' Compensation Survey (https://athleticdirectoru.com/articles/fbs-athletic-directors-compensation-survey/; 2017-07-19)",
+     "locator": "https://athleticdirectoru.com/articles/fbs-athletic-directors-compensation-survey/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "athleticdirectoru-com",
+     "primary": false,
+     "quote": "The average bonus compensation available to an FBS athletic director is $134,409.",
+     "value": 134409
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fbs-ad-historic-2017. FootballScoop URL carries a 2025 date but the content (Swarbrick, Bill Moos at Nebraska) is the 2017 database; treat as 2016-17. Shows growth: 17 millionaire ADs in FBS 2017 vs 25 of 58 P5 in 2020-21. One underlying dataset. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Conflict",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0009",
+   "level": "college",
+   "domain": "career",
+   "statement": "Group of Five AD pay: Mountain West ADs in 2024 earned about $410K-$550K (Fresno State Garrett Klassy $410K, mid-conference; Utah State Diana Sabau $550K; Nevada Stephanie Rempe $505K; New Mexico Eddie Nunez $432K; UNLV Erick Harper $420K; Boise State Jeremiah Dickey $418K).",
+   "value": "410000-550000",
+   "unit": "usd per year",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "Fresno Bee via Yahoo: New Fresno State athletics director gets pay bump, 5-year deal, plus contract guarantee (https://ca.sports.yahoo.com/news/fresno-state-athletics-director-gets-123000927.html; 2024-07-22)",
+     "locator": "https://ca.sports.yahoo.com/news/fresno-state-athletics-director-gets-123000927.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "yahoo-com",
+     "primary": false,
+     "quote": "The $410,000 salary for Klassy lands in the middle of the Mountain West Conference."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fbs-ad-g5-typical. Single source (Fresno Bee via Yahoo). Not triple-verified. Implies a P4/G5 gap of roughly 2-5x. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0010",
+   "level": "college",
+   "domain": "career",
+   "statement": "FCS AD pay example: Montana State AD Leon Costello annual base salary $265,513.69, maximum $320,514 for 2024-25 with incentives.",
+   "value": 265514,
+   "unit": "usd per year",
+   "validFor": "2024",
+   "sources": [
+    {
+     "citation": "Skyline Sports (Montana): Contract details on current 3-year deal for Montana State AD Leon Costello (https://skylinesportsmt.com/contracts-details-on-current-3-year-deal-for-montana-state-ad-leon-costello/; 2024-02-16)",
+     "locator": "https://skylinesportsmt.com/contracts-details-on-current-3-year-deal-for-montana-state-ad-leon-costello/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "skylinesportsmt-com",
+     "primary": false,
+     "quote": "The contract states that Costello began receiving an annual base salary of $265,513.69.",
+     "value": 265514
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-fcs-ad-example. Single FCS example from a contract (via Skyline Sports). No FCS-wide median found (Big Sky FOS piece has no salaries; Hero Sports pages redirect). FBS vs FCS gap: roughly $0.27M (strong FCS) vs $0.4-0.55M (G5) vs $1.1M+ average (P5), $2.75-3.5M top. Not triple-verified. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0011",
+   "level": "college",
+   "domain": "career",
+   "statement": "PROXY ONLY (university presidents, not team presidents): highest-paid public university presidents. 2024 (Chronicle data): Renu Khator (Houston) $3,168,955 total; E. Gordon Gee (WVU) $2,006,180. 2025 calendar year (Chronicle): Mark Welsh III (Texas A&M, ousted) $4.7M; Ana Mari Cauce (Washington) $2.3M; Tedd Mitchell (Texas Tech system) $2.2M; Eli Capilouto (Kentucky) $2.1M; Khator cut to $1.6M.",
+   "value": "2000000-4700000",
+   "unit": "usd per year",
+   "validFor": "2024, 2025",
+   "sources": [
+    {
+     "citation": "The Chronicle of Higher Education: Daily Briefing (2026-09-02) (https://www.chronicle.com/newsletter/daily-briefing/2026-09-02; 2026-09-02)",
+     "locator": "https://www.chronicle.com/newsletter/daily-briefing/2026-09-02",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "chronicle-com",
+     "primary": false,
+     "quote": "Ana Mari Cauce ... collected $2.3 million in 2025."
+    },
+    {
+     "citation": "Centre Daily Times via AOL (citing Chronicle data): Penn State's president just got a hefty pay raise. Where does she rank nationally? (https://www.aol.com/articles/penn-state-president-just-got-100900895.html; undated (Sept 2025))",
+     "locator": "https://www.aol.com/articles/penn-state-president-just-got-100900895.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aol-com",
+     "primary": false,
+     "quote": "was Renu Khator at University of Houston, at $3,168,955."
+    },
+    {
+     "citation": "The Chronicle of Higher Education: How Much Are Public-College Presidents Paid? (https://www.chronicle.com/article/president-pay-public-colleges/?sra=true; 2026-08-31)",
+     "locator": "https://www.chronicle.com/article/president-pay-public-colleges/?sra=true",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "chronicle-com",
+     "primary": false,
+     "quote": "Base pay, bonuses, and benefits for 172 chief executives at public doctoral universities and systems in 2025."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-univ-president-public-top. PROXY: university presidents are not athletic-department heads. All figures derive from The Chronicle of Higher Education's public-college pay survey (172 chief executives at public doctoral universities and systems, 2025); Khator 2024 $3.1M confirmed by both the Chronicle newsletter and Centre Daily/AOL (same dataset). One underlying dataset, two publishers. Welsh's $4.7M includes exit payment. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  },
+  {
+   "id": "F-pay-exec-0012",
+   "level": "college",
+   "domain": "career",
+   "statement": "PROXY ONLY: median university president pay 2024-25 ranged from about $268,000 (public associate's colleges) to over $900,000 (private-independent doctoral universities), per AAUP. Penn State's Bendapudi was 7th among publics in 2024 at $1,667,421 total.",
+   "value": "268000-900000",
+   "unit": "usd per year",
+   "validFor": "2024-25",
+   "sources": [
+    {
+     "citation": "AAUP: New AAUP Report Highlights Trends in Faculty Compensation and other Key Economic Indicators (https://www.aaup.org/news/new-aaup-report-highlights-trends-faculty-compensation-and-other-key-economic-indicators; 2025-06-17)",
+     "locator": "https://www.aaup.org/news/new-aaup-report-highlights-trends-faculty-compensation-and-other-key-economic-indicators",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aaup-org",
+     "primary": false,
+     "quote": "Median salaries for college and university presidents in 2024–25 ranged from a low of about $268,000 ... over $900,000 at private-independent doctoral universities."
+    },
+    {
+     "citation": "Myers McRae for Florida A&M University Board of Trustees: President Compensation and Contract Provisions Review (https://www.famu.edu/about-famu/leadership/board-of-trustees/pdf/Myers%20McRae%20-%20FAMU%20Pres.%20Compensation%20Analysis-FINAL.pdf; 2025-05-13)",
+     "locator": "https://www.famu.edu/about-famu/leadership/board-of-trustees/pdf/Myers%20McRae%20-%20FAMU%20Pres.%20Compensation%20Analysis-FINAL.pdf",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "famu-edu",
+     "primary": false,
+     "quote": "Total Compensation (Base + Bonus) $ 503,683.00 $ 800,000.00 $ 969,375.00"
+    },
+    {
+     "citation": "Centre Daily Times via AOL: Penn State's president just got a hefty pay raise. Where does she rank nationally? (https://www.aol.com/articles/penn-state-president-just-got-100900895.html; undated (Sept 2025))",
+     "locator": "https://www.aol.com/articles/penn-state-president-just-got-100900895.html",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "aol-com",
+     "primary": false,
+     "quote": "Bendapudi was seventh on the list last year, at $1,667,421."
+    }
+   ],
+   "usedBy": [],
+   "notes": "Key pay-univ-president-median. PROXY. No median found specifically for public doctoral (FBS-type) presidents; the Chronicle's 2025 table could not be read. Florida public peer group 2024 (Myers McRae for FAMU): 25th/50th/75th = $503,683 / $800,000 / $969,375 total; R2 median $536,225 (2023, CUPA-HR). Different populations, not triple-verified. Quotes are extractor-model excerpts returned by the cloud web fetch (not saved page text); every source is marked secondary summary.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load from sources read this session (cloud web fetch)."
+    }
+   ]
+  }
+ ]
+}
