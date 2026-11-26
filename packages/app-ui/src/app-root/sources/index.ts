@@ -7,7 +7,7 @@ import { leagueSources, type HubSourceInput } from './league.ts';
 export { leagueSources, legendsQuery, type HubSourceInput } from './league.ts';
 export { sourceTextIds } from './text.ts';
 
-export function careerSources(input: HubSourceInput): Partial<RouteSources> {
+export function hubSources(input: HubSourceInput): Partial<RouteSources> {
   return {
     ...leagueSources(input),
   };

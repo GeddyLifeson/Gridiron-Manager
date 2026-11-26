@@ -3,7 +3,7 @@
 import { play, type newgame } from '@gm/app-services';
 import { careerPortFromSeason, type SeasonPortHost } from './season-port.ts';
 import type { CareerPort } from './port.ts';
-import { careerSources } from './sources/index.ts';
+import { hubSources } from './sources/index.ts';
 
 /** The four league files the season is built from (world season `LeagueContent`); the shell host imports them. */
 export type LeagueContent = Parameters<typeof play.SeasonPlay.start>[0];
@@ -30,7 +30,7 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   const port = careerPortFromSeason(sp, { colours: (key) => strips.get(key) ?? null, ...host, level: s.level, seasonYear: s.seasonYear });
   // The hubs' route sources, built once: the new-game seat hands over the generated world (its history).
   const world = 'world' in s.seat && isStartedWorld(s.seat.world) ? s.seat.world : null;
-  const sources = careerSources({ season: sp, content, world });
+  const sources = hubSources({ season: sp, content, world });
   return { ...port, sources: () => sources };
 }
 
