@@ -15,3 +15,5 @@ export * as contract from './contract/index.ts';
 export * as crisis from './crisis/index.ts';
 export * as community from './community/index.ts';
 export * as gameday from './gameday/index.ts';
+export * as ladder from './ladder/index.ts';
+export * as record from './record/index.ts';
