@@ -1,0 +1,280 @@
+{
+ "domain": "measured-rate",
+ "rows": [
+  {
+   "id": "F-name-0001",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "First-name frequency among football players: counted people in the pack, one row per single first name (3 or more people).",
+   "value": 153942,
+   "unit": "people",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [
+    {
+     "citation": "nflverse-data releases, players register (project people pack nfl_players.csv, built 2026-11-25)",
+     "locator": "first_name, last_name, birth_date, display_name columns; 24,872 rows",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-players",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse cfbfastR-data rosters (ESPN-derived), project people pack college_players.csv and college_roster_seasons_2010_2026.csv",
+     "locator": "first_name, last_name, first_season, home_city, home_state, home_country, home_latitude, home_longitude columns",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-rosters",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "first-names.json:football"
+   ],
+   "notes": "Two registers cover different people (pro players, then college players not matched to a pro row) and are pooled, so they are components, not confirmations. Comparison only, not a source: top-200 first names pro vs college same cohort rank correlation {\"1990-94\":{\"proPeople\":2911,\"collegePeople\":24063,\"topN\":100,\"overlap\":100,\"rho\":0.562},\"1995-99\":{\"proPeople\":3022,\"collegePeople\":30716,\"topN\":100,\"overlap\":100,\"rho\":0.653}}; football vs SSA boys 1980 on, {\"topN\":200,\"overlap\":191,\"rho\":0.506}. Roster first names are the names players use (Chris, Nick), not always the legal name.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0002",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "First-name frequency of U.S. boys by 5-year birth cohort (SSA), mean share per year in the cohort.",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [
+    {
+     "citation": "Social Security Administration baby names 1880 to 2008, as published in github.com/hadley/data-baby-names baby-names.csv (provenance per that repository, not re-read at the agency)",
+     "locator": "rows with sex = boy; percent column = share of boys born that year",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "ssa-baby-names",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "first-names.json:ssa"
+   ],
+   "notes": "Single source mirrored on GitHub; the data stops at 2008, so later cohorts use the newest table with the generator's drift rule (D13.5.1).",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0003",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Surname frequency among football players: counted people in the pack, one row per single surname (3 or more people).",
+   "value": 153942,
+   "unit": "people",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [
+    {
+     "citation": "nflverse-data releases, players register (project people pack nfl_players.csv, built 2026-11-25)",
+     "locator": "first_name, last_name, birth_date, display_name columns; 24,872 rows",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-players",
+     "primary": false
+    },
+    {
+     "citation": "sportsdataverse cfbfastR-data rosters (ESPN-derived), project people pack college_players.csv and college_roster_seasons_2010_2026.csv",
+     "locator": "first_name, last_name, first_season, home_city, home_state, home_country, home_latitude, home_longitude columns",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-rosters",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [
+    "surnames.json:football"
+   ],
+   "notes": "Same pooling note as first names. Comparison only: pro vs college {\"topN\":200,\"overlap\":200,\"rho\":0.918}; football vs Census 2000 {\"topN\":200,\"overlap\":200,\"rho\":0.833}.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0004",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Surname frequency in the U.S. population, 2000 Census, top 5000 by rank.",
+   "value": 242121073,
+   "unit": "people (all listed rows)",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [
+    {
+     "citation": "U.S. Census Bureau 2000 surnames, as published in github.com/fivethirtyeight/data most-common-name/surnames.csv (provenance per that repository README, not re-read at the Bureau)",
+     "locator": "name, rank, count columns (names with 100 or more people)",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "census-2000-surnames",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "surnames.json:census"
+   ],
+   "notes": "Single source mirrored on GitHub. Casing is rebuilt from the pack spellings where the name appears there, else by a title-case rule (Mc and O' handled), so a few rare spellings may differ from common usage.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0005",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Home-state share of college players with a known home.",
+   "value": 120635,
+   "unit": "players with known home",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR-data rosters (ESPN-derived), project people pack college_players.csv and college_roster_seasons_2010_2026.csv",
+     "locator": "first_name, last_name, first_season, home_city, home_state, home_country, home_latitude, home_longitude columns",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-rosters",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "hometowns.json:states"
+   ],
+   "notes": "One source. Comparison only: state players vs Census-based 2013 state population (github.com/jakevdp/data-USstates) rank correlation {\"states\":51,\"rho\":0.89}. 11687 of 132322 rows have no usable home and are left out of shares.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0006",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Hometown counts: players per real town, towns with 2 or more players.",
+   "value": 115540,
+   "unit": "players in shipped towns",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [
+    {
+     "citation": "sportsdataverse cfbfastR-data rosters (ESPN-derived), project people pack college_players.csv and college_roster_seasons_2010_2026.csv",
+     "locator": "first_name, last_name, first_season, home_city, home_state, home_country, home_latitude, home_longitude columns",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "cfbfastr-rosters",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "hometowns.json:states.*.towns"
+   ],
+   "notes": "One source. Comparison only: town players vs 2014 city population (github.com/plotly/datasets) {\"matchedCities\":2273,\"rho\":0.47}. Town coordinates are the mean of the ESPN geocodes of that town's players.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0007",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Name suffix rate among pro players (Jr., Sr., II, III, IV, V), by birth cohort.",
+   "value": 382,
+   "unit": "players with a suffix",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [
+    {
+     "citation": "nflverse-data releases, players register (project people pack nfl_players.csv, built 2026-11-25)",
+     "locator": "first_name, last_name, birth_date, display_name columns; 24,872 rows",
+     "dateRead": "2026-11-26",
+     "howRead": "dataset computed",
+     "independenceGroup": "nflverse-players",
+     "primary": false
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [
+    "suffixes.json"
+   ],
+   "notes": "One source. The register may drop suffixes for some players, so the rate is a floor.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0008",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Region of the eight states with no reference location (NJ, DE, NH, RI, ME, WY, HI, AK).",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "hometowns.json:regionOfState"
+   ],
+   "notes": "Design choice: each placed beside its nearest listed neighbours; the other 43 states and DC take the region of their reference locations in packages/football-content/data/world.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  },
+  {
+   "id": "F-name-0009",
+   "level": "both",
+   "domain": "measured-rate",
+   "statement": "Table construction constants: minimum people per name row (3), minimum players per town (2), entry age (18), cohort width (5 years), thin-table size (200), census rows shipped (5,000).",
+   "validFor": "rosters 2010 to 2026",
+   "sources": [],
+   "status": "Assumption",
+   "assumption": true,
+   "usedBy": [
+    "first-names.json:params",
+    "surnames.json:params",
+    "hometowns.json:params"
+   ],
+   "notes": "Design choices, named in params of each file. The minimum of 3 keeps any shipped row from pointing at one real person.",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
+     "reason": "First load by G-18 builder."
+    }
+   ]
+  }
+ ]
+}

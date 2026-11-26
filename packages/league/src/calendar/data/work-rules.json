@@ -1,0 +1,624 @@
+{
+ "$comment": "Work-rule records (C11.1.1): every off-field time limit as data with its source, status and class. Blocked rules cannot be scheduled; breakable rules can after a warning and enter the L8.2.5 detection draw (C11.2.4). Limits come from a league-rules key (limitKey, G-10) or this file. The classes are a design reading (Assumption, C11.2.1).",
+ "rules": [
+  {
+   "id": "off.program_window",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "Offseason program sessions may be held only from the club's program start date",
+   "cls": "blocked",
+   "status": "Verified",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.gap_before_camp",
+   "leaf": "C11.2.1",
+   "phases": [
+    "summer_break"
+   ],
+   "plain": "No organised football activity between the end of the program and camp",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.phase1_content",
+   "leaf": "C11.2.1",
+   "phases": [
+    "program_phase1"
+   ],
+   "plain": "Phase one: strength, conditioning and rehabilitation only; only strength coaches on the field; no helmets, no footballs",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.phase2_content",
+   "leaf": "C11.2.1",
+   "phases": [
+    "program_phase2"
+   ],
+   "plain": "Phase two: no team offense against team defense, no one-on-ones, no OTAs",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.contact",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "Contact is prohibited in every offseason workout",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.no_pads",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "No pads in any offseason workout or minicamp",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.ota_days",
+   "leaf": "C11.2.1",
+   "phases": [
+    "program_phase3"
+   ],
+   "plain": "At most 10 organised team activity days, all in phase three",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "limitKey": "work.ota_days",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.ota_spacing",
+   "leaf": "C11.2.1",
+   "phases": [
+    "program_phase3"
+   ],
+   "plain": "OTAs: at most 3 in each of the first two weeks of phase three and 4 in week three or four; none in the minicamp week",
+   "cls": "breakable",
+   "status": "2 of 3",
+   "source": "CBA text and one press summary (C11.2.1)",
+   "value": 3,
+   "limitKey": "work.ota_max_week_3_or_4",
+   "penalty": "offseason",
+   "firstWeeks": 2
+  },
+  {
+   "id": "off.workouts_per_week",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "A player may work out at most four days a week",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA mirror (C11.2.1)",
+   "limitKey": "work.workouts_per_week",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.no_weekends",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "No offseason workouts on weekends",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA mirror (C11.2.1)",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.hours_non_ota",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "Non-OTA days: at most 4 hours at the facility and 90 minutes on the field",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA text (C11.2.1)",
+   "facilityMinutes": 240,
+   "fieldMinutes": 90,
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.hours_ota",
+   "leaf": "C11.2.1",
+   "phases": [
+    "program_phase3"
+   ],
+   "plain": "OTA days: at most 6 hours at the facility and 2 hours on the field",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA text (C11.2.1)",
+   "facilityMinutes": 360,
+   "fieldMinutes": 120,
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.minicamp",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "One mandatory minicamp of up to 3 days, in its scheduled week",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Articles 21 and 22 text; research/audit-r-cba-discipline.md",
+   "limitKey": "work.minicamp_days",
+   "penalty": "offseason"
+  },
+  {
+   "id": "off.mandatory_attendance",
+   "leaf": "C11.2.1",
+   "phases": [
+    "season_review",
+    "staff_changes",
+    "predraft",
+    "free_agency",
+    "draft",
+    "program_phase1",
+    "program_phase2",
+    "program_phase3",
+    "mandatory_minicamp",
+    "summer_break"
+   ],
+   "plain": "Only the minicamp may be mandatory; other sessions are voluntary",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA Article 21 and Article 4 text (C4.3.2)",
+   "penalty": "offseason"
+  },
+  {
+   "id": "camp.acclimation_day1",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "Camp day 1: physicals, meetings, running and conditioning only; no helmets, no footballs",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "acclimationDays": 5,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.acclimation",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "Camp days 2 to 5: no live contact, at most 3.5 hours on the field, one full-speed practice of up to 2 hours; helmets days 2 and 3, shells days 4 and 5",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "acclimationDays": 5,
+   "fieldMinutes": 210,
+   "fullSpeedMinutes": 120,
+   "helmetDaysThrough": 3,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.day_off_after_acclimation",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "The day after acclimation is a mandatory day off",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA Article 35 text",
+   "acclimationDays": 5,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.padded_total",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "At most 16 padded practices in camp",
+   "cls": "breakable",
+   "status": "2 of 3",
+   "source": "CBA text, CBS summary (C11.2.2)",
+   "value": 16,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.padded_consecutive",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "No more than 3 consecutive padded days",
+   "cls": "breakable",
+   "status": "2 of 3",
+   "source": "CBA text, CBS summary (C11.2.2)",
+   "value": 3,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.padded_blocks",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "At most three blocks of 3 consecutive padded days, with at least 3 days between blocks",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "value": 3,
+   "blockLength": 3,
+   "gapDays": 3,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.padded_length",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "One padded practice a day, of up to 2.5 hours",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "limitKey": "work.padded_practice_hours",
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.field_hours",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "At most 4 hours on the field a day",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "limitKey": "work.camp_field_hours",
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.second_session",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "A second session is at walkthrough pace with no helmets",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.days_off_weekly",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "At least one day off in every 7 until the first preseason game",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA Article 35 text",
+   "value": 7,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.days_off_total",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "At least 6 days off in camp, 8 with three or fewer preseason games",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA Article 35 text",
+   "value": 6,
+   "valueFewGames": 8,
+   "fewGamesAtMost": 3,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.joint_practices",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "Joint practices: at most 2 days in a preseason week, none the day before a game, 4 in a season with three preseason games",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "value": 2,
+   "seasonTotal": 4,
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.prohibited_drills",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason",
+    "regular_season"
+   ],
+   "plain": "Prohibited drills: bull in the ring, Oklahoma, in-line run-blocking board drills, half-line, pods, 3-spot",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA text, named in two articles (C11.2.2)",
+   "drills": [
+    "bull_in_the_ring",
+    "oklahoma",
+    "inline_board",
+    "half_line",
+    "pods",
+    "three_spot"
+   ],
+   "penalty": "practice"
+  },
+  {
+   "id": "camp.late_player",
+   "leaf": "C11.2.2",
+   "phases": [
+    "training_camp",
+    "preseason"
+   ],
+   "plain": "A player who joins late serves his own acclimation: no padded practice before his fifth day",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Articles 23 and 35 text read directly",
+   "value": 5,
+   "penalty": "practice"
+  },
+  {
+   "id": "season.padded_total",
+   "leaf": "C11.2.3",
+   "phases": [
+    "regular_season"
+   ],
+   "plain": "14 padded practices in the regular season: at most 11 in weeks 1 to 11 and 3 after; unused early ones do not carry",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Article 24 text plus two summaries",
+   "value": 11,
+   "lateValue": 3,
+   "boundaryWeek": 11,
+   "penalty": "practice"
+  },
+  {
+   "id": "season.two_padded_week",
+   "leaf": "C11.2.3",
+   "phases": [
+    "regular_season"
+   ],
+   "plain": "Two padded practices in one week are allowed once, in the first 11 weeks",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "CBA 2020 Article 24 text plus two summaries",
+   "value": 2,
+   "boundaryWeek": 11,
+   "penalty": "practice"
+  },
+  {
+   "id": "season.field_time",
+   "leaf": "C11.2.3",
+   "phases": [
+    "regular_season",
+    "wild_card",
+    "divisional",
+    "conference_championship",
+    "championship_preparation",
+    "league_championship"
+   ],
+   "plain": "At most 3 hours on the field a day, plus 30 minutes of position-coach time before",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Article 24 text plus two summaries",
+   "fieldMinutes": 180,
+   "positionCoachMinutes": 30,
+   "penalty": "practice"
+  },
+  {
+   "id": "season.bye_days_off",
+   "leaf": "C11.2.3",
+   "phases": [
+    "regular_season"
+   ],
+   "plain": "Bye week: at least 4 consecutive days off including a Saturday and Sunday",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Article 24 text plus two summaries",
+   "limitKey": "work.bye_days_off",
+   "penalty": "practice"
+  },
+  {
+   "id": "season.postseason_padded",
+   "leaf": "C11.2.3",
+   "phases": [
+    "wild_card",
+    "divisional",
+    "conference_championship",
+    "championship_preparation",
+    "league_championship"
+   ],
+   "plain": "Postseason: one padded practice a week",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "CBA 2020 Article 24 text plus two summaries",
+   "value": 1,
+   "penalty": "practice"
+  },
+  {
+   "id": "college.spring",
+   "leaf": "T3.2.1",
+   "phases": [
+    "college_spring_practice"
+   ],
+   "plain": "Spring practice: 15 sessions in 34 consecutive days, at most 12 with contact and 8 with tackling",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "School compliance page quoting Bylaw 17.11.7.5 (R19, T3.2.1)",
+   "value": 15,
+   "spanDays": 34,
+   "contactMax": 12,
+   "tacklingMax": 8,
+   "seasonsThrough": 2026,
+   "penalty": "college"
+  },
+  {
+   "id": "college.spring_2027",
+   "leaf": "T3.2.1",
+   "phases": [
+    "college_spring_practice"
+   ],
+   "plain": "Out-of-season practice from 2027: two periods, 21 practices in total (pending approval)",
+   "cls": "breakable",
+   "status": "Unverified",
+   "source": "T3.2.1 (NCAA, pending)",
+   "value": 21,
+   "seasonsFrom": 2027,
+   "penalty": "college"
+  },
+  {
+   "id": "college.preseason",
+   "leaf": "T3.2.1",
+   "phases": [
+    "college_preseason_practice"
+   ],
+   "plain": "Preseason practice: 25 practices",
+   "cls": "breakable",
+   "status": "Verified",
+   "source": "R19, three sources (T3.2.1)",
+   "value": 25,
+   "seasonsThrough": 2026,
+   "penalty": "college"
+  },
+  {
+   "id": "college.preseason_2027",
+   "leaf": "T3.2.1",
+   "phases": [
+    "college_preseason_practice"
+   ],
+   "plain": "Preseason practice from 2027: 21 practices in 27 days",
+   "cls": "breakable",
+   "status": "1 of 3",
+   "source": "NCAA, pending approval (T3.2.1)",
+   "value": 21,
+   "spanDays": 27,
+   "seasonsFrom": 2027,
+   "penalty": "college"
+  }
+ ],
+ "referencePenalties": {
+  "offseason": {
+   "plain": "Head coach $100,000 (first) and $250,000 (second); club $250,000 and $500,000; the club's next OTA week is cancelled; a second violation in a league year also costs a fourth-round pick. The coach's fine may not be repaid by the club.",
+   "status": "Verified",
+   "leaf": "C11.2.4",
+   "source": "CBA Article 21 Section 8 text; SI 2016, CBS Sports 2021, Yahoo 2023 (cancelled week and pick: 2 of 3)"
+  },
+  "practice": {
+   "plain": "Fines on the offseason schedule, and the club's next scheduled padded practice is cancelled",
+   "status": "2 of 3",
+   "leaf": "C11.2.4",
+   "source": "C11.2.4 rule 3"
+  },
+  "college": {
+   "plain": "Association penalty for a practice-count violation; not sourced (T9.5 owns the penalty table)",
+   "status": "Unverified",
+   "leaf": "T9.5",
+   "source": "No source read"
+  }
+ }
+}

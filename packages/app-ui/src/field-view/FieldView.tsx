@@ -5,7 +5,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { FieldRenderer, type RenderOptions } from './renderer.ts';
 import { Playback, ReplayAllowance, SPEEDS, stills } from './playback.ts';
-import { resolveTeamColours } from './colours.ts';
+import { resolveTeamColours, fieldPalette } from './colours.ts';
+import type { ThemeId, ColourVisionId } from '../tokens/index.ts';
 import type { FieldGeometryLike, FilmPlay, FilmSide, Orientation, PlaybackMode, TeamColours, Zoom } from './types.ts';
 
 export interface FieldViewProps {
@@ -20,6 +21,9 @@ export interface FieldViewProps {
   readonly speed?: number;
   readonly reducedMotion?: boolean;
   readonly colourBlindSafe?: boolean;
+  /** Theme and colour-vision palette from the settings (O5); colours come from the token file. */
+  readonly theme?: ThemeId;
+  readonly colourVision?: ColourVisionId;
   readonly showPositionLetters?: boolean;
   /** Shared across plays of one game so only the last play can be replayed (I9.3.1). */
   readonly replays?: ReplayAllowance;
@@ -42,9 +46,10 @@ export function FieldView(props: FieldViewProps) {
   const [zoom, setZoom] = useState<Zoom>(props.zoom ?? 'wide');
   const [orientation] = useState<Orientation>(props.orientation ?? 'offenseUp');
   const [, setTick] = useState(0);
-  const colours = useMemo(() => resolveTeamColours(props.home, props.away, { colourBlindSafe: !!props.colourBlindSafe }), [props.home, props.away, props.colourBlindSafe]);
-  const options: RenderOptions = { mode, orientation, zoom, userSide, colours, showPositionLetters: !!props.showPositionLetters };
-  const renderer = useMemo(() => new FieldRenderer(play, geometry, options), [play, geometry, colours, mode, userSide, props.showPositionLetters]);
+  const palette = useMemo(() => fieldPalette(props.theme ?? 'light', props.colourVision ?? 'none'), [props.theme, props.colourVision]);
+  const colours = useMemo(() => resolveTeamColours(props.home, props.away, { colourBlindSafe: !!props.colourBlindSafe, palette }), [props.home, props.away, props.colourBlindSafe, palette]);
+  const options: RenderOptions = { mode, orientation, zoom, userSide, colours, palette, showPositionLetters: !!props.showPositionLetters };
+  const renderer = useMemo(() => new FieldRenderer(play, geometry, options), [play, geometry, colours, palette, mode, userSide, props.showPositionLetters]);
   const replays = useMemo(() => props.replays ?? new ReplayAllowance(), [props.replays]);
   const pbRef = useRef<Playback | null>(null);
 

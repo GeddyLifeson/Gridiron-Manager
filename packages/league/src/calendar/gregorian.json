@@ -1,0 +1,17 @@
+{
+  "$comment": "Civil calendar constants for the calendar engine (C4.1.1). These are calendar arithmetic, not football numbers; they live here because the league lint bans numeric literals in src (P1.1.2). Weekday 0 is Sunday. Times are minutes after midnight, US Eastern (the league's published time basis).",
+  "daysPerWeek": 7,
+  "monthsPerYear": 12,
+  "monthDays": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+  "leapMonth": 2,
+  "leapEvery": 4,
+  "leapCenturySkip": 100,
+  "leapQuadCentury": 400,
+  "epochYear": 1970,
+  "epochWeekday": 4,
+  "minutesPerHour": 60,
+  "hoursPerDay": 24,
+  "datePad": 2,
+  "yearDigits": 4,
+  "weekday": { "sun": 0, "mon": 1, "tue": 2, "wed": 3, "thu": 4, "fri": 5, "sat": 6 }
+}

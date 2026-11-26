@@ -1,0 +1,6 @@
+# G-10 fact builder
+
+`python3 build.py` regenerates `facts/league.json`, `cap.json`, `college.json`, `injury.json` and `packages/rules-data/data/league/*`. Every quote is searched in its local text copy and the build stops if it is missing; status is computed by the same rules as `computeStatus`. Web quotes (no local copy) were returned by the cloud web fetch on 2026-11-26. `injury_compute.py` computes the nflverse rows; `injury_out.json` is its output.
+
+## Keys named in the bible with no value yet (research still owed, nothing filled from memory)
+roster.offseason_limit (90), roster.emergency_qb_from_practice_squad, waivers.vested_measure, league_rules.draft.declare_deadline, league_rules.draft.revoke_window_hours (72), league_rules.draft.special_staff_picks, league_rules.hiring_cycle, league.work_rules (camp padded-practice counts, Article 35 days off), practice squad protection count (4), 2026 trade deadline date, 2026 cutdown date, 2026 undrafted bonus pool, Article 42 club fine maxima, aid.cancel_for_athletic_reasons, eligibility.clock_start, eligibility.juco_seasons_count, eligibility.juco_transfer_hours, transfer.max_free, transfer.window, pay.agent_fee_cap, pay.buyout_enforced, pay.employment_status, pay.multi_year, preseason roster limit 110. D11.2 per-injury study rows (ACL, Achilles, Lisfranc and others) are not entered.

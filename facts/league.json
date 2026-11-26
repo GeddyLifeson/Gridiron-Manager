@@ -1,0 +1,2354 @@
+{
+ "domain": "league-rule",
+ "rows": [
+  {
+   "id": "F-league-0001",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Game-day Active List limit: 48 players (with at least 8 offensive linemen).",
+   "value": 48,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 25 Section 1 (text copy cba_2020.txt, line 8402)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the Active List limit shall be increased from forty-six players per Club to forty-eight players per Club",
+     "value": 48
+    },
+    {
+     "citation": "Sports Illustrated, What Are the NFL Practice Squad Rules? (Ryan Phillips, modified 2025-08-19, https://www.si.com/nfl/what-are-the-nfl-practice-squad-rules)",
+     "locator": "Practice squad rules page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Only 48 of those players can participate in a game, which means seven must be declared inactive",
+     "value": 48
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0002",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Game-day Active List limit when fewer than 8 offensive linemen are active: 47.",
+   "value": 47,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 25 Section 1 (text copy cba_2020.txt, line 8409)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "such Club’s Active List limit shall be forty-seven players",
+     "value": 47
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0003",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Minimum offensive linemen on the Active List for the 48 limit: 8.",
+   "value": 8,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 25 Section 1 (text copy cba_2020.txt, line 8404)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a minimum of eight players whose primary playing position is Center, Guard or Tackle",
+     "value": 8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0004",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A club may carry fewer than 48 on its Active List but never fewer than 44.",
+   "value": 44,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 25 Section 1 (text copy cba_2020.txt, line 8412)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "but no fewer than forty-four players",
+     "value": 44
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0005",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Regular season and postseason Active/Inactive List limit: 53.",
+   "value": 53,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 25 Section 4(a) (text copy cba_2020.txt, line 8421)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "shall not exceed 53 players unless a Club has chosen to elevate",
+     "value": 53
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0006",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "At most two practice squad players may be elevated for one game.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 25 Section 4(a) (text copy cba_2020.txt, line 8422)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "elevate either one or two players from its Practice Squad",
+     "value": 2
+    },
+    {
+     "citation": "Sports Illustrated, What Are the NFL Practice Squad Rules? (Ryan Phillips, modified 2025-08-19, https://www.si.com/nfl/what-are-the-nfl-practice-squad-rules)",
+     "locator": "Practice squad rules page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Teams can make as many as two practice squad players available to participate in regular-season games.",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0007",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "An accrued season needs 6 or more regular season games on full pay status.",
+   "value": 6,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 8 Section 1(a) (text copy cba_2020.txt, line 2766)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "for a total of six or more regular season games",
+     "value": 6
+    },
+    {
+     "citation": "NFL Football Operations, Types of Free Agents (https://operations.nfl.com/inside-football-ops/nfl-operations/nfl-free-agency/types-of-free-agents)",
+     "locator": "Types of Free Agents",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "a player must have been on (or should have been on) full-play status for at least six regular-season games",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0008",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Unrestricted free agent: 4 or more accrued seasons.",
+   "value": 4,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 1 definitions (text copy cba_2020.txt, line 877)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "means a Veteran with four or more Accrued Seasons",
+     "value": 4
+    },
+    {
+     "citation": "NFL Football Operations, Types of Free Agents (https://operations.nfl.com/inside-football-ops/nfl-operations/nfl-free-agency/types-of-free-agents)",
+     "locator": "Types of Free Agents",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Any player with four or more accrued seasons and an expired contract; free to negotiate and sign with any team.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0009",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Restricted free agent: exactly 3 accrued seasons.",
+   "value": 3,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 1 definitions (text copy cba_2020.txt, line 846)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "means a Veteran who has three Accrued Seasons",
+     "value": 3
+    },
+    {
+     "citation": "NFL Football Operations, Types of Free Agents (https://operations.nfl.com/inside-football-ops/nfl-operations/nfl-free-agency/types-of-free-agents)",
+     "locator": "Types of Free Agents",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "A player with three accrued seasons and an expired contract.",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0010",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Exclusive rights player: fewer than 3 accrued seasons.",
+   "value": 3,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 1 definitions (text copy cba_2020.txt, line 760)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "means a player with fewer than three Accrued Seasons",
+     "value": 3
+    },
+    {
+     "citation": "NFL Football Operations, Types of Free Agents (https://operations.nfl.com/inside-football-ops/nfl-operations/nfl-free-agency/types-of-free-agents)",
+     "locator": "Types of Free Agents",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Any player with fewer than three accrued seasons and an expired contract.",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0011",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Franchise and transition tags may be used from the 22nd day before the league year.",
+   "value": 22,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2 (text copy cba_2020.txt, line 3297)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "twenty-second day preceding the first day of the new League Year",
+     "value": 22
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0012",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The tag window closes at 4 p.m. New York time on the 8th day before the league year.",
+   "value": 8,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2 (text copy cba_2020.txt, line 3297)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "will end at 4:00 pm New York time on the eighth day preceding the first day of the new League Year",
+     "value": 8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0013",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Franchise tag tender is the average of the five largest prior-year salaries at the position.",
+   "value": 5,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2 (text copy cba_2020.txt, line 3322)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the “Franchise Tag” is the average of the five largest Prior Year Salaries",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0014",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Tender floor: 120 percent of the player’s prior-year salary.",
+   "value": 120,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(a)(i) (text copy cba_2020.txt, line 3316)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "120% of his Prior Year Salary, whichever is greater",
+     "value": 120
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0015",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A club that signs a nonexclusive franchise player away owes two first-round picks.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(a)(i) (text copy cba_2020.txt, line 3319)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Draft Choice Compensation of two first round draft selections",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0016",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Third franchise designation: 144 percent of the player’s own prior-year salary is one floor.",
+   "value": 144,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(b) (text copy cba_2020.txt, line 3344)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "(C) 144% of his Prior Year Salary",
+     "value": 144
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0017",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Transition tag is the average of the ten largest prior-year salaries at the position.",
+   "value": 10,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 4 (text copy cba_2020.txt, line 3461)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "is the average of the ten largest Prior Year Salaries for players at that position",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0018",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Multiyear deal for a franchise player must be signed by July 15 at 4 p.m. New York time.",
+   "value": 15,
+   "unit": "day of July",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(k) (text copy cba_2020.txt, line 3418)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "on July 15 of the League Year",
+     "value": 15
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0019",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Offseason program: nine weeks.",
+   "value": 9,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2 (text copy cba_2020.txt, line 7387)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "official nine-week offseason workout program",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0020",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "No more than four workouts per week for any player.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2 (text copy cba_2020.txt, line 7345)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "no more than four workouts per week for any individual player",
+     "value": 4
+    },
+    {
+     "citation": "NFLPA, Offseason Rules (saved page copy)",
+     "locator": "Offseason Rules (text copy nflpa--offseason-rules.txt, line 13)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nflpa",
+     "primary": false,
+     "quote": "Maximum 4 w/o per week (no weekends)",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0021",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Phase one lasts two weeks.",
+   "value": 2,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2(c)(i) (text copy cba_2020.txt, line 7389)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Phase One shall consist of the first two weeks",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0022",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Phase two lasts three weeks.",
+   "value": 3,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2(c)(ii) (text copy cba_2020.txt, line 7406)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Phase Two shall consist of the next three weeks",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0023",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Phase three lasts four weeks.",
+   "value": 4,
+   "unit": "weeks",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2(c)(iii) (text copy cba_2020.txt, line 7434)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Phase Three shall consist of the next four weeks",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0024",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Ten OTA days in phase three.",
+   "value": 10,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2(c)(iii) (text copy cba_2020.txt, line 7436)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "each Club may conduct a total of ten days of organized team practice activity",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0025",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "At most four OTA days in the third or fourth week of phase three.",
+   "value": 4,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2(c)(iii) (text copy cba_2020.txt, line 7440)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "A maximum of four days of OTAs may be conducted during either the third week or the fourth week",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0026",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Program may not begin before the third Monday in April (first Monday for a club with a new head coach).",
+   "value": 3,
+   "unit": "Monday of April",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 2(d) (text copy cba_2020.txt, line 7480)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "cannot begin prior to the third Monday in April for all other Clubs",
+     "value": 3
+    },
+    {
+     "citation": "NFLPA, Offseason Rules (saved page copy)",
+     "locator": "Offseason Rules (text copy nflpa--offseason-rules.txt, line 11)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nflpa",
+     "primary": false,
+     "quote": "Workouts cannot begin prior to the first Monday in April for clubs with a new head coach or the third Monday in April for all other clubs",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far. The 2020 CBA runs to 2030 (Article 26 table).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0027",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Practice squad: 16 players plus one international pathway player (17 in all).",
+   "value": 16,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "NFL teams can have 16 players on their practice squad — or 17, as long as one of those players is part of",
+     "value": 16
+    },
+    {
+     "citation": "Sports Illustrated, What Are the NFL Practice Squad Rules? (Ryan Phillips, modified 2025-08-19, https://www.si.com/nfl/what-are-the-nfl-practice-squad-rules)",
+     "locator": "Practice squad rules page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Teams can now sign 17 players to their practice squads if one of those players is a member of",
+     "value": 16
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0028",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "One extra practice squad place is for an international pathway player.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "NFL teams can have 16 players on their practice squad — or 17, as long as one of those players is part of",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0029",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Of the 16 regular practice squad places, 10 must go to rookies or second-year players.",
+   "value": 10,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, What Are the NFL Practice Squad Rules? (Ryan Phillips, modified 2025-08-19, https://www.si.com/nfl/what-are-the-nfl-practice-squad-rules)",
+     "locator": "Practice squad rules page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Of the other 16, 10 must be rookies or second-year players, while there are no restrictions on the other six.",
+     "value": 10
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0030",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Six practice squad places may go to veterans with any number of accrued seasons.",
+   "value": 6,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "six of the 17 can be veterans with no limit on the amount of seasons they have accrued.",
+     "value": 6
+    },
+    {
+     "citation": "Sports Illustrated, What Are the NFL Practice Squad Rules? (Ryan Phillips, modified 2025-08-19, https://www.si.com/nfl/what-are-the-nfl-practice-squad-rules)",
+     "locator": "Practice squad rules page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Of the other 16, 10 must be rookies or second-year players, while there are no restrictions on the other six.",
+     "value": 6
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0031",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A practice squad player may be elevated at most three times in a regular season.",
+   "value": 3,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, What Are the NFL Practice Squad Rules? (Ryan Phillips, modified 2025-08-19, https://www.si.com/nfl/what-are-the-nfl-practice-squad-rules)",
+     "locator": "Practice squad rules page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "But each player can only be elevated to the roster a maximum of three times.",
+     "value": 3
+    },
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "Players can be promoted a maximum of three times in a season.",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Resolves the bible C5.3.2 dissent: two independent 2025 pages say three.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0032",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A player on injured reserve must miss at least four games.",
+   "value": 4,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "Players on IR need to miss a minimum of four games.",
+     "value": 4
+    },
+    {
+     "citation": "Pro Football Rumors, NFL Issues New Rules For IR Activations (2024-06-20, https://www.profootballrumors.com/2024/06/nfl-issues-new-rules-for-ir-activations)",
+     "locator": "IR activation rules",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "quote": "forced to miss four games before they are eligible to return to the active roster.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0033",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A club may designate eight players to return from IR in the regular season.",
+   "value": 8,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "NFL teams can designate up to eight players to return from IR during the regular season",
+     "value": 8
+    },
+    {
+     "citation": "Pro Football Rumors, NFL Issues New Rules For IR Activations (2024-06-20, https://www.profootballrumors.com/2024/06/nfl-issues-new-rules-for-ir-activations)",
+     "locator": "IR activation rules",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "quote": "Over the course of the regular season, each team will be able to make such a designation eight times.",
+     "value": 8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0034",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Two more IR return designations are granted for the postseason.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Pro Football Rumors, NFL Issues New Rules For IR Activations (2024-06-20, https://www.profootballrumors.com/2024/06/nfl-issues-new-rules-for-ir-activations)",
+     "locator": "IR activation rules",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "quote": "The postseason rule change sees each team granted two additional designations in the postseason.",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0035",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A player may return from IR only twice in a single season.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Pro Football Rumors, NFL Issues New Rules For IR Activations (2024-06-20, https://www.profootballrumors.com/2024/06/nfl-issues-new-rules-for-ir-activations)",
+     "locator": "IR activation rules",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "quote": "only twice in a single season",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0036",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A player designated to return from IR has a 21-day practice window.",
+   "value": 21,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Pro Football Rumors, NFL Issues New Rules For IR Activations (2024-06-20, https://www.profootballrumors.com/2024/06/nfl-issues-new-rules-for-ir-activations)",
+     "locator": "IR activation rules",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "pfr",
+     "primary": false,
+     "quote": "that player will have a 21-day window during which they can practice with their team",
+     "value": 21
+    },
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "When a player is cleared to practice, a 21-day window begins",
+     "value": 21
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0037",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Reserve/PUP: out for the first four games.",
+   "value": 4,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "must sit out the first four games.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0038",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Reserve/NFI: out four games.",
+   "value": 4,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "they can be placed on the reserve/NFI list and will sit out four games.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0039",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Waiver claim period in season: 24 hours.",
+   "value": 24,
+   "unit": "hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "If they go unclaimed after the 24-hour waiver period, they become a free agent.",
+     "value": 24
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The daily deadline clock time stays a conflict between sources.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0040",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A vested veteran has four or more accrued seasons and is not subject to waivers until the trade deadline.",
+   "value": 4,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports/AP, From IR and PUP to practice squads (updated 2025-07-22, https://www.foxsports.com/articles/nfl/from-ir-and-pup-to-practice-squads-what-do-nfl-roster-designations-mean)",
+     "locator": "AP roster designations explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "ap-fox",
+     "primary": false,
+     "quote": "Players with four or more seasons accrued are considered vested veterans and are not subject to waivers",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Whether the measure is accrued or pension-credited seasons (bible C5.5.1 conflict) is not settled by this source.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0041",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The trade deadline is the Tuesday after Week 9 games (set for 2024; 2026 date not found).",
+   "value": 9,
+   "unit": "week",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL owners extend trade deadline to follow Week 9 games of 2024 NFL season (https://www.nfl.com/news/nfl-owners-extend-trade-deadline-to-follow-week-9-games-of-2024-nfl-season)",
+     "locator": "2024 deadline announcement",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "push the 2024 trading deadline to the Tuesday after Week 9 games.",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Source covers 2024; no page read this session gives the 2026 date.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0042",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The 2026 league year begins on March 11 at 4:00 p.m. New York time.",
+   "value": 11,
+   "unit": "day of March",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 National Football League important dates (https://www.nfl.com/news/2026-national-football-league-important-dates)",
+     "locator": "2026 important dates",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "The 2026 League Year and free agency signing period begin at 4:00 p.m., New York time.",
+     "value": 11
+    },
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "At 4:00 p.m. ET on Wednesday, March 11.",
+     "value": 11
+    },
+    {
+     "citation": "Sports Illustrated, NFL Offseason Calendar: Key Dates (2026-02-12, https://www.si.com/nfl/offseason-calendar-key-dates-nfl-draft-free-agency-more)",
+     "locator": "Offseason calendar",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "On March 11, the new NFL league year will begin, and at 4:00 p.m. ET, free agency will officially get underway",
+     "value": 11
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0043",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The 2026 negotiating window opens at noon Eastern on March 9.",
+   "value": 9,
+   "unit": "day of March",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "From 12:00 p.m. ET on Monday, March 9",
+     "value": 9
+    },
+    {
+     "citation": "Sports Illustrated, NFL Offseason Calendar: Key Dates (2026-02-12, https://www.si.com/nfl/offseason-calendar-key-dates-nfl-draft-free-agency-more)",
+     "locator": "Offseason calendar",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "From March 9-11, teams will be able to begin negotiating with unrestricted free agents.",
+     "value": 9
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0044",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The 2026 tag window opens February 17.",
+   "value": 17,
+   "unit": "day of February",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 National Football League important dates (https://www.nfl.com/news/2026-national-football-league-important-dates)",
+     "locator": "2026 important dates",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Beginning this date through 4:00 p.m., New York time on March 3, clubs may designate Franchise or Transition Players.",
+     "value": 17
+    },
+    {
+     "citation": "Sports Illustrated, NFL Offseason Calendar: Key Dates (2026-02-12, https://www.si.com/nfl/offseason-calendar-key-dates-nfl-draft-free-agency-more)",
+     "locator": "Offseason calendar",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "Beginning on Feb. 17, teams will be able to designate franchise and transition tags to players.",
+     "value": 17
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0045",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The NFL draft has seven rounds, one pick per club per round before compensatory picks.",
+   "value": 7,
+   "unit": "rounds",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL Football Operations, The Rules of the Draft (saved page copy)",
+     "locator": "The Rules of the Draft (text copy nfl-operations--draft-rules.txt, line 13)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "each of the 32 clubs receives one pick in each of the seven rounds of the NFL Draft",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0046",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 draft pick clock, round 1 pick clock: 8 minutes.",
+   "value": 8,
+   "unit": "min",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NBC New York, On the clock: how much time between each pick (2026-04-22, https://www.nbcnewyork.com/news/sports/nfl/nfl-draft-time-between-picks/6493089/)",
+     "locator": "2026 draft clock article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-new-york",
+     "primary": false,
+     "quote": "There are eight minutes between each pick in the first round in 2026, down from 10 minutes in 2025.",
+     "value": 8
+    },
+    {
+     "citation": "NBC Sports ProFootballTalk, NFL to shorten time between first-round picks to eight minutes (2025-12-10, https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/nfl-to-shorten-time-between-first-round-picks-to-eight-minutes)",
+     "locator": "Headline",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-sports-pft",
+     "primary": false,
+     "quote": "NFL to shorten time between first-round picks to eight minutes",
+     "value": 8
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0047",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 draft pick clock, round 2 pick clock: 7 minutes.",
+   "value": 7,
+   "unit": "min",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NBC New York, On the clock: how much time between each pick (2026-04-22, https://www.nbcnewyork.com/news/sports/nfl/nfl-draft-time-between-picks/6493089/)",
+     "locator": "2026 draft clock article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-new-york",
+     "primary": false,
+     "quote": "Teams get seven minutes to make picks in the second round.",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0048",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 draft pick clock, rounds 3 to 6 pick clock: 5 minutes.",
+   "value": 5,
+   "unit": "min",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NBC New York, On the clock: how much time between each pick (2026-04-22, https://www.nbcnewyork.com/news/sports/nfl/nfl-draft-time-between-picks/6493089/)",
+     "locator": "2026 draft clock article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-new-york",
+     "primary": false,
+     "quote": "That time drops to five minutes for regular and compensatory picks in rounds three through six.",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0049",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 draft pick clock, round 7 pick clock: 4 minutes.",
+   "value": 4,
+   "unit": "min",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NBC New York, On the clock: how much time between each pick (2026-04-22, https://www.nbcnewyork.com/news/sports/nfl/nfl-draft-time-between-picks/6493089/)",
+     "locator": "2026 draft clock article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "nbc-new-york",
+     "primary": false,
+     "quote": "There are just four minutes between picks in the seventh round.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The league Rules of the Draft page still says 10 minutes for round 1 and is stale.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0050",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Compensatory picks: no team may receive more than four.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Draft: NFL awards 33 compensatory picks to 15 teams (https://www.nfl.com/news/2026-nfl-draft-nfl-awards-33-compensatory-picks-to-15-teams)",
+     "locator": "2026 compensatory picks",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "with no team allowed to receive more than four",
+     "value": 4
+    },
+    {
+     "citation": "Sports Illustrated, NFL Compensatory Draft Picks Explained (2026-03-19, https://www.si.com/nfl/draft/nfl-compensatory-draft-picks-explained)",
+     "locator": "Compensatory picks explained",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "In total, as many as 32 compensatory picks are awarded each season, and teams can have no more than four.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0051",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Formula compensatory picks league-wide: up to 32 (33 in 2026 with one special pick).",
+   "value": 32,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Sports Illustrated, NFL Compensatory Draft Picks Explained (2026-03-19, https://www.si.com/nfl/draft/nfl-compensatory-draft-picks-explained)",
+     "locator": "Compensatory picks explained",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "In total, as many as 32 compensatory picks are awarded each season, and teams can have no more than four.",
+     "value": 32
+    },
+    {
+     "citation": "NFL Football Operations, The Rules of the Draft (saved page copy)",
+     "locator": "The Rules of the Draft (text copy nfl-operations--draft-rules.txt, line 29)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "the league also can assign as many as 32 additional",
+     "value": 32
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). 2026 awarded 33: the league release and CBS both say 33, including one special third-round pick to the Lions.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0052",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 clubs may hold one video or phone call with at most five prospective free agents in the window.",
+   "value": 5,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL announces new playing rules, bylaws, resolutions for 2026 (https://www.nfl.com/news/nfl-announces-new-playing-rules-bylaws-resolutions-for-2026)",
+     "locator": "2026 resolution",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "permits clubs to have one video or phone call with no more than five prospective Unrestricted Free Agent",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0053",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 restricted free agent tender, level rofr: $3,520,000 (or 110 percent of 2025 salary where stated).",
+   "value": 3520000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "For right of first refusal only, a one-year salary of at least $3,520,000.",
+     "value": 3520000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0054",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 restricted free agent tender, level original round: $3,674,000 (or 110 percent of 2025 salary where stated).",
+   "value": 3674000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "a one-year salary of at least $3,674,000 or 110 percent of the 2025 Paragraph 5 salary, whichever is greater.",
+     "value": 3674000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0055",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 restricted free agent tender, level second round: $5,767,000 (or 110 percent of 2025 salary where stated).",
+   "value": 5767000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "a one-year salary of at least $5,767,000 or 110 percent of the 2025 Paragraph 5 salary, whichever is greater.",
+     "value": 5767000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0056",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 restricted free agent tender, level first round: $8,046,000 (or 110 percent of 2025 salary where stated).",
+   "value": 8046000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "a one-year salary of at least $8,046,000 or 110 percent of the 2025 Paragraph 5 salary, whichever is greater.",
+     "value": 8046000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0057",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "2026 restricted free agent tender, level first round waived: $8,546,000 (or 110 percent of 2025 salary where stated).",
+   "value": 8546000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, 2026 NFL Free Agency questions & answers (https://www.nfl.com/_amp/2026-nfl-free-agency-questions-answers)",
+     "locator": "2026 free agency Q&A",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "a one-year salary of at least $8,546,000 or 110 percent of the 2025 Paragraph 5 salary, whichever is greater.",
+     "value": 8546000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0058",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A credited season needs three or more regular season games on full pay status.",
+   "value": 3,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Football Nation USA, Accrued versus credited seasons (2026-10-30, https://www.footballnationusa.com/post/nfl-accrued-versus-credited-seasons-explained)",
+     "locator": "Accrued vs credited article",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "footballnation",
+     "primary": false,
+     "quote": "A player earns one when he was on, or should have been on, full pay status for at least three regular season games.",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0059",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Draft eligibility: three NFL regular seasons must have begun and ended after high school graduation.",
+   "value": 3,
+   "unit": "seasons",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 6 Section 2(b) (text copy cba_2020.txt, line 1365)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "until three NFL regular seasons have begun and ended following either his graduation from high school",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0060",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Mandatory veteran minicamp: at most three days, plus one day for physicals.",
+   "value": 3,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 22 Section 2 (text copy cba_2020.txt, line 7752)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "No mandatory veteran minicamp may exceed three days in length, plus one day for physical examinations.",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0061",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "One three-day post-draft rookie minicamp, on the first or second weekend after the draft.",
+   "value": 3,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 22 Section 7(a) (text copy cba_2020.txt, line 7825)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "Each Club may hold one three-day post-Draft Rookie Minicamp",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0062",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp: players may be on the field no more than four hours a day.",
+   "value": 4,
+   "unit": "hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 23 Section 5 (text copy cba_2020.txt, line 8078)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "players may be on the field for a total of no more than four hours per day",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0063",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Camp: one padded practice per day of at most 2.5 hours on the field.",
+   "value": 2.5,
+   "unit": "hours",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 23 Section 5 (text copy cba_2020.txt, line 8080)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "which shall be no longer than 2.5 hours of on-field activities",
+     "value": 2.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0064",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Bye week: players get at least four consecutive days off.",
+   "value": 4,
+   "unit": "days",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 24 Section 2 (text copy cba_2020.txt, line 8368)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "players will be given a minimum of four consecutive days off",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0065",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Tampering and cap violations: Commissioner may fine a club up to $6,500,000.",
+   "value": 6500000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 14 (text copy cba_2020.txt, line 6541)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "impose a fine of up to $6,500,000, payable to the NFL, upon any Club found to have committed such violation",
+     "value": 6500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0066",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The same article lets the Commissioner order forfeiture of up to two draft choices.",
+   "value": 2,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 14 (text copy cba_2020.txt, line 6542)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "order the forfeiture of up to a maximum of two draft choices (without limitation as to round)",
+     "value": 2
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0067",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Club executives may be fined up to $500,000 for the same violation.",
+   "value": 500000,
+   "unit": "USD",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 14 (text copy cba_2020.txt, line 6544)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "impose a fine of up to $500,000 on any Club executive or other Club personnel",
+     "value": 500000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0068",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The cap percentage average runs over the five preceding league years.",
+   "value": 5,
+   "unit": "years",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(a)(i)(A) (text copy cba_2020.txt, line 3308)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "for players at that position for the five preceding League Years",
+     "value": 5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0069",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Third franchise tag: 120 percent of the average of the five largest prior-year salaries at the position.",
+   "value": 120,
+   "unit": "percent",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 10 Section 2(b)(B) (text copy cba_2020.txt, line 3341)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "120% of the average of the five largest Prior Year Salaries",
+     "value": 120
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session; one source so far.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  }
+ ]
+}

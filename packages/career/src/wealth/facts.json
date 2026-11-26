@@ -1,0 +1,1268 @@
+{
+ "domain": "career",
+ "rows": [
+  {
+   "id": "F-wealth-0001",
+   "level": "both",
+   "domain": "career",
+   "statement": "Federal ordinary income brackets, single filer, 2026: bracket start (taxable income, USD) and marginal rate.",
+   "value": "0:0.10,12400:0.12,50400:0.22,105700:0.24,201775:0.32,256225:0.35,640600:0.37",
+   "unit": "USD:rate",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Revenue Procedure 2025-32 (2026 inflation adjustments)",
+     "locator": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf, section 4.01 Table 3",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "quote": "Over $640,600 $192,979.25 plus 37% of the excess over $640,600",
+     "value": "0:0.10,12400:0.12,50400:0.22,105700:0.24,201775:0.32,256225:0.35,640600:0.37"
+    },
+    {
+     "citation": "IRS news release IR-2025-103, 2025-10-09",
+     "locator": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": false,
+     "quote": "the top tax rate remains 37% for individual single taxpayers with incomes greater than $640,600",
+     "value": "0:0.10,12400:0.12,50400:0.22,105700:0.24,201775:0.32,256225:0.35,640600:0.37"
+    },
+    {
+     "citation": "Journal of Accountancy, 'Annual inflation adjustments announced for tax year 2026', 2025-10-09",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/annual-inflation-adjustments-announced-for-tax-year-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "the top tax rate of 37% applies to single taxpayers with incomes greater than $640,600",
+     "value": "0:0.10,12400:0.12,50400:0.22,105700:0.24,201775:0.32,256225:0.35,640600:0.37"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0002",
+   "level": "both",
+   "domain": "career",
+   "statement": "Federal ordinary income brackets, married filing jointly, 2026: bracket start (taxable income, USD) and marginal rate.",
+   "value": "0:0.10,24800:0.12,100800:0.22,211400:0.24,403550:0.32,512450:0.35,768700:0.37",
+   "unit": "USD:rate",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Revenue Procedure 2025-32 (2026 inflation adjustments)",
+     "locator": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf, section 4.01 Table 1",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "quote": "Over $768,700 $206,583.50 plus 37% of the excess over $768,700",
+     "value": "0:0.10,24800:0.12,100800:0.22,211400:0.24,403550:0.32,512450:0.35,768700:0.37"
+    },
+    {
+     "citation": "IRS news release IR-2025-103, 2025-10-09",
+     "locator": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": false,
+     "quote": "37% for incomes greater than $640,600 ($768,700 for married couples filing jointly)",
+     "value": "0:0.10,24800:0.12,100800:0.22,211400:0.24,403550:0.32,512450:0.35,768700:0.37"
+    },
+    {
+     "citation": "Journal of Accountancy, 'Annual inflation adjustments announced for tax year 2026', 2025-10-09",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/annual-inflation-adjustments-announced-for-tax-year-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "37% applies to single taxpayers with incomes greater than $640,600 ($768,700 for married couples filing jointly)",
+     "value": "0:0.10,24800:0.12,100800:0.22,211400:0.24,403550:0.32,512450:0.35,768700:0.37"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0003",
+   "level": "both",
+   "domain": "career",
+   "statement": "Federal standard deduction, single filer, 2026.",
+   "value": 16100,
+   "unit": "USD",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Revenue Procedure 2025-32 (2026 inflation adjustments)",
+     "locator": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf, section 4.14(1)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "value": 16100
+    },
+    {
+     "citation": "IRS news release IR-2025-103, 2025-10-09",
+     "locator": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": false,
+     "quote": "the standard deduction rises to $16,100 for tax year 2026",
+     "value": 16100
+    },
+    {
+     "citation": "Journal of Accountancy, 'Annual inflation adjustments announced for tax year 2026', 2025-10-09",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/annual-inflation-adjustments-announced-for-tax-year-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "$16,100 for single taxpayers and married individuals filing separately",
+     "value": 16100
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0004",
+   "level": "both",
+   "domain": "career",
+   "statement": "Federal standard deduction, married filing jointly, 2026.",
+   "value": 32200,
+   "unit": "USD",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Revenue Procedure 2025-32 (2026 inflation adjustments)",
+     "locator": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf, section 4.14(1)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "value": 32200
+    },
+    {
+     "citation": "IRS news release IR-2025-103, 2025-10-09",
+     "locator": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": false,
+     "quote": "the standard deduction increases to $32,200 for married couples filing jointly",
+     "value": 32200
+    },
+    {
+     "citation": "Journal of Accountancy, 'Annual inflation adjustments announced for tax year 2026', 2025-10-09",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/annual-inflation-adjustments-announced-for-tax-year-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "$32,200 for married couples filing jointly",
+     "value": 32200
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0005",
+   "level": "both",
+   "domain": "career",
+   "statement": "Federal long-term capital gains rate thresholds, single filer, 2026 (maximum zero rate amount 49,450; maximum 15% rate amount 545,500).",
+   "value": "0:0,49450:0.15,545500:0.20",
+   "unit": "USD:rate",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Revenue Procedure 2025-32 (2026 inflation adjustments)",
+     "locator": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf, section 4.03, All Other Individuals",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "value": "0:0,49450:0.15,545500:0.20"
+    },
+    {
+     "citation": "Kiplinger, 'IRS Updates Capital Gains Tax Thresholds for 2026' (updated 2026-03-09)",
+     "locator": "https://www.kiplinger.com/taxes/irs-updates-capital-gains-tax-thresholds",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger",
+     "primary": false,
+     "quote": "Single filers: Over $545,500",
+     "value": "0:0,49450:0.15,545500:0.20"
+    },
+    {
+     "citation": "Experian, 'Long-Term Capital Gains Rates for 2026' (2025-12-15)",
+     "locator": "https://www.experian.com/blogs/ask-experian/long-term-capital-gains-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "experian",
+     "primary": false,
+     "quote": "$545,501 or more",
+     "value": "0:0,49450:0.15,545500:0.20"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0006",
+   "level": "both",
+   "domain": "career",
+   "statement": "Federal long-term capital gains rate thresholds, married filing jointly, 2026 (maximum zero rate amount 98,900; maximum 15% rate amount 613,700).",
+   "value": "0:0,98900:0.15,613700:0.20",
+   "unit": "USD:rate",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Revenue Procedure 2025-32 (2026 inflation adjustments)",
+     "locator": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf, section 4.03, Married Individuals Filing Joint Returns",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "value": "0:0,98900:0.15,613700:0.20"
+    },
+    {
+     "citation": "Kiplinger, 'IRS Updates Capital Gains Tax Thresholds for 2026' (updated 2026-03-09)",
+     "locator": "https://www.kiplinger.com/taxes/irs-updates-capital-gains-tax-thresholds",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger",
+     "primary": false,
+     "quote": "Married filing jointly: Over $613,700",
+     "value": "0:0,98900:0.15,613700:0.20"
+    },
+    {
+     "citation": "Experian, 'Long-Term Capital Gains Rates for 2026' (2025-12-15)",
+     "locator": "https://www.experian.com/blogs/ask-experian/long-term-capital-gains-tax-rates/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "experian",
+     "primary": false,
+     "quote": "$613,701 or more",
+     "value": "0:0,98900:0.15,613700:0.20"
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0007",
+   "level": "both",
+   "domain": "career",
+   "statement": "Social Security (OASDI) contribution and benefit base for 2026: wages above it are not taxed for OASDI.",
+   "value": 184500,
+   "unit": "USD",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Social Security Administration, Office of the Chief Actuary, 'Contribution and Benefit Base' (Automatic Determinations)",
+     "locator": "https://www.ssa.gov/oact/cola/cbb.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa",
+     "primary": true,
+     "quote": "table row 2026 | 184,500",
+     "value": 184500
+    },
+    {
+     "citation": "Thomson Reuters Tax, 'SSA announces Social Security taxable wage base for 2026'",
+     "locator": "https://tax.thomsonreuters.com/news/ssa-announces-social-security-taxable-wage-base-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "thomson-reuters",
+     "primary": false,
+     "quote": "For 2026, that amount will be $184,500 (up from $176,100 for 2025).",
+     "value": 184500
+    },
+    {
+     "citation": "Journal of Accountancy, 'Social Security wage base and COLA announced for 2026', 2025-10",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "Individual taxable earnings of up to $184,500 annually will be subject to Social Security tax in 2026.",
+     "value": 184500
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0008",
+   "level": "both",
+   "domain": "career",
+   "statement": "Employee OASDI (Social Security) tax rate on wages.",
+   "value": 0.062,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Social Security Administration, Office of the Chief Actuary, 'Contribution and Benefit Base' (Automatic Determinations)",
+     "locator": "https://www.ssa.gov/oact/cola/cbb.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa",
+     "primary": true,
+     "quote": "The OASDI tax rate for wages paid in 2027 is set by statute at 6.2 percent for employees and employers, each.",
+     "value": 0.062
+    },
+    {
+     "citation": "Journal of Accountancy, 'Social Security wage base and COLA announced for 2026', 2025-10",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "the 6.2% OASDI tax",
+     "value": 0.062
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "The SSA page states the statutory rate in its 2027 wording; the rate is set by statute and unchanged for 2026 per the Journal of Accountancy."
+  },
+  {
+   "id": "F-wealth-0009",
+   "level": "both",
+   "domain": "career",
+   "statement": "Employee Medicare (HI) tax rate on all wages.",
+   "value": 0.0145,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Social Security Administration, Office of the Chief Actuary, 'Contribution and Benefit Base' (Automatic Determinations)",
+     "locator": "https://www.ssa.gov/oact/cola/cbb.html",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "ssa",
+     "primary": true,
+     "quote": "Tax rates under the HI program are 1.45 percent for employees and employers, each",
+     "value": 0.0145
+    },
+    {
+     "citation": "Journal of Accountancy, 'Social Security wage base and COLA announced for 2026', 2025-10",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "The Medicare hospital insurance tax of 1.45% each for employees and employers remains unchanged for 2026",
+     "value": 0.0145
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0010",
+   "level": "both",
+   "domain": "career",
+   "statement": "Additional Medicare Tax rate on wages above the filing-status threshold.",
+   "value": 0.009,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Tax Topic 560, Additional Medicare Tax (page reviewed 2026-11-09)",
+     "locator": "https://www.irs.gov/zh-hant/taxtopics/tc560 (Chinese-language page, numbers read and translated)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "value": 0.009
+    },
+    {
+     "citation": "IRS tax tip 'What is the Additional Medicare Tax and Who Pays It?' (marked historical content)",
+     "locator": "https://www.irs.gov/newsroom/what-is-the-additional-medicare-tax-and-who-pays-it",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": false,
+     "quote": "The Additional Medicare Tax rate is 0.9 percent.",
+     "value": 0.009
+    },
+    {
+     "citation": "Journal of Accountancy, 'Social Security wage base and COLA announced for 2026', 2025-10",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "value": 0.009
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0011",
+   "level": "both",
+   "domain": "career",
+   "statement": "Additional Medicare Tax threshold, single filer.",
+   "value": 200000,
+   "unit": "USD",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Tax Topic 560, Additional Medicare Tax (page reviewed 2026-11-09)",
+     "locator": "https://www.irs.gov/zh-hant/taxtopics/tc560 (Chinese-language page, numbers read and translated)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "value": 200000
+    },
+    {
+     "citation": "IRS tax tip 'What is the Additional Medicare Tax and Who Pays It?' (marked historical content)",
+     "locator": "https://www.irs.gov/newsroom/what-is-the-additional-medicare-tax-and-who-pays-it",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": false,
+     "quote": "Single | $200,000",
+     "value": 200000
+    }
+   ],
+   "status": "Rulebook only",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "Only IRS pages read; no independent cross-check yet."
+  },
+  {
+   "id": "F-wealth-0012",
+   "level": "both",
+   "domain": "career",
+   "statement": "Additional Medicare Tax threshold, married filing jointly.",
+   "value": 250000,
+   "unit": "USD",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS Tax Topic 560, Additional Medicare Tax (page reviewed 2026-11-09)",
+     "locator": "https://www.irs.gov/zh-hant/taxtopics/tc560 (Chinese-language page, numbers read and translated)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "value": 250000
+    },
+    {
+     "citation": "IRS tax tip 'What is the Additional Medicare Tax and Who Pays It?' (marked historical content)",
+     "locator": "https://www.irs.gov/newsroom/what-is-the-additional-medicare-tax-and-who-pays-it",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": false,
+     "quote": "Married filing jointly | $250,000",
+     "value": 250000
+    },
+    {
+     "citation": "Journal of Accountancy, 'Social Security wage base and COLA announced for 2026', 2025-10",
+     "locator": "https://www.journalofaccountancy.com/news/2025/oct/social-security-wage-base-and-cola-announced-for-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "journal-of-accountancy",
+     "primary": false,
+     "quote": "$250,000 for married taxpayers filing jointly",
+     "value": 250000
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0013",
+   "level": "both",
+   "domain": "career",
+   "statement": "Employee elective deferral limit for 401(k), 403(b) and governmental 457 plans, 2026.",
+   "value": 24500,
+   "unit": "USD",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS news release IR-2025-111, '401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500', 2025-11-13",
+     "locator": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "quote": "is increased to $24,500, up from $23,500 for 2025.",
+     "value": 24500
+    },
+    {
+     "citation": "Axios, 2025-11-13",
+     "locator": "https://www.axios.com/2025/11/13/401k-2026-contribution-limit-irs",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "axios",
+     "primary": false,
+     "quote": "The 401(k) contribution limit jumps $1,000 for 2026, up to $24,500.",
+     "value": 24500
+    },
+    {
+     "citation": "CBS News, IRS 401(k) and IRA contribution limits for 2026",
+     "locator": "https://www.cbsnews.com/news/irs-401k-ira-contribution-new-limit-thresholds-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news",
+     "primary": false,
+     "quote": "can contribute a maximum of $24,500 to those accounts next year",
+     "value": 24500
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0014",
+   "level": "both",
+   "domain": "career",
+   "statement": "Catch-up contribution limit for employees aged 50 and over, 2026.",
+   "value": 8000,
+   "unit": "USD",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "IRS news release IR-2025-111, '401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500', 2025-11-13",
+     "locator": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "irs",
+     "primary": true,
+     "quote": "is increased to $8,000, up from $7,500 for 2025.",
+     "value": 8000
+    },
+    {
+     "citation": "Axios, 2025-11-13",
+     "locator": "https://www.axios.com/2025/11/13/401k-2026-contribution-limit-irs",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "axios",
+     "primary": false,
+     "quote": "The 401(k) catch-up contribution limit rises to $8,000 for those 50 and older",
+     "value": 8000
+    },
+    {
+     "citation": "CBS News, IRS 401(k) and IRA contribution limits for 2026",
+     "locator": "https://www.cbsnews.com/news/irs-401k-ira-contribution-new-limit-thresholds-2026",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news",
+     "primary": false,
+     "quote": "will climb to $8,000 in 2026",
+     "value": 8000
+    }
+   ],
+   "status": "Verified",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0020",
+   "level": "both",
+   "domain": "career",
+   "statement": "States with no individual income tax on wage income, 2026: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Wyoming (Washington taxes capital gains only).",
+   "value": "AK,FL,NV,NH,SD,TN,TX,WY",
+   "unit": "state list",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, structure table, 'States with No Income Tax' column",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "Eight states, including New Hampshire, which repealed its interest and dividends tax as of 2025, levy no individual income tax at all.",
+     "value": "AK,FL,NV,NH,SD,TN,TX,WY"
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "CBS (updated 2025-12-30) says 'As of October, nine states levied no income tax at all' without the list in what was read; not counted. Cross-check owed."
+  },
+  {
+   "id": "F-wealth-0021",
+   "level": "both",
+   "domain": "career",
+   "statement": "AZ flat individual income tax rate on wages, 2026.",
+   "value": 0.025,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, table row Arizona",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "**Arizona (e, f, u, vv)** | 2.50% | > | $0",
+     "value": 0.025
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0022",
+   "level": "both",
+   "domain": "career",
+   "statement": "CO flat individual income tax rate on wages, 2026.",
+   "value": 0.044,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, table row Colorado",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "**Colorado (a, o)** | 4.40% | > | $0",
+     "value": 0.044
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0023",
+   "level": "both",
+   "domain": "career",
+   "statement": "IN flat individual income tax rate on wages, 2026.",
+   "value": 0.0295,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, summarised part of the table (not verbatim)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "value": 0.0295
+    },
+    {
+     "citation": "CBS News, 'Nine states are cutting income taxes in 2026' (updated 2025-12-30)",
+     "locator": "https://www.cbsnews.com/news/nine-states-cutting-income-taxes-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news",
+     "primary": false,
+     "quote": "will fall to 2.95% from 3% at the start of next year.",
+     "value": 0.0295
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0024",
+   "level": "both",
+   "domain": "career",
+   "statement": "KY flat individual income tax rate on wages, 2026.",
+   "value": 0.035,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, summarised part of the table (not verbatim)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "value": 0.035
+    },
+    {
+     "citation": "CBS News, 'Nine states are cutting income taxes in 2026' (updated 2025-12-30)",
+     "locator": "https://www.cbsnews.com/news/nine-states-cutting-income-taxes-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news",
+     "primary": false,
+     "quote": "will be cut to 3.5% on Jan. 1, down from its current 4%.",
+     "value": 0.035
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0025",
+   "level": "both",
+   "domain": "career",
+   "statement": "MS flat individual income tax rate on wages, 2026.",
+   "value": 0.04,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, summarised part of the table (not verbatim)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "value": 0.04
+    },
+    {
+     "citation": "CBS News, 'Nine states are cutting income taxes in 2026' (updated 2025-12-30)",
+     "locator": "https://www.cbsnews.com/news/nine-states-cutting-income-taxes-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news",
+     "primary": false,
+     "quote": "will decrease from 4.4% in 2025 to 4% as of Jan. 1, 2026",
+     "value": 0.04
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0026",
+   "level": "both",
+   "domain": "career",
+   "statement": "NC flat individual income tax rate on wages, 2026.",
+   "value": 0.0399,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, summarised part of the table (not verbatim)",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "value": 0.0399
+    },
+    {
+     "citation": "CBS News, 'Nine states are cutting income taxes in 2026' (updated 2025-12-30)",
+     "locator": "https://www.cbsnews.com/news/nine-states-cutting-income-taxes-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news",
+     "primary": false,
+     "quote": "will be reduced from 4.25% to 3.99% in 2026.",
+     "value": 0.0399
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0027",
+   "level": "both",
+   "domain": "career",
+   "statement": "GA flat individual income tax rate on wages, 2026.",
+   "value": 0.0519,
+   "unit": "ratio",
+   "validFor": "tax year 2026",
+   "sources": [
+    {
+     "citation": "Tax Foundation, 'State Individual Income Tax Rates and Brackets, 2026' (as of 2026-01-01)",
+     "locator": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/, table row Georgia",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "tax-foundation",
+     "primary": false,
+     "quote": "**Georgia** | 5.19% | > | $0",
+     "value": 0.0519
+    },
+    {
+     "citation": "CBS News, 'Nine states are cutting income taxes in 2026' (updated 2025-12-30)",
+     "locator": "https://www.cbsnews.com/news/nine-states-cutting-income-taxes-2026/",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "cbs-news",
+     "primary": false,
+     "quote": "will trim its income tax rate to 5.09% in 2026, down from 5.19% in 2025.",
+     "value": 0.0509
+    }
+   ],
+   "status": "Conflict",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Conflict",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "Conflict: Tax Foundation's 2026-01-01 table shows 5.19%, CBS reports a cut to 5.09% for 2026. Not shippable until resolved."
+  },
+  {
+   "id": "F-wealth-0030",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of stocks (S&P 500 with dividends), 1928-2025: arithmetic mean.",
+   "value": 0.1186,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.1186
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "Spot check of transcribed rows against the page is owed; no second series read."
+  },
+  {
+   "id": "F-wealth-0031",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of stocks (S&P 500 with dividends), 1928-2025: standard deviation.",
+   "value": 0.194,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.194
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0032",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of 10-year Treasury bonds, 1928-2025: arithmetic mean.",
+   "value": 0.0482,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.0482
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "Spot check of transcribed rows against the page is owed; no second series read."
+  },
+  {
+   "id": "F-wealth-0033",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of 10-year Treasury bonds, 1928-2025: standard deviation.",
+   "value": 0.079,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.079
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0034",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of 3-month Treasury bills, 1928-2025: arithmetic mean.",
+   "value": 0.0342,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.0342
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "Spot check of transcribed rows against the page is owed; no second series read."
+  },
+  {
+   "id": "F-wealth-0035",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of 3-month Treasury bills, 1928-2025: standard deviation.",
+   "value": 0.0304,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.0304
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0036",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of real estate (Damodaran housing price series), 1928-2025: arithmetic mean.",
+   "value": 0.0438,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.0438
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "Spot check of transcribed rows against the page is owed; no second series read."
+  },
+  {
+   "id": "F-wealth-0037",
+   "level": "both",
+   "domain": "career",
+   "statement": "US yearly nominal return of real estate (Damodaran housing price series), 1928-2025: standard deviation.",
+   "value": 0.0618,
+   "unit": "ratio/yr",
+   "validFor": "1928-2025",
+   "sources": [
+    {
+     "citation": "Damodaran, NYU Stern, 'Historical Returns on Stocks, Bonds and Bills', updated 2026-01-05, annual rows 1928-2025",
+     "locator": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html; statistics computed by the thread that wrote research/coach-personal-finance.md",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "damodaran-nyu",
+     "primary": false,
+     "value": 0.0618
+    }
+   ],
+   "status": "1 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0040",
+   "level": "both",
+   "domain": "career",
+   "statement": "Inflation planning value: 2.5% a year (rounded from historical CPI-U mean and a forward-looking estimate).",
+   "value": 0.025,
+   "unit": "ratio/yr",
+   "validFor": "planning value",
+   "sources": [
+    {
+     "citation": "BLS CPI-U yearly averages 1990-2025 as transcribed by usinflationcalculator.com (mean about 2.7%)",
+     "locator": "research/coach-personal-finance.md, E6.1.1 section",
+     "dateRead": "2026-11-25",
+     "howRead": "dataset computed",
+     "independenceGroup": "bls-cpi-transcribed",
+     "primary": false
+    },
+    {
+     "citation": "Morningstar, 'What's a Safe Retirement Withdrawal Rate for 2026?' (expected inflation 2.46%)",
+     "locator": "research/coach-personal-finance.md, E6.1.1 section",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "morningstar",
+     "primary": false
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ]
+  },
+  {
+   "id": "F-wealth-0041",
+   "level": "both",
+   "domain": "career",
+   "statement": "Safe withdrawal rate for a 30-year retirement, 2026 estimate.",
+   "value": 0.039,
+   "unit": "ratio/yr",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Morningstar, 'What's a Safe Retirement Withdrawal Rate for 2026?'",
+     "locator": "research/coach-personal-finance.md, E6.9.2 section",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "morningstar",
+     "primary": false,
+     "value": 0.039
+    },
+    {
+     "citation": "Kiplinger, 2025-12-04 (repeats Morningstar 3.9%)",
+     "locator": "research/coach-personal-finance.md, E6.9.2 section",
+     "dateRead": "2026-11-25",
+     "howRead": "secondary summary",
+     "independenceGroup": "kiplinger",
+     "primary": false,
+     "value": 0.039
+    }
+   ],
+   "status": "2 of 3",
+   "usedBy": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load for G-30 personal wealth from pages read 2026-11-25/26."
+    }
+   ],
+   "notes": "Kiplinger repeats Morningstar, so the two are not fully independent."
+  }
+ ]
+}

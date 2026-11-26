@@ -1,0 +1,391 @@
+{
+ "$comment": "College calendar, season 2026 (T3.2.1 column 'Through the 2026 season'). The 12-team playoff has no second round.",
+ "level": "college",
+ "kind": "dated",
+ "season": 2026,
+ "anchors": [
+  {
+   "id": "transfer_window_open",
+   "rule": {
+    "date": "2026-01-02"
+   },
+   "status": "Verified",
+   "leaf": "T6.1",
+   "source": "T6.1: 2025-26 cycle, one window, January 2 to 16, 2026 (three press reports)"
+  },
+  {
+   "id": "transfer_window_close",
+   "rule": {
+    "date": "2026-01-16"
+   },
+   "status": "Verified",
+   "leaf": "T6.1",
+   "source": "T6.1: January 2 to 16, 2026 (15 days)"
+  },
+  {
+   "id": "playoff_r1_start",
+   "rule": {
+    "date": "2026-12-18"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: 12-team playoff, first round December 18 and 19 (ESPN, NCAA)"
+  },
+  {
+   "id": "playoff_r1_end",
+   "rule": {
+    "date": "2026-12-19"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1"
+  },
+  {
+   "id": "playoff_qf_start",
+   "rule": {
+    "date": "2026-12-30"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: quarterfinals December 30 and January 1"
+  },
+  {
+   "id": "playoff_qf_end",
+   "rule": {
+    "date": "2027-01-01"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1"
+  },
+  {
+   "id": "playoff_sf_start",
+   "rule": {
+    "date": "2027-01-14"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: semifinals January 14 and 15"
+  },
+  {
+   "id": "playoff_sf_end",
+   "rule": {
+    "date": "2027-01-15"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1"
+  },
+  {
+   "id": "playoff_final",
+   "rule": {
+    "date": "2027-01-25"
+   },
+   "status": "2 of 3",
+   "leaf": "T3.2.1",
+   "source": "T3.2.1: final 2027-01-25 (ESPN, NCAA)"
+  },
+  {
+   "id": "recruiting_1_open",
+   "rule": {
+    "date": "2026-01-01"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_1_close",
+   "rule": {
+    "date": "2026-01-04"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_2_open",
+   "rule": {
+    "date": "2026-01-05"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_2_close",
+   "rule": {
+    "date": "2026-01-31"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_3_open",
+   "rule": {
+    "date": "2026-02-02"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_3_close",
+   "rule": {
+    "date": "2026-03-01"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_4_open",
+   "rule": {
+    "date": "2026-03-02"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_4_close",
+   "rule": {
+    "date": "2026-04-14"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_5_open",
+   "rule": {
+    "date": "2026-04-15"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_5_close",
+   "rule": {
+    "date": "2026-05-23"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_6_open",
+   "rule": {
+    "date": "2026-05-24"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_6_close",
+   "rule": {
+    "date": "2026-05-27"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_7_open",
+   "rule": {
+    "date": "2026-05-28"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_7_close",
+   "rule": {
+    "date": "2026-06-21"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_8_open",
+   "rule": {
+    "date": "2026-06-22"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_8_close",
+   "rule": {
+    "date": "2026-07-31"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2025-26 top-subdivision calendar as read (official FBS calendar)"
+  },
+  {
+   "id": "recruiting_f1_open",
+   "rule": {
+    "date": "2026-08-01"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+  },
+  {
+   "id": "recruiting_f1_close",
+   "rule": {
+    "date": "2026-08-31"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+  },
+  {
+   "id": "recruiting_f2_open",
+   "rule": {
+    "date": "2026-09-01"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+  },
+  {
+   "id": "recruiting_f2_close",
+   "rule": {
+    "date": "2026-11-29"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+  },
+  {
+   "id": "recruiting_f3_open",
+   "rule": {
+    "date": "2026-11-30"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+  },
+  {
+   "id": "recruiting_f3_close",
+   "rule": {
+    "date": "2026-12-31"
+   },
+   "status": "Rulebook only",
+   "leaf": "T4.2.1",
+   "source": "T4.2.1: 2026-27 official FBS calendar, fall part (depth pass 2026-11-26)"
+  }
+ ],
+ "windows": [
+  {
+   "id": "recruiting_1",
+   "kind": "window",
+   "label": "Recruiting dead period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_1_open",
+   "closes": "recruiting_1_close",
+   "period": "dead"
+  },
+  {
+   "id": "recruiting_2",
+   "kind": "window",
+   "label": "Recruiting contact period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_2_open",
+   "closes": "recruiting_2_close",
+   "period": "contact"
+  },
+  {
+   "id": "recruiting_3",
+   "kind": "window",
+   "label": "Recruiting dead period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_3_open",
+   "closes": "recruiting_3_close",
+   "period": "dead"
+  },
+  {
+   "id": "recruiting_4",
+   "kind": "window",
+   "label": "Recruiting quiet period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_4_open",
+   "closes": "recruiting_4_close",
+   "period": "quiet"
+  },
+  {
+   "id": "recruiting_5",
+   "kind": "window",
+   "label": "Recruiting evaluation period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_5_open",
+   "closes": "recruiting_5_close",
+   "period": "evaluation"
+  },
+  {
+   "id": "recruiting_6",
+   "kind": "window",
+   "label": "Recruiting dead period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_6_open",
+   "closes": "recruiting_6_close",
+   "period": "dead"
+  },
+  {
+   "id": "recruiting_7",
+   "kind": "window",
+   "label": "Recruiting quiet period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_7_open",
+   "closes": "recruiting_7_close",
+   "period": "quiet"
+  },
+  {
+   "id": "recruiting_8",
+   "kind": "window",
+   "label": "Recruiting dead period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_8_open",
+   "closes": "recruiting_8_close",
+   "period": "dead"
+  },
+  {
+   "id": "recruiting_f1",
+   "kind": "window",
+   "label": "Recruiting quiet period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_f1_open",
+   "closes": "recruiting_f1_close",
+   "period": "quiet"
+  },
+  {
+   "id": "recruiting_f2",
+   "kind": "window",
+   "label": "Recruiting evaluation period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_f2_open",
+   "closes": "recruiting_f2_close",
+   "period": "evaluation"
+  },
+  {
+   "id": "recruiting_f3",
+   "kind": "window",
+   "label": "Recruiting dead period",
+   "leaf": "T4.2.1",
+   "opens": "recruiting_f3_open",
+   "closes": "recruiting_f3_close",
+   "period": "dead"
+  }
+ ],
+ "omit": [
+  "playoff_r2"
+ ]
+}

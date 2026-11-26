@@ -2,10 +2,16 @@
 // between ticks and equal the stored values at tick boundaries. Nothing is extrapolated: before the
 // first tick and after the last the view holds the nearest stored tick. Discrete fields (move mode,
 // ball state, carrier) take the value of the tick at or before the time.
-import { facingToRad, type FilmFrames } from './format.ts';
+import type { FilmFrames } from './format.ts';
 
-const TURN_STEPS = 256;
-const HALF_TURN_STEPS = 128;
+const TWO_PI = 2 * Math.PI;
+
+/** a + (b - a) * k the short way round. */
+function lerpAngle(a: number, b: number, k: number): number {
+  let d = (b - a) % TWO_PI;
+  if (d > Math.PI) d -= TWO_PI; else if (d < -Math.PI) d += TWO_PI;
+  return a + d * k;
+}
 
 /** Reusable output of `sampleFrames`, so the draw loop allocates nothing per frame. */
 export interface FrameSample {
@@ -13,7 +19,10 @@ export interface FrameSample {
   tick: number;
   readonly x: Float64Array;
   readonly y: Float64Array;
-  readonly facingRad: Float64Array;
+  readonly headingRad: Float64Array;
+  readonly gazeRad: Float64Array;
+  readonly officialX: Float64Array;
+  readonly officialY: Float64Array;
   readonly state: Uint8Array;
   ballX: number;
   ballY: number;
@@ -22,9 +31,10 @@ export interface FrameSample {
   ballCarrier: number;
 }
 
-export function newSample(slotCount: number): FrameSample {
+export function newSample(slotCount: number, officialCount = 0): FrameSample {
   return {
-    tick: 0, x: new Float64Array(slotCount), y: new Float64Array(slotCount), facingRad: new Float64Array(slotCount),
+    tick: 0, x: new Float64Array(slotCount), y: new Float64Array(slotCount), headingRad: new Float64Array(slotCount), gazeRad: new Float64Array(slotCount),
+    officialX: new Float64Array(officialCount), officialY: new Float64Array(officialCount),
     state: new Uint8Array(slotCount), ballX: 0, ballY: 0, ballZ: 0, ballKind: 0, ballCarrier: -1,
   };
 }
@@ -45,15 +55,14 @@ export function sampleFrames(f: FilmFrames, t: number, out: FrameSample): FrameS
   const a = i0 * n, b = i1 * n;
   out.tick = tc;
   for (let s = 0; s < n; s++) {
-    const xa = f.x[a + s]!, ya = f.y[a + s]!, fa = f.facing[a + s]!;
+    const xa = f.x[a + s]!, ya = f.y[a + s]!, ha = f.headingRad[a + s]!, ga = f.gazeRad[a + s]!;
     if (frac === 0) {
-      out.x[s] = xa; out.y[s] = ya; out.facingRad[s] = facingToRad(fa);
+      out.x[s] = xa; out.y[s] = ya; out.headingRad[s] = ha; out.gazeRad[s] = ga;
     } else {
       out.x[s] = xa + (f.x[b + s]! - xa) * frac;
       out.y[s] = ya + (f.y[b + s]! - ya) * frac;
-      // Shortest way round, in facing steps.
-      const d = ((f.facing[b + s]! - fa + HALF_TURN_STEPS + TURN_STEPS) % TURN_STEPS) - HALF_TURN_STEPS;
-      out.facingRad[s] = facingToRad(fa + d * frac);
+      out.headingRad[s] = lerpAngle(ha, f.headingRad[b + s]!, frac);
+      out.gazeRad[s] = lerpAngle(ga, f.gazeRad[b + s]!, frac);
     }
     out.state[s] = f.state[a + s]!;
   }
@@ -63,6 +72,12 @@ export function sampleFrames(f: FilmFrames, t: number, out: FrameSample): FrameS
     out.ballX = bx + (f.ballX[i1]! - bx) * frac;
     out.ballY = by + (f.ballY[i1]! - by) * frac;
     out.ballZ = bz + (f.ballZ[i1]! - bz) * frac;
+  }
+  const m = f.officialCount, oa = i0 * m, ob = i1 * m;
+  for (let k = 0; k < m && k < out.officialX.length; k++) {
+    const xa = f.officialX[oa + k]!, ya = f.officialY[oa + k]!;
+    out.officialX[k] = frac === 0 ? xa : xa + (f.officialX[ob + k]! - xa) * frac;
+    out.officialY[k] = frac === 0 ? ya : ya + (f.officialY[ob + k]! - ya) * frac;
   }
   out.ballKind = f.ballKind[i0]!;
   out.ballCarrier = f.ballCarrier[i0]!;

@@ -1,0 +1,92 @@
+{
+ "seasons": [
+  "2012",
+  "2013",
+  "2014",
+  "2015",
+  "2016",
+  "2017",
+  "2018",
+  "2019",
+  "2020",
+  "2021",
+  "2022",
+  "2023",
+  "2024",
+  "2025"
+ ],
+ "groups": {
+  "Knee": {
+   "episodes": 1404,
+   "median": 1.0,
+   "mean": 1.76,
+   "share_one": 0.588
+  },
+  "Hamstring": {
+   "episodes": 1003,
+   "median": 1,
+   "mean": 1.71,
+   "share_one": 0.546
+  },
+  "Ankle": {
+   "episodes": 1142,
+   "median": 1.0,
+   "mean": 1.78,
+   "share_one": 0.544
+  },
+  "Shoulder": {
+   "episodes": 468,
+   "median": 1.0,
+   "mean": 1.54,
+   "share_one": 0.65
+  },
+  "Foot": {
+   "episodes": 463,
+   "median": 1,
+   "mean": 2.06,
+   "share_one": 0.529
+  },
+  "Groin": {
+   "episodes": 315,
+   "median": 1,
+   "mean": 1.75,
+   "share_one": 0.616
+  },
+  "Back": {
+   "episodes": 209,
+   "median": 1,
+   "mean": 1.59,
+   "share_one": 0.665
+  },
+  "Hip": {
+   "episodes": 158,
+   "median": 1.0,
+   "mean": 1.7,
+   "share_one": 0.595
+  },
+  "Calf": {
+   "episodes": 298,
+   "median": 1.0,
+   "mean": 1.8,
+   "share_one": 0.537
+  },
+  "Concussion": {
+   "episodes": 1008,
+   "median": 1.0,
+   "mean": 1.46,
+   "share_one": 0.707
+  },
+  "Neck": {
+   "episodes": 178,
+   "median": 1.0,
+   "mean": 1.67,
+   "share_one": 0.629
+  },
+  "Quadriceps": {
+   "episodes": 152,
+   "median": 1.0,
+   "mean": 1.77,
+   "share_one": 0.546
+  }
+ }
+}
