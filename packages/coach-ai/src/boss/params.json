@@ -1,0 +1,597 @@
+{
+ "module": "coachAi.boss",
+ "version": "0.1.0",
+ "note": "Tuning constants of the boss above the user (S4, K6.5). Row: [name, value, min, max, unit, basis, leaf, constrainedBy]. basis 'bible' = the leaf states it as a starting value; 'assumption' = a design number this module chose where the leaf gives a rule but no size. None is a real-world fact: S4 marks every rule here Assumption.",
+ "rows": [
+  [
+   "facet_max",
+   100,
+   100,
+   100,
+   "facet",
+   "bible",
+   "S4.1.1 (standards, delegation, ego, loyalty_to_staff run 0 to 100)",
+   "none"
+  ],
+  [
+   "prob_floor",
+   0.0001,
+   1e-05,
+   0.01,
+   "probability",
+   "bible",
+   "MA-52 (nothing possible has zero chance; prob.floor 0.0001)",
+   "boss test 'floors'"
+  ],
+  [
+   "trust_min",
+   0,
+   0,
+   0,
+   "trust",
+   "bible",
+   "S4.2.1 (trust runs 0 to 100)",
+   "none"
+  ],
+  [
+   "trust_max",
+   100,
+   100,
+   100,
+   "trust",
+   "bible",
+   "S4.2.1 (trust runs 0 to 100)",
+   "none"
+  ],
+  [
+   "trust_start_stranger",
+   20,
+   0,
+   50,
+   "trust",
+   "bible",
+   "S4.2.1 (starts at 20 to 50 by how he was hired)",
+   "boss test 'trust start'"
+  ],
+  [
+   "trust_start_known",
+   35,
+   20,
+   50,
+   "trust",
+   "assumption",
+   "S4.2.1 (a known person starts higher; the 20 to 50 range is the bible's)",
+   "boss test 'trust start'"
+  ],
+  [
+   "trust_start_reputation_span",
+   15,
+   0,
+   30,
+   "trust",
+   "assumption",
+   "S4.2.1, E5 (reputation lifts the start inside 20 to 50)",
+   "boss test 'trust start'"
+  ],
+  [
+   "trust_reference_span",
+   10,
+   0,
+   30,
+   "trust",
+   "assumption",
+   "S4.2.1 edge case (a new boss reads the old boss's recommendation)",
+   "boss test 'trust start'"
+  ],
+  [
+   "trust_step",
+   0.04,
+   0.005,
+   0.2,
+   "ratio",
+   "assumption",
+   "S4.2.1 (each graded product moves trust toward its grade with a small step); sized so the S4.2.1 acceptance holds",
+   "boss test 'one season to 75'"
+  ],
+  [
+   "trust_late_step",
+   4,
+   0,
+   20,
+   "trust",
+   "assumption",
+   "S4.2.1 (late or missing work moves it down with a large step)",
+   "boss test 'late work'"
+  ],
+  [
+   "trust_missing_step",
+   8,
+   0,
+   30,
+   "trust",
+   "assumption",
+   "S4.2.1 (missing work moves it down with a large step)",
+   "boss test 'late work'"
+  ],
+  [
+   "trust_proved_right_step",
+   6,
+   0,
+   20,
+   "trust",
+   "assumption",
+   "S4.2.1 (a rejected recommendation proved right moves it up strongly)",
+   "boss test 'proved right'"
+  ],
+  [
+   "trust_light_edits",
+   40,
+   0,
+   100,
+   "trust",
+   "bible",
+   "S4.2.1 threshold 40",
+   "boss test 'perks'"
+  ],
+  [
+   "trust_recommend_default",
+   60,
+   0,
+   100,
+   "trust",
+   "bible",
+   "S4.2.1 threshold 60",
+   "boss test 'perks'"
+  ],
+  [
+   "trust_next_rung_duty",
+   75,
+   0,
+   100,
+   "trust",
+   "bible",
+   "S4.2.1 threshold 75",
+   "boss test 'perks'"
+  ],
+  [
+   "trust_named_for_opening",
+   90,
+   0,
+   100,
+   "trust",
+   "bible",
+   "S4.2.1 threshold 90",
+   "boss test 'perks'"
+  ],
+  [
+   "delegation_shift",
+   10,
+   0,
+   25,
+   "trust",
+   "assumption",
+   "S4.2.1 (high delegation converts trust to ownership sooner): thresholds move by up to this at delegation 0 or 100",
+   "boss test 'perks'"
+  ],
+  [
+   "judge_standards_slope",
+   0.3,
+   0,
+   1,
+   "points_per_facet",
+   "assumption",
+   "S4.1.1 (standards set the quality bar): grade points lost per standards point above 50",
+   "boss test 'standards'"
+  ],
+  [
+   "judge_noise_sd_best",
+   3,
+   0,
+   20,
+   "points",
+   "assumption",
+   "K6.5.2 (the boss sees work quality with error from his evaluation)",
+   "boss test 'judge noise'"
+  ],
+  [
+   "judge_noise_sd_worst",
+   15,
+   0,
+   40,
+   "points",
+   "assumption",
+   "K6.5.2 (the boss sees work quality with error from his evaluation)",
+   "boss test 'judge noise'"
+  ],
+  [
+   "z_limit",
+   3,
+   2,
+   4,
+   "z",
+   "assumption",
+   "K2.1.4 (behaviour z design range -3 to +3)",
+   "none"
+  ],
+  [
+   "belief_tolerance",
+   0.25,
+   0.05,
+   1,
+   "share",
+   "assumption",
+   "S4.1.1 beliefs: a finding this far from his belief scores zero agreement before evidence",
+   "boss test 'beliefs'"
+  ],
+  [
+   "belief_evidence_half",
+   30,
+   1,
+   200,
+   "count",
+   "assumption",
+   "S4.1.1 (work that contradicts his beliefs needs stronger evidence): the sample size that wins half the gap back",
+   "boss test 'beliefs'"
+  ],
+  [
+   "missed_cost",
+   5,
+   0,
+   20,
+   "points",
+   "assumption",
+   "S4.3 (a boss sees missed reps in a chart): points per missed rep",
+   "boss test 'judge'"
+  ],
+  [
+   "judge_neutral",
+   60,
+   0,
+   100,
+   "points",
+   "assumption",
+   "S4.3.1 (a boss score for work he has no view on: an ordinary mark)",
+   "boss test 'judge'"
+  ],
+  [
+   "flag_belief_line",
+   0.5,
+   0,
+   1,
+   "share",
+   "assumption",
+   "S4.1.1 beliefs (a flagged tell he believes weaker than this line is marked down)",
+   "boss test 'beliefs'"
+  ],
+  [
+   "hours_culture_slope",
+   0.5,
+   0,
+   2,
+   "ratio",
+   "assumption",
+   "S4.1.2 (hours assigned can exceed a sane week, by hours_culture): share added at hours_culture 100",
+   "boss test 'hours scale'"
+  ],
+  [
+   "late_request_max",
+   0.3,
+   0,
+   1,
+   "probability",
+   "assumption",
+   "S4.1.2 (some assignments arrive late): chance at hours_culture 100",
+   "boss test 'hours scale'"
+  ],
+  [
+   "week_hours_cap",
+   90,
+   40,
+   120,
+   "hours",
+   "bible",
+   "L4.3.5 (all-in 90 hours): two bosses over-assigning past it are flagged",
+   "boss test 'two bosses'"
+  ],
+  [
+   "more_time_standards",
+   70,
+   0,
+   100,
+   "facet",
+   "assumption",
+   "S4.1.2 (asking for more time costs standing with a high-standards boss)",
+   "boss test 'more time'"
+  ],
+  [
+   "more_time_trust_cost",
+   1,
+   0,
+   10,
+   "trust",
+   "assumption",
+   "S4.1.2 (costs a little standing)",
+   "boss test 'more time'"
+  ],
+  [
+   "blame_factor",
+   8,
+   0,
+   30,
+   "points",
+   "assumption",
+   "S4.3.2 (after a losing season ratings drift down by a blame factor unless trust is high)",
+   "boss test 'evaluation'"
+  ],
+  [
+   "blame_trust_shield",
+   75,
+   0,
+   100,
+   "trust",
+   "assumption",
+   "S4.3.2 (unless trust is high): at this trust the blame drift is gone",
+   "boss test 'evaluation'"
+  ],
+  [
+   "case_max_move",
+   10,
+   0,
+   30,
+   "points",
+   "assumption",
+   "S4.3.2 (making his case with truth-graded evidence can move one rating)",
+   "boss test 'make case'"
+  ],
+  [
+   "departed_noise_sd",
+   8,
+   0,
+   30,
+   "points",
+   "assumption",
+   "S4.3.2 edge case (a fired boss writes from memory with more noise)",
+   "boss test 'evaluation'"
+  ],
+  [
+   "floor_base",
+   30,
+   0,
+   80,
+   "points",
+   "assumption",
+   "S4.5.1 (the boss's standards floor)",
+   "boss test 'decision'"
+  ],
+  [
+   "floor_slope",
+   0.3,
+   0,
+   1,
+   "points_per_facet",
+   "assumption",
+   "S4.5.1 (the floor rises with standards)",
+   "boss test 'decision'"
+  ],
+  [
+   "raise_trust",
+   60,
+   0,
+   100,
+   "trust",
+   "assumption",
+   "S4.5.1 (keep with a raise if the boss wants to match an outside offer)",
+   "boss test 'decision'"
+  ],
+  [
+   "loyalty_margin",
+   10,
+   0,
+   40,
+   "points",
+   "assumption",
+   "S4.5.1 (an outside candidate must score higher by more than a loyalty margin): margin at loyalty 100",
+   "boss test 'decision'"
+  ],
+  [
+   "come_with_me_base",
+   0.15,
+   0,
+   1,
+   "probability",
+   "assumption",
+   "S4.5.1 (come with me follows trust and loyalty_to_staff)",
+   "boss test 'come with me'"
+  ],
+  [
+   "come_with_me_span",
+   0.8,
+   0,
+   1,
+   "probability",
+   "assumption",
+   "S4.5.1 (come with me is the commonest way up)",
+   "boss test 'come with me'"
+  ],
+  [
+   "ego_public_cut",
+   0.8,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "S4.4.1 (the chance is reduced by ego when challenged in public): share removed at ego 100",
+   "boss test 'disagree'"
+  ],
+  [
+   "private_respect_gain",
+   3,
+   0,
+   10,
+   "trust",
+   "assumption",
+   "S4.4.1 (private, evidence-based disagreement gains respect when proved right)",
+   "boss test 'disagree'"
+  ],
+  [
+   "public_relationship_cost",
+   6,
+   0,
+   20,
+   "relationship",
+   "assumption",
+   "S4.4.1 (public disagreement can lose the boss): cost at ego 100",
+   "boss test 'disagree'"
+  ],
+  [
+   "public_room_gain",
+   4,
+   0,
+   20,
+   "relationship",
+   "assumption",
+   "S4.4.1 (public disagreement can win the room)",
+   "boss test 'disagree'"
+  ],
+  [
+   "around_relationship_cost",
+   20,
+   0,
+   50,
+   "relationship",
+   "assumption",
+   "S4.4.1 (going around him damages the relationship for good)",
+   "boss test 'disagree'"
+  ],
+  [
+   "quiet_notice_base",
+   0.2,
+   0,
+   1,
+   "probability",
+   "assumption",
+   "S4.4.1 (quiet defiance on a Recommend duty is insubordination if noticed)",
+   "boss test 'disagree'"
+  ],
+  [
+   "quiet_notice_span",
+   0.6,
+   0,
+   1,
+   "probability",
+   "assumption",
+   "S4.4.1 (a demanding boss notices more)",
+   "boss test 'disagree'"
+  ],
+  [
+   "insubordination_trust_cost",
+   15,
+   0,
+   50,
+   "trust",
+   "assumption",
+   "S4.4.1 (insubordination if noticed)",
+   "boss test 'disagree'"
+  ],
+  [
+   "credit_up_low",
+   0.8,
+   0,
+   1,
+   "share",
+   "assumption",
+   "S4.4.2 (credit flows up, more so under a low-loyalty boss): boss's share at loyalty 0",
+   "boss test 'credit'"
+  ],
+  [
+   "credit_up_high",
+   0.4,
+   0,
+   1,
+   "share",
+   "assumption",
+   "S4.4.2 (a high-loyalty boss names his assistants): boss's share at loyalty 100",
+   "boss test 'credit'"
+  ],
+  [
+   "credit_claim_gain",
+   0.2,
+   0,
+   1,
+   "share",
+   "assumption",
+   "S4.4.2 (claiming credit raises outside reputation)",
+   "boss test 'credit'"
+  ],
+  [
+   "credit_claim_cost",
+   5,
+   0,
+   20,
+   "relationship",
+   "assumption",
+   "S4.4.2 (claiming credit lowers the relationship)",
+   "boss test 'credit'"
+  ],
+  [
+   "credit_give_gain",
+   3,
+   0,
+   20,
+   "relationship",
+   "assumption",
+   "S4.4.2 (giving credit down raises standing with his juniors)",
+   "boss test 'credit'"
+  ],
+  [
+   "suggest_trust_weight",
+   0.5,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "K6.5.1 rule 4 (acceptance rises with trust and with how well the suggestion scores in his estimates)",
+   "boss test 'suggestion'"
+  ],
+  [
+   "deadline_slack_max_hours",
+   12,
+   0,
+   48,
+   "hours",
+   "assumption",
+   "S4.1.1 (standards set how hard deadlines are): slack a boss at standards 0 allows",
+   "boss test 'brief'"
+  ],
+  [
+   "reference_work_weight",
+   0.6,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "S4.3.2 (the reference is a function of the evaluation)",
+   "boss test 'reference'"
+  ],
+  [
+   "reference_relationship_weight",
+   0.4,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "S4.3.2 (and of the relationship)",
+   "boss test 'reference'"
+  ],
+  [
+   "reference_loyalty_lift",
+   0.3,
+   0,
+   1,
+   "ratio",
+   "assumption",
+   "S4.3.2 (and of his loyalty_to_staff): a loyal boss speaks up harder for earned praise",
+   "boss test 'reference'"
+  ]
+ ]
+}
