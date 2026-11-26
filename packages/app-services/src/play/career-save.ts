@@ -7,13 +7,21 @@
 // big lists and maps in chunks of LIVE_WORLD_CHUNK entries (a whole world is past the engine's string limit
 // after one season). Reading it back restores the career year and refuses the save when the restored world does
 // not hash to the world hash written beside it.
-import type { SqlDriver } from '@gm/store';
+//
+// Version 2 compresses: the meta, manifest, season and injected rows stay plain JSON in `live_world`, and every
+// world chunk goes compressed into `live_world_blobs` through the store's blob codec (deflate-raw where the
+// platform has it, P5.3.1). A world's JSON compresses about 8 to 1 (people) and 45 to 1 (event log), which is
+// what brings a season-30 save inside the P5.4.1 compact target (MA-75). Version 1 saves still read.
+import { snapshot, type SqlDriver } from '@gm/store';
 import { CareerYear, type CareerYearOptions, type CareerYearSave } from './career-year.ts';
 
 export const LIVE_WORLD_TABLE = 'live_world';
-export const LIVE_WORLD_SAVE_VERSION = 1;
+export const LIVE_WORLD_BLOB_TABLE = 'live_world_blobs';
+export const LIVE_WORLD_SAVE_VERSION = 2;
+const READABLE_VERSIONS: readonly number[] = [1, 2];
 
 const DDL = `CREATE TABLE IF NOT EXISTS ${LIVE_WORLD_TABLE} (part TEXT PRIMARY KEY, json TEXT NOT NULL);`;
+const BLOB_DDL = `CREATE TABLE IF NOT EXISTS ${LIVE_WORLD_BLOB_TABLE} (part TEXT PRIMARY KEY, codec TEXT NOT NULL, raw_len INTEGER NOT NULL, blob BLOB NOT NULL);`;
 
 /** What the save says about the career year beside the packed parts: enough to list it and check it. */
 export interface LiveWorldMeta {
@@ -71,8 +79,9 @@ function worldFromRows(manifest: readonly FieldEntry[], p: Map<string, string>):
 }
 
 /** Writes the career year into the save database, replacing the previous copy. */
-export async function writeCareerYear(driver: SqlDriver, y: CareerYear): Promise<LiveWorldMeta> {
+export async function writeCareerYear(driver: SqlDriver, y: CareerYear, codec: snapshot.BlobCodec = snapshot.defaultCodec()): Promise<LiveWorldMeta> {
   await driver.exec(DDL);
+  await driver.exec(BLOB_DDL);
   const s = y.save();
   const v = y.view();
   const meta: LiveWorldMeta = {
@@ -81,25 +90,44 @@ export async function writeCareerYear(driver: SqlDriver, y: CareerYear): Promise
   const w = worldRows(s.world);
   const rows = [
     { part: 'meta', json: JSON.stringify(meta) }, { part: 'world', json: JSON.stringify(w.manifest) },
-    { part: 'season', json: JSON.stringify(s.season) }, { part: 'injected', json: JSON.stringify(s.injected) }, ...w.rows,
+    { part: 'season', json: JSON.stringify(s.season) }, { part: 'injected', json: JSON.stringify(s.injected) },
   ];
+  const blobs: { part: string; rawLength: number; blob: Uint8Array }[] = [];
+  for (const r of w.rows) {
+    const raw = snapshot.utf8(r.json);
+    blobs.push({ part: r.part, rawLength: raw.length, blob: await codec.encode(raw) });
+  }
   await driver.transaction([
     { sql: `DELETE FROM ${LIVE_WORLD_TABLE}` },
+    { sql: `DELETE FROM ${LIVE_WORLD_BLOB_TABLE}` },
     ...rows.map((r) => ({ sql: `INSERT INTO ${LIVE_WORLD_TABLE} (part, json) VALUES (?, ?)`, params: [r.part, r.json] })),
+    ...blobs.map((b) => ({ sql: `INSERT INTO ${LIVE_WORLD_BLOB_TABLE} (part, codec, raw_len, blob) VALUES (?, ?, ?, ?)`, params: [b.part, codec.id, b.rawLength, b.blob] })),
   ]);
   return meta;
 }
 
-async function parts(driver: SqlDriver): Promise<Map<string, string> | null> {
-  const t = await driver.all<{ name: string }>(`SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?`, [LIVE_WORLD_TABLE]);
-  if (!t.length) return null;
+async function hasTable(driver: SqlDriver, name: string): Promise<boolean> {
+  return (await driver.all<{ name: string }>(`SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?`, [name])).length > 0;
+}
+
+/** Every part as JSON text: plain rows as stored, compressed ones decoded and checked against their length. */
+async function parts(driver: SqlDriver, withBlobs = true): Promise<Map<string, string> | null> {
+  if (!(await hasTable(driver, LIVE_WORLD_TABLE))) return null;
   const rows = await driver.all<{ part: string; json: string }>(`SELECT part, json FROM ${LIVE_WORLD_TABLE}`);
-  return new Map(rows.map((r) => [r.part, r.json]));
+  const out = new Map(rows.map((r) => [r.part, r.json]));
+  if (withBlobs && (await hasTable(driver, LIVE_WORLD_BLOB_TABLE))) {
+    for (const b of await driver.all<{ part: string; codec: string; raw_len: number; blob: Uint8Array }>(`SELECT part, codec, raw_len, blob FROM ${LIVE_WORLD_BLOB_TABLE}`)) {
+      const raw = await snapshot.codecById(b.codec).decode(b.blob);
+      if (raw.length !== Number(b.raw_len)) throw new Error(`live world save: part ${b.part} decodes to ${raw.length} bytes, the save says ${b.raw_len}`);
+      out.set(b.part, snapshot.fromUtf8(raw));
+    }
+  }
+  return out;
 }
 
 /** The meta row, or null when the save holds no live world yet. */
 export async function readLiveWorldMeta(driver: SqlDriver): Promise<LiveWorldMeta | null> {
-  const p = await parts(driver);
+  const p = await parts(driver, false);
   const m = p?.get('meta');
   return m ? (JSON.parse(m) as LiveWorldMeta) : null;
 }
@@ -113,7 +141,7 @@ export async function readCareerYear(driver: SqlDriver, o: Omit<CareerYearOption
   if (!p || !p.size) return null;
   for (const part of PARTS) if (!p.has(part)) throw new Error(`live world save: part ${part} is missing`);
   const meta = JSON.parse(p.get('meta')!) as LiveWorldMeta;
-  if (meta.version !== LIVE_WORLD_SAVE_VERSION) throw new Error(`live world save: version ${String(meta.version)} is not supported`);
+  if (!READABLE_VERSIONS.includes(meta.version)) throw new Error(`live world save: version ${String(meta.version)} is not supported`);
   const save: CareerYearSave = {
     version: 1, seatTeamId: meta.seatTeamId,
     world: worldFromRows(JSON.parse(p.get('world')!) as FieldEntry[], p), season: JSON.parse(p.get('season')!), injected: JSON.parse(p.get('injected')!) as number[],
