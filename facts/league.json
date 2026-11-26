@@ -3113,7 +3113,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found. Open (2026-11-26, PC browser): the NFL Football Operations Contract Language page lists no weekly protection, and National Football Post (2026-10-23) says the weekly protection of up to four players began in 2020 as a pandemic-era change and that published explainers disagree on whether it still applies. Treat the value as unconfirmed for 2026; the status is not raised.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found. Open (2026-11-26, PC browser): the NFL Football Operations Contract Language page lists no weekly protection, and National Football Post (2026-10-23) says the weekly protection of up to four players began in 2020 as a pandemic-era change and that published explainers disagree on whether it still applies. Treat the value as unconfirmed for 2026; the status is not raised. Re-read 2026-11-26: the 2020 CBA text (Article 33, local copy) has no weekly protection provision. National Football Post (2026-10-23) says weekly protections were pandemic-era and that published explainers disagree on whether they still apply; two 2026 explainers (Locker Room Wire, Sporting Nation search snippet) repeat the ESPN claim of four per week every Tuesday. Still unconfirmed in a league document.",
    "status": "2 of 3",
    "statusHistory": [
     {
@@ -7870,6 +7870,158 @@
     {
      "date": "2026-11-26",
      "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0214",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 2026 playoff uses a fixed 12-team bracket with no reseeding.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format; undated page)",
+     "locator": "About the 12-Team CFP Format",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "The bracket will remain in effect throughout the CFP (i.e., no re-seeding).",
+     "value": false
+    },
+    {
+     "citation": "VAVEL, College Football Playoff 12-team seeding rules, auto bids explained (2026-11-19, https://www.vavel.com/en-us/ncaa/2026/11/19/college-football/1279798-college-football-playoff-12-team-seeding-rules-auto-bids-explained.html)",
+     "locator": "seeding explainer",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "vavel",
+     "primary": false,
+     "quote": "a fixed NCAA basketball-style bracket with zero reseeding",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud fetch 2026-11-26. 2026 season only (the 2027 24-team format is a different row set).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0215",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "At-large places in the 2026 playoff come from any ranked position (no top-N cutoff).",
+   "value": 0,
+   "unit": "rank",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "College Football Playoff, About the 12-Team CFP Format (https://collegefootballplayoff.com/sports/2024/5/29/12-team-format; undated page)",
+     "locator": "About the 12-Team CFP Format, at-large entry",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "cfp-official",
+     "primary": true,
+     "quote": "Best remaining teams, any conference",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud fetch 2026-11-26. 2026 season only (the 2027 24-team format is a different row set). One source (the official page); no cutoff appears in any other page read. The 2027 \"committee top 25\" pool was not confirmed by any source.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0216",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "The 10-game schedule standard does not apply to the 2026 season (it begins with 2027).",
+   "value": 0,
+   "unit": "games",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "FBSchedules, College Football Playoff sets scheduling standards for 24-team era (2026-11-09, https://fbschedules.com/college-football-playoff-sets-scheduling-standards-for-24-team-era/amp/)",
+     "locator": "scheduling standards",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fbschedules",
+     "primary": false,
+     "quote": "beginning with the 2027 season",
+     "value": 0
+    },
+    {
+     "citation": "ABC7, CFP 24-team format: what you need to know (2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)",
+     "locator": "format start",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "abc7",
+     "primary": false,
+     "quote": "will start in time for the 2027 season",
+     "value": 0
+    }
+   ],
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud fetch 2026-11-26. 2026 season only (the 2027 24-team format is a different row set). Inferred: no page says the standard is \"off\" in 2026, only that it starts in 2027. The pages disagree on which opponents qualify (Power 4 only versus any top-subdivision opponent for other schools).",
+   "status": "2 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0217",
+   "level": "college",
+   "domain": "league-rule",
+   "statement": "FBS games cannot end tied (overtime since 1996), so the tie value is never used; 0.5 is the pro convention.",
+   "value": 0.5,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Fox Sports, College football overtime rules (updated 2025-09-23, https://www.foxsports.com/stories/college-football/college-football-overtime-rules)",
+     "locator": "overtime rules",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox-sports",
+     "primary": false,
+     "quote": "With the introduction of overtime in 1996, college football games no longer end in ties."
+    },
+    {
+     "citation": "Sports Illustrated, College football overtime rules explained (2017-08-14, https://www.si.com/college-football/2017/college-football-overtime-rules-explained)",
+     "locator": "overtime rules explained",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "si",
+     "primary": false,
+     "quote": "The teams will play extra periods until there is a winner."
+    }
+   ],
+   "assumption": true,
+   "usedBy": [],
+   "notes": "Web quotes as returned by the cloud fetch 2026-11-26. 2026 season only (the 2027 24-team format is a different row set). The value 0.5 is a design convention, not a rule: the quotes only show that no college tie occurs.",
+   "status": "Assumption",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Assumption",
      "reason": "First load by G-10 from sources read this session."
     }
    ]

@@ -190,3 +190,19 @@ describe('plays through the PV-06 engine', () => {
     expect(second.played).toBe(false);
   });
 });
+
+describe('recipe length fits its cue-table row (lane planning, MB-7; found by the PV-17 QA suite)', () => {
+  it('no laned sound runs longer than the durationMs its cue-table row plans with', async () => {
+    const { RECIPES: ALL } = await import('../../src/audio/recipes/index.ts');
+    const { RECIPE_CUE_SOUND } = await import('../../src/presentation/captions/captions.ts');
+    const { cueSound } = await import('../../src/presentation/cues/cue-table.ts');
+    const over: string[] = [];
+    for (const r of ALL) {
+      const cs = cueSound(RECIPE_CUE_SOUND[r.id]!);
+      if (!cs || cs.lane === 'none') continue;
+      const ms = Math.round(recipeSeconds({ layers: r.recipe.layers }) * 1000);
+      if (ms > cs.durationMs) over.push(`${r.id}: recipe ${ms} ms, row ${cs.durationMs} ms`);
+    }
+    expect(over).toEqual([]);
+  });
+});

@@ -22,7 +22,7 @@
     "high": null
    },
    "factId": "F-measured-rate-0278",
-   "tier": "tune",
+   "tier": "certify",
    "ruleSetDependent": false,
    "note": "Published CBS figures (27.78 for 2023, 28.01 for 2024) cover all FBS games, a different scope; not counted as a source (T12 verification pass). Pro value from the same script 22.19 (shown for comparison only, never used as a college value)."
   },

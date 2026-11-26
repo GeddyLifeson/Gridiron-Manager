@@ -1660,7 +1660,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Conflict: PFN says $172,337 for 2024; Spotrac pool pages say 2023 = $172,337 and 2024 = $183,103. Spotrac matches the CBA figure for 2021 ($160,000), so its year labels are used for the value. See rows_g10c.py.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Conflict: PFN says $172,337 for 2024; Spotrac pool pages say 2023 = $172,337 and 2024 = $183,103. Spotrac matches the CBA figure for 2021 ($160,000), so its year labels are used for the value. See rows_g10c.py. Searched again 2026-11-26 (PC browser): Pro Football Network gives $172,337 as the 2023 pool \"per ESPN\", which fits the existing note that this is the 2023 figure. No second page was found that states the 2024 pool of $183,103 (cap-and-trade explainer says only that the pool is set each year). Stays one source.",
    "status": "1 of 3",
    "statusHistory": [
     {

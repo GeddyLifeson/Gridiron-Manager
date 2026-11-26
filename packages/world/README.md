@@ -6,6 +6,8 @@ Status: G-81 adds two modules and G-82 a third. They are not in the package entr
 
 - `src/generation/` (X10.1, X10.2, X10.4, U4.1): the setup record and world code, structures (competitions, conferences, places, teams, venues, resource bands, rivals), founding people and cultures, placement of imported people and of the user.
 - `src/tiers/` (X13, P6.4): who is near the user (tiers 1 to 3 for teams, people and games), what is recorded for them, moves between tiers with the demotion hold, the no-seam checks, and the measurement protocol.
+- `src/compliance/` (L8.2.5, K7.7.1): the rule-breaking pipeline's state in the live world, the weekly `compliance` step, general managers read from off-ladder seats, and early contact raised by the front office AI.
+- `src/money/` (C6.2.3, E6): club cash, the owner's budget per league year from the cap by owner profile and the cash committed against it, and what people pay out of pocket. Fines are paid here. Decisions MO-01 to MO-04 in its README.
 - `src/loop/` (X10.3, X12.1, X12.3): the weekly and season-point passes in one fixed order, the history run and its validator, leaving football, the cohort step, stop points and time control.
 
 The loop owns the order, the dates, the streams, the event log and the pass hash. Each system is a port in `WorldSystems`. A step with no owner bound is `unbound(reason)` and is listed by `unboundSteps`, so a run can never pass off an unwired step as done. Games go through `GamePort`, which the integrator binds to the real engine; the request type has no lighter method (A3 row 20).

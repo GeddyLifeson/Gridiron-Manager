@@ -19,3 +19,5 @@ export * as schedule from './schedule/index.ts';
 export * as week from './week/index.ts';
 export * as depth from './depth/index.ts';
 export * as personnel from './personnel/index.ts';
+export * as knowledge from './knowledge/index.ts';
+export * as practice from './practice/index.ts';

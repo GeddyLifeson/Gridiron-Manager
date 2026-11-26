@@ -197,7 +197,11 @@ describe('G-60 full game through the console keys', () => {
       // A call made while the timeout window was open reaches the call request at the same reading.
       if (a.request.type === 'timeout') {
         const call = session.answers.find((x) => x.request.requestId > a.request.requestId && (x.request.type === 'snapping_call' || x.request.type === 'opposing_call'));
-        if (call && call.decision.actor.kind === 'user') expect(made.get(call.request.requestId)!.acceptedAtPlayClockTenths).toBe(expected);
+        // Unless the opponent's chart took a charged timeout in between: the calls are then made on the reset clock.
+        const from = session.events.findIndex((e) => e.type === 'decision_requested' && e.request.requestId === a.request.requestId);
+        const to = call ? session.events.findIndex((e) => e.type === 'decision_requested' && e.request.requestId === call.request.requestId) : -1;
+        const charged = session.events.slice(from, to).some((e) => e.type === 'timeout_charged');
+        if (call && !charged && call.decision.actor.kind === 'user') expect(made.get(call.request.requestId)!.acceptedAtPlayClockTenths).toBe(expected);
       }
       checked++;
     }

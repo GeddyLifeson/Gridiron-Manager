@@ -9,13 +9,23 @@ import {
 } from '@gm/schema';
 type FoulPhase = TruthEventOf<'foul_committed'>['phase'];
 import { legality } from '@gm/football-lang';
+import { ballParams, launchSnap, snapFlight } from '../ball/index.ts';
 import { CONTEST_MATH } from '../contest/math.ts';
+import { dSqrt } from '../dmath.ts';
 import type { PlayStage } from '../tick/loop.ts';
 import { presnapParams, type PresnapFoulId, type PresnapParams } from './params.ts';
 import { snapperOf, snapReceiverOf, type PresnapInput, type PresnapPlan } from './plan.ts';
 
 /** What the snap produced (J5.6.2). `extraS` is the time an off-target snap adds to the quarterback's timing. */
-export interface SnapResult { readonly quality: 'clean' | 'off_target' | 'loose'; readonly extraS: number; readonly snapperSlot: number; readonly receiverSlot: number }
+export interface SnapResult {
+  readonly quality: 'clean' | 'off_target' | 'loose'; readonly extraS: number; readonly snapperSlot: number; readonly receiverSlot: number;
+  /**
+   * Seconds after the snap when the ball reaches the receiver. 0: it was in his hands (or loose) at
+   * tick 0. Above 0 (`SnapSpec.flightYps`): the ball is in the air until then, nobody has it, and the
+   * stage that owns the play completes the snap (tick-resolver/kick-op.ts).
+   */
+  readonly arriveS: number;
+}
 
 export interface PresnapStages {
   readonly stages: readonly PlayStage[];
@@ -35,7 +45,7 @@ export function createPresnapStages(plan: PresnapPlan, input: PresnapInput): Pre
   const targets: { px: number; py: number }[] = [];
   for (let s = 0; s < SLOT_COUNT; s++) targets.push({ px: 0, py: 0 });
   let snapResult: SnapResult | null = null;
-  const qbTs = snapReceiverOf(input.offense.assignments), centreTs = snapperOf(input.offense.assignments);
+  const qbTs = snapReceiverOf(input.offense.assignments, input.snap ?? null), centreTs = snapperOf(input.offense.assignments);
 
   const decide: PlayStage = {
     name: 'decide',
@@ -157,7 +167,8 @@ function makeSnap(w: TickWorld, input: PresnapInput, qbTs: number, centreTs: num
   const lo = Math.min(a.playerId, b.playerId), hi = Math.max(a.playerId, b.playerId);
   const st = w.streams('contest', [sit.gameId, sit.playNumber, lo, hi, 'snap']);
   const u1 = st.uniform(), u2 = st.uniform();
-  const kicking = input.offense.assignments[receiver]!.behavior.type !== 'quarterback';
+  const spec = input.snap ?? null;
+  const kicking = spec !== null ? spec.long : input.offense.assignments[receiver]!.behavior.type !== 'quarterback';
   const snapAttr = kicking ? 'long_snap' : input.shotgun ? 'snap_shotgun' : 'snap_under_center';
   const handAttr = input.offense.assignments[receiver]!.behavior.type === 'holder' ? 'holding' : 'snap_handling';
   const dz = (issToZ(a.player.attributes[snapAttr] ?? 50) + issToZ(b.player.attributes[handAttr] ?? 50)) / 2;
@@ -169,6 +180,16 @@ function makeSnap(w: TickWorld, input: PresnapInput, qbTs: number, centreTs: num
   const ev: TruthEvent[] = [{ type: 'snap', t: 0, snapperId: a.playerId, toPlayerId: b.playerId, quality }];
   const ball = w.ball;
   ball.lastPossessorSlot = snapper;
+  if (spec !== null && spec.flightYps !== null && spec.flightYps > 0 && receiver !== snapper) {
+    // J9.1.2: the ball flies to him. Whether he takes it cleanly is already drawn; the stage that owns
+    // the play gives it to him, or lets it go by, when it arrives.
+    const sx = w.players.posX[snapper]!, sy = w.players.posY[snapper]!, rx = w.players.posX[receiver]!, ry = w.players.posY[receiver]!;
+    const dx = rx - sx, dy = ry - sy, bp = ballParams(w.params);
+    const arriveS = dSqrt(dx * dx + dy * dy) / spec.flightYps + extraS;
+    w.emit(ev[0]!);
+    launchSnap(w, snapper, snapFlight(sx, sy, rx, ry, arriveS, bp), bp);
+    return { quality, extraS, snapperSlot: snapper, receiverSlot: receiver, arriveS };
+  }
   if (quality === 'loose') {
     ball.kind = 'loose'; ball.carrierSlot = -1;
     ev.push({ type: 'fumble', t: 0, marginYd: null, marginS: null, visibility: 'crowded', kind: 'bad_snap', playerId: b.playerId, side: b.side, forcedById: null, spot });
@@ -178,7 +199,7 @@ function makeSnap(w: TickWorld, input: PresnapInput, qbTs: number, centreTs: num
     ev.push({ type: 'possession', t: 0, side: b.side, playerId: b.playerId, spot, how: 'snap' });
   }
   for (const e of ev) w.emit(e);
-  return { quality, extraS, snapperSlot: snapper, receiverSlot: receiver };
+  return { quality, extraS, snapperSlot: snapper, receiverSlot: receiver, arriveS: 0 };
 }
 
 /**

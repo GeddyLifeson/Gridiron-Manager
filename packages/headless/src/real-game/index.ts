@@ -7,12 +7,24 @@ import {
   ATTRIBUTE_IDS, NEUTRAL_ENVIRONMENT,
   type GameDeps, type GameInput, type ParamFile, type ParamTable, type RuleSet, type Side, type SimPlayer, type SimTeam,
 } from '@gm/schema';
-import { DMATH, field, seedFromHex, streamSource } from '@gm/engine-core';
+import { DMATH, ball, carrier, contest, field, foulsInjuries, kinematics, perception, playerAi, presnap, qb, seedFromHex, streamSource, tickResolver } from '@gm/engine-core';
+import { lang } from '@gm/football-lang';
 import { flow, stats } from '@gm/engine-game';
 import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
 import { resolveRuleSet } from '@gm/rules-data';
 import { PARAMS as CHART_PARAMS, createChartCaller, depthRoster, runBatch, type BatchResult } from '../calibration/index.ts';
+import { chartOverrides } from '../calibration/params.ts';
+
+/**
+ * Every parameter file the tick path reads (J1 to J10): field, kinematics, perception, pre-snap, player AI,
+ * ball, contest, quarterback, tick resolver (with the kick look and its trigger read), ball carrier, fouls and
+ * injuries, and the rule language. Integrator-owned: a module that adds a parameter file lists it here.
+ */
+export const TICK_PARAM_FILES: readonly ParamFile[] = [
+  field.PARAMS, kinematics.PARAMS, perception.PARAMS, presnap.PARAMS, playerAi.PARAMS, ball.PARAMS, contest.PARAMS,
+  qb.PARAMS, tickResolver.PARAMS, carrier.PARAMS, foulsInjuries.PARAMS, ...lang.PARAM_FILES,
+];
 
 /** Every parameter file of the modules a phase 1 game runs. A name defined twice is an error. */
 export const ENGINE_PARAM_FILES: readonly ParamFile[] = [
@@ -20,6 +32,14 @@ export const ENGINE_PARAM_FILES: readonly ParamFile[] = [
   officiating.crew.PARAMS, officiating.replay.PARAMS, officiating.kick.PARAMS, officiating.restart.PARAMS,
   officiating.overtime.PARAMS, resolver.PARAMS, flow.PARAMS, stats.PARAMS, CHART_PARAMS,
 ];
+
+/** The game modules' files and the tick path's together: what a game with the tick resolver reads. */
+export const ALL_ENGINE_PARAM_FILES: readonly ParamFile[] = [...ENGINE_PARAM_FILES, ...TICK_PARAM_FILES];
+
+/** The merged table for the tick path (one name, one row; a duplicate or unknown override throws). */
+export function tickParamTable(overrides: Readonly<Record<string, number>> = {}): ParamTable {
+  return engineParamTable(ALL_ENGINE_PARAM_FILES, overrides);
+}
 
 export function engineParamTable(files: readonly ParamFile[] = ENGINE_PARAM_FILES, overrides: Readonly<Record<string, number>> = {}): ParamTable {
   const map = new Map<string, number>();
@@ -84,6 +104,8 @@ export function createRealGame(ruleSetId: string, opts: { iss?: number; paramOve
   const statsModule = stats.createStatsModule({ geometry, params });
   const regulationPeriods = rules.num('clock.periods');
   const iss = opts.iss ?? 50;
+  // The callers read the chart through the same overrides as the parameter table, on top of the level's chart (CR-G87-5).
+  const overrides = chartOverrides(rules.level, opts.paramOverrides);
   const input = (gameIndex: number, seedHex: string): GameInput => ({
     gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
     teams: [placeholderTeam(0, iss), placeholderTeam(1, iss)],
@@ -93,8 +115,8 @@ export function createRealGame(ruleSetId: string, opts: { iss?: number; paramOve
     rules, params, geometry, streams: streamSource(seedFromHex(inp.seedHex)), math: DMATH,
     resolver: resolver.REFERENCE_RESOLVER, officiating: off,
     deciders: [
-      createChartCaller({ side: 0, geometry, roster: depthRoster(inp.teams[0].depth), regulationPeriods }),
-      createChartCaller({ side: 1, geometry, roster: depthRoster(inp.teams[1].depth), regulationPeriods }),
+      createChartCaller({ side: 0, geometry, roster: depthRoster(inp.teams[0].depth), regulationPeriods, overrides }),
+      createChartCaller({ side: 1, geometry, roster: depthRoster(inp.teams[1].depth), regulationPeriods, overrides }),
     ],
   });
   const simulate = (inp: GameInput) => flow.simulateGame(inp, deps(inp));
