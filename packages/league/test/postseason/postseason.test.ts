@@ -231,9 +231,26 @@ describe('T3.4.1 rankings', () => {
   it('with noise off the ranking is a pure function of results', () => {
     expect(committeeRanking(input, CFP_2026, null).order).toEqual(committeeRanking(input, CFP_2026, null).order);
   });
-  it('an unbeaten power champion is never outside the top 4 (fixture season)', () => {
+  it('an unbeaten champion with a strong resume ranks at the top (fixture season)', () => {
     expect(committeeRanking(input, CFP_2026, null).order.indexOf(201)).toBeLessThan(4);
     for (let s = 1; s <= 50; s++) expect(committeeRanking(input, CFP_2026, lcg(s)).order.indexOf(201)).toBeLessThan(4);
+  });
+  it('there is no top-4 floor for an unbeaten power champion: a weak schedule can rank it below one-loss teams', () => {
+    // Real case: the 2023 final ranking put 13-0 ACC champion Florida State fifth and out of the four-team
+    // field (NPR 2023-12-03, Axios 2023-12-05, CBS Sports 2023-12-03). The bible's old acceptance line
+    // ("never outside the top 4") is dropped (fix sent to the integrator).
+    const g = new Games();
+    const strong = [401, 402, 403, 404, 405];
+    strong.forEach((t, i) => g.add(t, strong[(i + 1) % 5]!, 24, 17)); // a cycle: each strong team 1-1 among them
+    const mid = [421, 422, 423, 424, 425, 426];
+    for (const t of strong) for (const m of mid) g.add(t, m, 31, 20);
+    const low = [431, 432, 433, 434, 435, 436];
+    for (const m of mid) for (const l of low) g.add(m, l, 30, 10);
+    const weak = [411, 412, 413, 414, 415, 416];
+    for (const w of weak) g.add(400, w, 28, 21); // unbeaten champion 400 against teams that win nothing
+    const r = committeeRanking({ teamIds: [400, ...strong, ...mid, ...low, ...weak], results: g.list, champions: [400] }, CFP_2026, null);
+    expect(r.resumes.find((x) => x.teamId === 400)!.record).toEqual({ w: 6, l: 0, t: 0 });
+    expect(r.order.indexOf(400)).toBeGreaterThanOrEqual(4);
   });
   it('margin above the cap earns nothing', () => {
     const a = new Games().add(201, 202, 49, 0).list, b = new Games().add(201, 202, 21, 0).list;
