@@ -179,6 +179,46 @@ describe('J10.2.3 ineligible downfield: geometry against the rule key', () => {
     expect(run(2, 3)).toHaveLength(0);
   });
   it('a pass that does not cross the line has no limit', () => { expect(run(4, 1, -2)).toHaveLength(0); });
+  it('with no eligibility flags set, only men who blocked at the snap are ineligible; receivers downfield never foul', () => {
+    const sc = scene({ rules: rules({ idfYd: 1 }) });
+    const w = sc.world, pass = BEHAVIORS.indexOf('passSet'), route = BEHAVIORS.indexOf('route');
+    for (let s = 0; s < 11; s++) { w.players.eligible[s] = 0; w.players.behavior[s] = s >= 1 && s <= 5 ? pass : route; place(w, s, s >= 6 ? 8 : -2, s * 2 - 10); }
+    place(w, 2, 2.5, 0);
+    sc.step();
+    release(w, 12);
+    sc.step();
+    const f = ofType(sc.events, 'foul_committed').filter((e) => e.foulId === 'ineligible_downfield_pass' && !e.borderline);
+    expect(f.map((e) => e.playerId)).toEqual([w.slots[2]!.playerId]);
+  });
+  // The four rule-set differences (B5.3.2, B13.5.3). Missing keys keep the defaults the tests above use.
+  const path = (extra: Record<string, number | boolean | string>, steps: readonly (readonly [number, boolean])[], airYd = 12) => {
+    const sc = scene({ rules: rules({ idfYd: 1, extra: extra as Record<string, number> }) });
+    for (let s = 0; s < 11; s++) { sc.world.players.eligible[s] = s >= 5 ? 1 : 0; place(sc.world, s, -3, s * 2 - 10); }
+    for (const [depth, engaged] of steps) { place(sc.world, 2, depth, 0); sc.world.players.engagement[2] = engaged ? 13 : -1; sc.step(); }
+    release(sc.world, airYd);
+    sc.step();
+    return ofType(sc.events, 'foul_committed').filter((e) => e.foulId === 'ineligible_downfield_pass' && !e.borderline);
+  };
+  it('pass_must_cross false: a pass behind the line still has the limit', () => {
+    expect(path({ 'foul.ineligible_downfield.pass_must_cross': false }, [[4, false]], -2)).toHaveLength(1);
+    expect(path({}, [[4, false]], -2)).toHaveLength(0);
+  });
+  it('measure: just past the limit by his centre is a foul, but not when the entire body must be past', () => {
+    expect(path({ 'foul.ineligible_downfield.measure': 'centre' }, [[1.05, false]])).toHaveLength(1);
+    expect(path({ 'foul.ineligible_downfield.measure': 'entire_body' }, [[1.05, false]])).toHaveLength(0);
+  });
+  it('when: back inside the limit at the throw fouls only where any time before the throw counts', () => {
+    const steps = [[0, false], [3, false], [0.2, false]] as const;
+    expect(path({ 'foul.ineligible_downfield.when': 'any_time_before_throw' }, steps)).toHaveLength(1);
+    expect(path({}, steps)).toHaveLength(0);
+  });
+  it('engaged exception: driven past the limit while still blocking after contact within it is legal only where the key says so', () => {
+    const steps = [[0.3, true], [1.5, true], [3, true]] as const;
+    expect(path({ 'foul.ineligible_downfield.engaged_exception': true }, steps)).toHaveLength(0);
+    expect(path({}, steps)).toHaveLength(1);
+    // Contact first made beyond the limit earns nothing.
+    expect(path({ 'foul.ineligible_downfield.engaged_exception': true }, [[2, true], [3, true]])).toHaveLength(1);
+  });
   it('just inside the limit is a borderline legal act, flagged as such for B11', () => {
     const f = run(0.9, 1);
     expect(f).toHaveLength(1);
