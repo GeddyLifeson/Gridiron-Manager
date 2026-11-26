@@ -42,7 +42,6 @@ export const PLAY_TEXT_TEMPLATES: readonly TextTemplate[] = [
   { key: 'pbp.kickoff', default: '{kicker} kicks off {distance}.', params: { kicker: 'person', distance: 'yards' } },
   { key: 'pbp.kickoff_returned', default: '{kicker} kicks off {distance}, {returner} returns for {returnYards}.', params: { kicker: 'person', distance: 'yards', returner: 'person', returnYards: 'yards' } },
   { key: 'pbp.safety_kick', default: 'Safety kick.', params: {} },
-  { key: 'pbp.fair_catch_kick', default: 'Fair-catch kick.', params: {} },
   { key: 'pbp.play', default: 'Play.', params: {} },
 ];
 
@@ -83,7 +82,8 @@ function playText(f: PlayFacts): { textKey: string; textParams: Record<string, s
     }
     return pick('pbp.kickoff', ok);
   }
-  if (f.kick) return { textKey: f.kick.kickKind === 'safety_kick' ? 'pbp.safety_kick' : 'pbp.fair_catch_kick', textParams: {} };
+  // A fair-catch kick is a place kick and reads as one above; the only kick left here is a safety kick.
+  if (f.kick) return { textKey: 'pbp.safety_kick', textParams: {} };
   if (f.isTry) return { textKey: rt === 'try_good' ? 'pbp.two_point_good' : 'pbp.two_point_failed', textParams: {} };
 
   if (rt === 'fumble_lost') {

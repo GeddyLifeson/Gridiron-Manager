@@ -147,7 +147,7 @@ export function play(spec: PlaySpec): PlayRecord {
 
   const situation: Contract.GameSituation = {
     gameId: 7, playNumber: index, driveNumber: spec.drive ?? 1, playKind, period: spec.period ?? 1, overtime: spec.overtime ?? false,
-    clockTenths: spec.clockTenths ?? 9000 - index * 300, clockStatus: 'running', playClockAtSnapTenths: 50, offense: off, attackDir: dir, down,
+    clockTenths: spec.clockTenths ?? 9000 - index * 100, clockStatus: 'running', playClockAtSnapTenths: 50, offense: off, attackDir: dir, down,
     distanceYd: dist, goalToGo: spec.goalToGo ?? false, ballX: x(spec.at), ballY: CENTRE_Y, lineToGainX: dist === null ? null : x(spec.at + dist),
     score, timeoutsLeft: [3, 3], insideTwoMinute: false, untimedDown: false,
   };
