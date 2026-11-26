@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import { pub, own } from './field.ts';
 import { Calendar, Level } from './entities.ts';
+import { GameplanData } from './read-models/gameplan.ts';
 
 export const Actor = z.object({
   personId: pub(z.number().int().positive(), 'id').nullable(),
@@ -90,4 +91,5 @@ export type WorldSummaryModel = z.infer<typeof WorldSummaryModel>;
 
 export const READ_MODELS: Record<string, z.ZodType> = {
   worldSummary: WorldSummaryModel,
+  gameplan: readModelOf(GameplanData),
 };
