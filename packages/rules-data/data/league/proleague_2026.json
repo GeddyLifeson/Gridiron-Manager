@@ -493,7 +493,7 @@
    "value": 4,
    "unit": "count",
    "factId": "F-league-0078",
-   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+   "note": "PROVISIONAL: status 2 of 3 (Q6.3.1)"
   },
   {
    "key": "waivers.vested_measure",
@@ -565,6 +565,96 @@
    "value": 1,
    "unit": "days",
    "factId": "F-league-0090"
+  },
+  {
+   "key": "roster.elevations_postseason_unlimited",
+   "value": false,
+   "factId": "F-league-0100"
+  },
+  {
+   "key": "standings.tie_win_value",
+   "value": 0.5,
+   "unit": "ratio",
+   "factId": "F-league-0101"
+  },
+  {
+   "key": "tiebreak.common_games_min",
+   "value": 4,
+   "unit": "count",
+   "factId": "F-league-0102"
+  },
+  {
+   "key": "tiebreak.restarts",
+   "value": "restart_on_three",
+   "factId": "F-league-0103"
+  },
+  {
+   "key": "playoff.field_size",
+   "value": 7,
+   "unit": "count",
+   "factId": "F-league-0104",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "playoff.grouping",
+   "value": "conference",
+   "factId": "F-league-0105",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "playoff.byes",
+   "value": 1,
+   "unit": "count",
+   "factId": "F-league-0106",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "playoff.reseed",
+   "value": true,
+   "factId": "F-league-0107",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "playoff.campus_rounds",
+   "value": 3,
+   "unit": "count",
+   "factId": "F-league-0108",
+   "note": "PROVISIONAL: status 1 of 3 (Q6.3.1)"
+  },
+  {
+   "key": "compliance.work_rules_practice.fine_head_coach_first_cents",
+   "value": 10000000,
+   "unit": "cents",
+   "factId": "F-league-0109"
+  },
+  {
+   "key": "compliance.work_rules_practice.fine_head_coach_repeat_cents",
+   "value": 25000000,
+   "unit": "cents",
+   "factId": "F-league-0110"
+  },
+  {
+   "key": "compliance.work_rules_practice.club_fine_first_cents",
+   "value": 25000000,
+   "unit": "cents",
+   "factId": "F-league-0111"
+  },
+  {
+   "key": "compliance.work_rules_practice.club_fine_repeat_cents",
+   "value": 50000000,
+   "unit": "cents",
+   "factId": "F-league-0112"
+  },
+  {
+   "key": "compliance.work_rules_practice.practice_cancel",
+   "value": "ota_week",
+   "factId": "F-league-0113"
+  },
+  {
+   "key": "compliance.work_rules_practice.pick_round_repeat",
+   "value": 4,
+   "unit": "round",
+   "factId": "F-league-0114"
   },
   {
    "key": "cap.min_cash_spend_pct",

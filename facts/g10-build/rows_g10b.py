@@ -153,3 +153,129 @@ CAP.row('pro', '2026 first overall pick (Fernando Mendoza, Raiders): signing bon
    M('espn_mdz', 'signing report', 'Mendoza signed a four-year, $57.27 million fully guaranteed deal with a fifth-year option.', None)],
   key=('rookie.first_pick_signing_bonus_2026', 'Signing bonus of the 2026 first overall pick', 'C6.4.2'),
   notes=NW + ' The signing bonus comes from Spotrac via theScore and a pre-signing FanSided projection that agrees; ESPN gives the total only. Slot values for other picks (FanSided/SI, April projections): pick 2 $36.2M, pick 3 $35M, pick 32 $8.7M signing bonus; no slot value is stated in any page, so only the first pick is entered.')
+
+# ---- cross-checks and corrections on earlier rows
+def note_add(key, text):
+    for r in LG.rows:
+        if r.get('_key') and r['_key'][0] == key:
+            r['notes'] = (r.get('notes') or '') + text; return
+    raise SystemExit('no row ' + key)
+source('espn2025', 'ESPN, What are NFL practice squads? Eligibility, salary, rules to know (2025-08-26, https://www.espn.ph/nfl/story/_/id/46078884/what-nfl-practice-squads-eligibility-salary-rules-know)', 'espn-news', False, 'secondary summary')
+source('wiki_ps', 'Wikipedia, Practice squad (https://en.wikipedia.org/wiki/Practice_squad)', 'wikipedia', False, 'secondary summary')
+source('nfl_tb', 'NFL.com, NFL Tiebreaking Procedures (https://www.nfl.com/standings/tie-breaking-procedures)', 'nfl-league-office', True, 'primary text')
+source('fox_tb', 'FOX Sports, NFL Tiebreakers: Playoff and wild-card rules (updated 2025-08-20, https://www.foxsports.com/stories/nfl/nfl-playoff-tiebreaking-procedures)', 'fox', False, 'secondary summary')
+source('wiki_po', 'Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)', 'wikipedia', False, 'secondary summary')
+LG.add('roster.practice_squad_protections_per_week', M('espn2025', 'rules section', 'Every Tuesday, teams can designate four players as protected', 4))
+note_add('roster.practice_squad_protections_per_week', ' CONTRADICTION: Wikipedia (Practice squad) says "Practice squad protections ended after the 2021 season." ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found.')
+note_add('roster.elevations_max_per_player_season', ' CONFLICT: the row value 3 follows SI and NFL.com (2022 change); the 2020 CBA text (Article 33 Section 5(f): "a maximum combination of two regular season or postseason games in the same League Year") and ESPN 2025 ("Teams can\'t activate a player more than twice") say 2. Needs a decision before the value is relied on.')
+LG.row('pro', 'Per the CBA text, a practice squad player\'s elevations are limited to two games in the regular season AND postseason combined, so postseason elevations are not unlimited.', False, None, Y,
+  [cba('Article 33 Section 5(f)', 'a maximum combination of two regular season or postseason games in the same League Year', False)],
+  key=('roster.elevations_postseason_unlimited', 'No per-player elevation limit in the postseason', 'C5.3.2'),
+  notes=NC + ' CONFLICT WITH THE BIBLE (C5.3.2 says unlimited, Verified): the 2020 CBA text read this session counts postseason games inside the same two-game cap. No page read this session states a postseason exemption. A May 2022 amendment (three elevations per season, NFL.com/CBS) is described by sources as a regular-season change; the postseason treatment after it was not found. Bible fix owed.')
+
+# ---- G-14 pro standings and playoff values
+LG.row('pro', 'A tie counts as half a win and half a loss for both clubs.', 0.5, 'ratio', Y,
+  [M('nfl_tb', 'tie-breaking page note', 'Tie games count as one-half win and one-half loss for both clubs.', 0.5),
+   M('fox_tb', 'tiebreakers page', 'Tie games count as one-half win and one-half loss for both clubs.', 0.5)],
+  key=('standings.tie_win_value', 'Share of a win a tied game counts as in winning percentage', 'C3.1.1'), notes=NW)
+LG.row('pro', 'Wild-card common-games tiebreaker needs at least four common games.', 4, 'count', Y,
+  [M('nfl_tb', 'wild-card procedure', 'Best won-lost-tied percentage in common games, minimum of four.', 4),
+   M('fox_tb', 'wild-card procedure', 'Best won-lost-tied percentage in common games, minimum of four.', 4)],
+  key=('tiebreak.common_games_min', 'Fewest common games for the common-games step', 'C3.2.2'), notes=NW + ' The division tiebreaker lists common games with no minimum.')
+LG.row('pro', 'When a step removes clubs and three remain tied, the division tiebreaker restarts at step 1 of the three-club list and the wild-card list at step 2.', 'restart_on_three', None, Y,
+  [M('nfl_tb', 'multi-club procedures', 'tiebreaker restarts at Step 1 of three-club format', 'restart_on_three')],
+  key=('tiebreak.restarts', 'What happens when a step removes clubs and leaves three tied', 'C3.2.3', ['restart_on_three', 'continue_on_three']),
+  notes=NW + ' The page also says "tiebreaker restarts at Step 2 of three-club format" for wild cards; two remaining clubs return to step 1 of the two-club list (NFL.com, operations.nfl.com and FOX).')
+LG.row('pro', 'The playoffs take seven clubs from each of the two conferences.', 7, 'count', Y,
+  [M('wiki_po', 'format section', 'seven teams from each of the league\'s two conferences qualify for the playoffs', 7)],
+  key=('playoff.field_size', 'Playoff clubs per bracket group', 'C3.3.1'), notes=NW)
+LG.row('pro', 'The brackets are per conference.', 'conference', None, Y,
+  [M('wiki_po', 'format section', 'seven teams from each of the league\'s two conferences qualify for the playoffs', 'conference')],
+  key=('playoff.grouping', 'Whether the bracket is per conference or national', 'C3.3.1', ['conference', 'national']), notes=NW)
+LG.row('pro', 'Only the top seed in each conference gets a first-round bye.', 1, 'count', Y,
+  [M('wiki_po', 'format section', 'The top team in each conference receives a first-round bye, automatically advancing to the next round.', 1)],
+  key=('playoff.byes', 'First-round byes per bracket group', 'C3.3.1'), notes=NW)
+LG.row('pro', 'The playoffs reseed each round; there is no fixed bracket.', True, None, Y,
+  [M('wiki_po', 'format section', 'The NFL does not use a fixed bracket system.', True)],
+  key=('playoff.reseed', 'Playoffs reseed after each round', 'C3.3.1'), notes=NW)
+LG.row('pro', 'Three rounds are played at the higher seed\'s home (wild card, divisional, conference championship).', 3, 'count', Y,
+  [M('wiki_po', 'format section', 'hosted by the higher-seeded team', 3)],
+  key=('playoff.campus_rounds', 'Rounds hosted by the higher seed', 'C3.3.1'), notes=NW + ' Count is read from the three round descriptions (wild card, divisional, conference championship); the quote is the conference championship line.')
+
+# ---- G-28 compliance penalty amounts that a primary text states (work-rule class, CBA Article 21 Section 8(d))
+CB = 'Base amounts of the 2020 League Year; Section 8(d)(iii) raises them each year by the change in Projected AR, at most 10 percent a year, so the 2026 amount is higher and is not published in the CBA text. Commissioner may fine less or nothing (good-faith interpretation or immaterial violation).'
+def wr(field, unit, text, val, quote, kind='fine'):
+    LG.row('pro', text, val, unit, Y, [cba('Article 21 Section 8(d)', quote, val)],
+      key=('compliance.work_rules_practice.' + field, 'Offseason-program violation penalty: ' + field.replace('_', ' '), 'C11.2.4'), notes=NC + ' ' + CB)
+wr('fine_head_coach_first_cents', 'cents', 'Offseason workout violation: head coach fined $100,000 for a first violation.', 10000000, 'the head coach shall be subject to a fine in the amount of $100,000 for the first violation')
+wr('fine_head_coach_repeat_cents', 'cents', 'Offseason workout violation: head coach fined $250,000 for a second violation.', 25000000, 'and $250,000 for a second violation')
+wr('club_fine_first_cents', 'cents', 'Offseason workout violation: club fined $250,000 for a first violation.', 25000000, 'the Club shall be subject to a fine in the amount of $250,000 for the first violation')
+wr('club_fine_repeat_cents', 'cents', 'Offseason workout violation: club fined $500,000 for a second violation.', 50000000, 'and $500,000 for a second violation')
+LG.row('pro', 'Offseason workout violation: the club\'s next scheduled week of OTAs is cancelled.', 'ota_week', None, Y,
+  [cba('Article 21 Section 8(d)(ii)', 'the Club’s next scheduled week of OTAs shall be cancelled, excluding minicamps', 'ota_week')],
+  key=('compliance.work_rules_practice.practice_cancel', 'Practice taken from the club on a finding', 'C11.2.4', ['none', 'ota_week', 'padded_practice']), notes=NC)
+LG.row('pro', 'Two separate violations in one league year: the club also forfeits a fourth-round pick.', 4, 'round', Y,
+  [cba('Article 21 Section 8(d)(ii)', 'the Commissioner shall cause the Club to forfeit a fourth-round draft selection', 4)],
+  key=('compliance.work_rules_practice.pick_round_repeat', 'Draft round forfeited on a repeat finding', 'C11.2.4'), notes=NC)
+
+# ---- college
+source('lsdbi_17', 'NCAA LSDBi proposal 108635 (Bylaw 17, House implementation; Adopted Final 2025-06-06, effective 2025-07-01, https://web3.ncaa.org/lsdbi/search/proposalView?id=108635)', 'ncaa', True, 'primary text')
+source('on3_105', 'On3, NCAA expected to approve increased scholarships across multiple sports, 105 roster limit for football (https://www.on3.com/news/ncaa-approves-new-roster-size-limits-paving-way-for-additional-scholarships)', 'on3', False, 'secondary summary')
+COL.row('college', 'Football preseason practice: at most 110 student-athletes may practice before the first day of classes or the seventh day before the first contest, whichever is earlier.', 110, 'count', Y,
+  [M('lsdbi_17', 'Bylaw 17.11.3.1.2 (Football)', 'There is limit of 110 student-athletes who may engage in practice activities prior to the institution\'s first day of classes', 110)],
+  key=('league.preseason_roster_limit', 'Camp participant limit before the declaration date', 'T5.1.1'),
+  notes=N1 + ' This is a practice-participant limit, not a roster cap; the 105 roster limit is in the same proposal\'s Bylaw 17.2 table and is also carried by On3. One primary source.')
+COL.add('league.roster_limit', M('lsdbi_17', 'Bylaw 17.2 table', 'Football | 105', 105))
+COL.add('league.roster_limit', M('on3_105', 'roster article', 'Football will have a roster limit of 105, up from the 85-man NCAA scholarship limit that currently exists.', 105))
+
+# ---- college postseason (G-14), 2026 rule set
+for n, c, g in [
+ ('si_cfp26', 'Sports Illustrated, New Pac-12, Group of Six will have harder road to College Football Playoff in 2026 (2026-01-23, https://www.si.com/college/boise-state/football/new-pac-12-group-of-six-will-have-harder-road-to-college-football-playoff-in-2026)', 'si'),
+ ('fox_cfp26', 'FOX Sports/AP, College Football Playoff Stays at 12 Teams; How Does it Impact Notre Dame? (2026-01-23, https://www.foxsports.com/stories/college-football/college-football-playoff-stays-12-teams-how-does-impact-notre-dame)', 'fox-ap'),
+ ('aol_cfp26', 'USA Today via AOL, CFP makes previously unknown change with 12-team Group of 6 bids (2026-01, https://www.aol.com/articles/cfp-makes-previously-unknown-change-160422050.html)', 'usatoday'),
+ ('espn_cfp27', 'ESPN via ABC7, CFP 24-team format: What you need to know about the new playoff (Heather Dinich, 2026-11-09, https://abc7.com/post/cfp-24-team-format-what-need-know-new-playoff/20027109/)', 'espn-news'),
+ ('fbs_cfp27', 'FBSchedules, College Football Playoff officially expanding to 24 teams in 2027 (2026-11-09, https://fbschedules.com/college-football-playoff-officially-expanding-to-24-teams-in-2027/)', 'fbschedules'),
+ ('wiki_bowl', 'Wikipedia, Bowl eligibility (rules text dated 2018-19; https://en.wikipedia.org/wiki/Bowl_eligibility)', 'wikipedia'),
+ ('ap_bowl23', 'AP via CBS Minnesota, FBS newcomers James Madison and Jacksonville State along with 5-7 Minnesota get last 3 bowl slots (2023-11-26, https://www.cbsnews.com/amp/minnesota/news/fbs-newcomers-james-madison-and-jacksonville-state-along-with-5-7-minnesota-get-last-3-bowl-slots)', 'ap'),
+]:
+    source(n, c, g, False, 'secondary summary')
+CL = 'college'
+COL.row(CL, 'The 2026 College Football Playoff stays a 12-team field.', 12, 'count', '2026',
+  [M('si_cfp26', 'CFP 2026 article', 'the CFP will remain a 12-team field in 2026', 12)], key=('playoff.field_size', 'Playoff clubs per bracket group', 'T3.5.1'), notes=N1 + ' 2027 is 24 (rows below, keyless; a college_2027 rule set is needed).')
+COL.row(CL, 'The playoff bracket is national, not per conference.', 'national', None, '2026',
+  [M('si_cfp26', 'CFP 2026 article', 'the CFP will remain a 12-team field in 2026', 'national')], key=('playoff.grouping', 'Whether the bracket is per conference or national', 'T3.5.1', ['conference', 'national']), notes=N1 + ' Derived: a single 12-team field.')
+COL.row(CL, 'The four highest-seeded teams get byes: the opening round features seeds 5 through 12, on campus.', 4, 'count', '2026',
+  [M('fox_cfp26', 'CFP 2026 article', 'The opening round of games, featuring the fifth through 12th seeds, will be played on campus', 4)], key=('playoff.byes', 'First-round byes per bracket group', 'T3.5.1'), notes=N1 + ' Bye count implied (seeds 1-4), not stated.')
+COL.row(CL, 'Only the opening round is on campus; the final three rounds go to bowl sites.', 1, 'count', '2026',
+  [M('fox_cfp26', 'CFP 2026 article', 'with the final three rounds going to traditional bowl sites', 1)], key=('playoff.campus_rounds', 'Rounds hosted by the higher seed', 'T3.5.1'), notes=N1)
+COL.row(CL, 'Winners of the Big Ten, SEC, ACC and Big 12 are guaranteed playoff spots.', True, None, '2026',
+  [M('si_cfp26', 'CFP 2026 article', 'automatic bids guaranteed to the winners of the Big Ten, SEC, ACC and Big 12', True),
+   M('fox_cfp26', 'CFP 2026 article', 'holding automatic spots to the champions of the Power Four conferences', True)], key=('cfp.power_champions_auto', 'Power conference champions get automatic bids', 'T3.5.1'), notes=N1)
+COL.row(CL, 'One more automatic bid goes to the highest-ranked Group of Six / non-Power-Four team.', 1, 'count', '2026',
+  [M('si_cfp26', 'CFP 2026 article', 'the highest-rated Group of Six — now including the new Pac-12 — conference champion', 1),
+   M('aol_cfp26', 'CFP 2026 article', 'will rather go to the highest-ranked non-Power Four program', 1)], key=('cfp.other_auto_bids', 'Automatic bids for the best team outside the power conferences', 'T3.5.1'),
+  notes=N1 + ' The two pages disagree on whether that team must be a conference champion (SI: champion; USA Today: "no longer has to be a conference champion"); the count of one bid agrees.')
+COL.row(CL, 'Notre Dame (independent) is guaranteed a spot with a top-12 final ranking.', 12, 'rank', '2026',
+  [M('si_cfp26', 'CFP 2026 article', 'Notre Dame will also be guaranteed a playoff spot with a top-12 finish in the final CFP rankings.', 12),
+   M('aol_cfp26', 'CFP 2026 article', 'granting Notre Dame a spot if it is anywhere in the top 12', 12)], key=('cfp.independent_auto_rank', 'Independent automatic bid rank', 'T3.5.1'), notes=N1)
+COL.row(CL, 'Bowl eligibility: at least as many wins as losses (six wins in a 12-game season).', 6, 'wins', '2026',
+  [M('wiki_bowl', 'rules section (2018-19 text)', 'The team must have at least as many wins as overall losses.', 6),
+   M('ap_bowl23', '2023 season report', 'only 79 teams achieved the six wins necessary for bowl eligibility', 6)], key=('bowl.eligibility_wins', 'Wins for bowl eligibility', 'T3.5.2'), notes=N1)
+COL.row(CL, 'At most one win over a lower-division (FCS) team counts toward bowl eligibility.', 1, 'wins', '2026',
+  [M('wiki_bowl', 'rules section (2018-19 text)', 'No more than one win against a Football Championship Subdivision(FCS) team may count.', 1)], key=('bowl.lower_division_wins_counted', 'Lower-division wins counted for bowl eligibility', 'T3.5.2'),
+  notes=N1 + ' The same page also carries a scholarship test the page does not reconcile; wording is from a 2018-19 text.')
+COL.row(CL, 'When spots go unfilled, teams with five wins (5-7) may fill them.', 5, 'wins', '2026',
+  [M('wiki_bowl', 'rules section (2018-19 text)', 'Teams with at least 5 wins and no more than 7 losses', 5),
+   M('ap_bowl23', '2023 season report', 'NCAA rules allow five-win teams to fill spots', 5)], key=('bowl.fill_min_wins', 'Fewest wins for a team that fills an open bowl spot', 'T3.5.2'), notes=N1)
+# 2027 (keyless: no college_2027 rule set yet)
+COL.row(CL, '2027 playoff field: 24 teams (four conference champions, the best Group of Six team and 19 at-large).', 24, 'count', '2027',
+  [M('espn_cfp27', 'format article', 'will consist of the Power 4 conference champions -- ACC, Big 12, Big Ten, SEC -- plus the highest-ranked Group of 6 team and 19 at-large selections', 24),
+   M('fbs_cfp27', 'format article', '19 at-large selections, the four champions of the Autonomy Four (A4) conferences', 24)], key=None, notes=N1 + ' A top-25 pool for at-large teams is not stated by either page (the committee ranking could extend beyond 25).')
+COL.row(CL, '2027 playoff: seeds 1-8 get a bye and a home game; seeds 9-16 host 17-24 on campus.', 8, 'count', '2027',
+  [M('espn_cfp27', 'format article', 'Teams seeded Nos. 1-8 earn a first-round bye followed by a home game.', 8)], key=None, notes=N1 + ' Reseeding is not stated.')
+COL.row(CL, '2027: lower-division wins get ranking credit for only one FCS win per season.', 1, 'wins', '2027',
+  [M('espn_cfp27', 'format article', 'won\'t give any weight to a win over more than one FCS opponent per season', 1),
+   M('fbs_cfp27', 'format article', 'Schools that schedule multiple FCS programs will receive selection credit for only one such win.', 1)], key=None, notes=N1)
+COL.row(CL, '2027: schools are expected to play at least ten qualifying regular-season games.', 10, 'games', '2027',
+  [M('espn_cfp27', 'format article', 'Each Power 4 school will be expected to play at least 10 qualifying regular-season games.', 10),
+   M('fbs_cfp27', 'format article', 'G6 institutions will likewise be required to play at least 10 qualifying regular-season games.', 10)], key=None, notes=N1)

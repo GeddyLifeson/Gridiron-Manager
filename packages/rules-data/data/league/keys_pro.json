@@ -903,6 +903,164 @@
    "unit": "days"
   },
   {
+   "key": "roster.elevations_postseason_unlimited",
+   "type": "boolean",
+   "meaning": "No per-player elevation limit in the postseason",
+   "ownerLeaf": "C5.3.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "standings.tie_win_value",
+   "type": "number",
+   "meaning": "Share of a win a tied game counts as in winning percentage",
+   "ownerLeaf": "C3.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "key": "tiebreak.common_games_min",
+   "type": "number",
+   "meaning": "Fewest common games for the common-games step",
+   "ownerLeaf": "C3.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "tiebreak.restarts",
+   "type": "option",
+   "meaning": "What happens when a step removes clubs and leaves three tied",
+   "ownerLeaf": "C3.2.3",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "restart_on_three",
+    "continue_on_three"
+   ]
+  },
+  {
+   "key": "playoff.field_size",
+   "type": "number",
+   "meaning": "Playoff clubs per bracket group",
+   "ownerLeaf": "C3.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.grouping",
+   "type": "option",
+   "meaning": "Whether the bracket is per conference or national",
+   "ownerLeaf": "C3.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "conference",
+    "national"
+   ]
+  },
+  {
+   "key": "playoff.byes",
+   "type": "number",
+   "meaning": "First-round byes per bracket group",
+   "ownerLeaf": "C3.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "playoff.reseed",
+   "type": "boolean",
+   "meaning": "Playoffs reseed after each round",
+   "ownerLeaf": "C3.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "playoff.campus_rounds",
+   "type": "number",
+   "meaning": "Rounds hosted by the higher seed",
+   "ownerLeaf": "C3.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "compliance.work_rules_practice.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "Offseason-program violation penalty: fine head coach first cents",
+   "ownerLeaf": "C11.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.work_rules_practice.fine_head_coach_repeat_cents",
+   "type": "number",
+   "meaning": "Offseason-program violation penalty: fine head coach repeat cents",
+   "ownerLeaf": "C11.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.work_rules_practice.club_fine_first_cents",
+   "type": "number",
+   "meaning": "Offseason-program violation penalty: club fine first cents",
+   "ownerLeaf": "C11.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.work_rules_practice.club_fine_repeat_cents",
+   "type": "number",
+   "meaning": "Offseason-program violation penalty: club fine repeat cents",
+   "ownerLeaf": "C11.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.work_rules_practice.practice_cancel",
+   "type": "option",
+   "meaning": "Practice taken from the club on a finding",
+   "ownerLeaf": "C11.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "none",
+    "ota_week",
+    "padded_practice"
+   ]
+  },
+  {
+   "key": "compliance.work_rules_practice.pick_round_repeat",
+   "type": "number",
+   "meaning": "Draft round forfeited on a repeat finding",
+   "ownerLeaf": "C11.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "type": "number",
    "meaning": "Minimum cash spending as percent of cap",

@@ -1072,7 +1072,7 @@
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Resolves the bible C5.3.2 dissent: two independent 2025 pages say three.",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Resolves the bible C5.3.2 dissent: two independent 2025 pages say three. CONFLICT: the row value 3 follows SI and NFL.com (2022 change); the 2020 CBA text (Article 33 Section 5(f): \"a maximum combination of two regular season or postseason games in the same League Year\") and ESPN 2025 (\"Teams can't activate a player more than twice\") say 2. Needs a decision before the value is relied on.",
    "status": "2 of 3",
    "statusHistory": [
     {
@@ -2705,15 +2705,25 @@
      "primary": false,
      "quote": "the maximum of four protected players per week",
      "value": 4
+    },
+    {
+     "citation": "ESPN, What are NFL practice squads? Eligibility, salary, rules to know (2025-08-26, https://www.espn.ph/nfl/story/_/id/46078884/what-nfl-practice-squads-eligibility-salary-rules-know)",
+     "locator": "rules section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "espn-news",
+     "primary": false,
+     "quote": "Every Tuesday, teams can designate four players as protected",
+     "value": 4
     }
    ],
    "usedBy": [],
-   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read.",
-   "status": "1 of 3",
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Single club-site article from 2021; the CBA text has no protection clause and no league page was found in this pass. The days of protection are not stated in any page read. CONTRADICTION: Wikipedia (Practice squad) says \"Practice squad protections ended after the 2021 season.\" ESPN 2025 says protections are designated every Tuesday. Not resolved; no league page found.",
+   "status": "2 of 3",
    "statusHistory": [
     {
      "date": "2026-11-26",
-     "status": "1 of 3",
+     "status": "2 of 3",
      "reason": "First load by G-10 from sources read this session."
     }
    ]
@@ -3409,6 +3419,486 @@
    ],
    "usedBy": [],
    "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). League year start: the same page says the 2027 League Year and free agency signing period begin at 4:00 p.m. on March 11.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0100",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Per the CBA text, a practice squad player's elevations are limited to two games in the regular season AND postseason combined, so postseason elevations are not unlimited.",
+   "value": false,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 33 Section 5(f) (text copy cba_2020.txt, line 9549)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "a maximum combination of two regular season or postseason games in the same League Year",
+     "value": false
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). CONFLICT WITH THE BIBLE (C5.3.2 says unlimited, Verified): the 2020 CBA text read this session counts postseason games inside the same two-game cap. No page read this session states a postseason exemption. A May 2022 amendment (three elevations per season, NFL.com/CBS) is described by sources as a regular-season change; the postseason treatment after it was not found. Bible fix owed.",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0101",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "A tie counts as half a win and half a loss for both clubs.",
+   "value": 0.5,
+   "unit": "ratio",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL Tiebreaking Procedures (https://www.nfl.com/standings/tie-breaking-procedures)",
+     "locator": "tie-breaking page note",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Tie games count as one-half win and one-half loss for both clubs.",
+     "value": 0.5
+    },
+    {
+     "citation": "FOX Sports, NFL Tiebreakers: Playoff and wild-card rules (updated 2025-08-20, https://www.foxsports.com/stories/nfl/nfl-playoff-tiebreaking-procedures)",
+     "locator": "tiebreakers page",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "Tie games count as one-half win and one-half loss for both clubs.",
+     "value": 0.5
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0102",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Wild-card common-games tiebreaker needs at least four common games.",
+   "value": 4,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL Tiebreaking Procedures (https://www.nfl.com/standings/tie-breaking-procedures)",
+     "locator": "wild-card procedure",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "Best won-lost-tied percentage in common games, minimum of four.",
+     "value": 4
+    },
+    {
+     "citation": "FOX Sports, NFL Tiebreakers: Playoff and wild-card rules (updated 2025-08-20, https://www.foxsports.com/stories/nfl/nfl-playoff-tiebreaking-procedures)",
+     "locator": "wild-card procedure",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "fox",
+     "primary": false,
+     "quote": "Best won-lost-tied percentage in common games, minimum of four.",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The division tiebreaker lists common games with no minimum.",
+   "status": "Verified",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0103",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "When a step removes clubs and three remain tied, the division tiebreaker restarts at step 1 of the three-club list and the wild-card list at step 2.",
+   "value": "restart_on_three",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "NFL.com, NFL Tiebreaking Procedures (https://www.nfl.com/standings/tie-breaking-procedures)",
+     "locator": "multi-club procedures",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-league-office",
+     "primary": true,
+     "quote": "tiebreaker restarts at Step 1 of three-club format",
+     "value": "restart_on_three"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). The page also says \"tiebreaker restarts at Step 2 of three-club format\" for wild cards; two remaining clubs return to step 1 of the two-club list (NFL.com, operations.nfl.com and FOX).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0104",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The playoffs take seven clubs from each of the two conferences.",
+   "value": 7,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "format section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "seven teams from each of the league's two conferences qualify for the playoffs",
+     "value": 7
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0105",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The brackets are per conference.",
+   "value": "conference",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "format section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "seven teams from each of the league's two conferences qualify for the playoffs",
+     "value": "conference"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0106",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Only the top seed in each conference gets a first-round bye.",
+   "value": 1,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "format section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The top team in each conference receives a first-round bye, automatically advancing to the next round.",
+     "value": 1
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0107",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "The playoffs reseed each round; there is no fixed bracket.",
+   "value": true,
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "format section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "The NFL does not use a fixed bracket system.",
+     "value": true
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it).",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0108",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Three rounds are played at the higher seed's home (wild card, divisional, conference championship).",
+   "value": 3,
+   "unit": "count",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "Wikipedia, NFL playoffs (https://en.wikipedia.org/wiki/NFL_playoffs)",
+     "locator": "format section",
+     "dateRead": "2026-11-26",
+     "howRead": "secondary summary",
+     "independenceGroup": "wikipedia",
+     "primary": false,
+     "quote": "hosted by the higher-seeded team",
+     "value": 3
+    }
+   ],
+   "usedBy": [],
+   "notes": "Quote as returned by the cloud web fetch on 2026-11-26 (page text not saved locally, so the quote lint cannot re-find it). Count is read from the three round descriptions (wild card, divisional, conference championship); the quote is the conference championship line.",
+   "status": "1 of 3",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0109",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Offseason workout violation: head coach fined $100,000 for a first violation.",
+   "value": 10000000,
+   "unit": "cents",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 8(d) (text copy cba_2020.txt, line 7648)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the head coach shall be subject to a fine in the amount of $100,000 for the first violation",
+     "value": 10000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). Base amounts of the 2020 League Year; Section 8(d)(iii) raises them each year by the change in Projected AR, at most 10 percent a year, so the 2026 amount is higher and is not published in the CBA text. Commissioner may fine less or nothing (good-faith interpretation or immaterial violation).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0110",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Offseason workout violation: head coach fined $250,000 for a second violation.",
+   "value": 25000000,
+   "unit": "cents",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 8(d) (text copy cba_2020.txt, line 7649)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "and $250,000 for a second violation",
+     "value": 25000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). Base amounts of the 2020 League Year; Section 8(d)(iii) raises them each year by the change in Projected AR, at most 10 percent a year, so the 2026 amount is higher and is not published in the CBA text. Commissioner may fine less or nothing (good-faith interpretation or immaterial violation).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0111",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Offseason workout violation: club fined $250,000 for a first violation.",
+   "value": 25000000,
+   "unit": "cents",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 8(d) (text copy cba_2020.txt, line 7649)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the Club shall be subject to a fine in the amount of $250,000 for the first violation",
+     "value": 25000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). Base amounts of the 2020 League Year; Section 8(d)(iii) raises them each year by the change in Projected AR, at most 10 percent a year, so the 2026 amount is higher and is not published in the CBA text. Commissioner may fine less or nothing (good-faith interpretation or immaterial violation).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0112",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Offseason workout violation: club fined $500,000 for a second violation.",
+   "value": 50000000,
+   "unit": "cents",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 8(d) (text copy cba_2020.txt, line 7650)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "and $500,000 for a second violation",
+     "value": 50000000
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020). Base amounts of the 2020 League Year; Section 8(d)(iii) raises them each year by the change in Projected AR, at most 10 percent a year, so the 2026 amount is higher and is not published in the CBA text. Commissioner may fine less or nothing (good-faith interpretation or immaterial violation).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0113",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Offseason workout violation: the club's next scheduled week of OTAs is cancelled.",
+   "value": "ota_week",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 8(d)(ii) (text copy cba_2020.txt, line 7669)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the Club’s next scheduled week of OTAs shall be cancelled, excluding minicamps",
+     "value": "ota_week"
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
+   "status": "Rulebook only",
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Rulebook only",
+     "reason": "First load by G-10 from sources read this session."
+    }
+   ]
+  },
+  {
+   "id": "F-league-0114",
+   "level": "pro",
+   "domain": "league-rule",
+   "statement": "Two separate violations in one league year: the club also forfeits a fourth-round pick.",
+   "value": 4,
+   "unit": "round",
+   "validFor": "2026",
+   "sources": [
+    {
+     "citation": "2020 NFL-NFLPA Collective Bargaining Agreement (full text)",
+     "locator": "Article 21 Section 8(d)(ii) (text copy cba_2020.txt, line 7674)",
+     "dateRead": "2026-11-26",
+     "howRead": "primary text",
+     "independenceGroup": "nfl-nflpa-cba-2020",
+     "primary": true,
+     "quote": "the Commissioner shall cause the Club to forfeit a fourth-round draft selection",
+     "value": 4
+    }
+   ],
+   "usedBy": [],
+   "notes": "Primary text read directly this session (CBA 2020).",
    "status": "Rulebook only",
    "statusHistory": [
     {
