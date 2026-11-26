@@ -50,6 +50,13 @@ const ROWS: readonly Row[] = [
   ['talent.programZCap', 1.7, 0.5, 4, 'z', 'assumption', 'T12.2.1', 'Program strength ceiling: the top ten programs hold about the same blue-chip stock (247Sports 2025 table)'],
   // Founding prestige of a club with no history level in content.
   ['prestige.neutral', 0.5, 0, 1, 'ratio', 'assumption', 'X10.2.1', 'Founding prestige where content gives no football history level'],
+  // Lost clubs (lost-clubs.ts): grounds and markets of the clubs that fold in the world's past.
+  ['lost.capacityMin', 5000, 1000, 20000, 'seats', 'assumption', 'X10.2.1', 'Smallest ground of a lost club; early pro grounds were small (not yet sourced)'],
+  ['lost.capacityMax', 30000, 10000, 80000, 'seats', 'assumption', 'X10.2.1', 'Largest ground of a lost club (not yet sourced)'],
+  ['lost.marketTierMin', 1, 1, 5, 'tier', 'assumption', 'X10.2.1', 'Lost clubs played in small markets: lowest market tier'],
+  ['lost.marketTierMax', 3, 1, 5, 'tier', 'assumption', 'X10.2.1', 'Highest market tier of a lost club'],
+  ['lost.noiseBase', 0.5, 0, 1, 'ratio', 'assumption', 'X10.2.1', 'Crowd noise base of a small open ground'],
+  ['lost.nameTries', 200, 10, 1000, 'count', 'assumption', 'X10.2.1', 'Name draws before a lost club gives up (a failure is a content bug)'],
   // X10.3.2 validator starting bounds (for a 30-season run).
   ['validate.championsPerDecade', 3, 1, 10, 'count', 'bible', 'X10.3.2', 'X10.3.2: at least 3 different champions per level per decade'],
   ['validate.maxTitleShare', 0.6, 0.1, 1, 'ratio', 'bible', 'X10.3.2', 'X10.3.2: no team with more than 60 percent of titles'],

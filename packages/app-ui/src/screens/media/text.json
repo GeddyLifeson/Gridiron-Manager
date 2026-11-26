@@ -1,0 +1,55 @@
+{
+  "$comment": "Media screen and press conference text (O4.5.2, H7.2.1). Answers are stances, not scripts, and show no numbers.",
+  "title": "Media",
+  "sessions": "This week's sessions",
+  "noSessions": "No sessions on your schedule this week.",
+  "done": "held",
+  "progress": "Question {n} of {target}",
+  "followUp": "follow-up",
+  "timeLeft": "{s} seconds to answer",
+  "timedOut": "time ran out",
+  "blandAll": "Standard coach-speak for the rest",
+  "answered": "Asked and answered",
+  "headline": "The headline: {stance} on {topic}",
+  "over": "The session is over.",
+  "between": "No session in the room right now.",
+  "sessionKinds": {
+    "post_game": "After the game", "day_after": "Day after the game", "mid_week": "Midweek", "coordinator": "Coordinator",
+    "locker_room": "Locker room", "production_meeting": "Broadcast production meeting", "conference_call": "Opponent's conference call",
+    "weekly_conference": "Weekly news conference", "opponent_media": "Opponent's media", "coach_show": "Coach's show"
+  },
+  "kinds": {
+    "postgame": "Postgame news conference", "day_after": "Day-after news conference", "midweek": "Midweek news conference",
+    "weekly": "Weekly news conference", "training_camp": "Training camp", "end_of_season": "End of season", "pre_draft": "Pre-draft",
+    "introductory": "Introduction", "coordinator": "Coordinator session", "position_coach": "Position coach session",
+    "halftime_interview": "Halftime interview", "coach_show": "Coach's show", "opponent_call": "Opponent's conference call", "crisis": "Statement and questions"
+  },
+  "outlets": {
+    "local_paper": "Local paper", "local_broadcast": "Local TV", "team_site": "Team site", "national": "National outlet",
+    "analytics": "Analytics writer", "student": "Student paper", "radio_host": "Radio host", "unknown": "Reporter"
+  },
+  "choices": {
+    "take_blame": "Take the blame yourself",
+    "blame_player": "Name the player who failed",
+    "blame_unit_or_staff": "Name the unit or coach that failed",
+    "protect_player": "Protect the player",
+    "bland": "Say nothing useful",
+    "honest_plan_detail": "Explain the plan honestly",
+    "shot_at_opponent": "Take a shot at the opponent",
+    "shot_at_front_office": "Take a shot at the front office",
+    "decline": "Decline to comment",
+    "refer_to_report": "Refer to the injury report",
+    "honest_outlook": "Give an honest outlook",
+    "criticise_officials": "Criticise the officials",
+    "answer_straight": "Answer it straight",
+    "name_recruit": "Talk about the recruit by name"
+  },
+  "headlines": {
+    "take_blame": "coach takes the blame", "blame_player": "coach singles out a player", "blame_unit_or_staff": "coach points at his staff",
+    "protect_player": "coach stands by his player", "bland": "coach gives little away", "honest_plan_detail": "coach opens up about the plan",
+    "shot_at_opponent": "coach fires at the opponent", "shot_at_front_office": "coach takes aim at the front office", "decline": "no comment",
+    "refer_to_report": "coach points to the injury report", "honest_outlook": "coach gives a straight injury outlook",
+    "criticise_officials": "coach rips the officials", "answer_straight": "coach answers it straight", "name_recruit": "coach talks about an unsigned recruit"
+  },
+  "violation": "breaks an association rule"
+}

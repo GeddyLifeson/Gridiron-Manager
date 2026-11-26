@@ -49,7 +49,7 @@ function leak(): PlayDef {
     slot(F, 'Q', { behavior: 'quarterback', params: { action: 'boot', side: 'left', roll: 'full', read: 'highToLow' }, concept: 'leakLeft', load: 2, keys: ['role:H', 'role:X', 'role:Z'], gaze: 'key' }),
     slot(F, 'R', { behavior: 'ballCarrier', params: { track: 'wideZone', fake: true }, path: [through(-3, 3), through(0, 8)], concept: 'leakLeft' }),
     slot(F, 'Y', { behavior: 'runBlock', params: { scheme: 'wideZoneFake', side: 'right' }, concept: 'leakLeft', rules: [blockMan('Sell the zone and block the end', 'reach')] }),
-    slot(F, 'H', route('leakLeft', [through(-0.5, -4), through(1, -6), through(3, -12)], { params: { route: 'leak', sell: 'blockDown' }, rules: [clause('Sell the back-side block, then slip out across the flow', test('timeGt', { s: 0.6 }), [act('runPath')])] })),
+    slot(F, 'H', route('leakLeft', [through(-0.5, -4), through(1, -6), settle(3, -12)], { params: { route: 'leak', sell: 'blockDown' }, rules: [clause('Sell the back-side block, then slip out across the flow', test('timeGt', { s: 0.6 }), [act('runPath')])] })),
     slot(F, 'X', route('leakLeft', [through(10, -17), cut(18, -17), through(32, -17)], { params: { route: 'go' } })),
     slot(F, 'Z', route('leakLeft', [through(8, 16), cut(12, 4), through(12, -6)], { params: { route: 'dragBack' } })),
   ], ['The back-side tight end sells a block, then leaks out across the flow behind linebackers who chased the run.', 'The quarterback boots away from the fake.'], [

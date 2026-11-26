@@ -43,6 +43,7 @@ if (process.env.HE_CHILD) {
       if (row.down === null) continue;
       add(`snaps.${v}`);
       for (const f of row.penalties) {
+        add(`foul.${f.foulId}`);
         if (f.side === off && f.foulId === DOG) add(`dog.${v}`);
         if (f.side === off && f.foulId === FS) add(`fs.${v}`);
         if (f.side !== off && DEF.has(f.foulId)) add(`defpre.${dv}`);
@@ -84,6 +85,7 @@ if (process.env.HE_CHILD) {
     pair(`${cause} errors per game, offense`, (v) => c(`err.${cause}.offense.${v}`) / G);
     pair(`${cause} errors per game, defense`, (v) => c(`err.${cause}.defense.${v}`) / G);
   }
+  console.log(`  flags per team per game: ${Object.keys(n).filter((k) => k.startsWith('foul.')).sort((a, b) => c(b) - c(a)).map((k) => `${k.slice(5)} ${(c(k) / G / 2).toFixed(2)}`).join(', ')}`);
   pair('delay of game per 100 snaps', (v) => 100 * c(`dog.${v}`) / c(`snaps.${v}`));
   pair('false starts per 100 snaps', (v) => 100 * c(`fs.${v}`) / c(`snaps.${v}`));
   pair('defensive pre-snap fouls per 100 snaps (by the defense at that venue)', (v) => 100 * c(`defpre.${v}`) / c(`snaps.${v === 'home' ? 'road' : 'home'}`));

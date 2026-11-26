@@ -14,7 +14,7 @@ import { drawTeam, type TeamDraws } from './draws.ts';
 /** Internal skill scale points per standard deviation (schema `issToZ`). */
 const ISS_PER_Z = 10;
 import {
-  audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
+  alignTravelS, audibleCostS, checkDurationS, checkRecognitionS, classifyDefensiveForm, defenderKeyDelayS, defensiveOffsideChance,
   disguiseQualityOf, falseStartChance, holdEndS, huddleDeliveryChance, noHuddleDeliveryChance, offenseStartS, protectionRecognitionChance,
   relayGarbleChance, relayTimeS, type RelayInput,
   readCorrectChance, runOnS, unitLateS, unitSetS, snapMotionSdS, substitutionErrorChance, targetClockAtSnapS, tightenSplit, unblockedAfterSet,
@@ -302,6 +302,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const missing: number[] = [];
   let offenseExtra = false, defenseExtra = false;
   const subDur = [0, 0];
+  let subTravelS = 0;
   for (const [side, S, dr] of [[0, O, dO], [1, D, dD]] as const) {
     const pErr = substitutionErrorChance(input.tempo, S.callLateS + (side === 0 ? unitLateS(input.unitChange, p) : 0), S.packageReadiness, p);
     for (const ts of S.substituted) {
@@ -309,6 +310,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
       const sidelinePy = a.preSnap.align.py >= 0 ? hiPy : loPy;
       const d = Math.abs(sidelinePy - a.preSnap.align.py) + Math.abs(a.preSnap.align.px);
       subDur[side] = Math.max(subDur[side]!, runOnS(d, p));
+      if (side === 0) subTravelS = Math.max(subTravelS, alignTravelS(d, p));
       const u = dr.get('substitution', ts);
       if (!ok && u < pErr) {
         if (u < pErr * p['sub.extraShare']!) { if (side === 0) offenseExtra = true; else defenseExtra = true; }
@@ -342,12 +344,11 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
 
   // --- J5.8.1 offense lane: break, align and set.
   const breakS = input.tempo === 'huddle' ? p['huddle.breakS']! : 0;
-  const jog = p['sub.jogSpeedYps']!;
-  let alignDur = subDur[0]!;
+  let alignDur = Math.max(subDur[0]!, subTravelS);
   for (let s = 0; s < SLOTS_PER_TEAM; s++) {
     const dx = spot[s]!.px - (w.players.posX[s]! - w.frame.originX) * w.frame.attackDir;
     const dy = spot[s]!.py - (w.players.posY[s]! - w.frame.originY) * w.frame.attackDir;
-    alignDur = Math.max(alignDur, math.sqrt(dx * dx + dy * dy) / jog);
+    alignDur = Math.max(alignDur, alignTravelS(math.sqrt(dx * dx + dy * dy), p));
   }
   // I4.1.1 a kicking unit is set no sooner than its dead-ball-to-set time (it is "set" after the set period).
   const unitS = input.unitChange ? unitSetS(input.unitChange, p) : 0;
@@ -367,8 +368,9 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   if (alignEnd > clockStartS) { delay = true; snapS = clockStartS; }
   else snapS = Math.min(Math.max(targetS, readyS, Math.min(holdEnd, clockStartS)), clockStartS - marginS);
   if (!delay && snapS < alignEnd) snapS = alignEnd;
-  // Snap on a whole tick.
-  const N = Math.max(1, Math.round(snapS * TICKS_PER_SECOND));
+  // Snap on a whole tick: the first one at or after the moment chosen, so a snap that waits for the set period
+  // (J5.8.1, B4.3.3) is never rounded to a tick before the offense is set. The clock's own readings are whole ticks.
+  const N = Math.max(1, Math.ceil(snapS * TICKS_PER_SECOND - 1e-9));
   snapS = N / TICKS_PER_SECOND;
   const tickAt = (s: number) => -N + Math.round(s * TICKS_PER_SECOND);
   log.push({ side: 0, action: 'align_and_set', name: 'align_and_set', startS: breakS, endS: readyS, status: delay ? 'unfinished' : readyS <= snapS ? 'done' : 'unfinished' });
@@ -378,7 +380,7 @@ export function planPresnap(w: TickWorld, input: PresnapInput): PresnapPlan {
   const motionSlot = O.motion ? O.motion.teamSlot : -1;
   const motionLead = O.motion ? O.motion.leadS : 0;
   const shiftDur = O.shift ? Math.max(...O.shift.map((m) => {
-    const a = spot[m.teamSlot]!; const dx = m.to.px - a.px, dy = m.to.py - a.py; return math.sqrt(dx * dx + dy * dy) / jog;
+    const a = spot[m.teamSlot]!; const dx = m.to.px - a.px, dy = m.to.py - a.py; return alignTravelS(math.sqrt(dx * dx + dy * dy), p);
   })) + setPeriod : 0;
   const wanted: { action: LaneAction; dur: number; prio: number }[] = [
     { action: 'protection', dur: p['prot.setS']!, prio: 0 },

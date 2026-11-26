@@ -23,6 +23,8 @@ export interface PerceivedViewExt extends PerceivedView {
   landingPoint?(): { readonly px: number; readonly py: number } | null;
   /** The sidelines in his play frame: lateral position of the lower and the higher one. */
   sidelines?(): { readonly lo: number; readonly hi: number };
+  /** The opponent he is locked up with in a block, or -1. */
+  lockedWith?(): Slot | -1;
   /** A fact he has perceived by sight or signal: `fairCatchSignal`, `kickTouchedByReceivers`, `kickRolling`, `kickDeadByRule`. */
   fact?(name: string): boolean;
 }
@@ -176,6 +178,35 @@ export function seenCarrier(c: Ctx): PerceivedEntity | null {
 const NONE: Sel = () => null;
 
 /**
+ * The rusher a blocker takes (J4.1.3). A back or the quarterback sees the nearest one. A man on the line takes the
+ * nearest rusher that no teammate on the line is nearer to (a tie goes to the inside man), so the tackle kicks out
+ * to the end instead of doubling the guard's man; with none of his own he helps on the nearest.
+ */
+function rusherFor(c: Ctx): PerceivedEntity | null {
+  const k = c.k, me = c.self, carrier = c.view.believedCarrierSlot();
+  const onLine = c.offense && c.startPx >= -k.onLineDepth;
+  let near: PerceivedEntity | null = null, nearD = Infinity, mine: PerceivedEntity | null = null, mineD = Infinity;
+  for (let s = SLOTS_PER_TEAM; s < 2 * SLOTS_PER_TEAM; s++) {
+    if (s === c.slot) continue;
+    const e = c.view.entity(s);
+    if (e === null || !(e.velPx < 0 || e.px < k.onLineDepth)) continue;
+    const d = dist(e.px, e.py, me.px, me.py);
+    if (d < nearD) { near = e; nearD = d; }
+    if (!onLine || d >= mineD || d > k.scanRange) continue;
+    let own = true;
+    for (let t = 0; t < SLOTS_PER_TEAM && own; t++) {
+      if (t === c.slot || t === carrier) continue;
+      const m = c.view.entity(t);
+      if (m === null || m.px < me.px - k.onLineDepth || m.px > me.px + k.onLineDepth) continue;
+      const dm = dist(e.px, e.py, m.px, m.py);
+      if (dm < d - k.headUp || (dm <= d + k.headUp && Math.abs(m.py) < Math.abs(me.py))) own = false;
+    }
+    if (own) { mine = e; mineD = d; }
+  }
+  return mine ?? near;
+}
+
+/**
  * Compiles a selector to a closure over the view. An unbound `role:` or `qb` resolves to nobody.
  * `qb` is the bound quarterback selector (the `qb` behavior parameter that binding writes, J4.3.1).
  */
@@ -190,7 +221,7 @@ export function compileSelector(text: string, keys: readonly string[], qb: strin
     case 'nearestDefender': return (c) => nearestOf(c, c.oppStart);
     case 'nearestRusher': return (c) => {
       if (c.blockTarget !== null) { const t = c.blockTarget(); if (t >= 0) return c.view.entity(t); if (t === -2) return null; }
-      return nearestOf(c, SLOTS_PER_TEAM, (e) => e.velPx < 0 || e.px < c.k.onLineDepth);
+      return rusherFor(c);
     };
     case 'deepestReceiver': return (c) => {
       let best: PerceivedEntity | null = null;

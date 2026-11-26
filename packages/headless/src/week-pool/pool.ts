@@ -27,6 +27,8 @@ export interface SyncPoolOptions<J, R> {
   readonly stallMs?: number;
   /** Extra Node flags for the workers. Default: load TypeScript through tsx, as the batch runner does. */
   readonly execArgv?: readonly string[];
+  /** The worker file to start. Default: worker.ts beside this file. A bundle from `bundleForPool` runs with `execArgv: []`. */
+  readonly workerPath?: string;
 }
 
 export interface SyncPool<J, R> {
@@ -52,7 +54,7 @@ export function createSyncPool<J, R>(opts: SyncPoolOptions<J, R>): SyncPool<J, R
   let broken: string | null = null;
   for (let w = 0; w < n; w++) {
     const { port1, port2 } = new MessageChannel();
-    const worker = new Worker(WORKER_PATH, {
+    const worker = new Worker(opts.workerPath ?? WORKER_PATH, {
       workerData: { ctl: shared, port: port2, ref: opts.module }, transferList: [port2], execArgv: [...(opts.execArgv ?? ['--import', 'tsx'])],
     });
     // A blocked caller never sees these events; they matter between batches. Neither keeps the process alive.

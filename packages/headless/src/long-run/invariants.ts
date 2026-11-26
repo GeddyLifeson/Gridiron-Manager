@@ -47,7 +47,9 @@ export class InvariantChecker {
     const teamIds = new Set(world.teams.map((t) => t.id));
 
     // One current job and one current team per person.
-    const jobOf = new Map<number, number>();
+    // One current employer: a person may hold two titles on one staff (E2: assistant head coach and position
+    // coach, coordinator and position coach), never jobs with two teams (Q1.2.2 as amended, MA-76).
+    const jobOf = new Map<number, { id: number; teamId: number }>();
     const teamsOf = new Map<number, Set<number>>();
     const addTeam = (pid: number, teamId: number): void => {
       const s = teamsOf.get(pid) ?? new Set<number>();
@@ -57,8 +59,8 @@ export class InvariantChecker {
     for (const j of [...world.jobs.values()].sort((a, b) => a.id - b.id)) {
       if (j.holderPersonId === null) continue;
       const prev = jobOf.get(j.holderPersonId);
-      if (prev !== undefined) fail('one_current_job', `person ${j.holderPersonId} holds jobs ${prev} and ${j.id}`);
-      else jobOf.set(j.holderPersonId, j.id);
+      if (prev === undefined) jobOf.set(j.holderPersonId, { id: j.id, teamId: j.teamId });
+      else if (prev.teamId !== j.teamId) fail('one_current_job', `person ${j.holderPersonId} holds jobs ${prev.id} (team ${prev.teamId}) and ${j.id} (team ${j.teamId})`);
       addTeam(j.holderPersonId, j.teamId);
     }
     for (const [teamId, ids] of [...world.rosters].sort((a, b) => a[0] - b[0])) {

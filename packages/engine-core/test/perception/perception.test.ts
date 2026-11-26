@@ -137,7 +137,7 @@ describe('J3.1.1 the perceived world', () => {
     expect(JSON.stringify(see.view(VIEWER))).toBe(before);
     // The view's methods are the contract's and no more.
     expect(Object.getOwnPropertyNames(Object.getPrototypeOf(see.view(VIEWER))).sort()).toEqual(
-      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'landingPoint', 'playRead', 'receiverNumber', 'setSide', 'sidelines'].sort());
+      ['ball', 'ballKind', 'believedCarrierSlot', 'constructor', 'entity', 'heard', 'landingPoint', 'lockedWith', 'playRead', 'receiverNumber', 'setSide', 'sidelines'].sort());
   });
   it('starts from the pre-snap picture and drops a track not refreshed for 1.5 s (edge cases)', () => {
     const { w, see } = stage();
@@ -306,6 +306,22 @@ describe('J3.4 gaze', () => {
     const loop = createTickLoop([{ name: 'perceive', run: see.stage.run }]);
     for (let i = 0; i < 8; i++) loop.step(w);
     expect(w.players.gazeRad[VIEWER]).toBeCloseTo(w.players.headingRad[VIEWER]!, 9);
+  });
+  it('a player configured to watch his key keeps his eyes on that player when his hips turn away', () => {
+    const { w, see } = stage();
+    // His man is 90 degrees to his side. A man defender who turns to run must not lose him.
+    place(w, 0, 5, -20); facing(w, VIEWER, 180);
+    see.configure(VIEWER, { keys: [0], gaze: 'key' });
+    runTicks(w, [see.stage], 8);
+    const want = Math.atan2(w.players.posY[0]! - w.players.posY[VIEWER]!, w.players.posX[0]! - w.players.posX[VIEWER]!);
+    let off = Math.abs(w.players.gazeRad[VIEWER]! - want); if (off > Math.PI) off = 2 * Math.PI - off;
+    expect(off).toBeLessThan(0.05);
+    // With no key to watch, the same setting falls back to the hips.
+    const b = stage();
+    facing(b.w, VIEWER, 180);
+    b.see.configure(VIEWER, { keys: [], gaze: 'key' });
+    runTicks(b.w, [b.see.stage], 8);
+    expect(b.w.players.gazeRad[VIEWER]).toBeCloseTo(b.w.players.headingRad[VIEWER]!, 9);
   });
   it('a player told to find a ball he cannot see turns his eyes back to where the play started', () => {
     const { w, see } = stage();

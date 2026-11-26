@@ -127,9 +127,10 @@ export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
  *
  * `gate` is what the gate plays today. College plays the census team spread around 50, not the census level:
  * the tick engine measures skill on the absolute scale, so at 25 for both teams sacks are 30% of dropbacks and
- * accepted fouls 16.7 per team (quarterback clocks and mental terms are per absolute z). Playing 50 with the
- * census spread is the same as handing the engine attributes shifted by (50 - census level), the interim route
- * proposed in research/tuning/skill-response.md until skill is measured against the level of play. With block
+ * accepted fouls 16.7 per team (quarterback clocks and mental terms are per absolute z). The college level of 50
+ * is a PLACEHOLDER, not a level shift: skill stays on the pro scale (Marlon's ruling, 2026-11-26), and the gate
+ * moves to the census level once each absolute engine term has a matching defensive term, so equal low skill
+ * cancels (research/tuning/skill-response.md). With block
  * engagements on skill difference (#299), the 1.6 spread gives a mean margin of 15.8 (real 16.3) and a home
  * margin sd of 20.4 (real 20.3) over 40 games; without #299 the same spread gave 23.0 and 28.3.
  *
@@ -202,9 +203,9 @@ export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}
   const input = (gameIndex: number, seedHex: string): GameInput => {
     const [home, away] = teamIss(gameIndex, seedHex);
     return {
-    gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
-    teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
-    crew: officiating.crew.neutralCrew(1), environment: gameEnvironment, seedHex, fidelityTier: 'B',
+      gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
+      teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
+      crew: officiating.crew.neutralCrew(1), environment: gameEnvironment, seedHex, fidelityTier: 'B',
     };
   };
   const deps = (inp: GameInput): GameDeps => ({

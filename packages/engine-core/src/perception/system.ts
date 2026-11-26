@@ -57,7 +57,8 @@ export interface PerceptionConfig {
   dComplexityS?: number;
   dKnowledgeS?: number;
   /** J3.4.1 where his eyes start the play: with his hips (the default) or on the ball (a zone defender's eyes). */
-  gaze?: 'hips' | 'ball';
+  /** 'key' is his first key: a man defender's eyes stay on his man (J3.4.1). With no key it is the hips. */
+  gaze?: 'hips' | 'ball' | 'key';
   /** True for a defender who reads a run-pass key (J3.2.2). */
   readsKeys?: boolean;
   /** Starting evidence from the situation prior (J3.3.1): positive leans run. */
@@ -218,7 +219,7 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       v.read.read = 'unknown'; v.read.side = 'none'; v.read.confidence = 0;
       v.carrier = carrier; v.heardCalls.length = 0; v.ballKindCode = BALL_STATES.indexOf(w.ball.kind);
       v.tSinceSnapS = roundSimS(w.tick * TICK_S);
-      v.landOn = false;
+      v.landOn = false; v.lockedSlot = -1;
       { const south = (0 - w.frame.originY) * w.frame.attackDir, north = (w.geometry.widthYd - w.frame.originY) * w.frame.attackDir;
         v.bounds.lo = south < north ? south : north; v.bounds.hi = south < north ? north : south; }
       for (let e = 0; e < SLOT_COUNT; e++) {
@@ -408,6 +409,10 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
         if (stale > staleDrop) { v.valid[BALL_ENTITY] = 0; v.ballKindCode = UNKNOWN_BALL; } else v.entities[BALL_ENTITY]!.staleTicks = stale;
       }
 
+      // The man he is locked up with in a block is known to him by touch. A helper on a double team is not locked up.
+      { const ci = w.players.engagement[s]!, k = ci >= 0 && ci < w.contests.length ? w.contests[ci]! : null;
+        v.lockedSlot = k === null ? -1 : k.defenseSlot === s ? k.offenseSlot : k.offenseSlot === s ? k.defenseSlot : -1; }
+
       // J3.5.1 landing-point error: drawn once, when he first sees the ball in the air.
       if (airActive && airDrawn[s] === 0 && tick >= airSeenAt[s]!) {
         airErrX[s] = noNoise ? 0 : rng.normal(); airErrY[s] = noNoise ? 0 : rng.normal(); airDrawn[s] = 1;
@@ -464,7 +469,11 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       if (c.prior !== undefined) prior[slot] = c.prior;
       if (c.aggression !== undefined) aggression[slot] = c.aggression;
       if (c.boxDefender !== undefined) boxDefender[slot] = c.boxDefender ? 1 : 0;
-      if (c.gaze !== undefined) setGaze(slot, c.gaze === 'ball' ? G_BALL : G_HEADING, 0, 0, 0);
+      if (c.gaze !== undefined) {
+        const key = keys[slot]!.length > 0 ? keys[slot]![0]! : -1;
+        if (c.gaze === 'key' && key >= 0 && key < SLOT_COUNT) setGaze(slot, G_SLOT, key, 0, 0);
+        else setGaze(slot, c.gaze === 'ball' ? G_BALL : G_HEADING, 0, 0, 0);
+      }
     },
     gazeAtSlot: (slot, target) => setGaze(slot, G_SLOT, target, 0, 0),
     gazeAtBall: (slot) => setGaze(slot, G_BALL, 0, 0, 0),

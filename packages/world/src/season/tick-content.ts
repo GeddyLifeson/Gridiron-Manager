@@ -143,7 +143,9 @@ const ZONE_EYES: ReadonlySet<string> = new Set(['zoneDrop', 'deepZone']);
  * before he drops, so a handoff does not find him backing away. The read step is a design value (Assumption).
  */
 const RUN_READ: Assignment['rules'][number] = {
-  when: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } }, guard: null,
+  // Only once a runner has declared: a quarterback still holding the ball behind the line (a mesh, a fake, a rollout)
+  // holds the defender where he is, it does not send him at the quarterback.
+  when: { op: 'all', of: [{ op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } }, { op: 'test', name: 'ballCarrierDeclared', args: {} }] }, guard: null,
   then: [{ name: 'pursue', args: { angle: 'intercept' } }], text: 'Run read: come up and play the ball',
 };
 export const READ_STEP_S = 1.0;
@@ -177,8 +179,12 @@ function withDropPath(a: Assignment): Assignment {
   const px = Math.max(depth, a.preSnap.align.px), py = side * row[1];
   if (type === 'deepZone') return { ...a, behavior: { ...a.behavior, path: [{ px, py, kind: 'settle', landmark: null }] } };
   const drop: Assignment['rules'][number] = {
-    when: { op: 'any', of: [{ op: 'test', name: 'read', args: { kind: 'pass', dir: 'any' } }, { op: 'test', name: 'timeGt', args: { s: READ_STEP_S } }] },
-    guard: { op: 'not', of: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } } },
+    // "Not a run read" is part of the condition, not a guard: a guard is asked once, when the condition turns true, and
+    // a defender fooled by a fake has to be able to drop later, when his read comes back to pass.
+    when: { op: 'all', of: [
+      { op: 'any', of: [{ op: 'test', name: 'read', args: { kind: 'pass', dir: 'any' } }, { op: 'test', name: 'timeGt', args: { s: READ_STEP_S } }] },
+      { op: 'not', of: { op: 'test', name: 'read', args: { kind: 'run', dir: 'any' } } }] },
+    guard: null,
     then: [{ name: 'dropTo', args: { px, py } }], text: 'Pass read, or no read after the read step: drop to my zone',
   };
   const at = a.rules.indexOf(RUN_READ);
@@ -341,6 +347,31 @@ function dropOf(word: unknown, shotgun: boolean): DropType {
   return shotgun ? 'gun3' : 'uc5';
 }
 
+/** Share of the back's run to a spot that the quarterback may use to get there himself (he turns first). Design value (Assumption). */
+const MESH_QB_SHARE = 0.8;
+const MESH_STEP_YD = 0.5;
+
+/**
+ * Where a handoff happens (F4): walking the back's drawn path from his alignment, the first spot behind the line
+ * that is nearer to the quarterback than `MESH_QB_SHARE` of the back's run to it; the last spot behind the line
+ * when there is none. Null when the path never goes behind the line.
+ */
+export function meshPoint(qb: { px: number; py: number }, back: { px: number; py: number }, path: readonly { px: number; py: number }[]): { px: number; py: number } | null {
+  let fromX = back.px, fromY = back.py, run = 0, last: { px: number; py: number } | null = null;
+  for (const pt of path) {
+    const dx = pt.px - fromX, dy = pt.py - fromY, len = Math.sqrt(dx * dx + dy * dy), steps = Math.max(1, Math.ceil(len / MESH_STEP_YD));
+    for (let i = 1; i <= steps; i++) {
+      const x = fromX + dx * i / steps, y = fromY + dy * i / steps;
+      if (x >= 0) return last;
+      last = { px: x, py: y };
+      const qx = x - qb.px, qy = y - qb.py;
+      if (Math.sqrt(qx * qx + qy * qy) <= MESH_QB_SHARE * (run + len * i / steps)) return last;
+    }
+    run += len; fromX = pt.px; fromY = pt.py;
+  }
+  return last;
+}
+
 /** The quarterback's play from the starter quarterback slot (J7 inputs). Team slots are the fixed order. */
 function qbPlayOf(def: starter.PlayDef, O: readonly Assignment[], defenseSlotOf: (role: string) => number): QbPlay | null {
   const qbSlot = O.findIndex((a) => a.behavior.type === 'quarterback');
@@ -369,9 +400,12 @@ function qbPlayOf(def: starter.PlayDef, O: readonly Assignment[], defenseSlotOf:
     case 'kneel': return { ...base, kind: 'kneel', reads: [], eligible: [], pocket };
     case 'spike': return { ...base, kind: 'spike', reads: [], eligible: [], pocket };
     case 'handoff': case 'rpo': case 'fakeDrop': {
-      // F4 the mesh point: where the back's drawn path first crosses behind the line; he meets the back there.
-      const back = O[backSlot]!, first = back.behavior.path.find((pt) => pt.px < 0) ?? null;
-      const meet = first === null ? null : { px: first.px, py: first.py };
+      // F4 the mesh point: the first spot on the back's drawn path behind the line that the quarterback can get to
+      // before the back does. The first drawn point alone was wrong for deep backs: on power and pin and pull it
+      // sits a yard in front of the back, six yards behind the centre, and the back was past it before the
+      // quarterback had turned, so every one of those calls ended as a quarterback keep.
+      const back = O[backSlot]!;
+      const meet = meshPoint(q.preSnap.align, back.preSnap.align, back.behavior.path);
       return { ...base, kind: 'handoff', reads: [], eligible, handoff: { backSlot, meet }, pocket };
     }
     case 'zoneRead': {
@@ -596,13 +630,14 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
       const defCalls = s.unit === 'offense' && o.unit === 'defense' ? presnapCalls.of(o.callContentId ?? o.coverageFamily, o.coverageFamily, D, O, qbSlot, input.rules) : null;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
       const slots: PlaySetup['slots'] = Array.from({ length: SLOT_COUNT }, (_, w) => ({ conceptId: (w < SLOTS_PER_TEAM ? O[w]! : D[w - SLOTS_PER_TEAM]!).conceptId }));
-      // Eyes (J3.4.1): a zone defender plays with his on the ball. Receivers turn to look when the ball is thrown
+      // Eyes (J3.4.1): a zone defender plays with his on the ball, a man defender with his on his man (his first key):
+      // with his eyes on his hips he lost the man the moment he turned to run with him. Receivers turn to look when the ball is thrown
       // (the quarterback plug does that), not before: looking back all route long costs them speed.
       const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => {
         if (s.unit !== 'offense') return {};
         if (w < SLOTS_PER_TEAM) return {};
         const a = D[w - SLOTS_PER_TEAM]!;
-        return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}) };
+        return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : a.behavior.type === 'manCover' ? { gaze: 'key' as const } : {}) };
       });
       // The crowd on this play (J12.6.1, J12.8.1): noise each unit hears, the J5.7.1 venue, the road silent count,
       // the D9.4.1 noise factor and the residual familiarity term, all from the snapshot and the scoreboard.

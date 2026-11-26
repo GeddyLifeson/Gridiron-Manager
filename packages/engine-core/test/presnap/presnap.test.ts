@@ -228,12 +228,14 @@ describe('J5.3 shifts and motion', () => {
   });
   it('J5.3.1: a forced snap before the offense is set is an illegal shift, or a dead-ball false start with the clock running inside two minutes', () => {
     const far = (w: ReturnType<typeof world>) => { for (let s = 0; s < SLOTS_PER_TEAM; s++) w.players.posX[s] = w.frame.originX - 22 * w.frame.attackDir; return w; };
+    // A clock that lets every man reach his spot (J5.8.1 `alignTravelS`) half a second before it runs out: aligned, not set.
+    const short = Math.round((planPresnap(far(world()), input({ tempo: 'no_huddle' })).offenseSetS - 0.5) * 10);
     const w = far(world());
-    const plan = planPresnap(w, input({ tempo: 'no_huddle', playClockStartTenths: 45 }));
+    const plan = planPresnap(w, input({ tempo: 'no_huddle', playClockStartTenths: short }));
     expect(plan.fouls.map((f) => f.foulId)).toContain('illegal_shift');
     const w2 = far(world());
     (w2.situation as { insideTwoMinute: boolean }).insideTwoMinute = true;
-    const plan2 = planPresnap(w2, input({ tempo: 'no_huddle', playClockStartTenths: 45 }));
+    const plan2 = planPresnap(w2, input({ tempo: 'no_huddle', playClockStartTenths: short }));
     expect(plan2.fouls.find((f) => f.slot === null && f.foulId === 'false_start')?.deadBall).toBe(true);
   });
   it('J5.3.2 acceptance: against a man call with no bluff the matched defender follows the motion on 100% of trials', () => {
