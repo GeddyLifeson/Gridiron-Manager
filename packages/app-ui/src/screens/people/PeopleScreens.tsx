@@ -124,7 +124,7 @@ function Health({ c, text, onIntent }: { c: UiCard; text: TextOf; onIntent(i: Pe
   );
 }
 
-function Person({ c, text, readOnly, onIntent }: { c: UiCard; text: TextOf; readOnly: boolean; onIntent(i: PeopleIntent): void }) {
+function PersonTabView({ c, text, readOnly, onIntent }: { c: UiCard; text: TextOf; readOnly: boolean; onIntent(i: PeopleIntent): void }) {
   const p = c.person;
   if (!p) return <p className="gm-line" data-tab="person">{pt('pp.notEvaluated')}</p>;
   return (
@@ -189,7 +189,7 @@ export function PlayerCardScreen({ view, tab, readOnly, text = idText, onTab, on
         {tab === 'performance' ? <p className="gm-line" data-tab="performance">{pt('pp.card.performance.elsewhere')}</p> : null}
         {tab === 'knowledge' ? <Knowledge c={view} text={text} /> : null}
         {tab === 'health' ? <Health c={view} text={text} onIntent={onIntent} /> : null}
-        {tab === 'person' ? <Person c={view} text={text} readOnly={readOnly} onIntent={onIntent} /> : null}
+        {tab === 'person' ? <PersonTabView c={view} text={text} readOnly={readOnly} onIntent={onIntent} /> : null}
         {tab === 'history' ? <p className="gm-line" data-tab="history">{pt('pp.card.history.none')}</p> : null}
         {tab === 'notes' ? <Notes c={view} readOnly={readOnly} text={text} onIntent={onIntent} /> : null}
       </div>
