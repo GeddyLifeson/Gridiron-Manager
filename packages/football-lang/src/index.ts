@@ -3,3 +3,4 @@
 // `lang.createFootballLang(opts)` returns the contract's FootballLang.
 export * as lang from './lang/index.ts';
 export * as legality from './legality/index.ts';
+export * as designer from './designer/index.ts';

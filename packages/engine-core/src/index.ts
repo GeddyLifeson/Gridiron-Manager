@@ -17,3 +17,5 @@ export * as perception from './perception/index.ts';
 export * as presnap from './presnap/index.ts';
 export * as playerAi from './player-ai/index.ts';
 export * as ball from './ball/index.ts';
+export * as qb from './qb/index.ts';
+export * as tickResolver from './tick-resolver/index.ts';

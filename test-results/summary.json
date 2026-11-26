@@ -1,39 +1,39 @@
 {
   "ok": true,
-  "commit": "fa99ad2",
-  "uncommittedSourceChanges": false,
+  "commit": "5d514ca",
+  "uncommittedSourceChanges": true,
   "machine": "linux 6.18.44-fc-v880 x64, node 22.23.5",
-  "finishedAt": "2026-11-26T04:04:03.799Z",
+  "finishedAt": "2026-11-26T03:53:42.695Z",
   "steps": [
     {
       "name": "typecheck (TypeScript strict)",
       "ok": true,
-      "seconds": 4.3
+      "seconds": 4.2
     },
     {
       "name": "lints (P1.2.1, P1.2.2, P1.1.1, P1.1.2, Q1.2.1, Q6.2.1)",
       "ok": true,
-      "seconds": 2.3
+      "seconds": 2.4
     },
     {
       "name": "unit, property and schema tests (vitest)",
       "ok": true,
-      "seconds": 293.5
+      "seconds": 281.3
     },
     {
       "name": "headless golden gate, 1 and N workers (Q1.3.1)",
       "ok": true,
-      "seconds": 6.1
+      "seconds": 5.2
     },
     {
       "name": "browser golden gate and save round trip (R1.2.1 items 1-2)",
       "ok": true,
-      "seconds": 10.4
+      "seconds": 8.3
     },
     {
       "name": "browser build works offline after the first visit (P2.3.2, G-06)",
       "ok": true,
-      "seconds": 3.5
+      "seconds": 2.7
     },
     {
       "name": "desktop shell golden gate (R1.2.1 item 1)",

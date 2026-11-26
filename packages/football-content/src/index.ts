@@ -4,3 +4,4 @@ export * as templates from './templates/index.ts';
 export * as starter from './starter/index.ts';
 export * as playbook from './playbook/index.ts';
 export * as gameplan from './gameplan/index.ts';
+export * as defenseDesigner from './defense-designer/index.ts';

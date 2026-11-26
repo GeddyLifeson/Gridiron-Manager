@@ -16,6 +16,38 @@ export interface AdapterCheck {
   readonly difference: number;
 }
 
+/** How well the participation and FTN charts cover one season's plays, and how the two charts agree where both chart a count. */
+export interface ChartCheck {
+  readonly season: number;
+  readonly participationRows: number;
+  readonly ftnRows: number;
+  readonly passRunPlays: number;
+  /** Pass and run plays the FTN file does not hold (counted as no play action, no motion). */
+  readonly ftnMissing: number;
+  readonly personnelCharted: number;
+  readonly dropbacks: number;
+  readonly dropbacksCharted: number;
+  readonly coverageCharted: number;
+  readonly carries: number;
+  readonly carriesBoxCharted: number;
+  readonly rushersBoth: number;
+  readonly rushersEqual: number;
+  readonly boxBoth: number;
+  readonly boxEqual: number;
+}
+
+/**
+ * Cells whose collections differ from the base play-by-play: a dim or a metric id, and the collections that
+ * measured them. A collection counts once; two files that hold one chart are one collection (see chartChecks).
+ */
+export interface CellGroup {
+  readonly name: string;
+  readonly dims: readonly string[];
+  readonly metrics: readonly string[];
+  readonly collections: readonly string[];
+  readonly note: string;
+}
+
 export interface RealBaseline {
   readonly ruleSetId: string;
   readonly seasons: string;
@@ -25,6 +57,12 @@ export interface RealBaseline {
   readonly games: number;
   readonly rows: number;
   readonly adapterChecks: readonly AdapterCheck[];
+  /** Per-season coverage and agreement of the charts (absent in a baseline with no charts). */
+  readonly chartChecks?: readonly ChartCheck[];
+  /** Cell groups measured on other collections than `sources` (absent in a baseline with none). */
+  readonly groups?: readonly CellGroup[];
+  /** Dims and metrics left out because the collection does not hold what they read; they print MISSING SOURCE. */
+  readonly omitted?: { readonly dims: readonly string[]; readonly metrics: readonly string[]; readonly reason: string };
   readonly cells: readonly CellValue[];
 }
 
@@ -41,6 +79,13 @@ export interface Tolerances {
 /** Status of every cell of a baseline: one collection is "1 of 3", two "2 of 3", three or more Verified (Q6.1.2). */
 export function baselineStatus(b: Pick<RealBaseline, 'sources'>): FactStatus {
   const n = new Set(b.sources.map((s) => s.citation)).size;
+  return n >= 3 ? 'Verified' : n === 2 ? '2 of 3' : n === 1 ? '1 of 3' : 'Unverified';
+}
+
+/** Status of one cell: the group that names its dim or metric, else the base sources. */
+export function cellStatus(b: Pick<RealBaseline, 'sources' | 'groups'>, cell: { readonly dim: string; readonly metric: string }): FactStatus {
+  const g = (b.groups ?? []).find((x) => x.dims.includes(cell.dim) || x.metrics.includes(cell.metric));
+  const n = new Set(g ? g.collections : b.sources.map((s) => s.citation)).size;
   return n >= 3 ? 'Verified' : n === 2 ? '2 of 3' : n === 1 ? '1 of 3' : 'Unverified';
 }
 

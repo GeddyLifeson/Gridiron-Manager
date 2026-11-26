@@ -176,6 +176,12 @@ export class GameCallingSession {
       if (r.resume === null) { this.pending = null; this.driver.state = { ...this.driver.state, open: null, step: 'idle' }; return; }
       const req = this.waiting();
       if (!req) throw new Error('game session: the flow stopped with no request for the user team');
+      // Integrator stopgap (PR 144 with PR 146): the flow now also asks for a timeout after the calls, up to the snap.
+      // The console has no window for it yet, so it is answered "none" here instead of opening as a coming call.
+      if (req.type === 'timeout' && this.callsAreIn()) {
+        this.queue(req, optionDecision(req, flow.OPT.none, this.game.playClockTenths), this.driver.nowMs);
+        continue;
+      }
       if ((req.type === 'snapping_call' || req.type === 'opposing_call') && this.defaultNext) {
         this.defaultNext = false;
         this.queue(req, defaultDecision(req), this.driver.nowMs);
@@ -211,6 +217,16 @@ export class GameCallingSession {
       return;
     }
     throw new Error('game session: no stop after many units');
+  }
+
+  /** True when the user's call for the coming play is already answered (no play resolved since). */
+  private callsAreIn(): boolean {
+    for (let i = this.events.length - 1; i >= 0; i--) {
+      const e = this.events[i]!;
+      if (e.type === 'play_resolved' || e.type === 'timeout_charged') return false;
+      if (e.type === 'decision_made' && e.decision.side === this.o.userSide && (e.decision.type === 'snapping_call' || e.decision.type === 'opposing_call')) return true;
+    }
+    return false;
   }
 
   /** The newest request for the user's team with no answer yet. */

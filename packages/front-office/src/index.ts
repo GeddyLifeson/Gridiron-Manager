@@ -2,3 +2,5 @@
 export const PACKAGE = 'front-office';
 // Modules are re-exported under a namespace (modules export PARAMS). Integrator-owned.
 export * as stakeholders from './stakeholders/index.ts';
+export * as gm from './gm/index.ts';
+export * as press from './press/index.ts';
