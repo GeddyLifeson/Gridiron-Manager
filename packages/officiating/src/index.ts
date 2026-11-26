@@ -7,3 +7,6 @@ export * as scrimmage from './scrimmage/index.ts';
 export * as fouls from './fouls/index.ts';
 export * as crew from './crew/index.ts';
 export * as replay from './replay/index.ts';
+export * as kick from './kick/index.ts';
+export * as restart from './restart/index.ts';
+export * as overtime from './overtime/index.ts';

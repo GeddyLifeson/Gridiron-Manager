@@ -39,6 +39,8 @@ export const SLOTS_PER_TEAM = 11;
 /** J1.3.1 constants. SUBSTEPS is a starting value and is read by the tick loop from here only. */
 export const TICK_S = 0.1;
 export const TICKS_PER_SECOND = 10;
+/** Unit conversion for clock code under the officiating literal lint (CR-02-4). */
+export const SECONDS_PER_MINUTE = 60;
 export const SUBSTEPS = 2;
 /** Hard limit of a live play (J1.3.1): 600 ticks. Beyond it the play is an engine fault. */
 export const MAX_LIVE_TICKS = 600;
