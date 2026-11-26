@@ -58,6 +58,9 @@ export interface RouteHistoryAdapter {
   current(): string;
   push(path: string): void;
   listen(fn: (path: string) => void): () => void;
+  /** When present, back and forward go through the browser so its own buttons share one stack (O1.3.3). */
+  back?(): void;
+  forward?(): void;
 }
 
 export interface ShellProps {
@@ -127,7 +130,7 @@ const css = `
 .gm-top .gm-badge { padding: 0 calc(var(--gm-space) * 2); border: var(--gm-line-weight-hair) solid ${v('line.strong')}; border-radius: calc(var(--gm-space) * 2); }
 .gm-top .gm-alert { margin-left: auto; color: ${v('text.muted')}; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 40%; }
 .gm-top .gm-alert[data-level="urgent"] { color: ${v('state.bad')}; font-weight: 600; }
-.gm-hubs { grid-area: hubs; display: flex; flex-direction: column; background: ${v('surface.panel')}; border-right: var(--gm-line-weight-hair) solid ${v('line.default')};
+.gm-hubs { grid-area: hubs; display: flex; flex-direction: column; width: calc(var(--gm-space) * 48); box-sizing: border-box; background: ${v('surface.panel')}; border-right: var(--gm-line-weight-hair) solid ${v('line.default')};
   padding: var(--gm-space) 0; overflow-y: auto; }
 .gm-hub { display: block; text-align: left; border: 0; background: none; color: ${v('text.ink')}; padding: var(--gm-space) calc(var(--gm-space) * 3); cursor: pointer; font: inherit; }
 .gm-hub[aria-current="true"] { background: ${v('surface.raised')}; font-weight: 600; box-shadow: inset var(--gm-line-weight-thick) 0 0 ${v('accent.default')}; }
@@ -284,9 +287,12 @@ export function Shell(props: ShellProps) {
     return h.listen((path) => {
       if (pushing.current) return;
       const prev = nav.back[nav.back.length - 1];
-      dispatch(prev && href(prev) === path ? { type: 'back' } : { type: 'navigate', to: path });
+      const next = nav.forward[0];
+      if (prev && href(prev) === path) dispatch({ type: 'back' });
+      else if (next && href(next) === path) dispatch({ type: 'forward' });
+      else dispatch({ type: 'navigate', to: path });
     });
-  }, [props.history, nav.back]);
+  }, [props.history, nav.back, nav.forward]);
 
   // The alert line clock (display only).
   useEffect(() => {
@@ -314,8 +320,14 @@ export function Shell(props: ShellProps) {
       return;
     }
     const a = navActionFor(action);
-    if (a) { e.preventDefault(); dispatch(a); }
-  }, [nav, bindings, props.onAdvance]);
+    if (!a) return;
+    e.preventDefault();
+    const h = props.history;
+    const goesBack = a.type === 'back' || (a.type === 'escape' && !nav.overlay && !nav.pendingHub && !nav.panelScreen);
+    if (h?.back && goesBack && nav.back.length) { h.back(); return; }
+    if (h?.forward && a.type === 'forward' && nav.forward.length) { h.forward(); return; }
+    dispatch(a);
+  }, [nav, bindings, props.onAdvance, props.history]);
 
   useEffect(() => {
     if (typeof document === 'undefined') return;
@@ -416,6 +428,8 @@ export function browserHistoryAdapter(): RouteHistoryAdapter {
   return {
     current: () => window.location.pathname + window.location.search,
     push: (path) => window.history.pushState(null, '', path),
+    back: () => window.history.back(),
+    forward: () => window.history.forward(),
     listen: (fn) => {
       const h = () => fn(window.location.pathname + window.location.search);
       window.addEventListener('popstate', h);
