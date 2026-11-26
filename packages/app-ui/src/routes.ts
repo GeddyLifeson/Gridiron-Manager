@@ -35,6 +35,7 @@ import { printRoute, SCREEN_ID as PRINT_SCREEN_ID } from './screens/print/index.
 import { decisionLogRoutes } from './screens/decision-log/index.ts';
 import { glossaryRoutes } from './screens/glossary/index.ts';
 import { notebookRoutes } from './screens/notebook/index.ts';
+import { gameManagementRoute, GAME_MANAGEMENT_SCREEN_ID } from './screens/game-management/index.ts';
 
 type Args<F extends (...a: never[]) => unknown> = Parameters<F>;
 
@@ -99,6 +100,11 @@ export interface RouteSources {
   readonly glossary?: Args<typeof glossaryRoutes>[0];
   /** E11 coach's notebook. */
   readonly notebook?: Args<typeof notebookRoutes>[0];
+  /**
+   * G-61 game management panel standing alone on game.console (CR-G61-3). Used only when no `gameCalling`
+   * source is given: with the console, the panel belongs in its sideline region (`gameCalling.sideline`, O2.1.2).
+   */
+  readonly gameManagement?: { readonly load: Args<typeof gameManagementRoute>[0]; readonly keyOf: Args<typeof gameManagementRoute>[1]; readonly pick?: Args<typeof gameManagementRoute>[2] };
 }
 
 /** Office screen id that shows the assignment list below head coach (O1.2.1, O7.2.1). */
@@ -153,5 +159,6 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.glossary) putAll(glossaryRoutes(s.glossary));
   if (s.notebook) putAll(notebookRoutes(s.notebook));
   if (s.gameplan) { put(PLAN_SCREEN_ID, gamePlanRoute(s.gameplan)); put(SHEET_SCREEN_ID, callSheetRoute(s.gameplan)); }
+  if (s.gameManagement && !s.gameCalling) put(GAME_MANAGEMENT_SCREEN_ID, gameManagementRoute(s.gameManagement.load, s.gameManagement.keyOf, s.gameManagement.pick));
   return t;
 }
